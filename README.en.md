@@ -4,7 +4,7 @@
 
 ## 24h AI Updates Radar｜Scout Skill
 
-**Scout Skill helps you find the thoroughbreds among a pile of AI sources.**
+**Scout Skill helps you find the thoroughbreds among a pile of sources, then turns scattered updates into a traceable AI story timeline.**
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-green?style=flat-square)](https://learnprompt.github.io/ai-news-radar/)
 [![Actions](https://img.shields.io/github/actions/workflow/status/LearnPrompt/ai-news-radar/update-news.yml?branch=master&label=update&style=flat-square)](https://github.com/LearnPrompt/ai-news-radar/actions/workflows/update-news.yml)
@@ -18,13 +18,15 @@
 
 ## What is this?
 
-AI News Radar is an auto-updating 24h radar for AI updates.
+AI News Radar is an auto-updating 24h radar for AI updates. It does more than fetch AI news. It judges source quality first, merges the same event into a story timeline, then uses Scout picks, AI labels, source health, and AI ratio to help you decide:
 
-Readers can open the page and scan the last 24 hours of AI, model, developer-tool, and tech-ecosystem updates. Maintainers can fork this repo and connect their own OPML/RSS, public feeds, static pages, or AgentMail inbox intelligence. Codex / Claude Code-style agents can use the in-repo **Scout Skill** to judge sources, maintain fetch logic, and deploy to GitHub Pages.
+what is worth reading, what deserves deeper research, and what is just noise.
 
-This project is not “one more news page”.
+Readers can open the page and scan the last 24 hours of AI, model, and developer-tool updates. Developers can fork this repo and connect their own OPML/RSS, public feeds, static pages, or AgentMail inboxes. Codex / Claude Code-style agents can use the in-repo **Scout Skill** to judge new sources, maintain fetch logic, and deploy to GitHub Pages.
 
-Its core is **Scout Skill**. It helps you find the thoroughbreds among a pile of sources. Which sources are worth tracking long term? Which ones should become RSS/OPML inputs? Which ones only make sense through a paid API? Which sources update all day, but have less than 5% AI signal for what you actually care about?
+This project will never be “one more news page”.
+
+Its core logic is **Scout Skill**. It helps you find the thoroughbreds among a pile of sources. Which sources are worth tracking long term? Which ones should become RSS/OPML inputs? Which ones only make sense through a paid API? Which sources update all day, but have less than 5% AI signal for what you actually care about?
 
 Judge first. Then connect.
 
@@ -38,25 +40,58 @@ I thought I was tracking the frontier. Most days, I was repeating the same three
 
 open dozens of pages, filter duplicates by hand, and guess which link was worth reading.
 
-Scout Skill handles the first pass: **which sources are thoroughbreds, and which ones are noise**.
+Let Scout Skill handle the first pass: **which sources are thoroughbreds, and which ones are noise**.
 
-You can keep adding sources freely. You can also put a source into the input set, let it run in a separate view for a month, and decide later whether it deserves to be promoted.
+You can keep adding sources freely. You can also put a source into the input set, let it run for a week, and decide later whether it deserves to be promoted.
 
 AI News Radar was never just about fetching information.
 
 It is closer to a lightweight news pipeline: source judgement, fetching, deduplication, AI-relevance filtering, source health, and static web publishing. Once deployed, the core flow does not spend model tokens.
 
-## What it can do now
+## What it can do
 
-- Track official AI nodes, including OpenAI News, OpenAI Codex Changelog, OpenAI Skills, Anthropic, Google DeepMind, Google AI, Hugging Face, GitHub AI, and more
-- Read high-signal public daily digests and newsletters, such as AI Breakfast
-- Read feeds exposed by websites themselves, such as Follow Builders for X builders, Anthropic Engineering, Claude Blog, and AI podcasts
-- Connect multiple public aggregator sources, including AI HOT, to cover blind spots missed by ordinary official feeds
-- Support OPML/RSS batch import, with `feeds/follow.example.opml` as the demo file
-- Support AgentMail inbox subscriptions for high-quality AI digests
-- Output a 24h two-view UI: `AI-focused` and `All`
-- Render bilingual titles and site groups
-- Work with Feishu documents, including the latest-day and last-7-days WaytoAGI open-source community changes
+### For readers
+
+- Open the live site and scan the last 24 hours of AI, model, Agent, developer-tool, and tech-ecosystem updates
+- Use “Scout Picks” to see high-value story timelines first, instead of manually filtering hundreds of items
+- Continue reading the full AI-focused feed in “AI Signal Flow”
+- Locate updates quickly with site, keyword, time, and source filters
+- See each item’s AI label, AI-relevance score, source platform, and publish time
+- Use source health and AI ratio to tell which sources are actually useful, and which ones update a lot but contain little AI signal
+
+### For content creators
+
+- Preserve original source links for deeper research, fact checking, and topic planning
+- Merge multiple sources for the same event, reducing duplicate reading
+- Use AI labels to judge whether an item is better for a post, short video, or hands-on tool test
+- Use signals such as multi-source overlap, official-first source, and single-source watch item to judge topic credibility and priority
+
+### For developers and agents
+
+- Requires no API key, login state, or LLM quota by default
+- Supports official RSS/changelog sources, OPML/RSS, public GitHub feed/JSON files, static pages, and AgentMail
+- GitHub Actions automatically generates `data/*.json` and publishes to GitHub Pages
+- Codex / Claude Code / Hermes / OpenClaw can use the in-repo Scout Skill to maintain sources, fetch logic, and the web page
+- Advanced sources can be connected through GitHub Secrets or local environment variables, without committing tokens, cookies, private OPML files, or email bodies
+
+## v0.6: from feed to story timeline
+
+The focus of v0.6 is simple:
+
+**merge the same AI event scattered across different sources.**
+
+The old feed problem is obvious:
+
+one model release, one product update, or one open-source project can be reposted by official blogs, tech media, aggregators, and RSS sources at the same time.
+
+More messages can make it harder to see what actually matters.
+
+v0.6 adds four major upgrades:
+
+- **Scout Picks story timeline**: select higher-value event nodes from the last 24 hours, instead of just stacking items by publish time.
+- **Multi-source evidence merge**: preserve multiple sources for the same event, reducing duplicates without losing original links.
+- **AI labels and scores**: mark whether each item looks like a model release, product update, Agent workflow, developer tool, research paper, or industry update, and show its AI-relevance score.
+- **Source health and AI ratio**: show not only how many items a source fetched, but how many are truly AI-relevant, so maintainers can decide whether a source is worth keeping.
 
 ## How it works
 
@@ -78,17 +113,41 @@ flowchart LR
     privateMail --> fetch
 
     fetch --> dedup["Deduplicate and normalize"]
-    dedup --> filter["AI-relevance filter"]
-    filter --> status["Source health and coverage stats"]
-    filter --> data["data/*.json"]
-    status --> data
-    data --> pages["GitHub Pages web UI"]
-    data --> agent["Codex / Claude Code maintenance"]
+    dedup --> score["AI-relevance scoring and labels"]
+    score --> story["Story merge and multi-source evidence"]
+    score --> status["Source health and AI-ratio stats"]
+
+    story --> brief["Scout Picks / daily-brief.json"]
+    story --> merged["stories-merged.json / merge-log.json"]
+    status --> sourceData["source-status.json"]
+    score --> latest["latest-24h.json / latest-24h-all.json"]
+
+    brief --> pages["GitHub Pages web UI"]
+    merged --> pages
+    sourceData --> pages
+    latest --> pages
+
+    pages --> agent["Codex / Claude Code maintenance"]
 ```
 
-AI News Radar borrows from modern newsroom workflows. Dumping thousands of items into a page is not useful, so the project turns news handling into a stable pipeline: fetch, deduplicate, filter, add status, and generate a static site.
+AI News Radar borrows from modern newsroom workflows. Dumping thousands of items into a page is not useful, so the project turns news handling into a stable pipeline: fetch, deduplicate, filter, enrich with status, and generate a static site.
 
 It stays lightweight on purpose. The public version does not require an LLM API key, login state, cookies, X API access, or email access. When you need advanced sources, Scout Skill can connect them through GitHub Secrets or local environment variables.
+
+## Data outputs
+
+Each update generates a set of static JSON files. The page only reads these files and does not need a backend service.
+
+Core files include:
+
+- `data/latest-24h.json`: AI-focused updates from the last 24 hours
+- `data/latest-24h-all.json`: all updates from the last 24 hours
+- `data/source-status.json`: source fetch status, success rate, site coverage, and source health
+- `data/daily-brief.json`: Scout Picks story timeline for the homepage
+- `data/stories-merged.json`: the complete merged story set
+- `data/merge-log.json`: story-merge matches and debug records for auditing
+
+If `daily-brief.json` is not available yet, the page falls back to candidate Scout signals so the homepage does not go blank.
 
 ## Quick start
 
@@ -119,8 +178,6 @@ cp feeds/follow.example.opml feeds/follow.opml
 # Put your own subscriptions into feeds/follow.opml. Do not commit this file.
 python scripts/update_news.py --output-dir data --window-hours 24 --rss-opml feeds/follow.opml
 ```
-
-`feeds/follow.example.opml` is a safe demo file. It includes a small set of official AI sources, AI media / builder feeds, and AI newsletters. Use it as a starting point, then keep your real `feeds/follow.opml` private.
 
 ## Tutorial for agents
 
@@ -155,7 +212,15 @@ When a new agent takes over validation, read these first:
 - Commits `data/email-digest.json` only when `EMAIL_DIGEST_PUBLISH=1` is also explicitly set
 - Uses the official X API during the configured daily UTC window when `X_API_ENABLED=1`, `X_BEARER_TOKEN`, and budget variables are set. This is off by default, and the current X API charges by returned resources.
 
-By default, the core pipeline requires no API keys. Advanced source templates live in `examples/advanced-sources.env.example`; budget notes are in `docs/research/advanced-source-free-tier-budget-2026-05-10.md`; the X API demo config is in `docs/guides/x-api-demo-config.md`; the single-account / single-newsletter demo is in `docs/guides/rileybrown-alphasignal-demo.md`.
+By default, the core pipeline requires no API keys.
+
+Advanced source templates live in `examples/advanced-sources.env.example`.
+
+Budget notes are in `docs/research/advanced-source-free-tier-budget-2026-05-10.md`.
+
+The X API demo config is in `docs/guides/x-api-demo-config.md`.
+
+The single-account / single-newsletter demo is in `docs/guides/rileybrown-alphasignal-demo.md`.
 
 ## License
 

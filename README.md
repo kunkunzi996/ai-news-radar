@@ -2,9 +2,9 @@
 
 # AI News Radar
 
-## 24 小时 AI 更新雷达｜伯乐Skill
+## 24小时AI更新雷达｜伯乐Skill
 
-**伯乐Skill（Scout Skill）帮你从一堆信源里选出千里马。**
+**伯乐Skill（Scout Skill）帮你从一堆信源里选出千里马，并把分散消息合并成可追踪的AI故事线。**
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-green?style=flat-square)](https://learnprompt.github.io/ai-news-radar/)
 [![Actions](https://img.shields.io/github/actions/workflow/status/LearnPrompt/ai-news-radar/update-news.yml?branch=master&label=update&style=flat-square)](https://github.com/LearnPrompt/ai-news-radar/actions/workflows/update-news.yml)
@@ -18,13 +18,15 @@
 
 ## 这是什么
 
-AI News Radar 是一个自动更新的 24 小时 AI 更新雷达。
+AI News Radar是一个自动更新的24小时AI更新雷达。它不只是把AI新闻抓回来，会先判断信息源质量，把同一个事件合并成故事线，最后用伯乐Skill精选、AI标签、源健康和AI占比帮你判断，
 
-普通用户直接打开网页，看最近 24 小时 AI、模型、开发者工具和技术生态更新。维护者可以 fork 这个仓库，接入自己的 OPML/RSS、公开 feed、静态页面或 AgentMail 邮箱情报。Codex / Claude Code 这类 Agent 可以使用项目内置的 **伯乐Skill**，继续帮你判断信息源、维护抓取逻辑、部署 GitHub Pages。
+什么信息值得看，什么值得深挖，什么只是噪音。
 
-这个项目不是“又一个新闻网页”。
+普通用户直接打开网页，看最近24小时AI、模型、开发者工具和技术生态更新。开发者可以fork这个仓库，接入自己的OPML/RSS、公开feed、静态页面或AgentMail邮箱。Codex / Claude Code这类 Agent 可以使用项目内置的 **伯乐Skill**，继续帮你判断新的信息源、维护抓取逻辑、部署 GitHub Pages。
 
-它的核心是**伯乐Skill**，帮你从一堆信源里选出千里马。哪些源值得长期追踪，哪些源适合做成RSS/OPML，哪些源只能接付费的API，哪些源看起来更新很多但实际上跟你长期关注的方面比方AI只占了里面的5%不到。
+这个项目永远都不会是“又一个新闻网页”。
+
+它的核心逻辑是**伯乐Skill**，帮你从一堆信源里选出千里马。哪些源值得长期追踪，哪些源适合做成RSS/OPML，哪些源只能接付费的API，哪些源看起来更新很多但实际上跟你长期关注的方面比方AI只占了里面的5%不到。
 
 先判断清楚，再接入。
 
@@ -32,31 +34,64 @@ AI News Radar 是一个自动更新的 24 小时 AI 更新雷达。
 
 好新闻分散在各处，
 
-官方博客发一点，更新日志发一点，X 上有人提前爆料，聚合站又把同一个新闻转来转去。
+官方博客发一点，更新日志发一点，X上有人提前爆料，聚合站又把同一个新闻转来转去。
 
 我以为的自己在追前沿，实际每天都在重复三件事，
 
 打开几十个页面，肉眼+人脑过滤重复内容，猜哪条值得看。
 
-伯乐Skill先替你完成第一轮判断，**哪些信源是千里马，哪些是噪音**。
+让伯乐Skill先替你完成第一轮判断，**哪些信源是千里马，哪些是噪音**。
 
-你可以随意增加信息源，还可以把一个信息源纳入输入范围，先让它在单独的展示区域运行一个月，再判断要不要录入。
+你可以随意增加信息源，还可以把一个信息源纳入输入范围，先让它在单独运行一周，再判断要不要录入。
 
 AI News Radar从来都不是单纯把信息抓回来，
 
 它更像是一条轻量的新闻pipeline，把来源判断、抓取、去重、AI强相关过滤、信息源健康状态和静态网页发布串起来，上线后不消耗模型额度。
 
-## 现在能做什么
+## 能做什么
 
-- 追踪官方 AI 节点，OpenAI News、OpenAI Codex Changelog、OpenAI Skills、Anthropic、Google DeepMind、Google AI、Hugging Face、GitHub AI 等
-- 读取高信号日报和Newsletter公开来源，例如 AI Breakfast
-- 读取网页自带的feed，例如 Follow Builders 的 X builders、Anthropic Engineering、Claude Blog、AI podcasts
-- 同时接入多个公开聚合源，例如 AI HOT，补足普通官方源看不到的盲区
-- 支持OPML/RSS批量导入
-- 支持AgentMail邮箱订阅高质量AI日报
-- 输出24小时双视图，`AI强相关` 和 `全量`
-- 中英双语标题和站点分组
-- 兼容飞书文档，追加了WaytoAGI开源社区最近更新日和近7日变化
+### 给普通读者
+
+- 打开在线页面，直接看最近24小时AI、模型、Agent、开发者工具和技术生态更新
+- 通过“伯乐精选”先看高价值故事线，再不用从几百条消息里肉眼筛选
+- 在“AI信号流”里继续查看完整AI强相关消息
+- 用站点、关键词、时间和来源筛选快速定位信息
+- 看到每条消息的AI标签、AI相关性分数、来源平台和发布时间
+- 通过源健康和AI占比判断：哪些源是真有料，哪些源更新很多但AI含量低
+
+### 给内容创作者
+
+- 保留原始来源链接，方便继续深挖、核对事实和做选题
+- 把同一个事件的多个来源聚合到一起，减少重复阅读
+- 用AI标签快速判断一条消息适合做图文、短视频、还是工具实测
+- 用多源重合、官方一手、单源观察等信号判断选题可信度和优先级
+
+### 给开发者和Agent
+
+- 默认不需要 API Key、不需要登录态、不需要 LLM额度
+- 支持官方 RSS/changelog、OPML/RSS、公开 GitHub feed/JSON、静态页面、AgentMail 等来源类型
+- GitHub Actions自动生成 `data/*.json` 并发布到 GitHub Pages
+- Codex / Claude Code / Hermes / OpenClaw 可以通过项目内置的伯乐Skill继续维护信源、抓取逻辑和页面
+- 高级来源可以通过 GitHub Secrets或本地环境变量接入，避免把 token、cookies、私有 OPML 和邮箱正文写进仓库
+
+## v0.6：从消息流升级为故事线
+
+v0.6这一版的重点是，
+
+**把分散在不同信源里的同一个AI事件合并起来**
+
+过去的信息流有一个问题，
+
+同一个模型发布、同一个产品更新、同一个开源项目，可能会被官方博客、技术媒体、聚合站、RSS源重复转发。
+
+消息越多，反而越难判断什么真正重要。
+
+v0.6 做了四件事：
+
+- **伯乐精选故事线**：从24小时消息里选出更值得看的事件节点，不再只按发布时间堆消息。
+- **多源证据合并**：同一个事件可以保留多个来源，既减少重复，又不丢原始链接。
+- **AI标签和分数**：每条消息都会标注它更像是模型发布、产品更新、Agent工作流、开发工具、研究论文还是行业动态，并显示AI相关性分数。
+- **源健康与AI占比**：不仅告诉你某个源抓到了多少条，还告诉你其中有多少是真正AI相关，方便判断一个信源值不值得长期保留。
 
 ## 工作原理
 
@@ -78,17 +113,41 @@ flowchart LR
     privateMail --> fetch
 
     fetch --> dedup["去重与归一化"]
-    dedup --> filter["AI 强相关过滤"]
-    filter --> status["源健康与覆盖统计"]
-    filter --> data["data/*.json"]
-    status --> data
-    data --> pages["GitHub Pages 网页"]
-    data --> agent["Codex / Claude Code 继续维护"]
+    dedup --> score["AI相关性评分与标签"]
+    score --> story["故事合并与多源证据聚合"]
+    score --> status["源健康与AI占比统计"]
+
+    story --> brief["伯乐精选 / daily-brief.json"]
+    story --> merged["stories-merged.json / merge-log.json"]
+    status --> sourceData["source-status.json"]
+    score --> latest["latest-24h.json / latest-24h-all.json"]
+
+    brief --> pages["GitHub Pages网页"]
+    merged --> pages
+    sourceData --> pages
+    latest --> pages
+
+    pages --> agent["Codex / Claude Code 继续维护"]
 ```
 
 AI News Radar学习了现代新闻学的技术，不是简单堆信息源，一次性放几万条信息出来等于没用，所以我选择把新闻处理拆成稳定pipeline，抓取，去重，过滤，补充状态，生成静态站点。
 
 在保证稳定性的同时追求轻量化，公开版不要求用户配置LLM API Key，不依赖登录态，cookies，X API和邮箱。需要这些进阶能力时，可以通过伯乐Skill用GitHub Secrets或本地环境变量接入。
+
+## 数据产物
+
+每次更新会生成一组静态JSON文件，页面只读取这些文件，不需要后端服务。
+
+核心文件包括：
+
+- `data/latest-24h.json`：最近24小时AI强相关消息
+- `data/latest-24h-all.json`：最近24小时全量消息
+- `data/source-status.json`：来源抓取状态、成功率、站点覆盖和源健康
+- `data/daily-brief.json`：伯乐精选故事线，供首页高价值时间线使用
+- `data/stories-merged.json`：故事合并后的完整事件集合
+- `data/merge-log.json`：故事合并过程和命中记录，方便调试与审计
+
+如果 `daily-brief.json` 暂时不存在，页面会回退到候选信号列表，避免首页空白。
 
 ## 快速开始
 
@@ -153,7 +212,15 @@ python scripts/update_news.py --output-dir data --window-hours 24 --rss-opml fee
 - 只有额外设置 `EMAIL_DIGEST_PUBLISH=1`，才会提交 `data/email-digest.json`
 - 如果设置 `X_API_ENABLED=1`、`X_BEARER_TOKEN` 和预算变量，会在每日指定UTC窗口用官方X API抓取少量公开Post；默认关闭，且当前X API按返回资源计费
 
-默认情况下，本项目不需要任何API Key就能跑核心流程。高级源配置模板见 `examples/advanced-sources.env.example`，预算说明见 `docs/research/advanced-source-free-tier-budget-2026-05-10.md`，X API演示配置见 `docs/guides/x-api-demo-config.md`；单账号/单newsletter演示见 `docs/guides/rileybrown-alphasignal-demo.md`。
+默认情况下，本项目不需要任何API Key就能跑核心流程。
+
+高级源配置模板见 `examples/advanced-sources.env.example`，
+
+预算说明见 `docs/research/advanced-source-free-tier-budget-2026-05-10.md`，
+
+X API演示配置见 `docs/guides/x-api-demo-config.md`；
+
+单账号/单newsletter演示见 `docs/guides/rileybrown-alphasignal-demo.md`。
 
 ## License
 

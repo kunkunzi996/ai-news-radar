@@ -24,7 +24,7 @@
       content="自动整理过去 24 小时值得看的 AI、模型和开发者工具更新；伯乐Skill（Scout Skill）帮你从一堆信源里选出千里马。"
     />
     <link rel="icon" href="./assets/logo.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./assets/styles.css?v=bole-event-merge-0525" />
+    <link rel="stylesheet" href="./assets/styles.css?v=bole-story-merge-0603" />
   </head>
   <body>
     <main class="shell">
@@ -95,7 +95,7 @@
           </div>
           <span id="bolePicksMeta">按评分排序</span>
         </div>
-        <div class="bole-picks-sub">从 24 小时信号池里挑出更值得先看的更新，展示发布时间线、评分和命中理由。</div>
+        <div class="bole-picks-sub">把过去 24 小时的 AI 信号按故事线合并，按时间倒序铺成一条 5 分钟可读的每日雷达；多源命中、官方更新、发布时间与重要性都标在卡片上。</div>
         <div id="bolePicksList" class="bole-board"></div>
       </section>
 
@@ -136,6 +136,8 @@
       </article>
     </template>
 
-    <script src="./assets/app.js?v=bole-event-merge-0525" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous" defer></script>
+    <script src="./assets/motion.js?v=bole-story-merge-0603" defer></script>
+    <script src="./assets/app.js?v=bole-story-merge-0603" defer></script>
   </body>
 </html>
