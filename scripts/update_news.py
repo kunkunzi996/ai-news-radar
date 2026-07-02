@@ -12,6 +12,7 @@ import math
 import os
 import random
 import re
+import sys
 import time
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
@@ -231,6 +232,45 @@ HN_ALGOLIA_MIN_KEYWORD_SCORE = 0.38
 HN_ALGOLIA_MIN_COMMENTS = 2
 HN_ALGOLIA_MIN_POINTS = 10
 HN_ALGOLIA_QUERY_PAUSE_SECONDS = 0.1
+BILIBILI_DYNAMIC_API_URL = "https://api.bilibili.com/x/polymer/web-dynamic/v1/opus/feed/space"
+BILIBILI_DYNAMIC_FULL_API_URL = "https://api.bilibili.com/x/polymer/web-dynamic/v1/feed/space"
+BILIBILI_NAV_API_URL = "https://api.bilibili.com/x/web-interface/nav"
+BILIBILI_DYNAMIC_DEFAULT_UID = "505301413"
+BILIBILI_DYNAMIC_DEFAULT_SOURCE_NAME = "Koji杨远骋at十字路口"
+BILIBILI_DYNAMIC_DEFAULT_ACCOUNTS = (
+    (BILIBILI_DYNAMIC_DEFAULT_UID, BILIBILI_DYNAMIC_DEFAULT_SOURCE_NAME),
+    ("316183842", "技术爬爬虾"),
+)
+BILIBILI_DYNAMIC_DEFAULT_MAX_ITEMS = 20
+BILIBILI_DYNAMIC_DEFAULT_MAX_PAGES = 5
+MEDIACRAWLER_DOUYIN_SITE_ID = "mediacrawler_douyin"
+MEDIACRAWLER_DOUYIN_SITE_NAME = "MediaCrawler Douyin"
+MEDIACRAWLER_XHS_SITE_ID = "mediacrawler_xhs"
+MEDIACRAWLER_XHS_SITE_NAME = "MediaCrawler Xiaohongshu"
+GITHUB_REPO_SUBSCRIPTION_SITE_ID = "github_foundation_sunshine_releases"
+GITHUB_REPO_SUBSCRIPTION_SITE_NAME = "GitHub Foundation Sunshine"
+GITHUB_REPO_SUBSCRIPTION_API_URL = "https://api.github.com/repos/AlkaidLab/foundation-sunshine/releases"
+GITHUB_REPO_SUBSCRIPTION_HTML_URL = "https://github.com/AlkaidLab/foundation-sunshine"
+GITHUB_REPO_SUBSCRIPTION_MAX_ITEMS = 5
+MAOBIDAO_WECHAT_SITE_ID = "maobidao_wudaolu_backup"
+MAOBIDAO_WECHAT_SITE_NAME = "Maobidao Wudaolu Backup"
+MAOBIDAO_WECHAT_API_URL = "https://wudaolu.com/c/dav/7.json"
+MAOBIDAO_WECHAT_HOME_URL = "https://wudaolu.com/c/dav/7"
+MAOBIDAO_WECHAT_MAX_ITEMS = 2
+WEWE_RSS_SITE_ID = "wewe_rss"
+WEWE_RSS_SITE_NAME = "WeWe RSS"
+WEWE_RSS_BASE_URL_DEFAULT = "http://127.0.0.1:4000"
+WEWE_RSS_DEFAULT_MAX_ITEMS = 20
+BILIBILI_WBI_MIXIN_KEY_ENC_TAB = (
+    46, 47, 18, 2, 53, 8, 23, 32,
+    15, 50, 10, 31, 58, 3, 45, 35,
+    27, 43, 5, 49, 33, 9, 42, 19,
+    29, 28, 14, 39, 12, 38, 41, 13,
+    37, 48, 7, 16, 24, 55, 40, 61,
+    26, 17, 0, 1, 60, 51, 30, 4,
+    22, 25, 54, 21, 56, 59, 6, 63,
+    57, 62, 11, 36, 20, 34, 44, 52,
+)
 AGENTMAIL_API_BASE_DEFAULT = "https://api.agentmail.to"
 AGENTMAIL_DIGEST_FILE = "email-digest.json"
 AGENTMAIL_DEFAULT_LIMIT = 50
@@ -275,7 +315,105 @@ TIKHUB_RESPONSE_SCAN_LIMIT = 100
 CREATOR_HOT_WINDOW_DAYS = 7
 CREATOR_FRESHNESS_BONUS_HOURS = 24
 CREATOR_FRESHNESS_BONUS_POINTS = 15.0
-CREATOR_SITE_IDS = frozenset({"tikhub_douyin", "tikhub_xiaohongshu"})
+CREATOR_SITE_IDS = frozenset({
+    "tikhub_douyin",
+    "tikhub_xiaohongshu",
+    "bilibili_dynamic",
+    MEDIACRAWLER_DOUYIN_SITE_ID,
+    MEDIACRAWLER_XHS_SITE_ID,
+    GITHUB_REPO_SUBSCRIPTION_SITE_ID,
+    MAOBIDAO_WECHAT_SITE_ID,
+    WEWE_RSS_SITE_ID,
+})
+SUBSCRIPTION_URL_MARKERS = (
+    "bilibili.com",
+    "youtube.com",
+    "youtu.be",
+    "douyin.com",
+    "xiaohongshu.com",
+    "wudaolu.com",
+    "mp.weixin.qq.com",
+)
+SUBSCRIPTION_TEXT_MARKERS = (
+    "bilibili",
+    "youtube",
+    "youtu.be",
+    "douyin",
+    "xiaohongshu",
+    "b站",
+    "油管",
+    "抖音",
+    "小红书",
+    "公众号",
+    "猫笔刀",
+    "wewe",
+)
+SOURCE_SCOPE_ALL = "all_sources"
+SOURCE_SCOPE_TESTED_CREATORS = "tested_creator_sources"
+SOURCE_SCOPE_BILIBILI_ONLY = "bilibili_only"
+SOURCE_SCOPE_CONFIGURED = "configured_sources"
+DEPLOYED_SOURCE_SCOPE_DEFAULT = SOURCE_SCOPE_TESTED_CREATORS
+TESTED_CREATOR_SOURCE_IDS = frozenset({
+    "bilibili_dynamic",
+    MEDIACRAWLER_DOUYIN_SITE_ID,
+    MEDIACRAWLER_XHS_SITE_ID,
+    GITHUB_REPO_SUBSCRIPTION_SITE_ID,
+    MAOBIDAO_WECHAT_SITE_ID,
+    WEWE_RSS_SITE_ID,
+})
+BUILTIN_COLLECT_SOURCE_IDS = frozenset({
+    "official_ai",
+    "curated_media",
+    "aibreakfast",
+    "followbuilders",
+    "techurls",
+    "buzzing",
+    "iris",
+    "bestblogs",
+    "tophub",
+    "zeli",
+    "hackernews",
+    "aihubtoday",
+    "aibase",
+    "aihot",
+    "newsnow",
+})
+SOURCE_CONFIG_DEFAULT_FILENAMES = ("sources.config.json", "data/sources.config.json")
+SOURCE_CONFIG_ID_SITE_IDS: dict[str, tuple[str, ...]] = {
+    "official_ai_sources": ("official_ai",),
+    "curated_ai_media_sources": ("curated_media",),
+    "tikhub_social_sources": ("tikhub_douyin", "tikhub_xiaohongshu"),
+    "github_foundation_sunshine": (GITHUB_REPO_SUBSCRIPTION_SITE_ID,),
+    "wewe_rss_maobidao": (WEWE_RSS_SITE_ID,),
+    "maobidao_wudaolu_backup": (MAOBIDAO_WECHAT_SITE_ID,),
+}
+SOURCE_CONFIG_TYPE_SITE_IDS: dict[str, tuple[str, ...]] = {
+    "official_ai": ("official_ai",),
+    "curated_media": ("curated_media",),
+    "aibreakfast": ("aibreakfast",),
+    "followbuilders": ("followbuilders",),
+    "techurls": ("techurls",),
+    "buzzing": ("buzzing",),
+    "iris": ("iris",),
+    "bestblogs": ("bestblogs",),
+    "tophub": ("tophub",),
+    "zeli": ("zeli",),
+    "hackernews": ("hackernews",),
+    "aihubtoday": ("aihubtoday",),
+    "aibase": ("aibase",),
+    "aihot": ("aihot",),
+    "newsnow": ("newsnow",),
+    "opmlrss": ("opmlrss",),
+    "xapi": ("xapi",),
+    "socialdata_x": ("socialdata_x",),
+    "tikhub_douyin": ("tikhub_douyin", "tikhub_xiaohongshu"),
+    "tikhub_xiaohongshu": ("tikhub_xiaohongshu",),
+    "bilibili_dynamic": ("bilibili_dynamic",),
+    "mediacrawler_douyin": (MEDIACRAWLER_DOUYIN_SITE_ID,),
+    "mediacrawler_xhs": (MEDIACRAWLER_XHS_SITE_ID,),
+    "github_release": (GITHUB_REPO_SUBSCRIPTION_SITE_ID,),
+    "wewe_rss": (WEWE_RSS_SITE_ID,),
+}
 # --- TikHub search ranking / time-window tuning (edit here, no env var needed) ---
 # Exact recency window for TikHub results, in days. Douyin/Xiaohongshu search
 # only expose coarse buckets (不限/一天内/一周内/半年内), so we ask the API for
@@ -2278,7 +2416,313 @@ def fetch_newsnow(session: requests.Session, now: datetime) -> list[RawItem]:
     return out
 
 
-def collect_all(session: requests.Session, now: datetime) -> tuple[list[RawItem], list[dict[str, Any]]]:
+def fetch_github_repo_subscription(
+    session: requests.Session,
+    now: datetime,
+    *,
+    api_url: str = GITHUB_REPO_SUBSCRIPTION_API_URL,
+    max_items: int = GITHUB_REPO_SUBSCRIPTION_MAX_ITEMS,
+) -> list[RawItem]:
+    params = {"per_page": max(1, min(10, int(max_items or 1)))}
+    resp = session.get(
+        api_url,
+        params=params,
+        headers={
+            "Accept": "application/vnd.github+json",
+            "User-Agent": "AI-News-Radar/0.7 github-release-subscription",
+        },
+        timeout=30,
+    )
+    resp.raise_for_status()
+    payload = resp.json()
+    if not isinstance(payload, list):
+        return []
+
+    out: list[RawItem] = []
+    seen: set[str] = set()
+    for release in payload[:max_items]:
+        if not isinstance(release, dict) or release.get("draft"):
+            continue
+        tag = str(release.get("tag_name") or "").strip()
+        name = str(release.get("name") or "").strip() or tag
+        url = str(release.get("html_url") or "").strip()
+        if not url and tag:
+            url = f"{GITHUB_REPO_SUBSCRIPTION_HTML_URL}/releases/tag/{tag}"
+        if not name or not url:
+            continue
+        if url in seen:
+            continue
+        seen.add(url)
+        published = parse_date_any(release.get("published_at") or release.get("created_at"), now) or now
+        release_type = "预发布" if release.get("prerelease") else "正式发布"
+        title = f"AlkaidLab/foundation-sunshine {release_type}: {name}"
+        out.append(
+            RawItem(
+                site_id=GITHUB_REPO_SUBSCRIPTION_SITE_ID,
+                site_name=GITHUB_REPO_SUBSCRIPTION_SITE_NAME,
+                source="GitHub版本订阅",
+                title=title,
+                url=url,
+                published_at=published,
+                meta={
+                    "summary": title,
+                    "source_kind": "github_release_subscription",
+                    "repo": "AlkaidLab/foundation-sunshine",
+                    "tag_name": tag,
+                    "release_name": name,
+                    "prerelease": bool(release.get("prerelease")),
+                },
+            )
+        )
+    return out
+
+
+def clean_wp_rendered_text(value: Any, max_chars: int = 220) -> str:
+    if isinstance(value, dict):
+        value = value.get("rendered")
+    text = BeautifulSoup(str(value or ""), "html.parser").get_text(" ", strip=True)
+    text = re.sub(r"\s+", " ", text).strip()
+    if max_chars > 0 and len(text) > max_chars:
+        return text[: max_chars - 3].rstrip() + "..."
+    return text
+
+
+def fetch_maobidao_wechat_subscription(
+    session: requests.Session,
+    now: datetime,
+    *,
+    api_url: str = MAOBIDAO_WECHAT_API_URL,
+    max_items: int = MAOBIDAO_WECHAT_MAX_ITEMS,
+) -> list[RawItem]:
+    resp = session.get(
+        api_url,
+        headers={
+            "Accept": "application/json",
+            "User-Agent": "AI-News-Radar/0.7 maobidao-wudaolu-backup",
+        },
+        timeout=30,
+    )
+    resp.raise_for_status()
+    payload = json.loads(resp.content.decode("utf-8"))
+    topics = payload.get("topic_list", {}).get("topics", []) if isinstance(payload, dict) else []
+    if not isinstance(topics, list):
+        return []
+
+    out: list[RawItem] = []
+    seen: set[str] = set()
+    for topic in topics:
+        if len(out) >= max_items:
+            break
+        if not isinstance(topic, dict):
+            continue
+        title = first_non_empty(topic.get("title"))
+        if "猫笔刀" not in title:
+            continue
+        topic_id = first_non_empty(topic.get("id"))
+        url = normalize_url(f"https://wudaolu.com/t/topic/{topic_id}" if topic_id else "")
+        if not title or not url or url in seen:
+            continue
+        seen.add(url)
+        published = parse_date_any(topic.get("created_at") or topic.get("last_posted_at"), now) or now
+        out.append(
+            RawItem(
+                site_id=MAOBIDAO_WECHAT_SITE_ID,
+                site_name=MAOBIDAO_WECHAT_SITE_NAME,
+                source="猫笔刀公众号",
+                title=title,
+                url=url,
+                published_at=published,
+                meta={
+                    "summary": title,
+                    "source_kind": "wechat_public_account_backup",
+                    "wechat_account": "maobidao",
+                    "source_origin": MAOBIDAO_WECHAT_HOME_URL,
+                    "discourse_topic_id": topic_id,
+                },
+            )
+        )
+    return out
+
+
+def wewe_rss_base_url() -> str:
+    return (os.environ.get("WEWE_RSS_BASE_URL") or WEWE_RSS_BASE_URL_DEFAULT).strip().rstrip("/")
+
+
+def wewe_rss_feeds_from_env(raw: str | None) -> list[dict[str, str]]:
+    feeds: list[dict[str, str]] = []
+    for part in re.split(r"[,\n;]+", raw or ""):
+        value = part.strip()
+        if not value:
+            continue
+        if ":" in value:
+            source_name, feed_id = value.split(":", 1)
+        else:
+            source_name, feed_id = "", value
+        feed_id = feed_id.strip()
+        if not feed_id:
+            continue
+        feeds.append({"id": feed_id, "name": source_name.strip() or feed_id})
+    return feeds
+
+
+def parse_wewe_rss_json_feed_items(
+    payload: dict[str, Any],
+    now: datetime,
+    *,
+    source_name: str,
+    feed_id: str,
+    max_items: int,
+) -> list[RawItem]:
+    items = payload.get("items") if isinstance(payload, dict) else []
+    if not isinstance(items, list):
+        return []
+
+    out: list[RawItem] = []
+    seen: set[str] = set()
+    for item in items:
+        if len(out) >= max_items:
+            break
+        if not isinstance(item, dict):
+            continue
+        title = clean_wp_rendered_text(item.get("title"), max_chars=160)
+        url = normalize_url(first_non_empty(item.get("url"), item.get("external_url")))
+        item_id = first_non_empty(item.get("id"))
+        if not title or not url:
+            continue
+        key = url or item_id or title
+        if key in seen:
+            continue
+        seen.add(key)
+        published = parse_date_any(
+            first_non_empty(item.get("date_published"), item.get("date_modified")),
+            now,
+        ) or now
+        summary = clean_wp_rendered_text(
+            first_non_empty(item.get("summary"), item.get("content_text"), item.get("content_html")),
+            max_chars=220,
+        )
+        out.append(
+            RawItem(
+                site_id=WEWE_RSS_SITE_ID,
+                site_name=WEWE_RSS_SITE_NAME,
+                source=source_name or "WeWe RSS",
+                title=title,
+                url=url,
+                published_at=published,
+                meta={
+                    "summary": summary or title,
+                    "source_kind": "wewe_rss_wechat_subscription",
+                    "wechat_account": source_name,
+                    "wewe_feed_id": feed_id,
+                    "wewe_item_id": item_id,
+                    "search_surface": "wewe_rss_json_feed",
+                },
+            )
+        )
+    return out
+
+
+def fetch_wewe_rss_subscription(
+    session: requests.Session,
+    now: datetime,
+    *,
+    base_url: str | None = None,
+    feeds_config: str | None = None,
+    max_items: int | None = None,
+) -> tuple[list[RawItem], dict[str, Any]]:
+    start = time.perf_counter()
+    base = (base_url or wewe_rss_base_url()).strip().rstrip("/")
+    max_items_per_feed = max(1, min(100, int(max_items or env_int("WEWE_RSS_MAX_ITEMS", WEWE_RSS_DEFAULT_MAX_ITEMS))))
+    status: dict[str, Any] = {
+        "enabled": True,
+        "ok": False,
+        "item_count": 0,
+        "duration_ms": 0,
+        "error": None,
+        "source_kind": "wewe_rss_wechat_subscription",
+        "base_url": base,
+        "max_items_per_feed": max_items_per_feed,
+        "feeds": [],
+        "coverage_note": "reads_local_wewe_rss_json_feed_without_wechat_login_state",
+        "privacy": "local_sidecar_no_cookies_in_radar_repo",
+    }
+    if not base:
+        status["error"] = "missing_wewe_rss_base_url"
+        status["duration_ms"] = int((time.perf_counter() - start) * 1000)
+        return [], status
+
+    configured_feeds = wewe_rss_feeds_from_env(feeds_config if feeds_config is not None else os.environ.get("WEWE_RSS_FEEDS"))
+    try:
+        feeds = configured_feeds
+        if not feeds:
+            feed_list_resp = session.get(
+                f"{base}/feeds",
+                headers={"Accept": "application/json", "User-Agent": "AI-News-Radar/0.7 wewe-rss-bridge"},
+                timeout=15,
+            )
+            feed_list_resp.raise_for_status()
+            payload = json.loads(feed_list_resp.content.decode("utf-8"))
+            if isinstance(payload, list):
+                feeds = [
+                    {
+                        "id": first_non_empty(row.get("id")),
+                        "name": first_non_empty(row.get("name"), row.get("mpName"), row.get("id")),
+                    }
+                    for row in payload
+                    if isinstance(row, dict) and first_non_empty(row.get("id"))
+                ]
+        if not feeds:
+            status["ok"] = True
+            status["error"] = "wewe_rss_no_feeds"
+            return [], status
+
+        all_items: list[RawItem] = []
+        feed_statuses: list[dict[str, Any]] = []
+        for feed in feeds:
+            feed_id = feed["id"]
+            source_name = feed.get("name") or feed_id
+            feed_status = {"id": feed_id, "name": source_name, "ok": False, "item_count": 0, "error": None}
+            try:
+                resp = session.get(
+                    f"{base}/feeds/{feed_id}.json",
+                    params={"limit": max_items_per_feed},
+                    headers={"Accept": "application/feed+json, application/json", "User-Agent": "AI-News-Radar/0.7 wewe-rss-bridge"},
+                    timeout=20,
+                )
+                resp.raise_for_status()
+                feed_payload = json.loads(resp.content.decode("utf-8"))
+                items = parse_wewe_rss_json_feed_items(
+                    feed_payload,
+                    now,
+                    source_name=source_name,
+                    feed_id=feed_id,
+                    max_items=max_items_per_feed,
+                )
+                all_items.extend(items)
+                feed_status.update({"ok": True, "item_count": len(items)})
+            except Exception as exc:
+                feed_status["error"] = str(exc)
+            feed_statuses.append(feed_status)
+
+        status["feeds"] = feed_statuses
+        status["item_count"] = len(all_items)
+        status["ok"] = all(feed.get("ok") for feed in feed_statuses)
+        failed = [feed for feed in feed_statuses if not feed.get("ok")]
+        if failed:
+            status["error"] = f"failed_wewe_rss_feeds:{len(failed)}"
+        return all_items, status
+    except Exception as exc:
+        status["error"] = str(exc)
+        return [], status
+    finally:
+        status["duration_ms"] = int((time.perf_counter() - start) * 1000)
+
+
+def collect_all(
+    session: requests.Session,
+    now: datetime,
+    allowed_site_ids: frozenset[str] | None = None,
+) -> tuple[list[RawItem], list[dict[str, Any]]]:
     tasks = [
         ("official_ai", "Official AI Updates", fetch_official_ai_updates),
         ("curated_media", "Curated Media", fetch_curated_ai_media),
@@ -2301,6 +2745,8 @@ def collect_all(session: requests.Session, now: datetime) -> tuple[list[RawItem]
     statuses: list[dict[str, Any]] = []
 
     for site_id, site_name, fn in tasks:
+        if allowed_site_ids is not None and site_id not in allowed_site_ids:
+            continue
         start = time.perf_counter()
         error = None
         count = 0
@@ -2722,6 +3168,202 @@ def load_archive(path: Path) -> dict[str, dict[str, Any]]:
     return out
 
 
+def normalize_source_scope(raw_scope: str | None) -> str:
+    raw = str(raw_scope or "").strip().lower().replace("-", "_")
+    if raw in {"", "tested", "tested_creators", "tested_creator_sources", "creator_sources", "social_sources"}:
+        return SOURCE_SCOPE_TESTED_CREATORS
+    if raw in {"all", "all_sources", "legacy_all_sources"}:
+        return SOURCE_SCOPE_ALL
+    if raw in {"bilibili", "bilibili_only"}:
+        return SOURCE_SCOPE_BILIBILI_ONLY
+    return DEPLOYED_SOURCE_SCOPE_DEFAULT
+
+
+def source_ids_for_scope(source_scope: str) -> frozenset[str] | None:
+    if source_scope == SOURCE_SCOPE_BILIBILI_ONLY:
+        return frozenset({"bilibili_dynamic"})
+    if source_scope == SOURCE_SCOPE_TESTED_CREATORS:
+        return TESTED_CREATOR_SOURCE_IDS
+    return None
+
+
+def source_config_candidate_paths(raw_path: str | None, output_dir: Path | None = None) -> list[Path]:
+    if raw_path:
+        return [Path(raw_path).expanduser()]
+    env_path = str(os.environ.get("RADAR_SOURCE_CONFIG") or "").strip()
+    if env_path:
+        return [Path(env_path).expanduser()]
+    candidates = [Path(name) for name in SOURCE_CONFIG_DEFAULT_FILENAMES]
+    if output_dir is not None:
+        candidates.append(output_dir / "sources.config.json")
+    return candidates
+
+
+def load_source_config(raw_path: str | None, output_dir: Path | None = None) -> tuple[dict[str, Any] | None, dict[str, Any]]:
+    candidates = source_config_candidate_paths(raw_path, output_dir=output_dir)
+    explicit = bool(raw_path or os.environ.get("RADAR_SOURCE_CONFIG"))
+    status: dict[str, Any] = {
+        "enabled": False,
+        "ok": None,
+        "path": None,
+        "candidate_paths": [str(path) for path in candidates],
+        "error": None,
+    }
+    for path in candidates:
+        if not path.exists():
+            continue
+        status["enabled"] = True
+        status["path"] = str(path)
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            if not isinstance(payload, dict):
+                raise ValueError("source config root must be a JSON object")
+            sources = payload.get("sources")
+            if not isinstance(sources, list):
+                raise ValueError("source config must contain a sources array")
+            status["ok"] = True
+            status["source_count"] = len(sources)
+            return payload, status
+        except Exception as exc:
+            status["ok"] = False
+            status["error"] = str(exc)
+            return None, status
+    if explicit:
+        status["enabled"] = True
+        status["ok"] = False
+        status["error"] = "source_config_not_found"
+    return None, status
+
+
+def source_config_record_site_ids(record: dict[str, Any]) -> tuple[str, ...]:
+    raw_id = str(record.get("id") or "").strip()
+    raw_type = str(record.get("type") or "").strip()
+    if raw_id in SOURCE_CONFIG_ID_SITE_IDS:
+        return SOURCE_CONFIG_ID_SITE_IDS[raw_id]
+    if raw_id in SOURCE_CONFIG_TYPE_SITE_IDS:
+        return SOURCE_CONFIG_TYPE_SITE_IDS[raw_id]
+    if raw_type == "mediacrawler_jsonl":
+        channel = str(record.get("channel") or "").lower()
+        target = str(record.get("target") or "").lower()
+        locator = str(record.get("locator") or "").lower()
+        haystack = f"{raw_id} {channel} {target} {locator}"
+        if "xhs" in haystack or "xiaohongshu" in haystack or "小红书" in haystack:
+            return (MEDIACRAWLER_XHS_SITE_ID,)
+        if "douyin" in haystack or "抖音" in haystack:
+            return (MEDIACRAWLER_DOUYIN_SITE_ID,)
+    return SOURCE_CONFIG_TYPE_SITE_IDS.get(raw_type, ())
+
+
+def source_config_enabled_sources(config: dict[str, Any] | None) -> list[dict[str, Any]]:
+    if not config:
+        return []
+    sources = config.get("sources")
+    if not isinstance(sources, list):
+        return []
+    return [
+        source
+        for source in sources
+        if isinstance(source, dict) and source.get("enabled") is not False
+    ]
+
+
+def source_config_enabled_site_ids(config: dict[str, Any] | None) -> frozenset[str]:
+    enabled: set[str] = set()
+    for source in source_config_enabled_sources(config):
+        enabled.update(source_config_record_site_ids(source))
+    return frozenset(enabled)
+
+
+def set_env_from_source_config(name: str, value: str) -> bool:
+    value = str(value or "").strip()
+    if not value:
+        return False
+    os.environ[name] = value
+    return True
+
+
+def apply_source_config_runtime(config: dict[str, Any] | None) -> dict[str, Any]:
+    enabled_sources = source_config_enabled_sources(config)
+    enabled_site_ids = source_config_enabled_site_ids(config)
+    applied_env: list[str] = []
+    bilibili_uids: list[str] = []
+    bilibili_names: list[str] = []
+    wewe_feeds: list[str] = []
+    opml_path = ""
+
+    for source in enabled_sources:
+        site_ids = source_config_record_site_ids(source)
+        locator = str(source.get("locator") or "").strip()
+        name = str(source.get("name") or source.get("target") or "").strip()
+        target = str(source.get("target") or name).strip()
+
+        if "bilibili_dynamic" in site_ids and locator:
+            bilibili_uids.append(locator)
+            bilibili_names.append(target or name or f"Bilibili {locator}")
+        if WEWE_RSS_SITE_ID in site_ids and locator:
+            wewe_feeds.append(f"{target or name or locator}:{locator}")
+        if "opmlrss" in site_ids and locator:
+            opml_path = locator
+        if MEDIACRAWLER_DOUYIN_SITE_ID in site_ids:
+            applied_env.append("MEDIACRAWLER_DOUYIN_ENABLED")
+            os.environ["MEDIACRAWLER_DOUYIN_ENABLED"] = "1"
+            if set_env_from_source_config("MEDIACRAWLER_DOUYIN_JSONL", locator):
+                applied_env.append("MEDIACRAWLER_DOUYIN_JSONL")
+            if set_env_from_source_config("MEDIACRAWLER_DOUYIN_SOURCE_NAME", target or name):
+                applied_env.append("MEDIACRAWLER_DOUYIN_SOURCE_NAME")
+        if MEDIACRAWLER_XHS_SITE_ID in site_ids:
+            applied_env.append("MEDIACRAWLER_XHS_ENABLED")
+            os.environ["MEDIACRAWLER_XHS_ENABLED"] = "1"
+            if set_env_from_source_config("MEDIACRAWLER_XHS_JSONL", locator):
+                applied_env.append("MEDIACRAWLER_XHS_JSONL")
+            if set_env_from_source_config("MEDIACRAWLER_XHS_SOURCE_NAME", target or name):
+                applied_env.append("MEDIACRAWLER_XHS_SOURCE_NAME")
+
+    if bilibili_uids:
+        os.environ["BILIBILI_DYNAMIC_ENABLED"] = "1"
+        os.environ["BILIBILI_DYNAMIC_UIDS"] = ",".join(bilibili_uids)
+        os.environ["BILIBILI_DYNAMIC_SOURCE_NAMES"] = ",".join(bilibili_names)
+        applied_env.extend(["BILIBILI_DYNAMIC_ENABLED", "BILIBILI_DYNAMIC_UIDS", "BILIBILI_DYNAMIC_SOURCE_NAMES"])
+    if WEWE_RSS_SITE_ID in enabled_site_ids:
+        os.environ["WEWE_RSS_ENABLED"] = "1"
+        applied_env.append("WEWE_RSS_ENABLED")
+        if wewe_feeds:
+            os.environ["WEWE_RSS_FEEDS"] = ";".join(wewe_feeds)
+            applied_env.append("WEWE_RSS_FEEDS")
+    if "xapi" in enabled_site_ids:
+        os.environ["X_API_ENABLED"] = "1"
+        applied_env.append("X_API_ENABLED")
+    if "socialdata_x" in enabled_site_ids:
+        os.environ["SOCIALDATA_ENABLED"] = "1"
+        applied_env.append("SOCIALDATA_ENABLED")
+    if enabled_site_ids.intersection({"tikhub_douyin", "tikhub_xiaohongshu"}):
+        os.environ["TIKHUB_ENABLED"] = "1"
+        applied_env.append("TIKHUB_ENABLED")
+    if "agentmail" in enabled_site_ids:
+        os.environ["EMAIL_DIGEST_ENABLED"] = "1"
+        applied_env.append("EMAIL_DIGEST_ENABLED")
+
+    return {
+        "enabled_source_count": len(enabled_sources),
+        "enabled_site_ids": sorted(enabled_site_ids),
+        "applied_env": sorted(set(applied_env)),
+        "rss_opml": opml_path,
+    }
+
+
+def filter_archive_by_source_ids(
+    archive: dict[str, dict[str, Any]],
+    allowed_source_ids: frozenset[str] | None,
+) -> dict[str, dict[str, Any]]:
+    if allowed_source_ids is None:
+        return archive
+    return {
+        item_id: record
+        for item_id, record in archive.items()
+        if str(record.get("site_id") or "") in allowed_source_ids
+    }
+
+
 def event_time(record: dict[str, Any]) -> datetime | None:
     # RSS sources must rely on the source's publish time only.
     # first_seen_at is fetch time and would falsely mark historical items as "24h".
@@ -2741,8 +3383,14 @@ SOURCE_TIER_BY_SITE: dict[str, tuple[str, str, int]] = {
     "waytoagi": ("community", "社区更新", 2),
     "followbuilders": ("builders", "Builders/X源", 2),
     "opmlrss": ("user_opml", "RSS/OPML", 3),
-    "tikhub_douyin": ("self_media", "自媒体源", 4),
-    "tikhub_xiaohongshu": ("self_media", "自媒体源", 4),
+    "bilibili_dynamic": ("self_media", "我的订阅", 4),
+    "tikhub_douyin": ("self_media", "我的订阅", 4),
+    "tikhub_xiaohongshu": ("self_media", "我的订阅", 4),
+    "mediacrawler_douyin": ("self_media", "我的订阅", 4),
+    "mediacrawler_xhs": ("self_media", "我的订阅", 4),
+    GITHUB_REPO_SUBSCRIPTION_SITE_ID: ("self_media", "我的订阅", 4),
+    MAOBIDAO_WECHAT_SITE_ID: ("self_media", "我的订阅", 4),
+    WEWE_RSS_SITE_ID: ("self_media", "我的订阅", 4),
     "xapi": ("advanced", "高级源", 4),
     "socialdata_x": ("advanced", "高级源", 4),
     "techurls": ("discussion", "热议参考", 5),
@@ -3248,6 +3896,876 @@ def sync_paid_source_status_timestamps(
     entry = paid_source_state_entry(state, source_key)
     status["last_run_at"] = entry.get("last_run_at")
     status["last_success_at"] = entry.get("last_success_at")
+
+
+def split_env_list(value: str) -> list[str]:
+    return [part.strip() for part in re.split(r"[,;\n]+", str(value or "")) if part.strip()]
+
+
+def bilibili_dynamic_accounts_from_env() -> list[dict[str, str]]:
+    uid_list = split_env_list(str(os.environ.get("BILIBILI_DYNAMIC_UIDS") or ""))
+    if uid_list:
+        source_names = split_env_list(str(os.environ.get("BILIBILI_DYNAMIC_SOURCE_NAMES") or ""))
+        return [
+            {
+                "uid": uid,
+                "source_name": source_names[index] if index < len(source_names) else f"Bilibili {uid}",
+            }
+            for index, uid in enumerate(uid_list)
+        ]
+
+    single_uid = str(os.environ.get("BILIBILI_DYNAMIC_UID") or "").strip()
+    if single_uid:
+        return [
+            {
+                "uid": single_uid,
+                "source_name": str(
+                    os.environ.get("BILIBILI_DYNAMIC_SOURCE_NAME")
+                    or f"Bilibili {single_uid}"
+                ).strip(),
+            }
+        ]
+
+    return [
+        {"uid": uid, "source_name": source_name}
+        for uid, source_name in BILIBILI_DYNAMIC_DEFAULT_ACCOUNTS
+    ]
+
+
+def bilibili_dynamic_status_base() -> dict[str, Any]:
+    accounts = bilibili_dynamic_accounts_from_env()
+    uids = [account["uid"] for account in accounts if account.get("uid")]
+    max_items = max(1, min(env_int("BILIBILI_DYNAMIC_MAX_ITEMS", BILIBILI_DYNAMIC_DEFAULT_MAX_ITEMS), 200))
+    max_pages = max(1, min(env_int("BILIBILI_DYNAMIC_MAX_PAGES", BILIBILI_DYNAMIC_DEFAULT_MAX_PAGES), 20))
+    cookie_present = bool(bilibili_cookie_header_from_env())
+    return {
+        "enabled": env_flag("BILIBILI_DYNAMIC_ENABLED"),
+        "ok": None,
+        "item_count": 0,
+        "uid": ",".join(uids),
+        "uids": uids,
+        "uid_count": len(uids),
+        "accounts": accounts,
+        "max_items": max_items,
+        "max_items_per_account": max_items,
+        "max_pages": max_pages,
+        "source_kind": "bilibili_dynamic",
+        "cookie_present": cookie_present,
+        "privacy": "cookie_env_only_not_logged",
+        "coverage_note": "tries_cookie_full_dynamic_then_public_opus_fallback",
+    }
+
+
+def bilibili_dynamic_item_title(content: str, opus_id: str) -> str:
+    text = re.sub(r"\s+", " ", (content or "").strip())
+    if not text:
+        return f"B站动态 {opus_id}".strip()
+    if len(text) > 90:
+        text = text[:87].rstrip() + "..."
+    return text
+
+
+def apply_cookie_header(session: requests.Session, cookie_header: str) -> None:
+    for part in str(cookie_header or "").split(";"):
+        if "=" not in part:
+            continue
+        name, value = part.split("=", 1)
+        name = name.strip()
+        value = value.strip()
+        if name:
+            session.cookies.set(name, value, domain=".bilibili.com")
+
+
+def bilibili_cookie_header_from_file_text(cookie_text: str, now_ts: int | None = None) -> str:
+    now_ts = now_ts or int(time.time())
+    cookies: dict[str, str] = {}
+
+    def keep_cookie(name: str, value: str, domain: str = "", expires: Any = None) -> None:
+        if not name or value is None:
+            return
+        if domain and "bilibili.com" not in domain:
+            return
+        try:
+            exp = float(expires) if expires not in (None, "") else 0
+            if exp > 20_000_000_000:
+                exp = exp / 1000
+            if exp > 0 and exp < now_ts:
+                return
+        except (TypeError, ValueError):
+            pass
+        cookies[str(name).strip()] = str(value).strip()
+
+    text = str(cookie_text or "").strip()
+    if not text:
+        return ""
+
+    try:
+        payload = json.loads(text)
+        raw_items = payload.get("cookies") if isinstance(payload, dict) else payload
+        if isinstance(raw_items, list):
+            for item in raw_items:
+                if not isinstance(item, dict):
+                    continue
+                keep_cookie(
+                    str(item.get("name") or ""),
+                    str(item.get("value") or ""),
+                    str(item.get("domain") or ""),
+                    item.get("expirationDate") or item.get("expires") or item.get("expiry"),
+                )
+            if cookies:
+                return "; ".join(f"{name}={value}" for name, value in cookies.items())
+    except json.JSONDecodeError:
+        pass
+
+    # Netscape cookie.txt format: domain, include_subdomains, path, secure,
+    # expiry, name, value separated by tabs.
+    for line in text.splitlines():
+        stripped = line.strip()
+        if not stripped:
+            continue
+        if stripped.startswith("#HttpOnly_"):
+            stripped = stripped[len("#HttpOnly_") :]
+        elif stripped.startswith("#"):
+            continue
+        parts = stripped.split("\t")
+        if len(parts) >= 7:
+            keep_cookie(parts[5], parts[6], parts[0], parts[4])
+    if cookies:
+        return "; ".join(f"{name}={value}" for name, value in cookies.items())
+
+    if "=" in text:
+        return text
+    return ""
+
+
+def bilibili_cookie_header_from_env() -> str:
+    cookie = str(os.environ.get("BILIBILI_COOKIE") or os.environ.get("BILIBILI_DYNAMIC_COOKIE") or "").strip()
+    if cookie:
+        return bilibili_cookie_header_from_file_text(cookie).strip() or cookie
+    cookie_file = str(os.environ.get("BILIBILI_COOKIE_FILE") or os.environ.get("BILIBILI_DYNAMIC_COOKIE_FILE") or "").strip()
+    if not cookie_file:
+        return ""
+    try:
+        return bilibili_cookie_header_from_file_text(Path(cookie_file).read_text(encoding="utf-8", errors="ignore")).strip()
+    except OSError:
+        return ""
+
+
+def bilibili_mixin_key(img_key: str, sub_key: str) -> str:
+    raw = f"{img_key}{sub_key}"
+    return "".join(raw[i] for i in BILIBILI_WBI_MIXIN_KEY_ENC_TAB if i < len(raw))[:32]
+
+
+def bilibili_wbi_keys(session: requests.Session) -> tuple[str, str]:
+    headers = {
+        "User-Agent": BROWSER_UA,
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
+        "Referer": "https://www.bilibili.com/",
+    }
+    resp = session.get(BILIBILI_NAV_API_URL, headers=headers, timeout=20)
+    resp.raise_for_status()
+    payload = resp.json()
+    data = payload.get("data")
+    if not isinstance(data, dict):
+        raise ValueError(f"bilibili_nav_code_{payload.get('code')}")
+    wbi_img = data.get("wbi_img")
+    if not isinstance(wbi_img, dict):
+        raise ValueError("bilibili_nav_missing_wbi_img")
+    img_key = str(wbi_img.get("img_url") or "").rsplit("/", 1)[-1].split(".")[0]
+    sub_key = str(wbi_img.get("sub_url") or "").rsplit("/", 1)[-1].split(".")[0]
+    if not (img_key and sub_key):
+        raise ValueError("bilibili_nav_missing_wbi_keys")
+    return img_key, sub_key
+
+
+def sign_bilibili_wbi_params(params: dict[str, Any], img_key: str, sub_key: str, now_ts: int | None = None) -> dict[str, str]:
+    signed = {k: str(v) for k, v in params.items() if v is not None}
+    signed["wts"] = str(now_ts or int(time.time()))
+    cleaned = {
+        k: re.sub(r"[!'()*]", "", v)
+        for k, v in signed.items()
+    }
+    query = urlencode(sorted(cleaned.items()))
+    cleaned["w_rid"] = hashlib.md5(f"{query}{bilibili_mixin_key(img_key, sub_key)}".encode("utf-8")).hexdigest()
+    return cleaned
+
+
+def first_text_value(obj: Any, keys: tuple[str, ...] = ("text", "title", "desc", "content")) -> str:
+    if isinstance(obj, dict):
+        for key in keys:
+            value = obj.get(key)
+            if isinstance(value, str) and value.strip():
+                return value.strip()
+        for value in obj.values():
+            found = first_text_value(value, keys)
+            if found:
+                return found
+    elif isinstance(obj, list):
+        for value in obj:
+            found = first_text_value(value, keys)
+            if found:
+                return found
+    return ""
+
+
+def parse_bilibili_full_dynamic_items(
+    payload: dict[str, Any],
+    *,
+    now: datetime,
+    uid: str,
+    source_name: str,
+    max_items: int,
+) -> list[RawItem]:
+    data = payload.get("data")
+    if not isinstance(data, dict):
+        return []
+    raw_items = data.get("items")
+    if not isinstance(raw_items, list):
+        return []
+
+    out: list[RawItem] = []
+    seen: set[str] = set()
+    for item in raw_items:
+        if not isinstance(item, dict):
+            continue
+        dynamic_id = str(item.get("id_str") or item.get("id") or "").strip()
+        modules = item.get("modules") if isinstance(item.get("modules"), dict) else {}
+        author = modules.get("module_author") if isinstance(modules.get("module_author"), dict) else {}
+        dynamic = modules.get("module_dynamic") if isinstance(modules.get("module_dynamic"), dict) else {}
+        major = dynamic.get("major") if isinstance(dynamic.get("major"), dict) else {}
+
+        published = parse_unix_timestamp(author.get("pub_ts"))
+        dyn_type = str(item.get("type") or "").strip()
+        content = first_text_value(dynamic) or first_text_value(item)
+
+        url = ""
+        if isinstance(major, dict):
+            url = str(major.get("jump_url") or "").strip()
+            if not url:
+                for value in major.values():
+                    if isinstance(value, dict) and value.get("jump_url"):
+                        url = str(value.get("jump_url") or "").strip()
+                        break
+        if not url and dynamic_id:
+            url = f"https://t.bilibili.com/{dynamic_id}"
+        url = urljoin("https://www.bilibili.com", url)
+        if not url or not content:
+            continue
+        key = dynamic_id or normalize_url(url)
+        if key in seen:
+            continue
+        seen.add(key)
+
+        out.append(
+            RawItem(
+                site_id="bilibili_dynamic",
+                site_name="Bilibili Dynamic",
+                source=source_name,
+                title=bilibili_dynamic_item_title(content, dynamic_id),
+                url=url,
+                published_at=published or now,
+                meta={
+                    "summary": content,
+                    "bilibili_uid": uid,
+                    "bilibili_dynamic_id": dynamic_id,
+                    "bilibili_dynamic_type": dyn_type,
+                    "timestamp_source": "bilibili_pub_ts" if published else "fetch_time",
+                },
+            )
+        )
+        if len(out) >= max_items:
+            break
+    return out
+
+
+def parse_bilibili_dynamic_items(
+    payload: dict[str, Any],
+    *,
+    now: datetime,
+    uid: str,
+    source_name: str,
+    max_items: int,
+) -> list[RawItem]:
+    data = payload.get("data")
+    if not isinstance(data, dict):
+        return []
+    raw_items = data.get("items")
+    if not isinstance(raw_items, list):
+        return []
+
+    out: list[RawItem] = []
+    seen: set[str] = set()
+    for item in raw_items:
+        if not isinstance(item, dict):
+            continue
+        opus_id = str(item.get("opus_id") or "").strip()
+        content = str(item.get("content") or "").strip()
+        jump_url = str(item.get("jump_url") or "").strip()
+        if not opus_id and not jump_url:
+            continue
+        url = urljoin("https://www.bilibili.com", jump_url or f"/opus/{opus_id}")
+        key = opus_id or normalize_url(url)
+        if key in seen:
+            continue
+        seen.add(key)
+
+        stat = item.get("stat")
+        like_count = None
+        if isinstance(stat, dict):
+            like_count = stat.get("like")
+        cover = item.get("cover") if isinstance(item.get("cover"), dict) else {}
+
+        out.append(
+            RawItem(
+                site_id="bilibili_dynamic",
+                site_name="Bilibili Dynamic",
+                source=source_name,
+                title=bilibili_dynamic_item_title(content, opus_id),
+                url=url,
+                # This public endpoint does not expose a reliable publish time.
+                # Use first_seen_at in the archive as the refresh time instead.
+                published_at=None,
+                meta={
+                    "summary": content,
+                    "creator_metrics": {"like_count": like_count} if like_count is not None else None,
+                    "bilibili_uid": uid,
+                    "bilibili_opus_id": opus_id,
+                    "cover_url": cover.get("url") if isinstance(cover, dict) else None,
+                    "timestamp_source": "first_seen_at",
+                },
+            )
+        )
+        if len(out) >= max_items:
+            break
+    return out
+
+
+def fetch_bilibili_dynamic(
+    session: requests.Session,
+    now: datetime,
+    *,
+    uid: str,
+    source_name: str,
+    max_items: int,
+    api_url: str = BILIBILI_DYNAMIC_API_URL,
+) -> list[RawItem]:
+    headers = {
+        "User-Agent": BROWSER_UA,
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
+        "Origin": "https://space.bilibili.com",
+        "Referer": f"https://space.bilibili.com/{uid}/dynamic",
+    }
+    resp = session.get(
+        api_url,
+        params={
+            "host_mid": uid,
+            "page": 1,
+            "type": "all",
+            "web_location": "333.1387",
+        },
+        headers=headers,
+        timeout=20,
+    )
+    resp.raise_for_status()
+    payload = resp.json()
+    if int(payload.get("code") or 0) != 0:
+        raise ValueError(f"bilibili_dynamic_api_code_{payload.get('code')}")
+    items = parse_bilibili_dynamic_items(
+        payload,
+        now=now,
+        uid=uid,
+        source_name=source_name,
+        max_items=max_items,
+    )
+    if not items:
+        raise ValueError("bilibili_dynamic_no_items")
+    return items
+
+
+def fetch_bilibili_full_dynamic(
+    session: requests.Session,
+    now: datetime,
+    *,
+    uid: str,
+    source_name: str,
+    max_items: int,
+    max_pages: int = 1,
+    api_url: str = BILIBILI_DYNAMIC_FULL_API_URL,
+) -> list[RawItem]:
+    img_key, sub_key = bilibili_wbi_keys(session)
+    headers = {
+        "User-Agent": BROWSER_UA,
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
+        "Origin": "https://space.bilibili.com",
+        "Referer": f"https://space.bilibili.com/{uid}/dynamic",
+    }
+    out: list[RawItem] = []
+    seen: set[str] = set()
+    offset = ""
+    for page_index in range(max(1, max_pages)):
+        raw_params: dict[str, Any] = {
+            "host_mid": uid,
+            "timezone_offset": -480,
+            "features": "itemOpusStyle,listOnlyfans,opusBigCover,onlyfansVote,decorationCard,forwardListHidden,ugcDelete",
+            "web_location": "333.1387",
+        }
+        if offset:
+            raw_params["offset"] = offset
+        params = sign_bilibili_wbi_params(raw_params, img_key, sub_key)
+        resp = session.get(api_url, params=params, headers=headers, timeout=20)
+        resp.raise_for_status()
+        payload = resp.json()
+        if int(payload.get("code") or 0) != 0:
+            raise ValueError(f"bilibili_full_dynamic_api_code_{payload.get('code')}")
+
+        remaining = max_items - len(out)
+        items = parse_bilibili_full_dynamic_items(
+            payload,
+            now=now,
+            uid=uid,
+            source_name=source_name,
+            max_items=remaining,
+        )
+        for item in items:
+            key = str(item.meta.get("bilibili_dynamic_id") if isinstance(item.meta, dict) else "") or normalize_url(item.url)
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append(item)
+        if len(out) >= max_items:
+            break
+
+        data = payload.get("data") if isinstance(payload, dict) else None
+        if not isinstance(data, dict) or not data.get("has_more"):
+            break
+        next_offset = str(data.get("offset") or "").strip()
+        if not next_offset or next_offset == offset:
+            break
+        offset = next_offset
+        if page_index + 1 < max_pages:
+            time.sleep(0.25)
+
+    if not out:
+        raise ValueError("bilibili_full_dynamic_no_items")
+    return out
+
+
+def maybe_fetch_bilibili_dynamic(
+    session: requests.Session,
+    now: datetime,
+) -> tuple[list[RawItem], dict[str, Any]]:
+    status = bilibili_dynamic_status_base()
+    if not status["enabled"]:
+        status["disabled_reason"] = "disabled_by_toggle"
+        return [], status
+    accounts = [
+        account
+        for account in status.get("accounts", [])
+        if isinstance(account, dict) and str(account.get("uid") or "").strip()
+    ]
+    if not accounts:
+        status["ok"] = False
+        status["error"] = "missing_bilibili_dynamic_uid"
+        return [], status
+
+    api_url = str(os.environ.get("BILIBILI_DYNAMIC_API_URL") or BILIBILI_DYNAMIC_API_URL).strip()
+    full_api_url = str(os.environ.get("BILIBILI_DYNAMIC_FULL_API_URL") or BILIBILI_DYNAMIC_FULL_API_URL).strip()
+    cookie = bilibili_cookie_header_from_env()
+    status["source_name"] = ", ".join(str(account.get("source_name") or account["uid"]) for account in accounts)
+    status["attempted"] = True
+    start = time.perf_counter()
+    try:
+        if cookie:
+            apply_cookie_header(session, cookie)
+
+        all_items: list[RawItem] = []
+        account_statuses: list[dict[str, Any]] = []
+        for account in accounts:
+            uid = str(account.get("uid") or "").strip()
+            source_name = str(account.get("source_name") or f"Bilibili {uid}").strip()
+            account_status: dict[str, Any] = {
+                "uid": uid,
+                "source_name": source_name,
+                "ok": False,
+                "item_count": 0,
+            }
+            try:
+                errors: list[str] = []
+                if cookie:
+                    try:
+                        items = fetch_bilibili_full_dynamic(
+                            session,
+                            now,
+                            uid=uid,
+                            source_name=source_name,
+                            max_items=int(status["max_items_per_account"]),
+                            max_pages=int(status["max_pages"]),
+                            api_url=full_api_url,
+                        )
+                        account_status["fetch_mode"] = "cookie_full_dynamic"
+                        account_status["ok"] = True
+                        account_status["item_count"] = len(items)
+                        all_items.extend(items)
+                        account_statuses.append(account_status)
+                        continue
+                    except Exception as exc:
+                        errors.append(f"cookie_full_dynamic_failed:{type(exc).__name__}")
+
+                items = fetch_bilibili_dynamic(
+                    session,
+                    now,
+                    uid=uid,
+                    source_name=source_name,
+                    max_items=int(status["max_items_per_account"]),
+                    api_url=api_url,
+                )
+                account_status["fetch_mode"] = "public_opus_fallback" if errors else "public_opus"
+                if errors:
+                    account_status["fallback_reason"] = errors[-1]
+                account_status["ok"] = True
+                account_status["item_count"] = len(items)
+                all_items.extend(items)
+            except Exception as exc:
+                account_status["error"] = str(exc)
+            account_statuses.append(account_status)
+
+        status["accounts"] = account_statuses
+        status["item_count"] = len(all_items)
+        successful_accounts = [account for account in account_statuses if account.get("ok")]
+        failed_accounts = [account for account in account_statuses if not account.get("ok")]
+        status["ok"] = bool(successful_accounts)
+        status["partial_failure_count"] = len(failed_accounts) if successful_accounts else 0
+
+        fetch_modes = sorted(
+            {
+                str(account.get("fetch_mode"))
+                for account in successful_accounts
+                if account.get("fetch_mode")
+            }
+        )
+        if len(fetch_modes) == 1:
+            status["fetch_mode"] = fetch_modes[0]
+        elif fetch_modes:
+            status["fetch_mode"] = "mixed"
+        fallback_reasons = [
+            f"{account.get('uid')}:{account.get('fallback_reason')}"
+            for account in account_statuses
+            if account.get("fallback_reason")
+        ]
+        if fallback_reasons:
+            status["fallback_reason"] = "; ".join(fallback_reasons)
+        if not successful_accounts:
+            status["error"] = "; ".join(
+                f"{account.get('uid')}:{account.get('error') or 'no_items'}"
+                for account in failed_accounts
+            ) or "bilibili_dynamic_no_items"
+        return all_items, status
+    except Exception as exc:
+        status["ok"] = False
+        status["error"] = str(exc)
+        return [], status
+    finally:
+        status["duration_ms"] = int((time.perf_counter() - start) * 1000)
+
+
+def mediacrawler_douyin_title(text: str, aweme_id: str) -> str:
+    title = re.sub(r"\s+", " ", (text or "").strip())
+    if not title:
+        return f"抖音作品 {aweme_id}".strip()
+    if len(title) > 90:
+        title = title[:87].rstrip() + "..."
+    return title
+
+
+def mediacrawler_int(value: Any) -> int:
+    try:
+        return int(float(str(value).strip()))
+    except (TypeError, ValueError):
+        return 0
+
+
+def mediacrawler_xhs_title(text: str, note_id: str) -> str:
+    title = re.sub(r"\s+", " ", (text or "").strip())
+    if not title:
+        return f"小红书笔记 {note_id}".strip()
+    if len(title) > 90:
+        title = title[:87].rstrip() + "..."
+    return title
+
+
+def mediacrawler_env_first(*names: str) -> str:
+    for name in names:
+        value = str(os.environ.get(name) or "").strip()
+        if value:
+            return value
+    return ""
+
+
+def mediacrawler_env_flag_any(*names: str) -> bool:
+    return any(env_flag(name) for name in names)
+
+
+def mediacrawler_env_int_any(default: int, *names: str) -> int:
+    for name in names:
+        if str(os.environ.get(name) or "").strip():
+            return env_int(name, default)
+    return default
+
+
+def parse_mediacrawler_douyin_jsonl(
+    text: str,
+    *,
+    now: datetime,
+    source_name: str = "",
+    max_items: int | None = None,
+) -> list[RawItem]:
+    out: list[RawItem] = []
+    seen: set[str] = set()
+    for line in str(text or "").splitlines():
+        raw_line = line.strip()
+        if not raw_line:
+            continue
+        try:
+            row = json.loads(raw_line)
+        except json.JSONDecodeError:
+            continue
+        if not isinstance(row, dict):
+            continue
+
+        aweme_id = first_non_empty(row.get("aweme_id"), row.get("id"))
+        content = first_non_empty(row.get("desc"), row.get("title"))
+        url = first_non_empty(row.get("aweme_url"), row.get("share_url"), row.get("url"))
+        if not url and aweme_id:
+            url = f"https://www.douyin.com/video/{aweme_id}"
+        if not url.startswith("http") or not (content or aweme_id):
+            continue
+
+        key = aweme_id or normalize_url(url)
+        if key in seen:
+            continue
+        seen.add(key)
+
+        creator = first_non_empty(
+            source_name,
+            row.get("nickname"),
+            row.get("user_nickname"),
+            row.get("user_unique_id"),
+            row.get("sec_user_id"),
+            "Douyin Creator",
+        )
+        published = (
+            parse_unix_timestamp(row.get("create_time"))
+            or parse_unix_timestamp(row.get("create_timestamp"))
+            or parse_date_any(row.get("publish_time"), now)
+        )
+        metrics = {
+            "likes": mediacrawler_int(first_non_empty(row.get("liked_count"), row.get("digg_count"))),
+            "collects": mediacrawler_int(first_non_empty(row.get("collected_count"), row.get("collect_count"))),
+            "comments": mediacrawler_int(row.get("comment_count")),
+            "shares": mediacrawler_int(row.get("share_count")),
+        }
+        sec_user_id = first_non_empty(row.get("sec_user_id"), row.get("user_id"))
+        out.append(
+            RawItem(
+                site_id=MEDIACRAWLER_DOUYIN_SITE_ID,
+                site_name=MEDIACRAWLER_DOUYIN_SITE_NAME,
+                source=creator,
+                title=mediacrawler_douyin_title(content, aweme_id),
+                url=url,
+                published_at=published or now,
+                meta={
+                    "summary": content,
+                    "creator_metrics": metrics,
+                    "search_surface": "mediacrawler_douyin_creator_jsonl",
+                    "douyin_aweme_id": aweme_id,
+                    "douyin_sec_user_id": sec_user_id,
+                },
+            )
+        )
+        if max_items and len(out) >= max_items:
+            break
+    return out
+
+
+def maybe_fetch_mediacrawler_douyin(now: datetime) -> tuple[list[RawItem], dict[str, Any]]:
+    jsonl_path_raw = str(os.environ.get("MEDIACRAWLER_DOUYIN_JSONL") or "").strip()
+    max_items = max(1, min(env_int("MEDIACRAWLER_DOUYIN_MAX_ITEMS", 200), 1000))
+    status: dict[str, Any] = {
+        "enabled": env_flag("MEDIACRAWLER_DOUYIN_ENABLED"),
+        "ok": None,
+        "item_count": 0,
+        "source_kind": MEDIACRAWLER_DOUYIN_SITE_ID,
+        "privacy": "local_jsonl_only_no_cookies",
+        "coverage_note": "reads_mediacrawler_douyin_creator_jsonl",
+        "jsonl_path_configured": bool(jsonl_path_raw),
+        "jsonl_file": Path(jsonl_path_raw).name if jsonl_path_raw else None,
+        "max_items": max_items,
+    }
+    if not status["enabled"]:
+        status["disabled_reason"] = "disabled_by_toggle"
+        return [], status
+    if not jsonl_path_raw:
+        status["ok"] = False
+        status["error"] = "missing_mediacrawler_douyin_jsonl"
+        return [], status
+
+    start = time.perf_counter()
+    try:
+        jsonl_path = Path(jsonl_path_raw).expanduser()
+        if not jsonl_path.exists():
+            status["ok"] = False
+            status["error"] = "mediacrawler_douyin_jsonl_not_found"
+            return [], status
+        source_name = str(os.environ.get("MEDIACRAWLER_DOUYIN_SOURCE_NAME") or "").strip()
+        items = parse_mediacrawler_douyin_jsonl(
+            jsonl_path.read_text(encoding="utf-8", errors="ignore"),
+            now=now,
+            source_name=source_name,
+            max_items=max_items,
+        )
+        status["ok"] = bool(items)
+        status["item_count"] = len(items)
+        if source_name:
+            status["source_name"] = source_name
+        if not items:
+            status["error"] = "mediacrawler_douyin_no_items"
+        return items, status
+    except Exception as exc:
+        status["ok"] = False
+        status["error"] = str(exc)
+        return [], status
+    finally:
+        status["duration_ms"] = int((time.perf_counter() - start) * 1000)
+
+
+def parse_mediacrawler_xhs_jsonl(
+    text: str,
+    *,
+    now: datetime,
+    source_name: str = "",
+    max_items: int | None = None,
+) -> list[RawItem]:
+    out: list[RawItem] = []
+    seen: set[str] = set()
+    for line in str(text or "").splitlines():
+        raw_line = line.strip()
+        if not raw_line:
+            continue
+        try:
+            row = json.loads(raw_line)
+        except json.JSONDecodeError:
+            continue
+        if not isinstance(row, dict):
+            continue
+
+        note_id = first_non_empty(row.get("note_id"), row.get("id"))
+        content = first_non_empty(row.get("title"), row.get("desc"))
+        summary = first_non_empty(row.get("desc"), row.get("title"))
+        url = first_non_empty(row.get("note_url"), row.get("url"), row.get("share_url"))
+        if not url and note_id:
+            url = f"https://www.xiaohongshu.com/explore/{note_id}"
+        if not url.startswith("http") or not (content or note_id):
+            continue
+
+        key = note_id or normalize_url(url)
+        if key in seen:
+            continue
+        seen.add(key)
+
+        creator = first_non_empty(
+            source_name,
+            row.get("nickname"),
+            row.get("user_nickname"),
+            row.get("user_id"),
+            "Xiaohongshu Creator",
+        )
+        published = (
+            parse_unix_timestamp(row.get("time"))
+            or parse_unix_timestamp(row.get("create_time"))
+            or parse_unix_timestamp(row.get("last_update_time"))
+            or parse_date_any(row.get("publish_time"), now)
+        )
+        metrics = {
+            "likes": mediacrawler_int(row.get("liked_count")),
+            "collects": mediacrawler_int(first_non_empty(row.get("collected_count"), row.get("collect_count"))),
+            "comments": mediacrawler_int(row.get("comment_count")),
+            "shares": mediacrawler_int(row.get("share_count")),
+        }
+        out.append(
+            RawItem(
+                site_id=MEDIACRAWLER_XHS_SITE_ID,
+                site_name=MEDIACRAWLER_XHS_SITE_NAME,
+                source=creator,
+                title=mediacrawler_xhs_title(content, note_id),
+                url=url,
+                published_at=published or now,
+                meta={
+                    "summary": summary,
+                    "creator_metrics": metrics,
+                    "search_surface": "mediacrawler_xhs_creator_jsonl",
+                    "xiaohongshu_note_id": note_id,
+                    "xiaohongshu_user_id": first_non_empty(row.get("user_id"), row.get("sec_user_id")),
+                    "xiaohongshu_note_type": first_non_empty(row.get("type"), row.get("note_type")),
+                },
+            )
+        )
+        if max_items and len(out) >= max_items:
+            break
+    return out
+
+
+def maybe_fetch_mediacrawler_xhs(now: datetime) -> tuple[list[RawItem], dict[str, Any]]:
+    jsonl_path_raw = mediacrawler_env_first("MEDIACRAWLER_XHS_JSONL", "MEDIACRAWLER_XIAOHONGSHU_JSONL")
+    max_items = max(1, min(mediacrawler_env_int_any(200, "MEDIACRAWLER_XHS_MAX_ITEMS", "MEDIACRAWLER_XIAOHONGSHU_MAX_ITEMS"), 1000))
+    status: dict[str, Any] = {
+        "enabled": mediacrawler_env_flag_any("MEDIACRAWLER_XHS_ENABLED", "MEDIACRAWLER_XIAOHONGSHU_ENABLED"),
+        "ok": None,
+        "item_count": 0,
+        "source_kind": MEDIACRAWLER_XHS_SITE_ID,
+        "privacy": "local_jsonl_only_no_cookies",
+        "coverage_note": "reads_mediacrawler_xhs_creator_jsonl",
+        "jsonl_path_configured": bool(jsonl_path_raw),
+        "jsonl_file": Path(jsonl_path_raw).name if jsonl_path_raw else None,
+        "max_items": max_items,
+    }
+    if not status["enabled"]:
+        status["disabled_reason"] = "disabled_by_toggle"
+        return [], status
+    if not jsonl_path_raw:
+        status["ok"] = False
+        status["error"] = "missing_mediacrawler_xhs_jsonl"
+        return [], status
+
+    start = time.perf_counter()
+    try:
+        jsonl_path = Path(jsonl_path_raw).expanduser()
+        if not jsonl_path.exists():
+            status["ok"] = False
+            status["error"] = "mediacrawler_xhs_jsonl_not_found"
+            return [], status
+        source_name = mediacrawler_env_first("MEDIACRAWLER_XHS_SOURCE_NAME", "MEDIACRAWLER_XIAOHONGSHU_SOURCE_NAME")
+        items = parse_mediacrawler_xhs_jsonl(
+            jsonl_path.read_text(encoding="utf-8", errors="ignore"),
+            now=now,
+            source_name=source_name,
+            max_items=max_items,
+        )
+        status["ok"] = bool(items)
+        status["item_count"] = len(items)
+        if source_name:
+            status["source_name"] = source_name
+        if not items:
+            status["error"] = "mediacrawler_xhs_no_items"
+        return items, status
+    except Exception as exc:
+        status["ok"] = False
+        status["error"] = str(exc)
+        return [], status
+    finally:
+        status["duration_ms"] = int((time.perf_counter() - start) * 1000)
 
 
 def maybe_fetch_agentmail_digest(
@@ -4826,6 +6344,20 @@ def add_creator_ranking_fields(record: dict[str, Any], now: datetime) -> dict[st
     return out
 
 
+def is_subscription_record(record: dict[str, Any]) -> bool:
+    site_id = str(record.get("site_id") or "").strip().lower()
+    if site_id in CREATOR_SITE_IDS:
+        return True
+    url = str(record.get("url") or "").strip().lower()
+    if any(marker in url for marker in SUBSCRIPTION_URL_MARKERS):
+        return True
+    hay = " ".join(
+        str(record.get(key) or "")
+        for key in ("site_name", "source", "source_kind", "search_surface", "platform")
+    ).lower()
+    return any(marker in hay for marker in SUBSCRIPTION_TEXT_MARKERS)
+
+
 def editorial_score(record: dict[str, Any]) -> float:
     """External or internal editorial strength used by the headline ranker."""
     value = record.get("aihot_score")
@@ -5167,16 +6699,17 @@ def build_creator_hot_items(
     now: datetime,
     *,
     ai_only: bool,
+    window_days: int | None = CREATOR_HOT_WINDOW_DAYS,
 ) -> list[dict[str, Any]]:
-    window_start = now - timedelta(days=CREATOR_HOT_WINDOW_DAYS)
+    window_start = now - timedelta(days=window_days) if window_days and window_days > 0 else None
     items: list[dict[str, Any]] = []
     for record in archive.values():
-        if str(record.get("site_id") or "") not in CREATOR_SITE_IDS:
-            continue
-        if not isinstance(record.get("creator_metrics"), dict):
+        if not is_subscription_record(record):
             continue
         published = event_time(record)
-        if not published or published < window_start or published > now:
+        if not published or published > now:
+            continue
+        if window_start and published < window_start:
             continue
         normalized = dict(record)
         normalized["title"] = maybe_fix_mojibake(str(normalized.get("title") or ""))
@@ -5185,10 +6718,16 @@ def build_creator_hot_items(
             str(normalized.get("source") or ""),
             str(normalized.get("url") or ""),
         ))
+        if not isinstance(normalized.get("creator_metrics"), dict):
+            normalized["creator_metrics"] = {}
         normalized = add_ai_relevance_fields(normalized)
         if ai_only and not normalized.get("ai_is_related", is_ai_related_record(normalized)):
             continue
         normalized = add_source_tier_fields(normalized)
+        if is_subscription_record(normalized):
+            normalized["source_tier"] = "self_media"
+            normalized["source_tier_label"] = "我的订阅"
+            normalized["source_tier_rank"] = 4
         items.append(add_creator_ranking_fields(normalized, now))
 
     deduped = suppress_near_duplicate_items(dedupe_items_by_title_url(items, random_pick=False))
@@ -5208,10 +6747,16 @@ def build_latest_payloads(latest_payload: dict[str, Any]) -> tuple[dict[str, Any
     all_payload = {
         "generated_at": latest_payload.get("generated_at"),
         "window_hours": latest_payload.get("window_hours"),
+        "time_scope": latest_payload.get("time_scope"),
+        "source_scope": latest_payload.get("source_scope"),
         "topic_filter": latest_payload.get("topic_filter"),
         "ai_relevance_threshold": latest_payload.get("ai_relevance_threshold"),
         "total_items_raw": latest_payload.get("total_items_raw"),
         "total_items_all_mode": latest_payload.get("total_items_all_mode"),
+        "creator_window_days": latest_payload.get("creator_window_days"),
+        "creator_time_scope": latest_payload.get("creator_time_scope"),
+        "creator_ranking": latest_payload.get("creator_ranking"),
+        "creator_items_all": latest_payload.get("creator_items_all", []),
         "items_all": latest_payload.get("items_all", []),
         "items_all_raw": latest_payload.get("items_all_raw", []),
     }
@@ -5230,10 +6775,44 @@ def main() -> int:
     parser.add_argument("--translate-max-new", type=int, default=80, help="Max new EN->ZH title translations per run")
     parser.add_argument("--rss-opml", default="", help="Optional OPML file path to include RSS sources")
     parser.add_argument("--rss-max-feeds", type=int, default=0, help="Optional max OPML RSS feeds to fetch (0 means all)")
+    parser.add_argument(
+        "--source-config",
+        default="",
+        help="Optional sources.config.json exported from the dashboard; defaults to ./sources.config.json when present",
+    )
+    parser.add_argument("--bilibili-only", action="store_true", help="Publish only the configured Bilibili dynamic accounts")
+    parser.add_argument(
+        "--source-scope",
+        default=os.environ.get("RADAR_SOURCE_SCOPE") or DEPLOYED_SOURCE_SCOPE_DEFAULT,
+        help="Source set to publish: tested_creator_sources (default) or all_sources",
+    )
+    parser.add_argument("--all-time", action="store_true", help="Publish all retained records instead of the rolling window")
     args = parser.parse_args()
+    output_dir = Path(args.output_dir)
+    source_config, source_config_status = load_source_config(args.source_config, output_dir=output_dir)
+    if source_config_status.get("enabled") and source_config_status.get("ok") is False:
+        print(f"Source config error: {source_config_status.get('error')}", file=sys.stderr)
+        return 2
+    source_config_runtime = apply_source_config_runtime(source_config)
+    configured_source_ids = frozenset(source_config_runtime.get("enabled_site_ids") or [])
+    source_config_active = bool(source_config_status.get("ok") and source_config)
+    source_scope = (
+        SOURCE_SCOPE_BILIBILI_ONLY
+        if args.bilibili_only or env_flag("BILIBILI_ONLY_MODE")
+        else SOURCE_SCOPE_CONFIGURED if source_config_active
+        else normalize_source_scope(args.source_scope)
+    )
+    active_source_ids = configured_source_ids if source_config_active else source_ids_for_scope(source_scope)
+    scoped_to_tested_creators = source_scope == SOURCE_SCOPE_TESTED_CREATORS
+    scoped_by_config = source_scope == SOURCE_SCOPE_CONFIGURED
+    all_time = bool(args.all_time or env_flag("RADAR_ALL_TIME"))
+    wewe_rss_enabled = env_flag("WEWE_RSS_ENABLED") and (
+        active_source_ids is None or WEWE_RSS_SITE_ID in active_source_ids
+    )
+    if wewe_rss_enabled and active_source_ids is not None:
+        active_source_ids = frozenset(site_id for site_id in active_source_ids if site_id != MAOBIDAO_WECHAT_SITE_ID)
 
     now = utc_now()
-    output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     archive_path = output_dir / "archive.json"
@@ -5248,93 +6827,204 @@ def main() -> int:
     email_digest_path = output_dir / AGENTMAIL_DIGEST_FILE
     paid_source_state_path = output_dir / PAID_SOURCE_STATE_FILE
 
-    archive = load_archive(archive_path)
+    archive = filter_archive_by_source_ids(load_archive(archive_path), active_source_ids)
     paid_source_state = load_paid_source_state(paid_source_state_path)
 
     session = create_session()
-    raw_items, statuses = collect_all(session, now)
+    if scoped_to_tested_creators:
+        raw_items, statuses = [], []
+    elif scoped_by_config:
+        raw_items, statuses = collect_all(session, now, allowed_site_ids=active_source_ids)
+    else:
+        raw_items, statuses = collect_all(session, now)
     rss_feed_statuses: list[dict[str, Any]] = []
-    email_digest_payload, agentmail_status = maybe_fetch_agentmail_digest(
-        session,
-        generated_at=iso(now),
-        after=iso(now - timedelta(hours=args.window_hours)),
-        window_hours=args.window_hours,
-    )
-    x_api_items, x_api_status = maybe_fetch_x_api_updates(session, now)
-    if x_api_status.get("enabled"):
-        raw_items.extend(x_api_items)
+    github_repo_error = None
+    github_repo_start = time.perf_counter()
+    github_repo_items: list[RawItem] = []
+    github_repo_enabled = active_source_ids is None or GITHUB_REPO_SUBSCRIPTION_SITE_ID in active_source_ids
+    if github_repo_enabled:
+        try:
+            github_repo_items = fetch_github_repo_subscription(session, now)
+            raw_items.extend(github_repo_items)
+        except Exception as exc:
+            github_repo_error = str(exc)
         statuses.append(
             {
-                "site_id": "xapi",
-                "site_name": "X API",
-                "ok": bool(x_api_status.get("ok")) if x_api_status.get("ok") is not None else True,
-                "item_count": int(x_api_status.get("item_count") or 0),
-                "duration_ms": 0,
-                "error": x_api_status.get("error"),
-                "skipped": bool(x_api_status.get("skipped")),
-                "skip_reason": x_api_status.get("skip_reason"),
+                "site_id": GITHUB_REPO_SUBSCRIPTION_SITE_ID,
+                "site_name": GITHUB_REPO_SUBSCRIPTION_SITE_NAME,
+                "ok": github_repo_error is None,
+                "item_count": len(github_repo_items),
+                "duration_ms": int((time.perf_counter() - github_repo_start) * 1000),
+                "error": github_repo_error,
+                "source_kind": "github_release_subscription",
+                "repo": "AlkaidLab/foundation-sunshine",
+                "max_items": GITHUB_REPO_SUBSCRIPTION_MAX_ITEMS,
             }
         )
-    socialdata_items, socialdata_status = maybe_fetch_socialdata_updates(session, now, paid_source_state)
-    update_paid_source_state(paid_source_state, "socialdata", socialdata_status, now)
-    sync_paid_source_status_timestamps(socialdata_status, paid_source_state, "socialdata")
-    if socialdata_status.get("enabled"):
-        raw_items.extend(socialdata_items)
+    if wewe_rss_enabled:
+        wewe_rss_items, wewe_rss_status = fetch_wewe_rss_subscription(session, now)
+        raw_items.extend(wewe_rss_items)
         statuses.append(
             {
-                "site_id": "socialdata_x",
-                "site_name": "SocialData X",
-                "ok": bool(socialdata_status.get("ok")) if socialdata_status.get("ok") is not None else True,
-                "item_count": int(socialdata_status.get("item_count") or 0),
-                "duration_ms": 0,
-                "error": socialdata_status.get("error"),
-                "skipped": bool(socialdata_status.get("skipped")),
-                "skip_reason": socialdata_status.get("skip_reason"),
+                "site_id": WEWE_RSS_SITE_ID,
+                "site_name": WEWE_RSS_SITE_NAME,
+                "ok": bool(wewe_rss_status.get("ok")),
+                "item_count": int(wewe_rss_status.get("item_count") or 0),
+                "duration_ms": int(wewe_rss_status.get("duration_ms") or 0),
+                "error": wewe_rss_status.get("error"),
+                "source_kind": wewe_rss_status.get("source_kind"),
+                "base_url": wewe_rss_status.get("base_url"),
+                "max_items_per_feed": wewe_rss_status.get("max_items_per_feed"),
+                "feeds": wewe_rss_status.get("feeds"),
+                "coverage_note": wewe_rss_status.get("coverage_note"),
+                "privacy": wewe_rss_status.get("privacy"),
             }
         )
-    tikhub_items, tikhub_status = maybe_fetch_tikhub_updates(session, now, paid_source_state)
-    update_paid_source_state(paid_source_state, "tikhub", tikhub_status, now)
-    sync_paid_source_status_timestamps(tikhub_status, paid_source_state, "tikhub")
-    if tikhub_status.get("enabled"):
-        raw_items.extend(tikhub_items)
-        tikhub_counts: dict[str, int] = {}
-        for item in tikhub_items:
-            tikhub_counts[item.site_id] = tikhub_counts.get(item.site_id, 0) + 1
-        for site_id, site_name in (
-            ("tikhub_douyin", "TikHub Douyin"),
-            ("tikhub_xiaohongshu", "TikHub Xiaohongshu"),
-        ):
-            if site_id.split("_", 1)[1] not in set(tikhub_status.get("platforms") or []):
-                continue
+    elif active_source_ids is None or MAOBIDAO_WECHAT_SITE_ID in active_source_ids:
+        maobidao_error = None
+        maobidao_start = time.perf_counter()
+        maobidao_items: list[RawItem] = []
+        try:
+            maobidao_items = fetch_maobidao_wechat_subscription(session, now)
+            raw_items.extend(maobidao_items)
+        except Exception as exc:
+            maobidao_error = str(exc)
+        statuses.append(
+            {
+                "site_id": MAOBIDAO_WECHAT_SITE_ID,
+                "site_name": MAOBIDAO_WECHAT_SITE_NAME,
+                "ok": maobidao_error is None,
+                "item_count": len(maobidao_items),
+                "duration_ms": int((time.perf_counter() - maobidao_start) * 1000),
+                "error": maobidao_error,
+                "source_kind": "wechat_public_account_backup",
+                "source_name": "猫笔刀公众号",
+                "source_origin": MAOBIDAO_WECHAT_HOME_URL,
+                "max_items": MAOBIDAO_WECHAT_MAX_ITEMS,
+                "coverage_note": "reads_public_discourse_backup_json_not_wechat_login",
+            }
+        )
+    bilibili_dynamic_status = bilibili_dynamic_status_base()
+    if active_source_ids is None or "bilibili_dynamic" in active_source_ids:
+        bilibili_dynamic_items, bilibili_dynamic_status = maybe_fetch_bilibili_dynamic(session, now)
+        if bilibili_dynamic_status.get("enabled"):
+            raw_items.extend(bilibili_dynamic_items)
             statuses.append(
                 {
-                    "site_id": site_id,
-                    "site_name": site_name,
-                    "ok": bool(tikhub_status.get("ok")) if tikhub_status.get("ok") is not None else True,
-                    "item_count": tikhub_counts.get(site_id, 0),
-                    "duration_ms": 0,
-                    "error": tikhub_status.get("error"),
-                    "skipped": bool(tikhub_status.get("skipped")),
-                    "skip_reason": tikhub_status.get("skip_reason"),
+                    "site_id": "bilibili_dynamic",
+                    "site_name": "Bilibili Dynamic",
+                    "ok": bool(bilibili_dynamic_status.get("ok")) if bilibili_dynamic_status.get("ok") is not None else True,
+                    "item_count": int(bilibili_dynamic_status.get("item_count") or 0),
+                    "duration_ms": int(bilibili_dynamic_status.get("duration_ms") or 0),
+                    "error": bilibili_dynamic_status.get("error"),
+                    "uid": bilibili_dynamic_status.get("uid"),
+                    "uids": bilibili_dynamic_status.get("uids"),
+                    "uid_count": bilibili_dynamic_status.get("uid_count"),
+                    "source_name": bilibili_dynamic_status.get("source_name"),
+                    "privacy": bilibili_dynamic_status.get("privacy"),
+                    "coverage_note": bilibili_dynamic_status.get("coverage_note"),
+                    "cookie_present": bool(bilibili_dynamic_status.get("cookie_present")),
+                    "fetch_mode": bilibili_dynamic_status.get("fetch_mode"),
+                    "fallback_reason": bilibili_dynamic_status.get("fallback_reason"),
+                    "partial_failure_count": bilibili_dynamic_status.get("partial_failure_count"),
+                    "max_items": bilibili_dynamic_status.get("max_items"),
+                    "max_items_per_account": bilibili_dynamic_status.get("max_items_per_account"),
+                    "max_pages": bilibili_dynamic_status.get("max_pages"),
+                    "accounts": bilibili_dynamic_status.get("accounts"),
                 }
             )
-
-    waytoagi_started = time.perf_counter()
-    try:
-        waytoagi_payload = fetch_waytoagi_recent_7d(session, now, WAYTOAGI_DEFAULT)
-        waytoagi_items = waytoagi_updates_to_raw_items(waytoagi_payload, now)
-        raw_items.extend(waytoagi_items)
-        statuses.append(
-            {
-                "site_id": "waytoagi",
-                "site_name": "WaytoAGI",
-                "ok": True,
-                "item_count": len(waytoagi_items),
-                "duration_ms": int((time.perf_counter() - waytoagi_started) * 1000),
-                "error": None,
-            }
-        )
-    except Exception as exc:
+    mediacrawler_douyin_status = {
+        "enabled": False,
+        "ok": None,
+        "item_count": 0,
+        "disabled_reason": "disabled_by_source_config" if scoped_by_config else "disabled_by_source_scope",
+    }
+    if active_source_ids is None or MEDIACRAWLER_DOUYIN_SITE_ID in active_source_ids:
+        mediacrawler_douyin_items, mediacrawler_douyin_status = maybe_fetch_mediacrawler_douyin(now)
+        if mediacrawler_douyin_status.get("enabled"):
+            raw_items.extend(mediacrawler_douyin_items)
+            statuses.append(
+                {
+                    "site_id": MEDIACRAWLER_DOUYIN_SITE_ID,
+                    "site_name": MEDIACRAWLER_DOUYIN_SITE_NAME,
+                    "ok": bool(mediacrawler_douyin_status.get("ok")) if mediacrawler_douyin_status.get("ok") is not None else True,
+                    "item_count": int(mediacrawler_douyin_status.get("item_count") or 0),
+                    "duration_ms": int(mediacrawler_douyin_status.get("duration_ms") or 0),
+                    "error": mediacrawler_douyin_status.get("error"),
+                    "source_name": mediacrawler_douyin_status.get("source_name"),
+                    "privacy": mediacrawler_douyin_status.get("privacy"),
+                    "coverage_note": mediacrawler_douyin_status.get("coverage_note"),
+                    "source_kind": mediacrawler_douyin_status.get("source_kind"),
+                    "jsonl_path_configured": bool(mediacrawler_douyin_status.get("jsonl_path_configured")),
+                    "jsonl_file": mediacrawler_douyin_status.get("jsonl_file"),
+                    "max_items": mediacrawler_douyin_status.get("max_items"),
+                }
+            )
+    mediacrawler_xhs_status = {
+        "enabled": False,
+        "ok": None,
+        "item_count": 0,
+        "disabled_reason": "disabled_by_source_config" if scoped_by_config else "disabled_by_source_scope",
+    }
+    if active_source_ids is None or MEDIACRAWLER_XHS_SITE_ID in active_source_ids:
+        mediacrawler_xhs_items, mediacrawler_xhs_status = maybe_fetch_mediacrawler_xhs(now)
+        if mediacrawler_xhs_status.get("enabled"):
+            raw_items.extend(mediacrawler_xhs_items)
+            statuses.append(
+                {
+                    "site_id": MEDIACRAWLER_XHS_SITE_ID,
+                    "site_name": MEDIACRAWLER_XHS_SITE_NAME,
+                    "ok": bool(mediacrawler_xhs_status.get("ok")) if mediacrawler_xhs_status.get("ok") is not None else True,
+                    "item_count": int(mediacrawler_xhs_status.get("item_count") or 0),
+                    "duration_ms": int(mediacrawler_xhs_status.get("duration_ms") or 0),
+                    "error": mediacrawler_xhs_status.get("error"),
+                    "source_name": mediacrawler_xhs_status.get("source_name"),
+                    "privacy": mediacrawler_xhs_status.get("privacy"),
+                    "coverage_note": mediacrawler_xhs_status.get("coverage_note"),
+                    "source_kind": mediacrawler_xhs_status.get("source_kind"),
+                    "jsonl_path_configured": bool(mediacrawler_xhs_status.get("jsonl_path_configured")),
+                    "jsonl_file": mediacrawler_xhs_status.get("jsonl_file"),
+                    "max_items": mediacrawler_xhs_status.get("max_items"),
+                }
+            )
+    advanced_source_ids = frozenset({
+        "agentmail",
+        "xapi",
+        "socialdata_x",
+        "tikhub_douyin",
+        "tikhub_xiaohongshu",
+        "waytoagi",
+    })
+    advanced_sources_enabled = active_source_ids is None or bool(active_source_ids.intersection(advanced_source_ids))
+    if scoped_to_tested_creators or not advanced_sources_enabled:
+        email_digest_payload = None
+        disabled_reason = "disabled_by_source_config" if scoped_by_config else "disabled_by_source_scope"
+        agentmail_status = {
+            "enabled": False,
+            "ok": None,
+            "item_count": 0,
+            "privacy": "metadata_only_no_body",
+            "published_by_default": False,
+            "disabled_reason": disabled_reason,
+        }
+        x_api_status = {
+            "enabled": False,
+            "ok": None,
+            "item_count": 0,
+            "disabled_reason": disabled_reason,
+        }
+        socialdata_status = {
+            "enabled": False,
+            "ok": None,
+            "item_count": 0,
+            "disabled_reason": disabled_reason,
+        }
+        tikhub_status = {
+            "enabled": False,
+            "ok": None,
+            "item_count": 0,
+            "disabled_reason": disabled_reason,
+        }
         waytoagi_payload = {
             "generated_at": iso(now),
             "timezone": "Asia/Shanghai",
@@ -5343,23 +7033,155 @@ def main() -> int:
             "window_days": 7,
             "count_7d": 0,
             "updates_7d": [],
-            "warning": "WaytoAGI 近7日更新抓取失败",
-            "has_error": True,
-            "error": str(exc),
+            "skipped": True,
+            "skip_reason": disabled_reason,
         }
-        statuses.append(
-            {
-                "site_id": "waytoagi",
-                "site_name": "WaytoAGI",
-                "ok": False,
+    else:
+        if active_source_ids is None or "agentmail" in active_source_ids:
+            email_digest_payload, agentmail_status = maybe_fetch_agentmail_digest(
+                session,
+                generated_at=iso(now),
+                after=iso(now - timedelta(hours=args.window_hours)),
+                window_hours=args.window_hours,
+            )
+        else:
+            email_digest_payload = None
+            agentmail_status = {
+                "enabled": False,
+                "ok": None,
                 "item_count": 0,
-                "duration_ms": int((time.perf_counter() - waytoagi_started) * 1000),
-                "error": str(exc),
+                "privacy": "metadata_only_no_body",
+                "published_by_default": False,
+                "disabled_reason": "disabled_by_source_config",
             }
-        )
+        if active_source_ids is None or "xapi" in active_source_ids:
+            x_api_items, x_api_status = maybe_fetch_x_api_updates(session, now)
+        else:
+            x_api_items, x_api_status = [], {"enabled": False, "ok": None, "item_count": 0, "disabled_reason": "disabled_by_source_config"}
+        if x_api_status.get("enabled"):
+            raw_items.extend(x_api_items)
+            statuses.append(
+                {
+                    "site_id": "xapi",
+                    "site_name": "X API",
+                    "ok": bool(x_api_status.get("ok")) if x_api_status.get("ok") is not None else True,
+                    "item_count": int(x_api_status.get("item_count") or 0),
+                    "duration_ms": 0,
+                    "error": x_api_status.get("error"),
+                    "skipped": bool(x_api_status.get("skipped")),
+                    "skip_reason": x_api_status.get("skip_reason"),
+                }
+            )
+        if active_source_ids is None or "socialdata_x" in active_source_ids:
+            socialdata_items, socialdata_status = maybe_fetch_socialdata_updates(session, now, paid_source_state)
+            update_paid_source_state(paid_source_state, "socialdata", socialdata_status, now)
+            sync_paid_source_status_timestamps(socialdata_status, paid_source_state, "socialdata")
+        else:
+            socialdata_items, socialdata_status = [], {"enabled": False, "ok": None, "item_count": 0, "disabled_reason": "disabled_by_source_config"}
+        if socialdata_status.get("enabled"):
+            raw_items.extend(socialdata_items)
+            statuses.append(
+                {
+                    "site_id": "socialdata_x",
+                    "site_name": "SocialData X",
+                    "ok": bool(socialdata_status.get("ok")) if socialdata_status.get("ok") is not None else True,
+                    "item_count": int(socialdata_status.get("item_count") or 0),
+                    "duration_ms": 0,
+                    "error": socialdata_status.get("error"),
+                    "skipped": bool(socialdata_status.get("skipped")),
+                    "skip_reason": socialdata_status.get("skip_reason"),
+                }
+            )
+        if active_source_ids is None or active_source_ids.intersection({"tikhub_douyin", "tikhub_xiaohongshu"}):
+            tikhub_items, tikhub_status = maybe_fetch_tikhub_updates(session, now, paid_source_state)
+            update_paid_source_state(paid_source_state, "tikhub", tikhub_status, now)
+            sync_paid_source_status_timestamps(tikhub_status, paid_source_state, "tikhub")
+        else:
+            tikhub_items, tikhub_status = [], {"enabled": False, "ok": None, "item_count": 0, "disabled_reason": "disabled_by_source_config"}
+        if tikhub_status.get("enabled"):
+            raw_items.extend(tikhub_items)
+            tikhub_counts: dict[str, int] = {}
+            for item in tikhub_items:
+                tikhub_counts[item.site_id] = tikhub_counts.get(item.site_id, 0) + 1
+            for site_id, site_name in (
+                ("tikhub_douyin", "TikHub Douyin"),
+                ("tikhub_xiaohongshu", "TikHub Xiaohongshu"),
+            ):
+                if site_id.split("_", 1)[1] not in set(tikhub_status.get("platforms") or []):
+                    continue
+                statuses.append(
+                    {
+                        "site_id": site_id,
+                        "site_name": site_name,
+                        "ok": bool(tikhub_status.get("ok")) if tikhub_status.get("ok") is not None else True,
+                        "item_count": tikhub_counts.get(site_id, 0),
+                        "duration_ms": 0,
+                        "error": tikhub_status.get("error"),
+                        "skipped": bool(tikhub_status.get("skipped")),
+                        "skip_reason": tikhub_status.get("skip_reason"),
+                    }
+                )
 
-    if args.rss_opml:
-        opml_path = Path(args.rss_opml).expanduser()
+        waytoagi_started = time.perf_counter()
+        if active_source_ids is not None and "waytoagi" not in active_source_ids:
+            waytoagi_payload = {
+                "generated_at": iso(now),
+                "timezone": "Asia/Shanghai",
+                "root_url": WAYTOAGI_DEFAULT,
+                "history_url": None,
+                "window_days": 7,
+                "count_7d": 0,
+                "updates_7d": [],
+                "skipped": True,
+                "skip_reason": "disabled_by_source_config",
+            }
+        else:
+            try:
+                waytoagi_payload = fetch_waytoagi_recent_7d(session, now, WAYTOAGI_DEFAULT)
+                waytoagi_items = waytoagi_updates_to_raw_items(waytoagi_payload, now)
+                raw_items.extend(waytoagi_items)
+                statuses.append(
+                    {
+                        "site_id": "waytoagi",
+                        "site_name": "WaytoAGI",
+                        "ok": True,
+                        "item_count": len(waytoagi_items),
+                        "duration_ms": int((time.perf_counter() - waytoagi_started) * 1000),
+                        "error": None,
+                    }
+                )
+            except Exception as exc:
+                waytoagi_payload = {
+                    "generated_at": iso(now),
+                    "timezone": "Asia/Shanghai",
+                    "root_url": WAYTOAGI_DEFAULT,
+                    "history_url": None,
+                    "window_days": 7,
+                    "count_7d": 0,
+                    "updates_7d": [],
+                    "warning": "WaytoAGI 近7日更新抓取失败",
+                    "has_error": True,
+                    "error": str(exc),
+                }
+                statuses.append(
+                    {
+                        "site_id": "waytoagi",
+                        "site_name": "WaytoAGI",
+                        "ok": False,
+                        "item_count": 0,
+                        "duration_ms": int((time.perf_counter() - waytoagi_started) * 1000),
+                        "error": str(exc),
+                    }
+                )
+
+    rss_opml_path = str(source_config_runtime.get("rss_opml") or args.rss_opml or "").strip()
+    rss_opml_enabled = bool(
+        rss_opml_path
+        and not scoped_to_tested_creators
+        and (active_source_ids is None or "opmlrss" in active_source_ids)
+    )
+    if rss_opml_enabled:
+        opml_path = Path(rss_opml_path).expanduser()
         if opml_path.exists():
             rss_items, rss_summary_status, rss_feed_statuses = fetch_opml_rss(
                 now,
@@ -5382,6 +7204,10 @@ def main() -> int:
                     "failed_feed_count": 0,
                 }
             )
+
+    if active_source_ids is not None:
+        raw_items = [item for item in raw_items if item.site_id in active_source_ids]
+        statuses = [status for status in statuses if str(status.get("site_id") or "") in active_source_ids]
 
     seen_this_run: set[str] = set()
 
@@ -5423,24 +7249,26 @@ def main() -> int:
             existing["last_seen_at"] = iso(now)
             apply_public_raw_meta(existing, raw)
 
-    # Prune old archive
-    keep_after = now - timedelta(days=args.archive_days)
-    pruned: dict[str, dict[str, Any]] = {}
-    for item_id, record in archive.items():
-        ts = (
-            parse_iso(record.get("last_seen_at"))
-            or parse_iso(record.get("published_at"))
-            or parse_iso(record.get("first_seen_at"))
-            or now
-        )
-        if ts >= keep_after:
-            pruned[item_id] = record
-    archive = pruned
+    # Prune old archive unless the generated view intentionally needs all retained history.
+    if not all_time:
+        keep_after = now - timedelta(days=args.archive_days)
+        pruned: dict[str, dict[str, Any]] = {}
+        for item_id, record in archive.items():
+            ts = (
+                parse_iso(record.get("last_seen_at"))
+                or parse_iso(record.get("published_at"))
+                or parse_iso(record.get("first_seen_at"))
+                or now
+            )
+            if ts >= keep_after:
+                pruned[item_id] = record
+        archive = pruned
 
-    # 24h view
-    window_start = now - timedelta(hours=args.window_hours)
+    window_start = datetime.min.replace(tzinfo=UTC) if all_time else now - timedelta(hours=args.window_hours)
     latest_items_all: list[dict[str, Any]] = []
     for record in archive.values():
+        if active_source_ids is not None and str(record.get("site_id") or "") not in active_source_ids:
+            continue
         ts = event_time(record)
         if not ts:
             continue
@@ -5472,8 +7300,9 @@ def main() -> int:
         title_cache,
         max_new_translations=max(0, args.translate_max_new),
     )
-    creator_items_ai = build_creator_hot_items(archive, now, ai_only=True)
-    creator_items_all = build_creator_hot_items(archive, now, ai_only=False)
+    creator_window_days = None if all_time else CREATOR_HOT_WINDOW_DAYS
+    creator_items_ai = build_creator_hot_items(archive, now, ai_only=True, window_days=creator_window_days)
+    creator_items_all = build_creator_hot_items(archive, now, ai_only=False, window_days=creator_window_days)
     creator_items_ai, creator_items_all, title_cache = add_bilingual_fields(
         creator_items_ai,
         creator_items_all,
@@ -5528,6 +7357,8 @@ def main() -> int:
     latest_payload = {
         "generated_at": generated_at,
         "window_hours": args.window_hours,
+        "time_scope": "all_time" if all_time else "rolling_window",
+        "source_scope": source_scope,
         "total_items": len(latest_items_ai_dedup),
         "total_items_ai_raw": len(latest_items),
         "total_items_raw": len(latest_items_all),
@@ -5538,7 +7369,8 @@ def main() -> int:
         "site_count": len(site_stat),
         "source_count": len({f"{i['site_id']}::{i['source']}" for i in latest_items_ai_dedup}),
         "site_stats": sorted(site_stat.values(), key=lambda x: x["count"], reverse=True),
-        "creator_window_days": CREATOR_HOT_WINDOW_DAYS,
+        "creator_window_days": 0 if creator_window_days is None else creator_window_days,
+        "creator_time_scope": "all_time" if creator_window_days is None else "rolling_window",
         "creator_ranking": "engagement_85_fresh_24h_bonus_15_v1",
         "creator_items_ai": creator_items_ai,
         "creator_items_all": creator_items_all,
@@ -5567,7 +7399,14 @@ def main() -> int:
         for s in statuses
         if s.get("ok")
         and int(s.get("item_count") or 0) == 0
-        and str(s.get("site_id") or "") in {"xapi", "socialdata_x", "tikhub_douyin", "tikhub_xiaohongshu"}
+        and str(s.get("site_id") or "") in {
+            "xapi",
+            "socialdata_x",
+            "tikhub_douyin",
+            "tikhub_xiaohongshu",
+            MEDIACRAWLER_DOUYIN_SITE_ID,
+            MEDIACRAWLER_XHS_SITE_ID,
+        }
         and not s.get("skipped")
     ]
     empty_advanced_site_ids = {item["site_id"] for item in empty_advanced_sources}
@@ -5575,6 +7414,8 @@ def main() -> int:
     status_payload = {
         "generated_at": generated_at,
         "sites": statuses,
+        "time_scope": "all_time" if all_time else "rolling_window",
+        "source_scope": source_scope,
         "successful_sites": sum(1 for s in statuses if s["ok"]),
         "failed_sites": [s["site_id"] for s in statuses if not s["ok"]],
         "zero_item_sites": [
@@ -5590,8 +7431,9 @@ def main() -> int:
         "items_before_topic_filter": len(latest_items_all),
         "items_in_24h": len(latest_items_ai_dedup),
         "rss_opml": {
-            "enabled": bool(args.rss_opml),
-            "path": "configured" if args.rss_opml else None,
+            "enabled": rss_opml_enabled,
+            "path": "configured" if rss_opml_enabled else None,
+            "disabled_reason": "disabled_by_source_scope" if rss_opml_path and not rss_opml_enabled else None,
             "feed_total": len(rss_feed_statuses),
             "effective_feed_total": sum(1 for s in rss_feed_statuses if not s.get("skipped")),
             "ok_feeds": sum(1 for s in rss_feed_statuses if s["ok"] and not s.get("skipped")),
@@ -5617,6 +7459,13 @@ def main() -> int:
         "x_api": x_api_status,
         "socialdata": socialdata_status,
         "tikhub": tikhub_status,
+        "mediacrawler_douyin": mediacrawler_douyin_status,
+        "mediacrawler_xhs": mediacrawler_xhs_status,
+        "source_config": {
+            **source_config_status,
+            **source_config_runtime,
+            "active": source_config_active,
+        },
     }
 
     latest_payload, latest_all_payload = build_latest_payloads(latest_payload)

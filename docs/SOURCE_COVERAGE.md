@@ -33,6 +33,24 @@ It does not promise reliable default coverage for private inboxes, cookies,
 WeChat accounts, or raw social timelines. Those belong in the advanced layer or
 private forks because they need credentials, bridges, or ongoing maintenance.
 
+## Current Deployment Scope
+
+The deployed data generation now defaults to `tested_creator_sources`. That
+scope publishes only the subscription sources already accepted in local
+verification:
+
+- `bilibili_dynamic`
+- `mediacrawler_douyin`
+- `mediacrawler_xhs`
+- `github_foundation_sunshine_releases`
+- `maobidao_wudaolu_backup`
+- `wewe_rss` (only fetched when `WEWE_RSS_ENABLED=1`)
+
+Legacy public RSS, OPML, AI HOT, Follow Builders, Hacker News, WaytoAGI,
+AgentMail, X API, SocialData, and TikHub fetchers remain in the codebase for
+manual `--source-scope all_sources` runs, but they are no longer part of the
+default deployed output.
+
 ## Supported Source Types
 
 | Source type | Current support | Recommended path | Notes |
@@ -47,7 +65,7 @@ private forks because they need credentials, bridges, or ongoing maintenance.
 | GitHub releases/blogs | Usually supported through Atom/RSS | Prefer GitHub Atom feeds or official blog RSS | Useful for model/platform/tool release tracking. |
 | Newsletters | Partially supported | Prefer public archive RSS or stable archive pages | Do not scrape private inboxes. |
 | X / Twitter | Supported only through curated central feeds or opt-in API adapters | Prefer public generated feeds that already use official X API; keep direct X API optional and secret-backed | Following a person often imports noise; public bridge routes can be unstable. |
-| WeChat public accounts | Not recommended as a default | Use stable third-party RSS only if the maintainer accepts breakage risk | Login/copyright/bridge stability can be poor. |
+| WeChat public accounts | Supported through an opt-in local WeWe RSS bridge | Run WeWe RSS as a local sidecar and enable `WEWE_RSS_ENABLED=1`; keep `maobidao_wudaolu_backup` as fallback only | The radar reads JSON Feed only and does not read wewe-rss DB, cookies, `.env`, or WeChat login state. |
 | Telegram / Bilibili / Zhihu / podcasts | Skipped by default when feeds are unreliable | Add only as opt-in OPML entries | These can be noisy or bridge-dependent. |
 
 ## Source Selection Rules
@@ -175,6 +193,31 @@ baseline, then let the aggregator layer add breadth.
   `xiaohongshu_web_v3.fetch_search_notes`, records the `search_surface` in
   public raw output, and treats Web V3 failures as non-fatal when App V2
   succeeds.
+- **MediaCrawler Douyin creator JSONL**: supported as a local private bridge
+  through `MEDIACRAWLER_DOUYIN_ENABLED=1` and `MEDIACRAWLER_DOUYIN_JSONL`, but
+  disabled by default. It does not run Playwright, Chrome CDP, or any logged-in
+  browser from this project; it only reads a JSONL file already exported by a
+  separate local MediaCrawler run. This keeps Douyin login state and crawler
+  output outside the public repo while letting selected creator works enter the
+  same self-media lane as Bilibili dynamic and TikHub creator/search signals.
+- **MediaCrawler Xiaohongshu creator JSONL**: supported as a local private bridge
+  through `MEDIACRAWLER_XHS_ENABLED=1` and `MEDIACRAWLER_XHS_JSONL`, with
+  `MEDIACRAWLER_XIAOHONGSHU_*` aliases for readability. It is disabled by
+  default and only reads an exported local JSONL file, so Xiaohongshu login
+  state, `xsec_token`, browser profile data, and crawler output stay outside
+  the public repo. The parsed notes enter the same self-media lane as Bilibili,
+  TikHub creator/search, and the MediaCrawler Douyin bridge.
+- **AlkaidLab/foundation-sunshine GitHub releases**: supported as a public repo
+  version subscription through the GitHub Releases API. It fetches only the
+  latest five public releases, needs no token, and appears in the same
+  `我的订阅` lane as the accepted creator sources.
+- **Maobidao WeChat public-account backup**: supported as a public backup-site
+  subscription through the Discourse category JSON at
+  `https://wudaolu.com/c/dav/7.json`. It fetches only the latest two public
+  topic records whose title contains `猫笔刀`, needs no WeChat login or cookie,
+  and appears in the same `我的订阅` lane. This is still a WeChat bridge path, so
+  treat it as third-party and stability-sensitive rather than an official
+  WeChat feed.
 - **AgentMail digest**: supported as an advanced, secret-backed metadata digest
   through `EMAIL_DIGEST_ENABLED=1`, `AGENTMAIL_API_KEY`, and
   `AGENTMAIL_INBOX_ID`, but disabled by default. It deliberately lists messages

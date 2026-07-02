@@ -889,6 +889,231 @@ summary:focus-visible {
   font-weight: 700;
 }
 
+.source-config-wrap {
+  margin-top: 14px;
+  border: 1px solid rgba(23, 23, 23, 0.1);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.source-config-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--line-soft);
+  padding: 14px 16px;
+  background: var(--surface-soft);
+}
+
+.source-config-head h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.source-config-tools,
+.source-config-actions,
+.source-config-import-head,
+.source-config-list-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.source-config-tools {
+  justify-content: flex-end;
+}
+
+#sourceConfigSummary {
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.tool-btn {
+  min-height: 32px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0 10px;
+  color: var(--accent);
+  background: var(--surface);
+  font-size: 12px;
+  font-weight: 760;
+  cursor: pointer;
+}
+
+.tool-btn:hover,
+.tool-btn:focus-visible {
+  border-color: rgba(18, 106, 115, 0.45);
+  outline: none;
+}
+
+.tool-btn:disabled {
+  color: var(--muted);
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.file-tool {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.file-tool input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.source-config-body {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.75fr) minmax(0, 1.5fr);
+  gap: 12px;
+  padding: 14px;
+}
+
+.source-config-list-panel,
+.source-config-form,
+.source-config-import {
+  min-width: 0;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  background: var(--surface-soft);
+}
+
+.source-config-list-panel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.source-config-list-head {
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line-soft);
+  padding: 10px;
+}
+
+.source-config-list {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  max-height: 420px;
+  overflow: auto;
+  padding: 10px;
+}
+
+.source-config-source {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 8px 9px;
+  color: var(--ink);
+  background: var(--surface);
+  text-align: left;
+}
+
+.source-config-source strong,
+.source-config-source span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.source-config-source strong {
+  font-size: 13px;
+}
+
+.source-config-source span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.source-config-source.active {
+  border-color: rgba(18, 106, 115, 0.55);
+  background: rgba(18, 106, 115, 0.07);
+}
+
+.source-config-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 12px;
+}
+
+.source-config-wide,
+.source-config-actions {
+  grid-column: 1 / -1;
+}
+
+.source-config-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-weight: 720;
+}
+
+.source-config-toggle input {
+  width: auto;
+}
+
+.source-config-actions {
+  justify-content: flex-start;
+}
+
+.source-config-import {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+}
+
+.source-config-import-head {
+  justify-content: flex-start;
+}
+
+.source-config-import textarea {
+  width: 100%;
+  min-height: 180px;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 11px 12px;
+  color: var(--ink);
+  background: var(--surface);
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.source-config-status,
+.source-config-empty {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.source-config-status.ok {
+  color: var(--good);
+}
+
+.source-config-status.warn {
+  color: var(--warn);
+}
+
+.source-config-status.bad {
+  color: var(--bad);
+}
+
 .bole-picks-wrap,
 .list-wrap,
 .waytoagi-wrap {
@@ -2500,9 +2725,33 @@ summary:focus-visible {
 
   .mode-hint,
   .advanced-summary,
+  #sourceConfigSummary,
   #resultCount,
   #waytoagiUpdatedAt {
     white-space: normal;
+  }
+
+  .source-config-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .source-config-tools {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .source-config-body,
+  .source-config-form {
+    grid-template-columns: 1fr;
+  }
+
+  .source-config-list {
+    max-height: 260px;
+  }
+
+  .source-config-import textarea {
+    min-height: 150px;
   }
 
   .time {

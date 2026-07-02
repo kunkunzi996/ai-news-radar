@@ -2,12 +2,6 @@ name: Update AI News Snapshot
 
 on:
   workflow_dispatch:
-    inputs:
-      force_tikhub:
-        description: "Force a paid TikHub refresh even before its normal interval"
-        required: false
-        default: false
-        type: boolean
   schedule:
     - cron: "*/30 * * * *"
 
@@ -38,66 +32,26 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Prepare OPML
-        env:
-          FOLLOW_OPML_B64: ${{ secrets.FOLLOW_OPML_B64 }}
-        run: |
-          mkdir -p feeds
-          if [ -n "$FOLLOW_OPML_B64" ]; then
-            echo "$FOLLOW_OPML_B64" | base64 --decode > feeds/follow.opml
-            echo "Loaded feeds/follow.opml from FOLLOW_OPML_B64 secret"
-          elif [ -f feeds/follow.example.opml ]; then
-            cp feeds/follow.example.opml feeds/follow.opml
-            echo "Loaded public demo OPML from feeds/follow.example.opml"
-          else
-            echo "No OPML file available; RSS OPML is optional"
-          fi
-
       - name: Update data
         env:
-          EMAIL_DIGEST_ENABLED: ${{ secrets.EMAIL_DIGEST_ENABLED || vars.EMAIL_DIGEST_ENABLED }}
-          AGENTMAIL_API_KEY: ${{ secrets.AGENTMAIL_API_KEY }}
-          AGENTMAIL_INBOX_ID: ${{ secrets.AGENTMAIL_INBOX_ID }}
-          AGENTMAIL_API_BASE_URL: ${{ vars.AGENTMAIL_API_BASE_URL }}
-          AGENTMAIL_LIMIT: ${{ vars.AGENTMAIL_LIMIT }}
-          AGENTMAIL_ALLOWED_SENDER_DOMAINS: ${{ vars.AGENTMAIL_ALLOWED_SENDER_DOMAINS }}
-          # Paid X/social sources (X API, SocialData, TikHub): keys live in
-          # secrets; optional tuning variables override code defaults.
-          # Policy is key-first: a key present => the source runs; ENABLED is
-          # optional and only needs setting to 0 to force it off.
-          X_API_ENABLED: ${{ secrets.X_API_ENABLED || vars.X_API_ENABLED }}
-          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
-          SOCIALDATA_ENABLED: ${{ secrets.SOCIALDATA_ENABLED || vars.SOCIALDATA_ENABLED }}
-          SOCIALDATA_API_KEY: ${{ secrets.SOCIALDATA_API_KEY }}
-          SOCIALDATA_QUERY: ${{ vars.SOCIALDATA_QUERY }}
-          SOCIALDATA_SEARCH_TYPE: ${{ vars.SOCIALDATA_SEARCH_TYPE }}
-          SOCIALDATA_MAX_RESULTS: ${{ vars.SOCIALDATA_MAX_RESULTS }}
-          SOCIALDATA_DAILY_TWEET_LIMIT: ${{ vars.SOCIALDATA_DAILY_TWEET_LIMIT }}
-          SOCIALDATA_RUN_INTERVAL_HOURS: ${{ vars.SOCIALDATA_RUN_INTERVAL_HOURS }}
-          SOCIALDATA_RUN_UTC_HOUR: ${{ vars.SOCIALDATA_RUN_UTC_HOUR }}
-          SOCIALDATA_RUN_UTC_MINUTE_MAX: ${{ vars.SOCIALDATA_RUN_UTC_MINUTE_MAX }}
-          SOCIALDATA_LIST_ID: ${{ vars.SOCIALDATA_LIST_ID }}
-          SOCIALDATA_LIST_ENABLED: ${{ vars.SOCIALDATA_LIST_ENABLED }}
-          SOCIALDATA_LIST_MAX_RESULTS: ${{ vars.SOCIALDATA_LIST_MAX_RESULTS }}
-          SOCIALDATA_LIST_EXCLUDE: ${{ vars.SOCIALDATA_LIST_EXCLUDE }}
-          TIKHUB_ENABLED: ${{ secrets.TIKHUB_ENABLED || vars.TIKHUB_ENABLED }}
-          TIKHUB_API_KEY: ${{ secrets.TIKHUB_API_KEY }}
-          TIKHUB_API_BASE_URL: ${{ vars.TIKHUB_API_BASE_URL }}
-          TIKHUB_QUERY: ${{ vars.TIKHUB_QUERY }}
-          TIKHUB_PLATFORMS: ${{ vars.TIKHUB_PLATFORMS }}
-          TIKHUB_MAX_RESULTS: ${{ vars.TIKHUB_MAX_RESULTS }}
-          TIKHUB_DAILY_ITEM_LIMIT: ${{ vars.TIKHUB_DAILY_ITEM_LIMIT }}
-          TIKHUB_RUN_INTERVAL_HOURS: ${{ vars.TIKHUB_RUN_INTERVAL_HOURS }}
-          TIKHUB_RUN_UTC_HOUR: ${{ vars.TIKHUB_RUN_UTC_HOUR }}
-          TIKHUB_RUN_UTC_MINUTE_MAX: ${{ vars.TIKHUB_RUN_UTC_MINUTE_MAX }}
-          TIKHUB_FORCE_RUN: ${{ inputs.force_tikhub && '1' || '' }}
-          RSS_MAX_FEEDS: ${{ vars.RSS_MAX_FEEDS || 10 }}
+          RADAR_SOURCE_SCOPE: tested_creator_sources
+          # Deployed source scope is intentionally limited to the three tested
+          # creator sources: Bilibili, local MediaCrawler Douyin, and local
+          # MediaCrawler Xiaohongshu.
+          BILIBILI_DYNAMIC_ENABLED: ${{ vars.BILIBILI_DYNAMIC_ENABLED || '1' }}
+          BILIBILI_DYNAMIC_UIDS: ${{ vars.BILIBILI_DYNAMIC_UIDS || vars.BILIBILI_DYNAMIC_UID || '505301413,316183842' }}
+          BILIBILI_DYNAMIC_SOURCE_NAMES: ${{ vars.BILIBILI_DYNAMIC_SOURCE_NAMES || vars.BILIBILI_DYNAMIC_SOURCE_NAME || 'Koji杨远骋at十字路口,技术爬爬虾' }}
+          BILIBILI_DYNAMIC_MAX_ITEMS: ${{ vars.BILIBILI_DYNAMIC_MAX_ITEMS || 20 }}
+          BILIBILI_DYNAMIC_MAX_PAGES: ${{ vars.BILIBILI_DYNAMIC_MAX_PAGES || 5 }}
+          BILIBILI_COOKIE: ${{ secrets.BILIBILI_COOKIE }}
+          MEDIACRAWLER_DOUYIN_ENABLED: ${{ vars.MEDIACRAWLER_DOUYIN_ENABLED }}
+          MEDIACRAWLER_DOUYIN_JSONL: ${{ vars.MEDIACRAWLER_DOUYIN_JSONL }}
+          MEDIACRAWLER_DOUYIN_SOURCE_NAME: ${{ vars.MEDIACRAWLER_DOUYIN_SOURCE_NAME }}
+          MEDIACRAWLER_XHS_ENABLED: ${{ vars.MEDIACRAWLER_XHS_ENABLED }}
+          MEDIACRAWLER_XHS_JSONL: ${{ vars.MEDIACRAWLER_XHS_JSONL }}
+          MEDIACRAWLER_XHS_SOURCE_NAME: ${{ vars.MEDIACRAWLER_XHS_SOURCE_NAME }}
         run: |
-          if [ -f feeds/follow.opml ]; then
-            python scripts/update_news.py --output-dir data --window-hours 24 --archive-days 21 --rss-opml feeds/follow.opml --rss-max-feeds "${RSS_MAX_FEEDS:-10}"
-          else
-            python scripts/update_news.py --output-dir data --window-hours 24 --archive-days 21
-          fi
+          python scripts/update_news.py --output-dir data --window-hours 24 --archive-days 21
 
       - name: Commit and push changes
         env:

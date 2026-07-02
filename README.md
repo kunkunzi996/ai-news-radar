@@ -185,7 +185,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 python scripts/update_news.py --output-dir data --window-hours 24
-python -m http.server 8080
+python scripts/local_server.py --host 127.0.0.1 --port 8080
 ```
 
 打开：
@@ -227,27 +227,56 @@ python scripts/update_news.py --output-dir data --window-hours 24 --rss-opml fee
 
 `.github/workflows/update-news.yml` 已经配置好定时任务。
 
-- 支持手动触发 `workflow_dispatch`；需要忽略 TikHub 的正常付费源间隔时，显式传入 `force_tikhub=true`
+- 支持手动触发 `workflow_dispatch`
 - 默认每 30 分钟运行一次：`*/30 * * * *`
 - 自动生成并提交 `data/*.json`；工作流使用 `git add data/`，避免新增 JSON 文件因为白名单遗漏而停留在旧更新时间
-- 如果没有设置 `FOLLOW_OPML_B64`，线上工作流会自动使用公开示例 `feeds/follow.example.opml`，让页面展示 RSS/OPML 能力
-- 如果设置 `FOLLOW_OPML_B64`，会优先自动解码为私有 `feeds/follow.opml`
-- 如果设置 `EMAIL_DIGEST_ENABLED=1`、`AGENTMAIL_API_KEY`、`AGENTMAIL_INBOX_ID`，会生成脱敏邮箱摘要
-- 只有额外设置 `EMAIL_DIGEST_PUBLISH=1`，才会提交 `data/email-digest.json`
-- 如果设置 `X_API_ENABLED=1`、`X_BEARER_TOKEN` 和预算变量，会在每日指定UTC窗口用官方X API抓取少量公开Post；默认关闭，且当前X API按返回资源计费
-- 如果设置 `SOCIALDATA_ENABLED=1`、`SOCIALDATA_API_KEY` 和预算变量，会按 `SOCIALDATA_RUN_INTERVAL_HOURS`（默认12小时）通过 SocialData.tools 抓取少量公开 X/Twitter 搜索结果；默认关闭，API Key 只应放在本地环境变量或 GitHub Secrets
-- 如果设置 `TIKHUB_ENABLED=1`、`TIKHUB_API_KEY` 和预算变量，会按 `TIKHUB_RUN_INTERVAL_HOURS`（默认24小时）通过 TikHub 抓取少量抖音/小红书关键词搜索结果；默认关闭，API Key 只应放在本地环境变量或 GitHub Secrets
-- SocialData/TikHub 的拉取间隔会记录在 `data/paid-source-state.json`，只保存上次运行时间、结果数和错误名，不保存 API Key；半小时工作流跳过付费源时，旧条目仍保留在 `data/archive.json`，不会因为本轮未拉取就被清空
+- 默认部署范围是 `tested_creator_sources`，只发布已经本地验收过的订阅信源：B站动态、本地 MediaCrawler 抖音 JSONL、本地 MediaCrawler 小红书 JSONL、AlkaidLab/foundation-sunshine GitHub 版本发布、猫笔刀公众号公开备份源
+- B站动态源默认开启；抖音和小红书本地桥需要配置对应 `MEDIACRAWLER_*_ENABLED` 和 JSONL 路径才会读取
+- OPML/RSS、AgentMail、X API、SocialData、TikHub、WaytoAGI 和原项目内置聚合源不再进入默认部署输出；如需恢复旧全源模式，可在本地手动运行 `python scripts/update_news.py --source-scope all_sources ...`
 
 默认情况下，本项目不需要任何API Key就能跑核心流程。
 
 线上页面右上角显示的“更新时间”来自 `data/latest-24h.json` 的 `generated_at`。如果页面长时间停在旧时间，优先检查 GitHub Actions 最近一次 `Update AI News Snapshot` 是否运行、是否有抓取错误、以及仓库 Pages 是否部署到包含最新 `data/` 提交的分支。
 
+主页面内置一个静态“信源配置”面板，用于维护本地配置草稿。它支持新增、
+编辑、停用、删除信源，并可以导入/导出 `sources.config.json`。如果使用
+`scripts/local_server.py` 启动本地页面，面板里的“写入”按钮会把当前配置
+直接保存到项目根目录的 `sources.config.json`，“刷新数据”按钮会先写入配置，
+再触发一次固定的本地刷新脚本。这个本地后台只绑定 `127.0.0.1`，只允许写这
+一个配置文件，只运行项目内固定刷新命令，不会保存 cookie、token、`.env`、
+微信登录态或浏览器 profile。
+
+推荐流程：
+
+1. 启动本地小后台：
+
+   ```powershell
+   .\.venv\Scripts\python.exe scripts/local_server.py --host 127.0.0.1 --port 8080
+   ```
+
+2. 打开 `http://127.0.0.1:8080/`，在“信源配置”里修改启用/停用。
+3. 点“写入”，生成或覆盖根目录 `sources.config.json`（该文件已加入
+   `.gitignore`，默认不提交）。按钮会显示“写入中... / 已写入 / 写入失败”。
+4. 点“刷新数据”即可一键写入配置并刷新 `data/*.json`，完成后页面会自动重载。
+   如果想在命令行里手动刷新，也可以显式运行：
+
+   ```powershell
+   .\.venv\Scripts\python.exe scripts/update_news.py --source-config sources.config.json --output-dir data --window-hours 24 --archive-days 3650 --all-time
+   ```
+
+5. 检查 `data/source-status.json`，其中 `source_config.active=true` 表示配置文件已生效。
+
+如果仍用 `python -m http.server 8080`，页面没有写文件接口，“写入”会失败；
+此时可以继续使用“导出/复制”作为兜底。
+
+没有 `sources.config.json` 时，刷新脚本仍沿用原来的默认范围
+`tested_creator_sources`。
+
 高级源配置模板见 `examples/advanced-sources.env.example`，
 
 预算说明见 `docs/research/advanced-source-free-tier-budget-2026-05-10.md`，
 
-本地测试 TikHub 抓取时可以先小流量强制跑一次：
+旧版全源模式仍保留 TikHub 抓取能力；本地测试 TikHub 抓取时可以先小流量强制跑一次：
 
 ```bash
 export TIKHUB_ENABLED=1
@@ -273,7 +302,7 @@ print("tikhub_24h_counts =", {k: counts[k] for k in sorted(counts) if str(k).sta
 PY
 ```
 
-远端需要用当前 `master` 立即重跑 TikHub 时：
+如果临时恢复旧版全源模式并需要远端重跑 TikHub，可自行调整 workflow 后再触发：
 
 ```bash
 gh workflow run update-news.yml --ref master -f force_tikhub=true
@@ -283,6 +312,108 @@ gh workflow run update-news.yml --ref master -f force_tikhub=true
 小红书搜索都优先请求“一周内最多点赞”，再从响应中提取点赞、收藏、评论
 和分享数。榜单分数由 85% 互动热度和 15% 的 24 小时新鲜度加分组成；因此
 真正的周内爆款优先，但刚开始起量的新内容仍有机会进入 Top 3。
+
+B站动态源默认追踪 `Koji杨远骋at十字路口` 和 `技术爬爬虾` 两个账号，并使用
+公开 opus 接口。可以用 `BILIBILI_DYNAMIC_UIDS` 和
+`BILIBILI_DYNAMIC_SOURCE_NAMES` 覆盖账号列表；旧的 `BILIBILI_DYNAMIC_UID` /
+`BILIBILI_DYNAMIC_SOURCE_NAME` 仍可用于单账号兼容。需要验证登录态完整动态时，
+可以只在本地或 GitHub Secrets 里提供 cookie，不要提交到仓库。`BILIBILI_COOKIE`
+支持普通请求头格式，也支持 Cookie-Editor 等插件导出的 Netscape `cookies.txt`
+或 JSON 文本；本地文件可以用 `BILIBILI_COOKIE_FILE` 指向：
+
+```powershell
+$env:BILIBILI_DYNAMIC_ENABLED='1'
+$env:BILIBILI_DYNAMIC_UIDS='505301413,316183842'
+$env:BILIBILI_DYNAMIC_SOURCE_NAMES='Koji杨远骋at十字路口,技术爬爬虾'
+$env:BILIBILI_COOKIE_FILE='C:\path\to\cookies.txt'
+.\.venv\Scripts\python.exe scripts/update_news.py --output-dir data --window-hours 24
+```
+
+成功走登录态时，`data/source-status.json` 中 `bilibili_dynamic.fetch_mode` 会是
+`cookie_full_dynamic`；多账号混合结果会在 `bilibili_dynamic.accounts` 里逐个记录。
+如果某个账号的 cookie 完整动态失败，会单账号回退到 `public_opus_fallback`。
+需要往更早日期翻页时，可以调大 `BILIBILI_DYNAMIC_MAX_ITEMS` 和
+`BILIBILI_DYNAMIC_MAX_PAGES`，例如每个账号最多抓 80 条、最多翻 8 页：
+
+```powershell
+$env:BILIBILI_DYNAMIC_ENABLED='1'
+$env:BILIBILI_COOKIE_FILE='C:\path\to\cookies.txt'
+$env:BILIBILI_DYNAMIC_UIDS='505301413,316183842'
+$env:BILIBILI_DYNAMIC_SOURCE_NAMES='Koji杨远骋at十字路口,技术爬爬虾'
+$env:BILIBILI_DYNAMIC_MAX_ITEMS='80'
+$env:BILIBILI_DYNAMIC_MAX_PAGES='8'
+.\.venv\Scripts\python.exe scripts/update_news.py --output-dir data --window-hours 1440 --archive-days 120
+```
+
+只想在本地页面查看这两个 B站账号、并取消 24 小时窗口时，可以生成
+B站-only 全时间视图：
+
+```powershell
+$env:BILIBILI_DYNAMIC_ENABLED='1'
+$env:BILIBILI_COOKIE_FILE='C:\path\to\cookies.txt'
+$env:BILIBILI_DYNAMIC_UIDS='505301413,316183842'
+$env:BILIBILI_DYNAMIC_SOURCE_NAMES='Koji杨远骋at十字路口,技术爬爬虾'
+$env:BILIBILI_DYNAMIC_MAX_ITEMS='200'
+$env:BILIBILI_DYNAMIC_MAX_PAGES='20'
+.\.venv\Scripts\python.exe scripts/update_news.py --output-dir data --archive-days 3650 --bilibili-only --all-time
+```
+
+抖音指定博主可以通过本地 MediaCrawler 导出的 JSONL 接入。这个桥接默认关闭，
+不会从本项目启动 Chrome、Playwright 或复用登录态；先在独立 MediaCrawler
+目录抓取作品，再让总览站读取生成的 `creator_contents_*.jsonl`：
+
+```powershell
+$env:MEDIACRAWLER_DOUYIN_ENABLED='1'
+$env:MEDIACRAWLER_DOUYIN_JSONL='E:\AI-news-reader\MediaCrawler-local-test\output\douyin\jsonl\creator_contents_2026-07-01.jsonl'
+$env:MEDIACRAWLER_DOUYIN_SOURCE_NAME='Simon林'
+.\.venv\Scripts\python.exe scripts/update_news.py --output-dir data --window-hours 24 --archive-days 3650 --all-time
+```
+
+成功时，`data/source-status.json` 中 `mediacrawler_douyin.item_count` 会显示读到的
+作品数；切到页面的“全部 / 自媒体”更适合查看完整博主作品列表。不要提交
+MediaCrawler 的 `chrome-profile`、cookie 或登录态文件。
+
+小红书指定博主也可以通过本地 MediaCrawler 导出的 JSONL 接入，同样默认关闭、
+只读本地文件，不会从本项目启动 Chrome 或复用登录态：
+
+```powershell
+$env:MEDIACRAWLER_XHS_ENABLED='1'
+$env:MEDIACRAWLER_XHS_JSONL='E:\AI-news-reader\MediaCrawler-local-test\output\xhs\jsonl\creator_contents_2026-07-01.jsonl'
+$env:MEDIACRAWLER_XHS_SOURCE_NAME='陈抱一'
+.\.venv\Scripts\python.exe scripts/update_news.py --output-dir data --window-hours 24 --archive-days 3650 --all-time
+```
+
+成功时，`data/source-status.json` 中 `mediacrawler_xhs.item_count` 会显示读到的
+笔记数；主页面“自媒体”栏目会把它显示为“小红书博主”。兼容长变量名
+`MEDIACRAWLER_XIAOHONGSHU_*`，但推荐用上面的 `MEDIACRAWLER_XHS_*`。
+
+GitHub 版本订阅默认追踪 `AlkaidLab/foundation-sunshine` 最近 5 次公开 release，
+不再追踪普通 commit。它不需要 token，也不会调用 GitHub 登录态。刷新后它会进入
+主页面“我的订阅”栏目，并在 `data/source-status.json` 里显示为
+`github_foundation_sunshine_releases`。
+
+猫笔刀公众号订阅默认读取公开备份站 `https://wudaolu.com/c/dav/7` 的 Discourse
+分类 JSON 最近 2 条文章，只保存标题、链接和发布时间；它不登录微信、不读取微信
+cookie，也不会抓取公众号后台。刷新后它会进入主页面“我的订阅”栏目，并在
+`data/source-status.json` 里显示为 `maobidao_wudaolu_backup`。公众号桥接源稳定性
+取决于第三方公开备份站，失效时应先看 `source-status.json` 的错误字段。
+
+如果本机已经部署 WeWe RSS，推荐把公众号作为本地 sidecar 接入主看板。
+AI News Radar 只读取 WeWe RSS 暴露的 JSON Feed，不读取 wewe-rss 数据库、
+cookie、`.env` 或微信登录态：
+
+```powershell
+$env:WEWE_RSS_ENABLED='1'
+$env:WEWE_RSS_BASE_URL='http://127.0.0.1:4000'
+$env:WEWE_RSS_FEEDS='猫笔刀:MP_WXS_3198966508'
+.\.venv\Scripts\python.exe scripts/update_news.py --output-dir data --window-hours 24 --archive-days 3650 --all-time
+```
+
+成功时，`data/source-status.json` 中 `wewe_rss.ok=true`，主页面“我的订阅”
+会出现猫笔刀公众号文章。启用 `WEWE_RSS_ENABLED=1` 后，刷新流程会跳过
+`maobidao_wudaolu_backup` 这个临时备份源，避免同一篇文章重复出现在看板里。
+如果不配置 `WEWE_RSS_FEEDS`，系统会自动读取 `http://127.0.0.1:4000/feeds`
+里已经订阅的全部公众号。
 
 小红书按“先搜索、后详情”处理。搜索阶段使用 App V2 的最多点赞排序和
 7 天筛选，并再次在本地校验发布时间：可信 API 时间优先；`0`、未来时间

@@ -22,6 +22,10 @@ venv/
 feeds/follow.opml
 feeds/*.private.opml
 feeds/private*.opml
+sources.config.json
+sources.config.json.tmp
+data/sources.config.json
+data/sources.config.json.tmp
 
 # Optional private/generated digests
 data/email-digest.json

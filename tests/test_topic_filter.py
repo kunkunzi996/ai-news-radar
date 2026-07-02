@@ -1,3 +1,5 @@
+import json
+import os
 import unittest
 from datetime import datetime, timezone
 from unittest.mock import patch
@@ -12,6 +14,9 @@ from scripts.update_news import (
     fetch_agentmail_digest,
     fetch_aihot,
     fetch_ai_hubtoday,
+    fetch_github_repo_subscription,
+    fetch_maobidao_wechat_subscription,
+    fetch_wewe_rss_subscription,
     fetch_hacker_news_algolia,
     fetch_socialdata_list_tweets,
     fetch_tikhub_search,
@@ -19,6 +24,7 @@ from scripts.update_news import (
     is_ai_related_record,
     is_hubtoday_generic_anchor_title,
     is_hubtoday_placeholder_title,
+    is_subscription_record,
     maybe_fetch_agentmail_digest,
     maybe_fetch_socialdata_updates,
     socialdata_status_base,
@@ -38,12 +44,19 @@ from scripts.update_news import (
     parse_anthropic_news_items,
     parse_follow_builders_items,
     parse_openai_codex_changelog_items,
+    parse_wewe_rss_json_feed_items,
     redact_public_text,
+    filter_archive_by_source_ids,
+    normalize_source_scope,
+    apply_source_config_runtime,
+    source_config_enabled_site_ids,
+    source_ids_for_scope,
     source_tier_for_site,
     source_tier_sort_key,
     sync_paid_source_status_timestamps,
     tikhub_status_base,
     update_paid_source_state,
+    wewe_rss_feeds_from_env,
 )
 
 
@@ -576,11 +589,16 @@ class TopicFilterTests(unittest.TestCase):
         latest_payload = {
             "generated_at": "2026-05-03T00:00:00Z",
             "window_hours": 24,
+            "time_scope": "all_time",
+            "source_scope": "bilibili_only",
             "total_items": 1,
             "total_items_raw": 3,
             "total_items_all_mode": 2,
             "items_ai": [{"title": "AI post", "url": "https://example.com/a"}],
             "creator_items_ai": [{"title": "Hot creator post", "url": "https://example.com/hot"}],
+            "creator_items_all": [{"title": "All creator post", "url": "https://example.com/creator"}],
+            "creator_window_days": 7,
+            "creator_ranking": "engagement_85_fresh_24h_bonus_15_v1",
             "items_all": [{"title": "All post", "url": "https://example.com/b"}],
             "items_all_raw": [{"title": "Raw post", "url": "https://example.com/c"}],
         }
@@ -591,8 +609,112 @@ class TopicFilterTests(unittest.TestCase):
         self.assertNotIn("items_all_raw", slim)
         self.assertEqual(slim["all_mode_data_url"], "data/latest-24h-all.json")
         self.assertEqual(slim["stories_data_url"], "data/stories-merged.json")
+        self.assertEqual(all_payload["time_scope"], "all_time")
+        self.assertEqual(all_payload["source_scope"], "bilibili_only")
+        self.assertEqual(all_payload["creator_items_all"][0]["title"], "All creator post")
+        self.assertEqual(all_payload["creator_window_days"], 7)
+        self.assertEqual(all_payload["creator_ranking"], "engagement_85_fresh_24h_bonus_15_v1")
         self.assertEqual(all_payload["items_all"][0]["title"], "All post")
         self.assertEqual(all_payload["items_all_raw"][0]["title"], "Raw post")
+
+    def test_default_source_scope_keeps_only_tested_creator_sources(self):
+        scope = normalize_source_scope("")
+        allowed_source_ids = source_ids_for_scope(scope)
+        archive = {
+            "bili": {"site_id": "bilibili_dynamic"},
+            "douyin": {"site_id": "mediacrawler_douyin"},
+            "xhs": {"site_id": "mediacrawler_xhs"},
+            "github": {"site_id": "github_foundation_sunshine_releases"},
+            "maobidao": {"site_id": "maobidao_wudaolu_backup"},
+            "wewe": {"site_id": "wewe_rss"},
+            "official": {"site_id": "official_ai"},
+            "opml": {"site_id": "opmlrss"},
+            "tikhub": {"site_id": "tikhub_douyin"},
+        }
+
+        filtered = filter_archive_by_source_ids(archive, allowed_source_ids)
+
+        self.assertEqual(scope, "tested_creator_sources")
+        self.assertEqual(set(filtered), {"bili", "douyin", "xhs", "github", "maobidao", "wewe"})
+
+    def test_source_config_enabled_site_ids_maps_ui_records_to_fetchers(self):
+        config = {
+            "sources": [
+                {"id": "official_ai_sources", "type": "official_ai", "enabled": True},
+                {"id": "aihot", "type": "rss", "enabled": True},
+                {"id": "bilibili_505301413", "type": "bilibili_dynamic", "enabled": True, "locator": "505301413"},
+                {"id": "mediacrawler_xhs_chenbaoyi", "type": "mediacrawler_jsonl", "enabled": True, "channel": "小红书"},
+                {"id": "wewe_rss_maobidao", "type": "wewe_rss", "enabled": True, "locator": "MP_WXS_3198966508"},
+                {"id": "maobidao_wudaolu_backup", "type": "api", "enabled": False},
+            ]
+        }
+
+        self.assertEqual(
+            source_config_enabled_site_ids(config),
+            {
+                "official_ai",
+                "aihot",
+                "bilibili_dynamic",
+                "mediacrawler_xhs",
+                "wewe_rss",
+            },
+        )
+
+    def test_apply_source_config_runtime_sets_fetcher_env_without_secrets(self):
+        config = {
+            "sources": [
+                {
+                    "id": "bilibili_505301413",
+                    "type": "bilibili_dynamic",
+                    "enabled": True,
+                    "target": "Koji杨远骋at十字路口",
+                    "locator": "505301413",
+                },
+                {
+                    "id": "bilibili_316183842",
+                    "type": "bilibili_dynamic",
+                    "enabled": True,
+                    "target": "技术爬爬虾",
+                    "locator": "316183842",
+                },
+                {
+                    "id": "wewe_rss_maobidao",
+                    "type": "wewe_rss",
+                    "enabled": True,
+                    "target": "猫笔刀",
+                    "locator": "MP_WXS_3198966508",
+                },
+                {
+                    "id": "mediacrawler_douyin_simon",
+                    "type": "mediacrawler_jsonl",
+                    "enabled": True,
+                    "channel": "抖音",
+                    "target": "Simon林",
+                    "locator": r"E:\AI-news-reader\MediaCrawler-local-test\output\douyin\jsonl\creator_contents.jsonl",
+                },
+                {
+                    "id": "opmlrss",
+                    "type": "opmlrss",
+                    "enabled": True,
+                    "locator": "feeds/follow.opml",
+                },
+            ]
+        }
+
+        with patch.dict(os.environ, {}, clear=True):
+            runtime = apply_source_config_runtime(config)
+
+            self.assertEqual(os.environ["BILIBILI_DYNAMIC_ENABLED"], "1")
+            self.assertEqual(os.environ["BILIBILI_DYNAMIC_UIDS"], "505301413,316183842")
+            self.assertEqual(os.environ["WEWE_RSS_ENABLED"], "1")
+            self.assertEqual(os.environ["WEWE_RSS_FEEDS"], "猫笔刀:MP_WXS_3198966508")
+            self.assertEqual(os.environ["MEDIACRAWLER_DOUYIN_ENABLED"], "1")
+            self.assertEqual(os.environ["MEDIACRAWLER_DOUYIN_SOURCE_NAME"], "Simon林")
+            self.assertEqual(runtime["rss_opml"], "feeds/follow.opml")
+            self.assertEqual(
+                set(runtime["enabled_site_ids"]),
+                {"bilibili_dynamic", "wewe_rss", "mediacrawler_douyin", "opmlrss"},
+            )
 
     def test_agentmail_digest_strips_body_addresses_and_secrets(self):
         payload = build_agentmail_digest_payload(
@@ -848,8 +970,206 @@ class TopicFilterTests(unittest.TestCase):
         self.assertEqual(source_tier_for_site("opmlrss:abc123")["source_tier"], "user_opml")
         self.assertEqual(source_tier_for_site("socialdata_x")["source_tier"], "advanced")
         self.assertEqual(source_tier_for_site("tikhub_xiaohongshu")["source_tier"], "self_media")
+        self.assertEqual(source_tier_for_site("bilibili_dynamic")["source_tier_label"], "我的订阅")
+        self.assertEqual(source_tier_for_site("github_foundation_sunshine_releases")["source_tier_label"], "我的订阅")
+        self.assertEqual(source_tier_for_site("maobidao_wudaolu_backup")["source_tier_label"], "我的订阅")
+        self.assertEqual(source_tier_for_site("wewe_rss")["source_tier_label"], "我的订阅")
         self.assertEqual(source_tier_for_site("zeli")["source_tier"], "discussion")
         self.assertEqual(source_tier_for_site("newsnow")["source_tier_label"], "热议参考")
+
+    def test_fetch_maobidao_wechat_subscription_parses_recent_posts(self):
+        class FakeResponse:
+            def raise_for_status(self):
+                return None
+
+            def json(self):
+                raise AssertionError("fetcher should decode JSON from response bytes")
+
+            @property
+            def content(self):
+                return (
+                    '{"topic_list":{"topics":['
+                    '{"id":19,"title":"关于“网红大V备份”类别","created_at":"2024-09-25T09:44:18.412Z"},'
+                    '{"id":22671,"title":"猫笔刀-又要制裁了-2026-07-01","created_at":"2026-07-01T23:10:15.207Z"},'
+                    '{"id":22659,"title":"猫笔刀-上限锁死了-2026-06-30","created_at":"2026-06-30T23:08:04.614Z"},'
+                    '{"id":22646,"title":"猫笔刀-造谣的被抓了-2026-06-29","created_at":"2026-06-29T23:07:59.541Z"}'
+                    ']}}'
+                ).encode("utf-8")
+
+        class FakeSession:
+            def __init__(self):
+                self.calls = []
+
+            def get(self, url, **kwargs):
+                self.calls.append((url, kwargs))
+                return FakeResponse()
+
+        now = datetime.fromisoformat("2026-07-01T00:00:00+00:00")
+        session = FakeSession()
+        items = fetch_maobidao_wechat_subscription(session, now)
+
+        self.assertEqual(len(items), 2)
+        self.assertEqual(items[0].site_id, "maobidao_wudaolu_backup")
+        self.assertEqual(items[0].source, "猫笔刀公众号")
+        self.assertIn("2026-07-01", items[0].title)
+        self.assertEqual(items[0].url, "https://wudaolu.com/t/topic/22671")
+        self.assertEqual(items[0].meta["source_kind"], "wechat_public_account_backup")
+        self.assertEqual(items[1].published_at, datetime.fromisoformat("2026-06-30T23:08:04.614+00:00"))
+
+    def test_wewe_rss_feeds_from_env_accepts_named_feed(self):
+        feeds = wewe_rss_feeds_from_env("猫笔刀:MP_WXS_3198966508;备用号")
+
+        self.assertEqual(
+            feeds,
+            [
+                {"id": "MP_WXS_3198966508", "name": "猫笔刀"},
+                {"id": "备用号", "name": "备用号"},
+            ],
+        )
+
+    def test_parse_wewe_rss_json_feed_items_uses_date_modified(self):
+        now = datetime.fromisoformat("2026-07-02T00:00:00+00:00")
+        payload = {
+            "items": [
+                {
+                    "id": "qsx",
+                    "title": "又要制裁了",
+                    "url": "https://mp.weixin.qq.com/s/qsxkOqIIW7kyVAaq2ah_AQ",
+                    "date_modified": "2026-07-01T14:24:08.000Z",
+                    "content_html": "<p>正文摘要</p>",
+                },
+                {
+                    "id": "dup",
+                    "title": "又要制裁了",
+                    "url": "https://mp.weixin.qq.com/s/qsxkOqIIW7kyVAaq2ah_AQ",
+                    "date_modified": "2026-07-01T14:25:08.000Z",
+                },
+            ]
+        }
+
+        items = parse_wewe_rss_json_feed_items(
+            payload,
+            now,
+            source_name="猫笔刀",
+            feed_id="MP_WXS_3198966508",
+            max_items=5,
+        )
+
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0].site_id, "wewe_rss")
+        self.assertEqual(items[0].site_name, "WeWe RSS")
+        self.assertEqual(items[0].source, "猫笔刀")
+        self.assertEqual(items[0].title, "又要制裁了")
+        self.assertEqual(items[0].url, "https://mp.weixin.qq.com/s/qsxkOqIIW7kyVAaq2ah_AQ")
+        self.assertEqual(items[0].published_at, datetime.fromisoformat("2026-07-01T14:24:08+00:00"))
+        self.assertEqual(items[0].meta["source_kind"], "wewe_rss_wechat_subscription")
+        self.assertEqual(items[0].meta["wewe_feed_id"], "MP_WXS_3198966508")
+
+    def test_fetch_wewe_rss_subscription_discovers_local_feeds(self):
+        class FakeResponse:
+            def __init__(self, payload):
+                self.payload = payload
+
+            def raise_for_status(self):
+                return None
+
+            @property
+            def content(self):
+                return json.dumps(self.payload, ensure_ascii=False).encode("utf-8")
+
+        class FakeSession:
+            def __init__(self):
+                self.calls = []
+
+            def get(self, url, **kwargs):
+                self.calls.append((url, kwargs))
+                if url == "http://127.0.0.1:4000/feeds":
+                    return FakeResponse([{"id": "MP_WXS_3198966508", "name": "猫笔刀"}])
+                if url == "http://127.0.0.1:4000/feeds/MP_WXS_3198966508.json":
+                    return FakeResponse(
+                        {
+                            "items": [
+                                {
+                                    "id": "qsx",
+                                    "title": "又要制裁了",
+                                    "url": "https://mp.weixin.qq.com/s/qsxkOqIIW7kyVAaq2ah_AQ",
+                                    "date_modified": "2026-07-01T14:24:08.000Z",
+                                },
+                                {
+                                    "id": "it5",
+                                    "title": "上限锁死了",
+                                    "url": "https://mp.weixin.qq.com/s/IT5A0nPt9JE_WtltxElmkQ",
+                                    "date_modified": "2026-06-30T14:22:26.000Z",
+                                },
+                            ]
+                        }
+                    )
+                raise AssertionError(f"unexpected url: {url}")
+
+        now = datetime.fromisoformat("2026-07-02T00:00:00+00:00")
+        session = FakeSession()
+        items, status = fetch_wewe_rss_subscription(
+            session,
+            now,
+            base_url="http://127.0.0.1:4000",
+            feeds_config="",
+            max_items=2,
+        )
+
+        self.assertTrue(status["ok"])
+        self.assertEqual(status["item_count"], 2)
+        self.assertEqual(status["feeds"][0]["id"], "MP_WXS_3198966508")
+        self.assertEqual(status["feeds"][0]["item_count"], 2)
+        self.assertEqual(items[0].source, "猫笔刀")
+        self.assertEqual(items[1].title, "上限锁死了")
+        self.assertEqual(session.calls[1][1]["params"]["limit"], 2)
+
+    def test_fetch_github_repo_subscription_parses_recent_releases(self):
+        class FakeResponse:
+            def raise_for_status(self):
+                return None
+
+            def json(self):
+                return [
+                    {
+                        "tag_name": "v2026.630.112658.杂鱼",
+                        "name": "v2026.630.112658.杂鱼",
+                        "html_url": "https://github.com/AlkaidLab/foundation-sunshine/releases/tag/v2026.630.112658.%E6%9D%82%E9%B1%BC",
+                        "published_at": "2026-06-30T11:48:06Z",
+                        "draft": False,
+                        "prerelease": True,
+                    },
+                    {
+                        "tag_name": "v2026.611.71453.杂鱼",
+                        "name": "v2026.611.71453.杂鱼",
+                        "html_url": "https://github.com/AlkaidLab/foundation-sunshine/releases/tag/v2026.611.71453.%E6%9D%82%E9%B1%BC",
+                        "published_at": "2026-06-11T07:32:35Z",
+                        "draft": False,
+                        "prerelease": False,
+                    },
+                ]
+
+        class FakeSession:
+            def __init__(self):
+                self.calls = []
+
+            def get(self, url, **kwargs):
+                self.calls.append((url, kwargs))
+                return FakeResponse()
+
+        now = datetime.fromisoformat("2026-07-01T00:00:00+00:00")
+        session = FakeSession()
+        items = fetch_github_repo_subscription(session, now)
+
+        self.assertEqual(len(items), 2)
+        self.assertEqual(items[0].site_id, "github_foundation_sunshine_releases")
+        self.assertEqual(items[0].source, "GitHub版本订阅")
+        self.assertIn("预发布: v2026.630.112658.杂鱼", items[0].title)
+        self.assertEqual(items[0].meta["tag_name"], "v2026.630.112658.杂鱼")
+        self.assertTrue(items[0].meta["prerelease"])
+        self.assertEqual(items[1].published_at, datetime.fromisoformat("2026-06-11T07:32:35+00:00"))
+        self.assertFalse(items[1].meta["prerelease"])
+        self.assertEqual(session.calls[0][1]["params"]["per_page"], 5)
 
     def test_source_tier_fields_and_sort_put_discussion_after_core_sources(self):
         official = add_source_tier_fields(
@@ -1727,6 +2047,77 @@ class TopicFilterTests(unittest.TestCase):
 
         self.assertEqual([item["id"] for item in items], ["week-hot", "fresh-low"])
         self.assertGreater(items[0]["creator_hot_score"], items[1]["creator_hot_score"])
+
+    def test_build_creator_hot_items_includes_bilibili_without_metrics(self):
+        import datetime as _dt
+
+        now = _dt.datetime.fromisoformat("2026-06-30T12:00:00+00:00")
+        archive = {
+            "bili": {
+                "id": "bili",
+                "site_id": "bilibili_dynamic",
+                "site_name": "Bilibili Dynamic",
+                "source": "技术爬爬虾",
+                "title": "Claude Code 平替 Kimi Code 教程",
+                "url": "https://www.bilibili.com/video/BV17Sjy6vEoA",
+                "published_at": (now - _dt.timedelta(days=4)).isoformat(),
+                "first_seen_at": now.isoformat(),
+                "last_seen_at": now.isoformat(),
+            }
+        }
+
+        items = build_creator_hot_items(archive, now, ai_only=False)
+
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["source"], "技术爬爬虾")
+        self.assertEqual(items[0]["creator_metrics"]["likes"], 0)
+
+    def test_build_creator_hot_items_can_use_all_time_window_for_bilibili(self):
+        import datetime as _dt
+
+        now = _dt.datetime.fromisoformat("2026-06-30T12:00:00+00:00")
+        archive = {
+            "bili-old": {
+                "id": "bili-old",
+                "site_id": "bilibili_dynamic",
+                "site_name": "Bilibili Dynamic",
+                "source": "技术爬爬虾",
+                "title": "Codex APP 保姆级全攻略",
+                "url": "https://www.bilibili.com/video/example",
+                "published_at": (now - _dt.timedelta(days=45)).isoformat(),
+                "first_seen_at": now.isoformat(),
+                "last_seen_at": now.isoformat(),
+            }
+        }
+
+        self.assertEqual(build_creator_hot_items(archive, now, ai_only=False), [])
+        items = build_creator_hot_items(archive, now, ai_only=False, window_days=None)
+
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["source"], "技术爬爬虾")
+
+    def test_build_creator_hot_items_includes_youtube_subscription_without_metrics(self):
+        import datetime as _dt
+
+        now = _dt.datetime.fromisoformat("2026-06-30T12:00:00+00:00")
+        record = {
+            "id": "youtube-post",
+            "site_id": "opmlrss:youtube-ai",
+            "site_name": "OPML RSS",
+            "source": "YouTube · AI Channel",
+            "title": "Claude Code 新功能演示",
+            "url": "https://www.youtube.com/watch?v=abc",
+            "published_at": (now - _dt.timedelta(hours=2)).isoformat(),
+            "first_seen_at": now.isoformat(),
+            "last_seen_at": now.isoformat(),
+        }
+        self.assertTrue(is_subscription_record(record))
+
+        items = build_creator_hot_items({"youtube-post": record}, now, ai_only=False)
+
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["source_tier_label"], "我的订阅")
+        self.assertEqual(items[0]["creator_metrics"]["likes"], 0)
 
     def test_parse_tikhub_xiaohongshu_accepts_millisecond_api_time(self):
         import datetime as _dt

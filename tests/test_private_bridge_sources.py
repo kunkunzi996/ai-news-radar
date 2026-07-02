@@ -1,8 +1,23 @@
 from datetime import datetime, timezone
 import json
+import os
 import unittest
+from unittest.mock import patch
 
 from scripts.update_news import (
+    BROWSER_UA,
+    bilibili_dynamic_accounts_from_env,
+    bilibili_dynamic_item_title,
+    bilibili_cookie_header_from_file_text,
+    fetch_bilibili_full_dynamic,
+    bilibili_wbi_keys,
+    sign_bilibili_wbi_params,
+    parse_bilibili_full_dynamic_items,
+    parse_bilibili_dynamic_items,
+    parse_mediacrawler_douyin_jsonl,
+    maybe_fetch_mediacrawler_douyin,
+    parse_mediacrawler_xhs_jsonl,
+    maybe_fetch_mediacrawler_xhs,
     parse_jike_public_items,
     parse_telegram_public_items,
     resolve_opml_bridge_source,
@@ -63,6 +78,324 @@ class PrivateBridgeSourceTests(unittest.TestCase):
         self.assertEqual(len(items), 1)
         self.assertEqual(items[0].url, "https://m.okjike.com/originalPosts/post123")
         self.assertEqual(items[0].meta["bridge_type"], "jike")
+
+    def test_parse_bilibili_dynamic_items(self):
+        payload = {
+            "code": 0,
+            "data": {
+                "items": [
+                    {
+                        "content": "今晚 20:00，我在 B 站直播。\n聊 Agent 和模型生态。",
+                        "jump_url": "//www.bilibili.com/opus/1192170157065109508",
+                        "opus_id": "1192170157065109508",
+                        "stat": {"like": "4"},
+                        "cover": {"url": "http://i0.hdslb.com/example.jpg"},
+                    }
+                ]
+            },
+        }
+        items = parse_bilibili_dynamic_items(
+            payload,
+            now=datetime(2026, 6, 30, tzinfo=timezone.utc),
+            uid="505301413",
+            source_name="Koji杨远骋at十字路口",
+            max_items=20,
+        )
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0].site_id, "bilibili_dynamic")
+        self.assertEqual(items[0].source, "Koji杨远骋at十字路口")
+        self.assertEqual(items[0].url, "https://www.bilibili.com/opus/1192170157065109508")
+        self.assertIsNone(items[0].published_at)
+        self.assertEqual(items[0].meta["creator_metrics"]["like_count"], "4")
+        self.assertEqual(items[0].meta["timestamp_source"], "first_seen_at")
+
+    def test_bilibili_dynamic_item_title_truncates_long_content(self):
+        title = bilibili_dynamic_item_title("A" * 120, "123")
+        self.assertLessEqual(len(title), 90)
+        self.assertTrue(title.endswith("..."))
+
+    def test_bilibili_dynamic_default_accounts_include_tech_shrimp(self):
+        with patch.dict(os.environ, {}, clear=True):
+            accounts = bilibili_dynamic_accounts_from_env()
+        self.assertEqual(
+            accounts,
+            [
+                {"uid": "505301413", "source_name": "Koji杨远骋at十字路口"},
+                {"uid": "316183842", "source_name": "技术爬爬虾"},
+            ],
+        )
+
+    def test_bilibili_dynamic_accounts_from_uid_lists(self):
+        with patch.dict(
+            os.environ,
+            {
+                "BILIBILI_DYNAMIC_UIDS": "1,2",
+                "BILIBILI_DYNAMIC_SOURCE_NAMES": "账号一,账号二",
+            },
+            clear=True,
+        ):
+            accounts = bilibili_dynamic_accounts_from_env()
+        self.assertEqual(
+            accounts,
+            [
+                {"uid": "1", "source_name": "账号一"},
+                {"uid": "2", "source_name": "账号二"},
+            ],
+        )
+
+    def test_bilibili_dynamic_accounts_keep_single_uid_compatibility(self):
+        with patch.dict(
+            os.environ,
+            {
+                "BILIBILI_DYNAMIC_UID": "9",
+                "BILIBILI_DYNAMIC_SOURCE_NAME": "旧配置账号",
+            },
+            clear=True,
+        ):
+            accounts = bilibili_dynamic_accounts_from_env()
+        self.assertEqual(accounts, [{"uid": "9", "source_name": "旧配置账号"}])
+
+    def test_parse_mediacrawler_douyin_jsonl(self):
+        payload = {
+            "aweme_id": "7656358189943786803",
+            "desc": "分享一个 Claude Code 工作流",
+            "aweme_url": "https://www.douyin.com/video/7656358189943786803",
+            "create_time": 1782634811,
+            "nickname": "Simon林",
+            "liked_count": "120",
+            "collected_count": "8",
+            "comment_count": "3",
+            "share_count": "2",
+            "sec_user_id": "MS4wLjABAAAACsVv",
+        }
+        items = parse_mediacrawler_douyin_jsonl(
+            json.dumps(payload, ensure_ascii=False),
+            now=datetime(2026, 7, 1, tzinfo=timezone.utc),
+        )
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0].site_id, "mediacrawler_douyin")
+        self.assertEqual(items[0].source, "Simon林")
+        self.assertEqual(items[0].url, "https://www.douyin.com/video/7656358189943786803")
+        self.assertEqual(items[0].meta["creator_metrics"]["likes"], 120)
+        self.assertEqual(items[0].meta["creator_metrics"]["collects"], 8)
+        self.assertEqual(items[0].meta["creator_metrics"]["comments"], 3)
+        self.assertEqual(items[0].meta["creator_metrics"]["shares"], 2)
+
+    def test_mediacrawler_douyin_requires_local_jsonl_when_enabled(self):
+        with patch.dict(os.environ, {"MEDIACRAWLER_DOUYIN_ENABLED": "1"}, clear=True):
+            items, status = maybe_fetch_mediacrawler_douyin(datetime(2026, 7, 1, tzinfo=timezone.utc))
+        self.assertEqual(items, [])
+        self.assertFalse(status["ok"])
+        self.assertEqual(status["error"], "missing_mediacrawler_douyin_jsonl")
+
+    def test_parse_mediacrawler_xhs_jsonl(self):
+        payload = {
+            "note_id": "6a441088000000000702c7df",
+            "type": "video",
+            "title": "【开箱】小米NAS终于来了...",
+            "desc": "#开箱[话题]# #小米NAS[话题]#",
+            "note_url": "https://www.xiaohongshu.com/explore/6a441088000000000702c7df",
+            "time": 1782871245000,
+            "nickname": "陈抱一",
+            "user_id": "5e4027000000000001005eb8",
+            "liked_count": "1393",
+            "collected_count": "484",
+            "comment_count": "464",
+            "share_count": "2446",
+        }
+        items = parse_mediacrawler_xhs_jsonl(
+            json.dumps(payload, ensure_ascii=False),
+            now=datetime(2026, 7, 1, tzinfo=timezone.utc),
+        )
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0].site_id, "mediacrawler_xhs")
+        self.assertEqual(items[0].source, "陈抱一")
+        self.assertEqual(items[0].url, "https://www.xiaohongshu.com/explore/6a441088000000000702c7df")
+        self.assertEqual(items[0].meta["creator_metrics"]["likes"], 1393)
+        self.assertEqual(items[0].meta["creator_metrics"]["collects"], 484)
+        self.assertEqual(items[0].meta["creator_metrics"]["comments"], 464)
+        self.assertEqual(items[0].meta["creator_metrics"]["shares"], 2446)
+        self.assertEqual(items[0].meta["xiaohongshu_note_id"], "6a441088000000000702c7df")
+
+    def test_mediacrawler_xhs_requires_local_jsonl_when_enabled(self):
+        with patch.dict(os.environ, {"MEDIACRAWLER_XHS_ENABLED": "1"}, clear=True):
+            items, status = maybe_fetch_mediacrawler_xhs(datetime(2026, 7, 1, tzinfo=timezone.utc))
+        self.assertEqual(items, [])
+        self.assertFalse(status["ok"])
+        self.assertEqual(status["error"], "missing_mediacrawler_xhs_jsonl")
+
+    def test_bilibili_cookie_header_from_netscape_text(self):
+        cookie_text = "\n".join(
+            [
+                "# Netscape HTTP Cookie File",
+                ".example.com\tTRUE\t/\tFALSE\t1782817200\tignored\t1",
+                "#HttpOnly_.bilibili.com\tTRUE\t/\tTRUE\t1782817200\tSESSDATA\tabc",
+                ".bilibili.com\tTRUE\t/\tFALSE\t1782817200\tDedeUserID\t123",
+                ".bilibili.com\tTRUE\t/\tFALSE\t1\texpired\told",
+            ]
+        )
+        header = bilibili_cookie_header_from_file_text(cookie_text, now_ts=1780000000)
+        self.assertIn("SESSDATA=abc", header)
+        self.assertIn("DedeUserID=123", header)
+        self.assertNotIn("ignored=1", header)
+        self.assertNotIn("expired=old", header)
+
+    def test_bilibili_cookie_header_from_json_export(self):
+        cookie_text = json.dumps(
+            [
+                {
+                    "domain": ".bilibili.com",
+                    "name": "bili_jct",
+                    "value": "csrf",
+                    "expirationDate": 1782817200,
+                },
+                {
+                    "domain": ".example.com",
+                    "name": "ignored",
+                    "value": "1",
+                    "expirationDate": 1782817200,
+                },
+            ]
+        )
+        header = bilibili_cookie_header_from_file_text(cookie_text, now_ts=1780000000)
+        self.assertEqual(header, "bili_jct=csrf")
+
+    def test_parse_bilibili_full_dynamic_items(self):
+        payload = {
+            "code": 0,
+            "data": {
+                "items": [
+                    {
+                        "id_str": "987654321",
+                        "type": "DYNAMIC_TYPE_WORD",
+                        "modules": {
+                            "module_author": {"pub_ts": 1782817200},
+                            "module_dynamic": {
+                                "desc": {"text": "完整动态里的一条 Agent 更新"},
+                                "major": {"opus": {"jump_url": "//www.bilibili.com/opus/987654321"}},
+                            },
+                        },
+                    }
+                ]
+            },
+        }
+        items = parse_bilibili_full_dynamic_items(
+            payload,
+            now=datetime(2026, 6, 30, tzinfo=timezone.utc),
+            uid="505301413",
+            source_name="Koji杨远骋at十字路口",
+            max_items=20,
+        )
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0].url, "https://www.bilibili.com/opus/987654321")
+        self.assertEqual(items[0].meta["bilibili_dynamic_type"], "DYNAMIC_TYPE_WORD")
+        self.assertEqual(items[0].meta["timestamp_source"], "bilibili_pub_ts")
+
+    def test_sign_bilibili_wbi_params_adds_signature_without_mutating_input(self):
+        params = {"host_mid": "505301413", "web_location": "333.1387"}
+        signed = sign_bilibili_wbi_params(params, "a" * 32, "b" * 32, now_ts=1782817200)
+        self.assertEqual(params, {"host_mid": "505301413", "web_location": "333.1387"})
+        self.assertEqual(signed["wts"], "1782817200")
+        self.assertRegex(signed["w_rid"], r"^[0-9a-f]{32}$")
+
+    def test_bilibili_wbi_keys_uses_browser_headers(self):
+        class FakeResponse:
+            def json(self):
+                return {
+                    "code": 0,
+                    "data": {
+                        "wbi_img": {
+                            "img_url": "https://i0.hdslb.com/bfs/wbi/image_key.png",
+                            "sub_url": "https://i0.hdslb.com/bfs/wbi/sub_key.png",
+                        }
+                    },
+                }
+
+            def raise_for_status(self):
+                return None
+
+        class FakeSession:
+            def __init__(self):
+                self.headers = None
+
+            def get(self, url, headers=None, timeout=None):
+                self.headers = headers
+                return FakeResponse()
+
+        session = FakeSession()
+        img_key, sub_key = bilibili_wbi_keys(session)
+        self.assertEqual((img_key, sub_key), ("image_key", "sub_key"))
+        self.assertEqual(session.headers["User-Agent"], BROWSER_UA)
+        self.assertEqual(session.headers["Referer"], "https://www.bilibili.com/")
+
+    def test_fetch_bilibili_full_dynamic_follows_offset_pages(self):
+        def dynamic_payload(dynamic_id, text, pub_ts, *, has_more=False, offset=""):
+            return {
+                "code": 0,
+                "data": {
+                    "has_more": has_more,
+                    "offset": offset,
+                    "items": [
+                        {
+                            "id_str": dynamic_id,
+                            "type": "DYNAMIC_TYPE_WORD",
+                            "modules": {
+                                "module_author": {"pub_ts": pub_ts},
+                                "module_dynamic": {
+                                    "desc": {"text": text},
+                                    "major": {"opus": {"jump_url": f"//www.bilibili.com/opus/{dynamic_id}"}},
+                                },
+                            },
+                        }
+                    ],
+                },
+            }
+
+        class FakeResponse:
+            def __init__(self, payload):
+                self.payload = payload
+
+            def json(self):
+                return self.payload
+
+            def raise_for_status(self):
+                return None
+
+        class FakeSession:
+            def __init__(self):
+                self.dynamic_params = []
+
+            def get(self, url, params=None, headers=None, timeout=None):
+                if "x/web-interface/nav" in url:
+                    return FakeResponse(
+                        {
+                            "code": 0,
+                            "data": {
+                                "wbi_img": {
+                                    "img_url": "https://i0.hdslb.com/bfs/wbi/" + "a" * 32 + ".png",
+                                    "sub_url": "https://i0.hdslb.com/bfs/wbi/" + "b" * 32 + ".png",
+                                }
+                            },
+                        }
+                    )
+                self.dynamic_params.append(params or {})
+                if len(self.dynamic_params) == 1:
+                    return FakeResponse(dynamic_payload("1", "第一页", 1782817200, has_more=True, offset="next-page"))
+                return FakeResponse(dynamic_payload("2", "第二页", 1782730800))
+
+        session = FakeSession()
+        items = fetch_bilibili_full_dynamic(
+            session,
+            now=datetime(2026, 6, 30, tzinfo=timezone.utc),
+            uid="505301413",
+            source_name="Koji杨远骋at十字路口",
+            max_items=10,
+            max_pages=2,
+            api_url="https://api.bilibili.com/x/polymer/web-dynamic/v1/feed/space",
+        )
+        self.assertEqual([item.title for item in items], ["第一页", "第二页"])
+        self.assertNotIn("offset", session.dynamic_params[0])
+        self.assertEqual(session.dynamic_params[1]["offset"], "next-page")
 
 
 if __name__ == "__main__":

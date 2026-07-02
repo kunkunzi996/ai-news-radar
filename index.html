@@ -90,6 +90,7 @@
               <span>时间范围</span>
               <select id="timeRangeSelect" aria-label="时间范围">
                 <option value="24h">过去 24 小时</option>
+                <option value="all">不限</option>
               </select>
             </label>
             <label class="field">
@@ -101,7 +102,7 @@
                 <option value="community">社区 / HN / Builders</option>
                 <option value="rss">RSS / OPML</option>
                 <option value="aggregate">聚合源</option>
-                <option value="creator">自媒体</option>
+                <option value="creator">我的订阅</option>
                 <option value="advanced">进阶源</option>
               </select>
             </label>
@@ -147,6 +148,93 @@
           </details>
         </div>
       </details>
+
+      <section class="source-config-wrap" aria-labelledby="sourceConfigTitle">
+        <div class="source-config-head">
+          <div>
+            <p class="section-eyebrow">SOURCE CONFIG</p>
+            <h2 id="sourceConfigTitle">信源配置</h2>
+          </div>
+          <div class="source-config-tools">
+            <span id="sourceConfigSummary">本地草稿未加载</span>
+            <button id="sourceConfigApplyBtn" class="tool-btn" type="button">写入</button>
+            <button id="sourceConfigRefreshBtn" class="tool-btn" type="button">刷新数据</button>
+            <button id="sourceConfigExportBtn" class="tool-btn" type="button">导出</button>
+            <button id="sourceConfigCopyBtn" class="tool-btn" type="button">复制</button>
+          </div>
+        </div>
+        <div class="source-config-body">
+          <aside class="source-config-list-panel" aria-label="信源列表">
+            <div class="source-config-list-head">
+              <strong>信源</strong>
+              <button id="sourceConfigAddBtn" class="tool-btn" type="button">新增</button>
+            </div>
+            <div id="sourceConfigList" class="source-config-list"></div>
+          </aside>
+          <form id="sourceConfigForm" class="source-config-form">
+            <input id="sourceConfigId" type="hidden" />
+            <label class="field">
+              <span>名称</span>
+              <input id="sourceConfigName" type="text" autocomplete="off" />
+            </label>
+            <label class="field">
+              <span>类型</span>
+              <select id="sourceConfigType">
+                <option value="rss">RSS / Atom</option>
+                <option value="official_feed">官方源</option>
+                <option value="curated_feed">精选媒体</option>
+                <option value="wewe_rss">公众号 WeWe RSS</option>
+                <option value="github_release">GitHub Release</option>
+                <option value="bilibili_dynamic">B站动态</option>
+                <option value="mediacrawler_jsonl">MediaCrawler JSONL</option>
+                <option value="api">公开 API</option>
+                <option value="advanced_secret">高级密钥源</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>频道</span>
+              <input id="sourceConfigChannel" type="text" autocomplete="off" />
+            </label>
+            <label class="field">
+              <span>关注对象</span>
+              <input id="sourceConfigTarget" type="text" autocomplete="off" />
+            </label>
+            <label class="field source-config-wide">
+              <span>地址 / ID / 路径</span>
+              <input id="sourceConfigLocator" type="text" autocomplete="off" />
+            </label>
+            <label class="field source-config-wide">
+              <span>环境变量</span>
+              <input id="sourceConfigEnv" type="text" autocomplete="off" />
+            </label>
+            <label class="field source-config-wide">
+              <span>备注</span>
+              <input id="sourceConfigNotes" type="text" autocomplete="off" />
+            </label>
+            <label class="source-config-toggle">
+              <input id="sourceConfigEnabled" type="checkbox" />
+              <span>启用</span>
+            </label>
+            <div class="source-config-actions">
+              <button id="sourceConfigSaveBtn" class="mode-btn active" type="submit">保存草稿</button>
+              <button id="sourceConfigDeleteBtn" class="mode-btn" type="button">删除</button>
+              <button id="sourceConfigResetBtn" class="mode-btn" type="button">恢复当前</button>
+            </div>
+          </form>
+          <section class="source-config-import" aria-label="导入配置">
+            <div class="source-config-import-head">
+              <strong>JSON</strong>
+              <label class="tool-btn file-tool">
+                导入文件
+                <input id="sourceConfigFileInput" type="file" accept="application/json,.json" />
+              </label>
+              <button id="sourceConfigImportBtn" class="tool-btn" type="button">导入文本</button>
+            </div>
+            <textarea id="sourceConfigJson" spellcheck="false"></textarea>
+            <div id="sourceConfigStatus" class="source-config-status">本地草稿会优先尝试读取 sources.config.json。</div>
+          </section>
+        </div>
+      </section>
 
       <section class="bole-picks-wrap" aria-label="今日 Top 3" id="bolePicksWrap">
         <div class="bole-picks-head">
@@ -213,6 +301,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous" defer></script>
     <script src="./assets/motion.js?v=ui-adjustment-0620a" defer></script>
-    <script src="./assets/app.js?v=ui-polish-0626a" defer></script>
+    <script src="./assets/app.js?v=source-config-refresh-0702a" defer></script>
   </body>
 </html>

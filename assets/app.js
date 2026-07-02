@@ -5,10 +5,14 @@ const state = {
   creatorItemsAi: [],
   creatorItemsAll: [],
   creatorWindowDays: 7,
+  creatorTimeScope: "rolling_window",
   statsAi: [],
   totalAi: 0,
   totalRaw: 0,
   totalAllMode: 0,
+  timeScope: "rolling_window",
+  timeRangeFilter: "24h",
+  sourceScope: "all_sources",
   allDedup: true,
   allDataLoaded: false,
   allDataUrl: "data/latest-24h-all.json",
@@ -32,6 +36,8 @@ const state = {
   signalLevelFilter: "",
   siteGroupsExpanded: false,
   xAuthorsExpanded: false,
+  sourceConfig: null,
+  sourceConfigSelectedId: "",
 };
 
 const statsEl = document.getElementById("stats");
@@ -47,6 +53,7 @@ const listTitleEl = document.getElementById("listTitle");
 const itemTpl = document.getElementById("itemTpl");
 const modeAiBtnEl = document.getElementById("modeAiBtn");
 const modeAllBtnEl = document.getElementById("modeAllBtn");
+const timeRangeSelectEl = document.getElementById("timeRangeSelect");
 const modeHintEl = document.getElementById("modeHint");
 const allDedupeWrapEl = document.getElementById("allDedupeWrap");
 const allDedupeToggleEl = document.getElementById("allDedupeToggle");
@@ -76,6 +83,29 @@ const sectionTabsEl = document.getElementById("sectionTabs");
 const sectionSummaryEl = document.getElementById("sectionSummary");
 const topStoriesTitleEl = document.getElementById("topStoriesTitle");
 const listSortToolsEl = document.getElementById("listSortTools");
+const sourceConfigSummaryEl = document.getElementById("sourceConfigSummary");
+const sourceConfigListEl = document.getElementById("sourceConfigList");
+const sourceConfigFormEl = document.getElementById("sourceConfigForm");
+const sourceConfigIdEl = document.getElementById("sourceConfigId");
+const sourceConfigNameEl = document.getElementById("sourceConfigName");
+const sourceConfigTypeEl = document.getElementById("sourceConfigType");
+const sourceConfigChannelEl = document.getElementById("sourceConfigChannel");
+const sourceConfigTargetEl = document.getElementById("sourceConfigTarget");
+const sourceConfigLocatorEl = document.getElementById("sourceConfigLocator");
+const sourceConfigEnvEl = document.getElementById("sourceConfigEnv");
+const sourceConfigNotesEl = document.getElementById("sourceConfigNotes");
+const sourceConfigEnabledEl = document.getElementById("sourceConfigEnabled");
+const sourceConfigAddBtnEl = document.getElementById("sourceConfigAddBtn");
+const sourceConfigDeleteBtnEl = document.getElementById("sourceConfigDeleteBtn");
+const sourceConfigResetBtnEl = document.getElementById("sourceConfigResetBtn");
+const sourceConfigApplyBtnEl = document.getElementById("sourceConfigApplyBtn");
+const sourceConfigRefreshBtnEl = document.getElementById("sourceConfigRefreshBtn");
+const sourceConfigExportBtnEl = document.getElementById("sourceConfigExportBtn");
+const sourceConfigCopyBtnEl = document.getElementById("sourceConfigCopyBtn");
+const sourceConfigImportBtnEl = document.getElementById("sourceConfigImportBtn");
+const sourceConfigFileInputEl = document.getElementById("sourceConfigFileInput");
+const sourceConfigJsonEl = document.getElementById("sourceConfigJson");
+const sourceConfigStatusEl = document.getElementById("sourceConfigStatus");
 
 const SOURCE_KINDS = {
   official_ai: { label: "官方", tone: "official" },
@@ -87,6 +117,12 @@ const SOURCE_KINDS = {
   socialdata_x: { label: "X 搜索", tone: "builders" },
   tikhub_douyin: { label: "抖音", tone: "creator" },
   tikhub_xiaohongshu: { label: "小红书", tone: "creator" },
+  bilibili_dynamic: { label: "B站", tone: "creator" },
+  mediacrawler_douyin: { label: "抖音博主", tone: "creator" },
+  mediacrawler_xhs: { label: "小红书博主", tone: "creator" },
+  github_foundation_sunshine_releases: { label: "GitHub版本", tone: "creator" },
+  maobidao_wudaolu_backup: { label: "公众号", tone: "creator" },
+  wewe_rss: { label: "公众号", tone: "creator" },
   techurls: { label: "聚合", tone: "aggregate" },
   buzzing: { label: "聚合", tone: "aggregate" },
   iris: { label: "聚合", tone: "aggregate" },
@@ -101,6 +137,17 @@ const SOURCE_KINDS = {
   opmlrss: { label: "OPML", tone: "newsletter" },
 };
 
+const SUBSCRIPTION_SITE_IDS = new Set([
+  "tikhub_douyin",
+  "tikhub_xiaohongshu",
+  "bilibili_dynamic",
+  "mediacrawler_douyin",
+  "mediacrawler_xhs",
+  "github_foundation_sunshine_releases",
+  "maobidao_wudaolu_backup",
+  "wewe_rss",
+]);
+
 const SECTION_DEFS = [
   { id: "hot", label: "热点", short: "热点", description: "跨来源聚合后的优先阅读列表" },
   { id: "models", label: "模型", short: "模型", description: "模型发布、能力升级、评测与开源权重" },
@@ -109,7 +156,7 @@ const SECTION_DEFS = [
   { id: "hn", label: "HN热议", short: "HN", description: "Hacker News 过去 24 小时的 AI 关键词讨论与高互动 story" },
   { id: "industry", label: "行业", short: "行业", description: "公司战略、融资收购、监管、芯片与产业变化" },
   { id: "research", label: "研究", short: "研究", description: "论文、基准、方法、数据集与研究团队动态" },
-  { id: "creator", label: "自媒体", short: "自媒体", description: "一周内互动热度优先，24 小时新内容额外加分" },
+  { id: "creator", label: "我的订阅", short: "订阅", description: "B站、小红书、YouTube、抖音、公众号和 GitHub 项目的更新" },
   { id: "community", label: "社区", short: "社区", description: "WaytoAGI、中文社区、AIbase、公众号和 Builders/X 信号" },
 ];
 
@@ -121,6 +168,740 @@ const LIST_SORT_DEFS = [
   { id: "ai", label: "高分" },
   { id: "source", label: "来源" },
 ];
+
+const SOURCE_CONFIG_STORAGE_KEY = "ai-news-radar-source-config-v1";
+const SOURCE_CONFIG_CATALOG_VERSION = "2026-07-02-builtin-sources";
+
+function sourceConfigSeedSources() {
+  return [
+    {
+      id: "official_ai_sources",
+      name: "官方一手源包",
+      type: "official_ai",
+      enabled: false,
+      channel: "官方一手源",
+      target: "OpenAI / Anthropic / Google / Hugging Face / GitHub",
+      locator: "scripts/update_news.py --source-scope all_sources",
+      env: "",
+      notes: "项目内置官方 RSS/Atom/API/Page 源；当前默认输出不启用，需要 all_sources 才会抓。",
+    },
+    {
+      id: "curated_ai_media_sources",
+      name: "精选AI媒体包",
+      type: "curated_media",
+      enabled: false,
+      channel: "精选媒体",
+      target: "The Decoder / TechCrunch / The Verge / MarkTechPost / VentureBeat / AI News / Claude Code",
+      locator: "scripts/update_news.py --source-scope all_sources",
+      env: "",
+      notes: "项目自带英文 AI 媒体源；当前默认输出不启用，避免默认看板噪音过多。",
+    },
+    {
+      id: "aihot",
+      name: "AI HOT",
+      type: "aihot",
+      enabled: false,
+      channel: "AI站点",
+      target: "AI HOT",
+      locator: "https://ai-bot.cn/daily-ai-news/",
+      env: "",
+      notes: "内置中文 AI 资讯站点源；默认停用，可作为全源模式补充。",
+    },
+    {
+      id: "aibreakfast",
+      name: "AI Breakfast",
+      type: "aibreakfast",
+      enabled: false,
+      channel: "日报",
+      target: "AI Breakfast",
+      locator: "RSS / Newsletter",
+      env: "",
+      notes: "内置英文 AI 日报源；默认停用。",
+    },
+    {
+      id: "aihubtoday",
+      name: "AIHubToday",
+      type: "aihubtoday",
+      enabled: false,
+      channel: "AI站点",
+      target: "AIHubToday",
+      locator: "AIHubToday",
+      env: "",
+      notes: "内置 AI 站点源；默认停用。",
+    },
+    {
+      id: "aibase",
+      name: "AIbase",
+      type: "aibase",
+      enabled: false,
+      channel: "AI站点",
+      target: "AIbase",
+      locator: "AIbase",
+      env: "",
+      notes: "内置中文 AI 站点源；默认停用。",
+    },
+    {
+      id: "bestblogs",
+      name: "BestBlogs",
+      type: "bestblogs",
+      enabled: false,
+      channel: "博客",
+      target: "BestBlogs",
+      locator: "BestBlogs",
+      env: "",
+      notes: "内置博客聚合源；默认停用。",
+    },
+    {
+      id: "followbuilders",
+      name: "Follow Builders",
+      type: "followbuilders",
+      enabled: false,
+      channel: "Builders/X",
+      target: "Follow Builders",
+      locator: "RSS / curated list",
+      env: "",
+      notes: "内置 Builders 相关信号源；默认停用。",
+    },
+    {
+      id: "waytoagi",
+      name: "WaytoAGI",
+      type: "waytoagi",
+      enabled: false,
+      channel: "中文社区",
+      target: "WaytoAGI",
+      locator: "data/waytoagi-7d.json",
+      env: "",
+      notes: "社区信号源；页面已有专门区块，配置目录里也展示出来。",
+    },
+    {
+      id: "hackernews",
+      name: "Hacker News",
+      type: "hackernews",
+      enabled: false,
+      channel: "HN热议",
+      target: "Hacker News AI stories",
+      locator: "HN API",
+      env: "",
+      notes: "内置 HN AI 关键词源；当前默认输出不启用。",
+    },
+    {
+      id: "techurls",
+      name: "TechURLs",
+      type: "techurls",
+      enabled: false,
+      channel: "聚合",
+      target: "TechURLs",
+      locator: "TechURLs",
+      env: "",
+      notes: "内置技术聚合源；默认停用。",
+    },
+    {
+      id: "buzzing",
+      name: "Buzzing",
+      type: "buzzing",
+      enabled: false,
+      channel: "聚合",
+      target: "Buzzing",
+      locator: "Buzzing",
+      env: "",
+      notes: "内置聚合源；默认停用。",
+    },
+    {
+      id: "iris",
+      name: "Iris",
+      type: "iris",
+      enabled: false,
+      channel: "聚合",
+      target: "Iris",
+      locator: "Iris",
+      env: "",
+      notes: "内置聚合源；默认停用。",
+    },
+    {
+      id: "tophub",
+      name: "TopHub",
+      type: "tophub",
+      enabled: false,
+      channel: "聚合",
+      target: "TopHub AI / tech topics",
+      locator: "TopHub",
+      env: "",
+      notes: "内置热榜聚合源；不会再被误归类为我的订阅。",
+    },
+    {
+      id: "zeli",
+      name: "Zeli",
+      type: "zeli",
+      enabled: false,
+      channel: "聚合",
+      target: "Zeli",
+      locator: "Zeli",
+      env: "",
+      notes: "内置聚合源；默认停用。",
+    },
+    {
+      id: "newsnow",
+      name: "NewsNow",
+      type: "newsnow",
+      enabled: false,
+      channel: "聚合",
+      target: "NewsNow",
+      locator: "NewsNow",
+      env: "",
+      notes: "内置聚合源；默认停用。",
+    },
+    {
+      id: "opmlrss",
+      name: "OPML/RSS 订阅包",
+      type: "opmlrss",
+      enabled: false,
+      channel: "RSS/OPML",
+      target: "feeds/follow.opml",
+      locator: "feeds/follow.opml",
+      env: "",
+      notes: "本地 OPML/RSS 订阅入口；默认输出曾收窄，需后续接入配置后再按需启用。",
+    },
+    {
+      id: "xapi",
+      name: "X API",
+      type: "xapi",
+      enabled: false,
+      channel: "高级 API",
+      target: "X / Twitter",
+      locator: "X API",
+      env: "X_BEARER_TOKEN",
+      notes: "高级源，需要外部凭证；不要把 token 写进仓库或导出的公开文件。",
+    },
+    {
+      id: "socialdata_x",
+      name: "SocialData X 搜索",
+      type: "socialdata_x",
+      enabled: false,
+      channel: "高级 API",
+      target: "X / Twitter 搜索",
+      locator: "SocialData API",
+      env: "SOCIALDATA_API_KEY",
+      notes: "高级源，需要外部凭证；默认停用。",
+    },
+    {
+      id: "tikhub_social_sources",
+      name: "TikHub 抖音/小红书",
+      type: "tikhub_douyin",
+      enabled: false,
+      channel: "高级 API",
+      target: "抖音 / 小红书",
+      locator: "TikHub API",
+      env: "TIKHUB_API_KEY",
+      notes: "高级平台源，需要外部服务和凭证；当前本机优先用 MediaCrawler JSONL 桥。",
+    },
+    {
+      id: "agentmail",
+      name: "AgentMail",
+      type: "rss",
+      enabled: false,
+      channel: "邮件/RSS",
+      target: "AgentMail",
+      locator: "AgentMail",
+      env: "AGENTMAIL_*",
+      notes: "高级邮件源；默认停用。",
+    },
+    {
+      id: "bilibili_505301413",
+      name: "Koji杨远骋at十字路口",
+      type: "bilibili_dynamic",
+      enabled: true,
+      channel: "B站动态",
+      target: "Koji杨远骋at十字路口",
+      locator: "505301413",
+      env: "BILIBILI_DYNAMIC_UIDS / BILIBILI_DYNAMIC_SOURCE_NAMES",
+      notes: "需要可用 B站 cookie 才能走完整动态；无 cookie 时尝试公开 opus fallback。",
+    },
+    {
+      id: "bilibili_316183842",
+      name: "技术爬爬虾",
+      type: "bilibili_dynamic",
+      enabled: true,
+      channel: "B站动态",
+      target: "技术爬爬虾",
+      locator: "316183842",
+      env: "BILIBILI_DYNAMIC_UIDS / BILIBILI_DYNAMIC_SOURCE_NAMES",
+      notes: "与其他 B站 UID 逗号分隔配置。",
+    },
+    {
+      id: "mediacrawler_douyin_simon",
+      name: "Simon林",
+      type: "mediacrawler_jsonl",
+      enabled: false,
+      channel: "抖音",
+      target: "Simon林",
+      locator: "E:\\AI-news-reader\\MediaCrawler-local-test\\output\\douyin\\jsonl\\creator_contents_2026-07-01.jsonl",
+      env: "MEDIACRAWLER_DOUYIN_ENABLED / MEDIACRAWLER_DOUYIN_JSONL / MEDIACRAWLER_DOUYIN_SOURCE_NAME",
+      notes: "Radar 只读本地 JSONL，不启动 MediaCrawler 或 Chrome。",
+    },
+    {
+      id: "mediacrawler_xhs_chenbaoyi",
+      name: "陈抱一",
+      type: "mediacrawler_jsonl",
+      enabled: false,
+      channel: "小红书",
+      target: "陈抱一",
+      locator: "E:\\AI-news-reader\\MediaCrawler-local-test\\output\\xhs\\jsonl\\creator_contents_2026-07-01.jsonl",
+      env: "MEDIACRAWLER_XHS_ENABLED / MEDIACRAWLER_XHS_JSONL / MEDIACRAWLER_XHS_SOURCE_NAME",
+      notes: "Radar 只读本地 JSONL，不保存 xsec_token 或浏览器 profile。",
+    },
+    {
+      id: "wewe_rss_maobidao",
+      name: "猫笔刀",
+      type: "wewe_rss",
+      enabled: true,
+      channel: "微信公众号",
+      target: "猫笔刀",
+      locator: "MP_WXS_3198966508",
+      env: "WEWE_RSS_ENABLED / WEWE_RSS_BASE_URL / WEWE_RSS_FEEDS",
+      notes: "本地 WeWe RSS sidecar 提供 JSON Feed；Radar 不读取 wewe-rss 数据库或登录态。",
+    },
+    {
+      id: "github_foundation_sunshine",
+      name: "AlkaidLab/foundation-sunshine",
+      type: "github_release",
+      enabled: true,
+      channel: "GitHub Release",
+      target: "AlkaidLab/foundation-sunshine",
+      locator: "https://api.github.com/repos/AlkaidLab/foundation-sunshine/releases",
+      env: "",
+      notes: "只追踪 release，不追踪普通 commit。",
+    },
+    {
+      id: "maobidao_wudaolu_backup",
+      name: "猫笔刀备份源",
+      type: "api",
+      enabled: false,
+      channel: "微信公众号备用",
+      target: "猫笔刀",
+      locator: "https://wudaolu.com/c/dav/7.json",
+      env: "",
+      notes: "WeWe RSS 开启时输出会跳过这个备用源，避免重复。",
+    },
+  ];
+}
+
+function freshSourceConfig() {
+  return {
+    version: "1.0",
+    catalog_version: SOURCE_CONFIG_CATALOG_VERSION,
+    mode: "refresh-script-config",
+    how_to_apply: "保存为项目根目录 sources.config.json 后运行 scripts/update_news.py；也可用 --source-config 指定路径。",
+    updated_at: new Date().toISOString(),
+    sources: sourceConfigSeedSources(),
+  };
+}
+
+function normalizeSourceConfig(payload) {
+  const rawSources = Array.isArray(payload?.sources) ? payload.sources : [];
+  const sources = rawSources
+    .filter((source) => source && typeof source === "object")
+    .map((source, index) => ({
+      id: String(source.id || `source_${index + 1}`).trim() || `source_${index + 1}`,
+      name: String(source.name || source.title || "").trim() || `未命名信源 ${index + 1}`,
+      type: String(source.type || "rss").trim() || "rss",
+      enabled: source.enabled !== false,
+      channel: String(source.channel || source.category || "").trim(),
+      target: String(source.target || source.account || source.repo || "").trim(),
+      locator: String(source.locator || source.url || source.feed_url || source.path || "").trim(),
+      env: String(source.env || source.env_vars || "").trim(),
+      notes: String(source.notes || source.description || "").trim(),
+    }));
+  return {
+    version: String(payload?.version || "1.0"),
+    catalog_version: String(payload?.catalog_version || ""),
+    mode: "refresh-script-config",
+    how_to_apply: String(payload?.how_to_apply || "保存为项目根目录 sources.config.json 后运行 scripts/update_news.py；也可用 --source-config 指定路径。"),
+    updated_at: new Date().toISOString(),
+    sources,
+  };
+}
+
+function mergeSourceConfigWithSeed(config) {
+  const normalized = normalizeSourceConfig(config);
+  const seedSources = sourceConfigSeedSources();
+  const seedIds = new Set(seedSources.map((source) => source.id));
+  const existingById = new Map(normalized.sources.map((source) => [source.id, source]));
+  const seedOrdered = seedSources.map((seed) => existingById.get(seed.id) || seed);
+  const customSources = normalized.sources.filter((source) => !seedIds.has(source.id));
+  const mergedSources = [...seedOrdered, ...customSources];
+  const changed =
+    normalized.catalog_version !== SOURCE_CONFIG_CATALOG_VERSION ||
+    mergedSources.length !== normalized.sources.length ||
+    mergedSources.some((source, index) => source.id !== normalized.sources[index]?.id);
+  normalized.catalog_version = SOURCE_CONFIG_CATALOG_VERSION;
+  normalized.sources = mergedSources;
+  if (changed) normalized.updated_at = new Date().toISOString();
+  return { config: normalized, changed };
+}
+
+function loadSourceConfigDraft() {
+  try {
+    const raw = window.localStorage.getItem(SOURCE_CONFIG_STORAGE_KEY);
+    if (raw) {
+      const { config, changed } = mergeSourceConfigWithSeed(JSON.parse(raw));
+      if (changed) {
+        window.localStorage.setItem(SOURCE_CONFIG_STORAGE_KEY, JSON.stringify(config, null, 2));
+      }
+      return config;
+    }
+  } catch {
+    // Fall back to the built-in current-source draft.
+  }
+  return freshSourceConfig();
+}
+
+function saveSourceConfigDraft(message = "本地草稿已保存") {
+  if (!state.sourceConfig) return;
+  state.sourceConfig.updated_at = new Date().toISOString();
+  window.localStorage.setItem(SOURCE_CONFIG_STORAGE_KEY, JSON.stringify(state.sourceConfig, null, 2));
+  setSourceConfigStatus(message, "ok");
+}
+
+function setSourceConfigStatus(message, tone = "") {
+  if (!sourceConfigStatusEl) return;
+  sourceConfigStatusEl.textContent = message || "";
+  sourceConfigStatusEl.className = `source-config-status${tone ? ` ${tone}` : ""}`;
+}
+
+function setSourceConfigButton(button, label, disabled = false) {
+  if (!button) return;
+  button.textContent = label;
+  button.disabled = Boolean(disabled);
+}
+
+function restoreSourceConfigButton(button, label, delay = 1200) {
+  if (!button) return;
+  window.setTimeout(() => {
+    button.textContent = label;
+    button.disabled = false;
+  }, delay);
+}
+
+function sourceConfigJsonText() {
+  return JSON.stringify(state.sourceConfig || freshSourceConfig(), null, 2);
+}
+
+function syncSourceConfigJson() {
+  if (sourceConfigJsonEl) sourceConfigJsonEl.value = sourceConfigJsonText();
+}
+
+async function loadSourceConfigFromLocalServer() {
+  if (!sourceConfigFormEl) return;
+  try {
+    const res = await fetch("./api/source-config", {
+      headers: { Accept: "application/json" },
+      cache: "no-store",
+    });
+    if (res.status === 404) return;
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const payload = await res.json();
+    if (!payload?.config) return;
+    const { config } = mergeSourceConfigWithSeed(payload.config);
+    state.sourceConfig = config;
+    state.sourceConfigSelectedId = config.sources[0]?.id || "";
+    saveSourceConfigDraft("已读取 sources.config.json");
+    renderSourceConfig();
+  } catch {
+    // The plain static server has no local write API; keep using localStorage.
+  }
+}
+
+async function writeSourceConfigToLocalServer(options = {}) {
+  const button = options.button === undefined ? sourceConfigApplyBtnEl : options.button;
+  const successLabel = options.successLabel || "已写入";
+  const idleLabel = options.idleLabel || "写入";
+  if (!saveSourceConfigFormToState("本地草稿已保存", false)) {
+    setSourceConfigButton(button, "写入失败", false);
+    restoreSourceConfigButton(button, idleLabel);
+    throw new Error("source config form is invalid");
+  }
+  if (!state.sourceConfig) state.sourceConfig = loadSourceConfigDraft();
+  state.sourceConfig.updated_at = new Date().toISOString();
+  syncSourceConfigJson();
+  setSourceConfigButton(button, "写入中...", true);
+  setSourceConfigStatus("正在写入 sources.config.json...", "warn");
+  try {
+    const res = await fetch("./api/source-config", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: sourceConfigJsonText(),
+    });
+    const payload = await res.json().catch(() => ({}));
+    if (!res.ok || payload.ok === false) {
+      throw new Error(payload.error || `HTTP ${res.status}`);
+    }
+    saveSourceConfigDraft(`已写入 ${payload.path || "sources.config.json"}，共 ${payload.source_count || 0} 个信源`);
+    renderSourceConfig();
+    setSourceConfigButton(button, successLabel, true);
+    restoreSourceConfigButton(button, idleLabel);
+    return payload;
+  } catch (err) {
+    setSourceConfigButton(button, "写入失败", true);
+    restoreSourceConfigButton(button, idleLabel);
+    setSourceConfigStatus(`写入失败：请用 scripts/local_server.py 启动本地后台（${err.message}）`, "bad");
+    throw err;
+  }
+}
+
+async function refreshNewsDataFromLocalServer() {
+  setSourceConfigButton(sourceConfigRefreshBtnEl, "刷新中...", true);
+  setSourceConfigStatus("准备写入配置并刷新数据...", "warn");
+  try {
+    await writeSourceConfigToLocalServer({
+      button: sourceConfigApplyBtnEl,
+      successLabel: "已写入",
+      idleLabel: "写入",
+    });
+    setSourceConfigButton(sourceConfigRefreshBtnEl, "抓取中...", true);
+    setSourceConfigStatus("配置已写入，正在运行刷新脚本；公众号和社媒源可能需要等一小会。", "warn");
+    const res = await fetch("./api/refresh", {
+      method: "POST",
+      headers: { Accept: "application/json" },
+      cache: "no-store",
+    });
+    const payload = await res.json().catch(() => ({}));
+    if (!res.ok || payload.ok === false) {
+      throw new Error(payload.error || `HTTP ${res.status}`);
+    }
+    const sites = payload.summary?.sites || [];
+    const okSites = sites.filter((site) => site.ok).length;
+    const totalItems = Number(payload.summary?.fetched_raw_items || 0);
+    setSourceConfigStatus(`刷新完成：${okSites}/${sites.length} 个源正常，抓到 ${fmtNumber(totalItems)} 条；页面即将重载。`, "ok");
+    setSourceConfigButton(sourceConfigRefreshBtnEl, "已刷新", true);
+    window.setTimeout(() => window.location.reload(), 1400);
+  } catch (err) {
+    const message = err?.message || "unknown error";
+    setSourceConfigStatus(`刷新失败：${message}`, "bad");
+    setSourceConfigButton(sourceConfigRefreshBtnEl, "刷新失败", true);
+    restoreSourceConfigButton(sourceConfigRefreshBtnEl, "刷新数据");
+  }
+}
+
+function selectedSourceConfig() {
+  const sources = state.sourceConfig?.sources || [];
+  return sources.find((source) => source.id === state.sourceConfigSelectedId) || sources[0] || null;
+}
+
+function fillSourceConfigForm(source) {
+  if (!sourceConfigFormEl) return;
+  const item = source || {
+    id: "",
+    name: "",
+    type: "rss",
+    enabled: true,
+    channel: "",
+    target: "",
+    locator: "",
+    env: "",
+    notes: "",
+  };
+  sourceConfigIdEl.value = item.id || "";
+  sourceConfigNameEl.value = item.name || "";
+  sourceConfigTypeEl.value = item.type || "rss";
+  sourceConfigChannelEl.value = item.channel || "";
+  sourceConfigTargetEl.value = item.target || "";
+  sourceConfigLocatorEl.value = item.locator || "";
+  sourceConfigEnvEl.value = item.env || "";
+  sourceConfigNotesEl.value = item.notes || "";
+  sourceConfigEnabledEl.checked = item.enabled !== false;
+}
+
+function renderSourceConfigList() {
+  if (!sourceConfigListEl || !state.sourceConfig) return;
+  sourceConfigListEl.innerHTML = "";
+  const sources = state.sourceConfig.sources || [];
+  if (!sources.length) {
+    const empty = document.createElement("div");
+    empty.className = "source-config-empty";
+    empty.textContent = "暂无信源";
+    sourceConfigListEl.appendChild(empty);
+    return;
+  }
+  sources.forEach((source) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "source-config-source";
+    if (source.id === state.sourceConfigSelectedId) button.classList.add("active");
+    const title = document.createElement("strong");
+    title.textContent = source.name;
+    const meta = document.createElement("span");
+    meta.textContent = [source.channel || source.type, source.enabled === false ? "停用" : "启用"].filter(Boolean).join(" · ");
+    button.append(title, meta);
+    button.addEventListener("click", () => {
+      state.sourceConfigSelectedId = source.id;
+      fillSourceConfigForm(source);
+      renderSourceConfigList();
+    });
+    sourceConfigListEl.appendChild(button);
+  });
+}
+
+function renderSourceConfigSummary() {
+  if (!sourceConfigSummaryEl || !state.sourceConfig) return;
+  const sources = state.sourceConfig.sources || [];
+  const enabled = sources.filter((source) => source.enabled !== false).length;
+  sourceConfigSummaryEl.textContent = `${fmtNumber(enabled)}/${fmtNumber(sources.length)} 启用`;
+}
+
+function renderSourceConfig() {
+  if (!sourceConfigFormEl) return;
+  if (!state.sourceConfig) state.sourceConfig = loadSourceConfigDraft();
+  const sources = state.sourceConfig.sources || [];
+  if (!state.sourceConfigSelectedId || !sources.some((source) => source.id === state.sourceConfigSelectedId)) {
+    state.sourceConfigSelectedId = sources[0]?.id || "";
+  }
+  renderSourceConfigSummary();
+  renderSourceConfigList();
+  fillSourceConfigForm(selectedSourceConfig());
+  syncSourceConfigJson();
+}
+
+function sourceConfigIdFromName(name) {
+  const base = String(name || "source")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9\u4e00-\u9fa5]+/g, "_")
+    .replace(/^_+|_+$/g, "")
+    .slice(0, 48) || "source";
+  const existing = new Set((state.sourceConfig?.sources || []).map((source) => source.id));
+  let out = base;
+  let i = 2;
+  while (existing.has(out)) {
+    out = `${base}_${i}`;
+    i += 1;
+  }
+  return out;
+}
+
+function formSourceConfigRecord() {
+  const name = sourceConfigNameEl.value.trim();
+  const id = sourceConfigIdEl.value.trim() || sourceConfigIdFromName(name);
+  return {
+    id,
+    name,
+    type: sourceConfigTypeEl.value || "rss",
+    enabled: Boolean(sourceConfigEnabledEl.checked),
+    channel: sourceConfigChannelEl.value.trim(),
+    target: sourceConfigTargetEl.value.trim(),
+    locator: sourceConfigLocatorEl.value.trim(),
+    env: sourceConfigEnvEl.value.trim(),
+    notes: sourceConfigNotesEl.value.trim(),
+  };
+}
+
+function upsertSourceConfigRecord(record) {
+  saveSourceConfigRecordToState(record, "本地草稿已保存", true);
+}
+
+function saveSourceConfigFormToState(message = "本地草稿已保存", shouldRender = true) {
+  if (!sourceConfigFormEl) return true;
+  return saveSourceConfigRecordToState(formSourceConfigRecord(), message, shouldRender);
+}
+
+function saveSourceConfigRecordToState(record, message = "本地草稿已保存", shouldRender = true) {
+  if (!record.name) {
+    setSourceConfigStatus("名称不能为空", "bad");
+    return false;
+  }
+  if (!state.sourceConfig) state.sourceConfig = freshSourceConfig();
+  const sources = state.sourceConfig.sources || [];
+  const index = sources.findIndex((source) => source.id === record.id);
+  if (index >= 0) {
+    sources[index] = record;
+  } else {
+    sources.push(record);
+  }
+  state.sourceConfig.sources = sources;
+  state.sourceConfigSelectedId = record.id;
+  saveSourceConfigDraft(message);
+  if (shouldRender) {
+    renderSourceConfig();
+  } else {
+    syncSourceConfigJson();
+  }
+  return true;
+}
+
+function addSourceConfigRecord() {
+  if (!state.sourceConfig) state.sourceConfig = freshSourceConfig();
+  const id = sourceConfigIdFromName("new_source");
+  const record = {
+    id,
+    name: "新信源",
+    type: "rss",
+    enabled: true,
+    channel: "RSS",
+    target: "",
+    locator: "",
+    env: "",
+    notes: "",
+  };
+  state.sourceConfig.sources.push(record);
+  state.sourceConfigSelectedId = id;
+  saveSourceConfigDraft("已新增本地草稿信源");
+  renderSourceConfig();
+}
+
+function deleteSourceConfigRecord() {
+  if (!state.sourceConfigSelectedId || !state.sourceConfig) return;
+  state.sourceConfig.sources = (state.sourceConfig.sources || []).filter((source) => source.id !== state.sourceConfigSelectedId);
+  state.sourceConfigSelectedId = state.sourceConfig.sources[0]?.id || "";
+  saveSourceConfigDraft("已从本地草稿删除");
+  renderSourceConfig();
+}
+
+function resetSourceConfigDraft() {
+  state.sourceConfig = freshSourceConfig();
+  state.sourceConfigSelectedId = state.sourceConfig.sources[0]?.id || "";
+  saveSourceConfigDraft("已恢复为当前默认信源草稿");
+  renderSourceConfig();
+}
+
+function importSourceConfigText(text) {
+  try {
+    const parsed = normalizeSourceConfig(JSON.parse(text));
+    state.sourceConfig = parsed;
+    state.sourceConfigSelectedId = parsed.sources[0]?.id || "";
+    saveSourceConfigDraft("已导入本地草稿");
+    renderSourceConfig();
+  } catch (err) {
+    setSourceConfigStatus(`导入失败：${err.message}`, "bad");
+  }
+}
+
+function downloadSourceConfig() {
+  const blob = new Blob([sourceConfigJsonText()], { type: "application/json;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "sources.config.json";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+  setSourceConfigStatus("已导出；放到项目根目录 sources.config.json 后刷新脚本会读取", "ok");
+}
+
+async function copySourceConfig() {
+  try {
+    await navigator.clipboard.writeText(sourceConfigJsonText());
+    setSourceConfigStatus("已复制 JSON；保存为 sources.config.json 后可生效", "ok");
+  } catch {
+    if (sourceConfigJsonEl) {
+      sourceConfigJsonEl.focus();
+      sourceConfigJsonEl.select();
+    }
+    setSourceConfigStatus("已选中 JSON，可手动复制", "warn");
+  }
+}
 
 function fmtNumber(n) {
   return new Intl.NumberFormat("zh-CN").format(n || 0);
@@ -148,6 +929,17 @@ function fmtDate(iso) {
   }).format(d);
 }
 
+function windowLabel() {
+  if (state.timeRangeFilter === "all") return "不限";
+  return state.timeScope === "all_time" ? "全部时间" : "过去 24 小时";
+}
+
+function creatorWindowLabel() {
+  if (state.timeRangeFilter === "24h") return "过去 24 小时";
+  if (state.timeRangeFilter === "all") return "不限";
+  return state.creatorTimeScope === "all_time" ? "全部时间" : `过去 ${fmtNumber(state.creatorWindowDays)} 天`;
+}
+
 function setStats() {
   statsEl.innerHTML = "";
   const items = state.itemsAi || [];
@@ -165,12 +957,12 @@ function setStats() {
   ];
   statsEl.setAttribute(
     "aria-label",
-    `过去 24 小时：AI 信号 ${fmtNumber(state.totalAi || items.length)} 条，高优先级 ${fmtNumber(highCount)} 条，精选 ${fmtNumber(curatedCount)} 条，源状态 ${totalSites ? `${fmtNumber(okSites)}/${fmtNumber(totalSites)} 源正常` : "加载中"}`,
+    `${windowLabel()}：AI 信号 ${fmtNumber(state.totalAi || items.length)} 条，高优先级 ${fmtNumber(highCount)} 条，精选 ${fmtNumber(curatedCount)} 条，源状态 ${totalSites ? `${fmtNumber(okSites)}/${fmtNumber(totalSites)} 源正常` : "加载中"}`,
   );
 
   const prefix = document.createElement("div");
   prefix.className = "stat-prefix";
-  prefix.textContent = "过去 24 小时：";
+  prefix.textContent = `${windowLabel()}：`;
   statsEl.appendChild(prefix);
 
   cards.forEach(([k, v]) => {
@@ -237,7 +1029,7 @@ function sourceSignalTone(signal) {
   const text = String(signal || "").toLowerCase();
   if (text.includes("官方") || text.includes("official")) return "official";
   if (text.includes("ai hot") || text.includes("精选")) return "hot";
-  if (text.includes("自媒体") || text.includes("tikhub") || text.includes("douyin") || text.includes("xiaohongshu") || text.includes("抖音") || text.includes("小红书")) return "creator";
+  if (text.includes("我的订阅") || text.includes("订阅") || text.includes("自媒体") || text.includes("tikhub") || text.includes("douyin") || text.includes("xiaohongshu") || text.includes("bilibili") || text.includes("youtube") || text.includes("youtu.be") || text.includes("抖音") || text.includes("小红书") || text.includes("b站") || text.includes("油管")) return "creator";
   if (text.includes("builders") || text.includes("github") || text.includes("x")) return "builders";
   if (text.includes("aihub") || text.includes("aibase") || text.includes("媒体")) return "aihub";
   if (text.includes("hn") || text.includes("hacker") || text.includes("聚合")) return "aggregate";
@@ -334,8 +1126,8 @@ function renderCoverageStrip(errorMessage = "") {
   const newsletterCount = Number(siteRow("aibreakfast")?.item_count || 0);
   const curatedMediaCount = Number(siteRow("curated_media")?.item_count || 0);
   const buildersCount = Number(siteRow("followbuilders")?.item_count || 0);
-  const creatorCount = state.creatorItemsAi.length || (siteAiPoolCount("tikhub_douyin") + siteAiPoolCount("tikhub_xiaohongshu"));
-  const creatorRawCount = state.creatorItemsAll.length || (siteRawPoolCount("tikhub_douyin") + siteRawPoolCount("tikhub_xiaohongshu"));
+  const creatorCount = state.creatorItemsAi.length || (siteAiPoolCount("tikhub_douyin") + siteAiPoolCount("tikhub_xiaohongshu") + siteAiPoolCount("mediacrawler_douyin") + siteAiPoolCount("mediacrawler_xhs") + siteAiPoolCount("github_foundation_sunshine_releases"));
+  const creatorRawCount = state.creatorItemsAll.length || (siteRawPoolCount("tikhub_douyin") + siteRawPoolCount("tikhub_xiaohongshu") + siteRawPoolCount("mediacrawler_douyin") + siteRawPoolCount("mediacrawler_xhs") + siteRawPoolCount("github_foundation_sunshine_releases"));
   const socialdataPoolCount = siteAiPoolCount("socialdata_x");
   const xApiPoolCount = siteAiPoolCount("xapi");
   const xPoolCount = socialdataPoolCount + xApiPoolCount;
@@ -355,14 +1147,22 @@ function renderCoverageStrip(errorMessage = "") {
     ? `额度保护 · ${xSourceLabel} / ${mailLabel}`
     : "X API 与 AgentMail 默认关闭";
 
+  const creatorOnly = state.sourceScope === "tested_creator_sources" || state.sourceScope === "bilibili_only";
+  const coverageMeta = creatorOnly
+    ? `B站 / 抖音 / 小红书原始信号 · ${fmtNumber(allCount)} 条入池`
+    : (allCount ? `全网抓取原始信号 · ${fmtNumber(allCount)} 条入池` : "全网抓取原始信号");
+  const creatorMeta = creatorOnly
+    ? sourcePoolMeta(creatorCount, creatorRawCount, "B站 / YouTube / 抖音 / 小红书 / GitHub")
+    : sourcePoolMeta(creatorCount, creatorRawCount, "TikHub / MediaCrawler / YouTube / B站 / GitHub");
+
   const cards = [
     ["源健康", totalSites ? `${fmtNumber(okSites)}/${fmtNumber(totalSites)}` : "加载中", failedSites.length ? `${fmtNumber(failedSites.length)} 个失败源` : (errorMessage || "内置源正常"), failedSites.length ? "warn" : "ok"],
-    ["今日覆盖池", `${fmtNumber(coverageCount)} 条`, allCount ? `全网抓取原始信号 · ${fmtNumber(allCount)} 条入池` : "全网抓取原始信号", "signal"],
+    ["今日覆盖池", `${fmtNumber(coverageCount)} 条`, coverageMeta, "signal"],
     ["AI强相关", `${fmtNumber(state.totalAi)} 条`, "24小时强相关信号", "signal"],
     ["官方/日报源池", `${fmtNumber(officialCount + newsletterCount)} 条`, "官方节点 + AI Breakfast", "official"],
     ["精选媒体源池", `${fmtNumber(curatedMediaCount)} 条`, "The Decoder / TC / Verge / MTP 等", "signal"],
     ["Builders/X源池", `${fmtNumber(buildersCount)} 条`, "Follow Builders公开feed", "builders"],
-    ["自媒体源池", `${fmtNumber(creatorCount)} 条`, sourcePoolMeta(creatorCount, creatorRawCount, "TikHub · 抖音 + 小红书"), "creator"],
+    ["我的订阅", `${fmtNumber(creatorCount)} 条`, creatorMeta, "creator"],
     ["RSS/OPML扩展", opmlValue, opmlMeta, "private"],
     ["高级源", advancedValue, advancedMeta, "private"],
   ];
@@ -402,7 +1202,7 @@ function computeSiteStats(items) {
 
 function currentSiteStats() {
   if (state.activeSection === "creator") {
-    return computeSiteStats(state.mode === "all" ? state.creatorItemsAll : state.creatorItemsAi);
+    return computeSiteStats(applyTimeRange(subscriptionModeItems()));
   }
   if (state.mode === "ai") return state.statsAi || [];
   return computeSiteStats(state.allDedup ? (state.itemsAll || []) : (state.itemsAllRaw || []));
@@ -430,9 +1230,9 @@ function itemSourceType(item) {
   const tier = item.source_tier || "";
   if (siteId === "official_ai" || tier === "official") return "official";
   if (siteId === "curated_media" || siteId === "aibreakfast" || siteId === "aihot") return "media";
+  if (isSubscriptionItem(item)) return "creator";
   if (siteId === "opmlrss" || tier === "user_opml") return "rss";
   if (siteId === "waytoagi" || siteId === "followbuilders" || siteId === "hackernews" || siteId === "zeli" || siteId === "aibase") return "community";
-  if (siteId === "tikhub_douyin" || siteId === "tikhub_xiaohongshu") return "creator";
   if (siteId === "socialdata_x" || siteId === "xapi" || siteId === "agentmail") return "advanced";
   return "aggregate";
 }
@@ -464,6 +1264,15 @@ function sectionStats(sectionId) {
   return { items, count: items.length, highCount, sourceCount: sourceSet.size };
 }
 
+function setActiveSection(sectionId) {
+  state.activeSection = sectionId || "hot";
+  state.boleExpanded = false;
+  if (state.activeSection === "creator" && state.timeRangeFilter !== "all") {
+    state.timeRangeFilter = "all";
+    renderTimeRangeControl();
+  }
+}
+
 function renderSectionTabs() {
   if (!sectionTabsEl) return;
   sectionTabsEl.innerHTML = "";
@@ -477,8 +1286,7 @@ function renderSectionTabs() {
     btn.dataset.section = section.id;
     btn.innerHTML = `<span>${section.label}</span><strong>${fmtNumber(stats.count)}</strong>`;
     btn.addEventListener("click", () => {
-      state.activeSection = section.id;
-      state.boleExpanded = false;
+      setActiveSection(section.id);
       renderSectionTabs();
       renderModeSwitch();
       renderSiteFilters();
@@ -511,7 +1319,7 @@ function renderSectionSummary(filteredItems = null) {
   const highCount = items.filter((item) => isHighPriorityItem(item)).length;
   const sources = new Set(items.map((item) => item.source || item.site_name || item.site_id).filter(Boolean));
   const modeText = state.mode === "all" ? (state.allDedup ? "全量去重" : "全量原始") : "AI强相关";
-  const windowText = state.activeSection === "creator" ? `过去 ${fmtNumber(state.creatorWindowDays)} 天 · 热度优先` : "过去 24 小时";
+  const windowText = state.activeSection === "creator" ? `${creatorWindowLabel()} · 热度优先` : windowLabel();
   sectionSummaryEl.textContent = `${windowText} · ${fmtNumber(items.length)} 条${section.id === "hot" ? "" : ` ${section.label}`}信号 · ${fmtNumber(highCount)} 条高优先级 · ${fmtNumber(sources.size)} 个来源 · ${modeText}`;
   renderStickySummary();
 }
@@ -606,6 +1414,11 @@ function renderModeSwitch() {
   renderSectionSummary();
 }
 
+function renderTimeRangeControl() {
+  if (!timeRangeSelectEl) return;
+  timeRangeSelectEl.value = state.timeRangeFilter;
+}
+
 function listTitleText() {
   const section = SECTION_BY_ID[state.activeSection] || SECTION_BY_ID.hot;
   const pool = state.mode === "all"
@@ -668,12 +1481,51 @@ function modeItems() {
   return state.mode === "all" ? effectiveAllItems() : state.itemsAi;
 }
 
+function itemIdentityKey(item) {
+  const keys = itemIdentityKeys(item);
+  return keys.size ? Array.from(keys)[0] : `fallback:${item?.site_id || ""}:${item?.url || item?.title || ""}`;
+}
+
+function subscriptionModeItems() {
+  const seeded = state.creatorItemsAll.length ? state.creatorItemsAll : state.creatorItemsAi;
+  const candidates = modeItems();
+  const out = [];
+  const seen = new Set();
+  const add = (item) => {
+    if (!item) return;
+    const key = itemIdentityKey(item);
+    if (seen.has(key)) return;
+    seen.add(key);
+    out.push(item);
+  };
+  (Array.isArray(seeded) ? seeded : []).forEach(add);
+  (Array.isArray(candidates) ? candidates : []).filter(isSubscriptionItem).forEach(add);
+  return out;
+}
+
+function timeRangeCutoffMs() {
+  const baseMs = new Date(state.generatedAt || "").getTime();
+  const anchorMs = Number.isFinite(baseMs) ? baseMs : Date.now();
+  return anchorMs - 24 * 60 * 60 * 1000;
+}
+
+function itemMatchesTimeRange(item) {
+  if (state.timeRangeFilter === "all") return true;
+  const ms = timelineMs(item);
+  return !ms || ms >= timeRangeCutoffMs();
+}
+
+function applyTimeRange(items) {
+  const source = Array.isArray(items) ? items : [];
+  if (state.timeRangeFilter === "all") return source;
+  return source.filter(itemMatchesTimeRange);
+}
+
 function sectionItems(items = modeItems(), sectionId = state.activeSection) {
   if (sectionId === "creator") {
-    const creatorSource = state.mode === "all" ? state.creatorItemsAll : state.creatorItemsAi;
-    return [...creatorSource].sort((a, b) => creatorHotScore(b) - creatorHotScore(a) || timelineMs(b) - timelineMs(a));
+    return applyTimeRange(subscriptionModeItems()).sort((a, b) => creatorHotScore(b) - creatorHotScore(a) || timelineMs(b) - timelineMs(a));
   }
-  const source = Array.isArray(items) ? items : [];
+  const source = applyTimeRange(items);
   if (sectionId === "hot") {
     return [...source].sort((a, b) => itemPriorityScore(b) - itemPriorityScore(a) || timelineMs(b) - timelineMs(a));
   }
@@ -739,7 +1591,7 @@ function itemTagTone(label) {
   if (text.includes("模型")) return "models";
   if (text.includes("开发")) return "devtools";
   if (text.includes("研究")) return "research";
-  if (text.includes("自媒体")) return "creator";
+  if (text.includes("订阅") || text.includes("自媒体")) return "creator";
   if (text.includes("社区")) return "community";
   if (text.includes("产品")) return "products";
   if (text.includes("行业")) return "industry";
@@ -905,14 +1757,7 @@ function itemSections(item) {
     ])
   ) sections.add("research");
 
-  if (
-    item.site_id === "tikhub_douyin" ||
-    item.site_id === "tikhub_xiaohongshu" ||
-    source.includes("douyin") ||
-    source.includes("xiaohongshu") ||
-    source.includes("小红书") ||
-    source.includes("抖音")
-  ) sections.add("creator");
+  if (isSubscriptionItem(item)) sections.add("creator");
 
   if (
     item.site_id === "waytoagi" ||
@@ -944,6 +1789,28 @@ function sectionBadgeLabel(sectionId) {
   return SECTION_BY_ID[sectionId]?.short || "栏目";
 }
 
+function isSubscriptionItem(item) {
+  const siteId = String(item?.site_id || "").toLowerCase();
+  const hay = `${item?.site_name || ""} ${item?.source || ""} ${item?.url || ""}`.toLowerCase();
+  const isPersonalRss = siteId === "opmlrss" || siteId.startsWith("opmlrss:");
+  const isTrackedPlatformUrl =
+    hay.includes("bilibili") ||
+    hay.includes("youtube") ||
+    hay.includes("youtu.be") ||
+    hay.includes("douyin") ||
+    hay.includes("xiaohongshu") ||
+    hay.includes("maobidao") ||
+    hay.includes("mp.weixin.qq.com") ||
+    hay.includes("wewe") ||
+    hay.includes("b站") ||
+    hay.includes("油管") ||
+    hay.includes("抖音") ||
+    hay.includes("小红书") ||
+    hay.includes("公众号") ||
+    hay.includes("猫笔刀");
+  return SUBSCRIPTION_SITE_IDS.has(siteId) || (isPersonalRss && isTrackedPlatformUrl);
+}
+
 function reasonText(item) {
   const creatorScore = creatorHotScore(item);
   if (creatorScore && itemSections(item).has("creator")) {
@@ -955,7 +1822,7 @@ function reasonText(item) {
       `转 ${fmtNumber(metrics.shares)}`,
     ];
     if (Number(item.creator_freshness_bonus || 0) > 0) parts.push("24h 加分");
-    return `一周互动：${parts.join(" · ")}`;
+    return `订阅互动：${parts.join(" · ")}`;
   }
   const signals = Array.isArray(item.ai_signals) ? item.ai_signals.filter(Boolean).slice(0, 3) : [];
   if (signals.length) return `命中方向：${signals.join(" / ")}`;
@@ -1066,11 +1933,17 @@ function sourceSignal(item) {
   const hay = `${site} ${source}`.toLowerCase();
   if (site === "AI HOT") return "AI HOT精选";
   if (hay.includes("hackernews") || hay.includes("hacker news")) return "HN热议";
+  if (item.site_id === "github_foundation_sunshine_releases") return "GitHub版本订阅";
+  if (item.site_id === "maobidao_wudaolu_backup") return "公众号订阅";
+  if (item.site_id === "wewe_rss") return "公众号订阅";
   if (source.includes("GitHub · Trending Today") || hay.includes("github")) return "GitHub趋势";
   if (site === "Official AI Updates") return "官方更新";
   if (site === "Follow Builders") return "Builders";
-  if (site === "TikHub Douyin" || hay.includes("tikhub douyin")) return "抖音自媒体";
-  if (site === "TikHub Xiaohongshu" || hay.includes("tikhub xiaohongshu")) return "小红书自媒体";
+  if (site === "Bilibili Dynamic" || hay.includes("bilibili")) return "B站订阅";
+  if (site === "TikHub Douyin" || hay.includes("tikhub douyin") || hay.includes("mediacrawler douyin")) return "抖音订阅";
+  if (site === "TikHub Xiaohongshu" || hay.includes("tikhub xiaohongshu")) return "小红书订阅";
+  if (site === "MediaCrawler Xiaohongshu" || hay.includes("mediacrawler xhs") || hay.includes("mediacrawler xiaohongshu")) return "小红书订阅";
+  if (hay.includes("youtube") || hay.includes("youtu.be")) return "YouTube订阅";
   if (site === "AIbase") return "AIbase";
   if (site === "OPML RSS") return "OPML";
   return site || "来源";
@@ -1082,7 +1955,7 @@ function sourcePriority(item) {
   if (signal === "AI HOT精选") return 90;
   if (signal === "AIbase") return 82;
   if (signal === "Builders") return 74;
-  if (signal === "抖音自媒体" || signal === "小红书自媒体") return 70;
+  if (signal.includes("订阅") || signal === "抖音自媒体" || signal === "小红书自媒体") return 70;
   if (signal === "OPML") return 68;
   if (signal === "HN热议" || signal === "GitHub趋势") return 62;
   return 50;
@@ -1887,7 +2760,7 @@ function itemTagLabels(item, row = null) {
   if (sections.has("devtools")) tags.push("开发者");
   if (sections.has("hn")) tags.push("社区热议");
   if (sections.has("research")) tags.push("研究");
-  if (sections.has("creator")) tags.push("自媒体");
+  if (sections.has("creator")) tags.push("我的订阅");
   if (sections.has("community")) tags.push("社区");
   return Array.from(new Set(tags)).slice(0, 3);
 }
@@ -2123,7 +2996,7 @@ function renderItemNode(item, context = {}) {
   const tagEl = document.createElement("span");
   tagEl.className = `ai-tag tone-${itemLabelTone(item)}`;
   tagEl.textContent = creatorScore && itemSections(item).has("creator")
-    ? `自媒体热度 · ${creatorScore}分`
+    ? `订阅热度 · ${creatorScore}分`
     : `${labelText(item)} · ${score || "?"}分`;
   categoryEl.insertAdjacentElement("afterend", tagEl);
 
@@ -2451,6 +3324,7 @@ function rerenderCurrentView() {
   state.boleExpanded = false;
   state.siteGroupsExpanded = false;
   renderSectionTabs();
+  renderTimeRangeControl();
   renderModeSwitch();
   renderSiteFilters();
   renderBolePicks();
@@ -2801,8 +3675,13 @@ async function loadAllModeData() {
       .then((payload) => {
         state.itemsAllRaw = payload.items_all_raw || payload.items_all || state.itemsAi;
         state.itemsAll = payload.items_all || state.itemsAi;
+        state.creatorItemsAll = payload.creator_items_all || state.creatorItemsAll;
+        state.creatorWindowDays = Number(payload.creator_window_days || state.creatorWindowDays || 7);
+        state.creatorTimeScope = payload.creator_time_scope || state.creatorTimeScope;
         state.totalRaw = payload.total_items_raw || state.itemsAllRaw.length;
         state.totalAllMode = payload.total_items_all_mode || state.itemsAll.length;
+        state.timeScope = payload.time_scope || state.timeScope;
+        state.sourceScope = payload.source_scope || state.sourceScope;
         state.allDataLoaded = true;
       })
       .catch((err) => {
@@ -2867,12 +3746,24 @@ async function init() {
     state.creatorItemsAi = payload.creator_items_ai || [];
     state.creatorItemsAll = payload.creator_items_all || state.creatorItemsAi;
     state.creatorWindowDays = Number(payload.creator_window_days || 7);
+    state.creatorTimeScope = payload.creator_time_scope || "rolling_window";
     state.statsAi = payload.site_stats || [];
     state.totalAi = payload.total_items || state.itemsAi.length;
     state.totalRaw = payload.total_items_raw || state.itemsAllRaw.length;
     state.totalAllMode = payload.total_items_all_mode || state.itemsAll.length;
+    state.timeScope = payload.time_scope || "rolling_window";
+    state.sourceScope = payload.source_scope || "all_sources";
     state.allDataUrl = payload.all_mode_data_url || state.allDataUrl;
     state.storiesDataUrl = payload.stories_data_url || state.storiesDataUrl;
+    if (state.sourceScope === "bilibili_only" || state.sourceScope === "tested_creator_sources") {
+      state.mode = "all";
+      state.activeSection = "hot";
+      try {
+        await loadAllModeData();
+      } catch {
+        state.mode = "ai";
+      }
+    }
     if (state.storiesDataUrl !== loadedStoriesDataUrl) {
       try {
         state.storiesMerged = await loadStoriesData();
@@ -2885,6 +3776,7 @@ async function init() {
 
     setStats();
     renderSectionTabs();
+    renderTimeRangeControl();
     renderModeSwitch();
     renderListSortTools();
     renderCoverageStrip();
@@ -2916,6 +3808,8 @@ async function init() {
     waytoagiListEl.innerHTML = `<div class="waytoagi-error">${waytoagiResult.reason.message}</div>`;
   }
 
+  renderSourceConfig();
+  loadSourceConfigFromLocalServer();
   document.dispatchEvent(new CustomEvent("aiRadar:ready"));
 }
 
@@ -2934,9 +3828,30 @@ siteSelectEl.addEventListener("change", (e) => {
   renderList();
 });
 
+if (timeRangeSelectEl) {
+  timeRangeSelectEl.addEventListener("change", async (e) => {
+    state.timeRangeFilter = e.target.value === "all" ? "all" : "24h";
+    if (state.timeRangeFilter === "all") {
+      try {
+        await loadAllModeData();
+      } catch (err) {
+        state.timeRangeFilter = "24h";
+        renderTimeRangeControl();
+        newsListEl.innerHTML = "";
+        const failed = document.createElement("div");
+        failed.className = "empty";
+        failed.textContent = err.message;
+        newsListEl.appendChild(failed);
+        return;
+      }
+    }
+    rerenderCurrentView();
+  });
+}
+
 if (sectionSelectEl) {
   sectionSelectEl.addEventListener("change", (e) => {
-    state.activeSection = e.target.value || "hot";
+    setActiveSection(e.target.value || "hot");
     rerenderCurrentView();
   });
 }
@@ -3029,6 +3944,62 @@ if (boleTimelineBtnEl) {
     state.boleView = "timeline";
     state.boleExpanded = false;
     renderBolePicks();
+  });
+}
+
+if (sourceConfigFormEl) {
+  sourceConfigFormEl.addEventListener("submit", (event) => {
+    event.preventDefault();
+    upsertSourceConfigRecord(formSourceConfigRecord());
+  });
+}
+
+if (sourceConfigAddBtnEl) {
+  sourceConfigAddBtnEl.addEventListener("click", addSourceConfigRecord);
+}
+
+if (sourceConfigDeleteBtnEl) {
+  sourceConfigDeleteBtnEl.addEventListener("click", deleteSourceConfigRecord);
+}
+
+if (sourceConfigResetBtnEl) {
+  sourceConfigResetBtnEl.addEventListener("click", resetSourceConfigDraft);
+}
+
+if (sourceConfigApplyBtnEl) {
+  sourceConfigApplyBtnEl.addEventListener("click", () => {
+    writeSourceConfigToLocalServer().catch(() => {});
+  });
+}
+
+if (sourceConfigRefreshBtnEl) {
+  sourceConfigRefreshBtnEl.addEventListener("click", refreshNewsDataFromLocalServer);
+}
+
+if (sourceConfigExportBtnEl) {
+  sourceConfigExportBtnEl.addEventListener("click", downloadSourceConfig);
+}
+
+if (sourceConfigCopyBtnEl) {
+  sourceConfigCopyBtnEl.addEventListener("click", copySourceConfig);
+}
+
+if (sourceConfigImportBtnEl) {
+  sourceConfigImportBtnEl.addEventListener("click", () => {
+    importSourceConfigText(sourceConfigJsonEl?.value || "");
+  });
+}
+
+if (sourceConfigFileInputEl) {
+  sourceConfigFileInputEl.addEventListener("change", async (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    try {
+      importSourceConfigText(await file.text());
+      sourceConfigFileInputEl.value = "";
+    } catch (err) {
+      setSourceConfigStatus(`读取文件失败：${err.message}`, "bad");
+    }
   });
 }
 
