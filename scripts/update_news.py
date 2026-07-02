@@ -40,6 +40,20 @@ except ModuleNotFoundError:
     feedparser = None
 
 UTC = timezone.utc
+DROP_QUERY_PARAMS = {
+    "ref",
+    "spm",
+    "fbclid",
+    "gclid",
+    "igshid",
+    "mkt_tok",
+    "mc_cid",
+    "mc_eid",
+    "_hsenc",
+    "_hsmi",
+    "xsec_token",
+    "xsec_source",
+}
 BROWSER_UA = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
@@ -487,18 +501,7 @@ def normalize_url(raw_url: str) -> str:
             lk = k.lower()
             if lk.startswith("utm_"):
                 continue
-            if lk in {
-                "ref",
-                "spm",
-                "fbclid",
-                "gclid",
-                "igshid",
-                "mkt_tok",
-                "mc_cid",
-                "mc_eid",
-                "_hsenc",
-                "_hsmi",
-            }:
+            if lk in DROP_QUERY_PARAMS:
                 continue
             query.append((k, v))
         parsed = parsed._replace(
@@ -3609,6 +3612,7 @@ MEANINGFUL_EN_SIGNAL_RE = re.compile(
 )
 EMAIL_RE = re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b")
 SECRET_LIKE_RE = re.compile(r"\b(sk-(?!hynix\b)[A-Za-z0-9_-]{12,}|(?:api[_-]?key|secret|token)=([^\s&]{6,}))\b", re.I)
+URL_IN_TEXT_RE = re.compile(r"https?://[^\s\"'<>]+")
 BROAD_AI_TERMS = {"agent", "模型", "推理"}
 
 
@@ -3628,6 +3632,7 @@ def redact_public_text(text: str) -> str:
     if not isinstance(text, str) or not text:
         return text
     text = EMAIL_RE.sub("[redacted-email]", text)
+    text = URL_IN_TEXT_RE.sub(lambda match: normalize_url(match.group(0)), text)
     return SECRET_LIKE_RE.sub("[redacted-secret]", text)
 
 

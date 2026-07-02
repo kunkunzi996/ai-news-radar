@@ -3,13 +3,44 @@ from datetime import datetime, timezone
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from scripts.update_news import make_item_id, normalize_url, parse_date_any, parse_opml_subscriptions, parse_relative_time_zh
+from scripts.update_news import (
+    make_item_id,
+    normalize_url,
+    parse_date_any,
+    parse_opml_subscriptions,
+    parse_relative_time_zh,
+    sanitize_public_payload,
+)
 
 
 class UtilsTests(unittest.TestCase):
     def test_normalize_url_removes_tracking(self):
         raw = "https://example.com/path?a=1&utm_source=x&fbclid=abc"
         self.assertEqual(normalize_url(raw), "https://example.com/path?a=1")
+
+    def test_normalize_url_removes_xiaohongshu_session_params(self):
+        raw = (
+            "https://www.xiaohongshu.com/explore/6a441088000000000702c7df"
+            "?xsec_token=secretish&xsec_source=pc_search&keep=1"
+        )
+        self.assertEqual(
+            normalize_url(raw),
+            "https://www.xiaohongshu.com/explore/6a441088000000000702c7df?keep=1",
+        )
+
+    def test_public_payload_sanitizes_url_like_text(self):
+        payload = {
+            "items": [
+                {
+                    "url": "https://www.xiaohongshu.com/explore/abc?xsec_token=secretish&xsec_source=pc_search",
+                    "summary": "镜像 https://www.xiaohongshu.com/explore/abc?xsec_token=secretish",
+                }
+            ]
+        }
+        sanitized = sanitize_public_payload(payload)
+
+        self.assertEqual(sanitized["items"][0]["url"], "https://www.xiaohongshu.com/explore/abc")
+        self.assertEqual(sanitized["items"][0]["summary"], "镜像 https://www.xiaohongshu.com/explore/abc")
 
     def test_make_item_id_stable(self):
         a = make_item_id("site", "src", "Title", "https://a.com?p=1&utm_source=x")

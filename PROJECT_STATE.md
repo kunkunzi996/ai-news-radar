@@ -195,6 +195,7 @@
 - Do not paste Bilibili cookies into chat or commit them. Use local environment variables or GitHub Secrets only.
 - Do not commit `E:\AI-news-reader\MediaCrawler-local-test\chrome-profile` or MediaCrawler login/session output. The radar bridge only needs the generated `creator_contents_*.jsonl` path at runtime.
 - `data/*.json` files are generated runtime data for local preview. They are useful for checking the page, but they are not staged as source-code changes.
+- Local artifact policy is documented in `docs/LOCAL_ARTIFACT_POLICY.md`: keep `data/*.json` local unless reviewed/sanitized, keep `sources.config.json` and private OPML local, ignore preview logs, and delete only one explicit confirmed path at a time.
 - `requirements.txt` has an unstaged local setup change from earlier Windows environment work; it is not part of the Bilibili tracking commit scope right now.
 - `bilibili-account-preview.html`, `server.err.log`, and `server.out.log` are local preview/log artifacts and are not staged.
 - Bilibili APIs, WBI signing behavior, cookie validity, and rate limits can change, so this source should be treated as integration-sensitive.
@@ -218,6 +219,12 @@ $env:BILIBILI_DYNAMIC_MAX_PAGES='20'
 
 ## Next Entry
 
+- 2026-07-03 generated-data sanitization:
+  - `scripts/update_news.py` now treats Xiaohongshu `xsec_token` and `xsec_source` as dropped URL query parameters.
+  - `sanitize_public_payload()` also normalizes URL-looking strings before writing public JSON, so older archive records get a final write-time cleanup.
+  - Added tests in `tests/test_utils.py` for direct URL normalization and nested public-payload sanitization.
+  - Verification passed: `py_compile scripts/update_news.py`, `tests.test_utils`, `tests.test_private_bridge_sources`, and two targeted `tests.test_topic_filter` cases.
+  - Existing dirty `data/*.json` was not regenerated in this step; regenerate before deciding whether to commit generated snapshots.
 - Overall acceptance is complete for Bilibili, Douyin, Xiaohongshu, foundation-sunshine GitHub release subscription, and WeWe RSS `猫笔刀` public-account subscription.
 - Source configuration UI v1 is implemented as a local editor; `scripts/local_server.py` lets the page persist `sources.config.json`, and that file drives the refresh script.
 - User confirmed the source configuration UI, local write, one-click refresh, and AI HOT fix in the in-app browser at `http://127.0.0.1:8080/`.
@@ -227,7 +234,7 @@ $env:BILIBILI_DYNAMIC_MAX_PAGES='20'
 - Remaining local dirty files are intentionally not committed:
   - generated `data/*.json` from local refresh, because the refreshed Xiaohongshu URLs include `xsec_token` parameters.
   - `bilibili-account-preview.html`, `server.err.log`, and `server.out.log` local preview/log artifacts.
-- Next recommended task: decide a safe generated-data policy, such as stripping Xiaohongshu `xsec_token` before committing snapshots, or keeping local subscription data untracked.
+- Generated-data and local-temp policy is now recorded in `docs/LOCAL_ARTIFACT_POLICY.md`; next code work should still avoid committing current `data/*.json` unless the snapshot is reviewed/sanitized first.
 
 ## How To Refresh The All-Source View With Local Douyin Creator JSONL
 

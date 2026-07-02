@@ -35,6 +35,8 @@
 - 浏览器插件自动化本轮两次读取 DOM 超时；最终验收依据是本地 HTTP 静态资源、真实写入接口、真实刷新接口和生成后的 `data/source-status.json`。
 - Git 保存状态：已提交并推送到 `kunkunzi996/ai-news-radar`；`git log` 显示 `a86c493` 同时位于 `HEAD -> master, origin/master, origin/HEAD`。
 - 剩余未提交项：`data/*.json` 生成数据、`bilibili-account-preview.html`、`server.err.log`、`server.out.log`。其中 `data/*.json` 未提交的关键原因是本地刷新后包含 Xiaohongshu `xsec_token` URL 参数。
+- 本地文件策略已补充：见 `docs/LOCAL_ARTIFACT_POLICY.md`；`.gitignore` 已忽略 `bilibili-account-preview.html`、`server.err.log`、`server.out.log`。
+- 2026-07-03 已补生成数据脱敏逻辑：`scripts/update_news.py` 会清理小红书 `xsec_token` / `xsec_source`，公开 JSON 写出前也会兜底清理 URL 字符串；旧的本地 `data/*.json` 需要重新生成后才会变干净。
 - 下一轮必须先读：
   - `PROJECT_STATE.md`
   - `HANDOFF.md`
@@ -155,6 +157,8 @@ $env:WEWE_RSS_FEEDS='猫笔刀:MP_WXS_3198966508'
 - 最新已完成：Bilibili 动态源、MediaCrawler Douyin 本地桥、MediaCrawler Xiaohongshu 本地桥、foundation-sunshine GitHub 版本订阅、WeWe RSS `猫笔刀` 公众号桥接均可在本地页面验收；默认部署输出已收窄为 `tested_creator_sources`。
 - 用户确认：信源配置、本地写入、一键刷新、AI HOT `6/6 源正常` 均已验收成功。
 - 下一步：先决定生成数据和临时文件处理策略；不要直接提交当前 `data/*.json`。
+- 2026-07-02 已记录策略：`data/*.json` 保留本地但不能盲提交；`sources.config.json`、私有 OPML、MediaCrawler JSONL/profile 保留本地或仓库外；临时预览 HTML 和 server 日志加入忽略；删除必须逐个明确确认。
+- 2026-07-03 已实现生成数据脱敏：新生成的公开 JSON 会去掉小红书 `xsec_token` / `xsec_source` 这类临时参数；当前工作区已有的 `data/*.json` 仍是旧刷新结果，提交前应重新生成并审查。
 
 ## 验收状态
 
@@ -191,8 +195,8 @@ $env:WEWE_RSS_FEEDS='猫笔刀:MP_WXS_3198966508'
 
 ## 下一轮建议任务
 
-1. 先处理剩余脏文件策略：生成数据 `data/*.json` 是否需要脱敏、重新生成或保持本地不提交。
-2. 明确 `bilibili-account-preview.html`、`server.err.log`、`server.out.log` 是否保留本地、加入忽略或逐个手动删除。
+1. 如果要提交生成数据，先重新生成 `data/*.json`，确认不再包含 Xiaohongshu `xsec_token` / `xsec_source`，再审查 diff。
+2. 如果要删除 `bilibili-account-preview.html`、`server.err.log`、`server.out.log`，必须让用户逐个确认路径后再一次删一个。
 3. 如果继续开发新功能，先确认当前工作区脏文件不会被误提交。
 4. 暂时不要扩大 `/api/source-config` 或 `/api/refresh` 权限边界。
 
@@ -238,7 +242,7 @@ $env:WEWE_RSS_FEEDS='猫笔刀:MP_WXS_3198966508'
 4. `docs/SOURCE_COVERAGE.md`
 
 本轮建议任务：
-- 处理生成数据 / 临时文件策略，或在确认不处理后继续下一阶段产品功能。
+- 生成数据脱敏逻辑已加入；下一步可选择重新生成并审查 `data/*.json`，或继续保持本地不提交。
 
 禁止：
 - 不要批量删除。

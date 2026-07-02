@@ -34,3 +34,8 @@ data/email-digest.json
 .DS_Store
 .idea/
 .vscode/
+
+# Local preview artifacts
+bilibili-account-preview.html
+server.err.log
+server.out.log

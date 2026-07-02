@@ -204,8 +204,9 @@ baseline, then let the aggregator layer add breadth.
   through `MEDIACRAWLER_XHS_ENABLED=1` and `MEDIACRAWLER_XHS_JSONL`, with
   `MEDIACRAWLER_XIAOHONGSHU_*` aliases for readability. It is disabled by
   default and only reads an exported local JSONL file, so Xiaohongshu login
-  state, `xsec_token`, browser profile data, and crawler output stay outside
-  the public repo. The parsed notes enter the same self-media lane as Bilibili,
+  state, browser profile data, and crawler output stay outside the public repo.
+  Generated public URLs strip `xsec_token` / `xsec_source` style session
+  parameters. The parsed notes enter the same self-media lane as Bilibili,
   TikHub creator/search, and the MediaCrawler Douyin bridge.
 - **AlkaidLab/foundation-sunshine GitHub releases**: supported as a public repo
   version subscription through the GitHub Releases API. It fetches only the
