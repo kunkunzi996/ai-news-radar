@@ -4,9 +4,11 @@
 
 - 日期：2026-07-02
 - 用户选择：方案 1，在当前 `master` 上做静态配置编辑器。
-- 当前阶段：主页面已新增“信源配置”面板；已补齐内置源目录；`sources.config.json` 已可驱动刷新脚本；本地小后台已支持页面直接写入配置文件，并可从页面一键刷新数据。
+- 当前阶段：信源配置面板、本地写入、一键刷新、AI HOT 映射修复均已验收；代码已 commit 并 push 到用户自己的 GitHub 仓库。
 - 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
 - 当前分支：`master`
+- 当前远端：`origin=https://github.com/kunkunzi996/ai-news-radar.git`
+- 最新已推送 commit：`a86c493 feat: add configurable local source dashboard`
 - 本轮实现：
   - `index.html` 增加“信源配置”面板。
   - `assets/app.js` 增加 localStorage 本地草稿、增删改、导入 JSON、导出/复制 `sources.config.json`。
@@ -22,7 +24,7 @@
   - 写文件接口只允许写项目根目录 `sources.config.json`。
   - 不保存 cookie、token、`.env`、微信登录态、QR 登录文件或浏览器 profile。
   - 如果仍用 `python -m http.server`，页面没有写文件接口，也没有一键刷新接口，只能导出/复制兜底。
-- 当前建议：手动验收“修改信源 -> 写入 -> 刷新数据 -> 页面自动重载”的完整链路。
+- 当前建议：新窗口先不要继续改功能；先处理剩余生成数据 / 临时文件的策略，或在确认无需提交它们后直接开始下一阶段产品工作。
 - 手动验收重点：刷新 `http://127.0.0.1:8080/` 后，“信源配置”不应只剩 6 条订阅源，应能看到官方一手源包、精选AI媒体包、Hacker News、TopHub、OPML/RSS、X API、TikHub 等内置源。
 - 本轮已验证：内置浏览器刷新后显示 `4/28 启用`，首批列表项为 `官方一手源包`、`精选AI媒体包`、`AI HOT`、`AI Breakfast`、`AIHubToday`、`Hacker News` 等。
 - 配置生效验收：临时 `sources.config.json` 只启用 `github_foundation_sunshine` 时，刷新脚本输出 `source_scope=configured_sources`、`source_config.active=True`，且 `sites=github_foundation_sunshine_releases`。
@@ -31,6 +33,8 @@
 - AI HOT 映射修复：配置里 `id=aihot` 但 `type=rss` 时，刷新脚本原来没映射到内置 `aihot` 抓取器。现已改为内置源 `id` 优先识别；真实刷新后 `aihot.ok=true`、`item_count=109`，源状态为 `6/6 源正常`。
 - 口径说明：配置面板显示 `7/28 启用`，源状态显示 `6/6 源正常` 是正常的，因为两个 B站账号配置项会合并成一个运行时抓取器 `bilibili_dynamic`。
 - 浏览器插件自动化本轮两次读取 DOM 超时；最终验收依据是本地 HTTP 静态资源、真实写入接口、真实刷新接口和生成后的 `data/source-status.json`。
+- Git 保存状态：已提交并推送到 `kunkunzi996/ai-news-radar`；`git log` 显示 `a86c493` 同时位于 `HEAD -> master, origin/master, origin/HEAD`。
+- 剩余未提交项：`data/*.json` 生成数据、`bilibili-account-preview.html`、`server.err.log`、`server.out.log`。其中 `data/*.json` 未提交的关键原因是本地刷新后包含 Xiaohongshu `xsec_token` URL 参数。
 - 下一轮必须先读：
   - `PROJECT_STATE.md`
   - `HANDOFF.md`
@@ -40,6 +44,7 @@
   - 不要批量删除。
   - 不要提交 Cookie、登录态、`.env`、wewe-rss 数据库、QR 登录文件、浏览器 profile 或私有 token。
   - 不要把所有 dirty 文件一股脑提交。
+  - 不要提交当前 `data/*.json`，除非先确认已经去掉 Xiaohongshu `xsec_token` 等平台临时参数。
   - 不要把 `/api/source-config` 扩展成任意路径写入；它只能写 `sources.config.json`。
   - 不要把 `/api/refresh` 扩展成前端可传任意命令；它只能跑项目内固定刷新命令。
 
@@ -132,8 +137,8 @@ $env:WEWE_RSS_FEEDS='猫笔刀:MP_WXS_3198966508'
 
 ## 本轮未完成
 
-- 还没有 Git commit / push；用户只要求洁癖和交接，没有要求提交。
-- 生成数据是否纳入提交范围未最终确认，尤其 `data/latest-24h.json` 变动很大。
+- 历史说明：本段来自小红书桥接收尾时的旧状态；当前代码已经 commit / push，以上方“当前最新交接”为准。
+- 生成数据仍未纳入提交范围，尤其 `data/latest-24h.json` 变动很大，且本地刷新数据包含 Xiaohongshu `xsec_token` URL 参数。
 - 未清理已有本地临时文件：
   - `bilibili-account-preview.html`
   - `server.err.log`
@@ -142,13 +147,14 @@ $env:WEWE_RSS_FEEDS='猫笔刀:MP_WXS_3198966508'
 
 ## 当前项目状态
 
-- 当前阶段：功能验收通过，项目洁癖收尾完成，准备进入 Git 保存前审查。
+- 当前阶段：功能验收通过，Git 保存和 push 已完成；准备切换窗口继续。
 - 当前分支：`master`
-- 最新 commit：`a549e8d chore: update ai news snapshot`
+- 最新 commit：`a86c493 feat: add configurable local source dashboard`
+- 当前远端：`origin=https://github.com/kunkunzi996/ai-news-radar.git`
 - 本地服务：`http://127.0.0.1:8080/`
 - 最新已完成：Bilibili 动态源、MediaCrawler Douyin 本地桥、MediaCrawler Xiaohongshu 本地桥、foundation-sunshine GitHub 版本订阅、WeWe RSS `猫笔刀` 公众号桥接均可在本地页面验收；默认部署输出已收窄为 `tested_creator_sources`。
-- 用户确认：WeWe RSS `猫笔刀` 在 `http://127.0.0.1:8080/` 验收成功。
-- 下一步：如果用户确认保存，进入 Git 保存流程，精确挑选提交范围。
+- 用户确认：信源配置、本地写入、一键刷新、AI HOT `6/6 源正常` 均已验收成功。
+- 下一步：先决定生成数据和临时文件处理策略；不要直接提交当前 `data/*.json`。
 
 ## 验收状态
 
@@ -171,9 +177,9 @@ $env:WEWE_RSS_FEEDS='猫笔刀:MP_WXS_3198966508'
 ## Git 状态
 
 - 分支：`master...origin/master`
-- commit：未提交本轮小红书桥接与 Handoff 变更。
-- push：未执行。
-- 工作区已有较多历史脏改，下一轮不要误以为全部都是本轮新改。
+- commit：`a86c493 feat: add configurable local source dashboard`
+- push：已推送到 `https://github.com/kunkunzi996/ai-news-radar.git`
+- 工作区仍有未提交生成数据和本地临时文件，下一轮不要误以为这些都是待提交代码。
 - 当前已知 dirty/untracked 包括：
   - Bilibili / Douyin / Xiaohongshu / WeWe RSS 桥接相关代码和文档
   - `data/*.json` 生成数据
@@ -185,10 +191,10 @@ $env:WEWE_RSS_FEEDS='猫笔刀:MP_WXS_3198966508'
 
 ## 下一轮建议任务
 
-1. 先做 Git 保存前审查，决定提交范围。
-2. 推荐提交代码、测试、README、SOURCE_COVERAGE、PROJECT_STATE、HANDOFF，以及必要的 workflow 变更。
-3. 生成数据 `data/*.json` 是否提交需要用户确认，因为体积和 diff 很大。
-4. 暂时不要继续开发新功能；当前最干净的下一步是保存本轮已验收成果。
+1. 先处理剩余脏文件策略：生成数据 `data/*.json` 是否需要脱敏、重新生成或保持本地不提交。
+2. 明确 `bilibili-account-preview.html`、`server.err.log`、`server.out.log` 是否保留本地、加入忽略或逐个手动删除。
+3. 如果继续开发新功能，先确认当前工作区脏文件不会被误提交。
+4. 暂时不要扩大 `/api/source-config` 或 `/api/refresh` 权限边界。
 
 ## 下一轮建议调用
 
@@ -232,11 +238,12 @@ $env:WEWE_RSS_FEEDS='猫笔刀:MP_WXS_3198966508'
 4. `docs/SOURCE_COVERAGE.md`
 
 本轮建议任务：
-- 做 Git 保存前审查，列出“建议提交 / 暂不提交 / 需要用户确认”的文件清单。
+- 处理生成数据 / 临时文件策略，或在确认不处理后继续下一阶段产品功能。
 
 禁止：
 - 不要批量删除。
 - 不要提交 Cookie、登录态或 MediaCrawler profile。
+- 不要直接提交当前 `data/*.json`；里面可能包含 Xiaohongshu `xsec_token` URL 参数。
 - 不要重构主页面或采集脚本。
 - 不要把所有 dirty 文件一股脑提交。
 

@@ -220,11 +220,14 @@ $env:BILIBILI_DYNAMIC_MAX_PAGES='20'
 
 - Overall acceptance is complete for Bilibili, Douyin, Xiaohongshu, foundation-sunshine GitHub release subscription, and WeWe RSS `猫笔刀` public-account subscription.
 - Source configuration UI v1 is implemented as a local editor; `scripts/local_server.py` lets the page persist `sources.config.json`, and that file drives the refresh script.
-- Next window should read `HANDOFF.md` first.
-- User has confirmed WeWe RSS page acceptance succeeded.
-- Recommended next clean action: manually accept the source configuration panel, then do Git save preflight and split files into `建议提交 / 暂不提交 / 需要确认`.
-- Git save is still pending; do not mix generated data, private sidecar files, and source-code commits without a scope review.
-- Next product step after this is optional one-click refresh after writing config; do not add it unless the user wants the page to also run `scripts/update_news.py`.
+- User confirmed the source configuration UI, local write, one-click refresh, and AI HOT fix in the in-app browser at `http://127.0.0.1:8080/`.
+- Git save is complete: commit `a86c493 feat: add configurable local source dashboard` is pushed to `https://github.com/kunkunzi996/ai-news-radar.git` on `master`.
+- Current `origin` is `https://github.com/kunkunzi996/ai-news-radar.git`.
+- Next window should read `HANDOFF.md` first, then inspect `git status --short --branch`.
+- Remaining local dirty files are intentionally not committed:
+  - generated `data/*.json` from local refresh, because the refreshed Xiaohongshu URLs include `xsec_token` parameters.
+  - `bilibili-account-preview.html`, `server.err.log`, and `server.out.log` local preview/log artifacts.
+- Next recommended task: decide a safe generated-data policy, such as stripping Xiaohongshu `xsec_token` before committing snapshots, or keeping local subscription data untracked.
 
 ## How To Refresh The All-Source View With Local Douyin Creator JSONL
 
