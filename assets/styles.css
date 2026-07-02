@@ -890,26 +890,80 @@ summary:focus-visible {
 }
 
 .source-config-wrap {
-  margin-top: 14px;
-  border: 1px solid rgba(23, 23, 23, 0.1);
+  margin-top: 12px;
+  border: 1px solid rgba(23, 23, 23, 0.08);
   border-radius: var(--radius);
-  background: var(--surface);
+  background: rgba(251, 250, 247, 0.66);
   overflow: hidden;
+}
+
+.source-config-wrap > summary {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding: 11px 14px 11px 40px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 700;
+  list-style: none;
+  cursor: pointer;
+}
+
+.source-config-wrap:not([open]) > summary {
+  color: var(--muted);
+  font-weight: 650;
+}
+
+.source-config-wrap > summary::-webkit-details-marker {
+  display: none;
+}
+
+.source-config-wrap > summary::before {
+  content: "+";
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.source-config-wrap[open] > summary::before {
+  content: "-";
+}
+
+.source-config-wrap > summary > span:first-child {
+  min-width: 0;
+}
+
+.source-config-summary {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.source-config-content {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--line-soft);
+  background: var(--surface);
 }
 
 .source-config-head {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 12px;
-  border-bottom: 1px solid var(--line-soft);
-  padding: 14px 16px;
-  background: var(--surface-soft);
-}
-
-.source-config-head h2 {
-  margin: 0;
-  font-size: 20px;
+  padding: 12px 14px 0;
 }
 
 .source-config-tools,
@@ -924,12 +978,6 @@ summary:focus-visible {
 
 .source-config-tools {
   justify-content: flex-end;
-}
-
-#sourceConfigSummary {
-  color: var(--muted);
-  font-size: 12px;
-  white-space: nowrap;
 }
 
 .tool-btn {

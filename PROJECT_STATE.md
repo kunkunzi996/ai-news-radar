@@ -510,3 +510,20 @@ $env:MEDIACRAWLER_XHS_SOURCE_NAME='陈抱一'
 - Current warning:
   - This removes records from local source config only. It does not delete code, files, or built-in fetcher support.
   - To restore deleted built-in sources, use `恢复当前`, import a config containing them, or add them manually again.
+
+## 2026-07-02 Source Config Collapsible Panel UI
+
+- Task type: UI small change.
+- User request: make the source config area less visually heavy, matching the `高级筛选` click-to-open style.
+- Fix applied:
+  - `index.html` changed the source config section into a `<details>` panel.
+  - Default collapsed row now shows only `信源配置` plus the enabled/source count.
+  - Clicking the row expands the existing write/refresh/export/copy tools, source list, form, and JSON editor.
+  - `assets/styles.css` reuses the visual language of the advanced filter row: compact bordered row, plus/minus circle, muted collapsed text, and content border when open.
+  - `index.html` app script cache-buster updated to `source-config-collapsible-0702a`.
+- Verification:
+  - Browser at `http://127.0.0.1:8080/` loaded `assets/app.js?v=source-config-collapsible-0702a`.
+  - Default state is collapsed: panel height about one row and summary text `信源配置 9/16 启用`.
+  - Clicking the row opens the panel; browser check confirmed `open=true`, 16 config rows, and tools `写入 刷新数据 导出 复制`.
+- Current warning:
+  - This is a presentation change only. It does not change how writing, refreshing, deleting, or source fetching works.

@@ -149,14 +149,14 @@
         </div>
       </details>
 
-      <section class="source-config-wrap" aria-labelledby="sourceConfigTitle">
-        <div class="source-config-head">
-          <div>
-            <p class="section-eyebrow">SOURCE CONFIG</p>
-            <h2 id="sourceConfigTitle">信源配置</h2>
-          </div>
+      <details class="source-config-wrap">
+        <summary>
+          <span>信源配置</span>
+          <span class="source-config-summary" id="sourceConfigSummary">本地草稿未加载</span>
+        </summary>
+        <div class="source-config-content">
+          <div class="source-config-head">
           <div class="source-config-tools">
-            <span id="sourceConfigSummary">本地草稿未加载</span>
             <button id="sourceConfigApplyBtn" class="tool-btn" type="button">写入</button>
             <button id="sourceConfigRefreshBtn" class="tool-btn" type="button">刷新数据</button>
             <button id="sourceConfigExportBtn" class="tool-btn" type="button">导出</button>
@@ -234,7 +234,8 @@
             <div id="sourceConfigStatus" class="source-config-status">本地草稿会优先尝试读取 sources.config.json。</div>
           </section>
         </div>
-      </section>
+        </div>
+      </details>
 
       <section class="bole-picks-wrap" aria-label="今日 Top 3" id="bolePicksWrap">
         <div class="bole-picks-head">
@@ -301,6 +302,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous" defer></script>
     <script src="./assets/motion.js?v=ui-adjustment-0620a" defer></script>
-    <script src="./assets/app.js?v=source-config-delete-tombstone-0702a" defer></script>
+    <script src="./assets/app.js?v=source-config-collapsible-0702a" defer></script>
   </body>
 </html>
