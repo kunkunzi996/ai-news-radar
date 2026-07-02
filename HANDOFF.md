@@ -543,3 +543,65 @@ $env:WEWE_RSS_FEEDS='猫笔刀:MP_WXS_3198966508'
    - 或 `http://127.0.0.1:4000/feeds/<feed_id>.rss`
 6. 回报最近 2 条文章标题、发布时间和 feed URL。
 7. 只有 feed 验收通过后，才回到 AI News Radar 增加可选 `WEWE_RSS_*` 桥接。
+
+## 2026-07-02 追加：油管 OPML 订阅缺失修复
+
+- 用户反馈：最新部署的本地版本缺失油管博主订阅。
+- 根因：
+  - `feeds/follow.opml` 没丢，里面仍有 `小岛大浪吹-非正经政经频道` 的 YouTube RSS。
+  - `assets/app.js` 也没丢 YouTube 订阅合并逻辑。
+  - 真正问题是本地 `sources.config.json` 里 `opmlrss` 被设为 `enabled: false`，所以本地刷新根本没抓 OPML/RSS。
+- 已修复：
+  - 已把本地 `sources.config.json` 中 `opmlrss` 改为启用。
+  - 注意：`sources.config.json` 是本地配置文件，不提交，`git status` 不会显示它。
+- 已验证：
+  - 真实刷新命令已跑通：`.\.venv\Scripts\python.exe scripts\update_news.py --source-config sources.config.json --output-dir data --window-hours 24 --archive-days 3650 --all-time`
+  - `data/source-status.json` 显示 `rss_opml.enabled=true`、`ok_feeds=1/1`、`opmlrss.item_count=15`。
+  - `data/latest-24h-all.json` 的 `creator_items_all` 中有 15 条 `opmlrss` YouTube 订阅。
+  - `http://127.0.0.1:8080/data/latest-24h-all.json` 也能读到同样 15 条。
+  - 样例标题：`【小岛浪吹】从阿嫲的情书到印加坡：一个华人多数国家的身份焦虑`。
+  - `py_compile`、`node --check assets\app.js`、2 个相关单测均通过。
+- 下一轮注意：
+  - 如果页面又缺 YouTube，先查 `sources.config.json` 里 `OPML/RSS 订阅包` 是否启用，再看 `data/source-status.json.rss_opml`。
+  - 当前刷新造成 `data/*.json` 继续脏，不要直接全部提交。
+
+## 2026-07-02 追加：信源配置面板实时生效修复
+
+- 用户反馈：信源配置界面里的修改目前不会生效。
+- 根因：
+  - 原交互需要先点 `保存草稿`，再点 `写入` 或 `刷新数据`。
+  - 如果用户只改勾选/字段，左侧列表、启用数和 JSON 预览不会马上变，看起来就像“没生效”。
+- 已修复：
+  - `assets/app.js` 增加表单 `input/change` 实时同步本地草稿。
+  - 修改字段或勾选启用后，会马上更新左侧列表、`8/28 启用` 这类摘要、JSON 预览和 localStorage 草稿。
+  - `index.html` 的脚本版本号已改为 `source-config-live-draft-0702a`，避免浏览器继续用旧 JS。
+- 已验证：
+  - `node --check assets\app.js` 通过。
+  - `.\.venv\Scripts\python.exe -m unittest tests.test_local_server tests.test_topic_filter.TopicFilterTests.test_apply_source_config_runtime_sets_fetcher_env_without_secrets` 通过，5 tests OK。
+  - 浏览器在 `http://127.0.0.1:8080/` 已加载新脚本。
+  - 临时勾选 `官方一手源包` 后，摘要从 `8/28 启用` 立即变 `9/28 启用`，JSON 中 `official_ai_sources.enabled=true`；随后已取消勾选恢复为 `8/28 启用`。
+- 注意：
+  - 这只是让“当前页面草稿”实时更新。
+  - 真正写入文件仍要点 `写入`。
+  - 真正重新生成新闻数据仍要点 `刷新数据`。
+
+## 2026-07-02 追加：删除内置信源后不再复活
+
+- 用户反馈：没用的源删掉后，点 `保存草稿`、`写入`、`刷新数据`，已经删除的源又会出现。
+- 根因：
+  - `mergeSourceConfigWithSeed()` 每次读配置都会把内置种子源补齐。
+  - 它原本是为了补新版本新增源，但误伤了用户主动删除的内置源。
+- 已修复：
+  - `assets/app.js` 新增 `deleted_source_ids` 墓碑字段。
+  - 删除内置源时会记录它的 id，后续读取、写入、刷新时不会再自动补回来。
+  - 对当前版本的旧配置做兼容：如果配置里已经少了某些内置源，会自动把这些缺失项记为已删除。
+  - `index.html` 脚本版本号已更新为 `source-config-delete-tombstone-0702a`。
+- 已验证：
+  - `node --check assets\app.js` 通过。
+  - `.\.venv\Scripts\python.exe -m unittest tests.test_local_server tests.test_topic_filter.TopicFilterTests.test_apply_source_config_runtime_sets_fetcher_env_without_secrets` 通过，5 tests OK。
+  - 浏览器刷新后，已删除的 `官方一手源包`、`精选AI媒体包` 没复活。
+  - 实测删除 `AI Breakfast`，点 `写入` 后刷新页面没有复活。
+  - 再点 `刷新数据` 完整刷新后仍没有复活；当前页面显示 `9/26 启用`。
+- 注意：
+  - 这是删配置项，不是删除代码或文件。
+  - 想恢复被删内置源，可以点 `恢复当前`，或导入/新增对应配置。

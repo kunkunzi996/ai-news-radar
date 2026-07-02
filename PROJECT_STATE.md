@@ -446,3 +446,67 @@ $env:MEDIACRAWLER_XHS_SOURCE_NAME='陈抱一'
   - No AI News Radar `WEWE_RSS_*` bridge has been added.
   - No files were deleted.
   - No Git commit or push was performed.
+
+## 2026-07-02 YouTube OPML Subscription Local Config Fix
+
+- Task type: Bug fix.
+- User symptom: latest local deployed version did not show the YouTube creator subscription.
+- First-principles root cause:
+  - `feeds/follow.opml` still existed and still contained the YouTube channel `UCYPT3wl0MgbOz63ho166KOw`.
+  - Frontend subscription logic still recognized OPML YouTube items for `我的订阅`.
+  - The break was in local runtime config: project-root `sources.config.json` had the `opmlrss` source disabled, so the one-click/local refresh did not run OPML/RSS at all.
+- Fix applied:
+  - Enabled the local `opmlrss` row in `sources.config.json`.
+  - This file is local/private config and is ignored by Git; do not expect it to appear in `git status`.
+- Verification:
+  - Ran `.\.venv\Scripts\python.exe scripts\update_news.py --source-config sources.config.json --output-dir data --window-hours 24 --archive-days 3650 --all-time`.
+  - `data/source-status.json`: `source_scope=configured_sources`, `rss_opml.enabled=true`, `ok_feeds=1`, `effective_feed_total=1`, `opmlrss.item_count=15`.
+  - `data/latest-24h-all.json`: `creator_items_all` contains 15 `opmlrss` YouTube items.
+  - `http://127.0.0.1:8080/data/latest-24h-all.json` also returns 15 `opmlrss` creator items.
+  - Latest visible sample: `小岛大浪吹-非正经政经频道` / `【小岛浪吹】从阿嫲的情书到印加坡：一个华人多数国家的身份焦虑`.
+  - `.\.venv\Scripts\python.exe -m py_compile scripts\update_news.py scripts\local_server.py` passed.
+  - `node --check assets\app.js` passed.
+  - Targeted unittest for source config OPML runtime and YouTube creator items passed.
+- Current warning:
+  - `data/*.json` changed because of the local refresh. They remain generated runtime data; do not commit them blindly, especially while Xiaohongshu URLs may contain platform parameters.
+
+## 2026-07-02 Source Config Live Draft Fix
+
+- Task type: Bug fix.
+- User symptom: source config panel edits looked ineffective.
+- Root cause:
+  - The panel originally required a separate `保存草稿` step before the left list, enabled count, JSON preview, `写入`, or `刷新数据` could reliably reflect the latest visible form edits.
+  - For a non-programmer user, changing a checkbox or field and then seeing stale JSON/list state makes the UI feel like the change did not take effect.
+- Fix applied:
+  - `assets/app.js` now syncs source-config form `input` and `change` events directly into the local draft.
+  - Enabled count, left source list, JSON preview, and localStorage draft now update immediately while editing.
+  - `index.html` app script cache-buster was updated to `source-config-live-draft-0702a`.
+- Verification:
+  - `node --check assets\app.js` passed.
+  - `.\.venv\Scripts\python.exe -m unittest tests.test_local_server tests.test_topic_filter.TopicFilterTests.test_apply_source_config_runtime_sets_fetcher_env_without_secrets` passed: 5 tests OK.
+  - Browser at `http://127.0.0.1:8080/` loaded `assets/app.js?v=source-config-live-draft-0702a`.
+  - In-browser check: toggling `官方一手源包` from off to on immediately changed summary from `8/28 启用` to `9/28 启用` and JSON `official_ai_sources.enabled=true`; toggling back restored `8/28 启用`.
+- Current warning:
+  - The UI still requires `写入` to persist to `sources.config.json` and `刷新数据` to regenerate `data/*.json`. The fix makes the visible draft live, not an automatic background refresh.
+
+## 2026-07-02 Source Config Deleted Built-in Sources Fix
+
+- Task type: Bug fix.
+- User symptom: unused built-in sources deleted from the source config panel reappeared after `保存草稿` -> `写入` -> `刷新数据`.
+- Root cause:
+  - `mergeSourceConfigWithSeed()` always merged the built-in seed source catalog back into loaded config.
+  - That behavior was useful for adding newly shipped built-in sources, but it could not distinguish "missing because newly added" from "missing because the user deliberately deleted it".
+- Fix applied:
+  - `assets/app.js` now stores deleted built-in source ids in `deleted_source_ids`.
+  - Seed merge skips ids listed in `deleted_source_ids`, so user-deleted built-in sources stay deleted after write, refresh, and reload.
+  - Existing current-version configs that already omitted seed sources are backfilled into `deleted_source_ids` on load.
+  - `index.html` app script cache-buster updated to `source-config-delete-tombstone-0702a`.
+- Verification:
+  - `node --check assets\app.js` passed.
+  - `.\.venv\Scripts\python.exe -m unittest tests.test_local_server tests.test_topic_filter.TopicFilterTests.test_apply_source_config_runtime_sets_fetcher_env_without_secrets` passed: 5 tests OK.
+  - Browser loaded `assets/app.js?v=source-config-delete-tombstone-0702a`.
+  - Existing deleted sources `official_ai_sources` and `curated_ai_media_sources` were not re-added; they appeared in `deleted_source_ids`.
+  - Browser test deleted `AI Breakfast`, clicked `写入`, reloaded, then clicked `刷新数据`; after reload it still showed 26 sources and `deleted_source_ids=[official_ai_sources, curated_ai_media_sources, aibreakfast]`.
+- Current warning:
+  - This removes records from local source config only. It does not delete code, files, or built-in fetcher support.
+  - To restore deleted built-in sources, use `恢复当前`, import a config containing them, or add them manually again.

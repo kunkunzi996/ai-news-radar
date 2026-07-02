@@ -492,6 +492,7 @@ function freshSourceConfig() {
     mode: "refresh-script-config",
     how_to_apply: "保存为项目根目录 sources.config.json 后运行 scripts/update_news.py；也可用 --source-config 指定路径。",
     updated_at: new Date().toISOString(),
+    deleted_source_ids: [],
     sources: sourceConfigSeedSources(),
   };
 }
@@ -517,6 +518,9 @@ function normalizeSourceConfig(payload) {
     mode: "refresh-script-config",
     how_to_apply: String(payload?.how_to_apply || "保存为项目根目录 sources.config.json 后运行 scripts/update_news.py；也可用 --source-config 指定路径。"),
     updated_at: new Date().toISOString(),
+    deleted_source_ids: Array.isArray(payload?.deleted_source_ids)
+      ? Array.from(new Set(payload.deleted_source_ids.map((id) => String(id || "").trim()).filter(Boolean)))
+      : [],
     sources,
   };
 }
@@ -525,14 +529,25 @@ function mergeSourceConfigWithSeed(config) {
   const normalized = normalizeSourceConfig(config);
   const seedSources = sourceConfigSeedSources();
   const seedIds = new Set(seedSources.map((source) => source.id));
+  const hadDeletedIds = Array.isArray(config?.deleted_source_ids);
+  const deletedSeedIds = new Set(normalized.deleted_source_ids.filter((id) => seedIds.has(id)));
   const existingById = new Map(normalized.sources.map((source) => [source.id, source]));
-  const seedOrdered = seedSources.map((seed) => existingById.get(seed.id) || seed);
+  if (!hadDeletedIds && normalized.catalog_version === SOURCE_CONFIG_CATALOG_VERSION) {
+    seedSources.forEach((seed) => {
+      if (!existingById.has(seed.id)) deletedSeedIds.add(seed.id);
+    });
+  }
+  const seedOrdered = seedSources
+    .filter((seed) => existingById.has(seed.id) || !deletedSeedIds.has(seed.id))
+    .map((seed) => existingById.get(seed.id) || seed);
   const customSources = normalized.sources.filter((source) => !seedIds.has(source.id));
   const mergedSources = [...seedOrdered, ...customSources];
   const changed =
     normalized.catalog_version !== SOURCE_CONFIG_CATALOG_VERSION ||
+    normalized.deleted_source_ids.length !== deletedSeedIds.size ||
     mergedSources.length !== normalized.sources.length ||
     mergedSources.some((source, index) => source.id !== normalized.sources[index]?.id);
+  normalized.deleted_source_ids = Array.from(deletedSeedIds);
   normalized.catalog_version = SOURCE_CONFIG_CATALOG_VERSION;
   normalized.sources = mergedSources;
   if (changed) normalized.updated_at = new Date().toISOString();
@@ -830,6 +845,28 @@ function saveSourceConfigRecordToState(record, message = "本地草稿已保存"
   return true;
 }
 
+function syncSourceConfigFormDraft() {
+  if (!sourceConfigFormEl || !state.sourceConfigSelectedId) return;
+  const record = formSourceConfigRecord();
+  if (!record.name) return;
+  if (!state.sourceConfig) state.sourceConfig = freshSourceConfig();
+  const sources = state.sourceConfig.sources || [];
+  const index = sources.findIndex((source) => source.id === record.id);
+  if (index >= 0) {
+    sources[index] = record;
+  } else {
+    sources.push(record);
+  }
+  state.sourceConfig.sources = sources;
+  state.sourceConfigSelectedId = record.id;
+  state.sourceConfig.updated_at = new Date().toISOString();
+  window.localStorage.setItem(SOURCE_CONFIG_STORAGE_KEY, JSON.stringify(state.sourceConfig, null, 2));
+  renderSourceConfigSummary();
+  renderSourceConfigList();
+  syncSourceConfigJson();
+  setSourceConfigStatus("草稿已更新，点“写入”或“刷新数据”后生效", "warn");
+}
+
 function addSourceConfigRecord() {
   if (!state.sourceConfig) state.sourceConfig = freshSourceConfig();
   const id = sourceConfigIdFromName("new_source");
@@ -852,6 +889,12 @@ function addSourceConfigRecord() {
 
 function deleteSourceConfigRecord() {
   if (!state.sourceConfigSelectedId || !state.sourceConfig) return;
+  const seedIds = new Set(sourceConfigSeedSources().map((source) => source.id));
+  if (seedIds.has(state.sourceConfigSelectedId)) {
+    const deleted = new Set(state.sourceConfig.deleted_source_ids || []);
+    deleted.add(state.sourceConfigSelectedId);
+    state.sourceConfig.deleted_source_ids = Array.from(deleted);
+  }
   state.sourceConfig.sources = (state.sourceConfig.sources || []).filter((source) => source.id !== state.sourceConfigSelectedId);
   state.sourceConfigSelectedId = state.sourceConfig.sources[0]?.id || "";
   saveSourceConfigDraft("已从本地草稿删除");
@@ -3952,6 +3995,8 @@ if (sourceConfigFormEl) {
     event.preventDefault();
     upsertSourceConfigRecord(formSourceConfigRecord());
   });
+  sourceConfigFormEl.addEventListener("input", syncSourceConfigFormDraft);
+  sourceConfigFormEl.addEventListener("change", syncSourceConfigFormDraft);
 }
 
 if (sourceConfigAddBtnEl) {
