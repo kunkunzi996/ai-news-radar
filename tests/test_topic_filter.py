@@ -664,18 +664,11 @@ class TopicFilterTests(unittest.TestCase):
         config = {
             "sources": [
                 {
-                    "id": "bilibili_505301413",
+                    "id": "bilibili_dynamic_sources",
                     "type": "bilibili_dynamic",
                     "enabled": True,
-                    "target": "Koji杨远骋at十字路口",
-                    "locator": "505301413",
-                },
-                {
-                    "id": "bilibili_316183842",
-                    "type": "bilibili_dynamic",
-                    "enabled": True,
-                    "target": "技术爬爬虾",
-                    "locator": "316183842",
+                    "target": "Koji杨远骋at十字路口,技术爬爬虾",
+                    "locator": "505301413,316183842",
                 },
                 {
                     "id": "wewe_rss_maobidao",

@@ -527,3 +527,20 @@ $env:MEDIACRAWLER_XHS_SOURCE_NAME='陈抱一'
   - Clicking the row opens the panel; browser check confirmed `open=true`, 16 config rows, and tools `写入 刷新数据 导出 复制`.
 - Current warning:
   - This is a presentation change only. It does not change how writing, refreshing, deleting, or source fetching works.
+
+## 2026-07-02 Source Config Channel Merge For Bilibili
+
+- Task type: Small feature / config UI cleanup.
+- User request: multiple Bilibili UP hosts should be represented as one Bilibili channel source, because the same channel may track many creators later.
+- Fix applied:
+  - `assets/app.js` seed config now uses one `bilibili_dynamic_sources` record instead of separate Bilibili records per UP host.
+  - Existing local configs with legacy `bilibili_*` rows are automatically merged into that one record on load.
+  - The merged record stores UID values in `locator` as comma-separated values and UP names in `target` as comma-separated values.
+  - `index.html` app script cache-buster updated to `source-config-channel-merge-0702a`.
+  - `tests/test_topic_filter.py` now verifies the merged Bilibili config still sets runtime env correctly.
+- Verification:
+  - Browser at `http://127.0.0.1:8080/` showed only one `B站动态` row in the source config list.
+  - JSON contained one `bilibili_dynamic_sources` record with `locator=505301413,316183842` and `target=Koji杨远骋at十字路口,技术爬爬虾`.
+  - Clicking the row showed the same merged values in the form.
+- Current warning:
+  - This merge is implemented for Bilibili first. Other same-channel sources such as Douyin/Xiaohongshu can be grouped in a follow-up using the same pattern.

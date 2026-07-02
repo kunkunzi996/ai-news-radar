@@ -406,26 +406,15 @@ function sourceConfigSeedSources() {
       notes: "高级邮件源；默认停用。",
     },
     {
-      id: "bilibili_505301413",
-      name: "Koji杨远骋at十字路口",
+      id: "bilibili_dynamic_sources",
+      name: "B站动态",
       type: "bilibili_dynamic",
       enabled: true,
       channel: "B站动态",
-      target: "Koji杨远骋at十字路口",
-      locator: "505301413",
+      target: "Koji杨远骋at十字路口,技术爬爬虾",
+      locator: "505301413,316183842",
       env: "BILIBILI_DYNAMIC_UIDS / BILIBILI_DYNAMIC_SOURCE_NAMES",
-      notes: "需要可用 B站 cookie 才能走完整动态；无 cookie 时尝试公开 opus fallback。",
-    },
-    {
-      id: "bilibili_316183842",
-      name: "技术爬爬虾",
-      type: "bilibili_dynamic",
-      enabled: true,
-      channel: "B站动态",
-      target: "技术爬爬虾",
-      locator: "316183842",
-      env: "BILIBILI_DYNAMIC_UIDS / BILIBILI_DYNAMIC_SOURCE_NAMES",
-      notes: "与其他 B站 UID 逗号分隔配置。",
+      notes: "同一渠道统一维护；UID 和名称用英文逗号分隔，可继续追加 UP 主。",
     },
     {
       id: "mediacrawler_douyin_simon",
@@ -525,8 +514,62 @@ function normalizeSourceConfig(payload) {
   };
 }
 
+function splitSourceConfigList(value) {
+  return String(value || "")
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function uniqueSourceConfigList(values) {
+  return Array.from(new Set(values.filter(Boolean)));
+}
+
+function consolidateBilibiliSourceRecords(config) {
+  const sources = Array.isArray(config.sources) ? config.sources : [];
+  const bilibiliRecords = sources.filter((source) => (
+    source.type === "bilibili_dynamic" ||
+    source.id === "bilibili_dynamic_sources" ||
+    source.id.startsWith("bilibili_")
+  ));
+  if (bilibiliRecords.length <= 1 && bilibiliRecords[0]?.id === "bilibili_dynamic_sources") {
+    return { config, changed: false };
+  }
+  if (!bilibiliRecords.length) return { config, changed: false };
+
+  const locators = uniqueSourceConfigList(bilibiliRecords.flatMap((source) => splitSourceConfigList(source.locator)));
+  const targets = uniqueSourceConfigList(bilibiliRecords.flatMap((source) => (
+    splitSourceConfigList(source.target).length
+      ? splitSourceConfigList(source.target)
+      : splitSourceConfigList(source.name)
+  )));
+  const firstIndex = sources.findIndex((source) => bilibiliRecords.some((record) => record.id === source.id));
+  const merged = {
+    id: "bilibili_dynamic_sources",
+    name: "B站动态",
+    type: "bilibili_dynamic",
+    enabled: bilibiliRecords.some((source) => source.enabled !== false),
+    channel: "B站动态",
+    target: targets.join(","),
+    locator: locators.join(","),
+    env: "BILIBILI_DYNAMIC_UIDS / BILIBILI_DYNAMIC_SOURCE_NAMES",
+    notes: "同一渠道统一维护；UID 和名称用英文逗号分隔，可继续追加 UP 主。",
+  };
+  const withoutBilibili = sources.filter((source) => !bilibiliRecords.some((record) => record.id === source.id));
+  withoutBilibili.splice(Math.max(0, firstIndex), 0, merged);
+  return {
+    config: {
+      ...config,
+      sources: withoutBilibili,
+      updated_at: new Date().toISOString(),
+    },
+    changed: true,
+  };
+}
+
 function mergeSourceConfigWithSeed(config) {
-  const normalized = normalizeSourceConfig(config);
+  const normalizedBase = normalizeSourceConfig(config);
+  const { config: normalized, changed: consolidated } = consolidateBilibiliSourceRecords(normalizedBase);
   const seedSources = sourceConfigSeedSources();
   const seedIds = new Set(seedSources.map((source) => source.id));
   const hadDeletedIds = Array.isArray(config?.deleted_source_ids);
@@ -543,6 +586,7 @@ function mergeSourceConfigWithSeed(config) {
   const customSources = normalized.sources.filter((source) => !seedIds.has(source.id));
   const mergedSources = [...seedOrdered, ...customSources];
   const changed =
+    consolidated ||
     normalized.catalog_version !== SOURCE_CONFIG_CATALOG_VERSION ||
     normalized.deleted_source_ids.length !== deletedSeedIds.size ||
     mergedSources.length !== normalized.sources.length ||
