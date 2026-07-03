@@ -39,6 +39,8 @@ const state = {
   sourceConfig: null,
   sourceConfigSelectedId: "",
   sourceConfigFilter: "all",
+  subscriptionPlatform: "bilibili",
+  youtubeSubscriptions: [],
   localOpsStatus: null,
   localOpsPollTimer: null,
 };
@@ -110,6 +112,18 @@ const localOpsStatusEl = document.getElementById("localOpsStatus");
 const localOpsSummaryEl = document.getElementById("localOpsSummary");
 const localOpsCollectorsEl = document.getElementById("localOpsCollectors");
 const localOpsIssuesEl = document.getElementById("localOpsIssues");
+const subscriptionManagerStatusEl = document.getElementById("subscriptionManagerStatus");
+const subscriptionPlatformTabsEl = document.getElementById("subscriptionPlatformTabs");
+const subscriptionMembersEl = document.getElementById("subscriptionMembers");
+const subscriptionMemberFormEl = document.getElementById("subscriptionMemberForm");
+const subscriptionMemberNameEl = document.getElementById("subscriptionMemberName");
+const subscriptionMemberLocatorEl = document.getElementById("subscriptionMemberLocator");
+const subscriptionMemberHomeUrlEl = document.getElementById("subscriptionMemberHomeUrl");
+const subscriptionHomeUrlWrapEl = document.getElementById("subscriptionHomeUrlWrap");
+const subscriptionNameLabelEl = document.getElementById("subscriptionNameLabel");
+const subscriptionLocatorLabelEl = document.getElementById("subscriptionLocatorLabel");
+const subscriptionMemberSubmitBtnEl = document.getElementById("subscriptionMemberSubmitBtn");
+const subscriptionMemberClearBtnEl = document.getElementById("subscriptionMemberClearBtn");
 
 const SOURCE_KINDS = {
   official_ai: { label: "官方", tone: "official" },
@@ -182,6 +196,25 @@ const SOURCE_CONFIG_FILTERS = [
   { id: "bilibili", label: "B站" },
   { id: "rss", label: "RSS" },
   { id: "github", label: "GitHub" },
+];
+
+const SUBSCRIPTION_PLATFORMS = [
+  {
+    id: "bilibili",
+    label: "B站",
+    nameLabel: "UP主名称",
+    locatorLabel: "B站 UID",
+    locatorPlaceholder: "例如：316183842",
+    homeUrl: false,
+  },
+  {
+    id: "youtube",
+    label: "油管",
+    nameLabel: "频道名称",
+    locatorLabel: "YouTube channel_id",
+    locatorPlaceholder: "例如：UCxxxxxxxxxxxxxxxxxxxxxx",
+    homeUrl: true,
+  },
 ];
 
 function sourceConfigSeedSources() {
@@ -932,6 +965,297 @@ function syncSourceConfigJson() {
   return sourceConfigJsonText();
 }
 
+function setSubscriptionManagerStatus(message, tone = "") {
+  if (!subscriptionManagerStatusEl) return;
+  subscriptionManagerStatusEl.textContent = message || "";
+  subscriptionManagerStatusEl.className = tone || "";
+}
+
+function subscriptionPlatformDef(platformId = state.subscriptionPlatform) {
+  return SUBSCRIPTION_PLATFORMS.find((item) => item.id === platformId) || SUBSCRIPTION_PLATFORMS[0];
+}
+
+function youtubeFeedUrl(channelId) {
+  const clean = String(channelId || "").trim();
+  return clean ? `https://www.youtube.com/feeds/videos.xml?channel_id=${clean}` : "";
+}
+
+function youtubeChannelIdFromFeedUrl(url) {
+  try {
+    const parsed = new URL(String(url || "").trim());
+    return parsed.searchParams.get("channel_id") || "";
+  } catch {
+    return "";
+  }
+}
+
+function bilibiliSourceRecord() {
+  if (!state.sourceConfig) state.sourceConfig = loadSourceConfigDraft();
+  let sources = state.sourceConfig.sources || [];
+  let record = sources.find((source) => source.id === "bilibili_dynamic_sources" || source.type === "bilibili_dynamic");
+  if (!record) {
+    record = {
+      id: "bilibili_dynamic_sources",
+      name: "B站动态",
+      type: "bilibili_dynamic",
+      enabled: true,
+      channel: "B站动态",
+      target: "",
+      locator: "",
+      env: "BILIBILI_DYNAMIC_UIDS / BILIBILI_DYNAMIC_SOURCE_NAMES",
+      notes: "同一渠道统一维护；UID 和名称用英文逗号分隔，可继续追加 UP 主。",
+    };
+    sources = [...sources, record];
+    state.sourceConfig.sources = sources;
+  }
+  return record;
+}
+
+function bilibiliSubscriptionMembers() {
+  const record = bilibiliSourceRecord();
+  const names = splitSourceConfigList(record.target);
+  const locators = splitSourceConfigList(record.locator);
+  return locators.map((locator, index) => ({
+    id: locator,
+    name: names[index] || `Bilibili ${locator}`,
+    locator,
+  }));
+}
+
+function setBilibiliSubscriptionMembers(members) {
+  const clean = [];
+  const seen = new Set();
+  members.forEach((member) => {
+    const locator = String(member.locator || "").trim();
+    const name = String(member.name || "").trim();
+    if (!locator || seen.has(locator)) return;
+    seen.add(locator);
+    clean.push({ name: name || `Bilibili ${locator}`, locator });
+  });
+  const record = bilibiliSourceRecord();
+  record.target = clean.map((member) => member.name).join(",");
+  record.locator = clean.map((member) => member.locator).join(",");
+  record.enabled = true;
+  record.name = "B站动态";
+  record.type = "bilibili_dynamic";
+  record.channel = "B站动态";
+  record.env = "BILIBILI_DYNAMIC_UIDS / BILIBILI_DYNAMIC_SOURCE_NAMES";
+  record.notes = "同一渠道统一维护；可在订阅成员面板里新增或删除 UP 主。";
+  state.sourceConfigSelectedId = record.id;
+  saveSourceConfigDraft("B站订阅成员已更新，点“保存订阅”后写入采集配置");
+  renderSourceConfig();
+}
+
+function youtubeSubscriptionMembers() {
+  return (state.youtubeSubscriptions || []).map((item) => ({
+    id: item.channel_id || youtubeChannelIdFromFeedUrl(item.xml_url),
+    name: item.title || item.channel_id || "YouTube 频道",
+    locator: item.channel_id || youtubeChannelIdFromFeedUrl(item.xml_url),
+    htmlUrl: item.html_url || "",
+    xmlUrl: item.xml_url || youtubeFeedUrl(item.channel_id),
+  })).filter((item) => item.locator);
+}
+
+function currentSubscriptionMembers() {
+  return state.subscriptionPlatform === "youtube"
+    ? youtubeSubscriptionMembers()
+    : bilibiliSubscriptionMembers();
+}
+
+function renderSubscriptionPlatformTabs() {
+  if (!subscriptionPlatformTabsEl) return;
+  subscriptionPlatformTabsEl.innerHTML = "";
+  SUBSCRIPTION_PLATFORMS.forEach((platform) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "subscription-platform-tab";
+    button.dataset.platform = platform.id;
+    if (state.subscriptionPlatform === platform.id) button.classList.add("active");
+    button.textContent = platform.label;
+    button.addEventListener("click", () => {
+      state.subscriptionPlatform = platform.id;
+      clearSubscriptionMemberForm();
+      renderSubscriptionManager();
+      if (platform.id === "youtube") {
+        loadYoutubeSubscriptions().catch(() => {});
+      }
+    });
+    subscriptionPlatformTabsEl.appendChild(button);
+  });
+}
+
+function renderSubscriptionMembers() {
+  if (!subscriptionMembersEl) return;
+  subscriptionMembersEl.innerHTML = "";
+  const members = currentSubscriptionMembers();
+  if (!members.length) {
+    const empty = document.createElement("div");
+    empty.className = "subscription-empty";
+    empty.textContent = "当前渠道还没有订阅成员。";
+    subscriptionMembersEl.appendChild(empty);
+    return;
+  }
+  members.forEach((member) => {
+    const card = document.createElement("article");
+    card.className = "subscription-member";
+    const main = document.createElement("div");
+    const title = document.createElement("strong");
+    title.textContent = member.name;
+    const meta = document.createElement("span");
+    meta.textContent = member.locator;
+    main.append(title, meta);
+    const actions = document.createElement("div");
+    actions.className = "subscription-member-card-actions";
+    const editBtn = document.createElement("button");
+    editBtn.type = "button";
+    editBtn.className = "tool-btn";
+    editBtn.textContent = "编辑";
+    editBtn.addEventListener("click", () => {
+      subscriptionMemberNameEl.value = member.name || "";
+      subscriptionMemberLocatorEl.value = member.locator || "";
+      if (subscriptionMemberHomeUrlEl) subscriptionMemberHomeUrlEl.value = member.htmlUrl || "";
+      subscriptionMemberSubmitBtnEl.textContent = "保存成员";
+    });
+    const removeBtn = document.createElement("button");
+    removeBtn.type = "button";
+    removeBtn.className = "tool-btn danger";
+    removeBtn.textContent = "删除";
+    removeBtn.addEventListener("click", () => {
+      removeSubscriptionMember(member.locator).catch((err) => {
+        setSubscriptionManagerStatus(`删除失败：${err.message}`, "bad");
+      });
+    });
+    actions.append(editBtn, removeBtn);
+    card.append(main, actions);
+    subscriptionMembersEl.appendChild(card);
+  });
+}
+
+function renderSubscriptionMemberFormHints() {
+  const platform = subscriptionPlatformDef();
+  if (subscriptionNameLabelEl) subscriptionNameLabelEl.textContent = platform.nameLabel;
+  if (subscriptionLocatorLabelEl) subscriptionLocatorLabelEl.textContent = platform.locatorLabel;
+  if (subscriptionMemberLocatorEl) subscriptionMemberLocatorEl.placeholder = platform.locatorPlaceholder;
+  if (subscriptionHomeUrlWrapEl) subscriptionHomeUrlWrapEl.hidden = !platform.homeUrl;
+}
+
+function renderSubscriptionManager() {
+  if (!subscriptionMemberFormEl) return;
+  renderSubscriptionPlatformTabs();
+  renderSubscriptionMemberFormHints();
+  renderSubscriptionMembers();
+}
+
+function clearSubscriptionMemberForm() {
+  if (subscriptionMemberNameEl) subscriptionMemberNameEl.value = "";
+  if (subscriptionMemberLocatorEl) subscriptionMemberLocatorEl.value = "";
+  if (subscriptionMemberHomeUrlEl) subscriptionMemberHomeUrlEl.value = "";
+  if (subscriptionMemberSubmitBtnEl) subscriptionMemberSubmitBtnEl.textContent = "新增成员";
+}
+
+async function loadYoutubeSubscriptions() {
+  try {
+    const res = await fetch("./api/subscriptions/youtube", { headers: { Accept: "application/json" }, cache: "no-store" });
+    const payload = await res.json().catch(() => ({}));
+    if (!res.ok || payload.ok === false) throw new Error(payload.error || `HTTP ${res.status}`);
+    state.youtubeSubscriptions = Array.isArray(payload.subscriptions) ? payload.subscriptions : [];
+    renderSubscriptionManager();
+  } catch (err) {
+    setSubscriptionManagerStatus(`油管订阅读取失败：${err.message}`, "bad");
+  }
+}
+
+async function saveYoutubeSubscriptions() {
+  const subscriptions = youtubeSubscriptionMembers().map((member) => ({
+    title: member.name,
+    channel_id: member.locator,
+    xml_url: youtubeFeedUrl(member.locator),
+    html_url: member.htmlUrl || "",
+  }));
+  const res = await fetch("./api/subscriptions/youtube", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ subscriptions }),
+  });
+  const payload = await res.json().catch(() => ({}));
+  if (!res.ok || payload.ok === false) throw new Error(payload.error || `HTTP ${res.status}`);
+  state.youtubeSubscriptions = Array.isArray(payload.subscriptions) ? payload.subscriptions : subscriptions;
+  return payload;
+}
+
+async function saveSubscriptionMembers() {
+  if (state.subscriptionPlatform === "youtube") {
+    await saveYoutubeSubscriptions();
+    setSubscriptionManagerStatus("油管订阅已写入 feeds/follow.opml，点“执行采集”后生效", "ok");
+    renderSubscriptionManager();
+    return;
+  }
+  await writeSourceConfigToLocalServer({
+    button: subscriptionMemberSubmitBtnEl,
+    successLabel: "已保存",
+    idleLabel: "新增成员",
+    syncForm: false,
+  });
+  setSubscriptionManagerStatus("B站订阅已写入 sources.config.json，点“执行采集”后生效", "ok");
+}
+
+function upsertSubscriptionMember(member) {
+  const locator = String(member.locator || "").trim();
+  const name = String(member.name || "").trim();
+  if (!locator || !name) {
+    setSubscriptionManagerStatus("名称和账号 ID 都要填写", "bad");
+    return false;
+  }
+  if (state.subscriptionPlatform === "youtube") {
+    const existing = youtubeSubscriptionMembers().filter((item) => item.locator !== locator);
+    state.youtubeSubscriptions = [
+      ...existing.map((item) => ({
+        title: item.name,
+        channel_id: item.locator,
+        xml_url: youtubeFeedUrl(item.locator),
+        html_url: item.htmlUrl || "",
+      })),
+      {
+        title: name,
+        channel_id: locator,
+        xml_url: youtubeFeedUrl(locator),
+        html_url: String(member.htmlUrl || "").trim(),
+      },
+    ];
+  } else {
+    const existing = bilibiliSubscriptionMembers().filter((item) => item.locator !== locator);
+    setBilibiliSubscriptionMembers([...existing, { name, locator }]);
+  }
+  clearSubscriptionMemberForm();
+  renderSubscriptionManager();
+  setSubscriptionManagerStatus("成员已更新，点“保存订阅”写入本地配置", "warn");
+  return true;
+}
+
+async function removeSubscriptionMember(locator) {
+  const cleanLocator = String(locator || "").trim();
+  if (!cleanLocator) return;
+  if (state.subscriptionPlatform === "youtube") {
+    state.youtubeSubscriptions = youtubeSubscriptionMembers()
+      .filter((item) => item.locator !== cleanLocator)
+      .map((item) => ({
+        title: item.name,
+        channel_id: item.locator,
+        xml_url: youtubeFeedUrl(item.locator),
+        html_url: item.htmlUrl || "",
+      }));
+  } else {
+    setBilibiliSubscriptionMembers(bilibiliSubscriptionMembers().filter((item) => item.locator !== cleanLocator));
+  }
+  clearSubscriptionMemberForm();
+  renderSubscriptionManager();
+  await saveSubscriptionMembers();
+  setSubscriptionManagerStatus("成员已删除并保存，点“执行采集”后生效", "ok");
+}
+
 function sourceConfigRuntimeIds(source) {
   const rawId = String(source?.id || "").toLowerCase();
   const type = String(source?.type || "").toLowerCase();
@@ -1229,6 +1553,7 @@ function renderSourceConfig() {
   renderSourceConfigList();
   fillSourceConfigForm(selectedSourceConfig());
   syncSourceConfigJson();
+  renderSubscriptionManager();
 }
 
 function sourceConfigIdFromName(name) {
@@ -4471,6 +4796,27 @@ if (sourceConfigFormEl) {
   });
   sourceConfigFormEl.addEventListener("input", syncSourceConfigFormDraft);
   sourceConfigFormEl.addEventListener("change", syncSourceConfigFormDraft);
+}
+
+if (subscriptionMemberFormEl) {
+  subscriptionMemberFormEl.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const ok = upsertSubscriptionMember({
+      name: subscriptionMemberNameEl.value,
+      locator: subscriptionMemberLocatorEl.value,
+      htmlUrl: subscriptionMemberHomeUrlEl?.value || "",
+    });
+    if (!ok) return;
+    try {
+      await saveSubscriptionMembers();
+    } catch (err) {
+      setSubscriptionManagerStatus(`保存订阅失败：${err.message}`, "bad");
+    }
+  });
+}
+
+if (subscriptionMemberClearBtnEl) {
+  subscriptionMemberClearBtnEl.addEventListener("click", clearSubscriptionMemberForm);
 }
 
 if (sourceConfigAddBtnEl) {

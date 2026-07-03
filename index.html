@@ -170,6 +170,36 @@
           <div id="localOpsCollectors" class="local-ops-collectors"></div>
           <div id="localOpsIssues" class="local-ops-issues"></div>
         </section>
+        <section class="subscription-manager" aria-label="订阅成员管理">
+          <div class="subscription-manager-head">
+            <div>
+              <strong>订阅成员</strong>
+              <span id="subscriptionManagerStatus">选择渠道后，可直接新增或删除订阅对象。</span>
+            </div>
+            <div class="subscription-platform-tabs" id="subscriptionPlatformTabs" role="tablist" aria-label="订阅渠道"></div>
+          </div>
+          <div class="subscription-manager-body">
+            <div class="subscription-members" id="subscriptionMembers"></div>
+            <form id="subscriptionMemberForm" class="subscription-member-form">
+              <label class="field">
+                <span id="subscriptionNameLabel">显示名称</span>
+                <input id="subscriptionMemberName" type="text" autocomplete="off" placeholder="例如：某某UP主" />
+              </label>
+              <label class="field">
+                <span id="subscriptionLocatorLabel">账号 ID</span>
+                <input id="subscriptionMemberLocator" type="text" autocomplete="off" placeholder="例如：B站 UID 或 YouTube channel_id" />
+              </label>
+              <label class="field source-config-wide" id="subscriptionHomeUrlWrap">
+                <span>主页链接</span>
+                <input id="subscriptionMemberHomeUrl" type="url" autocomplete="off" placeholder="可选，例如 https://www.youtube.com/@handle" />
+              </label>
+              <div class="subscription-member-actions">
+                <button id="subscriptionMemberSubmitBtn" class="mode-btn active" type="submit">新增成员</button>
+                <button id="subscriptionMemberClearBtn" class="mode-btn" type="button">清空</button>
+              </div>
+            </form>
+          </div>
+        </section>
         <div class="source-config-body">
           <aside class="source-config-list-panel" aria-label="信源列表">
             <div class="source-config-list-head">

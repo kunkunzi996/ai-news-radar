@@ -16,11 +16,13 @@ from scripts.local_server import (
     perform_maintenance_action,
     refresh_command,
     refresh_env,
+    read_youtube_subscriptions,
     sync_bilibili_cookie,
     start_mediacrawler_douyin,
     start_mediacrawler_xhs,
     start_wewe_rss_sidecar,
     validate_source_config,
+    write_youtube_subscriptions,
 )
 
 
@@ -50,6 +52,39 @@ class LocalServerTests(unittest.TestCase):
             validate_source_config({"sources": [{"id": "", "name": "Missing id"}]})
         with self.assertRaises(ValueError):
             validate_source_config({"sources": [{"id": "missing_name", "name": ""}]})
+
+    def test_write_youtube_subscriptions_roundtrips_follow_opml(self):
+        root = Path(self.create_temp_dir())
+
+        saved = write_youtube_subscriptions(
+            root,
+            [
+                {
+                    "title": "AI Channel",
+                    "channel_id": "UC_TEST",
+                    "html_url": "https://www.youtube.com/@ai",
+                }
+            ],
+        )
+        loaded = read_youtube_subscriptions(root)
+
+        self.assertEqual(saved[0]["xml_url"], "https://www.youtube.com/feeds/videos.xml?channel_id=UC_TEST")
+        self.assertEqual(loaded, saved)
+        self.assertTrue((root / "feeds" / "follow.opml").exists())
+
+    def test_write_youtube_subscriptions_rejects_non_youtube_feed(self):
+        root = Path(self.create_temp_dir())
+
+        with self.assertRaises(ValueError):
+            write_youtube_subscriptions(
+                root,
+                [
+                    {
+                        "title": "Bad Feed",
+                        "xml_url": "https://example.com/feed.xml",
+                    }
+                ],
+            )
 
     def test_refresh_command_uses_fixed_local_update_script(self):
         root = Path("E:/AI-news-reader/ai-news-radar-run")

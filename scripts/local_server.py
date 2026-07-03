@@ -11,6 +11,7 @@ import struct
 import subprocess
 import sys
 import threading
+import xml.etree.ElementTree as ET
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -23,7 +24,9 @@ from typing import Any
 
 MAX_CONFIG_BYTES = 1024 * 1024
 MAX_ACTION_BYTES = 4096
+MAX_SUBSCRIPTION_BYTES = 256 * 1024
 CONFIG_FILENAME = "sources.config.json"
+OPML_FILENAME = Path("feeds") / "follow.opml"
 REFRESH_TIMEOUT_SECONDS = 600
 REFRESH_LOCK = threading.Lock()
 MEDIACRAWLER_JSONL_STALE_HOURS = 36
@@ -540,6 +543,125 @@ def validate_source_config(payload: Any) -> dict[str, Any]:
         if not name:
             raise ValueError(f"sources[{index}].name is required")
     return payload
+
+
+def youtube_channel_id_from_feed_url(url: str) -> str:
+    parsed = urllib.parse.urlparse(str(url or "").strip())
+    if parsed.netloc not in {"www.youtube.com", "youtube.com"}:
+        return ""
+    query = urllib.parse.parse_qs(parsed.query)
+    return str((query.get("channel_id") or [""])[0]).strip()
+
+
+def youtube_feed_url(channel_id: str) -> str:
+    clean = str(channel_id or "").strip()
+    if not clean:
+        return ""
+    return f"https://www.youtube.com/feeds/videos.xml?channel_id={clean}"
+
+
+def validate_youtube_subscription(payload: dict[str, Any], index: int) -> dict[str, str]:
+    title = str(payload.get("title") or payload.get("text") or "").strip()
+    channel_id = str(payload.get("channel_id") or "").strip()
+    html_url = str(payload.get("html_url") or payload.get("htmlUrl") or "").strip()
+    xml_url = str(payload.get("xml_url") or payload.get("xmlUrl") or "").strip()
+    if not channel_id and xml_url:
+        channel_id = youtube_channel_id_from_feed_url(xml_url)
+    if not xml_url and channel_id:
+        xml_url = youtube_feed_url(channel_id)
+    if not title:
+        raise ValueError(f"subscriptions[{index}].title is required")
+    if not channel_id:
+        raise ValueError(f"subscriptions[{index}].channel_id is required")
+    if not xml_url.startswith("https://www.youtube.com/feeds/videos.xml?channel_id="):
+        raise ValueError(f"subscriptions[{index}].xml_url must be a YouTube channel feed")
+    if html_url and not (
+        html_url.startswith("https://www.youtube.com/")
+        or html_url.startswith("https://youtube.com/")
+    ):
+        raise ValueError(f"subscriptions[{index}].html_url must be a YouTube URL")
+    return {
+        "title": title[:120],
+        "channel_id": channel_id[:120],
+        "xml_url": xml_url,
+        "html_url": html_url[:300],
+    }
+
+
+def opml_path(root_dir: Path) -> Path:
+    return (root_dir / OPML_FILENAME).resolve()
+
+
+def read_youtube_subscriptions(root_dir: Path) -> list[dict[str, str]]:
+    path = opml_path(root_dir)
+    if path.parent != (root_dir / "feeds").resolve() or path.name != "follow.opml":
+        raise ValueError("invalid_opml_path")
+    if not path.exists():
+        return []
+    root = ET.parse(path).getroot()
+    subscriptions: list[dict[str, str]] = []
+    seen: set[str] = set()
+    for outline in root.findall(".//outline"):
+        xml_url = str(outline.attrib.get("xmlUrl") or "").strip()
+        channel_id = youtube_channel_id_from_feed_url(xml_url)
+        if not channel_id or channel_id in seen:
+            continue
+        seen.add(channel_id)
+        title = str(outline.attrib.get("title") or outline.attrib.get("text") or channel_id).strip()
+        subscriptions.append(
+            {
+                "title": title,
+                "channel_id": channel_id,
+                "xml_url": youtube_feed_url(channel_id),
+                "html_url": str(outline.attrib.get("htmlUrl") or "").strip(),
+            }
+        )
+    return subscriptions
+
+
+def write_youtube_subscriptions(root_dir: Path, raw_subscriptions: Any) -> list[dict[str, str]]:
+    if not isinstance(raw_subscriptions, list):
+        raise ValueError("subscriptions must be an array")
+    if len(raw_subscriptions) > 200:
+        raise ValueError("too many subscriptions")
+    subscriptions: list[dict[str, str]] = []
+    seen: set[str] = set()
+    for index, item in enumerate(raw_subscriptions):
+        if not isinstance(item, dict):
+            raise ValueError(f"subscriptions[{index}] must be an object")
+        subscription = validate_youtube_subscription(item, index)
+        if subscription["channel_id"] in seen:
+            continue
+        seen.add(subscription["channel_id"])
+        subscriptions.append(subscription)
+
+    path = opml_path(root_dir)
+    if path.parent != (root_dir / "feeds").resolve() or path.name != "follow.opml":
+        raise ValueError("invalid_opml_path")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    opml = ET.Element("opml", {"version": "2.0"})
+    head = ET.SubElement(opml, "head")
+    title = ET.SubElement(head, "title")
+    title.text = "AI News Radar Personal Subscriptions"
+    body = ET.SubElement(opml, "body")
+    for subscription in subscriptions:
+        ET.SubElement(
+            body,
+            "outline",
+            {
+                "text": subscription["title"],
+                "title": subscription["title"],
+                "type": "rss",
+                "xmlUrl": subscription["xml_url"],
+                "htmlUrl": subscription["html_url"],
+            },
+        )
+    tree = ET.ElementTree(opml)
+    ET.indent(tree, space="  ")
+    tmp_path = path.with_suffix(".opml.tmp")
+    tree.write(tmp_path, encoding="utf-8", xml_declaration=True)
+    os.replace(tmp_path, path)
+    return subscriptions
 
 
 def read_source_config(root_dir: Path) -> dict[str, Any] | None:
@@ -1406,6 +1528,21 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
             except Exception as exc:
                 json_response(self, HTTPStatus.INTERNAL_SERVER_ERROR, {"ok": False, "error": str(exc)})
             return
+        if route == "/api/subscriptions/youtube":
+            try:
+                subscriptions = read_youtube_subscriptions(self.root_dir)
+                json_response(
+                    self,
+                    HTTPStatus.OK,
+                    {
+                        "ok": True,
+                        "path": str(OPML_FILENAME).replace("\\", "/"),
+                        "subscriptions": subscriptions,
+                    },
+                )
+            except Exception as exc:
+                json_response(self, HTTPStatus.INTERNAL_SERVER_ERROR, {"ok": False, "error": str(exc)})
+            return
         if route != "/api/source-config":
             return super().do_GET()
         if self.config_path.parent != self.root_dir or self.config_path.name != CONFIG_FILENAME:
@@ -1429,6 +1566,9 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
             return
         if route == "/api/refresh":
             self.handle_refresh()
+            return
+        if route == "/api/subscriptions/youtube":
+            self.handle_youtube_subscriptions()
             return
         if route != "/api/source-config":
             json_response(self, HTTPStatus.NOT_FOUND, {"ok": False, "error": "not_found"})
@@ -1466,6 +1606,37 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
                 "ok": True,
                 "path": CONFIG_FILENAME,
                 "source_count": len(payload.get("sources") or []),
+            },
+        )
+
+    def handle_youtube_subscriptions(self) -> None:
+        if self.reject_nonlocal_origin():
+            return
+        try:
+            length = int(self.headers.get("Content-Length") or "0")
+        except ValueError:
+            length = 0
+        if length <= 0 or length > MAX_SUBSCRIPTION_BYTES:
+            json_response(self, HTTPStatus.BAD_REQUEST, {"ok": False, "error": "invalid_content_length"})
+            return
+        if "application/json" not in str(self.headers.get("Content-Type") or ""):
+            json_response(self, HTTPStatus.UNSUPPORTED_MEDIA_TYPE, {"ok": False, "error": "json_required"})
+            return
+        try:
+            raw = self.rfile.read(length)
+            payload = json.loads(raw.decode("utf-8"))
+            subscriptions = write_youtube_subscriptions(self.root_dir, payload.get("subscriptions"))
+        except Exception as exc:
+            json_response(self, HTTPStatus.BAD_REQUEST, {"ok": False, "error": str(exc)})
+            return
+        json_response(
+            self,
+            HTTPStatus.OK,
+            {
+                "ok": True,
+                "path": str(OPML_FILENAME).replace("\\", "/"),
+                "subscription_count": len(subscriptions),
+                "subscriptions": subscriptions,
             },
         )
 
