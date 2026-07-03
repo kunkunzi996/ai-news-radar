@@ -4,8 +4,9 @@
 
 - Date: 2026-07-04
 - Local path: `E:\AI-news-reader\ai-news-radar-run`
-- Branch: `feature/local-trigger-console`
-- Task type: Local trigger console
+- Branch: `master`
+- Latest pushed commit: `e3e5fed chore: remove top signals block`
+- Task type: Local trigger console / source dashboard cleanup
 - Server: `http://127.0.0.1:8080/`
 - Current local view: the source configuration panel has been upgraded into a local collection console. The page now has a local collection status panel, an `执行采集` button, a `检查状态` button, and maintenance action buttons. `scripts/local_server.py` exposes `GET /api/local-status` so the page can show maintenance hints from `data/source-status.json` and local read-only probes without reading cookies, login state, WeWe RSS database files, or MediaCrawler browser profiles.
 - Local maintenance hints currently cover failed sources, zero-item sources, missing Bilibili cookie/full-dynamic fallback, failed WeWe RSS feeds, unreachable local WeWe RSS sidecar, missing WeWe feed ids, missing/empty/stale MediaCrawler JSONL files, invalid `sources.config.json`, and missing source-status output. Maintenance cards can now open whitelisted repair surfaces such as WeWe RSS dashboard/QR login, Bilibili login, platform pages, or the configured JSONL folder; when the local WeWe RSS sidecar is down, the action can start the fixed local sidecar before opening the dashboard.
@@ -14,6 +15,7 @@
 - Douyin and Xiaohongshu maintenance now have fixed local actions to start `E:\AI-news-reader\MediaCrawler-local-test` in MediaCrawler creator mode through `scripts/run_mediacrawler_douyin.py`. The runner launches or reuses a dedicated Chrome CDP profile under `MediaCrawler-local-test\chrome-profile` instead of attaching to the user's everyday browser. The local collection panel now shows plain-language collector progress cards with running/completed state, JSONL line count, latest output time, and the next action. Xiaohongshu start infers the creator profile URL from existing JSONL `user_id` when available, or from `MEDIACRAWLER_XHS_CREATOR_ID`. The normal radar refresh still only reads JSONL files; generated dated JSONL files are resolved by newest `creator_contents_*.jsonl` in the configured folder so old date paths do not keep the radar stuck on stale data.
 - Source management now supports local UI filters for all/enabled/needs-maintenance and key platforms: WeChat public accounts, Xiaohongshu, Douyin, Bilibili, RSS, and GitHub. Maintenance cards can locate the matching source config record.
 - Homepage content tabs have been reworked from topic categories to subscription/platform categories. The top tab bar now defaults to `我的订阅` and only shows `我的订阅`、`抖音`、`小红书`、`微信公众号`、`B站`、`油管`; platform tabs are derived from subscription item source ids, source names, URLs, and titles.
+- The former `TODAY'S SIGNALS` / `今日重点信号` block has been removed from the homepage after checking that only Douyin and Xiaohongshu currently provide comparable interaction metrics. The page now flows from source configuration directly into WaytoAGI/community updates and the main list.
 - User acceptance passed on 2026-07-04 after local WeWe RSS and AI News Radar services were restarted: WeWe RSS account `547013436` is enabled, 猫笔刀 shows `诚实回答` (`2026-07-03 22:24:51`), `http://127.0.0.1:8080/` returns HTTP 200, and `/api/local-status` returns `ok=true`.
 
 ## Previous State
