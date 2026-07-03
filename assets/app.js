@@ -11,7 +11,7 @@ const state = {
   totalRaw: 0,
   totalAllMode: 0,
   timeScope: "rolling_window",
-  timeRangeFilter: "24h",
+  timeRangeFilter: "all",
   sourceScope: "all_sources",
   allDedup: true,
   allDataLoaded: false,
@@ -20,7 +20,7 @@ const state = {
   siteFilter: "",
   authorFilter: "",
   query: "",
-  mode: "ai",
+  mode: "all",
   waytoagiMode: "today",
   waytoagiData: null,
   sourceStatus: null,
@@ -4270,7 +4270,7 @@ async function init() {
     state.sourceScope = payload.source_scope || "all_sources";
     state.allDataUrl = payload.all_mode_data_url || state.allDataUrl;
     state.storiesDataUrl = payload.stories_data_url || state.storiesDataUrl;
-    if (state.sourceScope === "bilibili_only" || state.sourceScope === "tested_creator_sources") {
+    if (state.mode === "all" || state.timeRangeFilter === "all" || state.sourceScope === "bilibili_only" || state.sourceScope === "tested_creator_sources") {
       state.mode = "all";
       state.activeSection = "creator";
       try {
