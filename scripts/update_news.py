@@ -4739,6 +4739,17 @@ def douyin_item_matches_subscription(item: RawItem, *, locator: str, source_name
     return True
 
 
+def xiaohongshu_user_id_from_locator(locator: str) -> str:
+    parsed = urlparse(str(locator or "").strip())
+    if parsed.scheme not in {"http", "https"}:
+        return ""
+    parts = [unquote(part) for part in parsed.path.split("/") if part]
+    for index, part in enumerate(parts):
+        if part == "profile" and index + 1 < len(parts):
+            return parts[index + 1].strip()
+    return ""
+
+
 def maybe_fetch_mediacrawler_douyin(now: datetime) -> tuple[list[RawItem], dict[str, Any]]:
     raw_locator = str(os.environ.get("MEDIACRAWLER_DOUYIN_JSONL") or "").strip()
     jsonl_path_raw = mediacrawler_jsonl_locator(raw_locator, MEDIACRAWLER_DOUYIN_SITE_ID)
@@ -4910,10 +4921,10 @@ def parse_mediacrawler_xhs_jsonl(
         seen.add(key)
 
         creator = first_non_empty(
-            source_name,
             row.get("nickname"),
             row.get("user_nickname"),
             row.get("user_id"),
+            source_name,
             "Xiaohongshu Creator",
         )
         published = (
@@ -4949,6 +4960,15 @@ def parse_mediacrawler_xhs_jsonl(
         if max_items and len(out) >= max_items:
             break
     return out
+
+
+def xiaohongshu_item_matches_subscription(item: RawItem, *, locator: str, source_name: str) -> bool:
+    expected_user_id = xiaohongshu_user_id_from_locator(locator)
+    if expected_user_id:
+        return str(item.meta.get("xiaohongshu_user_id") or "").strip() == expected_user_id
+    if source_name:
+        return str(item.source or "").strip() == source_name
+    return True
 
 
 def maybe_fetch_mediacrawler_xhs(now: datetime) -> tuple[list[RawItem], dict[str, Any]]:
@@ -5049,6 +5069,11 @@ def fetch_mediacrawler_xhs_subscriptions(
                 source_name=source_name,
                 max_items=max_items,
             )
+            items = [
+                item
+                for item in items
+                if xiaohongshu_item_matches_subscription(item, locator=raw_locator, source_name=source_name)
+            ]
             for item in items:
                 key = f"{item.site_id}:{normalize_url(item.url)}:{item.title}"
                 if key in seen:

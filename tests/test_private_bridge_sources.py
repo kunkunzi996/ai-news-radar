@@ -522,7 +522,65 @@ class PrivateBridgeSourceTests(unittest.TestCase):
         self.assertTrue(status["ok"])
         self.assertEqual(status["subscription_count"], 1)
         self.assertEqual(status["subscriptions"][0]["locator_kind"], "homepage_url")
-        self.assertEqual(items[0].source, "陈抱一")
+        self.assertEqual(items[0].source, "JSONL昵称")
+
+    def test_mediacrawler_xhs_homepage_subscription_filters_by_user_id(self):
+        import tempfile
+        from scripts.update_news import fetch_mediacrawler_xhs_subscriptions
+
+        payload = {
+            "note_id": "new-note",
+            "title": "新小红书博主的笔记",
+            "note_url": "https://www.xiaohongshu.com/explore/new-note",
+            "nickname": "新小红书博主",
+            "user_id": "new_user_id",
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            jsonl_dir = Path(tmp) / "output" / "xhs" / "jsonl"
+            jsonl_dir.mkdir(parents=True)
+            old_path = jsonl_dir / "creator_contents_2026-07-01.jsonl"
+            latest_path = jsonl_dir / "creator_contents_2026-07-04.jsonl"
+            old_path.write_text(
+                json.dumps(
+                    {
+                        "note_id": "old-note",
+                        "title": "陈抱一旧笔记",
+                        "note_url": "https://www.xiaohongshu.com/explore/old-note",
+                        "nickname": "陈抱一",
+                        "user_id": "old_user_id",
+                    },
+                    ensure_ascii=False,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            latest_path.write_text(json.dumps(payload, ensure_ascii=False) + "\n", encoding="utf-8")
+            os.utime(old_path, (100, 100))
+            os.utime(latest_path, (200, 200))
+            with patch.dict(os.environ, {"MEDIACRAWLER_LOCAL_DIR": tmp}, clear=True):
+                items, status = fetch_mediacrawler_xhs_subscriptions(
+                    [
+                        {
+                            "name": "陈抱一",
+                            "target": "陈抱一",
+                            "locator": "https://www.xiaohongshu.com/user/profile/old_user_id",
+                        },
+                        {
+                            "name": "新小红书博主",
+                            "target": "新小红书博主",
+                            "locator": "https://www.xiaohongshu.com/user/profile/new_user_id",
+                        },
+                    ],
+                    datetime(2026, 7, 4, tzinfo=timezone.utc),
+                )
+
+        self.assertTrue(status["ok"])
+        self.assertEqual(status["subscription_count"], 2)
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0].source, "新小红书博主")
+        self.assertEqual(items[0].meta["xiaohongshu_user_id"], "new_user_id")
+        self.assertEqual(status["subscriptions"][0]["item_count"], 0)
+        self.assertEqual(status["subscriptions"][1]["item_count"], 1)
 
     def test_mediacrawler_xhs_missing_explicit_path_still_reports_missing_file(self):
         with patch.dict(os.environ, {"MEDIACRAWLER_XHS_ENABLED": "1", "MEDIACRAWLER_XHS_JSONL": "missing.jsonl"}, clear=True):
