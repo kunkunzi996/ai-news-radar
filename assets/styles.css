@@ -968,7 +968,6 @@ summary:focus-visible {
 
 .source-config-tools,
 .source-config-actions,
-.source-config-import-head,
 .source-config-list-head {
   display: flex;
   align-items: center;
@@ -1283,8 +1282,7 @@ summary:focus-visible {
 }
 
 .source-config-list-panel,
-.source-config-form,
-.source-config-import {
+.source-config-form {
   min-width: 0;
   border: 1px solid var(--line-soft);
   border-radius: var(--radius);
@@ -1416,36 +1414,15 @@ summary:focus-visible {
   justify-content: flex-start;
 }
 
-.source-config-import {
-  grid-column: 1 / -1;
-  display: grid;
-  gap: 10px;
-  padding: 12px;
-}
-
-.source-config-import-head {
-  justify-content: flex-start;
-}
-
-.source-config-import textarea {
-  width: 100%;
-  min-height: 180px;
-  resize: vertical;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 11px 12px;
-  color: var(--ink);
-  background: var(--surface);
-  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
-  font-size: 12px;
-  line-height: 1.45;
-}
-
 .source-config-status,
 .source-config-empty {
   color: var(--muted);
   font-size: 12px;
   line-height: 1.4;
+}
+
+.source-config-status {
+  grid-column: 1 / -1;
 }
 
 .source-config-status.ok {
@@ -3102,10 +3079,6 @@ summary:focus-visible {
 
   .source-config-list {
     max-height: 260px;
-  }
-
-  .source-config-import textarea {
-    min-height: 150px;
   }
 
   .time {

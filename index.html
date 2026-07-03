@@ -157,11 +157,8 @@
         <div class="source-config-content">
           <div class="source-config-head">
           <div class="source-config-tools">
-            <button id="sourceConfigApplyBtn" class="tool-btn" type="button">写入</button>
             <button id="sourceConfigRefreshBtn" class="tool-btn" type="button">执行采集</button>
             <button id="sourceConfigCheckBtn" class="tool-btn" type="button">检查状态</button>
-            <button id="sourceConfigExportBtn" class="tool-btn" type="button">导出</button>
-            <button id="sourceConfigCopyBtn" class="tool-btn" type="button">复制</button>
           </div>
         </div>
         <section class="local-ops-panel" aria-label="本地采集状态">
@@ -232,18 +229,7 @@
               <button id="sourceConfigResetBtn" class="mode-btn" type="button">恢复当前</button>
             </div>
           </form>
-          <section class="source-config-import" aria-label="导入配置">
-            <div class="source-config-import-head">
-              <strong>JSON</strong>
-              <label class="tool-btn file-tool">
-                导入文件
-                <input id="sourceConfigFileInput" type="file" accept="application/json,.json" />
-              </label>
-              <button id="sourceConfigImportBtn" class="tool-btn" type="button">导入文本</button>
-            </div>
-            <textarea id="sourceConfigJson" spellcheck="false"></textarea>
-            <div id="sourceConfigStatus" class="source-config-status">本地草稿会优先尝试读取 sources.config.json。</div>
-          </section>
+          <div id="sourceConfigStatus" class="source-config-status">本地草稿会优先尝试读取 sources.config.json。</div>
         </div>
         </div>
       </details>
@@ -313,6 +299,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous" defer></script>
     <script src="./assets/motion.js?v=ui-adjustment-0620a" defer></script>
-    <script src="./assets/app.js?v=source-config-save-0704a" defer></script>
+    <script src="./assets/app.js?v=source-config-simple-actions-0704a" defer></script>
   </body>
 </html>

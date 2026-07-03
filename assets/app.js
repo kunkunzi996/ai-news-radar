@@ -103,14 +103,8 @@ const sourceConfigSaveBtnEl = document.getElementById("sourceConfigSaveBtn");
 const sourceConfigAddBtnEl = document.getElementById("sourceConfigAddBtn");
 const sourceConfigDeleteBtnEl = document.getElementById("sourceConfigDeleteBtn");
 const sourceConfigResetBtnEl = document.getElementById("sourceConfigResetBtn");
-const sourceConfigApplyBtnEl = document.getElementById("sourceConfigApplyBtn");
 const sourceConfigRefreshBtnEl = document.getElementById("sourceConfigRefreshBtn");
 const sourceConfigCheckBtnEl = document.getElementById("sourceConfigCheckBtn");
-const sourceConfigExportBtnEl = document.getElementById("sourceConfigExportBtn");
-const sourceConfigCopyBtnEl = document.getElementById("sourceConfigCopyBtn");
-const sourceConfigImportBtnEl = document.getElementById("sourceConfigImportBtn");
-const sourceConfigFileInputEl = document.getElementById("sourceConfigFileInput");
-const sourceConfigJsonEl = document.getElementById("sourceConfigJson");
 const sourceConfigStatusEl = document.getElementById("sourceConfigStatus");
 const localOpsStatusEl = document.getElementById("localOpsStatus");
 const localOpsSummaryEl = document.getElementById("localOpsSummary");
@@ -935,7 +929,7 @@ function sourceConfigJsonText() {
 }
 
 function syncSourceConfigJson() {
-  if (sourceConfigJsonEl) sourceConfigJsonEl.value = sourceConfigJsonText();
+  return sourceConfigJsonText();
 }
 
 function sourceConfigRuntimeIds(source) {
@@ -1020,7 +1014,7 @@ async function loadSourceConfigFromLocalServer() {
     if (sourceConfigUpdatedMs(draftConfig) > sourceConfigUpdatedMs(config)) {
       state.sourceConfig = draftConfig;
       state.sourceConfigSelectedId = draftConfig.sources[0]?.id || "";
-      setSourceConfigStatus("已保留较新的浏览器草稿；点“写入”后同步到 sources.config.json", "warn");
+      setSourceConfigStatus("已保留较新的浏览器草稿；点“保存草稿”后同步到采集配置", "warn");
       renderSourceConfig();
       return;
     }
@@ -1034,20 +1028,20 @@ async function loadSourceConfigFromLocalServer() {
 }
 
 async function writeSourceConfigToLocalServer(options = {}) {
-  const button = options.button === undefined ? sourceConfigApplyBtnEl : options.button;
-  const successLabel = options.successLabel || "已写入";
-  const idleLabel = options.idleLabel || "写入";
+  const button = options.button || null;
+  const successLabel = options.successLabel || "已保存";
+  const idleLabel = options.idleLabel || "保存草稿";
   const syncForm = options.syncForm !== false;
   if (syncForm && !saveSourceConfigFormToState("本地草稿已保存", false)) {
-    setSourceConfigButton(button, "写入失败", false);
+    setSourceConfigButton(button, "保存失败", false);
     restoreSourceConfigButton(button, idleLabel);
     throw new Error("source config form is invalid");
   }
   if (!state.sourceConfig) state.sourceConfig = loadSourceConfigDraft();
   state.sourceConfig.updated_at = new Date().toISOString();
   syncSourceConfigJson();
-  setSourceConfigButton(button, "写入中...", true);
-  setSourceConfigStatus("正在写入 sources.config.json...", "warn");
+  setSourceConfigButton(button, "保存中...", true);
+  setSourceConfigStatus("正在同步当前信源配置...", "warn");
   try {
     const res = await fetch("./api/source-config", {
       method: "POST",
@@ -1061,15 +1055,15 @@ async function writeSourceConfigToLocalServer(options = {}) {
     if (!res.ok || payload.ok === false) {
       throw new Error(payload.error || `HTTP ${res.status}`);
     }
-    saveSourceConfigDraft(`已写入 ${payload.path || "sources.config.json"}，共 ${payload.source_count || 0} 个信源`);
+    saveSourceConfigDraft(`已同步 ${payload.path || "sources.config.json"}，共 ${payload.source_count || 0} 个信源`);
     renderSourceConfig();
     setSourceConfigButton(button, successLabel, true);
     restoreSourceConfigButton(button, idleLabel);
     return payload;
   } catch (err) {
-    setSourceConfigButton(button, "写入失败", true);
+    setSourceConfigButton(button, "保存失败", true);
     restoreSourceConfigButton(button, idleLabel);
-    setSourceConfigStatus(`写入失败：请用 scripts/local_server.py 启动本地后台（${err.message}）`, "bad");
+    setSourceConfigStatus(`保存失败：请用 scripts/local_server.py 启动本地后台（${err.message}）`, "bad");
     throw err;
   }
 }
@@ -1091,15 +1085,15 @@ async function saveSourceConfigForCollection(message = "已保存，后续采集
 
 async function refreshNewsDataFromLocalServer() {
   setSourceConfigButton(sourceConfigRefreshBtnEl, "刷新中...", true);
-  setSourceConfigStatus("准备写入配置并刷新数据...", "warn");
+  setSourceConfigStatus("准备同步当前信源并刷新数据...", "warn");
   try {
     await writeSourceConfigToLocalServer({
-      button: sourceConfigApplyBtnEl,
-      successLabel: "已写入",
-      idleLabel: "写入",
+      button: null,
+      successLabel: "已保存",
+      idleLabel: "保存草稿",
     });
     setSourceConfigButton(sourceConfigRefreshBtnEl, "抓取中...", true);
-    setSourceConfigStatus("配置已写入，正在运行刷新脚本；公众号和社媒源可能需要等一小会。", "warn");
+    setSourceConfigStatus("当前信源已同步，正在运行采集；公众号和社媒源可能需要等一小会。", "warn");
     const res = await fetch("./api/refresh", {
       method: "POST",
       headers: { Accept: "application/json" },
@@ -1322,7 +1316,7 @@ function syncSourceConfigFormDraft() {
   renderSourceConfigSummary();
   renderSourceConfigList();
   syncSourceConfigJson();
-  setSourceConfigStatus("草稿已更新，点“写入”或“刷新数据”后生效", "warn");
+  setSourceConfigStatus("草稿已更新，点“保存草稿”或“执行采集”后生效", "warn");
 }
 
 function addSourceConfigRecord() {
@@ -1364,44 +1358,6 @@ function resetSourceConfigDraft() {
   state.sourceConfigSelectedId = state.sourceConfig.sources[0]?.id || "";
   saveSourceConfigDraft("已恢复为当前默认信源草稿");
   renderSourceConfig();
-}
-
-function importSourceConfigText(text) {
-  try {
-    const parsed = normalizeSourceConfig(JSON.parse(text));
-    state.sourceConfig = parsed;
-    state.sourceConfigSelectedId = parsed.sources[0]?.id || "";
-    saveSourceConfigDraft("已导入本地草稿");
-    renderSourceConfig();
-  } catch (err) {
-    setSourceConfigStatus(`导入失败：${err.message}`, "bad");
-  }
-}
-
-function downloadSourceConfig() {
-  const blob = new Blob([sourceConfigJsonText()], { type: "application/json;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = "sources.config.json";
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-  URL.revokeObjectURL(url);
-  setSourceConfigStatus("已导出；放到项目根目录 sources.config.json 后刷新脚本会读取", "ok");
-}
-
-async function copySourceConfig() {
-  try {
-    await navigator.clipboard.writeText(sourceConfigJsonText());
-    setSourceConfigStatus("已复制 JSON；保存为 sources.config.json 后可生效", "ok");
-  } catch {
-    if (sourceConfigJsonEl) {
-      sourceConfigJsonEl.focus();
-      sourceConfigJsonEl.select();
-    }
-    setSourceConfigStatus("已选中 JSON，可手动复制", "warn");
-  }
 }
 
 function fmtNumber(n) {
@@ -4508,12 +4464,6 @@ if (sourceConfigResetBtnEl) {
   sourceConfigResetBtnEl.addEventListener("click", resetSourceConfigDraft);
 }
 
-if (sourceConfigApplyBtnEl) {
-  sourceConfigApplyBtnEl.addEventListener("click", () => {
-    writeSourceConfigToLocalServer().catch(() => {});
-  });
-}
-
 if (sourceConfigRefreshBtnEl) {
   sourceConfigRefreshBtnEl.addEventListener("click", refreshNewsDataFromLocalServer);
 }
@@ -4522,33 +4472,6 @@ if (sourceConfigCheckBtnEl) {
   sourceConfigCheckBtnEl.addEventListener("click", () => {
     setLocalOpsStatus("检查中", "warn");
     loadLocalStatusFromServer(true);
-  });
-}
-
-if (sourceConfigExportBtnEl) {
-  sourceConfigExportBtnEl.addEventListener("click", downloadSourceConfig);
-}
-
-if (sourceConfigCopyBtnEl) {
-  sourceConfigCopyBtnEl.addEventListener("click", copySourceConfig);
-}
-
-if (sourceConfigImportBtnEl) {
-  sourceConfigImportBtnEl.addEventListener("click", () => {
-    importSourceConfigText(sourceConfigJsonEl?.value || "");
-  });
-}
-
-if (sourceConfigFileInputEl) {
-  sourceConfigFileInputEl.addEventListener("change", async (event) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-    try {
-      importSourceConfigText(await file.text());
-      sourceConfigFileInputEl.value = "";
-    } catch (err) {
-      setSourceConfigStatus(`读取文件失败：${err.message}`, "bad");
-    }
   });
 }
 
