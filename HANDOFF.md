@@ -3,10 +3,10 @@
 ## 当前最新交接：本地采集控制台继续增强维护动作入口
 
 - 日期：2026-07-03
-- 当前阶段：在 `feature/local-trigger-console` 上把已有“信源配置 + 本地刷新”升级成本地采集控制台，并补充本地只读依赖探针和维护动作入口。
+- 当前阶段：本地采集控制台已完成主要维护入口收口；B站、抖音、小红书、WeWe RSS 维护动作均已具备本地入口和状态反馈。
 - 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
 - 当前分支：`feature/local-trigger-console`
-- 最新已推送 commit：待本轮保存；上一已推送提交为 `b63c06f feat: add local Xiaohongshu collection progress`
+- 最新已推送 commit：`cb82374 feat: add dedicated Bilibili cookie login flow`
 - 本轮已实现：
   - `scripts/local_server.py` 新增 `GET /api/local-status`。
   - 本地状态会读取 `sources.config.json` 和 `data/source-status.json`，输出启用信源数、采集状态和维护项。
@@ -39,10 +39,11 @@
   - 2026-07-03 继续开发后，`GET /api/local-status` 返回 2 个维护项：`wewe_feed_MP_WXS_3198966508_failed` 和 `bilibili_cookie_missing`。
   - 2026-07-03 修复 WeWe 维护入口后，`POST /api/maintenance-action` with `start_wewe_rss_sidecar` 启动 PID `20128`，`http://127.0.0.1:4000/dash` 和 `/feeds` 均返回 HTTP 200；`wewe_rss_sidecar_unreachable` 维护项消失。
   - 2026-07-03 B站小号 cookie 维护入口已由用户验收：`打开B站小号登录` 使用独立 `local-secrets/bilibili-profile`，`同步cookie` 写入 `local-secrets/bilibili-cookies.txt`，页面显示生效；后续 `执行采集` 会自动使用该文件。
+  - 2026-07-03 用户执行采集后，本地状态确认 B站 `cookie_present=true`、`fetch_mode=cookie_full_dynamic`、`ok=true`、`item_count=40`、`error=null`；B站 cookie 流程验收通过。
   - 浏览器 DOM 曾验证到筛选条：`全部 14`、`启用 8`、`需维护 2`、`公众号 1`、`小红书 1`、`抖音 1`、`B站 1`、`RSS 6`、`GitHub 1`，且 `定位信源` 出现；后续一次浏览器自动化刷新超时，HTTP 验证仍通过。
 - 下一步建议：
-  - 保存本轮 B站小号 cookie 维护入口代码后，继续验收 `执行采集` 的 B站 `fetch_mode` 是否变为 `cookie_full_dynamic` 或明确的 fallback。
-  - 若 B站 cookie 已稳定，可继续做“停止/关闭采集专用窗口”或“重新同步 cookie”之类的小操作优化。
+  - 本地采集控制台当前可收口；后续如果继续优化，优先做“关闭/停止采集专用窗口”“重新同步 cookie”“维护项完成后自动折叠”等体验小改。
+  - 如准备合并/发布，先决定是否重新生成并审查 `data/*.json`；默认继续不提交本地生成数据。
 - 下一轮禁止：
   - 不要批量删除。
   - 不要提交 Cookie、登录态、`.env`、wewe-rss 数据库、QR 登录文件、浏览器 profile 或私有 token。
