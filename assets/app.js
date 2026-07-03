@@ -31,7 +31,7 @@ const state = {
   activeSection: "creator",
   boleView: "timeline",
   boleExpanded: false,
-  listSort: "priority",
+  listSort: "time",
   sourceTypeFilter: "",
   signalLevelFilter: "",
   siteGroupsExpanded: false,
