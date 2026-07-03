@@ -165,7 +165,7 @@ const SECTION_BY_ID = Object.fromEntries(SECTION_DEFS.map((section) => [section.
 
 const LIST_SORT_DEFS = [
   { id: "priority", label: "综合" },
-  { id: "latest", label: "最新" },
+  { id: "time", label: "时间" },
   { id: "ai", label: "高分" },
   { id: "source", label: "来源" },
 ];
@@ -1957,7 +1957,7 @@ function itemSourceSortKey(item) {
 
 function sortItemsForList(items) {
   const sorted = [...items];
-  if (state.listSort === "latest") {
+  if (state.listSort === "time") {
     return sorted.sort((a, b) => timelineMs(b) - timelineMs(a) || itemPriorityScore(b) - itemPriorityScore(a));
   }
   if (state.listSort === "ai") {
@@ -3629,7 +3629,7 @@ function dedupeSubgroupItems(items) {
 
 function subgroupSortValue(items) {
   if (!items.length) return 0;
-  if (state.listSort === "latest") return Math.max(...items.map(timelineMs));
+  if (state.listSort === "time") return Math.max(...items.map(timelineMs));
   if (state.listSort === "ai") return Math.max(...items.map(scorePercent));
   if (state.listSort === "source") return items.length;
   const leading = [...items]
@@ -3643,7 +3643,7 @@ function subgroupSummary(items, rawCount = items.length) {
   const merged = rawCount - items.length;
   let ranking = "";
   if (state.listSort === "priority") ranking = `综合 ${subgroupSortValue(items)}`;
-  if (state.listSort === "latest") ranking = `最新 ${fmtTime(timelineIso(items[0]))}`;
+  if (state.listSort === "time") ranking = `时间 ${fmtTime(timelineIso(items[0]))}`;
   if (state.listSort === "ai") ranking = `最高 AI ${subgroupSortValue(items)}分`;
   const mergedLabel = merged > 0 ? `合并 ${fmtNumber(merged)} 条重复` : "";
   return [count, ranking, mergedLabel].filter(Boolean).join(" · ");
