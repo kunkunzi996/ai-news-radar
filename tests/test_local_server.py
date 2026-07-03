@@ -1,3 +1,4 @@
+import json
 import unittest
 from pathlib import Path
 
@@ -6,7 +7,9 @@ from scripts.local_server import (
     local_config_maintenance_issues,
     local_status_payload,
     maintenance_issues_from_status,
+    perform_maintenance_action,
     refresh_command,
+    start_wewe_rss_sidecar,
     validate_source_config,
 )
 
@@ -67,6 +70,7 @@ class LocalServerTests(unittest.TestCase):
         self.assertEqual(issues[0]["id"], "bilibili_cookie_missing")
         self.assertEqual(issues[0]["severity"], "warn")
         self.assertIn("cookie", issues[0]["title"].lower())
+        self.assertEqual(issues[0]["fix_actions"][0]["id"], "open_bilibili_login")
 
     def test_maintenance_issues_explains_missing_mediacrawler_jsonl(self):
         issues = maintenance_issues_from_status(
@@ -111,6 +115,9 @@ class LocalServerTests(unittest.TestCase):
 
         self.assertEqual(len(issues), 1)
         self.assertEqual(issues[0]["id"], "wewe_feed_MP_TEST_failed")
+        action_ids = {action["id"] for action in issues[0]["fix_actions"]}
+        self.assertIn("start_wewe_rss_sidecar", action_ids)
+        self.assertIn("open_wewe_rss_dashboard", action_ids)
 
     def test_local_status_payload_handles_missing_status_file(self):
         root = Path(self.create_temp_dir())
@@ -146,6 +153,8 @@ class LocalServerTests(unittest.TestCase):
         self.assertEqual(issues[0]["id"], "mediacrawler_xhs_jsonl_not_found")
         self.assertEqual(issues[0]["severity"], "bad")
         self.assertIn("JSONL", issues[0]["title"])
+        action_ids = {action["id"] for action in issues[0]["fix_actions"]}
+        self.assertIn("open_mediacrawler_xhs_platform", action_ids)
 
     def test_local_config_issues_warn_stale_mediacrawler_jsonl(self):
         from datetime import datetime, timedelta, timezone
@@ -175,6 +184,9 @@ class LocalServerTests(unittest.TestCase):
         self.assertEqual(issues[0]["id"], "mediacrawler_douyin_jsonl_stale")
         self.assertEqual(issues[0]["severity"], "warn")
         self.assertIn("40", issues[0]["detail"])
+        action_ids = {action["id"] for action in issues[0]["fix_actions"]}
+        self.assertIn("open_mediacrawler_douyin_jsonl_folder", action_ids)
+        self.assertIn("open_mediacrawler_douyin_platform", action_ids)
 
     def test_local_config_issues_flag_missing_wewe_feed_id_without_network(self):
         root = Path(self.create_temp_dir())
@@ -194,6 +206,65 @@ class LocalServerTests(unittest.TestCase):
 
         self.assertEqual(issues[0]["id"], "wewe_rss_feed_id_missing")
         self.assertEqual(issues[0]["source_id"], "wewe_rss")
+        self.assertEqual(issues[0]["fix_actions"][0]["id"], "open_wewe_rss_dashboard")
+
+    def test_start_wewe_rss_sidecar_dry_run_uses_fixed_local_dist(self):
+        import os
+
+        root = Path(self.create_temp_dir()) / "ai-news-radar-run"
+        sidecar_server = root.parent / "wewe-rss-sidecar" / "apps" / "server"
+        sidecar_dist = sidecar_server / "dist"
+        sidecar_dist.mkdir(parents=True)
+        (sidecar_dist / "main.js").write_text("console.log('fake')\n", encoding="utf-8")
+
+        old_base_url = os.environ.get("WEWE_RSS_BASE_URL")
+        os.environ["WEWE_RSS_BASE_URL"] = "http://127.0.0.1:49999"
+        try:
+            result = start_wewe_rss_sidecar(root, execute=False)
+        finally:
+            if old_base_url is None:
+                os.environ.pop("WEWE_RSS_BASE_URL", None)
+            else:
+                os.environ["WEWE_RSS_BASE_URL"] = old_base_url
+
+        self.assertTrue(result["ok"])
+        self.assertFalse(result["executed"])
+        self.assertEqual(Path(result["cwd"]), sidecar_server)
+        self.assertEqual(Path(result["command"][1]), sidecar_dist / "main.js")
+
+    def test_perform_maintenance_action_dry_run_opens_configured_jsonl_folder(self):
+        import os
+        import time
+
+        root = Path(self.create_temp_dir())
+        jsonl = root / "creator_contents_2026-07-01.jsonl"
+        jsonl.write_text('{"title":"hello"}\n', encoding="utf-8")
+        old_timestamp = time.time() - 40 * 3600
+        os.utime(jsonl, (old_timestamp, old_timestamp))
+        (root / CONFIG_FILENAME).write_text(
+            json.dumps(
+                {
+                    "version": "1.0",
+                    "sources": [
+                        {
+                            "id": "mediacrawler_xhs_chenbaoyi",
+                            "name": "陈抱一",
+                            "type": "mediacrawler_jsonl",
+                            "channel": "小红书",
+                            "locator": str(jsonl),
+                            "enabled": True,
+                        }
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
+
+        result = perform_maintenance_action(root, "open_mediacrawler_xhs_jsonl_folder", execute=False)
+
+        self.assertTrue(result["ok"])
+        self.assertEqual(result["kind"], "open_path")
+        self.assertEqual(Path(result["opened_path"]), root)
 
     def create_temp_dir(self):
         import tempfile

@@ -12,6 +12,7 @@ import threading
 import urllib.error
 import urllib.parse
 import urllib.request
+import shutil
 from datetime import datetime, timezone
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -19,12 +20,19 @@ from pathlib import Path
 from typing import Any
 
 MAX_CONFIG_BYTES = 1024 * 1024
+MAX_ACTION_BYTES = 4096
 CONFIG_FILENAME = "sources.config.json"
 REFRESH_TIMEOUT_SECONDS = 600
 REFRESH_LOCK = threading.Lock()
 MEDIACRAWLER_JSONL_STALE_HOURS = 36
 WEWE_RSS_BASE_URL_DEFAULT = "http://127.0.0.1:4000"
 LOCAL_HTTP_TIMEOUT_SECONDS = 2.0
+BILIBILI_LOGIN_URL = "https://passport.bilibili.com/login"
+DOUYIN_HOME_URL = "https://www.douyin.com/"
+XIAOHONGSHU_HOME_URL = "https://www.xiaohongshu.com/explore"
+WEWE_RSS_SIDECAR_DIR_NAME = "wewe-rss-sidecar"
+WEWE_RSS_SIDECAR_LOG_OUT = "wewe-rss.out.log"
+WEWE_RSS_SIDECAR_LOG_ERR = "wewe-rss.err.log"
 
 
 def site_display_name(site: dict[str, Any]) -> str:
@@ -39,17 +47,87 @@ def add_maintenance_issue(
     title: str,
     detail: str,
     action: str,
+    fix_actions: list[dict[str, Any]] | None = None,
 ) -> None:
-    issues.append(
-        {
-            "id": issue_id,
-            "severity": severity,
-            "source_id": source_id,
-            "title": title,
-            "detail": detail,
-            "action": action,
-        }
-    )
+    issue = {
+        "id": issue_id,
+        "severity": severity,
+        "source_id": source_id,
+        "title": title,
+        "detail": detail,
+        "action": action,
+    }
+    if fix_actions:
+        issue["fix_actions"] = fix_actions
+    issues.append(issue)
+
+
+def open_url_action(action_id: str, label: str, url: str) -> dict[str, Any]:
+    return {"id": action_id, "kind": "open_url", "label": label, "url": url}
+
+
+def open_path_action(action_id: str, label: str, path: Path) -> dict[str, Any]:
+    return {"id": action_id, "kind": "open_path", "label": label, "path": str(path)}
+
+
+def start_service_action(action_id: str, label: str) -> dict[str, Any]:
+    return {"id": action_id, "kind": "start_service", "label": label}
+
+
+def wewe_dashboard_url() -> str:
+    base_url = (os.environ.get("WEWE_RSS_BASE_URL") or WEWE_RSS_BASE_URL_DEFAULT).strip().rstrip("/")
+    return base_url + "/dash"
+
+
+def wewe_fix_actions(include_start: bool = False) -> list[dict[str, Any]]:
+    actions: list[dict[str, Any]] = []
+    if include_start:
+        actions.append(start_service_action("start_wewe_rss_sidecar", "启动后台/扫码"))
+    actions.append(open_url_action("open_wewe_rss_dashboard", "打开后台/扫码", wewe_dashboard_url()))
+    return actions
+
+
+def bilibili_fix_actions() -> list[dict[str, Any]]:
+    return [open_url_action("open_bilibili_login", "打开B站登录", BILIBILI_LOGIN_URL)]
+
+
+def platform_url_for_runtime_id(runtime_id: str) -> str:
+    if runtime_id == "mediacrawler_xhs":
+        return XIAOHONGSHU_HOME_URL
+    if runtime_id == "mediacrawler_douyin":
+        return DOUYIN_HOME_URL
+    return ""
+
+
+def platform_label_for_runtime_id(runtime_id: str) -> str:
+    if runtime_id == "mediacrawler_xhs":
+        return "打开小红书"
+    if runtime_id == "mediacrawler_douyin":
+        return "打开抖音"
+    return "打开平台"
+
+
+def existing_open_target(path: Path) -> Path | None:
+    if path.exists():
+        return path.parent if path.is_file() else path
+    candidate = path.parent
+    while candidate != candidate.parent:
+        if candidate.exists():
+            return candidate
+        candidate = candidate.parent
+    return candidate if candidate.exists() else None
+
+
+def mediacrawler_fix_actions(root_dir: Path, runtime_id: str, raw_path: str = "") -> list[dict[str, Any]]:
+    actions: list[dict[str, Any]] = []
+    if raw_path:
+        target = existing_open_target(resolve_config_path(root_dir, raw_path))
+        if target:
+            actions.append(open_path_action(f"open_{runtime_id}_jsonl_folder", "打开JSONL文件夹", target))
+    platform_url = platform_url_for_runtime_id(runtime_id)
+    if platform_url:
+        actions.append(open_url_action(f"open_{runtime_id}_platform", platform_label_for_runtime_id(runtime_id), platform_url))
+    return actions
 
 
 def maintenance_action_for_error(site_id: str, error: str) -> str:
@@ -89,6 +167,7 @@ def maintenance_issues_from_status(payload: dict[str, Any]) -> list[dict[str, An
                 f"{name} 抓取失败",
                 error or "本轮没有成功返回数据。",
                 maintenance_action_for_error(site_id, error),
+                wewe_fix_actions(include_start=True) if site_id == "wewe_rss" else bilibili_fix_actions() if site_id == "bilibili_dynamic" else [],
             )
         elif site.get("ok") is True and int(site.get("item_count") or 0) == 0:
             add_maintenance_issue(
@@ -111,6 +190,7 @@ def maintenance_issues_from_status(payload: dict[str, Any]) -> list[dict[str, An
                     "B站 cookie 未配置",
                     "当前走公开接口兜底，可能拿不到完整动态。",
                     "如需完整动态，重新导出 B站 cookie 并通过环境变量或本地 cookie 文件配置；不要提交 cookie。",
+                    bilibili_fix_actions(),
                 )
             for account in site.get("accounts") or []:
                 if isinstance(account, dict) and account.get("ok") is False:
@@ -122,6 +202,7 @@ def maintenance_issues_from_status(payload: dict[str, Any]) -> list[dict[str, An
                         f"B站账号 {account.get('source_name') or account.get('uid')} 抓取失败",
                         str(account.get("error") or "账号级抓取失败。"),
                         "检查 UID 是否正确；如果 cookie 模式失败，重新导出 B站 cookie。",
+                        bilibili_fix_actions(),
                     )
 
         if site_id == "wewe_rss":
@@ -135,6 +216,7 @@ def maintenance_issues_from_status(payload: dict[str, Any]) -> list[dict[str, An
                         f"公众号 {feed.get('name') or feed.get('id')} 读取失败",
                         str(feed.get("error") or "WeWe RSS feed 没有返回正常数据。"),
                         "打开 WeWe RSS 后台确认是否需要扫码、重新登录或重新订阅该公众号。",
+                        wewe_fix_actions(include_start=True),
                     )
 
     source_config = payload.get("source_config")
@@ -254,6 +336,7 @@ def add_mediacrawler_jsonl_issue(
             f"{platform} JSONL 路径未配置",
             f"{source_name} 已启用，但 sources.config.json 里没有 JSONL 路径。",
             "先运行对应平台的 MediaCrawler，并把导出的 creator_contents_*.jsonl 路径填到该信源。",
+            mediacrawler_fix_actions(root_dir, runtime_id),
         )
         return
 
@@ -267,6 +350,7 @@ def add_mediacrawler_jsonl_issue(
             f"{platform} JSONL 文件不存在",
             f"配置路径没有找到文件：{jsonl_path}",
             "先运行对应平台的 MediaCrawler 生成 JSONL，或修正该信源的路径。",
+            mediacrawler_fix_actions(root_dir, runtime_id, locator),
         )
         return
     if not jsonl_path.is_file():
@@ -278,6 +362,7 @@ def add_mediacrawler_jsonl_issue(
             f"{platform} JSONL 路径不是文件",
             f"当前路径不是可读取的 JSONL 文件：{jsonl_path}",
             "把路径改成具体的 creator_contents_*.jsonl 文件。",
+            mediacrawler_fix_actions(root_dir, runtime_id, locator),
         )
         return
 
@@ -291,6 +376,7 @@ def add_mediacrawler_jsonl_issue(
             f"{platform} JSONL 文件为空",
             f"{jsonl_path.name} 当前大小为 0。",
             "重新运行 MediaCrawler，确认导出的 JSONL 里有内容。",
+            mediacrawler_fix_actions(root_dir, runtime_id, locator),
         )
         return
 
@@ -305,6 +391,7 @@ def add_mediacrawler_jsonl_issue(
             f"{platform} JSONL 可能过旧",
             f"{jsonl_path.name} 上次更新约 {age_hours} 小时前。",
             "如果想看最新动态，先重新运行对应平台的 MediaCrawler，再点执行采集。",
+            mediacrawler_fix_actions(root_dir, runtime_id, locator),
         )
 
 
@@ -330,6 +417,73 @@ def check_wewe_rss_sidecar(base_url: str) -> tuple[bool, str]:
         return False, str(exc)
 
 
+def wewe_rss_sidecar_root(root_dir: Path) -> Path:
+    configured = str(os.environ.get("WEWE_RSS_SIDECAR_DIR") or "").strip()
+    if configured:
+        return Path(configured).expanduser().resolve()
+    return (root_dir.parent / WEWE_RSS_SIDECAR_DIR_NAME).resolve()
+
+
+def wewe_rss_server_dir(root_dir: Path) -> Path:
+    return wewe_rss_sidecar_root(root_dir) / "apps" / "server"
+
+
+def wewe_rss_service_running() -> bool:
+    ok, _detail = check_wewe_rss_sidecar((os.environ.get("WEWE_RSS_BASE_URL") or WEWE_RSS_BASE_URL_DEFAULT).strip().rstrip("/"))
+    return ok
+
+
+def start_wewe_rss_sidecar(root_dir: Path, *, execute: bool = True) -> dict[str, Any]:
+    base_url = (os.environ.get("WEWE_RSS_BASE_URL") or WEWE_RSS_BASE_URL_DEFAULT).strip().rstrip("/")
+    if not is_local_http_url(base_url):
+        return {"ok": False, "error": "wewe_rss_base_url_not_local", "base_url": base_url}
+    if wewe_rss_service_running():
+        return {"ok": True, "already_running": True, "url": base_url + "/dash", "executed": False}
+
+    server_dir = wewe_rss_server_dir(root_dir)
+    entry = server_dir / "dist" / "main.js"
+    if not entry.exists():
+        entry = server_dir / "dist" / "main"
+    if not entry.exists():
+        return {"ok": False, "error": "wewe_rss_dist_not_found", "path": str(server_dir / "dist")}
+
+    node_exe = shutil.which("node")
+    if not node_exe:
+        return {"ok": False, "error": "node_not_found"}
+    if not execute:
+        return {"ok": True, "command": [node_exe, str(entry)], "cwd": str(server_dir), "url": base_url + "/dash", "executed": False}
+
+    env = os.environ.copy()
+    env.setdefault("HOST", "127.0.0.1")
+    env.setdefault("PORT", "4000")
+    env.setdefault("DATABASE_TYPE", "sqlite")
+    env.setdefault("DATABASE_URL", "file:../data/wewe-rss.db")
+    out_log = wewe_rss_sidecar_root(root_dir) / WEWE_RSS_SIDECAR_LOG_OUT
+    err_log = wewe_rss_sidecar_root(root_dir) / WEWE_RSS_SIDECAR_LOG_ERR
+    creationflags = 0
+    if os.name == "nt":
+        creationflags = subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS
+    with out_log.open("a", encoding="utf-8", errors="ignore") as stdout_file, err_log.open("a", encoding="utf-8", errors="ignore") as stderr_file:
+        process = subprocess.Popen(
+            [node_exe, str(entry)],
+            cwd=server_dir,
+            env=env,
+            stdout=stdout_file,
+            stderr=stderr_file,
+            stdin=subprocess.DEVNULL,
+            close_fds=True,
+            creationflags=creationflags,
+        )
+    return {
+        "ok": True,
+        "kind": "start_service",
+        "action_id": "start_wewe_rss_sidecar",
+        "pid": process.pid,
+        "url": base_url + "/dash",
+        "executed": True,
+    }
+
+
 def add_wewe_rss_config_issues(
     issues: list[dict[str, Any]],
     sources: list[dict[str, Any]],
@@ -353,6 +507,7 @@ def add_wewe_rss_config_issues(
             "公众号 feed id 未配置",
             f"缺少 feed id：{'、'.join(missing_feed_sources[:3])}",
             "在 WeWe RSS 后台找到对应公众号 feed id，并填到该信源的地址 / ID / 路径。",
+            wewe_fix_actions(),
         )
 
     base_url = (os.environ.get("WEWE_RSS_BASE_URL") or WEWE_RSS_BASE_URL_DEFAULT).strip().rstrip("/")
@@ -365,6 +520,7 @@ def add_wewe_rss_config_issues(
             "WeWe RSS 不是本地地址",
             f"当前 WEWE_RSS_BASE_URL={base_url}，本地工具已跳过 HTTP 探测。",
             "如果这是你有意配置的远程服务，请手动确认它能访问；本地面板只自动探测 localhost/127.0.0.1。",
+            [open_url_action("open_wewe_rss_dashboard", "打开后台", base_url + "/dash")] if base_url.startswith(("http://", "https://")) else [],
         )
         return
     if not probe_network:
@@ -380,6 +536,7 @@ def add_wewe_rss_config_issues(
             "WeWe RSS 本地服务不可用",
             f"{base_url}/feeds 访问失败：{detail}",
             "先启动 wewe-rss-sidecar；如果后台要求重新扫码，先完成扫码登录，再回到本页面检查状态。",
+            wewe_fix_actions(include_start=True),
         )
 
 
@@ -544,6 +701,84 @@ def local_status_payload(root_dir: Path) -> dict[str, Any]:
     }
 
 
+def maintenance_actions_from_payload(payload: dict[str, Any]) -> list[dict[str, Any]]:
+    actions: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    issues = payload.get("source_status", {}).get("maintenance_issues", [])
+    if not isinstance(issues, list):
+        return actions
+    for issue in issues:
+        if not isinstance(issue, dict):
+            continue
+        for action in issue.get("fix_actions") or []:
+            if not isinstance(action, dict):
+                continue
+            action_id = str(action.get("id") or "")
+            if not action_id or action_id in seen:
+                continue
+            seen.add(action_id)
+            actions.append(action)
+    return actions
+
+
+def find_maintenance_action(root_dir: Path, action_id: str) -> dict[str, Any] | None:
+    action_id = str(action_id or "").strip()
+    if not action_id:
+        return None
+    for action in maintenance_actions_from_payload(local_status_payload(root_dir)):
+        if action.get("id") == action_id:
+            return action
+    return None
+
+
+def launch_open_path(target: Path) -> None:
+    if os.name == "nt":
+        os.startfile(str(target))  # type: ignore[attr-defined]
+        return
+    opener = "open" if sys.platform == "darwin" else "xdg-open"
+    subprocess.Popen([opener, str(target)], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+
+def perform_maintenance_action(root_dir: Path, action_id: str, *, execute: bool = True) -> dict[str, Any]:
+    action = find_maintenance_action(root_dir, action_id)
+    if not action:
+        return {"ok": False, "error": "maintenance_action_not_found"}
+
+    kind = str(action.get("kind") or "")
+    if kind == "open_path":
+        raw_path = str(action.get("path") or "").strip()
+        if not raw_path:
+            return {"ok": False, "error": "maintenance_action_path_missing"}
+        target = existing_open_target(Path(raw_path))
+        if not target:
+            return {"ok": False, "error": "maintenance_action_path_not_found", "path": raw_path}
+        if execute:
+            launch_open_path(target)
+        return {
+            "ok": True,
+            "kind": kind,
+            "action_id": action.get("id"),
+            "label": action.get("label"),
+            "opened_path": str(target),
+            "executed": execute,
+        }
+    if kind == "open_url":
+        return {
+            "ok": True,
+            "kind": kind,
+            "action_id": action.get("id"),
+            "label": action.get("label"),
+            "url": action.get("url"),
+            "executed": False,
+        }
+    if kind == "start_service":
+        action_id = str(action.get("id") or "")
+        if action_id == "start_wewe_rss_sidecar":
+            return start_wewe_rss_sidecar(root_dir, execute=execute)
+        return {"ok": False, "error": "unsupported_start_service", "action_id": action_id}
+    return {"ok": False, "error": "unsupported_maintenance_action", "kind": kind}
+
+
 class LocalRadarHandler(SimpleHTTPRequestHandler):
     server_version = "AIReadRadarLocal/0.1"
 
@@ -589,6 +824,9 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
 
     def do_POST(self) -> None:
         route = self.path.split("?", 1)[0]
+        if route == "/api/maintenance-action":
+            self.handle_maintenance_action()
+            return
         if route == "/api/refresh":
             self.handle_refresh()
             return
@@ -630,6 +868,30 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
                 "source_count": len(payload.get("sources") or []),
             },
         )
+
+    def handle_maintenance_action(self) -> None:
+        if self.reject_nonlocal_origin():
+            return
+        try:
+            length = int(self.headers.get("Content-Length") or "0")
+        except ValueError:
+            length = 0
+        if length <= 0 or length > MAX_ACTION_BYTES:
+            json_response(self, HTTPStatus.BAD_REQUEST, {"ok": False, "error": "invalid_content_length"})
+            return
+        if "application/json" not in str(self.headers.get("Content-Type") or ""):
+            json_response(self, HTTPStatus.UNSUPPORTED_MEDIA_TYPE, {"ok": False, "error": "json_required"})
+            return
+        try:
+            raw = self.rfile.read(length)
+            payload = json.loads(raw.decode("utf-8"))
+            action_id = str(payload.get("action_id") or "").strip()
+            result = perform_maintenance_action(self.root_dir, action_id)
+        except Exception as exc:
+            json_response(self, HTTPStatus.INTERNAL_SERVER_ERROR, {"ok": False, "error": str(exc)})
+            return
+        status = HTTPStatus.OK if result.get("ok") else HTTPStatus.BAD_REQUEST
+        json_response(self, status, result)
 
     def handle_refresh(self) -> None:
         if self.reject_nonlocal_origin():

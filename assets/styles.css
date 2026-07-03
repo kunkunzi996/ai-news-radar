@@ -1147,16 +1147,42 @@ summary:focus-visible {
   color: var(--ink-soft);
 }
 
+.local-ops-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 2px;
+}
+
+.local-ops-fix,
 .local-ops-locate {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: max-content;
   min-height: 28px;
-  border: 1px solid rgba(18, 106, 115, 0.22);
   border-radius: var(--radius);
   padding: 0 9px;
-  color: var(--accent);
-  background: var(--surface);
   font-size: 12px;
   font-weight: 760;
+  text-decoration: none;
+}
+
+.local-ops-fix {
+  border: 1px solid rgba(18, 106, 115, 0.28);
+  color: #ffffff;
+  background: var(--accent);
+}
+
+.local-ops-fix:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.local-ops-locate {
+  border: 1px solid rgba(18, 106, 115, 0.22);
+  color: var(--accent);
+  background: var(--surface);
 }
 
 .file-tool {

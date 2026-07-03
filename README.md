@@ -246,9 +246,12 @@ python scripts/update_news.py --output-dir data --window-hours 24 --rss-opml fee
 `/api/local-status`，把 `data/source-status.json` 里的异常翻译成维护提示，
 例如 B站 cookie 缺失、MediaCrawler JSONL 路径不存在、WeWe RSS feed 失败等；
 同时会做本地只读探针，提示 WeWe RSS sidecar 是否可访问、MediaCrawler JSONL
-是否缺失或超过 36 小时未更新。
+是否缺失或超过 36 小时未更新。维护卡片会给出白名单“修复”入口；WeWe RSS
+服务没启动时会先启动本机 `wewe-rss-sidecar`，再打开后台/扫码页，也可以打开
+B站登录页或 MediaCrawler JSONL 所在文件夹。
 这个本地后台只绑定 `127.0.0.1`，只允许写这一个配置文件，只运行项目内固定
-刷新命令，不会保存 cookie、token、`.env`、微信登录态或浏览器 profile。
+刷新命令；维护入口只打开页面、文件夹或启动固定的本地 WeWe RSS sidecar，
+不会保存 cookie、token、`.env`、微信登录态或浏览器 profile。
 
 推荐流程：
 
@@ -261,7 +264,7 @@ python scripts/update_news.py --output-dir data --window-hours 24 --rss-opml fee
 2. 打开 `http://127.0.0.1:8080/`，在“信源配置”里修改启用/停用。
 3. 点“写入”，生成或覆盖根目录 `sources.config.json`（该文件已加入
    `.gitignore`，默认不提交）。按钮会显示“写入中... / 已写入 / 写入失败”。
-4. 点“检查状态”查看哪些渠道需要维护；维护提示里的“定位信源”会跳回对应配置项。
+4. 点“检查状态”查看哪些渠道需要维护；维护提示里的“打开后台/扫码”“打开B站登录”“打开JSONL文件夹”等按钮会直达维护入口，“定位信源”会跳回对应配置项。
 5. 用信源列表上方的筛选按钮按“启用 / 需维护 / 公众号 / 小红书 / 抖音 / B站 / RSS / GitHub”查看订阅。
 6. 点“执行采集”即可一键写入配置并刷新 `data/*.json`，完成后页面会自动重载。
    如果想在命令行里手动刷新，也可以显式运行：

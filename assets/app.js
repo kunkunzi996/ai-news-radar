@@ -662,6 +662,52 @@ function localOpsMetric(label, value, tone = "") {
   return node;
 }
 
+async function runLocalOpsFixAction(action, button) {
+  const label = action?.label || "修复";
+  if (!["open_path", "start_service"].includes(action?.kind) || !action.id) {
+    setLocalOpsStatus("这个维护入口暂不可用", "bad");
+    return;
+  }
+  const pendingWindow = action.kind === "start_service" ? window.open("about:blank", "_blank") : null;
+  if (pendingWindow) pendingWindow.opener = null;
+  const oldText = button?.textContent || label;
+  if (button) {
+    button.disabled = true;
+    button.textContent = "打开中...";
+  }
+  try {
+    const res = await fetch("./api/maintenance-action", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ action_id: action.id }),
+    });
+    const payload = await res.json().catch(() => ({}));
+    if (!res.ok || payload.ok === false) {
+      throw new Error(payload.error || `HTTP ${res.status}`);
+    }
+    if (action.kind === "start_service" && payload.url) {
+      if (pendingWindow) {
+        pendingWindow.location.href = payload.url;
+      } else {
+        window.location.href = payload.url;
+      }
+    }
+    setLocalOpsStatus(`已打开：${label}`, "ok");
+    if (button) button.textContent = "已打开";
+  } catch (err) {
+    if (pendingWindow && !pendingWindow.closed) pendingWindow.close();
+    setLocalOpsStatus(`打开失败：${err?.message || "unknown error"}`, "bad");
+    if (button) button.textContent = oldText;
+  } finally {
+    if (button) {
+      window.setTimeout(() => {
+        button.disabled = false;
+        button.textContent = oldText;
+      }, 1200);
+    }
+  }
+}
+
 function renderLocalOpsStatus(payload = null) {
   if (!localOpsSummaryEl || !localOpsIssuesEl) return;
   localOpsSummaryEl.innerHTML = "";
@@ -715,14 +761,36 @@ function renderLocalOpsStatus(payload = null) {
     const action = document.createElement("em");
     action.textContent = issue.action || "";
     card.append(title, detail, action);
+    const actionRow = document.createElement("div");
+    actionRow.className = "local-ops-actions";
+    (Array.isArray(issue.fix_actions) ? issue.fix_actions : []).slice(0, 3).forEach((fixAction) => {
+      if (fixAction.kind === "open_url" && fixAction.url) {
+        const link = document.createElement("a");
+        link.className = "local-ops-fix";
+        link.href = fixAction.url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = fixAction.label || "打开";
+        link.addEventListener("click", () => setLocalOpsStatus(`已打开：${fixAction.label || "维护入口"}`, "ok"));
+        actionRow.appendChild(link);
+        return;
+      }
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "local-ops-fix";
+      button.textContent = fixAction.label || "修复";
+      button.addEventListener("click", () => runLocalOpsFixAction(fixAction, button));
+      actionRow.appendChild(button);
+    });
     if (issue.source_id && (state.sourceConfig?.sources || []).some((source) => sourceConfigRuntimeIds(source).has(issue.source_id))) {
       const locate = document.createElement("button");
       locate.type = "button";
       locate.className = "local-ops-locate";
       locate.textContent = "定位信源";
       locate.addEventListener("click", () => selectSourceConfigByRuntimeId(issue.source_id));
-      card.appendChild(locate);
+      actionRow.appendChild(locate);
     }
+    if (actionRow.childElementCount) card.appendChild(actionRow);
     localOpsIssuesEl.appendChild(card);
   });
 }

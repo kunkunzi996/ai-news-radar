@@ -1,9 +1,9 @@
 # HANDOFF.md
 
-## 当前最新交接：本地采集控制台第一版已推送，继续增强本地探针
+## 当前最新交接：本地采集控制台继续增强维护动作入口
 
 - 日期：2026-07-03
-- 当前阶段：在 `feature/local-trigger-console` 上把已有“信源配置 + 本地刷新”升级成本地采集控制台，并补充本地只读依赖探针。
+- 当前阶段：在 `feature/local-trigger-console` 上把已有“信源配置 + 本地刷新”升级成本地采集控制台，并补充本地只读依赖探针和维护动作入口。
 - 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
 - 当前分支：`feature/local-trigger-console`
 - 已推送 commit：`fa515b6 feat: add local source trigger console`
@@ -15,11 +15,14 @@
   - “刷新数据”改为“执行采集”，“检查状态”会读取本地维护诊断。
   - 信源列表新增筛选：全部、启用、需维护、公众号、小红书、抖音、B站、RSS、GitHub。
   - 维护提示新增“定位信源”，可跳到对应配置项；信源列表会标记需关注/需处理。
+  - 维护提示新增白名单动作按钮：WeWe RSS 启动后台/扫码，B站打开登录页，MediaCrawler 打开 JSONL 文件夹和平台页。
+  - 新增 `POST /api/maintenance-action`，只接受当前维护项里存在的 `action_id`，用于打开已验证的本地文件夹或启动固定的本机 WeWe RSS sidecar；不接受前端传任意路径或命令。
   - WeWe RSS feed 失败提示已去重，不再同时显示总失败和单 feed 失败。
   - README 和 `PROJECT_STATE.md` 已同步本地工具边界。
 - 当前边界：
   - 不读取或保存 Cookie、token、`.env`、微信登录态、WeWe RSS 数据库、QR 登录文件、MediaCrawler profile。
   - WeWe RSS 探针只检查 `localhost` / `127.0.0.1` 的 `/feeds` HTTP 端点；MediaCrawler 探针只看显式配置的 JSONL 文件元信息。
+  - 维护动作只打开页面、文件夹或启动固定路径 `E:\AI-news-reader\wewe-rss-sidecar` 的 WeWe RSS sidecar；不会自动登录、不会自动扫码、不会启动 MediaCrawler，也不会运行任意命令。
   - `/api/source-config` 仍只能写项目根目录 `sources.config.json`。
   - `/api/refresh` 仍只能运行固定刷新命令，不能由前端传任意命令。
 - 已验证：
@@ -29,6 +32,7 @@
   - `GET http://127.0.0.1:8080/api/local-status` 返回 HTTP 200，当前维护项为 `bilibili_cookie_missing`。
   - `GET http://127.0.0.1:8080/index.html` 包含 `sourceConfigCheckBtn`、`localOpsStatus`、`localOpsSummary`、`执行采集`。
   - 2026-07-03 继续开发后，`GET /api/local-status` 返回 2 个维护项：`wewe_feed_MP_WXS_3198966508_failed` 和 `bilibili_cookie_missing`。
+  - 2026-07-03 修复 WeWe 维护入口后，`POST /api/maintenance-action` with `start_wewe_rss_sidecar` 启动 PID `20128`，`http://127.0.0.1:4000/dash` 和 `/feeds` 均返回 HTTP 200；`wewe_rss_sidecar_unreachable` 维护项消失。
   - 浏览器 DOM 曾验证到筛选条：`全部 14`、`启用 8`、`需维护 2`、`公众号 1`、`小红书 1`、`抖音 1`、`B站 1`、`RSS 6`、`GitHub 1`，且 `定位信源` 出现；后续一次浏览器自动化刷新超时，HTTP 验证仍通过。
 - 下一步建议：
   - 跑一次完整 `git diff --check` 和相关单测。
