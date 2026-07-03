@@ -1,5 +1,31 @@
 # HANDOFF.md
 
+## 当前最新交接：订阅平台栏目已验收并准备保存
+
+- 日期：2026-07-04
+- 当前阶段：主页内容栏目已从主题分类重构为订阅/平台分类，并已由用户在本地浏览器验收通过。
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前分支：`feature/local-trigger-console`
+- 本轮已完成：
+  - 首页默认进入 `我的订阅`。
+  - 顶部内容栏目只保留 `我的订阅`、`抖音`、`小红书`、`微信公众号`、`B站`、`油管`。
+  - 平台栏目会从订阅记录的 source id、source name、URL、标题等字段判断归属。
+  - WeWe RSS sidecar 已恢复：`http://127.0.0.1:4000/dash/accounts` 可打开，账号 `547013436` 状态为启用。
+  - 猫笔刀 feed 已恢复到 2026-07-03 最新文章：`诚实回答`，发布时间 `2026-07-03 22:24:51`。
+  - AI News Radar 本地服务已恢复：`http://127.0.0.1:8080/` 返回 HTTP 200，`/api/local-status` 返回 `ok=true`。
+- 本轮验收：
+  - 用户确认“没问题，验收成功”。
+  - 本地页面已可打开，后续可在页面点 `执行采集` 同步最新 WeWe RSS 数据。
+- 下一轮建议入口：
+  - 先读 `PROJECT_STATE.md` 和本文件。
+  - 若 8080 打不开，启动：`.\.venv\Scripts\python.exe scripts\local_server.py --host 127.0.0.1 --port 8080`。
+  - 若 4000 打不开，从 `E:\AI-news-reader\wewe-rss-sidecar\apps\server` 用 SQLite 环境启动 `node dist/main.js`，并确认 `http://127.0.0.1:4000/dash/accounts` 可访问。
+  - 如果继续做信源 UI，优先从 `assets/app.js` 的 `SECTION_DEFS`、`isSubscriptionSection()`、`itemPlatformSection()`、`sectionItems()` 看起。
+- 下一轮禁止：
+  - 不要批量删除。
+  - 不要提交 Cookie、登录态、`.env`、WeWe RSS 数据库、二维码、浏览器 profile、`local-secrets` 或私有 token。
+  - 不要把 `/api/refresh` 或维护动作扩展成前端可传任意命令。
+
 ## 当前最新交接：本地采集控制台继续增强维护动作入口
 
 - 日期：2026-07-03

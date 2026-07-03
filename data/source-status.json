@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-07-02T16:04:54.599962Z",
+  "generated_at": "2026-07-03T16:47:30.824179Z",
   "sites": [
     {
       "site_id": "aihot",
       "site_name": "AI HOT",
       "ok": true,
-      "item_count": 108,
-      "duration_ms": 314,
+      "item_count": 114,
+      "duration_ms": 316,
       "error": null
     },
     {
@@ -14,7 +14,7 @@
       "site_name": "GitHub Foundation Sunshine",
       "ok": true,
       "item_count": 5,
-      "duration_ms": 2022,
+      "duration_ms": 922,
       "error": null,
       "source_kind": "github_release_subscription",
       "repo": "AlkaidLab/foundation-sunshine",
@@ -25,7 +25,7 @@
       "site_name": "WeWe RSS",
       "ok": true,
       "item_count": 20,
-      "duration_ms": 32,
+      "duration_ms": 26,
       "error": null,
       "source_kind": "wewe_rss_wechat_subscription",
       "base_url": "http://127.0.0.1:4000",
@@ -46,8 +46,8 @@
       "site_id": "bilibili_dynamic",
       "site_name": "Bilibili Dynamic",
       "ok": true,
-      "item_count": 25,
-      "duration_ms": 278,
+      "item_count": 40,
+      "duration_ms": 1568,
       "error": null,
       "uid": "505301413,316183842",
       "uids": [
@@ -58,8 +58,8 @@
       "source_name": "Koji杨远骋at十字路口, 技术爬爬虾",
       "privacy": "cookie_env_only_not_logged",
       "coverage_note": "tries_cookie_full_dynamic_then_public_opus_fallback",
-      "cookie_present": false,
-      "fetch_mode": "public_opus",
+      "cookie_present": true,
+      "fetch_mode": "cookie_full_dynamic",
       "fallback_reason": null,
       "partial_failure_count": 0,
       "max_items": 20,
@@ -70,15 +70,15 @@
           "uid": "505301413",
           "source_name": "Koji杨远骋at十字路口",
           "ok": true,
-          "item_count": 5,
-          "fetch_mode": "public_opus"
+          "item_count": 20,
+          "fetch_mode": "cookie_full_dynamic"
         },
         {
           "uid": "316183842",
           "source_name": "技术爬爬虾",
           "ok": true,
           "item_count": 20,
-          "fetch_mode": "public_opus"
+          "fetch_mode": "cookie_full_dynamic"
         }
       ]
     },
@@ -86,30 +86,30 @@
       "site_id": "mediacrawler_douyin",
       "site_name": "MediaCrawler Douyin",
       "ok": true,
-      "item_count": 68,
-      "duration_ms": 1,
+      "item_count": 69,
+      "duration_ms": 2,
       "error": null,
       "source_name": "Simon林",
       "privacy": "local_jsonl_only_no_cookies",
       "coverage_note": "reads_mediacrawler_douyin_creator_jsonl",
       "source_kind": "mediacrawler_douyin",
       "jsonl_path_configured": true,
-      "jsonl_file": "creator_contents_2026-07-01.jsonl",
+      "jsonl_file": "creator_contents_2026-07-03.jsonl",
       "max_items": 200
     },
     {
       "site_id": "mediacrawler_xhs",
       "site_name": "MediaCrawler Xiaohongshu",
       "ok": true,
-      "item_count": 198,
-      "duration_ms": 2,
+      "item_count": 60,
+      "duration_ms": 1,
       "error": null,
       "source_name": "陈抱一",
       "privacy": "local_jsonl_only_no_cookies",
       "coverage_note": "reads_mediacrawler_xhs_creator_jsonl",
       "source_kind": "mediacrawler_xhs",
       "jsonl_path_configured": true,
-      "jsonl_file": "creator_contents_2026-07-01.jsonl",
+      "jsonl_file": "creator_contents_2026-07-03.jsonl",
       "max_items": 200
     },
     {
@@ -118,7 +118,7 @@
       "ok": true,
       "partial_failures": 0,
       "item_count": 15,
-      "duration_ms": 651,
+      "duration_ms": 687,
       "error": null,
       "feed_count": 1,
       "effective_feed_count": 1,
@@ -134,9 +134,9 @@
   "failed_sites": [],
   "zero_item_sites": [],
   "empty_advanced_sources": [],
-  "fetched_raw_items": 439,
-  "items_before_topic_filter": 879,
-  "items_in_24h": 283,
+  "fetched_raw_items": 323,
+  "items_before_topic_filter": 913,
+  "items_in_24h": 311,
   "rss_opml": {
     "enabled": true,
     "path": "configured",
@@ -157,7 +157,7 @@
         "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw",
         "ok": true,
         "item_count": 15,
-        "duration_ms": 651,
+        "duration_ms": 687,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -195,28 +195,32 @@
   "mediacrawler_douyin": {
     "enabled": true,
     "ok": true,
-    "item_count": 68,
+    "item_count": 69,
     "source_kind": "mediacrawler_douyin",
     "privacy": "local_jsonl_only_no_cookies",
     "coverage_note": "reads_mediacrawler_douyin_creator_jsonl",
     "jsonl_path_configured": true,
-    "jsonl_file": "creator_contents_2026-07-01.jsonl",
+    "jsonl_file_configured": "creator_contents_2026-07-01.jsonl",
+    "jsonl_file": "creator_contents_2026-07-03.jsonl",
     "max_items": 200,
+    "jsonl_file_resolved_from": "creator_contents_2026-07-01.jsonl",
     "source_name": "Simon林",
-    "duration_ms": 1
+    "duration_ms": 2
   },
   "mediacrawler_xhs": {
     "enabled": true,
     "ok": true,
-    "item_count": 198,
+    "item_count": 60,
     "source_kind": "mediacrawler_xhs",
     "privacy": "local_jsonl_only_no_cookies",
     "coverage_note": "reads_mediacrawler_xhs_creator_jsonl",
     "jsonl_path_configured": true,
-    "jsonl_file": "creator_contents_2026-07-01.jsonl",
+    "jsonl_file_configured": "creator_contents_2026-07-01.jsonl",
+    "jsonl_file": "creator_contents_2026-07-03.jsonl",
     "max_items": 200,
+    "jsonl_file_resolved_from": "creator_contents_2026-07-01.jsonl",
     "source_name": "陈抱一",
-    "duration_ms": 2
+    "duration_ms": 1
   },
   "source_config": {
     "enabled": true,
@@ -226,8 +230,8 @@
       "sources.config.json"
     ],
     "error": null,
-    "source_count": 16,
-    "enabled_source_count": 9,
+    "source_count": 7,
+    "enabled_source_count": 7,
     "enabled_site_ids": [
       "aihot",
       "bilibili_dynamic",

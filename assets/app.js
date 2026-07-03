@@ -28,7 +28,7 @@ const state = {
   dailyBrief: null,
   storiesMerged: null,
   storiesDataUrl: "data/stories-merged.json",
-  activeSection: "hot",
+  activeSection: "creator",
   boleView: "timeline",
   boleExpanded: false,
   listSort: "priority",
@@ -158,15 +158,12 @@ const SUBSCRIPTION_SITE_IDS = new Set([
 ]);
 
 const SECTION_DEFS = [
-  { id: "hot", label: "热点", short: "热点", description: "跨来源聚合后的优先阅读列表" },
-  { id: "models", label: "模型", short: "模型", description: "模型发布、能力升级、评测与开源权重" },
-  { id: "products", label: "产品", short: "产品", description: "AI 应用、Agent、生成工具和用户产品更新" },
-  { id: "devtools", label: "开发者", short: "开发者", description: "编程工具、API、开源项目、推理与工程实践" },
-  { id: "hn", label: "HN热议", short: "HN", description: "Hacker News 过去 24 小时的 AI 关键词讨论与高互动 story" },
-  { id: "industry", label: "行业", short: "行业", description: "公司战略、融资收购、监管、芯片与产业变化" },
-  { id: "research", label: "研究", short: "研究", description: "论文、基准、方法、数据集与研究团队动态" },
   { id: "creator", label: "我的订阅", short: "订阅", description: "B站、小红书、YouTube、抖音、公众号和 GitHub 项目的更新" },
-  { id: "community", label: "社区", short: "社区", description: "WaytoAGI、中文社区、AIbase、公众号和 Builders/X 信号" },
+  { id: "douyin", label: "抖音", short: "抖音", description: "抖音创作者与短视频信号" },
+  { id: "xiaohongshu", label: "小红书", short: "小红书", description: "小红书博主、笔记和搜索信号" },
+  { id: "wechat", label: "微信公众号", short: "公众号", description: "微信公众号订阅和 WeWe RSS 信号" },
+  { id: "bilibili", label: "B站", short: "B站", description: "B站动态、视频和账号订阅" },
+  { id: "youtube", label: "油管", short: "油管", description: "YouTube 频道订阅和视频更新" },
 ];
 
 const SECTION_BY_ID = Object.fromEntries(SECTION_DEFS.map((section) => [section.id, section]));
@@ -1476,7 +1473,7 @@ function renderSourceStatusPill(errorMessage = "") {
 function renderStickySummary() {
   if (!stickySummaryTextEl) return;
   const filteredCount = getFilteredItems().length;
-  const section = SECTION_BY_ID[state.activeSection] || SECTION_BY_ID.hot;
+  const section = SECTION_BY_ID[state.activeSection] || SECTION_BY_ID.creator;
   const query = state.query.trim();
   const site = state.siteFilter
     ? (currentSiteStats().find((row) => row.site_id === state.siteFilter)?.site_name || state.siteFilter)
@@ -1484,7 +1481,7 @@ function renderStickySummary() {
   const sourceType = sourceTypeSelectEl?.selectedOptions?.[0]?.textContent || "";
   const signalLevel = signalLevelSelectEl?.selectedOptions?.[0]?.textContent || "";
   const filters = [
-    state.activeSection === "hot" ? "" : section.label,
+    section.label,
     site,
     state.sourceTypeFilter ? sourceType : "",
     state.signalLevelFilter ? signalLevel : "",
@@ -1674,8 +1671,8 @@ function computeSiteStats(items) {
 }
 
 function currentSiteStats() {
-  if (state.activeSection === "creator") {
-    return computeSiteStats(applyTimeRange(subscriptionModeItems()));
+  if (isSubscriptionSection(state.activeSection)) {
+    return computeSiteStats(sectionItems(modeItems(), state.activeSection));
   }
   if (state.mode === "ai") return state.statsAi || [];
   return computeSiteStats(state.allDedup ? (state.itemsAll || []) : (state.itemsAllRaw || []));
@@ -1710,6 +1707,37 @@ function itemSourceType(item) {
   return "aggregate";
 }
 
+function isSubscriptionSection(sectionId) {
+  return sectionId === "creator" || ["douyin", "xiaohongshu", "wechat", "bilibili", "youtube"].includes(sectionId);
+}
+
+function itemPlatformSection(item) {
+  const siteId = String(item?.site_id || "").toLowerCase();
+  const hay = [
+    item?.site_name,
+    item?.source,
+    item?.url,
+    item?.primary_url,
+    item?.title,
+    item?.title_zh,
+    item?.title_en,
+  ].filter(Boolean).join(" ").toLowerCase();
+  if (siteId === "bilibili_dynamic" || hay.includes("bilibili") || hay.includes("b站")) return "bilibili";
+  if (siteId === "mediacrawler_douyin" || siteId === "tikhub_douyin" || hay.includes("douyin") || hay.includes("抖音")) return "douyin";
+  if (siteId === "mediacrawler_xhs" || siteId === "tikhub_xiaohongshu" || hay.includes("xiaohongshu") || hay.includes("小红书")) return "xiaohongshu";
+  if (
+    siteId === "wewe_rss" ||
+    siteId === "maobidao_wudaolu_backup" ||
+    hay.includes("mp.weixin.qq.com") ||
+    hay.includes("wewe") ||
+    hay.includes("公众号") ||
+    hay.includes("猫笔刀") ||
+    hay.includes("maobidao")
+  ) return "wechat";
+  if (hay.includes("youtube") || hay.includes("youtu.be") || hay.includes("油管")) return "youtube";
+  return "";
+}
+
 function multiSourceEventKeys(items) {
   const map = new Map();
   (items || []).forEach((item) => {
@@ -1738,9 +1766,9 @@ function sectionStats(sectionId) {
 }
 
 function setActiveSection(sectionId) {
-  state.activeSection = sectionId || "hot";
+  state.activeSection = SECTION_BY_ID[sectionId] ? sectionId : "creator";
   state.boleExpanded = false;
-  if (state.activeSection === "creator" && state.timeRangeFilter !== "all") {
+  if (isSubscriptionSection(state.activeSection) && state.timeRangeFilter !== "all") {
     state.timeRangeFilter = "all";
     renderTimeRangeControl();
   }
@@ -1787,13 +1815,13 @@ function renderSectionFilterSelect() {
 
 function renderSectionSummary(filteredItems = null) {
   if (!sectionSummaryEl) return;
-  const section = SECTION_BY_ID[state.activeSection] || SECTION_BY_ID.hot;
+  const section = SECTION_BY_ID[state.activeSection] || SECTION_BY_ID.creator;
   const items = filteredItems || getFilteredItems();
   const highCount = items.filter((item) => isHighPriorityItem(item)).length;
   const sources = new Set(items.map((item) => item.source || item.site_name || item.site_id).filter(Boolean));
   const modeText = state.mode === "all" ? (state.allDedup ? "全量去重" : "全量原始") : "AI强相关";
-  const windowText = state.activeSection === "creator" ? `${creatorWindowLabel()} · 热度优先` : windowLabel();
-  sectionSummaryEl.textContent = `${windowText} · ${fmtNumber(items.length)} 条${section.id === "hot" ? "" : ` ${section.label}`}信号 · ${fmtNumber(highCount)} 条高优先级 · ${fmtNumber(sources.size)} 个来源 · ${modeText}`;
+  const windowText = isSubscriptionSection(state.activeSection) ? `${creatorWindowLabel()} · 热度优先` : windowLabel();
+  sectionSummaryEl.textContent = `${windowText} · ${fmtNumber(items.length)} 条 ${section.label} 信号 · ${fmtNumber(highCount)} 条高优先级 · ${fmtNumber(sources.size)} 个来源 · ${modeText}`;
   renderStickySummary();
 }
 
@@ -1893,11 +1921,11 @@ function renderTimeRangeControl() {
 }
 
 function listTitleText() {
-  const section = SECTION_BY_ID[state.activeSection] || SECTION_BY_ID.hot;
+  const section = SECTION_BY_ID[state.activeSection] || SECTION_BY_ID.creator;
   const pool = state.mode === "all"
     ? (state.allDedup ? "情报流 · 全量去重" : "情报流 · 全量原始")
     : "情报流";
-  return state.activeSection === "hot" ? pool : `${section.label} · ${pool}`;
+  return `${section.label} · ${pool}`;
 }
 
 function renderListSortTools() {
@@ -1998,10 +2026,12 @@ function sectionItems(items = modeItems(), sectionId = state.activeSection) {
   if (sectionId === "creator") {
     return applyTimeRange(subscriptionModeItems()).sort((a, b) => creatorHotScore(b) - creatorHotScore(a) || timelineMs(b) - timelineMs(a));
   }
-  const source = applyTimeRange(items);
-  if (sectionId === "hot") {
-    return [...source].sort((a, b) => itemPriorityScore(b) - itemPriorityScore(a) || timelineMs(b) - timelineMs(a));
+  if (isSubscriptionSection(sectionId)) {
+    return applyTimeRange(subscriptionModeItems())
+      .filter((item) => itemPlatformSection(item) === sectionId)
+      .sort((a, b) => creatorHotScore(b) - creatorHotScore(a) || timelineMs(b) - timelineMs(a));
   }
+  const source = applyTimeRange(items);
   return source.filter((item) => itemMatchesSection(item, sectionId));
 }
 
@@ -2230,7 +2260,11 @@ function itemSections(item) {
     ])
   ) sections.add("research");
 
-  if (isSubscriptionItem(item)) sections.add("creator");
+  if (isSubscriptionItem(item)) {
+    sections.add("creator");
+    const platformSection = itemPlatformSection(item);
+    if (platformSection) sections.add(platformSection);
+  }
 
   if (
     item.site_id === "waytoagi" ||
@@ -2255,7 +2289,7 @@ function itemSections(item) {
 }
 
 function itemMatchesSection(item, sectionId) {
-  return sectionId === "hot" || itemSections(item).has(sectionId);
+  return itemSections(item).has(sectionId);
 }
 
 function sectionBadgeLabel(sectionId) {
@@ -2876,7 +2910,7 @@ function renderBoleFallback(picks) {
 
 function storyMatchesFilteredItems(story, filteredItems) {
   if (
-    state.activeSection === "hot" &&
+    state.activeSection === "creator" &&
     !state.siteFilter &&
     !state.authorFilter &&
     !state.sourceTypeFilter &&
@@ -2918,7 +2952,7 @@ function uniqueStories(stories, excludeKeys = new Set(), excludeIdentityKeys = n
 }
 
 function currentStoryPools(filteredItems) {
-  if (state.activeSection === "creator") return { brief: [], merged: [], followup: [] };
+  if (isSubscriptionSection(state.activeSection)) return { brief: [], merged: [], followup: [] };
   const brief = briefStories().filter((story) => storyMatchesFilteredItems(story, filteredItems));
   const merged = mergedStories().filter((story) => storyMatchesFilteredItems(story, filteredItems));
   const briefKeys = new Set(brief.map(storyStableKey).filter(Boolean));
@@ -3140,7 +3174,7 @@ function renderBolePicks() {
   if (boleViewToggleEl) boleViewToggleEl.hidden = true;
   if (bolePicksWrapEl) bolePicksWrapEl.hidden = false;
 
-  const section = SECTION_BY_ID[state.activeSection] || SECTION_BY_ID.hot;
+  const section = SECTION_BY_ID[state.activeSection] || SECTION_BY_ID.creator;
   const filtered = getFilteredItems();
   const storyPools = currentStoryPools(filtered);
   const availableStoryPool = storyPools.brief.length
@@ -3158,7 +3192,7 @@ function renderBolePicks() {
     : rankedFallbackRows(filtered).slice(0, defaultLimit);
   const top = rows.slice(0, 3);
   const remainingCount = Math.max(0, rows.length - top.length);
-  if (topStoriesTitleEl) topStoriesTitleEl.textContent = state.activeSection === "hot" ? "今日重点信号" : `${section.label}重点信号`;
+  if (topStoriesTitleEl) topStoriesTitleEl.textContent = `${section.label}重点信号`;
   const storyMeta = usesStories
     ? `展示池：热点 ${fmtNumber(candidateCounts.hot)}/${fmtNumber(candidateCounts.hotTotal)} · 时间线 ${fmtNumber(candidateCounts.timeline)}/${fmtNumber(candidateCounts.timelineTotal)}`
     : `展示池：${fmtNumber(rows.length)} 条`;
@@ -3194,7 +3228,7 @@ function rankedClustersForItems(items) {
     .map((item, index) => ({
       item,
       index,
-      score: state.activeSection === "creator"
+      score: isSubscriptionSection(state.activeSection)
         ? creatorHotScore(item)
         : (scorePercent(item) || Math.round(itemPriorityScore(item))),
     }))
@@ -3225,7 +3259,7 @@ function pickTopHeadlineClusters(clusters, limit = 3) {
 function itemTagLabels(item, row = null) {
   const tags = [];
   const sections = itemSections(item);
-  if (state.activeSection !== "hot") tags.push(sectionBadgeLabel(state.activeSection));
+  tags.push(sectionBadgeLabel(state.activeSection));
   if (row && (row.sourceCount > 1 || row.mergedCount > 1)) tags.push("多源验证");
   if (item.site_id === "official_ai") tags.push("官方");
   if (item.site_id === "aihot") tags.push("AI HOT");
@@ -3816,9 +3850,9 @@ function waytoagiViews(waytoagi) {
 
 function renderWaytoagi(waytoagi) {
   if (waytoagiWrapEl) {
-    waytoagiWrapEl.hidden = state.activeSection !== "community";
+    waytoagiWrapEl.hidden = true;
   }
-  if (state.activeSection !== "community") return;
+  return;
   const { updates7d, updatesToday, latestDate } = waytoagiViews(waytoagi);
   if (waytoagiTodayBtnEl) waytoagiTodayBtnEl.classList.toggle("active", state.waytoagiMode === "today");
   if (waytoagi7dBtnEl) waytoagi7dBtnEl.classList.toggle("active", state.waytoagiMode === "7d");
@@ -3917,7 +3951,7 @@ function socialdataAuthors() {
 function selectSocialdataAuthor(author) {
   state.authorFilter = author;
   state.siteFilter = "socialdata_x";
-  state.activeSection = "hot";
+  state.activeSection = "creator";
   state.boleExpanded = false;
   state.siteGroupsExpanded = false;
   state.xAuthorsExpanded = false;
@@ -4230,7 +4264,7 @@ async function init() {
     state.storiesDataUrl = payload.stories_data_url || state.storiesDataUrl;
     if (state.sourceScope === "bilibili_only" || state.sourceScope === "tested_creator_sources") {
       state.mode = "all";
-      state.activeSection = "hot";
+      state.activeSection = "creator";
       try {
         await loadAllModeData();
       } catch {
@@ -4276,7 +4310,7 @@ async function init() {
     state.waytoagiData = waytoagiResult.value;
     renderWaytoagi(state.waytoagiData);
   } else {
-    if (waytoagiWrapEl) waytoagiWrapEl.hidden = state.activeSection !== "community";
+    if (waytoagiWrapEl) waytoagiWrapEl.hidden = true;
     waytoagiUpdatedAtEl.textContent = "加载失败";
     waytoagiListEl.innerHTML = `<div class="waytoagi-error">${waytoagiResult.reason.message}</div>`;
   }
