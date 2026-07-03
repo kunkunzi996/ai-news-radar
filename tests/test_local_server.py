@@ -3,6 +3,7 @@ from pathlib import Path
 
 from scripts.local_server import (
     CONFIG_FILENAME,
+    local_config_maintenance_issues,
     local_status_payload,
     maintenance_issues_from_status,
     refresh_command,
@@ -124,6 +125,75 @@ class LocalServerTests(unittest.TestCase):
         self.assertEqual(payload["source_config"]["enabled_source_count"], 1)
         self.assertTrue(payload["source_status"]["needs_attention"])
         self.assertEqual(payload["source_status"]["maintenance_issues"][0]["id"], "source_status_missing")
+
+    def test_local_config_issues_flag_missing_mediacrawler_jsonl(self):
+        root = Path(self.create_temp_dir())
+        config = {
+            "sources": [
+                {
+                    "id": "mediacrawler_xhs_chenbaoyi",
+                    "name": "陈抱一",
+                    "type": "mediacrawler_jsonl",
+                    "channel": "小红书",
+                    "locator": "missing.jsonl",
+                    "enabled": True,
+                }
+            ]
+        }
+
+        issues = local_config_maintenance_issues(root, config, probe_network=False)
+
+        self.assertEqual(issues[0]["id"], "mediacrawler_xhs_jsonl_not_found")
+        self.assertEqual(issues[0]["severity"], "bad")
+        self.assertIn("JSONL", issues[0]["title"])
+
+    def test_local_config_issues_warn_stale_mediacrawler_jsonl(self):
+        from datetime import datetime, timedelta, timezone
+        import os
+
+        root = Path(self.create_temp_dir())
+        jsonl = root / "creator_contents_2026-07-01.jsonl"
+        jsonl.write_text('{"title":"hello"}\n', encoding="utf-8")
+        now = datetime(2026, 7, 3, 9, 0, tzinfo=timezone.utc)
+        old_timestamp = (now - timedelta(hours=40)).timestamp()
+        os.utime(jsonl, (old_timestamp, old_timestamp))
+        config = {
+            "sources": [
+                {
+                    "id": "mediacrawler_douyin_simon",
+                    "name": "Simon林",
+                    "type": "mediacrawler_jsonl",
+                    "channel": "抖音",
+                    "locator": str(jsonl),
+                    "enabled": True,
+                }
+            ]
+        }
+
+        issues = local_config_maintenance_issues(root, config, probe_network=False, now=now)
+
+        self.assertEqual(issues[0]["id"], "mediacrawler_douyin_jsonl_stale")
+        self.assertEqual(issues[0]["severity"], "warn")
+        self.assertIn("40", issues[0]["detail"])
+
+    def test_local_config_issues_flag_missing_wewe_feed_id_without_network(self):
+        root = Path(self.create_temp_dir())
+        config = {
+            "sources": [
+                {
+                    "id": "wewe_rss_maobidao",
+                    "name": "猫笔刀",
+                    "type": "wewe_rss",
+                    "locator": "",
+                    "enabled": True,
+                }
+            ]
+        }
+
+        issues = local_config_maintenance_issues(root, config, probe_network=False)
+
+        self.assertEqual(issues[0]["id"], "wewe_rss_feed_id_missing")
+        self.assertEqual(issues[0]["source_id"], "wewe_rss")
 
     def create_temp_dir(self):
         import tempfile

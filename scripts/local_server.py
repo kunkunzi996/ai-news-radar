@@ -9,6 +9,10 @@ import os
 import subprocess
 import sys
 import threading
+import urllib.error
+import urllib.parse
+import urllib.request
+from datetime import datetime, timezone
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -18,6 +22,9 @@ MAX_CONFIG_BYTES = 1024 * 1024
 CONFIG_FILENAME = "sources.config.json"
 REFRESH_TIMEOUT_SECONDS = 600
 REFRESH_LOCK = threading.Lock()
+MEDIACRAWLER_JSONL_STALE_HOURS = 36
+WEWE_RSS_BASE_URL_DEFAULT = "http://127.0.0.1:4000"
+LOCAL_HTTP_TIMEOUT_SECONDS = 2.0
 
 
 def site_display_name(site: dict[str, Any]) -> str:
@@ -144,6 +151,19 @@ def maintenance_issues_from_status(payload: dict[str, Any]) -> list[dict[str, An
     return issues
 
 
+def dedupe_maintenance_issues(issues: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    deduped: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for issue in issues:
+        issue_id = str(issue.get("id") or "")
+        if issue_id and issue_id in seen:
+            continue
+        if issue_id:
+            seen.add(issue_id)
+        deduped.append(issue)
+    return deduped
+
+
 def read_source_status(root_dir: Path) -> dict[str, Any] | None:
     path = root_dir / "data" / "source-status.json"
     if not path.exists():
@@ -169,6 +189,217 @@ def validate_source_config(payload: Any) -> dict[str, Any]:
         if not name:
             raise ValueError(f"sources[{index}].name is required")
     return payload
+
+
+def read_source_config(root_dir: Path) -> dict[str, Any] | None:
+    path = root_dir / CONFIG_FILENAME
+    if not path.exists():
+        return None
+    return validate_source_config(json.loads(path.read_text(encoding="utf-8")))
+
+
+def source_config_runtime_ids(source: dict[str, Any]) -> set[str]:
+    raw_id = str(source.get("id") or "").strip().lower()
+    raw_type = str(source.get("type") or "").strip().lower()
+    channel = str(source.get("channel") or "").lower()
+    target = str(source.get("target") or "").lower()
+    locator = str(source.get("locator") or "").lower()
+    haystack = f"{raw_id} {raw_type} {channel} {target} {locator}"
+    runtime_ids: set[str] = set()
+    if raw_type == "wewe_rss" or "wewe" in haystack or "公众号" in haystack:
+        runtime_ids.add("wewe_rss")
+    if raw_type == "bilibili_dynamic" or "bilibili" in haystack or "b站" in haystack:
+        runtime_ids.add("bilibili_dynamic")
+    if raw_type == "mediacrawler_jsonl":
+        if "xhs" in haystack or "xiaohongshu" in haystack or "小红书" in haystack:
+            runtime_ids.add("mediacrawler_xhs")
+        if "douyin" in haystack or "抖音" in haystack:
+            runtime_ids.add("mediacrawler_douyin")
+    return runtime_ids
+
+
+def enabled_source_config_records(config: dict[str, Any] | None) -> list[dict[str, Any]]:
+    if not config:
+        return []
+    sources = config.get("sources")
+    if not isinstance(sources, list):
+        return []
+    return [source for source in sources if isinstance(source, dict) and source.get("enabled") is not False]
+
+
+def resolve_config_path(root_dir: Path, raw_path: str) -> Path:
+    path = Path(raw_path)
+    if not path.is_absolute():
+        path = root_dir / path
+    return path
+
+
+def add_mediacrawler_jsonl_issue(
+    issues: list[dict[str, Any]],
+    root_dir: Path,
+    source: dict[str, Any],
+    runtime_id: str,
+    now: datetime,
+    stale_after_hours: int,
+) -> None:
+    locator = str(source.get("locator") or "").strip()
+    source_name = str(source.get("name") or source.get("target") or source.get("id") or "MediaCrawler")
+    platform = "小红书" if runtime_id == "mediacrawler_xhs" else "抖音"
+    if not locator:
+        add_maintenance_issue(
+            issues,
+            f"{runtime_id}_jsonl_missing_path",
+            "bad",
+            runtime_id,
+            f"{platform} JSONL 路径未配置",
+            f"{source_name} 已启用，但 sources.config.json 里没有 JSONL 路径。",
+            "先运行对应平台的 MediaCrawler，并把导出的 creator_contents_*.jsonl 路径填到该信源。",
+        )
+        return
+
+    jsonl_path = resolve_config_path(root_dir, locator)
+    if not jsonl_path.exists():
+        add_maintenance_issue(
+            issues,
+            f"{runtime_id}_jsonl_not_found",
+            "bad",
+            runtime_id,
+            f"{platform} JSONL 文件不存在",
+            f"配置路径没有找到文件：{jsonl_path}",
+            "先运行对应平台的 MediaCrawler 生成 JSONL，或修正该信源的路径。",
+        )
+        return
+    if not jsonl_path.is_file():
+        add_maintenance_issue(
+            issues,
+            f"{runtime_id}_jsonl_not_file",
+            "bad",
+            runtime_id,
+            f"{platform} JSONL 路径不是文件",
+            f"当前路径不是可读取的 JSONL 文件：{jsonl_path}",
+            "把路径改成具体的 creator_contents_*.jsonl 文件。",
+        )
+        return
+
+    stat = jsonl_path.stat()
+    if stat.st_size <= 0:
+        add_maintenance_issue(
+            issues,
+            f"{runtime_id}_jsonl_empty",
+            "bad",
+            runtime_id,
+            f"{platform} JSONL 文件为空",
+            f"{jsonl_path.name} 当前大小为 0。",
+            "重新运行 MediaCrawler，确认导出的 JSONL 里有内容。",
+        )
+        return
+
+    modified_at = datetime.fromtimestamp(stat.st_mtime, timezone.utc)
+    age_hours = max(0, int((now - modified_at).total_seconds() // 3600))
+    if age_hours >= stale_after_hours:
+        add_maintenance_issue(
+            issues,
+            f"{runtime_id}_jsonl_stale",
+            "warn",
+            runtime_id,
+            f"{platform} JSONL 可能过旧",
+            f"{jsonl_path.name} 上次更新约 {age_hours} 小时前。",
+            "如果想看最新动态，先重新运行对应平台的 MediaCrawler，再点执行采集。",
+        )
+
+
+def is_local_http_url(value: str) -> bool:
+    try:
+        parsed = urllib.parse.urlparse(value)
+    except Exception:
+        return False
+    return parsed.scheme in {"http", "https"} and parsed.hostname in {"127.0.0.1", "localhost", "::1"}
+
+
+def check_wewe_rss_sidecar(base_url: str) -> tuple[bool, str]:
+    url = base_url.rstrip("/") + "/feeds"
+    request = urllib.request.Request(url, headers={"Accept": "application/json"})
+    try:
+        with urllib.request.urlopen(request, timeout=LOCAL_HTTP_TIMEOUT_SECONDS) as response:
+            if response.status >= 400:
+                return False, f"HTTP {response.status}"
+            return True, f"HTTP {response.status}"
+    except urllib.error.HTTPError as exc:
+        return False, f"HTTP {exc.code}"
+    except (urllib.error.URLError, TimeoutError, OSError) as exc:
+        return False, str(exc)
+
+
+def add_wewe_rss_config_issues(
+    issues: list[dict[str, Any]],
+    sources: list[dict[str, Any]],
+    probe_network: bool,
+) -> None:
+    wewe_sources = [source for source in sources if "wewe_rss" in source_config_runtime_ids(source)]
+    if not wewe_sources:
+        return
+
+    missing_feed_sources = [
+        str(source.get("name") or source.get("target") or source.get("id") or "未命名公众号")
+        for source in wewe_sources
+        if not str(source.get("locator") or "").strip()
+    ]
+    if missing_feed_sources:
+        add_maintenance_issue(
+            issues,
+            "wewe_rss_feed_id_missing",
+            "bad",
+            "wewe_rss",
+            "公众号 feed id 未配置",
+            f"缺少 feed id：{'、'.join(missing_feed_sources[:3])}",
+            "在 WeWe RSS 后台找到对应公众号 feed id，并填到该信源的地址 / ID / 路径。",
+        )
+
+    base_url = (os.environ.get("WEWE_RSS_BASE_URL") or WEWE_RSS_BASE_URL_DEFAULT).strip().rstrip("/")
+    if not is_local_http_url(base_url):
+        add_maintenance_issue(
+            issues,
+            "wewe_rss_sidecar_probe_skipped",
+            "warn",
+            "wewe_rss",
+            "WeWe RSS 不是本地地址",
+            f"当前 WEWE_RSS_BASE_URL={base_url}，本地工具已跳过 HTTP 探测。",
+            "如果这是你有意配置的远程服务，请手动确认它能访问；本地面板只自动探测 localhost/127.0.0.1。",
+        )
+        return
+    if not probe_network:
+        return
+
+    ok, detail = check_wewe_rss_sidecar(base_url)
+    if not ok:
+        add_maintenance_issue(
+            issues,
+            "wewe_rss_sidecar_unreachable",
+            "bad",
+            "wewe_rss",
+            "WeWe RSS 本地服务不可用",
+            f"{base_url}/feeds 访问失败：{detail}",
+            "先启动 wewe-rss-sidecar；如果后台要求重新扫码，先完成扫码登录，再回到本页面检查状态。",
+        )
+
+
+def local_config_maintenance_issues(
+    root_dir: Path,
+    config: dict[str, Any] | None,
+    *,
+    probe_network: bool = True,
+    now: datetime | None = None,
+    stale_after_hours: int = MEDIACRAWLER_JSONL_STALE_HOURS,
+) -> list[dict[str, Any]]:
+    issues: list[dict[str, Any]] = []
+    current_time = now or datetime.now(timezone.utc)
+    sources = enabled_source_config_records(config)
+    for source in sources:
+        runtime_ids = source_config_runtime_ids(source)
+        for runtime_id in sorted(runtime_ids & {"mediacrawler_douyin", "mediacrawler_xhs"}):
+            add_mediacrawler_jsonl_issue(issues, root_dir, source, runtime_id, current_time, stale_after_hours)
+    add_wewe_rss_config_issues(issues, sources, probe_network)
+    return dedupe_maintenance_issues(issues)
 
 
 def json_response(handler: SimpleHTTPRequestHandler, status: int, payload: dict[str, Any]) -> None:
@@ -203,11 +434,12 @@ def refresh_command(root_dir: Path) -> list[str]:
     ]
 
 
-def source_status_summary(root_dir: Path) -> dict[str, Any]:
+def source_status_summary(root_dir: Path, source_config: dict[str, Any] | None = None) -> dict[str, Any]:
+    config_issues = local_config_maintenance_issues(root_dir, source_config) if source_config else []
     payload = read_source_status(root_dir)
     if not payload:
-        return {
-            "maintenance_issues": [
+        issues = dedupe_maintenance_issues(
+            [
                 {
                     "id": "source_status_missing",
                     "severity": "warn",
@@ -215,12 +447,16 @@ def source_status_summary(root_dir: Path) -> dict[str, Any]:
                     "title": "还没有刷新状态",
                     "detail": "data/source-status.json 不存在或还没生成。",
                     "action": "先点一次执行采集，生成本地源状态。",
-                }
-            ],
-            "issue_count": 1,
+                },
+                *config_issues,
+            ]
+        )
+        return {
+            "maintenance_issues": issues,
+            "issue_count": len(issues),
             "needs_attention": True,
         }
-    issues = maintenance_issues_from_status(payload)
+    issues = dedupe_maintenance_issues([*maintenance_issues_from_status(payload), *config_issues])
     ok_sites = sum(1 for site in payload.get("sites", []) if isinstance(site, dict) and site.get("ok") is True)
     return {
         "generated_at": payload.get("generated_at"),
@@ -248,11 +484,9 @@ def source_status_summary(root_dir: Path) -> dict[str, Any]:
     }
 
 
-def source_config_summary(root_dir: Path) -> dict[str, Any]:
-    path = root_dir / CONFIG_FILENAME
-    if not path.exists():
+def source_config_summary_from_payload(payload: dict[str, Any] | None) -> dict[str, Any]:
+    if not payload:
         return {"exists": False, "source_count": 0, "enabled_source_count": 0, "enabled_sources": []}
-    payload = validate_source_config(json.loads(path.read_text(encoding="utf-8")))
     sources = [source for source in payload.get("sources", []) if isinstance(source, dict)]
     enabled = [source for source in sources if source.get("enabled") is not False]
     return {
@@ -273,12 +507,35 @@ def source_config_summary(root_dir: Path) -> dict[str, Any]:
     }
 
 
+def source_config_summary(root_dir: Path) -> dict[str, Any]:
+    return source_config_summary_from_payload(read_source_config(root_dir))
+
+
 def local_status_payload(root_dir: Path) -> dict[str, Any]:
-    summary = source_status_summary(root_dir)
+    config_payload: dict[str, Any] | None = None
     try:
-        config = source_config_summary(root_dir)
+        config_payload = read_source_config(root_dir)
+        config = source_config_summary_from_payload(config_payload)
     except Exception as exc:
         config = {"exists": True, "ok": False, "error": str(exc), "source_count": 0, "enabled_source_count": 0, "enabled_sources": []}
+    summary = source_status_summary(root_dir, config_payload)
+    if config.get("ok") is False:
+        issues = dedupe_maintenance_issues(
+            [
+                *summary.get("maintenance_issues", []),
+                {
+                    "id": "source_config_invalid",
+                    "severity": "bad",
+                    "source_id": "source_config",
+                    "title": "sources.config.json 读取失败",
+                    "detail": str(config.get("error") or "配置文件格式不正确。"),
+                    "action": "在页面里重新写入配置，或检查 sources.config.json 是否是合法 JSON。",
+                },
+            ]
+        )
+        summary["maintenance_issues"] = issues
+        summary["issue_count"] = len(issues)
+        summary["needs_attention"] = True
     return {
         "ok": True,
         "source_config": config,

@@ -1,15 +1,16 @@
 # HANDOFF.md
 
-## 当前最新交接：本地采集控制台第一版施工中
+## 当前最新交接：本地采集控制台第一版已推送，继续增强本地探针
 
 - 日期：2026-07-03
-- 当前阶段：在 `feature/local-trigger-console` 上把已有“信源配置 + 本地刷新”升级成本地采集控制台。
+- 当前阶段：在 `feature/local-trigger-console` 上把已有“信源配置 + 本地刷新”升级成本地采集控制台，并补充本地只读依赖探针。
 - 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
 - 当前分支：`feature/local-trigger-console`
+- 已推送 commit：`fa515b6 feat: add local source trigger console`
 - 本轮已实现：
   - `scripts/local_server.py` 新增 `GET /api/local-status`。
   - 本地状态会读取 `sources.config.json` 和 `data/source-status.json`，输出启用信源数、采集状态和维护项。
-  - 新增维护诊断：失败源、0 条结果、B站 cookie 未配置、B站账号级失败、WeWe RSS feed 失败、`sources.config.json` 格式错误、`source-status.json` 缺失。
+  - 新增维护诊断：失败源、0 条结果、B站 cookie 未配置、B站账号级失败、WeWe RSS feed 失败、WeWe RSS sidecar 不可访问、WeWe feed id 缺失、MediaCrawler JSONL 缺失/为空/超过 36 小时未更新、`sources.config.json` 格式错误、`source-status.json` 缺失。
   - 页面“信源配置”区新增“本地采集”状态面板。
   - “刷新数据”改为“执行采集”，“检查状态”会读取本地维护诊断。
   - 信源列表新增筛选：全部、启用、需维护、公众号、小红书、抖音、B站、RSS、GitHub。
@@ -18,6 +19,7 @@
   - README 和 `PROJECT_STATE.md` 已同步本地工具边界。
 - 当前边界：
   - 不读取或保存 Cookie、token、`.env`、微信登录态、WeWe RSS 数据库、QR 登录文件、MediaCrawler profile。
+  - WeWe RSS 探针只检查 `localhost` / `127.0.0.1` 的 `/feeds` HTTP 端点；MediaCrawler 探针只看显式配置的 JSONL 文件元信息。
   - `/api/source-config` 仍只能写项目根目录 `sources.config.json`。
   - `/api/refresh` 仍只能运行固定刷新命令，不能由前端传任意命令。
 - 已验证：
@@ -31,7 +33,7 @@
 - 下一步建议：
   - 跑一次完整 `git diff --check` 和相关单测。
   - 通过浏览器打开 `http://127.0.0.1:8080/`，展开“信源配置”，确认本地采集状态面板和维护提示可见。
-  - 如要进一步增强，可把 MediaCrawler / WeWe RSS 的启动检测做成更细的本地只读探针。
+  - 如要进一步增强，可做平台级“维护操作指引”，例如为 B站 cookie、WeWe 重新扫码、MediaCrawler 重新导出 JSONL 提供更明确的本地步骤。
 - 下一轮禁止：
   - 不要批量删除。
   - 不要提交 Cookie、登录态、`.env`、wewe-rss 数据库、QR 登录文件、浏览器 profile 或私有 token。

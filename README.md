@@ -244,7 +244,9 @@ python scripts/update_news.py --output-dir data --window-hours 24 --rss-opml fee
 当前配置直接保存到项目根目录的 `sources.config.json`，“执行采集”按钮会
 先写入配置，再触发一次固定的本地刷新脚本。“检查状态”会读取
 `/api/local-status`，把 `data/source-status.json` 里的异常翻译成维护提示，
-例如 B站 cookie 缺失、MediaCrawler JSONL 路径不存在、WeWe RSS feed 失败等。
+例如 B站 cookie 缺失、MediaCrawler JSONL 路径不存在、WeWe RSS feed 失败等；
+同时会做本地只读探针，提示 WeWe RSS sidecar 是否可访问、MediaCrawler JSONL
+是否缺失或超过 36 小时未更新。
 这个本地后台只绑定 `127.0.0.1`，只允许写这一个配置文件，只运行项目内固定
 刷新命令，不会保存 cookie、token、`.env`、微信登录态或浏览器 profile。
 
@@ -377,6 +379,8 @@ $env:MEDIACRAWLER_DOUYIN_SOURCE_NAME='Simon林'
 成功时，`data/source-status.json` 中 `mediacrawler_douyin.item_count` 会显示读到的
 作品数；切到页面的“全部 / 自媒体”更适合查看完整博主作品列表。不要提交
 MediaCrawler 的 `chrome-profile`、cookie 或登录态文件。
+本地控制台的“检查状态”只会检查配置里的 JSONL 文件是否存在、是否为空、
+是否超过 36 小时未更新；不会启动 MediaCrawler，也不会读取浏览器 profile。
 
 小红书指定博主也可以通过本地 MediaCrawler 导出的 JSONL 接入，同样默认关闭、
 只读本地文件，不会从本项目启动 Chrome 或复用登录态：
@@ -419,6 +423,10 @@ $env:WEWE_RSS_FEEDS='猫笔刀:MP_WXS_3198966508'
 `maobidao_wudaolu_backup` 这个临时备份源，避免同一篇文章重复出现在看板里。
 如果不配置 `WEWE_RSS_FEEDS`，系统会自动读取 `http://127.0.0.1:4000/feeds`
 里已经订阅的全部公众号。
+在本地控制台点击“检查状态”时，`/api/local-status` 会访问本机
+`WEWE_RSS_BASE_URL` 的 `/feeds` 端点；如果 sidecar 没启动、需要重新扫码，
+或 feed id 缺失，面板会把该公众号标成需要维护。这个探针只自动检查
+`localhost` / `127.0.0.1`，不会读取 wewe-rss 数据库或登录态。
 
 小红书按“先搜索、后详情”处理。搜索阶段使用 App V2 的最多点赞排序和
 7 天筛选，并再次在本地校验发布时间：可信 API 时间优先；`0`、未来时间
