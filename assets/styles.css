@@ -1105,6 +1105,74 @@ summary:focus-visible {
   gap: 8px;
 }
 
+.local-ops-collectors {
+  display: grid;
+  gap: 8px;
+}
+
+.local-ops-collector {
+  display: grid;
+  gap: 8px;
+  border: 1px solid rgba(18, 106, 115, 0.18);
+  border-radius: var(--radius);
+  padding: 10px;
+  background: rgba(18, 106, 115, 0.05);
+}
+
+.local-ops-collector.running {
+  border-color: rgba(154, 103, 0, 0.28);
+  background: rgba(154, 103, 0, 0.06);
+}
+
+.local-ops-collector.completed {
+  border-color: rgba(31, 122, 77, 0.24);
+  background: rgba(31, 122, 77, 0.06);
+}
+
+.local-ops-collector-head,
+.local-ops-collector-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.local-ops-collector-head {
+  justify-content: space-between;
+}
+
+.local-ops-collector-head strong {
+  color: var(--ink);
+  font-size: 12px;
+}
+
+.local-ops-collector-head span {
+  border: 1px solid rgba(18, 106, 115, 0.22);
+  border-radius: 999px;
+  padding: 3px 8px;
+  color: var(--accent);
+  background: var(--surface);
+  font-size: 11px;
+  font-weight: 760;
+}
+
+.local-ops-collector-meta .local-ops-metric {
+  flex: 1 1 110px;
+}
+
+.local-ops-collector > span,
+.local-ops-collector > em,
+.local-ops-collector-next {
+  color: var(--muted);
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1.4;
+}
+
+.local-ops-collector-next {
+  color: var(--ink);
+}
+
 .local-ops-empty {
   color: var(--good);
   font-size: 12px;

@@ -1,6 +1,7 @@
 from datetime import datetime, timezone
 import json
 import os
+from pathlib import Path
 import unittest
 from unittest.mock import patch
 
@@ -187,6 +188,43 @@ class PrivateBridgeSourceTests(unittest.TestCase):
         self.assertEqual(items, [])
         self.assertFalse(status["ok"])
         self.assertEqual(status["error"], "missing_mediacrawler_douyin_jsonl")
+
+    def test_mediacrawler_douyin_reads_newer_jsonl_sibling(self):
+        import tempfile
+
+        old_payload = {
+            "aweme_id": "old",
+            "desc": "旧作品",
+            "aweme_url": "https://www.douyin.com/video/old",
+            "nickname": "Simon林",
+        }
+        new_payload = {
+            "aweme_id": "new",
+            "desc": "新作品",
+            "aweme_url": "https://www.douyin.com/video/new",
+            "nickname": "Simon林",
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            old_path = Path(tmp) / "creator_contents_2026-07-01.jsonl"
+            new_path = Path(tmp) / "creator_contents_2026-07-03.jsonl"
+            old_path.write_text(json.dumps(old_payload, ensure_ascii=False) + "\n", encoding="utf-8")
+            new_path.write_text(json.dumps(new_payload, ensure_ascii=False) + "\n", encoding="utf-8")
+            os.utime(old_path, (100, 100))
+            os.utime(new_path, (200, 200))
+            with patch.dict(
+                os.environ,
+                {
+                    "MEDIACRAWLER_DOUYIN_ENABLED": "1",
+                    "MEDIACRAWLER_DOUYIN_JSONL": str(old_path),
+                },
+                clear=True,
+            ):
+                items, status = maybe_fetch_mediacrawler_douyin(datetime(2026, 7, 3, tzinfo=timezone.utc))
+
+        self.assertTrue(status["ok"])
+        self.assertEqual(status["jsonl_file"], "creator_contents_2026-07-03.jsonl")
+        self.assertEqual(status["jsonl_file_resolved_from"], "creator_contents_2026-07-01.jsonl")
+        self.assertEqual(items[0].meta["douyin_aweme_id"], "new")
 
     def test_parse_mediacrawler_xhs_jsonl(self):
         payload = {

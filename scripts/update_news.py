@@ -4520,6 +4520,27 @@ def mediacrawler_env_int_any(default: int, *names: str) -> int:
     return default
 
 
+def resolve_latest_mediacrawler_jsonl(raw_path: str) -> Path:
+    path = Path(raw_path).expanduser()
+    if path.is_dir():
+        candidates = sorted(
+            path.glob("creator_contents_*.jsonl"),
+            key=lambda candidate: candidate.stat().st_mtime,
+            reverse=True,
+        )
+        return candidates[0] if candidates else path
+
+    if path.parent.exists() and (not path.exists() or path.name.startswith("creator_contents_")):
+        candidates = sorted(
+            path.parent.glob("creator_contents_*.jsonl"),
+            key=lambda candidate: candidate.stat().st_mtime,
+            reverse=True,
+        )
+        if candidates and (not path.exists() or candidates[0].stat().st_mtime >= path.stat().st_mtime):
+            return candidates[0]
+    return path
+
+
 def parse_mediacrawler_douyin_jsonl(
     text: str,
     *,
@@ -4606,6 +4627,7 @@ def maybe_fetch_mediacrawler_douyin(now: datetime) -> tuple[list[RawItem], dict[
         "privacy": "local_jsonl_only_no_cookies",
         "coverage_note": "reads_mediacrawler_douyin_creator_jsonl",
         "jsonl_path_configured": bool(jsonl_path_raw),
+        "jsonl_file_configured": Path(jsonl_path_raw).name if jsonl_path_raw else None,
         "jsonl_file": Path(jsonl_path_raw).name if jsonl_path_raw else None,
         "max_items": max_items,
     }
@@ -4619,7 +4641,10 @@ def maybe_fetch_mediacrawler_douyin(now: datetime) -> tuple[list[RawItem], dict[
 
     start = time.perf_counter()
     try:
-        jsonl_path = Path(jsonl_path_raw).expanduser()
+        jsonl_path = resolve_latest_mediacrawler_jsonl(jsonl_path_raw)
+        status["jsonl_file"] = jsonl_path.name
+        if jsonl_path.name != status.get("jsonl_file_configured"):
+            status["jsonl_file_resolved_from"] = status.get("jsonl_file_configured")
         if not jsonl_path.exists():
             status["ok"] = False
             status["error"] = "mediacrawler_douyin_jsonl_not_found"
@@ -4733,6 +4758,7 @@ def maybe_fetch_mediacrawler_xhs(now: datetime) -> tuple[list[RawItem], dict[str
         "privacy": "local_jsonl_only_no_cookies",
         "coverage_note": "reads_mediacrawler_xhs_creator_jsonl",
         "jsonl_path_configured": bool(jsonl_path_raw),
+        "jsonl_file_configured": Path(jsonl_path_raw).name if jsonl_path_raw else None,
         "jsonl_file": Path(jsonl_path_raw).name if jsonl_path_raw else None,
         "max_items": max_items,
     }
@@ -4746,7 +4772,10 @@ def maybe_fetch_mediacrawler_xhs(now: datetime) -> tuple[list[RawItem], dict[str
 
     start = time.perf_counter()
     try:
-        jsonl_path = Path(jsonl_path_raw).expanduser()
+        jsonl_path = resolve_latest_mediacrawler_jsonl(jsonl_path_raw)
+        status["jsonl_file"] = jsonl_path.name
+        if jsonl_path.name != status.get("jsonl_file_configured"):
+            status["jsonl_file_resolved_from"] = status.get("jsonl_file_configured")
         if not jsonl_path.exists():
             status["ok"] = False
             status["error"] = "mediacrawler_xhs_jsonl_not_found"

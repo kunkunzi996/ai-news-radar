@@ -6,7 +6,7 @@
 - 当前阶段：在 `feature/local-trigger-console` 上把已有“信源配置 + 本地刷新”升级成本地采集控制台，并补充本地只读依赖探针和维护动作入口。
 - 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
 - 当前分支：`feature/local-trigger-console`
-- 已推送 commit：`fa515b6 feat: add local source trigger console`
+- 已推送 commit：`b8a9653 feat: add local maintenance action shortcuts`
 - 本轮已实现：
   - `scripts/local_server.py` 新增 `GET /api/local-status`。
   - 本地状态会读取 `sources.config.json` 和 `data/source-status.json`，输出启用信源数、采集状态和维护项。
@@ -18,11 +18,14 @@
   - 维护提示新增白名单动作按钮：WeWe RSS 启动后台/扫码，B站打开登录页，MediaCrawler 打开 JSONL 文件夹和平台页。
   - 新增 `POST /api/maintenance-action`，只接受当前维护项里存在的 `action_id`，用于打开已验证的本地文件夹或启动固定的本机 WeWe RSS sidecar；不接受前端传任意路径或命令。
   - WeWe RSS feed 失败提示已去重，不再同时显示总失败和单 feed 失败。
+  - 抖音维护项新增固定动作 `start_mediacrawler_douyin`：通过 `scripts/run_mediacrawler_douyin.py` 从 `E:\AI-news-reader\MediaCrawler-local-test` 启动 MediaCrawler creator 模式；该 runner 使用采集专用 Chrome profile，不应连接用户日常浏览器。Radar 常规刷新仍只读 JSONL，不读取 Chrome profile/cookie。
+  - 本地采集面板新增抖音采集进度卡：显示采集中/已完成、JSONL 写入条数、最近写入时间、最近采集动作和下一步提示；采集中会自动轮询。
+  - MediaCrawler JSONL 读取现在会自动选择同目录最新的 `creator_contents_*.jsonl`，避免配置还指向旧日期文件时继续读旧数据。
   - README 和 `PROJECT_STATE.md` 已同步本地工具边界。
 - 当前边界：
   - 不读取或保存 Cookie、token、`.env`、微信登录态、WeWe RSS 数据库、QR 登录文件、MediaCrawler profile。
   - WeWe RSS 探针只检查 `localhost` / `127.0.0.1` 的 `/feeds` HTTP 端点；MediaCrawler 探针只看显式配置的 JSONL 文件元信息。
-  - 维护动作只打开页面、文件夹或启动固定路径 `E:\AI-news-reader\wewe-rss-sidecar` 的 WeWe RSS sidecar；不会自动登录、不会自动扫码、不会启动 MediaCrawler，也不会运行任意命令。
+  - 维护动作只打开页面、文件夹，或启动固定路径 `E:\AI-news-reader\wewe-rss-sidecar` 的 WeWe RSS sidecar / 固定路径 `E:\AI-news-reader\MediaCrawler-local-test` 的抖音 MediaCrawler；抖音启动会走专用 Chrome profile，不应劫持日常浏览器，不会自动提交登录态、不会读取 profile，也不会运行前端传入的任意命令。
   - `/api/source-config` 仍只能写项目根目录 `sources.config.json`。
   - `/api/refresh` 仍只能运行固定刷新命令，不能由前端传任意命令。
 - 已验证：

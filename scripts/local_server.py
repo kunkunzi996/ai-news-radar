@@ -33,6 +33,10 @@ XIAOHONGSHU_HOME_URL = "https://www.xiaohongshu.com/explore"
 WEWE_RSS_SIDECAR_DIR_NAME = "wewe-rss-sidecar"
 WEWE_RSS_SIDECAR_LOG_OUT = "wewe-rss.out.log"
 WEWE_RSS_SIDECAR_LOG_ERR = "wewe-rss.err.log"
+MEDIACRAWLER_LOCAL_DIR_NAME = "MediaCrawler-local-test"
+MEDIACRAWLER_DOUYIN_LOG_OUT = "mediacrawler-douyin.out.log"
+MEDIACRAWLER_DOUYIN_LOG_ERR = "mediacrawler-douyin.err.log"
+MEDIACRAWLER_DOUYIN_PID = "mediacrawler-douyin.pid"
 
 
 def site_display_name(site: dict[str, Any]) -> str:
@@ -118,8 +122,30 @@ def existing_open_target(path: Path) -> Path | None:
     return candidate if candidate.exists() else None
 
 
+def resolve_latest_mediacrawler_jsonl(raw_path: Path) -> Path:
+    path = raw_path.expanduser()
+    if path.is_dir():
+        candidates = sorted(
+            path.glob("creator_contents_*.jsonl"),
+            key=lambda candidate: candidate.stat().st_mtime,
+            reverse=True,
+        )
+        return candidates[0] if candidates else path
+    if path.parent.exists() and (not path.exists() or path.name.startswith("creator_contents_")):
+        candidates = sorted(
+            path.parent.glob("creator_contents_*.jsonl"),
+            key=lambda candidate: candidate.stat().st_mtime,
+            reverse=True,
+        )
+        if candidates and (not path.exists() or candidates[0].stat().st_mtime >= path.stat().st_mtime):
+            return candidates[0]
+    return path
+
+
 def mediacrawler_fix_actions(root_dir: Path, runtime_id: str, raw_path: str = "") -> list[dict[str, Any]]:
     actions: list[dict[str, Any]] = []
+    if runtime_id == "mediacrawler_douyin":
+        actions.append(start_service_action("start_mediacrawler_douyin", "启动抖音采集"))
     if raw_path:
         target = existing_open_target(resolve_config_path(root_dir, raw_path))
         if target:
@@ -340,7 +366,8 @@ def add_mediacrawler_jsonl_issue(
         )
         return
 
-    jsonl_path = resolve_config_path(root_dir, locator)
+    configured_path = resolve_config_path(root_dir, locator)
+    jsonl_path = resolve_latest_mediacrawler_jsonl(configured_path)
     if not jsonl_path.exists():
         add_maintenance_issue(
             issues,
@@ -348,7 +375,7 @@ def add_mediacrawler_jsonl_issue(
             "bad",
             runtime_id,
             f"{platform} JSONL 文件不存在",
-            f"配置路径没有找到文件：{jsonl_path}",
+            f"配置路径没有找到文件：{configured_path}",
             "先运行对应平台的 MediaCrawler 生成 JSONL，或修正该信源的路径。",
             mediacrawler_fix_actions(root_dir, runtime_id, locator),
         )
@@ -480,6 +507,200 @@ def start_wewe_rss_sidecar(root_dir: Path, *, execute: bool = True) -> dict[str,
         "action_id": "start_wewe_rss_sidecar",
         "pid": process.pid,
         "url": base_url + "/dash",
+        "executed": True,
+    }
+
+
+def mediacrawler_local_root(root_dir: Path) -> Path:
+    configured = str(os.environ.get("MEDIACRAWLER_LOCAL_DIR") or "").strip()
+    if configured:
+        return Path(configured).expanduser().resolve()
+    return (root_dir.parent / MEDIACRAWLER_LOCAL_DIR_NAME).resolve()
+
+
+def mediacrawler_python_exe(crawler_root: Path) -> str | None:
+    if os.name == "nt":
+        local_python = crawler_root / "venv" / "Scripts" / "python.exe"
+    else:
+        local_python = crawler_root / "venv" / "bin" / "python"
+    if local_python.exists():
+        return str(local_python)
+    return shutil.which("python") or shutil.which("python3") or sys.executable
+
+
+def process_is_running(pid: int) -> bool:
+    if pid <= 0:
+        return False
+    if os.name == "nt":
+        try:
+            result = subprocess.run(
+                ["tasklist", "/FI", f"PID eq {pid}", "/FO", "CSV", "/NH"],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.DEVNULL,
+                text=True,
+                timeout=3,
+                check=False,
+            )
+        except Exception:
+            return False
+        return f'"{pid}"' in result.stdout or f",{pid}," in result.stdout
+    try:
+        os.kill(pid, 0)
+        return True
+    except OSError:
+        return False
+
+
+def read_pid_file(path: Path) -> int | None:
+    try:
+        raw = path.read_text(encoding="utf-8").strip()
+        return int(raw) if raw else None
+    except Exception:
+        return None
+
+
+def newest_file(folder: Path, pattern: str) -> Path | None:
+    if not folder.exists():
+        return None
+    candidates = sorted(folder.glob(pattern), key=lambda candidate: candidate.stat().st_mtime, reverse=True)
+    return candidates[0] if candidates else None
+
+
+def count_file_lines(path: Path) -> int:
+    try:
+        with path.open("r", encoding="utf-8", errors="ignore") as handle:
+            return sum(1 for _line in handle)
+    except Exception:
+        return 0
+
+
+def read_tail_lines(path: Path, limit: int = 80) -> list[str]:
+    if not path.exists():
+        return []
+    try:
+        return path.read_text(encoding="utf-8", errors="ignore").splitlines()[-limit:]
+    except Exception:
+        return []
+
+
+def last_meaningful_douyin_log(lines: list[str]) -> str:
+    for line in reversed(lines):
+        text = line.strip()
+        if not text:
+            continue
+        if "Douyin Crawler finished" in text:
+            return "采集完成"
+        if "update_douyin_aweme" in text and "title:" in text:
+            return "正在写入作品：" + text.split("title:", 1)[-1].strip()[:80]
+        if "get_all_user_aweme_posts" in text and "video len" in text:
+            return text.split(" - ", 1)[-1].strip()
+        if "Sleeping for" in text:
+            return "正在逐条读取作品详情"
+    return ""
+
+
+def mediacrawler_douyin_collector_status(root_dir: Path) -> dict[str, Any]:
+    crawler_root = mediacrawler_local_root(root_dir)
+    pid = read_pid_file(crawler_root / MEDIACRAWLER_DOUYIN_PID)
+    running = process_is_running(pid or 0)
+    jsonl = newest_file(crawler_root / "output" / "douyin" / "jsonl", "creator_contents_*.jsonl")
+    log_lines = read_tail_lines(crawler_root / MEDIACRAWLER_DOUYIN_LOG_ERR)
+    last_log = last_meaningful_douyin_log(log_lines)
+    completed = any("Douyin Crawler finished" in line for line in log_lines[-20:])
+    item_count = count_file_lines(jsonl) if jsonl else 0
+    updated_at = datetime.fromtimestamp(jsonl.stat().st_mtime, timezone.utc).isoformat() if jsonl else None
+
+    if running:
+        phase = "running"
+        title = "抖音采集中"
+        next_action = "保持采集专用窗口打开；完成后这里会变成可关闭。"
+        can_close_browser = False
+    elif completed and jsonl:
+        phase = "completed"
+        title = "抖音采集已完成"
+        next_action = "可以关闭采集专用窗口；回到本页点执行采集，让主站读取新 JSONL。"
+        can_close_browser = True
+    elif jsonl:
+        phase = "idle"
+        title = "抖音采集未运行"
+        next_action = "如需最新动态，点启动抖音采集。"
+        can_close_browser = True
+    else:
+        phase = "missing"
+        title = "抖音还没有采集结果"
+        next_action = "点启动抖音采集，完成扫码或登录后等待写出 JSONL。"
+        can_close_browser = False
+
+    return {
+        "id": "mediacrawler_douyin",
+        "title": title,
+        "phase": phase,
+        "running": running,
+        "completed": completed,
+        "can_close_browser": can_close_browser,
+        "pid": pid,
+        "item_count": item_count,
+        "latest_file": jsonl.name if jsonl else None,
+        "latest_file_path": str(jsonl) if jsonl else None,
+        "updated_at": updated_at,
+        "last_log": last_log,
+        "next_action": next_action,
+    }
+
+
+def start_mediacrawler_douyin(root_dir: Path, *, execute: bool = True) -> dict[str, Any]:
+    crawler_root = mediacrawler_local_root(root_dir)
+    crawler_entry = crawler_root / "main.py"
+    if not crawler_entry.exists():
+        return {"ok": False, "error": "mediacrawler_main_not_found", "path": str(crawler_entry)}
+    entry = root_dir / "scripts" / "run_mediacrawler_douyin.py"
+    if not entry.exists():
+        return {"ok": False, "error": "mediacrawler_runner_not_found", "path": str(entry)}
+
+    python_exe = mediacrawler_python_exe(crawler_root)
+    if not python_exe:
+        return {"ok": False, "error": "python_not_found"}
+
+    command = [
+        python_exe,
+        str(entry),
+        "--crawler-root",
+        str(crawler_root),
+    ]
+    if not execute:
+        return {
+            "ok": True,
+            "kind": "start_service",
+            "action_id": "start_mediacrawler_douyin",
+            "command": command,
+            "cwd": str(crawler_root),
+            "executed": False,
+        }
+
+    env = os.environ.copy()
+    env.setdefault("PYTHONIOENCODING", "utf-8")
+    out_log = crawler_root / MEDIACRAWLER_DOUYIN_LOG_OUT
+    err_log = crawler_root / MEDIACRAWLER_DOUYIN_LOG_ERR
+    creationflags = 0
+    if os.name == "nt":
+        creationflags = subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS
+    with out_log.open("a", encoding="utf-8", errors="ignore") as stdout_file, err_log.open("a", encoding="utf-8", errors="ignore") as stderr_file:
+        process = subprocess.Popen(
+            command,
+            cwd=crawler_root,
+            env=env,
+            stdout=stdout_file,
+            stderr=stderr_file,
+            stdin=subprocess.DEVNULL,
+            close_fds=True,
+            creationflags=creationflags,
+        )
+    (crawler_root / MEDIACRAWLER_DOUYIN_PID).write_text(str(process.pid), encoding="utf-8")
+    return {
+        "ok": True,
+        "kind": "start_service",
+        "action_id": "start_mediacrawler_douyin",
+        "pid": process.pid,
         "executed": True,
     }
 
@@ -697,6 +918,9 @@ def local_status_payload(root_dir: Path) -> dict[str, Any]:
         "ok": True,
         "source_config": config,
         "source_status": summary,
+        "collectors": {
+            "mediacrawler_douyin": mediacrawler_douyin_collector_status(root_dir),
+        },
         "refresh_running": REFRESH_LOCK.locked(),
     }
 
@@ -775,6 +999,8 @@ def perform_maintenance_action(root_dir: Path, action_id: str, *, execute: bool 
         action_id = str(action.get("id") or "")
         if action_id == "start_wewe_rss_sidecar":
             return start_wewe_rss_sidecar(root_dir, execute=execute)
+        if action_id == "start_mediacrawler_douyin":
+            return start_mediacrawler_douyin(root_dir, execute=execute)
         return {"ok": False, "error": "unsupported_start_service", "action_id": action_id}
     return {"ok": False, "error": "unsupported_maintenance_action", "kind": kind}
 

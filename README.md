@@ -368,9 +368,9 @@ $env:BILIBILI_DYNAMIC_MAX_PAGES='20'
 .\.venv\Scripts\python.exe scripts/update_news.py --output-dir data --archive-days 3650 --bilibili-only --all-time
 ```
 
-抖音指定博主可以通过本地 MediaCrawler 导出的 JSONL 接入。这个桥接默认关闭，
-不会从本项目启动 Chrome、Playwright 或复用登录态；先在独立 MediaCrawler
-目录抓取作品，再让总览站读取生成的 `creator_contents_*.jsonl`：
+抖音指定博主可以通过本地 MediaCrawler 导出的 JSONL 接入。这个桥接默认关闭；
+常规刷新只读独立 MediaCrawler 目录导出的 `creator_contents_*.jsonl`，不会从
+主项目读取 cookie、浏览器 profile 或登录态：
 
 ```powershell
 $env:MEDIACRAWLER_DOUYIN_ENABLED='1'
@@ -383,7 +383,16 @@ $env:MEDIACRAWLER_DOUYIN_SOURCE_NAME='Simon林'
 作品数；切到页面的“全部 / 自媒体”更适合查看完整博主作品列表。不要提交
 MediaCrawler 的 `chrome-profile`、cookie 或登录态文件。
 本地控制台的“检查状态”只会检查配置里的 JSONL 文件是否存在、是否为空、
-是否超过 36 小时未更新；不会启动 MediaCrawler，也不会读取浏览器 profile。
+是否超过 36 小时未更新；如果同目录里已经有更新的
+`creator_contents_*.jsonl`，刷新脚本会自动读取最新文件，不需要每次手动改日期。
+抖音维护卡片里的“启动抖音采集”只会调用本机固定目录
+`E:\AI-news-reader\MediaCrawler-local-test` 的 MediaCrawler creator 模式，并通过
+采集专用 Chrome profile `MediaCrawler-local-test\chrome-profile` 打开抖音；它不应
+复用你的日常浏览器窗口。扫码或登录状态只留在这个采集 profile 里，不会保存进
+AI News Radar 仓库，也不会执行前端传入的任意命令。
+启动后，本地采集面板会显示“抖音采集任务”状态卡：采集中时会自动刷新，显示
+已经写入多少条、最近写入时间和当前动作；日志出现完成信号后会显示“可关闭窗口”，
+再提示回到主页面点“执行采集”。
 
 小红书指定博主也可以通过本地 MediaCrawler 导出的 JSONL 接入，同样默认关闭、
 只读本地文件，不会从本项目启动 Chrome 或复用登录态：

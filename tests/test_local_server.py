@@ -7,8 +7,10 @@ from scripts.local_server import (
     local_config_maintenance_issues,
     local_status_payload,
     maintenance_issues_from_status,
+    mediacrawler_douyin_collector_status,
     perform_maintenance_action,
     refresh_command,
+    start_mediacrawler_douyin,
     start_wewe_rss_sidecar,
     validate_source_config,
 )
@@ -187,6 +189,36 @@ class LocalServerTests(unittest.TestCase):
         action_ids = {action["id"] for action in issues[0]["fix_actions"]}
         self.assertIn("open_mediacrawler_douyin_jsonl_folder", action_ids)
         self.assertIn("open_mediacrawler_douyin_platform", action_ids)
+        self.assertIn("start_mediacrawler_douyin", action_ids)
+
+    def test_local_config_uses_newer_mediacrawler_jsonl_sibling(self):
+        from datetime import datetime, timedelta, timezone
+        import os
+
+        root = Path(self.create_temp_dir())
+        old_jsonl = root / "creator_contents_2026-07-01.jsonl"
+        old_jsonl.write_text('{"title":"old"}\n', encoding="utf-8")
+        new_jsonl = root / "creator_contents_2026-07-03.jsonl"
+        new_jsonl.write_text('{"title":"new"}\n', encoding="utf-8")
+        now = datetime(2026, 7, 3, 9, 0, tzinfo=timezone.utc)
+        os.utime(old_jsonl, ((now - timedelta(hours=40)).timestamp(),) * 2)
+        os.utime(new_jsonl, ((now - timedelta(hours=1)).timestamp(),) * 2)
+        config = {
+            "sources": [
+                {
+                    "id": "mediacrawler_douyin_simon",
+                    "name": "Simon林",
+                    "type": "mediacrawler_jsonl",
+                    "channel": "抖音",
+                    "locator": str(old_jsonl),
+                    "enabled": True,
+                }
+            ]
+        }
+
+        issues = local_config_maintenance_issues(root, config, probe_network=False, now=now)
+
+        self.assertEqual(issues, [])
 
     def test_local_config_issues_flag_missing_wewe_feed_id_without_network(self):
         root = Path(self.create_temp_dir())
@@ -231,6 +263,61 @@ class LocalServerTests(unittest.TestCase):
         self.assertFalse(result["executed"])
         self.assertEqual(Path(result["cwd"]), sidecar_server)
         self.assertEqual(Path(result["command"][1]), sidecar_dist / "main.js")
+
+    def test_start_mediacrawler_douyin_dry_run_uses_fixed_local_command(self):
+        import os
+
+        root = Path(self.create_temp_dir()) / "ai-news-radar-run"
+        script_dir = root / "scripts"
+        script_dir.mkdir(parents=True)
+        runner = script_dir / "run_mediacrawler_douyin.py"
+        runner.write_text("print('runner')\n", encoding="utf-8")
+        crawler_root = root.parent / "MediaCrawler-local-test"
+        crawler_root.mkdir(parents=True)
+        (crawler_root / "main.py").write_text("print('fake')\n", encoding="utf-8")
+        python_dir = crawler_root / "venv" / "Scripts"
+        python_dir.mkdir(parents=True)
+        python_exe = python_dir / "python.exe"
+        python_exe.write_text("", encoding="utf-8")
+
+        old_dir = os.environ.get("MEDIACRAWLER_LOCAL_DIR")
+        os.environ["MEDIACRAWLER_LOCAL_DIR"] = str(crawler_root)
+        try:
+            result = start_mediacrawler_douyin(root, execute=False)
+        finally:
+            if old_dir is None:
+                os.environ.pop("MEDIACRAWLER_LOCAL_DIR", None)
+            else:
+                os.environ["MEDIACRAWLER_LOCAL_DIR"] = old_dir
+
+        self.assertTrue(result["ok"])
+        self.assertFalse(result["executed"])
+        self.assertEqual(Path(result["cwd"]), crawler_root)
+        self.assertEqual(Path(result["command"][0]), python_exe)
+        self.assertEqual(Path(result["command"][1]), runner)
+        self.assertIn("--crawler-root", result["command"])
+        self.assertIn(str(crawler_root), result["command"])
+        self.assertNotIn("url", result)
+
+    def test_mediacrawler_douyin_collector_status_explains_finished_run(self):
+        root = Path(self.create_temp_dir()) / "ai-news-radar-run"
+        crawler_root = root.parent / "MediaCrawler-local-test"
+        output_dir = crawler_root / "output" / "douyin" / "jsonl"
+        output_dir.mkdir(parents=True)
+        jsonl = output_dir / "creator_contents_2026-07-03.jsonl"
+        jsonl.write_text('{"title":"one"}\n{"title":"two"}\n', encoding="utf-8")
+        (crawler_root / "mediacrawler-douyin.err.log").write_text(
+            "2026-07-03 16:11:34 MediaCrawler INFO (core.py:125) - [DouYinCrawler.start] Douyin Crawler finished ...\n",
+            encoding="utf-8",
+        )
+
+        status = mediacrawler_douyin_collector_status(root)
+
+        self.assertEqual(status["phase"], "completed")
+        self.assertTrue(status["can_close_browser"])
+        self.assertEqual(status["item_count"], 2)
+        self.assertEqual(status["last_log"], "采集完成")
+        self.assertIn("执行采集", status["next_action"])
 
     def test_perform_maintenance_action_dry_run_opens_configured_jsonl_folder(self):
         import os

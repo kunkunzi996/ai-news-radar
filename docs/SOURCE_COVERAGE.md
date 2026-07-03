@@ -195,11 +195,17 @@ baseline, then let the aggregator layer add breadth.
   succeeds.
 - **MediaCrawler Douyin creator JSONL**: supported as a local private bridge
   through `MEDIACRAWLER_DOUYIN_ENABLED=1` and `MEDIACRAWLER_DOUYIN_JSONL`, but
-  disabled by default. It does not run Playwright, Chrome CDP, or any logged-in
-  browser from this project; it only reads a JSONL file already exported by a
-  separate local MediaCrawler run. This keeps Douyin login state and crawler
-  output outside the public repo while letting selected creator works enter the
-  same self-media lane as Bilibili dynamic and TikHub creator/search signals.
+  disabled by default. Normal refresh only reads a JSONL file already exported
+  by a separate local MediaCrawler run. The local maintenance console may launch
+  a fixed `E:\AI-news-reader\MediaCrawler-local-test` Douyin creator run for the
+  user through a dedicated Chrome CDP profile under `MediaCrawler-local-test`;
+  it should not attach to the user's everyday browser window. The radar repo
+  still does not read Chrome profiles, cookies, or login-state files. Dated
+  `creator_contents_*.jsonl` outputs are resolved to the newest sibling file, so
+  a config that points to an older dated output can keep working after a fresh
+  MediaCrawler export. This keeps Douyin login state and crawler output outside
+  the public repo while letting selected creator works enter the same self-media
+  lane as Bilibili dynamic and TikHub creator/search signals.
 - **MediaCrawler Xiaohongshu creator JSONL**: supported as a local private bridge
   through `MEDIACRAWLER_XHS_ENABLED=1` and `MEDIACRAWLER_XHS_JSONL`, with
   `MEDIACRAWLER_XIAOHONGSHU_*` aliases for readability. It is disabled by

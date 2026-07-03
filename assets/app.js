@@ -40,6 +40,7 @@ const state = {
   sourceConfigSelectedId: "",
   sourceConfigFilter: "all",
   localOpsStatus: null,
+  localOpsPollTimer: null,
 };
 
 const statsEl = document.getElementById("stats");
@@ -112,6 +113,7 @@ const sourceConfigJsonEl = document.getElementById("sourceConfigJson");
 const sourceConfigStatusEl = document.getElementById("sourceConfigStatus");
 const localOpsStatusEl = document.getElementById("localOpsStatus");
 const localOpsSummaryEl = document.getElementById("localOpsSummary");
+const localOpsCollectorsEl = document.getElementById("localOpsCollectors");
 const localOpsIssuesEl = document.getElementById("localOpsIssues");
 
 const SOURCE_KINDS = {
@@ -662,13 +664,60 @@ function localOpsMetric(label, value, tone = "") {
   return node;
 }
 
+function renderLocalOpsCollectors(collectors = {}) {
+  if (!localOpsCollectorsEl) return;
+  localOpsCollectorsEl.innerHTML = "";
+  const douyin = collectors?.mediacrawler_douyin;
+  if (!douyin) return;
+
+  const card = document.createElement("article");
+  card.className = `local-ops-collector ${douyin.phase || "idle"}`;
+  const head = document.createElement("div");
+  head.className = "local-ops-collector-head";
+  const title = document.createElement("strong");
+  title.textContent = douyin.title || "抖音采集任务";
+  const badge = document.createElement("span");
+  badge.textContent = douyin.running ? "采集中" : (douyin.can_close_browser ? "可关闭窗口" : "等待处理");
+  head.append(title, badge);
+
+  const meta = document.createElement("div");
+  meta.className = "local-ops-collector-meta";
+  meta.append(
+    localOpsMetric("写入作品", fmtNumber(Number(douyin.item_count || 0)), douyin.running ? "warn" : "ok"),
+    localOpsMetric("最近写入", douyin.updated_at ? fmtTime(douyin.updated_at) : "未生成"),
+    localOpsMetric("当前状态", douyin.running ? "请等待" : (douyin.completed ? "已完成" : "未运行"), douyin.running ? "warn" : "ok")
+  );
+
+  const detail = document.createElement("span");
+  detail.textContent = douyin.latest_file ? `输出文件：${douyin.latest_file}` : "还没有输出文件";
+  const log = document.createElement("em");
+  log.textContent = douyin.last_log || (douyin.running ? "正在等待采集日志..." : "暂无采集日志");
+  const next = document.createElement("strong");
+  next.className = "local-ops-collector-next";
+  next.textContent = douyin.next_action || "";
+  card.append(head, meta, detail, log, next);
+  localOpsCollectorsEl.appendChild(card);
+}
+
+function scheduleLocalOpsPolling(shouldPoll) {
+  if (state.localOpsPollTimer) {
+    window.clearTimeout(state.localOpsPollTimer);
+    state.localOpsPollTimer = null;
+  }
+  if (!shouldPoll) return;
+  state.localOpsPollTimer = window.setTimeout(() => {
+    loadLocalStatusFromServer(false);
+  }, 3500);
+}
+
 async function runLocalOpsFixAction(action, button) {
   const label = action?.label || "修复";
   if (!["open_path", "start_service"].includes(action?.kind) || !action.id) {
     setLocalOpsStatus("这个维护入口暂不可用", "bad");
     return;
   }
-  const pendingWindow = action.kind === "start_service" ? window.open("about:blank", "_blank") : null;
+  const shouldOpenPendingWindow = action.kind === "start_service" && action.id === "start_wewe_rss_sidecar";
+  const pendingWindow = shouldOpenPendingWindow ? window.open("about:blank", "_blank") : null;
   if (pendingWindow) pendingWindow.opener = null;
   const oldText = button?.textContent || label;
   if (button) {
@@ -685,14 +734,19 @@ async function runLocalOpsFixAction(action, button) {
     if (!res.ok || payload.ok === false) {
       throw new Error(payload.error || `HTTP ${res.status}`);
     }
-    if (action.kind === "start_service" && payload.url) {
+    if (shouldOpenPendingWindow && action.kind === "start_service" && payload.url) {
       if (pendingWindow) {
         pendingWindow.location.href = payload.url;
       } else {
         window.location.href = payload.url;
       }
     }
-    setLocalOpsStatus(`已打开：${label}`, "ok");
+    if (action.id === "start_mediacrawler_douyin") {
+      setLocalOpsStatus("抖音采集中", "warn");
+      window.setTimeout(() => loadLocalStatusFromServer(false), 1200);
+    } else {
+      setLocalOpsStatus(`已打开：${label}`, "ok");
+    }
     if (button) button.textContent = "已打开";
   } catch (err) {
     if (pendingWindow && !pendingWindow.closed) pendingWindow.close();
@@ -711,9 +765,12 @@ async function runLocalOpsFixAction(action, button) {
 function renderLocalOpsStatus(payload = null) {
   if (!localOpsSummaryEl || !localOpsIssuesEl) return;
   localOpsSummaryEl.innerHTML = "";
+  if (localOpsCollectorsEl) localOpsCollectorsEl.innerHTML = "";
   localOpsIssuesEl.innerHTML = "";
   const sourceStatus = payload?.source_status || payload?.summary || {};
   const sourceConfig = payload?.source_config || {};
+  const collectors = payload?.collectors || {};
+  const collectorRunning = Boolean(collectors?.mediacrawler_douyin?.running);
   const issues = Array.isArray(sourceStatus.maintenance_issues) ? sourceStatus.maintenance_issues : [];
   const enabled = Number(sourceConfig.enabled_source_count ?? (state.sourceConfig?.sources || []).filter((source) => source.enabled !== false).length ?? 0);
   const total = Number(sourceConfig.source_count ?? (state.sourceConfig?.sources || []).length ?? 0);
@@ -731,7 +788,12 @@ function renderLocalOpsStatus(payload = null) {
     localOpsMetric("维护项", fmtNumber(issues.length), issueTone)
   );
 
-  if (payload?.refresh_running) {
+  renderLocalOpsCollectors(collectors);
+  scheduleLocalOpsPolling(collectorRunning || Boolean(payload?.refresh_running));
+
+  if (collectorRunning) {
+    setLocalOpsStatus("采集中", "warn");
+  } else if (payload?.refresh_running) {
     setLocalOpsStatus("采集中", "warn");
   } else if (!sourceStatus.generated_at && !issues.length) {
     setLocalOpsStatus("等待状态", "");
