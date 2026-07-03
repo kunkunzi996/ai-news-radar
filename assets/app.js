@@ -1482,6 +1482,27 @@ function sourceKind(siteId) {
   return SOURCE_KINDS[siteId] || { label: "来源", tone: "default" };
 }
 
+function sourceDisplayName(source) {
+  const sourceObj = typeof source === "object" && source ? source : {};
+  const siteId = String(sourceObj.site_id || sourceObj.siteId || "").toLowerCase();
+  const rawName = String(
+    sourceObj.site_name ||
+    sourceObj.siteName ||
+    sourceObj.name ||
+    (typeof source === "string" ? source : "") ||
+    siteId ||
+    "",
+  ).trim();
+  const hay = `${siteId} ${rawName} ${sourceObj.source || ""} ${sourceObj.url || ""}`.toLowerCase();
+  if (siteId === "wewe_rss" || siteId === "maobidao_wudaolu_backup" || hay.includes("wewe") || hay.includes("mp.weixin") || hay.includes("公众号")) return "微信公众号";
+  if (siteId === "opmlrss" || hay.includes("opmlrss") || hay.includes("youtube") || hay.includes("youtu.be")) return "YouTube";
+  if (siteId === "github_foundation_sunshine_releases" || hay.includes("github_foundation") || hay.includes("github foundation sunshine")) return "GitHub";
+  if (siteId === "mediacrawler_xhs" || siteId === "tikhub_xiaohongshu" || hay.includes("xiaohongshu") || hay.includes("小红书")) return "小红书";
+  if (siteId === "mediacrawler_douyin" || siteId === "tikhub_douyin" || hay.includes("douyin") || hay.includes("抖音")) return "抖音";
+  if (siteId === "bilibili_dynamic" || hay.includes("bilibili") || hay.includes("b站")) return "B站";
+  return rawName || siteId || "来源";
+}
+
 function sourceSignalTone(signal) {
   const text = String(signal || "").toLowerCase();
   if (text.includes("官方") || text.includes("official")) return "official";
@@ -1648,7 +1669,7 @@ function computeSiteStats(items) {
   const m = new Map();
   items.forEach((item) => {
     if (!m.has(item.site_id)) {
-      m.set(item.site_id, { site_id: item.site_id, site_name: item.site_name, count: 0, raw_count: 0 });
+      m.set(item.site_id, { site_id: item.site_id, site_name: sourceDisplayName(item), count: 0, raw_count: 0 });
     }
     const row = m.get(item.site_id);
     row.count += 1;
@@ -3718,7 +3739,7 @@ function currentFilterLabel(filtered) {
   if (state.siteFilter) {
     const item = filtered[0];
     const stat = currentSiteStats().find((s) => s.site_id === state.siteFilter);
-    return `${listTitleText()} · ${item?.site_name || stat?.site_name || state.siteFilter}`;
+    return `${listTitleText()} · ${sourceDisplayName(item || stat || state.siteFilter)}`;
   }
   return listTitleText();
 }
@@ -3727,7 +3748,7 @@ function groupedSites(items) {
   const siteMap = new Map();
   items.forEach((item) => {
     if (!siteMap.has(item.site_id)) {
-      siteMap.set(item.site_id, { siteName: item.site_name || item.site_id, rawItems: [] });
+      siteMap.set(item.site_id, { siteName: sourceDisplayName(item), rawItems: [] });
     }
     siteMap.get(item.site_id).rawItems.push(item);
   });
@@ -4025,9 +4046,9 @@ function renderSourceStatusTable(status) {
       const scanned = Number(site.item_count || rawCount || 0);
       const ratioBase = rawCount || scanned;
       const ratio = ratioBase ? Math.round((aiCount / ratioBase) * 100) : 0;
-      return { ...site, aiCount, rawCount: ratioBase, ratio };
+      return { ...site, displayName: sourceDisplayName(site), aiCount, rawCount: ratioBase, ratio };
     })
-    .sort((a, b) => b.aiCount - a.aiCount || b.rawCount - a.rawCount || String(a.site_name).localeCompare(String(b.site_name), "zh-CN"))
+    .sort((a, b) => b.aiCount - a.aiCount || b.rawCount - a.rawCount || String(a.displayName).localeCompare(String(b.displayName), "zh-CN"))
     .slice(0, 12);
 
   const table = document.createElement("div");
@@ -4041,7 +4062,7 @@ function renderSourceStatusTable(status) {
     row.className = "source-table-row";
     const statusText = site.ok ? "正常" : "异常";
     row.innerHTML = `
-      <span>${site.site_name || site.site_id}</span>
+      <span>${site.displayName}</span>
       <span>${fmtNumber(site.aiCount)} / ${fmtNumber(site.rawCount)}</span>
       <span>${fmtNumber(site.ratio)}%</span>
       <span class="${site.ok ? "ok" : "bad"}">${statusText}</span>
