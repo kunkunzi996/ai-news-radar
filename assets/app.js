@@ -99,6 +99,7 @@ const sourceConfigLocatorEl = document.getElementById("sourceConfigLocator");
 const sourceConfigEnvEl = document.getElementById("sourceConfigEnv");
 const sourceConfigNotesEl = document.getElementById("sourceConfigNotes");
 const sourceConfigEnabledEl = document.getElementById("sourceConfigEnabled");
+const sourceConfigSaveBtnEl = document.getElementById("sourceConfigSaveBtn");
 const sourceConfigAddBtnEl = document.getElementById("sourceConfigAddBtn");
 const sourceConfigDeleteBtnEl = document.getElementById("sourceConfigDeleteBtn");
 const sourceConfigResetBtnEl = document.getElementById("sourceConfigResetBtn");
@@ -505,6 +506,7 @@ function freshSourceConfig() {
 
 function normalizeSourceConfig(payload) {
   const rawSources = Array.isArray(payload?.sources) ? payload.sources : [];
+  const updatedAt = String(payload?.updated_at || "").trim();
   const sources = rawSources
     .filter((source) => source && typeof source === "object")
     .map((source, index) => ({
@@ -523,12 +525,17 @@ function normalizeSourceConfig(payload) {
     catalog_version: String(payload?.catalog_version || ""),
     mode: "refresh-script-config",
     how_to_apply: String(payload?.how_to_apply || "保存为项目根目录 sources.config.json 后运行 scripts/update_news.py；也可用 --source-config 指定路径。"),
-    updated_at: new Date().toISOString(),
+    updated_at: Number.isFinite(Date.parse(updatedAt)) ? updatedAt : new Date().toISOString(),
     deleted_source_ids: Array.isArray(payload?.deleted_source_ids)
       ? Array.from(new Set(payload.deleted_source_ids.map((id) => String(id || "").trim()).filter(Boolean)))
       : [],
     sources,
   };
+}
+
+function sourceConfigUpdatedMs(config) {
+  const ms = Date.parse(config?.updated_at || "");
+  return Number.isFinite(ms) ? ms : 0;
 }
 
 function splitSourceConfigList(value) {
@@ -1000,6 +1007,7 @@ function selectSourceConfigByRuntimeId(runtimeId) {
 async function loadSourceConfigFromLocalServer() {
   if (!sourceConfigFormEl) return;
   try {
+    const draftConfig = loadSourceConfigDraft();
     const res = await fetch("./api/source-config", {
       headers: { Accept: "application/json" },
       cache: "no-store",
@@ -1009,6 +1017,13 @@ async function loadSourceConfigFromLocalServer() {
     const payload = await res.json();
     if (!payload?.config) return;
     const { config } = mergeSourceConfigWithSeed(payload.config);
+    if (sourceConfigUpdatedMs(draftConfig) > sourceConfigUpdatedMs(config)) {
+      state.sourceConfig = draftConfig;
+      state.sourceConfigSelectedId = draftConfig.sources[0]?.id || "";
+      setSourceConfigStatus("已保留较新的浏览器草稿；点“写入”后同步到 sources.config.json", "warn");
+      renderSourceConfig();
+      return;
+    }
     state.sourceConfig = config;
     state.sourceConfigSelectedId = config.sources[0]?.id || "";
     saveSourceConfigDraft("已读取 sources.config.json");
@@ -1022,7 +1037,8 @@ async function writeSourceConfigToLocalServer(options = {}) {
   const button = options.button === undefined ? sourceConfigApplyBtnEl : options.button;
   const successLabel = options.successLabel || "已写入";
   const idleLabel = options.idleLabel || "写入";
-  if (!saveSourceConfigFormToState("本地草稿已保存", false)) {
+  const syncForm = options.syncForm !== false;
+  if (syncForm && !saveSourceConfigFormToState("本地草稿已保存", false)) {
     setSourceConfigButton(button, "写入失败", false);
     restoreSourceConfigButton(button, idleLabel);
     throw new Error("source config form is invalid");
@@ -1055,6 +1071,21 @@ async function writeSourceConfigToLocalServer(options = {}) {
     restoreSourceConfigButton(button, idleLabel);
     setSourceConfigStatus(`写入失败：请用 scripts/local_server.py 启动本地后台（${err.message}）`, "bad");
     throw err;
+  }
+}
+
+async function saveSourceConfigForCollection(message = "已保存，后续采集会按当前信源执行") {
+  if (!saveSourceConfigFormToState(message, false)) return;
+  try {
+    await writeSourceConfigToLocalServer({
+      button: sourceConfigSaveBtnEl,
+      successLabel: "已保存",
+      idleLabel: "保存草稿",
+      syncForm: false,
+    });
+    setSourceConfigStatus(message, "ok");
+  } catch {
+    setSourceConfigStatus("已保存到浏览器草稿；本地后台不可用时不会同步到采集配置", "warn");
   }
 }
 
@@ -1324,7 +1355,7 @@ function deleteSourceConfigRecord() {
   }
   state.sourceConfig.sources = (state.sourceConfig.sources || []).filter((source) => source.id !== state.sourceConfigSelectedId);
   state.sourceConfigSelectedId = state.sourceConfig.sources[0]?.id || "";
-  saveSourceConfigDraft("已从本地草稿删除");
+  saveSourceConfigDraft("已从当前信源删除；点“保存草稿”后采集会按当前信源执行");
   renderSourceConfig();
 }
 
@@ -4459,7 +4490,7 @@ if (boleTimelineBtnEl) {
 if (sourceConfigFormEl) {
   sourceConfigFormEl.addEventListener("submit", (event) => {
     event.preventDefault();
-    upsertSourceConfigRecord(formSourceConfigRecord());
+    saveSourceConfigForCollection().catch(() => {});
   });
   sourceConfigFormEl.addEventListener("input", syncSourceConfigFormDraft);
   sourceConfigFormEl.addEventListener("change", syncSourceConfigFormDraft);
