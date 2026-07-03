@@ -142,9 +142,7 @@ def run_mediacrawler(crawler_root: Path, cdp_port: int, platform: str, creator_i
         "--get_sub_comment",
         "false",
     ]
-    if platform == "xhs":
-        if not creator_id:
-            raise RuntimeError("Xiaohongshu creator id or profile URL is required")
+    if creator_id:
         sys.argv.extend(["--creator_id", creator_id])
 
     run(mediacrawler_main.main, mediacrawler_main.async_cleanup, cleanup_timeout_seconds=15.0)

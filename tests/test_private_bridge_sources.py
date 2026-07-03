@@ -182,12 +182,193 @@ class PrivateBridgeSourceTests(unittest.TestCase):
         self.assertEqual(items[0].meta["creator_metrics"]["comments"], 3)
         self.assertEqual(items[0].meta["creator_metrics"]["shares"], 2)
 
-    def test_mediacrawler_douyin_requires_local_jsonl_when_enabled(self):
-        with patch.dict(os.environ, {"MEDIACRAWLER_DOUYIN_ENABLED": "1"}, clear=True):
+    def test_mediacrawler_douyin_defaults_to_local_output_dir_when_enabled(self):
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmp:
+            with patch.dict(
+                os.environ,
+                {
+                    "MEDIACRAWLER_DOUYIN_ENABLED": "1",
+                    "MEDIACRAWLER_LOCAL_DIR": tmp,
+                },
+                clear=True,
+            ):
+                items, status = maybe_fetch_mediacrawler_douyin(datetime(2026, 7, 1, tzinfo=timezone.utc))
+
+        self.assertEqual(items, [])
+        self.assertFalse(status["ok"])
+        self.assertEqual(status["error"], "mediacrawler_douyin_jsonl_not_found")
+        self.assertEqual(status["locator_kind"], "jsonl_path")
+        self.assertEqual(status["jsonl_file"], "jsonl")
+
+    def test_mediacrawler_douyin_homepage_url_reads_default_jsonl_dir(self):
+        import tempfile
+
+        payload = {
+            "aweme_id": "new",
+            "desc": "主页链接配置后的抖音作品",
+            "aweme_url": "https://www.douyin.com/video/new",
+            "nickname": "Simon林",
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            jsonl_dir = Path(tmp) / "output" / "douyin" / "jsonl"
+            jsonl_dir.mkdir(parents=True)
+            (jsonl_dir / "creator_contents_2026-07-04.jsonl").write_text(
+                json.dumps(payload, ensure_ascii=False) + "\n",
+                encoding="utf-8",
+            )
+            with patch.dict(
+                os.environ,
+                {
+                    "MEDIACRAWLER_DOUYIN_ENABLED": "1",
+                    "MEDIACRAWLER_DOUYIN_JSONL": "https://www.douyin.com/user/MS4wLjABAAAA_TEST",
+                    "MEDIACRAWLER_LOCAL_DIR": tmp,
+                },
+                clear=True,
+            ):
+                items, status = maybe_fetch_mediacrawler_douyin(datetime(2026, 7, 4, tzinfo=timezone.utc))
+
+        self.assertTrue(status["ok"])
+        self.assertEqual(status["locator_kind"], "homepage_url")
+        self.assertEqual(status["jsonl_file"], "creator_contents_2026-07-04.jsonl")
+        self.assertEqual(items[0].meta["douyin_aweme_id"], "new")
+
+    def test_mediacrawler_douyin_homepage_subscription_reads_default_jsonl_dir(self):
+        import tempfile
+        from scripts.update_news import fetch_mediacrawler_douyin_subscriptions
+
+        payload = {
+            "aweme_id": "sub",
+            "desc": "订阅 GUI 写入主页链接",
+            "aweme_url": "https://www.douyin.com/video/sub",
+            "nickname": "JSONL昵称",
+            "sec_user_id": "MS4wLjABAAAA_TEST",
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            jsonl_dir = Path(tmp) / "output" / "douyin" / "jsonl"
+            jsonl_dir.mkdir(parents=True)
+            (jsonl_dir / "creator_contents_2026-07-04.jsonl").write_text(
+                json.dumps(payload, ensure_ascii=False) + "\n",
+                encoding="utf-8",
+            )
+            with patch.dict(os.environ, {"MEDIACRAWLER_LOCAL_DIR": tmp}, clear=True):
+                items, status = fetch_mediacrawler_douyin_subscriptions(
+                    [
+                        {
+                            "name": "Simon林",
+                            "target": "Simon林",
+                            "locator": "https://www.douyin.com/user/MS4wLjABAAAA_TEST",
+                        }
+                    ],
+                    datetime(2026, 7, 4, tzinfo=timezone.utc),
+                )
+
+        self.assertTrue(status["ok"])
+        self.assertEqual(status["subscription_count"], 1)
+        self.assertEqual(status["subscriptions"][0]["locator_kind"], "homepage_url")
+        self.assertEqual(items[0].source, "JSONL昵称")
+
+    def test_mediacrawler_douyin_homepage_subscription_filters_by_sec_uid(self):
+        import tempfile
+        from scripts.update_news import fetch_mediacrawler_douyin_subscriptions
+
+        payload = {
+            "aweme_id": "jennie",
+            "desc": "珍妮丁丁说AI 的新作品",
+            "aweme_url": "https://www.douyin.com/video/jennie",
+            "nickname": "珍妮丁丁说AI",
+            "sec_user_id": "MS4wLjABAAAA_JENNIE",
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            jsonl_dir = Path(tmp) / "output" / "douyin" / "jsonl"
+            jsonl_dir.mkdir(parents=True)
+            old_simon_path = jsonl_dir / "creator_contents_2026-07-01.jsonl"
+            latest_path = jsonl_dir / "creator_contents_2026-07-04.jsonl"
+            old_simon_path.write_text(
+                json.dumps(
+                    {
+                        "aweme_id": "simon-old",
+                        "desc": "Simon 旧作品",
+                        "aweme_url": "https://www.douyin.com/video/simon-old",
+                        "nickname": "Simon林",
+                        "sec_user_id": "MS4wLjABAAAA_SIMON",
+                    },
+                    ensure_ascii=False,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            latest_path.write_text(json.dumps(payload, ensure_ascii=False) + "\n", encoding="utf-8")
+            os.utime(old_simon_path, (100, 100))
+            os.utime(latest_path, (200, 200))
+            with patch.dict(os.environ, {"MEDIACRAWLER_LOCAL_DIR": tmp}, clear=True):
+                items, status = fetch_mediacrawler_douyin_subscriptions(
+                    [
+                        {
+                            "name": "Simon林",
+                            "target": "Simon林",
+                            "locator": str(old_simon_path),
+                        },
+                        {
+                            "name": "珍妮丁丁说AI",
+                            "target": "珍妮丁丁说AI",
+                            "locator": "https://www.douyin.com/user/MS4wLjABAAAA_JENNIE",
+                        },
+                    ],
+                    datetime(2026, 7, 4, tzinfo=timezone.utc),
+                )
+
+        self.assertTrue(status["ok"])
+        self.assertEqual(status["subscription_count"], 2)
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0].source, "珍妮丁丁说AI")
+        self.assertEqual(items[0].meta["douyin_sec_user_id"], "MS4wLjABAAAA_JENNIE")
+        self.assertEqual(status["subscriptions"][0]["item_count"], 0)
+        self.assertEqual(status["subscriptions"][1]["item_count"], 1)
+
+    def test_creator_hot_dedupe_prefers_latest_confirmed_douyin_source(self):
+        from scripts.update_news import build_creator_hot_items, make_item_id
+
+        url = "https://www.douyin.com/video/7657434518546091305"
+        title = "看看普通人到底都在vibe coding啥"
+        archive = {}
+        old_id = make_item_id("mediacrawler_douyin", "Simon林", title, url)
+        new_id = make_item_id("mediacrawler_douyin", "珍妮丁丁说AI", title, url)
+        archive[old_id] = {
+            "id": old_id,
+            "site_id": "mediacrawler_douyin",
+            "site_name": "MediaCrawler Douyin",
+            "source": "Simon林",
+            "title": title,
+            "url": url,
+            "published_at": "2026-07-01T12:30:00Z",
+            "first_seen_at": "2026-07-03T10:00:00Z",
+            "last_seen_at": "2026-07-03T10:00:00Z",
+        }
+        archive[new_id] = {
+            "id": new_id,
+            "site_id": "mediacrawler_douyin",
+            "site_name": "MediaCrawler Douyin",
+            "source": "珍妮丁丁说AI",
+            "title": title,
+            "url": url,
+            "published_at": "2026-07-01T12:30:00Z",
+            "first_seen_at": "2026-07-03T10:00:00Z",
+            "last_seen_at": "2026-07-04T06:30:00Z",
+        }
+
+        items = build_creator_hot_items(archive, datetime(2026, 7, 4, tzinfo=timezone.utc), ai_only=False)
+
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["source"], "珍妮丁丁说AI")
+
+    def test_mediacrawler_douyin_missing_explicit_path_still_reports_missing_file(self):
+        with patch.dict(os.environ, {"MEDIACRAWLER_DOUYIN_ENABLED": "1", "MEDIACRAWLER_DOUYIN_JSONL": "missing.jsonl"}, clear=True):
             items, status = maybe_fetch_mediacrawler_douyin(datetime(2026, 7, 1, tzinfo=timezone.utc))
         self.assertEqual(items, [])
         self.assertFalse(status["ok"])
-        self.assertEqual(status["error"], "missing_mediacrawler_douyin_jsonl")
+        self.assertEqual(status["error"], "mediacrawler_douyin_jsonl_not_found")
 
     def test_mediacrawler_douyin_reads_newer_jsonl_sibling(self):
         import tempfile
@@ -255,12 +436,100 @@ class PrivateBridgeSourceTests(unittest.TestCase):
         self.assertEqual(items[0].meta["creator_metrics"]["shares"], 2446)
         self.assertEqual(items[0].meta["xiaohongshu_note_id"], "6a441088000000000702c7df")
 
-    def test_mediacrawler_xhs_requires_local_jsonl_when_enabled(self):
-        with patch.dict(os.environ, {"MEDIACRAWLER_XHS_ENABLED": "1"}, clear=True):
+    def test_mediacrawler_xhs_defaults_to_local_output_dir_when_enabled(self):
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmp:
+            with patch.dict(
+                os.environ,
+                {
+                    "MEDIACRAWLER_XHS_ENABLED": "1",
+                    "MEDIACRAWLER_LOCAL_DIR": tmp,
+                },
+                clear=True,
+            ):
+                items, status = maybe_fetch_mediacrawler_xhs(datetime(2026, 7, 1, tzinfo=timezone.utc))
+
+        self.assertEqual(items, [])
+        self.assertFalse(status["ok"])
+        self.assertEqual(status["error"], "mediacrawler_xhs_jsonl_not_found")
+        self.assertEqual(status["locator_kind"], "jsonl_path")
+        self.assertEqual(status["jsonl_file"], "jsonl")
+
+    def test_mediacrawler_xhs_homepage_url_reads_default_jsonl_dir(self):
+        import tempfile
+
+        payload = {
+            "note_id": "6a441088000000000702c7df",
+            "title": "小红书主页链接配置后的笔记",
+            "note_url": "https://www.xiaohongshu.com/explore/6a441088000000000702c7df",
+            "nickname": "陈抱一",
+            "user_id": "5e4027000000000001005eb8",
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            jsonl_dir = Path(tmp) / "output" / "xhs" / "jsonl"
+            jsonl_dir.mkdir(parents=True)
+            (jsonl_dir / "creator_contents_2026-07-04.jsonl").write_text(
+                json.dumps(payload, ensure_ascii=False) + "\n",
+                encoding="utf-8",
+            )
+            with patch.dict(
+                os.environ,
+                {
+                    "MEDIACRAWLER_XHS_ENABLED": "1",
+                    "MEDIACRAWLER_XHS_JSONL": "https://www.xiaohongshu.com/user/profile/5e4027000000000001005eb8",
+                    "MEDIACRAWLER_LOCAL_DIR": tmp,
+                },
+                clear=True,
+            ):
+                items, status = maybe_fetch_mediacrawler_xhs(datetime(2026, 7, 4, tzinfo=timezone.utc))
+
+        self.assertTrue(status["ok"])
+        self.assertEqual(status["locator_kind"], "homepage_url")
+        self.assertEqual(status["jsonl_file"], "creator_contents_2026-07-04.jsonl")
+        self.assertEqual(items[0].source, "陈抱一")
+
+    def test_mediacrawler_xhs_homepage_subscription_reads_default_jsonl_dir(self):
+        import tempfile
+        from scripts.update_news import fetch_mediacrawler_xhs_subscriptions
+
+        payload = {
+            "note_id": "6a441088000000000702c7df",
+            "title": "订阅 GUI 写入主页链接",
+            "note_url": "https://www.xiaohongshu.com/explore/6a441088000000000702c7df",
+            "nickname": "JSONL昵称",
+            "user_id": "5e4027000000000001005eb8",
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            jsonl_dir = Path(tmp) / "output" / "xhs" / "jsonl"
+            jsonl_dir.mkdir(parents=True)
+            (jsonl_dir / "creator_contents_2026-07-04.jsonl").write_text(
+                json.dumps(payload, ensure_ascii=False) + "\n",
+                encoding="utf-8",
+            )
+            with patch.dict(os.environ, {"MEDIACRAWLER_LOCAL_DIR": tmp}, clear=True):
+                items, status = fetch_mediacrawler_xhs_subscriptions(
+                    [
+                        {
+                            "name": "陈抱一",
+                            "target": "陈抱一",
+                            "locator": "https://www.xiaohongshu.com/user/profile/5e4027000000000001005eb8",
+                        }
+                    ],
+                    datetime(2026, 7, 4, tzinfo=timezone.utc),
+                )
+
+        self.assertTrue(status["ok"])
+        self.assertEqual(status["subscription_count"], 1)
+        self.assertEqual(status["subscriptions"][0]["locator_kind"], "homepage_url")
+        self.assertEqual(items[0].source, "陈抱一")
+
+    def test_mediacrawler_xhs_missing_explicit_path_still_reports_missing_file(self):
+        with patch.dict(os.environ, {"MEDIACRAWLER_XHS_ENABLED": "1", "MEDIACRAWLER_XHS_JSONL": "missing.jsonl"}, clear=True):
             items, status = maybe_fetch_mediacrawler_xhs(datetime(2026, 7, 1, tzinfo=timezone.utc))
         self.assertEqual(items, [])
         self.assertFalse(status["ok"])
-        self.assertEqual(status["error"], "missing_mediacrawler_xhs_jsonl")
+        self.assertEqual(status["error"], "mediacrawler_xhs_jsonl_not_found")
 
     def test_bilibili_cookie_header_from_netscape_text(self):
         cookie_text = "\n".join(

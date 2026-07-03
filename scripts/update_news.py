@@ -20,7 +20,7 @@ from datetime import date, datetime, timedelta, timezone
 from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
-from urllib.parse import parse_qsl, urlencode, urljoin, urlparse, urlunparse
+from urllib.parse import parse_qsl, unquote, urlencode, urljoin, urlparse, urlunparse
 from zoneinfo import ZoneInfo
 
 import requests
@@ -2424,6 +2424,8 @@ def fetch_github_repo_subscription(
     now: datetime,
     *,
     api_url: str = GITHUB_REPO_SUBSCRIPTION_API_URL,
+    repo_label: str = "AlkaidLab/foundation-sunshine",
+    site_name: str = GITHUB_REPO_SUBSCRIPTION_SITE_NAME,
     max_items: int = GITHUB_REPO_SUBSCRIPTION_MAX_ITEMS,
 ) -> list[RawItem]:
     params = {"per_page": max(1, min(10, int(max_items or 1)))}
@@ -2458,11 +2460,11 @@ def fetch_github_repo_subscription(
         seen.add(url)
         published = parse_date_any(release.get("published_at") or release.get("created_at"), now) or now
         release_type = "预发布" if release.get("prerelease") else "正式发布"
-        title = f"AlkaidLab/foundation-sunshine {release_type}: {name}"
+        title = f"{repo_label} {release_type}: {name}"
         out.append(
             RawItem(
                 site_id=GITHUB_REPO_SUBSCRIPTION_SITE_ID,
-                site_name=GITHUB_REPO_SUBSCRIPTION_SITE_NAME,
+                site_name=site_name,
                 source="GitHub版本订阅",
                 title=title,
                 url=url,
@@ -2470,7 +2472,7 @@ def fetch_github_repo_subscription(
                 meta={
                     "summary": title,
                     "source_kind": "github_release_subscription",
-                    "repo": "AlkaidLab/foundation-sunshine",
+                    "repo": repo_label,
                     "tag_name": tag,
                     "release_name": name,
                     "prerelease": bool(release.get("prerelease")),
@@ -3292,6 +3294,10 @@ def apply_source_config_runtime(config: dict[str, Any] | None) -> dict[str, Any]
     bilibili_uids: list[str] = []
     bilibili_names: list[str] = []
     wewe_feeds: list[str] = []
+    douyin_jsonls: list[str] = []
+    douyin_names: list[str] = []
+    xhs_jsonls: list[str] = []
+    xhs_names: list[str] = []
     opml_path = ""
 
     for source in enabled_sources:
@@ -3310,17 +3316,25 @@ def apply_source_config_runtime(config: dict[str, Any] | None) -> dict[str, Any]
         if MEDIACRAWLER_DOUYIN_SITE_ID in site_ids:
             applied_env.append("MEDIACRAWLER_DOUYIN_ENABLED")
             os.environ["MEDIACRAWLER_DOUYIN_ENABLED"] = "1"
-            if set_env_from_source_config("MEDIACRAWLER_DOUYIN_JSONL", locator):
+            if locator and not douyin_jsonls and set_env_from_source_config("MEDIACRAWLER_DOUYIN_JSONL", locator):
                 applied_env.append("MEDIACRAWLER_DOUYIN_JSONL")
-            if set_env_from_source_config("MEDIACRAWLER_DOUYIN_SOURCE_NAME", target or name):
+            if locator:
+                douyin_jsonls.append(locator)
+            if (target or name) and not douyin_names and set_env_from_source_config("MEDIACRAWLER_DOUYIN_SOURCE_NAME", target or name):
                 applied_env.append("MEDIACRAWLER_DOUYIN_SOURCE_NAME")
+            if target or name:
+                douyin_names.append(target or name)
         if MEDIACRAWLER_XHS_SITE_ID in site_ids:
             applied_env.append("MEDIACRAWLER_XHS_ENABLED")
             os.environ["MEDIACRAWLER_XHS_ENABLED"] = "1"
-            if set_env_from_source_config("MEDIACRAWLER_XHS_JSONL", locator):
+            if locator and not xhs_jsonls and set_env_from_source_config("MEDIACRAWLER_XHS_JSONL", locator):
                 applied_env.append("MEDIACRAWLER_XHS_JSONL")
-            if set_env_from_source_config("MEDIACRAWLER_XHS_SOURCE_NAME", target or name):
+            if locator:
+                xhs_jsonls.append(locator)
+            if (target or name) and not xhs_names and set_env_from_source_config("MEDIACRAWLER_XHS_SOURCE_NAME", target or name):
                 applied_env.append("MEDIACRAWLER_XHS_SOURCE_NAME")
+            if target or name:
+                xhs_names.append(target or name)
 
     if bilibili_uids:
         os.environ["BILIBILI_DYNAMIC_ENABLED"] = "1"
@@ -3333,6 +3347,18 @@ def apply_source_config_runtime(config: dict[str, Any] | None) -> dict[str, Any]
         if wewe_feeds:
             os.environ["WEWE_RSS_FEEDS"] = ";".join(wewe_feeds)
             applied_env.append("WEWE_RSS_FEEDS")
+    if douyin_jsonls:
+        os.environ["MEDIACRAWLER_DOUYIN_JSONLS"] = ";".join(douyin_jsonls)
+        applied_env.append("MEDIACRAWLER_DOUYIN_JSONLS")
+        if douyin_names:
+            os.environ["MEDIACRAWLER_DOUYIN_SOURCE_NAMES"] = ";".join(douyin_names)
+            applied_env.append("MEDIACRAWLER_DOUYIN_SOURCE_NAMES")
+    if xhs_jsonls:
+        os.environ["MEDIACRAWLER_XHS_JSONLS"] = ";".join(xhs_jsonls)
+        applied_env.append("MEDIACRAWLER_XHS_JSONLS")
+        if xhs_names:
+            os.environ["MEDIACRAWLER_XHS_SOURCE_NAMES"] = ";".join(xhs_names)
+            applied_env.append("MEDIACRAWLER_XHS_SOURCE_NAMES")
     if "xapi" in enabled_site_ids:
         os.environ["X_API_ENABLED"] = "1"
         applied_env.append("X_API_ENABLED")
@@ -3352,6 +3378,59 @@ def apply_source_config_runtime(config: dict[str, Any] | None) -> dict[str, Any]
         "applied_env": sorted(set(applied_env)),
         "rss_opml": opml_path,
     }
+
+
+def github_release_api_url_from_config(locator: str) -> str:
+    raw = str(locator or "").strip()
+    if not raw:
+        return ""
+    parsed = urlparse(raw)
+    if parsed.netloc.lower() == "api.github.com" and parsed.path.startswith("/repos/") and parsed.path.endswith("/releases"):
+        return raw
+    if parsed.netloc.lower() in {"github.com", "www.github.com"}:
+        parts = [part for part in parsed.path.strip("/").split("/") if part]
+        if len(parts) >= 2:
+            return f"https://api.github.com/repos/{parts[0]}/{parts[1]}/releases"
+    if re.match(r"^[^/\s]+/[^/\s]+$", raw):
+        return f"https://api.github.com/repos/{raw}/releases"
+    return raw
+
+
+def github_release_repo_label_from_config(locator: str, fallback: str = "") -> str:
+    raw = str(locator or "").strip()
+    parsed = urlparse(raw)
+    if parsed.netloc.lower() == "api.github.com":
+        parts = [part for part in parsed.path.strip("/").split("/") if part]
+        if len(parts) >= 3 and parts[0] == "repos":
+            return f"{parts[1]}/{parts[2]}"
+    if parsed.netloc.lower() in {"github.com", "www.github.com"}:
+        parts = [part for part in parsed.path.strip("/").split("/") if part]
+        if len(parts) >= 2:
+            return f"{parts[0]}/{parts[1]}"
+    if re.match(r"^[^/\s]+/[^/\s]+$", raw):
+        return raw
+    return fallback or raw
+
+
+def source_config_subscriptions_for_site(config: dict[str, Any] | None, site_id: str) -> list[dict[str, str]]:
+    out: list[dict[str, str]] = []
+    for source in source_config_enabled_sources(config):
+        if site_id not in source_config_record_site_ids(source):
+            continue
+        locator = str(source.get("locator") or "").strip()
+        target = str(source.get("target") or source.get("name") or "").strip()
+        name = str(source.get("name") or target or locator).strip()
+        if not locator:
+            continue
+        out.append(
+            {
+                "id": str(source.get("id") or "").strip(),
+                "name": name,
+                "target": target or name,
+                "locator": locator,
+            }
+        )
+    return out
 
 
 def filter_archive_by_source_ids(
@@ -4520,6 +4599,30 @@ def mediacrawler_env_int_any(default: int, *names: str) -> int:
     return default
 
 
+def mediacrawler_local_root() -> Path:
+    configured = str(os.environ.get("MEDIACRAWLER_LOCAL_DIR") or "").strip()
+    if configured:
+        return Path(configured).expanduser()
+    return Path(__file__).resolve().parents[2] / "MediaCrawler-local-test"
+
+
+def is_url_like(value: str) -> bool:
+    parsed = urlparse(str(value or "").strip())
+    return parsed.scheme in {"http", "https"} and bool(parsed.netloc)
+
+
+def default_mediacrawler_jsonl_dir(site_id: str) -> Path:
+    folder = "xhs" if site_id == MEDIACRAWLER_XHS_SITE_ID else "douyin"
+    return mediacrawler_local_root() / "output" / folder / "jsonl"
+
+
+def mediacrawler_jsonl_locator(raw_locator: str, site_id: str) -> str:
+    locator = str(raw_locator or "").strip()
+    if not locator or is_url_like(locator):
+        return str(default_mediacrawler_jsonl_dir(site_id))
+    return locator
+
+
 def resolve_latest_mediacrawler_jsonl(raw_path: str) -> Path:
     path = Path(raw_path).expanduser()
     if path.is_dir():
@@ -4539,6 +4642,17 @@ def resolve_latest_mediacrawler_jsonl(raw_path: str) -> Path:
         if candidates and (not path.exists() or candidates[0].stat().st_mtime >= path.stat().st_mtime):
             return candidates[0]
     return path
+
+
+def douyin_sec_uid_from_locator(locator: str) -> str:
+    parsed = urlparse(str(locator or "").strip())
+    if parsed.scheme not in {"http", "https"}:
+        return ""
+    parts = [unquote(part) for part in parsed.path.split("/") if part]
+    for index, part in enumerate(parts):
+        if part == "user" and index + 1 < len(parts):
+            return parts[index + 1].strip()
+    return ""
 
 
 def parse_mediacrawler_douyin_jsonl(
@@ -4575,11 +4689,11 @@ def parse_mediacrawler_douyin_jsonl(
         seen.add(key)
 
         creator = first_non_empty(
-            source_name,
             row.get("nickname"),
             row.get("user_nickname"),
             row.get("user_unique_id"),
             row.get("sec_user_id"),
+            source_name,
             "Douyin Creator",
         )
         published = (
@@ -4593,7 +4707,7 @@ def parse_mediacrawler_douyin_jsonl(
             "comments": mediacrawler_int(row.get("comment_count")),
             "shares": mediacrawler_int(row.get("share_count")),
         }
-        sec_user_id = first_non_empty(row.get("sec_user_id"), row.get("user_id"))
+        sec_user_id = first_non_empty(row.get("sec_uid"), row.get("sec_user_id"), row.get("user_id"))
         out.append(
             RawItem(
                 site_id=MEDIACRAWLER_DOUYIN_SITE_ID,
@@ -4616,8 +4730,18 @@ def parse_mediacrawler_douyin_jsonl(
     return out
 
 
+def douyin_item_matches_subscription(item: RawItem, *, locator: str, source_name: str) -> bool:
+    expected_sec_uid = douyin_sec_uid_from_locator(locator)
+    if expected_sec_uid:
+        return str(item.meta.get("douyin_sec_user_id") or "").strip() == expected_sec_uid
+    if source_name:
+        return str(item.source or "").strip() == source_name
+    return True
+
+
 def maybe_fetch_mediacrawler_douyin(now: datetime) -> tuple[list[RawItem], dict[str, Any]]:
-    jsonl_path_raw = str(os.environ.get("MEDIACRAWLER_DOUYIN_JSONL") or "").strip()
+    raw_locator = str(os.environ.get("MEDIACRAWLER_DOUYIN_JSONL") or "").strip()
+    jsonl_path_raw = mediacrawler_jsonl_locator(raw_locator, MEDIACRAWLER_DOUYIN_SITE_ID)
     max_items = max(1, min(env_int("MEDIACRAWLER_DOUYIN_MAX_ITEMS", 200), 1000))
     status: dict[str, Any] = {
         "enabled": env_flag("MEDIACRAWLER_DOUYIN_ENABLED"),
@@ -4626,7 +4750,9 @@ def maybe_fetch_mediacrawler_douyin(now: datetime) -> tuple[list[RawItem], dict[
         "source_kind": MEDIACRAWLER_DOUYIN_SITE_ID,
         "privacy": "local_jsonl_only_no_cookies",
         "coverage_note": "reads_mediacrawler_douyin_creator_jsonl",
-        "jsonl_path_configured": bool(jsonl_path_raw),
+        "jsonl_path_configured": bool(raw_locator or jsonl_path_raw),
+        "locator": raw_locator,
+        "locator_kind": "homepage_url" if is_url_like(raw_locator) else "jsonl_path",
         "jsonl_file_configured": Path(jsonl_path_raw).name if jsonl_path_raw else None,
         "jsonl_file": Path(jsonl_path_raw).name if jsonl_path_raw else None,
         "max_items": max_items,
@@ -4669,6 +4795,84 @@ def maybe_fetch_mediacrawler_douyin(now: datetime) -> tuple[list[RawItem], dict[
         return [], status
     finally:
         status["duration_ms"] = int((time.perf_counter() - start) * 1000)
+
+
+def fetch_mediacrawler_douyin_subscriptions(
+    subscriptions: list[dict[str, str]],
+    now: datetime,
+) -> tuple[list[RawItem], dict[str, Any]]:
+    if not subscriptions:
+        return maybe_fetch_mediacrawler_douyin(now)
+
+    start = time.perf_counter()
+    out: list[RawItem] = []
+    children: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    max_items = max(1, min(env_int("MEDIACRAWLER_DOUYIN_MAX_ITEMS", 200), 1000))
+    for subscription in subscriptions:
+        raw_locator = str(subscription.get("locator") or "").strip()
+        jsonl_path_raw = mediacrawler_jsonl_locator(raw_locator, MEDIACRAWLER_DOUYIN_SITE_ID)
+        source_name = str(subscription.get("target") or subscription.get("name") or "").strip()
+        child = {
+            "name": source_name,
+            "locator": raw_locator,
+            "locator_kind": "homepage_url" if is_url_like(raw_locator) else "jsonl_path",
+            "jsonl_file_configured": Path(jsonl_path_raw).name if jsonl_path_raw else None,
+            "item_count": 0,
+            "ok": None,
+        }
+        try:
+            jsonl_path = resolve_latest_mediacrawler_jsonl(jsonl_path_raw)
+            child["jsonl_file"] = jsonl_path.name
+            if jsonl_path.name != child.get("jsonl_file_configured"):
+                child["jsonl_file_resolved_from"] = child.get("jsonl_file_configured")
+            if not jsonl_path.exists():
+                child["ok"] = False
+                child["error"] = "mediacrawler_douyin_jsonl_not_found"
+                children.append(child)
+                continue
+            items = parse_mediacrawler_douyin_jsonl(
+                jsonl_path.read_text(encoding="utf-8", errors="ignore"),
+                now=now,
+                source_name=source_name,
+                max_items=max_items,
+            )
+            items = [
+                item
+                for item in items
+                if douyin_item_matches_subscription(item, locator=raw_locator, source_name=source_name)
+            ]
+            for item in items:
+                key = f"{item.site_id}:{normalize_url(item.url)}:{item.title}"
+                if key in seen:
+                    continue
+                seen.add(key)
+                out.append(item)
+            child["ok"] = bool(items)
+            child["item_count"] = len(items)
+            if not items:
+                child["error"] = "mediacrawler_douyin_no_items"
+        except Exception as exc:
+            child["ok"] = False
+            child["error"] = str(exc)
+        children.append(child)
+
+    return out, {
+        "enabled": True,
+        "ok": bool(out),
+        "item_count": len(out),
+        "source_kind": MEDIACRAWLER_DOUYIN_SITE_ID,
+        "privacy": "local_jsonl_only_no_cookies",
+        "coverage_note": "reads_mediacrawler_douyin_creator_jsonl",
+        "jsonl_path_configured": any(child.get("jsonl_file_configured") for child in children),
+        "jsonl_file": children[0].get("jsonl_file") if children else None,
+        "source_name": ", ".join(child.get("name") or "" for child in children if child.get("name")),
+        "max_items": max_items,
+        "subscriptions": children,
+        "subscription_count": len(children),
+        "error": None if out else "mediacrawler_douyin_no_items",
+        "duration_ms": int((time.perf_counter() - start) * 1000),
+    }
 
 
 def parse_mediacrawler_xhs_jsonl(
@@ -4748,7 +4952,8 @@ def parse_mediacrawler_xhs_jsonl(
 
 
 def maybe_fetch_mediacrawler_xhs(now: datetime) -> tuple[list[RawItem], dict[str, Any]]:
-    jsonl_path_raw = mediacrawler_env_first("MEDIACRAWLER_XHS_JSONL", "MEDIACRAWLER_XIAOHONGSHU_JSONL")
+    raw_locator = mediacrawler_env_first("MEDIACRAWLER_XHS_JSONL", "MEDIACRAWLER_XIAOHONGSHU_JSONL")
+    jsonl_path_raw = mediacrawler_jsonl_locator(raw_locator, MEDIACRAWLER_XHS_SITE_ID)
     max_items = max(1, min(mediacrawler_env_int_any(200, "MEDIACRAWLER_XHS_MAX_ITEMS", "MEDIACRAWLER_XIAOHONGSHU_MAX_ITEMS"), 1000))
     status: dict[str, Any] = {
         "enabled": mediacrawler_env_flag_any("MEDIACRAWLER_XHS_ENABLED", "MEDIACRAWLER_XIAOHONGSHU_ENABLED"),
@@ -4757,7 +4962,9 @@ def maybe_fetch_mediacrawler_xhs(now: datetime) -> tuple[list[RawItem], dict[str
         "source_kind": MEDIACRAWLER_XHS_SITE_ID,
         "privacy": "local_jsonl_only_no_cookies",
         "coverage_note": "reads_mediacrawler_xhs_creator_jsonl",
-        "jsonl_path_configured": bool(jsonl_path_raw),
+        "jsonl_path_configured": bool(raw_locator or jsonl_path_raw),
+        "locator": raw_locator,
+        "locator_kind": "homepage_url" if is_url_like(raw_locator) else "jsonl_path",
         "jsonl_file_configured": Path(jsonl_path_raw).name if jsonl_path_raw else None,
         "jsonl_file": Path(jsonl_path_raw).name if jsonl_path_raw else None,
         "max_items": max_items,
@@ -4800,6 +5007,79 @@ def maybe_fetch_mediacrawler_xhs(now: datetime) -> tuple[list[RawItem], dict[str
         return [], status
     finally:
         status["duration_ms"] = int((time.perf_counter() - start) * 1000)
+
+
+def fetch_mediacrawler_xhs_subscriptions(
+    subscriptions: list[dict[str, str]],
+    now: datetime,
+) -> tuple[list[RawItem], dict[str, Any]]:
+    if not subscriptions:
+        return maybe_fetch_mediacrawler_xhs(now)
+
+    start = time.perf_counter()
+    out: list[RawItem] = []
+    children: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    max_items = max(1, min(mediacrawler_env_int_any(200, "MEDIACRAWLER_XHS_MAX_ITEMS", "MEDIACRAWLER_XIAOHONGSHU_MAX_ITEMS"), 1000))
+    for subscription in subscriptions:
+        raw_locator = str(subscription.get("locator") or "").strip()
+        jsonl_path_raw = mediacrawler_jsonl_locator(raw_locator, MEDIACRAWLER_XHS_SITE_ID)
+        source_name = str(subscription.get("target") or subscription.get("name") or "").strip()
+        child = {
+            "name": source_name,
+            "locator": raw_locator,
+            "locator_kind": "homepage_url" if is_url_like(raw_locator) else "jsonl_path",
+            "jsonl_file_configured": Path(jsonl_path_raw).name if jsonl_path_raw else None,
+            "item_count": 0,
+            "ok": None,
+        }
+        try:
+            jsonl_path = resolve_latest_mediacrawler_jsonl(jsonl_path_raw)
+            child["jsonl_file"] = jsonl_path.name
+            if jsonl_path.name != child.get("jsonl_file_configured"):
+                child["jsonl_file_resolved_from"] = child.get("jsonl_file_configured")
+            if not jsonl_path.exists():
+                child["ok"] = False
+                child["error"] = "mediacrawler_xhs_jsonl_not_found"
+                children.append(child)
+                continue
+            items = parse_mediacrawler_xhs_jsonl(
+                jsonl_path.read_text(encoding="utf-8", errors="ignore"),
+                now=now,
+                source_name=source_name,
+                max_items=max_items,
+            )
+            for item in items:
+                key = f"{item.site_id}:{normalize_url(item.url)}:{item.title}"
+                if key in seen:
+                    continue
+                seen.add(key)
+                out.append(item)
+            child["ok"] = bool(items)
+            child["item_count"] = len(items)
+            if not items:
+                child["error"] = "mediacrawler_xhs_no_items"
+        except Exception as exc:
+            child["ok"] = False
+            child["error"] = str(exc)
+        children.append(child)
+
+    return out, {
+        "enabled": True,
+        "ok": bool(out),
+        "item_count": len(out),
+        "source_kind": MEDIACRAWLER_XHS_SITE_ID,
+        "privacy": "local_jsonl_only_no_cookies",
+        "coverage_note": "reads_mediacrawler_xhs_creator_jsonl",
+        "jsonl_path_configured": any(child.get("jsonl_file_configured") for child in children),
+        "jsonl_file": children[0].get("jsonl_file") if children else None,
+        "source_name": ", ".join(child.get("name") or "" for child in children if child.get("name")),
+        "max_items": max_items,
+        "subscriptions": children,
+        "subscription_count": len(children),
+        "error": None if out else "mediacrawler_xhs_no_items",
+        "duration_ms": int((time.perf_counter() - start) * 1000),
+    }
 
 
 def maybe_fetch_agentmail_digest(
@@ -6174,6 +6454,11 @@ def add_bilingual_fields(
 
 
 def dedupe_items_by_title_url(items: list[dict[str, Any]], random_pick: bool = True) -> list[dict[str, Any]]:
+    def duplicate_pick_key(record: dict[str, Any]) -> tuple[int, float, float, str]:
+        tier_rank, published_sort, title = source_tier_sort_key(record)
+        last_seen = parse_iso(record.get("last_seen_at")) or event_time(record)
+        return (tier_rank, published_sort, -(last_seen.timestamp() if last_seen else 0), title)
+
     groups: dict[str, list[dict[str, Any]]] = {}
     for item in items:
         site_id = str(item.get("site_id") or "").strip().lower()
@@ -6190,7 +6475,7 @@ def dedupe_items_by_title_url(items: list[dict[str, Any]], random_pick: bool = T
         if random_pick:
             out.append(random.choice(values))
         else:
-            chosen = min(values, key=source_tier_sort_key)
+            chosen = min(values, key=duplicate_pick_key)
             out.append(chosen)
 
     out.sort(key=source_tier_sort_key)
@@ -6877,8 +7162,39 @@ def main() -> int:
     github_repo_items: list[RawItem] = []
     github_repo_enabled = active_source_ids is None or GITHUB_REPO_SUBSCRIPTION_SITE_ID in active_source_ids
     if github_repo_enabled:
+        github_subscriptions = source_config_subscriptions_for_site(source_config, GITHUB_REPO_SUBSCRIPTION_SITE_ID) if scoped_by_config else []
+        if not github_subscriptions:
+            github_subscriptions = [
+                {
+                    "name": "AlkaidLab/foundation-sunshine",
+                    "target": "AlkaidLab/foundation-sunshine",
+                    "locator": GITHUB_REPO_SUBSCRIPTION_API_URL,
+                }
+            ]
+        github_status_children: list[dict[str, Any]] = []
         try:
-            github_repo_items = fetch_github_repo_subscription(session, now)
+            for subscription in github_subscriptions:
+                api_url = github_release_api_url_from_config(subscription.get("locator", ""))
+                repo_label = github_release_repo_label_from_config(
+                    subscription.get("locator", ""),
+                    subscription.get("target") or subscription.get("name") or "GitHub Repo",
+                )
+                items = fetch_github_repo_subscription(
+                    session,
+                    now,
+                    api_url=api_url,
+                    repo_label=repo_label,
+                    site_name=subscription.get("name") or GITHUB_REPO_SUBSCRIPTION_SITE_NAME,
+                )
+                github_repo_items.extend(items)
+                github_status_children.append(
+                    {
+                        "repo": repo_label,
+                        "api_url": api_url,
+                        "ok": True,
+                        "item_count": len(items),
+                    }
+                )
             raw_items.extend(github_repo_items)
         except Exception as exc:
             github_repo_error = str(exc)
@@ -6891,7 +7207,8 @@ def main() -> int:
                 "duration_ms": int((time.perf_counter() - github_repo_start) * 1000),
                 "error": github_repo_error,
                 "source_kind": "github_release_subscription",
-                "repo": "AlkaidLab/foundation-sunshine",
+                "repo": ", ".join(item.get("repo", "") for item in github_status_children if item.get("repo")) or "AlkaidLab/foundation-sunshine",
+                "repos": github_status_children,
                 "max_items": GITHUB_REPO_SUBSCRIPTION_MAX_ITEMS,
             }
         )
@@ -6974,7 +7291,8 @@ def main() -> int:
         "disabled_reason": "disabled_by_source_config" if scoped_by_config else "disabled_by_source_scope",
     }
     if active_source_ids is None or MEDIACRAWLER_DOUYIN_SITE_ID in active_source_ids:
-        mediacrawler_douyin_items, mediacrawler_douyin_status = maybe_fetch_mediacrawler_douyin(now)
+        douyin_subscriptions = source_config_subscriptions_for_site(source_config, MEDIACRAWLER_DOUYIN_SITE_ID) if scoped_by_config else []
+        mediacrawler_douyin_items, mediacrawler_douyin_status = fetch_mediacrawler_douyin_subscriptions(douyin_subscriptions, now)
         if mediacrawler_douyin_status.get("enabled"):
             raw_items.extend(mediacrawler_douyin_items)
             statuses.append(
@@ -6992,6 +7310,8 @@ def main() -> int:
                     "jsonl_path_configured": bool(mediacrawler_douyin_status.get("jsonl_path_configured")),
                     "jsonl_file": mediacrawler_douyin_status.get("jsonl_file"),
                     "max_items": mediacrawler_douyin_status.get("max_items"),
+                    "subscriptions": mediacrawler_douyin_status.get("subscriptions"),
+                    "subscription_count": mediacrawler_douyin_status.get("subscription_count"),
                 }
             )
     mediacrawler_xhs_status = {
@@ -7001,7 +7321,8 @@ def main() -> int:
         "disabled_reason": "disabled_by_source_config" if scoped_by_config else "disabled_by_source_scope",
     }
     if active_source_ids is None or MEDIACRAWLER_XHS_SITE_ID in active_source_ids:
-        mediacrawler_xhs_items, mediacrawler_xhs_status = maybe_fetch_mediacrawler_xhs(now)
+        xhs_subscriptions = source_config_subscriptions_for_site(source_config, MEDIACRAWLER_XHS_SITE_ID) if scoped_by_config else []
+        mediacrawler_xhs_items, mediacrawler_xhs_status = fetch_mediacrawler_xhs_subscriptions(xhs_subscriptions, now)
         if mediacrawler_xhs_status.get("enabled"):
             raw_items.extend(mediacrawler_xhs_items)
             statuses.append(
@@ -7019,6 +7340,8 @@ def main() -> int:
                     "jsonl_path_configured": bool(mediacrawler_xhs_status.get("jsonl_path_configured")),
                     "jsonl_file": mediacrawler_xhs_status.get("jsonl_file"),
                     "max_items": mediacrawler_xhs_status.get("max_items"),
+                    "subscriptions": mediacrawler_xhs_status.get("subscriptions"),
+                    "subscription_count": mediacrawler_xhs_status.get("subscription_count"),
                 }
             )
     advanced_source_ids = frozenset({

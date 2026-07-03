@@ -206,6 +206,8 @@ const SUBSCRIPTION_PLATFORMS = [
     locatorLabel: "B站 UID",
     locatorPlaceholder: "例如：316183842",
     homeUrl: false,
+    storage: "bilibili",
+    runtimeId: "bilibili_dynamic",
   },
   {
     id: "youtube",
@@ -214,6 +216,68 @@ const SUBSCRIPTION_PLATFORMS = [
     locatorLabel: "YouTube channel_id",
     locatorPlaceholder: "例如：UCxxxxxxxxxxxxxxxxxxxxxx",
     homeUrl: true,
+    storage: "youtube",
+    runtimeId: "opmlrss",
+  },
+  {
+    id: "douyin",
+    label: "抖音",
+    nameLabel: "创作者名称",
+    locatorLabel: "抖音主页链接",
+    locatorPlaceholder: "例如：https://www.douyin.com/user/MS4wLjABAAAA...",
+    homeUrl: false,
+    storage: "source-records",
+    runtimeId: "mediacrawler_douyin",
+    type: "mediacrawler_jsonl",
+    channel: "抖音",
+    idPrefix: "mediacrawler_douyin",
+    env: "MEDIACRAWLER_DOUYIN_ENABLED / MEDIACRAWLER_DOUYIN_JSONLS / MEDIACRAWLER_DOUYIN_SOURCE_NAMES",
+    notes: "填创作者主页链接即可；Radar 会自动读取本地 MediaCrawler 最新 JSONL，不读取 cookie 或浏览器 profile。",
+  },
+  {
+    id: "xiaohongshu",
+    label: "小红书",
+    nameLabel: "博主名称",
+    locatorLabel: "小红书主页链接",
+    locatorPlaceholder: "例如：https://www.xiaohongshu.com/user/profile/5e4027000000000001005eb8",
+    homeUrl: false,
+    storage: "source-records",
+    runtimeId: "mediacrawler_xhs",
+    type: "mediacrawler_jsonl",
+    channel: "小红书",
+    idPrefix: "mediacrawler_xhs",
+    env: "MEDIACRAWLER_XHS_ENABLED / MEDIACRAWLER_XHS_JSONLS / MEDIACRAWLER_XHS_SOURCE_NAMES",
+    notes: "填博主主页链接即可；Radar 会自动读取本地 MediaCrawler 最新 JSONL，不保存登录态。",
+  },
+  {
+    id: "wechat",
+    label: "微信公众号",
+    nameLabel: "公众号名称",
+    locatorLabel: "WeWe RSS feed_id",
+    locatorPlaceholder: "例如：MP_WXS_3198966508",
+    homeUrl: false,
+    storage: "source-records",
+    runtimeId: "wewe_rss",
+    type: "wewe_rss",
+    channel: "微信公众号",
+    idPrefix: "wewe_rss",
+    env: "WEWE_RSS_ENABLED / WEWE_RSS_FEEDS",
+    notes: "本地 WeWe RSS sidecar 的公众号 feed；Radar 只读 JSON Feed，不读取数据库或登录态。",
+  },
+  {
+    id: "github",
+    label: "GitHub",
+    nameLabel: "仓库名称",
+    locatorLabel: "仓库或 Releases API",
+    locatorPlaceholder: "例如：AlkaidLab/foundation-sunshine",
+    homeUrl: false,
+    storage: "source-records",
+    runtimeId: "github_foundation_sunshine_releases",
+    type: "github_release",
+    channel: "GitHub Release",
+    idPrefix: "github_release",
+    env: "",
+    notes: "只追踪 GitHub Releases，不追踪普通 commit。",
   },
 ];
 
@@ -728,7 +792,19 @@ function renderLocalOpsCollectors(collectors = {}) {
     const next = document.createElement("strong");
     next.className = "local-ops-collector-next";
     next.textContent = collector.next_action || "";
-    card.append(head, meta, detail, log, next);
+    const actions = document.createElement("div");
+    actions.className = "local-ops-actions";
+    const startButton = document.createElement("button");
+    startButton.type = "button";
+    startButton.className = "local-ops-fix";
+    startButton.textContent = `启动${platformName}采集`;
+    startButton.addEventListener("click", () => runLocalOpsFixAction({
+      id: collector.id === "mediacrawler_xhs" ? "start_mediacrawler_xhs" : "start_mediacrawler_douyin",
+      kind: "start_service",
+      label: `启动${platformName}采集`,
+    }, startButton));
+    actions.appendChild(startButton);
+    card.append(head, meta, detail, log, next, actions);
     localOpsCollectorsEl.appendChild(card);
   });
 }
@@ -781,7 +857,7 @@ async function runLocalOpsFixAction(action, button) {
     } else if (action.id === "open_bilibili_login") {
       setLocalOpsStatus("已打开B站小号专用窗口，登录后点同步cookie", "ok");
     } else if (action.id === "sync_bilibili_cookie") {
-      setLocalOpsStatus("已同步B站小号cookie，下一步点执行采集", "ok");
+      setLocalOpsStatus("已同步B站小号cookie，下一步点读取结果", "ok");
       window.setTimeout(() => loadLocalStatusFromServer(false), 1200);
     }
     if (action.id === "start_mediacrawler_douyin" || action.id === "start_mediacrawler_xhs") {
@@ -871,8 +947,8 @@ function renderLocalOpsStatus(payload = null) {
       const hint = document.createElement("small");
       hint.className = "local-ops-hint";
       hint.textContent = cookie.cookie_file_exists
-        ? `已发现本地小号cookie文件：${cookie.cookie_file}。点“执行采集”会自动使用它。`
-        : `推荐流程：点“打开B站小号登录”完成登录，再点“同步cookie”，最后点“执行采集”。`;
+        ? `已发现本地小号cookie文件：${cookie.cookie_file}。点“读取结果”会自动使用它。`
+        : `推荐流程：点“打开B站小号登录”完成登录，再点“同步cookie”，最后点“读取结果”。`;
       card.appendChild(hint);
     }
     const actionRow = document.createElement("div");
@@ -989,9 +1065,69 @@ function youtubeChannelIdFromFeedUrl(url) {
   }
 }
 
-function bilibiliSourceRecord() {
+function normalizeSourceConfigToken(value) {
+  const base = String(value || "subscription")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9\u4e00-\u9fa5]+/g, "_")
+    .replace(/^_+|_+$/g, "")
+    .slice(0, 48);
+  return base || "subscription";
+}
+
+function sourceRecordMatchesPlatform(source, platform) {
+  if (!source || !platform) return false;
+  const runtimeIds = sourceConfigRuntimeIds(source);
+  if (platform.runtimeId && !runtimeIds.has(platform.runtimeId)) return false;
+  if (platform.type && String(source.type || "") !== platform.type) return false;
+  if (platform.channel) {
+    const hay = `${source.id || ""} ${source.channel || ""} ${source.target || ""} ${source.locator || ""}`.toLowerCase();
+    const channel = platform.channel.toLowerCase();
+    if (channel.includes("抖音") && !(hay.includes("douyin") || hay.includes("抖音"))) return false;
+    if (channel.includes("小红书") && !(hay.includes("xhs") || hay.includes("xiaohongshu") || hay.includes("小红书"))) return false;
+    if (channel.includes("公众号") && !(hay.includes("wewe") || hay.includes("wechat") || hay.includes("公众号"))) return false;
+    if (channel.includes("github") && !(hay.includes("github") || hay.includes("release"))) return false;
+  }
+  return true;
+}
+
+function subscriptionSourceRecordId(platform, locator, name) {
+  const key = normalizeSourceConfigToken(
+    platform.id === "github"
+      ? githubRepoSlug(locator) || name
+      : locator || name
+  );
+  const raw = `${platform.idPrefix || platform.id}_${key}`;
+  return raw.slice(0, 72);
+}
+
+function githubRepoSlug(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+  const apiMatch = raw.match(/github\.com\/repos\/([^/]+\/[^/]+)\/releases/i);
+  if (apiMatch) return apiMatch[1];
+  const webMatch = raw.match(/github\.com\/([^/]+\/[^/#?]+)/i);
+  if (webMatch) return webMatch[1];
+  const repoMatch = raw.match(/^([^/\s]+\/[^/\s]+)$/);
+  return repoMatch ? repoMatch[1] : "";
+}
+
+function githubReleaseApiUrl(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+  if (/^https:\/\/api\.github\.com\/repos\/[^/]+\/[^/]+\/releases/i.test(raw)) return raw;
+  const slug = githubRepoSlug(raw);
+  return slug ? `https://api.github.com/repos/${slug}/releases` : raw;
+}
+
+function ensureSourceConfigForSubscriptions() {
   if (!state.sourceConfig) state.sourceConfig = loadSourceConfigDraft();
-  let sources = state.sourceConfig.sources || [];
+  if (!Array.isArray(state.sourceConfig.sources)) state.sourceConfig.sources = [];
+  return state.sourceConfig.sources;
+}
+
+function bilibiliSourceRecord() {
+  let sources = ensureSourceConfigForSubscriptions();
   let record = sources.find((source) => source.id === "bilibili_dynamic_sources" || source.type === "bilibili_dynamic");
   if (!record) {
     record = {
@@ -1056,10 +1192,62 @@ function youtubeSubscriptionMembers() {
   })).filter((item) => item.locator);
 }
 
+function sourceRecordSubscriptionMembers(platform) {
+  const sources = ensureSourceConfigForSubscriptions();
+  return sources
+    .filter((source) => sourceRecordMatchesPlatform(source, platform))
+    .map((source) => ({
+      id: source.locator || source.id,
+      sourceId: source.id,
+      name: source.target || source.name || source.id,
+      locator: source.locator || "",
+      type: source.type || platform.type || "rss",
+      channel: source.channel || platform.channel || "",
+    }))
+    .filter((item) => item.locator);
+}
+
+function sourceRecordForSubscriptionMember(platform, member) {
+  const locator = platform.id === "github"
+    ? githubReleaseApiUrl(member.locator)
+    : String(member.locator || "").trim();
+  const name = String(member.name || "").trim();
+  return {
+    id: member.sourceId || subscriptionSourceRecordId(platform, locator, name),
+    name,
+    type: platform.type || "rss",
+    enabled: true,
+    channel: platform.channel || platform.label,
+    target: name,
+    locator,
+    env: platform.env || "",
+    notes: platform.notes || "",
+  };
+}
+
+function setSourceRecordSubscriptionMembers(platform, members) {
+  const sources = ensureSourceConfigForSubscriptions();
+  const keep = sources.filter((source) => !sourceRecordMatchesPlatform(source, platform));
+  const seen = new Set();
+  const next = [];
+  members.forEach((member) => {
+    const locator = String(member.locator || "").trim();
+    const name = String(member.name || "").trim();
+    if (!locator || !name || seen.has(locator)) return;
+    seen.add(locator);
+    next.push(sourceRecordForSubscriptionMember(platform, { ...member, name, locator }));
+  });
+  state.sourceConfig.sources = [...keep, ...next];
+  if (next.length) state.sourceConfigSelectedId = next[next.length - 1].id;
+  saveSourceConfigDraft(`${platform.label}订阅成员已更新，点“保存成员”后写入采集配置`);
+  renderSourceConfig();
+}
+
 function currentSubscriptionMembers() {
-  return state.subscriptionPlatform === "youtube"
-    ? youtubeSubscriptionMembers()
-    : bilibiliSubscriptionMembers();
+  const platform = subscriptionPlatformDef();
+  if (platform.storage === "youtube") return youtubeSubscriptionMembers();
+  if (platform.storage === "bilibili") return bilibiliSubscriptionMembers();
+  return sourceRecordSubscriptionMembers(platform);
 }
 
 function renderSubscriptionPlatformTabs() {
@@ -1114,6 +1302,7 @@ function renderSubscriptionMembers() {
       subscriptionMemberNameEl.value = member.name || "";
       subscriptionMemberLocatorEl.value = member.locator || "";
       if (subscriptionMemberHomeUrlEl) subscriptionMemberHomeUrlEl.value = member.htmlUrl || "";
+      if (member.sourceId && subscriptionMemberFormEl) subscriptionMemberFormEl.dataset.sourceId = member.sourceId;
       subscriptionMemberSubmitBtnEl.textContent = "保存成员";
     });
     const removeBtn = document.createElement("button");
@@ -1136,7 +1325,11 @@ function renderSubscriptionMemberFormHints() {
   if (subscriptionNameLabelEl) subscriptionNameLabelEl.textContent = platform.nameLabel;
   if (subscriptionLocatorLabelEl) subscriptionLocatorLabelEl.textContent = platform.locatorLabel;
   if (subscriptionMemberLocatorEl) subscriptionMemberLocatorEl.placeholder = platform.locatorPlaceholder;
-  if (subscriptionHomeUrlWrapEl) subscriptionHomeUrlWrapEl.hidden = !platform.homeUrl;
+  if (subscriptionHomeUrlWrapEl) {
+    const showHomeUrl = Boolean(platform.homeUrl);
+    subscriptionHomeUrlWrapEl.hidden = !showHomeUrl;
+    subscriptionHomeUrlWrapEl.style.display = showHomeUrl ? "" : "none";
+  }
 }
 
 function renderSubscriptionManager() {
@@ -1150,6 +1343,7 @@ function clearSubscriptionMemberForm() {
   if (subscriptionMemberNameEl) subscriptionMemberNameEl.value = "";
   if (subscriptionMemberLocatorEl) subscriptionMemberLocatorEl.value = "";
   if (subscriptionMemberHomeUrlEl) subscriptionMemberHomeUrlEl.value = "";
+  if (subscriptionMemberFormEl) delete subscriptionMemberFormEl.dataset.sourceId;
   if (subscriptionMemberSubmitBtnEl) subscriptionMemberSubmitBtnEl.textContent = "新增成员";
 }
 
@@ -1187,9 +1381,10 @@ async function saveYoutubeSubscriptions() {
 }
 
 async function saveSubscriptionMembers() {
-  if (state.subscriptionPlatform === "youtube") {
+  const platform = subscriptionPlatformDef();
+  if (platform.storage === "youtube") {
     await saveYoutubeSubscriptions();
-    setSubscriptionManagerStatus("油管订阅已写入 feeds/follow.opml，点“执行采集”后生效", "ok");
+    setSubscriptionManagerStatus("油管订阅已写入 feeds/follow.opml，点“读取结果”后生效", "ok");
     renderSubscriptionManager();
     return;
   }
@@ -1199,17 +1394,19 @@ async function saveSubscriptionMembers() {
     idleLabel: "新增成员",
     syncForm: false,
   });
-  setSubscriptionManagerStatus("B站订阅已写入 sources.config.json，点“执行采集”后生效", "ok");
+  setSubscriptionManagerStatus(`${platform.label}订阅已写入 sources.config.json；抖音/小红书先点启动采集，再点读取结果`, "ok");
 }
 
 function upsertSubscriptionMember(member) {
+  const platform = subscriptionPlatformDef();
   const locator = String(member.locator || "").trim();
   const name = String(member.name || "").trim();
   if (!locator || !name) {
     setSubscriptionManagerStatus("名称和账号 ID 都要填写", "bad");
     return false;
   }
-  if (state.subscriptionPlatform === "youtube") {
+  const sourceId = subscriptionMemberFormEl?.dataset?.sourceId || "";
+  if (platform.storage === "youtube") {
     const existing = youtubeSubscriptionMembers().filter((item) => item.locator !== locator);
     state.youtubeSubscriptions = [
       ...existing.map((item) => ({
@@ -1225,20 +1422,25 @@ function upsertSubscriptionMember(member) {
         html_url: String(member.htmlUrl || "").trim(),
       },
     ];
-  } else {
+  } else if (platform.storage === "bilibili") {
     const existing = bilibiliSubscriptionMembers().filter((item) => item.locator !== locator);
     setBilibiliSubscriptionMembers([...existing, { name, locator }]);
+  } else {
+    const existing = sourceRecordSubscriptionMembers(platform)
+      .filter((item) => item.locator !== locator && item.sourceId !== sourceId);
+    setSourceRecordSubscriptionMembers(platform, [...existing, { name, locator, sourceId }]);
   }
   clearSubscriptionMemberForm();
   renderSubscriptionManager();
-  setSubscriptionManagerStatus("成员已更新，点“保存订阅”写入本地配置", "warn");
+  setSubscriptionManagerStatus("成员已更新，点“保存成员”写入本地配置", "warn");
   return true;
 }
 
 async function removeSubscriptionMember(locator) {
+  const platform = subscriptionPlatformDef();
   const cleanLocator = String(locator || "").trim();
   if (!cleanLocator) return;
-  if (state.subscriptionPlatform === "youtube") {
+  if (platform.storage === "youtube") {
     state.youtubeSubscriptions = youtubeSubscriptionMembers()
       .filter((item) => item.locator !== cleanLocator)
       .map((item) => ({
@@ -1247,13 +1449,18 @@ async function removeSubscriptionMember(locator) {
         xml_url: youtubeFeedUrl(item.locator),
         html_url: item.htmlUrl || "",
       }));
-  } else {
+  } else if (platform.storage === "bilibili") {
     setBilibiliSubscriptionMembers(bilibiliSubscriptionMembers().filter((item) => item.locator !== cleanLocator));
+  } else {
+    setSourceRecordSubscriptionMembers(
+      platform,
+      sourceRecordSubscriptionMembers(platform).filter((item) => item.locator !== cleanLocator),
+    );
   }
   clearSubscriptionMemberForm();
   renderSubscriptionManager();
   await saveSubscriptionMembers();
-  setSubscriptionManagerStatus("成员已删除并保存，点“执行采集”后生效", "ok");
+  setSubscriptionManagerStatus("成员已删除并保存，点“读取结果”后生效", "ok");
 }
 
 function sourceConfigRuntimeIds(source) {
@@ -1408,16 +1615,16 @@ async function saveSourceConfigForCollection(message = "已保存，后续采集
 }
 
 async function refreshNewsDataFromLocalServer() {
-  setSourceConfigButton(sourceConfigRefreshBtnEl, "刷新中...", true);
-  setSourceConfigStatus("准备同步当前信源并刷新数据...", "warn");
+  setSourceConfigButton(sourceConfigRefreshBtnEl, "读取中...", true);
+  setSourceConfigStatus("准备同步当前信源，并读取已有采集结果...", "warn");
   try {
     await writeSourceConfigToLocalServer({
       button: null,
       successLabel: "已保存",
       idleLabel: "保存草稿",
     });
-    setSourceConfigButton(sourceConfigRefreshBtnEl, "抓取中...", true);
-    setSourceConfigStatus("当前信源已同步，正在运行采集；公众号和社媒源可能需要等一小会。", "warn");
+    setSourceConfigButton(sourceConfigRefreshBtnEl, "读取中...", true);
+    setSourceConfigStatus("当前信源已同步，正在读取本地结果；如刚新增抖音/小红书账号，请先点对应平台的“启动采集”。", "warn");
     const res = await fetch("./api/refresh", {
       method: "POST",
       headers: { Accept: "application/json" },
@@ -1433,14 +1640,14 @@ async function refreshNewsDataFromLocalServer() {
     state.localOpsStatus = { source_config: state.localOpsStatus?.source_config || {}, source_status: payload.summary };
     renderLocalOpsStatus(state.localOpsStatus);
     renderSourceConfig();
-    setSourceConfigStatus(`刷新完成：${okSites}/${sites.length} 个源正常，抓到 ${fmtNumber(totalItems)} 条；页面即将重载。`, "ok");
-    setSourceConfigButton(sourceConfigRefreshBtnEl, "已刷新", true);
+    setSourceConfigStatus(`读取完成：${okSites}/${sites.length} 个源正常，读到 ${fmtNumber(totalItems)} 条；页面即将重载。`, "ok");
+    setSourceConfigButton(sourceConfigRefreshBtnEl, "已读取", true);
     window.setTimeout(() => window.location.reload(), 1400);
   } catch (err) {
     const message = err?.message || "unknown error";
-    setSourceConfigStatus(`刷新失败：${message}`, "bad");
-    setSourceConfigButton(sourceConfigRefreshBtnEl, "刷新失败", true);
-    restoreSourceConfigButton(sourceConfigRefreshBtnEl, "执行采集");
+    setSourceConfigStatus(`读取失败：${message}`, "bad");
+    setSourceConfigButton(sourceConfigRefreshBtnEl, "读取失败", true);
+    restoreSourceConfigButton(sourceConfigRefreshBtnEl, "读取结果");
     loadLocalStatusFromServer(false);
   }
 }
@@ -1641,7 +1848,7 @@ function syncSourceConfigFormDraft() {
   renderSourceConfigSummary();
   renderSourceConfigList();
   syncSourceConfigJson();
-  setSourceConfigStatus("草稿已更新，点“保存草稿”或“执行采集”后生效", "warn");
+  setSourceConfigStatus("草稿已更新，点“保存草稿”或“读取结果”后生效", "warn");
 }
 
 function addSourceConfigRecord() {

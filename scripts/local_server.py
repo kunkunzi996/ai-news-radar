@@ -392,10 +392,9 @@ def mediacrawler_fix_actions(root_dir: Path, runtime_id: str, raw_path: str = ""
         actions.append(start_service_action("start_mediacrawler_douyin", "启动抖音采集"))
     if runtime_id == "mediacrawler_xhs":
         actions.append(start_service_action("start_mediacrawler_xhs", "启动小红书采集"))
-    if raw_path:
-        target = existing_open_target(resolve_config_path(root_dir, raw_path))
-        if target:
-            actions.append(open_path_action(f"open_{runtime_id}_jsonl_folder", "打开JSONL文件夹", target))
+    target = existing_open_target(resolve_mediacrawler_locator(root_dir, runtime_id, raw_path))
+    if target:
+        actions.append(open_path_action(f"open_{runtime_id}_jsonl_folder", "打开JSONL文件夹", target))
     platform_url = platform_url_for_runtime_id(runtime_id)
     if platform_url:
         actions.append(open_url_action(f"open_{runtime_id}_platform", platform_label_for_runtime_id(runtime_id), platform_url))
@@ -707,6 +706,23 @@ def resolve_config_path(root_dir: Path, raw_path: str) -> Path:
     return path
 
 
+def is_url_like(value: str) -> bool:
+    parsed = urllib.parse.urlparse(str(value or "").strip())
+    return parsed.scheme in {"http", "https"} and bool(parsed.netloc)
+
+
+def default_mediacrawler_jsonl_dir(root_dir: Path, runtime_id: str) -> Path:
+    folder = "xhs" if runtime_id == "mediacrawler_xhs" else "douyin"
+    return mediacrawler_local_root(root_dir) / "output" / folder / "jsonl"
+
+
+def resolve_mediacrawler_locator(root_dir: Path, runtime_id: str, locator: str) -> Path:
+    raw = str(locator or "").strip()
+    if not raw or is_url_like(raw):
+        return default_mediacrawler_jsonl_dir(root_dir, runtime_id)
+    return resolve_config_path(root_dir, raw)
+
+
 def add_mediacrawler_jsonl_issue(
     issues: list[dict[str, Any]],
     root_dir: Path,
@@ -724,24 +740,25 @@ def add_mediacrawler_jsonl_issue(
             f"{runtime_id}_jsonl_missing_path",
             "bad",
             runtime_id,
-            f"{platform} JSONL 路径未配置",
-            f"{source_name} 已启用，但 sources.config.json 里没有 JSONL 路径。",
-            "先运行对应平台的 MediaCrawler，并把导出的 creator_contents_*.jsonl 路径填到该信源。",
+            f"{platform}主页链接未配置",
+            f"{source_name} 已启用，但还没有填写创作者主页链接。",
+            "在订阅成员里填写创作者名称和主页链接，再启动对应平台采集。",
             mediacrawler_fix_actions(root_dir, runtime_id),
         )
         return
 
-    configured_path = resolve_config_path(root_dir, locator)
+    configured_path = resolve_mediacrawler_locator(root_dir, runtime_id, locator)
     jsonl_path = resolve_latest_mediacrawler_jsonl(configured_path)
     if not jsonl_path.exists():
+        locator_hint = "主页链接已保存，但本地还没找到该平台的 creator_contents_*.jsonl。" if is_url_like(locator) else f"配置路径没有找到文件：{configured_path}"
         add_maintenance_issue(
             issues,
             f"{runtime_id}_jsonl_not_found",
             "bad",
             runtime_id,
             f"{platform} JSONL 文件不存在",
-            f"配置路径没有找到文件：{configured_path}",
-            "先运行对应平台的 MediaCrawler 生成 JSONL，或修正该信源的路径。",
+            locator_hint,
+            "先运行对应平台的 MediaCrawler 生成 JSONL；之后系统会自动读取最新结果。",
             mediacrawler_fix_actions(root_dir, runtime_id, locator),
         )
         return
@@ -782,7 +799,7 @@ def add_mediacrawler_jsonl_issue(
             runtime_id,
             f"{platform} JSONL 可能过旧",
             f"{jsonl_path.name} 上次更新约 {age_hours} 小时前。",
-            "如果想看最新动态，先重新运行对应平台的 MediaCrawler，再点执行采集。",
+            "如果想看最新动态，先点对应平台的启动采集，再点读取结果。",
             mediacrawler_fix_actions(root_dir, runtime_id, locator),
         )
 
@@ -1013,7 +1030,7 @@ def mediacrawler_collector_status(root_dir: Path, runtime_id: str) -> dict[str, 
     elif completed and jsonl:
         phase = "completed"
         title = f"{platform_name}采集已完成"
-        next_action = "可以关闭采集专用窗口；回到本页点执行采集，让主站读取新 JSONL。"
+        next_action = "可以关闭采集专用窗口；回到本页点读取结果，让主站读取新 JSONL。"
         can_close_browser = True
     elif jsonl:
         phase = "idle"
@@ -1045,8 +1062,11 @@ def mediacrawler_collector_status(root_dir: Path, runtime_id: str) -> dict[str, 
     }
 
 
-def mediacrawler_xhs_creator_id(root_dir: Path, crawler_root: Path) -> str:
-    configured = str(os.environ.get("MEDIACRAWLER_XHS_CREATOR_ID") or os.environ.get("MEDIACRAWLER_XIAOHONGSHU_CREATOR_ID") or "").strip()
+def mediacrawler_creator_id(root_dir: Path, crawler_root: Path, runtime_id: str) -> str:
+    if runtime_id == "mediacrawler_xhs":
+        configured = str(os.environ.get("MEDIACRAWLER_XHS_CREATOR_ID") or os.environ.get("MEDIACRAWLER_XIAOHONGSHU_CREATOR_ID") or "").strip()
+    else:
+        configured = str(os.environ.get("MEDIACRAWLER_DOUYIN_CREATOR_ID") or "").strip()
     if configured:
         return configured
 
@@ -1056,11 +1076,17 @@ def mediacrawler_xhs_creator_id(root_dir: Path, crawler_root: Path) -> str:
     except Exception:
         config = None
     for source in enabled_source_config_records(config):
-        if "mediacrawler_xhs" not in source_config_runtime_ids(source):
+        if runtime_id not in source_config_runtime_ids(source):
             continue
         locator = str(source.get("locator") or "").strip()
+        if is_url_like(locator):
+            return locator
         if locator:
-            candidates.append(resolve_latest_mediacrawler_jsonl(resolve_config_path(root_dir, locator)))
+            candidates.append(resolve_latest_mediacrawler_jsonl(resolve_mediacrawler_locator(root_dir, runtime_id, locator)))
+
+    if runtime_id != "mediacrawler_xhs":
+        return ""
+
     newest = newest_file(crawler_root / "output" / "xhs" / "jsonl", "creator_contents_*.jsonl")
     if newest:
         candidates.append(newest)
@@ -1080,6 +1106,10 @@ def mediacrawler_xhs_creator_id(root_dir: Path, crawler_root: Path) -> str:
         except Exception:
             continue
     return ""
+
+
+def mediacrawler_xhs_creator_id(root_dir: Path, crawler_root: Path) -> str:
+    return mediacrawler_creator_id(root_dir, crawler_root, "mediacrawler_xhs")
 
 
 def start_mediacrawler_platform(root_dir: Path, runtime_id: str, *, execute: bool = True) -> dict[str, Any]:
@@ -1108,11 +1138,13 @@ def start_mediacrawler_platform(root_dir: Path, runtime_id: str, *, execute: boo
         "--platform",
         platform,
     ]
+    creator_id = mediacrawler_creator_id(root_dir, crawler_root, runtime_id)
+    if creator_id:
+        command.extend(["--creator-id", creator_id])
     if platform == "xhs":
-        creator_id = mediacrawler_xhs_creator_id(root_dir, crawler_root)
         if not creator_id:
             return {"ok": False, "error": "mediacrawler_xhs_creator_id_missing"}
-        command.extend(["--creator-id", creator_id, "--max-notes", str(int(os.environ.get("MEDIACRAWLER_XHS_MAX_NOTES") or 500))])
+        command.extend(["--max-notes", str(int(os.environ.get("MEDIACRAWLER_XHS_MAX_NOTES") or 500))])
     if not execute:
         return {
             "ok": True,
@@ -1298,7 +1330,7 @@ def source_status_summary(root_dir: Path, source_config: dict[str, Any] | None =
                     "source_id": "source_status",
                     "title": "还没有刷新状态",
                     "detail": "data/source-status.json 不存在或还没生成。",
-                    "action": "先点一次执行采集，生成本地源状态。",
+                    "action": "先点一次读取结果，生成本地源状态。",
                 },
                 *config_issues,
             ]
@@ -1440,6 +1472,14 @@ def launch_open_path(target: Path) -> None:
 
 
 def perform_maintenance_action(root_dir: Path, action_id: str, *, execute: bool = True) -> dict[str, Any]:
+    fixed_start_actions = {
+        "start_mediacrawler_douyin": start_mediacrawler_douyin,
+        "start_mediacrawler_xhs": start_mediacrawler_xhs,
+    }
+    direct_start_action = fixed_start_actions.get(str(action_id or "").strip())
+    if direct_start_action:
+        return direct_start_action(root_dir, execute=execute)
+
     action = find_maintenance_action(root_dir, action_id)
     if not action:
         return {"ok": False, "error": "maintenance_action_not_found"}

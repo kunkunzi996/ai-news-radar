@@ -686,6 +686,22 @@ class TopicFilterTests(unittest.TestCase):
                     "locator": r"E:\AI-news-reader\MediaCrawler-local-test\output\douyin\jsonl\creator_contents.jsonl",
                 },
                 {
+                    "id": "mediacrawler_douyin_second",
+                    "type": "mediacrawler_jsonl",
+                    "enabled": True,
+                    "channel": "抖音",
+                    "target": "第二个抖音号",
+                    "locator": r"E:\AI-news-reader\MediaCrawler-local-test\output\douyin\jsonl\creator_contents_2.jsonl",
+                },
+                {
+                    "id": "mediacrawler_xhs_chenbaoyi",
+                    "type": "mediacrawler_jsonl",
+                    "enabled": True,
+                    "channel": "小红书",
+                    "target": "陈抱一",
+                    "locator": r"E:\AI-news-reader\MediaCrawler-local-test\output\xhs\jsonl\creator_contents.jsonl",
+                },
+                {
                     "id": "opmlrss",
                     "type": "opmlrss",
                     "enabled": True,
@@ -703,10 +719,18 @@ class TopicFilterTests(unittest.TestCase):
             self.assertEqual(os.environ["WEWE_RSS_FEEDS"], "猫笔刀:MP_WXS_3198966508")
             self.assertEqual(os.environ["MEDIACRAWLER_DOUYIN_ENABLED"], "1")
             self.assertEqual(os.environ["MEDIACRAWLER_DOUYIN_SOURCE_NAME"], "Simon林")
+            self.assertEqual(
+                os.environ["MEDIACRAWLER_DOUYIN_JSONLS"],
+                r"E:\AI-news-reader\MediaCrawler-local-test\output\douyin\jsonl\creator_contents.jsonl;"
+                r"E:\AI-news-reader\MediaCrawler-local-test\output\douyin\jsonl\creator_contents_2.jsonl",
+            )
+            self.assertEqual(os.environ["MEDIACRAWLER_DOUYIN_SOURCE_NAMES"], "Simon林;第二个抖音号")
+            self.assertEqual(os.environ["MEDIACRAWLER_XHS_ENABLED"], "1")
+            self.assertEqual(os.environ["MEDIACRAWLER_XHS_SOURCE_NAMES"], "陈抱一")
             self.assertEqual(runtime["rss_opml"], "feeds/follow.opml")
             self.assertEqual(
                 set(runtime["enabled_site_ids"]),
-                {"bilibili_dynamic", "wewe_rss", "mediacrawler_douyin", "opmlrss"},
+                {"bilibili_dynamic", "wewe_rss", "mediacrawler_douyin", "mediacrawler_xhs", "opmlrss"},
             )
 
     def test_agentmail_digest_strips_body_addresses_and_secrets(self):
