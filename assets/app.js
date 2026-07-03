@@ -667,36 +667,39 @@ function localOpsMetric(label, value, tone = "") {
 function renderLocalOpsCollectors(collectors = {}) {
   if (!localOpsCollectorsEl) return;
   localOpsCollectorsEl.innerHTML = "";
-  const douyin = collectors?.mediacrawler_douyin;
-  if (!douyin) return;
+  const collectorList = [collectors?.mediacrawler_douyin, collectors?.mediacrawler_xhs].filter(Boolean);
+  if (!collectorList.length) return;
 
-  const card = document.createElement("article");
-  card.className = `local-ops-collector ${douyin.phase || "idle"}`;
-  const head = document.createElement("div");
-  head.className = "local-ops-collector-head";
-  const title = document.createElement("strong");
-  title.textContent = douyin.title || "抖音采集任务";
-  const badge = document.createElement("span");
-  badge.textContent = douyin.running ? "采集中" : (douyin.can_close_browser ? "可关闭窗口" : "等待处理");
-  head.append(title, badge);
+  collectorList.forEach((collector) => {
+    const platformName = collector.platform_name || "平台";
+    const card = document.createElement("article");
+    card.className = `local-ops-collector ${collector.phase || "idle"}`;
+    const head = document.createElement("div");
+    head.className = "local-ops-collector-head";
+    const title = document.createElement("strong");
+    title.textContent = collector.title || `${platformName}采集任务`;
+    const badge = document.createElement("span");
+    badge.textContent = collector.running ? "采集中" : (collector.can_close_browser ? "可关闭窗口" : "等待处理");
+    head.append(title, badge);
 
-  const meta = document.createElement("div");
-  meta.className = "local-ops-collector-meta";
-  meta.append(
-    localOpsMetric("写入作品", fmtNumber(Number(douyin.item_count || 0)), douyin.running ? "warn" : "ok"),
-    localOpsMetric("最近写入", douyin.updated_at ? fmtTime(douyin.updated_at) : "未生成"),
-    localOpsMetric("当前状态", douyin.running ? "请等待" : (douyin.completed ? "已完成" : "未运行"), douyin.running ? "warn" : "ok")
-  );
+    const meta = document.createElement("div");
+    meta.className = "local-ops-collector-meta";
+    meta.append(
+      localOpsMetric("写入作品", fmtNumber(Number(collector.item_count || 0)), collector.running ? "warn" : "ok"),
+      localOpsMetric("最近写入", collector.updated_at ? fmtTime(collector.updated_at) : "未生成"),
+      localOpsMetric("当前状态", collector.running ? "请等待" : (collector.completed ? "已完成" : "未运行"), collector.running ? "warn" : "ok")
+    );
 
-  const detail = document.createElement("span");
-  detail.textContent = douyin.latest_file ? `输出文件：${douyin.latest_file}` : "还没有输出文件";
-  const log = document.createElement("em");
-  log.textContent = douyin.last_log || (douyin.running ? "正在等待采集日志..." : "暂无采集日志");
-  const next = document.createElement("strong");
-  next.className = "local-ops-collector-next";
-  next.textContent = douyin.next_action || "";
-  card.append(head, meta, detail, log, next);
-  localOpsCollectorsEl.appendChild(card);
+    const detail = document.createElement("span");
+    detail.textContent = collector.latest_file ? `输出文件：${collector.latest_file}` : "还没有输出文件";
+    const log = document.createElement("em");
+    log.textContent = collector.last_log || (collector.running ? "正在等待采集日志..." : "暂无采集日志");
+    const next = document.createElement("strong");
+    next.className = "local-ops-collector-next";
+    next.textContent = collector.next_action || "";
+    card.append(head, meta, detail, log, next);
+    localOpsCollectorsEl.appendChild(card);
+  });
 }
 
 function scheduleLocalOpsPolling(shouldPoll) {
@@ -741,8 +744,8 @@ async function runLocalOpsFixAction(action, button) {
         window.location.href = payload.url;
       }
     }
-    if (action.id === "start_mediacrawler_douyin") {
-      setLocalOpsStatus("抖音采集中", "warn");
+    if (action.id === "start_mediacrawler_douyin" || action.id === "start_mediacrawler_xhs") {
+      setLocalOpsStatus(action.id === "start_mediacrawler_xhs" ? "小红书采集中" : "抖音采集中", "warn");
       window.setTimeout(() => loadLocalStatusFromServer(false), 1200);
     } else {
       setLocalOpsStatus(`已打开：${label}`, "ok");
@@ -770,7 +773,7 @@ function renderLocalOpsStatus(payload = null) {
   const sourceStatus = payload?.source_status || payload?.summary || {};
   const sourceConfig = payload?.source_config || {};
   const collectors = payload?.collectors || {};
-  const collectorRunning = Boolean(collectors?.mediacrawler_douyin?.running);
+  const collectorRunning = Object.values(collectors || {}).some((collector) => Boolean(collector?.running));
   const issues = Array.isArray(sourceStatus.maintenance_issues) ? sourceStatus.maintenance_issues : [];
   const enabled = Number(sourceConfig.enabled_source_count ?? (state.sourceConfig?.sources || []).filter((source) => source.enabled !== false).length ?? 0);
   const total = Number(sourceConfig.source_count ?? (state.sourceConfig?.sources || []).length ?? 0);

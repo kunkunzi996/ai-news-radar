@@ -19,7 +19,8 @@
   - 新增 `POST /api/maintenance-action`，只接受当前维护项里存在的 `action_id`，用于打开已验证的本地文件夹或启动固定的本机 WeWe RSS sidecar；不接受前端传任意路径或命令。
   - WeWe RSS feed 失败提示已去重，不再同时显示总失败和单 feed 失败。
   - 抖音维护项新增固定动作 `start_mediacrawler_douyin`：通过 `scripts/run_mediacrawler_douyin.py` 从 `E:\AI-news-reader\MediaCrawler-local-test` 启动 MediaCrawler creator 模式；该 runner 使用采集专用 Chrome profile，不应连接用户日常浏览器。Radar 常规刷新仍只读 JSONL，不读取 Chrome profile/cookie。
-  - 本地采集面板新增抖音采集进度卡：显示采集中/已完成、JSONL 写入条数、最近写入时间、最近采集动作和下一步提示；采集中会自动轮询。
+  - 小红书维护项新增固定动作 `start_mediacrawler_xhs`：复用同一个 runner 和采集专用 Chrome profile，以 `--platform xhs --type creator` 启动；默认从已有 JSONL 的 `user_id` 推断干净的小红书博主主页 URL，也可用 `MEDIACRAWLER_XHS_CREATOR_ID` 覆盖。
+  - 本地采集面板新增抖音/小红书采集进度卡：显示采集中/已完成、JSONL 写入条数、最近写入时间、最近采集动作和下一步提示；任一平台采集中都会自动轮询。
   - MediaCrawler JSONL 读取现在会自动选择同目录最新的 `creator_contents_*.jsonl`，避免配置还指向旧日期文件时继续读旧数据。
   - README 和 `PROJECT_STATE.md` 已同步本地工具边界。
 - 当前边界：

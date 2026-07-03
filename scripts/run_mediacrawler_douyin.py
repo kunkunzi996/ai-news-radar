@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Launch MediaCrawler Douyin through an isolated local Chrome profile."""
+"""Launch MediaCrawler creator crawling through an isolated local Chrome profile."""
 
 from __future__ import annotations
 
@@ -14,16 +14,20 @@ import urllib.request
 from pathlib import Path
 
 DOUYIN_HOME_URL = "https://www.douyin.com/"
+XIAOHONGSHU_HOME_URL = "https://www.xiaohongshu.com/explore"
 DEFAULT_CDP_PORT = 9333
 CDP_WAIT_SECONDS = 30
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Start MediaCrawler Douyin with a dedicated CDP browser.")
+    parser = argparse.ArgumentParser(description="Start MediaCrawler creator mode with a dedicated CDP browser.")
     parser.add_argument("--crawler-root", required=True)
-    parser.add_argument("--cdp-port", type=int, default=int(os.environ.get("MEDIACRAWLER_DOUYIN_CDP_PORT") or DEFAULT_CDP_PORT))
+    parser.add_argument("--platform", choices=("douyin", "xhs"), default=os.environ.get("MEDIACRAWLER_PLATFORM") or "douyin")
+    parser.add_argument("--creator-id", default=os.environ.get("MEDIACRAWLER_CREATOR_ID") or "")
+    parser.add_argument("--max-notes", type=int, default=0)
+    parser.add_argument("--cdp-port", type=int, default=0)
     parser.add_argument("--chrome-path", default=os.environ.get("MEDIACRAWLER_CHROME_PATH") or "")
-    parser.add_argument("--profile-dir", default=os.environ.get("MEDIACRAWLER_DOUYIN_PROFILE_DIR") or "")
+    parser.add_argument("--profile-dir", default=os.environ.get("MEDIACRAWLER_PROFILE_DIR") or "")
     return parser.parse_args()
 
 
@@ -63,7 +67,7 @@ def find_chrome(chrome_path: str) -> str:
     raise RuntimeError("Chrome/Edge executable not found")
 
 
-def launch_dedicated_browser(chrome_path: str, port: int, profile_dir: Path) -> None:
+def launch_dedicated_browser(chrome_path: str, port: int, profile_dir: Path, start_url: str) -> None:
     profile_dir.mkdir(parents=True, exist_ok=True)
     args = [
         chrome_path,
@@ -76,7 +80,7 @@ def launch_dedicated_browser(chrome_path: str, port: int, profile_dir: Path) -> 
         "--disable-features=TranslateUI",
         "--disable-blink-features=AutomationControlled",
         "--start-maximized",
-        DOUYIN_HOME_URL,
+        start_url,
     ]
     creationflags = 0
     if os.name == "nt":
@@ -84,13 +88,13 @@ def launch_dedicated_browser(chrome_path: str, port: int, profile_dir: Path) -> 
     subprocess.Popen(args, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL, close_fds=True, creationflags=creationflags)
 
 
-def ensure_dedicated_browser(crawler_root: Path, start_port: int, chrome_path: str, profile_dir_raw: str) -> int:
+def ensure_dedicated_browser(crawler_root: Path, start_port: int, chrome_path: str, profile_dir_raw: str, start_url: str) -> int:
     profile_dir = Path(profile_dir_raw).expanduser() if profile_dir_raw else crawler_root / "chrome-profile"
     if is_port_open(start_port) and cdp_ready(start_port):
         return start_port
 
     port = find_port(start_port)
-    launch_dedicated_browser(find_chrome(chrome_path), port, profile_dir)
+    launch_dedicated_browser(find_chrome(chrome_path), port, profile_dir, start_url)
     deadline = time.time() + CDP_WAIT_SECONDS
     while time.time() < deadline:
         if cdp_ready(port):
@@ -99,7 +103,7 @@ def ensure_dedicated_browser(crawler_root: Path, start_port: int, chrome_path: s
     raise RuntimeError(f"dedicated Chrome did not expose CDP on port {port}")
 
 
-def run_mediacrawler(crawler_root: Path, cdp_port: int) -> int:
+def run_mediacrawler(crawler_root: Path, cdp_port: int, platform: str, creator_id: str, max_notes: int) -> int:
     os.chdir(crawler_root)
     sys.path.insert(0, str(crawler_root))
 
@@ -114,10 +118,11 @@ def run_mediacrawler(crawler_root: Path, cdp_port: int) -> int:
     config.HEADLESS = False
     config.SAVE_LOGIN_STATE = True
 
+    media_platform = "dy" if platform == "douyin" else "xhs"
     sys.argv = [
         str(crawler_root / "main.py"),
         "--platform",
-        "dy",
+        media_platform,
         "--lt",
         "qrcode",
         "--type",
@@ -127,7 +132,7 @@ def run_mediacrawler(crawler_root: Path, cdp_port: int) -> int:
         "--save_data_path",
         str(crawler_root / "output"),
         "--crawler_max_notes_count",
-        "20",
+        str(max_notes),
         "--max_concurrency_num",
         "1",
         "--headless",
@@ -137,6 +142,10 @@ def run_mediacrawler(crawler_root: Path, cdp_port: int) -> int:
         "--get_sub_comment",
         "false",
     ]
+    if platform == "xhs":
+        if not creator_id:
+            raise RuntimeError("Xiaohongshu creator id or profile URL is required")
+        sys.argv.extend(["--creator_id", creator_id])
 
     run(mediacrawler_main.main, mediacrawler_main.async_cleanup, cleanup_timeout_seconds=15.0)
     return 0
@@ -147,8 +156,16 @@ def main() -> int:
     crawler_root = Path(args.crawler_root).expanduser().resolve()
     if not (crawler_root / "main.py").exists():
         raise RuntimeError(f"MediaCrawler main.py not found: {crawler_root}")
-    cdp_port = ensure_dedicated_browser(crawler_root, args.cdp_port, args.chrome_path, args.profile_dir)
-    return run_mediacrawler(crawler_root, cdp_port)
+    if args.platform == "douyin":
+        start_url = DOUYIN_HOME_URL
+        start_port = args.cdp_port or int(os.environ.get("MEDIACRAWLER_DOUYIN_CDP_PORT") or DEFAULT_CDP_PORT)
+        max_notes = args.max_notes or int(os.environ.get("MEDIACRAWLER_DOUYIN_MAX_NOTES") or 20)
+    else:
+        start_url = XIAOHONGSHU_HOME_URL
+        start_port = args.cdp_port or int(os.environ.get("MEDIACRAWLER_XHS_CDP_PORT") or DEFAULT_CDP_PORT)
+        max_notes = args.max_notes or int(os.environ.get("MEDIACRAWLER_XHS_MAX_NOTES") or 500)
+    cdp_port = ensure_dedicated_browser(crawler_root, start_port, args.chrome_path, args.profile_dir, start_url)
+    return run_mediacrawler(crawler_root, cdp_port, args.platform, args.creator_id, max_notes)
 
 
 if __name__ == "__main__":

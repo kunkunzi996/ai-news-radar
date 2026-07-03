@@ -8,9 +8,11 @@ from scripts.local_server import (
     local_status_payload,
     maintenance_issues_from_status,
     mediacrawler_douyin_collector_status,
+    mediacrawler_xhs_collector_status,
     perform_maintenance_action,
     refresh_command,
     start_mediacrawler_douyin,
+    start_mediacrawler_xhs,
     start_wewe_rss_sidecar,
     validate_source_config,
 )
@@ -157,6 +159,7 @@ class LocalServerTests(unittest.TestCase):
         self.assertIn("JSONL", issues[0]["title"])
         action_ids = {action["id"] for action in issues[0]["fix_actions"]}
         self.assertIn("open_mediacrawler_xhs_platform", action_ids)
+        self.assertIn("start_mediacrawler_xhs", action_ids)
 
     def test_local_config_issues_warn_stale_mediacrawler_jsonl(self):
         from datetime import datetime, timedelta, timezone
@@ -299,6 +302,46 @@ class LocalServerTests(unittest.TestCase):
         self.assertIn(str(crawler_root), result["command"])
         self.assertNotIn("url", result)
 
+    def test_start_mediacrawler_xhs_dry_run_uses_fixed_local_command_and_creator_from_jsonl(self):
+        import os
+
+        root = Path(self.create_temp_dir()) / "ai-news-radar-run"
+        script_dir = root / "scripts"
+        script_dir.mkdir(parents=True)
+        runner = script_dir / "run_mediacrawler_douyin.py"
+        runner.write_text("print('runner')\n", encoding="utf-8")
+        crawler_root = root.parent / "MediaCrawler-local-test"
+        crawler_root.mkdir(parents=True)
+        (crawler_root / "main.py").write_text("print('fake')\n", encoding="utf-8")
+        jsonl_dir = crawler_root / "output" / "xhs" / "jsonl"
+        jsonl_dir.mkdir(parents=True)
+        jsonl = jsonl_dir / "creator_contents_2026-07-03.jsonl"
+        jsonl.write_text('{"user_id":"5e4027000000000001005eb8","title":"one"}\n', encoding="utf-8")
+        python_dir = crawler_root / "venv" / "Scripts"
+        python_dir.mkdir(parents=True)
+        python_exe = python_dir / "python.exe"
+        python_exe.write_text("", encoding="utf-8")
+
+        old_dir = os.environ.get("MEDIACRAWLER_LOCAL_DIR")
+        os.environ["MEDIACRAWLER_LOCAL_DIR"] = str(crawler_root)
+        try:
+            result = start_mediacrawler_xhs(root, execute=False)
+        finally:
+            if old_dir is None:
+                os.environ.pop("MEDIACRAWLER_LOCAL_DIR", None)
+            else:
+                os.environ["MEDIACRAWLER_LOCAL_DIR"] = old_dir
+
+        self.assertTrue(result["ok"])
+        self.assertFalse(result["executed"])
+        self.assertEqual(Path(result["cwd"]), crawler_root)
+        self.assertEqual(Path(result["command"][0]), python_exe)
+        self.assertEqual(Path(result["command"][1]), runner)
+        self.assertIn("--platform", result["command"])
+        self.assertIn("xhs", result["command"])
+        self.assertIn("--creator-id", result["command"])
+        self.assertIn("https://www.xiaohongshu.com/user/profile/5e4027000000000001005eb8", result["command"])
+
     def test_mediacrawler_douyin_collector_status_explains_finished_run(self):
         root = Path(self.create_temp_dir()) / "ai-news-radar-run"
         crawler_root = root.parent / "MediaCrawler-local-test"
@@ -317,6 +360,54 @@ class LocalServerTests(unittest.TestCase):
         self.assertTrue(status["can_close_browser"])
         self.assertEqual(status["item_count"], 2)
         self.assertEqual(status["last_log"], "采集完成")
+        self.assertIn("执行采集", status["next_action"])
+
+    def test_mediacrawler_xhs_collector_status_explains_finished_run(self):
+        root = Path(self.create_temp_dir()) / "ai-news-radar-run"
+        crawler_root = root.parent / "MediaCrawler-local-test"
+        output_dir = crawler_root / "output" / "xhs" / "jsonl"
+        output_dir.mkdir(parents=True)
+        jsonl = output_dir / "creator_contents_2026-07-03.jsonl"
+        jsonl.write_text('{"title":"one"}\n{"title":"two"}\n{"title":"three"}\n', encoding="utf-8")
+        (crawler_root / "mediacrawler-xhs.err.log").write_text(
+            "2026-07-03 16:11:34 MediaCrawler INFO (core.py:127) - [XiaoHongShuCrawler.start] Xhs Crawler finished ...\n",
+            encoding="utf-8",
+        )
+
+        status = mediacrawler_xhs_collector_status(root)
+
+        self.assertEqual(status["phase"], "completed")
+        self.assertEqual(status["platform_name"], "小红书")
+        self.assertTrue(status["can_close_browser"])
+        self.assertEqual(status["item_count"], 3)
+        self.assertEqual(status["last_log"], "采集完成")
+        self.assertIn("执行采集", status["next_action"])
+
+    def test_mediacrawler_xhs_collector_status_marks_finished_when_output_is_newer_than_pid(self):
+        import os
+        import time
+
+        root = Path(self.create_temp_dir()) / "ai-news-radar-run"
+        crawler_root = root.parent / "MediaCrawler-local-test"
+        output_dir = crawler_root / "output" / "xhs" / "jsonl"
+        output_dir.mkdir(parents=True)
+        pid_file = crawler_root / "mediacrawler-xhs.pid"
+        pid_file.write_text("999999", encoding="utf-8")
+        jsonl = output_dir / "creator_contents_2026-07-03.jsonl"
+        jsonl.write_text('{"title":"one"}\n{"title":"two"}\n', encoding="utf-8")
+        (crawler_root / "mediacrawler-xhs.err.log").write_text(
+            "2026-07-03 21:54:52 MediaCrawler INFO (__init__.py:131) - [store.xhs.update_xhs_note] xhs note: {'title': '正在写入'}\n",
+            encoding="utf-8",
+        )
+        now = time.time()
+        os.utime(pid_file, (now - 30, now - 30))
+        os.utime(jsonl, (now, now))
+
+        status = mediacrawler_xhs_collector_status(root)
+
+        self.assertEqual(status["phase"], "completed")
+        self.assertTrue(status["completed"])
+        self.assertEqual(status["item_count"], 2)
         self.assertIn("执行采集", status["next_action"])
 
     def test_perform_maintenance_action_dry_run_opens_configured_jsonl_folder(self):

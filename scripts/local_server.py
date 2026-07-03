@@ -37,6 +37,9 @@ MEDIACRAWLER_LOCAL_DIR_NAME = "MediaCrawler-local-test"
 MEDIACRAWLER_DOUYIN_LOG_OUT = "mediacrawler-douyin.out.log"
 MEDIACRAWLER_DOUYIN_LOG_ERR = "mediacrawler-douyin.err.log"
 MEDIACRAWLER_DOUYIN_PID = "mediacrawler-douyin.pid"
+MEDIACRAWLER_XHS_LOG_OUT = "mediacrawler-xhs.out.log"
+MEDIACRAWLER_XHS_LOG_ERR = "mediacrawler-xhs.err.log"
+MEDIACRAWLER_XHS_PID = "mediacrawler-xhs.pid"
 
 
 def site_display_name(site: dict[str, Any]) -> str:
@@ -146,6 +149,8 @@ def mediacrawler_fix_actions(root_dir: Path, runtime_id: str, raw_path: str = ""
     actions: list[dict[str, Any]] = []
     if runtime_id == "mediacrawler_douyin":
         actions.append(start_service_action("start_mediacrawler_douyin", "启动抖音采集"))
+    if runtime_id == "mediacrawler_xhs":
+        actions.append(start_service_action("start_mediacrawler_xhs", "启动小红书采集"))
     if raw_path:
         target = existing_open_target(resolve_config_path(root_dir, raw_path))
         if target:
@@ -583,56 +588,88 @@ def read_tail_lines(path: Path, limit: int = 80) -> list[str]:
         return []
 
 
-def last_meaningful_douyin_log(lines: list[str]) -> str:
+def last_meaningful_mediacrawler_log(lines: list[str], platform: str) -> str:
     for line in reversed(lines):
         text = line.strip()
         if not text:
             continue
-        if "Douyin Crawler finished" in text:
+        if platform == "douyin" and "Douyin Crawler finished" in text:
             return "采集完成"
-        if "update_douyin_aweme" in text and "title:" in text:
+        if platform == "xhs" and "Xhs Crawler finished" in text:
+            return "采集完成"
+        if platform == "douyin" and "update_douyin_aweme" in text and "title:" in text:
             return "正在写入作品：" + text.split("title:", 1)[-1].strip()[:80]
-        if "get_all_user_aweme_posts" in text and "video len" in text:
+        if platform == "xhs" and "update_xhs_note" in text and "title" in text:
+            return "正在写入笔记：" + text.split("title", 1)[-1].strip(" :,'{}")[:80]
+        if platform == "douyin" and "get_all_user_aweme_posts" in text and "video len" in text:
+            return text.split(" - ", 1)[-1].strip()
+        if platform == "xhs" and "Finished getting notes for user" in text:
             return text.split(" - ", 1)[-1].strip()
         if "Sleeping for" in text:
             return "正在逐条读取作品详情"
     return ""
 
 
-def mediacrawler_douyin_collector_status(root_dir: Path) -> dict[str, Any]:
+def mediacrawler_collector_status(root_dir: Path, runtime_id: str) -> dict[str, Any]:
+    if runtime_id == "mediacrawler_xhs":
+        platform = "xhs"
+        platform_name = "小红书"
+        output_folder = "xhs"
+        pid_file = MEDIACRAWLER_XHS_PID
+        err_log = MEDIACRAWLER_XHS_LOG_ERR
+    else:
+        platform = "douyin"
+        platform_name = "抖音"
+        output_folder = "douyin"
+        pid_file = MEDIACRAWLER_DOUYIN_PID
+        err_log = MEDIACRAWLER_DOUYIN_LOG_ERR
+
     crawler_root = mediacrawler_local_root(root_dir)
-    pid = read_pid_file(crawler_root / MEDIACRAWLER_DOUYIN_PID)
+    pid_path = crawler_root / pid_file
+    pid = read_pid_file(pid_path)
     running = process_is_running(pid or 0)
-    jsonl = newest_file(crawler_root / "output" / "douyin" / "jsonl", "creator_contents_*.jsonl")
-    log_lines = read_tail_lines(crawler_root / MEDIACRAWLER_DOUYIN_LOG_ERR)
-    last_log = last_meaningful_douyin_log(log_lines)
-    completed = any("Douyin Crawler finished" in line for line in log_lines[-20:])
+    jsonl = newest_file(crawler_root / "output" / output_folder / "jsonl", "creator_contents_*.jsonl")
+    log_lines = read_tail_lines(crawler_root / err_log)
+    last_log = last_meaningful_mediacrawler_log(log_lines, platform)
+    finished_marker = "Xhs Crawler finished" if platform == "xhs" else "Douyin Crawler finished"
     item_count = count_file_lines(jsonl) if jsonl else 0
     updated_at = datetime.fromtimestamp(jsonl.stat().st_mtime, timezone.utc).isoformat() if jsonl else None
+    completed_by_log = any(finished_marker in line for line in log_lines[-80:])
+    completed_by_output = (
+        not running
+        and bool(pid)
+        and pid_path.exists()
+        and jsonl is not None
+        and item_count > 0
+        and jsonl.stat().st_mtime >= pid_path.stat().st_mtime
+    )
+    completed = completed_by_log or completed_by_output
 
     if running:
         phase = "running"
-        title = "抖音采集中"
+        title = f"{platform_name}采集中"
         next_action = "保持采集专用窗口打开；完成后这里会变成可关闭。"
         can_close_browser = False
     elif completed and jsonl:
         phase = "completed"
-        title = "抖音采集已完成"
+        title = f"{platform_name}采集已完成"
         next_action = "可以关闭采集专用窗口；回到本页点执行采集，让主站读取新 JSONL。"
         can_close_browser = True
     elif jsonl:
         phase = "idle"
-        title = "抖音采集未运行"
-        next_action = "如需最新动态，点启动抖音采集。"
+        title = f"{platform_name}采集未运行"
+        next_action = f"如需最新动态，点启动{platform_name}采集。"
         can_close_browser = True
     else:
         phase = "missing"
-        title = "抖音还没有采集结果"
-        next_action = "点启动抖音采集，完成扫码或登录后等待写出 JSONL。"
+        title = f"{platform_name}还没有采集结果"
+        next_action = f"点启动{platform_name}采集，完成扫码或登录后等待写出 JSONL。"
         can_close_browser = False
 
     return {
-        "id": "mediacrawler_douyin",
+        "id": runtime_id,
+        "platform": platform,
+        "platform_name": platform_name,
         "title": title,
         "phase": phase,
         "running": running,
@@ -648,7 +685,49 @@ def mediacrawler_douyin_collector_status(root_dir: Path) -> dict[str, Any]:
     }
 
 
-def start_mediacrawler_douyin(root_dir: Path, *, execute: bool = True) -> dict[str, Any]:
+def mediacrawler_xhs_creator_id(root_dir: Path, crawler_root: Path) -> str:
+    configured = str(os.environ.get("MEDIACRAWLER_XHS_CREATOR_ID") or os.environ.get("MEDIACRAWLER_XIAOHONGSHU_CREATOR_ID") or "").strip()
+    if configured:
+        return configured
+
+    candidates: list[Path] = []
+    try:
+        config = read_source_config(root_dir)
+    except Exception:
+        config = None
+    for source in enabled_source_config_records(config):
+        if "mediacrawler_xhs" not in source_config_runtime_ids(source):
+            continue
+        locator = str(source.get("locator") or "").strip()
+        if locator:
+            candidates.append(resolve_latest_mediacrawler_jsonl(resolve_config_path(root_dir, locator)))
+    newest = newest_file(crawler_root / "output" / "xhs" / "jsonl", "creator_contents_*.jsonl")
+    if newest:
+        candidates.append(newest)
+
+    for path in candidates:
+        if not path.exists() or not path.is_file():
+            continue
+        try:
+            with path.open("r", encoding="utf-8", errors="ignore") as handle:
+                for line in handle:
+                    if not line.strip():
+                        continue
+                    row = json.loads(line)
+                    user_id = str(row.get("user_id") or "").strip()
+                    if user_id:
+                        return f"https://www.xiaohongshu.com/user/profile/{user_id}"
+        except Exception:
+            continue
+    return ""
+
+
+def start_mediacrawler_platform(root_dir: Path, runtime_id: str, *, execute: bool = True) -> dict[str, Any]:
+    platform = "xhs" if runtime_id == "mediacrawler_xhs" else "douyin"
+    action_id = "start_mediacrawler_xhs" if platform == "xhs" else "start_mediacrawler_douyin"
+    out_log_name = MEDIACRAWLER_XHS_LOG_OUT if platform == "xhs" else MEDIACRAWLER_DOUYIN_LOG_OUT
+    err_log_name = MEDIACRAWLER_XHS_LOG_ERR if platform == "xhs" else MEDIACRAWLER_DOUYIN_LOG_ERR
+    pid_name = MEDIACRAWLER_XHS_PID if platform == "xhs" else MEDIACRAWLER_DOUYIN_PID
     crawler_root = mediacrawler_local_root(root_dir)
     crawler_entry = crawler_root / "main.py"
     if not crawler_entry.exists():
@@ -666,12 +745,19 @@ def start_mediacrawler_douyin(root_dir: Path, *, execute: bool = True) -> dict[s
         str(entry),
         "--crawler-root",
         str(crawler_root),
+        "--platform",
+        platform,
     ]
+    if platform == "xhs":
+        creator_id = mediacrawler_xhs_creator_id(root_dir, crawler_root)
+        if not creator_id:
+            return {"ok": False, "error": "mediacrawler_xhs_creator_id_missing"}
+        command.extend(["--creator-id", creator_id, "--max-notes", str(int(os.environ.get("MEDIACRAWLER_XHS_MAX_NOTES") or 500))])
     if not execute:
         return {
             "ok": True,
             "kind": "start_service",
-            "action_id": "start_mediacrawler_douyin",
+            "action_id": action_id,
             "command": command,
             "cwd": str(crawler_root),
             "executed": False,
@@ -679,8 +765,8 @@ def start_mediacrawler_douyin(root_dir: Path, *, execute: bool = True) -> dict[s
 
     env = os.environ.copy()
     env.setdefault("PYTHONIOENCODING", "utf-8")
-    out_log = crawler_root / MEDIACRAWLER_DOUYIN_LOG_OUT
-    err_log = crawler_root / MEDIACRAWLER_DOUYIN_LOG_ERR
+    out_log = crawler_root / out_log_name
+    err_log = crawler_root / err_log_name
     creationflags = 0
     if os.name == "nt":
         creationflags = subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS
@@ -695,14 +781,30 @@ def start_mediacrawler_douyin(root_dir: Path, *, execute: bool = True) -> dict[s
             close_fds=True,
             creationflags=creationflags,
         )
-    (crawler_root / MEDIACRAWLER_DOUYIN_PID).write_text(str(process.pid), encoding="utf-8")
+    (crawler_root / pid_name).write_text(str(process.pid), encoding="utf-8")
     return {
         "ok": True,
         "kind": "start_service",
-        "action_id": "start_mediacrawler_douyin",
+        "action_id": action_id,
         "pid": process.pid,
         "executed": True,
     }
+
+
+def mediacrawler_douyin_collector_status(root_dir: Path) -> dict[str, Any]:
+    return mediacrawler_collector_status(root_dir, "mediacrawler_douyin")
+
+
+def mediacrawler_xhs_collector_status(root_dir: Path) -> dict[str, Any]:
+    return mediacrawler_collector_status(root_dir, "mediacrawler_xhs")
+
+
+def start_mediacrawler_douyin(root_dir: Path, *, execute: bool = True) -> dict[str, Any]:
+    return start_mediacrawler_platform(root_dir, "mediacrawler_douyin", execute=execute)
+
+
+def start_mediacrawler_xhs(root_dir: Path, *, execute: bool = True) -> dict[str, Any]:
+    return start_mediacrawler_platform(root_dir, "mediacrawler_xhs", execute=execute)
 
 
 def add_wewe_rss_config_issues(
@@ -920,6 +1022,7 @@ def local_status_payload(root_dir: Path) -> dict[str, Any]:
         "source_status": summary,
         "collectors": {
             "mediacrawler_douyin": mediacrawler_douyin_collector_status(root_dir),
+            "mediacrawler_xhs": mediacrawler_xhs_collector_status(root_dir),
         },
         "refresh_running": REFRESH_LOCK.locked(),
     }
@@ -1001,6 +1104,8 @@ def perform_maintenance_action(root_dir: Path, action_id: str, *, execute: bool 
             return start_wewe_rss_sidecar(root_dir, execute=execute)
         if action_id == "start_mediacrawler_douyin":
             return start_mediacrawler_douyin(root_dir, execute=execute)
+        if action_id == "start_mediacrawler_xhs":
+            return start_mediacrawler_xhs(root_dir, execute=execute)
         return {"ok": False, "error": "unsupported_start_service", "action_id": action_id}
     return {"ok": False, "error": "unsupported_maintenance_action", "kind": kind}
 

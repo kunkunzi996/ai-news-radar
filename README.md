@@ -395,7 +395,7 @@ AI News Radar 仓库，也不会执行前端传入的任意命令。
 再提示回到主页面点“执行采集”。
 
 小红书指定博主也可以通过本地 MediaCrawler 导出的 JSONL 接入，同样默认关闭、
-只读本地文件，不会从本项目启动 Chrome 或复用登录态：
+常规刷新只读本地文件，不会从本项目读取 Chrome profile 或登录态：
 
 ```powershell
 $env:MEDIACRAWLER_XHS_ENABLED='1'
@@ -407,6 +407,10 @@ $env:MEDIACRAWLER_XHS_SOURCE_NAME='陈抱一'
 成功时，`data/source-status.json` 中 `mediacrawler_xhs.item_count` 会显示读到的
 笔记数；主页面“自媒体”栏目会把它显示为“小红书博主”。兼容长变量名
 `MEDIACRAWLER_XIAOHONGSHU_*`，但推荐用上面的 `MEDIACRAWLER_XHS_*`。
+本地控制台的“启动小红书采集”会调用同一个采集专用 Chrome profile，并从现有
+小红书 JSONL 的 `user_id` 自动推断干净的博主主页地址；如果没有历史 JSONL，
+可用 `MEDIACRAWLER_XHS_CREATOR_ID` 指定小红书博主主页 URL。启动后页面会显示
+“小红书采集任务”状态卡，采集中自动刷新，完成后会提示可以关闭采集窗口。
 
 GitHub 版本订阅默认追踪 `AlkaidLab/foundation-sunshine` 最近 5 次公开 release，
 不再追踪普通 commit。它不需要 token，也不会调用 GitHub 登录态。刷新后它会进入
