@@ -1,12 +1,12 @@
 # HANDOFF.md
 
-## 当前最新交接：订阅平台栏目与重点信号板块清理已保存
+## 当前最新交接：订阅平台栏目与来源标题清理已保存
 
 - 日期：2026-07-04
-- 当前阶段：主页内容栏目已从主题分类重构为订阅/平台分类；无意义的 `TODAY'S SIGNALS` / `今日重点信号` 板块已删除，并已由用户在本地浏览器验收通过。
+- 当前阶段：主页内容栏目已从主题分类重构为订阅/平台分类；无意义的 `TODAY'S SIGNALS` / `今日重点信号` 板块已删除；来源分组标题已从技术源名改为平台名，并已由用户在本地浏览器验收通过。
 - 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
 - 当前分支：`master`
-- 最新已推送 commit：`e3e5fed chore: remove top signals block`
+- 最新已推送 commit：`3975004 fix: use readable source group names`
 - 本轮已完成：
   - 首页默认进入 `我的订阅`。
   - 顶部内容栏目只保留 `我的订阅`、`抖音`、`小红书`、`微信公众号`、`B站`、`油管`。
@@ -15,6 +15,7 @@
   - 猫笔刀 feed 已恢复到 2026-07-03 最新文章：`诚实回答`，发布时间 `2026-07-03 22:24:51`。
   - AI News Radar 本地服务已恢复：`http://127.0.0.1:8080/` 返回 HTTP 200，`/api/local-status` 返回 `ok=true`。
   - `index.html` 已移除重点信号板块 DOM，`assets/motion.js` 已移除对应动画绑定；浏览器验证 `#bolePicksWrap` 为 0 且控制台无 error。
+  - `assets/app.js` 新增 `sourceDisplayName()`，列表分组、来源筛选和源状态表显示 `微信公众号`、`YouTube`、`GitHub`、`小红书`、`抖音`、`B站` 等平台名，不再把 `WeWe RSS`、`MediaCrawler Xiaohongshu` 等技术名暴露给读者。
 - 本轮验收：
   - 用户确认“没问题，验收成功”。
   - 本地页面已可打开，后续可在页面点 `执行采集` 同步最新 WeWe RSS 数据。

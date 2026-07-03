@@ -5,7 +5,7 @@
 - Date: 2026-07-04
 - Local path: `E:\AI-news-reader\ai-news-radar-run`
 - Branch: `master`
-- Latest pushed commit: `e3e5fed chore: remove top signals block`
+- Latest pushed commit: `3975004 fix: use readable source group names`
 - Task type: Local trigger console / source dashboard cleanup
 - Server: `http://127.0.0.1:8080/`
 - Current local view: the source configuration panel has been upgraded into a local collection console. The page now has a local collection status panel, an `执行采集` button, a `检查状态` button, and maintenance action buttons. `scripts/local_server.py` exposes `GET /api/local-status` so the page can show maintenance hints from `data/source-status.json` and local read-only probes without reading cookies, login state, WeWe RSS database files, or MediaCrawler browser profiles.
@@ -16,6 +16,7 @@
 - Source management now supports local UI filters for all/enabled/needs-maintenance and key platforms: WeChat public accounts, Xiaohongshu, Douyin, Bilibili, RSS, and GitHub. Maintenance cards can locate the matching source config record.
 - Homepage content tabs have been reworked from topic categories to subscription/platform categories. The top tab bar now defaults to `我的订阅` and only shows `我的订阅`、`抖音`、`小红书`、`微信公众号`、`B站`、`油管`; platform tabs are derived from subscription item source ids, source names, URLs, and titles.
 - The former `TODAY'S SIGNALS` / `今日重点信号` block has been removed from the homepage after checking that only Douyin and Xiaohongshu currently provide comparable interaction metrics. The page now flows from source configuration directly into WaytoAGI/community updates and the main list.
+- Source group headings and source filters now use reader-facing platform names such as `微信公众号`、`YouTube`、`GitHub`、`小红书`、`抖音` and `B站` instead of adapter names like `WeWe RSS` or `MediaCrawler Xiaohongshu`.
 - User acceptance passed on 2026-07-04 after local WeWe RSS and AI News Radar services were restarted: WeWe RSS account `547013436` is enabled, 猫笔刀 shows `诚实回答` (`2026-07-03 22:24:51`), `http://127.0.0.1:8080/` returns HTTP 200, and `/api/local-status` returns `ok=true`.
 
 ## Previous State
