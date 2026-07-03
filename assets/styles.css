@@ -1215,6 +1215,13 @@ summary:focus-visible {
   color: var(--ink-soft);
 }
 
+.local-ops-hint {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
 .local-ops-actions {
   display: flex;
   flex-wrap: wrap;

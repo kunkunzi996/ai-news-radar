@@ -6,7 +6,7 @@
 - 当前阶段：在 `feature/local-trigger-console` 上把已有“信源配置 + 本地刷新”升级成本地采集控制台，并补充本地只读依赖探针和维护动作入口。
 - 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
 - 当前分支：`feature/local-trigger-console`
-- 已推送 commit：`b8a9653 feat: add local maintenance action shortcuts`
+- 最新已推送 commit：待本轮保存；上一已推送提交为 `b63c06f feat: add local Xiaohongshu collection progress`
 - 本轮已实现：
   - `scripts/local_server.py` 新增 `GET /api/local-status`。
   - 本地状态会读取 `sources.config.json` 和 `data/source-status.json`，输出启用信源数、采集状态和维护项。
@@ -16,6 +16,7 @@
   - 信源列表新增筛选：全部、启用、需维护、公众号、小红书、抖音、B站、RSS、GitHub。
   - 维护提示新增“定位信源”，可跳到对应配置项；信源列表会标记需关注/需处理。
   - 维护提示新增白名单动作按钮：WeWe RSS 启动后台/扫码，B站打开登录页，MediaCrawler 打开 JSONL 文件夹和平台页。
+  - B站维护入口新增小号专用 profile 流程：启动 `local-secrets/bilibili-profile` 登录窗口，同步该专用窗口的 B站 cookie 到 `local-secrets/bilibili-cookies.txt`；本地刷新会自动把该文件作为 `BILIBILI_COOKIE_FILE` 传入固定采集命令。
   - 新增 `POST /api/maintenance-action`，只接受当前维护项里存在的 `action_id`，用于打开已验证的本地文件夹或启动固定的本机 WeWe RSS sidecar；不接受前端传任意路径或命令。
   - WeWe RSS feed 失败提示已去重，不再同时显示总失败和单 feed 失败。
   - 抖音维护项新增固定动作 `start_mediacrawler_douyin`：通过 `scripts/run_mediacrawler_douyin.py` 从 `E:\AI-news-reader\MediaCrawler-local-test` 启动 MediaCrawler creator 模式；该 runner 使用采集专用 Chrome profile，不应连接用户日常浏览器。Radar 常规刷新仍只读 JSONL，不读取 Chrome profile/cookie。
@@ -37,11 +38,11 @@
   - `GET http://127.0.0.1:8080/index.html` 包含 `sourceConfigCheckBtn`、`localOpsStatus`、`localOpsSummary`、`执行采集`。
   - 2026-07-03 继续开发后，`GET /api/local-status` 返回 2 个维护项：`wewe_feed_MP_WXS_3198966508_failed` 和 `bilibili_cookie_missing`。
   - 2026-07-03 修复 WeWe 维护入口后，`POST /api/maintenance-action` with `start_wewe_rss_sidecar` 启动 PID `20128`，`http://127.0.0.1:4000/dash` 和 `/feeds` 均返回 HTTP 200；`wewe_rss_sidecar_unreachable` 维护项消失。
+  - 2026-07-03 B站小号 cookie 维护入口已由用户验收：`打开B站小号登录` 使用独立 `local-secrets/bilibili-profile`，`同步cookie` 写入 `local-secrets/bilibili-cookies.txt`，页面显示生效；后续 `执行采集` 会自动使用该文件。
   - 浏览器 DOM 曾验证到筛选条：`全部 14`、`启用 8`、`需维护 2`、`公众号 1`、`小红书 1`、`抖音 1`、`B站 1`、`RSS 6`、`GitHub 1`，且 `定位信源` 出现；后续一次浏览器自动化刷新超时，HTTP 验证仍通过。
 - 下一步建议：
-  - 跑一次完整 `git diff --check` 和相关单测。
-  - 通过浏览器打开 `http://127.0.0.1:8080/`，展开“信源配置”，确认本地采集状态面板和维护提示可见。
-  - 如要进一步增强，可做平台级“维护操作指引”，例如为 B站 cookie、WeWe 重新扫码、MediaCrawler 重新导出 JSONL 提供更明确的本地步骤。
+  - 保存本轮 B站小号 cookie 维护入口代码后，继续验收 `执行采集` 的 B站 `fetch_mode` 是否变为 `cookie_full_dynamic` 或明确的 fallback。
+  - 若 B站 cookie 已稳定，可继续做“停止/关闭采集专用窗口”或“重新同步 cookie”之类的小操作优化。
 - 下一轮禁止：
   - 不要批量删除。
   - 不要提交 Cookie、登录态、`.env`、wewe-rss 数据库、QR 登录文件、浏览器 profile 或私有 token。

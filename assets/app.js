@@ -744,10 +744,19 @@ async function runLocalOpsFixAction(action, button) {
         window.location.href = payload.url;
       }
     }
+    if (action.id === "open_bilibili_cookie_folder") {
+      const cookieFile = payload.recommended_cookie_file || "local-secrets/bilibili-cookies.txt";
+      setLocalOpsStatus(`已打开cookie文件夹，导出后保存为：${cookieFile}`, "ok");
+    } else if (action.id === "open_bilibili_login") {
+      setLocalOpsStatus("已打开B站小号专用窗口，登录后点同步cookie", "ok");
+    } else if (action.id === "sync_bilibili_cookie") {
+      setLocalOpsStatus("已同步B站小号cookie，下一步点执行采集", "ok");
+      window.setTimeout(() => loadLocalStatusFromServer(false), 1200);
+    }
     if (action.id === "start_mediacrawler_douyin" || action.id === "start_mediacrawler_xhs") {
       setLocalOpsStatus(action.id === "start_mediacrawler_xhs" ? "小红书采集中" : "抖音采集中", "warn");
       window.setTimeout(() => loadLocalStatusFromServer(false), 1200);
-    } else {
+    } else if (!["open_bilibili_cookie_folder", "open_bilibili_login", "sync_bilibili_cookie"].includes(action.id)) {
       setLocalOpsStatus(`已打开：${label}`, "ok");
     }
     if (button) button.textContent = "已打开";
@@ -826,6 +835,15 @@ function renderLocalOpsStatus(payload = null) {
     const action = document.createElement("em");
     action.textContent = issue.action || "";
     card.append(title, detail, action);
+    if (issue.id === "bilibili_cookie_missing") {
+      const cookie = sourceStatus.bilibili_cookie || {};
+      const hint = document.createElement("small");
+      hint.className = "local-ops-hint";
+      hint.textContent = cookie.cookie_file_exists
+        ? `已发现本地小号cookie文件：${cookie.cookie_file}。点“执行采集”会自动使用它。`
+        : `推荐流程：点“打开B站小号登录”完成登录，再点“同步cookie”，最后点“执行采集”。`;
+      card.appendChild(hint);
+    }
     const actionRow = document.createElement("div");
     actionRow.className = "local-ops-actions";
     (Array.isArray(issue.fix_actions) ? issue.fix_actions : []).slice(0, 3).forEach((fixAction) => {

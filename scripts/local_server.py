@@ -6,6 +6,8 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import socket
+import struct
 import subprocess
 import sys
 import threading
@@ -28,6 +30,10 @@ MEDIACRAWLER_JSONL_STALE_HOURS = 36
 WEWE_RSS_BASE_URL_DEFAULT = "http://127.0.0.1:4000"
 LOCAL_HTTP_TIMEOUT_SECONDS = 2.0
 BILIBILI_LOGIN_URL = "https://passport.bilibili.com/login"
+BILIBILI_DEFAULT_COOKIE_FILE = Path("local-secrets") / "bilibili-cookies.txt"
+BILIBILI_PROFILE_DIR = Path("local-secrets") / "bilibili-profile"
+BILIBILI_CDP_PORT = 9334
+BILIBILI_COOKIE_URL = "https://www.bilibili.com/"
 DOUYIN_HOME_URL = "https://www.douyin.com/"
 XIAOHONGSHU_HOME_URL = "https://www.xiaohongshu.com/explore"
 WEWE_RSS_SIDECAR_DIR_NAME = "wewe-rss-sidecar"
@@ -94,8 +100,240 @@ def wewe_fix_actions(include_start: bool = False) -> list[dict[str, Any]]:
     return actions
 
 
-def bilibili_fix_actions() -> list[dict[str, Any]]:
-    return [open_url_action("open_bilibili_login", "打开B站登录", BILIBILI_LOGIN_URL)]
+def bilibili_fix_actions(root_dir: Path | None = None) -> list[dict[str, Any]]:
+    cookie_folder = (root_dir / BILIBILI_DEFAULT_COOKIE_FILE.parent) if root_dir else BILIBILI_DEFAULT_COOKIE_FILE.parent
+    return [
+        start_service_action("open_bilibili_login", "打开B站小号登录"),
+        start_service_action("sync_bilibili_cookie", "同步cookie"),
+        open_path_action("open_bilibili_cookie_folder", "打开cookie文件夹", cookie_folder),
+    ]
+
+
+def bilibili_cookie_file_path(root_dir: Path) -> Path:
+    configured = str(os.environ.get("BILIBILI_COOKIE_FILE") or os.environ.get("BILIBILI_DYNAMIC_COOKIE_FILE") or "").strip()
+    if configured:
+        return Path(configured).expanduser()
+    return root_dir / BILIBILI_DEFAULT_COOKIE_FILE
+
+
+def bilibili_cookie_status(root_dir: Path) -> dict[str, Any]:
+    has_env_cookie = bool(str(os.environ.get("BILIBILI_COOKIE") or os.environ.get("BILIBILI_DYNAMIC_COOKIE") or "").strip())
+    cookie_file = bilibili_cookie_file_path(root_dir)
+    file_exists = cookie_file.exists() and cookie_file.is_file() and cookie_file.stat().st_size > 0
+    return {
+        "configured": has_env_cookie or file_exists,
+        "env_cookie_present": has_env_cookie,
+        "cookie_file": str(cookie_file),
+        "cookie_file_exists": file_exists,
+        "recommended_cookie_file": str(root_dir / BILIBILI_DEFAULT_COOKIE_FILE),
+    }
+
+
+def port_is_open(port: int) -> bool:
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+        sock.settimeout(0.5)
+        return sock.connect_ex(("127.0.0.1", port)) == 0
+
+
+def find_available_port(start_port: int) -> int:
+    for port in range(start_port, start_port + 50):
+        if not port_is_open(port):
+            return port
+    raise RuntimeError(f"no available local port from {start_port}")
+
+
+def cdp_json(port: int, path: str, payload: dict[str, Any] | None = None) -> dict[str, Any]:
+    data = None
+    headers = {"Accept": "application/json"}
+    if payload is not None:
+        data = json.dumps(payload).encode("utf-8")
+        headers["Content-Type"] = "application/json"
+    request = urllib.request.Request(f"http://127.0.0.1:{port}{path}", data=data, headers=headers)
+    with urllib.request.urlopen(request, timeout=3.0) as response:
+        return json.loads(response.read().decode("utf-8"))
+
+
+def cdp_ready(port: int) -> bool:
+    try:
+        return bool(cdp_json(port, "/json/version").get("Browser"))
+    except Exception:
+        return False
+
+
+def find_chrome_executable() -> str | None:
+    configured = str(os.environ.get("BILIBILI_CHROME_PATH") or os.environ.get("MEDIACRAWLER_CHROME_PATH") or "").strip()
+    if configured and Path(configured).is_file():
+        return configured
+    candidates = [
+        r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+        r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+        r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
+        r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+    ]
+    for candidate in candidates:
+        if Path(candidate).is_file():
+            return candidate
+    return None
+
+
+def launch_bilibili_dedicated_browser(root_dir: Path, *, execute: bool = True) -> dict[str, Any]:
+    profile_dir = (root_dir / BILIBILI_PROFILE_DIR).resolve()
+    profile_dir.mkdir(parents=True, exist_ok=True)
+    port = BILIBILI_CDP_PORT if cdp_ready(BILIBILI_CDP_PORT) else find_available_port(BILIBILI_CDP_PORT)
+    chrome = find_chrome_executable()
+    if not chrome:
+        return {"ok": False, "error": "chrome_not_found"}
+    command = [
+        chrome,
+        f"--remote-debugging-port={port}",
+        "--remote-debugging-address=127.0.0.1",
+        f"--user-data-dir={profile_dir}",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-sync",
+        "--start-maximized",
+        BILIBILI_LOGIN_URL,
+    ]
+    if not execute:
+        return {
+            "ok": True,
+            "kind": "start_service",
+            "action_id": "open_bilibili_login",
+            "command": command,
+            "profile_dir": str(profile_dir),
+            "cdp_port": port,
+            "executed": False,
+        }
+    creationflags = 0
+    if os.name == "nt":
+        creationflags = subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS
+    process = subprocess.Popen(command, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL, close_fds=True, creationflags=creationflags)
+    return {
+        "ok": True,
+        "kind": "start_service",
+        "action_id": "open_bilibili_login",
+        "pid": process.pid,
+        "profile_dir": str(profile_dir),
+        "cdp_port": port,
+        "next_action": "在这个专用窗口登录B站小号，然后回本页点同步cookie。",
+        "executed": True,
+    }
+
+
+def active_bilibili_cdp_port() -> int | None:
+    for port in range(BILIBILI_CDP_PORT, BILIBILI_CDP_PORT + 8):
+        if cdp_ready(port):
+            return port
+    return None
+
+
+def cdp_new_page(port: int, url: str) -> dict[str, Any]:
+    encoded = urllib.parse.quote(url, safe=":/?=&")
+    for method in ("PUT", "GET"):
+        request = urllib.request.Request(f"http://127.0.0.1:{port}/json/new?{encoded}", method=method, headers={"Accept": "application/json"})
+        try:
+            with urllib.request.urlopen(request, timeout=3.0) as response:
+                return json.loads(response.read().decode("utf-8"))
+        except urllib.error.HTTPError:
+            if method == "PUT":
+                continue
+            raise
+    return {}
+
+
+def read_websocket_frame(sock: socket.socket) -> bytes:
+    header = sock.recv(2)
+    if len(header) < 2:
+        return b""
+    length = header[1] & 0x7F
+    if length == 126:
+        length = struct.unpack("!H", sock.recv(2))[0]
+    elif length == 127:
+        length = struct.unpack("!Q", sock.recv(8))[0]
+    chunks: list[bytes] = []
+    remaining = length
+    while remaining > 0:
+        chunk = sock.recv(min(remaining, 65536))
+        if not chunk:
+            break
+        chunks.append(chunk)
+        remaining -= len(chunk)
+    return b"".join(chunks)
+
+
+def sync_bilibili_cookie(root_dir: Path, *, execute: bool = True) -> dict[str, Any]:
+    port = active_bilibili_cdp_port()
+    if not port:
+        return {"ok": False, "error": "bilibili_login_window_not_running"}
+    payload = cdp_new_page(port, BILIBILI_COOKIE_URL)
+    websocket_url = str(payload.get("webSocketDebuggerUrl") or "")
+    if not websocket_url:
+        return {"ok": False, "error": "cdp_target_not_available"}
+    import base64
+
+    parsed = urllib.parse.urlparse(websocket_url)
+    key = base64.b64encode(os.urandom(16)).decode("ascii")
+    request = (
+        f"GET {parsed.path} HTTP/1.1\r\n"
+        f"Host: {parsed.netloc}\r\n"
+        "Upgrade: websocket\r\n"
+        "Connection: Upgrade\r\n"
+        f"Sec-WebSocket-Key: {key}\r\n"
+        "Sec-WebSocket-Version: 13\r\n\r\n"
+    ).encode("ascii")
+    with socket.create_connection((parsed.hostname or "127.0.0.1", parsed.port or port), timeout=5) as sock:
+        sock.sendall(request)
+        response = sock.recv(4096)
+        if b" 101 " not in response:
+            return {"ok": False, "error": "websocket_upgrade_failed"}
+        message = json.dumps({"id": 1, "method": "Network.getAllCookies"}).encode("utf-8")
+        header = bytearray([0x81])
+        length = len(message)
+        if length < 126:
+            header.append(0x80 | length)
+        elif length < 65536:
+            header.append(0x80 | 126)
+            header.extend(struct.pack("!H", length))
+        else:
+            header.append(0x80 | 127)
+            header.extend(struct.pack("!Q", length))
+        mask = os.urandom(4)
+        header.extend(mask)
+        masked = bytes(byte ^ mask[index % 4] for index, byte in enumerate(message))
+        sock.sendall(bytes(header) + masked)
+        data = None
+        for _attempt in range(20):
+            raw = read_websocket_frame(sock)
+            if not raw:
+                continue
+            candidate = json.loads(raw.decode("utf-8"))
+            if candidate.get("id") == 1:
+                data = candidate
+                break
+        if data is None:
+            return {"ok": False, "error": "websocket_cookie_response_missing"}
+    cookies = [
+        cookie for cookie in data.get("result", {}).get("cookies", [])
+        if "bilibili.com" in str(cookie.get("domain") or "")
+    ]
+    if not cookies:
+        return {"ok": False, "error": "bilibili_cookie_not_found"}
+    cookie_text = "; ".join(f"{cookie.get('name')}={cookie.get('value')}" for cookie in cookies if cookie.get("name") and cookie.get("value"))
+    if "SESSDATA=" not in cookie_text:
+        return {"ok": False, "error": "bilibili_login_cookie_missing_sessdata"}
+    cookie_file = (root_dir / BILIBILI_DEFAULT_COOKIE_FILE).resolve()
+    if execute:
+        cookie_file.parent.mkdir(parents=True, exist_ok=True)
+        cookie_file.write_text(cookie_text + "\n", encoding="utf-8")
+    return {
+        "ok": True,
+        "kind": "start_service",
+        "action_id": "sync_bilibili_cookie",
+        "cookie_file": str(cookie_file),
+        "cookie_count": len(cookies),
+        "has_sessdata": True,
+        "executed": execute,
+    }
 
 
 def platform_url_for_runtime_id(runtime_id: str) -> str:
@@ -178,7 +416,7 @@ def maintenance_action_for_error(site_id: str, error: str) -> str:
     return "检查该源的地址、网络、接口返回和 sources.config.json 配置。"
 
 
-def maintenance_issues_from_status(payload: dict[str, Any]) -> list[dict[str, Any]]:
+def maintenance_issues_from_status(payload: dict[str, Any], root_dir: Path | None = None) -> list[dict[str, Any]]:
     issues: list[dict[str, Any]] = []
     sites = [site for site in payload.get("sites", []) if isinstance(site, dict)]
     for site in sites:
@@ -198,7 +436,7 @@ def maintenance_issues_from_status(payload: dict[str, Any]) -> list[dict[str, An
                 f"{name} 抓取失败",
                 error or "本轮没有成功返回数据。",
                 maintenance_action_for_error(site_id, error),
-                wewe_fix_actions(include_start=True) if site_id == "wewe_rss" else bilibili_fix_actions() if site_id == "bilibili_dynamic" else [],
+                wewe_fix_actions(include_start=True) if site_id == "wewe_rss" else bilibili_fix_actions(root_dir) if site_id == "bilibili_dynamic" else [],
             )
         elif site.get("ok") is True and int(site.get("item_count") or 0) == 0:
             add_maintenance_issue(
@@ -221,7 +459,7 @@ def maintenance_issues_from_status(payload: dict[str, Any]) -> list[dict[str, An
                     "B站 cookie 未配置",
                     "当前走公开接口兜底，可能拿不到完整动态。",
                     "如需完整动态，重新导出 B站 cookie 并通过环境变量或本地 cookie 文件配置；不要提交 cookie。",
-                    bilibili_fix_actions(),
+                    bilibili_fix_actions(root_dir),
                 )
             for account in site.get("accounts") or []:
                 if isinstance(account, dict) and account.get("ok") is False:
@@ -233,7 +471,7 @@ def maintenance_issues_from_status(payload: dict[str, Any]) -> list[dict[str, An
                         f"B站账号 {account.get('source_name') or account.get('uid')} 抓取失败",
                         str(account.get("error") or "账号级抓取失败。"),
                         "检查 UID 是否正确；如果 cookie 模式失败，重新导出 B站 cookie。",
-                        bilibili_fix_actions(),
+                        bilibili_fix_actions(root_dir),
                     )
 
         if site_id == "wewe_rss":
@@ -914,6 +1152,18 @@ def refresh_command(root_dir: Path) -> list[str]:
     ]
 
 
+def refresh_env(root_dir: Path) -> dict[str, str]:
+    env = os.environ.copy()
+    cookie_status = bilibili_cookie_status(root_dir)
+    if (
+        cookie_status.get("cookie_file_exists")
+        and not str(env.get("BILIBILI_COOKIE_FILE") or env.get("BILIBILI_DYNAMIC_COOKIE_FILE") or "").strip()
+        and not str(env.get("BILIBILI_COOKIE") or env.get("BILIBILI_DYNAMIC_COOKIE") or "").strip()
+    ):
+        env["BILIBILI_COOKIE_FILE"] = str(cookie_status["cookie_file"])
+    return env
+
+
 def source_status_summary(root_dir: Path, source_config: dict[str, Any] | None = None) -> dict[str, Any]:
     config_issues = local_config_maintenance_issues(root_dir, source_config) if source_config else []
     payload = read_source_status(root_dir)
@@ -936,7 +1186,7 @@ def source_status_summary(root_dir: Path, source_config: dict[str, Any] | None =
             "issue_count": len(issues),
             "needs_attention": True,
         }
-    issues = dedupe_maintenance_issues([*maintenance_issues_from_status(payload), *config_issues])
+    issues = dedupe_maintenance_issues([*maintenance_issues_from_status(payload, root_dir), *config_issues])
     ok_sites = sum(1 for site in payload.get("sites", []) if isinstance(site, dict) and site.get("ok") is True)
     return {
         "generated_at": payload.get("generated_at"),
@@ -961,6 +1211,7 @@ def source_status_summary(root_dir: Path, source_config: dict[str, Any] | None =
             for site in payload.get("sites", [])
             if isinstance(site, dict)
         ],
+        "bilibili_cookie": bilibili_cookie_status(root_dir),
     }
 
 
@@ -1076,6 +1327,20 @@ def perform_maintenance_action(root_dir: Path, action_id: str, *, execute: bool 
         raw_path = str(action.get("path") or "").strip()
         if not raw_path:
             return {"ok": False, "error": "maintenance_action_path_missing"}
+        if action.get("id") == "open_bilibili_cookie_folder":
+            target = (root_dir / BILIBILI_DEFAULT_COOKIE_FILE.parent).resolve()
+            target.mkdir(parents=True, exist_ok=True)
+            if execute:
+                launch_open_path(target)
+            return {
+                "ok": True,
+                "kind": kind,
+                "action_id": action.get("id"),
+                "label": action.get("label"),
+                "opened_path": str(target),
+                "recommended_cookie_file": str(root_dir / BILIBILI_DEFAULT_COOKIE_FILE),
+                "executed": execute,
+            }
         target = existing_open_target(Path(raw_path))
         if not target:
             return {"ok": False, "error": "maintenance_action_path_not_found", "path": raw_path}
@@ -1100,6 +1365,10 @@ def perform_maintenance_action(root_dir: Path, action_id: str, *, execute: bool 
         }
     if kind == "start_service":
         action_id = str(action.get("id") or "")
+        if action_id == "open_bilibili_login":
+            return launch_bilibili_dedicated_browser(root_dir, execute=execute)
+        if action_id == "sync_bilibili_cookie":
+            return sync_bilibili_cookie(root_dir, execute=execute)
         if action_id == "start_wewe_rss_sidecar":
             return start_wewe_rss_sidecar(root_dir, execute=execute)
         if action_id == "start_mediacrawler_douyin":
@@ -1237,6 +1506,7 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
             result = subprocess.run(
                 refresh_command(self.root_dir),
                 cwd=self.root_dir,
+                env=refresh_env(self.root_dir),
                 capture_output=True,
                 text=True,
                 timeout=REFRESH_TIMEOUT_SECONDS,

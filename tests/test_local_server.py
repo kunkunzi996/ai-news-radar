@@ -4,6 +4,10 @@ from pathlib import Path
 
 from scripts.local_server import (
     CONFIG_FILENAME,
+    BILIBILI_DEFAULT_COOKIE_FILE,
+    BILIBILI_PROFILE_DIR,
+    bilibili_cookie_status,
+    launch_bilibili_dedicated_browser,
     local_config_maintenance_issues,
     local_status_payload,
     maintenance_issues_from_status,
@@ -11,6 +15,8 @@ from scripts.local_server import (
     mediacrawler_xhs_collector_status,
     perform_maintenance_action,
     refresh_command,
+    refresh_env,
+    sync_bilibili_cookie,
     start_mediacrawler_douyin,
     start_mediacrawler_xhs,
     start_wewe_rss_sidecar,
@@ -74,7 +80,70 @@ class LocalServerTests(unittest.TestCase):
         self.assertEqual(issues[0]["id"], "bilibili_cookie_missing")
         self.assertEqual(issues[0]["severity"], "warn")
         self.assertIn("cookie", issues[0]["title"].lower())
-        self.assertEqual(issues[0]["fix_actions"][0]["id"], "open_bilibili_login")
+        action_ids = [action["id"] for action in issues[0]["fix_actions"]]
+        self.assertIn("open_bilibili_login", action_ids)
+        self.assertIn("sync_bilibili_cookie", action_ids)
+        self.assertIn("open_bilibili_cookie_folder", action_ids)
+
+    def test_bilibili_cookie_status_uses_default_local_file(self):
+        root = Path(self.create_temp_dir())
+        cookie_file = root / BILIBILI_DEFAULT_COOKIE_FILE
+        cookie_file.parent.mkdir(parents=True)
+        cookie_file.write_text("SESSDATA=fake\n", encoding="utf-8")
+
+        status = bilibili_cookie_status(root)
+
+        self.assertTrue(status["configured"])
+        self.assertTrue(status["cookie_file_exists"])
+        self.assertEqual(Path(status["recommended_cookie_file"]), cookie_file)
+
+    def test_refresh_env_uses_default_bilibili_cookie_file_when_present(self):
+        import os
+
+        root = Path(self.create_temp_dir())
+        cookie_file = root / BILIBILI_DEFAULT_COOKIE_FILE
+        cookie_file.parent.mkdir(parents=True)
+        cookie_file.write_text("SESSDATA=fake\n", encoding="utf-8")
+        old_cookie_file = os.environ.pop("BILIBILI_COOKIE_FILE", None)
+        old_dynamic_cookie_file = os.environ.pop("BILIBILI_DYNAMIC_COOKIE_FILE", None)
+        old_cookie = os.environ.pop("BILIBILI_COOKIE", None)
+        old_dynamic_cookie = os.environ.pop("BILIBILI_DYNAMIC_COOKIE", None)
+        try:
+            env = refresh_env(root)
+        finally:
+            if old_cookie_file is not None:
+                os.environ["BILIBILI_COOKIE_FILE"] = old_cookie_file
+            if old_dynamic_cookie_file is not None:
+                os.environ["BILIBILI_DYNAMIC_COOKIE_FILE"] = old_dynamic_cookie_file
+            if old_cookie is not None:
+                os.environ["BILIBILI_COOKIE"] = old_cookie
+            if old_dynamic_cookie is not None:
+                os.environ["BILIBILI_DYNAMIC_COOKIE"] = old_dynamic_cookie
+
+        self.assertEqual(Path(env["BILIBILI_COOKIE_FILE"]), cookie_file)
+
+    def test_launch_bilibili_dedicated_browser_dry_run_uses_isolated_profile(self):
+        root = Path(self.create_temp_dir())
+
+        result = launch_bilibili_dedicated_browser(root, execute=False)
+
+        self.assertTrue(result["ok"])
+        self.assertFalse(result["executed"])
+        self.assertEqual(result["action_id"], "open_bilibili_login")
+        self.assertIn("--remote-debugging-address=127.0.0.1", result["command"])
+        self.assertIn(f"--user-data-dir={root / BILIBILI_PROFILE_DIR}", result["command"])
+        self.assertIn("https://passport.bilibili.com/login", result["command"])
+
+    def test_sync_bilibili_cookie_reports_missing_login_window(self):
+        from unittest.mock import patch
+
+        root = Path(self.create_temp_dir())
+
+        with patch("scripts.local_server.active_bilibili_cdp_port", return_value=None):
+            result = sync_bilibili_cookie(root, execute=False)
+
+        self.assertFalse(result["ok"])
+        self.assertEqual(result["error"], "bilibili_login_window_not_running")
 
     def test_maintenance_issues_explains_missing_mediacrawler_jsonl(self):
         issues = maintenance_issues_from_status(
@@ -443,6 +512,50 @@ class LocalServerTests(unittest.TestCase):
         self.assertTrue(result["ok"])
         self.assertEqual(result["kind"], "open_path")
         self.assertEqual(Path(result["opened_path"]), root)
+
+    def test_perform_maintenance_action_dry_run_creates_bilibili_cookie_folder(self):
+        root = Path(self.create_temp_dir())
+        (root / CONFIG_FILENAME).write_text(
+            json.dumps(
+                {
+                    "version": "1.0",
+                    "sources": [
+                        {
+                            "id": "bilibili_dynamic_sources",
+                            "name": "B站动态",
+                            "type": "bilibili_dynamic",
+                            "enabled": True,
+                        }
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
+        data_dir = root / "data"
+        data_dir.mkdir()
+        (data_dir / "source-status.json").write_text(
+            json.dumps(
+                {
+                    "sites": [
+                        {
+                            "site_id": "bilibili_dynamic",
+                            "site_name": "Bilibili Dynamic",
+                            "ok": True,
+                            "item_count": 2,
+                            "cookie_present": False,
+                        }
+                    ]
+                }
+            ),
+            encoding="utf-8",
+        )
+
+        result = perform_maintenance_action(root, "open_bilibili_cookie_folder", execute=False)
+
+        self.assertTrue(result["ok"])
+        self.assertEqual(result["kind"], "open_path")
+        self.assertEqual(Path(result["opened_path"]), root / BILIBILI_DEFAULT_COOKIE_FILE.parent)
+        self.assertEqual(Path(result["recommended_cookie_file"]), root / BILIBILI_DEFAULT_COOKIE_FILE)
 
     def create_temp_dir(self):
         import tempfile

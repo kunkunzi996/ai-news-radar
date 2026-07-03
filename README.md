@@ -342,6 +342,12 @@ $env:BILIBILI_COOKIE_FILE='C:\path\to\cookies.txt'
 成功走登录态时，`data/source-status.json` 中 `bilibili_dynamic.fetch_mode` 会是
 `cookie_full_dynamic`；多账号混合结果会在 `bilibili_dynamic.accounts` 里逐个记录。
 如果某个账号的 cookie 完整动态失败，会单账号回退到 `public_opus_fallback`。
+本地控制台的 B站维护卡片支持小号专用流程：点“打开B站小号登录”会启动
+`local-secrets/bilibili-profile` 这个独立 Chrome/Edge profile，不会复用你的日常
+浏览器主号。登录小号后点“同步cookie”，本地服务会通过本机 CDP 读取这个专用
+profile 的 B站 cookie，并写入 `local-secrets/bilibili-cookies.txt`；再点“执行采集”
+即可自动作为 `BILIBILI_COOKIE_FILE` 使用。`local-secrets/` 已加入 `.gitignore`，
+不要把 cookie 内容复制进聊天或提交到仓库。
 需要往更早日期翻页时，可以调大 `BILIBILI_DYNAMIC_MAX_ITEMS` 和
 `BILIBILI_DYNAMIC_MAX_PAGES`，例如每个账号最多抓 80 条、最多翻 8 页：
 
