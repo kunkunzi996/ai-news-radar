@@ -38,6 +38,8 @@ const state = {
   xAuthorsExpanded: false,
   sourceConfig: null,
   sourceConfigSelectedId: "",
+  sourceConfigFilter: "all",
+  localOpsStatus: null,
 };
 
 const statsEl = document.getElementById("stats");
@@ -84,6 +86,7 @@ const sectionSummaryEl = document.getElementById("sectionSummary");
 const topStoriesTitleEl = document.getElementById("topStoriesTitle");
 const listSortToolsEl = document.getElementById("listSortTools");
 const sourceConfigSummaryEl = document.getElementById("sourceConfigSummary");
+const sourceConfigFiltersEl = document.getElementById("sourceConfigFilters");
 const sourceConfigListEl = document.getElementById("sourceConfigList");
 const sourceConfigFormEl = document.getElementById("sourceConfigForm");
 const sourceConfigIdEl = document.getElementById("sourceConfigId");
@@ -100,12 +103,16 @@ const sourceConfigDeleteBtnEl = document.getElementById("sourceConfigDeleteBtn")
 const sourceConfigResetBtnEl = document.getElementById("sourceConfigResetBtn");
 const sourceConfigApplyBtnEl = document.getElementById("sourceConfigApplyBtn");
 const sourceConfigRefreshBtnEl = document.getElementById("sourceConfigRefreshBtn");
+const sourceConfigCheckBtnEl = document.getElementById("sourceConfigCheckBtn");
 const sourceConfigExportBtnEl = document.getElementById("sourceConfigExportBtn");
 const sourceConfigCopyBtnEl = document.getElementById("sourceConfigCopyBtn");
 const sourceConfigImportBtnEl = document.getElementById("sourceConfigImportBtn");
 const sourceConfigFileInputEl = document.getElementById("sourceConfigFileInput");
 const sourceConfigJsonEl = document.getElementById("sourceConfigJson");
 const sourceConfigStatusEl = document.getElementById("sourceConfigStatus");
+const localOpsStatusEl = document.getElementById("localOpsStatus");
+const localOpsSummaryEl = document.getElementById("localOpsSummary");
+const localOpsIssuesEl = document.getElementById("localOpsIssues");
 
 const SOURCE_KINDS = {
   official_ai: { label: "官方", tone: "official" },
@@ -171,6 +178,17 @@ const LIST_SORT_DEFS = [
 
 const SOURCE_CONFIG_STORAGE_KEY = "ai-news-radar-source-config-v1";
 const SOURCE_CONFIG_CATALOG_VERSION = "2026-07-02-builtin-sources";
+const SOURCE_CONFIG_FILTERS = [
+  { id: "all", label: "全部" },
+  { id: "enabled", label: "启用" },
+  { id: "attention", label: "需维护" },
+  { id: "wechat", label: "公众号" },
+  { id: "xhs", label: "小红书" },
+  { id: "douyin", label: "抖音" },
+  { id: "bilibili", label: "B站" },
+  { id: "rss", label: "RSS" },
+  { id: "github", label: "GitHub" },
+];
 
 function sourceConfigSeedSources() {
   return [
@@ -627,6 +645,122 @@ function setSourceConfigStatus(message, tone = "") {
   sourceConfigStatusEl.className = `source-config-status${tone ? ` ${tone}` : ""}`;
 }
 
+function setLocalOpsStatus(message, tone = "") {
+  if (!localOpsStatusEl) return;
+  localOpsStatusEl.textContent = message || "";
+  localOpsStatusEl.className = tone || "";
+}
+
+function localOpsMetric(label, value, tone = "") {
+  const node = document.createElement("div");
+  node.className = `local-ops-metric${tone ? ` ${tone}` : ""}`;
+  const strong = document.createElement("strong");
+  strong.textContent = value;
+  const span = document.createElement("span");
+  span.textContent = label;
+  node.append(strong, span);
+  return node;
+}
+
+function renderLocalOpsStatus(payload = null) {
+  if (!localOpsSummaryEl || !localOpsIssuesEl) return;
+  localOpsSummaryEl.innerHTML = "";
+  localOpsIssuesEl.innerHTML = "";
+  const sourceStatus = payload?.source_status || payload?.summary || {};
+  const sourceConfig = payload?.source_config || {};
+  const issues = Array.isArray(sourceStatus.maintenance_issues) ? sourceStatus.maintenance_issues : [];
+  const enabled = Number(sourceConfig.enabled_source_count ?? (state.sourceConfig?.sources || []).filter((source) => source.enabled !== false).length ?? 0);
+  const total = Number(sourceConfig.source_count ?? (state.sourceConfig?.sources || []).length ?? 0);
+  const siteCount = Number(sourceStatus.site_count || (sourceStatus.sites || []).length || 0);
+  const okSites = Number(sourceStatus.successful_sites || (sourceStatus.sites || []).filter((site) => site.ok).length || 0);
+  const fetched = Number(sourceStatus.fetched_raw_items || 0);
+  const generatedAt = sourceStatus.generated_at ? fmtTime(sourceStatus.generated_at) : "未生成";
+  const issueTone = issues.some((issue) => issue.severity === "bad") ? "bad" : (issues.length ? "warn" : "ok");
+
+  localOpsSummaryEl.append(
+    localOpsMetric("启用订阅", `${fmtNumber(enabled)}/${fmtNumber(total)}`),
+    localOpsMetric("源状态", siteCount ? `${fmtNumber(okSites)}/${fmtNumber(siteCount)}` : "未生成", siteCount && okSites === siteCount ? "ok" : "warn"),
+    localOpsMetric("本轮采集", fmtNumber(fetched)),
+    localOpsMetric("最近刷新", generatedAt),
+    localOpsMetric("维护项", fmtNumber(issues.length), issueTone)
+  );
+
+  if (payload?.refresh_running) {
+    setLocalOpsStatus("采集中", "warn");
+  } else if (!sourceStatus.generated_at && !issues.length) {
+    setLocalOpsStatus("等待状态", "");
+  } else if (issues.some((issue) => issue.severity === "bad")) {
+    setLocalOpsStatus("需要处理", "bad");
+  } else if (issues.length) {
+    setLocalOpsStatus("需要关注", "warn");
+  } else {
+    setLocalOpsStatus("状态正常", "ok");
+  }
+
+  if (!issues.length) {
+    const empty = document.createElement("div");
+    empty.className = "local-ops-empty";
+    empty.textContent = "当前没有需要维护的渠道";
+    localOpsIssuesEl.appendChild(empty);
+    return;
+  }
+
+  issues.slice(0, 8).forEach((issue) => {
+    const card = document.createElement("article");
+    card.className = `local-ops-issue ${issue.severity || "warn"}`;
+    const title = document.createElement("strong");
+    title.textContent = issue.title || issue.id || "需要维护";
+    const detail = document.createElement("span");
+    detail.textContent = issue.detail || "";
+    const action = document.createElement("em");
+    action.textContent = issue.action || "";
+    card.append(title, detail, action);
+    if (issue.source_id && (state.sourceConfig?.sources || []).some((source) => sourceConfigRuntimeIds(source).has(issue.source_id))) {
+      const locate = document.createElement("button");
+      locate.type = "button";
+      locate.className = "local-ops-locate";
+      locate.textContent = "定位信源";
+      locate.addEventListener("click", () => selectSourceConfigByRuntimeId(issue.source_id));
+      card.appendChild(locate);
+    }
+    localOpsIssuesEl.appendChild(card);
+  });
+}
+
+async function loadLocalStatusFromServer(showErrors = false) {
+  if (!localOpsSummaryEl) return null;
+  try {
+    const res = await fetch("./api/local-status", {
+      headers: { Accept: "application/json" },
+      cache: "no-store",
+    });
+    const payload = await res.json().catch(() => ({}));
+    if (!res.ok || payload.ok === false) {
+      throw new Error(payload.error || `HTTP ${res.status}`);
+    }
+    state.localOpsStatus = payload;
+    renderLocalOpsStatus(payload);
+    renderSourceConfig();
+    return payload;
+  } catch (err) {
+    if (showErrors) {
+      setLocalOpsStatus("本地后台未连接", "bad");
+      localOpsIssuesEl.innerHTML = "";
+      const card = document.createElement("article");
+      card.className = "local-ops-issue bad";
+      const title = document.createElement("strong");
+      title.textContent = "无法读取本地采集状态";
+      const detail = document.createElement("span");
+      detail.textContent = err?.message || "unknown error";
+      const action = document.createElement("em");
+      action.textContent = "请用 scripts/local_server.py 启动本地后台。";
+      card.append(title, detail, action);
+      localOpsIssuesEl.appendChild(card);
+    }
+    return null;
+  }
+}
+
 function setSourceConfigButton(button, label, disabled = false) {
   if (!button) return;
   button.textContent = label;
@@ -647,6 +781,72 @@ function sourceConfigJsonText() {
 
 function syncSourceConfigJson() {
   if (sourceConfigJsonEl) sourceConfigJsonEl.value = sourceConfigJsonText();
+}
+
+function sourceConfigRuntimeIds(source) {
+  const rawId = String(source?.id || "").toLowerCase();
+  const type = String(source?.type || "").toLowerCase();
+  const channel = String(source?.channel || "").toLowerCase();
+  const target = String(source?.target || "").toLowerCase();
+  const locator = String(source?.locator || "").toLowerCase();
+  const hay = `${rawId} ${type} ${channel} ${target} ${locator}`;
+  const ids = new Set();
+  if (rawId === "aihot" || type === "aihot") ids.add("aihot");
+  if (rawId.includes("github_foundation_sunshine") || type === "github_release") ids.add("github_foundation_sunshine_releases");
+  if (rawId.includes("maobidao_wudaolu")) ids.add("maobidao_wudaolu_backup");
+  if (type === "wewe_rss" || hay.includes("wewe") || hay.includes("公众号")) ids.add("wewe_rss");
+  if (type === "bilibili_dynamic" || hay.includes("bilibili") || hay.includes("b站")) ids.add("bilibili_dynamic");
+  if (type === "mediacrawler_jsonl" && (hay.includes("xhs") || hay.includes("xiaohongshu") || hay.includes("小红书"))) ids.add("mediacrawler_xhs");
+  if (type === "mediacrawler_jsonl" && (hay.includes("douyin") || hay.includes("抖音"))) ids.add("mediacrawler_douyin");
+  if (rawId === "opmlrss" || hay.includes("follow.opml") || channel.includes("opml")) ids.add("opmlrss");
+  if (type === "xapi") ids.add("xapi");
+  if (type === "socialdata_x") ids.add("socialdata_x");
+  if (type === "tikhub_douyin") ids.add("tikhub_douyin");
+  return ids;
+}
+
+function localOpsIssues() {
+  const issues = state.localOpsStatus?.source_status?.maintenance_issues;
+  return Array.isArray(issues) ? issues : [];
+}
+
+function issueSeverityForSource(source) {
+  const runtimeIds = sourceConfigRuntimeIds(source);
+  const matched = localOpsIssues().filter((issue) => runtimeIds.has(String(issue.source_id || "")) || String(issue.id || "").includes(String(source?.id || "")));
+  if (matched.some((issue) => issue.severity === "bad")) return "bad";
+  if (matched.length) return "warn";
+  return "";
+}
+
+function sourceConfigPlatformKey(source) {
+  const hay = `${source?.id || ""} ${source?.type || ""} ${source?.channel || ""} ${source?.target || ""} ${source?.locator || ""}`.toLowerCase();
+  if (hay.includes("公众号") || hay.includes("wewe") || hay.includes("wechat")) return "wechat";
+  if (hay.includes("小红书") || hay.includes("xhs") || hay.includes("xiaohongshu")) return "xhs";
+  if (hay.includes("抖音") || hay.includes("douyin")) return "douyin";
+  if (hay.includes("b站") || hay.includes("bilibili")) return "bilibili";
+  if (hay.includes("github")) return "github";
+  if (hay.includes("rss") || hay.includes("opml") || String(source?.type || "") === "rss") return "rss";
+  return "other";
+}
+
+function sourceConfigMatchesFilter(source) {
+  const filter = state.sourceConfigFilter || "all";
+  if (filter === "all") return true;
+  if (filter === "enabled") return source.enabled !== false;
+  if (filter === "attention") return Boolean(issueSeverityForSource(source));
+  return sourceConfigPlatformKey(source) === filter;
+}
+
+function selectSourceConfigByRuntimeId(runtimeId) {
+  const sources = state.sourceConfig?.sources || [];
+  const source = sources.find((item) => sourceConfigRuntimeIds(item).has(runtimeId));
+  if (!source) return false;
+  state.sourceConfigFilter = "all";
+  state.sourceConfigSelectedId = source.id;
+  renderSourceConfig();
+  sourceConfigFormEl?.scrollIntoView({ behavior: "smooth", block: "center" });
+  setSourceConfigStatus(`已定位到 ${source.name}`, "ok");
+  return true;
 }
 
 async function loadSourceConfigFromLocalServer() {
@@ -733,6 +933,9 @@ async function refreshNewsDataFromLocalServer() {
     const sites = payload.summary?.sites || [];
     const okSites = sites.filter((site) => site.ok).length;
     const totalItems = Number(payload.summary?.fetched_raw_items || 0);
+    state.localOpsStatus = { source_config: state.localOpsStatus?.source_config || {}, source_status: payload.summary };
+    renderLocalOpsStatus(state.localOpsStatus);
+    renderSourceConfig();
     setSourceConfigStatus(`刷新完成：${okSites}/${sites.length} 个源正常，抓到 ${fmtNumber(totalItems)} 条；页面即将重载。`, "ok");
     setSourceConfigButton(sourceConfigRefreshBtnEl, "已刷新", true);
     window.setTimeout(() => window.location.reload(), 1400);
@@ -740,7 +943,8 @@ async function refreshNewsDataFromLocalServer() {
     const message = err?.message || "unknown error";
     setSourceConfigStatus(`刷新失败：${message}`, "bad");
     setSourceConfigButton(sourceConfigRefreshBtnEl, "刷新失败", true);
-    restoreSourceConfigButton(sourceConfigRefreshBtnEl, "刷新数据");
+    restoreSourceConfigButton(sourceConfigRefreshBtnEl, "执行采集");
+    loadLocalStatusFromServer(false);
   }
 }
 
@@ -776,11 +980,11 @@ function fillSourceConfigForm(source) {
 function renderSourceConfigList() {
   if (!sourceConfigListEl || !state.sourceConfig) return;
   sourceConfigListEl.innerHTML = "";
-  const sources = state.sourceConfig.sources || [];
+  const sources = (state.sourceConfig.sources || []).filter(sourceConfigMatchesFilter);
   if (!sources.length) {
     const empty = document.createElement("div");
     empty.className = "source-config-empty";
-    empty.textContent = "暂无信源";
+    empty.textContent = state.sourceConfigFilter === "attention" ? "当前没有需要维护的信源" : "暂无信源";
     sourceConfigListEl.appendChild(empty);
     return;
   }
@@ -789,10 +993,13 @@ function renderSourceConfigList() {
     button.type = "button";
     button.className = "source-config-source";
     if (source.id === state.sourceConfigSelectedId) button.classList.add("active");
+    const severity = issueSeverityForSource(source);
+    if (severity) button.classList.add(severity === "bad" ? "bad" : "warn");
     const title = document.createElement("strong");
     title.textContent = source.name;
     const meta = document.createElement("span");
-    meta.textContent = [source.channel || source.type, source.enabled === false ? "停用" : "启用"].filter(Boolean).join(" · ");
+    const statusText = severity ? (severity === "bad" ? "需处理" : "需关注") : (source.enabled === false ? "停用" : "启用");
+    meta.textContent = [source.channel || source.type, statusText].filter(Boolean).join(" · ");
     button.append(title, meta);
     button.addEventListener("click", () => {
       state.sourceConfigSelectedId = source.id;
@@ -807,7 +1014,34 @@ function renderSourceConfigSummary() {
   if (!sourceConfigSummaryEl || !state.sourceConfig) return;
   const sources = state.sourceConfig.sources || [];
   const enabled = sources.filter((source) => source.enabled !== false).length;
-  sourceConfigSummaryEl.textContent = `${fmtNumber(enabled)}/${fmtNumber(sources.length)} 启用`;
+  const attention = sources.filter((source) => issueSeverityForSource(source)).length;
+  sourceConfigSummaryEl.textContent = attention
+    ? `${fmtNumber(enabled)}/${fmtNumber(sources.length)} 启用 · ${fmtNumber(attention)} 需维护`
+    : `${fmtNumber(enabled)}/${fmtNumber(sources.length)} 启用`;
+}
+
+function renderSourceConfigFilters() {
+  if (!sourceConfigFiltersEl || !state.sourceConfig) return;
+  sourceConfigFiltersEl.innerHTML = "";
+  const sources = state.sourceConfig.sources || [];
+  SOURCE_CONFIG_FILTERS.forEach((filter) => {
+    const count = sources.filter((source) => {
+      if (filter.id === "all") return true;
+      if (filter.id === "enabled") return source.enabled !== false;
+      if (filter.id === "attention") return Boolean(issueSeverityForSource(source));
+      return sourceConfigPlatformKey(source) === filter.id;
+    }).length;
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "source-config-filter";
+    if ((state.sourceConfigFilter || "all") === filter.id) button.classList.add("active");
+    button.textContent = `${filter.label} ${fmtNumber(count)}`;
+    button.addEventListener("click", () => {
+      state.sourceConfigFilter = filter.id;
+      renderSourceConfig();
+    });
+    sourceConfigFiltersEl.appendChild(button);
+  });
 }
 
 function renderSourceConfig() {
@@ -818,6 +1052,7 @@ function renderSourceConfig() {
     state.sourceConfigSelectedId = sources[0]?.id || "";
   }
   renderSourceConfigSummary();
+  renderSourceConfigFilters();
   renderSourceConfigList();
   fillSourceConfigForm(selectedSourceConfig());
   syncSourceConfigJson();
@@ -3896,7 +4131,9 @@ async function init() {
   }
 
   renderSourceConfig();
+  renderLocalOpsStatus({ source_status: state.sourceStatus || {} });
   loadSourceConfigFromLocalServer();
+  loadLocalStatusFromServer(false);
   document.dispatchEvent(new CustomEvent("aiRadar:ready"));
 }
 
@@ -4063,6 +4300,13 @@ if (sourceConfigApplyBtnEl) {
 
 if (sourceConfigRefreshBtnEl) {
   sourceConfigRefreshBtnEl.addEventListener("click", refreshNewsDataFromLocalServer);
+}
+
+if (sourceConfigCheckBtnEl) {
+  sourceConfigCheckBtnEl.addEventListener("click", () => {
+    setLocalOpsStatus("检查中", "warn");
+    loadLocalStatusFromServer(true);
+  });
 }
 
 if (sourceConfigExportBtnEl) {

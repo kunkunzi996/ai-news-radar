@@ -238,13 +238,15 @@ python scripts/update_news.py --output-dir data --window-hours 24 --rss-opml fee
 
 线上页面右上角显示的“更新时间”来自 `data/latest-24h.json` 的 `generated_at`。如果页面长时间停在旧时间，优先检查 GitHub Actions 最近一次 `Update AI News Snapshot` 是否运行、是否有抓取错误、以及仓库 Pages 是否部署到包含最新 `data/` 提交的分支。
 
-主页面内置一个静态“信源配置”面板，用于维护本地配置草稿。它支持新增、
-编辑、停用、删除信源，并可以导入/导出 `sources.config.json`。如果使用
-`scripts/local_server.py` 启动本地页面，面板里的“写入”按钮会把当前配置
-直接保存到项目根目录的 `sources.config.json`，“刷新数据”按钮会先写入配置，
-再触发一次固定的本地刷新脚本。这个本地后台只绑定 `127.0.0.1`，只允许写这
-一个配置文件，只运行项目内固定刷新命令，不会保存 cookie、token、`.env`、
-微信登录态或浏览器 profile。
+主页面内置一个本地采集控制台和“信源配置”面板，用于维护本地配置草稿。
+它支持新增、编辑、停用、删除信源，并可以导入/导出 `sources.config.json`。
+如果使用 `scripts/local_server.py` 启动本地页面，面板里的“写入”按钮会把
+当前配置直接保存到项目根目录的 `sources.config.json`，“执行采集”按钮会
+先写入配置，再触发一次固定的本地刷新脚本。“检查状态”会读取
+`/api/local-status`，把 `data/source-status.json` 里的异常翻译成维护提示，
+例如 B站 cookie 缺失、MediaCrawler JSONL 路径不存在、WeWe RSS feed 失败等。
+这个本地后台只绑定 `127.0.0.1`，只允许写这一个配置文件，只运行项目内固定
+刷新命令，不会保存 cookie、token、`.env`、微信登录态或浏览器 profile。
 
 推荐流程：
 
@@ -257,17 +259,20 @@ python scripts/update_news.py --output-dir data --window-hours 24 --rss-opml fee
 2. 打开 `http://127.0.0.1:8080/`，在“信源配置”里修改启用/停用。
 3. 点“写入”，生成或覆盖根目录 `sources.config.json`（该文件已加入
    `.gitignore`，默认不提交）。按钮会显示“写入中... / 已写入 / 写入失败”。
-4. 点“刷新数据”即可一键写入配置并刷新 `data/*.json`，完成后页面会自动重载。
+4. 点“检查状态”查看哪些渠道需要维护；维护提示里的“定位信源”会跳回对应配置项。
+5. 用信源列表上方的筛选按钮按“启用 / 需维护 / 公众号 / 小红书 / 抖音 / B站 / RSS / GitHub”查看订阅。
+6. 点“执行采集”即可一键写入配置并刷新 `data/*.json`，完成后页面会自动重载。
    如果想在命令行里手动刷新，也可以显式运行：
 
    ```powershell
    .\.venv\Scripts\python.exe scripts/update_news.py --source-config sources.config.json --output-dir data --window-hours 24 --archive-days 3650 --all-time
    ```
 
-5. 检查 `data/source-status.json`，其中 `source_config.active=true` 表示配置文件已生效。
+7. 检查 `data/source-status.json`，其中 `source_config.active=true` 表示配置文件已生效。
 
 如果仍用 `python -m http.server 8080`，页面没有写文件接口，“写入”会失败；
-此时可以继续使用“导出/复制”作为兜底。
+“检查状态”和“执行采集”也无法连接本地后台；此时可以继续使用“导出/复制”
+作为兜底。
 
 没有 `sources.config.json` 时，刷新脚本仍沿用原来的默认范围
 `tested_creator_sources`。

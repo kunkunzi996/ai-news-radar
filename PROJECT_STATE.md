@@ -2,6 +2,17 @@
 
 ## Current State
 
+- Date: 2026-07-03
+- Local path: `E:\AI-news-reader\ai-news-radar-run`
+- Branch: `feature/local-trigger-console`
+- Task type: Local trigger console
+- Server: `http://127.0.0.1:8080/`
+- Current local view: the source configuration panel is being upgraded into a local collection console. The page now has a local collection status panel, an `执行采集` button, and a `检查状态` button. `scripts/local_server.py` exposes `GET /api/local-status` so the page can show maintenance hints from `data/source-status.json` without reading cookies, login state, WeWe RSS database files, or MediaCrawler browser profiles.
+- Local maintenance hints currently cover failed sources, zero-item sources, missing Bilibili cookie/full-dynamic fallback, failed WeWe RSS feeds, invalid `sources.config.json`, and missing source-status output.
+- Source management now supports local UI filters for all/enabled/needs-maintenance and key platforms: WeChat public accounts, Xiaohongshu, Douyin, Bilibili, RSS, and GitHub. Maintenance cards can locate the matching source config record.
+
+## Previous State
+
 - Date: 2026-07-02
 - Local path: `E:\AI-news-reader\ai-news-radar-run`
 - Branch: `master`

@@ -1004,6 +1004,161 @@ summary:focus-visible {
   opacity: 0.68;
 }
 
+.local-ops-panel {
+  display: grid;
+  gap: 10px;
+  margin: 12px 14px 0;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  padding: 12px;
+  background: var(--surface-soft);
+}
+
+.local-ops-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.local-ops-head strong {
+  font-size: 13px;
+}
+
+.local-ops-head span {
+  min-height: 24px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px 9px;
+  color: var(--muted);
+  background: var(--surface);
+  font-size: 12px;
+  font-weight: 760;
+}
+
+.local-ops-head span.ok {
+  color: var(--good);
+  border-color: rgba(31, 122, 77, 0.22);
+  background: rgba(31, 122, 77, 0.07);
+}
+
+.local-ops-head span.warn {
+  color: var(--warn);
+  border-color: rgba(154, 103, 0, 0.22);
+  background: rgba(154, 103, 0, 0.08);
+}
+
+.local-ops-head span.bad {
+  color: var(--bad);
+  border-color: rgba(180, 35, 24, 0.22);
+  background: rgba(180, 35, 24, 0.07);
+}
+
+.local-ops-summary {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.local-ops-metric {
+  min-width: 0;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  padding: 9px;
+  background: var(--surface);
+}
+
+.local-ops-metric strong,
+.local-ops-metric span {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.local-ops-metric strong {
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.local-ops-metric span {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.local-ops-metric.ok strong {
+  color: var(--good);
+}
+
+.local-ops-metric.warn strong {
+  color: var(--warn);
+}
+
+.local-ops-metric.bad strong {
+  color: var(--bad);
+}
+
+.local-ops-issues {
+  display: grid;
+  gap: 8px;
+}
+
+.local-ops-empty {
+  color: var(--good);
+  font-size: 12px;
+  font-weight: 720;
+}
+
+.local-ops-issue {
+  display: grid;
+  gap: 4px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  padding: 9px 10px;
+  background: var(--surface);
+}
+
+.local-ops-issue.warn {
+  border-color: rgba(154, 103, 0, 0.22);
+  background: rgba(154, 103, 0, 0.05);
+}
+
+.local-ops-issue.bad {
+  border-color: rgba(180, 35, 24, 0.22);
+  background: rgba(180, 35, 24, 0.05);
+}
+
+.local-ops-issue strong {
+  color: var(--ink);
+  font-size: 12px;
+}
+
+.local-ops-issue span,
+.local-ops-issue em {
+  color: var(--muted);
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1.4;
+}
+
+.local-ops-issue em {
+  color: var(--ink-soft);
+}
+
+.local-ops-locate {
+  width: max-content;
+  min-height: 28px;
+  border: 1px solid rgba(18, 106, 115, 0.22);
+  border-radius: var(--radius);
+  padding: 0 9px;
+  color: var(--accent);
+  background: var(--surface);
+  font-size: 12px;
+  font-weight: 760;
+}
+
 .file-tool {
   position: relative;
   display: inline-flex;
@@ -1044,6 +1199,38 @@ summary:focus-visible {
   justify-content: space-between;
   border-bottom: 1px solid var(--line-soft);
   padding: 10px;
+}
+
+.source-config-filters {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--line-soft);
+  padding: 8px 10px;
+  scrollbar-width: none;
+}
+
+.source-config-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.source-config-filter {
+  flex: 0 0 auto;
+  min-height: 28px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0 9px;
+  color: var(--muted);
+  background: var(--surface);
+  font-size: 11px;
+  font-weight: 720;
+  white-space: nowrap;
+}
+
+.source-config-filter.active {
+  color: var(--accent);
+  border-color: rgba(18, 106, 115, 0.45);
+  background: rgba(18, 106, 115, 0.07);
 }
 
 .source-config-list {
@@ -1087,6 +1274,16 @@ summary:focus-visible {
 .source-config-source.active {
   border-color: rgba(18, 106, 115, 0.55);
   background: rgba(18, 106, 115, 0.07);
+}
+
+.source-config-source.warn {
+  border-color: rgba(154, 103, 0, 0.32);
+  background: rgba(154, 103, 0, 0.05);
+}
+
+.source-config-source.bad {
+  border-color: rgba(180, 35, 24, 0.32);
+  background: rgba(180, 35, 24, 0.05);
 }
 
 .source-config-form {
@@ -2787,6 +2984,14 @@ summary:focus-visible {
   .source-config-tools {
     width: 100%;
     justify-content: flex-start;
+  }
+
+  .local-ops-panel {
+    margin: 12px 10px 0;
+  }
+
+  .local-ops-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .source-config-body,

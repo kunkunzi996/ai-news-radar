@@ -1,7 +1,13 @@
 import unittest
 from pathlib import Path
 
-from scripts.local_server import CONFIG_FILENAME, refresh_command, validate_source_config
+from scripts.local_server import (
+    CONFIG_FILENAME,
+    local_status_payload,
+    maintenance_issues_from_status,
+    refresh_command,
+    validate_source_config,
+)
 
 
 class LocalServerTests(unittest.TestCase):
@@ -41,6 +47,90 @@ class LocalServerTests(unittest.TestCase):
         self.assertIn("--source-config", command)
         self.assertIn(CONFIG_FILENAME, command)
         self.assertIn("--all-time", command)
+
+    def test_maintenance_issues_warns_when_bilibili_cookie_is_missing(self):
+        issues = maintenance_issues_from_status(
+            {
+                "sites": [
+                    {
+                        "site_id": "bilibili_dynamic",
+                        "site_name": "Bilibili Dynamic",
+                        "ok": True,
+                        "item_count": 12,
+                        "cookie_present": False,
+                    }
+                ]
+            }
+        )
+
+        self.assertEqual(issues[0]["id"], "bilibili_cookie_missing")
+        self.assertEqual(issues[0]["severity"], "warn")
+        self.assertIn("cookie", issues[0]["title"].lower())
+
+    def test_maintenance_issues_explains_missing_mediacrawler_jsonl(self):
+        issues = maintenance_issues_from_status(
+            {
+                "sites": [
+                    {
+                        "site_id": "mediacrawler_xhs",
+                        "site_name": "MediaCrawler Xiaohongshu",
+                        "ok": False,
+                        "item_count": 0,
+                        "error": "mediacrawler_xhs_jsonl_not_found",
+                    }
+                ]
+            }
+        )
+
+        self.assertEqual(issues[0]["severity"], "bad")
+        self.assertIn("JSONL", issues[0]["action"])
+
+    def test_wewe_feed_failure_is_not_reported_twice(self):
+        issues = maintenance_issues_from_status(
+            {
+                "sites": [
+                    {
+                        "site_id": "wewe_rss",
+                        "site_name": "WeWe RSS",
+                        "ok": False,
+                        "item_count": 0,
+                        "error": "failed_wewe_rss_feeds:1",
+                        "feeds": [
+                            {
+                                "id": "MP_TEST",
+                                "name": "测试公众号",
+                                "ok": False,
+                                "error": "connection refused",
+                            }
+                        ],
+                    }
+                ]
+            }
+        )
+
+        self.assertEqual(len(issues), 1)
+        self.assertEqual(issues[0]["id"], "wewe_feed_MP_TEST_failed")
+
+    def test_local_status_payload_handles_missing_status_file(self):
+        root = Path(self.create_temp_dir())
+        (root / CONFIG_FILENAME).write_text(
+            '{"version":"1.0","sources":[{"id":"rss_one","name":"RSS One","enabled":true}]}',
+            encoding="utf-8",
+        )
+
+        payload = local_status_payload(root)
+
+        self.assertTrue(payload["ok"])
+        self.assertEqual(payload["source_config"]["enabled_source_count"], 1)
+        self.assertTrue(payload["source_status"]["needs_attention"])
+        self.assertEqual(payload["source_status"]["maintenance_issues"][0]["id"], "source_status_missing")
+
+    def create_temp_dir(self):
+        import tempfile
+
+        tmp = tempfile.TemporaryDirectory(prefix="ai-news-radar-local-server-test-")
+        self.addCleanup(tmp.cleanup)
+        return tmp.name
 
 
 if __name__ == "__main__":

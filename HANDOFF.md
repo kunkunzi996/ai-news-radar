@@ -1,6 +1,44 @@
 # HANDOFF.md
 
-## 当前最新交接：信源配置可本地写入并一键刷新
+## 当前最新交接：本地采集控制台第一版施工中
+
+- 日期：2026-07-03
+- 当前阶段：在 `feature/local-trigger-console` 上把已有“信源配置 + 本地刷新”升级成本地采集控制台。
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前分支：`feature/local-trigger-console`
+- 本轮已实现：
+  - `scripts/local_server.py` 新增 `GET /api/local-status`。
+  - 本地状态会读取 `sources.config.json` 和 `data/source-status.json`，输出启用信源数、采集状态和维护项。
+  - 新增维护诊断：失败源、0 条结果、B站 cookie 未配置、B站账号级失败、WeWe RSS feed 失败、`sources.config.json` 格式错误、`source-status.json` 缺失。
+  - 页面“信源配置”区新增“本地采集”状态面板。
+  - “刷新数据”改为“执行采集”，“检查状态”会读取本地维护诊断。
+  - 信源列表新增筛选：全部、启用、需维护、公众号、小红书、抖音、B站、RSS、GitHub。
+  - 维护提示新增“定位信源”，可跳到对应配置项；信源列表会标记需关注/需处理。
+  - WeWe RSS feed 失败提示已去重，不再同时显示总失败和单 feed 失败。
+  - README 和 `PROJECT_STATE.md` 已同步本地工具边界。
+- 当前边界：
+  - 不读取或保存 Cookie、token、`.env`、微信登录态、WeWe RSS 数据库、QR 登录文件、MediaCrawler profile。
+  - `/api/source-config` 仍只能写项目根目录 `sources.config.json`。
+  - `/api/refresh` 仍只能运行固定刷新命令，不能由前端传任意命令。
+- 已验证：
+  - `.\.venv\Scripts\python.exe -m py_compile scripts\local_server.py scripts\update_news.py`
+  - `.\.venv\Scripts\python.exe -m unittest tests.test_local_server`
+  - `node --check assets\app.js`
+  - `GET http://127.0.0.1:8080/api/local-status` 返回 HTTP 200，当前维护项为 `bilibili_cookie_missing`。
+  - `GET http://127.0.0.1:8080/index.html` 包含 `sourceConfigCheckBtn`、`localOpsStatus`、`localOpsSummary`、`执行采集`。
+  - 2026-07-03 继续开发后，`GET /api/local-status` 返回 2 个维护项：`wewe_feed_MP_WXS_3198966508_failed` 和 `bilibili_cookie_missing`。
+  - 浏览器 DOM 曾验证到筛选条：`全部 14`、`启用 8`、`需维护 2`、`公众号 1`、`小红书 1`、`抖音 1`、`B站 1`、`RSS 6`、`GitHub 1`，且 `定位信源` 出现；后续一次浏览器自动化刷新超时，HTTP 验证仍通过。
+- 下一步建议：
+  - 跑一次完整 `git diff --check` 和相关单测。
+  - 通过浏览器打开 `http://127.0.0.1:8080/`，展开“信源配置”，确认本地采集状态面板和维护提示可见。
+  - 如要进一步增强，可把 MediaCrawler / WeWe RSS 的启动检测做成更细的本地只读探针。
+- 下一轮禁止：
+  - 不要批量删除。
+  - 不要提交 Cookie、登录态、`.env`、wewe-rss 数据库、QR 登录文件、浏览器 profile 或私有 token。
+  - 不要把所有 dirty 文件一股脑提交。
+  - 不要把 `/api/refresh` 扩展成前端可传任意命令。
+
+## 历史交接：信源配置可本地写入并一键刷新
 
 - 日期：2026-07-02
 - 用户选择：方案 1，在当前 `master` 上做静态配置编辑器。
