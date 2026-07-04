@@ -43,6 +43,7 @@ const state = {
   youtubeSubscriptions: [],
   localOpsStatus: null,
   localOpsPollTimer: null,
+  oneClickActive: false,
 };
 
 const statsEl = document.getElementById("stats");
@@ -105,6 +106,7 @@ const sourceConfigSaveBtnEl = document.getElementById("sourceConfigSaveBtn");
 const sourceConfigAddBtnEl = document.getElementById("sourceConfigAddBtn");
 const sourceConfigDeleteBtnEl = document.getElementById("sourceConfigDeleteBtn");
 const sourceConfigResetBtnEl = document.getElementById("sourceConfigResetBtn");
+const oneClickCollectBtnEl = document.getElementById("oneClickCollectBtn");
 const sourceConfigRefreshBtnEl = document.getElementById("sourceConfigRefreshBtn");
 const sourceConfigCheckBtnEl = document.getElementById("sourceConfigCheckBtn");
 const sourceCollectionScopeSelectEl = document.getElementById("sourceCollectionScopeSelect");
@@ -1692,6 +1694,106 @@ function selectedCollectionScope() {
   return value;
 }
 
+const ONE_CLICK_PLATFORM_TIMEOUT_MS = 12 * 60 * 1000;
+const ONE_CLICK_POLL_MS = 3500;
+
+function sleepMs(ms) {
+  return new Promise((resolve) => window.setTimeout(resolve, ms));
+}
+
+async function startPlatformCollection(actionId) {
+  try {
+    const res = await fetch("./api/maintenance-action", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ action_id: actionId, collection_scope: selectedCollectionScope() }),
+    });
+    const payload = await res.json().catch(() => ({}));
+    if (!res.ok || payload.ok === false) {
+      return { ok: false, error: payload.error || `HTTP ${res.status}` };
+    }
+    return { ok: true };
+  } catch (err) {
+    return { ok: false, error: err?.message || "unknown error" };
+  }
+}
+
+async function waitForCollectorDone(runtimeId, startedAt) {
+  const deadline = Date.now() + ONE_CLICK_PLATFORM_TIMEOUT_MS;
+  let sawRunning = false;
+  await sleepMs(ONE_CLICK_POLL_MS);
+  while (Date.now() < deadline) {
+    const payload = await loadLocalStatusFromServer(false);
+    const collector = payload?.collectors?.[runtimeId];
+    if (collector) {
+      if (collector.running) sawRunning = true;
+      const finished = collector.completed && !collector.running;
+      const freshMs = collector.updated_at ? Date.parse(collector.updated_at) : 0;
+      if (finished && (sawRunning || (freshMs && freshMs >= startedAt - 1500))) {
+        return { done: true };
+      }
+    }
+    await sleepMs(ONE_CLICK_POLL_MS);
+  }
+  return { done: false, reason: "timeout" };
+}
+
+async function runOneClickCollect() {
+  if (state.oneClickActive) return;
+  state.oneClickActive = true;
+  setSourceConfigButton(oneClickCollectBtnEl, "一键采集中...", true);
+  setSourceConfigButton(sourceConfigRefreshBtnEl, "执行采集", true);
+
+  const abort = (message) => {
+    setSourceConfigStatus(`${message}（可稍后手动点“执行采集”继续）`, "bad");
+    restoreSourceConfigButton(oneClickCollectBtnEl, "一键采集");
+    restoreSourceConfigButton(sourceConfigRefreshBtnEl, "执行采集");
+    state.oneClickActive = false;
+    loadLocalStatusFromServer(false);
+  };
+
+  try {
+    setSourceConfigStatus("① 启动抖音采集...（弹出的采集窗口如提示登录，请扫码）", "warn");
+    const douyinStartedAt = Date.now();
+    const douyinStart = await startPlatformCollection("start_mediacrawler_douyin");
+    if (!douyinStart.ok) {
+      abort(`抖音启动失败：${douyinStart.error}`);
+      return;
+    }
+    const douyinDone = await waitForCollectorDone("mediacrawler_douyin", douyinStartedAt);
+    if (!douyinDone.done) {
+      abort("抖音采集未在规定时间内完成");
+      return;
+    }
+
+    setSourceConfigStatus("② 抖音已完成，启动小红书采集...（如提示登录，请扫码）", "warn");
+    const xhsStartedAt = Date.now();
+    const xhsStart = await startPlatformCollection("start_mediacrawler_xhs");
+    if (!xhsStart.ok) {
+      abort(`小红书启动失败：${xhsStart.error}`);
+      return;
+    }
+    const xhsDone = await waitForCollectorDone("mediacrawler_xhs", xhsStartedAt);
+    if (!xhsDone.done) {
+      abort("小红书采集未在规定时间内完成");
+      return;
+    }
+
+    setSourceConfigStatus("③ 两个平台采集完成，正在执行采集汇总...", "warn");
+    const refreshed = await refreshNewsDataFromLocalServer();
+    if (refreshed) {
+      setSourceConfigButton(oneClickCollectBtnEl, "已完成", true);
+    } else {
+      restoreSourceConfigButton(oneClickCollectBtnEl, "一键采集");
+    }
+  } catch (err) {
+    abort(`一键采集出错：${err?.message || "unknown error"}`);
+    return;
+  } finally {
+    state.oneClickActive = false;
+  }
+}
+
 async function refreshNewsDataFromLocalServer() {
   const collectionScope = selectedCollectionScope();
   const scopeLabel = collectionScope === "all" ? "全量" : "过去24小时";
@@ -1727,12 +1829,14 @@ async function refreshNewsDataFromLocalServer() {
     setSourceConfigStatus(`${scopeLabel}采集完成：${okSites}/${sites.length} 个源正常，读到 ${fmtNumber(totalItems)} 条；页面即将重载。`, "ok");
     setSourceConfigButton(sourceConfigRefreshBtnEl, "已完成", true);
     window.setTimeout(() => window.location.reload(), 1400);
+    return true;
   } catch (err) {
     const message = err?.message || "unknown error";
     setSourceConfigStatus(`采集失败：${message}`, "bad");
     setSourceConfigButton(sourceConfigRefreshBtnEl, "采集失败", true);
     restoreSourceConfigButton(sourceConfigRefreshBtnEl, "执行采集");
     loadLocalStatusFromServer(false);
+    return false;
   }
 }
 
@@ -5170,6 +5274,10 @@ if (sourceCollectionScopeSelectEl) {
     sourceCollectionScopeSelectEl.value = "24h";
   }
   sourceCollectionScopeSelectEl.addEventListener("change", selectedCollectionScope);
+}
+
+if (oneClickCollectBtnEl) {
+  oneClickCollectBtnEl.addEventListener("click", runOneClickCollect);
 }
 
 if (sourceConfigRefreshBtnEl) {
