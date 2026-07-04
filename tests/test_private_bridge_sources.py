@@ -7,12 +7,16 @@ from unittest.mock import patch
 
 from scripts.update_news import (
     BROWSER_UA,
+    backfill_bilibili_archive_publish_times,
     bilibili_dynamic_accounts_from_env,
     bilibili_dynamic_item_title,
     bilibili_cookie_header_from_file_text,
+    fetch_bilibili_dynamic,
+    fetch_bilibili_opus_published_at,
     fetch_bilibili_full_dynamic,
     bilibili_wbi_keys,
     sign_bilibili_wbi_params,
+    parse_bilibili_detail_published_at,
     parse_bilibili_full_dynamic_items,
     parse_bilibili_dynamic_items,
     parse_mediacrawler_douyin_jsonl,
@@ -109,6 +113,33 @@ class PrivateBridgeSourceTests(unittest.TestCase):
         self.assertIsNone(items[0].published_at)
         self.assertEqual(items[0].meta["creator_metrics"]["like_count"], "4")
         self.assertEqual(items[0].meta["timestamp_source"], "first_seen_at")
+
+    def test_parse_bilibili_dynamic_items_uses_detail_publish_time(self):
+        payload = {
+            "code": 0,
+            "data": {
+                "items": [
+                    {
+                        "content": "2024新年快乐！",
+                        "jump_url": "//www.bilibili.com/opus/880862393292292098",
+                        "opus_id": "880862393292292098",
+                        "stat": {"like": "1896"},
+                    }
+                ]
+            },
+        }
+        published_at = datetime(2023, 12, 30, 9, 55, 58, tzinfo=timezone.utc)
+        items = parse_bilibili_dynamic_items(
+            payload,
+            now=datetime(2026, 7, 4, tzinfo=timezone.utc),
+            uid="4401694",
+            source_name="林亦LY",
+            max_items=20,
+            published_at_by_opus={"880862393292292098": published_at},
+        )
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0].published_at, published_at)
+        self.assertEqual(items[0].meta["timestamp_source"], "bilibili_opus_detail_pub_ts")
 
     def test_bilibili_dynamic_item_title_truncates_long_content(self):
         title = bilibili_dynamic_item_title("A" * 120, "123")
@@ -655,6 +686,190 @@ class PrivateBridgeSourceTests(unittest.TestCase):
         self.assertEqual(items[0].url, "https://www.bilibili.com/opus/987654321")
         self.assertEqual(items[0].meta["bilibili_dynamic_type"], "DYNAMIC_TYPE_WORD")
         self.assertEqual(items[0].meta["timestamp_source"], "bilibili_pub_ts")
+
+    def test_parse_bilibili_detail_published_at_accepts_module_author_dict(self):
+        payload = {
+            "code": 0,
+            "data": {
+                "item": {
+                    "modules": {
+                        "module_author": {
+                            "pub_time": "2023年12月30日 17:55",
+                            "pub_ts": 1703930158,
+                        }
+                    }
+                }
+            },
+        }
+        self.assertEqual(
+            parse_bilibili_detail_published_at(payload),
+            datetime.fromtimestamp(1703930158, tz=timezone.utc),
+        )
+
+    def test_parse_bilibili_detail_published_at_accepts_module_author_list(self):
+        payload = {
+            "code": 0,
+            "data": {
+                "item": {
+                    "modules": [
+                        {"module_title": {"text": "2024新年快乐！"}},
+                        {
+                            "module_author": {
+                                "pub_time": "2023年12月30日 17:55",
+                                "pub_ts": "1703930158",
+                            }
+                        },
+                    ]
+                }
+            },
+        }
+        self.assertEqual(
+            parse_bilibili_detail_published_at(payload),
+            datetime.fromtimestamp(1703930158, tz=timezone.utc),
+        )
+
+    def test_fetch_bilibili_dynamic_fills_missing_public_opus_time_from_detail(self):
+        class FakeResponse:
+            def __init__(self, payload):
+                self.payload = payload
+
+            def json(self):
+                return self.payload
+
+            def raise_for_status(self):
+                return None
+
+        class FakeSession:
+            def __init__(self):
+                self.calls = []
+
+            def get(self, url, params=None, headers=None, timeout=None):
+                self.calls.append((url, params or {}, headers or {}))
+                if "opus/feed/space" in url:
+                    return FakeResponse(
+                        {
+                            "code": 0,
+                            "data": {
+                                "items": [
+                                    {
+                                        "content": "2024新年快乐！",
+                                        "jump_url": "//www.bilibili.com/opus/880862393292292098",
+                                        "opus_id": "880862393292292098",
+                                        "stat": {"like": "1896"},
+                                    }
+                                ]
+                            },
+                        }
+                    )
+                return FakeResponse(
+                    {
+                        "code": 0,
+                        "data": {
+                            "item": {
+                                "modules": {
+                                    "module_author": {
+                                        "pub_time": "2023年12月30日 17:55",
+                                        "pub_ts": 1703930158,
+                                    }
+                                }
+                            }
+                        },
+                    }
+                )
+
+        session = FakeSession()
+        items = fetch_bilibili_dynamic(
+            session,
+            now=datetime(2026, 7, 4, tzinfo=timezone.utc),
+            uid="4401694",
+            source_name="林亦LY",
+            max_items=20,
+            api_url="https://api.bilibili.com/x/polymer/web-dynamic/v1/opus/feed/space",
+        )
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0].published_at, datetime.fromtimestamp(1703930158, tz=timezone.utc))
+        self.assertEqual(items[0].meta["timestamp_source"], "bilibili_opus_detail_pub_ts")
+        self.assertTrue(any(call[1].get("id") == "880862393292292098" for call in session.calls))
+
+    def test_fetch_bilibili_opus_published_at_uses_real_detail_shape(self):
+        class FakeResponse:
+            def json(self):
+                return {
+                    "code": 0,
+                    "data": {
+                        "item": {
+                            "modules": {
+                                "module_author": {
+                                    "pub_time": "2023年12月30日 17:55",
+                                    "pub_ts": 1703930158,
+                                }
+                            }
+                        }
+                    },
+                }
+
+            def raise_for_status(self):
+                return None
+
+        class FakeSession:
+            def __init__(self):
+                self.params = None
+                self.headers = None
+
+            def get(self, url, params=None, headers=None, timeout=None):
+                self.params = params
+                self.headers = headers
+                return FakeResponse()
+
+        session = FakeSession()
+        published = fetch_bilibili_opus_published_at(session, "880862393292292098")
+        self.assertEqual(published, datetime.fromtimestamp(1703930158, tz=timezone.utc))
+        self.assertEqual(session.params["id"], "880862393292292098")
+        self.assertIn("/opus/880862393292292098", session.headers["Referer"])
+
+    def test_backfill_bilibili_archive_publish_times_updates_legacy_null_time(self):
+        class FakeResponse:
+            def json(self):
+                return {
+                    "code": 0,
+                    "data": {
+                        "item": {
+                            "modules": {
+                                "module_author": {
+                                    "pub_time": "2023年12月30日 17:55",
+                                    "pub_ts": 1703930158,
+                                }
+                            }
+                        }
+                    },
+                }
+
+            def raise_for_status(self):
+                return None
+
+        class FakeSession:
+            def __init__(self):
+                self.params = []
+
+            def get(self, url, params=None, headers=None, timeout=None):
+                self.params.append(params or {})
+                return FakeResponse()
+
+        archive = {
+            "old": {
+                "site_id": "bilibili_dynamic",
+                "title": "2024新年快乐！",
+                "url": "https://www.bilibili.com/opus/880862393292292098",
+                "published_at": None,
+                "first_seen_at": "2026-07-03T22:27:15Z",
+            }
+        }
+        session = FakeSession()
+        filled = backfill_bilibili_archive_publish_times(session, archive)
+        self.assertEqual(filled, 1)
+        self.assertEqual(archive["old"]["published_at"], "2023-12-30T09:55:58Z")
+        self.assertEqual(archive["old"]["timestamp_source"], "bilibili_opus_detail_pub_ts")
+        self.assertEqual(session.params[0]["id"], "880862393292292098")
 
     def test_sign_bilibili_wbi_params_adds_signature_without_mutating_input(self):
         params = {"host_mid": "505301413", "web_location": "333.1387"}

@@ -14,6 +14,7 @@ from scripts.local_server import (
     mediacrawler_douyin_collector_status,
     mediacrawler_xhs_collector_status,
     perform_maintenance_action,
+    read_wewe_rss_feeds,
     refresh_command,
     refresh_env,
     read_youtube_subscriptions,
@@ -27,6 +28,67 @@ from scripts.local_server import (
 
 
 class LocalServerTests(unittest.TestCase):
+    def test_read_wewe_rss_feeds_returns_sanitized_local_feed_list(self):
+        class FakeResponse:
+            status = 200
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, exc_type, exc, traceback):
+                return False
+
+            def read(self):
+                return json.dumps(
+                    [
+                        {
+                            "id": "MP_WXS_3198966508",
+                            "name": "猫笔刀",
+                            "intro": "记录与分享！",
+                            "cover": "https://example.com/cover.jpg",
+                            "updateTime": 1782915848,
+                            "syncTime": 1783096795,
+                        },
+                        {"id": "MP_WXS_3198966508", "name": "重复项"},
+                        {"name": "缺少 id"},
+                    ],
+                    ensure_ascii=False,
+                ).encode("utf-8")
+
+        def fake_urlopen(request, timeout):
+            self.assertEqual(request.full_url, "http://127.0.0.1:4000/feeds")
+            self.assertGreater(timeout, 0)
+            return FakeResponse()
+
+        original_urlopen = __import__("urllib.request").request.urlopen
+        __import__("urllib.request").request.urlopen = fake_urlopen
+        try:
+            payload = read_wewe_rss_feeds("http://127.0.0.1:4000")
+        finally:
+            __import__("urllib.request").request.urlopen = original_urlopen
+
+        self.assertTrue(payload["ok"])
+        self.assertEqual(payload["feed_count"], 1)
+        self.assertEqual(
+            payload["feeds"],
+            [
+                {
+                    "id": "MP_WXS_3198966508",
+                    "name": "猫笔刀",
+                    "intro": "记录与分享！",
+                    "updateTime": 1782915848,
+                    "syncTime": 1783096795,
+                }
+            ],
+        )
+
+    def test_read_wewe_rss_feeds_rejects_non_local_base_url(self):
+        payload = read_wewe_rss_feeds("https://example.com")
+
+        self.assertFalse(payload["ok"])
+        self.assertEqual(payload["error"], "wewe_rss_base_url_not_local")
+        self.assertEqual(payload["feeds"], [])
+
     def test_validate_source_config_accepts_dashboard_config(self):
         payload = {
             "version": "1.0",
@@ -417,6 +479,25 @@ class LocalServerTests(unittest.TestCase):
         self.assertEqual(issues[0]["id"], "wewe_rss_feed_id_missing")
         self.assertEqual(issues[0]["source_id"], "wewe_rss")
         self.assertEqual(issues[0]["fix_actions"][0]["id"], "open_wewe_rss_dashboard")
+
+    def test_local_config_issues_does_not_treat_wechat_backup_as_wewe_feed(self):
+        root = Path(self.create_temp_dir())
+        config = {
+            "sources": [
+                {
+                    "id": "maobidao_wudaolu_backup",
+                    "name": "猫笔刀备份源",
+                    "type": "api",
+                    "channel": "微信公众号备用",
+                    "locator": "https://wudaolu.com/c/dav/7.json",
+                    "enabled": True,
+                }
+            ]
+        }
+
+        issues = local_config_maintenance_issues(root, config, probe_network=False)
+
+        self.assertEqual(issues, [])
 
     def test_start_wewe_rss_sidecar_dry_run_uses_fixed_local_dist(self):
         import os

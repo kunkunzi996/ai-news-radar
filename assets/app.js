@@ -124,6 +124,7 @@ const subscriptionNameLabelEl = document.getElementById("subscriptionNameLabel")
 const subscriptionLocatorLabelEl = document.getElementById("subscriptionLocatorLabel");
 const subscriptionMemberSubmitBtnEl = document.getElementById("subscriptionMemberSubmitBtn");
 const subscriptionMemberClearBtnEl = document.getElementById("subscriptionMemberClearBtn");
+const subscriptionMemberSyncBtnEl = document.getElementById("subscriptionMemberSyncBtn");
 
 const SOURCE_KINDS = {
   official_ai: { label: "官方", tone: "official" },
@@ -1227,6 +1228,7 @@ function sourceRecordForSubscriptionMember(platform, member) {
 
 function setSourceRecordSubscriptionMembers(platform, members) {
   const sources = ensureSourceConfigForSubscriptions();
+  const matched = sources.filter((source) => sourceRecordMatchesPlatform(source, platform));
   const keep = sources.filter((source) => !sourceRecordMatchesPlatform(source, platform));
   const seen = new Set();
   const next = [];
@@ -1237,6 +1239,18 @@ function setSourceRecordSubscriptionMembers(platform, members) {
     seen.add(locator);
     next.push(sourceRecordForSubscriptionMember(platform, { ...member, name, locator }));
   });
+  const seedIds = new Set(sourceConfigSeedSources().map((source) => source.id));
+  const nextSeedIds = new Set(next.filter((source) => seedIds.has(source.id)).map((source) => source.id));
+  const deleted = new Set(state.sourceConfig.deleted_source_ids || []);
+  matched.forEach((source) => {
+    if (!seedIds.has(source.id)) return;
+    if (nextSeedIds.has(source.id)) {
+      deleted.delete(source.id);
+    } else {
+      deleted.add(source.id);
+    }
+  });
+  state.sourceConfig.deleted_source_ids = Array.from(deleted);
   state.sourceConfig.sources = [...keep, ...next];
   if (next.length) state.sourceConfigSelectedId = next[next.length - 1].id;
   saveSourceConfigDraft(`${platform.label}订阅成员已更新，点“保存成员”后写入采集配置`);
@@ -1325,6 +1339,11 @@ function renderSubscriptionMemberFormHints() {
   if (subscriptionNameLabelEl) subscriptionNameLabelEl.textContent = platform.nameLabel;
   if (subscriptionLocatorLabelEl) subscriptionLocatorLabelEl.textContent = platform.locatorLabel;
   if (subscriptionMemberLocatorEl) subscriptionMemberLocatorEl.placeholder = platform.locatorPlaceholder;
+  if (subscriptionMemberSyncBtnEl) {
+    const showSync = platform.id === "wechat";
+    subscriptionMemberSyncBtnEl.hidden = !showSync;
+    subscriptionMemberSyncBtnEl.style.display = showSync ? "" : "none";
+  }
   if (subscriptionHomeUrlWrapEl) {
     const showHomeUrl = Boolean(platform.homeUrl);
     subscriptionHomeUrlWrapEl.hidden = !showHomeUrl;
@@ -1378,6 +1397,48 @@ async function saveYoutubeSubscriptions() {
   if (!res.ok || payload.ok === false) throw new Error(payload.error || `HTTP ${res.status}`);
   state.youtubeSubscriptions = Array.isArray(payload.subscriptions) ? payload.subscriptions : subscriptions;
   return payload;
+}
+
+async function syncWeweRssSubscriptions() {
+  const platform = subscriptionPlatformDef();
+  if (platform.id !== "wechat") return;
+  setSourceConfigButton(subscriptionMemberSyncBtnEl, "同步中...", true);
+  setSubscriptionManagerStatus("正在读取 WeWe RSS 已订阅公众号...", "warn");
+  try {
+    const res = await fetch("./api/wewe-rss/feeds", { headers: { Accept: "application/json" }, cache: "no-store" });
+    const payload = await res.json().catch(() => ({}));
+    if (!res.ok || payload.ok === false) throw new Error(payload.error || `HTTP ${res.status}`);
+    const feeds = Array.isArray(payload.feeds) ? payload.feeds : [];
+    if (!feeds.length) {
+      setSubscriptionManagerStatus("WeWe RSS 里还没有公众号；先去后台添加公众号，再回来同步。", "warn");
+      return;
+    }
+    const existingByLocator = new Map(sourceRecordSubscriptionMembers(platform).map((member) => [member.locator, member]));
+    const members = feeds.map((feed) => {
+      const locator = String(feed.id || "").trim();
+      const existing = existingByLocator.get(locator);
+      return {
+        name: String(feed.name || locator).trim(),
+        locator,
+        sourceId: existing?.sourceId || "",
+      };
+    }).filter((member) => member.name && member.locator);
+    setSourceRecordSubscriptionMembers(platform, members);
+    clearSubscriptionMemberForm();
+    renderSubscriptionManager();
+    setSubscriptionManagerStatus(`已从 WeWe RSS 同步 ${fmtNumber(members.length)} 个公众号，正在写入本地配置...`, "warn");
+    await writeSourceConfigToLocalServer({
+      button: subscriptionMemberSyncBtnEl,
+      successLabel: "已同步",
+      idleLabel: "同步 WeWe RSS",
+      syncForm: false,
+    });
+    setSubscriptionManagerStatus(`已同步并保存 ${fmtNumber(members.length)} 个公众号，点“读取结果”后出现在看板。`, "ok");
+  } catch (err) {
+    setSubscriptionManagerStatus(`同步 WeWe RSS 失败：${err.message}`, "bad");
+  } finally {
+    restoreSourceConfigButton(subscriptionMemberSyncBtnEl, "同步 WeWe RSS");
+  }
 }
 
 async function saveSubscriptionMembers() {
@@ -1474,7 +1535,7 @@ function sourceConfigRuntimeIds(source) {
   if (rawId === "aihot" || type === "aihot") ids.add("aihot");
   if (rawId.includes("github_foundation_sunshine") || type === "github_release") ids.add("github_foundation_sunshine_releases");
   if (rawId.includes("maobidao_wudaolu")) ids.add("maobidao_wudaolu_backup");
-  if (type === "wewe_rss" || hay.includes("wewe") || hay.includes("公众号")) ids.add("wewe_rss");
+  if (type === "wewe_rss" || rawId.startsWith("wewe_rss") || hay.includes("wewe_rss") || hay.includes("wewe rss")) ids.add("wewe_rss");
   if (type === "bilibili_dynamic" || hay.includes("bilibili") || hay.includes("b站")) ids.add("bilibili_dynamic");
   if (type === "mediacrawler_jsonl" && (hay.includes("xhs") || hay.includes("xiaohongshu") || hay.includes("小红书"))) ids.add("mediacrawler_xhs");
   if (type === "mediacrawler_jsonl" && (hay.includes("douyin") || hay.includes("抖音"))) ids.add("mediacrawler_douyin");
@@ -5024,6 +5085,12 @@ if (subscriptionMemberFormEl) {
 
 if (subscriptionMemberClearBtnEl) {
   subscriptionMemberClearBtnEl.addEventListener("click", clearSubscriptionMemberForm);
+}
+
+if (subscriptionMemberSyncBtnEl) {
+  subscriptionMemberSyncBtnEl.addEventListener("click", () => {
+    syncWeweRssSubscriptions().catch(() => {});
+  });
 }
 
 if (sourceConfigAddBtnEl) {

@@ -248,6 +248,8 @@ HN_ALGOLIA_MIN_POINTS = 10
 HN_ALGOLIA_QUERY_PAUSE_SECONDS = 0.1
 BILIBILI_DYNAMIC_API_URL = "https://api.bilibili.com/x/polymer/web-dynamic/v1/opus/feed/space"
 BILIBILI_DYNAMIC_FULL_API_URL = "https://api.bilibili.com/x/polymer/web-dynamic/v1/feed/space"
+BILIBILI_DYNAMIC_DETAIL_API_URL = "https://api.bilibili.com/x/polymer/web-dynamic/v1/detail"
+BILIBILI_DYNAMIC_OPUS_DETAIL_API_URL = "https://api.bilibili.com/x/polymer/web-dynamic/v1/opus/detail"
 BILIBILI_NAV_API_URL = "https://api.bilibili.com/x/web-interface/nav"
 BILIBILI_DYNAMIC_DEFAULT_UID = "505301413"
 BILIBILI_DYNAMIC_DEFAULT_SOURCE_NAME = "Koji杨远骋at十字路口"
@@ -257,6 +259,7 @@ BILIBILI_DYNAMIC_DEFAULT_ACCOUNTS = (
 )
 BILIBILI_DYNAMIC_DEFAULT_MAX_ITEMS = 20
 BILIBILI_DYNAMIC_DEFAULT_MAX_PAGES = 5
+BILIBILI_DYNAMIC_BACKFILL_MAX_ITEMS = 80
 MEDIACRAWLER_DOUYIN_SITE_ID = "mediacrawler_douyin"
 MEDIACRAWLER_DOUYIN_SITE_NAME = "MediaCrawler Douyin"
 MEDIACRAWLER_XHS_SITE_ID = "mediacrawler_xhs"
@@ -4193,6 +4196,133 @@ def first_text_value(obj: Any, keys: tuple[str, ...] = ("text", "title", "desc",
     return ""
 
 
+def bilibili_author_from_detail_payload(payload: dict[str, Any]) -> dict[str, Any]:
+    data = payload.get("data")
+    if not isinstance(data, dict):
+        return {}
+    item = data.get("item")
+    if not isinstance(item, dict):
+        return {}
+    modules = item.get("modules")
+    if isinstance(modules, dict):
+        author = modules.get("module_author")
+        return author if isinstance(author, dict) else {}
+    if isinstance(modules, list):
+        for module in modules:
+            if not isinstance(module, dict):
+                continue
+            author = module.get("module_author")
+            if isinstance(author, dict):
+                return author
+    return {}
+
+
+def parse_bilibili_detail_published_at(payload: dict[str, Any]) -> datetime | None:
+    author = bilibili_author_from_detail_payload(payload)
+    return parse_unix_timestamp(author.get("pub_ts"))
+
+
+def fetch_bilibili_opus_published_at(
+    session: requests.Session,
+    opus_id: str,
+    *,
+    api_url: str = BILIBILI_DYNAMIC_DETAIL_API_URL,
+) -> datetime | None:
+    oid = str(opus_id or "").strip()
+    if not oid:
+        return None
+    headers = {
+        "User-Agent": BROWSER_UA,
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
+        "Origin": "https://www.bilibili.com",
+        "Referer": f"https://www.bilibili.com/opus/{oid}",
+    }
+    api_urls = [api_url]
+    if api_url != BILIBILI_DYNAMIC_OPUS_DETAIL_API_URL:
+        api_urls.append(BILIBILI_DYNAMIC_OPUS_DETAIL_API_URL)
+    last_error: Exception | None = None
+    for candidate_url in api_urls:
+        try:
+            resp = session.get(candidate_url, params={"id": oid}, headers=headers, timeout=20)
+            resp.raise_for_status()
+            payload = resp.json()
+            if int(payload.get("code") or 0) != 0:
+                raise ValueError(f"bilibili_dynamic_detail_api_code_{payload.get('code')}")
+            return parse_bilibili_detail_published_at(payload)
+        except Exception as exc:
+            last_error = exc
+    if last_error:
+        raise last_error
+    return None
+
+
+def bilibili_dynamic_publish_times_from_detail(
+    session: requests.Session,
+    raw_items: list[Any],
+    *,
+    max_items: int,
+) -> dict[str, datetime]:
+    out: dict[str, datetime] = {}
+    checked = 0
+    for item in raw_items:
+        if checked >= max_items:
+            break
+        if not isinstance(item, dict):
+            continue
+        opus_id = str(item.get("opus_id") or "").strip()
+        if not opus_id or opus_id in out:
+            continue
+        checked += 1
+        try:
+            published = fetch_bilibili_opus_published_at(session, opus_id)
+        except Exception:
+            continue
+        if published:
+            out[opus_id] = published
+    return out
+
+
+def bilibili_opus_id_from_record(record: dict[str, Any]) -> str:
+    explicit = str(record.get("bilibili_opus_id") or "").strip()
+    if explicit:
+        return explicit
+    url = str(record.get("url") or "").strip()
+    match = re.search(r"/opus/(\d+)", url)
+    return match.group(1) if match else ""
+
+
+def backfill_bilibili_archive_publish_times(
+    session: requests.Session,
+    archive: dict[str, dict[str, Any]],
+    *,
+    max_items: int = BILIBILI_DYNAMIC_BACKFILL_MAX_ITEMS,
+) -> int:
+    filled = 0
+    checked = 0
+    for record in archive.values():
+        if checked >= max_items:
+            break
+        if str(record.get("site_id") or "") != "bilibili_dynamic":
+            continue
+        if record.get("published_at"):
+            continue
+        opus_id = bilibili_opus_id_from_record(record)
+        if not opus_id:
+            continue
+        checked += 1
+        try:
+            published = fetch_bilibili_opus_published_at(session, opus_id)
+        except Exception:
+            continue
+        if not published:
+            continue
+        record["published_at"] = iso(published)
+        record["timestamp_source"] = "bilibili_opus_detail_pub_ts"
+        filled += 1
+    return filled
+
+
 def parse_bilibili_full_dynamic_items(
     payload: dict[str, Any],
     *,
@@ -4270,6 +4400,7 @@ def parse_bilibili_dynamic_items(
     uid: str,
     source_name: str,
     max_items: int,
+    published_at_by_opus: dict[str, datetime] | None = None,
 ) -> list[RawItem]:
     data = payload.get("data")
     if not isinstance(data, dict):
@@ -4299,6 +4430,7 @@ def parse_bilibili_dynamic_items(
         if isinstance(stat, dict):
             like_count = stat.get("like")
         cover = item.get("cover") if isinstance(item.get("cover"), dict) else {}
+        published = (published_at_by_opus or {}).get(opus_id)
 
         out.append(
             RawItem(
@@ -4307,16 +4439,14 @@ def parse_bilibili_dynamic_items(
                 source=source_name,
                 title=bilibili_dynamic_item_title(content, opus_id),
                 url=url,
-                # This public endpoint does not expose a reliable publish time.
-                # Use first_seen_at in the archive as the refresh time instead.
-                published_at=None,
+                published_at=published,
                 meta={
                     "summary": content,
                     "creator_metrics": {"like_count": like_count} if like_count is not None else None,
                     "bilibili_uid": uid,
                     "bilibili_opus_id": opus_id,
                     "cover_url": cover.get("url") if isinstance(cover, dict) else None,
-                    "timestamp_source": "first_seen_at",
+                    "timestamp_source": "bilibili_opus_detail_pub_ts" if published else "first_seen_at",
                 },
             )
         )
@@ -4356,12 +4486,20 @@ def fetch_bilibili_dynamic(
     payload = resp.json()
     if int(payload.get("code") or 0) != 0:
         raise ValueError(f"bilibili_dynamic_api_code_{payload.get('code')}")
+    data = payload.get("data") if isinstance(payload.get("data"), dict) else {}
+    raw_items = data.get("items") if isinstance(data.get("items"), list) else []
+    published_at_by_opus = bilibili_dynamic_publish_times_from_detail(
+        session,
+        raw_items,
+        max_items=max_items,
+    )
     items = parse_bilibili_dynamic_items(
         payload,
         now=now,
         uid=uid,
         source_name=source_name,
         max_items=max_items,
+        published_at_by_opus=published_at_by_opus,
     )
     if not items:
         raise ValueError("bilibili_dynamic_no_items")
@@ -7630,6 +7768,8 @@ def main() -> int:
                     existing["published_at"] = iso(raw.published_at)
             existing["last_seen_at"] = iso(now)
             apply_public_raw_meta(existing, raw)
+
+    backfill_bilibili_archive_publish_times(session, archive)
 
     # Prune old archive unless the generated view intentionally needs all retained history.
     if not all_time:

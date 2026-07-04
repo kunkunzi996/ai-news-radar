@@ -645,7 +645,7 @@ class TopicFilterTests(unittest.TestCase):
                 {"id": "bilibili_505301413", "type": "bilibili_dynamic", "enabled": True, "locator": "505301413"},
                 {"id": "mediacrawler_xhs_chenbaoyi", "type": "mediacrawler_jsonl", "enabled": True, "channel": "小红书"},
                 {"id": "wewe_rss_maobidao", "type": "wewe_rss", "enabled": True, "locator": "MP_WXS_3198966508"},
-                {"id": "maobidao_wudaolu_backup", "type": "api", "enabled": False},
+                {"id": "maobidao_wudaolu_backup", "type": "api", "enabled": True, "channel": "微信公众号备用"},
             ]
         }
 
@@ -657,6 +657,7 @@ class TopicFilterTests(unittest.TestCase):
                 "bilibili_dynamic",
                 "mediacrawler_xhs",
                 "wewe_rss",
+                "maobidao_wudaolu_backup",
             },
         )
 

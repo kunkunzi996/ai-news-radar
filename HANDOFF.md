@@ -1,5 +1,62 @@
 # HANDOFF.md
 
+## 当前最新交接：WeWe RSS 公众号一键同步已接入
+
+- 日期：2026-07-04
+- 当前阶段：微信公众号订阅维护已从“手动找 feed_id”升级为“在 AI News Radar 里点同步 WeWe RSS”。本轮不读取 WeWe RSS 数据库、Cookie、微信登录态或二维码文件，只通过本地 HTTP JSON Feed 获取公众号列表。
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前分支：`master`
+- 最新已推送 commit：`3975004 fix: use readable source group names`
+- 本轮已完成：
+  - `scripts/local_server.py` 新增只读接口 `GET /api/wewe-rss/feeds`。
+  - 该接口只允许本地 `WEWE_RSS_BASE_URL`，默认 `http://127.0.0.1:4000`，读取 `/feeds` 后只返回 `id/name/intro/updateTime/syncTime` 等展示字段。
+  - `index.html` 在订阅成员表单里新增 `同步 WeWe RSS` 按钮。
+  - `assets/app.js` 只在 `微信公众号` tab 显示该按钮；点击后会读取 WeWe RSS 公众号列表，转换成 WeWe RSS source records，并写入 `sources.config.json`。
+  - 已保留上一轮保护：删除 seed 公众号成员会写入 `deleted_source_ids`；`maobidao_wudaolu_backup` 不会被误判成 WeWe RSS。
+- 本轮验收：
+  - `node --check assets\app.js` 通过。
+  - `.\.venv\Scripts\python.exe -m py_compile scripts\local_server.py scripts\update_news.py` 通过。
+  - `.\.venv\Scripts\python.exe -m unittest tests.test_local_server tests.test_topic_filter` 通过：119 tests OK。
+  - 本地 HTTP：`GET http://127.0.0.1:8080/api/wewe-rss/feeds` 返回 `猫笔刀 / MP_WXS_3198966508`。
+  - 浏览器验收：`http://127.0.0.1:8080/` 加载 `assets/app.js?v=wewe-rss-sync-feeds-0704a`；展开 `信源配置` -> `微信公众号`，`同步 WeWe RSS` 按钮可见；点击后状态为 `已同步并保存 1 个公众号，点“读取结果”后出现在看板。`
+- 下一轮建议入口：
+  - 先读 `PROJECT_STATE.md` 和本文件。
+  - 手动验收时：先在 WeWe RSS 后台添加一个新公众号，再回 AI News Radar 点 `同步 WeWe RSS`，确认新公众号自动出现；最后点 `读取结果` 更新看板。
+  - 若 `同步 WeWe RSS` 报错，先查 `http://127.0.0.1:4000/feeds` 是否能打开；若 4000 不通，用维护卡片或 `start_wewe_rss_sidecar` 启动 sidecar。
+- 下一轮禁止：
+  - 不要批量删除。
+  - 不要提交 Cookie、登录态、`.env`、WeWe RSS 数据库、二维码、浏览器 profile、`local-secrets` 或私有 token。
+  - 不要让 AI News Radar 直接读取 WeWe RSS 数据库；继续只走本地 JSON Feed。
+  - 不要把当前 `data/*.json` 脏改一股脑提交。
+
+## 当前最新交接：微信公众号订阅成员增删已接入
+
+- 日期：2026-07-04
+- 当前阶段：信源配置里的“订阅成员”面板已可管理微信公众号成员；本轮只处理 WeWe RSS 公众号配置增删的稳定性和误判问题，不删除文件、不提交生成数据、不改登录态。
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前分支：`master`
+- 最新已推送 commit：`3975004 fix: use readable source group names`
+- 本轮已完成：
+  - `assets/app.js` 的微信公众号订阅成员保存逻辑会在删除默认种子成员时写入 `deleted_source_ids`，所以删除 `wewe_rss_maobidao` 后不会被内置源合并逻辑自动补回来。
+  - `assets/app.js` 与 `scripts/local_server.py` 都收紧了 WeWe RSS 识别规则：只有 `type=wewe_rss`、id 以 `wewe_rss` 开头、或明确含 `wewe_rss` / `wewe rss` 的配置才算 WeWe RSS。
+  - `maobidao_wudaolu_backup` 这种“微信公众号备用”公开 API 源仍可作为备份源，但不会再被误当成 WeWe RSS feed，也不会触发假的 feed_id 缺失维护提示。
+  - `index.html` app 脚本版本号已更新为 `wechat-subscription-members-0704a`。
+- 本轮验收：
+  - `node --check assets\app.js` 通过。
+  - `.\.venv\Scripts\python.exe -m py_compile scripts\local_server.py scripts\update_news.py` 通过。
+  - `.\.venv\Scripts\python.exe -m unittest tests.test_local_server tests.test_topic_filter` 通过：117 tests OK。
+  - `git diff --check -- assets\app.js scripts\local_server.py index.html tests\test_local_server.py tests\test_topic_filter.py` 通过，仅有 Windows LF/CRLF warning。
+  - 浏览器只读验收：打开 `http://127.0.0.1:8080/`，展开 `信源配置`，切到 `微信公众号`，能看到 `猫笔刀 / MP_WXS_3198966508`；未点击删除、保存或读取结果。
+- 下一轮建议入口：
+  - 先读 `PROJECT_STATE.md` 和本文件。
+  - 若继续验收新增/删除，建议先新增一个临时公众号 feed_id 测试项，点 `保存成员` 写入，再删除该临时项确认刷新后不复活；不要拿真实 `猫笔刀` 作为第一次破坏性验收对象。
+  - 若 8080 打不开，启动：`.\.venv\Scripts\python.exe scripts\local_server.py --host 127.0.0.1 --port 8080`。
+- 下一轮禁止：
+  - 不要批量删除。
+  - 不要提交 Cookie、登录态、`.env`、WeWe RSS 数据库、二维码、浏览器 profile、`local-secrets` 或私有 token。
+  - 不要把 `maobidao_wudaolu_backup` 误判成 WeWe RSS；它是公开 API 备份源。
+  - 不要把当前 `data/*.json` 脏改一股脑提交。
+
 ## 当前最新交接：订阅平台栏目与来源标题清理已保存
 
 - 日期：2026-07-04

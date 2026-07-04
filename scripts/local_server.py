@@ -678,7 +678,7 @@ def source_config_runtime_ids(source: dict[str, Any]) -> set[str]:
     locator = str(source.get("locator") or "").lower()
     haystack = f"{raw_id} {raw_type} {channel} {target} {locator}"
     runtime_ids: set[str] = set()
-    if raw_type == "wewe_rss" or "wewe" in haystack or "公众号" in haystack:
+    if raw_type == "wewe_rss" or raw_id.startswith("wewe_rss") or "wewe_rss" in haystack or "wewe rss" in haystack:
         runtime_ids.add("wewe_rss")
     if raw_type == "bilibili_dynamic" or "bilibili" in haystack or "b站" in haystack:
         runtime_ids.add("bilibili_dynamic")
@@ -824,6 +824,49 @@ def check_wewe_rss_sidecar(base_url: str) -> tuple[bool, str]:
         return False, f"HTTP {exc.code}"
     except (urllib.error.URLError, TimeoutError, OSError) as exc:
         return False, str(exc)
+
+
+def read_wewe_rss_feeds(base_url: str | None = None) -> dict[str, Any]:
+    resolved_base_url = (base_url or os.environ.get("WEWE_RSS_BASE_URL") or WEWE_RSS_BASE_URL_DEFAULT).strip().rstrip("/")
+    if not is_local_http_url(resolved_base_url):
+        return {"ok": False, "error": "wewe_rss_base_url_not_local", "base_url": resolved_base_url, "feeds": []}
+
+    url = resolved_base_url + "/feeds"
+    request = urllib.request.Request(url, headers={"Accept": "application/json"})
+    try:
+        with urllib.request.urlopen(request, timeout=LOCAL_HTTP_TIMEOUT_SECONDS) as response:
+            if response.status >= 400:
+                return {"ok": False, "error": f"HTTP {response.status}", "base_url": resolved_base_url, "feeds": []}
+            payload = json.loads(response.read().decode("utf-8"))
+    except urllib.error.HTTPError as exc:
+        return {"ok": False, "error": f"HTTP {exc.code}", "base_url": resolved_base_url, "feeds": []}
+    except (urllib.error.URLError, TimeoutError, OSError, json.JSONDecodeError, UnicodeDecodeError) as exc:
+        return {"ok": False, "error": str(exc), "base_url": resolved_base_url, "feeds": []}
+
+    if not isinstance(payload, list):
+        return {"ok": False, "error": "invalid_wewe_rss_feeds_payload", "base_url": resolved_base_url, "feeds": []}
+
+    feeds: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for item in payload:
+        if not isinstance(item, dict):
+            continue
+        feed_id = str(item.get("id") or "").strip()
+        if not feed_id or feed_id in seen:
+            continue
+        seen.add(feed_id)
+        name = str(item.get("name") or item.get("title") or feed_id).strip() or feed_id
+        feeds.append(
+            {
+                "id": feed_id,
+                "name": name,
+                "intro": str(item.get("intro") or "").strip(),
+                "updateTime": item.get("updateTime"),
+                "syncTime": item.get("syncTime"),
+            }
+        )
+
+    return {"ok": True, "base_url": resolved_base_url, "feeds": feeds, "feed_count": len(feeds)}
 
 
 def wewe_rss_sidecar_root(root_dir: Path) -> Path:
@@ -1567,6 +1610,13 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
                 json_response(self, HTTPStatus.OK, local_status_payload(self.root_dir))
             except Exception as exc:
                 json_response(self, HTTPStatus.INTERNAL_SERVER_ERROR, {"ok": False, "error": str(exc)})
+            return
+        if route == "/api/wewe-rss/feeds":
+            payload = read_wewe_rss_feeds()
+            status = HTTPStatus.OK if payload.get("ok") else HTTPStatus.BAD_GATEWAY
+            if payload.get("error") == "wewe_rss_base_url_not_local":
+                status = HTTPStatus.BAD_REQUEST
+            json_response(self, status, payload)
             return
         if route == "/api/subscriptions/youtube":
             try:
