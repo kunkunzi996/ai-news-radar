@@ -18,6 +18,7 @@ from scripts.update_news import (
     fetch_maobidao_wechat_subscription,
     fetch_wewe_rss_subscription,
     fetch_hacker_news_algolia,
+    filter_raw_items_by_collect_window,
     fetch_socialdata_list_tweets,
     fetch_tikhub_search,
     hn_algolia_keyword_score,
@@ -48,6 +49,7 @@ from scripts.update_news import (
     redact_public_text,
     filter_archive_by_source_ids,
     normalize_source_scope,
+    RawItem,
     apply_source_config_runtime,
     source_config_enabled_site_ids,
     source_ids_for_scope,
@@ -598,6 +600,7 @@ class TopicFilterTests(unittest.TestCase):
             "creator_items_ai": [{"title": "Hot creator post", "url": "https://example.com/hot"}],
             "creator_items_all": [{"title": "All creator post", "url": "https://example.com/creator"}],
             "creator_window_days": 7,
+            "creator_window_hours": 24,
             "creator_ranking": "engagement_85_fresh_24h_bonus_15_v1",
             "items_all": [{"title": "All post", "url": "https://example.com/b"}],
             "items_all_raw": [{"title": "Raw post", "url": "https://example.com/c"}],
@@ -613,6 +616,7 @@ class TopicFilterTests(unittest.TestCase):
         self.assertEqual(all_payload["source_scope"], "bilibili_only")
         self.assertEqual(all_payload["creator_items_all"][0]["title"], "All creator post")
         self.assertEqual(all_payload["creator_window_days"], 7)
+        self.assertEqual(all_payload["creator_window_hours"], 24)
         self.assertEqual(all_payload["creator_ranking"], "engagement_85_fresh_24h_bonus_15_v1")
         self.assertEqual(all_payload["items_all"][0]["title"], "All post")
         self.assertEqual(all_payload["items_all_raw"][0]["title"], "Raw post")
@@ -636,6 +640,19 @@ class TopicFilterTests(unittest.TestCase):
 
         self.assertEqual(scope, "tested_creator_sources")
         self.assertEqual(set(filtered), {"bili", "douyin", "xhs", "github", "maobidao", "wewe"})
+
+    def test_collect_window_filters_new_raw_items_by_publish_time(self):
+        import datetime as _dt
+
+        now = _dt.datetime.fromisoformat("2026-07-04T12:00:00+00:00")
+        fresh = RawItem("bilibili_dynamic", "Bilibili", "UP", "fresh", "https://example.com/fresh", now - _dt.timedelta(hours=2), {})
+        old = RawItem("bilibili_dynamic", "Bilibili", "UP", "old", "https://example.com/old", now - _dt.timedelta(hours=30), {})
+        missing = RawItem("bilibili_dynamic", "Bilibili", "UP", "missing", "https://example.com/missing", None, {})
+
+        filtered, skipped = filter_raw_items_by_collect_window([fresh, old, missing], now, 24)
+
+        self.assertEqual(filtered, [fresh])
+        self.assertEqual(skipped, 2)
 
     def test_source_config_enabled_site_ids_maps_ui_records_to_fetchers(self):
         config = {
@@ -2113,6 +2130,54 @@ class TopicFilterTests(unittest.TestCase):
 
         self.assertEqual(len(items), 1)
         self.assertEqual(items[0]["source"], "技术爬爬虾")
+
+    def test_build_creator_hot_items_can_use_24h_window(self):
+        import datetime as _dt
+
+        now = _dt.datetime.fromisoformat("2026-06-30T12:00:00+00:00")
+        archive = {
+            "fresh": {
+                "id": "fresh",
+                "site_id": "bilibili_dynamic",
+                "site_name": "Bilibili Dynamic",
+                "source": "技术爬爬虾",
+                "title": "24小时内的 Codex 分享",
+                "url": "https://www.bilibili.com/video/fresh",
+                "published_at": (now - _dt.timedelta(hours=23, minutes=30)).isoformat(),
+            },
+            "old": {
+                "id": "old",
+                "site_id": "bilibili_dynamic",
+                "site_name": "Bilibili Dynamic",
+                "source": "技术爬爬虾",
+                "title": "超过24小时的 Codex 分享",
+                "url": "https://www.bilibili.com/video/old",
+                "published_at": (now - _dt.timedelta(hours=24, minutes=30)).isoformat(),
+            },
+        }
+
+        items = build_creator_hot_items(archive, now, ai_only=False, window_hours=24)
+
+        self.assertEqual([item["id"] for item in items], ["fresh"])
+
+    def test_build_creator_hot_items_24h_requires_publish_time(self):
+        import datetime as _dt
+
+        now = _dt.datetime.fromisoformat("2026-06-30T12:00:00+00:00")
+        archive = {
+            "unknown-time": {
+                "id": "unknown-time",
+                "site_id": "bilibili_dynamic",
+                "site_name": "Bilibili Dynamic",
+                "source": "技术爬爬虾",
+                "title": "没有发布时间的旧动态",
+                "url": "https://www.bilibili.com/video/unknown",
+                "published_at": None,
+                "first_seen_at": now.isoformat(),
+            }
+        }
+
+        self.assertEqual(build_creator_hot_items(archive, now, ai_only=False, window_hours=24), [])
 
     def test_build_creator_hot_items_includes_youtube_subscription_without_metrics(self):
         import datetime as _dt

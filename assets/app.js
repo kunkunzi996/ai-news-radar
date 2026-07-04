@@ -107,6 +107,7 @@ const sourceConfigDeleteBtnEl = document.getElementById("sourceConfigDeleteBtn")
 const sourceConfigResetBtnEl = document.getElementById("sourceConfigResetBtn");
 const sourceConfigRefreshBtnEl = document.getElementById("sourceConfigRefreshBtn");
 const sourceConfigCheckBtnEl = document.getElementById("sourceConfigCheckBtn");
+const sourceCollectionScopeSelectEl = document.getElementById("sourceCollectionScopeSelect");
 const sourceConfigStatusEl = document.getElementById("sourceConfigStatus");
 const localOpsStatusEl = document.getElementById("localOpsStatus");
 const localOpsSummaryEl = document.getElementById("localOpsSummary");
@@ -186,6 +187,7 @@ const LIST_SORT_DEFS = [
 ];
 
 const SOURCE_CONFIG_STORAGE_KEY = "ai-news-radar-source-config-v1";
+const COLLECTION_SCOPE_STORAGE_KEY = "ai-news-radar-collection-scope-v1";
 const SOURCE_CONFIG_CATALOG_VERSION = "2026-07-02-builtin-sources";
 const SOURCE_CONFIG_FILTERS = [
   { id: "all", label: "全部" },
@@ -1675,21 +1677,35 @@ async function saveSourceConfigForCollection(message = "已保存，后续采集
   }
 }
 
+function selectedCollectionScope() {
+  const value = sourceCollectionScopeSelectEl?.value === "all" ? "all" : "24h";
+  try {
+    window.localStorage.setItem(COLLECTION_SCOPE_STORAGE_KEY, value);
+  } catch {}
+  return value;
+}
+
 async function refreshNewsDataFromLocalServer() {
-  setSourceConfigButton(sourceConfigRefreshBtnEl, "读取中...", true);
-  setSourceConfigStatus("准备同步当前信源，并读取已有采集结果...", "warn");
+  const collectionScope = selectedCollectionScope();
+  const scopeLabel = collectionScope === "all" ? "全量" : "过去24小时";
+  setSourceConfigButton(sourceConfigRefreshBtnEl, "采集中...", true);
+  setSourceConfigStatus(`准备同步当前信源，并执行${scopeLabel}采集...`, "warn");
   try {
     await writeSourceConfigToLocalServer({
       button: null,
       successLabel: "已保存",
       idleLabel: "保存草稿",
     });
-    setSourceConfigButton(sourceConfigRefreshBtnEl, "读取中...", true);
-    setSourceConfigStatus("当前信源已同步，正在读取本地结果；如刚新增抖音/小红书账号，请先点对应平台的“启动采集”。", "warn");
+    setSourceConfigButton(sourceConfigRefreshBtnEl, "采集中...", true);
+    setSourceConfigStatus(`当前信源已同步，正在执行${scopeLabel}采集；如刚新增抖音/小红书账号，请先点对应平台的“启动采集”。`, "warn");
     const res = await fetch("./api/refresh", {
       method: "POST",
-      headers: { Accept: "application/json" },
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
       cache: "no-store",
+      body: JSON.stringify({ collection_scope: collectionScope }),
     });
     const payload = await res.json().catch(() => ({}));
     if (!res.ok || payload.ok === false) {
@@ -1701,14 +1717,14 @@ async function refreshNewsDataFromLocalServer() {
     state.localOpsStatus = { source_config: state.localOpsStatus?.source_config || {}, source_status: payload.summary };
     renderLocalOpsStatus(state.localOpsStatus);
     renderSourceConfig();
-    setSourceConfigStatus(`读取完成：${okSites}/${sites.length} 个源正常，读到 ${fmtNumber(totalItems)} 条；页面即将重载。`, "ok");
-    setSourceConfigButton(sourceConfigRefreshBtnEl, "已读取", true);
+    setSourceConfigStatus(`${scopeLabel}采集完成：${okSites}/${sites.length} 个源正常，读到 ${fmtNumber(totalItems)} 条；页面即将重载。`, "ok");
+    setSourceConfigButton(sourceConfigRefreshBtnEl, "已完成", true);
     window.setTimeout(() => window.location.reload(), 1400);
   } catch (err) {
     const message = err?.message || "unknown error";
-    setSourceConfigStatus(`读取失败：${message}`, "bad");
-    setSourceConfigButton(sourceConfigRefreshBtnEl, "读取失败", true);
-    restoreSourceConfigButton(sourceConfigRefreshBtnEl, "读取结果");
+    setSourceConfigStatus(`采集失败：${message}`, "bad");
+    setSourceConfigButton(sourceConfigRefreshBtnEl, "采集失败", true);
+    restoreSourceConfigButton(sourceConfigRefreshBtnEl, "执行采集");
     loadLocalStatusFromServer(false);
   }
 }
@@ -5103,6 +5119,16 @@ if (sourceConfigDeleteBtnEl) {
 
 if (sourceConfigResetBtnEl) {
   sourceConfigResetBtnEl.addEventListener("click", resetSourceConfigDraft);
+}
+
+if (sourceCollectionScopeSelectEl) {
+  try {
+    const savedScope = window.localStorage.getItem(COLLECTION_SCOPE_STORAGE_KEY);
+    sourceCollectionScopeSelectEl.value = savedScope === "all" ? "all" : "24h";
+  } catch {
+    sourceCollectionScopeSelectEl.value = "24h";
+  }
+  sourceCollectionScopeSelectEl.addEventListener("change", selectedCollectionScope);
 }
 
 if (sourceConfigRefreshBtnEl) {

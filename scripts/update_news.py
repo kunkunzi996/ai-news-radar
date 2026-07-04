@@ -3449,6 +3449,25 @@ def filter_archive_by_source_ids(
     }
 
 
+def filter_raw_items_by_collect_window(
+    raw_items: list[RawItem],
+    now: datetime,
+    window_hours: int,
+) -> tuple[list[RawItem], int]:
+    if window_hours <= 0:
+        return raw_items, 0
+    window_start = now - timedelta(hours=window_hours)
+    window_end = now + timedelta(minutes=5)
+    filtered: list[RawItem] = []
+    skipped = 0
+    for item in raw_items:
+        if not item.published_at or item.published_at < window_start or item.published_at > window_end:
+            skipped += 1
+            continue
+        filtered.append(item)
+    return filtered, skipped
+
+
 def event_time(record: dict[str, Any]) -> datetime | None:
     # RSS sources must rely on the source's publish time only.
     # first_seen_at is fetch time and would falsely mark historical items as "24h".
@@ -7182,11 +7201,17 @@ def build_creator_hot_items(
     *,
     ai_only: bool,
     window_days: int | None = CREATOR_HOT_WINDOW_DAYS,
+    window_hours: int | None = None,
 ) -> list[dict[str, Any]]:
-    window_start = now - timedelta(days=window_days) if window_days and window_days > 0 else None
+    if window_hours is not None:
+        window_start = now - timedelta(hours=window_hours) if window_hours > 0 else None
+    else:
+        window_start = now - timedelta(days=window_days) if window_days and window_days > 0 else None
     items: list[dict[str, Any]] = []
     for record in archive.values():
         if not is_subscription_record(record):
+            continue
+        if window_hours is not None and not parse_iso(record.get("published_at")):
             continue
         published = event_time(record)
         if not published or published > now:
@@ -7231,11 +7256,13 @@ def build_latest_payloads(latest_payload: dict[str, Any]) -> tuple[dict[str, Any
         "window_hours": latest_payload.get("window_hours"),
         "time_scope": latest_payload.get("time_scope"),
         "source_scope": latest_payload.get("source_scope"),
+        "collection_window_hours": latest_payload.get("collection_window_hours"),
         "topic_filter": latest_payload.get("topic_filter"),
         "ai_relevance_threshold": latest_payload.get("ai_relevance_threshold"),
         "total_items_raw": latest_payload.get("total_items_raw"),
         "total_items_all_mode": latest_payload.get("total_items_all_mode"),
         "creator_window_days": latest_payload.get("creator_window_days"),
+        "creator_window_hours": latest_payload.get("creator_window_hours"),
         "creator_time_scope": latest_payload.get("creator_time_scope"),
         "creator_ranking": latest_payload.get("creator_ranking"),
         "creator_items_all": latest_payload.get("creator_items_all", []),
@@ -7253,6 +7280,12 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Aggregate AI news updates from multiple sources")
     parser.add_argument("--output-dir", default="data", help="Directory for output JSON files")
     parser.add_argument("--window-hours", type=int, default=24, help="24h window size")
+    parser.add_argument(
+        "--collect-window-hours",
+        type=int,
+        default=0,
+        help="Limit newly accepted raw items to this recent publish window; 0 keeps all fetched items",
+    )
     parser.add_argument("--archive-days", type=int, default=21, help="Keep archive for N days")
     parser.add_argument("--translate-max-new", type=int, default=80, help="Max new EN->ZH title translations per run")
     parser.add_argument("--rss-opml", default="", help="Optional OPML file path to include RSS sources")
@@ -7288,6 +7321,7 @@ def main() -> int:
     scoped_to_tested_creators = source_scope == SOURCE_SCOPE_TESTED_CREATORS
     scoped_by_config = source_scope == SOURCE_SCOPE_CONFIGURED
     all_time = bool(args.all_time or env_flag("RADAR_ALL_TIME"))
+    collect_window_hours = max(0, int(args.collect_window_hours or 0))
     wewe_rss_enabled = env_flag("WEWE_RSS_ENABLED") and (
         active_source_ids is None or WEWE_RSS_SITE_ID in active_source_ids
     )
@@ -7728,6 +7762,8 @@ def main() -> int:
     if active_source_ids is not None:
         raw_items = [item for item in raw_items if item.site_id in active_source_ids]
         statuses = [status for status in statuses if str(status.get("site_id") or "") in active_source_ids]
+    raw_items_before_collect_window = len(raw_items)
+    raw_items, skipped_collect_window_items = filter_raw_items_by_collect_window(raw_items, now, collect_window_hours)
 
     seen_this_run: set[str] = set()
 
@@ -7791,6 +7827,8 @@ def main() -> int:
     for record in archive.values():
         if active_source_ids is not None and str(record.get("site_id") or "") not in active_source_ids:
             continue
+        if not all_time and not parse_iso(record.get("published_at")):
+            continue
         ts = event_time(record)
         if not ts:
             continue
@@ -7822,9 +7860,22 @@ def main() -> int:
         title_cache,
         max_new_translations=max(0, args.translate_max_new),
     )
-    creator_window_days = None if all_time else CREATOR_HOT_WINDOW_DAYS
-    creator_items_ai = build_creator_hot_items(archive, now, ai_only=True, window_days=creator_window_days)
-    creator_items_all = build_creator_hot_items(archive, now, ai_only=False, window_days=creator_window_days)
+    creator_window_hours = None if all_time else args.window_hours
+    creator_window_days = None if all_time else max(1, (args.window_hours + 23) // 24)
+    creator_items_ai = build_creator_hot_items(
+        archive,
+        now,
+        ai_only=True,
+        window_days=creator_window_days,
+        window_hours=creator_window_hours,
+    )
+    creator_items_all = build_creator_hot_items(
+        archive,
+        now,
+        ai_only=False,
+        window_days=creator_window_days,
+        window_hours=creator_window_hours,
+    )
     creator_items_ai, creator_items_all, title_cache = add_bilingual_fields(
         creator_items_ai,
         creator_items_all,
@@ -7881,6 +7932,7 @@ def main() -> int:
         "window_hours": args.window_hours,
         "time_scope": "all_time" if all_time else "rolling_window",
         "source_scope": source_scope,
+        "collection_window_hours": collect_window_hours,
         "total_items": len(latest_items_ai_dedup),
         "total_items_ai_raw": len(latest_items),
         "total_items_raw": len(latest_items_all),
@@ -7892,6 +7944,7 @@ def main() -> int:
         "source_count": len({f"{i['site_id']}::{i['source']}" for i in latest_items_ai_dedup}),
         "site_stats": sorted(site_stat.values(), key=lambda x: x["count"], reverse=True),
         "creator_window_days": 0 if creator_window_days is None else creator_window_days,
+        "creator_window_hours": 0 if creator_window_hours is None else creator_window_hours,
         "creator_time_scope": "all_time" if creator_window_days is None else "rolling_window",
         "creator_ranking": "engagement_85_fresh_24h_bonus_15_v1",
         "creator_items_ai": creator_items_ai,
@@ -7938,6 +7991,7 @@ def main() -> int:
         "sites": statuses,
         "time_scope": "all_time" if all_time else "rolling_window",
         "source_scope": source_scope,
+        "collection_window_hours": collect_window_hours,
         "successful_sites": sum(1 for s in statuses if s["ok"]),
         "failed_sites": [s["site_id"] for s in statuses if not s["ok"]],
         "zero_item_sites": [
@@ -7950,6 +8004,8 @@ def main() -> int:
         ],
         "empty_advanced_sources": empty_advanced_sources,
         "fetched_raw_items": len(raw_items),
+        "raw_items_before_collection_window": raw_items_before_collect_window,
+        "skipped_collection_window_items": skipped_collect_window_items,
         "items_before_topic_filter": len(latest_items_all),
         "items_in_24h": len(latest_items_ai_dedup),
         "rss_opml": {

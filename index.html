@@ -157,7 +157,14 @@
         <div class="source-config-content">
           <div class="source-config-head">
           <div class="source-config-tools">
-            <button id="sourceConfigRefreshBtn" class="tool-btn" type="button">读取结果</button>
+            <label class="source-collection-scope" for="sourceCollectionScopeSelect">
+              <span>采集范围</span>
+              <select id="sourceCollectionScopeSelect">
+                <option value="24h" selected>过去24小时</option>
+                <option value="all">全量</option>
+              </select>
+            </label>
+            <button id="sourceConfigRefreshBtn" class="tool-btn" type="button">执行采集</button>
             <button id="sourceConfigCheckBtn" class="tool-btn" type="button">检查状态</button>
           </div>
         </div>
@@ -313,6 +320,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous" defer></script>
     <script src="./assets/motion.js?v=ui-adjustment-0620a" defer></script>
-    <script src="./assets/app.js?v=wewe-rss-sync-feeds-0704a" defer></script>
+    <script src="./assets/app.js?v=collection-scope-0704a" defer></script>
   </body>
 </html>

@@ -29,6 +29,9 @@ CONFIG_FILENAME = "sources.config.json"
 OPML_FILENAME = Path("feeds") / "follow.opml"
 REFRESH_TIMEOUT_SECONDS = 600
 REFRESH_LOCK = threading.Lock()
+COLLECTION_SCOPE_24H = "24h"
+COLLECTION_SCOPE_ALL = "all"
+COLLECTION_SCOPES = {COLLECTION_SCOPE_24H, COLLECTION_SCOPE_ALL}
 MEDIACRAWLER_JSONL_STALE_HOURS = 36
 WEWE_RSS_BASE_URL_DEFAULT = "http://127.0.0.1:4000"
 LOCAL_HTTP_TIMEOUT_SECONDS = 2.0
@@ -1333,8 +1336,18 @@ def is_local_origin(value: str) -> bool:
     return value.startswith("http://127.0.0.1:") or value.startswith("http://localhost:")
 
 
-def refresh_command(root_dir: Path) -> list[str]:
-    return [
+def normalize_collection_scope(raw_scope: Any) -> str:
+    scope = str(raw_scope or COLLECTION_SCOPE_24H).strip().lower()
+    if scope in {"24h", "24", "last_24h", "last-24h", "rolling_window"}:
+        return COLLECTION_SCOPE_24H
+    if scope in {"all", "all_time", "all-time", "full"}:
+        return COLLECTION_SCOPE_ALL
+    raise ValueError("unsupported_collection_scope")
+
+
+def refresh_command(root_dir: Path, collection_scope: str = COLLECTION_SCOPE_24H) -> list[str]:
+    scope = normalize_collection_scope(collection_scope)
+    command = [
         sys.executable,
         str(root_dir / "scripts" / "update_news.py"),
         "--source-config",
@@ -1347,6 +1360,9 @@ def refresh_command(root_dir: Path) -> list[str]:
         "3650",
         "--all-time",
     ]
+    if scope == COLLECTION_SCOPE_24H:
+        command.extend(["--collect-window-hours", "24"])
+    return command
 
 
 def refresh_env(root_dir: Path) -> dict[str, str]:
@@ -1760,12 +1776,45 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
         if not self.config_path.exists():
             json_response(self, HTTPStatus.BAD_REQUEST, {"ok": False, "error": "source_config_not_found"})
             return
+        try:
+            length = int(self.headers.get("Content-Length") or "0")
+        except ValueError:
+            length = 0
+        if length < 0 or length > MAX_ACTION_BYTES:
+            json_response(self, HTTPStatus.BAD_REQUEST, {"ok": False, "error": "invalid_content_length"})
+            return
+        payload: dict[str, Any] = {}
+        if length:
+            if "application/json" not in str(self.headers.get("Content-Type") or ""):
+                json_response(self, HTTPStatus.UNSUPPORTED_MEDIA_TYPE, {"ok": False, "error": "json_required"})
+                return
+            try:
+                raw = self.rfile.read(length)
+                payload = json.loads(raw.decode("utf-8"))
+                if not isinstance(payload, dict):
+                    raise ValueError("payload must be a JSON object")
+            except Exception as exc:
+                json_response(self, HTTPStatus.BAD_REQUEST, {"ok": False, "error": str(exc)})
+                return
+        try:
+            collection_scope = normalize_collection_scope(payload.get("collection_scope"))
+        except ValueError:
+            json_response(
+                self,
+                HTTPStatus.BAD_REQUEST,
+                {
+                    "ok": False,
+                    "error": "unsupported_collection_scope",
+                    "allowed_scopes": sorted(COLLECTION_SCOPES),
+                },
+            )
+            return
         if not REFRESH_LOCK.acquire(blocking=False):
             json_response(self, HTTPStatus.CONFLICT, {"ok": False, "error": "refresh_already_running"})
             return
         try:
             result = subprocess.run(
-                refresh_command(self.root_dir),
+                refresh_command(self.root_dir, collection_scope),
                 cwd=self.root_dir,
                 env=refresh_env(self.root_dir),
                 capture_output=True,
@@ -1791,6 +1840,7 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
                 HTTPStatus.OK,
                 {
                     "ok": True,
+                    "collection_scope": collection_scope,
                     "summary": source_status_summary(self.root_dir),
                     "stdout_tail": result.stdout[-2000:],
                 },

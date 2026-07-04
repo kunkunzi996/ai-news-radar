@@ -1,5 +1,27 @@
 # HANDOFF.md
 
+## 当前最新交接：本地采集范围已规范为 24h / 全量
+
+- 日期：2026-07-04
+- 当前阶段：本地采集控制台的“执行采集”已拆清楚“采集范围”和“展示范围”。默认 `过去24小时` 只限制本轮新入库内容；页面仍展示已有全量归档加新采集的 24h 数据。需要第一次补历史或重建历史数据时手动选 `全量`。
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前分支：`master`
+- 本轮改动：
+  - `scripts/local_server.py` 新增 `collection_scope` 白名单，只接受 `24h` / `all`，并继续拼固定 `scripts/update_news.py` 命令。
+  - `24h` 模式运行 `--window-hours 24 --archive-days 3650 --collect-window-hours 24 --all-time`：本轮只接收 24h 内可信发布时间内容，但输出仍发布全量归档。
+  - `all` 模式运行全量补历史命令，保留 `--all-time`，不加 `--collect-window-hours 24`。
+  - `scripts/update_news.py` 新增采集窗口过滤；没有真实 `published_at` 或发布时间超出窗口的新抓取项不会进入本轮 24h 增量归档。
+  - `index.html` / `assets/app.js` 新增采集范围选择并把选择传给 `/api/refresh`。
+  - README 和 `PROJECT_STATE.md` 已同步这个运行口径。
+- 下一轮建议入口：
+  - 先读 `PROJECT_STATE.md` 和本文件。
+  - 手动验收：打开 `http://127.0.0.1:8080/`，展开 `信源配置`，确认“采集范围”默认是 `过去24小时`；点 `执行采集` 后 `source-status.json.collection_window_hours` 应为 `24`，页面仍能看到旧归档内容。需要补历史时再选 `全量`。
+- 下一轮禁止：
+  - 不要批量删除。
+  - 不要把 `/api/refresh` 改成可传任意命令或任意参数。
+  - 不要提交 Cookie、登录态、`.env`、WeWe RSS 数据库、二维码、浏览器 profile、`local-secrets` 或私有 token。
+  - 不要把当前 `data/*.json` 脏改一股脑提交。
+
 ## 当前最新交接：WeWe RSS 公众号一键同步已接入
 
 - 日期：2026-07-04

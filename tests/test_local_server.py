@@ -13,6 +13,7 @@ from scripts.local_server import (
     maintenance_issues_from_status,
     mediacrawler_douyin_collector_status,
     mediacrawler_xhs_collector_status,
+    normalize_collection_scope,
     perform_maintenance_action,
     read_wewe_rss_feeds,
     refresh_command,
@@ -158,6 +159,22 @@ class LocalServerTests(unittest.TestCase):
         self.assertIn("--source-config", command)
         self.assertIn(CONFIG_FILENAME, command)
         self.assertIn("--all-time", command)
+        self.assertIn("--collect-window-hours", command)
+        self.assertEqual(command[command.index("--collect-window-hours") + 1], "24")
+
+    def test_refresh_command_can_request_all_time_collection(self):
+        root = Path("E:/AI-news-reader/ai-news-radar-run")
+
+        command = refresh_command(root, "all")
+
+        self.assertIn("--all-time", command)
+        self.assertNotIn("--collect-window-hours", command)
+
+    def test_collection_scope_is_whitelisted(self):
+        self.assertEqual(normalize_collection_scope("24h"), "24h")
+        self.assertEqual(normalize_collection_scope("all_time"), "all")
+        with self.assertRaises(ValueError):
+            normalize_collection_scope("--source-scope all_sources")
 
     def test_maintenance_issues_warns_when_bilibili_cookie_is_missing(self):
         issues = maintenance_issues_from_status(

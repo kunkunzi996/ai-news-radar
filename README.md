@@ -242,7 +242,12 @@ python scripts/update_news.py --output-dir data --window-hours 24 --rss-opml fee
 它支持新增、编辑、停用、删除信源，并可以导入/导出 `sources.config.json`。
 如果使用 `scripts/local_server.py` 启动本地页面，面板里的“写入”按钮会把
 当前配置直接保存到项目根目录的 `sources.config.json`，“执行采集”按钮会
-先写入配置，再触发一次固定的本地刷新脚本。“检查状态”会读取
+先写入配置，再按页面选择的“采集范围”触发一次固定的本地刷新脚本。
+采集范围目前只有两个白名单选项：默认“过去24小时”，以及第一次补历史时
+手动使用的“全量”。过去24小时模式限制的是“本轮新采集/入库”的内容：
+只接收有可信发布时间且落在窗口内的新增记录；页面输出仍保留已有全量归档，
+也就是“旧数据 + 新采集的 24 小时数据”。没有发布时间的历史动态不会再靠
+本轮 `first_seen_at` 混进 24 小时新采集结果。“检查状态”会读取
 `/api/local-status`，把 `data/source-status.json` 里的异常翻译成维护提示，
 例如 B站 cookie 缺失、MediaCrawler JSONL 路径不存在、WeWe RSS feed 失败等；
 同时会做本地只读探针，提示 WeWe RSS sidecar 是否可访问、MediaCrawler JSONL
@@ -266,10 +271,14 @@ B站登录页或 MediaCrawler JSONL 所在文件夹。
    `.gitignore`，默认不提交）。按钮会显示“写入中... / 已写入 / 写入失败”。
 4. 点“检查状态”查看哪些渠道需要维护；维护提示里的“打开后台/扫码”“打开B站登录”“打开JSONL文件夹”等按钮会直达维护入口，“定位信源”会跳回对应配置项。
 5. 用信源列表上方的筛选按钮按“启用 / 需维护 / 公众号 / 小红书 / 抖音 / B站 / RSS / GitHub”查看订阅。
-6. 点“执行采集”即可一键写入配置并刷新 `data/*.json`，完成后页面会自动重载。
+6. 选择“采集范围”，再点“执行采集”即可一键写入配置并刷新 `data/*.json`，
+   完成后页面会自动重载。日常默认选“过去24小时”：本轮只接收 24 小时内
+   新内容，但页面继续展示已有归档。第一次接入或需要重建历史时再选“全量”。
    如果想在命令行里手动刷新，也可以显式运行：
 
    ```powershell
+   .\.venv\Scripts\python.exe scripts/update_news.py --source-config sources.config.json --output-dir data --window-hours 24 --archive-days 3650 --collect-window-hours 24 --all-time
+   # 需要补全历史时去掉 --collect-window-hours 24，保留 --all-time
    .\.venv\Scripts\python.exe scripts/update_news.py --source-config sources.config.json --output-dir data --window-hours 24 --archive-days 3650 --all-time
    ```
 
