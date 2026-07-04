@@ -1,25 +1,25 @@
 {
-  "generated_at": "2026-07-04T11:06:02.960373Z",
+  "generated_at": "2026-07-04T14:39:31.418981Z",
   "sites": [
     {
       "site_id": "github_foundation_sunshine_releases",
       "site_name": "GitHub Foundation Sunshine",
       "ok": true,
       "item_count": 11,
-      "duration_ms": 1703,
+      "duration_ms": 1775,
       "error": null,
       "source_kind": "github_release_subscription",
-      "repo": "javaht/claude-desktop-zh-cn, AlkaidLab/foundation-sunshine, helloianneo/ian-xiaohei-illustrations",
+      "repo": "AlkaidLab/foundation-sunshine, javaht/claude-desktop-zh-cn, helloianneo/ian-xiaohei-illustrations",
       "repos": [
         {
-          "repo": "javaht/claude-desktop-zh-cn",
-          "api_url": "https://api.github.com/repos/javaht/claude-desktop-zh-cn/releases",
+          "repo": "AlkaidLab/foundation-sunshine",
+          "api_url": "https://api.github.com/repos/AlkaidLab/foundation-sunshine/releases",
           "ok": true,
           "item_count": 5
         },
         {
-          "repo": "AlkaidLab/foundation-sunshine",
-          "api_url": "https://api.github.com/repos/AlkaidLab/foundation-sunshine/releases",
+          "repo": "javaht/claude-desktop-zh-cn",
+          "api_url": "https://api.github.com/repos/javaht/claude-desktop-zh-cn/releases",
           "ok": true,
           "item_count": 5
         },
@@ -37,7 +37,7 @@
       "site_name": "WeWe RSS",
       "ok": true,
       "item_count": 20,
-      "duration_ms": 23,
+      "duration_ms": 18,
       "error": null,
       "source_kind": "wewe_rss_wechat_subscription",
       "base_url": "http://127.0.0.1:4000",
@@ -49,6 +49,13 @@
           "ok": true,
           "item_count": 20,
           "error": null
+        },
+        {
+          "id": "MP_WXS_3223096120",
+          "name": "数字生命卡兹克",
+          "ok": true,
+          "item_count": 0,
+          "error": null
         }
       ],
       "coverage_note": "reads_local_wewe_rss_json_feed_without_wechat_login_state",
@@ -59,7 +66,7 @@
       "site_name": "Bilibili Dynamic",
       "ok": true,
       "item_count": 80,
-      "duration_ms": 3217,
+      "duration_ms": 3133,
       "error": null,
       "uid": "505301413,316183842,3546884870244925,4401694",
       "uids": [
@@ -115,7 +122,7 @@
       "site_name": "MediaCrawler Douyin",
       "ok": true,
       "item_count": 82,
-      "duration_ms": 5,
+      "duration_ms": 6,
       "error": null,
       "source_name": "Simon林, 珍妮丁丁说AI",
       "privacy": "local_jsonl_only_no_cookies",
@@ -153,8 +160,8 @@
       "site_id": "mediacrawler_xhs",
       "site_name": "MediaCrawler Xiaohongshu",
       "ok": true,
-      "item_count": 200,
-      "duration_ms": 11,
+      "item_count": 32,
+      "duration_ms": 2,
       "error": null,
       "source_name": "陈抱一, 中二的大暄哥",
       "privacy": "local_jsonl_only_no_cookies",
@@ -180,7 +187,7 @@
           "locator": "https://www.xiaohongshu.com/user/profile/620659c60000000010009e0b",
           "locator_kind": "homepage_url",
           "jsonl_file_configured": "jsonl",
-          "item_count": 200,
+          "item_count": 32,
           "ok": true,
           "jsonl_file": "creator_contents_2026-07-04.jsonl",
           "jsonl_file_resolved_from": "jsonl"
@@ -194,7 +201,7 @@
       "ok": true,
       "partial_failures": 0,
       "item_count": 30,
-      "duration_ms": 1390,
+      "duration_ms": 1603,
       "error": null,
       "feed_count": 2,
       "effective_feed_count": 2,
@@ -206,11 +213,14 @@
   ],
   "time_scope": "all_time",
   "source_scope": "configured_sources",
+  "collection_window_hours": 24,
   "successful_sites": 6,
   "failed_sites": [],
   "zero_item_sites": [],
   "empty_advanced_sources": [],
-  "fetched_raw_items": 423,
+  "fetched_raw_items": 2,
+  "raw_items_before_collection_window": 255,
+  "skipped_collection_window_items": 253,
   "items_before_topic_filter": 1221,
   "items_in_24h": 291,
   "rss_opml": {
@@ -233,7 +243,7 @@
         "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw",
         "ok": true,
         "item_count": 15,
-        "duration_ms": 604,
+        "duration_ms": 811,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -248,7 +258,7 @@
         "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC26hLZoe-haxcuLYxzWAiNg",
         "ok": true,
         "item_count": 15,
-        "duration_ms": 786,
+        "duration_ms": 792,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -319,12 +329,12 @@
     ],
     "subscription_count": 2,
     "error": null,
-    "duration_ms": 5
+    "duration_ms": 6
   },
   "mediacrawler_xhs": {
     "enabled": true,
     "ok": true,
-    "item_count": 200,
+    "item_count": 32,
     "source_kind": "mediacrawler_xhs",
     "privacy": "local_jsonl_only_no_cookies",
     "coverage_note": "reads_mediacrawler_xhs_creator_jsonl",
@@ -349,7 +359,7 @@
         "locator": "https://www.xiaohongshu.com/user/profile/620659c60000000010009e0b",
         "locator_kind": "homepage_url",
         "jsonl_file_configured": "jsonl",
-        "item_count": 200,
+        "item_count": 32,
         "ok": true,
         "jsonl_file": "creator_contents_2026-07-04.jsonl",
         "jsonl_file_resolved_from": "jsonl"
@@ -357,7 +367,7 @@
     ],
     "subscription_count": 2,
     "error": null,
-    "duration_ms": 11
+    "duration_ms": 2
   },
   "source_config": {
     "enabled": true,
@@ -367,8 +377,8 @@
       "sources.config.json"
     ],
     "error": null,
-    "source_count": 10,
-    "enabled_source_count": 10,
+    "source_count": 11,
+    "enabled_source_count": 11,
     "enabled_site_ids": [
       "bilibili_dynamic",
       "github_foundation_sunshine_releases",
