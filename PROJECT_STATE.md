@@ -2,7 +2,7 @@
 
 ## Current State
 
-- Date: 2026-07-04
+- Date: 2026-07-05
 - Local path: `E:\AI-news-reader\ai-news-radar-run`
 - Branch: `master`
 - Latest pushed commit: `7477fff fix: separate collection window from archive view`
@@ -18,6 +18,7 @@
 - The subscription member panel now supports WeChat public-account member add/delete through WeWe RSS source records. Deleting the default `wewe_rss_maobidao` member records its source id in `deleted_source_ids`, so it will not be silently re-added by the built-in seed merge after save/reload. The old `maobidao_wudaolu_backup` public backup source is no longer treated as a WeWe RSS feed just because its channel contains `微信公众号`.
 - The WeChat subscription panel now has a `同步 WeWe RSS` button. The local server exposes `GET /api/wewe-rss/feeds`, which only reads the local WeWe RSS `/feeds` JSON endpoint and returns sanitized `id/name/intro/updateTime/syncTime` fields. The button syncs those feeds into WeChat subscription source records and writes `sources.config.json`, so users no longer need to manually copy feed ids.
 - Homepage content tabs have been reworked from topic categories to subscription/platform categories. The top tab bar now defaults to `我的订阅` and only shows `我的订阅`、`抖音`、`小红书`、`微信公众号`、`B站`、`油管`; platform tabs are derived from subscription item source ids, source names, URLs, and titles.
+- 2026-07-05 subscription stream layout update: `我的订阅` and platform subscription tabs now render as a flat timeline instead of nested source/platform groups. The page still keeps source/platform filter pills, but the reading list itself is ordered by the active sort mode; default `时间` sort puts the newest subscription items first across GitHub, WeChat, Douyin, Xiaohongshu, Bilibili, and YouTube.
 - The former `TODAY'S SIGNALS` / `今日重点信号` block has been removed from the homepage after checking that only Douyin and Xiaohongshu currently provide comparable interaction metrics. The page now flows from source configuration directly into WaytoAGI/community updates and the main list.
 - Source group headings and source filters now use reader-facing platform names such as `微信公众号`、`YouTube`、`GitHub`、`小红书`、`抖音` and `B站` instead of adapter names like `WeWe RSS` or `MediaCrawler Xiaohongshu`.
 - User acceptance passed on 2026-07-04 after local WeWe RSS and AI News Radar services were restarted: WeWe RSS account `547013436` is enabled, 猫笔刀 shows `诚实回答` (`2026-07-03 22:24:51`), `http://127.0.0.1:8080/` returns HTTP 200, and `/api/local-status` returns `ok=true`.
@@ -96,6 +97,11 @@
 
 ## Verification
 
+- 2026-07-05 subscription timeline verification:
+  - `node --check assets\app.js` passed.
+  - `git diff --check -- assets/app.js index.html` passed; PowerShell reported only Windows LF-to-CRLF warnings.
+  - `http://127.0.0.1:8080/index.html` returned HTTP 200 and contains `subscription-timeline-0705a`.
+  - Playwright browser check at `http://127.0.0.1:8080/` confirmed `assets/app.js?v=subscription-timeline-0705a`, `我的订阅` summary changed to `时间优先`, source group headers count is 0, and the first visible cards are interleaved by time across GitHub, WeChat, Douyin, Bilibili, and Xiaohongshu.
 - 2026-07-02 WeWe RSS bridge verification:
   - `.\.venv\Scripts\python.exe -m py_compile scripts/update_news.py` passed.
   - `node --check assets\app.js` passed.

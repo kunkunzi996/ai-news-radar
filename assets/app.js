@@ -2444,7 +2444,13 @@ function renderSectionSummary(filteredItems = null) {
   const highCount = items.filter((item) => isHighPriorityItem(item)).length;
   const sources = new Set(items.map((item) => item.source || item.site_name || item.site_id).filter(Boolean));
   const modeText = state.mode === "all" ? (state.allDedup ? "全量去重" : "全量原始") : "AI强相关";
-  const windowText = isSubscriptionSection(state.activeSection) ? `${creatorWindowLabel()} · 热度优先` : windowLabel();
+  const sortText = {
+    time: "时间优先",
+    priority: "综合优先",
+    ai: "高分优先",
+    source: "来源优先",
+  }[state.listSort] || "时间优先";
+  const windowText = isSubscriptionSection(state.activeSection) ? `${creatorWindowLabel()} · ${sortText}` : windowLabel();
   sectionSummaryEl.textContent = `${windowText} · ${fmtNumber(items.length)} 条 ${section.label} 信号 · ${fmtNumber(highCount)} 条高优先级 · ${fmtNumber(sources.size)} 个来源 · ${modeText}`;
   renderStickySummary();
 }
@@ -2648,12 +2654,12 @@ function applyTimeRange(items) {
 
 function sectionItems(items = modeItems(), sectionId = state.activeSection) {
   if (sectionId === "creator") {
-    return applyTimeRange(subscriptionModeItems()).sort((a, b) => creatorHotScore(b) - creatorHotScore(a) || timelineMs(b) - timelineMs(a));
+    return applyTimeRange(subscriptionModeItems()).sort((a, b) => timelineMs(b) - timelineMs(a) || creatorHotScore(b) - creatorHotScore(a));
   }
   if (isSubscriptionSection(sectionId)) {
     return applyTimeRange(subscriptionModeItems())
       .filter((item) => itemPlatformSection(item) === sectionId)
-      .sort((a, b) => creatorHotScore(b) - creatorHotScore(a) || timelineMs(b) - timelineMs(a));
+      .sort((a, b) => timelineMs(b) - timelineMs(a) || creatorHotScore(b) - creatorHotScore(a));
   }
   const source = applyTimeRange(items);
   return source.filter((item) => itemMatchesSection(item, sectionId));
@@ -4399,6 +4405,30 @@ function addLoadMoreButton(parent, label, onClick) {
   return moreBtn;
 }
 
+function renderFlatTimeline(items) {
+  const pageSize = 80;
+  const shown = state.siteGroupsExpanded ? items.length : Math.min(pageSize, items.length);
+  const frag = document.createDocumentFragment();
+  items.slice(0, shown).forEach((item) => {
+    frag.appendChild(renderItemNode(item));
+  });
+  newsListEl.appendChild(frag);
+
+  if (items.length > pageSize) {
+    addLoadMoreButton(
+      newsListEl,
+      state.siteGroupsExpanded
+        ? `收起，仅看前 ${fmtNumber(pageSize)} 条`
+        : `继续看剩余 ${fmtNumber(items.length - pageSize)} 条`,
+      () => {
+        state.siteGroupsExpanded = !state.siteGroupsExpanded;
+        renderList();
+      },
+    );
+  }
+  document.dispatchEvent(new CustomEvent("aiRadar:listRendered"));
+}
+
 function renderSiteGroups(items) {
   const groups = groupedSites(items);
   const visibleGroups = state.siteGroupsExpanded
@@ -4447,7 +4477,11 @@ function renderList() {
     if (token !== _renderListToken) return;   // stale render, abort
     const sorted = sortItemsForList(filtered);
     newsListEl.innerHTML = "";
-    renderSiteGroups(sorted);
+    if (isSubscriptionSection(state.activeSection)) {
+      renderFlatTimeline(sorted);
+    } else {
+      renderSiteGroups(sorted);
+    }
   });
 }
 
