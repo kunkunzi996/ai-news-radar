@@ -573,6 +573,11 @@ class LocalServerTests(unittest.TestCase):
         self.assertEqual(Path(result["command"][1]), runner)
         self.assertIn("--crawler-root", result["command"])
         self.assertIn(str(crawler_root), result["command"])
+        self.assertEqual(result["collection_scope"], "24h")
+        self.assertIn("--collect-window-hours", result["command"])
+        self.assertEqual(result["command"][result["command"].index("--collect-window-hours") + 1], "24")
+        self.assertIn("--max-notes", result["command"])
+        self.assertEqual(result["command"][result["command"].index("--max-notes") + 1], "5")
         self.assertNotIn("url", result)
 
     def test_start_mediacrawler_douyin_dry_run_uses_homepage_url_from_source_config(self):
@@ -625,6 +630,7 @@ class LocalServerTests(unittest.TestCase):
         self.assertEqual(Path(result["command"][0]), python_exe)
         self.assertIn("--creator-id", result["command"])
         self.assertIn(homepage_url, result["command"])
+        self.assertIn("--collect-window-hours", result["command"])
 
     def test_start_mediacrawler_xhs_dry_run_uses_fixed_local_command_and_creator_from_jsonl(self):
         import os
@@ -665,6 +671,11 @@ class LocalServerTests(unittest.TestCase):
         self.assertIn("xhs", result["command"])
         self.assertIn("--creator-id", result["command"])
         self.assertIn("https://www.xiaohongshu.com/user/profile/5e4027000000000001005eb8", result["command"])
+        self.assertEqual(result["collection_scope"], "24h")
+        self.assertIn("--collect-window-hours", result["command"])
+        self.assertEqual(result["command"][result["command"].index("--collect-window-hours") + 1], "24")
+        self.assertIn("--max-notes", result["command"])
+        self.assertEqual(result["command"][result["command"].index("--max-notes") + 1], "5")
 
     def test_start_mediacrawler_xhs_dry_run_uses_homepage_url_from_source_config(self):
         import os
@@ -716,6 +727,58 @@ class LocalServerTests(unittest.TestCase):
         self.assertEqual(Path(result["command"][0]), python_exe)
         self.assertIn("--creator-id", result["command"])
         self.assertIn(homepage_url, result["command"])
+        self.assertIn("--collect-window-hours", result["command"])
+
+    def test_start_mediacrawler_xhs_all_scope_keeps_full_history_command(self):
+        import os
+
+        root = Path(self.create_temp_dir()) / "ai-news-radar-run"
+        script_dir = root / "scripts"
+        script_dir.mkdir(parents=True)
+        runner = script_dir / "run_mediacrawler_douyin.py"
+        runner.write_text("print('runner')\n", encoding="utf-8")
+        crawler_root = root.parent / "MediaCrawler-local-test"
+        crawler_root.mkdir(parents=True)
+        (crawler_root / "main.py").write_text("print('fake')\n", encoding="utf-8")
+        python_dir = crawler_root / "venv" / "Scripts"
+        python_dir.mkdir(parents=True)
+        python_exe = python_dir / "python.exe"
+        python_exe.write_text("", encoding="utf-8")
+        homepage_url = "https://www.xiaohongshu.com/user/profile/5e4027000000000001005eb8"
+        (root / CONFIG_FILENAME).write_text(
+            json.dumps(
+                {
+                    "version": "1.0",
+                    "sources": [
+                        {
+                            "id": "mediacrawler_xhs_chenbaoyi",
+                            "name": "陈抱一",
+                            "type": "mediacrawler_jsonl",
+                            "channel": "小红书",
+                            "locator": homepage_url,
+                            "enabled": True,
+                        }
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
+
+        old_dir = os.environ.get("MEDIACRAWLER_LOCAL_DIR")
+        os.environ["MEDIACRAWLER_LOCAL_DIR"] = str(crawler_root)
+        try:
+            result = start_mediacrawler_xhs(root, execute=False, collection_scope="all")
+        finally:
+            if old_dir is None:
+                os.environ.pop("MEDIACRAWLER_LOCAL_DIR", None)
+            else:
+                os.environ["MEDIACRAWLER_LOCAL_DIR"] = old_dir
+
+        self.assertTrue(result["ok"])
+        self.assertEqual(result["collection_scope"], "all")
+        self.assertNotIn("--collect-window-hours", result["command"])
+        self.assertIn("--max-notes", result["command"])
+        self.assertEqual(result["command"][result["command"].index("--max-notes") + 1], "500")
 
     def test_mediacrawler_douyin_collector_status_explains_finished_run(self):
         root = Path(self.create_temp_dir()) / "ai-news-radar-run"
@@ -736,6 +799,28 @@ class LocalServerTests(unittest.TestCase):
         self.assertEqual(status["item_count"], 2)
         self.assertEqual(status["last_log"], "采集完成")
         self.assertIn("读取结果", status["next_action"])
+
+    def test_mediacrawler_collector_status_skips_latest_empty_jsonl(self):
+        import os
+        import time
+
+        root = Path(self.create_temp_dir()) / "ai-news-radar-run"
+        crawler_root = root.parent / "MediaCrawler-local-test"
+        output_dir = crawler_root / "output" / "douyin" / "jsonl"
+        output_dir.mkdir(parents=True)
+        older = output_dir / "creator_contents_2026-07-03.jsonl"
+        older.write_text('{"title":"one"}\n{"title":"two"}\n', encoding="utf-8")
+        latest_empty = output_dir / "creator_contents_2026-07-04.jsonl"
+        latest_empty.write_text("", encoding="utf-8")
+        now = time.time()
+        os.utime(older, (now - 3600, now - 3600))
+        os.utime(latest_empty, (now, now))
+
+        status = mediacrawler_douyin_collector_status(root)
+
+        self.assertEqual(status["latest_file"], older.name)
+        self.assertEqual(status["item_count"], 2)
+        self.assertEqual(status["raw_item_count"], 2)
 
     def test_mediacrawler_xhs_collector_status_explains_finished_run(self):
         root = Path(self.create_temp_dir()) / "ai-news-radar-run"
@@ -784,6 +869,36 @@ class LocalServerTests(unittest.TestCase):
         self.assertTrue(status["completed"])
         self.assertEqual(status["item_count"], 2)
         self.assertIn("读取结果", status["next_action"])
+
+    def test_mediacrawler_collector_status_reports_window_count_without_losing_raw_count(self):
+        root = Path(self.create_temp_dir()) / "ai-news-radar-run"
+        crawler_root = root.parent / "MediaCrawler-local-test"
+        output_dir = crawler_root / "output" / "douyin" / "jsonl"
+        output_dir.mkdir(parents=True)
+        jsonl = output_dir / "creator_contents_2026-07-04.jsonl"
+        jsonl.write_text('{"title":"old one"}\n{"title":"old two"}\n', encoding="utf-8")
+        summary = crawler_root / "mediacrawler-douyin-collection-window.json"
+        summary.write_text(
+            json.dumps(
+                {
+                    "ok": True,
+                    "path": str(jsonl),
+                    "file": jsonl.name,
+                    "window_hours": 24,
+                    "total": 2,
+                    "kept": 0,
+                    "skipped": 2,
+                }
+            ),
+            encoding="utf-8",
+        )
+
+        status = mediacrawler_douyin_collector_status(root)
+
+        self.assertEqual(status["item_count"], 0)
+        self.assertEqual(status["raw_item_count"], 2)
+        self.assertEqual(status["collection_window_hours"], 24)
+        self.assertEqual(status["skipped_collection_window_items"], 2)
 
     def test_perform_maintenance_action_dry_run_opens_configured_jsonl_folder(self):
         import os
@@ -914,6 +1029,56 @@ class LocalServerTests(unittest.TestCase):
         self.assertEqual(Path(result["command"][0]), python_exe)
         self.assertIn("--creator-id", result["command"])
         self.assertIn(homepage_url, result["command"])
+        self.assertIn("--collect-window-hours", result["command"])
+
+    def test_perform_maintenance_action_can_start_mediacrawler_all_scope(self):
+        import os
+
+        root = Path(self.create_temp_dir()) / "ai-news-radar-run"
+        script_dir = root / "scripts"
+        script_dir.mkdir(parents=True)
+        runner = script_dir / "run_mediacrawler_douyin.py"
+        runner.write_text("print('runner')\n", encoding="utf-8")
+        crawler_root = root.parent / "MediaCrawler-local-test"
+        crawler_root.mkdir(parents=True)
+        (crawler_root / "main.py").write_text("print('fake')\n", encoding="utf-8")
+        python_dir = crawler_root / "venv" / "Scripts"
+        python_dir.mkdir(parents=True)
+        python_exe = python_dir / "python.exe"
+        python_exe.write_text("", encoding="utf-8")
+        homepage_url = "https://www.douyin.com/user/MS4wLjABAAAAOzTvIhQXaHWi6jT_P5rG5xEWpWPjufiK"
+        (root / CONFIG_FILENAME).write_text(
+            json.dumps(
+                {
+                    "version": "1.0",
+                    "sources": [
+                        {
+                            "id": "mediacrawler_douyin_jennie",
+                            "name": "珍妮丁丁说AI",
+                            "type": "mediacrawler_jsonl",
+                            "channel": "抖音",
+                            "locator": homepage_url,
+                            "enabled": True,
+                        }
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
+
+        old_dir = os.environ.get("MEDIACRAWLER_LOCAL_DIR")
+        os.environ["MEDIACRAWLER_LOCAL_DIR"] = str(crawler_root)
+        try:
+            result = perform_maintenance_action(root, "start_mediacrawler_douyin", execute=False, collection_scope="all")
+        finally:
+            if old_dir is None:
+                os.environ.pop("MEDIACRAWLER_LOCAL_DIR", None)
+            else:
+                os.environ["MEDIACRAWLER_LOCAL_DIR"] = old_dir
+
+        self.assertTrue(result["ok"])
+        self.assertEqual(result["collection_scope"], "all")
+        self.assertNotIn("--collect-window-hours", result["command"])
 
     def create_temp_dir(self):
         import tempfile

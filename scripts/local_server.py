@@ -52,6 +52,9 @@ MEDIACRAWLER_DOUYIN_PID = "mediacrawler-douyin.pid"
 MEDIACRAWLER_XHS_LOG_OUT = "mediacrawler-xhs.out.log"
 MEDIACRAWLER_XHS_LOG_ERR = "mediacrawler-xhs.err.log"
 MEDIACRAWLER_XHS_PID = "mediacrawler-xhs.pid"
+MEDIACRAWLER_24H_WINDOW_HOURS = 24
+MEDIACRAWLER_DOUYIN_24H_MAX_NOTES = 5
+MEDIACRAWLER_XHS_24H_MAX_NOTES = 5
 
 
 def site_display_name(site: dict[str, Any]) -> str:
@@ -377,6 +380,9 @@ def resolve_latest_mediacrawler_jsonl(raw_path: Path) -> Path:
             key=lambda candidate: candidate.stat().st_mtime,
             reverse=True,
         )
+        non_empty_candidates = [candidate for candidate in candidates if candidate.stat().st_size > 0]
+        if non_empty_candidates:
+            return non_empty_candidates[0]
         return candidates[0] if candidates else path
     if path.parent.exists() and (not path.exists() or path.name.startswith("creator_contents_")):
         candidates = sorted(
@@ -384,6 +390,9 @@ def resolve_latest_mediacrawler_jsonl(raw_path: Path) -> Path:
             key=lambda candidate: candidate.stat().st_mtime,
             reverse=True,
         )
+        non_empty_candidates = [candidate for candidate in candidates if candidate.stat().st_size > 0]
+        if non_empty_candidates and (not path.exists() or path.stat().st_size <= 0 or non_empty_candidates[0].stat().st_mtime >= path.stat().st_mtime):
+            return non_empty_candidates[0]
         if candidates and (not path.exists() or candidates[0].stat().st_mtime >= path.stat().st_mtime):
             return candidates[0]
     return path
@@ -994,6 +1003,32 @@ def newest_file(folder: Path, pattern: str) -> Path | None:
     return candidates[0] if candidates else None
 
 
+def mediacrawler_window_summary_path(crawler_root: Path, platform: str) -> Path:
+    return crawler_root / f"mediacrawler-{platform}-collection-window.json"
+
+
+def read_mediacrawler_window_summary(crawler_root: Path, platform: str, jsonl: Path | None) -> dict[str, Any] | None:
+    if not jsonl:
+        return None
+    summary_path = mediacrawler_window_summary_path(crawler_root, platform)
+    if not summary_path.exists():
+        return None
+    try:
+        summary = json.loads(summary_path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+    if not isinstance(summary, dict):
+        return None
+    if Path(str(summary.get("path") or "")).resolve() != jsonl.resolve():
+        return None
+    try:
+        if summary_path.stat().st_mtime < jsonl.stat().st_mtime:
+            return None
+    except OSError:
+        return None
+    return summary
+
+
 def count_file_lines(path: Path) -> int:
     try:
         with path.open("r", encoding="utf-8", errors="ignore") as handle:
@@ -1051,11 +1086,20 @@ def mediacrawler_collector_status(root_dir: Path, runtime_id: str) -> dict[str, 
     pid_path = crawler_root / pid_file
     pid = read_pid_file(pid_path)
     running = process_is_running(pid or 0)
-    jsonl = newest_file(crawler_root / "output" / output_folder / "jsonl", "creator_contents_*.jsonl")
+    jsonl_candidate = resolve_latest_mediacrawler_jsonl(crawler_root / "output" / output_folder / "jsonl")
+    jsonl = jsonl_candidate if jsonl_candidate.exists() and jsonl_candidate.is_file() else None
     log_lines = read_tail_lines(crawler_root / err_log)
     last_log = last_meaningful_mediacrawler_log(log_lines, platform)
     finished_marker = "Xhs Crawler finished" if platform == "xhs" else "Douyin Crawler finished"
-    item_count = count_file_lines(jsonl) if jsonl else 0
+    raw_item_count = count_file_lines(jsonl) if jsonl else 0
+    item_count = raw_item_count
+    collection_window_hours: int | None = None
+    skipped_collection_window_items: int | None = None
+    window_summary = read_mediacrawler_window_summary(crawler_root, platform, jsonl)
+    if window_summary:
+        collection_window_hours = int(window_summary.get("window_hours") or 0) or None
+        item_count = int(window_summary.get("kept") or 0)
+        skipped_collection_window_items = int(window_summary.get("skipped") or 0)
     updated_at = datetime.fromtimestamp(jsonl.stat().st_mtime, timezone.utc).isoformat() if jsonl else None
     completed_by_log = any(finished_marker in line for line in log_lines[-80:])
     completed_by_output = (
@@ -1063,7 +1107,7 @@ def mediacrawler_collector_status(root_dir: Path, runtime_id: str) -> dict[str, 
         and bool(pid)
         and pid_path.exists()
         and jsonl is not None
-        and item_count > 0
+        and raw_item_count > 0
         and jsonl.stat().st_mtime >= pid_path.stat().st_mtime
     )
     completed = completed_by_log or completed_by_output
@@ -1100,6 +1144,9 @@ def mediacrawler_collector_status(root_dir: Path, runtime_id: str) -> dict[str, 
         "can_close_browser": can_close_browser,
         "pid": pid,
         "item_count": item_count,
+        "raw_item_count": raw_item_count,
+        "collection_window_hours": collection_window_hours,
+        "skipped_collection_window_items": skipped_collection_window_items,
         "latest_file": jsonl.name if jsonl else None,
         "latest_file_path": str(jsonl) if jsonl else None,
         "updated_at": updated_at,
@@ -1158,7 +1205,24 @@ def mediacrawler_xhs_creator_id(root_dir: Path, crawler_root: Path) -> str:
     return mediacrawler_creator_id(root_dir, crawler_root, "mediacrawler_xhs")
 
 
-def start_mediacrawler_platform(root_dir: Path, runtime_id: str, *, execute: bool = True) -> dict[str, Any]:
+def mediacrawler_start_max_notes(platform: str, collection_scope: str) -> int | None:
+    if collection_scope == COLLECTION_SCOPE_24H:
+        if platform == "xhs":
+            return int(os.environ.get("MEDIACRAWLER_XHS_24H_MAX_NOTES") or MEDIACRAWLER_XHS_24H_MAX_NOTES)
+        return int(os.environ.get("MEDIACRAWLER_DOUYIN_24H_MAX_NOTES") or MEDIACRAWLER_DOUYIN_24H_MAX_NOTES)
+    if platform == "xhs":
+        return int(os.environ.get("MEDIACRAWLER_XHS_MAX_NOTES") or 500)
+    return None
+
+
+def start_mediacrawler_platform(
+    root_dir: Path,
+    runtime_id: str,
+    *,
+    execute: bool = True,
+    collection_scope: str = COLLECTION_SCOPE_24H,
+) -> dict[str, Any]:
+    scope = normalize_collection_scope(collection_scope)
     platform = "xhs" if runtime_id == "mediacrawler_xhs" else "douyin"
     action_id = "start_mediacrawler_xhs" if platform == "xhs" else "start_mediacrawler_douyin"
     out_log_name = MEDIACRAWLER_XHS_LOG_OUT if platform == "xhs" else MEDIACRAWLER_DOUYIN_LOG_OUT
@@ -1187,15 +1251,20 @@ def start_mediacrawler_platform(root_dir: Path, runtime_id: str, *, execute: boo
     creator_id = mediacrawler_creator_id(root_dir, crawler_root, runtime_id)
     if creator_id:
         command.extend(["--creator-id", creator_id])
+    if scope == COLLECTION_SCOPE_24H:
+        command.extend(["--collect-window-hours", str(MEDIACRAWLER_24H_WINDOW_HOURS)])
+    max_notes = mediacrawler_start_max_notes(platform, scope)
+    if max_notes:
+        command.extend(["--max-notes", str(max_notes)])
     if platform == "xhs":
         if not creator_id:
             return {"ok": False, "error": "mediacrawler_xhs_creator_id_missing"}
-        command.extend(["--max-notes", str(int(os.environ.get("MEDIACRAWLER_XHS_MAX_NOTES") or 500))])
     if not execute:
         return {
             "ok": True,
             "kind": "start_service",
             "action_id": action_id,
+            "collection_scope": scope,
             "command": command,
             "cwd": str(crawler_root),
             "executed": False,
@@ -1224,6 +1293,7 @@ def start_mediacrawler_platform(root_dir: Path, runtime_id: str, *, execute: boo
         "ok": True,
         "kind": "start_service",
         "action_id": action_id,
+        "collection_scope": scope,
         "pid": process.pid,
         "executed": True,
     }
@@ -1237,12 +1307,32 @@ def mediacrawler_xhs_collector_status(root_dir: Path) -> dict[str, Any]:
     return mediacrawler_collector_status(root_dir, "mediacrawler_xhs")
 
 
-def start_mediacrawler_douyin(root_dir: Path, *, execute: bool = True) -> dict[str, Any]:
-    return start_mediacrawler_platform(root_dir, "mediacrawler_douyin", execute=execute)
+def start_mediacrawler_douyin(
+    root_dir: Path,
+    *,
+    execute: bool = True,
+    collection_scope: str = COLLECTION_SCOPE_24H,
+) -> dict[str, Any]:
+    return start_mediacrawler_platform(
+        root_dir,
+        "mediacrawler_douyin",
+        execute=execute,
+        collection_scope=collection_scope,
+    )
 
 
-def start_mediacrawler_xhs(root_dir: Path, *, execute: bool = True) -> dict[str, Any]:
-    return start_mediacrawler_platform(root_dir, "mediacrawler_xhs", execute=execute)
+def start_mediacrawler_xhs(
+    root_dir: Path,
+    *,
+    execute: bool = True,
+    collection_scope: str = COLLECTION_SCOPE_24H,
+) -> dict[str, Any]:
+    return start_mediacrawler_platform(
+        root_dir,
+        "mediacrawler_xhs",
+        execute=execute,
+        collection_scope=collection_scope,
+    )
 
 
 def add_wewe_rss_config_issues(
@@ -1530,14 +1620,21 @@ def launch_open_path(target: Path) -> None:
     subprocess.Popen([opener, str(target)], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 
-def perform_maintenance_action(root_dir: Path, action_id: str, *, execute: bool = True) -> dict[str, Any]:
+def perform_maintenance_action(
+    root_dir: Path,
+    action_id: str,
+    *,
+    execute: bool = True,
+    collection_scope: str = COLLECTION_SCOPE_24H,
+) -> dict[str, Any]:
+    scope = normalize_collection_scope(collection_scope)
     fixed_start_actions = {
         "start_mediacrawler_douyin": start_mediacrawler_douyin,
         "start_mediacrawler_xhs": start_mediacrawler_xhs,
     }
     direct_start_action = fixed_start_actions.get(str(action_id or "").strip())
     if direct_start_action:
-        return direct_start_action(root_dir, execute=execute)
+        return direct_start_action(root_dir, execute=execute, collection_scope=scope)
 
     action = find_maintenance_action(root_dir, action_id)
     if not action:
@@ -1593,9 +1690,9 @@ def perform_maintenance_action(root_dir: Path, action_id: str, *, execute: bool 
         if action_id == "start_wewe_rss_sidecar":
             return start_wewe_rss_sidecar(root_dir, execute=execute)
         if action_id == "start_mediacrawler_douyin":
-            return start_mediacrawler_douyin(root_dir, execute=execute)
+            return start_mediacrawler_douyin(root_dir, execute=execute, collection_scope=scope)
         if action_id == "start_mediacrawler_xhs":
-            return start_mediacrawler_xhs(root_dir, execute=execute)
+            return start_mediacrawler_xhs(root_dir, execute=execute, collection_scope=scope)
         return {"ok": False, "error": "unsupported_start_service", "action_id": action_id}
     return {"ok": False, "error": "unsupported_maintenance_action", "kind": kind}
 
@@ -1762,8 +1859,23 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
         try:
             raw = self.rfile.read(length)
             payload = json.loads(raw.decode("utf-8"))
+            if not isinstance(payload, dict):
+                raise ValueError("payload must be a JSON object")
             action_id = str(payload.get("action_id") or "").strip()
-            result = perform_maintenance_action(self.root_dir, action_id)
+            try:
+                collection_scope = normalize_collection_scope(payload.get("collection_scope"))
+            except ValueError:
+                json_response(
+                    self,
+                    HTTPStatus.BAD_REQUEST,
+                    {
+                        "ok": False,
+                        "error": "unsupported_collection_scope",
+                        "allowed_scopes": sorted(COLLECTION_SCOPES),
+                    },
+                )
+                return
+            result = perform_maintenance_action(self.root_dir, action_id, collection_scope=collection_scope)
         except Exception as exc:
             json_response(self, HTTPStatus.INTERNAL_SERVER_ERROR, {"ok": False, "error": str(exc)})
             return

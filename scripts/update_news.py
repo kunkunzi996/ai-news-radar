@@ -4788,6 +4788,9 @@ def resolve_latest_mediacrawler_jsonl(raw_path: str) -> Path:
             key=lambda candidate: candidate.stat().st_mtime,
             reverse=True,
         )
+        non_empty_candidates = [candidate for candidate in candidates if candidate.stat().st_size > 0]
+        if non_empty_candidates:
+            return non_empty_candidates[0]
         return candidates[0] if candidates else path
 
     if path.parent.exists() and (not path.exists() or path.name.startswith("creator_contents_")):
@@ -4796,6 +4799,9 @@ def resolve_latest_mediacrawler_jsonl(raw_path: str) -> Path:
             key=lambda candidate: candidate.stat().st_mtime,
             reverse=True,
         )
+        non_empty_candidates = [candidate for candidate in candidates if candidate.stat().st_size > 0]
+        if non_empty_candidates and (not path.exists() or path.stat().st_size <= 0 or non_empty_candidates[0].stat().st_mtime >= path.stat().st_mtime):
+            return non_empty_candidates[0]
         if candidates and (not path.exists() or candidates[0].stat().st_mtime >= path.stat().st_mtime):
             return candidates[0]
     return path

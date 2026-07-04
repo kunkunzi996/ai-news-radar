@@ -274,6 +274,13 @@ B站登录页或 MediaCrawler JSONL 所在文件夹。
 6. 选择“采集范围”，再点“执行采集”即可一键写入配置并刷新 `data/*.json`，
    完成后页面会自动重载。日常默认选“过去24小时”：本轮只接收 24 小时内
    新内容，但页面继续展示已有归档。第一次接入或需要重建历史时再选“全量”。
+   同一个范围也会传给抖音/小红书的“启动采集”维护按钮：默认 24 小时会让
+   MediaCrawler 启动后统计当天 `creator_contents_*.jsonl` 里有多少作品发布时间在
+   24 小时内，并保留原始 JSONL 不覆盖；YouTube/微信公众号等 RSS 类来源则在刷新脚本入库时按
+   `--collect-window-hours 24` 过滤。
+   注意：MediaCrawler 当前 creator 模式没有平台端“只请求 24 小时”的参数；24h
+   模式会把默认抓取量限制到每个博主最近 5 条左右，再按发布时间过滤，避免日常增量采集
+   重新扫太多历史。
    如果想在命令行里手动刷新，也可以显式运行：
 
    ```powershell
@@ -405,6 +412,11 @@ MediaCrawler 的 `chrome-profile`、cookie 或登录态文件。
 采集专用 Chrome profile `MediaCrawler-local-test\chrome-profile` 打开抖音；它不应
 复用你的日常浏览器窗口。扫码或登录状态只留在这个采集 profile 里，不会保存进
 AI News Radar 仓库，也不会执行前端传入的任意命令。
+当页面“采集范围”是默认“过去24小时”时，这个按钮会给 runner 传入
+`--collect-window-hours 24`，并在 MediaCrawler 跑完后写出
+`mediacrawler-douyin-collection-window.json` 统计文件，用来显示 24 小时命中数；
+原始 `creator_contents_*.jsonl` 会保留不覆盖。默认 24h 只抓每个博主最近 5 条左右，选择
+“全量”时不会生成这个 24h 统计。
 启动后，本地采集面板会显示“抖音采集任务”状态卡：采集中时会自动刷新，显示
 已经写入多少条、最近写入时间和当前动作；日志出现完成信号后会显示“可关闭窗口”，
 再提示回到主页面点“执行采集”。
@@ -426,6 +438,8 @@ $env:MEDIACRAWLER_XHS_SOURCE_NAME='陈抱一'
 小红书 JSONL 的 `user_id` 自动推断干净的博主主页地址；如果没有历史 JSONL，
 可用 `MEDIACRAWLER_XHS_CREATOR_ID` 指定小红书博主主页 URL。启动后页面会显示
 “小红书采集任务”状态卡，采集中自动刷新，完成后会提示可以关闭采集窗口。
+默认 24 小时范围同样会在采集完成后写出 24h 命中统计，状态卡会显示
+“24h作品”和“原始写入”两个数字；需要补历史时先把页面采集范围切到“全量”。
 
 GitHub 版本订阅默认追踪 `AlkaidLab/foundation-sunshine` 最近 5 次公开 release，
 不再追踪普通 commit。它不需要 token，也不会调用 GitHub 登录态。刷新后它会进入

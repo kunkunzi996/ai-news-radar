@@ -782,14 +782,20 @@ function renderLocalOpsCollectors(collectors = {}) {
 
     const meta = document.createElement("div");
     meta.className = "local-ops-collector-meta";
+    const collectionWindowHours = Number(collector.collection_window_hours || 0);
+    const rawItemCount = Number(collector.raw_item_count ?? collector.item_count ?? 0);
     meta.append(
-      localOpsMetric("写入作品", fmtNumber(Number(collector.item_count || 0)), collector.running ? "warn" : "ok"),
+      localOpsMetric(collectionWindowHours ? `${collectionWindowHours}h作品` : "原始写入", fmtNumber(Number(collector.item_count || 0)), collector.running ? "warn" : "ok"),
+      ...(collectionWindowHours ? [localOpsMetric("原始写入", fmtNumber(rawItemCount))] : []),
       localOpsMetric("最近写入", collector.updated_at ? fmtTime(collector.updated_at) : "未生成"),
       localOpsMetric("当前状态", collector.running ? "请等待" : (collector.completed ? "已完成" : "未运行"), collector.running ? "warn" : "ok")
     );
 
     const detail = document.createElement("span");
     detail.textContent = collector.latest_file ? `输出文件：${collector.latest_file}` : "还没有输出文件";
+    if (collector.latest_file && collectionWindowHours) {
+      detail.textContent += `；最近${collectionWindowHours}小时 ${fmtNumber(Number(collector.item_count || 0))} 条，原始文件 ${fmtNumber(rawItemCount)} 条`;
+    }
     const log = document.createElement("em");
     log.textContent = collector.last_log || (collector.running ? "正在等待采集日志..." : "暂无采集日志");
     const next = document.createElement("strong");
@@ -841,7 +847,7 @@ async function runLocalOpsFixAction(action, button) {
     const res = await fetch("./api/maintenance-action", {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({ action_id: action.id }),
+      body: JSON.stringify({ action_id: action.id, collection_scope: selectedCollectionScope() }),
     });
     const payload = await res.json().catch(() => ({}));
     if (!res.ok || payload.ok === false) {
@@ -864,7 +870,8 @@ async function runLocalOpsFixAction(action, button) {
       window.setTimeout(() => loadLocalStatusFromServer(false), 1200);
     }
     if (action.id === "start_mediacrawler_douyin" || action.id === "start_mediacrawler_xhs") {
-      setLocalOpsStatus(action.id === "start_mediacrawler_xhs" ? "小红书采集中" : "抖音采集中", "warn");
+      const scopeLabel = selectedCollectionScope() === "all" ? "全量" : "过去24小时";
+      setLocalOpsStatus(`${action.id === "start_mediacrawler_xhs" ? "小红书" : "抖音"}采集中（${scopeLabel}）`, "warn");
       window.setTimeout(() => loadLocalStatusFromServer(false), 1200);
     } else if (!["open_bilibili_cookie_folder", "open_bilibili_login", "sync_bilibili_cookie"].includes(action.id)) {
       setLocalOpsStatus(`已打开：${label}`, "ok");

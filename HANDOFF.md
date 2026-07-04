@@ -1,9 +1,9 @@
 # HANDOFF.md
 
-## 当前最新交接：本地采集范围已规范为 24h / 全量
+## 当前最新交接：本地采集范围已覆盖刷新与平台采集器
 
 - 日期：2026-07-04
-- 当前阶段：本地采集控制台的“执行采集”已拆清楚“采集范围”和“展示范围”。默认 `过去24小时` 只限制本轮新入库内容；页面仍展示已有全量归档加新采集的 24h 数据。需要第一次补历史或重建历史数据时手动选 `全量`。
+- 当前阶段：本地采集控制台的“执行采集”已拆清楚“采集范围”和“展示范围”。默认 `过去24小时` 只限制本轮新入库内容；页面仍展示已有全量归档加新采集的 24h 数据。抖音/小红书维护按钮也会吃同一个范围：24h 模式启动 MediaCrawler 后会统计 24 小时内命中数，但不再覆盖原始 JSONL；需要第一次补历史或重建历史数据时手动选 `全量`。
 - 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
 - 当前分支：`master`
 - 本轮改动：
@@ -11,11 +11,17 @@
   - `24h` 模式运行 `--window-hours 24 --archive-days 3650 --collect-window-hours 24 --all-time`：本轮只接收 24h 内可信发布时间内容，但输出仍发布全量归档。
   - `all` 模式运行全量补历史命令，保留 `--all-time`，不加 `--collect-window-hours 24`。
   - `scripts/update_news.py` 新增采集窗口过滤；没有真实 `published_at` 或发布时间超出窗口的新抓取项不会进入本轮 24h 增量归档。
-  - `index.html` / `assets/app.js` 新增采集范围选择并把选择传给 `/api/refresh`。
+  - `assets/app.js` 会把当前采集范围同时传给 `/api/refresh` 和 `/api/maintenance-action`。
+  - `scripts/local_server.py` 会把 24h 范围传给 `scripts/run_mediacrawler_douyin.py --collect-window-hours 24`；`all` 范围不传该统计参数。24h 模式默认每个抖音/小红书博主最多取最近 5 条，再按发布时间判断是否在 24 小时内。
+  - `scripts/run_mediacrawler_douyin.py` 给抖音 creator 获取加了运行时硬限制，避免抖音继续翻取超过 5 条的历史作品。
+  - `scripts/run_mediacrawler_douyin.py` 在 MediaCrawler 完成后写出 `mediacrawler-<platform>-collection-window.json`，记录原始行数、24h 命中数和跳过数，不再改写 `creator_contents_*.jsonl`。
+  - `scripts/local_server.py` 和 `scripts/update_news.py` 读取 MediaCrawler JSONL 时会跳过 0 字节的最新文件，回退到同目录最新非空文件，避免本轮空文件继续影响主站读取。
+  - 抖音/小红书状态卡会显示“24h作品”和“原始写入”；`24h作品=0` 表示最近 24 小时没有新作品，不代表原始导出被清空。
+  - YouTube/微信公众号这类 RSS/JSON 来源没有单独浏览器采集器，仍由 `scripts/update_news.py --collect-window-hours 24` 在入库时过滤。
   - README 和 `PROJECT_STATE.md` 已同步这个运行口径。
 - 下一轮建议入口：
   - 先读 `PROJECT_STATE.md` 和本文件。
-  - 手动验收：打开 `http://127.0.0.1:8080/`，展开 `信源配置`，确认“采集范围”默认是 `过去24小时`；点 `执行采集` 后 `source-status.json.collection_window_hours` 应为 `24`，页面仍能看到旧归档内容。需要补历史时再选 `全量`。
+  - 手动验收：打开 `http://127.0.0.1:8080/`，展开 `信源配置`，确认“采集范围”默认是 `过去24小时`；点抖音/小红书“启动采集”后，采集完成时原始 `creator_contents_*.jsonl` 不应再被清空，状态卡应显示 24h 命中数和原始写入数；点 `执行采集` 后 `source-status.json.collection_window_hours` 应为 `24`，页面仍能看到旧归档内容。需要补历史时再选 `全量`。
 - 下一轮禁止：
   - 不要批量删除。
   - 不要把 `/api/refresh` 改成可传任意命令或任意参数。
