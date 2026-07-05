@@ -1324,6 +1324,127 @@ summary:focus-visible {
   background: rgba(31, 122, 77, 0.06);
 }
 
+.local-ops-source-overview {
+  display: grid;
+  gap: 8px;
+  border: 1px solid rgba(18, 106, 115, 0.18);
+  border-radius: var(--radius);
+  padding: 10px;
+  background: rgba(18, 106, 115, 0.05);
+}
+
+.local-ops-source-rows {
+  display: grid;
+  gap: 6px;
+}
+
+.local-ops-source-group {
+  display: grid;
+  gap: 6px;
+}
+
+.local-ops-source-group summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.local-ops-source-group summary::-webkit-details-marker {
+  display: none;
+}
+
+.local-ops-source-row {
+  display: grid;
+  grid-template-columns: minmax(130px, 1.35fr) minmax(78px, 0.75fr) minmax(74px, 0.62fr) minmax(96px, 0.82fr) minmax(92px, 0.75fr) minmax(86px, 0.7fr);
+  gap: 8px;
+  align-items: center;
+  min-width: 0;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  padding: 7px 8px;
+  background: var(--surface);
+}
+
+.local-ops-source-parent {
+  grid-template-columns: 20px minmax(130px, 1.35fr) minmax(78px, 0.75fr) minmax(74px, 0.62fr) minmax(96px, 0.82fr) minmax(92px, 0.75fr) minmax(86px, 0.7fr);
+  background: rgba(255, 255, 255, 0.78);
+  font-weight: 760;
+}
+
+.local-ops-source-parent::before {
+  content: "+";
+  display: inline-grid;
+  width: 18px;
+  height: 18px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  background: var(--surface);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.local-ops-source-group[open] .local-ops-source-parent::before {
+  content: "-";
+}
+
+.local-ops-source-children {
+  display: grid;
+  gap: 5px;
+  padding-left: 18px;
+}
+
+.local-ops-source-child {
+  border-style: dashed;
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.local-ops-source-row.warn {
+  background: rgba(154, 103, 0, 0.06);
+}
+
+.local-ops-source-row.bad {
+  background: rgba(180, 35, 24, 0.06);
+}
+
+.local-ops-source-row > * {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.local-ops-source-row strong {
+  color: var(--ink);
+  font-size: 12px;
+}
+
+.local-ops-source-row span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.local-ops-source-status {
+  font-weight: 760;
+}
+
+.local-ops-source-status.ok {
+  color: var(--good);
+}
+
+.local-ops-source-status.warn {
+  color: var(--warn);
+}
+
+.local-ops-source-status.bad {
+  color: var(--bad);
+}
+
+.local-ops-source-action {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .local-ops-collector-head,
 .local-ops-collector-meta {
   display: flex;

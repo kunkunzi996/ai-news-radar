@@ -57,7 +57,7 @@ BILIBILI_DYNAMIC_SOURCE_NAMES=Koji杨远骋at十字路口,技术爬爬虾
 
 | 环境变量 | 默认值 | 代码上限 | 说明 |
 | --- | --- | --- | --- |
-| `BILIBILI_DYNAMIC_MAX_ITEMS` | `20` | `200` | 每个账号最多保留多少条 B站动态 |
+| `BILIBILI_DYNAMIC_MAX_ITEMS` | `5` | `200` | 每个账号最多保留多少条 B站动态 |
 | `BILIBILI_DYNAMIC_MAX_PAGES` | `5` | `20` | 登录态完整动态接口最多往前翻几页 |
 
 这两个值只影响 B站源本身。多账号模式下，`BILIBILI_DYNAMIC_MAX_ITEMS` 是“每个账号”的最大条数，不是所有账号合计。前端主页面仍然会受 `--window-hours`、归并、去重、排序和筛选影响，所以“抓到了很多”和“首页展示很多”不是同一件事。
@@ -526,7 +526,7 @@ $env:BILIBILI_DYNAMIC_MAX_PAGES='20'
 BILIBILI_DYNAMIC_ENABLED: ${{ vars.BILIBILI_DYNAMIC_ENABLED || '1' }}
 BILIBILI_DYNAMIC_UIDS: ${{ vars.BILIBILI_DYNAMIC_UIDS || vars.BILIBILI_DYNAMIC_UID || '505301413,316183842' }}
 BILIBILI_DYNAMIC_SOURCE_NAMES: ${{ vars.BILIBILI_DYNAMIC_SOURCE_NAMES || vars.BILIBILI_DYNAMIC_SOURCE_NAME || 'Koji杨远骋at十字路口,技术爬爬虾' }}
-BILIBILI_DYNAMIC_MAX_ITEMS: ${{ vars.BILIBILI_DYNAMIC_MAX_ITEMS || 20 }}
+BILIBILI_DYNAMIC_MAX_ITEMS: ${{ vars.BILIBILI_DYNAMIC_MAX_ITEMS || 5 }}
 BILIBILI_DYNAMIC_MAX_PAGES: ${{ vars.BILIBILI_DYNAMIC_MAX_PAGES || 5 }}
 BILIBILI_COOKIE: ${{ secrets.BILIBILI_COOKIE }}
 ```

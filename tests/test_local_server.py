@@ -656,6 +656,49 @@ class LocalServerTests(unittest.TestCase):
         self.assertTrue(payload["source_status"]["needs_attention"])
         self.assertEqual(payload["source_status"]["maintenance_issues"][0]["id"], "source_status_missing")
 
+    def test_local_status_payload_preserves_collection_window_counts(self):
+        root = Path(self.create_temp_dir())
+        data_dir = root / "data"
+        data_dir.mkdir()
+        (data_dir / "source-status.json").write_text(
+            json.dumps(
+                {
+                    "generated_at": "2026-07-06T00:00:00+08:00",
+                    "source_scope": "since_last",
+                    "fetched_raw_items": 5,
+                    "collection_window_hours": 2,
+                    "raw_items_before_collection_window": 5,
+                    "skipped_collection_window_items": 3,
+                    "successful_sites": 1,
+                    "sites": [
+                        {
+                            "site_id": "opmlrss",
+                            "site_name": "RSS/OPML",
+                            "ok": True,
+                            "item_count": 5,
+                            "raw_item_count": 5,
+                            "window_item_count": 2,
+                            "collection_window_hours": 2,
+                            "max_items_per_feed": 5,
+                        }
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
+
+        payload = local_status_payload(root)
+        source_status = payload["source_status"]
+        site_status = source_status["sites"][0]
+
+        self.assertEqual(source_status["collection_window_hours"], 2)
+        self.assertEqual(source_status["raw_items_before_collection_window"], 5)
+        self.assertEqual(source_status["skipped_collection_window_items"], 3)
+        self.assertEqual(site_status["raw_item_count"], 5)
+        self.assertEqual(site_status["window_item_count"], 2)
+        self.assertEqual(site_status["collection_window_hours"], 2)
+        self.assertEqual(site_status["max_items_per_feed"], 5)
+
     def test_local_config_issues_flag_missing_mediacrawler_jsonl(self):
         root = Path(self.create_temp_dir())
         config = {

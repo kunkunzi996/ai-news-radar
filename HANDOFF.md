@@ -1,5 +1,97 @@
 # HANDOFF.md
 
+## 当前最新交接：本地状态接口补齐窗口/原始口径
+
+- 日期：2026-07-06
+- 当前阶段：`data/source-status.json` 已经有每个站点的 `raw_item_count`、`window_item_count` 和 `collection_window_hours`，现在 `/api/local-status` 也会把这些字段透传给前端，避免页面只看到“原始”看不到“窗口”。
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前分支：`master`
+- 本轮改动：
+  - `scripts/local_server.py`：`source_status_summary()` 保留全局窗口字段和每个站点的原始/窗口数量、最近 5 条上限元数据。
+  - `tests/test_local_server.py`：新增接口摘要字段透传测试。
+  - `PROJECT_STATE.md` 更新当前状态。
+- 本轮验收：
+  - `.\.venv\Scripts\python.exe -m py_compile scripts\local_server.py scripts\update_news.py` 通过。
+  - `.\.venv\Scripts\python.exe -m unittest tests.test_local_server -q` 通过：61 tests OK。
+  - `.\.venv\Scripts\python.exe -m unittest discover -s tests -q` 通过：212 tests OK。
+  - `node --check assets/app.js` 通过。
+- 下一轮建议入口：
+  - 先读 `PROJECT_STATE.md` 和本文件。
+  - 如果浏览器仍显示旧字段，先重启 `scripts/local_server.py --host 127.0.0.1 --port 8080`，再刷新页面。
+- 下一轮注意：
+  - 当前真实数据里多个站点是 `原始 > 0 / 窗口 = 0`，含义是“抓到了最近 5 条原始候选，但它们发布时间不在自上次采集窗口内”。
+  - 不要把当前已有 `data/*.json` 脏改一股脑提交。
+
+## 历史交接：订阅采集统一最近 5 条和窗口/原始口径
+
+- 日期：2026-07-06
+- 当前阶段：YouTube/OPML、B站动态、GitHub Release 的采集上限已向抖音/小红书靠齐：先尽量只取最近 5 条，再走 `--collect-window-hours` 的“自上次采集”过滤。GitHub 原本就是 5 条，本轮主要补齐 YouTube/OPML 和 B站默认值。
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前分支：`master`
+- 本轮改动：
+  - `scripts/update_news.py`：`BILIBILI_DYNAMIC_DEFAULT_MAX_ITEMS` 从 20 改为 5；OPML/RSS 每个 feed 解析后按发布时间倒序只保留最近 5 条；过滤窗口前后给每个站点状态补 `raw_item_count`、`window_item_count`、`collection_window_hours`。
+  - `assets/app.js`：本地采集概览优先用新状态字段显示 `窗口 X / 原始 Y`，旧状态文件没有新字段时仍兼容显示原始数量。
+  - `.github/workflows/update-news.yml` 和 `docs/guides/bilibili-dynamic-source.md`：同步 B站默认上限为 5。
+  - `tests/test_private_bridge_sources.py`：补 OPML 最近 5 条和 B站默认 5 条测试。
+  - `PROJECT_STATE.md` 更新当前状态。
+- 本轮验收：
+  - `node --check assets/app.js` 通过。
+  - `.\.venv\Scripts\python.exe -m py_compile scripts\update_news.py` 通过。
+  - `.\.venv\Scripts\python.exe -m unittest tests.test_private_bridge_sources -q` 通过：37 tests OK。
+  - `.\.venv\Scripts\python.exe -m unittest discover -s tests -q` 通过：211 tests OK。
+- 下一轮建议入口：
+  - 先读 `PROJECT_STATE.md` 和本文件。
+  - 手动验收：打开 `http://127.0.0.1:8080/`，点 `刷新看板数据` 或 `一键采集` 跑一次；刷新后展开 `信源配置`，确认 YouTube/B站/GitHub 也显示 `窗口 X / 原始 Y`。
+- 下一轮注意：
+  - 当前磁盘上的旧 `data/source-status.json` 是本轮代码修改前生成的，里面还没有每站点 `window_item_count`；需要下一次真实刷新后才会出现新口径。
+  - 不要把当前已有 `data/*.json` 脏改一股脑提交。
+
+## 当前最新交接：订阅源采集概览改为平台层级
+
+- 日期：2026-07-06
+- 当前阶段：`信源配置` 里的 `订阅源采集概览` 已从“所有订阅源平铺”改成“平台一级 + 订阅源二级”。一级展示 YouTube 订阅、B站动态、抖音、小红书、微信公众号、GitHub Release；点开一级后显示具体订阅对象。
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前分支：`master`
+- 本轮改动：
+  - `assets/app.js` 新增本地采集概览的分组逻辑，按运行时源归并到平台一级，并用 `<details>` 展开二级订阅源。
+  - YouTube 二级明细从 `/api/subscriptions/youtube` 读取 OPML 订阅；B站二级明细从统一的 B站动态配置拆出 UP 主；抖音、小红书、微信公众号、GitHub 沿用各自 source record。
+  - 展开后的二级行继续复用原有状态、最近刷新、采集结果和维护 issue；抖音/小红书仍保留 `启动采集` 按钮。
+  - `assets/styles.css` 新增一级/二级行样式和缩进。
+  - `PROJECT_STATE.md` 更新当前状态。
+- 本轮验收：
+  - `node --check assets/app.js` 通过。
+  - `git diff --check -- assets/app.js assets/styles.css PROJECT_STATE.md HANDOFF.md` 通过，仅有 Windows LF/CRLF warning。
+  - Playwright 打开 `http://127.0.0.1:8080/`，展开 `信源配置` 后确认一级分组显示 YouTube、B站、抖音、小红书、微信公众号、GitHub；点开 YouTube 显示 2 个频道，点开 B站显示 3 个 UP 主，点开抖音显示 3 个账号，点开微信公众号显示猫笔刀和数字生命卡兹克各自维护提示。
+- 下一轮建议入口：
+  - 先读 `PROJECT_STATE.md` 和本文件。
+  - 手动验收：打开 `http://127.0.0.1:8080/`，展开 `信源配置`，逐个点开平台一级行，确认二级订阅对象符合当前订阅配置。
+- 下一轮注意：
+  - 抖音多个账号、小红书账号目前仍共享平台级 MediaCrawler collector 统计；二级行能显示账号归属，但采集数量仍是平台级统计。
+  - 不要把当前已有 `data/*.json` 脏改一股脑提交。
+
+## 当前最新交接：本地采集面板汇总所有订阅源
+
+- 日期：2026-07-05
+- 当前阶段：`信源配置` 里的本地采集面板不再只展示抖音/小红书采集卡片，而是新增一张紧凑的 `订阅源采集概览` 汇总卡，把当前启用的所有订阅源按行展示出来。
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前分支：`master`
+- 本轮改动：
+  - `assets/app.js` 的本地采集状态渲染改为优先使用 `/api/local-status` 返回的 `source_config.enabled_sources`，并结合 `source_status.sites`、`maintenance_issues` 和 MediaCrawler collector 摘要生成每个订阅源的状态行。
+  - 每行显示订阅源名称、平台、状态、采集结果、最近更新时间和操作/维护提示；抖音和小红书仍保留 `启动采集` 操作。
+  - WeWe RSS 多公众号共用同一个运行时源时，会优先用公众号名称匹配各自的维护 issue，避免两个公众号都显示同一个失败原因。
+  - `assets/styles.css` 新增汇总卡和行布局样式，避免给每个订阅源单独做大卡片。
+  - `PROJECT_STATE.md` 更新当前状态。
+- 本轮验收：
+  - `node --check assets/app.js` 通过。
+  - `git diff --check -- assets/app.js assets/styles.css PROJECT_STATE.md HANDOFF.md` 通过，仅有 Windows LF/CRLF warning。
+  - Playwright 打开 `http://127.0.0.1:8080/`，展开 `信源配置` 后确认汇总卡显示 `9 个订阅源`；油管、B站、抖音、小红书、微信公众号、GitHub Release 都在同一张卡内；猫笔刀和数字生命卡兹克分别显示自己的公众号读取失败提示。
+- 下一轮建议入口：
+  - 先读 `PROJECT_STATE.md` 和本文件。
+  - 手动验收：打开 `http://127.0.0.1:8080/`，展开 `信源配置`，确认 `订阅源采集概览` 只有一张汇总卡，并检查每行状态是否符合当前 `/api/local-status`。
+- 下一轮注意：
+  - 抖音多个账号、小红书账号目前仍共享平台级 MediaCrawler collector 统计；这张概览卡展示的是平台级采集结果，不是每个创作者单独的 JSONL 命中数。
+  - 不要把当前已有 `data/*.json` 脏改一股脑提交。
+
 ## 当前最新交接：采集窗口已改为自上次采集
 
 - 日期：2026-07-05
@@ -10,6 +102,7 @@
   - `scripts/local_server.py` 新增 `last_collection_time()`、`resolve_collect_window_hours()`、`collect_window_hours_for_scope()`，从上一次 `data/source-status.json.generated_at` 算本轮采集窗口，向上取整小时数。
   - 缺失、非法、未来时间戳都会回退到 24 小时；`collection_scope=all` 仍然不追加 `--collect-window-hours`。
   - `index.html` 和 `assets/app.js` 只改显示文案为 `自上次采集`，没有改 `value="24h"` 或 `selectedCollectionScope()`。
+  - `assets/app.js` 的 MediaCrawler 状态卡把 `24h作品` 改成 `窗口作品`，把详情里的 `最近X小时` 改成 `窗口命中`。这里的 `窗口作品` 只是采集器原始 JSONL 中命中时间窗口的候选数；最终看板新增还要经过 Radar 刷新、去重、时间校验、归档合并和展示过滤。
   - `tests/test_local_server.py` 补了动态窗口、向上取整、兜底和全量不加窗口的测试。
 - 本轮验收：
   - `.\.venv\Scripts\python.exe -m unittest tests.test_local_server -q` 通过：60 tests OK。
@@ -118,12 +211,12 @@
   - `scripts/run_mediacrawler_douyin.py` 给抖音 creator 获取加了运行时硬限制，避免抖音继续翻取超过 5 条的历史作品。
   - `scripts/run_mediacrawler_douyin.py` 在 MediaCrawler 完成后写出 `mediacrawler-<platform>-collection-window.json`，记录原始行数、24h 命中数和跳过数，不再改写 `creator_contents_*.jsonl`。
   - `scripts/local_server.py` 和 `scripts/update_news.py` 读取 MediaCrawler JSONL 时会跳过 0 字节的最新文件，回退到同目录最新非空文件，避免本轮空文件继续影响主站读取。
-  - 抖音/小红书状态卡会显示“24h作品”和“原始写入”；`24h作品=0` 表示最近 24 小时没有新作品，不代表原始导出被清空。
+  - 抖音/小红书状态卡当时显示“24h作品”和“原始写入”；当前最新口径已改为“窗口作品”和“原始写入”，`窗口作品=0` 表示当前统计窗口没有命中，不代表原始导出被清空。
   - YouTube/微信公众号这类 RSS/JSON 来源没有单独浏览器采集器，仍由 `scripts/update_news.py --collect-window-hours 24` 在入库时过滤。
   - README 和 `PROJECT_STATE.md` 已同步这个运行口径。
 - 下一轮建议入口：
   - 先读 `PROJECT_STATE.md` 和本文件。
-  - 手动验收：打开 `http://127.0.0.1:8080/`，展开 `信源配置`，确认“采集范围”默认是 `过去24小时`；点抖音/小红书“启动采集”后，采集完成时原始 `creator_contents_*.jsonl` 不应再被清空，状态卡应显示 24h 命中数和原始写入数；点 `执行采集` 后 `source-status.json.collection_window_hours` 应为 `24`，页面仍能看到旧归档内容。需要补历史时再选 `全量`。
+  - 历史手动验收口径：当时“采集范围”默认是 `过去24小时`，状态卡显示 24h 命中数和原始写入数；当前最新口径请以文件顶部“采集窗口已改为自上次采集”为准。
 - 下一轮禁止：
   - 不要批量删除。
   - 不要把 `/api/refresh` 改成可传任意命令或任意参数。

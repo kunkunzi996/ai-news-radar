@@ -2,6 +2,7 @@ from datetime import datetime, timezone
 import json
 import os
 from pathlib import Path
+import tempfile
 import unittest
 from unittest.mock import patch
 
@@ -9,6 +10,7 @@ from scripts.update_news import (
     BROWSER_UA,
     backfill_bilibili_archive_publish_times,
     bilibili_dynamic_accounts_from_env,
+    bilibili_dynamic_status_base,
     bilibili_dynamic_item_title,
     bilibili_cookie_header_from_file_text,
     fetch_bilibili_dynamic,
@@ -25,11 +27,60 @@ from scripts.update_news import (
     maybe_fetch_mediacrawler_xhs,
     parse_jike_public_items,
     parse_telegram_public_items,
+    fetch_opml_rss,
     resolve_opml_bridge_source,
 )
 
 
 class PrivateBridgeSourceTests(unittest.TestCase):
+    def test_bilibili_default_collects_latest_five_per_account(self):
+        with patch.dict(os.environ, {"BILIBILI_DYNAMIC_ENABLED": "1"}, clear=True):
+            status = bilibili_dynamic_status_base()
+
+        self.assertEqual(status["max_items"], 5)
+        self.assertEqual(status["max_items_per_account"], 5)
+
+    def test_opml_rss_keeps_latest_five_items_per_feed(self):
+        class Response:
+            def __init__(self, text: str):
+                self.text = text
+                self.content = text.encode("utf-8")
+
+            def raise_for_status(self) -> None:
+                return None
+
+        now = datetime(2026, 7, 6, tzinfo=timezone.utc)
+        entries = "\n".join(
+            f"""
+            <item>
+              <title>Video {index}</title>
+              <link>https://www.youtube.com/watch?v={index}</link>
+              <pubDate>Mon, {index:02d} Jun 2026 00:00:00 GMT</pubDate>
+            </item>
+            """
+            for index in range(1, 9)
+        )
+        rss = f"<rss><channel><title>Test YouTube</title>{entries}</channel></rss>"
+        with tempfile.TemporaryDirectory() as tmp:
+            opml = Path(tmp) / "follow.opml"
+            opml.write_text(
+                """<?xml version="1.0" encoding="UTF-8"?>
+                <opml version="1.0"><body>
+                  <outline text="Test YouTube" title="Test YouTube" type="rss"
+                    xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=test" />
+                </body></opml>
+                """,
+                encoding="utf-8",
+            )
+            with patch("scripts.update_news.requests.get", return_value=Response(rss)):
+                items, summary, feed_statuses = fetch_opml_rss(now, opml)
+
+        self.assertEqual(len(items), 5)
+        self.assertEqual([item.title for item in items], ["Video 8", "Video 7", "Video 6", "Video 5", "Video 4"])
+        self.assertEqual(summary["item_count"], 5)
+        self.assertEqual(summary["max_items_per_feed"], 5)
+        self.assertEqual(feed_statuses[0]["item_count"], 5)
+
     def test_resolves_rsshub_telegram_to_public_preview(self):
         bridge = resolve_opml_bridge_source("https://rsshub.app/telegram/channel/AI_News_CN")
         self.assertEqual(bridge["bridge_type"], "telegram")

@@ -769,60 +769,322 @@ function localOpsMetric(label, value, tone = "") {
   return node;
 }
 
-function renderLocalOpsCollectors(collectors = {}) {
+function localOpsSourcePlatformLabel(source) {
+  const channel = String(source?.channel || "").trim();
+  if (channel) return channel;
+  const key = sourceConfigPlatformKey(source);
+  const labels = {
+    wechat: "微信公众号",
+    xhs: "小红书",
+    douyin: "抖音",
+    bilibili: "B站",
+    github: "GitHub",
+    rss: "RSS",
+  };
+  return labels[key] || "其他";
+}
+
+function localOpsSiteMap(sourceStatus = {}) {
+  const sites = Array.isArray(sourceStatus.sites) ? sourceStatus.sites : [];
+  return new Map(sites.map((site) => [String(site.site_id || ""), site]));
+}
+
+function localOpsSourceNeedles(source) {
+  const fields = [source?.name, source?.target, source?.locator]
+    .map((value) => String(value || "").trim().toLowerCase())
+    .filter(Boolean);
+  return Array.from(new Set(fields));
+}
+
+function localOpsIssueForSource(source, runtimeIds, issues) {
+  const sourceIdText = String(source?.id || "").toLowerCase();
+  const sourceNeedles = localOpsSourceNeedles(source);
+  const platformIssues = issues.filter((issue) => {
+    const sourceId = String(issue.source_id || "");
+    const issueId = String(issue.id || "");
+    return runtimeIds.has(sourceId) || (sourceIdText && issueId.toLowerCase().includes(sourceIdText));
+  });
+  return platformIssues.find((issue) => {
+    const hay = `${issue.id || ""} ${issue.title || ""} ${(issue.details || []).join(" ")}`.toLowerCase();
+    return sourceNeedles.some((needle) => hay.includes(needle));
+  }) || platformIssues.find((issue) => !String(issue.id || "").includes("_sidecar_")) || platformIssues[0] || null;
+}
+
+function localOpsSourceTone(source, runtimeIds, siteMap, issue) {
+  if (issue?.severity === "bad") return "bad";
+  if (issue) return "warn";
+  const sites = Array.from(runtimeIds).map((id) => siteMap.get(id)).filter(Boolean);
+  if (!sites.length) return "warn";
+  if (sites.every((site) => site.ok)) return "ok";
+  if (sites.some((site) => site.ok)) return "warn";
+  return "bad";
+}
+
+function localOpsSourceStatusText(tone, runtimeIds, siteMap) {
+  if (tone === "bad") return "需维护";
+  if (tone === "warn") {
+    const hasSite = Array.from(runtimeIds).some((id) => siteMap.has(id));
+    return hasSite ? "需关注" : "未生成";
+  }
+  return "正常";
+}
+
+function localOpsSourceResultText(runtimeIds, siteMap, collectors = {}) {
+  for (const id of runtimeIds) {
+    const collector = collectors?.[id];
+    if (collector) {
+      const windowCount = Number(collector.item_count || 0);
+      const rawCount = Number(collector.raw_item_count ?? collector.item_count ?? 0);
+      if (Number(collector.collection_window_hours || 0)) {
+        return `窗口 ${fmtNumber(windowCount)} / 原始 ${fmtNumber(rawCount)}`;
+      }
+      return `原始 ${fmtNumber(rawCount)}`;
+    }
+  }
+  const seen = new Set();
+  const counts = Array.from(runtimeIds).reduce((acc, id) => {
+    if (seen.has(id)) return acc;
+    seen.add(id);
+    const site = siteMap.get(id);
+    if (!site) return acc;
+    acc.raw += Number(site.raw_item_count ?? site.item_count ?? 0);
+    acc.window += Number(site.window_item_count ?? 0);
+    if (Number(site.collection_window_hours || 0)) acc.hasWindow = true;
+    return acc;
+  }, { raw: 0, window: 0, hasWindow: false });
+  if (!seen.size) return "未生成";
+  if (counts.hasWindow) return `窗口 ${fmtNumber(counts.window)} / 原始 ${fmtNumber(counts.raw)}`;
+  return `原始 ${fmtNumber(counts.raw)}`;
+}
+
+function localOpsSourceUpdatedText(runtimeIds, collectors = {}, sourceStatus = {}) {
+  for (const id of runtimeIds) {
+    const updatedAt = collectors?.[id]?.updated_at;
+    if (updatedAt) return fmtTime(updatedAt);
+  }
+  return sourceStatus.generated_at ? fmtTime(sourceStatus.generated_at) : "未生成";
+}
+
+function localOpsSourceAction(source, runtimeIds) {
+  if (runtimeIds.has("mediacrawler_xhs")) {
+    return { id: "start_mediacrawler_xhs", kind: "start_service", label: "启动采集" };
+  }
+  if (runtimeIds.has("mediacrawler_douyin")) {
+    return { id: "start_mediacrawler_douyin", kind: "start_service", label: "启动采集" };
+  }
+  return null;
+}
+
+function localOpsSourceGroupKey(source, runtimeIds) {
+  if (runtimeIds.has("opmlrss")) return "youtube";
+  if (runtimeIds.has("bilibili_dynamic")) return "bilibili";
+  if (runtimeIds.has("mediacrawler_douyin")) return "douyin";
+  if (runtimeIds.has("mediacrawler_xhs")) return "xhs";
+  if (runtimeIds.has("wewe_rss")) return "wechat";
+  if (runtimeIds.has("github_foundation_sunshine_releases")) return "github";
+  return sourceConfigPlatformKey(source);
+}
+
+function localOpsSourceGroupMeta(key) {
+  const meta = {
+    youtube: { label: "YouTube 订阅", platform: "YouTube" },
+    bilibili: { label: "B站动态", platform: "B站" },
+    douyin: { label: "抖音", platform: "抖音" },
+    xhs: { label: "小红书", platform: "小红书" },
+    wechat: { label: "微信公众号", platform: "微信公众号" },
+    github: { label: "GitHub Release", platform: "GitHub" },
+    rss: { label: "RSS 订阅", platform: "RSS" },
+  };
+  return meta[key] || { label: "其他订阅", platform: "其他" };
+}
+
+function localOpsGroupedSources(configuredSources) {
+  const order = ["youtube", "bilibili", "douyin", "xhs", "wechat", "github", "rss", "other"];
+  const groups = new Map();
+  configuredSources.forEach((source) => {
+    const runtimeIds = sourceConfigRuntimeIds(source);
+    const key = localOpsSourceGroupKey(source, runtimeIds);
+    if (!groups.has(key)) {
+      const meta = localOpsSourceGroupMeta(key);
+      groups.set(key, { key, ...meta, sources: [] });
+    }
+    groups.get(key).sources.push(source);
+  });
+  return Array.from(groups.values()).sort((a, b) => {
+    const ai = order.indexOf(a.key);
+    const bi = order.indexOf(b.key);
+    return (ai === -1 ? order.length : ai) - (bi === -1 ? order.length : bi);
+  });
+}
+
+function localOpsGroupRuntimeIds(sources) {
+  const ids = new Set();
+  sources.forEach((source) => {
+    sourceConfigRuntimeIds(source).forEach((id) => ids.add(id));
+  });
+  return ids;
+}
+
+function localOpsGroupIssues(sources, issues) {
+  return sources
+    .map((source) => localOpsIssueForSource(source, sourceConfigRuntimeIds(source), issues))
+    .filter(Boolean);
+}
+
+function localOpsGroupTone(sources, groupRuntimeIds, siteMap, issues) {
+  if (issues.some((issue) => issue.severity === "bad")) return "bad";
+  if (issues.length) return "warn";
+  const tones = sources.map((source) => localOpsSourceTone(source, sourceConfigRuntimeIds(source), siteMap, null));
+  if (tones.includes("bad")) return "bad";
+  if (tones.includes("warn")) return "warn";
+  return localOpsSourceTone(sources[0], groupRuntimeIds, siteMap, null);
+}
+
+function localOpsSplitNamesAndLocators(source) {
+  const names = splitSourceConfigList(source?.target || source?.name);
+  const locators = splitSourceConfigList(source?.locator);
+  const total = Math.max(names.length, locators.length, 1);
+  return Array.from({ length: total }, (_, index) => ({
+    name: names[index] || source?.name || source?.target || source?.id || "未命名订阅",
+    locator: locators[index] || "",
+  }));
+}
+
+function localOpsSourceChildEntries(group) {
+  if (group.key === "youtube") {
+    const source = group.sources[0];
+    const members = youtubeSubscriptionMembers();
+    if (members.length) {
+      return members.map((member) => ({
+        source,
+        name: member.name,
+        platform: "YouTube",
+        detail: member.locator,
+        resultText: "频道订阅",
+        actionText: "已接入",
+      }));
+    }
+  }
+  if (group.key === "bilibili") {
+    const source = group.sources[0];
+    return localOpsSplitNamesAndLocators(source).map((member) => ({
+      source,
+      name: member.name,
+      platform: "B站",
+      detail: member.locator,
+      resultText: "UP主订阅",
+      actionText: member.locator || "已接入",
+    }));
+  }
+  return group.sources.map((source) => ({
+    source,
+    name: source.name || source.target || source.id || "未命名订阅",
+    platform: localOpsSourcePlatformLabel(source),
+    detail: source.locator || source.target || "",
+  }));
+}
+
+function localOpsSourceRowNode({ source, name, platform, detail = "", resultText = "", actionText = "", collectors, sourceStatus, siteMap, issues }) {
+  const runtimeIds = sourceConfigRuntimeIds(source);
+  const issue = localOpsIssueForSource(source, runtimeIds, issues);
+  const tone = localOpsSourceTone(source, runtimeIds, siteMap, issue);
+  const row = document.createElement("div");
+  row.className = `local-ops-source-row local-ops-source-child ${tone}`;
+  const nameNode = document.createElement("strong");
+  nameNode.textContent = name;
+  const platformNode = document.createElement("span");
+  platformNode.textContent = platform;
+  const status = document.createElement("span");
+  status.className = `local-ops-source-status ${tone}`;
+  status.textContent = localOpsSourceStatusText(tone, runtimeIds, siteMap);
+  const result = document.createElement("span");
+  result.textContent = resultText || localOpsSourceResultText(runtimeIds, siteMap, collectors);
+  const updated = document.createElement("span");
+  updated.textContent = localOpsSourceUpdatedText(runtimeIds, collectors, sourceStatus);
+  const action = localOpsSourceAction(source, runtimeIds);
+  const actionWrap = document.createElement("span");
+  actionWrap.className = "local-ops-source-action";
+  if (action) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "local-ops-locate";
+    button.textContent = action.label;
+    button.addEventListener("click", () => runLocalOpsFixAction(action, button));
+    actionWrap.appendChild(button);
+  } else if (issue) {
+    actionWrap.textContent = issue.title || "需处理";
+  } else {
+    actionWrap.textContent = actionText || detail || "已接入";
+  }
+  row.append(nameNode, platformNode, status, result, updated, actionWrap);
+  return row;
+}
+
+function renderLocalOpsCollectors(collectors = {}, sourceConfig = {}, sourceStatus = {}) {
   if (!localOpsCollectorsEl) return;
   localOpsCollectorsEl.innerHTML = "";
-  const collectorList = [collectors?.mediacrawler_douyin, collectors?.mediacrawler_xhs].filter(Boolean);
-  if (!collectorList.length) return;
+  const configuredSources = ((Array.isArray(sourceConfig.enabled_sources) && sourceConfig.enabled_sources.length ? sourceConfig.enabled_sources : state.sourceConfig?.sources) || [])
+    .filter((source) => source && source.enabled !== false);
+  if (!configuredSources.length) return;
 
-  collectorList.forEach((collector) => {
-    const platformName = collector.platform_name || "平台";
-    const card = document.createElement("article");
-    card.className = `local-ops-collector ${collector.phase || "idle"}`;
-    const head = document.createElement("div");
-    head.className = "local-ops-collector-head";
-    const title = document.createElement("strong");
-    title.textContent = collector.title || `${platformName}采集任务`;
-    const badge = document.createElement("span");
-    badge.textContent = collector.running ? "采集中" : (collector.can_close_browser ? "可关闭窗口" : "等待处理");
-    head.append(title, badge);
+  const siteMap = localOpsSiteMap(sourceStatus);
+  const issues = Array.isArray(sourceStatus.maintenance_issues) ? sourceStatus.maintenance_issues : [];
+  const card = document.createElement("article");
+  card.className = "local-ops-source-overview";
+  const head = document.createElement("div");
+  head.className = "local-ops-collector-head";
+  const title = document.createElement("strong");
+  title.textContent = "订阅源采集概览";
+  const badge = document.createElement("span");
+  badge.textContent = `${fmtNumber(configuredSources.length)} 个订阅源`;
+  head.append(title, badge);
 
-    const meta = document.createElement("div");
-    meta.className = "local-ops-collector-meta";
-    const collectionWindowHours = Number(collector.collection_window_hours || 0);
-    const rawItemCount = Number(collector.raw_item_count ?? collector.item_count ?? 0);
-    meta.append(
-      localOpsMetric(collectionWindowHours ? `${collectionWindowHours}h作品` : "原始写入", fmtNumber(Number(collector.item_count || 0)), collector.running ? "warn" : "ok"),
-      ...(collectionWindowHours ? [localOpsMetric("原始写入", fmtNumber(rawItemCount))] : []),
-      localOpsMetric("最近写入", collector.updated_at ? fmtTime(collector.updated_at) : "未生成"),
-      localOpsMetric("当前状态", collector.running ? "请等待" : (collector.completed ? "已完成" : "未运行"), collector.running ? "warn" : "ok")
-    );
+  const rows = document.createElement("div");
+  rows.className = "local-ops-source-rows";
+  localOpsGroupedSources(configuredSources).forEach((group) => {
+    const runtimeIds = localOpsGroupRuntimeIds(group.sources);
+    const groupIssues = localOpsGroupIssues(group.sources, issues);
+    const tone = localOpsGroupTone(group.sources, runtimeIds, siteMap, groupIssues);
+    const children = localOpsSourceChildEntries(group);
+    const details = document.createElement("details");
+    details.className = `local-ops-source-group ${tone}`;
+    const summary = document.createElement("summary");
+    summary.className = "local-ops-source-row local-ops-source-parent";
+    const name = document.createElement("strong");
+    name.textContent = group.label;
+    const platform = document.createElement("span");
+    platform.textContent = `${fmtNumber(children.length)} 个订阅`;
+    const status = document.createElement("span");
+    status.className = `local-ops-source-status ${tone}`;
+    status.textContent = localOpsSourceStatusText(tone, runtimeIds, siteMap);
+    const result = document.createElement("span");
+    result.textContent = localOpsSourceResultText(runtimeIds, siteMap, collectors);
+    const updated = document.createElement("span");
+    updated.textContent = localOpsSourceUpdatedText(runtimeIds, collectors, sourceStatus);
+    const actionWrap = document.createElement("span");
+    actionWrap.className = "local-ops-source-action";
+    actionWrap.textContent = "展开";
+    details.addEventListener("toggle", () => {
+      actionWrap.textContent = details.open ? "收起" : "展开";
+    });
+    summary.append(name, platform, status, result, updated, actionWrap);
 
-    const detail = document.createElement("span");
-    detail.textContent = collector.latest_file ? `输出文件：${collector.latest_file}` : "还没有输出文件";
-    if (collector.latest_file && collectionWindowHours) {
-      detail.textContent += `；最近${collectionWindowHours}小时 ${fmtNumber(Number(collector.item_count || 0))} 条，原始文件 ${fmtNumber(rawItemCount)} 条`;
-    }
-    const log = document.createElement("em");
-    log.textContent = collector.last_log || (collector.running ? "正在等待采集日志..." : "暂无采集日志");
-    const next = document.createElement("strong");
-    next.className = "local-ops-collector-next";
-    next.textContent = collector.next_action || "";
-    const actions = document.createElement("div");
-    actions.className = "local-ops-actions";
-    const startButton = document.createElement("button");
-    startButton.type = "button";
-    startButton.className = "local-ops-fix";
-    startButton.textContent = `启动${platformName}采集`;
-    startButton.addEventListener("click", () => runLocalOpsFixAction({
-      id: collector.id === "mediacrawler_xhs" ? "start_mediacrawler_xhs" : "start_mediacrawler_douyin",
-      kind: "start_service",
-      label: `启动${platformName}采集`,
-    }, startButton));
-    actions.appendChild(startButton);
-    card.append(head, meta, detail, log, next, actions);
-    localOpsCollectorsEl.appendChild(card);
+    const childWrap = document.createElement("div");
+    childWrap.className = "local-ops-source-children";
+    children.forEach((entry) => {
+      childWrap.appendChild(localOpsSourceRowNode({
+        ...entry,
+        collectors,
+        sourceStatus,
+        siteMap,
+        issues,
+      }));
+    });
+    details.append(summary, childWrap);
+    rows.appendChild(details);
   });
+  card.append(head, rows);
+  localOpsCollectorsEl.appendChild(card);
 }
 
 function scheduleLocalOpsPolling(shouldPoll) {
@@ -924,7 +1186,7 @@ function renderLocalOpsStatus(payload = null) {
     localOpsMetric("维护项", fmtNumber(issues.length), issueTone)
   );
 
-  renderLocalOpsCollectors(collectors);
+  renderLocalOpsCollectors(collectors, sourceConfig, sourceStatus);
   scheduleLocalOpsPolling(collectorRunning || Boolean(payload?.refresh_running));
 
   if (collectorRunning) {
@@ -1382,15 +1644,17 @@ function clearSubscriptionMemberForm() {
   if (subscriptionMemberSubmitBtnEl) subscriptionMemberSubmitBtnEl.textContent = "新增成员";
 }
 
-async function loadYoutubeSubscriptions() {
+async function loadYoutubeSubscriptions(options = {}) {
+  const silent = Boolean(options.silent);
   try {
     const res = await fetch("./api/subscriptions/youtube", { headers: { Accept: "application/json" }, cache: "no-store" });
     const payload = await res.json().catch(() => ({}));
     if (!res.ok || payload.ok === false) throw new Error(payload.error || `HTTP ${res.status}`);
     state.youtubeSubscriptions = Array.isArray(payload.subscriptions) ? payload.subscriptions : [];
-    renderSubscriptionManager();
+    if (!silent) renderSubscriptionManager();
+    renderLocalOpsStatus(state.localOpsStatus);
   } catch (err) {
-    setSubscriptionManagerStatus(`油管订阅读取失败：${err.message}`, "bad");
+    if (!silent) setSubscriptionManagerStatus(`油管订阅读取失败：${err.message}`, "bad");
   }
 }
 
@@ -1914,12 +2178,16 @@ function renderSourceConfigList() {
 
 function renderSourceConfigSummary() {
   if (!sourceConfigSummaryEl || !state.sourceConfig) return;
+  const serviceConfig = state.localOpsStatus?.source_config || {};
+  const serviceStatus = state.localOpsStatus?.source_status || {};
   const sources = state.sourceConfig.sources || [];
-  const enabled = sources.filter((source) => source.enabled !== false).length;
-  const attention = sources.filter((source) => issueSeverityForSource(source)).length;
+  const hasServiceCounts = Number(serviceConfig.source_count || 0) > 0;
+  const total = hasServiceCounts ? Number(serviceConfig.source_count || 0) : sources.length;
+  const enabled = hasServiceCounts ? Number(serviceConfig.enabled_source_count || 0) : sources.filter((source) => source.enabled !== false).length;
+  const attention = hasServiceCounts ? Number(serviceStatus.issue_count || 0) : sources.filter((source) => issueSeverityForSource(source)).length;
   sourceConfigSummaryEl.textContent = attention
-    ? `${fmtNumber(enabled)}/${fmtNumber(sources.length)} 启用 · ${fmtNumber(attention)} 需维护`
-    : `${fmtNumber(enabled)}/${fmtNumber(sources.length)} 启用`;
+    ? `${fmtNumber(enabled)}/${fmtNumber(total)} 启用 · ${fmtNumber(attention)} 需维护`
+    : `${fmtNumber(enabled)}/${fmtNumber(total)} 启用`;
 }
 
 function renderSourceConfigFilters() {
@@ -5156,6 +5424,7 @@ async function init() {
   renderLocalOpsStatus({ source_status: state.sourceStatus || {} });
   loadSourceConfigFromLocalServer();
   loadLocalStatusFromServer(false);
+  loadYoutubeSubscriptions({ silent: true });
   document.dispatchEvent(new CustomEvent("aiRadar:ready"));
 }
 

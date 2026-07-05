@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from email.utils import parseaddr
 import hashlib
@@ -257,7 +258,7 @@ BILIBILI_DYNAMIC_DEFAULT_ACCOUNTS = (
     (BILIBILI_DYNAMIC_DEFAULT_UID, BILIBILI_DYNAMIC_DEFAULT_SOURCE_NAME),
     ("316183842", "技术爬爬虾"),
 )
-BILIBILI_DYNAMIC_DEFAULT_MAX_ITEMS = 20
+BILIBILI_DYNAMIC_DEFAULT_MAX_ITEMS = 5
 BILIBILI_DYNAMIC_DEFAULT_MAX_PAGES = 5
 BILIBILI_DYNAMIC_BACKFILL_MAX_ITEMS = 80
 MEDIACRAWLER_DOUYIN_SITE_ID = "mediacrawler_douyin"
@@ -278,6 +279,7 @@ WEWE_RSS_SITE_ID = "wewe_rss"
 WEWE_RSS_SITE_NAME = "WeWe RSS"
 WEWE_RSS_BASE_URL_DEFAULT = "http://127.0.0.1:4000"
 WEWE_RSS_DEFAULT_MAX_ITEMS = 20
+OPML_RSS_DEFAULT_MAX_ITEMS_PER_FEED = 5
 BILIBILI_WBI_MIXIN_KEY_ENC_TAB = (
     46, 47, 18, 2, 53, 8, 23, 32,
     15, 50, 10, 31, 58, 3, 45, 35,
@@ -3102,6 +3104,10 @@ def fetch_opml_rss(
         except Exception as exc:
             error = str(exc)
 
+        if local_items:
+            local_items.sort(key=lambda item: item.published_at or datetime.min.replace(tzinfo=UTC), reverse=True)
+            local_items = local_items[:OPML_RSS_DEFAULT_MAX_ITEMS_PER_FEED]
+
         duration_ms = int((time.perf_counter() - start) * 1000)
         status = {
             "site_id": f"opmlrss:{feed_id}",
@@ -3117,6 +3123,7 @@ def fetch_opml_rss(
             "skip_reason": None,
             "replaced": bool(original_feed_url != feed_url),
             "bridge_type": feed.get("bridge_type"),
+            "max_items": OPML_RSS_DEFAULT_MAX_ITEMS_PER_FEED,
         }
         return local_items, status
 
@@ -3150,6 +3157,7 @@ def fetch_opml_rss(
         "failed_feed_count": failed_feeds,
         "skipped_feed_count": skipped_feeds,
         "replaced_feed_count": replaced_feeds,
+        "max_items_per_feed": OPML_RSS_DEFAULT_MAX_ITEMS_PER_FEED,
     }
     return out, summary_status, feed_statuses
 
@@ -7772,7 +7780,17 @@ def main() -> int:
         raw_items = [item for item in raw_items if item.site_id in active_source_ids]
         statuses = [status for status in statuses if str(status.get("site_id") or "") in active_source_ids]
     raw_items_before_collect_window = len(raw_items)
+    raw_item_counts_by_site = Counter(item.site_id for item in raw_items)
     raw_items, skipped_collect_window_items = filter_raw_items_by_collect_window(raw_items, now, collect_window_hours)
+    window_item_counts_by_site = Counter(item.site_id for item in raw_items)
+    for status in statuses:
+        site_id = str(status.get("site_id") or "")
+        if not site_id:
+            continue
+        raw_count = int(raw_item_counts_by_site.get(site_id, status.get("item_count") or 0))
+        status["raw_item_count"] = raw_count
+        status["window_item_count"] = int(window_item_counts_by_site.get(site_id, 0))
+        status["collection_window_hours"] = collect_window_hours
 
     seen_this_run: set[str] = set()
 
