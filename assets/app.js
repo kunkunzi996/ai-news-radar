@@ -44,6 +44,7 @@ const state = {
   localOpsStatus: null,
   localOpsPollTimer: null,
   oneClickActive: false,
+  readItemIds: new Set(),
 };
 
 const statsEl = document.getElementById("stats");
@@ -177,6 +178,7 @@ const SECTION_DEFS = [
   { id: "wechat", label: "微信公众号", short: "公众号", description: "微信公众号订阅和 WeWe RSS 信号" },
   { id: "bilibili", label: "B站", short: "B站", description: "B站动态、视频和账号订阅" },
   { id: "youtube", label: "油管", short: "油管", description: "YouTube 频道订阅和视频更新" },
+  { id: "read", label: "已阅", short: "已阅", description: "已标记已阅的订阅内容，可随时恢复" },
 ];
 
 const SECTION_BY_ID = Object.fromEntries(SECTION_DEFS.map((section) => [section.id, section]));
@@ -190,7 +192,10 @@ const LIST_SORT_DEFS = [
 
 const SOURCE_CONFIG_STORAGE_KEY = "ai-news-radar-source-config-v1";
 const COLLECTION_SCOPE_STORAGE_KEY = "ai-news-radar-collection-scope-v1";
+const READ_ITEMS_STORAGE_KEY = "ai-news-radar-read-items-v1";
 const SOURCE_CONFIG_CATALOG_VERSION = "2026-07-02-builtin-sources";
+
+state.readItemIds = loadReadItemIds();
 const SOURCE_CONFIG_FILTERS = [
   { id: "all", label: "全部" },
   { id: "enabled", label: "启用" },
@@ -734,7 +739,7 @@ function loadSourceConfigDraft() {
   return freshSourceConfig();
 }
 
-function saveSourceConfigDraft(message = "本地草稿已保存") {
+function saveSourceConfigDraft(message = "高级配置草稿已保存") {
   if (!state.sourceConfig) return;
   state.sourceConfig.updated_at = new Date().toISOString();
   window.localStorage.setItem(SOURCE_CONFIG_STORAGE_KEY, JSON.stringify(state.sourceConfig, null, 2));
@@ -1617,7 +1622,7 @@ async function loadSourceConfigFromLocalServer() {
     if (sourceConfigUpdatedMs(draftConfig) > sourceConfigUpdatedMs(config)) {
       state.sourceConfig = draftConfig;
       state.sourceConfigSelectedId = draftConfig.sources[0]?.id || "";
-      setSourceConfigStatus("已保留较新的浏览器草稿；点“保存草稿”后同步到采集配置", "warn");
+      setSourceConfigStatus("已保留较新的浏览器高级配置；点“保存高级配置”后同步到采集配置", "warn");
       renderSourceConfig();
       return;
     }
@@ -1633,9 +1638,9 @@ async function loadSourceConfigFromLocalServer() {
 async function writeSourceConfigToLocalServer(options = {}) {
   const button = options.button || null;
   const successLabel = options.successLabel || "已保存";
-  const idleLabel = options.idleLabel || "保存草稿";
+  const idleLabel = options.idleLabel || "保存高级配置";
   const syncForm = options.syncForm !== false;
-  if (syncForm && !saveSourceConfigFormToState("本地草稿已保存", false)) {
+  if (syncForm && !saveSourceConfigFormToState("高级配置草稿已保存", false)) {
     setSourceConfigButton(button, "保存失败", false);
     restoreSourceConfigButton(button, idleLabel);
     throw new Error("source config form is invalid");
@@ -1644,7 +1649,7 @@ async function writeSourceConfigToLocalServer(options = {}) {
   state.sourceConfig.updated_at = new Date().toISOString();
   syncSourceConfigJson();
   setSourceConfigButton(button, "保存中...", true);
-  setSourceConfigStatus("正在同步当前信源配置...", "warn");
+  setSourceConfigStatus("正在同步当前高级信源配置...", "warn");
   try {
     const res = await fetch("./api/source-config", {
       method: "POST",
@@ -1658,7 +1663,12 @@ async function writeSourceConfigToLocalServer(options = {}) {
     if (!res.ok || payload.ok === false) {
       throw new Error(payload.error || `HTTP ${res.status}`);
     }
-    saveSourceConfigDraft(`已同步 ${payload.path || "sources.config.json"}，共 ${payload.source_count || 0} 个信源`);
+    const purgedTotal = Object.values(payload.purged_items || {}).reduce((sum, value) => {
+      const n = Number(value);
+      return sum + (Number.isFinite(n) ? n : 0);
+    }, 0);
+    const purgedNote = purgedTotal > 0 ? `；已清理 ${purgedTotal} 条已删除信源的历史数据` : "";
+    saveSourceConfigDraft(`已同步 ${payload.path || "sources.config.json"}，共 ${payload.source_count || 0} 个信源${purgedNote}`);
     renderSourceConfig();
     setSourceConfigButton(button, successLabel, true);
     restoreSourceConfigButton(button, idleLabel);
@@ -1677,7 +1687,7 @@ async function saveSourceConfigForCollection(message = "已保存，后续采集
     await writeSourceConfigToLocalServer({
       button: sourceConfigSaveBtnEl,
       successLabel: "已保存",
-      idleLabel: "保存草稿",
+      idleLabel: "保存高级配置",
       syncForm: false,
     });
     setSourceConfigStatus(message, "ok");
@@ -1742,12 +1752,12 @@ async function runOneClickCollect() {
   if (state.oneClickActive) return;
   state.oneClickActive = true;
   setSourceConfigButton(oneClickCollectBtnEl, "一键采集中...", true);
-  setSourceConfigButton(sourceConfigRefreshBtnEl, "执行采集", true);
+  setSourceConfigButton(sourceConfigRefreshBtnEl, "刷新看板数据", true);
 
   const abort = (message) => {
-    setSourceConfigStatus(`${message}（可稍后手动点“执行采集”继续）`, "bad");
+    setSourceConfigStatus(`${message}（可稍后手动点“刷新看板数据”继续）`, "bad");
     restoreSourceConfigButton(oneClickCollectBtnEl, "一键采集");
-    restoreSourceConfigButton(sourceConfigRefreshBtnEl, "执行采集");
+    restoreSourceConfigButton(sourceConfigRefreshBtnEl, "刷新看板数据");
     state.oneClickActive = false;
     loadLocalStatusFromServer(false);
   };
@@ -1779,7 +1789,7 @@ async function runOneClickCollect() {
       return;
     }
 
-    setSourceConfigStatus("③ 两个平台采集完成，正在执行采集汇总...", "warn");
+    setSourceConfigStatus("③ 两个平台采集完成，正在刷新看板数据...", "warn");
     const refreshed = await refreshNewsDataFromLocalServer();
     if (refreshed) {
       setSourceConfigButton(oneClickCollectBtnEl, "已完成", true);
@@ -1797,16 +1807,16 @@ async function runOneClickCollect() {
 async function refreshNewsDataFromLocalServer() {
   const collectionScope = selectedCollectionScope();
   const scopeLabel = collectionScope === "all" ? "全量" : "过去24小时";
-  setSourceConfigButton(sourceConfigRefreshBtnEl, "采集中...", true);
-  setSourceConfigStatus(`准备同步当前信源，并执行${scopeLabel}采集...`, "warn");
+  setSourceConfigButton(sourceConfigRefreshBtnEl, "刷新中...", true);
+  setSourceConfigStatus(`准备同步当前信源，并刷新${scopeLabel}看板数据；不会启动抖音/小红书采集。`, "warn");
   try {
     await writeSourceConfigToLocalServer({
       button: null,
       successLabel: "已保存",
-      idleLabel: "保存草稿",
+      idleLabel: "保存高级配置",
     });
-    setSourceConfigButton(sourceConfigRefreshBtnEl, "采集中...", true);
-    setSourceConfigStatus(`当前信源已同步，正在执行${scopeLabel}采集；如刚新增抖音/小红书账号，请先点对应平台的“启动采集”。`, "warn");
+    setSourceConfigButton(sourceConfigRefreshBtnEl, "刷新中...", true);
+    setSourceConfigStatus(`当前信源已同步，正在刷新${scopeLabel}看板数据；如刚新增抖音/小红书账号，请先点对应平台的“启动采集”。`, "warn");
     const res = await fetch("./api/refresh", {
       method: "POST",
       headers: {
@@ -1826,15 +1836,15 @@ async function refreshNewsDataFromLocalServer() {
     state.localOpsStatus = { source_config: state.localOpsStatus?.source_config || {}, source_status: payload.summary };
     renderLocalOpsStatus(state.localOpsStatus);
     renderSourceConfig();
-    setSourceConfigStatus(`${scopeLabel}采集完成：${okSites}/${sites.length} 个源正常，读到 ${fmtNumber(totalItems)} 条；页面即将重载。`, "ok");
+    setSourceConfigStatus(`${scopeLabel}看板刷新完成：${okSites}/${sites.length} 个源正常，读到 ${fmtNumber(totalItems)} 条；页面即将重载。`, "ok");
     setSourceConfigButton(sourceConfigRefreshBtnEl, "已完成", true);
     window.setTimeout(() => window.location.reload(), 1400);
     return true;
   } catch (err) {
     const message = err?.message || "unknown error";
-    setSourceConfigStatus(`采集失败：${message}`, "bad");
-    setSourceConfigButton(sourceConfigRefreshBtnEl, "采集失败", true);
-    restoreSourceConfigButton(sourceConfigRefreshBtnEl, "执行采集");
+    setSourceConfigStatus(`刷新失败：${message}`, "bad");
+    setSourceConfigButton(sourceConfigRefreshBtnEl, "刷新失败", true);
+    restoreSourceConfigButton(sourceConfigRefreshBtnEl, "刷新看板数据");
     loadLocalStatusFromServer(false);
     return false;
   }
@@ -1985,15 +1995,15 @@ function formSourceConfigRecord() {
 }
 
 function upsertSourceConfigRecord(record) {
-  saveSourceConfigRecordToState(record, "本地草稿已保存", true);
+  saveSourceConfigRecordToState(record, "高级配置草稿已保存", true);
 }
 
-function saveSourceConfigFormToState(message = "本地草稿已保存", shouldRender = true) {
+function saveSourceConfigFormToState(message = "高级配置草稿已保存", shouldRender = true) {
   if (!sourceConfigFormEl) return true;
   return saveSourceConfigRecordToState(formSourceConfigRecord(), message, shouldRender);
 }
 
-function saveSourceConfigRecordToState(record, message = "本地草稿已保存", shouldRender = true) {
+function saveSourceConfigRecordToState(record, message = "高级配置草稿已保存", shouldRender = true) {
   if (!record.name) {
     setSourceConfigStatus("名称不能为空", "bad");
     return false;
@@ -2036,7 +2046,7 @@ function syncSourceConfigFormDraft() {
   renderSourceConfigSummary();
   renderSourceConfigList();
   syncSourceConfigJson();
-  setSourceConfigStatus("草稿已更新，点“保存草稿”或“读取结果”后生效", "warn");
+  setSourceConfigStatus("高级配置草稿已更新，点“保存高级配置”或“读取结果”后生效", "warn");
 }
 
 function addSourceConfigRecord() {
@@ -2055,7 +2065,7 @@ function addSourceConfigRecord() {
   };
   state.sourceConfig.sources.push(record);
   state.sourceConfigSelectedId = id;
-  saveSourceConfigDraft("已新增本地草稿信源");
+  saveSourceConfigDraft("已新增高级信源配置草稿");
   renderSourceConfig();
 }
 
@@ -2069,14 +2079,14 @@ function deleteSourceConfigRecord() {
   }
   state.sourceConfig.sources = (state.sourceConfig.sources || []).filter((source) => source.id !== state.sourceConfigSelectedId);
   state.sourceConfigSelectedId = state.sourceConfig.sources[0]?.id || "";
-  saveSourceConfigDraft("已从当前信源删除；点“保存草稿”后采集会按当前信源执行");
+  saveSourceConfigDraft("已从高级配置删除；点“保存高级配置”后采集会按当前配置执行");
   renderSourceConfig();
 }
 
 function resetSourceConfigDraft() {
   state.sourceConfig = freshSourceConfig();
   state.sourceConfigSelectedId = state.sourceConfig.sources[0]?.id || "";
-  saveSourceConfigDraft("已恢复为当前默认信源草稿");
+  saveSourceConfigDraft("已恢复为当前默认高级配置草稿");
   renderSourceConfig();
 }
 
@@ -2436,7 +2446,7 @@ function itemSourceType(item) {
 }
 
 function isSubscriptionSection(sectionId) {
-  return sectionId === "creator" || ["douyin", "xiaohongshu", "wechat", "bilibili", "youtube"].includes(sectionId);
+  return sectionId === "creator" || sectionId === "read" || ["douyin", "xiaohongshu", "wechat", "bilibili", "youtube"].includes(sectionId);
 }
 
 function itemPlatformSection(item) {
@@ -2757,16 +2767,21 @@ function applyTimeRange(items) {
 }
 
 function sectionItems(items = modeItems(), sectionId = state.activeSection) {
+  if (sectionId === "read") {
+    return applyTimeRange(subscriptionModeItems().filter((item) => isItemRead(item)))
+      .sort((a, b) => timelineMs(b) - timelineMs(a) || creatorHotScore(b) - creatorHotScore(a));
+  }
   if (sectionId === "creator") {
-    return applyTimeRange(subscriptionModeItems()).sort((a, b) => timelineMs(b) - timelineMs(a) || creatorHotScore(b) - creatorHotScore(a));
+    return applyTimeRange(subscriptionModeItems().filter((item) => !isItemRead(item)))
+      .sort((a, b) => timelineMs(b) - timelineMs(a) || creatorHotScore(b) - creatorHotScore(a));
   }
   if (isSubscriptionSection(sectionId)) {
     return applyTimeRange(subscriptionModeItems())
-      .filter((item) => itemPlatformSection(item) === sectionId)
+      .filter((item) => itemPlatformSection(item) === sectionId && !isItemRead(item))
       .sort((a, b) => timelineMs(b) - timelineMs(a) || creatorHotScore(b) - creatorHotScore(a));
   }
   const source = applyTimeRange(items);
-  return source.filter((item) => itemMatchesSection(item, sectionId));
+  return source.filter((item) => itemMatchesSection(item, sectionId) && !isItemRead(item));
 }
 
 function getFilteredItems() {
@@ -3028,6 +3043,45 @@ function itemMatchesSection(item, sectionId) {
 
 function sectionBadgeLabel(sectionId) {
   return SECTION_BY_ID[sectionId]?.short || "栏目";
+}
+
+function readTrackingKey(item) {
+  return itemIdentityKey(item);
+}
+
+function loadReadItemIds() {
+  try {
+    const raw = window.localStorage.getItem(READ_ITEMS_STORAGE_KEY);
+    const arr = raw ? JSON.parse(raw) : [];
+    return new Set(Array.isArray(arr) ? arr : []);
+  } catch {
+    return new Set();
+  }
+}
+
+function persistReadItemIds() {
+  try {
+    window.localStorage.setItem(READ_ITEMS_STORAGE_KEY, JSON.stringify(Array.from(state.readItemIds)));
+  } catch {
+    // localStorage 不可用时，只影响跨刷新保留；当前页面操作仍可继续。
+  }
+}
+
+function isItemRead(item) {
+  const key = readTrackingKey(item);
+  return Boolean(key) && state.readItemIds.has(key);
+}
+
+function toggleItemRead(item) {
+  const key = readTrackingKey(item);
+  if (!key) return;
+  if (state.readItemIds.has(key)) {
+    state.readItemIds.delete(key);
+  } else {
+    state.readItemIds.add(key);
+  }
+  persistReadItemIds();
+  rerenderCurrentView();
 }
 
 function isSubscriptionItem(item) {
@@ -4276,7 +4330,28 @@ function renderItemNode(item, context = {}) {
   titleEl.href = item.url;
   const summaryEl = node.querySelector(".news-summary");
   if (summaryEl) summaryEl.textContent = feedSummaryText(item);
+  if (shouldRenderReadToggle(item, context)) {
+    node.appendChild(buildReadToggleButton(item));
+  }
   return node;
+}
+
+function shouldRenderReadToggle(item, context = {}) {
+  return context.readToggleEligible === true || isSubscriptionItem(item);
+}
+
+function buildReadToggleButton(item) {
+  const wrap = document.createElement("div");
+  wrap.className = "item-actions";
+  const btn = document.createElement("button");
+  btn.type = "button";
+  const read = isItemRead(item);
+  btn.className = `read-toggle-btn${read ? " is-read" : ""}`;
+  btn.textContent = read ? "恢复" : "已阅";
+  btn.title = read ? "恢复到我的订阅" : "标记已阅，从看板中移出";
+  btn.addEventListener("click", () => toggleItemRead(item));
+  wrap.appendChild(btn);
+  return wrap;
 }
 
 const SOURCE_ITEM_INITIAL_LIMIT = 3;
@@ -4514,7 +4589,7 @@ function renderFlatTimeline(items) {
   const shown = state.siteGroupsExpanded ? items.length : Math.min(pageSize, items.length);
   const frag = document.createDocumentFragment();
   items.slice(0, shown).forEach((item) => {
-    frag.appendChild(renderItemNode(item));
+    frag.appendChild(renderItemNode(item, { readToggleEligible: true }));
   });
   newsListEl.appendChild(frag);
 

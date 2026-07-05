@@ -2429,6 +2429,7 @@ def fetch_github_repo_subscription(
     api_url: str = GITHUB_REPO_SUBSCRIPTION_API_URL,
     repo_label: str = "AlkaidLab/foundation-sunshine",
     site_name: str = GITHUB_REPO_SUBSCRIPTION_SITE_NAME,
+    display_name: str = "",
     max_items: int = GITHUB_REPO_SUBSCRIPTION_MAX_ITEMS,
 ) -> list[RawItem]:
     params = {"per_page": max(1, min(10, int(max_items or 1)))}
@@ -2468,7 +2469,7 @@ def fetch_github_repo_subscription(
             RawItem(
                 site_id=GITHUB_REPO_SUBSCRIPTION_SITE_ID,
                 site_name=site_name,
-                source="GitHub版本订阅",
+                source=display_name or "GitHub版本订阅",
                 title=title,
                 url=url,
                 published_at=published,
@@ -7382,12 +7383,14 @@ def main() -> int:
                     subscription.get("locator", ""),
                     subscription.get("target") or subscription.get("name") or "GitHub Repo",
                 )
+                display_name = str(subscription.get("target") or subscription.get("name") or repo_label).strip()
                 items = fetch_github_repo_subscription(
                     session,
                     now,
                     api_url=api_url,
                     repo_label=repo_label,
                     site_name=subscription.get("name") or GITHUB_REPO_SUBSCRIPTION_SITE_NAME,
+                    display_name=display_name,
                 )
                 github_repo_items.extend(items)
                 github_status_children.append(

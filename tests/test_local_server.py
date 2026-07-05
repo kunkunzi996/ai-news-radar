@@ -6,7 +6,10 @@ from scripts.local_server import (
     CONFIG_FILENAME,
     BILIBILI_DEFAULT_COOKIE_FILE,
     BILIBILI_PROFILE_DIR,
+    PURGE_TRACKED_SITE_IDS,
+    alive_source_names_by_site,
     bilibili_cookie_status,
+    is_item_orphaned,
     launch_bilibili_dedicated_browser,
     local_config_maintenance_issues,
     local_status_payload,
@@ -15,6 +18,7 @@ from scripts.local_server import (
     mediacrawler_xhs_collector_status,
     normalize_collection_scope,
     perform_maintenance_action,
+    purge_deleted_source_data,
     read_wewe_rss_feeds,
     refresh_command,
     refresh_env,
@@ -115,6 +119,242 @@ class LocalServerTests(unittest.TestCase):
             validate_source_config({"sources": [{"id": "", "name": "Missing id"}]})
         with self.assertRaises(ValueError):
             validate_source_config({"sources": [{"id": "missing_name", "name": ""}]})
+
+    def test_alive_source_names_by_site_splits_bilibili_members(self):
+        config = {
+            "sources": [
+                {
+                    "id": "bilibili_dynamic_sources",
+                    "name": "B站动态",
+                    "type": "bilibili_dynamic",
+                    "target": "张三,李四,",
+                }
+            ]
+        }
+
+        alive = alive_source_names_by_site(config)
+
+        self.assertEqual(set(alive.keys()), set(PURGE_TRACKED_SITE_IDS))
+        self.assertEqual(alive["bilibili_dynamic"], {"张三", "李四"})
+
+    def test_alive_source_names_by_site_protects_renamed_source(self):
+        old_config = {
+            "sources": [
+                {"id": "wewe_rss_maobidao", "type": "wewe_rss", "name": "猫笔刀", "target": "猫笔刀"}
+            ]
+        }
+        new_config = {
+            "sources": [
+                {"id": "wewe_rss_maobidao", "type": "wewe_rss", "name": "猫笔刀公众号", "target": "猫笔刀公众号"}
+            ]
+        }
+
+        alive = alive_source_names_by_site(new_config, old_config)
+
+        self.assertEqual(alive["wewe_rss"], {"猫笔刀公众号", "猫笔刀"})
+
+    def test_alive_source_names_by_site_does_not_protect_deleted_source(self):
+        old_config = {
+            "sources": [
+                {"id": "wewe_rss_maobidao", "type": "wewe_rss", "name": "猫笔刀", "target": "猫笔刀"}
+            ]
+        }
+        new_config = {"sources": []}
+
+        alive = alive_source_names_by_site(new_config, old_config)
+
+        self.assertNotIn("猫笔刀", alive["wewe_rss"])
+
+    def test_alive_source_names_by_site_protects_renamed_bilibili_member(self):
+        old_config = {
+            "sources": [
+                {
+                    "id": "bilibili_dynamic_sources",
+                    "type": "bilibili_dynamic",
+                    "target": "张三,李四",
+                    "locator": "111,222",
+                }
+            ]
+        }
+        new_config = {
+            "sources": [
+                {
+                    "id": "bilibili_dynamic_sources",
+                    "type": "bilibili_dynamic",
+                    "target": "张三,李四改名",
+                    "locator": "111,222",
+                }
+            ]
+        }
+
+        alive = alive_source_names_by_site(new_config, old_config)
+
+        self.assertEqual(alive["bilibili_dynamic"], {"张三", "李四", "李四改名"})
+
+    def test_alive_source_names_by_site_does_not_protect_removed_bilibili_member(self):
+        old_config = {
+            "sources": [
+                {
+                    "id": "bilibili_dynamic_sources",
+                    "type": "bilibili_dynamic",
+                    "target": "张三,李四",
+                    "locator": "111,222",
+                }
+            ]
+        }
+        new_config = {
+            "sources": [
+                {
+                    "id": "bilibili_dynamic_sources",
+                    "type": "bilibili_dynamic",
+                    "target": "张三",
+                    "locator": "111",
+                }
+            ]
+        }
+
+        alive = alive_source_names_by_site(new_config, old_config)
+
+        self.assertEqual(alive["bilibili_dynamic"], {"张三"})
+
+    def test_is_item_orphaned_only_applies_to_tracked_site_ids(self):
+        alive = {"bilibili_dynamic": {"张三"}}
+
+        self.assertTrue(is_item_orphaned({"site_id": "bilibili_dynamic", "source": "李四"}, alive))
+        self.assertFalse(is_item_orphaned({"site_id": "bilibili_dynamic", "source": "张三"}, alive))
+        self.assertFalse(is_item_orphaned({"site_id": "hackernews", "source": "李四"}, alive))
+        self.assertFalse(is_item_orphaned({"site_id": "opmlrss", "source": "李四"}, alive))
+
+    def test_purge_deleted_source_data_rewrites_display_payloads(self):
+        root = Path(self.create_temp_dir())
+        data_dir = root / "data"
+        data_dir.mkdir()
+        kept = {"site_id": "bilibili_dynamic", "source": "张三", "title": "保留"}
+        deleted = {"site_id": "bilibili_dynamic", "source": "李四", "title": "删除"}
+        unrelated = {"site_id": "hackernews", "source": "李四", "title": "无关"}
+        config = {
+            "sources": [
+                {
+                    "id": "bilibili_dynamic_sources",
+                    "name": "B站动态",
+                    "type": "bilibili_dynamic",
+                    "target": "张三",
+                }
+            ]
+        }
+        (data_dir / "archive.json").write_text(
+            json.dumps({"items": [kept, deleted, unrelated], "total_items": 3}, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        (data_dir / "latest-24h.json").write_text(
+            json.dumps(
+                {
+                    "items": [kept, deleted, unrelated],
+                    "items_ai": [deleted],
+                    "creator_items_ai": [kept, deleted],
+                    "creator_items_all": [unrelated],
+                    "site_stats": {"bilibili_dynamic": 2},
+                },
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+        (data_dir / "stories-merged.json").write_text(
+            json.dumps(
+                {
+                    "stories": [
+                        {"title": "保留故事", "items": [kept]},
+                        {"title": "删除故事", "items": [deleted]},
+                        {"title": "无关故事", "items": [unrelated]},
+                    ],
+                    "total_stories": 3,
+                },
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+
+        summary = purge_deleted_source_data(root, config)
+
+        archive = json.loads((data_dir / "archive.json").read_text(encoding="utf-8"))
+        latest = json.loads((data_dir / "latest-24h.json").read_text(encoding="utf-8"))
+        stories = json.loads((data_dir / "stories-merged.json").read_text(encoding="utf-8"))
+        self.assertEqual(summary["archive.json"], 1)
+        self.assertEqual(summary["latest-24h.json"], 3)
+        self.assertEqual(summary["stories-merged.json"], 1)
+        self.assertEqual(archive["total_items"], 2)
+        self.assertEqual([item["title"] for item in archive["items"]], ["保留", "无关"])
+        self.assertEqual([item["title"] for item in latest["items"]], ["保留", "无关"])
+        self.assertEqual([story["title"] for story in stories["stories"]], ["保留故事", "无关故事"])
+        self.assertEqual(stories["total_stories"], 2)
+
+    def test_purge_deleted_source_data_keeps_renamed_source_history(self):
+        root = Path(self.create_temp_dir())
+        data_dir = root / "data"
+        data_dir.mkdir()
+        path = data_dir / "archive.json"
+        path.write_text(
+            json.dumps(
+                {
+                    "items": [{"site_id": "wewe_rss", "source": "猫笔刀", "title": "旧名历史"}],
+                    "total_items": 1,
+                },
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+        old_config = {
+            "sources": [
+                {"id": "wewe_rss_maobidao", "type": "wewe_rss", "name": "猫笔刀", "target": "猫笔刀"}
+            ]
+        }
+        new_config = {
+            "sources": [
+                {"id": "wewe_rss_maobidao", "type": "wewe_rss", "name": "猫笔刀公众号", "target": "猫笔刀公众号"}
+            ]
+        }
+
+        summary = purge_deleted_source_data(root, new_config, previous_config=old_config)
+
+        archive = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual(summary["archive.json"], 0)
+        self.assertEqual(archive["items"][0]["title"], "旧名历史")
+        self.assertEqual(archive["total_items"], 1)
+
+    def test_purge_deleted_source_data_skips_missing_data_dir(self):
+        root = Path(self.create_temp_dir())
+
+        summary = purge_deleted_source_data(root, {"sources": []})
+
+        self.assertEqual(summary, {})
+
+    def test_purge_deleted_source_data_does_not_rewrite_when_nothing_removed(self):
+        root = Path(self.create_temp_dir())
+        data_dir = root / "data"
+        data_dir.mkdir()
+        path = data_dir / "archive.json"
+        original = json.dumps(
+            {"items": [{"site_id": "bilibili_dynamic", "source": "张三"}], "total_items": 1},
+            ensure_ascii=False,
+        )
+        path.write_text(original, encoding="utf-8")
+
+        summary = purge_deleted_source_data(
+            root,
+            {
+                "sources": [
+                    {
+                        "id": "bilibili_dynamic_sources",
+                        "name": "B站动态",
+                        "type": "bilibili_dynamic",
+                        "target": "张三",
+                    }
+                ]
+            },
+        )
+
+        self.assertEqual(summary["archive.json"], 0)
+        self.assertEqual(path.read_text(encoding="utf-8"), original)
 
     def test_write_youtube_subscriptions_roundtrips_follow_opml(self):
         root = Path(self.create_temp_dir())

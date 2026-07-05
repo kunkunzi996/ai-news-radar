@@ -1,5 +1,54 @@
 # HANDOFF.md
 
+## 当前最新交接：订阅卡片已支持已阅与恢复
+
+- 日期：2026-07-05
+- 当前阶段：`我的订阅` 及各订阅平台栏目已支持把订阅卡片标记为“已阅”，标记后从常规订阅栏目隐藏，并汇总到顶部新增的 `已阅` 栏目；在 `已阅` 栏目点击“恢复”后会回到原订阅流。
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前分支：`master`
+- 本轮改动：
+  - `assets/app.js` 新增 `READ_ITEMS_STORAGE_KEY`、`state.readItemIds`、已阅读写辅助函数和订阅卡片按钮。
+  - `SECTION_DEFS` 新增 `read` 虚拟栏目，`sectionItems()` 统一处理“已阅只显示已阅 / 其它栏目排除已阅”。
+  - Review 后补修：订阅栏目扁平时间线会把当前订阅池里的卡片统一标记为可渲染“已阅/恢复”按钮，避免后端已放进订阅池但前端 `isSubscriptionItem()` 判窄时按钮缺失；已阅 key 改为复用现有 `itemIdentityKey()`。
+  - `assets/styles.css` 新增 `.item-actions` 和 `.read-toggle-btn` 样式。
+- 本轮验收：
+  - `node --check assets/app.js` 通过。
+  - `git diff --check -- assets/app.js assets/styles.css` 通过，仅有 Windows LF/CRLF warning。
+  - Playwright 打开 `http://127.0.0.1:8080/` 验证：顶部出现 `已阅` tab；订阅卡片显示“已阅”按钮；点击后 `我的订阅` 数量减少、`已阅` 数量增加；`已阅` 栏目内按钮变为“恢复”；刷新页面后已阅状态仍保留；恢复后 `localStorage ai-news-radar-read-items-v1=[]`，Console 无 error。
+- 下一轮建议入口：
+  - 先读 `PROJECT_STATE.md` 和本文件。
+  - 手动验收：打开 `http://127.0.0.1:8080/`，在 `我的订阅` 标记一条 B站或公众号，再切到 `已阅` 恢复；需要完整验收时再覆盖抖音、小红书、油管和一次真实“刷新看板数据”后仍隐藏。
+- 下一轮禁止：
+  - 不要把已阅状态写回 `data/*.json` 或后端；它应继续只存在浏览器 `localStorage`。
+  - 不要给非订阅源普通信息流卡片加“已阅”按钮。
+  - 不要把当前已有 `data/*.json` 脏改一股脑提交。
+
+## 当前最新交接：删除信源后立即清理历史展示数据
+
+- 日期：2026-07-05
+- 当前阶段：信源配置保存时已联动清理本地展示数据。用户删除整条信源记录，或在订阅成员面板删掉 B站/公众号/抖音/小红书/GitHub Release 成员后，只要点一次“保存草稿”或“保存成员”，`scripts/local_server.py` 会在写入 `sources.config.json` 成功后尝试清理 `data/archive.json`、`data/latest-24h.json`、`data/latest-24h-all.json`、`data/stories-merged.json`、`data/daily-brief.json` 里对应的旧条目。
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前分支：`master`
+- 本轮改动：
+  - `scripts/local_server.py` 新增 `PURGE_TRACKED_SITE_IDS`、存活来源名计算、孤儿条目判断、JSON 原子写回和 `purge_deleted_source_data()`。
+  - `/api/source-config` 保存配置成功后，用非阻塞 `REFRESH_LOCK.acquire(blocking=False)` 执行清理；如果正在采集则返回 `purged_items.skipped=refresh_in_progress`，不会卡住保存。
+  - `assets/app.js` 读取后端 `purged_items`，只有清理数量大于 0 时才提示“已清理 N 条已删除信源的历史数据”。
+  - `tests/test_local_server.py` 覆盖 B站成员拆分、非追踪 site_id 不误删、端到端清理、缺失 data 目录跳过、无删除时不重写。
+- 本轮验收：
+  - `.\.venv\Scripts\python.exe -m py_compile scripts\local_server.py` 通过。
+  - `node --check assets\app.js` 通过。
+  - `.\.venv\Scripts\python.exe -m unittest tests.test_local_server -q` 通过：45 tests OK。
+  - `.\.venv\Scripts\python.exe -m unittest discover -s tests -q` 通过：193 tests OK。
+  - `git diff --check -- scripts/local_server.py assets/app.js tests/test_local_server.py` 通过，仅有 Windows LF/CRLF warning。
+- 下一轮建议入口：
+  - 先读 `PROJECT_STATE.md` 和本文件。
+  - 手动验收：打开 `http://127.0.0.1:8080/`，在“信源配置”里删除一个测试成员或单账号源，点“保存成员/保存草稿”，看状态提示是否出现清理数量；刷新后确认这个来源旧内容消失，其它来源还在。
+- 下一轮禁止：
+  - 不要批量删除。
+  - 不要改 `scripts/update_news.py` 来重复实现这套本地保存时清理逻辑。
+  - 不要扩大到计划外 site_id；当前只清理 `wewe_rss`、`bilibili_dynamic`、`mediacrawler_douyin`、`mediacrawler_xhs`、`github_foundation_sunshine_releases`。
+  - 不要把当前已有 `data/*.json` 脏改一股脑提交。
+
 ## 当前最新交接：我的订阅改为全局时间线
 
 - 日期：2026-07-05

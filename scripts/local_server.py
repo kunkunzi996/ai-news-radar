@@ -702,6 +702,186 @@ def source_config_runtime_ids(source: dict[str, Any]) -> set[str]:
     return runtime_ids
 
 
+PURGE_TRACKED_SITE_IDS = frozenset(
+    {
+        "wewe_rss",
+        "bilibili_dynamic",
+        "mediacrawler_douyin",
+        "mediacrawler_xhs",
+        "github_foundation_sunshine_releases",
+    }
+)
+
+
+def purge_tracked_site_ids(source: dict[str, Any]) -> set[str]:
+    ids = set(source_config_runtime_ids(source))
+    if str(source.get("type") or "").strip().lower() == "github_release":
+        ids.add("github_foundation_sunshine_releases")
+    return ids & PURGE_TRACKED_SITE_IDS
+
+
+def source_identity_names(config: dict[str, Any]) -> dict[str, dict[str, str]]:
+    identities: dict[str, dict[str, str]] = {site_id: {} for site_id in PURGE_TRACKED_SITE_IDS}
+    sources = config.get("sources") if isinstance(config, dict) else None
+    if not isinstance(sources, list):
+        return identities
+    for source in sources:
+        if not isinstance(source, dict):
+            continue
+        site_ids = purge_tracked_site_ids(source)
+        if not site_ids:
+            continue
+        if "bilibili_dynamic" in site_ids:
+            names = [part.strip() for part in str(source.get("target") or "").split(",")]
+            locators = [part.strip() for part in str(source.get("locator") or "").split(",")]
+            for index in range(max(len(names), len(locators))):
+                locator = locators[index] if index < len(locators) else ""
+                identity_key = locator or (names[index] if index < len(names) else "")
+                if not identity_key:
+                    continue
+                name = names[index] if index < len(names) and names[index] else locator
+                identities["bilibili_dynamic"][identity_key] = name
+        for site_id in site_ids:
+            if site_id == "bilibili_dynamic":
+                continue
+            record_id = str(source.get("id") or "").strip()
+            display = str(source.get("target") or source.get("name") or "").strip()
+            if record_id and display:
+                identities[site_id][record_id] = display
+    return identities
+
+
+def alive_source_names_by_site(
+    config: dict[str, Any],
+    previous_config: dict[str, Any] | None = None,
+) -> dict[str, set[str]]:
+    current = source_identity_names(config)
+    previous = source_identity_names(previous_config) if previous_config else {}
+    alive: dict[str, set[str]] = {}
+    for site_id in PURGE_TRACKED_SITE_IDS:
+        names = set(current.get(site_id, {}).values())
+        for identity_key, old_name in previous.get(site_id, {}).items():
+            if identity_key in current.get(site_id, {}):
+                names.add(old_name)
+        alive[site_id] = names
+    return alive
+
+
+def is_item_orphaned(record: dict[str, Any], alive_names: dict[str, set[str]]) -> bool:
+    site_id = str(record.get("site_id") or "").strip()
+    if site_id not in alive_names:
+        return False
+    source_name = str(record.get("source") or "").strip()
+    return source_name not in alive_names[site_id]
+
+
+def purge_orphaned_from_flat_list(
+    items: list[Any],
+    alive_names: dict[str, set[str]],
+) -> tuple[list[Any], int]:
+    kept = [item for item in items if not (isinstance(item, dict) and is_item_orphaned(item, alive_names))]
+    return kept, len(items) - len(kept)
+
+
+def purge_orphaned_from_story_list(
+    stories: list[Any],
+    alive_names: dict[str, set[str]],
+) -> tuple[list[Any], int]:
+    kept = []
+    removed = 0
+    for story in stories:
+        if not isinstance(story, dict):
+            kept.append(story)
+            continue
+        members = story.get("items")
+        if not isinstance(members, list):
+            members = story.get("sources") if isinstance(story.get("sources"), list) else []
+        if any(isinstance(member, dict) and is_item_orphaned(member, alive_names) for member in members):
+            removed += 1
+            continue
+        kept.append(story)
+    return kept, removed
+
+
+def write_json_atomic(path: Path, payload: Any, *, compact: bool) -> None:
+    text = (
+        json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
+        if compact
+        else json.dumps(payload, ensure_ascii=False, indent=2)
+    )
+    tmp_path = path.with_suffix(".json.tmp")
+    tmp_path.write_text(text, encoding="utf-8")
+    os.replace(tmp_path, path)
+
+
+def purge_deleted_source_data(
+    root_dir: Path,
+    config: dict[str, Any],
+    *,
+    previous_config: dict[str, Any] | None = None,
+) -> dict[str, int]:
+    alive_names = alive_source_names_by_site(config, previous_config)
+    data_dir = root_dir / "data"
+    summary: dict[str, int] = {}
+
+    def rewrite_flat(filename: str, list_keys: tuple[str, ...], *, compact: bool) -> None:
+        path = data_dir / filename
+        if not path.exists():
+            return
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            return
+        if not isinstance(payload, dict):
+            return
+        removed_total = 0
+        for key in list_keys:
+            items = payload.get(key)
+            if not isinstance(items, list):
+                continue
+            kept, removed = purge_orphaned_from_flat_list(items, alive_names)
+            payload[key] = kept
+            removed_total += removed
+        if "total_items" in payload and "items" in list_keys:
+            payload["total_items"] = len(payload.get("items") or [])
+        if removed_total:
+            write_json_atomic(path, payload, compact=compact)
+        summary[filename] = removed_total
+
+    def rewrite_stories(filename: str, list_key: str, total_key: str, *, compact: bool) -> None:
+        path = data_dir / filename
+        if not path.exists():
+            return
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            return
+        if not isinstance(payload, dict) or not isinstance(payload.get(list_key), list):
+            return
+        kept, removed = purge_orphaned_from_story_list(payload[list_key], alive_names)
+        payload[list_key] = kept
+        if total_key in payload:
+            payload[total_key] = len(kept)
+        if removed:
+            write_json_atomic(path, payload, compact=compact)
+        summary[filename] = removed
+
+    rewrite_flat("archive.json", ("items",), compact=True)
+    rewrite_flat(
+        "latest-24h.json",
+        ("items", "items_ai", "creator_items_ai", "creator_items_all"),
+        compact=False,
+    )
+    rewrite_flat(
+        "latest-24h-all.json",
+        ("items_all", "items_all_raw", "creator_items_all"),
+        compact=True,
+    )
+    rewrite_stories("stories-merged.json", "stories", "total_stories", compact=True)
+    rewrite_stories("daily-brief.json", "items", "total_items", compact=False)
+    return summary
+
+
 def enabled_source_config_records(config: dict[str, Any] | None) -> list[dict[str, Any]]:
     if not config:
         return []
@@ -1795,6 +1975,12 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
             raw = self.rfile.read(length)
             payload = validate_source_config(json.loads(raw.decode("utf-8")))
             payload["updated_at"] = payload.get("updated_at") or ""
+            previous_config: dict[str, Any] | None = None
+            if self.config_path.exists():
+                try:
+                    previous_config = json.loads(self.config_path.read_text(encoding="utf-8"))
+                except Exception:
+                    previous_config = None
             body = json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
             tmp_path = self.config_path.with_suffix(".json.tmp")
             tmp_path.write_text(body, encoding="utf-8")
@@ -1802,6 +1988,16 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
         except Exception as exc:
             json_response(self, HTTPStatus.BAD_REQUEST, {"ok": False, "error": str(exc)})
             return
+        purged_items: dict[str, Any]
+        if REFRESH_LOCK.acquire(blocking=False):
+            try:
+                purged_items = purge_deleted_source_data(self.root_dir, payload, previous_config=previous_config)
+            except Exception as exc:
+                purged_items = {"error": str(exc)}
+            finally:
+                REFRESH_LOCK.release()
+        else:
+            purged_items = {"skipped": "refresh_in_progress"}
         json_response(
             self,
             HTTPStatus.OK,
@@ -1809,6 +2005,7 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
                 "ok": True,
                 "path": CONFIG_FILENAME,
                 "source_count": len(payload.get("sources") or []),
+                "purged_items": purged_items,
             },
         )
 

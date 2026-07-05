@@ -1001,6 +1001,33 @@ summary:focus-visible {
   outline: none;
 }
 
+.source-refresh-note {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.advanced-source-config-wrap {
+  border-top: 1px solid var(--line-soft);
+}
+
+.advanced-source-config-wrap > summary {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.advanced-source-config-wrap > summary small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
 .tool-btn {
   min-height: 32px;
   border: 1px solid var(--line);
@@ -2952,6 +2979,35 @@ summary:focus-visible {
   font-size: 12px;
   line-height: 1.35;
   font-weight: 400;
+}
+
+.item-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 7px;
+}
+
+.read-toggle-btn {
+  min-height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.read-toggle-btn:hover,
+.read-toggle-btn:focus-visible {
+  border-color: rgba(18, 106, 115, 0.45);
+  outline: none;
+}
+
+.read-toggle-btn.is-read {
+  color: var(--muted);
+  background: var(--surface-soft);
 }
 
 .title:hover {

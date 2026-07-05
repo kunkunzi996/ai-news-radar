@@ -1,33 +1,21 @@
 {
-  "generated_at": "2026-07-04T14:39:31.418981Z",
+  "generated_at": "2026-07-05T09:06:36.561958Z",
   "sites": [
     {
       "site_id": "github_foundation_sunshine_releases",
       "site_name": "GitHub Foundation Sunshine",
       "ok": true,
-      "item_count": 11,
-      "duration_ms": 1775,
+      "item_count": 5,
+      "duration_ms": 885,
       "error": null,
       "source_kind": "github_release_subscription",
-      "repo": "AlkaidLab/foundation-sunshine, javaht/claude-desktop-zh-cn, helloianneo/ian-xiaohei-illustrations",
+      "repo": "AlkaidLab/foundation-sunshine",
       "repos": [
         {
           "repo": "AlkaidLab/foundation-sunshine",
           "api_url": "https://api.github.com/repos/AlkaidLab/foundation-sunshine/releases",
           "ok": true,
           "item_count": 5
-        },
-        {
-          "repo": "javaht/claude-desktop-zh-cn",
-          "api_url": "https://api.github.com/repos/javaht/claude-desktop-zh-cn/releases",
-          "ok": true,
-          "item_count": 5
-        },
-        {
-          "repo": "helloianneo/ian-xiaohei-illustrations",
-          "api_url": "https://api.github.com/repos/helloianneo/ian-xiaohei-illustrations/releases",
-          "ok": true,
-          "item_count": 1
         }
       ],
       "max_items": 5
@@ -36,8 +24,8 @@
       "site_id": "wewe_rss",
       "site_name": "WeWe RSS",
       "ok": true,
-      "item_count": 20,
-      "duration_ms": 18,
+      "item_count": 40,
+      "duration_ms": 23,
       "error": null,
       "source_kind": "wewe_rss_wechat_subscription",
       "base_url": "http://127.0.0.1:4000",
@@ -54,7 +42,7 @@
           "id": "MP_WXS_3223096120",
           "name": "数字生命卡兹克",
           "ok": true,
-          "item_count": 0,
+          "item_count": 20,
           "error": null
         }
       ],
@@ -65,18 +53,17 @@
       "site_id": "bilibili_dynamic",
       "site_name": "Bilibili Dynamic",
       "ok": true,
-      "item_count": 80,
-      "duration_ms": 3133,
+      "item_count": 60,
+      "duration_ms": 2372,
       "error": null,
-      "uid": "505301413,316183842,3546884870244925,4401694",
+      "uid": "505301413,316183842,3546884870244925",
       "uids": [
         "505301413",
         "316183842",
-        "3546884870244925",
-        "4401694"
+        "3546884870244925"
       ],
-      "uid_count": 4,
-      "source_name": "Koji杨远骋at十字路口, 技术爬爬虾, 杰森的效率工坊, 林亦LY",
+      "uid_count": 3,
+      "source_name": "Koji杨远骋at十字路口, 技术爬爬虾, 杰森的效率工坊",
       "privacy": "cookie_env_only_not_logged",
       "coverage_note": "tries_cookie_full_dynamic_then_public_opus_fallback",
       "cookie_present": true,
@@ -107,13 +94,6 @@
           "ok": true,
           "item_count": 20,
           "fetch_mode": "cookie_full_dynamic"
-        },
-        {
-          "uid": "4401694",
-          "source_name": "林亦LY",
-          "ok": true,
-          "item_count": 20,
-          "fetch_mode": "cookie_full_dynamic"
         }
       ]
     },
@@ -121,15 +101,15 @@
       "site_id": "mediacrawler_douyin",
       "site_name": "MediaCrawler Douyin",
       "ok": true,
-      "item_count": 82,
-      "duration_ms": 6,
+      "item_count": 5,
+      "duration_ms": 3,
       "error": null,
-      "source_name": "Simon林, 珍妮丁丁说AI",
+      "source_name": "Simon林, 珍妮丁丁说AI, FredTalk",
       "privacy": "local_jsonl_only_no_cookies",
       "coverage_note": "reads_mediacrawler_douyin_creator_jsonl",
       "source_kind": "mediacrawler_douyin",
       "jsonl_path_configured": true,
-      "jsonl_file": "creator_contents_2026-07-04.jsonl",
+      "jsonl_file": "creator_contents_2026-07-05.jsonl",
       "max_items": 200,
       "subscriptions": [
         {
@@ -139,7 +119,7 @@
           "jsonl_file_configured": "creator_contents_2026-07-01.jsonl",
           "item_count": 0,
           "ok": false,
-          "jsonl_file": "creator_contents_2026-07-04.jsonl",
+          "jsonl_file": "creator_contents_2026-07-05.jsonl",
           "jsonl_file_resolved_from": "creator_contents_2026-07-01.jsonl",
           "error": "mediacrawler_douyin_no_items"
         },
@@ -148,52 +128,52 @@
           "locator": "https://www.douyin.com/user/MS4wLjABAAAAOzTvIhQXaHWi6jT_P5rG5xEWpWPjufiKQHL4_uaFRZzOMFYOxxQPu3AtUmTd_P09?from_tab_name=main&vid=7658298250709044516",
           "locator_kind": "homepage_url",
           "jsonl_file_configured": "jsonl",
-          "item_count": 82,
+          "item_count": 5,
           "ok": true,
-          "jsonl_file": "creator_contents_2026-07-04.jsonl",
+          "jsonl_file": "creator_contents_2026-07-05.jsonl",
           "jsonl_file_resolved_from": "jsonl"
+        },
+        {
+          "name": "FredTalk",
+          "locator": "https://www.douyin.com/user/MS4wLjABAAAAbsEkiVbKt7yhYoBK8_PkNTQoPAgRiLzOyrBc-sYHSdo?from_tab_name=main&vid=7658551792174697780",
+          "locator_kind": "homepage_url",
+          "jsonl_file_configured": "jsonl",
+          "item_count": 0,
+          "ok": false,
+          "jsonl_file": "creator_contents_2026-07-05.jsonl",
+          "jsonl_file_resolved_from": "jsonl",
+          "error": "mediacrawler_douyin_no_items"
         }
       ],
-      "subscription_count": 2
+      "subscription_count": 3
     },
     {
       "site_id": "mediacrawler_xhs",
       "site_name": "MediaCrawler Xiaohongshu",
       "ok": true,
-      "item_count": 32,
-      "duration_ms": 2,
+      "item_count": 5,
+      "duration_ms": 1,
       "error": null,
-      "source_name": "陈抱一, 中二的大暄哥",
+      "source_name": "中二的大暄哥",
       "privacy": "local_jsonl_only_no_cookies",
       "coverage_note": "reads_mediacrawler_xhs_creator_jsonl",
       "source_kind": "mediacrawler_xhs",
       "jsonl_path_configured": true,
-      "jsonl_file": "creator_contents_2026-07-04.jsonl",
+      "jsonl_file": "creator_contents_2026-07-05.jsonl",
       "max_items": 200,
       "subscriptions": [
-        {
-          "name": "陈抱一",
-          "locator": "E:\\AI-news-reader\\MediaCrawler-local-test\\output\\xhs\\jsonl\\creator_contents_2026-07-01.jsonl",
-          "locator_kind": "jsonl_path",
-          "jsonl_file_configured": "creator_contents_2026-07-01.jsonl",
-          "item_count": 0,
-          "ok": false,
-          "jsonl_file": "creator_contents_2026-07-04.jsonl",
-          "jsonl_file_resolved_from": "creator_contents_2026-07-01.jsonl",
-          "error": "mediacrawler_xhs_no_items"
-        },
         {
           "name": "中二的大暄哥",
           "locator": "https://www.xiaohongshu.com/user/profile/620659c60000000010009e0b",
           "locator_kind": "homepage_url",
           "jsonl_file_configured": "jsonl",
-          "item_count": 32,
+          "item_count": 5,
           "ok": true,
-          "jsonl_file": "creator_contents_2026-07-04.jsonl",
+          "jsonl_file": "creator_contents_2026-07-05.jsonl",
           "jsonl_file_resolved_from": "jsonl"
         }
       ],
-      "subscription_count": 2
+      "subscription_count": 1
     },
     {
       "site_id": "opmlrss",
@@ -201,7 +181,7 @@
       "ok": true,
       "partial_failures": 0,
       "item_count": 30,
-      "duration_ms": 1603,
+      "duration_ms": 1361,
       "error": null,
       "feed_count": 2,
       "effective_feed_count": 2,
@@ -218,11 +198,11 @@
   "failed_sites": [],
   "zero_item_sites": [],
   "empty_advanced_sources": [],
-  "fetched_raw_items": 2,
-  "raw_items_before_collection_window": 255,
-  "skipped_collection_window_items": 253,
-  "items_before_topic_filter": 1221,
-  "items_in_24h": 291,
+  "fetched_raw_items": 1,
+  "raw_items_before_collection_window": 145,
+  "skipped_collection_window_items": 144,
+  "items_before_topic_filter": 769,
+  "items_in_24h": 275,
   "rss_opml": {
     "enabled": true,
     "path": "configured",
@@ -243,7 +223,7 @@
         "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw",
         "ok": true,
         "item_count": 15,
-        "duration_ms": 811,
+        "duration_ms": 738,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -258,7 +238,7 @@
         "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC26hLZoe-haxcuLYxzWAiNg",
         "ok": true,
         "item_count": 15,
-        "duration_ms": 792,
+        "duration_ms": 623,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -296,13 +276,13 @@
   "mediacrawler_douyin": {
     "enabled": true,
     "ok": true,
-    "item_count": 82,
+    "item_count": 5,
     "source_kind": "mediacrawler_douyin",
     "privacy": "local_jsonl_only_no_cookies",
     "coverage_note": "reads_mediacrawler_douyin_creator_jsonl",
     "jsonl_path_configured": true,
-    "jsonl_file": "creator_contents_2026-07-04.jsonl",
-    "source_name": "Simon林, 珍妮丁丁说AI",
+    "jsonl_file": "creator_contents_2026-07-05.jsonl",
+    "source_name": "Simon林, 珍妮丁丁说AI, FredTalk",
     "max_items": 200,
     "subscriptions": [
       {
@@ -312,7 +292,7 @@
         "jsonl_file_configured": "creator_contents_2026-07-01.jsonl",
         "item_count": 0,
         "ok": false,
-        "jsonl_file": "creator_contents_2026-07-04.jsonl",
+        "jsonl_file": "creator_contents_2026-07-05.jsonl",
         "jsonl_file_resolved_from": "creator_contents_2026-07-01.jsonl",
         "error": "mediacrawler_douyin_no_items"
       },
@@ -321,53 +301,53 @@
         "locator": "https://www.douyin.com/user/MS4wLjABAAAAOzTvIhQXaHWi6jT_P5rG5xEWpWPjufiKQHL4_uaFRZzOMFYOxxQPu3AtUmTd_P09?from_tab_name=main&vid=7658298250709044516",
         "locator_kind": "homepage_url",
         "jsonl_file_configured": "jsonl",
-        "item_count": 82,
+        "item_count": 5,
         "ok": true,
-        "jsonl_file": "creator_contents_2026-07-04.jsonl",
+        "jsonl_file": "creator_contents_2026-07-05.jsonl",
         "jsonl_file_resolved_from": "jsonl"
+      },
+      {
+        "name": "FredTalk",
+        "locator": "https://www.douyin.com/user/MS4wLjABAAAAbsEkiVbKt7yhYoBK8_PkNTQoPAgRiLzOyrBc-sYHSdo?from_tab_name=main&vid=7658551792174697780",
+        "locator_kind": "homepage_url",
+        "jsonl_file_configured": "jsonl",
+        "item_count": 0,
+        "ok": false,
+        "jsonl_file": "creator_contents_2026-07-05.jsonl",
+        "jsonl_file_resolved_from": "jsonl",
+        "error": "mediacrawler_douyin_no_items"
       }
     ],
-    "subscription_count": 2,
+    "subscription_count": 3,
     "error": null,
-    "duration_ms": 6
+    "duration_ms": 3
   },
   "mediacrawler_xhs": {
     "enabled": true,
     "ok": true,
-    "item_count": 32,
+    "item_count": 5,
     "source_kind": "mediacrawler_xhs",
     "privacy": "local_jsonl_only_no_cookies",
     "coverage_note": "reads_mediacrawler_xhs_creator_jsonl",
     "jsonl_path_configured": true,
-    "jsonl_file": "creator_contents_2026-07-04.jsonl",
-    "source_name": "陈抱一, 中二的大暄哥",
+    "jsonl_file": "creator_contents_2026-07-05.jsonl",
+    "source_name": "中二的大暄哥",
     "max_items": 200,
     "subscriptions": [
-      {
-        "name": "陈抱一",
-        "locator": "E:\\AI-news-reader\\MediaCrawler-local-test\\output\\xhs\\jsonl\\creator_contents_2026-07-01.jsonl",
-        "locator_kind": "jsonl_path",
-        "jsonl_file_configured": "creator_contents_2026-07-01.jsonl",
-        "item_count": 0,
-        "ok": false,
-        "jsonl_file": "creator_contents_2026-07-04.jsonl",
-        "jsonl_file_resolved_from": "creator_contents_2026-07-01.jsonl",
-        "error": "mediacrawler_xhs_no_items"
-      },
       {
         "name": "中二的大暄哥",
         "locator": "https://www.xiaohongshu.com/user/profile/620659c60000000010009e0b",
         "locator_kind": "homepage_url",
         "jsonl_file_configured": "jsonl",
-        "item_count": 32,
+        "item_count": 5,
         "ok": true,
-        "jsonl_file": "creator_contents_2026-07-04.jsonl",
+        "jsonl_file": "creator_contents_2026-07-05.jsonl",
         "jsonl_file_resolved_from": "jsonl"
       }
     ],
-    "subscription_count": 2,
+    "subscription_count": 1,
     "error": null,
-    "duration_ms": 2
+    "duration_ms": 1
   },
   "source_config": {
     "enabled": true,
@@ -377,8 +357,8 @@
       "sources.config.json"
     ],
     "error": null,
-    "source_count": 11,
-    "enabled_source_count": 11,
+    "source_count": 9,
+    "enabled_source_count": 9,
     "enabled_site_ids": [
       "bilibili_dynamic",
       "github_foundation_sunshine_releases",

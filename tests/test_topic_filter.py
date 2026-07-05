@@ -1206,6 +1206,34 @@ class TopicFilterTests(unittest.TestCase):
         self.assertFalse(items[1].meta["prerelease"])
         self.assertEqual(session.calls[0][1]["params"]["per_page"], 5)
 
+    def test_fetch_github_repo_subscription_uses_display_name_as_source(self):
+        class FakeResponse:
+            def raise_for_status(self):
+                return None
+
+            def json(self):
+                return [
+                    {
+                        "tag_name": "v1.0.0",
+                        "name": "v1.0.0",
+                        "html_url": "https://github.com/example/repo/releases/tag/v1.0.0",
+                        "published_at": "2026-06-30T11:48:06Z",
+                        "draft": False,
+                        "prerelease": False,
+                    }
+                ]
+
+        class FakeSession:
+            def get(self, url, **kwargs):
+                return FakeResponse()
+
+        now = datetime.fromisoformat("2026-07-01T00:00:00+00:00")
+        session = FakeSession()
+        items = fetch_github_repo_subscription(session, now, display_name="claude code汉化项目")
+
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0].source, "claude code汉化项目")
+
     def test_source_tier_fields_and_sort_put_discussion_after_core_sources(self):
         official = add_source_tier_fields(
             {
