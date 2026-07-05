@@ -12,6 +12,7 @@ import struct
 import subprocess
 import sys
 import threading
+import time
 import xml.etree.ElementTree as ET
 import urllib.error
 import urllib.parse
@@ -30,6 +31,14 @@ CONFIG_FILENAME = "sources.config.json"
 OPML_FILENAME = Path("feeds") / "follow.opml"
 REFRESH_TIMEOUT_SECONDS = 600
 REFRESH_LOCK = threading.Lock()
+REFRESH_PROGRESS_LOCK = threading.Lock()
+REFRESH_PROGRESS: dict[str, Any] = {
+    "running": False,
+    "status": "idle",
+    "percent": 0,
+    "current_step": "等待刷新",
+    "log": [],
+}
 COLLECTION_SCOPE_24H = "24h"
 COLLECTION_SCOPE_ALL = "all"
 COLLECTION_SCOPES = {COLLECTION_SCOPE_24H, COLLECTION_SCOPE_ALL}
@@ -695,6 +704,10 @@ def source_config_runtime_ids(source: dict[str, Any]) -> set[str]:
         runtime_ids.add("wewe_rss")
     if raw_type == "bilibili_dynamic" or "bilibili" in haystack or "b站" in haystack:
         runtime_ids.add("bilibili_dynamic")
+    if raw_type in {"rss", "opml"} or "youtube.com/feeds/videos.xml" in haystack or "youtube" in haystack or "油管" in haystack:
+        runtime_ids.add("opmlrss")
+    if "github" in haystack and ("release" in haystack or "releases" in haystack):
+        runtime_ids.add("github_foundation_sunshine_releases")
     if raw_type == "mediacrawler_jsonl":
         if "xhs" in haystack or "xiaohongshu" in haystack or "小红书" in haystack:
             runtime_ids.add("mediacrawler_xhs")
@@ -1697,6 +1710,175 @@ def refresh_env(root_dir: Path) -> dict[str, str]:
     return env
 
 
+def now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+def refresh_progress_snapshot() -> dict[str, Any]:
+    with REFRESH_PROGRESS_LOCK:
+        snapshot = dict(REFRESH_PROGRESS)
+        snapshot["log"] = list(REFRESH_PROGRESS.get("log") or [])
+        snapshot["steps"] = list(REFRESH_PROGRESS.get("steps") or [])
+        return snapshot
+
+
+def update_refresh_progress(**updates: Any) -> dict[str, Any]:
+    with REFRESH_PROGRESS_LOCK:
+        REFRESH_PROGRESS.update(updates)
+        REFRESH_PROGRESS["updated_at"] = now_iso()
+        if "log" in REFRESH_PROGRESS:
+            REFRESH_PROGRESS["log"] = list(REFRESH_PROGRESS.get("log") or [])[-12:]
+        return dict(REFRESH_PROGRESS)
+
+
+def append_refresh_progress(message: str, *, percent: int | None = None, current_step: str | None = None, status: str | None = None) -> None:
+    with REFRESH_PROGRESS_LOCK:
+        log = list(REFRESH_PROGRESS.get("log") or [])
+        log.append({"time": now_iso(), "message": message})
+        REFRESH_PROGRESS["log"] = log[-12:]
+        if percent is not None:
+            REFRESH_PROGRESS["percent"] = max(0, min(100, int(percent)))
+        if current_step is not None:
+            REFRESH_PROGRESS["current_step"] = current_step
+        if status is not None:
+            REFRESH_PROGRESS["status"] = status
+        REFRESH_PROGRESS["updated_at"] = now_iso()
+
+
+def refresh_step_plan(source_config: dict[str, Any] | None) -> list[str]:
+    labels: list[str] = []
+    site_ids: set[str] = set()
+    for source in enabled_source_config_records(source_config):
+        site_ids.update(source_config_runtime_ids(source))
+    ordered = [
+        ("opmlrss", "YouTube 订阅"),
+        ("bilibili_dynamic", "B站动态订阅"),
+        ("mediacrawler_douyin", "读取抖音采集结果"),
+        ("mediacrawler_xhs", "读取小红书采集结果"),
+        ("wewe_rss", "微信公众号订阅"),
+        ("github_foundation_sunshine_releases", "GitHub Release"),
+    ]
+    for site_id, label in ordered:
+        if site_id in site_ids:
+            labels.append(label)
+    if not labels:
+        labels.append("订阅源")
+    labels.append("合并并生成看板数据")
+    return labels
+
+
+def begin_refresh_progress(collection_scope: str, steps: list[str]) -> None:
+    first_step = steps[0] if steps else "准备刷新"
+    update_refresh_progress(
+        running=True,
+        status="running",
+        percent=3,
+        collection_scope=collection_scope,
+        current_step=f"准备：{first_step}",
+        steps=steps,
+        log=[{"time": now_iso(), "message": f"开始刷新，准备处理 {first_step}"}],
+        started_at=now_iso(),
+        finished_at="",
+        error="",
+        returncode=None,
+    )
+
+
+def run_refresh_background(root_dir: Path, collection_scope: str, command: list[str], steps: list[str]) -> None:
+    begin_refresh_progress(collection_scope, steps)
+    started = time.monotonic()
+    process: subprocess.Popen[str] | None = None
+    last_step_index = -1
+    stdout_tail = ""
+    stderr_tail = ""
+    try:
+        process = subprocess.Popen(
+            command,
+            cwd=root_dir,
+            env=refresh_env(root_dir),
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+        )
+        estimated_seconds = max(45, len(steps) * 10)
+        while process.poll() is None:
+            elapsed = time.monotonic() - started
+            if elapsed > REFRESH_TIMEOUT_SECONDS:
+                process.kill()
+                stdout, stderr = process.communicate()
+                stdout_tail = (stdout or "")[-2000:]
+                stderr_tail = (stderr or "")[-4000:]
+                raise subprocess.TimeoutExpired(command, REFRESH_TIMEOUT_SECONDS, output=stdout_tail, stderr=stderr_tail)
+            percent = min(92, 5 + int((elapsed / estimated_seconds) * 82))
+            step_index = min(max(0, int((percent / 100) * max(1, len(steps)))), max(0, len(steps) - 1))
+            if step_index != last_step_index:
+                if last_step_index >= 0 and last_step_index < len(steps):
+                    append_refresh_progress(f"{steps[last_step_index]}处理结束")
+                current = steps[step_index] if steps else "刷新看板数据"
+                append_refresh_progress(f"正在处理 {current}", percent=percent, current_step=current)
+                last_step_index = step_index
+            else:
+                current = steps[step_index] if steps else "刷新看板数据"
+                update_refresh_progress(percent=percent, current_step=current)
+            time.sleep(2)
+        stdout, stderr = process.communicate()
+        stdout_tail = (stdout or "")[-2000:]
+        stderr_tail = (stderr or "")[-4000:]
+        if process.returncode != 0:
+            update_refresh_progress(
+                running=False,
+                status="failed",
+                percent=100,
+                current_step="刷新失败",
+                finished_at=now_iso(),
+                error="refresh_failed",
+                returncode=process.returncode,
+                stdout_tail=stdout_tail,
+                stderr_tail=stderr_tail,
+            )
+            append_refresh_progress("刷新失败，请查看错误信息", status="failed")
+            return
+        append_refresh_progress("看板数据生成完成", percent=100, current_step="刷新完成", status="completed")
+        update_refresh_progress(
+            running=False,
+            status="completed",
+            percent=100,
+            finished_at=now_iso(),
+            error="",
+            returncode=0,
+            stdout_tail=stdout_tail,
+            stderr_tail=stderr_tail,
+        )
+    except subprocess.TimeoutExpired as exc:
+        update_refresh_progress(
+            running=False,
+            status="failed",
+            percent=100,
+            current_step="刷新超时",
+            finished_at=now_iso(),
+            error="refresh_timeout",
+            stdout_tail=(exc.stdout or "")[-2000:],
+            stderr_tail=(exc.stderr or "")[-4000:],
+        )
+        append_refresh_progress("刷新超时", status="failed")
+    except Exception as exc:
+        update_refresh_progress(
+            running=False,
+            status="failed",
+            percent=100,
+            current_step="刷新失败",
+            finished_at=now_iso(),
+            error=str(exc),
+            stdout_tail=stdout_tail,
+            stderr_tail=stderr_tail,
+        )
+        append_refresh_progress(f"刷新失败：{exc}", status="failed")
+    finally:
+        REFRESH_LOCK.release()
+
+
 def source_status_summary(root_dir: Path, source_config: dict[str, Any] | None = None) -> dict[str, Any]:
     config_issues = local_config_maintenance_issues(root_dir, source_config) if source_config else []
     payload = read_source_status(root_dir)
@@ -1818,6 +2000,7 @@ def local_status_payload(root_dir: Path) -> dict[str, Any]:
             "mediacrawler_xhs": mediacrawler_xhs_collector_status(root_dir),
         },
         "refresh_running": REFRESH_LOCK.locked(),
+        "refresh_progress": refresh_progress_snapshot(),
     }
 
 
@@ -1962,6 +2145,9 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
                 json_response(self, HTTPStatus.OK, local_status_payload(self.root_dir))
             except Exception as exc:
                 json_response(self, HTTPStatus.INTERNAL_SERVER_ERROR, {"ok": False, "error": str(exc)})
+            return
+        if route == "/api/refresh-progress":
+            json_response(self, HTTPStatus.OK, {"ok": True, "progress": refresh_progress_snapshot()})
             return
         if route == "/api/wewe-rss/feeds":
             payload = read_wewe_rss_feeds()
@@ -2181,54 +2367,28 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
             json_response(self, HTTPStatus.CONFLICT, {"ok": False, "error": "refresh_already_running"})
             return
         try:
-            result = subprocess.run(
-                refresh_command(self.root_dir, collection_scope),
-                cwd=self.root_dir,
-                env=refresh_env(self.root_dir),
-                capture_output=True,
-                text=True,
-                timeout=REFRESH_TIMEOUT_SECONDS,
-                check=False,
+            source_config = read_source_config(self.root_dir)
+            steps = refresh_step_plan(source_config)
+            command = refresh_command(self.root_dir, collection_scope)
+            worker = threading.Thread(
+                target=run_refresh_background,
+                args=(self.root_dir, collection_scope, command, steps),
+                daemon=True,
             )
-            if result.returncode != 0:
-                json_response(
-                    self,
-                    HTTPStatus.INTERNAL_SERVER_ERROR,
-                    {
-                        "ok": False,
-                        "error": "refresh_failed",
-                        "returncode": result.returncode,
-                        "stderr_tail": result.stderr[-4000:],
-                        "stdout_tail": result.stdout[-2000:],
-                    },
-                )
-                return
+            worker.start()
             json_response(
                 self,
-                HTTPStatus.OK,
+                HTTPStatus.ACCEPTED,
                 {
                     "ok": True,
+                    "started": True,
                     "collection_scope": collection_scope,
-                    "summary": source_status_summary(self.root_dir),
-                    "stdout_tail": result.stdout[-2000:],
-                },
-            )
-        except subprocess.TimeoutExpired as exc:
-            json_response(
-                self,
-                HTTPStatus.REQUEST_TIMEOUT,
-                {
-                    "ok": False,
-                    "error": "refresh_timeout",
-                    "timeout_seconds": REFRESH_TIMEOUT_SECONDS,
-                    "stdout_tail": (exc.stdout or "")[-2000:],
-                    "stderr_tail": (exc.stderr or "")[-4000:],
+                    "progress": refresh_progress_snapshot(),
                 },
             )
         except Exception as exc:
-            json_response(self, HTTPStatus.INTERNAL_SERVER_ERROR, {"ok": False, "error": str(exc)})
-        finally:
             REFRESH_LOCK.release()
+            json_response(self, HTTPStatus.INTERNAL_SERVER_ERROR, {"ok": False, "error": str(exc)})
 
 
 def main() -> int:

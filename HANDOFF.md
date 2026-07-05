@@ -1,5 +1,32 @@
 # HANDOFF.md
 
+## 当前最新交接：本地采集新增可见进度条
+
+- 日期：2026-07-06
+- 当前阶段：`刷新看板数据` 已从同步等待改为后台任务；页面会轮询 `/api/refresh-progress`，在 `本地采集` 面板顶部显示进度条、当前步骤、粗略剩余时间和最近步骤日志。`一键采集` 在抖音、小红书和最终看板刷新之间也会写入可见小字提示。
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前分支：`master`
+- 本轮改动：
+  - `scripts/local_server.py`：新增刷新进度状态、步骤计划、后台刷新线程、`GET /api/refresh-progress`，并让 `/api/local-status` 透传 `refresh_progress`。
+  - `assets/app.js`：新增本地采集进度卡渲染、刷新进度轮询、刷新完成后再更新概览并重载；一键采集会追加平台完成日志。
+  - `assets/app.js` follow-up：一键采集轮询抖音/小红书时，后端 `idle` 进度不再覆盖当前前端进度；普通页面刷新后也不会展示上一轮遗留的 `completed` 进度条。
+  - `assets/styles.css` / `index.html`：新增紧凑进度条容器和样式。
+  - `tests/test_local_server.py`：补进度步骤计划测试。
+- 本轮验收：
+  - `node --check assets\app.js` 通过。
+  - `.\.venv\Scripts\python.exe -m py_compile scripts\local_server.py` 通过。
+  - `.\.venv\Scripts\python.exe -m unittest tests.test_local_server -q` 通过：62 tests OK。
+  - `.\.venv\Scripts\python.exe -m unittest discover -s tests -q` 通过：213 tests OK。
+  - 重启 `http://127.0.0.1:8080/` 本地服务后，`GET /api/refresh-progress` 返回 `ok=true` 和 idle progress JSON；Playwright CLI 可正常截取本地页面。
+  - Follow-up 验收：`node --check assets\app.js` 通过；`.\.venv\Scripts\python.exe -m unittest tests.test_local_server -q` 通过；Playwright 截图确认刷新页面后首屏不再显示旧进度条。
+- 下一轮建议入口：
+  - 先读 `PROJECT_STATE.md` 和本文件。
+  - 手动验收：打开 `http://127.0.0.1:8080/`，展开 `信源配置`，点 `刷新看板数据`，确认 `本地采集` 顶部出现进度条、小字日志和百分比；完成后页面自动刷新。
+  - Follow-up 手动验收：页面刚刷新、未开始采集时不应显示旧进度条；点击 `一键采集` 后，抖音/小红书阶段的进度条不应被轮询刷新隐藏。
+- 下一轮注意：
+  - 进度条的刷新阶段是本地后台的步骤级进度，能告诉用户当前在处理哪类订阅源和大概剩余时间；它不是每条具体内容的逐条计数器。
+  - 不要把当前已有 `data/*.json` 脏改一股脑提交。
+
 ## 当前最新交接：本地状态接口补齐窗口/原始口径
 
 - 日期：2026-07-06

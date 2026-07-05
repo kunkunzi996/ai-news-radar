@@ -31,6 +31,7 @@ from scripts.local_server import (
     start_mediacrawler_douyin,
     start_mediacrawler_xhs,
     start_wewe_rss_sidecar,
+    refresh_step_plan,
     validate_source_config,
     write_youtube_subscriptions,
 )
@@ -511,6 +512,54 @@ class LocalServerTests(unittest.TestCase):
         command = refresh_command(root, "24h", now=now)
 
         self.assertEqual(command[command.index("--collect-window-hours") + 1], "24")
+
+    def test_refresh_step_plan_names_enabled_subscription_sources(self):
+        config = {
+            "sources": [
+                {
+                    "id": "youtube_one",
+                    "name": "YouTube One",
+                    "type": "rss",
+                    "locator": "https://www.youtube.com/feeds/videos.xml?channel_id=UC123",
+                    "enabled": True,
+                },
+                {
+                    "id": "bilibili_dynamic_sources",
+                    "name": "B站动态",
+                    "type": "bilibili_dynamic",
+                    "enabled": True,
+                },
+                {
+                    "id": "wewe_rss_maobidao",
+                    "name": "猫笔刀",
+                    "type": "wewe_rss",
+                    "enabled": True,
+                },
+                {
+                    "id": "github_release_foundation_sunshine",
+                    "name": "Foundation Sunshine",
+                    "type": "github_release",
+                    "locator": "https://api.github.com/repos/AlkaidLab/foundation-sunshine/releases",
+                    "enabled": True,
+                },
+                {
+                    "id": "disabled_xhs",
+                    "name": "Disabled XHS",
+                    "type": "mediacrawler_jsonl",
+                    "channel": "小红书",
+                    "enabled": False,
+                },
+            ]
+        }
+
+        steps = refresh_step_plan(config)
+
+        self.assertIn("YouTube 订阅", steps)
+        self.assertIn("B站动态订阅", steps)
+        self.assertIn("微信公众号订阅", steps)
+        self.assertIn("GitHub Release", steps)
+        self.assertNotIn("读取小红书采集结果", steps)
+        self.assertEqual(steps[-1], "合并并生成看板数据")
 
     def test_maintenance_issues_warns_when_bilibili_cookie_is_missing(self):
         issues = maintenance_issues_from_status(

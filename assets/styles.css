@@ -1062,6 +1062,93 @@ summary:focus-visible {
   background: var(--surface-soft);
 }
 
+.local-ops-progress {
+  display: grid;
+  gap: 8px;
+  border: 1px solid rgba(18, 106, 115, 0.18);
+  border-radius: var(--radius);
+  padding: 10px;
+  background: rgba(18, 106, 115, 0.06);
+}
+
+.local-ops-progress[hidden] {
+  display: none;
+}
+
+.local-ops-progress-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.local-ops-progress-head strong {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.local-ops-progress-head span {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 760;
+}
+
+.local-ops-progress-track {
+  overflow: hidden;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(23, 23, 23, 0.08);
+}
+
+.local-ops-progress-bar {
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent);
+  transition: width 280ms ease;
+}
+
+.local-ops-progress.completed .local-ops-progress-bar {
+  background: var(--good);
+}
+
+.local-ops-progress.failed .local-ops-progress-bar {
+  background: var(--bad);
+}
+
+.local-ops-progress-meta {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.local-ops-progress-log {
+  display: grid;
+  gap: 3px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.local-ops-progress-log li {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.local-ops-progress-log li:last-child {
+  color: var(--ink);
+  font-weight: 720;
+}
+
 .subscription-manager {
   display: grid;
   gap: 12px;

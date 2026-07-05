@@ -43,6 +43,9 @@ const state = {
   youtubeSubscriptions: [],
   localOpsStatus: null,
   localOpsPollTimer: null,
+  refreshProgressPollTimer: null,
+  refreshProgress: null,
+  collectionProgressActive: false,
   oneClickActive: false,
   readItemIds: new Set(),
 };
@@ -113,6 +116,7 @@ const sourceConfigCheckBtnEl = document.getElementById("sourceConfigCheckBtn");
 const sourceCollectionScopeSelectEl = document.getElementById("sourceCollectionScopeSelect");
 const sourceConfigStatusEl = document.getElementById("sourceConfigStatus");
 const localOpsStatusEl = document.getElementById("localOpsStatus");
+const localOpsProgressEl = document.getElementById("localOpsProgress");
 const localOpsSummaryEl = document.getElementById("localOpsSummary");
 const localOpsCollectorsEl = document.getElementById("localOpsCollectors");
 const localOpsIssuesEl = document.getElementById("localOpsIssues");
@@ -1020,6 +1024,139 @@ function localOpsSourceRowNode({ source, name, platform, detail = "", resultText
   return row;
 }
 
+function clearRefreshProgressPolling() {
+  if (state.refreshProgressPollTimer) {
+    window.clearTimeout(state.refreshProgressPollTimer);
+    state.refreshProgressPollTimer = null;
+  }
+}
+
+function progressLogMessages(progress) {
+  return (Array.isArray(progress?.log) ? progress.log : [])
+    .map((entry) => (typeof entry === "string" ? entry : entry?.message))
+    .filter(Boolean);
+}
+
+function hasVisibleProgress(progress) {
+  return Boolean(progress?.running)
+    || (progress?.status && progress.status !== "idle")
+    || progressLogMessages(progress).length > 0;
+}
+
+function hasLiveServerProgress(progress) {
+  return Boolean(progress?.running) || progress?.status === "failed";
+}
+
+function progressEtaText(progress, percent) {
+  if (!progress?.started_at || !progress?.running || percent <= 5 || percent >= 96) return "";
+  const started = Date.parse(progress.started_at);
+  if (!Number.isFinite(started)) return "";
+  const elapsedSeconds = Math.max(1, Math.round((Date.now() - started) / 1000));
+  const remainingSeconds = Math.max(1, Math.round((elapsedSeconds / percent) * (100 - percent)));
+  if (remainingSeconds >= 90) return `预计还剩约 ${Math.ceil(remainingSeconds / 60)} 分钟`;
+  return `预计还剩约 ${remainingSeconds} 秒`;
+}
+
+function renderCollectionProgress(progress = null) {
+  if (!localOpsProgressEl) return;
+  const status = progress?.status || "idle";
+  const logs = progressLogMessages(progress);
+  const shouldShow = status !== "idle" || Boolean(progress?.running) || logs.length > 0;
+  if (!shouldShow) {
+    localOpsProgressEl.hidden = true;
+    localOpsProgressEl.innerHTML = "";
+    return;
+  }
+  const percent = Math.max(0, Math.min(100, Number(progress?.percent || 0)));
+  const currentStep = progress?.current_step || (status === "completed" ? "采集完成" : "准备采集");
+  const statusLabel = status === "completed"
+    ? "已完成"
+    : status === "failed"
+      ? "失败"
+      : `${fmtNumber(percent)}%`;
+  const eta = progressEtaText(progress, percent);
+  localOpsProgressEl.hidden = false;
+  localOpsProgressEl.className = `local-ops-progress ${status}`.trim();
+  localOpsProgressEl.innerHTML = "";
+
+  const head = document.createElement("div");
+  head.className = "local-ops-progress-head";
+  const title = document.createElement("strong");
+  title.textContent = currentStep;
+  const badge = document.createElement("span");
+  badge.textContent = statusLabel;
+  head.append(title, badge);
+
+  const track = document.createElement("div");
+  track.className = "local-ops-progress-track";
+  const bar = document.createElement("div");
+  bar.className = "local-ops-progress-bar";
+  bar.style.width = `${percent}%`;
+  track.appendChild(bar);
+
+  const meta = document.createElement("div");
+  meta.className = "local-ops-progress-meta";
+  meta.textContent = eta || (status === "running" ? "正在采集，请保持本地后台运行。" : "采集状态已更新。");
+
+  const log = document.createElement("ul");
+  log.className = "local-ops-progress-log";
+  logs.slice(-5).forEach((message) => {
+    const item = document.createElement("li");
+    item.textContent = message;
+    log.appendChild(item);
+  });
+
+  localOpsProgressEl.append(head, track, meta);
+  if (log.childElementCount) localOpsProgressEl.appendChild(log);
+}
+
+function appendCollectionProgress(message, options = {}) {
+  const previous = state.refreshProgress || {};
+  const log = [...(Array.isArray(previous.log) ? previous.log : []), { time: new Date().toISOString(), message }].slice(-12);
+  state.collectionProgressActive = true;
+  state.refreshProgress = {
+    ...previous,
+    running: options.status ? options.status === "running" : true,
+    status: options.status || previous.status || "running",
+    percent: options.percent ?? previous.percent ?? 0,
+    current_step: options.currentStep || previous.current_step || message,
+    started_at: previous.started_at || new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    log,
+  };
+  renderCollectionProgress(state.refreshProgress);
+}
+
+async function loadRefreshProgressFromServer() {
+  const res = await fetch("./api/refresh-progress", {
+    headers: { Accept: "application/json" },
+    cache: "no-store",
+  });
+  const payload = await res.json().catch(() => ({}));
+  if (!res.ok || payload.ok === false) {
+    throw new Error(payload.error || `HTTP ${res.status}`);
+  }
+  state.collectionProgressActive = true;
+  state.refreshProgress = payload.progress || null;
+  renderCollectionProgress(state.refreshProgress);
+  return state.refreshProgress;
+}
+
+async function waitForRefreshProgressDone() {
+  clearRefreshProgressPolling();
+  const deadline = Date.now() + (12 * 60 * 1000);
+  while (Date.now() < deadline) {
+    const progress = await loadRefreshProgressFromServer();
+    if (progress?.status === "completed") return progress;
+    if (progress?.status === "failed") {
+      const logs = progressLogMessages(progress);
+      throw new Error(progress.error || logs.at(-1) || "refresh_failed");
+    }
+    await sleepMs(1200);
+  }
+  throw new Error("refresh_progress_timeout");
+}
+
 function renderLocalOpsCollectors(collectors = {}, sourceConfig = {}, sourceStatus = {}) {
   if (!localOpsCollectorsEl) return;
   localOpsCollectorsEl.innerHTML = "";
@@ -1168,6 +1305,7 @@ function renderLocalOpsStatus(payload = null) {
   const sourceStatus = payload?.source_status || payload?.summary || {};
   const sourceConfig = payload?.source_config || {};
   const collectors = payload?.collectors || {};
+  const refreshProgress = payload?.refresh_progress || null;
   const collectorRunning = Object.values(collectors || {}).some((collector) => Boolean(collector?.running));
   const issues = Array.isArray(sourceStatus.maintenance_issues) ? sourceStatus.maintenance_issues : [];
   const enabled = Number(sourceConfig.enabled_source_count ?? (state.sourceConfig?.sources || []).filter((source) => source.enabled !== false).length ?? 0);
@@ -1185,6 +1323,15 @@ function renderLocalOpsStatus(payload = null) {
     localOpsMetric("最近刷新", generatedAt),
     localOpsMetric("维护项", fmtNumber(issues.length), issueTone)
   );
+
+  if (hasLiveServerProgress(refreshProgress)) {
+    state.refreshProgress = refreshProgress;
+    renderCollectionProgress(refreshProgress);
+  } else if (state.collectionProgressActive && hasVisibleProgress(state.refreshProgress)) {
+    renderCollectionProgress(state.refreshProgress);
+  } else if (!collectorRunning && !payload?.refresh_running && !state.oneClickActive) {
+    renderCollectionProgress(null);
+  }
 
   renderLocalOpsCollectors(collectors, sourceConfig, sourceStatus);
   scheduleLocalOpsPolling(collectorRunning || Boolean(payload?.refresh_running));
@@ -1992,7 +2139,7 @@ async function startPlatformCollection(actionId) {
   }
 }
 
-async function waitForCollectorDone(runtimeId, startedAt) {
+async function waitForCollectorDone(runtimeId, startedAt, label = "平台") {
   const deadline = Date.now() + ONE_CLICK_PLATFORM_TIMEOUT_MS;
   let sawRunning = false;
   await sleepMs(ONE_CLICK_POLL_MS);
@@ -2000,10 +2147,14 @@ async function waitForCollectorDone(runtimeId, startedAt) {
     const payload = await loadLocalStatusFromServer(false);
     const collector = payload?.collectors?.[runtimeId];
     if (collector) {
-      if (collector.running) sawRunning = true;
+      if (collector.running && !sawRunning) {
+        appendCollectionProgress(`${label}采集中`, { currentStep: `${label}采集中`, status: "running" });
+        sawRunning = true;
+      }
       const finished = collector.completed && !collector.running;
       const freshMs = collector.updated_at ? Date.parse(collector.updated_at) : 0;
       if (finished && (sawRunning || (freshMs && freshMs >= startedAt - 1500))) {
+        appendCollectionProgress(`${label}采集结束`, { currentStep: `${label}采集结束`, status: "running" });
         return { done: true };
       }
     }
@@ -2019,6 +2170,7 @@ async function runOneClickCollect() {
   setSourceConfigButton(sourceConfigRefreshBtnEl, "刷新看板数据", true);
 
   const abort = (message) => {
+    appendCollectionProgress(message, { percent: 100, currentStep: "一键采集失败", status: "failed" });
     setSourceConfigStatus(`${message}（可稍后手动点“刷新看板数据”继续）`, "bad");
     restoreSourceConfigButton(oneClickCollectBtnEl, "一键采集");
     restoreSourceConfigButton(sourceConfigRefreshBtnEl, "刷新看板数据");
@@ -2027,6 +2179,7 @@ async function runOneClickCollect() {
   };
 
   try {
+    appendCollectionProgress("准备启动抖音采集", { percent: 5, currentStep: "准备启动抖音采集", status: "running" });
     setSourceConfigStatus("① 启动抖音采集...（弹出的采集窗口如提示登录，请扫码）", "warn");
     const douyinStartedAt = Date.now();
     const douyinStart = await startPlatformCollection("start_mediacrawler_douyin");
@@ -2034,12 +2187,13 @@ async function runOneClickCollect() {
       abort(`抖音启动失败：${douyinStart.error}`);
       return;
     }
-    const douyinDone = await waitForCollectorDone("mediacrawler_douyin", douyinStartedAt);
+    const douyinDone = await waitForCollectorDone("mediacrawler_douyin", douyinStartedAt, "抖音");
     if (!douyinDone.done) {
       abort("抖音采集未在规定时间内完成");
       return;
     }
 
+    appendCollectionProgress("抖音采集结束，接下来启动小红书采集", { percent: 32, currentStep: "启动小红书采集", status: "running" });
     setSourceConfigStatus("② 抖音已完成，启动小红书采集...（如提示登录，请扫码）", "warn");
     const xhsStartedAt = Date.now();
     const xhsStart = await startPlatformCollection("start_mediacrawler_xhs");
@@ -2047,12 +2201,13 @@ async function runOneClickCollect() {
       abort(`小红书启动失败：${xhsStart.error}`);
       return;
     }
-    const xhsDone = await waitForCollectorDone("mediacrawler_xhs", xhsStartedAt);
+    const xhsDone = await waitForCollectorDone("mediacrawler_xhs", xhsStartedAt, "小红书");
     if (!xhsDone.done) {
       abort("小红书采集未在规定时间内完成");
       return;
     }
 
+    appendCollectionProgress("小红书采集结束，接下来刷新看板数据", { percent: 62, currentStep: "刷新看板数据", status: "running" });
     setSourceConfigStatus("③ 两个平台采集完成，正在刷新看板数据...", "warn");
     const refreshed = await refreshNewsDataFromLocalServer();
     if (refreshed) {
@@ -2081,6 +2236,7 @@ async function refreshNewsDataFromLocalServer() {
     });
     setSourceConfigButton(sourceConfigRefreshBtnEl, "刷新中...", true);
     setSourceConfigStatus(`当前信源已同步，正在刷新${scopeLabel}看板数据；如刚新增抖音/小红书账号，请先点对应平台的“启动采集”。`, "warn");
+    appendCollectionProgress(`开始刷新${scopeLabel}看板数据`, { percent: 3, currentStep: `刷新${scopeLabel}看板数据`, status: "running" });
     const res = await fetch("./api/refresh", {
       method: "POST",
       headers: {
@@ -2094,10 +2250,17 @@ async function refreshNewsDataFromLocalServer() {
     if (!res.ok || payload.ok === false) {
       throw new Error(payload.error || `HTTP ${res.status}`);
     }
-    const sites = payload.summary?.sites || [];
+    if (payload.progress) {
+      state.refreshProgress = payload.progress;
+      renderCollectionProgress(payload.progress);
+    }
+    await waitForRefreshProgressDone();
+    const latestStatus = await loadLocalStatusFromServer(false);
+    const summary = latestStatus?.source_status || {};
+    const sites = summary.sites || [];
     const okSites = sites.filter((site) => site.ok).length;
-    const totalItems = Number(payload.summary?.fetched_raw_items || 0);
-    state.localOpsStatus = { source_config: state.localOpsStatus?.source_config || {}, source_status: payload.summary };
+    const totalItems = Number(summary.fetched_raw_items || 0);
+    state.localOpsStatus = latestStatus || { source_config: state.localOpsStatus?.source_config || {}, source_status: summary };
     renderLocalOpsStatus(state.localOpsStatus);
     renderSourceConfig();
     setSourceConfigStatus(`${scopeLabel}看板刷新完成：${okSites}/${sites.length} 个源正常，读到 ${fmtNumber(totalItems)} 条；页面即将重载。`, "ok");
