@@ -1,5 +1,34 @@
 # HANDOFF.md
 
+## 当前最新交接：采集窗口已改为自上次采集
+
+- 日期：2026-07-05
+- 当前阶段：本地采集范围下拉中原 `过去24小时` 已改为 `自上次采集`；内部值仍是 `24h`，所以一键采集和手动刷新继续走原有接口，只是后端传给 `update_news.py` 的 `--collect-window-hours` 不再固定为 24。
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前分支：`master`
+- 本轮改动：
+  - `scripts/local_server.py` 新增 `last_collection_time()`、`resolve_collect_window_hours()`、`collect_window_hours_for_scope()`，从上一次 `data/source-status.json.generated_at` 算本轮采集窗口，向上取整小时数。
+  - 缺失、非法、未来时间戳都会回退到 24 小时；`collection_scope=all` 仍然不追加 `--collect-window-hours`。
+  - `index.html` 和 `assets/app.js` 只改显示文案为 `自上次采集`，没有改 `value="24h"` 或 `selectedCollectionScope()`。
+  - `tests/test_local_server.py` 补了动态窗口、向上取整、兜底和全量不加窗口的测试。
+- 本轮验收：
+  - `.\.venv\Scripts\python.exe -m unittest tests.test_local_server -q` 通过：60 tests OK。
+  - `.\.venv\Scripts\python.exe -m unittest discover -s tests -q` 通过：209 tests OK。
+  - `node --check assets/app.js` 通过。
+  - `.\.venv\Scripts\python.exe -m py_compile scripts\local_server.py` 通过。
+  - `git diff --check -- scripts/local_server.py index.html assets/app.js tests/test_local_server.py` 仅有 Windows LF/CRLF warning。
+  - `http://127.0.0.1:8080/index.html` 返回 200，并已服务出 `自上次采集`。
+  - 直接探针确认：当前磁盘上次采集时间为 `2026-07-05 09:06:36.561958+00:00`，`refresh_command(root, "24h")` 生成 `--collect-window-hours 7`，`refresh_command(root, "all")` 不生成该参数。
+  - 重启本地 8080 后真实采集复验通过：上次 `generated_at=2026-07-05T15:21:58.901276Z`，本次 `generated_at=2026-07-05T15:33:40.837860Z`，间隔约 11 分 42 秒，`collection_window_hours=1`，符合向上取整预期。
+- 下一轮建议入口：
+  - 先读 `PROJECT_STATE.md` 和本文件。
+  - 手动验收：打开 `http://127.0.0.1:8080/`，展开 `信源配置`，确认下拉显示 `自上次采集`；点 `刷新看板数据` 后检查 `data/source-status.json.collection_window_hours` 是否接近距上次采集的小时数，而不是固定 24。
+- 下一轮禁止：
+  - 不要改 `scripts/update_news.py` 的窗口过滤逻辑；本轮只改本地服务传参。
+  - 不要改 `value="24h"` 或 `selectedCollectionScope()` 返回值。
+  - 不要改 MediaCrawler 启动处固定 24h 统计参数。
+  - 不要把 `data/*.json` 脏改一股脑提交。
+
 ## 当前最新交接：订阅卡片已支持已阅与恢复
 
 - 日期：2026-07-05

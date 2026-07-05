@@ -1,5 +1,6 @@
 import json
 import unittest
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from scripts.local_server import (
@@ -9,8 +10,10 @@ from scripts.local_server import (
     PURGE_TRACKED_SITE_IDS,
     alive_source_names_by_site,
     bilibili_cookie_status,
+    collect_window_hours_for_scope,
     is_item_orphaned,
     launch_bilibili_dedicated_browser,
+    last_collection_time,
     local_config_maintenance_issues,
     local_status_payload,
     maintenance_issues_from_status,
@@ -23,6 +26,7 @@ from scripts.local_server import (
     refresh_command,
     refresh_env,
     read_youtube_subscriptions,
+    resolve_collect_window_hours,
     sync_bilibili_cookie,
     start_mediacrawler_douyin,
     start_mediacrawler_xhs,
@@ -400,7 +404,8 @@ class LocalServerTests(unittest.TestCase):
         self.assertIn(CONFIG_FILENAME, command)
         self.assertIn("--all-time", command)
         self.assertIn("--collect-window-hours", command)
-        self.assertEqual(command[command.index("--collect-window-hours") + 1], "24")
+        window_hours = command[command.index("--collect-window-hours") + 1]
+        self.assertGreater(int(window_hours), 0)
 
     def test_refresh_command_can_request_all_time_collection(self):
         root = Path("E:/AI-news-reader/ai-news-radar-run")
@@ -415,6 +420,97 @@ class LocalServerTests(unittest.TestCase):
         self.assertEqual(normalize_collection_scope("all_time"), "all")
         with self.assertRaises(ValueError):
             normalize_collection_scope("--source-scope all_sources")
+
+    def test_resolve_collect_window_hours_all_scope_returns_zero(self):
+        now = datetime(2026, 7, 5, 12, 0, tzinfo=timezone.utc)
+
+        result = resolve_collect_window_hours("all", now - timedelta(hours=3), now)
+
+        self.assertEqual(result, 0)
+
+    def test_resolve_collect_window_hours_counts_hours_since_last(self):
+        now = datetime(2026, 7, 5, 12, 0, tzinfo=timezone.utc)
+
+        result = resolve_collect_window_hours("24h", now - timedelta(hours=3), now)
+
+        self.assertEqual(result, 3)
+
+    def test_resolve_collect_window_hours_rounds_up(self):
+        now = datetime(2026, 7, 5, 12, 0, tzinfo=timezone.utc)
+
+        result = resolve_collect_window_hours("24h", now - timedelta(hours=2, minutes=30), now)
+
+        self.assertEqual(result, 3)
+
+    def test_resolve_collect_window_hours_minimum_one_hour(self):
+        now = datetime(2026, 7, 5, 12, 0, tzinfo=timezone.utc)
+
+        result = resolve_collect_window_hours("24h", now - timedelta(minutes=10), now)
+
+        self.assertEqual(result, 1)
+
+    def test_resolve_collect_window_hours_falls_back_when_missing(self):
+        now = datetime(2026, 7, 5, 12, 0, tzinfo=timezone.utc)
+
+        result = resolve_collect_window_hours("24h", None, now)
+
+        self.assertEqual(result, 24)
+
+    def test_resolve_collect_window_hours_falls_back_on_future_timestamp(self):
+        now = datetime(2026, 7, 5, 12, 0, tzinfo=timezone.utc)
+
+        result = resolve_collect_window_hours("24h", now + timedelta(minutes=1), now)
+
+        self.assertEqual(result, 24)
+
+    def test_last_collection_time_reads_generated_at(self):
+        root = Path(self.create_temp_dir())
+        data_dir = root / "data"
+        data_dir.mkdir()
+        (data_dir / "source-status.json").write_text(
+            json.dumps({"generated_at": "2026-07-05T09:00:00Z"}),
+            encoding="utf-8",
+        )
+
+        result = last_collection_time(root)
+
+        self.assertEqual(result, datetime(2026, 7, 5, 9, 0, tzinfo=timezone.utc))
+
+    def test_collect_window_hours_for_scope_falls_back_on_invalid_status_time(self):
+        root = Path(self.create_temp_dir())
+        data_dir = root / "data"
+        data_dir.mkdir()
+        (data_dir / "source-status.json").write_text(
+            json.dumps({"generated_at": "not-a-date"}),
+            encoding="utf-8",
+        )
+        now = datetime(2026, 7, 5, 12, 0, tzinfo=timezone.utc)
+
+        result = collect_window_hours_for_scope(root, "24h", now=now)
+
+        self.assertEqual(result, 24)
+
+    def test_refresh_command_window_counts_hours_since_last_collection(self):
+        root = Path(self.create_temp_dir())
+        data_dir = root / "data"
+        data_dir.mkdir()
+        now = datetime(2026, 7, 5, 12, 0, tzinfo=timezone.utc)
+        (data_dir / "source-status.json").write_text(
+            json.dumps({"generated_at": (now - timedelta(hours=5)).isoformat().replace("+00:00", "Z")}),
+            encoding="utf-8",
+        )
+
+        command = refresh_command(root, "24h", now=now)
+
+        self.assertEqual(command[command.index("--collect-window-hours") + 1], "5")
+
+    def test_refresh_command_window_falls_back_without_previous_status(self):
+        root = Path(self.create_temp_dir())
+        now = datetime(2026, 7, 5, 12, 0, tzinfo=timezone.utc)
+
+        command = refresh_command(root, "24h", now=now)
+
+        self.assertEqual(command[command.index("--collect-window-hours") + 1], "24")
 
     def test_maintenance_issues_warns_when_bilibili_cookie_is_missing(self):
         issues = maintenance_issues_from_status(

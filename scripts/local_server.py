@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import os
 import socket
 import struct
@@ -1615,7 +1616,55 @@ def normalize_collection_scope(raw_scope: Any) -> str:
     raise ValueError("unsupported_collection_scope")
 
 
-def refresh_command(root_dir: Path, collection_scope: str = COLLECTION_SCOPE_24H) -> list[str]:
+def last_collection_time(root_dir: Path) -> datetime | None:
+    status = read_source_status(root_dir)
+    if not isinstance(status, dict):
+        return None
+    raw = str(status.get("generated_at") or "").strip()
+    if not raw:
+        return None
+    try:
+        parsed = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed
+
+
+def resolve_collect_window_hours(
+    scope: str,
+    last_collected_at: datetime | None,
+    now: datetime,
+    *,
+    default_hours: int = 24,
+) -> int:
+    if scope == COLLECTION_SCOPE_ALL:
+        return 0
+    if last_collected_at is None:
+        return default_hours
+    seconds = (now - last_collected_at).total_seconds()
+    if seconds <= 0:
+        return default_hours
+    return max(1, math.ceil(seconds / 3600))
+
+
+def collect_window_hours_for_scope(
+    root_dir: Path,
+    scope: str,
+    *,
+    now: datetime | None = None,
+) -> int:
+    current_time = now or datetime.now(timezone.utc)
+    return resolve_collect_window_hours(scope, last_collection_time(root_dir), current_time)
+
+
+def refresh_command(
+    root_dir: Path,
+    collection_scope: str = COLLECTION_SCOPE_24H,
+    *,
+    now: datetime | None = None,
+) -> list[str]:
     scope = normalize_collection_scope(collection_scope)
     command = [
         sys.executable,
@@ -1630,8 +1679,9 @@ def refresh_command(root_dir: Path, collection_scope: str = COLLECTION_SCOPE_24H
         "3650",
         "--all-time",
     ]
-    if scope == COLLECTION_SCOPE_24H:
-        command.extend(["--collect-window-hours", "24"])
+    window_hours = collect_window_hours_for_scope(root_dir, scope, now=now)
+    if window_hours > 0:
+        command.extend(["--collect-window-hours", str(window_hours)])
     return command
 
 

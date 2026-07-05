@@ -877,7 +877,7 @@ async function runLocalOpsFixAction(action, button) {
       window.setTimeout(() => loadLocalStatusFromServer(false), 1200);
     }
     if (action.id === "start_mediacrawler_douyin" || action.id === "start_mediacrawler_xhs") {
-      const scopeLabel = selectedCollectionScope() === "all" ? "全量" : "过去24小时";
+      const scopeLabel = selectedCollectionScope() === "all" ? "全量" : "自上次采集";
       setLocalOpsStatus(`${action.id === "start_mediacrawler_xhs" ? "小红书" : "抖音"}采集中（${scopeLabel}）`, "warn");
       window.setTimeout(() => loadLocalStatusFromServer(false), 1200);
     } else if (!["open_bilibili_cookie_folder", "open_bilibili_login", "sync_bilibili_cookie"].includes(action.id)) {
@@ -1806,7 +1806,7 @@ async function runOneClickCollect() {
 
 async function refreshNewsDataFromLocalServer() {
   const collectionScope = selectedCollectionScope();
-  const scopeLabel = collectionScope === "all" ? "全量" : "过去24小时";
+  const scopeLabel = collectionScope === "all" ? "全量" : "自上次采集";
   setSourceConfigButton(sourceConfigRefreshBtnEl, "刷新中...", true);
   setSourceConfigStatus(`准备同步当前信源，并刷新${scopeLabel}看板数据；不会启动抖音/小红书采集。`, "warn");
   try {
