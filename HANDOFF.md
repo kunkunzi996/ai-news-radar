@@ -1,5 +1,48 @@
 # HANDOFF.md
 
+## 当前最新交接：B站“分享动态”已阅误伤修复
+
+- 日期：2026-07-06
+- 当前阶段：已修复“点一条 B站 `分享动态` 已阅后，所有同标题动态都进入已阅”的前端读状态问题。
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前分支：`master`
+- 根因：已阅状态复用了 `itemIdentityKeys()` 里的宽泛事件/标题 key。`title:分享动态` / `event:title:分享动态` 对故事聚合有用，但对“单张卡片已阅”太粗，导致同标题 B站动态互相误判。
+- 本轮改动：
+  - `assets/app.js`：新增已阅专用强身份逻辑，优先使用 `url`、后端 `id`、`bilibili_dynamic_id`、`bilibili_opus_id`；只有没有强身份时才使用非泛化标题兜底。
+  - `index.html`：更新 `assets/app.js` 缓存版本号到 `read-key-specificity-fix-0706a`。
+- 本轮验收：
+  - `node --check assets\app.js` 通过。
+  - 真实数据检查：`技术爬爬虾 / 分享动态` 共 59 条，按新逻辑有 59 个唯一强身份 key，且无空 key。
+  - `http://127.0.0.1:8080/` 已服务 `assets/app.js?v=read-key-specificity-fix-0706a`。
+- 下一轮手动验收：
+  - 打开 `http://127.0.0.1:8080/`，强刷页面。
+  - 进入 `B站`，找到 `技术爬爬虾` 的一条 `分享动态`，点 `已阅`。
+  - 预期：只这一条消失；其它 `分享动态` 仍留在 B站列表里。切到 `已阅`，应只看到刚点的那条，点 `恢复` 后它回到列表。
+
+## 当前最新交接：抖音/小红书刷新后消失的配置回退修复
+
+- 日期：2026-07-06
+- 当前阶段：已修复“刷新看板数据后抖音和小红书消失”的本地配置回退问题，并完成真实刷新验收。
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前分支：`master`
+- 根因：MediaCrawler 今天的抖音/小红书 JSONL 实际存在且非空；问题出在刷新前页面把一个旧的高级信源草稿写回 `sources.config.json`，导致 `mediacrawler_douyin` / `mediacrawler_xhs` 被关闭，B站也从 4 个 UP 回退到 2 个。刷新脚本随后严格按旧配置重建数据，所以页面不再显示这两个平台。
+- 本轮改动：
+  - `assets/app.js`：浏览器草稿只因 seed/catalog 自动合并而变化时，不再把 `updated_at` 刷成当前时间，避免旧草稿假装比磁盘配置更新。
+  - `index.html`：更新 `assets/app.js` 缓存版本号到 `source-config-draft-fix-0706a`。
+  - `sources.config.json`：本机私有配置已恢复为启用 OPML、4 个 B站 UP、抖音、小红书、微信公众号、GitHub Release。
+  - `data/*.json`：已通过本地 8080 后台真实刷新重新生成。
+- 本轮验收：
+  - `node --check assets\app.js` 通过。
+  - `.\.venv\Scripts\python.exe -m py_compile scripts\local_server.py scripts\update_news.py` 通过。
+  - `.\.venv\Scripts\python.exe -m unittest tests.test_local_server tests.test_topic_filter tests.test_private_bridge_sources -q` 通过：190 tests OK。
+  - `POST http://127.0.0.1:8080/api/refresh` 通过，生成 `data/latest-24h-all.json` 320 条。
+  - `http://127.0.0.1:8080/data/source-status.json` 显示 `mediacrawler_douyin.ok=true item_count=5`、`mediacrawler_xhs.ok=true item_count=5`。
+  - `http://127.0.0.1:8080/data/latest-24h-all.json` 显示 `mediacrawler_douyin=5`、`mediacrawler_xhs=5`。
+- 下一轮手动验收：
+  - 打开 `http://127.0.0.1:8080/`，强刷页面，确认 HTML 加载 `assets/app.js?v=source-config-draft-fix-0706a`。
+  - 进入 `抖音` 和 `小红书` 栏目，确认能看到 `珍妮丁丁说AI` / `中二的大暄哥` 相关内容。
+  - 下次点 `刷新看板数据` 后，再查 `信源配置` 中抖音和小红书不要被自动关掉。
+
 ## 当前最新交接：B站新订阅首批入库 + 已阅状态稳定性修复
 
 - 日期：2026-07-06

@@ -690,13 +690,14 @@ function consolidateBilibiliSourceRecords(config) {
     config: {
       ...config,
       sources: withoutBilibili,
-      updated_at: new Date().toISOString(),
     },
     changed: true,
   };
 }
 
 function mergeSourceConfigWithSeed(config) {
+  const inputUpdatedAt = String(config?.updated_at || "").trim();
+  const hasInputUpdatedAt = Number.isFinite(Date.parse(inputUpdatedAt));
   const normalizedBase = normalizeSourceConfig(config);
   const { config: normalized, changed: consolidated } = consolidateBilibiliSourceRecords(normalizedBase);
   const seedSources = sourceConfigSeedSources();
@@ -723,7 +724,7 @@ function mergeSourceConfigWithSeed(config) {
   normalized.deleted_source_ids = Array.from(deletedSeedIds);
   normalized.catalog_version = SOURCE_CONFIG_CATALOG_VERSION;
   normalized.sources = mergedSources;
-  if (changed) normalized.updated_at = new Date().toISOString();
+  if (changed && !hasInputUpdatedAt) normalized.updated_at = new Date().toISOString();
   return { config: normalized, changed };
 }
 
@@ -3477,11 +3478,31 @@ function sectionBadgeLabel(sectionId) {
 }
 
 function readTrackingKey(item) {
-  return itemIdentityKey(item);
+  const keys = strongReadIdentityKeys(item);
+  return keys.size ? Array.from(keys)[0] : readTitleFallbackKey(item);
+}
+
+function strongReadIdentityKeys(item) {
+  const keys = new Set();
+  if (!item) return keys;
+  const url = item.url || item.primary_url;
+  if (url) keys.add(`url:${url}`);
+  if (item.id) keys.add(`id:${item.id}`);
+  if (item.bilibili_dynamic_id) keys.add(`bilibili_dynamic:${item.bilibili_dynamic_id}`);
+  if (item.bilibili_opus_id) keys.add(`bilibili_opus:${item.bilibili_opus_id}`);
+  return keys;
+}
+
+function readTitleFallbackKey(item) {
+  const title = item?.title_zh || item?.title || item?.title_en || item?.title_original;
+  const normalized = normalizedEventText(title);
+  if (!normalized || normalized.length < 8) return "";
+  if (["分享动态", "转发动态", "动态", "直播回放"].includes(normalized)) return "";
+  return `title:${normalized.slice(0, 34)}`;
 }
 
 function readTrackingKeys(item) {
-  const keys = itemIdentityKeys(item);
+  const keys = strongReadIdentityKeys(item);
   const primary = readTrackingKey(item);
   if (primary) keys.add(primary);
   return keys;
