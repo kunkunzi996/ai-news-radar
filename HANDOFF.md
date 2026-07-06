@@ -1,5 +1,36 @@
 # HANDOFF.md
 
+## 当前最新交接：B站新订阅首批入库 + 已阅状态稳定性修复
+
+- 日期：2026-07-06
+- 当前阶段：已修复“新增 B站 UP 后一键采集没有刷新出动态”和“刷新后已阅状态容易失效”的核心路径；用户已在本地页面验收成功。
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前分支：`master`
+- 根因：
+  - B站采集实际能抓到新 UP 的原始动态，但 `自上次采集` 窗口会按发布时间过滤；如果新 UP 最近 9 小时没有新动态，它的历史最新内容就不会首次进入归档。
+  - `已阅` 原来主要按单个 identity key 判断；刷新后同一条内容如果从不同数据池/字段形态渲染，可能认不回原来的已阅记录。
+- 本轮改动：
+  - `scripts/update_news.py`：采集窗口过滤新增 `archive_source_counts()` 保护，归档里从未出现过或首批不足 5 条的订阅对象会补齐首批内容；B站动态 id / opus id 也会进入公开安全字段。
+  - `assets/app.js`：已阅读写改为多 key 匹配/写入，包含 URL、后端 id、B站动态 id / opus id、标题事件 key。
+  - `index.html`：更新 `assets/app.js` 缓存版本号。
+  - `tests/test_topic_filter.py`：新增“新订阅首批内容不被窗口误挡”和“首批不足时继续补到 5 条”的回归测试。
+  - `data/*.json`：已用带 B站 cookie 的 `cookie_full_dynamic` 口径真实刷新；`清华姜学长` 已进入 `data/archive.json` 和 `data/latest-24h-all.json`，归档首批 5 条。
+- 本轮验收：
+  - `node --check assets\app.js` 通过。
+  - `.\.venv\Scripts\python.exe -m py_compile scripts\update_news.py scripts\local_server.py` 通过。
+  - `.\.venv\Scripts\python.exe -m unittest tests.test_topic_filter.TopicFilterTests.test_collect_window_filters_new_raw_items_by_publish_time tests.test_topic_filter.TopicFilterTests.test_collect_window_keeps_first_batch_for_new_subscription_source tests.test_topic_filter.TopicFilterTests.test_collect_window_tops_up_underseeded_subscription_source -q` 通过。
+  - `.\.venv\Scripts\python.exe -m unittest tests.test_topic_filter tests.test_private_bridge_sources tests.test_local_server -q` 通过：190 tests OK。
+  - 带 B站 cookie 的真实刷新命令 `.\.venv\Scripts\python.exe scripts\update_news.py --source-config sources.config.json --output-dir data --window-hours 24 --archive-days 3650 --all-time --collect-window-hours 9` 通过；`data/source-status.json` 显示 B站 `fetch_mode=cookie_full_dynamic`、4 个 UP 都 OK、每个 5 条。
+  - HTTP 验证 `http://127.0.0.1:8080/data/latest-24h-all.json` 包含 `清华姜学长`。
+  - 用户手动验收成功。
+- 下一轮手动验收：
+  - 打开 `http://127.0.0.1:8080/`，强刷页面，确认加载的是 `assets/app.js?v=read-state-seed-fix-0706a`。
+  - 进入 `我的订阅` 或 `B站`，搜索/查看 `清华姜学长`。
+  - 点几条订阅卡片 `已阅`，再点 `刷新看板数据` 或刷新页面，确认它们不会回到未读列表；在 `已阅` 栏目点 `恢复` 应能回来。
+- 下一轮注意：
+  - 推荐固定使用 `http://127.0.0.1:8080/`；浏览器会把 `localhost:8080` 和 `127.0.0.1:8080` 的 localStorage 分开。
+  - 已阅状态当前仍是浏览器本地 localStorage；如果未来部署到服务器并且公司/家里多设备使用，建议做“单用户服务器端已阅同步”，否则不同电脑/浏览器仍会各记各的。
+
 ## 当前最新交接：本地采集新增可见进度条
 
 - 日期：2026-07-06

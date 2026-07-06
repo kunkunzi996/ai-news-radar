@@ -468,6 +468,8 @@ PUBLIC_RAW_META_FIELDS: tuple[str, ...] = (
     "aihot_score",
     "aihot_category",
     "aihot_selected",
+    "bilibili_dynamic_id",
+    "bilibili_opus_id",
     "creator_metrics",
     "search_surface",
     "summary",
@@ -3462,6 +3464,8 @@ def filter_raw_items_by_collect_window(
     raw_items: list[RawItem],
     now: datetime,
     window_hours: int,
+    existing_source_counts: dict[tuple[str, str], int] | None = None,
+    seed_min_items_per_source: int = 5,
 ) -> tuple[list[RawItem], int]:
     if window_hours <= 0:
         return raw_items, 0
@@ -3470,11 +3474,27 @@ def filter_raw_items_by_collect_window(
     filtered: list[RawItem] = []
     skipped = 0
     for item in raw_items:
+        source_key = (item.site_id, item.source)
+        existing_count = int((existing_source_counts or {}).get(source_key, 0))
+        if existing_source_counts is not None and existing_count < seed_min_items_per_source:
+            filtered.append(item)
+            existing_source_counts[source_key] = existing_count + 1
+            continue
         if not item.published_at or item.published_at < window_start or item.published_at > window_end:
             skipped += 1
             continue
         filtered.append(item)
     return filtered, skipped
+
+
+def archive_source_counts(archive: dict[str, dict[str, Any]]) -> dict[tuple[str, str], int]:
+    counts: dict[tuple[str, str], int] = {}
+    for record in archive.values():
+        key = (str(record.get("site_id") or ""), str(record.get("source") or ""))
+        if not key[0] and not key[1]:
+            continue
+        counts[key] = counts.get(key, 0) + 1
+    return counts
 
 
 def event_time(record: dict[str, Any]) -> datetime | None:
@@ -7781,7 +7801,12 @@ def main() -> int:
         statuses = [status for status in statuses if str(status.get("site_id") or "") in active_source_ids]
     raw_items_before_collect_window = len(raw_items)
     raw_item_counts_by_site = Counter(item.site_id for item in raw_items)
-    raw_items, skipped_collect_window_items = filter_raw_items_by_collect_window(raw_items, now, collect_window_hours)
+    raw_items, skipped_collect_window_items = filter_raw_items_by_collect_window(
+        raw_items,
+        now,
+        collect_window_hours,
+        existing_source_counts=archive_source_counts(archive),
+    )
     window_item_counts_by_site = Counter(item.site_id for item in raw_items)
     for status in statuses:
         site_id = str(status.get("site_id") or "")

@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-07-05T09:06:36.561958Z",
+  "generated_at": "2026-07-06T02:11:27.197139Z",
   "sites": [
     {
       "site_id": "github_foundation_sunshine_releases",
       "site_name": "GitHub Foundation Sunshine",
       "ok": true,
       "item_count": 5,
-      "duration_ms": 885,
+      "duration_ms": 891,
       "error": null,
       "source_kind": "github_release_subscription",
       "repo": "AlkaidLab/foundation-sunshine",
@@ -18,15 +18,18 @@
           "item_count": 5
         }
       ],
-      "max_items": 5
+      "max_items": 5,
+      "raw_item_count": 5,
+      "window_item_count": 2,
+      "collection_window_hours": 9
     },
     {
       "site_id": "wewe_rss",
       "site_name": "WeWe RSS",
-      "ok": true,
-      "item_count": 40,
-      "duration_ms": 23,
-      "error": null,
+      "ok": false,
+      "item_count": 0,
+      "duration_ms": 26004,
+      "error": "failed_wewe_rss_feeds:2",
       "source_kind": "wewe_rss_wechat_subscription",
       "base_url": "http://127.0.0.1:4000",
       "max_items_per_feed": 20,
@@ -34,68 +37,82 @@
         {
           "id": "MP_WXS_3198966508",
           "name": "猫笔刀",
-          "ok": true,
-          "item_count": 20,
-          "error": null
+          "ok": false,
+          "item_count": 0,
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=4000): Max retries exceeded with url: /feeds/MP_WXS_3198966508.json?limit=20 (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=4000): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
         },
         {
           "id": "MP_WXS_3223096120",
           "name": "数字生命卡兹克",
-          "ok": true,
-          "item_count": 20,
-          "error": null
+          "ok": false,
+          "item_count": 0,
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=4000): Max retries exceeded with url: /feeds/MP_WXS_3223096120.json?limit=20 (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=4000): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
         }
       ],
       "coverage_note": "reads_local_wewe_rss_json_feed_without_wechat_login_state",
-      "privacy": "local_sidecar_no_cookies_in_radar_repo"
+      "privacy": "local_sidecar_no_cookies_in_radar_repo",
+      "raw_item_count": 0,
+      "window_item_count": 0,
+      "collection_window_hours": 9
     },
     {
       "site_id": "bilibili_dynamic",
       "site_name": "Bilibili Dynamic",
       "ok": true,
-      "item_count": 60,
-      "duration_ms": 2372,
+      "item_count": 20,
+      "duration_ms": 1127,
       "error": null,
-      "uid": "505301413,316183842,3546884870244925",
+      "uid": "505301413,316183842,3546884870244925,50247550",
       "uids": [
         "505301413",
         "316183842",
-        "3546884870244925"
+        "3546884870244925",
+        "50247550"
       ],
-      "uid_count": 3,
-      "source_name": "Koji杨远骋at十字路口, 技术爬爬虾, 杰森的效率工坊",
+      "uid_count": 4,
+      "source_name": "Koji杨远骋at十字路口, 技术爬爬虾, 杰森的效率工坊, 清华姜学长",
       "privacy": "cookie_env_only_not_logged",
       "coverage_note": "tries_cookie_full_dynamic_then_public_opus_fallback",
       "cookie_present": true,
       "fetch_mode": "cookie_full_dynamic",
       "fallback_reason": null,
       "partial_failure_count": 0,
-      "max_items": 20,
-      "max_items_per_account": 20,
+      "max_items": 5,
+      "max_items_per_account": 5,
       "max_pages": 5,
       "accounts": [
         {
           "uid": "505301413",
           "source_name": "Koji杨远骋at十字路口",
           "ok": true,
-          "item_count": 20,
+          "item_count": 5,
           "fetch_mode": "cookie_full_dynamic"
         },
         {
           "uid": "316183842",
           "source_name": "技术爬爬虾",
           "ok": true,
-          "item_count": 20,
+          "item_count": 5,
           "fetch_mode": "cookie_full_dynamic"
         },
         {
           "uid": "3546884870244925",
           "source_name": "杰森的效率工坊",
           "ok": true,
-          "item_count": 20,
+          "item_count": 5,
+          "fetch_mode": "cookie_full_dynamic"
+        },
+        {
+          "uid": "50247550",
+          "source_name": "清华姜学长",
+          "ok": true,
+          "item_count": 5,
           "fetch_mode": "cookie_full_dynamic"
         }
-      ]
+      ],
+      "raw_item_count": 20,
+      "window_item_count": 4,
+      "collection_window_hours": 9
     },
     {
       "site_id": "mediacrawler_douyin",
@@ -109,7 +126,7 @@
       "coverage_note": "reads_mediacrawler_douyin_creator_jsonl",
       "source_kind": "mediacrawler_douyin",
       "jsonl_path_configured": true,
-      "jsonl_file": "creator_contents_2026-07-05.jsonl",
+      "jsonl_file": "creator_contents_2026-07-06.jsonl",
       "max_items": 200,
       "subscriptions": [
         {
@@ -119,7 +136,7 @@
           "jsonl_file_configured": "creator_contents_2026-07-01.jsonl",
           "item_count": 0,
           "ok": false,
-          "jsonl_file": "creator_contents_2026-07-05.jsonl",
+          "jsonl_file": "creator_contents_2026-07-06.jsonl",
           "jsonl_file_resolved_from": "creator_contents_2026-07-01.jsonl",
           "error": "mediacrawler_douyin_no_items"
         },
@@ -130,7 +147,7 @@
           "jsonl_file_configured": "jsonl",
           "item_count": 5,
           "ok": true,
-          "jsonl_file": "creator_contents_2026-07-05.jsonl",
+          "jsonl_file": "creator_contents_2026-07-06.jsonl",
           "jsonl_file_resolved_from": "jsonl"
         },
         {
@@ -140,12 +157,15 @@
           "jsonl_file_configured": "jsonl",
           "item_count": 0,
           "ok": false,
-          "jsonl_file": "creator_contents_2026-07-05.jsonl",
+          "jsonl_file": "creator_contents_2026-07-06.jsonl",
           "jsonl_file_resolved_from": "jsonl",
           "error": "mediacrawler_douyin_no_items"
         }
       ],
-      "subscription_count": 3
+      "subscription_count": 3,
+      "raw_item_count": 5,
+      "window_item_count": 0,
+      "collection_window_hours": 9
     },
     {
       "site_id": "mediacrawler_xhs",
@@ -159,7 +179,7 @@
       "coverage_note": "reads_mediacrawler_xhs_creator_jsonl",
       "source_kind": "mediacrawler_xhs",
       "jsonl_path_configured": true,
-      "jsonl_file": "creator_contents_2026-07-05.jsonl",
+      "jsonl_file": "creator_contents_2026-07-06.jsonl",
       "max_items": 200,
       "subscriptions": [
         {
@@ -169,40 +189,49 @@
           "jsonl_file_configured": "jsonl",
           "item_count": 5,
           "ok": true,
-          "jsonl_file": "creator_contents_2026-07-05.jsonl",
+          "jsonl_file": "creator_contents_2026-07-06.jsonl",
           "jsonl_file_resolved_from": "jsonl"
         }
       ],
-      "subscription_count": 1
+      "subscription_count": 1,
+      "raw_item_count": 5,
+      "window_item_count": 0,
+      "collection_window_hours": 9
     },
     {
       "site_id": "opmlrss",
       "site_name": "OPML RSS",
       "ok": true,
       "partial_failures": 0,
-      "item_count": 30,
-      "duration_ms": 1361,
+      "item_count": 10,
+      "duration_ms": 1428,
       "error": null,
       "feed_count": 2,
       "effective_feed_count": 2,
       "ok_feed_count": 2,
       "failed_feed_count": 0,
       "skipped_feed_count": 0,
-      "replaced_feed_count": 0
+      "replaced_feed_count": 0,
+      "max_items_per_feed": 5,
+      "raw_item_count": 10,
+      "window_item_count": 0,
+      "collection_window_hours": 9
     }
   ],
   "time_scope": "all_time",
   "source_scope": "configured_sources",
-  "collection_window_hours": 24,
-  "successful_sites": 6,
-  "failed_sites": [],
+  "collection_window_hours": 9,
+  "successful_sites": 5,
+  "failed_sites": [
+    "wewe_rss"
+  ],
   "zero_item_sites": [],
   "empty_advanced_sources": [],
-  "fetched_raw_items": 1,
-  "raw_items_before_collection_window": 145,
-  "skipped_collection_window_items": 144,
-  "items_before_topic_filter": 769,
-  "items_in_24h": 275,
+  "fetched_raw_items": 6,
+  "raw_items_before_collection_window": 45,
+  "skipped_collection_window_items": 39,
+  "items_before_topic_filter": 776,
+  "items_in_24h": 279,
   "rss_opml": {
     "enabled": true,
     "path": "configured",
@@ -222,13 +251,14 @@
         "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw",
         "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw",
         "ok": true,
-        "item_count": 15,
-        "duration_ms": 738,
+        "item_count": 5,
+        "duration_ms": 649,
         "error": null,
         "skipped": false,
         "skip_reason": null,
         "replaced": false,
-        "bridge_type": null
+        "bridge_type": null,
+        "max_items": 5
       },
       {
         "site_id": "opmlrss:24775d9794",
@@ -237,13 +267,14 @@
         "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC26hLZoe-haxcuLYxzWAiNg",
         "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC26hLZoe-haxcuLYxzWAiNg",
         "ok": true,
-        "item_count": 15,
-        "duration_ms": 623,
+        "item_count": 5,
+        "duration_ms": 779,
         "error": null,
         "skipped": false,
         "skip_reason": null,
         "replaced": false,
-        "bridge_type": null
+        "bridge_type": null,
+        "max_items": 5
       }
     ]
   },
@@ -281,7 +312,7 @@
     "privacy": "local_jsonl_only_no_cookies",
     "coverage_note": "reads_mediacrawler_douyin_creator_jsonl",
     "jsonl_path_configured": true,
-    "jsonl_file": "creator_contents_2026-07-05.jsonl",
+    "jsonl_file": "creator_contents_2026-07-06.jsonl",
     "source_name": "Simon林, 珍妮丁丁说AI, FredTalk",
     "max_items": 200,
     "subscriptions": [
@@ -292,7 +323,7 @@
         "jsonl_file_configured": "creator_contents_2026-07-01.jsonl",
         "item_count": 0,
         "ok": false,
-        "jsonl_file": "creator_contents_2026-07-05.jsonl",
+        "jsonl_file": "creator_contents_2026-07-06.jsonl",
         "jsonl_file_resolved_from": "creator_contents_2026-07-01.jsonl",
         "error": "mediacrawler_douyin_no_items"
       },
@@ -303,7 +334,7 @@
         "jsonl_file_configured": "jsonl",
         "item_count": 5,
         "ok": true,
-        "jsonl_file": "creator_contents_2026-07-05.jsonl",
+        "jsonl_file": "creator_contents_2026-07-06.jsonl",
         "jsonl_file_resolved_from": "jsonl"
       },
       {
@@ -313,7 +344,7 @@
         "jsonl_file_configured": "jsonl",
         "item_count": 0,
         "ok": false,
-        "jsonl_file": "creator_contents_2026-07-05.jsonl",
+        "jsonl_file": "creator_contents_2026-07-06.jsonl",
         "jsonl_file_resolved_from": "jsonl",
         "error": "mediacrawler_douyin_no_items"
       }
@@ -330,7 +361,7 @@
     "privacy": "local_jsonl_only_no_cookies",
     "coverage_note": "reads_mediacrawler_xhs_creator_jsonl",
     "jsonl_path_configured": true,
-    "jsonl_file": "creator_contents_2026-07-05.jsonl",
+    "jsonl_file": "creator_contents_2026-07-06.jsonl",
     "source_name": "中二的大暄哥",
     "max_items": 200,
     "subscriptions": [
@@ -341,7 +372,7 @@
         "jsonl_file_configured": "jsonl",
         "item_count": 5,
         "ok": true,
-        "jsonl_file": "creator_contents_2026-07-05.jsonl",
+        "jsonl_file": "creator_contents_2026-07-06.jsonl",
         "jsonl_file_resolved_from": "jsonl"
       }
     ],

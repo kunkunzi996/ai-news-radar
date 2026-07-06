@@ -22,6 +22,7 @@ from scripts.update_news import (
     fetch_socialdata_list_tweets,
     fetch_tikhub_search,
     hn_algolia_keyword_score,
+    archive_source_counts,
     is_ai_related_record,
     is_hubtoday_generic_anchor_title,
     is_hubtoday_placeholder_title,
@@ -653,6 +654,57 @@ class TopicFilterTests(unittest.TestCase):
 
         self.assertEqual(filtered, [fresh])
         self.assertEqual(skipped, 2)
+
+    def test_collect_window_keeps_first_batch_for_new_subscription_source(self):
+        import datetime as _dt
+
+        now = _dt.datetime.fromisoformat("2026-07-06T10:00:00+00:00")
+        existing = RawItem("bilibili_dynamic", "Bilibili", "老UP", "old", "https://example.com/old", now - _dt.timedelta(hours=30), {})
+        newly_added = RawItem("bilibili_dynamic", "Bilibili", "新UP", "seed", "https://example.com/seed", now - _dt.timedelta(hours=30), {})
+        archive = {
+            f"old-{idx}": {
+                "site_id": "bilibili_dynamic",
+                "source": "老UP",
+                "title": f"previous {idx}",
+            }
+            for idx in range(5)
+        }
+
+        filtered, skipped = filter_raw_items_by_collect_window(
+            [existing, newly_added],
+            now,
+            24,
+            existing_source_counts=archive_source_counts(archive),
+        )
+
+        self.assertEqual(filtered, [newly_added])
+        self.assertEqual(skipped, 1)
+
+    def test_collect_window_tops_up_underseeded_subscription_source(self):
+        import datetime as _dt
+
+        now = _dt.datetime.fromisoformat("2026-07-06T10:00:00+00:00")
+        raw_items = [
+            RawItem("bilibili_dynamic", "Bilibili", "新UP", f"seed {idx}", f"https://example.com/seed-{idx}", now - _dt.timedelta(hours=30), {})
+            for idx in range(5)
+        ]
+        archive = {
+            "seed-0": {
+                "site_id": "bilibili_dynamic",
+                "source": "新UP",
+                "title": "seed 0",
+            }
+        }
+
+        filtered, skipped = filter_raw_items_by_collect_window(
+            raw_items,
+            now,
+            24,
+            existing_source_counts=archive_source_counts(archive),
+        )
+
+        self.assertEqual(filtered, raw_items[:4])
+        self.assertEqual(skipped, 1)
 
     def test_source_config_enabled_site_ids_maps_ui_records_to_fetchers(self):
         config = {

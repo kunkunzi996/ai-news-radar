@@ -3480,6 +3480,13 @@ function readTrackingKey(item) {
   return itemIdentityKey(item);
 }
 
+function readTrackingKeys(item) {
+  const keys = itemIdentityKeys(item);
+  const primary = readTrackingKey(item);
+  if (primary) keys.add(primary);
+  return keys;
+}
+
 function loadReadItemIds() {
   try {
     const raw = window.localStorage.getItem(READ_ITEMS_STORAGE_KEY);
@@ -3499,17 +3506,19 @@ function persistReadItemIds() {
 }
 
 function isItemRead(item) {
-  const key = readTrackingKey(item);
-  return Boolean(key) && state.readItemIds.has(key);
+  for (const key of readTrackingKeys(item)) {
+    if (state.readItemIds.has(key)) return true;
+  }
+  return false;
 }
 
 function toggleItemRead(item) {
-  const key = readTrackingKey(item);
-  if (!key) return;
-  if (state.readItemIds.has(key)) {
-    state.readItemIds.delete(key);
+  const keys = readTrackingKeys(item);
+  if (!keys.size) return;
+  if (isItemRead(item)) {
+    keys.forEach((key) => state.readItemIds.delete(key));
   } else {
-    state.readItemIds.add(key);
+    keys.forEach((key) => state.readItemIds.add(key));
   }
   persistReadItemIds();
   rerenderCurrentView();
@@ -3601,6 +3610,8 @@ function itemIdentityKeys(item) {
   const url = item.url || item.primary_url;
   if (url) keys.add(`url:${url}`);
   if (item.id) keys.add(`id:${item.id}`);
+  if (item.bilibili_dynamic_id) keys.add(`bilibili_dynamic:${item.bilibili_dynamic_id}`);
+  if (item.bilibili_opus_id) keys.add(`bilibili_opus:${item.bilibili_opus_id}`);
   const title = item.title_zh || item.title || item.title_en || item.title_original;
   if (title) {
     keys.add(`event:${eventKey({ ...item, title, title_zh: item.title_zh || title })}`);
