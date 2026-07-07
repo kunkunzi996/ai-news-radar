@@ -15,6 +15,11 @@ GitHub Actions refresh jobs, and GitHub Pages publishing.
 - Prefer stable public RSS/Atom/OPML sources before adding custom scrapers.
 - Keep the reader-facing product simple: default to a curated AI-focused view, hide noisy or advanced source details behind existing filters/docs.
 
+## Iron Rules
+
+- For every bug fix, start from first principles before changing code. Write down the bottom-level fact/root cause, whether an architecture/schema/API change is truly required, and the smallest reversible fix that solves the root cause.
+- For acceptance or testing of any browser-visible flow, local dashboard, or UI interaction, use a browser tool for real validation before reporting back. Do not stop at unit tests, static checks, or asking the user to click first. If browser-tool validation is impossible, state the blocker and what remains unverified.
+
 ## Source Strategy
 
 Read `docs/SOURCE_COVERAGE.md` before adding or removing sources.
