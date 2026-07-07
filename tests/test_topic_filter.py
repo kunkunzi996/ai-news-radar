@@ -262,7 +262,7 @@ class TopicFilterTests(unittest.TestCase):
                 return FakeResponse()
 
         session = FakeSession()
-        with patch("scripts.update_news.HN_ALGOLIA_QUERIES", ("OpenAI",)), patch("scripts.update_news.time.sleep"):
+        with patch("scripts.radar.fetchers.public.HN_ALGOLIA_QUERIES", ("OpenAI",)), patch("scripts.radar.fetchers.public.time.sleep"):
             items = fetch_hacker_news_algolia(session, now)
 
         self.assertEqual(len(items), 1)

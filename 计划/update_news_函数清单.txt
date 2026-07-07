@@ -1,0 +1,229 @@
+457:class RawItem:
+479:def utc_now() -> datetime:
+483:def iso(dt: datetime | None) -> str | None:
+489:def parse_iso(dt_str: str | None) -> datetime | None:
+501:def normalize_url(raw_url: str) -> str:
+526:def host_of_url(raw_url: str) -> str:
+533:def first_non_empty(*values: Any) -> str:
+543:def maybe_fix_mojibake(text: str) -> str:
+560:def has_cjk(text: str) -> bool:
+564:def is_mostly_english(text: str) -> bool:
+574:def parse_feed_entries_via_xml(feed_xml: bytes) -> list[dict[str, Any]]:
+614:def make_item_id(site_id: str, source: str, title: str, url: str) -> str:
+626:def parse_unix_timestamp(value: Any) -> datetime | None:
+641:def parse_relative_time_zh(text: str, now: datetime) -> datetime | None:
+695:def parse_date_any(value: Any, now: datetime) -> datetime | None:
+740:def apply_public_raw_meta(record: dict[str, Any], raw: RawItem) -> None:
+748:def decode_escaped_json(raw: str) -> dict[str, Any] | None:
+756:def extract_waytoagi_history_url(root_html: str) -> str:
+771:def extract_feishu_client_vars(page_html: str) -> dict[str, Any]:
+812:def block_text(block_data: dict[str, Any]) -> str:
+827:def clean_update_title(text: str) -> str:
+832:def parse_ym_heading(text: str) -> tuple[int, int] | None:
+839:def parse_md_heading(text: str) -> tuple[int, int] | None:
+846:def infer_shanghai_year_for_month_day(now_sh: datetime, month: int, day: int) -> int | None:
+857:def extract_waytoagi_recent_updates_from_block_map(
+948:def fetch_waytoagi_recent_7d(session: requests.Session, now_utc: datetime, root_url: str) -> dict[str, Any]:
+1003:def waytoagi_updates_to_raw_items(payload: dict[str, Any], now: datetime) -> list[RawItem]:
+1034:def create_session() -> requests.Session:
+1051:def extract_next_f_merged(html: str) -> str:
+1062:def extract_balanced_json(decoded: str, key: str) -> Any:
+1109:def extract_next_data_payload(html: str) -> dict[str, Any] | None:
+1123:def fetch_techurls(session: requests.Session, now: datetime) -> list[RawItem]:
+1172:def fetch_buzzing(session: requests.Session, now: datetime) -> list[RawItem]:
+1209:def fetch_iris(session: requests.Session, now: datetime) -> list[RawItem]:
+1279:def fetch_bestblogs(session: requests.Session, now: datetime) -> list[RawItem]:
+1369:def fetch_tophub(session: requests.Session, now: datetime) -> list[RawItem]:
+1430:def fetch_zeli(session: requests.Session, now: datetime) -> list[RawItem]:
+1461:def hn_algolia_keyword_score(title: str) -> float:
+1470:def parse_hn_algolia_hits(payloads: list[tuple[str, dict[str, Any]]], now: datetime) -> list[RawItem]:
+1535:def fetch_hacker_news_algolia(session: requests.Session, now: datetime) -> list[RawItem]:
+1565:def parse_anthropic_news_items(page_html: str, now: datetime) -> list[RawItem]:
+1612:def parse_openai_codex_changelog_items(page_html: str, now: datetime) -> list[RawItem]:
+1652:def fetch_feed_as_official_items(
+1723:def feed_entry_title_link_published(entry: dict[str, Any], now: datetime) -> tuple[str, str, datetime | None]:
+1734:def feed_keywords(feed: dict[str, Any]) -> list[str]:
+1742:def curated_feed_entry_allowed(feed: dict[str, Any], title: str, link: str) -> bool:
+1752:def parse_curated_ai_media_feed_items(
+1805:def fetch_curated_ai_media(session: requests.Session, now: datetime) -> list[RawItem]:
+1830:def fetch_official_ai_updates(session: requests.Session, now: datetime) -> list[RawItem]:
+1859:def parse_ai_breakfast_items(markdown_text: str, now: datetime) -> list[RawItem]:
+1897:def fetch_ai_breakfast(session: requests.Session, now: datetime) -> list[RawItem]:
+1914:def parse_follow_builders_items(feeds: dict[str, dict[str, Any]], now: datetime) -> list[RawItem]:
+1987:def fetch_follow_builders(session: requests.Session, now: datetime) -> list[RawItem]:
+2011:def is_hubtoday_placeholder_title(title: str) -> bool:
+2020:def is_hubtoday_generic_anchor_title(title: str) -> bool:
+2029:def normalize_aihubtoday_records(items: list[dict[str, Any]]) -> list[dict[str, Any]]:
+2063:def fetch_ai_hubtoday(session: requests.Session, now: datetime) -> list[RawItem]:
+2102:def fetch_aibase(session: requests.Session, now: datetime) -> list[RawItem]:
+2141:def parse_aihot_feed_items(feed_content: bytes, now: datetime, feed_url: str = AIHOT_FEED_URL) -> list[RawItem]:
+2191:def parse_aihot_api_items(payload: dict[str, Any], now: datetime | None = None) -> list[RawItem]:
+2248:def fetch_aihot(session: requests.Session, now: datetime) -> list[RawItem]:
+2276:def extract_newsnow_source_ids(js: str) -> list[str]:
+2341:def fetch_newsnow(session: requests.Session, now: datetime) -> list[RawItem]:
+2429:def fetch_github_repo_subscription(
+2493:def clean_wp_rendered_text(value: Any, max_chars: int = 220) -> str:
+2503:def fetch_maobidao_wechat_subscription(
+2560:def wewe_rss_base_url() -> str:
+2564:def wewe_rss_feeds_from_env(raw: str | None) -> list[dict[str, str]]:
+2581:def parse_wewe_rss_json_feed_items(
+2638:def fetch_wewe_rss_subscription(
+2734:def collect_all(
+2787:def parse_opml_subscriptions(opml_path: Path) -> list[dict[str, str]]:
+2816:def resolve_official_rss_url(feed_url: str) -> tuple[str | None, str | None]:
+2831:def resolve_opml_bridge_source(feed_url: str, html_url: str = "") -> dict[str, str] | None:
+2877:def compact_title(text: str, limit: int = 96) -> str:
+2884:def parse_telegram_public_items(
+2923:def parse_jike_public_items(
+2965:def fetch_opml_rss(
+3167:def load_archive(path: Path) -> dict[str, dict[str, Any]]:
+3190:def normalize_source_scope(raw_scope: str | None) -> str:
+3201:def source_ids_for_scope(source_scope: str) -> frozenset[str] | None:
+3209:def source_config_candidate_paths(raw_path: str | None, output_dir: Path | None = None) -> list[Path]:
+3221:def load_source_config(raw_path: str | None, output_dir: Path | None = None) -> tuple[dict[str, Any] | None, dict[str, Any]]:
+3257:def source_config_record_site_ids(record: dict[str, Any]) -> tuple[str, ...]:
+3276:def source_config_enabled_sources(config: dict[str, Any] | None) -> list[dict[str, Any]]:
+3289:def source_config_enabled_site_ids(config: dict[str, Any] | None) -> frozenset[str]:
+3296:def set_env_from_source_config(name: str, value: str) -> bool:
+3304:def apply_source_config_runtime(config: dict[str, Any] | None) -> dict[str, Any]:
+3397:def github_release_api_url_from_config(locator: str) -> str:
+3413:def github_release_repo_label_from_config(locator: str, fallback: str = "") -> str:
+3429:def source_config_subscriptions_for_site(config: dict[str, Any] | None, site_id: str) -> list[dict[str, str]]:
+3450:def filter_archive_by_source_ids(
+3463:def filter_raw_items_by_collect_window(
+3490:def archive_source_counts(archive: dict[str, dict[str, Any]]) -> dict[tuple[str, str], int]:
+3500:def event_time(record: dict[str, Any]) -> datetime | None:
+3607:def source_tier_for_site(site_id: str) -> dict[str, Any]:
+3615:def add_source_tier_fields(record: dict[str, Any]) -> dict[str, Any]:
+3621:def source_tier_sort_key(record: dict[str, Any]) -> tuple[int, float, str]:
+3749:def contains_any_keyword(haystack: str, keywords: list[str]) -> bool:
+3754:def contains_meaningful_ai_signal(haystack: str) -> bool:
+3761:def redact_public_text(text: str) -> str:
+3769:def sanitize_public_value(value: Any) -> Any:
+3779:def sanitize_public_payload(payload: dict[str, Any]) -> dict[str, Any]:
+3783:def compact_public_snippet(text: str, max_chars: int = 240) -> str:
+3792:def sender_domain_from_address(raw_sender: str) -> str | None:
+3801:def parse_domain_filter(raw: str) -> list[str]:
+3811:def domain_matches_filter(sender_domain: str | None, allowed_domains: list[str]) -> bool:
+3818:def filter_agentmail_messages_by_domain(
+3831:def safe_agentmail_item(message: dict[str, Any]) -> dict[str, Any]:
+3850:def build_agentmail_digest_payload(
+3873:def fetch_agentmail_digest(
+3913:def env_flag(name: str) -> bool:
+3917:def env_flag_default(name: str, default: bool) -> bool:
+3930:def env_int(name: str, default: int) -> int:
+3937:def env_float(name: str, default: float) -> float:
+3944:def load_paid_source_state(path: Path) -> dict[str, Any]:
+3957:def paid_source_interval_hours(prefix: str) -> int:
+3963:def paid_source_state_entry(state: dict[str, Any] | None, source_key: str) -> dict[str, Any]:
+3973:def paid_source_run_gate(
+3999:def update_paid_source_state(
+4025:def sync_paid_source_status_timestamps(
+4036:def split_env_list(value: str) -> list[str]:
+4040:def bilibili_dynamic_accounts_from_env() -> list[dict[str, str]]:
+4070:def bilibili_dynamic_status_base() -> dict[str, Any]:
+4094:def bilibili_dynamic_item_title(content: str, opus_id: str) -> str:
+4103:def apply_cookie_header(session: requests.Session, cookie_header: str) -> None:
+4114:def bilibili_cookie_header_from_file_text(cookie_text: str, now_ts: int | None = None) -> str:
+4176:def bilibili_cookie_header_from_env() -> str:
+4189:def bilibili_mixin_key(img_key: str, sub_key: str) -> str:
+4194:def bilibili_wbi_keys(session: requests.Session) -> tuple[str, str]:
+4217:def sign_bilibili_wbi_params(params: dict[str, Any], img_key: str, sub_key: str, now_ts: int | None = None) -> dict[str, str]:
+4229:def first_text_value(obj: Any, keys: tuple[str, ...] = ("text", "title", "desc", "content")) -> str:
+4247:def bilibili_author_from_detail_payload(payload: dict[str, Any]) -> dict[str, Any]:
+4268:def parse_bilibili_detail_published_at(payload: dict[str, Any]) -> datetime | None:
+4273:def fetch_bilibili_opus_published_at(
+4308:def bilibili_dynamic_publish_times_from_detail(
+4334:def bilibili_opus_id_from_record(record: dict[str, Any]) -> str:
+4343:def backfill_bilibili_archive_publish_times(
+4374:def parse_bilibili_full_dynamic_items(
+4444:def parse_bilibili_dynamic_items(
+4506:def fetch_bilibili_dynamic(
+4557:def fetch_bilibili_full_dynamic(
+4626:def maybe_fetch_bilibili_dynamic(
+4744:def mediacrawler_douyin_title(text: str, aweme_id: str) -> str:
+4753:def mediacrawler_int(value: Any) -> int:
+4760:def mediacrawler_xhs_title(text: str, note_id: str) -> str:
+4769:def mediacrawler_env_first(*names: str) -> str:
+4777:def mediacrawler_env_flag_any(*names: str) -> bool:
+4781:def mediacrawler_env_int_any(default: int, *names: str) -> int:
+4788:def mediacrawler_local_root() -> Path:
+4795:def is_url_like(value: str) -> bool:
+4800:def default_mediacrawler_jsonl_dir(site_id: str) -> Path:
+4805:def mediacrawler_jsonl_locator(raw_locator: str, site_id: str) -> str:
+4812:def resolve_latest_mediacrawler_jsonl(raw_path: str) -> Path:
+4839:def douyin_sec_uid_from_locator(locator: str) -> str:
+4850:def parse_mediacrawler_douyin_jsonl(
+4925:def douyin_item_matches_subscription(item: RawItem, *, locator: str, source_name: str) -> bool:
+4934:def xiaohongshu_user_id_from_locator(locator: str) -> str:
+4945:def maybe_fetch_mediacrawler_douyin(now: datetime) -> tuple[list[RawItem], dict[str, Any]]:
+5003:def fetch_mediacrawler_douyin_subscriptions(
+5081:def parse_mediacrawler_xhs_jsonl(
+5157:def xiaohongshu_item_matches_subscription(item: RawItem, *, locator: str, source_name: str) -> bool:
+5166:def maybe_fetch_mediacrawler_xhs(now: datetime) -> tuple[list[RawItem], dict[str, Any]]:
+5224:def fetch_mediacrawler_xhs_subscriptions(
+5302:def maybe_fetch_agentmail_digest(
+5351:def x_api_should_run_now(now: datetime) -> bool:
+5360:def x_api_status_base(now: datetime) -> dict[str, Any]:
+5387:def fetch_x_api_recent_search(
+5449:def maybe_fetch_x_api_updates(
+5497:def socialdata_should_run_now(now: datetime, paid_source_state: dict[str, Any] | None = None) -> tuple[bool, str | None]:
+5502:def socialdata_status_base(now: datetime, paid_source_state: dict[str, Any] | None = None) -> dict[str, Any]:
+5541:def fetch_socialdata_search(
+5655:def fetch_socialdata_list_tweets(
+5786:def maybe_fetch_socialdata_updates(
+5911:def tikhub_should_run_now(now: datetime, paid_source_state: dict[str, Any] | None = None) -> tuple[bool, str | None]:
+5916:def tikhub_status_base(now: datetime, paid_source_state: dict[str, Any] | None = None) -> dict[str, Any]:
+5951:def iter_nested_dicts(value: Any) -> list[dict[str, Any]]:
+5963:def tikhub_payload_shape(payload: Any) -> dict[str, Any]:
+5988:def parse_epoch_any(value: Any, now: datetime) -> datetime | None:
+6009:def is_tikhub_generic_audio_title(title: str) -> bool:
+6019:def first_tikhub_douyin_title(aweme: dict[str, Any]) -> str:
+6035:def parse_tikhub_published_at(record: dict[str, Any], now: datetime, fields: tuple[str, ...]) -> datetime | None:
+6044:def parse_xiaohongshu_note_id_published_at(note_id: str, now: datetime) -> datetime | None:
+6060:def is_credible_xiaohongshu_published_at(published: datetime | None, now: datetime) -> bool:
+6066:def creator_metric_count(*values: Any) -> int:
+6077:def normalize_creator_metrics(platform: str, *records: dict[str, Any]) -> dict[str, int]:
+6102:def parse_tikhub_douyin_items(payload: dict[str, Any], now: datetime, keyword: str, limit: int) -> list[RawItem]:
+6163:def parse_tikhub_xiaohongshu_items(payload: dict[str, Any], now: datetime, keyword: str, limit: int) -> list[RawItem]:
+6286:def tikhub_raw_item_key(item: RawItem) -> str:
+6293:def fetch_tikhub_search(
+6494:def maybe_fetch_tikhub_updates(
+6546:def has_mojibake_noise(text: str) -> bool:
+6552:def normalize_source_for_display(site_id: str, source: str, url: str) -> str:
+6567:def is_ai_related_record(record: dict[str, Any]) -> bool:
+6573:def load_title_zh_cache(path: Path) -> dict[str, str]:
+6585:def translate_to_zh_cn(session: requests.Session, text: str) -> str | None:
+6617:def add_bilingual_fields(
+6673:def dedupe_items_by_title_url(items: list[dict[str, Any]], random_pick: bool = True) -> list[dict[str, Any]]:
+6702:def suppress_near_duplicate_items(
+6765:def canonical_story_url(raw_url: str) -> str:
+6779:def title_tokens(title: str) -> set[str]:
+6785:def normalized_story_title(item: dict[str, Any]) -> str:
+6792:def title_is_mergeable(title: str) -> bool:
+6797:def title_similarity(a: str, b: str) -> float:
+6807:def title_entities(title: str) -> tuple[set[str], set[str]]:
+6814:def story_titles_can_merge(a: str, b: str) -> bool:
+6824:def recency_score(record: dict[str, Any], now: datetime, window_hours: int) -> float:
+6832:def headline_freshness_score(record: dict[str, Any], now: datetime, half_life_hours: float = 48.0) -> float:
+6840:def ai_relevance_score(record: dict[str, Any]) -> float:
+6852:def add_creator_ranking_fields(record: dict[str, Any], now: datetime) -> dict[str, Any]:
+6883:def is_subscription_record(record: dict[str, Any]) -> bool:
+6897:def editorial_score(record: dict[str, Any]) -> float:
+6916:def story_id_for_item(item: dict[str, Any]) -> str:
+6923:def calculate_item_importance(
+6948:def story_category(score: float, primary_item: dict[str, Any], duplicate_count: int) -> str:
+6959:def importance_label(category: str) -> str:
+6968:def choose_primary_story_item(
+6982:def story_item_link(item: dict[str, Any]) -> dict[str, Any]:
+6994:def story_reasons(primary: dict[str, Any], score: float, duplicate_count: int) -> list[str]:
+7010:def build_story_record(
+7058:def merge_story_items(
+7129:def story_passes_brief_gate(story: dict[str, Any]) -> bool:
+7144:def select_diverse_stories(
+7195:def build_daily_brief_payload(
+7211:def build_stories_payload(
+7224:def build_merge_log_payload(events: list[dict[str, Any]], generated_at: str) -> dict[str, Any]:
+7233:def build_creator_hot_items(
+7286:def build_latest_payloads(latest_payload: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]:
+7314:def main() -> int:

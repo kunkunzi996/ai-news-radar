@@ -72,7 +72,7 @@ class PrivateBridgeSourceTests(unittest.TestCase):
                 """,
                 encoding="utf-8",
             )
-            with patch("scripts.update_news.requests.get", return_value=Response(rss)):
+            with patch("scripts.radar.fetchers.subscriptions.requests.get", return_value=Response(rss)):
                 items, summary, feed_statuses = fetch_opml_rss(now, opml)
 
         self.assertEqual(len(items), 5)
