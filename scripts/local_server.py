@@ -39,6 +39,7 @@ REFRESH_PROGRESS: dict[str, Any] = {
     "current_step": "等待刷新",
     "log": [],
 }
+RESTART_DELAY_SECONDS = 0.4
 COLLECTION_SCOPE_24H = "24h"
 COLLECTION_SCOPE_ALL = "all"
 COLLECTION_SCOPES = {COLLECTION_SCOPE_24H, COLLECTION_SCOPE_ALL}
@@ -1201,6 +1202,25 @@ def mediacrawler_window_summary_path(crawler_root: Path, platform: str) -> Path:
     return crawler_root / f"mediacrawler-{platform}-collection-window.json"
 
 
+def normalize_douyin_creator_locator(locator: str) -> str:
+    text = str(locator or "").strip()
+    if not text:
+        return ""
+    if not is_url_like(text):
+        return text
+    try:
+        parsed = urllib.parse.urlparse(text)
+    except Exception:
+        return text
+    host = (parsed.netloc or "").lower()
+    if not host.endswith("douyin.com"):
+        return text
+    parts = [urllib.parse.unquote(part) for part in parsed.path.split("/") if part]
+    if len(parts) >= 2 and parts[0] == "user" and parts[1].strip():
+        return parts[1].strip()
+    return text
+
+
 def read_mediacrawler_window_summary(crawler_root: Path, platform: str, jsonl: Path | None) -> dict[str, Any] | None:
     if not jsonl:
         return None
@@ -1357,6 +1377,7 @@ def mediacrawler_creator_id(root_dir: Path, crawler_root: Path, runtime_id: str)
     if configured:
         return configured
 
+    url_locators: list[str] = []
     candidates: list[Path] = []
     try:
         config = read_source_config(root_dir)
@@ -1367,9 +1388,15 @@ def mediacrawler_creator_id(root_dir: Path, crawler_root: Path, runtime_id: str)
             continue
         locator = str(source.get("locator") or "").strip()
         if is_url_like(locator):
-            return locator
+            if runtime_id == "mediacrawler_douyin":
+                locator = normalize_douyin_creator_locator(locator)
+            url_locators.append(locator)
+            continue
         if locator:
             candidates.append(resolve_latest_mediacrawler_jsonl(resolve_mediacrawler_locator(root_dir, runtime_id, locator)))
+
+    if url_locators:
+        return ",".join(url_locators)
 
     if runtime_id != "mediacrawler_xhs":
         return ""
@@ -1612,6 +1639,45 @@ def json_response(handler: SimpleHTTPRequestHandler, status: int, payload: dict[
     handler.send_header("Cache-Control", "no-store")
     handler.end_headers()
     handler.wfile.write(body)
+
+
+def restart_command() -> list[str]:
+    return [sys.executable, *sys.argv]
+
+
+def schedule_process_restart(command: list[str], cwd: Path, delay_seconds: float = RESTART_DELAY_SECONDS) -> None:
+    def restart_worker() -> None:
+        helper_code = (
+            "import json, os, subprocess, sys, time\n"
+            "command = json.loads(sys.argv[1])\n"
+            "cwd = sys.argv[2]\n"
+            "delay = float(sys.argv[3])\n"
+            "time.sleep(delay)\n"
+            "creationflags = 0\n"
+            "if os.name == 'nt':\n"
+            "    creationflags = subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS\n"
+            "out = open(os.path.join(cwd, 'server.out.log'), 'a', encoding='utf-8')\n"
+            "err = open(os.path.join(cwd, 'server.err.log'), 'a', encoding='utf-8')\n"
+            "subprocess.Popen(command, cwd=cwd, stdin=subprocess.DEVNULL, stdout=out, stderr=err, close_fds=True, creationflags=creationflags)\n"
+        )
+        creationflags = 0
+        if os.name == "nt":
+            creationflags = subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS
+        try:
+            subprocess.Popen(
+                [sys.executable, "-c", helper_code, json.dumps(command), str(cwd), str(delay_seconds)],
+                cwd=str(cwd),
+                stdin=subprocess.DEVNULL,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                close_fds=True,
+                creationflags=creationflags,
+            )
+        finally:
+            time.sleep(0.2)
+            os._exit(0)
+
+    threading.Thread(target=restart_worker).start()
 
 
 def is_local_origin(value: str) -> bool:
@@ -2195,6 +2261,9 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
         if route == "/api/refresh":
             self.handle_refresh()
             return
+        if route == "/api/restart-local-server":
+            self.handle_restart_local_server()
+            return
         if route == "/api/subscriptions/youtube":
             self.handle_youtube_subscriptions()
             return
@@ -2389,6 +2458,25 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
         except Exception as exc:
             REFRESH_LOCK.release()
             json_response(self, HTTPStatus.INTERNAL_SERVER_ERROR, {"ok": False, "error": str(exc)})
+
+    def handle_restart_local_server(self) -> None:
+        if self.reject_nonlocal_origin():
+            return
+        if REFRESH_LOCK.locked():
+            json_response(self, HTTPStatus.CONFLICT, {"ok": False, "error": "refresh_already_running"})
+            return
+        command = restart_command()
+        schedule_process_restart(command, self.root_dir)
+        json_response(
+            self,
+            HTTPStatus.ACCEPTED,
+            {
+                "ok": True,
+                "restarting": True,
+                "delay_seconds": RESTART_DELAY_SECONDS,
+                "command": [Path(command[0]).name, *command[1:]],
+            },
+        )
 
 
 def main() -> int:

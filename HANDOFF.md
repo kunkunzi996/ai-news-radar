@@ -1,5 +1,116 @@
 # HANDOFF.md
 
+## 当前最新交接：匿名用户996 已跑到账号但公开视频为 0
+
+- 日期：2026-07-07
+- 当前阶段：已复查并真实重跑。现在本地链路能把 4 个抖音账号都交给 MediaCrawler，`匿名用户996` 也被 MediaCrawler 成功解析到；但抖音侧返回该账号 `videos_count=0`，所以内容 JSONL 没有它的视频，主看板也不会显示。
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前分支：`master`
+- 本轮原因判断：
+  - 之前 12:28 那轮失败，是 MediaCrawler 访问本机 CDP `localhost:9333` 时被 `ALL_PROXY=socks5://127.0.0.1:4780` 误导去走 SOCKS，但环境缺 `socksio`，随后回退标准 Playwright 又缺浏览器包。
+  - 本轮已让 `scripts/run_mediacrawler_douyin.py` 对本机 CDP 设置 `NO_PROXY/no_proxy`，并移除 SOCKS 型 `ALL_PROXY/all_proxy`，避免本机连接再走 SOCKS。
+  - 本轮还把抖音主页 URL 在启动前规范成纯 `sec_uid`，避免整条 URL 查询参数影响 MediaCrawler 多账号解析。
+- 本轮真实验收：
+  - 已重启本地 8080 服务：PID `31988` -> `33288`，`/api/local-status` 正常。
+  - 已触发 `start_mediacrawler_douyin`：PID `33856`。
+  - MediaCrawler 日志确认解析 4 个账号：Simon林、珍妮丁丁说AI、FredTalk、匿名用户996。
+  - `creator_creators_2026-07-07.jsonl` 里有 `匿名用户996`，但 `videos_count=0`。
+  - `creator_contents_2026-07-07.jsonl` 共 25 行：Simon林 10、珍妮丁丁说AI 10、FredTalk 5、匿名用户996 0。
+  - 已刷新看板数据；`data/source-status.json` 里 `匿名用户996 item_count=0`，错误为 `mediacrawler_douyin_no_items`。
+- 下一步：
+  - 用采集专用 Chrome profile 打开 `匿名用户996` 主页，确认这条视频是不是公开视频、是否已过审、是否仅自己可见/朋友可见、是否被新号风控限制展示。只要该 profile 看到主页公开视频数仍是 0，本项目就读不到。
+
+## 当前最新交接：网页端快速重启本地服务按钮
+
+- 日期：2026-07-07
+- 当前阶段：已新增网页端 `重启本地服务` 按钮，用于让 8080 本地后台加载最新代码，不再需要用户手动找 PowerShell 窗口按 Ctrl+C。
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前分支：`master`
+- 本轮改动：
+  - `index.html`：在信源配置 / 本地采集工具栏新增 `重启本地服务` 按钮，并把 `assets/app.js` 缓存号更新为 `local-server-restart-0707a`。
+  - `assets/app.js`：点击按钮后调用 `POST /api/restart-local-server`，显示重启状态，等待 `/api/local-status` 恢复后自动刷新页面。
+  - `scripts/local_server.py`：新增本地-only 重启接口；沿用非本地来源拦截；如果正在刷新看板数据则返回 `refresh_already_running`；实际重启通过一个临时 Python helper 在旧服务退出后重新启动当前命令，不杀其它进程。
+  - `tests/test_local_server.py`：新增重启命令复用当前 Python 和参数的单测。
+- 本轮验收：
+  - `.\.venv\Scripts\python.exe -m py_compile scripts\local_server.py` 通过。
+  - `node --check assets\app.js` 通过。
+  - `.\.venv\Scripts\python.exe -m unittest tests.test_local_server -q` 通过：64 tests OK。
+  - 真实接口验收通过：`POST /api/restart-local-server` 返回 202；8080 从 PID 28940 切到 PID 30548；随后 `/api/local-status` 返回 OK。
+- 下一轮手动验收：
+  - 先用原来的方式启动一次本地服务：`.\.venv\Scripts\python.exe scripts\local_server.py --host 127.0.0.1 --port 8080`。
+  - 打开 `http://127.0.0.1:8080/`，强刷，确认页面加载的是 `assets/app.js?v=local-server-restart-0707a`。
+  - 展开 `信源配置`，点击 `重启本地服务`。
+  - 预期：按钮显示重启中，几秒后页面自动刷新；之后点 `检查状态` 能正常读到本地采集状态。
+- 风险点：
+  - 如果正在 `刷新看板数据`，接口会拒绝重启；需要等刷新结束后再点。
+
+## 当前最新交接：抖音新增账号启动采集只抓第一个账号修复
+
+- 日期：2026-07-07
+- 当前阶段：已定位并修复“新增抖音测试账号 `匿名用户996` 后，采集完页面不显示”的启动链路问题。
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前分支：`master`
+- 根因：`sources.config.json` 里已经有 4 个启用的抖音账号，包括 `匿名用户996`；但 `scripts/local_server.py` 启动 MediaCrawler 时，`mediacrawler_creator_id()` 只返回第一个启用的抖音主页 URL。结果 MediaCrawler 实际没有收到 `匿名用户996`，最新导出 `creator_contents_2026-07-07.jsonl` 也只包含 Simon林 和 珍妮丁丁说AI，`data/source-status.json` 对 `匿名用户996` 报 `item_count=0`。
+- 本轮改动：
+  - `scripts/local_server.py`：启动 MediaCrawler 时，把所有启用的抖音主页 URL 用逗号拼起来传给 `--creator-id`；MediaCrawler 自身已经支持多个 creator。
+  - `tests/test_local_server.py`：新增回归测试，确保两个启用抖音主页会同时进入启动命令。
+  - `PROJECT_STATE.md` / `HANDOFF.md`：记录根因、修复和下一轮验收入口。
+- 本轮验收：
+  - `.\.venv\Scripts\python.exe -m py_compile scripts\local_server.py` 通过。
+  - `node --check assets\app.js` 通过。
+  - `.\.venv\Scripts\python.exe -m unittest tests.test_local_server -q` 通过：63 tests OK。
+  - 当前真实配置 dry-run：`creator_count=4`，且包含 `匿名用户996` 的 creator 前缀；`collect_window=24`，`max_notes=5`。
+- 下一轮手动验收：
+  - 如果 `http://127.0.0.1:8080/` 已经开着，先重启本地服务，让它加载新的 `scripts/local_server.py`。
+  - 打开 `http://127.0.0.1:8080/`，展开 `信源配置` / 本地采集概览，点 `启动抖音采集`。
+  - 采集完成后点 `刷新看板数据`。
+  - 预期：`data/source-status.json` 的 `mediacrawler_douyin.subscriptions` 里，`匿名用户996 item_count>0`；页面 `抖音` 栏目能看到该小号公开视频。
+- 仍需注意：
+  - 如果修复后真实重跑仍是 `item_count=0`，下一步就不是本项目桥接问题，而要检查该视频是否公开、是否已过审、采集专用 Chrome profile 是否能访问这个小号主页、以及抖音是否对新/小号内容做了可见性限制。
+
+## 当前最新交接：微信公众号功能先隐藏
+
+- 日期：2026-07-07
+- 当前阶段：已按用户要求把微信公众号相关功能先隐藏起来；订阅源不稳定时，不再让它污染首页、订阅管理、源配置和维护状态。
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前分支：`master`
+- 本轮改动：
+  - `assets/app.js`：新增可逆隐藏名单，当前隐藏平台为 `wechat`，隐藏源为 `wewe_rss` / `maobidao_wudaolu_backup`。
+  - `assets/app.js`：顶部栏目、订阅成员平台 Tab、高级信源筛选/列表/统计、本地采集概览、源健康、失败源/维护项、站点筛选和最终渲染列表，都不再展示公众号相关内容。
+  - `sources.config.json`：将 `wewe_rss_maobidao.enabled` 改为 `false`，以后刷新默认不会再请求 WeWe RSS sidecar。
+  - `index.html`：更新 `assets/app.js` 缓存版本号到 `hide-wechat-source-0707a`。
+- 验收重点：
+  - 打开 `http://127.0.0.1:8080/` 强刷后，顶部不应再有 `微信公众号` 栏目。
+  - 展开信源配置/订阅成员管理时，不应再出现公众号筛选和公众号平台 Tab。
+  - 本地采集状态里不应再因为 `127.0.0.1:4000` 的 WeWe RSS 连接失败而显示公众号维护项。
+- 本轮验收：
+  - `node --check assets\app.js` 通过。
+  - `GET http://127.0.0.1:8080/api/source-config` 返回 `wewe_rss_maobidao.enabled=false`。
+  - `GET http://127.0.0.1:8080/index.html` 已服务 `assets/app.js?v=hide-wechat-source-0707a`。
+  - Playwright 页面检查：正文不含 `微信公众号 / 公众号 / WeWe RSS / 猫笔刀`，仍保留 `B站` 和 `油管/YouTube` 入口；顶部 tabs 为 `我的订阅304 / 抖音5 / 小红书5 / B站279 / 油管10 / 已阅0`。
+- 恢复方式：把 `assets/app.js` 里的 `HIDDEN_PLATFORM_IDS` / `HIDDEN_SOURCE_IDS` 移除对应项，并把 `sources.config.json` 的 `wewe_rss_maobidao.enabled` 改回 `true`。
+
+## 当前最新交接：订阅栏目 24 小时时间筛选修复
+
+- 日期：2026-07-06
+- 当前阶段：已修复“选择 `过去 24 小时` 后，B站和油管仍显示全量订阅历史”的前端筛选问题。
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前分支：`master`
+- 根因：`assets/app.js` 的 `setActiveSection()` 在进入 `我的订阅 / B站 / 油管 / 已阅` 等订阅栏目时，会强制把 `state.timeRangeFilter` 改回 `all`。所以用户刚选了 24h，点进 B站/油管又被前端悄悄切回“不限”。采集数据本身不是根因。
+- 本轮改动：
+  - `assets/app.js`：删除订阅栏目强制重置时间范围的逻辑，保留用户选择的 `24h` / `不限`。
+  - `index.html`：更新 `assets/app.js` 缓存版本号到 `subscription-time-filter-0706a`。
+  - `PROJECT_STATE.md` / `HANDOFF.md`：记录根因和验收入口。
+- 本轮验收：
+  - `node --check assets\app.js` 通过。
+  - 当前数据直接计算：`B站 all=279 last24=1`，`油管 all=10 last24=0`，`generated_at=2026-07-06T14:22:44.284161Z`。
+  - 真实页面 `http://127.0.0.1:8080/` 已服务 `assets/app.js?v=subscription-time-filter-0706a`。
+  - Playwright + Edge 验证：默认不限时 tabs 为 `我的订阅326 / B站279 / 油管10`；切换 24h 后 tabs 为 `我的订阅1 / B站1 / 油管0`；进入 B站保持 `timeRangeSelect=24h` 且 `result=1 条`；进入油管保持 `timeRangeSelect=24h` 且 `result=0 条`。
+- 下一轮手动验收：
+  - 打开 `http://127.0.0.1:8080/` 并强刷。
+  - 展开 `高级筛选`，把 `时间范围` 从 `不限` 改成 `过去 24 小时`。
+  - 预期：顶部栏目数量同步变成最近 24 小时口径；进入 `B站` 不再回到 279 全量；进入 `油管` 不再回到 10 全量。
+
 ## 当前最新交接：B站“分享动态”已阅误伤修复
 
 - 日期：2026-07-06

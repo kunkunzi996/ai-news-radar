@@ -25,6 +25,7 @@ from scripts.local_server import (
     read_wewe_rss_feeds,
     refresh_command,
     refresh_env,
+    restart_command,
     read_youtube_subscriptions,
     resolve_collect_window_hours,
     sync_bilibili_cookie,
@@ -38,6 +39,41 @@ from scripts.local_server import (
 
 
 class LocalServerTests(unittest.TestCase):
+    def test_restart_command_reuses_current_python_and_args(self):
+        import sys
+
+        command = restart_command()
+
+        self.assertEqual(command[0], sys.executable)
+        self.assertEqual(command[1:], sys.argv)
+
+    def test_mediacrawler_runner_protects_local_cdp_from_socks_proxy(self):
+        import os
+
+        from scripts.run_mediacrawler_douyin import protect_local_cdp_from_proxy
+
+        old_values = {
+            key: os.environ.get(key)
+            for key in ("ALL_PROXY", "all_proxy", "NO_PROXY", "no_proxy")
+        }
+        os.environ["ALL_PROXY"] = "socks5://127.0.0.1:4780"
+        os.environ.pop("all_proxy", None)
+        os.environ["NO_PROXY"] = "localhost,127.0.0.1"
+        os.environ.pop("no_proxy", None)
+        try:
+            protect_local_cdp_from_proxy()
+            self.assertNotIn("ALL_PROXY", os.environ)
+            self.assertIn("localhost", os.environ["NO_PROXY"])
+            self.assertIn("127.0.0.1", os.environ["NO_PROXY"])
+            self.assertIn("::1", os.environ["NO_PROXY"])
+            self.assertIn("::1", os.environ["no_proxy"])
+        finally:
+            for key, value in old_values.items():
+                if value is None:
+                    os.environ.pop(key, None)
+                else:
+                    os.environ[key] = value
+
     def test_read_wewe_rss_feeds_returns_sanitized_local_feed_list(self):
         class FakeResponse:
             status = 200
@@ -1008,7 +1044,7 @@ class LocalServerTests(unittest.TestCase):
         self.assertEqual(result["command"][result["command"].index("--max-notes") + 1], "5")
         self.assertNotIn("url", result)
 
-    def test_start_mediacrawler_douyin_dry_run_uses_homepage_url_from_source_config(self):
+    def test_start_mediacrawler_douyin_dry_run_uses_creator_id_from_homepage_url(self):
         import os
 
         root = Path(self.create_temp_dir()) / "ai-news-radar-run"
@@ -1057,7 +1093,70 @@ class LocalServerTests(unittest.TestCase):
         self.assertFalse(result["executed"])
         self.assertEqual(Path(result["command"][0]), python_exe)
         self.assertIn("--creator-id", result["command"])
-        self.assertIn(homepage_url, result["command"])
+        self.assertIn("MS4wLjABAAAAOzTvIhQXaHWi6jT_P5rG5xEWpWPjufiK", result["command"])
+        self.assertNotIn(homepage_url, result["command"])
+        self.assertIn("--collect-window-hours", result["command"])
+
+    def test_start_mediacrawler_douyin_dry_run_uses_all_enabled_homepage_urls(self):
+        import os
+
+        root = Path(self.create_temp_dir()) / "ai-news-radar-run"
+        script_dir = root / "scripts"
+        script_dir.mkdir(parents=True)
+        runner = script_dir / "run_mediacrawler_douyin.py"
+        runner.write_text("print('runner')\n", encoding="utf-8")
+        crawler_root = root.parent / "MediaCrawler-local-test"
+        crawler_root.mkdir(parents=True)
+        (crawler_root / "main.py").write_text("print('fake')\n", encoding="utf-8")
+        python_dir = crawler_root / "venv" / "Scripts"
+        python_dir.mkdir(parents=True)
+        python_exe = python_dir / "python.exe"
+        python_exe.write_text("", encoding="utf-8")
+        first_url = "https://www.douyin.com/user/MS4wLjABAAAA_FIRST"
+        second_url = "https://www.douyin.com/user/MS4wLjABAAAA_SECOND"
+        (root / CONFIG_FILENAME).write_text(
+            json.dumps(
+                {
+                    "version": "1.0",
+                    "sources": [
+                        {
+                            "id": "mediacrawler_douyin_first",
+                            "name": "第一个抖音号",
+                            "type": "mediacrawler_jsonl",
+                            "channel": "抖音",
+                            "locator": first_url,
+                            "enabled": True,
+                        },
+                        {
+                            "id": "mediacrawler_douyin_second",
+                            "name": "第二个抖音号",
+                            "type": "mediacrawler_jsonl",
+                            "channel": "抖音",
+                            "locator": second_url,
+                            "enabled": True,
+                        },
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
+
+        old_dir = os.environ.get("MEDIACRAWLER_LOCAL_DIR")
+        os.environ["MEDIACRAWLER_LOCAL_DIR"] = str(crawler_root)
+        try:
+            result = start_mediacrawler_douyin(root, execute=False)
+        finally:
+            if old_dir is None:
+                os.environ.pop("MEDIACRAWLER_LOCAL_DIR", None)
+            else:
+                os.environ["MEDIACRAWLER_LOCAL_DIR"] = old_dir
+
+        self.assertTrue(result["ok"])
+        self.assertFalse(result["executed"])
+        self.assertEqual(Path(result["command"][0]), python_exe)
+        self.assertIn("--creator-id", result["command"])
+        creator_id = result["command"][result["command"].index("--creator-id") + 1]
+        self.assertEqual(creator_id, "MS4wLjABAAAA_FIRST,MS4wLjABAAAA_SECOND")
         self.assertIn("--collect-window-hours", result["command"])
 
     def test_start_mediacrawler_xhs_dry_run_uses_fixed_local_command_and_creator_from_jsonl(self):
@@ -1456,7 +1555,8 @@ class LocalServerTests(unittest.TestCase):
         self.assertEqual(result["action_id"], "start_mediacrawler_douyin")
         self.assertEqual(Path(result["command"][0]), python_exe)
         self.assertIn("--creator-id", result["command"])
-        self.assertIn(homepage_url, result["command"])
+        self.assertIn("MS4wLjABAAAAOzTvIhQXaHWi6jT_P5rG5xEWpWPjufiK", result["command"])
+        self.assertNotIn(homepage_url, result["command"])
         self.assertIn("--collect-window-hours", result["command"])
 
     def test_perform_maintenance_action_can_start_mediacrawler_all_scope(self):

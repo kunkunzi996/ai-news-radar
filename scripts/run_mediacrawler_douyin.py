@@ -30,6 +30,22 @@ PUBLISH_TIME_FIELDS = (
 )
 
 
+def protect_local_cdp_from_proxy() -> None:
+    local_hosts = ("localhost", "127.0.0.1", "::1")
+    for key in ("NO_PROXY", "no_proxy"):
+        existing = [part.strip() for part in os.environ.get(key, "").split(",") if part.strip()]
+        lowered = {part.lower() for part in existing}
+        for host in local_hosts:
+            if host.lower() not in lowered:
+                existing.append(host)
+        os.environ[key] = ",".join(existing)
+
+    for key in ("ALL_PROXY", "all_proxy"):
+        value = os.environ.get(key, "")
+        if value.lower().startswith("socks"):
+            os.environ.pop(key, None)
+
+
 def collection_window_summary_path(crawler_root: Path, platform: str) -> Path:
     return crawler_root / f"mediacrawler-{platform}-collection-window.json"
 
@@ -304,6 +320,7 @@ def run_mediacrawler(crawler_root: Path, cdp_port: int, platform: str, creator_i
 
 
 def main() -> int:
+    protect_local_cdp_from_proxy()
     args = parse_args()
     crawler_root = Path(args.crawler_root).expanduser().resolve()
     if not (crawler_root / "main.py").exists():

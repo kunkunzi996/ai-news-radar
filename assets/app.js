@@ -113,6 +113,7 @@ const sourceConfigResetBtnEl = document.getElementById("sourceConfigResetBtn");
 const oneClickCollectBtnEl = document.getElementById("oneClickCollectBtn");
 const sourceConfigRefreshBtnEl = document.getElementById("sourceConfigRefreshBtn");
 const sourceConfigCheckBtnEl = document.getElementById("sourceConfigCheckBtn");
+const localServerRestartBtnEl = document.getElementById("localServerRestartBtn");
 const sourceCollectionScopeSelectEl = document.getElementById("sourceCollectionScopeSelect");
 const sourceConfigStatusEl = document.getElementById("sourceConfigStatus");
 const localOpsStatusEl = document.getElementById("localOpsStatus");
@@ -175,8 +176,11 @@ const SUBSCRIPTION_SITE_IDS = new Set([
   "wewe_rss",
 ]);
 
+const HIDDEN_PLATFORM_IDS = new Set(["wechat"]);
+const HIDDEN_SOURCE_IDS = new Set(["wewe_rss", "maobidao_wudaolu_backup"]);
+
 const SECTION_DEFS = [
-  { id: "creator", label: "我的订阅", short: "订阅", description: "B站、小红书、YouTube、抖音、公众号和 GitHub 项目的更新" },
+  { id: "creator", label: "我的订阅", short: "订阅", description: "B站、小红书、YouTube、抖音和 GitHub 项目的更新" },
   { id: "douyin", label: "抖音", short: "抖音", description: "抖音创作者与短视频信号" },
   { id: "xiaohongshu", label: "小红书", short: "小红书", description: "小红书博主、笔记和搜索信号" },
   { id: "wechat", label: "微信公众号", short: "公众号", description: "微信公众号订阅和 WeWe RSS 信号" },
@@ -185,7 +189,9 @@ const SECTION_DEFS = [
   { id: "read", label: "已阅", short: "已阅", description: "已标记已阅的订阅内容，可随时恢复" },
 ];
 
-const SECTION_BY_ID = Object.fromEntries(SECTION_DEFS.map((section) => [section.id, section]));
+const SECTION_BY_ID = Object.fromEntries(SECTION_DEFS
+  .filter((section) => !HIDDEN_PLATFORM_IDS.has(section.id))
+  .map((section) => [section.id, section]));
 
 const LIST_SORT_DEFS = [
   { id: "priority", label: "综合" },
@@ -294,6 +300,93 @@ const SUBSCRIPTION_PLATFORMS = [
     notes: "只追踪 GitHub Releases，不追踪普通 commit。",
   },
 ];
+
+function hiddenWeChatText(value) {
+  const text = String(value || "").toLowerCase();
+  return Boolean(text) && (
+    text.includes("wewe") ||
+    text.includes("wechat") ||
+    text.includes("mp.weixin") ||
+    text.includes("公众号") ||
+    text.includes("猫笔刀") ||
+    text.includes("maobidao")
+  );
+}
+
+function isHiddenPlatformId(platformId) {
+  return HIDDEN_PLATFORM_IDS.has(String(platformId || "").toLowerCase());
+}
+
+function isHiddenSourceId(siteId) {
+  return HIDDEN_SOURCE_IDS.has(String(siteId || "").toLowerCase());
+}
+
+function isHiddenStatusSite(site) {
+  return isHiddenSourceId(site?.site_id) || hiddenWeChatText(`${site?.site_name || ""} ${site?.error || ""}`);
+}
+
+function isHiddenSourceConfig(source) {
+  const runtimeIds = sourceConfigRuntimeIds(source);
+  if (Array.from(runtimeIds).some(isHiddenSourceId)) return true;
+  return isHiddenPlatformId(sourceConfigPlatformKey(source)) || hiddenWeChatText(`${source?.id || ""} ${source?.type || ""} ${source?.channel || ""} ${source?.target || ""} ${source?.locator || ""}`);
+}
+
+function withHiddenSourcePaused(source) {
+  if (!source || !isHiddenSourceConfig(source)) return source;
+  return { ...source, enabled: false };
+}
+
+function isHiddenItem(item) {
+  return isHiddenSourceId(item?.site_id) || isHiddenPlatformId(itemPlatformSection(item));
+}
+
+function visibleSections() {
+  return SECTION_DEFS.filter((section) => !isHiddenPlatformId(section.id));
+}
+
+function visibleSubscriptionPlatforms() {
+  return SUBSCRIPTION_PLATFORMS.filter((platform) => !isHiddenPlatformId(platform.id));
+}
+
+function visibleSourceConfigFilters() {
+  return SOURCE_CONFIG_FILTERS.filter((filter) => !isHiddenPlatformId(filter.id));
+}
+
+function visibleSourceConfigSources(sources = []) {
+  return (Array.isArray(sources) ? sources : []).filter((source) => !isHiddenSourceConfig(source));
+}
+
+function visibleSourceStatusSites(status = state.sourceStatus) {
+  return (Array.isArray(status?.sites) ? status.sites : []).filter((site) => !isHiddenStatusSite(site));
+}
+
+function visibleFailedSites(status = state.sourceStatus) {
+  return (Array.isArray(status?.failed_sites) ? status.failed_sites : []).filter((item) => !isHiddenSourceId(item) && !hiddenWeChatText(item));
+}
+
+function visibleZeroSites(status = state.sourceStatus) {
+  return (Array.isArray(status?.zero_item_sites) ? status.zero_item_sites : []).filter((item) => !isHiddenSourceId(item) && !hiddenWeChatText(item));
+}
+
+function visibleIssueList(issues = []) {
+  return (Array.isArray(issues) ? issues : []).filter((issue) => {
+    const sourceId = String(issue?.source_id || "");
+    const text = `${issue?.id || ""} ${issue?.title || ""} ${(issue?.details || []).join(" ")}`;
+    return !isHiddenSourceId(sourceId) && !hiddenWeChatText(text);
+  });
+}
+
+function visibleFeedList(items = []) {
+  return (Array.isArray(items) ? items : []).filter((item) => !hiddenWeChatText(typeof item === "string" ? item : JSON.stringify(item || {})));
+}
+
+function visibleItemList(items = []) {
+  return (Array.isArray(items) ? items : []).filter((item) => !isHiddenItem(item));
+}
+
+function visibleSiteStats(stats = []) {
+  return (Array.isArray(stats) ? stats : []).filter((site) => !isHiddenStatusSite(site));
+}
 
 function sourceConfigSeedSources() {
   return [
@@ -565,12 +658,12 @@ function sourceConfigSeedSources() {
       id: "wewe_rss_maobidao",
       name: "猫笔刀",
       type: "wewe_rss",
-      enabled: true,
+      enabled: false,
       channel: "微信公众号",
       target: "猫笔刀",
       locator: "MP_WXS_3198966508",
       env: "WEWE_RSS_ENABLED / WEWE_RSS_BASE_URL / WEWE_RSS_FEEDS",
-      notes: "本地 WeWe RSS sidecar 提供 JSON Feed；Radar 不读取 wewe-rss 数据库或登录态。",
+      notes: "公众号订阅源暂时隐藏并停用；保留配置，等 WeWe RSS sidecar 稳定后可恢复。",
     },
     {
       id: "github_foundation_sunshine",
@@ -624,7 +717,8 @@ function normalizeSourceConfig(payload) {
       locator: String(source.locator || source.url || source.feed_url || source.path || "").trim(),
       env: String(source.env || source.env_vars || "").trim(),
       notes: String(source.notes || source.description || "").trim(),
-    }));
+    }))
+    .map(withHiddenSourcePaused);
   return {
     version: String(payload?.version || "1.0"),
     catalog_version: String(payload?.catalog_version || ""),
@@ -746,6 +840,7 @@ function loadSourceConfigDraft() {
 
 function saveSourceConfigDraft(message = "高级配置草稿已保存") {
   if (!state.sourceConfig) return;
+  state.sourceConfig.sources = (state.sourceConfig.sources || []).map(withHiddenSourcePaused);
   state.sourceConfig.updated_at = new Date().toISOString();
   window.localStorage.setItem(SOURCE_CONFIG_STORAGE_KEY, JSON.stringify(state.sourceConfig, null, 2));
   setSourceConfigStatus(message, "ok");
@@ -790,7 +885,7 @@ function localOpsSourcePlatformLabel(source) {
 }
 
 function localOpsSiteMap(sourceStatus = {}) {
-  const sites = Array.isArray(sourceStatus.sites) ? sourceStatus.sites : [];
+  const sites = visibleSourceStatusSites(sourceStatus);
   return new Map(sites.map((site) => [String(site.site_id || ""), site]));
 }
 
@@ -904,11 +999,13 @@ function localOpsSourceGroupMeta(key) {
 }
 
 function localOpsGroupedSources(configuredSources) {
-  const order = ["youtube", "bilibili", "douyin", "xhs", "wechat", "github", "rss", "other"];
+  const order = ["youtube", "bilibili", "douyin", "xhs", "github", "rss", "other"];
   const groups = new Map();
   configuredSources.forEach((source) => {
+    if (isHiddenSourceConfig(source)) return;
     const runtimeIds = sourceConfigRuntimeIds(source);
     const key = localOpsSourceGroupKey(source, runtimeIds);
+    if (isHiddenPlatformId(key)) return;
     if (!groups.has(key)) {
       const meta = localOpsSourceGroupMeta(key);
       groups.set(key, { key, ...meta, sources: [] });
@@ -1161,12 +1258,12 @@ async function waitForRefreshProgressDone() {
 function renderLocalOpsCollectors(collectors = {}, sourceConfig = {}, sourceStatus = {}) {
   if (!localOpsCollectorsEl) return;
   localOpsCollectorsEl.innerHTML = "";
-  const configuredSources = ((Array.isArray(sourceConfig.enabled_sources) && sourceConfig.enabled_sources.length ? sourceConfig.enabled_sources : state.sourceConfig?.sources) || [])
+  const configuredSources = visibleSourceConfigSources((Array.isArray(sourceConfig.enabled_sources) && sourceConfig.enabled_sources.length ? sourceConfig.enabled_sources : state.sourceConfig?.sources) || [])
     .filter((source) => source && source.enabled !== false);
   if (!configuredSources.length) return;
 
   const siteMap = localOpsSiteMap(sourceStatus);
-  const issues = Array.isArray(sourceStatus.maintenance_issues) ? sourceStatus.maintenance_issues : [];
+  const issues = visibleIssueList(sourceStatus.maintenance_issues);
   const card = document.createElement("article");
   card.className = "local-ops-source-overview";
   const head = document.createElement("div");
@@ -1308,11 +1405,13 @@ function renderLocalOpsStatus(payload = null) {
   const collectors = payload?.collectors || {};
   const refreshProgress = payload?.refresh_progress || null;
   const collectorRunning = Object.values(collectors || {}).some((collector) => Boolean(collector?.running));
-  const issues = Array.isArray(sourceStatus.maintenance_issues) ? sourceStatus.maintenance_issues : [];
-  const enabled = Number(sourceConfig.enabled_source_count ?? (state.sourceConfig?.sources || []).filter((source) => source.enabled !== false).length ?? 0);
-  const total = Number(sourceConfig.source_count ?? (state.sourceConfig?.sources || []).length ?? 0);
-  const siteCount = Number(sourceStatus.site_count || (sourceStatus.sites || []).length || 0);
-  const okSites = Number(sourceStatus.successful_sites || (sourceStatus.sites || []).filter((site) => site.ok).length || 0);
+  const issues = visibleIssueList(sourceStatus.maintenance_issues);
+  const visibleConfiguredSources = visibleSourceConfigSources(state.sourceConfig?.sources || sourceConfig.enabled_sources || []);
+  const enabled = visibleConfiguredSources.filter((source) => source.enabled !== false).length;
+  const total = visibleConfiguredSources.length;
+  const visibleSites = visibleSourceStatusSites(sourceStatus);
+  const siteCount = visibleSites.length;
+  const okSites = visibleSites.filter((site) => site.ok).length;
   const fetched = Number(sourceStatus.fetched_raw_items || 0);
   const generatedAt = sourceStatus.generated_at ? fmtTime(sourceStatus.generated_at) : "未生成";
   const issueTone = issues.some((issue) => issue.severity === "bad") ? "bad" : (issues.length ? "warn" : "ok");
@@ -1475,7 +1574,8 @@ function setSubscriptionManagerStatus(message, tone = "") {
 }
 
 function subscriptionPlatformDef(platformId = state.subscriptionPlatform) {
-  return SUBSCRIPTION_PLATFORMS.find((item) => item.id === platformId) || SUBSCRIPTION_PLATFORMS[0];
+  const platforms = visibleSubscriptionPlatforms();
+  return platforms.find((item) => item.id === platformId) || platforms[0] || SUBSCRIPTION_PLATFORMS[0];
 }
 
 function youtubeFeedUrl(channelId) {
@@ -1693,7 +1793,10 @@ function currentSubscriptionMembers() {
 function renderSubscriptionPlatformTabs() {
   if (!subscriptionPlatformTabsEl) return;
   subscriptionPlatformTabsEl.innerHTML = "";
-  SUBSCRIPTION_PLATFORMS.forEach((platform) => {
+  if (isHiddenPlatformId(state.subscriptionPlatform)) {
+    state.subscriptionPlatform = subscriptionPlatformDef()?.id || "bilibili";
+  }
+  visibleSubscriptionPlatforms().forEach((platform) => {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "subscription-platform-tab";
@@ -1976,7 +2079,7 @@ function sourceConfigRuntimeIds(source) {
 
 function localOpsIssues() {
   const issues = state.localOpsStatus?.source_status?.maintenance_issues;
-  return Array.isArray(issues) ? issues : [];
+  return visibleIssueList(issues);
 }
 
 function issueSeverityForSource(source) {
@@ -1999,6 +2102,7 @@ function sourceConfigPlatformKey(source) {
 }
 
 function sourceConfigMatchesFilter(source) {
+  if (isHiddenSourceConfig(source)) return false;
   const filter = state.sourceConfigFilter || "all";
   if (filter === "all") return true;
   if (filter === "enabled") return source.enabled !== false;
@@ -2007,7 +2111,7 @@ function sourceConfigMatchesFilter(source) {
 }
 
 function selectSourceConfigByRuntimeId(runtimeId) {
-  const sources = state.sourceConfig?.sources || [];
+  const sources = visibleSourceConfigSources(state.sourceConfig?.sources || []);
   const source = sources.find((item) => sourceConfigRuntimeIds(item).has(runtimeId));
   if (!source) return false;
   state.sourceConfigFilter = "all";
@@ -2258,7 +2362,7 @@ async function refreshNewsDataFromLocalServer() {
     await waitForRefreshProgressDone();
     const latestStatus = await loadLocalStatusFromServer(false);
     const summary = latestStatus?.source_status || {};
-    const sites = summary.sites || [];
+    const sites = visibleSourceStatusSites(summary);
     const okSites = sites.filter((site) => site.ok).length;
     const totalItems = Number(summary.fetched_raw_items || 0);
     state.localOpsStatus = latestStatus || { source_config: state.localOpsStatus?.source_config || {}, source_status: summary };
@@ -2278,8 +2382,59 @@ async function refreshNewsDataFromLocalServer() {
   }
 }
 
+function wait(ms) {
+  return new Promise((resolve) => window.setTimeout(resolve, ms));
+}
+
+async function waitForLocalServerRestart() {
+  await wait(1200);
+  for (let attempt = 0; attempt < 12; attempt += 1) {
+    try {
+      const res = await fetch("./api/local-status", {
+        headers: { Accept: "application/json" },
+        cache: "no-store",
+      });
+      if (res.ok) return true;
+    } catch (err) {
+      // The server is expected to be briefly unavailable while it restarts.
+    }
+    await wait(700);
+  }
+  return false;
+}
+
+async function restartLocalServerFromPage() {
+  setSourceConfigButton(localServerRestartBtnEl, "重启中...", true);
+  setSourceConfigStatus("正在重启本地服务，稍等几秒后页面会自动刷新。", "warn");
+  setLocalOpsStatus("本地服务重启中", "warn");
+  try {
+    const res = await fetch("./api/restart-local-server", {
+      method: "POST",
+      headers: { Accept: "application/json" },
+      cache: "no-store",
+    });
+    const payload = await res.json().catch(() => ({}));
+    if (!res.ok || payload.ok === false) {
+      throw new Error(payload.error || `HTTP ${res.status}`);
+    }
+    const restarted = await waitForLocalServerRestart();
+    if (restarted) {
+      setSourceConfigStatus("本地服务已重启，正在刷新页面。", "ok");
+      window.location.reload();
+      return;
+    }
+    setSourceConfigStatus("重启请求已发送，但还没连回本地服务；请手动刷新页面。", "warn");
+    restoreSourceConfigButton(localServerRestartBtnEl, "重启本地服务", 0);
+  } catch (err) {
+    const message = err?.message || "unknown error";
+    setSourceConfigStatus(`重启失败：${message}`, "bad");
+    setLocalOpsStatus("本地服务重启失败", "bad");
+    restoreSourceConfigButton(localServerRestartBtnEl, "重启本地服务");
+  }
+}
+
 function selectedSourceConfig() {
-  const sources = state.sourceConfig?.sources || [];
+  const sources = visibleSourceConfigSources(state.sourceConfig?.sources || []);
   return sources.find((source) => source.id === state.sourceConfigSelectedId) || sources[0] || null;
 }
 
@@ -2310,7 +2465,7 @@ function fillSourceConfigForm(source) {
 function renderSourceConfigList() {
   if (!sourceConfigListEl || !state.sourceConfig) return;
   sourceConfigListEl.innerHTML = "";
-  const sources = (state.sourceConfig.sources || []).filter(sourceConfigMatchesFilter);
+  const sources = visibleSourceConfigSources(state.sourceConfig.sources || []).filter(sourceConfigMatchesFilter);
   if (!sources.length) {
     const empty = document.createElement("div");
     empty.className = "source-config-empty";
@@ -2342,13 +2497,10 @@ function renderSourceConfigList() {
 
 function renderSourceConfigSummary() {
   if (!sourceConfigSummaryEl || !state.sourceConfig) return;
-  const serviceConfig = state.localOpsStatus?.source_config || {};
-  const serviceStatus = state.localOpsStatus?.source_status || {};
-  const sources = state.sourceConfig.sources || [];
-  const hasServiceCounts = Number(serviceConfig.source_count || 0) > 0;
-  const total = hasServiceCounts ? Number(serviceConfig.source_count || 0) : sources.length;
-  const enabled = hasServiceCounts ? Number(serviceConfig.enabled_source_count || 0) : sources.filter((source) => source.enabled !== false).length;
-  const attention = hasServiceCounts ? Number(serviceStatus.issue_count || 0) : sources.filter((source) => issueSeverityForSource(source)).length;
+  const sources = visibleSourceConfigSources(state.sourceConfig.sources || []);
+  const total = sources.length;
+  const enabled = sources.filter((source) => source.enabled !== false).length;
+  const attention = sources.filter((source) => issueSeverityForSource(source)).length;
   sourceConfigSummaryEl.textContent = attention
     ? `${fmtNumber(enabled)}/${fmtNumber(total)} 启用 · ${fmtNumber(attention)} 需维护`
     : `${fmtNumber(enabled)}/${fmtNumber(total)} 启用`;
@@ -2357,8 +2509,8 @@ function renderSourceConfigSummary() {
 function renderSourceConfigFilters() {
   if (!sourceConfigFiltersEl || !state.sourceConfig) return;
   sourceConfigFiltersEl.innerHTML = "";
-  const sources = state.sourceConfig.sources || [];
-  SOURCE_CONFIG_FILTERS.forEach((filter) => {
+  const sources = visibleSourceConfigSources(state.sourceConfig.sources || []);
+  visibleSourceConfigFilters().forEach((filter) => {
     const count = sources.filter((source) => {
       if (filter.id === "all") return true;
       if (filter.id === "enabled") return source.enabled !== false;
@@ -2381,7 +2533,8 @@ function renderSourceConfigFilters() {
 function renderSourceConfig() {
   if (!sourceConfigFormEl) return;
   if (!state.sourceConfig) state.sourceConfig = loadSourceConfigDraft();
-  const sources = state.sourceConfig.sources || [];
+  if (isHiddenPlatformId(state.sourceConfigFilter)) state.sourceConfigFilter = "all";
+  const sources = visibleSourceConfigSources(state.sourceConfig.sources || []);
   if (!state.sourceConfigSelectedId || !sources.some((source) => source.id === state.sourceConfigSelectedId)) {
     state.sourceConfigSelectedId = sources[0]?.id || "";
   }
@@ -2436,20 +2589,21 @@ function saveSourceConfigFormToState(message = "高级配置草稿已保存", sh
 }
 
 function saveSourceConfigRecordToState(record, message = "高级配置草稿已保存", shouldRender = true) {
+  const safeRecord = withHiddenSourcePaused(record);
   if (!record.name) {
     setSourceConfigStatus("名称不能为空", "bad");
     return false;
   }
   if (!state.sourceConfig) state.sourceConfig = freshSourceConfig();
   const sources = state.sourceConfig.sources || [];
-  const index = sources.findIndex((source) => source.id === record.id);
+  const index = sources.findIndex((source) => source.id === safeRecord.id);
   if (index >= 0) {
-    sources[index] = record;
+    sources[index] = safeRecord;
   } else {
-    sources.push(record);
+    sources.push(safeRecord);
   }
   state.sourceConfig.sources = sources;
-  state.sourceConfigSelectedId = record.id;
+  state.sourceConfigSelectedId = safeRecord.id;
   saveSourceConfigDraft(message);
   if (shouldRender) {
     renderSourceConfig();
@@ -2461,7 +2615,7 @@ function saveSourceConfigRecordToState(record, message = "高级配置草稿已�
 
 function syncSourceConfigFormDraft() {
   if (!sourceConfigFormEl || !state.sourceConfigSelectedId) return;
-  const record = formSourceConfigRecord();
+  const record = withHiddenSourcePaused(formSourceConfigRecord());
   if (!record.name) return;
   if (!state.sourceConfig) state.sourceConfig = freshSourceConfig();
   const sources = state.sourceConfig.sources || [];
@@ -2471,7 +2625,7 @@ function syncSourceConfigFormDraft() {
   } else {
     sources.push(record);
   }
-  state.sourceConfig.sources = sources;
+  state.sourceConfig.sources = sources.map(withHiddenSourcePaused);
   state.sourceConfigSelectedId = record.id;
   state.sourceConfig.updated_at = new Date().toISOString();
   window.localStorage.setItem(SOURCE_CONFIG_STORAGE_KEY, JSON.stringify(state.sourceConfig, null, 2));
@@ -2561,22 +2715,23 @@ function creatorWindowLabel() {
 
 function setStats() {
   statsEl.innerHTML = "";
-  const items = state.itemsAi || [];
+  const items = visibleItemList(state.itemsAi || []);
   const highCount = items.filter((item) => isHighPriorityItem(item)).length;
   const curatedCount = briefStories().length || Math.min(20, mergedStories().filter((story) => storyScore(story) >= 75).length);
   const status = state.sourceStatus;
-  const totalSites = Array.isArray(status?.sites) ? status.sites.length : 0;
-  const okSites = Number(status?.successful_sites || 0);
+  const visibleSites = visibleSourceStatusSites(status);
+  const totalSites = visibleSites.length;
+  const okSites = visibleSites.filter((site) => site.ok).length;
   const health = totalSites ? `${fmtNumber(okSites)}/${fmtNumber(totalSites)}正常` : "加载中";
   const cards = [
-    ["AI", `${fmtNumber(state.totalAi || items.length)}条`],
+    ["AI", `${fmtNumber(items.length)}条`],
     ["高优", `${fmtNumber(highCount)}条`],
     ["精选", `${fmtNumber(curatedCount)}条`],
     ["源", health],
   ];
   statsEl.setAttribute(
     "aria-label",
-    `${windowLabel()}：AI 信号 ${fmtNumber(state.totalAi || items.length)} 条，高优先级 ${fmtNumber(highCount)} 条，精选 ${fmtNumber(curatedCount)} 条，源状态 ${totalSites ? `${fmtNumber(okSites)}/${fmtNumber(totalSites)} 源正常` : "加载中"}`,
+    `${windowLabel()}：AI 信号 ${fmtNumber(items.length)} 条，高优先级 ${fmtNumber(highCount)} 条，精选 ${fmtNumber(curatedCount)} 条，源状态 ${totalSites ? `${fmtNumber(okSites)}/${fmtNumber(totalSites)} 源正常` : "加载中"}`,
   );
 
   const prefix = document.createElement("div");
@@ -2595,9 +2750,9 @@ function setStats() {
 }
 
 function failedSourceCount(status = state.sourceStatus) {
-  const failedSites = Array.isArray(status?.failed_sites) ? status.failed_sites.length : 0;
+  const failedSites = visibleFailedSites(status).length;
   const rss = status?.rss_opml || {};
-  const failedFeeds = Array.isArray(rss.failed_feeds) ? rss.failed_feeds.length : 0;
+  const failedFeeds = visibleFeedList(rss.failed_feeds).length;
   return failedSites + failedFeeds;
 }
 
@@ -2610,8 +2765,9 @@ function renderSourceStatusPill(errorMessage = "") {
     if (errorMessage) sourceStatusPillEl.classList.add("bad");
     return;
   }
-  const totalSites = Array.isArray(status.sites) ? status.sites.length : 0;
-  const okSites = Number(status.successful_sites || 0);
+  const visibleSites = visibleSourceStatusSites(status);
+  const totalSites = visibleSites.length;
+  const okSites = visibleSites.filter((site) => site.ok).length;
   const failed = failedSourceCount(status);
   sourceStatusPillEl.textContent = failed
     ? `${fmtNumber(okSites)}/${fmtNumber(totalSites)} 源正常 · 失败 ${fmtNumber(failed)}`
@@ -2695,7 +2851,7 @@ function appendSourceChip(parent, label, tone = "default", className = "source-c
 }
 
 function siteRows() {
-  return Array.isArray(state.sourceStatus?.sites) ? state.sourceStatus.sites : [];
+  return visibleSourceStatusSites(state.sourceStatus);
 }
 
 function siteRow(siteId) {
@@ -2755,7 +2911,7 @@ function renderCoverageStrip(errorMessage = "") {
   coverageStripEl.innerHTML = "";
 
   const rows = siteRows();
-  const failedSites = Array.isArray(state.sourceStatus?.failed_sites) ? state.sourceStatus.failed_sites : [];
+  const failedSites = visibleFailedSites(state.sourceStatus);
   const rss = state.sourceStatus?.rss_opml || {};
   const agentmail = state.sourceStatus?.agentmail || {};
   const xApi = state.sourceStatus?.x_api || {};
@@ -2766,14 +2922,14 @@ function renderCoverageStrip(errorMessage = "") {
   const newsletterCount = Number(siteRow("aibreakfast")?.item_count || 0);
   const curatedMediaCount = Number(siteRow("curated_media")?.item_count || 0);
   const buildersCount = Number(siteRow("followbuilders")?.item_count || 0);
-  const creatorCount = state.creatorItemsAi.length || (siteAiPoolCount("tikhub_douyin") + siteAiPoolCount("tikhub_xiaohongshu") + siteAiPoolCount("mediacrawler_douyin") + siteAiPoolCount("mediacrawler_xhs") + siteAiPoolCount("github_foundation_sunshine_releases"));
-  const creatorRawCount = state.creatorItemsAll.length || (siteRawPoolCount("tikhub_douyin") + siteRawPoolCount("tikhub_xiaohongshu") + siteRawPoolCount("mediacrawler_douyin") + siteRawPoolCount("mediacrawler_xhs") + siteRawPoolCount("github_foundation_sunshine_releases"));
+  const creatorCount = visibleItemList(state.creatorItemsAi).length || (siteAiPoolCount("tikhub_douyin") + siteAiPoolCount("tikhub_xiaohongshu") + siteAiPoolCount("mediacrawler_douyin") + siteAiPoolCount("mediacrawler_xhs") + siteAiPoolCount("github_foundation_sunshine_releases"));
+  const creatorRawCount = visibleItemList(state.creatorItemsAll).length || (siteRawPoolCount("tikhub_douyin") + siteRawPoolCount("tikhub_xiaohongshu") + siteRawPoolCount("mediacrawler_douyin") + siteRawPoolCount("mediacrawler_xhs") + siteRawPoolCount("github_foundation_sunshine_releases"));
   const socialdataPoolCount = siteAiPoolCount("socialdata_x");
   const xApiPoolCount = siteAiPoolCount("xapi");
   const xPoolCount = socialdataPoolCount + xApiPoolCount;
   const mailCount = Number(agentmail.item_count || 0);
   const totalSites = rows.length;
-  const okSites = Number(state.sourceStatus?.successful_sites || 0);
+  const okSites = rows.filter((site) => site.ok).length;
   const opmlValue = rss.enabled ? `${fmtNumber(rss.ok_feeds || 0)}/${fmtNumber(rss.effective_feed_total || 0)}` : "OPML";
   const opmlMeta = rss.enabled ? "RSS示例/自定义订阅已接入" : "可用OPML批量接入RSS";
   const socialdataLabel = paidSourceLabel(socialdata, socialdataPoolCount, "SocialData", "");
@@ -2798,7 +2954,7 @@ function renderCoverageStrip(errorMessage = "") {
   const cards = [
     ["源健康", totalSites ? `${fmtNumber(okSites)}/${fmtNumber(totalSites)}` : "加载中", failedSites.length ? `${fmtNumber(failedSites.length)} 个失败源` : (errorMessage || "内置源正常"), failedSites.length ? "warn" : "ok"],
     ["今日覆盖池", `${fmtNumber(coverageCount)} 条`, coverageMeta, "signal"],
-    ["AI强相关", `${fmtNumber(state.totalAi)} 条`, "24小时强相关信号", "signal"],
+    ["AI强相关", `${fmtNumber(visibleItemList(state.itemsAi).length)} 条`, "24小时强相关信号", "signal"],
     ["官方/日报源池", `${fmtNumber(officialCount + newsletterCount)} 条`, "官方节点 + AI Breakfast", "official"],
     ["精选媒体源池", `${fmtNumber(curatedMediaCount)} 条`, "The Decoder / TC / Verge / MTP 等", "signal"],
     ["Builders/X源池", `${fmtNumber(buildersCount)} 条`, "Follow Builders公开feed", "builders"],
@@ -2820,16 +2976,16 @@ function renderAdvancedSummary() {
     advancedSummaryEl.textContent = `${fmtNumber(filteredCount)} 条结果`;
     return;
   }
-  const sites = Array.isArray(status.sites) ? status.sites : [];
+  const sites = visibleSourceStatusSites(status);
   const totalSites = sites.length;
-  const okSites = Number(status.successful_sites || 0);
+  const okSites = sites.filter((site) => site.ok).length;
   const failed = failedSourceCount(status);
   advancedSummaryEl.textContent = `${fmtNumber(filteredCount)} 条结果 · ${fmtNumber(okSites)}/${fmtNumber(totalSites)} 源正常${failed ? ` · 失败 ${fmtNumber(failed)}` : ""}`;
 }
 
 function computeSiteStats(items) {
   const m = new Map();
-  items.forEach((item) => {
+  visibleItemList(items).forEach((item) => {
     if (!m.has(item.site_id)) {
       m.set(item.site_id, { site_id: item.site_id, site_name: sourceDisplayName(item), count: 0, raw_count: 0 });
     }
@@ -2844,7 +3000,7 @@ function currentSiteStats() {
   if (isSubscriptionSection(state.activeSection)) {
     return computeSiteStats(sectionItems(modeItems(), state.activeSection));
   }
-  if (state.mode === "ai") return state.statsAi || [];
+  if (state.mode === "ai") return visibleSiteStats(state.statsAi || []);
   return computeSiteStats(state.allDedup ? (state.itemsAll || []) : (state.itemsAllRaw || []));
 }
 
@@ -2878,7 +3034,8 @@ function itemSourceType(item) {
 }
 
 function isSubscriptionSection(sectionId) {
-  return sectionId === "creator" || sectionId === "read" || ["douyin", "xiaohongshu", "wechat", "bilibili", "youtube"].includes(sectionId);
+  if (isHiddenPlatformId(sectionId)) return false;
+  return sectionId === "creator" || sectionId === "read" || ["douyin", "xiaohongshu", "bilibili", "youtube"].includes(sectionId);
 }
 
 function itemPlatformSection(item) {
@@ -2938,16 +3095,12 @@ function sectionStats(sectionId) {
 function setActiveSection(sectionId) {
   state.activeSection = SECTION_BY_ID[sectionId] ? sectionId : "creator";
   state.boleExpanded = false;
-  if (isSubscriptionSection(state.activeSection) && state.timeRangeFilter !== "all") {
-    state.timeRangeFilter = "all";
-    renderTimeRangeControl();
-  }
 }
 
 function renderSectionTabs() {
   if (!sectionTabsEl) return;
   sectionTabsEl.innerHTML = "";
-  SECTION_DEFS.forEach((section) => {
+  visibleSections().forEach((section) => {
     const stats = sectionStats(section.id);
     const btn = document.createElement("button");
     btn.type = "button";
@@ -2973,7 +3126,7 @@ function renderSectionTabs() {
 function renderSectionFilterSelect() {
   if (!sectionSelectEl) return;
   if (!sectionSelectEl.options.length) {
-    SECTION_DEFS.forEach((section) => {
+    visibleSections().forEach((section) => {
       const option = document.createElement("option");
       option.value = section.id;
       option.textContent = section.label;
@@ -3170,6 +3323,7 @@ function subscriptionModeItems() {
   const seen = new Set();
   const add = (item) => {
     if (!item) return;
+    if (isHiddenItem(item)) return;
     const key = itemIdentityKey(item);
     if (seen.has(key)) return;
     seen.add(key);
@@ -3199,6 +3353,7 @@ function applyTimeRange(items) {
 }
 
 function sectionItems(items = modeItems(), sectionId = state.activeSection) {
+  if (isHiddenPlatformId(sectionId)) return [];
   if (sectionId === "read") {
     return applyTimeRange(subscriptionModeItems().filter((item) => isItemRead(item)))
       .sort((a, b) => timelineMs(b) - timelineMs(a) || creatorHotScore(b) - creatorHotScore(a));
@@ -3212,7 +3367,7 @@ function sectionItems(items = modeItems(), sectionId = state.activeSection) {
       .filter((item) => itemPlatformSection(item) === sectionId && !isItemRead(item))
       .sort((a, b) => timelineMs(b) - timelineMs(a) || creatorHotScore(b) - creatorHotScore(a));
   }
-  const source = applyTimeRange(items);
+  const source = visibleItemList(applyTimeRange(items));
   return source.filter((item) => itemMatchesSection(item, sectionId) && !isItemRead(item));
 }
 
@@ -3546,6 +3701,7 @@ function toggleItemRead(item) {
 }
 
 function isSubscriptionItem(item) {
+  if (isHiddenItem(item)) return false;
   const siteId = String(item?.site_id || "").toLowerCase();
   const hay = `${item?.site_name || ""} ${item?.source || ""} ${item?.url || ""}`.toLowerCase();
   const isPersonalRss = siteId === "opmlrss" || siteId.startsWith("opmlrss:");
@@ -5316,8 +5472,8 @@ function renderSourceHealthSummaryNode(status, errorMessage = "") {
     node.innerHTML = `<strong>${errorMessage ? "源状态异常" : "源状态未生成"}</strong><span>${errorMessage || "等待 source-status.json"}</span>`;
     return node;
   }
-  const sites = Array.isArray(status.sites) ? status.sites : [];
-  const okSites = Number(status.successful_sites || 0);
+  const sites = visibleSourceStatusSites(status);
+  const okSites = sites.filter((site) => site.ok).length;
   const failed = failedSourceCount(status);
   const fetched = Number(status.fetched_raw_items || state.totalRaw || status.items_before_topic_filter || 0);
   node.classList.toggle("warn", failed > 0);
@@ -5328,9 +5484,10 @@ function renderSourceHealthSummaryNode(status, errorMessage = "") {
 function renderSourceStatusTable(status) {
   if (!sourceStatusTableEl) return;
   sourceStatusTableEl.innerHTML = "";
-  if (!status || !Array.isArray(status.sites) || !status.sites.length) return;
+  const visibleSites = visibleSourceStatusSites(status);
+  if (!status || !visibleSites.length) return;
 
-  const rows = status.sites
+  const rows = visibleSites
     .map((site) => {
       const ai = aiSiteStat(site.site_id);
       const aiCount = Number(ai?.count || 0);
@@ -5379,17 +5536,17 @@ function renderSourceHealth(errorMessage = "") {
     return;
   }
 
-  const sites = Array.isArray(status.sites) ? status.sites : [];
-  const failedSites = Array.isArray(status.failed_sites) ? status.failed_sites : [];
-  const zeroSites = Array.isArray(status.zero_item_sites) ? status.zero_item_sites : [];
+  const sites = visibleSourceStatusSites(status);
+  const failedSites = visibleFailedSites(status);
+  const zeroSites = visibleZeroSites(status);
   const rss = status.rss_opml || {};
   const agentmail = status.agentmail || {};
   const xApi = status.x_api || {};
   const socialdata = status.socialdata || {};
   const emptyAdvanced = Array.isArray(status.empty_advanced_sources) ? status.empty_advanced_sources : [];
-  const failedFeeds = Array.isArray(rss.failed_feeds) ? rss.failed_feeds : [];
-  const skippedFeeds = Array.isArray(rss.skipped_feeds) ? rss.skipped_feeds : [];
-  const replacedFeeds = Array.isArray(rss.replaced_feeds) ? rss.replaced_feeds : [];
+  const failedFeeds = visibleFeedList(rss.failed_feeds);
+  const skippedFeeds = visibleFeedList(rss.skipped_feeds);
+  const replacedFeeds = visibleFeedList(rss.replaced_feeds);
   // Paid sources run on a protected interval. A skipped refresh can still have
   // usable records from the last successful run in today's data pool, so don't
   // hide them behind a misleading "待窗口" status.
@@ -5418,7 +5575,7 @@ function renderSourceHealth(errorMessage = "") {
   const metricGrid = document.createElement("div");
   metricGrid.className = "health-grid";
   metricGrid.append(
-    renderMetric("内置源", `${fmtNumber(status.successful_sites || 0)}/${fmtNumber(sites.length)}`, failedSites.length ? "warn" : "ok"),
+    renderMetric("内置源", `${fmtNumber(sites.filter((site) => site.ok).length)}/${fmtNumber(sites.length)}`, failedSites.length ? "warn" : "ok"),
     renderMetric("RSS", rss.enabled ? `${fmtNumber(rss.ok_feeds || 0)}/${fmtNumber(rss.effective_feed_total || 0)}` : "未启用"),
     renderMetric("X数据源", xMetricValue, xMetricTone, xAuthors.length ? {
       expanded: state.xAuthorsExpanded,
@@ -5828,6 +5985,10 @@ if (sourceConfigCheckBtnEl) {
     setLocalOpsStatus("检查中", "warn");
     loadLocalStatusFromServer(true);
   });
+}
+
+if (localServerRestartBtnEl) {
+  localServerRestartBtnEl.addEventListener("click", restartLocalServerFromPage);
 }
 
 init();
