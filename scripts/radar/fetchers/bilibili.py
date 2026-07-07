@@ -794,7 +794,8 @@ def mediacrawler_local_root() -> Path:
     configured = str(os.environ.get("MEDIACRAWLER_LOCAL_DIR") or "").strip()
     if configured:
         return Path(configured).expanduser()
-    return Path(__file__).resolve().parents[2] / "MediaCrawler-local-test"
+    repo_root = Path(__file__).resolve().parents[3]
+    return repo_root.parent / "MediaCrawler-local-test"
 
 
 def is_url_like(value: str) -> bool:

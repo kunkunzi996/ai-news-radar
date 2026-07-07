@@ -23,6 +23,7 @@ from scripts.update_news import (
     parse_bilibili_dynamic_items,
     parse_mediacrawler_douyin_jsonl,
     maybe_fetch_mediacrawler_douyin,
+    mediacrawler_local_root,
     parse_mediacrawler_xhs_jsonl,
     maybe_fetch_mediacrawler_xhs,
     parse_jike_public_items,
@@ -283,6 +284,12 @@ class PrivateBridgeSourceTests(unittest.TestCase):
         self.assertEqual(status["error"], "mediacrawler_douyin_jsonl_not_found")
         self.assertEqual(status["locator_kind"], "jsonl_path")
         self.assertEqual(status["jsonl_file"], "jsonl")
+
+    def test_mediacrawler_default_root_is_workspace_sibling(self):
+        expected = Path(__file__).resolve().parents[1].parent / "MediaCrawler-local-test"
+
+        with patch.dict(os.environ, {}, clear=True):
+            self.assertEqual(mediacrawler_local_root(), expected)
 
     def test_mediacrawler_douyin_homepage_url_reads_default_jsonl_dir(self):
         import tempfile
