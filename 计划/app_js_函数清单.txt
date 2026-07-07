@@ -1,0 +1,308 @@
+304:function hiddenWeChatText(value) {
+316:function isHiddenPlatformId(platformId) {
+320:function isHiddenSourceId(siteId) {
+324:function isHiddenStatusSite(site) {
+328:function isHiddenSourceConfig(source) {
+334:function withHiddenSourcePaused(source) {
+339:function isHiddenItem(item) {
+343:function visibleSections() {
+347:function visibleSubscriptionPlatforms() {
+351:function visibleSourceConfigFilters() {
+355:function visibleSourceConfigSources(sources = []) {
+359:function visibleSourceStatusSites(status = state.sourceStatus) {
+363:function visibleFailedSites(status = state.sourceStatus) {
+367:function visibleZeroSites(status = state.sourceStatus) {
+371:function visibleIssueList(issues = []) {
+379:function visibleFeedList(items = []) {
+383:function visibleItemList(items = []) {
+387:function visibleSiteStats(stats = []) {
+391:function sourceConfigSeedSources() {
+693:function freshSourceConfig() {
+705:function normalizeSourceConfig(payload) {
+735:function sourceConfigUpdatedMs(config) {
+740:function splitSourceConfigList(value) {
+747:function uniqueSourceConfigList(values) {
+751:function consolidateBilibiliSourceRecords(config) {
+792:function mergeSourceConfigWithSeed(config) {
+825:function loadSourceConfigDraft() {
+841:function saveSourceConfigDraft(message = "高级配置草稿已保存") {
+849:function setSourceConfigStatus(message, tone = "") {
+855:function setLocalOpsStatus(message, tone = "") {
+861:function localOpsMetric(label, value, tone = "") {
+872:function localOpsSourcePlatformLabel(source) {
+887:function localOpsSiteMap(sourceStatus = {}) {
+892:function localOpsSourceNeedles(source) {
+899:function localOpsIssueForSource(source, runtimeIds, issues) {
+913:function localOpsSourceTone(source, runtimeIds, siteMap, issue) {
+923:function localOpsSourceStatusText(tone, runtimeIds, siteMap) {
+932:function localOpsSourceResultText(runtimeIds, siteMap, collectors = {}) {
+960:function localOpsSourceUpdatedText(runtimeIds, collectors = {}, sourceStatus = {}) {
+968:function localOpsSourceAction(source, runtimeIds) {
+978:function localOpsSourceGroupKey(source, runtimeIds) {
+988:function localOpsSourceGroupMeta(key) {
+1001:function localOpsGroupedSources(configuredSources) {
+1022:function localOpsGroupRuntimeIds(sources) {
+1030:function localOpsGroupIssues(sources, issues) {
+1036:function localOpsGroupTone(sources, groupRuntimeIds, siteMap, issues) {
+1045:function localOpsSplitNamesAndLocators(source) {
+1055:function localOpsSourceChildEntries(group) {
+1089:function localOpsSourceRowNode({ source, name, platform, detail = "", resultText = "", actionText = "", collectors, sourceStatus, siteMap, issues }) {
+1125:function clearRefreshProgressPolling() {
+1132:function progressLogMessages(progress) {
+1138:function hasVisibleProgress(progress) {
+1144:function hasLiveServerProgress(progress) {
+1148:function progressEtaText(progress, percent) {
+1158:function renderCollectionProgress(progress = null) {
+1211:function appendCollectionProgress(message, options = {}) {
+1228:async function loadRefreshProgressFromServer() {
+1243:async function waitForRefreshProgressDone() {
+1258:function renderLocalOpsCollectors(collectors = {}, sourceConfig = {}, sourceStatus = {}) {
+1325:function scheduleLocalOpsPolling(shouldPoll) {
+1336:async function runLocalOpsFixAction(action, button) {
+1398:function renderLocalOpsStatus(payload = null) {
+1514:async function loadLocalStatusFromServer(showErrors = false) {
+1548:function setSourceConfigButton(button, label, disabled = false) {
+1554:function restoreSourceConfigButton(button, label, delay = 1200) {
+1562:function sourceConfigJsonText() {
+1566:function syncSourceConfigJson() {
+1570:function setSubscriptionManagerStatus(message, tone = "") {
+1576:function subscriptionPlatformDef(platformId = state.subscriptionPlatform) {
+1581:function youtubeFeedUrl(channelId) {
+1586:function youtubeChannelIdFromFeedUrl(url) {
+1595:function normalizeSourceConfigToken(value) {
+1605:function sourceRecordMatchesPlatform(source, platform) {
+1621:function subscriptionSourceRecordId(platform, locator, name) {
+1631:function githubRepoSlug(value) {
+1642:function githubReleaseApiUrl(value) {
+1650:function ensureSourceConfigForSubscriptions() {
+1656:function bilibiliSourceRecord() {
+1677:function bilibiliSubscriptionMembers() {
+1688:function setBilibiliSubscriptionMembers(members) {
+1712:function youtubeSubscriptionMembers() {
+1722:function sourceRecordSubscriptionMembers(platform) {
+1737:function sourceRecordForSubscriptionMember(platform, member) {
+1755:function setSourceRecordSubscriptionMembers(platform, members) {
+1786:function currentSubscriptionMembers() {
+1793:function renderSubscriptionPlatformTabs() {
+1818:function renderSubscriptionMembers() {
+1866:function renderSubscriptionMemberFormHints() {
+1883:function renderSubscriptionManager() {
+1890:function clearSubscriptionMemberForm() {
+1898:async function loadYoutubeSubscriptions(options = {}) {
+1912:async function saveYoutubeSubscriptions() {
+1933:async function syncWeweRssSubscriptions() {
+1975:async function saveSubscriptionMembers() {
+1992:function upsertSubscriptionMember(member) {
+2031:async function removeSubscriptionMember(locator) {
+2058:function sourceConfigRuntimeIds(source) {
+2080:function localOpsIssues() {
+2085:function issueSeverityForSource(source) {
+2093:function sourceConfigPlatformKey(source) {
+2104:function sourceConfigMatchesFilter(source) {
+2113:function selectSourceConfigByRuntimeId(runtimeId) {
+2125:async function loadSourceConfigFromLocalServer() {
+2154:async function writeSourceConfigToLocalServer(options = {}) {
+2200:async function saveSourceConfigForCollection(message = "已保存，后续采集会按当前信源执行") {
+2215:function selectedCollectionScope() {
+2226:function sleepMs(ms) {
+2230:async function startPlatformCollection(actionId) {
+2247:async function waitForCollectorDone(runtimeId, startedAt, label = "平台") {
+2271:async function runOneClickCollect() {
+2331:async function refreshNewsDataFromLocalServer() {
+2385:function wait(ms) {
+2389:async function waitForLocalServerRestart() {
+2406:async function restartLocalServerFromPage() {
+2436:function selectedSourceConfig() {
+2441:function fillSourceConfigForm(source) {
+2465:function renderSourceConfigList() {
+2498:function renderSourceConfigSummary() {
+2509:function renderSourceConfigFilters() {
+2533:function renderSourceConfig() {
+2549:function sourceConfigIdFromName(name) {
+2566:function formSourceConfigRecord() {
+2582:function upsertSourceConfigRecord(record) {
+2586:function saveSourceConfigFormToState(message = "高级配置草稿已保存", shouldRender = true) {
+2591:function saveSourceConfigRecordToState(record, message = "高级配置草稿已保存", shouldRender = true) {
+2616:function syncSourceConfigFormDraft() {
+2638:function addSourceConfigRecord() {
+2658:function deleteSourceConfigRecord() {
+2672:function resetSourceConfigDraft() {
+2679:function fmtNumber(n) {
+2683:function fmtTime(iso) {
+2695:function fmtDate(iso) {
+2705:function windowLabel() {
+2710:function creatorWindowLabel() {
+2716:function setStats() {
+2752:function failedSourceCount(status = state.sourceStatus) {
+2759:function renderSourceStatusPill(errorMessage = "") {
+2778:function renderStickySummary() {
+2799:function sourceKind(siteId) {
+2803:function sourceDisplayName(source) {
+2824:function sourceSignalTone(signal) {
+2836:function sourceChip(label, tone = "default", className = "source-chip") {
+2849:function appendSourceChip(parent, label, tone = "default", className = "source-chip") {
+2853:function siteRows() {
+2857:function siteRow(siteId) {
+2861:function aiSiteStat(siteId) {
+2868:function siteAiPoolCount(siteId) {
+2872:function siteRawPoolCount(siteId) {
+2877:function sourcePoolMeta(aiCount, rawCount, fallback) {
+2882:function paidSourceLabel(status, poolCount, activeLabel, idleLabel) {
+2894:function renderCoverageCard(label, value, meta, tone = "") {
+2909:function renderCoverageStrip(errorMessage = "") {
+2971:function renderAdvancedSummary() {
+2986:function computeSiteStats(items) {
+2999:function currentSiteStats() {
+3007:function creatorHotScore(item) {
+3011:function highPriorityScore(item) {
+3016:function isHighPriorityItem(item) {
+3020:function isCuratedItem(item) {
+3024:function itemSourceType(item) {
+3036:function isSubscriptionSection(sectionId) {
+3041:function itemPlatformSection(item) {
+3068:function multiSourceEventKeys(items) {
+3080:function itemMatchesSignalLevel(item, multiSourceKeys = new Set()) {
+3088:function sectionStats(sectionId) {
+3095:function setActiveSection(sectionId) {
+3100:function renderSectionTabs() {
+3126:function renderSectionFilterSelect() {
+3139:function renderSectionSummary(filteredItems = null) {
+3157:function siteRatioText(siteStats) {
+3170:function renderSiteFilters() {
+3226:function renderModeSwitch() {
+3247:function renderTimeRangeControl() {
+3252:function listTitleText() {
+3260:function renderListSortTools() {
+3271:function itemSourceSortKey(item) {
+3279:function sortItemsForList(items) {
+3306:function effectiveAllItems() {
+3310:function modeItems() {
+3314:function itemIdentityKey(item) {
+3319:function subscriptionModeItems() {
+3337:function timeRangeCutoffMs() {
+3343:function itemMatchesTimeRange(item) {
+3349:function applyTimeRange(items) {
+3355:function sectionItems(items = modeItems(), sectionId = state.activeSection) {
+3374:function getFilteredItems() {
+3388:function itemTitleText(item) {
+3392:function scorePercent(item) {
+3398:function normalizedPercent(value) {
+3404:function scoreTone(score) {
+3410:function itemLabelTone(item) {
+3424:function itemTagTone(label) {
+3440:function itemTagChip(label) {
+3447:function setSourceBadge(el, label, tone = "default", title = "") {
+3460:function sourceTierPercent(item) {
+3468:function editorialPercent(item) {
+3477:function freshnessPercent(item, halfLifeHours = 48) {
+3484:function itemPriorityScore(item) {
+3495:function labelText(item) {
+3514:function itemHaystack(item) {
+3528:function matchesAny(text, patterns) {
+3532:function itemSections(item) {
+3627:function itemMatchesSection(item, sectionId) {
+3631:function sectionBadgeLabel(sectionId) {
+3635:function readTrackingKey(item) {
+3640:function strongReadIdentityKeys(item) {
+3651:function readTitleFallbackKey(item) {
+3659:function readTrackingKeys(item) {
+3666:function loadReadItemIds() {
+3676:function persistReadItemIds() {
+3684:function isItemRead(item) {
+3691:function toggleItemRead(item) {
+3703:function isSubscriptionItem(item) {
+3726:function reasonText(item) {
+3745:function timelineIso(item) {
+3759:function timelineMs(item) {
+3764:function normalizedEventText(text) {
+3772:function eventKey(item) {
+3784:function itemIdentityKeys(item) {
+3800:function storyIdentityKeys(story) {
+3815:function headlineRowIdentityKeys(row) {
+3828:function excludedStoryKeySet(rows) {
+3836:function storyHasAnyKey(story, keys) {
+3844:function sourceSignal(item) {
+3866:function sourcePriority(item) {
+3878:function clusterBoleEvents(rows) {
+3912:function storyTimeMs(story, key) {
+3919:function storyScore(story) {
+3926:function storyImportanceTone(label) {
+3935:function storyPrimaryTitleText(story) {
+3945:function storyPrimaryEnText(story) {
+3955:function storySourceCount(story) {
+3962:function storyDurationLabel(earliest, latest) {
+3975:function formatStoryTime(story) {
+3984:function pickBoleItems(items) {
+4011:function boleReasonText(row) {
+4018:function buildBoleLead(row) {
+4052:function buildBoleTimelineRow(row, rank) {
+4084:function buildStoryCard(story, rank) {
+4185:function storyHotness(story) {
+4193:function storyHotScore(story) {
+4199:function storySortScore(story) {
+4203:function hotStories(stories) {
+4217:function renderBoleBrief(stories) {
+4275:function renderBoleFallback(picks) {
+4318:function storyMatchesFilteredItems(story, filteredItems) {
+4337:function briefStories() {
+4341:function mergedStories() {
+4345:function storyStableKey(story) {
+4350:function uniqueStories(stories, excludeKeys = new Set(), excludeIdentityKeys = new Set()) {
+4361:function currentStoryPools(filteredItems) {
+4375:function storyRowsForPool(stories) {
+4383:function storyCandidateCounts(stories) {
+4395:function latestStories(stories) {
+4404:function renderStoryViewPanel(stories, excludedRows = []) {
+4489:function storyToBoleRow(story, index) {
+4512:function rankedBriefRows(stories) {
+4530:function rankedFallbackRows(items) {
+4537:function buildBoleFollowupPanel(rows, topCount, usesStories) {
+4577:function renderBolePicks() {
+4633:function rankedClustersForItems(items) {
+4652:function headlineClusterScore(cluster) {
+4659:function pickTopHeadlineClusters(clusters, limit = 3) {
+4666:function itemTagLabels(item, row = null) {
+4682:function itemSourceRefs(item, row = null) {
+4710:function priorityGrade(score) {
+4717:function rowSourceCount(row) {
+4724:function signalSummaryText(row) {
+4736:function whyImportantText(row) {
+4762:function impactLabels(item) {
+4774:function buildTopStoryCard(row, rank) {
+4840:function buildIntelCard(item, rank) {
+4888:function feedSummaryText(item) {
+4896:function renderItemNode(item, context = {}) {
+4958:function shouldRenderReadToggle(item, context = {}) {
+4962:function buildReadToggleButton(item) {
+4986:function buildSourceGroupNode(source, items, rawCount = items.length) {
+5026:function displayDedupeKey(item) {
+5040:function dedupeSubgroupItems(items) {
+5050:function subgroupSortValue(items) {
+5061:function subgroupSummary(items, rawCount = items.length) {
+5072:function sourceGroupEntries(items) {
+5103:function buildSiteGroupNode(site) {
+5150:function renderLoadingNotice(label, count) {
+5157:function currentFilterLabel(filtered) {
+5167:function groupedSites(items) {
+5196:function addLoadMoreButton(parent, label, onClick) {
+5206:function renderFlatTimeline(items) {
+5230:function renderSiteGroups(items) {
+5255:function renderList() {
+5286:function rerenderCurrentView() {
+5298:function waytoagiViews(waytoagi) {
+5307:function renderWaytoagi(waytoagi) {
+5379:function renderMetric(label, value, tone = "", options = {}) {
+5398:function socialdataAuthors() {
+5407:function selectSocialdataAuthor(author) {
+5423:function renderSocialdataAuthorList(authors, itemCount) {
+5446:function renderIssueList(title, items) {
+5467:function renderSourceHealthSummaryNode(status, errorMessage = "") {
+5484:function renderSourceStatusTable(status) {
+5524:function renderSourceHealth(errorMessage = "") {
+5625:async function loadNewsData() {
+5631:async function loadAllModeData() {
+5659:async function loadWaytoagiData() {
+5665:async function loadSourceStatusData() {
+5671:async function loadDailyBriefData() {
+5677:async function loadStoriesData() {
+5683:async function init() {
