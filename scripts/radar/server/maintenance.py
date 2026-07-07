@@ -171,6 +171,13 @@ def maintenance_action_for_error(site_id: str, error: str) -> str:
     return "检查该源的地址、网络、接口返回和 sources.config.json 配置。"
 
 
+def is_no_new_in_collection_window(site: dict[str, Any]) -> bool:
+    collection_window_hours = int(site.get("collection_window_hours") or 0)
+    raw_item_count = int(site.get("raw_item_count") or 0)
+    window_item_count = int(site.get("window_item_count") or site.get("item_count") or 0)
+    return collection_window_hours > 0 and raw_item_count > 0 and window_item_count == 0
+
+
 def maintenance_issues_from_status(payload: dict[str, Any], root_dir: Path | None = None) -> list[dict[str, Any]]:
     issues: list[dict[str, Any]] = []
     sites = [site for site in payload.get("sites", []) if isinstance(site, dict)]
@@ -193,7 +200,7 @@ def maintenance_issues_from_status(payload: dict[str, Any], root_dir: Path | Non
                 maintenance_action_for_error(site_id, error),
                 wewe_fix_actions(include_start=True) if site_id == "wewe_rss" else bilibili_fix_actions(root_dir) if site_id == "bilibili_dynamic" else [],
             )
-        elif site.get("ok") is True and int(site.get("item_count") or 0) == 0:
+        elif site.get("ok") is True and int(site.get("item_count") or 0) == 0 and not is_no_new_in_collection_window(site):
             add_maintenance_issue(
                 issues,
                 f"{site_id or 'source'}_zero_items",

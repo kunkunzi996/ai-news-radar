@@ -318,7 +318,41 @@ def run_refresh_background(root_dir: Path, collection_scope: str, command: list[
         REFRESH_LOCK.release()
 
 
-def source_status_summary(root_dir: Path, source_config: dict[str, Any] | None = None) -> dict[str, Any]:
+def collector_no_new_in_collection_window(collector: dict[str, Any] | None) -> bool:
+    if not isinstance(collector, dict):
+        return False
+    collection_window_hours = int(collector.get("collection_window_hours") or 0)
+    raw_item_count = int(collector.get("raw_item_count") or 0)
+    item_count = int(collector.get("item_count") or 0)
+    return bool(collector.get("completed")) and collection_window_hours > 0 and raw_item_count > 0 and item_count == 0
+
+
+def suppress_collector_window_no_new_issues(
+    issues: list[dict[str, Any]],
+    collectors: dict[str, dict[str, Any]] | None = None,
+) -> list[dict[str, Any]]:
+    if not collectors:
+        return issues
+    filtered: list[dict[str, Any]] = []
+    for issue in issues:
+        source_id = str(issue.get("source_id") or "")
+        detail = str(issue.get("detail") or "")
+        if (
+            source_id in collectors
+            and issue.get("severity") == "bad"
+            and "no_items" in detail
+            and collector_no_new_in_collection_window(collectors.get(source_id))
+        ):
+            continue
+        filtered.append(issue)
+    return filtered
+
+
+def source_status_summary(
+    root_dir: Path,
+    source_config: dict[str, Any] | None = None,
+    collectors: dict[str, dict[str, Any]] | None = None,
+) -> dict[str, Any]:
     config_issues = local_config_maintenance_issues(root_dir, source_config) if source_config else []
     payload = read_source_status(root_dir)
     if not payload:
@@ -341,6 +375,7 @@ def source_status_summary(root_dir: Path, source_config: dict[str, Any] | None =
             "needs_attention": True,
         }
     issues = dedupe_maintenance_issues([*maintenance_issues_from_status(payload, root_dir), *config_issues])
+    issues = suppress_collector_window_no_new_issues(issues, collectors)
     ok_sites = sum(1 for site in payload.get("sites", []) if isinstance(site, dict) and site.get("ok") is True)
     return {
         "generated_at": payload.get("generated_at"),
@@ -412,7 +447,11 @@ def local_status_payload(root_dir: Path) -> dict[str, Any]:
         config = source_config_summary_from_payload(config_payload)
     except Exception as exc:
         config = {"exists": True, "ok": False, "error": str(exc), "source_count": 0, "enabled_source_count": 0, "enabled_sources": []}
-    summary = source_status_summary(root_dir, config_payload)
+    collectors = {
+        "mediacrawler_douyin": mediacrawler_douyin_collector_status(root_dir),
+        "mediacrawler_xhs": mediacrawler_xhs_collector_status(root_dir),
+    }
+    summary = source_status_summary(root_dir, config_payload, collectors)
     if config.get("ok") is False:
         issues = dedupe_maintenance_issues(
             [
@@ -434,10 +473,7 @@ def local_status_payload(root_dir: Path) -> dict[str, Any]:
         "ok": True,
         "source_config": config,
         "source_status": summary,
-        "collectors": {
-            "mediacrawler_douyin": mediacrawler_douyin_collector_status(root_dir),
-            "mediacrawler_xhs": mediacrawler_xhs_collector_status(root_dir),
-        },
+        "collectors": collectors,
         "refresh_running": REFRESH_LOCK.locked(),
         "refresh_progress": refresh_progress_snapshot(),
     }

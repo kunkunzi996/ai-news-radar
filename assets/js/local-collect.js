@@ -50,21 +50,40 @@ function localOpsIssueForSource(source, runtimeIds, issues) {
     return sourceNeedles.some((needle) => hay.includes(needle));
   }) || platformIssues.find((issue) => !String(issue.id || "").includes("_sidecar_")) || platformIssues[0] || null;
 }
-function localOpsSourceTone(source, runtimeIds, siteMap, issue) {
+function localOpsSourceTone(source, runtimeIds, siteMap, issue, collectors = {}) {
   if (issue?.severity === "bad") return "bad";
   if (issue) return "warn";
+  if (localOpsHasNoNewThisWindow(runtimeIds, siteMap, collectors)) return "ok";
   const sites = Array.from(runtimeIds).map((id) => siteMap.get(id)).filter(Boolean);
   if (!sites.length) return "warn";
   if (sites.every((site) => site.ok)) return "ok";
   if (sites.some((site) => site.ok)) return "warn";
   return "bad";
 }
-function localOpsSourceStatusText(tone, runtimeIds, siteMap) {
+function localOpsHasNoNewThisWindow(runtimeIds, siteMap, collectors = {}) {
+  for (const id of runtimeIds) {
+    const collector = collectors?.[id];
+    if (collector) {
+      const windowCount = Number(collector.item_count || 0);
+      const rawCount = Number(collector.raw_item_count ?? collector.item_count ?? 0);
+      if (Number(collector.collection_window_hours || 0) > 0 && rawCount > 0 && windowCount === 0) return true;
+    }
+    const site = siteMap.get(id);
+    if (site) {
+      const windowCount = Number(site.window_item_count ?? site.item_count ?? 0);
+      const rawCount = Number(site.raw_item_count ?? site.item_count ?? 0);
+      if (Number(site.collection_window_hours || 0) > 0 && rawCount > 0 && windowCount === 0) return true;
+    }
+  }
+  return false;
+}
+function localOpsSourceStatusText(tone, runtimeIds, siteMap, collectors = {}) {
   if (tone === "bad") return "需维护";
   if (tone === "warn") {
     const hasSite = Array.from(runtimeIds).some((id) => siteMap.has(id));
     return hasSite ? "需关注" : "未生成";
   }
+  if (localOpsHasNoNewThisWindow(runtimeIds, siteMap, collectors)) return "本轮无新增";
   return "正常";
 }
 function localOpsSourceResultText(runtimeIds, siteMap, collectors = {}) {
@@ -163,13 +182,13 @@ function localOpsGroupIssues(sources, issues) {
     .map((source) => localOpsIssueForSource(source, sourceConfigRuntimeIds(source), issues))
     .filter(Boolean);
 }
-function localOpsGroupTone(sources, groupRuntimeIds, siteMap, issues) {
+function localOpsGroupTone(sources, groupRuntimeIds, siteMap, issues, collectors = {}) {
   if (issues.some((issue) => issue.severity === "bad")) return "bad";
   if (issues.length) return "warn";
-  const tones = sources.map((source) => localOpsSourceTone(source, sourceConfigRuntimeIds(source), siteMap, null));
+  const tones = sources.map((source) => localOpsSourceTone(source, sourceConfigRuntimeIds(source), siteMap, null, collectors));
   if (tones.includes("bad")) return "bad";
   if (tones.includes("warn")) return "warn";
-  return localOpsSourceTone(sources[0], groupRuntimeIds, siteMap, null);
+  return localOpsSourceTone(sources[0], groupRuntimeIds, siteMap, null, collectors);
 }
 function localOpsSplitNamesAndLocators(source) {
   const names = splitSourceConfigList(source?.target || source?.name);
@@ -216,7 +235,7 @@ function localOpsSourceChildEntries(group) {
 function localOpsSourceRowNode({ source, name, platform, detail = "", resultText = "", actionText = "", collectors, sourceStatus, siteMap, issues }) {
   const runtimeIds = sourceConfigRuntimeIds(source);
   const issue = localOpsIssueForSource(source, runtimeIds, issues);
-  const tone = localOpsSourceTone(source, runtimeIds, siteMap, issue);
+  const tone = localOpsSourceTone(source, runtimeIds, siteMap, issue, collectors);
   const row = document.createElement("div");
   row.className = `local-ops-source-row local-ops-source-child ${tone}`;
   const nameNode = document.createElement("strong");
@@ -225,7 +244,7 @@ function localOpsSourceRowNode({ source, name, platform, detail = "", resultText
   platformNode.textContent = platform;
   const status = document.createElement("span");
   status.className = `local-ops-source-status ${tone}`;
-  status.textContent = localOpsSourceStatusText(tone, runtimeIds, siteMap);
+  status.textContent = localOpsSourceStatusText(tone, runtimeIds, siteMap, collectors);
   const result = document.createElement("span");
   result.textContent = resultText || localOpsSourceResultText(runtimeIds, siteMap, collectors);
   const updated = document.createElement("span");
@@ -396,7 +415,7 @@ function renderLocalOpsCollectors(collectors = {}, sourceConfig = {}, sourceStat
   localOpsGroupedSources(configuredSources).forEach((group) => {
     const runtimeIds = localOpsGroupRuntimeIds(group.sources);
     const groupIssues = localOpsGroupIssues(group.sources, issues);
-    const tone = localOpsGroupTone(group.sources, runtimeIds, siteMap, groupIssues);
+    const tone = localOpsGroupTone(group.sources, runtimeIds, siteMap, groupIssues, collectors);
     const children = localOpsSourceChildEntries(group);
     const details = document.createElement("details");
     details.className = `local-ops-source-group ${tone}`;
@@ -408,7 +427,7 @@ function renderLocalOpsCollectors(collectors = {}, sourceConfig = {}, sourceStat
     platform.textContent = `${fmtNumber(children.length)} 个订阅`;
     const status = document.createElement("span");
     status.className = `local-ops-source-status ${tone}`;
-    status.textContent = localOpsSourceStatusText(tone, runtimeIds, siteMap);
+    status.textContent = localOpsSourceStatusText(tone, runtimeIds, siteMap, collectors);
     const result = document.createElement("span");
     result.textContent = localOpsSourceResultText(runtimeIds, siteMap, collectors);
     const updated = document.createElement("span");

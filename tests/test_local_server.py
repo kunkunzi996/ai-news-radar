@@ -698,6 +698,25 @@ class LocalServerTests(unittest.TestCase):
         self.assertEqual(issues[0]["severity"], "bad")
         self.assertIn("JSONL", issues[0]["action"])
 
+    def test_maintenance_issues_skips_successful_collection_window_zero(self):
+        issues = maintenance_issues_from_status(
+            {
+                "sites": [
+                    {
+                        "site_id": "mediacrawler_xhs",
+                        "site_name": "MediaCrawler Xiaohongshu",
+                        "ok": True,
+                        "item_count": 0,
+                        "raw_item_count": 5,
+                        "window_item_count": 0,
+                        "collection_window_hours": 2,
+                    }
+                ]
+            }
+        )
+
+        self.assertEqual(issues, [])
+
     def test_wewe_feed_failure_is_not_reported_twice(self):
         issues = maintenance_issues_from_status(
             {
@@ -783,6 +802,76 @@ class LocalServerTests(unittest.TestCase):
         self.assertEqual(site_status["window_item_count"], 2)
         self.assertEqual(site_status["collection_window_hours"], 2)
         self.assertEqual(site_status["max_items_per_feed"], 5)
+
+    def test_local_status_payload_treats_collector_window_zero_as_no_new(self):
+        root = Path(self.create_temp_dir()) / "ai-news-radar-run"
+        crawler_root = root.parent / "MediaCrawler-local-test"
+        output_dir = crawler_root / "output" / "xhs" / "jsonl"
+        output_dir.mkdir(parents=True)
+        data_dir = root / "data"
+        data_dir.mkdir(parents=True)
+        data_dir.joinpath("source-status.json").write_text(
+            json.dumps(
+                {
+                    "generated_at": "2026-07-07T09:21:23Z",
+                    "sites": [
+                        {
+                            "site_id": "mediacrawler_xhs",
+                            "site_name": "MediaCrawler Xiaohongshu",
+                            "ok": False,
+                            "item_count": 0,
+                            "error": "mediacrawler_xhs_no_items",
+                        }
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
+        root.joinpath(CONFIG_FILENAME).write_text(
+            json.dumps(
+                {
+                    "version": "1.0",
+                    "sources": [
+                        {
+                            "id": "mediacrawler_xhs_test",
+                            "name": "小红书测试",
+                            "type": "mediacrawler_jsonl",
+                            "channel": "小红书",
+                            "locator": str(output_dir),
+                            "enabled": True,
+                        }
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
+        jsonl = output_dir / "creator_contents_2026-07-07.jsonl"
+        jsonl.write_text('{"title":"old one"}\n{"title":"old two"}\n', encoding="utf-8")
+        (crawler_root / "mediacrawler-xhs-collection-window.json").write_text(
+            json.dumps(
+                {
+                    "ok": True,
+                    "path": str(jsonl),
+                    "file": jsonl.name,
+                    "window_hours": 24,
+                    "total": 2,
+                    "kept": 0,
+                    "skipped": 2,
+                }
+            ),
+            encoding="utf-8",
+        )
+        (crawler_root / "mediacrawler-xhs.err.log").write_text(
+            "2026-07-07 16:11:34 MediaCrawler INFO (core.py:127) - [XiaoHongShuCrawler.start] Xhs Crawler finished ...\n",
+            encoding="utf-8",
+        )
+
+        payload = local_status_payload(root)
+
+        self.assertEqual(payload["collectors"]["mediacrawler_xhs"]["item_count"], 0)
+        self.assertEqual(payload["collectors"]["mediacrawler_xhs"]["raw_item_count"], 2)
+        self.assertEqual(payload["source_status"]["maintenance_issues"], [])
+        self.assertFalse(payload["source_status"]["needs_attention"])
 
     def test_local_config_issues_flag_missing_mediacrawler_jsonl(self):
         root = Path(self.create_temp_dir())
