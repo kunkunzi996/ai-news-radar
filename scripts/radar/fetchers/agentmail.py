@@ -1,40 +1,24 @@
 from __future__ import annotations
 
-import argparse
-from collections import Counter
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from email.utils import parseaddr
 import hashlib
-import json
-import math
 import os
-import random
-import re
-import sys
-import time
-import xml.etree.ElementTree as ET
-from dataclasses import dataclass
-from datetime import date, datetime, timedelta, timezone
-from difflib import SequenceMatcher
-from pathlib import Path
 from typing import Any
-from urllib.parse import parse_qsl, unquote, urlencode, urljoin, urlparse, urlunparse
-from zoneinfo import ZoneInfo
 
 import requests
-from bs4 import BeautifulSoup
-from dateutil import parser as dtparser
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
 
-from scripts.ai_relevance import add_ai_relevance_fields, score_ai_relevance
-
-try:
-    import feedparser
-except ModuleNotFoundError:
-    feedparser = None
-
-from scripts.radar.common import *  # noqa: F401,F403
+from scripts.radar.common import (
+    AGENTMAIL_API_BASE_DEFAULT,
+    AGENTMAIL_DEFAULT_LIMIT,
+    AI_KEYWORDS,
+    BROAD_AI_TERMS,
+    MEANINGFUL_EN_SIGNAL_RE,
+    compact_public_snippet,
+    env_flag,
+    env_int,
+    parse_domain_filter,
+    sanitize_public_payload,
+)
 
 """AgentMail digest fetcher and public payload sanitizers."""
 
@@ -50,37 +34,6 @@ def contains_meaningful_ai_signal(haystack: str) -> bool:
     return any(k in h for k in AI_KEYWORDS if k not in BROAD_AI_TERMS)
 
 
-def redact_public_text(text: str) -> str:
-    if not isinstance(text, str) or not text:
-        return text
-    text = EMAIL_RE.sub("[redacted-email]", text)
-    text = URL_IN_TEXT_RE.sub(lambda match: normalize_url(match.group(0)), text)
-    return SECRET_LIKE_RE.sub("[redacted-secret]", text)
-
-
-def sanitize_public_value(value: Any) -> Any:
-    if isinstance(value, str):
-        return redact_public_text(value)
-    if isinstance(value, list):
-        return [sanitize_public_value(item) for item in value]
-    if isinstance(value, dict):
-        return {key: sanitize_public_value(val) for key, val in value.items()}
-    return value
-
-
-def sanitize_public_payload(payload: dict[str, Any]) -> dict[str, Any]:
-    return sanitize_public_value(payload)
-
-
-def compact_public_snippet(text: str, max_chars: int = 240) -> str:
-    """Return a short redacted snippet suitable for public/static JSON."""
-    snippet = re.sub(r"\s+", " ", str(text or "")).strip()
-    snippet = redact_public_text(snippet)
-    if len(snippet) <= max_chars:
-        return snippet
-    return snippet[: max_chars - 1].rstrip() + "…"
-
-
 def sender_domain_from_address(raw_sender: str) -> str | None:
     """Extract only the sender domain; never expose the raw email address."""
     _, email_addr = parseaddr(str(raw_sender or ""))
@@ -88,16 +41,6 @@ def sender_domain_from_address(raw_sender: str) -> str | None:
         return None
     domain = email_addr.rsplit("@", 1)[-1].strip().lower().strip(">")
     return domain or None
-
-
-def parse_domain_filter(raw: str) -> list[str]:
-    """Parse a comma-separated sender-domain allowlist for private newsletter demos."""
-    domains: list[str] = []
-    for part in re.split(r"[,\s]+", str(raw or "")):
-        domain = part.strip().lower().lstrip("@")
-        if domain and re.match(r"^[a-z0-9.-]+\.[a-z]{2,}$", domain):
-            domains.append(domain)
-    return sorted(set(domains))
 
 
 def domain_matches_filter(sender_domain: str | None, allowed_domains: list[str]) -> bool:
@@ -202,4 +145,51 @@ def fetch_agentmail_digest(
     )
 
 
+def maybe_fetch_agentmail_digest(
+    session: requests.Session,
+    generated_at: str,
+    after: str,
+    window_hours: int,
+) -> tuple[dict[str, Any] | None, dict[str, Any]]:
+    """Fetch AgentMail only when explicitly enabled and fully configured."""
+    status: dict[str, Any] = {
+        "enabled": env_flag("EMAIL_DIGEST_ENABLED"),
+        "ok": None,
+        "item_count": 0,
+        "privacy": "metadata_only_no_body",
+        "published_by_default": False,
+    }
+    if not status["enabled"]:
+        return None, status
+
+    agentmail_api_key = str(os.environ.get("AGENTMAIL_API_KEY") or "").strip()
+    agentmail_inbox_id = str(os.environ.get("AGENTMAIL_INBOX_ID") or "").strip()
+    agentmail_base_url = str(os.environ.get("AGENTMAIL_API_BASE_URL") or AGENTMAIL_API_BASE_DEFAULT).strip()
+    agentmail_limit = env_int("AGENTMAIL_LIMIT", AGENTMAIL_DEFAULT_LIMIT)
+    allowed_sender_domains = parse_domain_filter(str(os.environ.get("AGENTMAIL_ALLOWED_SENDER_DOMAINS") or ""))
+    status["allowed_sender_domains"] = allowed_sender_domains
+    if not (agentmail_api_key and agentmail_inbox_id):
+        status["ok"] = False
+        status["error"] = "missing_agentmail_credentials"
+        return None, status
+
+    try:
+        payload = fetch_agentmail_digest(
+            session,
+            api_key=agentmail_api_key,
+            inbox_id=agentmail_inbox_id,
+            generated_at=generated_at,
+            after=after,
+            limit=agentmail_limit,
+            base_url=agentmail_base_url,
+            window_hours=window_hours,
+            allowed_sender_domains=allowed_sender_domains,
+        )
+        status["ok"] = True
+        status["item_count"] = int(payload.get("total_messages") or 0)
+        return payload, status
+    except Exception as exc:
+        status["ok"] = False
+        status["error"] = type(exc).__name__
+        return None, status
 

@@ -1,27 +1,38 @@
 from __future__ import annotations
 
-from scripts.radar.server import *  # noqa: F401,F403
+import json
+import os
+import urllib.error
+import urllib.request
+import xml.etree.ElementTree as ET
+from pathlib import Path
+from typing import Any
+
+from scripts.radar.server import OPML_FILENAME
+from scripts.radar.server.common import (
+    enabled_source_config_records as enabled_source_config_records,
+    read_source_config as read_source_config,
+    resolve_config_path as resolve_config_path,
+    source_config_runtime_ids as source_config_runtime_ids,
+    validate_source_config as validate_source_config,
+)
 
 """Source config and subscription persistence helpers."""
 
-def validate_source_config(payload: Any) -> dict[str, Any]:
-    if not isinstance(payload, dict):
-        raise ValueError("config root must be a JSON object")
-    sources = payload.get("sources")
-    if not isinstance(sources, list):
-        raise ValueError("config must contain a sources array")
-    if len(sources) > 500:
-        raise ValueError("too many sources")
-    for index, source in enumerate(sources):
-        if not isinstance(source, dict):
-            raise ValueError(f"sources[{index}] must be an object")
-        source_id = str(source.get("id") or "").strip()
-        name = str(source.get("name") or "").strip()
-        if not source_id:
-            raise ValueError(f"sources[{index}].id is required")
-        if not name:
-            raise ValueError(f"sources[{index}].name is required")
-    return payload
+__all__ = [
+    "PURGE_TRACKED_SITE_IDS",
+    "alive_source_names_by_site",
+    "enabled_source_config_records",
+    "is_item_orphaned",
+    "opml_path",
+    "purge_deleted_source_data",
+    "read_source_config",
+    "read_youtube_subscriptions",
+    "resolve_config_path",
+    "source_config_runtime_ids",
+    "validate_source_config",
+    "write_youtube_subscriptions",
+]
 
 
 def youtube_channel_id_from_feed_url(url: str) -> str:
@@ -141,37 +152,6 @@ def write_youtube_subscriptions(root_dir: Path, raw_subscriptions: Any) -> list[
     tree.write(tmp_path, encoding="utf-8", xml_declaration=True)
     os.replace(tmp_path, path)
     return subscriptions
-
-
-def read_source_config(root_dir: Path) -> dict[str, Any] | None:
-    path = root_dir / CONFIG_FILENAME
-    if not path.exists():
-        return None
-    return validate_source_config(json.loads(path.read_text(encoding="utf-8")))
-
-
-def source_config_runtime_ids(source: dict[str, Any]) -> set[str]:
-    raw_id = str(source.get("id") or "").strip().lower()
-    raw_type = str(source.get("type") or "").strip().lower()
-    channel = str(source.get("channel") or "").lower()
-    target = str(source.get("target") or "").lower()
-    locator = str(source.get("locator") or "").lower()
-    haystack = f"{raw_id} {raw_type} {channel} {target} {locator}"
-    runtime_ids: set[str] = set()
-    if raw_type == "wewe_rss" or raw_id.startswith("wewe_rss") or "wewe_rss" in haystack or "wewe rss" in haystack:
-        runtime_ids.add("wewe_rss")
-    if raw_type == "bilibili_dynamic" or "bilibili" in haystack or "b站" in haystack:
-        runtime_ids.add("bilibili_dynamic")
-    if raw_type in {"rss", "opml"} or "youtube.com/feeds/videos.xml" in haystack or "youtube" in haystack or "油管" in haystack:
-        runtime_ids.add("opmlrss")
-    if "github" in haystack and ("release" in haystack or "releases" in haystack):
-        runtime_ids.add("github_foundation_sunshine_releases")
-    if raw_type == "mediacrawler_jsonl":
-        if "xhs" in haystack or "xiaohongshu" in haystack or "小红书" in haystack:
-            runtime_ids.add("mediacrawler_xhs")
-        if "douyin" in haystack or "抖音" in haystack:
-            runtime_ids.add("mediacrawler_douyin")
-    return runtime_ids
 
 
 PURGE_TRACKED_SITE_IDS = frozenset(
@@ -352,22 +332,5 @@ def purge_deleted_source_data(
     rewrite_stories("stories-merged.json", "stories", "total_stories", compact=True)
     rewrite_stories("daily-brief.json", "items", "total_items", compact=False)
     return summary
-
-
-def enabled_source_config_records(config: dict[str, Any] | None) -> list[dict[str, Any]]:
-    if not config:
-        return []
-    sources = config.get("sources")
-    if not isinstance(sources, list):
-        return []
-    return [source for source in sources if isinstance(source, dict) and source.get("enabled") is not False]
-
-
-def resolve_config_path(root_dir: Path, raw_path: str) -> Path:
-    path = Path(raw_path)
-    if not path.is_absolute():
-        path = root_dir / path
-    return path
-
 
 

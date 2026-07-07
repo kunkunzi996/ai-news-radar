@@ -1,25 +1,52 @@
 from __future__ import annotations
 
-from scripts.radar.server import *  # noqa: F401,F403
+import json
+import os
+import shutil
+import subprocess
+import sys
+import urllib.error
+import urllib.parse
+import urllib.request
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+from scripts.radar.server import (
+    COLLECTION_SCOPE_24H,
+    LOCAL_HTTP_TIMEOUT_SECONDS,
+    MEDIACRAWLER_24H_WINDOW_HOURS,
+    MEDIACRAWLER_DOUYIN_24H_MAX_NOTES,
+    MEDIACRAWLER_DOUYIN_LOG_ERR,
+    MEDIACRAWLER_DOUYIN_LOG_OUT,
+    MEDIACRAWLER_DOUYIN_PID,
+    MEDIACRAWLER_JSONL_STALE_HOURS,
+    MEDIACRAWLER_XHS_24H_MAX_NOTES,
+    MEDIACRAWLER_XHS_LOG_ERR,
+    MEDIACRAWLER_XHS_LOG_OUT,
+    MEDIACRAWLER_XHS_PID,
+    WEWE_RSS_BASE_URL_DEFAULT,
+    WEWE_RSS_SIDECAR_DIR_NAME,
+    WEWE_RSS_SIDECAR_LOG_ERR,
+    WEWE_RSS_SIDECAR_LOG_OUT,
+    normalize_collection_scope,
+)
+from scripts.radar.server.common import (
+    add_maintenance_issue,
+    dedupe_maintenance_issues,
+    enabled_source_config_records,
+    is_url_like,
+    mediacrawler_fix_actions,
+    mediacrawler_local_root,
+    open_url_action,
+    read_source_config,
+    resolve_mediacrawler_locator,
+    resolve_latest_mediacrawler_jsonl,
+    source_config_runtime_ids,
+    wewe_fix_actions,
+)
 
 """Local sidecar and MediaCrawler collector helpers."""
-
-def is_url_like(value: str) -> bool:
-    parsed = urllib.parse.urlparse(str(value or "").strip())
-    return parsed.scheme in {"http", "https"} and bool(parsed.netloc)
-
-
-def default_mediacrawler_jsonl_dir(root_dir: Path, runtime_id: str) -> Path:
-    folder = "xhs" if runtime_id == "mediacrawler_xhs" else "douyin"
-    return mediacrawler_local_root(root_dir) / "output" / folder / "jsonl"
-
-
-def resolve_mediacrawler_locator(root_dir: Path, runtime_id: str, locator: str) -> Path:
-    raw = str(locator or "").strip()
-    if not raw or is_url_like(raw):
-        return default_mediacrawler_jsonl_dir(root_dir, runtime_id)
-    return resolve_config_path(root_dir, raw)
-
 
 def add_mediacrawler_jsonl_issue(
     issues: list[dict[str, Any]],
@@ -232,13 +259,6 @@ def start_wewe_rss_sidecar(root_dir: Path, *, execute: bool = True) -> dict[str,
         "url": base_url + "/dash",
         "executed": True,
     }
-
-
-def mediacrawler_local_root(root_dir: Path) -> Path:
-    configured = str(os.environ.get("MEDIACRAWLER_LOCAL_DIR") or "").strip()
-    if configured:
-        return Path(configured).expanduser().resolve()
-    return (root_dir.parent / MEDIACRAWLER_LOCAL_DIR_NAME).resolve()
 
 
 def mediacrawler_python_exe(crawler_root: Path) -> str | None:

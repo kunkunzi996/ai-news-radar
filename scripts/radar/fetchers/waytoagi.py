@@ -1,40 +1,20 @@
 from __future__ import annotations
 
-import argparse
-from collections import Counter
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from email.utils import parseaddr
-import hashlib
 import json
-import math
-import os
-import random
 import re
-import sys
-import time
-import xml.etree.ElementTree as ET
-from dataclasses import dataclass
-from datetime import date, datetime, timedelta, timezone
-from difflib import SequenceMatcher
-from pathlib import Path
+from datetime import date, datetime, timedelta
 from typing import Any
-from urllib.parse import parse_qsl, unquote, urlencode, urljoin, urlparse, urlunparse
-from zoneinfo import ZoneInfo
 
 import requests
-from bs4 import BeautifulSoup
-from dateutil import parser as dtparser
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
 
-from scripts.ai_relevance import add_ai_relevance_fields, score_ai_relevance
-
-try:
-    import feedparser
-except ModuleNotFoundError:
-    feedparser = None
-
-from scripts.radar.common import *  # noqa: F401,F403
+from scripts.radar.common import (
+    RawItem,
+    SH_TZ,
+    WAYTOAGI_DEFAULT,
+    WAYTOAGI_HISTORY_FALLBACK,
+    decode_escaped_json,
+    iso,
+)
 
 """WaytoAGI source fetcher helpers."""
 

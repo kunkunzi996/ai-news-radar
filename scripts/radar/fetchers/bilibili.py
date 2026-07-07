@@ -1,40 +1,36 @@
 from __future__ import annotations
 
-import argparse
-from collections import Counter
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from email.utils import parseaddr
 import hashlib
 import json
-import math
 import os
-import random
 import re
-import sys
 import time
-import xml.etree.ElementTree as ET
-from dataclasses import dataclass
-from datetime import date, datetime, timedelta, timezone
-from difflib import SequenceMatcher
+from datetime import datetime
 from pathlib import Path
 from typing import Any
-from urllib.parse import parse_qsl, unquote, urlencode, urljoin, urlparse, urlunparse
-from zoneinfo import ZoneInfo
+from urllib.parse import urlencode, urljoin
 
 import requests
-from bs4 import BeautifulSoup
-from dateutil import parser as dtparser
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
 
-from scripts.ai_relevance import add_ai_relevance_fields, score_ai_relevance
-
-try:
-    import feedparser
-except ModuleNotFoundError:
-    feedparser = None
-
-from scripts.radar.common import *  # noqa: F401,F403
+from scripts.radar.common import (
+    BILIBILI_DYNAMIC_API_URL,
+    BILIBILI_DYNAMIC_BACKFILL_MAX_ITEMS,
+    BILIBILI_DYNAMIC_DEFAULT_ACCOUNTS,
+    BILIBILI_DYNAMIC_DEFAULT_MAX_ITEMS,
+    BILIBILI_DYNAMIC_DEFAULT_MAX_PAGES,
+    BILIBILI_DYNAMIC_DETAIL_API_URL,
+    BILIBILI_DYNAMIC_FULL_API_URL,
+    BILIBILI_DYNAMIC_OPUS_DETAIL_API_URL,
+    BILIBILI_NAV_API_URL,
+    BILIBILI_WBI_MIXIN_KEY_ENC_TAB,
+    BROWSER_UA,
+    RawItem,
+    env_flag,
+    env_int,
+    iso,
+    normalize_url,
+    parse_unix_timestamp,
+)
 
 """Bilibili dynamic source fetcher."""
 
@@ -738,266 +734,6 @@ def maybe_fetch_bilibili_dynamic(
                 for account in failed_accounts
             ) or "bilibili_dynamic_no_items"
         return all_items, status
-    except Exception as exc:
-        status["ok"] = False
-        status["error"] = str(exc)
-        return [], status
-    finally:
-        status["duration_ms"] = int((time.perf_counter() - start) * 1000)
-
-
-def mediacrawler_douyin_title(text: str, aweme_id: str) -> str:
-    title = re.sub(r"\s+", " ", (text or "").strip())
-    if not title:
-        return f"抖音作品 {aweme_id}".strip()
-    if len(title) > 90:
-        title = title[:87].rstrip() + "..."
-    return title
-
-
-def mediacrawler_int(value: Any) -> int:
-    try:
-        return int(float(str(value).strip()))
-    except (TypeError, ValueError):
-        return 0
-
-
-def mediacrawler_xhs_title(text: str, note_id: str) -> str:
-    title = re.sub(r"\s+", " ", (text or "").strip())
-    if not title:
-        return f"小红书笔记 {note_id}".strip()
-    if len(title) > 90:
-        title = title[:87].rstrip() + "..."
-    return title
-
-
-def mediacrawler_env_first(*names: str) -> str:
-    for name in names:
-        value = str(os.environ.get(name) or "").strip()
-        if value:
-            return value
-    return ""
-
-
-def mediacrawler_env_flag_any(*names: str) -> bool:
-    return any(env_flag(name) for name in names)
-
-
-def mediacrawler_env_int_any(default: int, *names: str) -> int:
-    for name in names:
-        if str(os.environ.get(name) or "").strip():
-            return env_int(name, default)
-    return default
-
-
-def mediacrawler_local_root() -> Path:
-    configured = str(os.environ.get("MEDIACRAWLER_LOCAL_DIR") or "").strip()
-    if configured:
-        return Path(configured).expanduser()
-    repo_root = Path(__file__).resolve().parents[3]
-    return repo_root.parent / "MediaCrawler-local-test"
-
-
-def is_url_like(value: str) -> bool:
-    parsed = urlparse(str(value or "").strip())
-    return parsed.scheme in {"http", "https"} and bool(parsed.netloc)
-
-
-def default_mediacrawler_jsonl_dir(site_id: str) -> Path:
-    folder = "xhs" if site_id == MEDIACRAWLER_XHS_SITE_ID else "douyin"
-    return mediacrawler_local_root() / "output" / folder / "jsonl"
-
-
-def mediacrawler_jsonl_locator(raw_locator: str, site_id: str) -> str:
-    locator = str(raw_locator or "").strip()
-    if not locator or is_url_like(locator):
-        return str(default_mediacrawler_jsonl_dir(site_id))
-    return locator
-
-
-def resolve_latest_mediacrawler_jsonl(raw_path: str) -> Path:
-    path = Path(raw_path).expanduser()
-    if path.is_dir():
-        candidates = sorted(
-            path.glob("creator_contents_*.jsonl"),
-            key=lambda candidate: candidate.stat().st_mtime,
-            reverse=True,
-        )
-        non_empty_candidates = [candidate for candidate in candidates if candidate.stat().st_size > 0]
-        if non_empty_candidates:
-            return non_empty_candidates[0]
-        return candidates[0] if candidates else path
-
-    if path.parent.exists() and (not path.exists() or path.name.startswith("creator_contents_")):
-        candidates = sorted(
-            path.parent.glob("creator_contents_*.jsonl"),
-            key=lambda candidate: candidate.stat().st_mtime,
-            reverse=True,
-        )
-        non_empty_candidates = [candidate for candidate in candidates if candidate.stat().st_size > 0]
-        if non_empty_candidates and (not path.exists() or path.stat().st_size <= 0 or non_empty_candidates[0].stat().st_mtime >= path.stat().st_mtime):
-            return non_empty_candidates[0]
-        if candidates and (not path.exists() or candidates[0].stat().st_mtime >= path.stat().st_mtime):
-            return candidates[0]
-    return path
-
-
-def douyin_sec_uid_from_locator(locator: str) -> str:
-    parsed = urlparse(str(locator or "").strip())
-    if parsed.scheme not in {"http", "https"}:
-        return ""
-    parts = [unquote(part) for part in parsed.path.split("/") if part]
-    for index, part in enumerate(parts):
-        if part == "user" and index + 1 < len(parts):
-            return parts[index + 1].strip()
-    return ""
-
-
-def parse_mediacrawler_douyin_jsonl(
-    text: str,
-    *,
-    now: datetime,
-    source_name: str = "",
-    max_items: int | None = None,
-) -> list[RawItem]:
-    out: list[RawItem] = []
-    seen: set[str] = set()
-    for line in str(text or "").splitlines():
-        raw_line = line.strip()
-        if not raw_line:
-            continue
-        try:
-            row = json.loads(raw_line)
-        except json.JSONDecodeError:
-            continue
-        if not isinstance(row, dict):
-            continue
-
-        aweme_id = first_non_empty(row.get("aweme_id"), row.get("id"))
-        content = first_non_empty(row.get("desc"), row.get("title"))
-        url = first_non_empty(row.get("aweme_url"), row.get("share_url"), row.get("url"))
-        if not url and aweme_id:
-            url = f"https://www.douyin.com/video/{aweme_id}"
-        if not url.startswith("http") or not (content or aweme_id):
-            continue
-
-        key = aweme_id or normalize_url(url)
-        if key in seen:
-            continue
-        seen.add(key)
-
-        creator = first_non_empty(
-            row.get("nickname"),
-            row.get("user_nickname"),
-            row.get("user_unique_id"),
-            row.get("sec_user_id"),
-            source_name,
-            "Douyin Creator",
-        )
-        published = (
-            parse_unix_timestamp(row.get("create_time"))
-            or parse_unix_timestamp(row.get("create_timestamp"))
-            or parse_date_any(row.get("publish_time"), now)
-        )
-        metrics = {
-            "likes": mediacrawler_int(first_non_empty(row.get("liked_count"), row.get("digg_count"))),
-            "collects": mediacrawler_int(first_non_empty(row.get("collected_count"), row.get("collect_count"))),
-            "comments": mediacrawler_int(row.get("comment_count")),
-            "shares": mediacrawler_int(row.get("share_count")),
-        }
-        sec_user_id = first_non_empty(row.get("sec_uid"), row.get("sec_user_id"), row.get("user_id"))
-        out.append(
-            RawItem(
-                site_id=MEDIACRAWLER_DOUYIN_SITE_ID,
-                site_name=MEDIACRAWLER_DOUYIN_SITE_NAME,
-                source=creator,
-                title=mediacrawler_douyin_title(content, aweme_id),
-                url=url,
-                published_at=published or now,
-                meta={
-                    "summary": content,
-                    "creator_metrics": metrics,
-                    "search_surface": "mediacrawler_douyin_creator_jsonl",
-                    "douyin_aweme_id": aweme_id,
-                    "douyin_sec_user_id": sec_user_id,
-                },
-            )
-        )
-        if max_items and len(out) >= max_items:
-            break
-    return out
-
-
-def douyin_item_matches_subscription(item: RawItem, *, locator: str, source_name: str) -> bool:
-    expected_sec_uid = douyin_sec_uid_from_locator(locator)
-    if expected_sec_uid:
-        return str(item.meta.get("douyin_sec_user_id") or "").strip() == expected_sec_uid
-    if source_name:
-        return str(item.source or "").strip() == source_name
-    return True
-
-
-def xiaohongshu_user_id_from_locator(locator: str) -> str:
-    parsed = urlparse(str(locator or "").strip())
-    if parsed.scheme not in {"http", "https"}:
-        return ""
-    parts = [unquote(part) for part in parsed.path.split("/") if part]
-    for index, part in enumerate(parts):
-        if part == "profile" and index + 1 < len(parts):
-            return parts[index + 1].strip()
-    return ""
-
-
-def maybe_fetch_mediacrawler_douyin(now: datetime) -> tuple[list[RawItem], dict[str, Any]]:
-    raw_locator = str(os.environ.get("MEDIACRAWLER_DOUYIN_JSONL") or "").strip()
-    jsonl_path_raw = mediacrawler_jsonl_locator(raw_locator, MEDIACRAWLER_DOUYIN_SITE_ID)
-    max_items = max(1, min(env_int("MEDIACRAWLER_DOUYIN_MAX_ITEMS", 200), 1000))
-    status: dict[str, Any] = {
-        "enabled": env_flag("MEDIACRAWLER_DOUYIN_ENABLED"),
-        "ok": None,
-        "item_count": 0,
-        "source_kind": MEDIACRAWLER_DOUYIN_SITE_ID,
-        "privacy": "local_jsonl_only_no_cookies",
-        "coverage_note": "reads_mediacrawler_douyin_creator_jsonl",
-        "jsonl_path_configured": bool(raw_locator or jsonl_path_raw),
-        "locator": raw_locator,
-        "locator_kind": "homepage_url" if is_url_like(raw_locator) else "jsonl_path",
-        "jsonl_file_configured": Path(jsonl_path_raw).name if jsonl_path_raw else None,
-        "jsonl_file": Path(jsonl_path_raw).name if jsonl_path_raw else None,
-        "max_items": max_items,
-    }
-    if not status["enabled"]:
-        status["disabled_reason"] = "disabled_by_toggle"
-        return [], status
-    if not jsonl_path_raw:
-        status["ok"] = False
-        status["error"] = "missing_mediacrawler_douyin_jsonl"
-        return [], status
-
-    start = time.perf_counter()
-    try:
-        jsonl_path = resolve_latest_mediacrawler_jsonl(jsonl_path_raw)
-        status["jsonl_file"] = jsonl_path.name
-        if jsonl_path.name != status.get("jsonl_file_configured"):
-            status["jsonl_file_resolved_from"] = status.get("jsonl_file_configured")
-        if not jsonl_path.exists():
-            status["ok"] = False
-            status["error"] = "mediacrawler_douyin_jsonl_not_found"
-            return [], status
-        source_name = str(os.environ.get("MEDIACRAWLER_DOUYIN_SOURCE_NAME") or "").strip()
-        items = parse_mediacrawler_douyin_jsonl(
-            jsonl_path.read_text(encoding="utf-8", errors="ignore"),
-            now=now,
-            source_name=source_name,
-            max_items=max_items,
-        )
-        status["ok"] = bool(items)
-        status["item_count"] = len(items)
-        if source_name:
-            status["source_name"] = source_name
-        if not items:
-            status["error"] = "mediacrawler_douyin_no_items"
-        return items, status
     except Exception as exc:
         status["ok"] = False
         status["error"] = str(exc)

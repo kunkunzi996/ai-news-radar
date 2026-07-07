@@ -1,33 +1,20 @@
 from __future__ import annotations
 
-import argparse
-from collections import Counter
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from email.utils import parseaddr
 import hashlib
 import json
-import math
 import os
-import random
 import re
-import sys
-import time
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
-from datetime import date, datetime, timedelta, timezone
-from difflib import SequenceMatcher
-from pathlib import Path
+from datetime import datetime, timedelta, timezone
 from typing import Any
-from urllib.parse import parse_qsl, unquote, urlencode, urljoin, urlparse, urlunparse
+from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 from zoneinfo import ZoneInfo
 
 import requests
-from bs4 import BeautifulSoup
 from dateutil import parser as dtparser
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
-
-from scripts.ai_relevance import add_ai_relevance_fields, score_ai_relevance
 
 try:
     import feedparser
@@ -475,6 +462,42 @@ PUBLIC_RAW_META_FIELDS: tuple[str, ...] = (
     "search_surface",
     "summary",
 )
+EMAIL_RE = re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b")
+SECRET_LIKE_RE = re.compile(r"\b(sk-(?!hynix\b)[A-Za-z0-9_-]{12,}|(?:api[_-]?key|secret|token)=([^\s&]{6,}))\b", re.I)
+URL_IN_TEXT_RE = re.compile(r"https?://[^\s\"'<>]+")
+AI_KEYWORDS = [
+    "aigc",
+    "llm",
+    "gpt",
+    "claude",
+    "gemini",
+    "deepseek",
+    "openai",
+    "anthropic",
+    "copilot",
+    "codex",
+    "mcp",
+    "hugging face",
+    "huggingface",
+    "transformer",
+    "prompt",
+    "diffusion",
+    "agent",
+    "多模态",
+    "大模型",
+    "模型",
+    "人工智能",
+    "机器学习",
+    "深度学习",
+    "智能体",
+    "算力",
+    "推理",
+    "微调",
+]
+MEANINGFUL_EN_SIGNAL_RE = re.compile(
+    r"(?i)(?<![a-z0-9])(ai|aigc|llm|gpt|openai|anthropic|deepseek|gemini|claude|robot|robotics|embodied|autonomous|machine learning|artificial intelligence|transformer|diffusion)(?![a-z0-9])"
+)
+BROAD_AI_TERMS = {"agent", "模型", "推理"}
 
 
 def utc_now() -> datetime:
@@ -497,6 +520,14 @@ def parse_iso(dt_str: str | None) -> datetime | None:
     if not dt.tzinfo:
         dt = dt.replace(tzinfo=UTC)
     return dt.astimezone(UTC)
+
+
+def event_time(record: dict[str, Any]) -> datetime | None:
+    # RSS sources must rely on the source's publish time only.
+    # first_seen_at is fetch time and would falsely mark historical items as "24h".
+    if str(record.get("site_id") or "") == "opmlrss":
+        return parse_iso(record.get("published_at"))
+    return parse_iso(record.get("published_at")) or parse_iso(record.get("first_seen_at"))
 
 
 def normalize_url(raw_url: str) -> str:
@@ -522,6 +553,58 @@ def normalize_url(raw_url: str) -> str:
         return normalized.rstrip("/")
     except Exception:
         return raw_url.strip()
+
+
+def redact_public_text(text: str) -> str:
+    if not isinstance(text, str) or not text:
+        return text
+    text = EMAIL_RE.sub("[redacted-email]", text)
+    text = URL_IN_TEXT_RE.sub(lambda match: normalize_url(match.group(0)), text)
+    return SECRET_LIKE_RE.sub("[redacted-secret]", text)
+
+
+def sanitize_public_value(value: Any) -> Any:
+    if isinstance(value, str):
+        return redact_public_text(value)
+    if isinstance(value, list):
+        return [sanitize_public_value(item) for item in value]
+    if isinstance(value, dict):
+        return {key: sanitize_public_value(val) for key, val in value.items()}
+    return value
+
+
+def sanitize_public_payload(payload: dict[str, Any]) -> dict[str, Any]:
+    return sanitize_public_value(payload)
+
+
+def compact_public_snippet(text: str, max_chars: int = 240) -> str:
+    """Return a short redacted snippet suitable for public/static JSON."""
+    snippet = re.sub(r"\s+", " ", str(text or "")).strip()
+    snippet = redact_public_text(snippet)
+    if len(snippet) <= max_chars:
+        return snippet
+    return snippet[: max_chars - 1].rstrip() + "…"
+
+
+def parse_domain_filter(raw: str) -> list[str]:
+    """Parse a comma-separated sender-domain allowlist for private newsletter demos."""
+    domains: list[str] = []
+    for part in re.split(r"[,\s]+", str(raw or "")):
+        domain = part.strip().lower().lstrip("@")
+        if domain and re.match(r"^[a-z0-9.-]+\.[a-z]{2,}$", domain):
+            domains.append(domain)
+    return sorted(set(domains))
+
+
+def creator_metric_count(*values: Any) -> int:
+    for value in values:
+        if value is None or value == "":
+            continue
+        try:
+            return max(0, int(float(str(value).replace(",", "").strip())))
+        except (TypeError, ValueError):
+            continue
+    return 0
 
 
 def host_of_url(raw_url: str) -> str:
@@ -637,6 +720,12 @@ def parse_unix_timestamp(value: Any) -> datetime | None:
         return datetime.fromtimestamp(n, tz=UTC)
     except Exception:
         return None
+
+
+def has_mojibake_noise(text: str) -> bool:
+    if not text:
+        return False
+    return bool(re.search(r"(Ã|Â|â€|æ·|�)", text))
 
 
 def parse_relative_time_zh(text: str, now: datetime) -> datetime | None:

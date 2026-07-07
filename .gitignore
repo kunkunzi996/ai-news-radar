@@ -32,6 +32,11 @@ local-secrets/
 data/email-digest.json
 data/title-zh-cache.json
 
+# Playwright
+node_modules/
+playwright-report/
+test-results/
+
 # Local OS/editor noise
 .DS_Store
 .idea/

@@ -9,45 +9,132 @@ from pathlib import Path
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from scripts.radar import wire_modules as _wire_modules
-from scripts.radar import common as _common
-from scripts.radar import config_runtime as _config_runtime
-from scripts.radar import pipeline as _pipeline
-from scripts.radar import cli as _cli
-from scripts.radar.fetchers import agentmail as _agentmail
-from scripts.radar.fetchers import bilibili as _bilibili
-from scripts.radar.fetchers import mediacrawler as _mediacrawler
-from scripts.radar.fetchers import paid as _paid
-from scripts.radar.fetchers import public as _public
-from scripts.radar.fetchers import subscriptions as _subscriptions
-from scripts.radar.fetchers import waytoagi as _waytoagi
-
-_UPDATE_NEWS_MODULES = [
-    _common,
-    _waytoagi,
-    _public,
-    _subscriptions,
-    _pipeline,
-    _config_runtime,
-    _agentmail,
-    _bilibili,
-    _mediacrawler,
-    _paid,
-    _cli,
-]
-_wire_modules(_UPDATE_NEWS_MODULES)
-
-from scripts.radar.common import *  # noqa: F401,F403,E402
-from scripts.radar.fetchers.waytoagi import *  # noqa: F401,F403,E402
-from scripts.radar.fetchers.public import *  # noqa: F401,F403,E402
-from scripts.radar.fetchers.subscriptions import *  # noqa: F401,F403,E402
-from scripts.radar.pipeline import *  # noqa: F401,F403,E402
-from scripts.radar.config_runtime import *  # noqa: F401,F403,E402
-from scripts.radar.fetchers.agentmail import *  # noqa: F401,F403,E402
-from scripts.radar.fetchers.bilibili import *  # noqa: F401,F403,E402
-from scripts.radar.fetchers.mediacrawler import *  # noqa: F401,F403,E402
-from scripts.radar.fetchers.paid import *  # noqa: F401,F403,E402
+from scripts.radar import common as _common  # noqa: E402
+from scripts.radar import config_runtime as _config_runtime  # noqa: E402
+from scripts.radar import pipeline as _pipeline  # noqa: E402
 from scripts.radar.cli import main  # noqa: E402
+from scripts.radar.fetchers import agentmail as _agentmail  # noqa: E402
+from scripts.radar.fetchers import bilibili as _bilibili  # noqa: E402
+from scripts.radar.fetchers import mediacrawler as _mediacrawler  # noqa: E402
+from scripts.radar.fetchers import paid as _paid  # noqa: E402
+from scripts.radar.fetchers import public as _public  # noqa: E402
+from scripts.radar.fetchers import subscriptions as _subscriptions  # noqa: E402
+from scripts.radar.fetchers import waytoagi as _waytoagi  # noqa: E402
+
+BROWSER_UA = _common.BROWSER_UA
+RawItem = _common.RawItem
+SH_TZ = _common.SH_TZ
+decode_escaped_json = _common.decode_escaped_json
+event_time = _common.event_time
+iso = _common.iso
+make_item_id = _common.make_item_id
+maybe_fix_mojibake = _common.maybe_fix_mojibake
+normalize_url = _common.normalize_url
+parse_date_any = _common.parse_date_any
+parse_feed_entries_via_xml = _common.parse_feed_entries_via_xml
+parse_relative_time_zh = _common.parse_relative_time_zh
+redact_public_text = _common.redact_public_text
+sanitize_public_payload = _common.sanitize_public_payload
+utc_now = _common.utc_now
+
+apply_source_config_runtime = _config_runtime.apply_source_config_runtime
+normalize_source_scope = _config_runtime.normalize_source_scope
+source_config_enabled_site_ids = _config_runtime.source_config_enabled_site_ids
+source_ids_for_scope = _config_runtime.source_ids_for_scope
+sync_paid_source_status_timestamps = _config_runtime.sync_paid_source_status_timestamps
+update_paid_source_state = _config_runtime.update_paid_source_state
+
+add_creator_ranking_fields = _pipeline.add_creator_ranking_fields
+add_source_tier_fields = _pipeline.add_source_tier_fields
+archive_source_counts = _pipeline.archive_source_counts
+build_creator_hot_items = _pipeline.build_creator_hot_items
+build_daily_brief_payload = _pipeline.build_daily_brief_payload
+build_latest_payloads = _pipeline.build_latest_payloads
+build_merge_log_payload = _pipeline.build_merge_log_payload
+build_stories_payload = _pipeline.build_stories_payload
+calculate_item_importance = _pipeline.calculate_item_importance
+dedupe_items_by_title_url = _pipeline.dedupe_items_by_title_url
+editorial_score = _pipeline.editorial_score
+filter_archive_by_source_ids = _pipeline.filter_archive_by_source_ids
+filter_raw_items_by_collect_window = _pipeline.filter_raw_items_by_collect_window
+is_ai_related_record = _pipeline.is_ai_related_record
+is_subscription_record = _pipeline.is_subscription_record
+merge_story_items = _pipeline.merge_story_items
+normalize_source_for_display = _pipeline.normalize_source_for_display
+select_diverse_stories = _pipeline.select_diverse_stories
+source_tier_for_site = _pipeline.source_tier_for_site
+source_tier_sort_key = _pipeline.source_tier_sort_key
+story_passes_brief_gate = _pipeline.story_passes_brief_gate
+suppress_near_duplicate_items = _pipeline.suppress_near_duplicate_items
+
+build_agentmail_digest_payload = _agentmail.build_agentmail_digest_payload
+fetch_agentmail_digest = _agentmail.fetch_agentmail_digest
+maybe_fetch_agentmail_digest = _agentmail.maybe_fetch_agentmail_digest
+
+backfill_bilibili_archive_publish_times = _bilibili.backfill_bilibili_archive_publish_times
+bilibili_cookie_header_from_file_text = _bilibili.bilibili_cookie_header_from_file_text
+bilibili_dynamic_accounts_from_env = _bilibili.bilibili_dynamic_accounts_from_env
+bilibili_dynamic_item_title = _bilibili.bilibili_dynamic_item_title
+bilibili_dynamic_status_base = _bilibili.bilibili_dynamic_status_base
+bilibili_wbi_keys = _bilibili.bilibili_wbi_keys
+fetch_bilibili_dynamic = _bilibili.fetch_bilibili_dynamic
+fetch_bilibili_full_dynamic = _bilibili.fetch_bilibili_full_dynamic
+fetch_bilibili_opus_published_at = _bilibili.fetch_bilibili_opus_published_at
+parse_bilibili_detail_published_at = _bilibili.parse_bilibili_detail_published_at
+parse_bilibili_dynamic_items = _bilibili.parse_bilibili_dynamic_items
+parse_bilibili_full_dynamic_items = _bilibili.parse_bilibili_full_dynamic_items
+sign_bilibili_wbi_params = _bilibili.sign_bilibili_wbi_params
+
+fetch_mediacrawler_douyin_subscriptions = _mediacrawler.fetch_mediacrawler_douyin_subscriptions
+fetch_mediacrawler_xhs_subscriptions = _mediacrawler.fetch_mediacrawler_xhs_subscriptions
+maybe_fetch_mediacrawler_douyin = _mediacrawler.maybe_fetch_mediacrawler_douyin
+maybe_fetch_mediacrawler_xhs = _mediacrawler.maybe_fetch_mediacrawler_xhs
+maybe_fetch_x_api_updates = _mediacrawler.maybe_fetch_x_api_updates
+mediacrawler_local_root = _mediacrawler.mediacrawler_local_root
+parse_mediacrawler_douyin_jsonl = _mediacrawler.parse_mediacrawler_douyin_jsonl
+parse_mediacrawler_xhs_jsonl = _mediacrawler.parse_mediacrawler_xhs_jsonl
+
+fetch_socialdata_list_tweets = _paid.fetch_socialdata_list_tweets
+fetch_tikhub_search = _paid.fetch_tikhub_search
+maybe_fetch_socialdata_updates = _paid.maybe_fetch_socialdata_updates
+maybe_fetch_tikhub_updates = _paid.maybe_fetch_tikhub_updates
+parse_tikhub_douyin_items = _paid.parse_tikhub_douyin_items
+parse_tikhub_xiaohongshu_items = _paid.parse_tikhub_xiaohongshu_items
+socialdata_status_base = _paid.socialdata_status_base
+tikhub_status_base = _paid.tikhub_status_base
+
+fetch_ai_hubtoday = _public.fetch_ai_hubtoday
+fetch_aihot = _public.fetch_aihot
+fetch_hacker_news_algolia = _public.fetch_hacker_news_algolia
+hn_algolia_keyword_score = _public.hn_algolia_keyword_score
+is_hubtoday_generic_anchor_title = _public.is_hubtoday_generic_anchor_title
+is_hubtoday_placeholder_title = _public.is_hubtoday_placeholder_title
+parse_ai_breakfast_items = _public.parse_ai_breakfast_items
+parse_aihot_api_items = _public.parse_aihot_api_items
+parse_aihot_feed_items = _public.parse_aihot_feed_items
+parse_anthropic_news_items = _public.parse_anthropic_news_items
+parse_curated_ai_media_feed_items = _public.parse_curated_ai_media_feed_items
+parse_follow_builders_items = _public.parse_follow_builders_items
+parse_hn_algolia_hits = _public.parse_hn_algolia_hits
+parse_openai_codex_changelog_items = _public.parse_openai_codex_changelog_items
+
+fetch_github_repo_subscription = _subscriptions.fetch_github_repo_subscription
+fetch_maobidao_wechat_subscription = _subscriptions.fetch_maobidao_wechat_subscription
+fetch_opml_rss = _subscriptions.fetch_opml_rss
+fetch_wewe_rss_subscription = _subscriptions.fetch_wewe_rss_subscription
+parse_jike_public_items = _subscriptions.parse_jike_public_items
+parse_opml_subscriptions = _subscriptions.parse_opml_subscriptions
+parse_telegram_public_items = _subscriptions.parse_telegram_public_items
+parse_wewe_rss_json_feed_items = _subscriptions.parse_wewe_rss_json_feed_items
+resolve_opml_bridge_source = _subscriptions.resolve_opml_bridge_source
+wewe_rss_feeds_from_env = _subscriptions.wewe_rss_feeds_from_env
+
+clean_update_title = _waytoagi.clean_update_title
+extract_waytoagi_recent_updates_from_block_map = _waytoagi.extract_waytoagi_recent_updates_from_block_map
+infer_shanghai_year_for_month_day = _waytoagi.infer_shanghai_year_for_month_day
+parse_md_heading = _waytoagi.parse_md_heading
+parse_ym_heading = _waytoagi.parse_ym_heading
+waytoagi_updates_to_raw_items = _waytoagi.waytoagi_updates_to_raw_items
 
 
 if __name__ == "__main__":

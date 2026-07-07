@@ -1,6 +1,22 @@
 from __future__ import annotations
 
-from scripts.radar.server import *  # noqa: F401,F403
+import json
+import os
+import socket
+import struct
+import subprocess
+import urllib.error
+import urllib.request
+from pathlib import Path
+from typing import Any
+
+from scripts.radar.server import (
+    BILIBILI_CDP_PORT,
+    BILIBILI_COOKIE_URL,
+    BILIBILI_DEFAULT_COOKIE_FILE,
+    BILIBILI_LOGIN_URL,
+    BILIBILI_PROFILE_DIR,
+)
 
 """Bilibili dedicated browser and CDP cookie helpers."""
 

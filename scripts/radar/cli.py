@@ -2,39 +2,109 @@ from __future__ import annotations
 
 import argparse
 from collections import Counter
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from email.utils import parseaddr
-import hashlib
 import json
-import math
 import os
-import random
-import re
 import sys
 import time
-import xml.etree.ElementTree as ET
-from dataclasses import dataclass
-from datetime import date, datetime, timedelta, timezone
-from difflib import SequenceMatcher
+from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
-from urllib.parse import parse_qsl, unquote, urlencode, urljoin, urlparse, urlunparse
-from zoneinfo import ZoneInfo
 
-import requests
-from bs4 import BeautifulSoup
-from dateutil import parser as dtparser
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
-
-from scripts.ai_relevance import add_ai_relevance_fields, score_ai_relevance
-
-try:
-    import feedparser
-except ModuleNotFoundError:
-    feedparser = None
-
-from scripts.radar.common import *  # noqa: F401,F403
+from scripts.ai_relevance import add_ai_relevance_fields
+from scripts.radar.common import (
+    AGENTMAIL_DIGEST_FILE,
+    DEPLOYED_SOURCE_SCOPE_DEFAULT,
+    GITHUB_REPO_SUBSCRIPTION_API_URL,
+    GITHUB_REPO_SUBSCRIPTION_MAX_ITEMS,
+    GITHUB_REPO_SUBSCRIPTION_SITE_ID,
+    GITHUB_REPO_SUBSCRIPTION_SITE_NAME,
+    MAOBIDAO_WECHAT_HOME_URL,
+    MAOBIDAO_WECHAT_MAX_ITEMS,
+    MAOBIDAO_WECHAT_SITE_ID,
+    MAOBIDAO_WECHAT_SITE_NAME,
+    MEDIACRAWLER_DOUYIN_SITE_ID,
+    MEDIACRAWLER_DOUYIN_SITE_NAME,
+    MEDIACRAWLER_XHS_SITE_ID,
+    MEDIACRAWLER_XHS_SITE_NAME,
+    PAID_SOURCE_STATE_FILE,
+    RawItem,
+    SOURCE_SCOPE_BILIBILI_ONLY,
+    SOURCE_SCOPE_CONFIGURED,
+    SOURCE_SCOPE_TESTED_CREATORS,
+    UTC,
+    WAYTOAGI_DEFAULT,
+    WEWE_RSS_SITE_ID,
+    WEWE_RSS_SITE_NAME,
+    apply_public_raw_meta,
+    create_session,
+    env_flag,
+    iso,
+    make_item_id,
+    maybe_fix_mojibake,
+    normalize_url,
+    parse_iso,
+    sanitize_public_payload,
+    utc_now,
+)
+from scripts.radar.config_runtime import (
+    apply_source_config_runtime,
+    github_release_api_url_from_config,
+    github_release_repo_label_from_config,
+    load_paid_source_state,
+    load_source_config,
+    normalize_source_scope,
+    source_config_subscriptions_for_site,
+    source_ids_for_scope,
+    sync_paid_source_status_timestamps,
+    update_paid_source_state,
+)
+from scripts.radar.fetchers.bilibili import (
+    backfill_bilibili_archive_publish_times,
+    bilibili_dynamic_status_base,
+    maybe_fetch_bilibili_dynamic,
+)
+from scripts.radar.fetchers.agentmail import maybe_fetch_agentmail_digest
+from scripts.radar.fetchers.mediacrawler import (
+    fetch_mediacrawler_douyin_subscriptions,
+    fetch_mediacrawler_xhs_subscriptions,
+    maybe_fetch_x_api_updates,
+)
+from scripts.radar.fetchers.paid import (
+    maybe_fetch_socialdata_updates,
+    maybe_fetch_tikhub_updates,
+)
+from scripts.radar.fetchers.public import is_hubtoday_placeholder_title, normalize_aihubtoday_records
+from scripts.radar.fetchers.subscriptions import (
+    fetch_github_repo_subscription,
+    fetch_maobidao_wechat_subscription,
+    fetch_opml_rss,
+    fetch_wewe_rss_subscription,
+)
+from scripts.radar.fetchers.waytoagi import (
+    fetch_waytoagi_recent_7d,
+    waytoagi_updates_to_raw_items,
+)
+from scripts.radar.pipeline import (
+    add_bilingual_fields,
+    add_source_tier_fields,
+    archive_source_counts,
+    build_creator_hot_items,
+    build_daily_brief_payload,
+    build_latest_payloads,
+    build_merge_log_payload,
+    build_stories_payload,
+    collect_all,
+    dedupe_items_by_title_url,
+    event_time,
+    filter_archive_by_source_ids,
+    filter_raw_items_by_collect_window,
+    is_ai_related_record,
+    load_archive,
+    load_title_zh_cache,
+    merge_story_items,
+    normalize_source_for_display,
+    suppress_near_duplicate_items,
+)
 
 """Command-line entry point for update_news."""
 

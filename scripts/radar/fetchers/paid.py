@@ -1,40 +1,53 @@
 from __future__ import annotations
 
-import argparse
-from collections import Counter
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from email.utils import parseaddr
-import hashlib
-import json
-import math
 import os
-import random
 import re
-import sys
-import time
-import xml.etree.ElementTree as ET
-from dataclasses import dataclass
-from datetime import date, datetime, timedelta, timezone
-from difflib import SequenceMatcher
-from pathlib import Path
+from datetime import datetime, timedelta
 from typing import Any
-from urllib.parse import parse_qsl, unquote, urlencode, urljoin, urlparse, urlunparse
-from zoneinfo import ZoneInfo
 
 import requests
-from bs4 import BeautifulSoup
-from dateutil import parser as dtparser
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
 
-from scripts.ai_relevance import add_ai_relevance_fields, score_ai_relevance
-
-try:
-    import feedparser
-except ModuleNotFoundError:
-    feedparser = None
-
-from scripts.radar.common import *  # noqa: F401,F403
+from scripts.radar.common import (
+    RawItem,
+    SOCIALDATA_API_BASE_DEFAULT,
+    SOCIALDATA_DEFAULT_MAX_RESULTS,
+    SOCIALDATA_DEFAULT_QUERY,
+    SOCIALDATA_LIST_ALLOWED_TYPES,
+    SOCIALDATA_LIST_DEFAULT_EXCLUDE,
+    SOCIALDATA_LIST_DEFAULT_MAX_RESULTS,
+    SOCIALDATA_LIST_ID_DEFAULT,
+    SOCIALDATA_LIST_MAX_PAGES,
+    SOCIALDATA_MAX_QUERY_CHARS,
+    SOCIALDATA_RECENCY_DAYS,
+    SOCIALDATA_TWEET_READ_COST_USD,
+    TIKHUB_API_BASE_DEFAULT,
+    TIKHUB_DEFAULT_MAX_RESULTS,
+    TIKHUB_DEFAULT_PLATFORMS,
+    TIKHUB_DEFAULT_QUERY,
+    TIKHUB_DOUYIN_PUBLISH_TIME,
+    TIKHUB_DOUYIN_SORT_TYPE,
+    TIKHUB_MAX_QUERY_CHARS,
+    TIKHUB_RECENCY_DAYS,
+    TIKHUB_RESPONSE_SCAN_LIMIT,
+    TIKHUB_XHS_NOTE_TYPE,
+    TIKHUB_XHS_SORT,
+    TIKHUB_XHS_TIME_FILTER,
+    UTC,
+    compact_public_snippet,
+    creator_metric_count,
+    env_flag_default,
+    env_int,
+    first_non_empty,
+    normalize_url,
+    parse_date_any,
+    parse_iso,
+    parse_unix_timestamp,
+)
+from scripts.radar.config_runtime import (
+    paid_source_interval_hours,
+    paid_source_run_gate,
+    paid_source_state_entry,
+)
 
 """Paid source fetchers for SocialData and TikHub."""
 
@@ -281,6 +294,50 @@ def fetch_socialdata_list_tweets(
     if pagination_error:
         diagnostics["pagination_error"] = pagination_error
     return out, diagnostics
+
+
+def socialdata_should_run_now(now: datetime, paid_source_state: dict[str, Any] | None = None) -> tuple[bool, str | None]:
+    """Gate paid SocialData reads so a 30-minute cron does not spend every run."""
+    return paid_source_run_gate("SOCIALDATA", "socialdata", now, paid_source_state)
+
+
+def socialdata_status_base(now: datetime, paid_source_state: dict[str, Any] | None = None) -> dict[str, Any]:
+    daily_tweet_limit = max(0, env_int("SOCIALDATA_DAILY_TWEET_LIMIT", SOCIALDATA_DEFAULT_MAX_RESULTS))
+    max_results = max(1, min(env_int("SOCIALDATA_MAX_RESULTS", SOCIALDATA_DEFAULT_MAX_RESULTS), 100))
+    effective_cap = min(max_results, daily_tweet_limit) if daily_tweet_limit else 0
+    state_entry = paid_source_state_entry(paid_source_state, "socialdata")
+    enable_toggle = env_flag_default("SOCIALDATA_ENABLED", True)
+    api_key_present = bool(str(os.environ.get("SOCIALDATA_API_KEY") or "").strip())
+    # The curated KOL list is a SECOND paid path on top of the keyword search,
+    # so the per-run cost ceiling must include it (search cap + list cap).
+    list_id = str(os.environ.get("SOCIALDATA_LIST_ID") or SOCIALDATA_LIST_ID_DEFAULT).strip()
+    list_enabled = bool(list_id) and env_flag_default("SOCIALDATA_LIST_ENABLED", True)
+    list_cap = max(0, min(env_int("SOCIALDATA_LIST_MAX_RESULTS", SOCIALDATA_LIST_DEFAULT_MAX_RESULTS), 200)) if list_enabled else 0
+    combined_cap = effective_cap + list_cap
+    return {
+        "enabled": enable_toggle and api_key_present,
+        "enable_toggle": enable_toggle,
+        "api_key_present": api_key_present,
+        "ok": None,
+        "item_count": 0,
+        "privacy": "public_posts_metadata_only",
+        "published_by_default": False,
+        "unit_cost_usd_per_tweet_read": SOCIALDATA_TWEET_READ_COST_USD,
+        "daily_tweet_limit": daily_tweet_limit,
+        "max_results_per_run": max_results,
+        "effective_result_cap": effective_cap,
+        "search_result_cap": effective_cap,
+        "list_result_cap": list_cap,
+        "combined_result_cap": combined_cap,
+        "recency_days": SOCIALDATA_RECENCY_DAYS,
+        "estimated_max_cost_usd_per_run": round(combined_cap * SOCIALDATA_TWEET_READ_COST_USD, 4),
+        "run_interval_hours": paid_source_interval_hours("SOCIALDATA"),
+        "run_utc_hour": max(0, min(env_int("SOCIALDATA_RUN_UTC_HOUR", 0), 23)),
+        "run_utc_minute_max": max(0, min(env_int("SOCIALDATA_RUN_UTC_MINUTE_MAX", 10), 59)),
+        "last_run_at": state_entry.get("last_run_at"),
+        "last_success_at": state_entry.get("last_success_at"),
+        "generated_date_utc": now.astimezone(UTC).date().isoformat(),
+    }
 
 
 def maybe_fetch_socialdata_updates(
@@ -561,17 +618,6 @@ def is_credible_xiaohongshu_published_at(published: datetime | None, now: dateti
     if not published:
         return False
     return datetime(2013, 1, 1, tzinfo=UTC) <= published <= now.astimezone(UTC)
-
-
-def creator_metric_count(*values: Any) -> int:
-    for value in values:
-        if value is None or value == "":
-            continue
-        try:
-            return max(0, int(float(str(value).replace(",", "").strip())))
-        except (TypeError, ValueError):
-            continue
-    return 0
 
 
 def normalize_creator_metrics(platform: str, *records: dict[str, Any]) -> dict[str, int]:
@@ -1041,12 +1087,5 @@ def maybe_fetch_tikhub_updates(
         status["ok"] = False
         status["error"] = type(exc).__name__
         return [], status
-
-
-def has_mojibake_noise(text: str) -> bool:
-    if not text:
-        return False
-    return bool(re.search(r"(Ã|Â|â€|æ·|�)", text))
-
 
 

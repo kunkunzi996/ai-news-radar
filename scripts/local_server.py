@@ -3,34 +3,72 @@
 
 from __future__ import annotations
 
+import argparse
+import json
+import os
 import sys
+import threading
+from http import HTTPStatus
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from typing import Any
 
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from scripts.radar.server import wire_modules as _wire_server_modules
-from scripts.radar.server import cdp as _cdp
-from scripts.radar.server import collectors as _collectors
-from scripts.radar.server import maintenance as _maintenance
-from scripts.radar.server import refresh as _refresh
-from scripts.radar.server import subscriptions_store as _subscriptions_store
+from scripts.radar import server as _server_api  # noqa: E402
+from scripts.radar.server import (
+    COLLECTION_SCOPES,
+    CONFIG_FILENAME,
+    MAX_ACTION_BYTES,
+    MAX_CONFIG_BYTES,
+    MAX_SUBSCRIPTION_BYTES,
+    OPML_FILENAME,
+    REFRESH_LOCK,
+    RESTART_DELAY_SECONDS,
+    normalize_collection_scope,
+)  # noqa: E402
+from scripts.radar.server import cdp as _cdp_api  # noqa: E402
+from scripts.radar.server import common as _common_api  # noqa: E402
+from scripts.radar.server import collectors as _collectors_api  # noqa: E402
+from scripts.radar.server import refresh as _refresh_api  # noqa: E402
+from scripts.radar.server import subscriptions_store as _store_api  # noqa: E402
 
-_LOCAL_SERVER_MODULES = [
-    _cdp,
-    _maintenance,
-    _subscriptions_store,
-    _collectors,
-    _refresh,
-]
-_wire_server_modules(_LOCAL_SERVER_MODULES)
-
-from scripts.radar.server import *  # noqa: F401,F403,E402
-from scripts.radar.server.cdp import *  # noqa: F401,F403,E402
-from scripts.radar.server.maintenance import *  # noqa: F401,F403,E402
-from scripts.radar.server.subscriptions_store import *  # noqa: F401,F403,E402
-from scripts.radar.server.collectors import *  # noqa: F401,F403,E402
-from scripts.radar.server.refresh import *  # noqa: F401,F403,E402
+BILIBILI_DEFAULT_COOKIE_FILE = _server_api.BILIBILI_DEFAULT_COOKIE_FILE
+BILIBILI_PROFILE_DIR = _server_api.BILIBILI_PROFILE_DIR
+PURGE_TRACKED_SITE_IDS = _store_api.PURGE_TRACKED_SITE_IDS
+alive_source_names_by_site = _store_api.alive_source_names_by_site
+bilibili_cookie_status = _common_api.bilibili_cookie_status
+collect_window_hours_for_scope = _refresh_api.collect_window_hours_for_scope
+is_item_orphaned = _store_api.is_item_orphaned
+is_local_origin = _refresh_api.is_local_origin
+json_response = _refresh_api.json_response
+last_collection_time = _refresh_api.last_collection_time
+launch_bilibili_dedicated_browser = _cdp_api.launch_bilibili_dedicated_browser
+local_config_maintenance_issues = _collectors_api.local_config_maintenance_issues
+local_status_payload = _refresh_api.local_status_payload
+maintenance_issues_from_status = _common_api.maintenance_issues_from_status
+mediacrawler_douyin_collector_status = _collectors_api.mediacrawler_douyin_collector_status
+mediacrawler_xhs_collector_status = _collectors_api.mediacrawler_xhs_collector_status
+perform_maintenance_action = _refresh_api.perform_maintenance_action
+purge_deleted_source_data = _store_api.purge_deleted_source_data
+read_source_config = _store_api.read_source_config
+read_wewe_rss_feeds = _collectors_api.read_wewe_rss_feeds
+read_youtube_subscriptions = _store_api.read_youtube_subscriptions
+refresh_command = _refresh_api.refresh_command
+refresh_env = _refresh_api.refresh_env
+refresh_progress_snapshot = _refresh_api.refresh_progress_snapshot
+refresh_step_plan = _refresh_api.refresh_step_plan
+resolve_collect_window_hours = _refresh_api.resolve_collect_window_hours
+restart_command = _refresh_api.restart_command
+run_refresh_background = _refresh_api.run_refresh_background
+schedule_process_restart = _refresh_api.schedule_process_restart
+start_mediacrawler_douyin = _collectors_api.start_mediacrawler_douyin
+start_mediacrawler_xhs = _collectors_api.start_mediacrawler_xhs
+start_wewe_rss_sidecar = _collectors_api.start_wewe_rss_sidecar
+sync_bilibili_cookie = _cdp_api.sync_bilibili_cookie
+validate_source_config = _store_api.validate_source_config
+write_youtube_subscriptions = _store_api.write_youtube_subscriptions
 
 class LocalRadarHandler(SimpleHTTPRequestHandler):
     server_version = "AIReadRadarLocal/0.1"

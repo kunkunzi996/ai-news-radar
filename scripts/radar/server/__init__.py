@@ -2,26 +2,8 @@
 
 from __future__ import annotations
 
-import argparse
-import json
-import math
-import os
-import socket
-import struct
-import subprocess
-import sys
 import threading
-import time
-import xml.etree.ElementTree as ET
-import urllib.error
-import urllib.parse
-import urllib.request
-import shutil
-from datetime import datetime, timezone
-from http import HTTPStatus
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from types import ModuleType
 from typing import Any
 
 MAX_CONFIG_BYTES = 1024 * 1024
@@ -68,15 +50,57 @@ MEDIACRAWLER_DOUYIN_24H_MAX_NOTES = 5
 MEDIACRAWLER_XHS_24H_MAX_NOTES = 5
 
 
-def wire_modules(modules: list[ModuleType]) -> None:
-    """Share moved local-server helper names across split modules."""
+def normalize_collection_scope(raw_scope: Any) -> str:
+    scope = str(raw_scope or COLLECTION_SCOPE_24H).strip().lower()
+    if scope in {"24h", "24", "last_24h", "last-24h", "rolling_window"}:
+        return COLLECTION_SCOPE_24H
+    if scope in {"all", "all_time", "all-time", "full"}:
+        return COLLECTION_SCOPE_ALL
+    raise ValueError("unsupported_collection_scope")
 
-    shared: dict[str, object] = {}
-    for module in modules:
-        for name, value in vars(module).items():
-            if not name.startswith("_"):
-                shared[name] = value
-    for module in modules:
-        for name, value in shared.items():
-            if not name.startswith("_"):
-                setattr(module, name, value)
+
+def bilibili_cookie_status(*args: Any, **kwargs: Any) -> dict[str, Any]:
+    from .common import bilibili_cookie_status as implementation
+
+    return implementation(*args, **kwargs)
+
+
+def maintenance_issues_from_status(*args: Any, **kwargs: Any) -> list[dict[str, Any]]:
+    from .common import maintenance_issues_from_status as implementation
+
+    return implementation(*args, **kwargs)
+
+def local_config_maintenance_issues(*args: Any, **kwargs: Any) -> list[dict[str, Any]]:
+    from .collectors import local_config_maintenance_issues as implementation
+
+    return implementation(*args, **kwargs)
+
+
+def mediacrawler_douyin_collector_status(*args: Any, **kwargs: Any) -> dict[str, Any]:
+    from .collectors import mediacrawler_douyin_collector_status as implementation
+
+    return implementation(*args, **kwargs)
+
+
+def mediacrawler_xhs_collector_status(*args: Any, **kwargs: Any) -> dict[str, Any]:
+    from .collectors import mediacrawler_xhs_collector_status as implementation
+
+    return implementation(*args, **kwargs)
+
+
+def start_mediacrawler_douyin(*args: Any, **kwargs: Any) -> dict[str, Any]:
+    from .collectors import start_mediacrawler_douyin as implementation
+
+    return implementation(*args, **kwargs)
+
+
+def start_mediacrawler_xhs(*args: Any, **kwargs: Any) -> dict[str, Any]:
+    from .collectors import start_mediacrawler_xhs as implementation
+
+    return implementation(*args, **kwargs)
+
+
+def start_wewe_rss_sidecar(*args: Any, **kwargs: Any) -> dict[str, Any]:
+    from .collectors import start_wewe_rss_sidecar as implementation
+
+    return implementation(*args, **kwargs)

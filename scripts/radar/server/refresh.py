@@ -1,6 +1,49 @@
 from __future__ import annotations
 
-from scripts.radar.server import *  # noqa: F401,F403
+import json
+import math
+import os
+import subprocess
+import sys
+import threading
+import time
+from datetime import datetime, timezone
+from http.server import SimpleHTTPRequestHandler
+from pathlib import Path
+from typing import Any
+
+from scripts.radar.server import (
+    BILIBILI_DEFAULT_COOKIE_FILE,
+    COLLECTION_SCOPE_24H,
+    COLLECTION_SCOPE_ALL,
+    CONFIG_FILENAME,
+    REFRESH_LOCK,
+    REFRESH_PROGRESS,
+    REFRESH_PROGRESS_LOCK,
+    REFRESH_TIMEOUT_SECONDS,
+    RESTART_DELAY_SECONDS,
+    local_config_maintenance_issues,
+    mediacrawler_douyin_collector_status,
+    mediacrawler_xhs_collector_status,
+    normalize_collection_scope,
+    start_mediacrawler_douyin,
+    start_mediacrawler_xhs,
+    start_wewe_rss_sidecar,
+)
+from scripts.radar.server.common import (
+    bilibili_cookie_status,
+    dedupe_maintenance_issues,
+    enabled_source_config_records,
+    existing_open_target,
+    maintenance_issues_from_status,
+    read_source_config,
+    read_source_status,
+    source_config_runtime_ids,
+)
+from scripts.radar.server.cdp import (
+    launch_bilibili_dedicated_browser,
+    sync_bilibili_cookie,
+)
 
 """Refresh orchestration and local maintenance actions."""
 
@@ -57,15 +100,6 @@ def is_local_origin(value: str) -> bool:
     if not value:
         return True
     return value.startswith("http://127.0.0.1:") or value.startswith("http://localhost:")
-
-
-def normalize_collection_scope(raw_scope: Any) -> str:
-    scope = str(raw_scope or COLLECTION_SCOPE_24H).strip().lower()
-    if scope in {"24h", "24", "last_24h", "last-24h", "rolling_window"}:
-        return COLLECTION_SCOPE_24H
-    if scope in {"all", "all_time", "all-time", "full"}:
-        return COLLECTION_SCOPE_ALL
-    raise ValueError("unsupported_collection_scope")
 
 
 def last_collection_time(root_dir: Path) -> datetime | None:

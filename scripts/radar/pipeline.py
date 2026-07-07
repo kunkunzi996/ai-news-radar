@@ -1,45 +1,59 @@
 from __future__ import annotations
 
-import argparse
-from collections import Counter
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from email.utils import parseaddr
 import hashlib
 import json
 import math
-import os
 import random
 import re
-import sys
 import time
-import xml.etree.ElementTree as ET
-from dataclasses import dataclass
-from datetime import date, datetime, timedelta, timezone
+from datetime import datetime, timedelta
 from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
-from urllib.parse import parse_qsl, unquote, urlencode, urljoin, urlparse, urlunparse
-from zoneinfo import ZoneInfo
+from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 
 import requests
-from bs4 import BeautifulSoup
-from dateutil import parser as dtparser
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
 
 from scripts.ai_relevance import add_ai_relevance_fields, score_ai_relevance
-
-try:
-    import feedparser
-except ModuleNotFoundError:
-    feedparser = None
-
-from scripts.radar.common import *  # noqa: F401,F403
-
-from scripts.radar.fetchers.subscriptions import (
+from scripts.radar.common import (
+    CREATOR_FRESHNESS_BONUS_HOURS,
+    CREATOR_FRESHNESS_BONUS_POINTS,
+    CREATOR_HOT_WINDOW_DAYS,
+    CREATOR_SITE_IDS,
     GITHUB_REPO_SUBSCRIPTION_SITE_ID,
     MAOBIDAO_WECHAT_SITE_ID,
+    RawItem,
+    SUBSCRIPTION_TEXT_MARKERS,
+    SUBSCRIPTION_URL_MARKERS,
+    UTC,
     WEWE_RSS_SITE_ID,
+    creator_metric_count,
+    event_time,
+    has_cjk,
+    has_mojibake_noise,
+    host_of_url,
+    iso,
+    is_mostly_english,
+    maybe_fix_mojibake,
+    normalize_url,
+    parse_iso,
+)
+from scripts.radar.fetchers.public import (
+    fetch_ai_breakfast,
+    fetch_ai_hubtoday,
+    fetch_aibase,
+    fetch_aihot,
+    fetch_bestblogs,
+    fetch_buzzing,
+    fetch_curated_ai_media,
+    fetch_follow_builders,
+    fetch_hacker_news_algolia,
+    fetch_iris,
+    fetch_newsnow,
+    fetch_official_ai_updates,
+    fetch_techurls,
+    fetch_tophub,
+    fetch_zeli,
 )
 
 """Archive, dedupe, scoring, story merge, and payload builders."""
@@ -170,14 +184,6 @@ def archive_source_counts(archive: dict[str, dict[str, Any]]) -> dict[tuple[str,
             continue
         counts[key] = counts.get(key, 0) + 1
     return counts
-
-
-def event_time(record: dict[str, Any]) -> datetime | None:
-    # RSS sources must rely on the source's publish time only.
-    # first_seen_at is fetch time and would falsely mark historical items as "24h".
-    if str(record.get("site_id") or "") == "opmlrss":
-        return parse_iso(record.get("published_at"))
-    return parse_iso(record.get("published_at")) or parse_iso(record.get("first_seen_at"))
 
 
 SOURCE_TIER_BY_SITE: dict[str, tuple[str, str, int]] = {
