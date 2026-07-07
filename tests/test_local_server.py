@@ -674,7 +674,7 @@ class LocalServerTests(unittest.TestCase):
 
         root = Path(self.create_temp_dir())
 
-        with patch("scripts.local_server.active_bilibili_cdp_port", return_value=None):
+        with patch("scripts.radar.server.cdp.active_bilibili_cdp_port", return_value=None):
             result = sync_bilibili_cookie(root, execute=False)
 
         self.assertFalse(result["ok"])
