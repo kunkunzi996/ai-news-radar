@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 from collections import Counter
+from dataclasses import dataclass
 import json
 import os
 import sys
@@ -108,7 +109,75 @@ from scripts.radar.pipeline import (
 
 """Command-line entry point for update_news."""
 
-def main() -> int:
+@dataclass
+class RunContext:
+    args: argparse.Namespace
+    output_dir: Path
+    source_config: dict[str, Any] | None
+    source_config_status: dict[str, Any]
+    source_config_runtime: dict[str, Any]
+    source_config_active: bool
+    source_scope: str
+    active_source_ids: frozenset[str] | None
+    scoped_to_tested_creators: bool
+    scoped_by_config: bool
+    all_time: bool
+    collect_window_hours: int
+    wewe_rss_enabled: bool
+    now: datetime
+    archive_path: Path
+    latest_path: Path
+    latest_all_path: Path
+    status_path: Path
+    daily_brief_path: Path
+    stories_merged_path: Path
+    merge_log_path: Path
+    waytoagi_path: Path
+    title_cache_path: Path
+    email_digest_path: Path
+    paid_source_state_path: Path
+    archive: dict[str, dict[str, Any]]
+    paid_source_state: dict[str, Any]
+
+@dataclass
+class CollectStageResult:
+    raw_items: list[RawItem]
+    statuses: list[dict[str, Any]]
+    rss_feed_statuses: list[dict[str, Any]]
+    rss_opml_path: str
+    rss_opml_enabled: bool
+    email_digest_payload: dict[str, Any] | None
+    agentmail_status: dict[str, Any]
+    x_api_status: dict[str, Any]
+    socialdata_status: dict[str, Any]
+    tikhub_status: dict[str, Any]
+    mediacrawler_douyin_status: dict[str, Any]
+    mediacrawler_xhs_status: dict[str, Any]
+    waytoagi_payload: dict[str, Any]
+
+@dataclass
+class MergeStageResult:
+    archive: dict[str, dict[str, Any]]
+    raw_items: list[RawItem]
+    statuses: list[dict[str, Any]]
+    raw_items_before_collect_window: int
+    skipped_collect_window_items: int
+
+@dataclass
+class EnrichStageResult:
+    latest_payload: dict[str, Any]
+    latest_all_payload: dict[str, Any]
+    daily_brief_payload: dict[str, Any]
+    stories_merged_payload: dict[str, Any]
+    merge_log_payload: dict[str, Any]
+    archive_payload: dict[str, Any]
+    status_payload: dict[str, Any]
+    latest_items: list[dict[str, Any]]
+    latest_items_all_dedup: list[dict[str, Any]]
+    merge_events: list[dict[str, Any]]
+    title_cache: dict[str, Any]
+
+def parse_cli_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Aggregate AI news updates from multiple sources")
     parser.add_argument("--output-dir", default="data", help="Directory for output JSON files")
     parser.add_argument("--window-hours", type=int, default=24, help="24h window size")
@@ -134,7 +203,10 @@ def main() -> int:
         help="Source set to publish: tested_creator_sources (default) or all_sources",
     )
     parser.add_argument("--all-time", action="store_true", help="Publish all retained records instead of the rolling window")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
+    return args
+
+def prepare_run_context(args: argparse.Namespace) -> RunContext | int:
     output_dir = Path(args.output_dir)
     source_config, source_config_status = load_source_config(args.source_config, output_dir=output_dir)
     if source_config_status.get("enabled") and source_config_status.get("ok") is False:
@@ -177,8 +249,46 @@ def main() -> int:
 
     archive = filter_archive_by_source_ids(load_archive(archive_path), active_source_ids)
     paid_source_state = load_paid_source_state(paid_source_state_path)
+    return RunContext(
+        args=args,
+        output_dir=output_dir,
+        source_config=source_config,
+        source_config_status=source_config_status,
+        source_config_runtime=source_config_runtime,
+        source_config_active=source_config_active,
+        source_scope=source_scope,
+        active_source_ids=active_source_ids,
+        scoped_to_tested_creators=scoped_to_tested_creators,
+        scoped_by_config=scoped_by_config,
+        all_time=all_time,
+        collect_window_hours=collect_window_hours,
+        wewe_rss_enabled=wewe_rss_enabled,
+        now=now,
+        archive_path=archive_path,
+        latest_path=latest_path,
+        latest_all_path=latest_all_path,
+        status_path=status_path,
+        daily_brief_path=daily_brief_path,
+        stories_merged_path=stories_merged_path,
+        merge_log_path=merge_log_path,
+        waytoagi_path=waytoagi_path,
+        title_cache_path=title_cache_path,
+        email_digest_path=email_digest_path,
+        paid_source_state_path=paid_source_state_path,
+        archive=archive,
+        paid_source_state=paid_source_state,
+    )
 
-    session = create_session()
+def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
+    args = ctx.args
+    now = ctx.now
+    source_config = ctx.source_config
+    source_config_runtime = ctx.source_config_runtime
+    active_source_ids = ctx.active_source_ids
+    scoped_to_tested_creators = ctx.scoped_to_tested_creators
+    scoped_by_config = ctx.scoped_by_config
+    wewe_rss_enabled = ctx.wewe_rss_enabled
+    paid_source_state = ctx.paid_source_state
     if scoped_to_tested_creators:
         raw_items, statuses = [], []
     elif scoped_by_config:
@@ -593,6 +703,31 @@ def main() -> int:
                 }
             )
 
+    return CollectStageResult(
+        raw_items=raw_items,
+        statuses=statuses,
+        rss_feed_statuses=rss_feed_statuses,
+        rss_opml_path=rss_opml_path,
+        rss_opml_enabled=rss_opml_enabled,
+        email_digest_payload=email_digest_payload,
+        agentmail_status=agentmail_status,
+        x_api_status=x_api_status,
+        socialdata_status=socialdata_status,
+        tikhub_status=tikhub_status,
+        mediacrawler_douyin_status=mediacrawler_douyin_status,
+        mediacrawler_xhs_status=mediacrawler_xhs_status,
+        waytoagi_payload=waytoagi_payload,
+    )
+
+def merge_archive_stage(session: Any, ctx: RunContext, collected: CollectStageResult) -> MergeStageResult:
+    args = ctx.args
+    now = ctx.now
+    active_source_ids = ctx.active_source_ids
+    all_time = ctx.all_time
+    collect_window_hours = ctx.collect_window_hours
+    archive = ctx.archive
+    raw_items = collected.raw_items
+    statuses = collected.statuses
     if active_source_ids is not None:
         raw_items = [item for item in raw_items if item.site_id in active_source_ids]
         statuses = [status for status in statuses if str(status.get("site_id") or "") in active_source_ids]
@@ -613,7 +748,6 @@ def main() -> int:
         status["raw_item_count"] = raw_count
         status["window_item_count"] = int(window_item_counts_by_site.get(site_id, 0))
         status["collection_window_hours"] = collect_window_hours
-
     seen_this_run: set[str] = set()
 
     for raw in raw_items:
@@ -670,7 +804,39 @@ def main() -> int:
             if ts >= keep_after:
                 pruned[item_id] = record
         archive = pruned
+    return MergeStageResult(
+        archive=archive,
+        raw_items=raw_items,
+        statuses=statuses,
+        raw_items_before_collect_window=raw_items_before_collect_window,
+        skipped_collect_window_items=skipped_collect_window_items,
+    )
 
+def enrich_stage(session: Any, ctx: RunContext, collected: CollectStageResult, merged: MergeStageResult) -> EnrichStageResult:
+    args = ctx.args
+    now = ctx.now
+    active_source_ids = ctx.active_source_ids
+    all_time = ctx.all_time
+    source_scope = ctx.source_scope
+    collect_window_hours = ctx.collect_window_hours
+    source_config_status = ctx.source_config_status
+    source_config_runtime = ctx.source_config_runtime
+    source_config_active = ctx.source_config_active
+    title_cache_path = ctx.title_cache_path
+    archive = merged.archive
+    raw_items = merged.raw_items
+    statuses = merged.statuses
+    raw_items_before_collect_window = merged.raw_items_before_collect_window
+    skipped_collect_window_items = merged.skipped_collect_window_items
+    rss_feed_statuses = collected.rss_feed_statuses
+    rss_opml_path = collected.rss_opml_path
+    rss_opml_enabled = collected.rss_opml_enabled
+    agentmail_status = collected.agentmail_status
+    x_api_status = collected.x_api_status
+    socialdata_status = collected.socialdata_status
+    tikhub_status = collected.tikhub_status
+    mediacrawler_douyin_status = collected.mediacrawler_douyin_status
+    mediacrawler_xhs_status = collected.mediacrawler_xhs_status
     window_start = datetime.min.replace(tzinfo=UTC) if all_time else now - timedelta(hours=args.window_hours)
     latest_items_all: list[dict[str, Any]] = []
     for record in archive.values():
@@ -894,8 +1060,48 @@ def main() -> int:
             "active": source_config_active,
         },
     }
-
     latest_payload, latest_all_payload = build_latest_payloads(latest_payload)
+    return EnrichStageResult(
+        latest_payload=latest_payload,
+        latest_all_payload=latest_all_payload,
+        daily_brief_payload=daily_brief_payload,
+        stories_merged_payload=stories_merged_payload,
+        merge_log_payload=merge_log_payload,
+        archive_payload=archive_payload,
+        status_payload=status_payload,
+        latest_items=latest_items,
+        latest_items_all_dedup=latest_items_all_dedup,
+        merge_events=merge_events,
+        title_cache=title_cache,
+    )
+
+def write_outputs_stage(ctx: RunContext, collected: CollectStageResult, merged: MergeStageResult, enriched: EnrichStageResult) -> None:
+    latest_path = ctx.latest_path
+    latest_all_path = ctx.latest_all_path
+    daily_brief_path = ctx.daily_brief_path
+    stories_merged_path = ctx.stories_merged_path
+    merge_log_path = ctx.merge_log_path
+    archive_path = ctx.archive_path
+    status_path = ctx.status_path
+    paid_source_state_path = ctx.paid_source_state_path
+    email_digest_path = ctx.email_digest_path
+    waytoagi_path = ctx.waytoagi_path
+    title_cache_path = ctx.title_cache_path
+    paid_source_state = ctx.paid_source_state
+    email_digest_payload = collected.email_digest_payload
+    waytoagi_payload = collected.waytoagi_payload
+    archive = merged.archive
+    latest_payload = enriched.latest_payload
+    latest_all_payload = enriched.latest_all_payload
+    daily_brief_payload = enriched.daily_brief_payload
+    stories_merged_payload = enriched.stories_merged_payload
+    merge_log_payload = enriched.merge_log_payload
+    archive_payload = enriched.archive_payload
+    status_payload = enriched.status_payload
+    latest_items = enriched.latest_items
+    latest_items_all_dedup = enriched.latest_items_all_dedup
+    merge_events = enriched.merge_events
+    title_cache = enriched.title_cache
 
     latest_path.write_text(json.dumps(sanitize_public_payload(latest_payload), ensure_ascii=False, indent=2), encoding="utf-8")
     latest_all_path.write_text(json.dumps(sanitize_public_payload(latest_all_payload), ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
@@ -941,6 +1147,37 @@ def main() -> int:
     print(f"Wrote: {waytoagi_path} ({waytoagi_payload.get('count_7d', 0)} items)")
     print(f"Wrote: {title_cache_path} ({len(title_cache)} entries)")
 
-    return 0
+def main() -> int:
+    total_started = time.monotonic()
+    args = parse_cli_args()
+    prepared = prepare_run_context(args)
+    if isinstance(prepared, int):
+        return prepared
+    ctx = prepared
+    session = create_session()
 
+    collect_started = time.monotonic()
+    collected = collect_stage(session, ctx)
+    collect_seconds = time.monotonic() - collect_started
+
+    merge_started = time.monotonic()
+    merged = merge_archive_stage(session, ctx, collected)
+    merge_seconds = time.monotonic() - merge_started
+
+    enrich_started = time.monotonic()
+    enriched = enrich_stage(session, ctx, collected, merged)
+    enrich_seconds = time.monotonic() - enrich_started
+
+    write_started = time.monotonic()
+    write_outputs_stage(ctx, collected, merged, enriched)
+    write_seconds = time.monotonic() - write_started
+    total_seconds = time.monotonic() - total_started
+    print(
+        f"[timing] collect={collect_seconds:.1f}s "
+        f"merge={merge_seconds:.1f}s "
+        f"enrich={enrich_seconds:.1f}s "
+        f"write={write_seconds:.1f}s "
+        f"total={total_seconds:.1f}s"
+    )
+    return 0
 
