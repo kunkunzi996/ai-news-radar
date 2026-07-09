@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-07-09T11:50:11.822120Z",
+  "generated_at": "2026-07-09T12:04:28.797039Z",
   "sites": [
     {
       "site_id": "github_foundation_sunshine_releases",
       "site_name": "GitHub Foundation Sunshine",
       "ok": true,
       "item_count": 5,
-      "duration_ms": 492,
+      "duration_ms": 418,
       "error": null,
       "source_kind": "github_release_subscription",
       "repo": "AlkaidLab/foundation-sunshine",
@@ -28,7 +28,7 @@
       "site_name": "Maobidao Wudaolu Backup",
       "ok": true,
       "item_count": 2,
-      "duration_ms": 848,
+      "duration_ms": 794,
       "error": null,
       "source_kind": "wechat_public_account_backup",
       "source_name": "猫笔刀公众号",
@@ -44,7 +44,7 @@
       "site_name": "Bilibili Dynamic",
       "ok": true,
       "item_count": 10,
-      "duration_ms": 5541,
+      "duration_ms": 1619,
       "error": null,
       "uid": "505301413,316183842",
       "uids": [
@@ -55,8 +55,8 @@
       "source_name": "Koji杨远骋at十字路口, 技术爬爬虾",
       "privacy": "cookie_env_only_not_logged",
       "coverage_note": "tries_cookie_full_dynamic_then_public_opus_fallback",
-      "cookie_present": false,
-      "fetch_mode": "public_opus",
+      "cookie_present": true,
+      "fetch_mode": "cookie_full_dynamic",
       "fallback_reason": null,
       "partial_failure_count": 0,
       "max_items": 5,
@@ -68,14 +68,14 @@
           "source_name": "Koji杨远骋at十字路口",
           "ok": true,
           "item_count": 5,
-          "fetch_mode": "public_opus"
+          "fetch_mode": "cookie_full_dynamic"
         },
         {
           "uid": "316183842",
           "source_name": "技术爬爬虾",
           "ok": true,
           "item_count": 5,
-          "fetch_mode": "public_opus"
+          "fetch_mode": "cookie_full_dynamic"
         }
       ],
       "raw_item_count": 10,
