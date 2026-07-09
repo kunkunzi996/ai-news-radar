@@ -63,13 +63,18 @@ def fetch_github_repo_subscription(
     max_items: int = GITHUB_REPO_SUBSCRIPTION_MAX_ITEMS,
 ) -> list[RawItem]:
     params = {"per_page": max(1, min(10, int(max_items or 1)))}
+    headers = {
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "AI-News-Radar/0.7 github-release-subscription",
+    }
+    github_token = str(os.environ.get("GITHUB_TOKEN") or "").strip()
+    if github_token and urlparse(api_url).netloc.lower() == "api.github.com":
+        headers["Authorization"] = f"Bearer {github_token}"
+        headers["X-GitHub-Api-Version"] = "2022-11-28"
     resp = session.get(
         api_url,
         params=params,
-        headers={
-            "Accept": "application/vnd.github+json",
-            "User-Agent": "AI-News-Radar/0.7 github-release-subscription",
-        },
+        headers=headers,
         timeout=30,
     )
     resp.raise_for_status()

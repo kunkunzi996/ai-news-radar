@@ -1286,6 +1286,38 @@ class TopicFilterTests(unittest.TestCase):
         self.assertEqual(len(items), 1)
         self.assertEqual(items[0].source, "claude code汉化项目")
 
+    def test_fetch_github_repo_subscription_uses_github_token_for_api_host_only(self):
+        class FakeResponse:
+            def raise_for_status(self):
+                return None
+
+            def json(self):
+                return []
+
+        class FakeSession:
+            def __init__(self):
+                self.calls = []
+
+            def get(self, url, **kwargs):
+                self.calls.append((url, kwargs))
+                return FakeResponse()
+
+        now = datetime.fromisoformat("2026-07-01T00:00:00+00:00")
+        session = FakeSession()
+        with patch.dict(os.environ, {"GITHUB_TOKEN": "ghs_test_token"}):
+            fetch_github_repo_subscription(session, now)
+            fetch_github_repo_subscription(
+                session,
+                now,
+                api_url="https://example.com/repos/example/repo/releases",
+            )
+
+        github_headers = session.calls[0][1]["headers"]
+        external_headers = session.calls[1][1]["headers"]
+        self.assertEqual(github_headers["Authorization"], "Bearer ghs_test_token")
+        self.assertEqual(github_headers["X-GitHub-Api-Version"], "2022-11-28")
+        self.assertNotIn("Authorization", external_headers)
+
     def test_source_tier_fields_and_sort_put_discussion_after_core_sources(self):
         official = add_source_tier_fields(
             {

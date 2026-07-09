@@ -55,6 +55,7 @@ jobs:
           MEDIACRAWLER_XHS_ENABLED: ${{ vars.MEDIACRAWLER_XHS_ENABLED }}
           MEDIACRAWLER_XHS_JSONL: ${{ vars.MEDIACRAWLER_XHS_JSONL }}
           MEDIACRAWLER_XHS_SOURCE_NAME: ${{ vars.MEDIACRAWLER_XHS_SOURCE_NAME }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           python scripts/update_news.py --output-dir data --window-hours 24 --archive-days 21
 
