@@ -32,3 +32,13 @@ test("tabs and time range filter do not throw", async ({ page }) => {
   await page.waitForTimeout(500);
   expect(errors).toEqual([]);
 });
+
+test("remote data base query loads data files", async ({ page }) => {
+  const errors = [];
+  collectErrors(page, errors);
+  await page.goto("/?dataBase=http://127.0.0.1:8080/data/");
+  await expect(page.locator("#dataSourcePill")).toContainText("远程数据");
+  await expect(page.locator("#sectionTabs")).toBeVisible();
+  await page.waitForTimeout(1000);
+  expect(errors).toEqual([]);
+});

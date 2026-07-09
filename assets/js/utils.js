@@ -21,6 +21,122 @@ function fmtDate(iso) {
     day: "2-digit",
   }).format(d);
 }
+function cacheBustedUrl(url) {
+  const separator = String(url).includes("?") ? "&" : "?";
+  return `${url}${separator}t=${Date.now()}`;
+}
+function normalizeDataBaseUrl(raw) {
+  const text = String(raw || "").trim();
+  if (!text || text.toLowerCase() === "local") return "";
+  try {
+    const url = new URL(text, window.location.href);
+    if (url.protocol !== "http:" && url.protocol !== "https:") return "";
+    url.hash = "";
+    url.search = "";
+    const value = url.toString();
+    return value.endsWith("/") ? value : `${value}/`;
+  } catch {
+    return "";
+  }
+}
+function initDataSource() {
+  state.dataBaseUrl = "";
+  state.dataSourceMode = "local";
+  state.dataSourceFallback = false;
+  state.dataSourceError = "";
+
+  let rawDataBase = "";
+  let hasUrlOverride = false;
+  try {
+    const params = new URLSearchParams(window.location.search);
+    rawDataBase = params.get("dataBase") || params.get("data_base") || "";
+    hasUrlOverride = params.has("dataBase") || params.has("data_base");
+  } catch {
+    rawDataBase = "";
+  }
+
+  if (hasUrlOverride) {
+    const text = String(rawDataBase || "").trim();
+    if (!text || text.toLowerCase() === "local") {
+      try {
+        window.localStorage.removeItem(DATA_BASE_STORAGE_KEY);
+      } catch {}
+      return;
+    }
+    const normalized = normalizeDataBaseUrl(text);
+    if (normalized) {
+      state.dataBaseUrl = normalized;
+      state.dataSourceMode = "remote";
+      try {
+        window.localStorage.setItem(DATA_BASE_STORAGE_KEY, normalized);
+      } catch {}
+    } else {
+      state.dataSourceError = "远程数据地址无效，已使用本地数据";
+      try {
+        window.localStorage.removeItem(DATA_BASE_STORAGE_KEY);
+      } catch {}
+    }
+    return;
+  }
+
+  try {
+    const saved = normalizeDataBaseUrl(window.localStorage.getItem(DATA_BASE_STORAGE_KEY));
+    if (saved) {
+      state.dataBaseUrl = saved;
+      state.dataSourceMode = "remote";
+    }
+  } catch {}
+}
+function localDataPathFor(path) {
+  const raw = String(path || "").trim();
+  if (/^https?:\/\//i.test(raw)) {
+    try {
+      const parts = new URL(raw).pathname.split("/").filter(Boolean);
+      const fileName = parts[parts.length - 1] || "";
+      return fileName ? `data/${fileName}` : "data/latest-24h.json";
+    } catch {
+      return "data/latest-24h.json";
+    }
+  }
+  const clean = raw.replace(/^\.?\//, "");
+  return clean.startsWith("data/") ? clean : `data/${clean}`;
+}
+function remoteDataPathFor(path) {
+  const raw = String(path || "").trim();
+  if (/^https?:\/\//i.test(raw)) return raw;
+  return raw.replace(/^\.?\//, "").replace(/^data\//, "");
+}
+function dataFileUrl(path, options = {}) {
+  if (!options.forceLocal && state.dataSourceMode === "remote" && state.dataBaseUrl) {
+    const remotePath = remoteDataPathFor(path);
+    return cacheBustedUrl(/^https?:\/\//i.test(remotePath)
+      ? remotePath
+      : new URL(remotePath, state.dataBaseUrl).toString());
+  }
+  return cacheBustedUrl(`./${localDataPathFor(path)}`);
+}
+async function fetchJson(url, label) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`加载 ${label} 失败: ${res.status}`);
+  return res.json();
+}
+async function fetchDataJson(path, label, options = {}) {
+  try {
+    return await fetchJson(dataFileUrl(path), label);
+  } catch (remoteErr) {
+    if (state.dataSourceMode === "remote" && options.fallbackLocal !== false) {
+      try {
+        const payload = await fetchJson(dataFileUrl(path, { forceLocal: true }), label);
+        state.dataSourceFallback = true;
+        state.dataSourceError = `${label} 远程读取失败，已回退本地数据`;
+        return payload;
+      } catch (localErr) {
+        throw new Error(`${remoteErr.message}；本地回退也失败: ${localErr.message}`);
+      }
+    }
+    throw remoteErr;
+  }
+}
 function windowLabel() {
   if (state.timeRangeFilter === "all") return "不限";
   return state.timeScope === "all_time" ? "全部时间" : "过去 24 小时";

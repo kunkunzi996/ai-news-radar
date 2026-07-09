@@ -57,6 +57,22 @@ function renderSourceStatusPill(errorMessage = "") {
     : `${fmtNumber(okSites)}/${fmtNumber(totalSites)} 源正常`;
   if (failed) sourceStatusPillEl.classList.add("warn");
 }
+function renderDataSourcePill() {
+  if (!dataSourcePillEl) return;
+  dataSourcePillEl.className = "data-source-pill";
+  if (state.dataSourceMode === "remote") {
+    dataSourcePillEl.classList.add("remote");
+    dataSourcePillEl.textContent = state.dataSourceFallback ? "远程失败 · 本地回退" : "远程数据";
+    dataSourcePillEl.title = state.dataSourceFallback
+      ? `${state.dataSourceError || "远程数据读取失败"}；远程地址：${state.dataBaseUrl}`
+      : `当前读取远程数据：${state.dataBaseUrl}`;
+    if (state.dataSourceFallback) dataSourcePillEl.classList.add("warn");
+    return;
+  }
+  dataSourcePillEl.textContent = state.dataSourceError ? "本地数据 · 地址无效" : "本地数据";
+  dataSourcePillEl.title = state.dataSourceError || "当前读取本机 data/*.json";
+  if (state.dataSourceError) dataSourcePillEl.classList.add("warn");
+}
 function renderStickySummary() {
   if (!stickySummaryTextEl) return;
   const filteredCount = getFilteredItems().length;

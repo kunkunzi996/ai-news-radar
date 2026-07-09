@@ -143,6 +143,33 @@ button {
   background: rgba(180, 35, 24, 0.07);
 }
 
+.data-source-pill {
+  display: inline-flex;
+  width: max-content;
+  max-width: 100%;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(18, 106, 115, 0.2);
+  border-radius: 999px;
+  padding: 5px 9px;
+  color: var(--accent);
+  background: rgba(18, 106, 115, 0.06);
+  font-size: 12px;
+  font-weight: 740;
+}
+
+.data-source-pill.remote {
+  color: var(--good);
+  border-color: rgba(31, 122, 77, 0.2);
+  background: rgba(31, 122, 77, 0.07);
+}
+
+.data-source-pill.warn {
+  color: var(--warn);
+  border-color: rgba(154, 103, 0, 0.22);
+  background: rgba(154, 103, 0, 0.08);
+}
+
 .hero-links {
   display: flex;
   flex-wrap: wrap;
@@ -3404,7 +3431,8 @@ summary:focus-visible {
     font-weight: 650;
   }
 
-  .source-status-pill {
+  .source-status-pill,
+  .data-source-pill {
     min-height: 30px;
     padding: 5px 10px;
     font-size: 12px;

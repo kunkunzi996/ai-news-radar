@@ -25,6 +25,10 @@ const state = {
   waytoagiData: null,
   sourceStatus: null,
   generatedAt: null,
+  dataBaseUrl: "",
+  dataSourceMode: "local",
+  dataSourceFallback: false,
+  dataSourceError: "",
   dailyBrief: null,
   storiesMerged: null,
   storiesDataUrl: "data/stories-merged.json",
@@ -55,6 +59,7 @@ const siteSelectEl = document.getElementById("siteSelect");
 const sitePillsEl = document.getElementById("sitePills");
 const newsListEl = document.getElementById("newsList");
 const updatedAtEl = document.getElementById("updatedAt");
+const dataSourcePillEl = document.getElementById("dataSourcePill");
 const sourceStatusPillEl = document.getElementById("sourceStatusPill");
 const stickySummaryTextEl = document.getElementById("stickySummaryText");
 const searchInputEl = document.getElementById("searchInput");
@@ -201,6 +206,7 @@ const LIST_SORT_DEFS = [
 ];
 
 const SOURCE_CONFIG_STORAGE_KEY = "ai-news-radar-source-config-v1";
+const DATA_BASE_STORAGE_KEY = "ai-news-radar-data-base-v1";
 const COLLECTION_SCOPE_STORAGE_KEY = "ai-news-radar-collection-scope-v1";
 const READ_ITEMS_STORAGE_KEY = "ai-news-radar-read-items-v1";
 const SOURCE_CONFIG_CATALOG_VERSION = "2026-07-02-builtin-sources";

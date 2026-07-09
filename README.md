@@ -194,6 +194,18 @@ python scripts/local_server.py --host 127.0.0.1 --port 8080
 http://localhost:8080
 ```
 
+如果采集任务已经在云端生成了同样结构的 `data/*.json`，本地页面可以只负责展示远程数据：
+
+```text
+http://127.0.0.1:8080/?dataBase=https://你的域名或GitHub Pages路径/data/
+```
+
+页面会记住这个远程数据目录，并在右上角显示 `远程数据`。要切回本机 `data/`，打开：
+
+```text
+http://127.0.0.1:8080/?dataBase=local
+```
+
 如果你有自己的 OPML：
 
 ```bash
