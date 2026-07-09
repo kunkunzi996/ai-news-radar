@@ -240,6 +240,8 @@ python scripts/update_news.py --output-dir data --window-hours 24 --rss-opml fee
 
 如果你明确想部署到自己的服务器自动跑，推荐使用 `systemd timer` 定时刷新数据，再用 Nginx 只对外提供静态页面和 `data/*.json`。完整步骤见 [服务器部署手册](docs/guides/server-deployment.md)，不要把本地管理后台 `scripts/local_server.py` 直接暴露到公网。
 
+如果只是想先让本机自动采集数据，不做公网部署，可以用 Windows 计划任务每 30 分钟刷新一次 `data/*.json`。完整步骤见 [Windows 自动刷新手册](docs/guides/windows-auto-refresh.md)。
+
 主页面内置一个本地采集控制台、“订阅成员”和“高级信源配置”面板。
 日常新增/删除订阅对象优先用“订阅成员”；“高级信源配置”用于编辑类型、地址、
 环境变量、备注和启用状态等底层字段。
