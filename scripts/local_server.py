@@ -31,6 +31,7 @@ from scripts.radar.server import (
 from scripts.radar.server import cdp as _cdp_api  # noqa: E402
 from scripts.radar.server import common as _common_api  # noqa: E402
 from scripts.radar.server import collectors as _collectors_api  # noqa: E402
+from scripts.radar.server import online_sources as _online_api  # noqa: E402
 from scripts.radar.server import refresh as _refresh_api  # noqa: E402
 from scripts.radar.server import subscriptions_store as _store_api  # noqa: E402
 
@@ -52,6 +53,7 @@ mediacrawler_douyin_collector_status = _collectors_api.mediacrawler_douyin_colle
 mediacrawler_xhs_collector_status = _collectors_api.mediacrawler_xhs_collector_status
 perform_maintenance_action = _refresh_api.perform_maintenance_action
 purge_deleted_source_data = _store_api.purge_deleted_source_data
+read_online_source_config = _online_api.read_online_source_config
 read_source_config = _store_api.read_source_config
 read_wewe_rss_feeds = _collectors_api.read_wewe_rss_feeds
 read_youtube_subscriptions = _store_api.read_youtube_subscriptions
@@ -66,8 +68,10 @@ schedule_process_restart = _refresh_api.schedule_process_restart
 start_mediacrawler_douyin = _collectors_api.start_mediacrawler_douyin
 start_mediacrawler_xhs = _collectors_api.start_mediacrawler_xhs
 start_wewe_rss_sidecar = _collectors_api.start_wewe_rss_sidecar
+sync_online_source_config = _online_api.sync_online_source_config
 sync_bilibili_cookie = _cdp_api.sync_bilibili_cookie
 validate_source_config = _store_api.validate_source_config
+write_online_source_config = _online_api.write_online_source_config
 write_youtube_subscriptions = _store_api.write_youtube_subscriptions
 
 class LocalRadarHandler(SimpleHTTPRequestHandler):
@@ -88,6 +92,27 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
             return False
         json_response(self, HTTPStatus.FORBIDDEN, {"ok": False, "error": "non_local_origin"})
         return True
+
+    def read_json_body(self, max_bytes: int) -> dict[str, Any] | None:
+        try:
+            length = int(self.headers.get("Content-Length") or "0")
+        except ValueError:
+            length = 0
+        if length <= 0 or length > max_bytes:
+            json_response(self, HTTPStatus.BAD_REQUEST, {"ok": False, "error": "invalid_content_length"})
+            return None
+        if "application/json" not in str(self.headers.get("Content-Type") or ""):
+            json_response(self, HTTPStatus.UNSUPPORTED_MEDIA_TYPE, {"ok": False, "error": "json_required"})
+            return None
+        try:
+            raw = self.rfile.read(length)
+            payload = json.loads(raw.decode("utf-8"))
+            if not isinstance(payload, dict):
+                raise ValueError("payload must be a JSON object")
+            return payload
+        except Exception as exc:
+            json_response(self, HTTPStatus.BAD_REQUEST, {"ok": False, "error": str(exc)})
+            return None
 
     def do_GET(self) -> None:
         route = self.path.split("?", 1)[0]
@@ -122,6 +147,14 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
             except Exception as exc:
                 json_response(self, HTTPStatus.INTERNAL_SERVER_ERROR, {"ok": False, "error": str(exc)})
             return
+        if route == "/api/online-source-config":
+            if self.reject_nonlocal_origin():
+                return
+            try:
+                json_response(self, HTTPStatus.OK, read_online_source_config(self.root_dir))
+            except Exception as exc:
+                json_response(self, HTTPStatus.INTERNAL_SERVER_ERROR, {"ok": False, "error": str(exc)})
+            return
         if route != "/api/source-config":
             return super().do_GET()
         if self.config_path.parent != self.root_dir or self.config_path.name != CONFIG_FILENAME:
@@ -151,6 +184,12 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
             return
         if route == "/api/subscriptions/youtube":
             self.handle_youtube_subscriptions()
+            return
+        if route == "/api/online-source-config":
+            self.handle_online_source_config()
+            return
+        if route == "/api/sync-online-source-config":
+            self.handle_sync_online_source_config()
             return
         if route != "/api/source-config":
             json_response(self, HTTPStatus.NOT_FOUND, {"ok": False, "error": "not_found"})
@@ -207,6 +246,32 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
                 "purged_items": purged_items,
             },
         )
+
+    def handle_online_source_config(self) -> None:
+        if self.reject_nonlocal_origin():
+            return
+        payload = self.read_json_body(MAX_CONFIG_BYTES)
+        if payload is None:
+            return
+        try:
+            result = write_online_source_config(self.root_dir, payload)
+        except Exception as exc:
+            json_response(self, HTTPStatus.BAD_REQUEST, {"ok": False, "error": str(exc)})
+            return
+        json_response(self, HTTPStatus.OK, result)
+
+    def handle_sync_online_source_config(self) -> None:
+        if self.reject_nonlocal_origin():
+            return
+        payload = self.read_json_body(MAX_CONFIG_BYTES)
+        if payload is None:
+            return
+        try:
+            result = sync_online_source_config(self.root_dir, payload)
+        except Exception as exc:
+            json_response(self, HTTPStatus.BAD_REQUEST, {"ok": False, "error": str(exc)})
+            return
+        json_response(self, HTTPStatus.OK, result)
 
     def handle_youtube_subscriptions(self) -> None:
         if self.reject_nonlocal_origin():

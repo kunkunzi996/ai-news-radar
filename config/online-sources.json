@@ -1,0 +1,161 @@
+{
+  "version": "1.0",
+  "mode": "online-public-source-config",
+  "updated_at": "2026-07-09T17:10:33Z",
+  "sources": [
+    {
+      "id": "online_bilibili_313819014",
+      "name": "anno大笨蛋",
+      "type": "bilibili_dynamic",
+      "enabled": true,
+      "channel": "B站动态",
+      "target": "anno大笨蛋",
+      "locator": "313819014",
+      "env": "",
+      "notes": "公开 UID"
+    },
+    {
+      "id": "online_bilibili_316183842",
+      "name": "技术爬爬虾",
+      "type": "bilibili_dynamic",
+      "enabled": true,
+      "channel": "B站动态",
+      "target": "技术爬爬虾",
+      "locator": "316183842",
+      "env": "",
+      "notes": "公开 UID"
+    },
+    {
+      "id": "online_bilibili_3546884870244925",
+      "name": "杰森的效率工坊",
+      "type": "bilibili_dynamic",
+      "enabled": true,
+      "channel": "B站动态",
+      "target": "杰森的效率工坊",
+      "locator": "3546884870244925",
+      "env": "",
+      "notes": "公开 UID"
+    },
+    {
+      "id": "online_bilibili_385670211",
+      "name": "秋芝2046",
+      "type": "bilibili_dynamic",
+      "enabled": true,
+      "channel": "B站动态",
+      "target": "秋芝2046",
+      "locator": "385670211",
+      "env": "",
+      "notes": "公开 UID"
+    },
+    {
+      "id": "online_bilibili_50247550",
+      "name": "清华姜学长",
+      "type": "bilibili_dynamic",
+      "enabled": true,
+      "channel": "B站动态",
+      "target": "清华姜学长",
+      "locator": "50247550",
+      "env": "",
+      "notes": "公开 UID"
+    },
+    {
+      "id": "online_bilibili_505301413",
+      "name": "Koji杨远骋at十字路口",
+      "type": "bilibili_dynamic",
+      "enabled": true,
+      "channel": "B站动态",
+      "target": "Koji杨远骋at十字路口",
+      "locator": "505301413",
+      "env": "",
+      "notes": "公开 UID"
+    },
+    {
+      "id": "online_github_alkaidlab_foundation_sunshine",
+      "name": "AlkaidLab/foundation-sunshine",
+      "type": "github_release",
+      "enabled": true,
+      "channel": "GitHub Release",
+      "target": "AlkaidLab/foundation-sunshine",
+      "locator": "AlkaidLab/foundation-sunshine",
+      "env": "",
+      "notes": "只追踪 release"
+    },
+    {
+      "id": "online_feed_google_ai_blog",
+      "name": "Google AI Blog",
+      "type": "rss",
+      "enabled": true,
+      "channel": "RSS/YouTube",
+      "target": "Google AI Blog",
+      "locator": "https://blog.google/technology/ai/rss/",
+      "env": "",
+      "notes": "公开 feed"
+    },
+    {
+      "id": "online_feed_google_deepmind_blog",
+      "name": "Google DeepMind Blog",
+      "type": "rss",
+      "enabled": true,
+      "channel": "RSS/YouTube",
+      "target": "Google DeepMind Blog",
+      "locator": "https://deepmind.google/blog/rss.xml",
+      "env": "",
+      "notes": "公开 feed"
+    },
+    {
+      "id": "online_feed_hugging_face_blog",
+      "name": "Hugging Face Blog",
+      "type": "rss",
+      "enabled": true,
+      "channel": "RSS/YouTube",
+      "target": "Hugging Face Blog",
+      "locator": "https://huggingface.co/blog/feed.xml",
+      "env": "",
+      "notes": "公开 feed"
+    },
+    {
+      "id": "online_feed_microsoft_ai_blog",
+      "name": "Microsoft AI Blog",
+      "type": "rss",
+      "enabled": true,
+      "channel": "RSS/YouTube",
+      "target": "Microsoft AI Blog",
+      "locator": "https://news.microsoft.com/source/topics/ai/feed/",
+      "env": "",
+      "notes": "公开 feed"
+    },
+    {
+      "id": "online_feed_openai_news",
+      "name": "OpenAI News",
+      "type": "rss",
+      "enabled": true,
+      "channel": "RSS/YouTube",
+      "target": "OpenAI News",
+      "locator": "https://openai.com/news/rss.xml",
+      "env": "",
+      "notes": "公开 feed"
+    },
+    {
+      "id": "online_feed_simon_willison",
+      "name": "Simon Willison",
+      "type": "rss",
+      "enabled": true,
+      "channel": "RSS/YouTube",
+      "target": "Simon Willison",
+      "locator": "https://simonwillison.net/atom/everything/",
+      "env": "",
+      "notes": "公开 feed"
+    },
+    {
+      "id": "online_opmlrss",
+      "name": "线上 RSS/YouTube 订阅包",
+      "type": "opmlrss",
+      "enabled": true,
+      "channel": "RSS/OPML",
+      "target": "feeds/online-sources.opml",
+      "locator": "feeds/online-sources.opml",
+      "env": "",
+      "notes": "公开 feed 列表"
+    }
+  ]
+}

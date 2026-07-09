@@ -243,9 +243,9 @@ python scripts/update_news.py --output-dir data --window-hours 24 --rss-opml fee
 - 推送到 `master` 时会立即刷新一次，纯 `data/**` 变更除外
 - 默认每 30 分钟运行一次：`*/30 * * * *`
 - 自动生成并提交 `data/*.json`；工作流使用 `git add data/`，避免新增 JSON 文件因为白名单遗漏而停留在旧更新时间
-- 默认部署范围是 `tested_creator_sources`，只发布已经本地验收过的订阅信源：B站动态、本地 MediaCrawler 抖音 JSONL、本地 MediaCrawler 小红书 JSONL、AlkaidLab/foundation-sunshine GitHub 版本发布，以及可选 OPML/RSS 订阅
-- B站动态源默认开启；抖音和小红书本地桥需要配置对应 `MEDIACRAWLER_*_ENABLED` 和 JSONL 路径才会读取
-- OPML/RSS 在 GitHub Actions 中优先读取 `FOLLOW_OPML_B64` Secret，未配置时使用公开 `feeds/follow.example.opml` 验证链路；AgentMail、X API、SocialData、TikHub、WaytoAGI 和原项目内置聚合源不再进入默认部署输出。如需恢复旧全源模式，可在本地手动运行 `python scripts/update_news.py --source-scope all_sources ...`
+- 默认读取公开线上配置 `config/online-sources.json`，其中 RSS/YouTube feed 由 `feeds/online-sources.opml` 管理
+- MVP 线上信源只支持三类公开来源：B站 UP、GitHub Release、RSS/YouTube feed
+- 抖音和小红书本地桥仍只适合本机采集，需要配置对应 `MEDIACRAWLER_*_ENABLED` 和 JSONL 路径才会读取；AgentMail、X API、SocialData、TikHub、WaytoAGI 和原项目内置聚合源不再进入默认部署输出。如需恢复旧全源模式，可在本地手动运行 `python scripts/update_news.py --source-scope all_sources ...`
 
 默认情况下，本项目不需要任何API Key就能跑核心流程。
 
@@ -294,6 +294,27 @@ https://kunkunzi996.github.io/ai-news-radar/data/source-status.json
 这个本地后台只绑定 `127.0.0.1`，只允许写这一个配置文件，只运行项目内固定
 刷新命令；维护入口只打开页面或文件夹，
 不会保存 cookie、token、`.env`、微信登录态或浏览器 profile。
+
+### 线上信源配置一键同步
+
+“线上信源”是给 GitHub Actions 用的公开配置，不等同于本机私有的
+`sources.config.json`。它只写这两个可提交文件：
+
+- `config/online-sources.json`
+- `feeds/online-sources.opml`
+
+本地打开 `http://127.0.0.1:8080/` 后，在“信源配置”区域可以看到
+“线上信源”面板。第一版只支持添加、启用/停用和删除三类公开安全源：
+
+- B站 UP：填写 UP 主名称和 UID。
+- GitHub Release：填写 `owner/repo` 或 GitHub 仓库 URL。
+- RSS/YouTube：填写标题和 RSS/Atom/YouTube feed URL。
+
+点“保存配置”只会写入本地公开配置文件；点“同步到线上”会由本地后台校验、
+精确暂存、提交并推送。同步过程禁止 `git add .`，也不会暂存
+`data/*.json`、`sources.config.json`、`feeds/follow.opml`、`local-secrets/`
+或任何私密文件。公网 GitHub Pages 是静态页，不能直接写 GitHub；要改线上信源，
+请用本机 `127.0.0.1:8080` 控制台。
 
 推荐流程：
 

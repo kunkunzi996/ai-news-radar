@@ -134,13 +134,16 @@ async function init() {
 
   renderDataSourcePill();
   renderSourceConfig();
+  renderOnlineSourceConfig();
   renderLocalOpsStatus({ source_status: state.sourceStatus || {} });
   if (canUseLocalBackend()) {
     loadSourceConfigFromLocalServer();
+    loadOnlineSourceConfigFromServer(true);
     loadLocalStatusFromServer(false);
     loadYoutubeSubscriptions({ silent: true });
   } else {
     setSourceConfigStatus(localBackendUnavailableMessage(), "warn");
+    loadOnlineSourceConfigFromServer(true);
     setLocalOpsStatus("公网静态页", "warn");
   }
   document.dispatchEvent(new CustomEvent("aiRadar:ready"));
@@ -287,6 +290,27 @@ if (sourceConfigFormEl) {
   });
   sourceConfigFormEl.addEventListener("input", syncSourceConfigFormDraft);
   sourceConfigFormEl.addEventListener("change", syncSourceConfigFormDraft);
+}
+
+if (onlineSourceFormEl) {
+  onlineSourceFormEl.addEventListener("submit", (event) => {
+    event.preventDefault();
+    saveOnlineSourceConfigToServer().catch(() => {});
+  });
+}
+
+if (onlineSourceTypeEl) {
+  onlineSourceTypeEl.addEventListener("change", renderOnlineSourceFormHints);
+}
+
+if (onlineSourceClearBtnEl) {
+  onlineSourceClearBtnEl.addEventListener("click", clearOnlineSourceForm);
+}
+
+if (onlineSourceSyncBtnEl) {
+  onlineSourceSyncBtnEl.addEventListener("click", () => {
+    syncOnlineSourceConfigToServer().catch(() => {});
+  });
 }
 
 if (subscriptionMemberFormEl) {

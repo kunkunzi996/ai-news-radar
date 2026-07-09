@@ -43,6 +43,9 @@ const state = {
   sourceConfig: null,
   sourceConfigSelectedId: "",
   sourceConfigFilter: "all",
+  onlineSourceConfig: { sources: [] },
+  onlineSourceSelectedId: "",
+  onlineSourceDirty: false,
   subscriptionPlatform: "bilibili",
   youtubeSubscriptions: [],
   localOpsStatus: null,
@@ -126,6 +129,19 @@ const localOpsProgressEl = document.getElementById("localOpsProgress");
 const localOpsSummaryEl = document.getElementById("localOpsSummary");
 const localOpsCollectorsEl = document.getElementById("localOpsCollectors");
 const localOpsIssuesEl = document.getElementById("localOpsIssues");
+const onlineSourceStatusEl = document.getElementById("onlineSourceStatus");
+const onlineSourceListEl = document.getElementById("onlineSourceList");
+const onlineSourceFormEl = document.getElementById("onlineSourceForm");
+const onlineSourceTypeEl = document.getElementById("onlineSourceType");
+const onlineSourceNameLabelEl = document.getElementById("onlineSourceNameLabel");
+const onlineSourceLocatorLabelEl = document.getElementById("onlineSourceLocatorLabel");
+const onlineSourceNameEl = document.getElementById("onlineSourceName");
+const onlineSourceLocatorEl = document.getElementById("onlineSourceLocator");
+const onlineSourceNotesEl = document.getElementById("onlineSourceNotes");
+const onlineSourceEnabledEl = document.getElementById("onlineSourceEnabled");
+const onlineSourceSaveBtnEl = document.getElementById("onlineSourceSaveBtn");
+const onlineSourceClearBtnEl = document.getElementById("onlineSourceClearBtn");
+const onlineSourceSyncBtnEl = document.getElementById("onlineSourceSyncBtn");
 const subscriptionManagerStatusEl = document.getElementById("subscriptionManagerStatus");
 const subscriptionPlatformTabsEl = document.getElementById("subscriptionPlatformTabs");
 const subscriptionMembersEl = document.getElementById("subscriptionMembers");

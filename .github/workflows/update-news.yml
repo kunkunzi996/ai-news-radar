@@ -37,48 +37,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Prepare OPML input
-        env:
-          FOLLOW_OPML_B64: ${{ secrets.FOLLOW_OPML_B64 }}
-        run: |
-          set -euo pipefail
-          if [ -n "${FOLLOW_OPML_B64}" ]; then
-            mkdir -p .runtime
-            printf '%s' "${FOLLOW_OPML_B64}" | base64 --decode > .runtime/follow.opml
-            echo "RSS_OPML_PATH=.runtime/follow.opml" >> "$GITHUB_ENV"
-            echo "Using private OPML from FOLLOW_OPML_B64"
-          elif [ -f feeds/follow.example.opml ]; then
-            echo "RSS_OPML_PATH=feeds/follow.example.opml" >> "$GITHUB_ENV"
-            echo "Using public example OPML fallback"
-          else
-            echo "RSS_OPML_PATH=" >> "$GITHUB_ENV"
-            echo "No OPML input configured"
-          fi
-
       - name: Update data
         env:
-          RADAR_SOURCE_SCOPE: tested_creator_sources
-          # Deployed source scope is intentionally limited to tested subscription
-          # sources plus optional OPML/RSS input prepared above.
-          BILIBILI_DYNAMIC_ENABLED: ${{ vars.BILIBILI_DYNAMIC_ENABLED || '1' }}
-          BILIBILI_DYNAMIC_UIDS: ${{ vars.BILIBILI_DYNAMIC_UIDS || vars.BILIBILI_DYNAMIC_UID || '505301413,316183842,3546884870244925,50247550,385670211,313819014' }}
-          BILIBILI_DYNAMIC_SOURCE_NAMES: ${{ vars.BILIBILI_DYNAMIC_SOURCE_NAMES || vars.BILIBILI_DYNAMIC_SOURCE_NAME || 'Koji杨远骋at十字路口,技术爬爬虾,杰森的效率工坊,清华姜学长,秋芝2046,anno大笨蛋' }}
           BILIBILI_DYNAMIC_MAX_ITEMS: ${{ vars.BILIBILI_DYNAMIC_MAX_ITEMS || 10 }}
           BILIBILI_DYNAMIC_MAX_PAGES: ${{ vars.BILIBILI_DYNAMIC_MAX_PAGES || 8 }}
           BILIBILI_COOKIE: ${{ secrets.BILIBILI_COOKIE }}
-          MEDIACRAWLER_DOUYIN_ENABLED: ${{ vars.MEDIACRAWLER_DOUYIN_ENABLED }}
-          MEDIACRAWLER_DOUYIN_JSONL: ${{ vars.MEDIACRAWLER_DOUYIN_JSONL }}
-          MEDIACRAWLER_DOUYIN_SOURCE_NAME: ${{ vars.MEDIACRAWLER_DOUYIN_SOURCE_NAME }}
-          MEDIACRAWLER_XHS_ENABLED: ${{ vars.MEDIACRAWLER_XHS_ENABLED }}
-          MEDIACRAWLER_XHS_JSONL: ${{ vars.MEDIACRAWLER_XHS_JSONL }}
-          MEDIACRAWLER_XHS_SOURCE_NAME: ${{ vars.MEDIACRAWLER_XHS_SOURCE_NAME }}
           GITHUB_TOKEN: ${{ github.token }}
         run: |
-          EXTRA_ARGS=()
-          if [ -n "${RSS_OPML_PATH:-}" ]; then
-            EXTRA_ARGS+=(--rss-opml "$RSS_OPML_PATH")
-          fi
-          python scripts/update_news.py --output-dir data --window-hours 24 --archive-days 21 "${EXTRA_ARGS[@]}"
+          python scripts/update_news.py --source-config config/online-sources.json --output-dir data --window-hours 24 --archive-days 21
 
       - name: Commit and push changes
         env:

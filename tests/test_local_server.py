@@ -1,4 +1,5 @@
 import json
+import subprocess
 import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -22,6 +23,7 @@ from scripts.local_server import (
     normalize_collection_scope,
     perform_maintenance_action,
     purge_deleted_source_data,
+    read_online_source_config,
     read_wewe_rss_feeds,
     refresh_command,
     refresh_env,
@@ -32,8 +34,10 @@ from scripts.local_server import (
     start_mediacrawler_douyin,
     start_mediacrawler_xhs,
     start_wewe_rss_sidecar,
+    sync_online_source_config,
     refresh_step_plan,
     validate_source_config,
+    write_online_source_config,
     write_youtube_subscriptions,
 )
 
@@ -429,6 +433,123 @@ class LocalServerTests(unittest.TestCase):
                     }
                 ],
             )
+
+    def test_write_online_source_config_roundtrips_public_config_and_opml(self):
+        root = Path(self.create_temp_dir())
+
+        result = write_online_source_config(
+            root,
+            {
+                "sources": [
+                    {
+                        "name": "技术爬爬虾",
+                        "type": "bilibili_dynamic",
+                        "locator": "316183842",
+                    },
+                    {
+                        "name": "Foundation",
+                        "type": "github_release",
+                        "locator": "https://github.com/AlkaidLab/foundation-sunshine",
+                    },
+                    {
+                        "name": "A & B <AI>",
+                        "type": "rss",
+                        "locator": "https://example.com/feed.xml?tag=ai",
+                    },
+                ]
+            },
+        )
+        loaded = read_online_source_config(root)
+        config_path = root / "config" / "online-sources.json"
+        opml_path = root / "feeds" / "online-sources.opml"
+        config = json.loads(config_path.read_text(encoding="utf-8"))
+        opml_text = opml_path.read_text(encoding="utf-8")
+
+        self.assertEqual(result["source_count"], 3)
+        self.assertEqual(loaded["source_count"], 3)
+        self.assertTrue(config_path.exists())
+        self.assertTrue(opml_path.exists())
+        self.assertIn("online_opmlrss", [source["id"] for source in config["sources"]])
+        self.assertIn("AlkaidLab/foundation-sunshine", [source["locator"] for source in config["sources"]])
+        self.assertIn("A &amp; B &lt;AI&gt;", opml_text)
+
+    def test_write_online_source_config_rejects_private_or_sensitive_values(self):
+        root = Path(self.create_temp_dir())
+
+        with self.assertRaises(ValueError):
+            write_online_source_config(
+                root,
+                {
+                    "sources": [
+                        {
+                            "name": "Bad",
+                            "type": "rss",
+                            "locator": "https://example.com/feed.xml",
+                            "notes": "cookie should not be public",
+                        }
+                    ]
+                },
+            )
+
+        with self.assertRaises(ValueError):
+            write_online_source_config(
+                root,
+                {
+                    "sources": [
+                        {
+                            "name": "Private OPML",
+                            "type": "rss",
+                            "locator": "feeds/follow.opml",
+                        }
+                    ]
+                },
+            )
+
+    def test_sync_online_source_config_commits_only_public_config_files(self):
+        root = Path(self.create_temp_dir())
+
+        subprocess.run(["git", "init"], cwd=root, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        subprocess.run(["git", "config", "user.name", "Test"], cwd=root, check=True)
+        subprocess.run(["git", "config", "user.email", "test@example.com"], cwd=root, check=True)
+        (root / "README.md").write_text("init\n", encoding="utf-8")
+        subprocess.run(["git", "add", "README.md"], cwd=root, check=True)
+        subprocess.run(["git", "commit", "-m", "init"], cwd=root, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        data_dir = root / "data"
+        data_dir.mkdir()
+        (data_dir / "latest-24h.json").write_text("{}", encoding="utf-8")
+
+        result = sync_online_source_config(
+            root,
+            {
+                "sources": [
+                    {
+                        "name": "技术爬爬虾",
+                        "type": "bilibili_dynamic",
+                        "locator": "316183842",
+                    },
+                    {
+                        "name": "OpenAI News",
+                        "type": "rss",
+                        "locator": "https://openai.com/news/rss.xml",
+                    },
+                ]
+            },
+            push=False,
+        )
+        show = subprocess.run(
+            ["git", "show", "--name-only", "--oneline", "-1"],
+            cwd=root,
+            check=True,
+            text=True,
+            encoding="utf-8",
+            stdout=subprocess.PIPE,
+        ).stdout
+
+        self.assertTrue(result["synced"])
+        self.assertFalse(result["pushed"])
+        self.assertIn("config/online-sources.json", show)
+        self.assertIn("feeds/online-sources.opml", show)
+        self.assertNotIn("data/latest-24h.json", show)
 
     def test_refresh_command_uses_fixed_local_update_script(self):
         root = Path("E:/AI-news-reader/ai-news-radar-run")

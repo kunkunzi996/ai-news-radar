@@ -1,5 +1,78 @@
 # HANDOFF.md
 
+## 当前最新交接：线上信源配置一键同步 MVP 已完成本地实现
+
+- 日期：2026-07-10
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前阶段：本地“线上信源”配置面板、公开配置文件、GitHub Actions 读取公开配置、本地保存/同步 API 已完成；真实 push 按钮未由 Codex 点击，等待用户确认后再执行。
+- 详细需求与施工计划：`docs/plans/2026-07-10-online-source-config-one-click-plan.md`
+
+## 本轮已完成
+
+- 新增公开线上配置：`config/online-sources.json`。
+- 新增公开 RSS/YouTube OPML：`feeds/online-sources.opml`。
+- GitHub Actions 的 `Update data` 改为读取 `--source-config config/online-sources.json`。
+- 本地后台新增 local-only API：
+  - `GET /api/online-source-config`
+  - `POST /api/online-source-config`
+  - `POST /api/sync-online-source-config`
+- 本地页面新增“线上信源”面板，支持 B站 UP、GitHub Release、RSS/YouTube 三类公开源。
+- 同步 API 只允许 stage `config/online-sources.json` 和 `feeds/online-sources.opml`，禁止 `git add .`，并拒绝敏感词和私密路径。
+- README 已补充线上信源配置说明。
+
+## 本轮未执行
+
+- 没有点击“同步到线上”，因为这会真实 commit/push，需要用户明确确认。
+- 没有触发 GitHub Actions，也没有做公网 `source-status.json` 的最终确认。
+- 没有提交或推送本轮代码。
+
+## 当前关键事实
+
+- 公网地址：`https://kunkunzi996.github.io/ai-news-radar/`
+- 线上刷新频率：GitHub Actions `*/30 * * * *`，推送到 `master` 且不是纯 `data/**` 变更时也会触发。
+- 当前 workflow 已改为读取 `config/online-sources.json`，RSS/YouTube feed 由 `feeds/online-sources.opml` 管理。
+- 本地 `sources.config.json` 是私有本机配置，不是线上真实配置。
+- 公网页面的“信源配置”不能直接写 GitHub；真正的一键同步必须走本地 `127.0.0.1:8080` 后台。
+
+## 已验收
+
+- `.\.venv\Scripts\python.exe -m py_compile scripts\local_server.py scripts\radar\server\online_sources.py`
+- `node --check assets\js\dom.js assets\js\online-source-config.js assets\js\boot.js`
+- `.\.venv\Scripts\python.exe -m unittest tests.test_local_server -q`：70 tests OK。
+- `.\.venv\Scripts\python.exe -m unittest discover -s tests -q`：225 tests OK。
+- `GET http://127.0.0.1:8080/api/online-source-config` 返回 13 个公开线上信源。
+- Playwright 打开 `http://127.0.0.1:8080/`，展开“信源配置”，看到 13 个线上信源；点击“保存配置”后页面显示 `已写入本地线上配置：13 个信源`，控制台无 error/warning。
+
+## 下一轮必须先读
+
+1. `AGENTS.md`
+2. `PROJECT_STATE.md`
+3. `HANDOFF.md`
+4. `README.md`
+5. `.github/workflows/update-news.yml`
+6. `docs/plans/2026-07-10-online-source-config-one-click-plan.md`
+7. `scripts/radar/server/online_sources.py`
+8. `scripts/local_server.py`
+9. `assets/js/online-source-config.js`
+10. `assets/js/boot.js`
+11. `assets/js/dom.js`
+
+## 下一轮验收重点
+
+- 如果用户确认，可以在本地页面点击“同步到线上”，让后台提交并推送。
+- `git show --name-only --oneline -1` 不包含本地 `data/*.json`、`sources.config.json`、`feeds/follow.opml` 或私密文件。
+- GitHub Actions 最新 `Update AI News Snapshot` 成功。
+- 公网 `data/source-status.json` 出现 `source_config.active=true` 和 `source_scope=configured_sources`。
+- 公网页面仍能正常加载静态资源和 `data/*.json`。
+
+## 下一轮 Codex 入口
+
+使用 Kun Coding Router 继续当前项目。
+
+如果用户说“提交并推送”或“点同步到线上”，先检查 `git status --short --branch`，只暂存本轮公开配置/代码/文档文件，继续禁止提交 `data/*.json`、`sources.config.json`、`feeds/follow.opml`、`local-secrets/`、cookie、token、`.env`、浏览器 profile 和 `计划/` review 文件。
+
+---
+
 ## 当前最新交接：GitHub Pages 最小上线已完成并验收
 
 - 日期：2026-07-09

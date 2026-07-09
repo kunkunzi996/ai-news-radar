@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<opml version="2.0">
+  <head>
+    <title>AI News Radar Online Sources</title>
+  </head>
+  <body>
+    <outline text="Google AI Blog" title="Google AI Blog" type="rss" xmlUrl="https://blog.google/technology/ai/rss/" htmlUrl="" />
+    <outline text="Google DeepMind Blog" title="Google DeepMind Blog" type="rss" xmlUrl="https://deepmind.google/blog/rss.xml" htmlUrl="" />
+    <outline text="Hugging Face Blog" title="Hugging Face Blog" type="rss" xmlUrl="https://huggingface.co/blog/feed.xml" htmlUrl="" />
+    <outline text="Microsoft AI Blog" title="Microsoft AI Blog" type="rss" xmlUrl="https://news.microsoft.com/source/topics/ai/feed/" htmlUrl="" />
+    <outline text="OpenAI News" title="OpenAI News" type="rss" xmlUrl="https://openai.com/news/rss.xml" htmlUrl="" />
+    <outline text="Simon Willison" title="Simon Willison" type="rss" xmlUrl="https://simonwillison.net/atom/everything/" htmlUrl="" />
+  </body>
+</opml>

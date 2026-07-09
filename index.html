@@ -33,7 +33,7 @@
     <link rel="icon" href="./assets/icons/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png" sizes="180x180" />
     <link rel="manifest" href="./site.webmanifest" />
-    <link rel="stylesheet" href="./assets/styles.css?v=remote-data-source-0709a" />
+    <link rel="stylesheet" href="./assets/styles.css?v=online-source-config-0710c" />
   </head>
   <body>
     <main class="shell">
@@ -187,6 +187,48 @@
           <div id="localOpsCollectors" class="local-ops-collectors"></div>
           <div id="localOpsIssues" class="local-ops-issues"></div>
         </section>
+        <section class="online-source-panel" aria-label="线上信源管理">
+          <div class="online-source-head">
+            <div>
+              <strong>线上信源</strong>
+              <span id="onlineSourceStatus">读取 config/online-sources.json 后，可同步到 GitHub。</span>
+            </div>
+            <button id="onlineSourceSyncBtn" class="tool-btn" type="button">同步到线上</button>
+          </div>
+          <div class="online-source-body">
+            <div id="onlineSourceList" class="online-source-list"></div>
+            <form id="onlineSourceForm" class="online-source-form">
+              <label class="field">
+                <span>新增入口</span>
+                <select id="onlineSourceType">
+                  <option value="bilibili_dynamic">添加 B站 UP</option>
+                  <option value="github_release">添加 GitHub Release</option>
+                  <option value="rss">添加 RSS/YouTube</option>
+                </select>
+              </label>
+              <label class="field">
+                <span id="onlineSourceNameLabel">UP 主名称</span>
+                <input id="onlineSourceName" type="text" autocomplete="off" placeholder="例如：技术爬爬虾" />
+              </label>
+              <label class="field source-config-wide">
+                <span id="onlineSourceLocatorLabel">B站 UID</span>
+                <input id="onlineSourceLocator" type="text" autocomplete="off" placeholder="例如：316183842" />
+              </label>
+              <label class="field source-config-wide">
+                <span>备注</span>
+                <input id="onlineSourceNotes" type="text" autocomplete="off" placeholder="可选；不要填写 token、cookie 或私密路径" />
+              </label>
+              <label class="source-config-toggle">
+                <input id="onlineSourceEnabled" type="checkbox" checked />
+                <span>启用</span>
+              </label>
+              <div class="online-source-actions-row">
+                <button id="onlineSourceSaveBtn" class="mode-btn active" type="submit">保存配置</button>
+                <button id="onlineSourceClearBtn" class="mode-btn" type="button">清空</button>
+              </div>
+            </form>
+          </div>
+        </section>
         <section class="subscription-manager" aria-label="订阅成员管理">
           <div class="subscription-manager-head">
             <div>
@@ -336,7 +378,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous" defer></script>
     <script src="./assets/motion.js?v=ui-adjustment-0620a" defer></script>
-    <script src="./assets/js/dom.js?v=github-pages-static-0709a" defer></script>
+    <script src="./assets/js/dom.js?v=online-source-config-0710c" defer></script>
     <script src="./assets/js/utils.js?v=github-pages-static-0709a" defer></script>
     <script src="./assets/js/render-meta.js?v=github-pages-static-0709a" defer></script>
     <script src="./assets/js/render-list.js?v=github-pages-static-0709a" defer></script>
@@ -344,6 +386,7 @@
     <script src="./assets/js/subscriptions.js?v=github-pages-static-0709a" defer></script>
     <script src="./assets/js/source-config.js?v=github-pages-static-0709a" defer></script>
     <script src="./assets/js/local-collect.js?v=github-pages-static-0709a" defer></script>
-    <script src="./assets/js/boot.js?v=github-pages-static-0709a" defer></script>
+    <script src="./assets/js/online-source-config.js?v=online-source-config-0710c" defer></script>
+    <script src="./assets/js/boot.js?v=online-source-config-0710c" defer></script>
   </body>
 </html>
