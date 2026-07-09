@@ -367,6 +367,7 @@ TESTED_CREATOR_SOURCE_IDS = frozenset({
     GITHUB_REPO_SUBSCRIPTION_SITE_ID,
     MAOBIDAO_WECHAT_SITE_ID,
     WEWE_RSS_SITE_ID,
+    "opmlrss",
 })
 BUILTIN_COLLECT_SOURCE_IDS = frozenset({
     "official_ai",

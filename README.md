@@ -243,9 +243,9 @@ python scripts/update_news.py --output-dir data --window-hours 24 --rss-opml fee
 - 推送到 `master` 时会立即刷新一次，纯 `data/**` 变更除外
 - 默认每 30 分钟运行一次：`*/30 * * * *`
 - 自动生成并提交 `data/*.json`；工作流使用 `git add data/`，避免新增 JSON 文件因为白名单遗漏而停留在旧更新时间
-- 默认部署范围是 `tested_creator_sources`，只发布已经本地验收过的订阅信源：B站动态、本地 MediaCrawler 抖音 JSONL、本地 MediaCrawler 小红书 JSONL、AlkaidLab/foundation-sunshine GitHub 版本发布、猫笔刀公众号公开备份源
+- 默认部署范围是 `tested_creator_sources`，只发布已经本地验收过的订阅信源：B站动态、本地 MediaCrawler 抖音 JSONL、本地 MediaCrawler 小红书 JSONL、AlkaidLab/foundation-sunshine GitHub 版本发布、猫笔刀公众号公开备份源，以及可选 OPML/RSS 订阅
 - B站动态源默认开启；抖音和小红书本地桥需要配置对应 `MEDIACRAWLER_*_ENABLED` 和 JSONL 路径才会读取
-- OPML/RSS、AgentMail、X API、SocialData、TikHub、WaytoAGI 和原项目内置聚合源不再进入默认部署输出；如需恢复旧全源模式，可在本地手动运行 `python scripts/update_news.py --source-scope all_sources ...`
+- OPML/RSS 在 GitHub Actions 中优先读取 `FOLLOW_OPML_B64` Secret，未配置时使用公开 `feeds/follow.example.opml` 验证链路；AgentMail、X API、SocialData、TikHub、WaytoAGI 和原项目内置聚合源不再进入默认部署输出。如需恢复旧全源模式，可在本地手动运行 `python scripts/update_news.py --source-scope all_sources ...`
 
 默认情况下，本项目不需要任何API Key就能跑核心流程。
 

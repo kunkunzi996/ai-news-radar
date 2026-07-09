@@ -45,6 +45,8 @@ verification:
 - `github_foundation_sunshine_releases`
 - `maobidao_wudaolu_backup`
 - `wewe_rss` (only fetched when `WEWE_RSS_ENABLED=1`)
+- `opmlrss` (only fetched when an OPML file is prepared from
+  `FOLLOW_OPML_B64` or the public example OPML fallback)
 
 Legacy public RSS, OPML, AI HOT, Follow Builders, Hacker News, WaytoAGI,
 AgentMail, X API, SocialData, and TikHub fetchers remain in the codebase for

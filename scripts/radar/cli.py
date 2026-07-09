@@ -675,7 +675,6 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
     rss_opml_path = str(source_config_runtime.get("rss_opml") or args.rss_opml or "").strip()
     rss_opml_enabled = bool(
         rss_opml_path
-        and not scoped_to_tested_creators
         and (active_source_ids is None or "opmlrss" in active_source_ids)
     )
     if rss_opml_enabled:

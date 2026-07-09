@@ -640,7 +640,7 @@ class TopicFilterTests(unittest.TestCase):
         filtered = filter_archive_by_source_ids(archive, allowed_source_ids)
 
         self.assertEqual(scope, "tested_creator_sources")
-        self.assertEqual(set(filtered), {"bili", "douyin", "xhs", "github", "maobidao", "wewe"})
+        self.assertEqual(set(filtered), {"bili", "douyin", "xhs", "github", "maobidao", "wewe", "opml"})
 
     def test_collect_window_filters_new_raw_items_by_publish_time(self):
         import datetime as _dt
