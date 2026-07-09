@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-07-09T15:49:55.496774Z",
+  "generated_at": "2026-07-09T17:28:36.296544Z",
   "sites": [
     {
       "site_id": "github_foundation_sunshine_releases",
       "site_name": "GitHub Foundation Sunshine",
       "ok": true,
       "item_count": 5,
-      "duration_ms": 489,
+      "duration_ms": 414,
       "error": null,
       "source_kind": "github_release_subscription",
       "repo": "AlkaidLab/foundation-sunshine",
@@ -28,19 +28,19 @@
       "site_name": "Bilibili Dynamic",
       "ok": true,
       "item_count": 60,
-      "duration_ms": 3429,
+      "duration_ms": 3862,
       "error": null,
-      "uid": "505301413,316183842,3546884870244925,50247550,385670211,313819014",
+      "uid": "313819014,316183842,3546884870244925,385670211,50247550,505301413",
       "uids": [
-        "505301413",
+        "313819014",
         "316183842",
         "3546884870244925",
-        "50247550",
         "385670211",
-        "313819014"
+        "50247550",
+        "505301413"
       ],
       "uid_count": 6,
-      "source_name": "Koji杨远骋at十字路口, 技术爬爬虾, 杰森的效率工坊, 清华姜学长, 秋芝2046, anno大笨蛋",
+      "source_name": "anno大笨蛋, 技术爬爬虾, 杰森的效率工坊, 秋芝2046, 清华姜学长, Koji杨远骋at十字路口",
       "privacy": "cookie_env_only_not_logged",
       "coverage_note": "tries_cookie_full_dynamic_then_public_opus_fallback",
       "cookie_present": true,
@@ -52,8 +52,8 @@
       "max_pages": 8,
       "accounts": [
         {
-          "uid": "505301413",
-          "source_name": "Koji杨远骋at十字路口",
+          "uid": "313819014",
+          "source_name": "anno大笨蛋",
           "ok": true,
           "item_count": 10,
           "fetch_mode": "cookie_full_dynamic"
@@ -73,13 +73,6 @@
           "fetch_mode": "cookie_full_dynamic"
         },
         {
-          "uid": "50247550",
-          "source_name": "清华姜学长",
-          "ok": true,
-          "item_count": 10,
-          "fetch_mode": "cookie_full_dynamic"
-        },
-        {
           "uid": "385670211",
           "source_name": "秋芝2046",
           "ok": true,
@@ -87,8 +80,15 @@
           "fetch_mode": "cookie_full_dynamic"
         },
         {
-          "uid": "313819014",
-          "source_name": "anno大笨蛋",
+          "uid": "50247550",
+          "source_name": "清华姜学长",
+          "ok": true,
+          "item_count": 10,
+          "fetch_mode": "cookie_full_dynamic"
+        },
+        {
+          "uid": "505301413",
+          "source_name": "Koji杨远骋at十字路口",
           "ok": true,
           "item_count": 10,
           "fetch_mode": "cookie_full_dynamic"
@@ -103,54 +103,54 @@
       "site_name": "OPML RSS",
       "ok": true,
       "partial_failures": 0,
-      "item_count": 10,
-      "duration_ms": 177,
+      "item_count": 30,
+      "duration_ms": 2683,
       "error": null,
-      "feed_count": 2,
-      "effective_feed_count": 2,
-      "ok_feed_count": 2,
+      "feed_count": 6,
+      "effective_feed_count": 6,
+      "ok_feed_count": 6,
       "failed_feed_count": 0,
       "skipped_feed_count": 0,
       "replaced_feed_count": 0,
       "max_items_per_feed": 5,
-      "raw_item_count": 10,
-      "window_item_count": 10,
+      "raw_item_count": 30,
+      "window_item_count": 30,
       "collection_window_hours": 0
     }
   ],
   "time_scope": "rolling_window",
-  "source_scope": "tested_creator_sources",
+  "source_scope": "configured_sources",
   "collection_window_hours": 0,
   "successful_sites": 3,
   "failed_sites": [],
   "zero_item_sites": [],
   "empty_advanced_sources": [],
-  "fetched_raw_items": 75,
-  "raw_items_before_collection_window": 75,
+  "fetched_raw_items": 95,
+  "raw_items_before_collection_window": 95,
   "skipped_collection_window_items": 0,
-  "items_before_topic_filter": 31,
-  "items_in_24h": 7,
+  "items_before_topic_filter": 36,
+  "items_in_24h": 10,
   "rss_opml": {
     "enabled": true,
     "path": "configured",
     "disabled_reason": null,
-    "feed_total": 2,
-    "effective_feed_total": 2,
-    "ok_feeds": 2,
+    "feed_total": 6,
+    "effective_feed_total": 6,
+    "ok_feeds": 6,
     "failed_feeds": [],
     "zero_item_feeds": [],
     "skipped_feeds": [],
     "replaced_feeds": [],
     "feeds": [
       {
-        "site_id": "opmlrss:f109a2a35a",
+        "site_id": "opmlrss:c39414c568",
         "site_name": "OPML RSS",
-        "feed_title": "小岛大浪吹-非正经政经频道",
-        "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw",
-        "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw",
+        "feed_title": "Google AI Blog",
+        "feed_url": "https://blog.google/technology/ai/rss",
+        "effective_feed_url": "https://blog.google/technology/ai/rss",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 91,
+        "duration_ms": 307,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -159,14 +159,78 @@
         "max_items": 5
       },
       {
-        "site_id": "opmlrss:24775d9794",
+        "site_id": "opmlrss:0ea3c11e0b",
         "site_name": "OPML RSS",
-        "feed_title": "脑总MrBrain",
-        "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC26hLZoe-haxcuLYxzWAiNg",
-        "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC26hLZoe-haxcuLYxzWAiNg",
+        "feed_title": "Google DeepMind Blog",
+        "feed_url": "https://deepmind.google/blog/rss.xml",
+        "effective_feed_url": "https://deepmind.google/blog/rss.xml",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 86,
+        "duration_ms": 452,
+        "error": null,
+        "skipped": false,
+        "skip_reason": null,
+        "replaced": false,
+        "bridge_type": null,
+        "max_items": 5
+      },
+      {
+        "site_id": "opmlrss:33e649875b",
+        "site_name": "OPML RSS",
+        "feed_title": "Hugging Face Blog",
+        "feed_url": "https://huggingface.co/blog/feed.xml",
+        "effective_feed_url": "https://huggingface.co/blog/feed.xml",
+        "ok": true,
+        "item_count": 5,
+        "duration_ms": 390,
+        "error": null,
+        "skipped": false,
+        "skip_reason": null,
+        "replaced": false,
+        "bridge_type": null,
+        "max_items": 5
+      },
+      {
+        "site_id": "opmlrss:a53c22ca17",
+        "site_name": "OPML RSS",
+        "feed_title": "Microsoft AI Blog",
+        "feed_url": "https://news.microsoft.com/source/topics/ai/feed",
+        "effective_feed_url": "https://news.microsoft.com/source/topics/ai/feed",
+        "ok": true,
+        "item_count": 5,
+        "duration_ms": 225,
+        "error": null,
+        "skipped": false,
+        "skip_reason": null,
+        "replaced": false,
+        "bridge_type": null,
+        "max_items": 5
+      },
+      {
+        "site_id": "opmlrss:3ae57466b5",
+        "site_name": "OPML RSS",
+        "feed_title": "OpenAI News",
+        "feed_url": "https://openai.com/news/rss.xml",
+        "effective_feed_url": "https://openai.com/news/rss.xml",
+        "ok": true,
+        "item_count": 5,
+        "duration_ms": 824,
+        "error": null,
+        "skipped": false,
+        "skip_reason": null,
+        "replaced": false,
+        "bridge_type": null,
+        "max_items": 5
+      },
+      {
+        "site_id": "opmlrss:d1c587ecba",
+        "site_name": "OPML RSS",
+        "feed_title": "Simon Willison",
+        "feed_url": "https://simonwillison.net/atom/everything",
+        "effective_feed_url": "https://simonwillison.net/atom/everything",
+        "ok": true,
+        "item_count": 5,
+        "duration_ms": 485,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -182,70 +246,59 @@
     "item_count": 0,
     "privacy": "metadata_only_no_body",
     "published_by_default": false,
-    "disabled_reason": "disabled_by_source_scope"
+    "disabled_reason": "disabled_by_source_config"
   },
   "x_api": {
     "enabled": false,
     "ok": null,
     "item_count": 0,
-    "disabled_reason": "disabled_by_source_scope"
+    "disabled_reason": "disabled_by_source_config"
   },
   "socialdata": {
     "enabled": false,
     "ok": null,
     "item_count": 0,
-    "disabled_reason": "disabled_by_source_scope"
+    "disabled_reason": "disabled_by_source_config"
   },
   "tikhub": {
     "enabled": false,
     "ok": null,
     "item_count": 0,
-    "disabled_reason": "disabled_by_source_scope"
+    "disabled_reason": "disabled_by_source_config"
   },
   "mediacrawler_douyin": {
     "enabled": false,
     "ok": null,
     "item_count": 0,
-    "source_kind": "mediacrawler_douyin",
-    "privacy": "local_jsonl_only_no_cookies",
-    "coverage_note": "reads_mediacrawler_douyin_creator_jsonl",
-    "jsonl_path_configured": true,
-    "locator": "",
-    "locator_kind": "jsonl_path",
-    "jsonl_file_configured": "jsonl",
-    "jsonl_file": "jsonl",
-    "max_items": 200,
-    "disabled_reason": "disabled_by_toggle"
+    "disabled_reason": "disabled_by_source_config"
   },
   "mediacrawler_xhs": {
     "enabled": false,
     "ok": null,
     "item_count": 0,
-    "source_kind": "mediacrawler_xhs",
-    "privacy": "local_jsonl_only_no_cookies",
-    "coverage_note": "reads_mediacrawler_xhs_creator_jsonl",
-    "jsonl_path_configured": true,
-    "locator": "",
-    "locator_kind": "jsonl_path",
-    "jsonl_file_configured": "jsonl",
-    "jsonl_file": "jsonl",
-    "max_items": 200,
-    "disabled_reason": "disabled_by_toggle"
+    "disabled_reason": "disabled_by_source_config"
   },
   "source_config": {
-    "enabled": false,
-    "ok": null,
-    "path": null,
+    "enabled": true,
+    "ok": true,
+    "path": "config/online-sources.json",
     "candidate_paths": [
-      "sources.config.json",
-      "data/sources.config.json",
-      "data/sources.config.json"
+      "config/online-sources.json"
     ],
     "error": null,
-    "enabled_source_count": 0,
-    "enabled_site_ids": [],
-    "applied_env": [],
-    "rss_opml": "",
-    "active": false
+    "source_count": 14,
+    "enabled_source_count": 14,
+    "enabled_site_ids": [
+      "bilibili_dynamic",
+      "github_foundation_sunshine_releases",
+      "opmlrss"
+    ],
+    "applied_env": [
+      "BILIBILI_DYNAMIC_ENABLED",
+      "BILIBILI_DYNAMIC_SOURCE_NAMES",
+      "BILIBILI_DYNAMIC_UIDS"
+    ],
+    "rss_opml": "feeds/online-sources.opml",
+    "active": true
   }
 }
