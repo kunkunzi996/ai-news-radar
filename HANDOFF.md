@@ -1,5 +1,185 @@
 # HANDOFF.md
 
+## 当前最新交接：新窗口开始 GitHub Pages 最小上线
+
+- 日期：2026-07-09
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前阶段：云端自动采集 + 本地读取远程数据已验收；公众号默认源已退役；下一轮从“网站部署到线上”开始。
+- 推荐路线：先做 GitHub Pages 最小上线版，让用户不用本机 `8080` 也能打开公网网址看当前远程数据。
+
+## 本轮目标
+
+- 整理跨窗口交接，让新窗口可以直接进入部署任务，不被旧的结构优化 / 本地采集历史带偏。
+
+## 本轮已完成
+
+- 远端自动采集已跑通：GitHub Actions 定时/推送刷新 `data/*.json`。
+- 本地远程展示已跑通：本地页面通过 `?dataBase=https://raw.githubusercontent.com/kunkunzi996/ai-news-radar/master/data/` 读取远端数据。
+- 公众号相关默认源已移除：`wewe_rss` / `maobidao_wudaolu_backup` 不再进入默认云端采集，也不会从默认信源目录自动复活。
+- Git 状态已收口：本地 `master` 已对齐远端；旧本地 OPML 触发提交保存在 `backup/local-opml-trigger-20260709-80fe98f`。
+- `PROJECT_STATE.md` 已记录稳定基线。
+
+## 本轮修改文件
+
+- `HANDOFF.md`：新增本交接入口，旧交接内容下沉为历史参考。
+
+## 本轮未完成
+
+- 还没有真正开启 GitHub Pages / 绑定公网网址。
+- 还没有处理抖音 / 小红书“非本机自动采集”；这应作为部署后单独任务。
+- 本地仍有历史脏文件：`data/*.json` 本地刷新产物、未跟踪的 `计划/` review/计划文件。不要把它们混进部署提交。
+
+## 当前项目状态
+
+- 当前分支：`master`
+- 当前远端基线：`24c2bac chore: update ai news snapshot` 之后已记录稳定状态；新窗口开始时先 `git fetch origin master` 并看最新 `git status --short --branch`。
+- 当前线上数据：远端 `source-status.json` 最近验收为 `3/3 源正常`，站点为 `github_foundation_sunshine_releases`、`bilibili_dynamic`、`opmlrss`。
+- 当前展示方式：本地 `http://127.0.0.1:8080/` 可加 `dataBase` 参数读取远端数据；上线后目标是让公网网站直接读取同仓库 `/data/*.json`。
+
+## 验收状态
+
+- 已执行：
+  - Python 编译与全量单测在公众号源退役任务中通过：`222 tests OK`。
+  - GitHub Actions 在稳定基线提交后成功刷新。
+  - 浏览器验收通过：页面显示 `远程数据`、`3/3 源正常`，无 `公众号 / WeWe RSS / 猫笔刀` 可见文本。
+- 未执行：
+  - GitHub Pages 上线验收尚未开始。
+- 下一轮手动验收目标：
+  - 打开 GitHub Pages 公网地址。
+  - 应看到 AI News Radar 页面正常加载。
+  - 应能读到 `data/source-status.json`，显示约 `3/3 源正常`。
+  - 不需要本机 `scripts/local_server.py` 或 `127.0.0.1:8080`。
+
+## Git 状态提醒
+
+- 下一轮开始必须先运行：`git status --short --branch`
+- 不要提交：
+  - `data/*.json` 本地刷新产物，除非明确是在处理 Actions 自动数据提交。
+  - `sources.config.json`
+  - `feeds/follow.opml`
+  - `local-secrets/`
+  - cookie、token、`.env`、浏览器 profile、MediaCrawler 登录态。
+
+## 下一轮建议任务
+
+1. 使用 Kun Coding Router 进入“部署 / 上线”任务。
+2. 读取 `README.md`、`PROJECT_STATE.md`、本文件、`.github/workflows/update-news.yml`。
+3. 检查当前仓库是否已经适合 GitHub Pages 从 `master` 根目录发布。
+4. 如需要，做最小代码/配置改动，让线上默认读取同源 `/data/*.json`。
+5. 给用户 GitHub Pages 后台设置步骤：Settings -> Pages -> Deploy from a branch -> `master` / root。
+6. 验收公网 URL，确认页面和远端数据都正常。
+
+## 下一轮建议调用
+
+- `kun-coding-router`
+- `references/16-task-routing-map.md` 第 7 节“部署 / 上线”
+- `references/10-codex-safe-construction.md`
+- `references/12-verification-git-report.md`
+- 如改动页面数据路径，再用 `browser:control-in-app-browser` 做真实页面验收。
+
+## 下一轮必须先读
+
+- `AGENTS.md`
+- `PROJECT_STATE.md`
+- `HANDOFF.md`
+- `README.md`
+- `docs/SOURCE_COVERAGE.md`
+- `.github/workflows/update-news.yml`
+- 如需要改页面：`index.html`、`assets/js/dom.js`、`assets/js/utils.js`、`assets/js/boot.js`
+
+## 下一轮禁止事项
+
+- 不要把 `scripts/local_server.py` 当成公网服务发布。
+- 不要提交私密订阅、cookie、token、`.env`、`sources.config.json`、`feeds/follow.opml`。
+- 不要把本地 `data/*.json` 脏改混进部署提交。
+- 不要恢复公众号默认源。
+- 不要在 GitHub Pages 第一版里解决抖音 / 小红书非本机采集；先把静态网站上线跑通。
+- 不要批量删除文件或目录；如确实要删除，必须一次一个明确路径，并说明原因。
+
+## 当前风险 / 待确认
+
+- GitHub Pages 是否已经开启，需要用户在 GitHub 网页后台确认或由下一轮指导操作。
+- 如果仓库是项目页而不是用户页，公网路径可能是 `/ai-news-radar/`，需要确认静态资源和数据路径是否兼容项目子路径。
+- 抖音 / 小红书目前仍是本机 MediaCrawler/JSONL 路线，不属于 GitHub Pages 第一阶段能力。
+
+## 下一轮 Codex 入口
+
+使用 Kun Coding Router 继续当前项目。
+
+任务：把 AI News Radar 做成 GitHub Pages 最小上线版。
+
+请先读取：
+1. `AGENTS.md`
+2. `PROJECT_STATE.md`
+3. `HANDOFF.md`
+4. `README.md`
+5. `.github/workflows/update-news.yml`
+
+本轮只做：
+- GitHub Pages 最小上线。
+- 确认公网页面能加载静态资源和 `data/*.json`。
+- 给用户清晰的手动验收步骤。
+
+本轮不做：
+- 抖音 / 小红书非本机采集。
+- 公众号采集恢复。
+- 大重构。
+- 提交本地生成数据或任何私密文件。
+
+## 历史 Handoff 摘要（仅查旧问题时阅读）
+
+## 2026-07-08：结构优化第二轮任务1/2/3/4已提交，下一轮从任务5开始
+
+- 日期：2026-07-08
+- 当前阶段：结构优化第二轮已完成任务1、任务2、任务3、任务4；不要继续重复任务1/2/3/4。下一轮从任务5开始。
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 当前分支：`master`
+- 已推送提交：
+  - `1774f99 chore: 完成结构优化任务1和任务2`
+  - `1c75813 refactor: 拆分新闻更新命令主流程`
+- 本地未推送提交：
+  - `6b171f3 refactor: 拆分前端渲染模块`
+- 本轮已完成：
+  - 任务1：新增 Playwright 冒烟测试防护网，`npm run test:e2e` 可跑本地页面基础加载、tab 切换和时间范围筛选。
+  - 任务2：移除 `wire_modules` / `_wire_server_modules` 动态注入，改为显式导入；拆出 `scripts/radar/server/common.py`；清理 fetchers/server 之间的违规依赖。
+  - 任务3：拆分 `scripts/radar/cli.py` 的超长 `main()`，新增阶段函数 `parse_cli_args`、`prepare_run_context`、`collect_stage`、`merge_archive_stage`、`enrich_stage`、`write_outputs_stage`，并新增 `[timing]` 输出。
+  - 任务3 review 修复：`build_latest_payloads(latest_payload)` 重复调用已修掉，现在只有 `enrich_stage()` 内一次实际调用。
+  - 任务4：已将 `assets/js/render.js` 三分为 `render-meta.js`、`render-list.js`、`render-panels.js`，`index.html` 已按 `render-meta -> render-list -> render-panels` 顺序加载，版本号统一为 `render-split-0707a`，旧 `assets/js/render.js` 已删除。
+- 任务3最终验收：
+  - `rg -n "build_latest_payloads" scripts/radar/cli.py`：1 个 import，1 个实际调用。
+  - `.\.venv\Scripts\python.exe -m pyflakes scripts\radar\cli.py`：0 输出。
+  - `Compare-Object help_before/help_after`：无差异。
+  - `.\.venv\Scripts\python.exe -m unittest discover -s tests -q`：221 tests OK。
+  - `npm run test:e2e`：2 passed。
+  - 真实刷新通过，终端出现 `[timing] collect=5.0s merge=0.8s enrich=0.2s write=0.2s total=6.3s`。
+  - 刷新后 `data/source-status.json.generated_at=2026-07-08T02:35:34.825561Z`，`latest-24h.json` 150 条，没有异常清零；`latest-24h-all.json` 结构正常，`items_all` 341 条。
+- 当前风险 / 待确认：
+  - 真实刷新后 `opmlrss` 失败，错误为 `2 feeds failed`，两个失败项都是 YouTube RSS feed。用户已确认可接受，不阻塞任务3提交。
+  - 当前工作区仍有 `data/*.json` 刷新产物未提交；除非用户明确允许提交数据快照，否则不要把它们混进后续任务提交。
+  - `计划\结构优化第二轮实施计划.md` 是施工计划留档；当前实际进度以 HANDOFF.md 最新交接为准，不要默认提交它。
+- 本轮清理：
+  - 已按用户“不保留”删除临时 review diff 和 help 文件：`计划\help_before_task3.txt`、`计划\help_after_task3.txt`、`计划\review-task1-task2-fixed-no-data.diff`、`计划\review-task1-task2-no-data.diff`、`计划\task1-task2-review.diff`、`计划\task3-cli-split-review.diff`、`计划\task3-cli-split-review-fixed.diff`。
+  - 未删除施工计划原文 `计划\结构优化第二轮实施计划.md`。
+- 下一轮建议任务：
+  1. 先运行 `git status --short`，确认本地未推送提交、`data/*.json` 和计划目录未跟踪文件的真实状态。
+  2. 如果用户确认任务4验收通过，再决定是否 push 本地提交 `6b171f3`。
+  3. 用户明确确认进入任务5后，再执行 `PROJECT_STATE.md` 瘦身和工作区空壳清理；不要重复任务4。
+- 下一轮必须先读：
+  - `PROJECT_STATE.md`
+  - `HANDOFF.md`
+  - `计划\结构优化第二轮实施计划.md`
+  - `index.html`
+- 下一轮禁止事项：
+  - 不要继续任务5。
+  - 不要提交 `data/*.json`，除非用户明确允许。
+  - 不要删除施工计划原文。
+  - 不要改 `sources.config.json`、`local-secrets/`、`assets/motion.js`、`scripts/ai_relevance.py`、`scripts/run_mediacrawler_douyin.py`。
+  - 删除文件必须逐个明确路径执行；任务4若删除 `assets/js/render.js`，必须先确认三个新文件对账通过。
+- 下一轮 Codex 入口：
+  - 使用 Kun Coding Router 继续当前项目。
+  - 下一轮任务：在用户明确确认后进入任务5；不要重复执行任务4。
+  - 验收重点：任务5只做文档瘦身和明确空壳清理；不要改业务代码、不要提交 `data/*.json`。
+
 ## 当前最新交接：匿名用户996 已跑到账号但公开视频为 0
 
 - 日期：2026-07-07
