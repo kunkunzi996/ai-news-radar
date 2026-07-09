@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-07-09T12:04:28.797039Z",
+  "generated_at": "2026-07-09T12:23:52.933385Z",
   "sites": [
     {
       "site_id": "github_foundation_sunshine_releases",
       "site_name": "GitHub Foundation Sunshine",
       "ok": true,
       "item_count": 5,
-      "duration_ms": 418,
+      "duration_ms": 518,
       "error": null,
       "source_kind": "github_release_subscription",
       "repo": "AlkaidLab/foundation-sunshine",
@@ -28,7 +28,7 @@
       "site_name": "Maobidao Wudaolu Backup",
       "ok": true,
       "item_count": 2,
-      "duration_ms": 794,
+      "duration_ms": 824,
       "error": null,
       "source_kind": "wechat_public_account_backup",
       "source_name": "猫笔刀公众号",
@@ -43,43 +43,75 @@
       "site_id": "bilibili_dynamic",
       "site_name": "Bilibili Dynamic",
       "ok": true,
-      "item_count": 10,
-      "duration_ms": 1619,
+      "item_count": 60,
+      "duration_ms": 3414,
       "error": null,
-      "uid": "505301413,316183842",
+      "uid": "505301413,316183842,3546884870244925,50247550,385670211,313819014",
       "uids": [
         "505301413",
-        "316183842"
+        "316183842",
+        "3546884870244925",
+        "50247550",
+        "385670211",
+        "313819014"
       ],
-      "uid_count": 2,
-      "source_name": "Koji杨远骋at十字路口, 技术爬爬虾",
+      "uid_count": 6,
+      "source_name": "Koji杨远骋at十字路口, 技术爬爬虾, 杰森的效率工坊, 清华姜学长, 秋芝2046, anno大笨蛋",
       "privacy": "cookie_env_only_not_logged",
       "coverage_note": "tries_cookie_full_dynamic_then_public_opus_fallback",
       "cookie_present": true,
       "fetch_mode": "cookie_full_dynamic",
       "fallback_reason": null,
       "partial_failure_count": 0,
-      "max_items": 5,
-      "max_items_per_account": 5,
-      "max_pages": 5,
+      "max_items": 10,
+      "max_items_per_account": 10,
+      "max_pages": 8,
       "accounts": [
         {
           "uid": "505301413",
           "source_name": "Koji杨远骋at十字路口",
           "ok": true,
-          "item_count": 5,
+          "item_count": 10,
           "fetch_mode": "cookie_full_dynamic"
         },
         {
           "uid": "316183842",
           "source_name": "技术爬爬虾",
           "ok": true,
-          "item_count": 5,
+          "item_count": 10,
+          "fetch_mode": "cookie_full_dynamic"
+        },
+        {
+          "uid": "3546884870244925",
+          "source_name": "杰森的效率工坊",
+          "ok": true,
+          "item_count": 10,
+          "fetch_mode": "cookie_full_dynamic"
+        },
+        {
+          "uid": "50247550",
+          "source_name": "清华姜学长",
+          "ok": true,
+          "item_count": 10,
+          "fetch_mode": "cookie_full_dynamic"
+        },
+        {
+          "uid": "385670211",
+          "source_name": "秋芝2046",
+          "ok": true,
+          "item_count": 10,
+          "fetch_mode": "cookie_full_dynamic"
+        },
+        {
+          "uid": "313819014",
+          "source_name": "anno大笨蛋",
+          "ok": true,
+          "item_count": 10,
           "fetch_mode": "cookie_full_dynamic"
         }
       ],
-      "raw_item_count": 10,
-      "window_item_count": 10,
+      "raw_item_count": 60,
+      "window_item_count": 60,
       "collection_window_hours": 0
     }
   ],
@@ -90,10 +122,10 @@
   "failed_sites": [],
   "zero_item_sites": [],
   "empty_advanced_sources": [],
-  "fetched_raw_items": 17,
-  "raw_items_before_collection_window": 17,
+  "fetched_raw_items": 67,
+  "raw_items_before_collection_window": 67,
   "skipped_collection_window_items": 0,
-  "items_before_topic_filter": 1,
+  "items_before_topic_filter": 11,
   "items_in_24h": 0,
   "rss_opml": {
     "enabled": false,
