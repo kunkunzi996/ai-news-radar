@@ -43,8 +43,6 @@ verification:
 - `mediacrawler_douyin`
 - `mediacrawler_xhs`
 - `github_foundation_sunshine_releases`
-- `maobidao_wudaolu_backup`
-- `wewe_rss` (only fetched when `WEWE_RSS_ENABLED=1`)
 - `opmlrss` (only fetched when an OPML file is prepared from
   `FOLLOW_OPML_B64` or the public example OPML fallback)
 
@@ -67,7 +65,7 @@ default deployed output.
 | GitHub releases/blogs | Usually supported through Atom/RSS | Prefer GitHub Atom feeds or official blog RSS | Useful for model/platform/tool release tracking. |
 | Newsletters | Partially supported | Prefer public archive RSS or stable archive pages | Do not scrape private inboxes. |
 | X / Twitter | Supported only through curated central feeds or opt-in API adapters | Prefer public generated feeds that already use official X API; keep direct X API optional and secret-backed | Following a person often imports noise; public bridge routes can be unstable. |
-| WeChat public accounts | Supported through an opt-in local WeWe RSS bridge | Run WeWe RSS as a local sidecar and enable `WEWE_RSS_ENABLED=1`; keep `maobidao_wudaolu_backup` as fallback only | The radar reads JSON Feed only and does not read wewe-rss DB, cookies, `.env`, or WeChat login state. |
+| WeChat public accounts | Retired from the default source set | Do not enable until a stable collector is available | Old WeWe RSS and backup-site code may remain for explicit local experiments, but cloud output no longer collects public-account sources. |
 | Telegram / Bilibili / Zhihu / podcasts | Skipped by default when feeds are unreliable | Add only as opt-in OPML entries | These can be noisy or bridge-dependent. |
 
 ## Source Selection Rules

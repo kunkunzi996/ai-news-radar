@@ -372,7 +372,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
                 "privacy": wewe_rss_status.get("privacy"),
             }
         )
-    elif active_source_ids is None or MAOBIDAO_WECHAT_SITE_ID in active_source_ids:
+    elif scoped_by_config and active_source_ids is not None and MAOBIDAO_WECHAT_SITE_ID in active_source_ids:
         maobidao_error = None
         maobidao_start = time.perf_counter()
         maobidao_items: list[RawItem] = []

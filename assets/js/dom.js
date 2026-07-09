@@ -177,8 +177,6 @@ const SUBSCRIPTION_SITE_IDS = new Set([
   "mediacrawler_douyin",
   "mediacrawler_xhs",
   "github_foundation_sunshine_releases",
-  "maobidao_wudaolu_backup",
-  "wewe_rss",
 ]);
 
 const HIDDEN_PLATFORM_IDS = new Set(["wechat"]);
@@ -209,7 +207,8 @@ const SOURCE_CONFIG_STORAGE_KEY = "ai-news-radar-source-config-v1";
 const DATA_BASE_STORAGE_KEY = "ai-news-radar-data-base-v1";
 const COLLECTION_SCOPE_STORAGE_KEY = "ai-news-radar-collection-scope-v1";
 const READ_ITEMS_STORAGE_KEY = "ai-news-radar-read-items-v1";
-const SOURCE_CONFIG_CATALOG_VERSION = "2026-07-02-builtin-sources";
+const SOURCE_CONFIG_CATALOG_VERSION = "2026-07-09-retire-wechat-sources";
+const RETIRED_SOURCE_CONFIG_IDS = new Set(["wewe_rss_maobidao", "maobidao_wudaolu_backup"]);
 
 const SOURCE_CONFIG_FILTERS = [
   { id: "all", label: "全部" },

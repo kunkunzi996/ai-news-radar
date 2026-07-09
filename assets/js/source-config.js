@@ -265,17 +265,6 @@ function sourceConfigSeedSources() {
       notes: "Radar 只读本地 JSONL，不保存 xsec_token 或浏览器 profile。",
     },
     {
-      id: "wewe_rss_maobidao",
-      name: "猫笔刀",
-      type: "wewe_rss",
-      enabled: false,
-      channel: "微信公众号",
-      target: "猫笔刀",
-      locator: "MP_WXS_3198966508",
-      env: "WEWE_RSS_ENABLED / WEWE_RSS_BASE_URL / WEWE_RSS_FEEDS",
-      notes: "公众号订阅源暂时隐藏并停用；保留配置，等 WeWe RSS sidecar 稳定后可恢复。",
-    },
-    {
       id: "github_foundation_sunshine",
       name: "AlkaidLab/foundation-sunshine",
       type: "github_release",
@@ -285,17 +274,6 @@ function sourceConfigSeedSources() {
       locator: "https://api.github.com/repos/AlkaidLab/foundation-sunshine/releases",
       env: "",
       notes: "只追踪 release，不追踪普通 commit。",
-    },
-    {
-      id: "maobidao_wudaolu_backup",
-      name: "猫笔刀备份源",
-      type: "api",
-      enabled: false,
-      channel: "微信公众号备用",
-      target: "猫笔刀",
-      locator: "https://wudaolu.com/c/dav/7.json",
-      env: "",
-      notes: "WeWe RSS 开启时输出会跳过这个备用源，避免重复。",
     },
   ];
 }
@@ -315,6 +293,7 @@ function normalizeSourceConfig(payload) {
   const updatedAt = String(payload?.updated_at || "").trim();
   const sources = rawSources
     .filter((source) => source && typeof source === "object")
+    .filter((source) => !RETIRED_SOURCE_CONFIG_IDS.has(String(source.id || "").trim()))
     .map((source, index) => ({
       id: String(source.id || `source_${index + 1}`).trim() || `source_${index + 1}`,
       name: String(source.name || source.title || "").trim() || `未命名信源 ${index + 1}`,
