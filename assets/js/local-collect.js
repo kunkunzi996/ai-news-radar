@@ -462,6 +462,7 @@ function scheduleLocalOpsPolling(shouldPoll) {
     window.clearTimeout(state.localOpsPollTimer);
     state.localOpsPollTimer = null;
   }
+  if (!canUseLocalBackend()) return;
   if (!shouldPoll) return;
   state.localOpsPollTimer = window.setTimeout(() => {
     loadLocalStatusFromServer(false);
@@ -474,6 +475,10 @@ async function runLocalOpsFixAction(action, button) {
     return;
   }
   const shouldOpenPendingWindow = action.kind === "start_service" && action.id === "start_wewe_rss_sidecar";
+  if (!canUseLocalBackend()) {
+    setLocalOpsStatus(localBackendUnavailableMessage(), "warn");
+    return;
+  }
   const pendingWindow = shouldOpenPendingWindow ? window.open("about:blank", "_blank") : null;
   if (pendingWindow) pendingWindow.opener = null;
   const oldText = button?.textContent || label;
@@ -645,6 +650,10 @@ function renderLocalOpsStatus(payload = null) {
 }
 async function loadLocalStatusFromServer(showErrors = false) {
   if (!localOpsSummaryEl) return null;
+  if (!canUseLocalBackend()) {
+    if (showErrors) setLocalOpsStatus(localBackendUnavailableMessage(), "warn");
+    return null;
+  }
   try {
     const res = await fetch("./api/local-status", {
       headers: { Accept: "application/json" },
@@ -702,6 +711,9 @@ function sleepMs(ms) {
   return new Promise((resolve) => window.setTimeout(resolve, ms));
 }
 async function startPlatformCollection(actionId) {
+  if (!canUseLocalBackend()) {
+    return { ok: false, error: localBackendUnavailableMessage() };
+  }
   try {
     const res = await fetch("./api/maintenance-action", {
       method: "POST",
@@ -800,6 +812,11 @@ async function runOneClickCollect() {
   }
 }
 async function refreshNewsDataFromLocalServer() {
+  if (!canUseLocalBackend()) {
+    setSourceConfigStatus(localBackendUnavailableMessage(), "warn");
+    setLocalOpsStatus("公网静态页", "warn");
+    return false;
+  }
   const collectionScope = selectedCollectionScope();
   const scopeLabel = collectionScope === "all" ? "全量" : "自上次采集";
   setSourceConfigButton(sourceConfigRefreshBtnEl, "刷新中...", true);
@@ -856,6 +873,7 @@ function wait(ms) {
   return new Promise((resolve) => window.setTimeout(resolve, ms));
 }
 async function waitForLocalServerRestart() {
+  if (!canUseLocalBackend()) return false;
   await wait(1200);
   for (let attempt = 0; attempt < 12; attempt += 1) {
     try {
@@ -872,6 +890,11 @@ async function waitForLocalServerRestart() {
   return false;
 }
 async function restartLocalServerFromPage() {
+  if (!canUseLocalBackend()) {
+    setSourceConfigStatus(localBackendUnavailableMessage(), "warn");
+    setLocalOpsStatus("公网静态页", "warn");
+    return;
+  }
   setSourceConfigButton(localServerRestartBtnEl, "重启中...", true);
   setSourceConfigStatus("正在重启本地服务，稍等几秒后页面会自动刷新。", "warn");
   setLocalOpsStatus("本地服务重启中", "warn");

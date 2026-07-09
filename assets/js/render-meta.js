@@ -69,8 +69,9 @@ function renderDataSourcePill() {
     if (state.dataSourceFallback) dataSourcePillEl.classList.add("warn");
     return;
   }
-  dataSourcePillEl.textContent = state.dataSourceError ? "本地数据 · 地址无效" : "本地数据";
-  dataSourcePillEl.title = state.dataSourceError || "当前读取本机 data/*.json";
+  const staticPage = !canUseLocalBackend();
+  dataSourcePillEl.textContent = state.dataSourceError ? "本地数据 · 地址无效" : (staticPage ? "静态数据" : "本地数据");
+  dataSourcePillEl.title = state.dataSourceError || (staticPage ? "当前读取同源 data/*.json" : "当前读取本机 data/*.json");
   if (state.dataSourceError) dataSourcePillEl.classList.add("warn");
 }
 function renderStickySummary() {

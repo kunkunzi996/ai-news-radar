@@ -499,6 +499,10 @@ function selectSourceConfigByRuntimeId(runtimeId) {
 }
 async function loadSourceConfigFromLocalServer() {
   if (!sourceConfigFormEl) return;
+  if (!canUseLocalBackend()) {
+    setSourceConfigStatus(localBackendUnavailableMessage(), "warn");
+    return;
+  }
   try {
     const draftConfig = loadSourceConfigDraft();
     const res = await fetch("./api/source-config", {
@@ -538,6 +542,9 @@ async function writeSourceConfigToLocalServer(options = {}) {
   if (!state.sourceConfig) state.sourceConfig = loadSourceConfigDraft();
   state.sourceConfig.updated_at = new Date().toISOString();
   syncSourceConfigJson();
+  if (!canUseLocalBackend()) {
+    throw new Error(localBackendUnavailableMessage());
+  }
   setSourceConfigButton(button, "保存中...", true);
   setSourceConfigStatus("正在同步当前高级信源配置...", "warn");
   try {

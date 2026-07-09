@@ -374,6 +374,7 @@ function clearSubscriptionMemberForm() {
 }
 async function loadYoutubeSubscriptions(options = {}) {
   const silent = Boolean(options.silent);
+  if (!canUseLocalBackend()) return;
   try {
     const res = await fetch("./api/subscriptions/youtube", { headers: { Accept: "application/json" }, cache: "no-store" });
     const payload = await res.json().catch(() => ({}));
@@ -386,6 +387,7 @@ async function loadYoutubeSubscriptions(options = {}) {
   }
 }
 async function saveYoutubeSubscriptions() {
+  if (!canUseLocalBackend()) throw new Error(localBackendUnavailableMessage());
   const subscriptions = youtubeSubscriptionMembers().map((member) => ({
     title: member.name,
     channel_id: member.locator,
@@ -408,6 +410,10 @@ async function saveYoutubeSubscriptions() {
 async function syncWeweRssSubscriptions() {
   const platform = subscriptionPlatformDef();
   if (platform.id !== "wechat") return;
+  if (!canUseLocalBackend()) {
+    setSubscriptionManagerStatus(localBackendUnavailableMessage(), "warn");
+    return;
+  }
   setSourceConfigButton(subscriptionMemberSyncBtnEl, "同步中...", true);
   setSubscriptionManagerStatus("正在读取 WeWe RSS 已订阅公众号...", "warn");
   try {

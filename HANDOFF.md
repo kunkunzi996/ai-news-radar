@@ -1,15 +1,15 @@
 # HANDOFF.md
 
-## 当前最新交接：新窗口开始 GitHub Pages 最小上线
+## 当前最新交接：GitHub Pages 最小上线准备已完成，等待后台开启
 
 - 日期：2026-07-09
 - 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
-- 当前阶段：云端自动采集 + 本地读取远程数据已验收；公众号默认源已退役；下一轮从“网站部署到线上”开始。
-- 推荐路线：先做 GitHub Pages 最小上线版，让用户不用本机 `8080` 也能打开公网网址看当前远程数据。
+- 当前阶段：GitHub Pages 静态站代码已按当前仓库收口；仍需用户在 GitHub 仓库后台开启 Pages 并提交/推送本轮代码改动。
+- 推荐路线：提交代码改动（不要带 `data/*.json` 本地脏改和私密文件）后，在 GitHub `Settings` -> `Pages` 选择 `Deploy from a branch`，分支 `master`，目录 `/(root)`。
 
 ## 本轮目标
 
-- 整理跨窗口交接，让新窗口可以直接进入部署任务，不被旧的结构优化 / 本地采集历史带偏。
+- 让 AI News Radar 具备 GitHub Pages 最小静态上线条件，并给出手动开启/验收步骤。
 
 ## 本轮已完成
 
@@ -18,21 +18,30 @@
 - 公众号相关默认源已移除：`wewe_rss` / `maobidao_wudaolu_backup` 不再进入默认云端采集，也不会从默认信源目录自动复活。
 - Git 状态已收口：本地 `master` 已对齐远端；旧本地 OPML 触发提交保存在 `backup/local-opml-trigger-20260709-80fe98f`。
 - `PROJECT_STATE.md` 已记录稳定基线。
+- 本轮新增 `.nojekyll`，页面 canonical/OG/README 链接已指向 `https://kunkunzi996.github.io/ai-news-radar/`。
+- 公网静态页分支已跳过 `./api/*` 本地后台请求，页面显示 `静态数据`；本机 `127.0.0.1` 采集控制台仍保持原行为。
+- Playwright 用真实 Pages URL 形态模拟验收通过：首页、`assets/styles.css`、`site.webmanifest`、`data/source-status.json`、`data/latest-24h.json` 均能加载，控制台 0 错误。
+- 当前真实公网 `https://kunkunzi996.github.io/ai-news-radar/` 仍返回 404，GitHub Pages API 也返回 404；说明仓库后台 Pages 尚未开启/部署。
 
 ## 本轮修改文件
 
-- `HANDOFF.md`：新增本交接入口，旧交接内容下沉为历史参考。
+- `.nojekyll`：让 GitHub Pages 原样发布静态文件。
+- `index.html`：当前仓库公网 canonical/OG/GitHub 链接、前端脚本缓存号。
+- `assets/js/utils.js` / `boot.js` / `render-meta.js` / `source-config.js` / `local-collect.js` / `subscriptions.js`：公网静态页跳过本地后台 API，显示 `静态数据`。
+- `README.md`：GitHub Pages 最小上线地址、开启方式和验收地址。
+- `PROJECT_STATE.md` / `HANDOFF.md`：记录本轮部署状态和下一步。
 
 ## 本轮未完成
 
-- 还没有真正开启 GitHub Pages / 绑定公网网址。
+- 还没有在 GitHub 网页后台开启 Pages。
+- 还没有提交/推送本轮代码改动。
 - 还没有处理抖音 / 小红书“非本机自动采集”；这应作为部署后单独任务。
 - 本地仍有历史脏文件：`data/*.json` 本地刷新产物、未跟踪的 `计划/` review/计划文件。不要把它们混进部署提交。
 
 ## 当前项目状态
 
 - 当前分支：`master`
-- 当前远端基线：`24c2bac chore: update ai news snapshot` 之后已记录稳定状态；新窗口开始时先 `git fetch origin master` 并看最新 `git status --short --branch`。
+- 当前远端基线：`313192b chore: update ai news snapshot`；新窗口开始时先 `git fetch origin master` 并看最新 `git status --short --branch`。
 - 当前线上数据：远端 `source-status.json` 最近验收为 `3/3 源正常`，站点为 `github_foundation_sunshine_releases`、`bilibili_dynamic`、`opmlrss`。
 - 当前展示方式：本地 `http://127.0.0.1:8080/` 可加 `dataBase` 参数读取远端数据；上线后目标是让公网网站直接读取同仓库 `/data/*.json`。
 
@@ -42,8 +51,10 @@
   - Python 编译与全量单测在公众号源退役任务中通过：`222 tests OK`。
   - GitHub Actions 在稳定基线提交后成功刷新。
   - 浏览器验收通过：页面显示 `远程数据`、`3/3 源正常`，无 `公众号 / WeWe RSS / 猫笔刀` 可见文本。
+  - 本轮 Playwright 模拟真实 Pages URL 验收通过：静态资源和 `data/*.json` 可加载，控制台 0 错误。
+  - 远端 raw `data/source-status.json` 可访问，当前为 `3/3` 源正常。
 - 未执行：
-  - GitHub Pages 上线验收尚未开始。
+  - 真实 GitHub Pages 页面还没法验收：当前公开地址仍是 404。
 - 下一轮手动验收目标：
   - 打开 GitHub Pages 公网地址。
   - 应看到 AI News Radar 页面正常加载。
@@ -62,12 +73,10 @@
 
 ## 下一轮建议任务
 
-1. 使用 Kun Coding Router 进入“部署 / 上线”任务。
-2. 读取 `README.md`、`PROJECT_STATE.md`、本文件、`.github/workflows/update-news.yml`。
-3. 检查当前仓库是否已经适合 GitHub Pages 从 `master` 根目录发布。
-4. 如需要，做最小代码/配置改动，让线上默认读取同源 `/data/*.json`。
-5. 给用户 GitHub Pages 后台设置步骤：Settings -> Pages -> Deploy from a branch -> `master` / root。
-6. 验收公网 URL，确认页面和远端数据都正常。
+1. 只提交本轮代码/文档改动，明确排除 `data/*.json` 和 `计划/` 下历史脏文件。
+2. 推送到 `origin/master`。
+3. 在 GitHub 仓库后台 `Settings` -> `Pages` 选择 `Deploy from a branch`，分支 `master`，目录 `/(root)`。
+4. 等 Pages 部署完成后，验收公网 URL、`assets/styles.css`、`data/source-status.json`。
 
 ## 下一轮建议调用
 

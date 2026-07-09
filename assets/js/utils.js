@@ -39,6 +39,13 @@ function normalizeDataBaseUrl(raw) {
     return "";
   }
 }
+function canUseLocalBackend() {
+  const host = String(window.location.hostname || "").toLowerCase();
+  return ["localhost", "127.0.0.1", "::1", "0.0.0.0"].includes(host) || host.endsWith(".localhost");
+}
+function localBackendUnavailableMessage() {
+  return "公网静态页不连接本地后台；请在本机用 scripts/local_server.py 打开采集控制台。";
+}
 function initDataSource() {
   state.dataBaseUrl = "";
   state.dataSourceMode = "local";

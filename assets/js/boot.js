@@ -135,9 +135,14 @@ async function init() {
   renderDataSourcePill();
   renderSourceConfig();
   renderLocalOpsStatus({ source_status: state.sourceStatus || {} });
-  loadSourceConfigFromLocalServer();
-  loadLocalStatusFromServer(false);
-  loadYoutubeSubscriptions({ silent: true });
+  if (canUseLocalBackend()) {
+    loadSourceConfigFromLocalServer();
+    loadLocalStatusFromServer(false);
+    loadYoutubeSubscriptions({ silent: true });
+  } else {
+    setSourceConfigStatus(localBackendUnavailableMessage(), "warn");
+    setLocalOpsStatus("公网静态页", "warn");
+  }
   document.dispatchEvent(new CustomEvent("aiRadar:ready"));
 }
 
