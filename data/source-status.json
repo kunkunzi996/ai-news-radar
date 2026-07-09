@@ -1,19 +1,26 @@
 {
-  "generated_at": "2026-07-09T11:36:16.821750Z",
+  "generated_at": "2026-07-09T11:50:11.822120Z",
   "sites": [
     {
       "site_id": "github_foundation_sunshine_releases",
       "site_name": "GitHub Foundation Sunshine",
-      "ok": false,
-      "item_count": 0,
-      "duration_ms": 200,
-      "error": "403 Client Error: rate limit exceeded for url: https://api.github.com/repos/AlkaidLab/foundation-sunshine/releases?per_page=5",
+      "ok": true,
+      "item_count": 5,
+      "duration_ms": 492,
+      "error": null,
       "source_kind": "github_release_subscription",
       "repo": "AlkaidLab/foundation-sunshine",
-      "repos": [],
+      "repos": [
+        {
+          "repo": "AlkaidLab/foundation-sunshine",
+          "api_url": "https://api.github.com/repos/AlkaidLab/foundation-sunshine/releases",
+          "ok": true,
+          "item_count": 5
+        }
+      ],
       "max_items": 5,
-      "raw_item_count": 0,
-      "window_item_count": 0,
+      "raw_item_count": 5,
+      "window_item_count": 5,
       "collection_window_hours": 0
     },
     {
@@ -21,7 +28,7 @@
       "site_name": "Maobidao Wudaolu Backup",
       "ok": true,
       "item_count": 2,
-      "duration_ms": 1091,
+      "duration_ms": 848,
       "error": null,
       "source_kind": "wechat_public_account_backup",
       "source_name": "猫笔刀公众号",
@@ -37,7 +44,7 @@
       "site_name": "Bilibili Dynamic",
       "ok": true,
       "item_count": 10,
-      "duration_ms": 4841,
+      "duration_ms": 5541,
       "error": null,
       "uid": "505301413,316183842",
       "uids": [
@@ -79,16 +86,14 @@
   "time_scope": "rolling_window",
   "source_scope": "tested_creator_sources",
   "collection_window_hours": 0,
-  "successful_sites": 2,
-  "failed_sites": [
-    "github_foundation_sunshine_releases"
-  ],
+  "successful_sites": 3,
+  "failed_sites": [],
   "zero_item_sites": [],
   "empty_advanced_sources": [],
-  "fetched_raw_items": 12,
-  "raw_items_before_collection_window": 12,
+  "fetched_raw_items": 17,
+  "raw_items_before_collection_window": 17,
   "skipped_collection_window_items": 0,
-  "items_before_topic_filter": 0,
+  "items_before_topic_filter": 1,
   "items_in_24h": 0,
   "rss_opml": {
     "enabled": false,
