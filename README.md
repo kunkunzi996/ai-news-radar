@@ -240,6 +240,7 @@ python scripts/update_news.py --output-dir data --window-hours 24 --rss-opml fee
 `.github/workflows/update-news.yml` 已经配置好定时任务。
 
 - 支持手动触发 `workflow_dispatch`
+- 推送到 `master` 时会立即刷新一次，纯 `data/**` 变更除外
 - 默认每 30 分钟运行一次：`*/30 * * * *`
 - 自动生成并提交 `data/*.json`；工作流使用 `git add data/`，避免新增 JSON 文件因为白名单遗漏而停留在旧更新时间
 - 默认部署范围是 `tested_creator_sources`，只发布已经本地验收过的订阅信源：B站动态、本地 MediaCrawler 抖音 JSONL、本地 MediaCrawler 小红书 JSONL、AlkaidLab/foundation-sunshine GitHub 版本发布、猫笔刀公众号公开备份源
