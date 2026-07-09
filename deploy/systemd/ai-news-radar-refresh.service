@@ -1,0 +1,21 @@
+[Unit]
+Description=Refresh AI News Radar data
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=ai-news-radar
+Group=ai-news-radar
+WorkingDirectory=/opt/ai-news-radar
+Environment=PYTHONIOENCODING=utf-8
+Environment=PYTHONUNBUFFERED=1
+Environment=RADAR_SOURCE_SCOPE=tested_creator_sources
+EnvironmentFile=-/etc/ai-news-radar.env
+ExecStart=/opt/ai-news-radar/.venv/bin/python scripts/update_news.py --output-dir data --window-hours 24 --archive-days 3650 --collect-window-hours 24 --all-time
+TimeoutStartSec=15min
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

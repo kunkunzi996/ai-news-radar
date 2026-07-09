@@ -1,0 +1,12 @@
+[Unit]
+Description=Run AI News Radar refresh every 30 minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=30min
+RandomizedDelaySec=2min
+Persistent=true
+Unit=ai-news-radar-refresh.service
+
+[Install]
+WantedBy=timers.target

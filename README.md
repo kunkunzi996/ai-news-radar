@@ -238,6 +238,8 @@ python scripts/update_news.py --output-dir data --window-hours 24 --rss-opml fee
 
 线上页面右上角显示的“更新时间”来自 `data/latest-24h.json` 的 `generated_at`。如果页面长时间停在旧时间，优先检查 GitHub Actions 最近一次 `Update AI News Snapshot` 是否运行、是否有抓取错误、以及仓库 Pages 是否部署到包含最新 `data/` 提交的分支。
 
+如果你明确想部署到自己的服务器自动跑，推荐使用 `systemd timer` 定时刷新数据，再用 Nginx 只对外提供静态页面和 `data/*.json`。完整步骤见 [服务器部署手册](docs/guides/server-deployment.md)，不要把本地管理后台 `scripts/local_server.py` 直接暴露到公网。
+
 主页面内置一个本地采集控制台、“订阅成员”和“高级信源配置”面板。
 日常新增/删除订阅对象优先用“订阅成员”；“高级信源配置”用于编辑类型、地址、
 环境变量、备注和启用状态等底层字段。
