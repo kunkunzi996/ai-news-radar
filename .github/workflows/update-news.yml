@@ -41,17 +41,20 @@ jobs:
         id: douyin_bridge
         env:
           DOUYIN_BRIDGE_REPO: ${{ vars.DOUYIN_BRIDGE_REPO }}
-          DOUYIN_BRIDGE_TOKEN: ${{ secrets.DOUYIN_BRIDGE_TOKEN }}
+          DOUYIN_BRIDGE_SSH_KEY: ${{ secrets.DOUYIN_BRIDGE_SSH_KEY }}
         run: |
-          # 桥接仓库由云电脑上的 MediaCrawler 定时推送抖音 creator JSONL。
-          # 未配置 DOUYIN_BRIDGE_REPO / DOUYIN_BRIDGE_TOKEN 时静默跳过，不影响其余信源。
-          if [ -z "$DOUYIN_BRIDGE_REPO" ] || [ -z "$DOUYIN_BRIDGE_TOKEN" ]; then
+          # 桥接仓库由采集机（本机/云电脑）定时推送抖音 creator JSONL。
+          # 用只读部署密钥克隆；未配置 DOUYIN_BRIDGE_REPO / DOUYIN_BRIDGE_SSH_KEY 时静默跳过，不影响其余信源。
+          if [ -z "$DOUYIN_BRIDGE_REPO" ] || [ -z "$DOUYIN_BRIDGE_SSH_KEY" ]; then
             echo "douyin bridge not configured; skipping"
             echo "local_dir=" >> "$GITHUB_OUTPUT"
             exit 0
           fi
+          key_file="$RUNNER_TEMP/douyin_bridge_key"
+          printf '%s\n' "$DOUYIN_BRIDGE_SSH_KEY" > "$key_file"
+          chmod 600 "$key_file"
           bridge_dir="$RUNNER_TEMP/douyin-bridge"
-          if ! git clone --quiet --depth 1 "https://x-access-token:${DOUYIN_BRIDGE_TOKEN}@github.com/${DOUYIN_BRIDGE_REPO}.git" "$bridge_dir"; then
+          if ! GIT_SSH_COMMAND="ssh -i $key_file -o StrictHostKeyChecking=accept-new" git clone --quiet --depth 1 "git@github.com:${DOUYIN_BRIDGE_REPO}.git" "$bridge_dir"; then
             echo "::warning::douyin bridge clone failed; continuing without douyin"
             echo "local_dir=" >> "$GITHUB_OUTPUT"
             exit 0

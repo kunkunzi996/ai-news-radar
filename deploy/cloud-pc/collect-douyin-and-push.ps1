@@ -1,4 +1,4 @@
-# 云电脑抖音采集 + 桥接仓库推送脚本
+﻿# 云电脑抖音采集 + 桥接仓库推送脚本
 #
 # 用途：在 24 小时在线的云 Windows 上定时运行——
 #   1. 拉取主仓库最新代码（获取最新的抖音博主配置）。
@@ -28,10 +28,15 @@ param(
     # 覆盖博主列表（逗号分隔 sec_uid），默认从线上配置读取
     [string]$CreatorIds = "",
     # 跳过主仓库 git pull（调试用）
-    [switch]$SkipGitPull
+    [switch]$SkipGitPull,
+    # 日志文件路径（留空不记录；计划任务传入以便无人值守排查）
+    [string]$LogFile = ""
 )
 
 $ErrorActionPreference = "Stop"
+if ($LogFile) {
+    try { Start-Transcript -Path $LogFile -Append | Out-Null } catch { Write-Warning "日志启动失败：$_" }
+}
 $env:PYTHONIOENCODING = "utf-8"
 
 function Write-Step([string]$Message) {
@@ -39,14 +44,24 @@ function Write-Step([string]$Message) {
 }
 
 function Invoke-Git([string]$RepoDir, [string[]]$GitArgs) {
-    & git -C $RepoDir @GitArgs 2>&1 | ForEach-Object { Write-Host "  git: $_" }
+    # git 会把正常进度信息写到 stderr（如 push 的 "To https://..."）。
+    # Windows PowerShell 5.1 下 2>&1 + ErrorActionPreference=Stop 会把这些行误判为异常，
+    # 所以本函数内降级为 Continue，成败只看 $LASTEXITCODE。
+    $ErrorActionPreference = "Continue"
+    & git -C $RepoDir @GitArgs 2>&1 | ForEach-Object { Write-Host ("  git: {0}" -f $_) }
     return $LASTEXITCODE
 }
 
 # ---------- 参数解析与前置检查 ----------
 if (-not $CrawlerRoot) { $CrawlerRoot = Join-Path (Split-Path $RadarRoot -Parent) "MediaCrawler" }
 if (-not $BridgeRoot) { $BridgeRoot = Join-Path (Split-Path $RadarRoot -Parent) "douyin-bridge" }
-if (-not $PythonExe) { $PythonExe = Join-Path $CrawlerRoot ".venv\Scripts\python.exe" }
+if (-not $PythonExe) {
+    foreach ($candidate in @("venv\Scripts\python.exe", ".venv\Scripts\python.exe")) {
+        $probe = Join-Path $CrawlerRoot $candidate
+        if (Test-Path $probe) { $PythonExe = $probe; break }
+    }
+    if (-not $PythonExe) { $PythonExe = Join-Path $CrawlerRoot ".venv\Scripts\python.exe" }
+}
 
 foreach ($check in @(
         @{ Path = (Join-Path $RadarRoot "scripts\run_mediacrawler_douyin.py"); Hint = "RadarRoot 不是主仓库" },

@@ -54,11 +54,17 @@ python -m venv .venv
 ## 第三步：建私有桥接仓库
 
 1. GitHub 上新建 **私有** 仓库，例如 `douyin-bridge`（空仓库即可，加个 README 方便克隆）。
-2. 创建两枚 Fine-grained PAT（Settings → Developer settings → Fine-grained tokens），
-   都只授权 `douyin-bridge` 这一个仓库：
-   - **云电脑用**：Contents 权限 Read and write（用于 push JSONL）。
-   - **Actions 用**：Contents 权限 Read-only（用于克隆）。
-3. 云电脑上给桥接仓库配好推送凭证（克隆时带 PAT 或用 Git Credential Manager 登录一次）。
+   有 `gh` CLI 时一条命令：`gh repo create douyin-bridge --private --add-readme`。
+2. 给 Actions 克隆用生成一把**只读部署密钥**（比 PAT 更小权限：天然只对这一个仓库有效）：
+
+```powershell
+ssh-keygen -t ed25519 -N '""' -C "actions-readonly" -f douyin_bridge_key
+gh repo deploy-key add douyin_bridge_key.pub --repo <你的用户名>/douyin-bridge --title "actions-readonly-clone"
+gh secret set DOUYIN_BRIDGE_SSH_KEY --repo <你的用户名>/<主仓库> < douyin_bridge_key
+# 私钥入库后立即删除本地文件
+```
+
+3. 采集机上给桥接仓库配好推送凭证（Git Credential Manager 登录一次即可，用账号自身权限 push）。
 
 桥接仓库内容由脚本自动维护，固定布局：
 
@@ -103,10 +109,10 @@ Register-ScheduledTask -TaskName "DouyinCollectAndPush" -Action $action -Trigger
 
 ## 第六步：接通 GitHub Actions
 
-主仓库 Settings → Secrets and variables → Actions：
+主仓库 Settings → Secrets and variables → Actions（`gh variable set` / `gh secret set` 亦可）：
 
 1. Variables 新增 `DOUYIN_BRIDGE_REPO`，值如 `你的用户名/douyin-bridge`。
-2. Secrets 新增 `DOUYIN_BRIDGE_TOKEN`，值为第三步的 Read-only PAT。
+2. Secrets 新增 `DOUYIN_BRIDGE_SSH_KEY`，值为第三步部署密钥的**私钥**全文。
 3. 本地打开控制台（127.0.0.1:8080）→ 线上信源面板，把 4 个抖音博主的
    "启用"打开 → 点"同步到线上"。（或直接把 `config/online-sources.json`
    里抖音条目的 `enabled` 改为 `true` 后提交推送。）
@@ -129,7 +135,7 @@ Register-ScheduledTask -TaskName "DouyinCollectAndPush" -Action $action -Trigger
 | --- | --- |
 | source-status 里 `mediacrawler_douyin_jsonl_not_found` | 桥接仓库没有 JSONL 或 Actions 未配置 bridge 变量；查云电脑计划任务是否正常跑 |
 | 采集到 0 条 / MediaCrawler 报登录失效 | 抖音 session 过期，远程桌面进云电脑手动跑一次脚本重新扫码 |
-| 桥接仓库 push 失败 | PAT 过期（Fine-grained 最长一年），重新生成并更新凭证 |
+| 桥接仓库 push 失败 | 采集机 git 凭证过期，Git Credential Manager 重新登录一次 |
 | 新增/删除抖音博主 | 本地控制台线上信源面板改 → 同步到线上；云电脑下次运行自动 `git pull` 拿到新列表 |
 | 采集频繁被风控 | 降低计划任务频率、调小 `-MaxNotes`；不要在多平台同时高频采集 |
 
@@ -137,5 +143,5 @@ Register-ScheduledTask -TaskName "DouyinCollectAndPush" -Action $action -Trigger
 
 - 抖音登录态只存在云电脑的 `chrome-profile` 里，**不进任何仓库**。
 - 桥接仓库必须是私有仓库；里面只有公开可见的作品元数据 JSONL，不含 cookie。
-- PAT 只授权桥接仓库单库、最小权限；Actions 用的那枚是只读。
+- Actions 侧用只读部署密钥（单仓库、只读）；私钥只存在 Actions Secret 里，本地生成后即删。
 - 主仓库（公开）不出现任何 token/cookie/私有路径。

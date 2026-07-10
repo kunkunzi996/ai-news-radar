@@ -1,0 +1,13 @@
+@echo off
+chcp 65001 >nul
+powershell.exe -NoProfile -EncodedCommand VwByAGkAdABlAC0ASABvAHMAdAAgACIAY2soV+aJ0VOWYvOXx5HGlgj/DlTwU9CPTIgM/6Z+IAAzAH4AMQAwACAABlKflAn/LgAuAC4AIgA=
+schtasks /run /tn "DouyinCollectAndPush"
+if errorlevel 1 goto failed
+powershell.exe -NoProfile -EncodedCommand VwByAGkAdABlAC0ASABvAHMAdAAgACIA8l3midFTAjDbj6ZeC3flZddfGv9FADoAXABBAEkALQBuAGUAdwBzAC0AcgBlAGEAZABlAHIAXABkAG8AdQB5AGkAbgAtAGMAbwBsAGwAZQBjAHQALgBsAG8AZwAiAA==
+goto end
+
+:failed
+powershell.exe -NoProfile -EncodedCommand VwByAGkAdABlAC0ASABvAHMAdAAgACIA5onRUzFZJY0a/6GLElL7TqFSIABEAG8AdQB5AGkAbgBDAG8AbABsAGUAYwB0AEEAbgBkAFAAdQBzAGgAIAANTlhbKFcM//eLSFGMWxBioYsSUvtOoVLobIxRAjAiAA==
+
+:end
+pause
