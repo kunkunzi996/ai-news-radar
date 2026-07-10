@@ -37,11 +37,40 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Fetch Douyin bridge JSONL
+        id: douyin_bridge
+        env:
+          DOUYIN_BRIDGE_REPO: ${{ vars.DOUYIN_BRIDGE_REPO }}
+          DOUYIN_BRIDGE_TOKEN: ${{ secrets.DOUYIN_BRIDGE_TOKEN }}
+        run: |
+          # 桥接仓库由云电脑上的 MediaCrawler 定时推送抖音 creator JSONL。
+          # 未配置 DOUYIN_BRIDGE_REPO / DOUYIN_BRIDGE_TOKEN 时静默跳过，不影响其余信源。
+          if [ -z "$DOUYIN_BRIDGE_REPO" ] || [ -z "$DOUYIN_BRIDGE_TOKEN" ]; then
+            echo "douyin bridge not configured; skipping"
+            echo "local_dir=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          bridge_dir="$RUNNER_TEMP/douyin-bridge"
+          if ! git clone --quiet --depth 1 "https://x-access-token:${DOUYIN_BRIDGE_TOKEN}@github.com/${DOUYIN_BRIDGE_REPO}.git" "$bridge_dir"; then
+            echo "::warning::douyin bridge clone failed; continuing without douyin"
+            echo "local_dir=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if ls "$bridge_dir"/output/douyin/jsonl/creator_contents_*.jsonl >/dev/null 2>&1; then
+            echo "bridge jsonl found:"
+            ls -lh "$bridge_dir"/output/douyin/jsonl/
+            echo "local_dir=$bridge_dir" >> "$GITHUB_OUTPUT"
+          else
+            echo "::warning::douyin bridge repo has no creator_contents_*.jsonl; continuing without douyin"
+            echo "local_dir=" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Update data
         env:
           BILIBILI_DYNAMIC_MAX_ITEMS: ${{ vars.BILIBILI_DYNAMIC_MAX_ITEMS || 10 }}
           BILIBILI_DYNAMIC_MAX_PAGES: ${{ vars.BILIBILI_DYNAMIC_MAX_PAGES || 8 }}
           BILIBILI_COOKIE: ${{ secrets.BILIBILI_COOKIE }}
+          MEDIACRAWLER_LOCAL_DIR: ${{ steps.douyin_bridge.outputs.local_dir }}
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           python scripts/update_news.py --source-config config/online-sources.json --output-dir data --window-hours 24 --archive-days 21

@@ -16,7 +16,7 @@ from urllib.parse import urlparse, urlunparse
 ONLINE_CONFIG_FILENAME = Path("config") / "online-sources.json"
 ONLINE_OPML_FILENAME = Path("feeds") / "online-sources.opml"
 ONLINE_OPML_SOURCE_ID = "online_opmlrss"
-ONLINE_ALLOWED_TYPES = frozenset({"bilibili_dynamic", "github_release", "rss"})
+ONLINE_ALLOWED_TYPES = frozenset({"bilibili_dynamic", "github_release", "mediacrawler_jsonl", "rss"})
 ONLINE_COMMIT_MESSAGE = "配置：同步线上信源"
 
 SENSITIVE_MARKERS = (
@@ -35,7 +35,7 @@ PRIVATE_PATH_MARKERS = (
     "creator_contents_",
     "feeds/follow.opml",
 )
-TYPE_ORDER = {"bilibili_dynamic": 0, "github_release": 1, "rss": 2}
+TYPE_ORDER = {"bilibili_dynamic": 0, "github_release": 1, "mediacrawler_jsonl": 2, "rss": 3}
 
 
 def utc_timestamp() -> str:
@@ -102,6 +102,9 @@ def normalize_online_type(raw_type: str) -> str:
         "youtube": "rss",
         "feed": "rss",
         "atom": "rss",
+        "douyin": "mediacrawler_jsonl",
+        "抖音": "mediacrawler_jsonl",
+        "mediacrawler_douyin": "mediacrawler_jsonl",
     }
     return aliases.get(value, value)
 
@@ -120,6 +123,22 @@ def normalize_bilibili_uid(value: str, index: int) -> str:
     if not re.fullmatch(r"\d{2,20}", uid):
         raise ValueError(f"sources[{index}].locator must be a public Bilibili UID")
     return uid
+
+
+def normalize_douyin_homepage(value: str, index: int) -> str:
+    """只接受抖音创作者主页链接，清洗成 https://www.douyin.com/user/<sec_uid>。"""
+    raw = str(value or "").strip()
+    parsed = urlparse(raw)
+    parts = [part for part in parsed.path.split("/") if part]
+    if (
+        parsed.scheme in {"http", "https"}
+        and parsed.netloc.lower() in {"www.douyin.com", "douyin.com"}
+        and len(parts) >= 2
+        and parts[0] == "user"
+        and re.fullmatch(r"[A-Za-z0-9_=-]+", parts[1] or "")
+    ):
+        return f"https://www.douyin.com/user/{parts[1]}"
+    raise ValueError(f"sources[{index}].locator must be a Douyin creator homepage URL (https://www.douyin.com/user/...)")
 
 
 def normalize_github_repo(value: str, index: int) -> str:
@@ -166,6 +185,23 @@ def normalize_online_source_record(source: dict[str, Any], index: int) -> dict[s
             "locator": locator,
             "env": "",
             "notes": notes[:240] or "公开 UID",
+        }
+
+    if source_type == "mediacrawler_jsonl":
+        homepage = normalize_douyin_homepage(locator, index)
+        if not name:
+            raise ValueError(f"sources[{index}].name is required")
+        digest = hashlib.sha1(homepage.encode("utf-8")).hexdigest()[:10]
+        return {
+            "id": f"online_douyin_{digest}",
+            "name": name[:120],
+            "type": source_type,
+            "enabled": enabled,
+            "channel": "抖音订阅",
+            "target": name[:120],
+            "locator": homepage,
+            "env": "",
+            "notes": notes[:240] or "云电脑桥接采集",
         }
 
     if source_type == "github_release":

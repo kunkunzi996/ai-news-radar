@@ -92,6 +92,50 @@
       "notes": "只追踪 release"
     },
     {
+      "id": "online_douyin_15e1eb7a80",
+      "name": "珍妮丁丁说AI",
+      "type": "mediacrawler_jsonl",
+      "enabled": false,
+      "channel": "抖音订阅",
+      "target": "珍妮丁丁说AI",
+      "locator": "https://www.douyin.com/user/MS4wLjABAAAAOzTvIhQXaHWi6jT_P5rG5xEWpWPjufiKQHL4_uaFRZzOMFYOxxQPu3AtUmTd_P09",
+      "env": "",
+      "notes": "云电脑桥接采集"
+    },
+    {
+      "id": "online_douyin_4ba018c629",
+      "name": "Simon林",
+      "type": "mediacrawler_jsonl",
+      "enabled": false,
+      "channel": "抖音订阅",
+      "target": "Simon林",
+      "locator": "https://www.douyin.com/user/MS4wLjABAAAACsVvwoWhwaNZkd4kOY7bu6UhcfCiYmd_k_wcUnN9bYo8jOANJ1iyts7MXQB8nsZ0",
+      "env": "",
+      "notes": "云电脑桥接采集"
+    },
+    {
+      "id": "online_douyin_941c69c872",
+      "name": "FredTalk",
+      "type": "mediacrawler_jsonl",
+      "enabled": false,
+      "channel": "抖音订阅",
+      "target": "FredTalk",
+      "locator": "https://www.douyin.com/user/MS4wLjABAAAAbsEkiVbKt7yhYoBK8_PkNTQoPAgRiLzOyrBc-sYHSdo",
+      "env": "",
+      "notes": "云电脑桥接采集"
+    },
+    {
+      "id": "online_douyin_a5bf75b217",
+      "name": "匿名用户996",
+      "type": "mediacrawler_jsonl",
+      "enabled": false,
+      "channel": "抖音订阅",
+      "target": "匿名用户996",
+      "locator": "https://www.douyin.com/user/MS4wLjABAAAADkIjUrjejFZS4MWryWIqBiY2KA7NUpTHGH_BWm-AipgtONGJ7CMCT2WZ9yHX1Ptx",
+      "env": "",
+      "notes": "云电脑桥接采集"
+    },
+    {
       "id": "online_feed_google_ai_blog",
       "name": "Google AI Blog",
       "type": "rss",

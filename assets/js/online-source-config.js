@@ -13,6 +13,13 @@ const ONLINE_SOURCE_TYPE_DEFS = {
     locatorPlaceholder: "例如：AlkaidLab/foundation-sunshine",
     channel: "GitHub Release",
   },
+  mediacrawler_jsonl: {
+    label: "抖音博主",
+    nameLabel: "博主名称",
+    locatorLabel: "抖音主页链接",
+    locatorPlaceholder: "例如：https://www.douyin.com/user/MS4wLjABAAAA...",
+    channel: "抖音订阅",
+  },
   rss: {
     label: "RSS/YouTube",
     nameLabel: "Feed 标题",
