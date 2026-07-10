@@ -241,7 +241,7 @@ python scripts/update_news.py --output-dir data --window-hours 24 --rss-opml fee
 
 - 支持手动触发 `workflow_dispatch`
 - 推送到 `master` 时会立即刷新一次，纯 `data/**` 变更除外
-- 默认每 30 分钟运行一次：`*/30 * * * *`
+- 默认每 30 分钟错峰运行：`7,37 * * * *`（每小时第 7、37 分，减少整点高负载导致的延迟或漏跑）
 - 自动生成并提交 `data/*.json`；工作流使用 `git add data/`，避免新增 JSON 文件因为白名单遗漏而停留在旧更新时间
 - 默认读取公开线上配置 `config/online-sources.json`，其中 RSS/YouTube feed 由 `feeds/online-sources.opml` 管理
 - MVP 线上信源只支持三类公开来源：B站 UP、GitHub Release、RSS/YouTube feed

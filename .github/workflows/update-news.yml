@@ -8,7 +8,7 @@ on:
       - "data/**"
   workflow_dispatch:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "7,37 * * * *"
 
 concurrency:
   group: update-ai-news-${{ github.ref }}
