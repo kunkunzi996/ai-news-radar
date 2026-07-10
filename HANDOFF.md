@@ -1,10 +1,10 @@
 # HANDOFF.md
 
-## 当前最新交接：线上信源已上线，定时刷新已改为错峰
+## 当前最新交接：线上信源新增、同步、云端采集全链路已验收
 
 - 日期：2026-07-10
 - 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
-- 当前阶段：线上信源配置 MVP 已提交并上线；公网显示实际追踪的 13 个公开信源。针对网页更新时间停在 `07/10 08:09`，已确认页面时区无误，问题是 GitHub 定时任务延迟或漏跑；本轮把 cron 改为每小时第 7、37 分错峰运行。
+- 当前阶段：线上信源配置 MVP 已提交并上线；用户已从本地页面新增 B站 UP“夏鹏本鹏”，完成保存、同步、GitHub Actions 云端采集和公网数据更新验收。公网现在显示实际追踪的 14 个公开信源。定时任务保持每小时第 7、37 分错峰运行。
 - 详细需求与施工计划：`docs/plans/2026-07-10-online-source-config-one-click-plan.md`
 
 ## 当前已完成
@@ -20,8 +20,10 @@
 - 同步 API 只允许 stage `config/online-sources.json` 和 `feeds/online-sources.opml`，禁止 `git add .`，并拒绝敏感词和私密路径。
 - README 已补充线上信源配置说明。
 - 功能提交 `88abe46 功能：新增线上信源一键同步` 已推送，GitHub Actions 和 Pages 部署成功。
-- 公网页面读取 `config/online-sources.json`，显示 13 个实际追踪源；公网保持只读，本地 8080 保留编辑和同步能力。
+- 公网页面读取 `config/online-sources.json`，显示 14 个实际追踪源；公网保持只读，本地 8080 保留编辑和同步能力。
 - `.github/workflows/update-news.yml` 的定时任务从 `*/30 * * * *` 改为 `7,37 * * * *`，避开整点高负载。
+- 用户新增“夏鹏本鹏”后，本地同步接口已自动创建并推送 `10c9c05 配置：同步线上信源`。
+- 该推送触发 GitHub Actions，远端自动生成 `b268f77 chore: update ai news snapshot`；新 UP 状态为 `ok=true`，抓取 10 条。
 
 ## 当前未处理
 
@@ -33,7 +35,7 @@
 - 公网地址：`https://kunkunzi996.github.io/ai-news-radar/`
 - 线上刷新频率：GitHub Actions `7,37 * * * *`，推送到 `master` 且不是纯 `data/**` 变更时也会触发。
 - 当前 workflow 已改为读取 `config/online-sources.json`，RSS/YouTube feed 由 `feeds/online-sources.opml` 管理。
-- 本地 `sources.config.json` 是私有本机配置，不是线上真实配置。
+- **线上采集以“线上信源” / `config/online-sources.json` 为准。**“订阅成员” / `sources.config.json` 只管理本机私有采集，不会自动改变 GitHub Actions 的线上订阅。
 - 公网页面的“信源配置”不能直接写 GitHub；真正的一键同步必须走本地 `127.0.0.1:8080` 后台。
 
 ## 已验收
@@ -46,6 +48,8 @@
 - Playwright 打开 `http://127.0.0.1:8080/`，展开“信源配置”，看到 13 个线上信源；点击“保存配置”后页面显示 `已写入本地线上配置：13 个信源`，控制台无 error/warning。
 - 公网浏览器验收显示 `线上实际追踪 13 个公开信源`，无编辑/删除按钮，表单隐藏，同步按钮禁用。
 - `07/10 08:09` 对应线上 JSON 的 `2026-07-10T00:09:30Z`，说明显示时区正确；停更来自 GitHub schedule 没有继续触发，不是前端时间格式问题。
+- 用户在本地页面新增“夏鹏本鹏”并点击同步后，确认界面操作正常、验收成功。
+- 远端 `b268f77` 中的 `data/source-status.json` 已确认 UID `3546800797518640` 抓取正常、`item_count=10`，数据生成时间推进到 `2026-07-10T04:36:10.874892Z`。
 
 ## 下一轮必须先读
 
@@ -65,7 +69,7 @@
 
 - 查看下一次第 7 或 37 分附近是否出现新的 `Update AI News Snapshot`；GitHub schedule 仍可能有少量延迟。
 - 公网“更新时间”应随新的 `data/latest-24h.json.generated_at` 前进。
-- 公网继续显示 13 个实际追踪源，`source_config.active=true`、`source_scope=configured_sources`。
+- 公网继续显示 14 个实际追踪源，`source_config.active=true`、`source_scope=configured_sources`。
 
 ## 下一轮 Codex 入口
 
