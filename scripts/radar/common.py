@@ -267,6 +267,10 @@ WEWE_RSS_SITE_ID = "wewe_rss"
 WEWE_RSS_SITE_NAME = "WeWe RSS"
 WEWE_RSS_BASE_URL_DEFAULT = "http://127.0.0.1:4000"
 WEWE_RSS_DEFAULT_MAX_ITEMS = 20
+WE_MP_RSS_SITE_ID = "we_mp_rss"
+WE_MP_RSS_SITE_NAME = "WeRSS 公众号"
+WE_MP_RSS_BASE_URL_DEFAULT = "http://127.0.0.1:8001"
+WE_MP_RSS_DEFAULT_MAX_ITEMS = 20
 OPML_RSS_DEFAULT_MAX_ITEMS_PER_FEED = 5
 BILIBILI_WBI_MIXIN_KEY_ENC_TAB = (
     46, 47, 18, 2, 53, 8, 23, 32,
@@ -391,6 +395,7 @@ SOURCE_CONFIG_ID_SITE_IDS: dict[str, tuple[str, ...]] = {
     "tikhub_social_sources": ("tikhub_douyin", "tikhub_xiaohongshu"),
     "github_foundation_sunshine": (GITHUB_REPO_SUBSCRIPTION_SITE_ID,),
     "wewe_rss_maobidao": (WEWE_RSS_SITE_ID,),
+    "we_mp_rss_maobidao": (WE_MP_RSS_SITE_ID,),
     "maobidao_wudaolu_backup": (MAOBIDAO_WECHAT_SITE_ID,),
 }
 SOURCE_CONFIG_TYPE_SITE_IDS: dict[str, tuple[str, ...]] = {
@@ -419,6 +424,7 @@ SOURCE_CONFIG_TYPE_SITE_IDS: dict[str, tuple[str, ...]] = {
     "mediacrawler_xhs": (MEDIACRAWLER_XHS_SITE_ID,),
     "github_release": (GITHUB_REPO_SUBSCRIPTION_SITE_ID,),
     "wewe_rss": (WEWE_RSS_SITE_ID,),
+    "we_mp_rss": (WE_MP_RSS_SITE_ID,),
 }
 # --- TikHub search ranking / time-window tuning (edit here, no env var needed) ---
 # Exact recency window for TikHub results, in days. Douyin/Xiaohongshu search

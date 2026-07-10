@@ -34,6 +34,8 @@ from scripts.radar.common import (
     SOURCE_SCOPE_TESTED_CREATORS,
     UTC,
     WAYTOAGI_DEFAULT,
+    WE_MP_RSS_SITE_ID,
+    WE_MP_RSS_SITE_NAME,
     WEWE_RSS_SITE_ID,
     WEWE_RSS_SITE_NAME,
     apply_public_raw_meta,
@@ -79,6 +81,7 @@ from scripts.radar.fetchers.subscriptions import (
     fetch_github_repo_subscription,
     fetch_maobidao_wechat_subscription,
     fetch_opml_rss,
+    fetch_we_mp_rss_subscription,
     fetch_wewe_rss_subscription,
 )
 from scripts.radar.fetchers.waytoagi import (
@@ -124,6 +127,7 @@ class RunContext:
     all_time: bool
     collect_window_hours: int
     wewe_rss_enabled: bool
+    we_mp_rss_enabled: bool
     now: datetime
     archive_path: Path
     latest_path: Path
@@ -231,6 +235,11 @@ def prepare_run_context(args: argparse.Namespace) -> RunContext | int:
     )
     if wewe_rss_enabled and active_source_ids is not None:
         active_source_ids = frozenset(site_id for site_id in active_source_ids if site_id != MAOBIDAO_WECHAT_SITE_ID)
+    we_mp_rss_enabled = env_flag("WE_MP_RSS_ENABLED") and (
+        active_source_ids is None or WE_MP_RSS_SITE_ID in active_source_ids
+    )
+    if we_mp_rss_enabled and active_source_ids is not None:
+        active_source_ids = frozenset(site_id for site_id in active_source_ids if site_id != MAOBIDAO_WECHAT_SITE_ID)
 
     now = utc_now()
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -263,6 +272,7 @@ def prepare_run_context(args: argparse.Namespace) -> RunContext | int:
         all_time=all_time,
         collect_window_hours=collect_window_hours,
         wewe_rss_enabled=wewe_rss_enabled,
+        we_mp_rss_enabled=we_mp_rss_enabled,
         now=now,
         archive_path=archive_path,
         latest_path=latest_path,
@@ -288,6 +298,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
     scoped_to_tested_creators = ctx.scoped_to_tested_creators
     scoped_by_config = ctx.scoped_by_config
     wewe_rss_enabled = ctx.wewe_rss_enabled
+    we_mp_rss_enabled = ctx.we_mp_rss_enabled
     paid_source_state = ctx.paid_source_state
     if scoped_to_tested_creators:
         raw_items, statuses = [], []
@@ -394,6 +405,25 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
                 "source_origin": MAOBIDAO_WECHAT_HOME_URL,
                 "max_items": MAOBIDAO_WECHAT_MAX_ITEMS,
                 "coverage_note": "reads_public_discourse_backup_json_not_wechat_login",
+            }
+        )
+    if we_mp_rss_enabled:
+        we_mp_rss_items, we_mp_rss_status = fetch_we_mp_rss_subscription(session, now)
+        raw_items.extend(we_mp_rss_items)
+        statuses.append(
+            {
+                "site_id": WE_MP_RSS_SITE_ID,
+                "site_name": WE_MP_RSS_SITE_NAME,
+                "ok": bool(we_mp_rss_status.get("ok")),
+                "item_count": int(we_mp_rss_status.get("item_count") or 0),
+                "duration_ms": int(we_mp_rss_status.get("duration_ms") or 0),
+                "error": we_mp_rss_status.get("error"),
+                "source_kind": we_mp_rss_status.get("source_kind"),
+                "base_url": we_mp_rss_status.get("base_url"),
+                "max_items_per_feed": we_mp_rss_status.get("max_items_per_feed"),
+                "feeds": we_mp_rss_status.get("feeds"),
+                "coverage_note": we_mp_rss_status.get("coverage_note"),
+                "privacy": we_mp_rss_status.get("privacy"),
             }
         )
     bilibili_dynamic_status = bilibili_dynamic_status_base()

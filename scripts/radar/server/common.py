@@ -55,6 +55,8 @@ def source_config_runtime_ids(source: dict[str, Any]) -> set[str]:
     runtime_ids: set[str] = set()
     if raw_type == "wewe_rss" or raw_id.startswith("wewe_rss") or "wewe_rss" in haystack or "wewe rss" in haystack:
         runtime_ids.add("wewe_rss")
+    if raw_type == "we_mp_rss" or raw_id.startswith("we_mp_rss") or "we_mp_rss" in haystack:
+        runtime_ids.add("we_mp_rss")
     if raw_type == "bilibili_dynamic" or "bilibili" in haystack or "b站" in haystack:
         runtime_ids.add("bilibili_dynamic")
     if raw_type in {"rss", "opml"} or "youtube.com/feeds/videos.xml" in haystack or "youtube" in haystack or "油管" in haystack:

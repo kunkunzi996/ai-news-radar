@@ -157,6 +157,7 @@ def write_youtube_subscriptions(root_dir: Path, raw_subscriptions: Any) -> list[
 PURGE_TRACKED_SITE_IDS = frozenset(
     {
         "wewe_rss",
+        "we_mp_rss",
         "bilibili_dynamic",
         "mediacrawler_douyin",
         "mediacrawler_xhs",

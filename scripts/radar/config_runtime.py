@@ -23,6 +23,7 @@ from scripts.radar.common import (
     SOURCE_SCOPE_TESTED_CREATORS,
     TESTED_CREATOR_SOURCE_IDS,
     UTC,
+    WE_MP_RSS_SITE_ID,
     WEWE_RSS_SITE_ID,
     env_flag,
     env_int,
@@ -153,6 +154,7 @@ def apply_source_config_runtime(config: dict[str, Any] | None) -> dict[str, Any]
     bilibili_uids: list[str] = []
     bilibili_names: list[str] = []
     wewe_feeds: list[str] = []
+    we_mp_feeds: list[str] = []
     douyin_jsonls: list[str] = []
     douyin_names: list[str] = []
     xhs_jsonls: list[str] = []
@@ -170,6 +172,8 @@ def apply_source_config_runtime(config: dict[str, Any] | None) -> dict[str, Any]
             bilibili_names.append(target or name or f"Bilibili {locator}")
         if WEWE_RSS_SITE_ID in site_ids and locator:
             wewe_feeds.append(f"{target or name or locator}:{locator}")
+        if WE_MP_RSS_SITE_ID in site_ids and locator:
+            we_mp_feeds.append(f"{target or name or locator}:{locator}")
         if "opmlrss" in site_ids and locator:
             opml_path = locator
         if MEDIACRAWLER_DOUYIN_SITE_ID in site_ids:
@@ -206,6 +210,12 @@ def apply_source_config_runtime(config: dict[str, Any] | None) -> dict[str, Any]
         if wewe_feeds:
             os.environ["WEWE_RSS_FEEDS"] = ";".join(wewe_feeds)
             applied_env.append("WEWE_RSS_FEEDS")
+    if WE_MP_RSS_SITE_ID in enabled_site_ids:
+        os.environ["WE_MP_RSS_ENABLED"] = "1"
+        applied_env.append("WE_MP_RSS_ENABLED")
+        if we_mp_feeds:
+            os.environ["WE_MP_RSS_FEEDS"] = ";".join(we_mp_feeds)
+            applied_env.append("WE_MP_RSS_FEEDS")
     if douyin_jsonls:
         os.environ["MEDIACRAWLER_DOUYIN_JSONLS"] = ";".join(douyin_jsonls)
         applied_env.append("MEDIACRAWLER_DOUYIN_JSONLS")

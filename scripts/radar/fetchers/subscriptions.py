@@ -33,6 +33,10 @@ from scripts.radar.common import (
     RSS_FEED_SKIP_PREFIXES,
     RawItem,
     UTC,
+    WE_MP_RSS_BASE_URL_DEFAULT,
+    WE_MP_RSS_DEFAULT_MAX_ITEMS,
+    WE_MP_RSS_SITE_ID,
+    WE_MP_RSS_SITE_NAME,
     WEWE_RSS_BASE_URL_DEFAULT,
     WEWE_RSS_DEFAULT_MAX_ITEMS,
     WEWE_RSS_SITE_ID,
@@ -354,6 +358,168 @@ def fetch_wewe_rss_subscription(
         failed = [feed for feed in feed_statuses if not feed.get("ok")]
         if failed:
             status["error"] = f"failed_wewe_rss_feeds:{len(failed)}"
+        return all_items, status
+    except Exception as exc:
+        status["error"] = str(exc)
+        return [], status
+    finally:
+        status["duration_ms"] = int((time.perf_counter() - start) * 1000)
+
+
+def we_mp_rss_base_url() -> str:
+    return (os.environ.get("WE_MP_RSS_BASE_URL") or WE_MP_RSS_BASE_URL_DEFAULT).strip().rstrip("/")
+
+
+def parse_we_mp_rss_feed_items(
+    feed_content: bytes,
+    now: datetime,
+    *,
+    source_name: str,
+    feed_id: str,
+    max_items: int,
+) -> list[RawItem]:
+    if feedparser is None:
+        return []
+    parsed = feedparser.parse(feed_content)
+    out: list[RawItem] = []
+    seen: set[str] = set()
+    for entry in parsed.entries:
+        if len(out) >= max_items:
+            break
+        title = clean_wp_rendered_text(entry.get("title"), max_chars=160)
+        url = normalize_url(first_non_empty(entry.get("link")))
+        if not title or not url:
+            continue
+        key = url or title
+        if key in seen:
+            continue
+        seen.add(key)
+        published = parse_date_any(
+            first_non_empty(entry.get("published"), entry.get("updated")),
+            now,
+        ) or now
+        summary = clean_wp_rendered_text(
+            first_non_empty(entry.get("summary"), entry.get("description")),
+            max_chars=220,
+        )
+        out.append(
+            RawItem(
+                site_id=WE_MP_RSS_SITE_ID,
+                site_name=WE_MP_RSS_SITE_NAME,
+                source=source_name or "WeRSS",
+                title=title,
+                url=url,
+                published_at=published,
+                meta={
+                    "summary": summary or title,
+                    "source_kind": "we_mp_rss_wechat_subscription",
+                    "wechat_account": source_name,
+                    "we_mp_feed_id": feed_id,
+                    "search_surface": "we_mp_rss_xml_feed",
+                },
+            )
+        )
+    return out
+
+
+def discover_we_mp_rss_feeds(session: requests.Session, base: str) -> list[dict[str, str]]:
+    """从 {base}/rss 的订阅列表 RSS 里提取 feed id（item link 形如 .../rss/{feed_id}）。"""
+    resp = session.get(
+        f"{base}/rss",
+        params={"limit": 30},
+        headers={"Accept": "application/xml", "User-Agent": "AI-News-Radar/0.7 we-mp-rss-bridge"},
+        timeout=15,
+    )
+    resp.raise_for_status()
+    if feedparser is None:
+        return []
+    parsed = feedparser.parse(resp.content)
+    feeds: list[dict[str, str]] = []
+    for entry in parsed.entries:
+        # sidecar 的 /rss 列表里 item link/guid 形如 "rss/MP_WXS_xxx"（无前导斜杠），
+        # 也可能是 "/rss/xxx" 或绝对 URL；放宽匹配，不强制前导斜杠。
+        link = first_non_empty(entry.get("link")) or first_non_empty(entry.get("id")) or ""
+        match = re.search(r"(?:^|/)rss/([^/?#]+)", link)
+        if not match:
+            continue
+        feeds.append({"id": match.group(1), "name": first_non_empty(entry.get("title")) or match.group(1)})
+    return feeds
+
+
+def fetch_we_mp_rss_subscription(
+    session: requests.Session,
+    now: datetime,
+    *,
+    base_url: str | None = None,
+    feeds_config: str | None = None,
+    max_items: int | None = None,
+) -> tuple[list[RawItem], dict[str, Any]]:
+    start = time.perf_counter()
+    base = (base_url or we_mp_rss_base_url()).strip().rstrip("/")
+    max_items_per_feed = max(1, min(100, int(max_items or env_int("WE_MP_RSS_MAX_ITEMS", WE_MP_RSS_DEFAULT_MAX_ITEMS))))
+    status: dict[str, Any] = {
+        "enabled": True,
+        "ok": False,
+        "item_count": 0,
+        "duration_ms": 0,
+        "error": None,
+        "source_kind": "we_mp_rss_wechat_subscription",
+        "base_url": base,
+        "max_items_per_feed": max_items_per_feed,
+        "feeds": [],
+        "coverage_note": "reads_local_we_mp_rss_xml_feed_without_wechat_login_state",
+        "privacy": "local_sidecar_no_cookies_in_radar_repo",
+    }
+    if not base:
+        status["error"] = "missing_we_mp_rss_base_url"
+        status["duration_ms"] = int((time.perf_counter() - start) * 1000)
+        return [], status
+    if feedparser is None:
+        status["error"] = "feedparser_missing"
+        status["duration_ms"] = int((time.perf_counter() - start) * 1000)
+        return [], status
+
+    configured_feeds = wewe_rss_feeds_from_env(feeds_config if feeds_config is not None else os.environ.get("WE_MP_RSS_FEEDS"))
+    try:
+        feeds = configured_feeds or discover_we_mp_rss_feeds(session, base)
+        if not feeds:
+            status["ok"] = True
+            status["error"] = "we_mp_rss_no_feeds"
+            return [], status
+
+        all_items: list[RawItem] = []
+        feed_statuses: list[dict[str, Any]] = []
+        for feed in feeds:
+            feed_id = feed["id"]
+            source_name = feed.get("name") or feed_id
+            feed_status = {"id": feed_id, "name": source_name, "ok": False, "item_count": 0, "error": None}
+            try:
+                resp = session.get(
+                    f"{base}/feed/{feed_id}.rss",
+                    params={"limit": max_items_per_feed},
+                    headers={"Accept": "application/xml", "User-Agent": "AI-News-Radar/0.7 we-mp-rss-bridge"},
+                    timeout=20,
+                )
+                resp.raise_for_status()
+                items = parse_we_mp_rss_feed_items(
+                    resp.content,
+                    now,
+                    source_name=source_name,
+                    feed_id=feed_id,
+                    max_items=max_items_per_feed,
+                )
+                all_items.extend(items)
+                feed_status.update({"ok": True, "item_count": len(items)})
+            except Exception as exc:
+                feed_status["error"] = str(exc)
+            feed_statuses.append(feed_status)
+
+        status["feeds"] = feed_statuses
+        status["item_count"] = len(all_items)
+        status["ok"] = all(feed.get("ok") for feed in feed_statuses)
+        failed = [feed for feed in feed_statuses if not feed.get("ok")]
+        if failed:
+            status["error"] = f"failed_we_mp_rss_feeds:{len(failed)}"
         return all_items, status
     except Exception as exc:
         status["error"] = str(exc)
