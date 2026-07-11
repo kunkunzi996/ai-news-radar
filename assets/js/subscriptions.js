@@ -534,10 +534,11 @@ async function removeSubscriptionMember(locator) {
 }
 function isSubscriptionSection(sectionId) {
   if (isHiddenPlatformId(sectionId)) return false;
-  return sectionId === "creator" || sectionId === "read" || ["douyin", "xiaohongshu", "bilibili", "youtube"].includes(sectionId);
+  return sectionId === "creator" || sectionId === "read" || ["douyin", "xiaohongshu", "bilibili", "youtube", "github"].includes(sectionId);
 }
 function itemPlatformSection(item) {
   const siteId = String(item?.site_id || "").toLowerCase();
+  const urlHay = [item?.url, item?.primary_url].filter(Boolean).join(" ").toLowerCase();
   const hay = [
     item?.site_name,
     item?.source,
@@ -560,6 +561,7 @@ function itemPlatformSection(item) {
     hay.includes("maobidao")
   ) return "wechat";
   if (hay.includes("youtube") || hay.includes("youtu.be") || hay.includes("油管")) return "youtube";
+  if (siteId.includes("github") || urlHay.includes("github.com")) return "github";
   return "";
 }
 function subscriptionModeItems() {

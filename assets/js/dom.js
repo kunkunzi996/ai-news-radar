@@ -206,6 +206,7 @@ const SECTION_DEFS = [
   { id: "wechat", label: "微信公众号", short: "公众号", description: "微信公众号订阅和 WeWe RSS 信号" },
   { id: "bilibili", label: "B站", short: "B站", description: "B站动态、视频和账号订阅" },
   { id: "youtube", label: "油管", short: "油管", description: "YouTube 频道订阅和视频更新" },
+  { id: "github", label: "GitHub", short: "GitHub", description: "GitHub 项目的 Release 与更新" },
   { id: "read", label: "已阅", short: "已阅", description: "已标记已阅的订阅内容，可随时恢复" },
 ];
 
