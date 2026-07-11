@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-07-10T04:35:52Z",
+  "updated_at": "2026-07-11T07:05:00Z",
   "sources": [
     {
       "id": "online_bilibili_313819014",
@@ -77,6 +77,17 @@
       "channel": "B站动态",
       "target": "Koji杨远骋at十字路口",
       "locator": "505301413",
+      "env": "",
+      "notes": "公开 UID"
+    },
+    {
+      "id": "online_bilibili_538596213",
+      "name": "罗永浩的十字路口",
+      "type": "bilibili_dynamic",
+      "enabled": true,
+      "channel": "B站动态",
+      "target": "罗永浩的十字路口",
+      "locator": "538596213",
       "env": "",
       "notes": "公开 UID"
     },
