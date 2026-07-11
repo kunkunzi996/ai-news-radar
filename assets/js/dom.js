@@ -192,10 +192,11 @@ const SUBSCRIPTION_SITE_IDS = new Set([
   "bilibili_dynamic",
   "mediacrawler_douyin",
   "mediacrawler_xhs",
+  "we_mp_rss_jsonl",
   "github_foundation_sunshine_releases",
 ]);
 
-const HIDDEN_PLATFORM_IDS = new Set(["wechat"]);
+const HIDDEN_PLATFORM_IDS = new Set();
 const HIDDEN_SOURCE_IDS = new Set(["wewe_rss", "maobidao_wudaolu_backup"]);
 
 const SECTION_DEFS = [
