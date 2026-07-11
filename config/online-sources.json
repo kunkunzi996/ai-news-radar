@@ -1,8 +1,19 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-07-11T07:05:00Z",
+  "updated_at": "2026-07-11T08:02:57Z",
   "sources": [
+    {
+      "id": "online_bilibili_28756625",
+      "name": "中二的大暄哥",
+      "type": "bilibili_dynamic",
+      "enabled": true,
+      "channel": "B站动态",
+      "target": "中二的大暄哥",
+      "locator": "28756625",
+      "env": "",
+      "notes": "公开 UID"
+    },
     {
       "id": "online_bilibili_313819014",
       "name": "anno大笨蛋",
@@ -147,6 +158,17 @@
       "notes": "云电脑桥接采集"
     },
     {
+      "id": "online_we_mp_rss_maobidao",
+      "name": "猫笔刀 (WeRSS)",
+      "type": "we_mp_rss_jsonl",
+      "enabled": true,
+      "channel": "微信公众号",
+      "target": "猫笔刀",
+      "locator": "",
+      "env": "",
+      "notes": "本机 sidecar 采集 → wechat-bridge 桥接。locator 留空=读 WE_MP_RSS_JSONL_DIR 下 latest JSONL。"
+    },
+    {
       "id": "online_feed_google_ai_blog",
       "name": "Google AI Blog",
       "type": "rss",
@@ -211,17 +233,6 @@
       "locator": "https://simonwillison.net/atom/everything/",
       "env": "",
       "notes": "公开 feed"
-    },
-    {
-      "id": "online_we_mp_rss_maobidao",
-      "name": "\u732b\u7b14\u5200 (WeRSS)",
-      "type": "we_mp_rss_jsonl",
-      "enabled": true,
-      "channel": "\u5fae\u4fe1\u516c\u4f17\u53f7",
-      "target": "\u732b\u7b14\u5200",
-      "locator": "",
-      "env": "",
-      "notes": "\u672c\u673a sidecar \u91c7\u96c6 \u2192 wechat-bridge \u6865\u63a5\u3002locator \u7559\u7a7a=\u8bfb WE_MP_RSS_JSONL_DIR \u4e0b latest JSONL\u3002"
     },
     {
       "id": "online_opmlrss",
