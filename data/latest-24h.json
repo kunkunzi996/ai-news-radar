@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-11T05:50:44.802594Z",
+  "generated_at": "2026-07-11T05:52:20.935068Z",
   "window_hours": 24,
   "time_scope": "rolling_window",
   "source_scope": "configured_sources",
@@ -11,7 +11,7 @@
   "topic_filter": "ai_relevance_scoring_v0_4",
   "ai_relevance_threshold": 0.65,
   "archive_total": 484,
-  "site_count": 4,
+  "site_count": 5,
   "source_count": 4,
   "site_stats": [
     {
@@ -37,6 +37,12 @@
       "site_name": "AlkaidLab/foundation-sunshine",
       "count": 0,
       "raw_count": 1
+    },
+    {
+      "site_id": "we_mp_rss_jsonl",
+      "site_name": "WeRSS 公众号",
+      "count": 0,
+      "raw_count": 0
     }
   ],
   "creator_window_days": 1,
@@ -53,7 +59,7 @@
       "url": "https://www.douyin.com/video/7660833544696089907",
       "published_at": "2026-07-10T09:46:51Z",
       "first_seen_at": "2026-07-10T10:07:42.302812Z",
-      "last_seen_at": "2026-07-11T05:50:44.802594Z",
+      "last_seen_at": "2026-07-11T05:52:20.935068Z",
       "creator_metrics": {
         "likes": 130,
         "comments": 9,
@@ -92,7 +98,7 @@
       "url": "https://www.bilibili.com/video/BV1VuNp6PEBM",
       "published_at": "2026-07-10T15:08:00Z",
       "first_seen_at": "2026-07-10T15:38:59.234494Z",
-      "last_seen_at": "2026-07-11T05:50:44.802594Z",
+      "last_seen_at": "2026-07-11T05:52:20.935068Z",
       "bilibili_dynamic_id": "1223454419627016208",
       "summary": "Claude Code、Codex、Cursor，你都用对了吗？#howto入门codex #howto入门vibecoding #姜学长",
       "creator_metrics": {
@@ -132,7 +138,7 @@
       "url": "https://www.bilibili.com/video/BV1T3NE6jECj",
       "published_at": "2026-07-10T09:26:30Z",
       "first_seen_at": "2026-07-10T10:03:30.023832Z",
-      "last_seen_at": "2026-07-11T05:50:44.802594Z",
+      "last_seen_at": "2026-07-11T05:52:20.935068Z",
       "bilibili_dynamic_id": "1223366415749218328",
       "summary": "用 AI 学技术，我做了一个 skill ｜详细教程附源码",
       "creator_metrics": {
@@ -172,7 +178,7 @@
       "url": "https://www.douyin.com/video/7660833544696089907",
       "published_at": "2026-07-10T09:46:51Z",
       "first_seen_at": "2026-07-10T10:07:42.302812Z",
-      "last_seen_at": "2026-07-11T05:50:44.802594Z",
+      "last_seen_at": "2026-07-11T05:52:20.935068Z",
       "creator_metrics": {
         "likes": 130,
         "comments": 9,
@@ -211,7 +217,7 @@
       "url": "https://github.com/AlkaidLab/foundation-sunshine/releases/tag/v2026.711.44720.%E6%9D%82%E9%B1%BC",
       "published_at": "2026-07-11T05:23:55Z",
       "first_seen_at": "2026-07-11T05:50:19.971035Z",
-      "last_seen_at": "2026-07-11T05:50:44.802594Z",
+      "last_seen_at": "2026-07-11T05:52:20.935068Z",
       "summary": "AlkaidLab/foundation-sunshine 预发布: v2026.711.44720.杂鱼",
       "creator_metrics": {
         "likes": 0,
@@ -390,7 +396,7 @@
       "url": "https://www.bilibili.com/video/BV1VuNp6PEBM",
       "published_at": "2026-07-10T15:08:00Z",
       "first_seen_at": "2026-07-10T15:38:59.234494Z",
-      "last_seen_at": "2026-07-11T05:50:44.802594Z",
+      "last_seen_at": "2026-07-11T05:52:20.935068Z",
       "bilibili_dynamic_id": "1223454419627016208",
       "summary": "Claude Code、Codex、Cursor，你都用对了吗？#howto入门codex #howto入门vibecoding #姜学长",
       "creator_metrics": {
@@ -720,7 +726,7 @@
       "url": "https://t.bilibili.com/1223396158432346136",
       "published_at": "2026-07-10T11:21:55Z",
       "first_seen_at": "2026-07-10T12:55:48.450183Z",
-      "last_seen_at": "2026-07-11T05:50:44.802594Z",
+      "last_seen_at": "2026-07-11T05:52:20.935068Z",
       "bilibili_dynamic_id": "1223396158432346136",
       "summary": "分享动态",
       "creator_metrics": {
@@ -974,7 +980,7 @@
       "url": "https://www.bilibili.com/video/BV1T3NE6jECj",
       "published_at": "2026-07-10T09:26:30Z",
       "first_seen_at": "2026-07-10T10:03:30.023832Z",
-      "last_seen_at": "2026-07-11T05:50:44.802594Z",
+      "last_seen_at": "2026-07-11T05:52:20.935068Z",
       "bilibili_dynamic_id": "1223366415749218328",
       "summary": "用 AI 学技术，我做了一个 skill ｜详细教程附源码",
       "creator_metrics": {
@@ -1194,7 +1200,7 @@
       "url": "https://openai.com/index/deutsche-telekom",
       "published_at": "2026-07-10T07:00:00Z",
       "first_seen_at": "2026-07-10T10:03:30.023832Z",
-      "last_seen_at": "2026-07-11T05:50:44.802594Z",
+      "last_seen_at": "2026-07-11T05:52:20.935068Z",
       "ai_is_related": true,
       "ai_score": 0.71,
       "ai_label": "ai_product_update",
@@ -1220,7 +1226,7 @@
       "url": "https://www.bilibili.com/video/BV1VuNp6PEBM",
       "published_at": "2026-07-10T15:08:00Z",
       "first_seen_at": "2026-07-10T15:38:59.234494Z",
-      "last_seen_at": "2026-07-11T05:50:44.802594Z",
+      "last_seen_at": "2026-07-11T05:52:20.935068Z",
       "bilibili_dynamic_id": "1223454419627016208",
       "summary": "Claude Code、Codex、Cursor，你都用对了吗？#howto入门codex #howto入门vibecoding #姜学长",
       "ai_is_related": true,
@@ -1250,7 +1256,7 @@
       "url": "https://www.douyin.com/video/7660833544696089907",
       "published_at": "2026-07-10T09:46:51Z",
       "first_seen_at": "2026-07-10T10:07:42.302812Z",
-      "last_seen_at": "2026-07-11T05:50:44.802594Z",
+      "last_seen_at": "2026-07-11T05:52:20.935068Z",
       "creator_metrics": {
         "likes": 130,
         "collects": 100,
@@ -1285,7 +1291,7 @@
       "url": "https://www.bilibili.com/video/BV1T3NE6jECj",
       "published_at": "2026-07-10T09:26:30Z",
       "first_seen_at": "2026-07-10T10:03:30.023832Z",
-      "last_seen_at": "2026-07-11T05:50:44.802594Z",
+      "last_seen_at": "2026-07-11T05:52:20.935068Z",
       "bilibili_dynamic_id": "1223366415749218328",
       "summary": "用 AI 学技术，我做了一个 skill ｜详细教程附源码",
       "ai_is_related": true,
@@ -1315,7 +1321,7 @@
       "url": "https://openai.com/index/deutsche-telekom",
       "published_at": "2026-07-10T07:00:00Z",
       "first_seen_at": "2026-07-10T10:03:30.023832Z",
-      "last_seen_at": "2026-07-11T05:50:44.802594Z",
+      "last_seen_at": "2026-07-11T05:52:20.935068Z",
       "ai_is_related": true,
       "ai_score": 0.71,
       "ai_label": "ai_product_update",
@@ -1341,7 +1347,7 @@
       "url": "https://www.bilibili.com/video/BV1VuNp6PEBM",
       "published_at": "2026-07-10T15:08:00Z",
       "first_seen_at": "2026-07-10T15:38:59.234494Z",
-      "last_seen_at": "2026-07-11T05:50:44.802594Z",
+      "last_seen_at": "2026-07-11T05:52:20.935068Z",
       "bilibili_dynamic_id": "1223454419627016208",
       "summary": "Claude Code、Codex、Cursor，你都用对了吗？#howto入门codex #howto入门vibecoding #姜学长",
       "ai_is_related": true,
@@ -1371,7 +1377,7 @@
       "url": "https://www.douyin.com/video/7660833544696089907",
       "published_at": "2026-07-10T09:46:51Z",
       "first_seen_at": "2026-07-10T10:07:42.302812Z",
-      "last_seen_at": "2026-07-11T05:50:44.802594Z",
+      "last_seen_at": "2026-07-11T05:52:20.935068Z",
       "creator_metrics": {
         "likes": 130,
         "collects": 100,
@@ -1406,7 +1412,7 @@
       "url": "https://www.bilibili.com/video/BV1T3NE6jECj",
       "published_at": "2026-07-10T09:26:30Z",
       "first_seen_at": "2026-07-10T10:03:30.023832Z",
-      "last_seen_at": "2026-07-11T05:50:44.802594Z",
+      "last_seen_at": "2026-07-11T05:52:20.935068Z",
       "bilibili_dynamic_id": "1223366415749218328",
       "summary": "用 AI 学技术，我做了一个 skill ｜详细教程附源码",
       "ai_is_related": true,
