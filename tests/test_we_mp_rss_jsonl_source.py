@@ -48,7 +48,7 @@ def test_parse_we_mp_rss_jsonl_maps_public_fields() -> None:
 
     assert len(items) == 1
     item = items[0]
-    assert item.site_id == "we_mp_rss"
+    assert item.site_id == "we_mp_rss_jsonl"
     assert item.site_name == "WeRSS \u516c\u4f17\u53f7"
     assert item.source == "\u732b\u7b14\u5200"
     assert item.published_at == datetime(2026, 7, 11, 4, 36, 7, tzinfo=timezone.utc)

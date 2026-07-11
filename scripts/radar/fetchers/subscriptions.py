@@ -563,8 +563,8 @@ def parse_we_mp_rss_jsonl_items(
         published_at = parse_date_any(payload.get("published_at"), now)
         out.append(
             RawItem(
-                site_id=WE_MP_RSS_SITE_ID,
-                site_name=WE_MP_RSS_SITE_NAME,
+                site_id=WE_MP_RSS_JSONL_SITE_ID,
+                site_name=WE_MP_RSS_JSONL_SITE_NAME,
                 source=account,
                 title=title,
                 url=url,
