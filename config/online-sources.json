@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-07-11T08:02:57Z",
+  "updated_at": "2026-07-11T08:20:54Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -233,6 +233,28 @@
       "locator": "https://simonwillison.net/atom/everything/",
       "env": "",
       "notes": "公开 feed"
+    },
+    {
+      "id": "online_youtube_mrbrain",
+      "name": "脑总MrBrain",
+      "type": "rss",
+      "enabled": true,
+      "channel": "RSS/YouTube",
+      "target": "脑总MrBrain",
+      "locator": "https://www.youtube.com/feeds/videos.xml?channel_id=UC26hLZoe-haxcuLYxzWAiNg",
+      "env": "",
+      "notes": "YouTube 公开频道 feed"
+    },
+    {
+      "id": "online_youtube_xiaodaodalang",
+      "name": "小岛大浪吹-非正经政经频道",
+      "type": "rss",
+      "enabled": true,
+      "channel": "RSS/YouTube",
+      "target": "小岛大浪吹-非正经政经频道",
+      "locator": "https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw",
+      "env": "",
+      "notes": "YouTube 公开频道 feed"
     },
     {
       "id": "online_opmlrss",
