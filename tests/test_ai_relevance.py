@@ -1,9 +1,52 @@
+import json
+import os
+import subprocess
+import sys
 import unittest
 
 from scripts.ai_relevance import add_ai_relevance_fields, is_ai_related_record, score_ai_relevance
 
 
 class AiRelevanceScoringTests(unittest.TestCase):
+    def _run_with_threshold(self, value):
+        env = os.environ.copy()
+        env["AI_RELEVANCE_THRESHOLD"] = value
+        code = """
+import json
+from scripts.ai_relevance import AI_RELEVANCE_THRESHOLD, score_ai_relevance
+
+record = {
+    "site_id": "ordinary_feed",
+    "site_name": "Ordinary Feed",
+    "source": "Local News",
+    "title": "Community garden opens this weekend",
+    "url": "https://example.com/community-garden",
+}
+print(json.dumps({
+    "threshold": AI_RELEVANCE_THRESHOLD,
+    "is_ai_related": score_ai_relevance(record)["is_ai_related"],
+}))
+"""
+        completed = subprocess.run(
+            [sys.executable, "-c", code],
+            check=True,
+            capture_output=True,
+            text=True,
+            env=env,
+        )
+        return json.loads(completed.stdout)
+
+    def test_zero_threshold_disables_ai_filter(self):
+        result = self._run_with_threshold("0")
+        self.assertEqual(result["threshold"], 0.0)
+        self.assertTrue(result["is_ai_related"])
+
+    def test_invalid_threshold_falls_back_to_default(self):
+        for value in ("", "not-a-number"):
+            with self.subTest(value=value):
+                result = self._run_with_threshold(value)
+                self.assertEqual(result["threshold"], 0.65)
+
     def test_scores_strong_ai_signal_with_reason(self):
         rec = {
             "site_id": "techurls",

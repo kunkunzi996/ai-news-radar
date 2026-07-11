@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import math
+import os
 import re
 from typing import Any
 from urllib.parse import urlparse
@@ -145,7 +147,23 @@ MEANINGFUL_EN_SIGNAL_RE = re.compile(
     r"(?i)(?<![a-z0-9])(ai|aigc|llm|gpt|openai|anthropic|deepseek|gemini|claude|robot|robotics|embodied|autonomous|machine learning|artificial intelligence|transformer|diffusion)(?![a-z0-9])"
 )
 BROAD_AI_TERMS = {"agent", "模型", "推理"}
-AI_RELEVANCE_THRESHOLD = 0.65
+DEFAULT_AI_RELEVANCE_THRESHOLD = 0.65
+
+
+def _load_ai_relevance_threshold() -> float:
+    raw_value = os.environ.get("AI_RELEVANCE_THRESHOLD")
+    if raw_value is None:
+        return DEFAULT_AI_RELEVANCE_THRESHOLD
+    try:
+        threshold = float(raw_value)
+    except (TypeError, ValueError):
+        return DEFAULT_AI_RELEVANCE_THRESHOLD
+    if not math.isfinite(threshold):
+        return DEFAULT_AI_RELEVANCE_THRESHOLD
+    return max(0.0, min(1.0, threshold))
+
+
+AI_RELEVANCE_THRESHOLD = _load_ai_relevance_threshold()
 
 SOURCE_PRIORS = {
     "official_ai": 0.35,
@@ -253,7 +271,7 @@ def _result(
     noise: list[str] | None = None,
 ) -> dict[str, Any]:
     return {
-        "is_ai_related": bool(is_ai_related),
+        "is_ai_related": bool(is_ai_related or AI_RELEVANCE_THRESHOLD == 0.0),
         "score": round(max(0.0, min(1.0, score)), 2),
         "label": label,
         "reason": reason,

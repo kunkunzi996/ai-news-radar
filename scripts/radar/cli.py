@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
 
-from scripts.ai_relevance import add_ai_relevance_fields
+from scripts.ai_relevance import AI_RELEVANCE_THRESHOLD, add_ai_relevance_fields
 from scripts.radar.common import (
     AGENTMAIL_DIGEST_FILE,
     DEPLOYED_SOURCE_SCOPE_DEFAULT,
@@ -1016,7 +1016,7 @@ def enrich_stage(session: Any, ctx: RunContext, collected: CollectStageResult, m
         "total_items_raw": len(latest_items_all),
         "total_items_all_mode": len(latest_items_all_dedup),
         "topic_filter": "ai_relevance_scoring_v0_4",
-        "ai_relevance_threshold": 0.65,
+        "ai_relevance_threshold": AI_RELEVANCE_THRESHOLD,
         "archive_total": len(archive),
         "site_count": len(site_stat),
         "source_count": len({f"{i['site_id']}::{i['source']}" for i in latest_items_ai_dedup}),
