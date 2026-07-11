@@ -15,6 +15,7 @@ import requests
 from scripts.radar.common import (
     BILIBILI_DYNAMIC_API_URL,
     BILIBILI_DYNAMIC_BACKFILL_MAX_ITEMS,
+    BILIBILI_DYNAMIC_BACKFILL_MAX_PAGES,
     BILIBILI_DYNAMIC_DEFAULT_ACCOUNTS,
     BILIBILI_DYNAMIC_DEFAULT_MAX_ITEMS,
     BILIBILI_DYNAMIC_DEFAULT_MAX_PAGES,
@@ -627,6 +628,7 @@ def fetch_bilibili_full_dynamic(
 def maybe_fetch_bilibili_dynamic(
     session: requests.Session,
     now: datetime,
+    existing_source_keys: frozenset[tuple[str, str]] | set[tuple[str, str]] | None = None,
 ) -> tuple[list[RawItem], dict[str, Any]]:
     status = bilibili_dynamic_status_base()
     if not status["enabled"]:
@@ -663,6 +665,17 @@ def maybe_fetch_bilibili_dynamic(
                 "ok": False,
                 "item_count": 0,
             }
+            # 归档里从未出现过的 UP 主：首采回填，放宽单账号条数和翻页上限。
+            first_collect_backfill = (
+                existing_source_keys is not None
+                and ("bilibili_dynamic", source_name) not in existing_source_keys
+            )
+            account_max_items = int(status["max_items_per_account"])
+            account_max_pages = int(status["max_pages"])
+            if first_collect_backfill:
+                account_max_items = max(account_max_items, BILIBILI_DYNAMIC_BACKFILL_MAX_ITEMS)
+                account_max_pages = max(account_max_pages, BILIBILI_DYNAMIC_BACKFILL_MAX_PAGES)
+                account_status["first_collect_backfill"] = True
             try:
                 errors: list[str] = []
                 if cookie:
@@ -672,8 +685,8 @@ def maybe_fetch_bilibili_dynamic(
                             now,
                             uid=uid,
                             source_name=source_name,
-                            max_items=int(status["max_items_per_account"]),
-                            max_pages=int(status["max_pages"]),
+                            max_items=account_max_items,
+                            max_pages=account_max_pages,
                             api_url=full_api_url,
                         )
                         account_status["fetch_mode"] = "cookie_full_dynamic"
@@ -690,7 +703,7 @@ def maybe_fetch_bilibili_dynamic(
                     now,
                     uid=uid,
                     source_name=source_name,
-                    max_items=int(status["max_items_per_account"]),
+                    max_items=account_max_items,
                     api_url=api_url,
                 )
                 account_status["fetch_mode"] = "public_opus_fallback" if errors else "public_opus"

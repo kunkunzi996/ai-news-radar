@@ -7,7 +7,7 @@ import os
 import re
 import time
 import xml.etree.ElementTree as ET
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
@@ -45,6 +45,7 @@ from scripts.radar.common import (
     WEWE_RSS_SITE_ID,
     WEWE_RSS_SITE_NAME,
     env_int,
+    first_collect_backfill_days,
     first_non_empty,
     host_of_url,
     normalize_url,
@@ -69,7 +70,7 @@ def fetch_github_repo_subscription(
     display_name: str = "",
     max_items: int = GITHUB_REPO_SUBSCRIPTION_MAX_ITEMS,
 ) -> list[RawItem]:
-    params = {"per_page": max(1, min(10, int(max_items or 1)))}
+    params = {"per_page": max(1, min(100, int(max_items or 1)))}
     headers = {
         "Accept": "application/vnd.github+json",
         "User-Agent": "AI-News-Radar/0.7 github-release-subscription",
@@ -802,6 +803,7 @@ def fetch_opml_rss(
     now: datetime,
     opml_path: Path,
     max_feeds: int = 0,
+    existing_source_keys: frozenset[tuple[str, str]] | set[tuple[str, str]] | None = None,
 ) -> tuple[list[RawItem], dict[str, Any], list[dict[str, Any]]]:
     feeds = parse_opml_subscriptions(opml_path)
     if max_feeds > 0:
@@ -942,9 +944,26 @@ def fetch_opml_rss(
         except Exception as exc:
             error = str(exc)
 
+        first_collect_backfill = False
         if local_items:
             local_items.sort(key=lambda item: item.published_at or datetime.min.replace(tzinfo=UTC), reverse=True)
-            local_items = local_items[:OPML_RSS_DEFAULT_MAX_ITEMS_PER_FEED]
+            backfill_days = first_collect_backfill_days()
+            # 归档里从未出现过的 feed：首采回填，保留窗口内全部条目而非只截最近 5 条。
+            first_collect_backfill = (
+                existing_source_keys is not None
+                and backfill_days > 0
+                and all(("opmlrss", item.source) not in existing_source_keys for item in local_items)
+            )
+            if first_collect_backfill:
+                backfill_start = now - timedelta(days=backfill_days)
+                local_items = [
+                    item
+                    for index, item in enumerate(local_items)
+                    if index < OPML_RSS_DEFAULT_MAX_ITEMS_PER_FEED
+                    or (item.published_at and item.published_at >= backfill_start)
+                ]
+            else:
+                local_items = local_items[:OPML_RSS_DEFAULT_MAX_ITEMS_PER_FEED]
 
         duration_ms = int((time.perf_counter() - start) * 1000)
         status = {
@@ -962,6 +981,7 @@ def fetch_opml_rss(
             "replaced": bool(original_feed_url != feed_url),
             "bridge_type": feed.get("bridge_type"),
             "max_items": OPML_RSS_DEFAULT_MAX_ITEMS_PER_FEED,
+            "first_collect_backfill": first_collect_backfill,
         }
         return local_items, status
 

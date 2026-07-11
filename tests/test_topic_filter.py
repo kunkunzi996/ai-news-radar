@@ -706,6 +706,49 @@ class TopicFilterTests(unittest.TestCase):
         self.assertEqual(filtered, raw_items[:4])
         self.assertEqual(skipped, 1)
 
+    def test_collect_window_backfills_first_collect_source_within_two_months(self):
+        import datetime as _dt
+
+        now = _dt.datetime.fromisoformat("2026-07-11T10:00:00+00:00")
+        ages_days = [1, 5, 10, 20, 30, 40, 50, 59, 70]
+        raw_items = [
+            RawItem("opmlrss", "OPML RSS", "新频道", f"post {age}", f"https://example.com/post-{age}", now - _dt.timedelta(days=age), {})
+            for age in ages_days
+        ]
+
+        filtered, skipped = filter_raw_items_by_collect_window(
+            raw_items,
+            now,
+            24,
+            existing_source_counts=archive_source_counts({}),
+            first_collect_backfill_days=60,
+        )
+
+        # 首批 5 条兜底 + 60 天内的其余条目；70 天前的那条被丢弃。
+        self.assertEqual([item.title for item in filtered], [f"post {age}" for age in ages_days[:-1]])
+        self.assertEqual(skipped, 1)
+
+    def test_collect_window_backfill_does_not_relax_existing_sources(self):
+        import datetime as _dt
+
+        now = _dt.datetime.fromisoformat("2026-07-11T10:00:00+00:00")
+        stale = RawItem("opmlrss", "OPML RSS", "老频道", "old post", "https://example.com/old", now - _dt.timedelta(days=30), {})
+        archive = {
+            f"kept-{idx}": {"site_id": "opmlrss", "source": "老频道", "title": f"kept {idx}"}
+            for idx in range(5)
+        }
+
+        filtered, skipped = filter_raw_items_by_collect_window(
+            [stale],
+            now,
+            24,
+            existing_source_counts=archive_source_counts(archive),
+            first_collect_backfill_days=60,
+        )
+
+        self.assertEqual(filtered, [])
+        self.assertEqual(skipped, 1)
+
     def test_source_config_enabled_site_ids_maps_ui_records_to_fetchers(self):
         config = {
             "sources": [

@@ -82,6 +82,57 @@ class PrivateBridgeSourceTests(unittest.TestCase):
         self.assertEqual(summary["max_items_per_feed"], 5)
         self.assertEqual(feed_statuses[0]["item_count"], 5)
 
+    def test_opml_rss_backfills_first_collect_feed_within_two_months(self):
+        class Response:
+            def __init__(self, text: str):
+                self.text = text
+                self.content = text.encode("utf-8")
+
+            def raise_for_status(self) -> None:
+                return None
+
+        now = datetime(2026, 7, 6, tzinfo=timezone.utc)
+        entries = "\n".join(
+            f"""
+            <item>
+              <title>Video {index}</title>
+              <link>https://www.youtube.com/watch?v={index}</link>
+              <pubDate>Mon, {index:02d} Jun 2026 00:00:00 GMT</pubDate>
+            </item>
+            """
+            for index in range(1, 9)
+        )
+        rss = f"<rss><channel><title>Test YouTube</title>{entries}</channel></rss>"
+        with tempfile.TemporaryDirectory() as tmp:
+            opml = Path(tmp) / "follow.opml"
+            opml.write_text(
+                """<?xml version="1.0" encoding="UTF-8"?>
+                <opml version="1.0"><body>
+                  <outline text="Test YouTube" title="Test YouTube" type="rss"
+                    xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=test" />
+                </body></opml>
+                """,
+                encoding="utf-8",
+            )
+            with patch("scripts.radar.fetchers.subscriptions.requests.get", return_value=Response(rss)):
+                # 归档中已有该 feed：仍按最近 5 条截断。
+                known_items, _, known_statuses = fetch_opml_rss(
+                    now,
+                    opml,
+                    existing_source_keys=frozenset({("opmlrss", "Test YouTube")}),
+                )
+                # 归档中从未出现过：首采回填保留 60 天内全部 8 条。
+                new_items, _, new_statuses = fetch_opml_rss(
+                    now,
+                    opml,
+                    existing_source_keys=frozenset(),
+                )
+
+        self.assertEqual(len(known_items), 5)
+        self.assertFalse(known_statuses[0]["first_collect_backfill"])
+        self.assertEqual(len(new_items), 8)
+        self.assertTrue(new_statuses[0]["first_collect_backfill"])
+
     def test_resolves_rsshub_telegram_to_public_preview(self):
         bridge = resolve_opml_bridge_source("https://rsshub.app/telegram/channel/AI_News_CN")
         self.assertEqual(bridge["bridge_type"], "telegram")

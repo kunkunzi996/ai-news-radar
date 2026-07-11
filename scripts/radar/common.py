@@ -249,6 +249,7 @@ BILIBILI_DYNAMIC_DEFAULT_ACCOUNTS = (
 BILIBILI_DYNAMIC_DEFAULT_MAX_ITEMS = 5
 BILIBILI_DYNAMIC_DEFAULT_MAX_PAGES = 5
 BILIBILI_DYNAMIC_BACKFILL_MAX_ITEMS = 80
+BILIBILI_DYNAMIC_BACKFILL_MAX_PAGES = 8
 MEDIACRAWLER_DOUYIN_SITE_ID = "mediacrawler_douyin"
 MEDIACRAWLER_DOUYIN_SITE_NAME = "MediaCrawler Douyin"
 MEDIACRAWLER_XHS_SITE_ID = "mediacrawler_xhs"
@@ -258,6 +259,7 @@ GITHUB_REPO_SUBSCRIPTION_SITE_NAME = "GitHub Foundation Sunshine"
 GITHUB_REPO_SUBSCRIPTION_API_URL = "https://api.github.com/repos/AlkaidLab/foundation-sunshine/releases"
 GITHUB_REPO_SUBSCRIPTION_HTML_URL = "https://github.com/AlkaidLab/foundation-sunshine"
 GITHUB_REPO_SUBSCRIPTION_MAX_ITEMS = 5
+GITHUB_REPO_SUBSCRIPTION_BACKFILL_MAX_ITEMS = 30
 MAOBIDAO_WECHAT_SITE_ID = "maobidao_wudaolu_backup"
 MAOBIDAO_WECHAT_SITE_NAME = "Maobidao Wudaolu Backup"
 MAOBIDAO_WECHAT_API_URL = "https://wudaolu.com/c/dav/7.json"
@@ -275,6 +277,9 @@ WE_MP_RSS_JSONL_SITE_ID = "we_mp_rss_jsonl"
 WE_MP_RSS_JSONL_SITE_NAME = "WeRSS \u516c\u4f17\u53f7"
 WE_MP_RSS_JSONL_DEFAULT_MAX_ITEMS = 20
 OPML_RSS_DEFAULT_MAX_ITEMS_PER_FEED = 5
+# 新订阅源第一次采集时的历史回填窗口（天）：归档里从未出现过的源，
+# 首采会尽量补齐该窗口内的全部内容；之后恢复常规采集口径。
+FIRST_COLLECT_BACKFILL_DAYS_DEFAULT = 60
 BILIBILI_WBI_MIXIN_KEY_ENC_TAB = (
     46, 47, 18, 2, 53, 8, 23, 32,
     15, 50, 10, 31, 58, 3, 45, 35,
@@ -973,6 +978,10 @@ def env_float(name: str, default: float) -> float:
         return float(str(os.environ.get(name) or default).strip() or default)
     except ValueError:
         return default
+
+
+def first_collect_backfill_days() -> int:
+    return max(0, min(env_int("FIRST_COLLECT_BACKFILL_DAYS", FIRST_COLLECT_BACKFILL_DAYS_DEFAULT), 365))
 
 
 

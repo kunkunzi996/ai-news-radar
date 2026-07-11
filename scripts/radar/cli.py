@@ -16,6 +16,7 @@ from scripts.radar.common import (
     AGENTMAIL_DIGEST_FILE,
     DEPLOYED_SOURCE_SCOPE_DEFAULT,
     GITHUB_REPO_SUBSCRIPTION_API_URL,
+    GITHUB_REPO_SUBSCRIPTION_BACKFILL_MAX_ITEMS,
     GITHUB_REPO_SUBSCRIPTION_MAX_ITEMS,
     GITHUB_REPO_SUBSCRIPTION_SITE_ID,
     GITHUB_REPO_SUBSCRIPTION_SITE_NAME,
@@ -43,6 +44,7 @@ from scripts.radar.common import (
     apply_public_raw_meta,
     create_session,
     env_flag,
+    first_collect_backfill_days,
     iso,
     make_item_id,
     maybe_fix_mojibake,
@@ -311,6 +313,11 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
     we_mp_rss_enabled = ctx.we_mp_rss_enabled
     we_mp_rss_jsonl_enabled = ctx.we_mp_rss_jsonl_enabled
     paid_source_state = ctx.paid_source_state
+    # 归档中已有条目的 (site_id, source) 集合；不在集合里的订阅对象视为首采，触发历史回填。
+    existing_source_keys = frozenset(
+        (str(record.get("site_id") or ""), str(record.get("source") or ""))
+        for record in ctx.archive.values()
+    )
     if scoped_to_tested_creators:
         raw_items, statuses = [], []
     elif scoped_by_config:
@@ -341,6 +348,9 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
                     subscription.get("target") or subscription.get("name") or "GitHub Repo",
                 )
                 display_name = str(subscription.get("target") or subscription.get("name") or repo_label).strip()
+                # 首采的仓库回填更多历史 release，之后恢复常规上限。
+                github_source_key = (GITHUB_REPO_SUBSCRIPTION_SITE_ID, display_name or "GitHub版本订阅")
+                github_first_collect = github_source_key not in existing_source_keys
                 items = fetch_github_repo_subscription(
                     session,
                     now,
@@ -348,6 +358,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
                     repo_label=repo_label,
                     site_name=subscription.get("name") or GITHUB_REPO_SUBSCRIPTION_SITE_NAME,
                     display_name=display_name,
+                    max_items=GITHUB_REPO_SUBSCRIPTION_BACKFILL_MAX_ITEMS if github_first_collect else GITHUB_REPO_SUBSCRIPTION_MAX_ITEMS,
                 )
                 github_repo_items.extend(items)
                 github_status_children.append(
@@ -356,6 +367,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
                         "api_url": api_url,
                         "ok": True,
                         "item_count": len(items),
+                        "first_collect_backfill": github_first_collect,
                     }
                 )
             raw_items.extend(github_repo_items)
@@ -462,7 +474,11 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
         )
     bilibili_dynamic_status = bilibili_dynamic_status_base()
     if active_source_ids is None or "bilibili_dynamic" in active_source_ids:
-        bilibili_dynamic_items, bilibili_dynamic_status = maybe_fetch_bilibili_dynamic(session, now)
+        bilibili_dynamic_items, bilibili_dynamic_status = maybe_fetch_bilibili_dynamic(
+            session,
+            now,
+            existing_source_keys=existing_source_keys,
+        )
         if bilibili_dynamic_status.get("enabled"):
             raw_items.extend(bilibili_dynamic_items)
             statuses.append(
@@ -748,6 +764,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
                 now,
                 opml_path,
                 max_feeds=max(0, int(args.rss_max_feeds)),
+                existing_source_keys=existing_source_keys,
             )
             raw_items.extend(rss_items)
             statuses.append(rss_summary_status)
@@ -801,6 +818,7 @@ def merge_archive_stage(session: Any, ctx: RunContext, collected: CollectStageRe
         now,
         collect_window_hours,
         existing_source_counts=archive_source_counts(archive),
+        first_collect_backfill_days=first_collect_backfill_days(),
     )
     window_item_counts_by_site = Counter(item.site_id for item in raw_items)
     for status in statuses:

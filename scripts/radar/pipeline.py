@@ -155,17 +155,39 @@ def filter_raw_items_by_collect_window(
     window_hours: int,
     existing_source_counts: dict[tuple[str, str], int] | None = None,
     seed_min_items_per_source: int = 5,
+    first_collect_backfill_days: int = 0,
 ) -> tuple[list[RawItem], int]:
     if window_hours <= 0:
         return raw_items, 0
     window_start = now - timedelta(hours=window_hours)
     window_end = now + timedelta(minutes=5)
+    backfill_start = (
+        now - timedelta(days=first_collect_backfill_days)
+        if first_collect_backfill_days > 0 and existing_source_counts is not None
+        else None
+    )
+    # 首采回填只对归档里完全没出现过的源生效；快照必须在种子计数自增之前取。
+    first_collect_source_keys: set[tuple[str, str]] = set()
+    if backfill_start is not None:
+        first_collect_source_keys = {
+            (item.site_id, item.source)
+            for item in raw_items
+            if not existing_source_counts.get((item.site_id, item.source))
+        }
     filtered: list[RawItem] = []
     skipped = 0
     for item in raw_items:
         source_key = (item.site_id, item.source)
         existing_count = int((existing_source_counts or {}).get(source_key, 0))
         if existing_source_counts is not None and existing_count < seed_min_items_per_source:
+            filtered.append(item)
+            existing_source_counts[source_key] = existing_count + 1
+            continue
+        if (
+            source_key in first_collect_source_keys
+            and item.published_at
+            and backfill_start <= item.published_at <= window_end
+        ):
             filtered.append(item)
             existing_source_counts[source_key] = existing_count + 1
             continue
