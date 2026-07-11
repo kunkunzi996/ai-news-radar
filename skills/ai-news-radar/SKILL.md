@@ -45,10 +45,22 @@ For detailed prompts and decision criteria, read `references/v2-method.md`.
 
 ## Product Direction
 
+As of 2026-07-11 this project is a **personal subscription aggregator**, not an
+AI-news curator. Its core value is bringing the owner's own subscriptions
+(Bilibili, Douyin, Xiaohongshu, WeChat public accounts, YouTube, RSS, GitHub
+Releases) into one time-ordered feed. **AI relevance is no longer a filter.**
+
 Maintain a two-layer product:
 
-- **Default layer**: a simple curated Signal view for ordinary AI enthusiasts.
+- **Default layer**: the owner's subscription feed ("我的订阅" plus per-platform tabs).
 - **Advanced layer**: custom OPML, source health, GitHub Actions, AgentMail email intelligence, and maintainer controls.
+
+The AI relevance scorer (`scripts/ai_relevance.py`) is kept but is no longer the
+default filter: its threshold comes from the `AI_RELEVANCE_THRESHOLD` env var
+(default `0.65`), and the production Actions variable is set to `0`, i.e. no
+filtering — the main list equals the full list. Do not optimize for "filling the
+AI feed", and do not proactively suggest adding AI news sources to raise the
+share of AI content unless the owner explicitly asks.
 
 Avoid adding many reader-facing choices. Prefer better defaults, source quality,
 and clearer status output.

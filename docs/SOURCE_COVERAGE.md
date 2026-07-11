@@ -7,8 +7,10 @@ without forcing them to follow noisy timelines or manage many source choices.
 
 Use a two-layer model:
 
-1. **Signal layer**: the default web UI. It should show curated AI/tech updates,
-   WaytoAGI changes, search, site filtering, and a simple AI-focused / all toggle.
+1. **Signal layer**: the default web UI. As of 2026-07-11 it shows the owner's own
+   subscription feed (not a curated AI selection): per-platform tabs, search, site
+   filtering, and an AI-focused / all toggle that currently runs in "all" mode
+   because `AI_RELEVANCE_THRESHOLD` is set to `0` in production.
 2. **Advanced layer**: maintainer and power-user workflows. It includes OPML,
    source health data, GitHub Actions secrets, and custom fetchers.
 
