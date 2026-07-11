@@ -275,7 +275,9 @@ WE_MP_RSS_BASE_URL_DEFAULT = "http://127.0.0.1:8001"
 WE_MP_RSS_DEFAULT_MAX_ITEMS = 20
 WE_MP_RSS_JSONL_SITE_ID = "we_mp_rss_jsonl"
 WE_MP_RSS_JSONL_SITE_NAME = "WeRSS \u516c\u4f17\u53f7"
-WE_MP_RSS_JSONL_DEFAULT_MAX_ITEMS = 20
+# 桥接 JSONL 的全局总行数上限（不是每个公众号 20）。多号并存时 20 会静默截断
+# 排序靠后的号（2026-07-12 真实踩过：新号在前、猫笔刀被截掉），提到 200。
+WE_MP_RSS_JSONL_DEFAULT_MAX_ITEMS = 200
 OPML_RSS_DEFAULT_MAX_ITEMS_PER_FEED = 5
 # 新订阅源第一次采集时的历史回填窗口（天）：归档里从未出现过的源，
 # 首采会尽量补齐该窗口内的全部内容；之后恢复常规采集口径。

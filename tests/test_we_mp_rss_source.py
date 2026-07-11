@@ -119,8 +119,8 @@ class WeMpRssSourceTests(unittest.TestCase):
                 {"id": "maobidao", "name": "绝对URL"},
             ],
         )
-        self.assertEqual(session.url, "http://127.0.0.1:8001/rss")
-        self.assertEqual(session.kwargs["params"], {"limit": 30})
+        self.assertEqual(session.url, "http://127.0.0.1:8001/rss/fresh")
+        self.assertEqual(session.kwargs["params"], {"limit": 100})
 
     def test_fetch_we_mp_rss_subscription_keeps_single_feed_failure_local(self):
         class FakeSession:

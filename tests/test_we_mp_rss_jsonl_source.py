@@ -87,6 +87,35 @@ def test_fetch_we_mp_rss_jsonl_reports_missing_file(tmp_path) -> None:
     assert status["error"] == "missing_we_mp_rss_jsonl"
 
 
+def test_fetch_we_mp_rss_jsonl_default_limit_keeps_multi_account_rows(tmp_path) -> None:
+    # 模拟两个公众号共 40 行的桥接文件：默认上限必须一条不截。
+    lines = []
+    for account, count in (("数字生命卡兹克", 20), ("猫笔刀", 20)):
+        for idx in range(count):
+            lines.append(
+                json.dumps(
+                    {
+                        "title": f"{account} 文章 {idx}",
+                        "url": f"https://mp.weixin.qq.com/s/{account}-{idx}",
+                        "published_at": "2026-07-10T08:00:00+00:00",
+                        "account": account,
+                        "feed_id": account,
+                        "summary": "",
+                    },
+                    ensure_ascii=False,
+                )
+            )
+    jsonl_path = tmp_path / "wechat_contents_latest.jsonl"
+    jsonl_path.write_text("\n".join(lines), encoding="utf-8")
+
+    items, status = fetch_we_mp_rss_jsonl_subscription(requests.Session(), NOW, jsonl_dir=str(tmp_path))
+
+    assert status["ok"] is True
+    assert len(items) == 40
+    accounts = {item.source for item in items}
+    assert accounts == {"数字生命卡兹克", "猫笔刀"}
+
+
 def test_fetch_we_mp_rss_jsonl_accepts_empty_file(tmp_path) -> None:
     (tmp_path / "wechat_contents_latest.jsonl").write_text("", encoding="utf-8")
 

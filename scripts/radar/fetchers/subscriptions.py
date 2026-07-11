@@ -433,10 +433,14 @@ def parse_we_mp_rss_feed_items(
 
 
 def discover_we_mp_rss_feeds(session: requests.Session, base: str) -> list[dict[str, str]]:
-    """从 {base}/rss 的订阅列表 RSS 里提取 feed id（item link 形如 .../rss/{feed_id}）。"""
+    """从 {base}/rss/fresh 的订阅列表 RSS 里提取 feed id（item link 形如 .../rss/{feed_id}）。
+
+    必须走 /rss/fresh 而不是 /rss：后者返回缓存 XML，新增公众号后缓存不更新，
+    会导致新号永远不进采集（2026-07-12 真实踩过）。/rss/fresh 免鉴权、直接查库。
+    """
     resp = session.get(
-        f"{base}/rss",
-        params={"limit": 30},
+        f"{base}/rss/fresh",
+        params={"limit": 100},
         headers={"Accept": "application/xml", "User-Agent": "AI-News-Radar/0.7 we-mp-rss-bridge"},
         timeout=15,
     )
