@@ -1,30 +1,30 @@
 {
-  "generated_at": "2026-07-11T00:07:29.467831Z",
+  "generated_at": "2026-07-11T03:55:57.721760Z",
   "window_hours": 24,
   "time_scope": "rolling_window",
   "source_scope": "configured_sources",
   "collection_window_hours": 0,
-  "total_items": 5,
-  "total_items_ai_raw": 5,
-  "total_items_raw": 30,
-  "total_items_all_mode": 30,
+  "total_items": 4,
+  "total_items_ai_raw": 4,
+  "total_items_raw": 29,
+  "total_items_all_mode": 29,
   "topic_filter": "ai_relevance_scoring_v0_4",
   "ai_relevance_threshold": 0.65,
   "archive_total": 473,
   "site_count": 4,
-  "source_count": 5,
+  "source_count": 4,
   "site_stats": [
-    {
-      "site_id": "opmlrss",
-      "site_name": "OPML RSS",
-      "count": 2,
-      "raw_count": 3
-    },
     {
       "site_id": "bilibili_dynamic",
       "site_name": "Bilibili Dynamic",
       "count": 2,
       "raw_count": 26
+    },
+    {
+      "site_id": "opmlrss",
+      "site_name": "OPML RSS",
+      "count": 1,
+      "raw_count": 2
     },
     {
       "site_id": "mediacrawler_douyin",
@@ -45,6 +45,45 @@
   "creator_ranking": "engagement_85_fresh_24h_bonus_15_v1",
   "creator_items_ai": [
     {
+      "id": "828844df1b583b02b37f17abfc517981dc15386b",
+      "site_id": "mediacrawler_douyin",
+      "site_name": "MediaCrawler Douyin",
+      "source": "Simon林",
+      "title": "用AI做投研：搭建全球科技资讯实时看板 基于vibe-research搭建的一个模块，专注全球科技资讯 #claudecode#codex #ai新星计划",
+      "url": "https://www.douyin.com/video/7660833544696089907",
+      "published_at": "2026-07-10T09:46:51Z",
+      "first_seen_at": "2026-07-10T10:07:42.302812Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
+      "creator_metrics": {
+        "likes": 130,
+        "comments": 9,
+        "collects": 100,
+        "shares": 11
+      },
+      "search_surface": "mediacrawler_douyin_creator_jsonl",
+      "summary": "用AI做投研：搭建全球科技资讯实时看板 基于vibe-research搭建的一个模块，专注全球科技资讯\n#claudecode#codex #ai新星计划",
+      "ai_is_related": true,
+      "ai_score": 0.65,
+      "ai_label": "model_release",
+      "ai_relevance_reason": "matched_ai_signal",
+      "ai_signals": [
+        "claude",
+        "codex"
+      ],
+      "ai_noise": [],
+      "source_tier": "self_media",
+      "source_tier_label": "我的订阅",
+      "source_tier_rank": 4,
+      "creator_engagement_total": 320.0,
+      "creator_heat_score": 50.1,
+      "creator_freshness_bonus": 15.0,
+      "creator_hot_score": 57.6,
+      "title_original": "用AI做投研：搭建全球科技资讯实时看板 基于vibe-research搭建的一个模块，专注全球科技资讯 #claudecode#codex #ai新星计划",
+      "title_en": null,
+      "title_zh": "用AI做投研：搭建全球科技资讯实时看板 基于vibe-research搭建的一个模块，专注全球科技资讯 #claudecode#codex #ai新星计划",
+      "title_bilingual": "用AI做投研：搭建全球科技资讯实时看板 基于vibe-research搭建的一个模块，专注全球科技资讯 #claudecode#codex #ai新星计划"
+    },
+    {
       "id": "15879ea819b6dfed9f325631ea5c6d79b1364d25",
       "site_id": "bilibili_dynamic",
       "site_name": "Bilibili Dynamic",
@@ -53,7 +92,7 @@
       "url": "https://www.bilibili.com/video/BV1VuNp6PEBM",
       "published_at": "2026-07-10T15:08:00Z",
       "first_seen_at": "2026-07-10T15:38:59.234494Z",
-      "last_seen_at": "2026-07-11T00:07:29.467831Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
       "bilibili_dynamic_id": "1223454419627016208",
       "summary": "Claude Code、Codex、Cursor，你都用对了吗？#howto入门codex #howto入门vibecoding #姜学长",
       "creator_metrics": {
@@ -85,45 +124,6 @@
       "title_bilingual": "Claude Code、Codex、Cursor，你都用对了吗？#howto入门codex #howto入门vibecoding #姜学长"
     },
     {
-      "id": "828844df1b583b02b37f17abfc517981dc15386b",
-      "site_id": "mediacrawler_douyin",
-      "site_name": "MediaCrawler Douyin",
-      "source": "Simon林",
-      "title": "用AI做投研：搭建全球科技资讯实时看板 基于vibe-research搭建的一个模块，专注全球科技资讯 #claudecode#codex #ai新星计划",
-      "url": "https://www.douyin.com/video/7660833544696089907",
-      "published_at": "2026-07-10T09:46:51Z",
-      "first_seen_at": "2026-07-10T10:07:42.302812Z",
-      "last_seen_at": "2026-07-11T00:07:29.467831Z",
-      "creator_metrics": {
-        "likes": 0,
-        "comments": 0,
-        "collects": 0,
-        "shares": 0
-      },
-      "search_surface": "mediacrawler_douyin_creator_jsonl",
-      "summary": "用AI做投研：搭建全球科技资讯实时看板 基于vibe-research搭建的一个模块，专注全球科技资讯\n#claudecode#codex #ai新星计划",
-      "ai_is_related": true,
-      "ai_score": 0.65,
-      "ai_label": "model_release",
-      "ai_relevance_reason": "matched_ai_signal",
-      "ai_signals": [
-        "claude",
-        "codex"
-      ],
-      "ai_noise": [],
-      "source_tier": "self_media",
-      "source_tier_label": "我的订阅",
-      "source_tier_rank": 4,
-      "creator_engagement_total": 0.0,
-      "creator_heat_score": 0.0,
-      "creator_freshness_bonus": 15.0,
-      "creator_hot_score": 15.0,
-      "title_original": "用AI做投研：搭建全球科技资讯实时看板 基于vibe-research搭建的一个模块，专注全球科技资讯 #claudecode#codex #ai新星计划",
-      "title_en": null,
-      "title_zh": "用AI做投研：搭建全球科技资讯实时看板 基于vibe-research搭建的一个模块，专注全球科技资讯 #claudecode#codex #ai新星计划",
-      "title_bilingual": "用AI做投研：搭建全球科技资讯实时看板 基于vibe-research搭建的一个模块，专注全球科技资讯 #claudecode#codex #ai新星计划"
-    },
-    {
       "id": "8c4bdc13491bb09f89c7983746c5b376c1c184fa",
       "site_id": "bilibili_dynamic",
       "site_name": "Bilibili Dynamic",
@@ -132,7 +132,7 @@
       "url": "https://www.bilibili.com/video/BV1T3NE6jECj",
       "published_at": "2026-07-10T09:26:30Z",
       "first_seen_at": "2026-07-10T10:03:30.023832Z",
-      "last_seen_at": "2026-07-10T21:17:43.367445Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
       "bilibili_dynamic_id": "1223366415749218328",
       "summary": "用 AI 学技术，我做了一个 skill ｜详细教程附源码",
       "creator_metrics": {
@@ -164,6 +164,45 @@
   ],
   "creator_items_all": [
     {
+      "id": "828844df1b583b02b37f17abfc517981dc15386b",
+      "site_id": "mediacrawler_douyin",
+      "site_name": "MediaCrawler Douyin",
+      "source": "Simon林",
+      "title": "用AI做投研：搭建全球科技资讯实时看板 基于vibe-research搭建的一个模块，专注全球科技资讯 #claudecode#codex #ai新星计划",
+      "url": "https://www.douyin.com/video/7660833544696089907",
+      "published_at": "2026-07-10T09:46:51Z",
+      "first_seen_at": "2026-07-10T10:07:42.302812Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
+      "creator_metrics": {
+        "likes": 130,
+        "comments": 9,
+        "collects": 100,
+        "shares": 11
+      },
+      "search_surface": "mediacrawler_douyin_creator_jsonl",
+      "summary": "用AI做投研：搭建全球科技资讯实时看板 基于vibe-research搭建的一个模块，专注全球科技资讯\n#claudecode#codex #ai新星计划",
+      "ai_is_related": true,
+      "ai_score": 0.65,
+      "ai_label": "model_release",
+      "ai_relevance_reason": "matched_ai_signal",
+      "ai_signals": [
+        "claude",
+        "codex"
+      ],
+      "ai_noise": [],
+      "source_tier": "self_media",
+      "source_tier_label": "我的订阅",
+      "source_tier_rank": 4,
+      "creator_engagement_total": 320.0,
+      "creator_heat_score": 50.1,
+      "creator_freshness_bonus": 15.0,
+      "creator_hot_score": 57.6,
+      "title_original": "用AI做投研：搭建全球科技资讯实时看板 基于vibe-research搭建的一个模块，专注全球科技资讯 #claudecode#codex #ai新星计划",
+      "title_en": null,
+      "title_zh": "用AI做投研：搭建全球科技资讯实时看板 基于vibe-research搭建的一个模块，专注全球科技资讯 #claudecode#codex #ai新星计划",
+      "title_bilingual": "用AI做投研：搭建全球科技资讯实时看板 基于vibe-research搭建的一个模块，专注全球科技资讯 #claudecode#codex #ai新星计划"
+    },
+    {
       "id": "db8fb47c4a1e41151572e395e411a7af99320a99",
       "site_id": "bilibili_dynamic",
       "site_name": "Bilibili Dynamic",
@@ -172,7 +211,7 @@
       "url": "https://www.bilibili.com/video/BV1hUNn6ZEmi",
       "published_at": "2026-07-10T18:58:19Z",
       "first_seen_at": "2026-07-10T19:48:26.751618Z",
-      "last_seen_at": "2026-07-11T00:07:29.467831Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
       "bilibili_dynamic_id": "1223513771805245446",
       "summary": "【大东彦】狼王大东彦暴力清图！和yuko完美配合！爽杀清图站起来打！",
       "creator_metrics": {
@@ -208,7 +247,7 @@
       "url": "https://www.bilibili.com/video/BV1dANp6TENT",
       "published_at": "2026-07-10T15:23:15Z",
       "first_seen_at": "2026-07-10T15:38:59.234494Z",
-      "last_seen_at": "2026-07-11T00:07:29.467831Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
       "bilibili_dynamic_id": "1223458349561938001",
       "summary": "【大东彦】复学搬家好麻烦！适合的房租要2w2一个月还要签两年！北大边上都是老房子，租房花10w做隔音也很蠢！",
       "creator_metrics": {
@@ -244,7 +283,7 @@
       "url": "https://www.bilibili.com/video/BV1XTNp6eE8d",
       "published_at": "2026-07-10T15:12:45Z",
       "first_seen_at": "2026-07-10T21:17:43.367445Z",
-      "last_seen_at": "2026-07-11T00:07:29.467831Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
       "bilibili_dynamic_id": "1223455643724152869",
       "summary": "yuko传授逆天动作！还一起带坏小辞！大东彦也在后面聊奇怪的事情！师徒杯团建",
       "creator_metrics": {
@@ -316,7 +355,7 @@
       "url": "https://www.bilibili.com/video/BV1VuNp6PEBM",
       "published_at": "2026-07-10T15:08:00Z",
       "first_seen_at": "2026-07-10T15:38:59.234494Z",
-      "last_seen_at": "2026-07-11T00:07:29.467831Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
       "bilibili_dynamic_id": "1223454419627016208",
       "summary": "Claude Code、Codex、Cursor，你都用对了吗？#howto入门codex #howto入门vibecoding #姜学长",
       "creator_metrics": {
@@ -356,7 +395,7 @@
       "url": "https://www.bilibili.com/video/BV1sBNJ62Ea2",
       "published_at": "2026-07-10T12:41:08Z",
       "first_seen_at": "2026-07-10T12:55:48.450183Z",
-      "last_seen_at": "2026-07-11T00:07:29.467831Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
       "bilibili_dynamic_id": "1223416572388835335",
       "summary": "【大东彦】berlin入魔了战绩13-32，京东火力指令全面被diff！TYL对阵JDG赛后数据总结",
       "creator_metrics": {
@@ -394,7 +433,7 @@
       "url": "https://www.bilibili.com/video/BV1GpNJ6oEfj",
       "published_at": "2026-07-10T12:34:03Z",
       "first_seen_at": "2026-07-10T12:55:48.450183Z",
-      "last_seen_at": "2026-07-11T00:07:29.467831Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
       "bilibili_dynamic_id": "1223414747030880309",
       "summary": "【大东彦】天禄赛后语音曝光！SiuFatBB：你知道到这是谁的家吗？你也敢过来！这是小肥位！TYL vs JDG",
       "creator_metrics": {
@@ -430,7 +469,7 @@
       "url": "https://www.bilibili.com/video/BV15JNJ6fEwb",
       "published_at": "2026-07-10T12:25:20Z",
       "first_seen_at": "2026-07-10T12:55:48.450183Z",
-      "last_seen_at": "2026-07-11T00:07:29.467831Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
       "bilibili_dynamic_id": "1223412500753547303",
       "summary": "【大东彦】看SiuFatBB赛后采访：加入了天禄之后，反而更期待的不是胜利，而是跟他们在赛场上打拼的感觉！",
       "creator_metrics": {
@@ -466,7 +505,7 @@
       "url": "https://www.bilibili.com/video/BV1ubNJ6XE4D",
       "published_at": "2026-07-10T12:16:49Z",
       "first_seen_at": "2026-07-10T12:55:48.450183Z",
-      "last_seen_at": "2026-07-11T00:07:29.467831Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
       "bilibili_dynamic_id": "1223410306020016163",
       "summary": "众主播看SiuFatBB再现多伦多铁箱名场面！起立好像在说在个位置这没人打的过我！",
       "creator_metrics": {
@@ -502,7 +541,7 @@
       "url": "https://www.bilibili.com/video/BV15FNn6aE5F",
       "published_at": "2026-07-10T12:00:55Z",
       "first_seen_at": "2026-07-10T12:55:48.450183Z",
-      "last_seen_at": "2026-07-11T00:07:29.467831Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
       "bilibili_dynamic_id": "1223406208657915945",
       "summary": "众主播看splash恐怖四杀！还起立模仿siufatbb交警指挥交通！小肥情绪价值拉满！TYL vs JDG",
       "creator_metrics": {
@@ -538,7 +577,7 @@
       "url": "https://www.bilibili.com/video/BV1QPNn6ZE9Z",
       "published_at": "2026-07-10T11:46:58Z",
       "first_seen_at": "2026-07-10T12:55:48.450183Z",
-      "last_seen_at": "2026-07-11T00:07:29.467831Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
       "bilibili_dynamic_id": "1223402613763997700",
       "summary": "【大东彦】现在边线又不太一样了！哨位往里摸的画面越来越少了！现在主流玩法是中期跟团",
       "creator_metrics": {
@@ -574,7 +613,7 @@
       "url": "https://www.bilibili.com/video/BV19wNn6FEph",
       "published_at": "2026-07-10T11:36:08Z",
       "first_seen_at": "2026-07-10T12:55:48.450183Z",
-      "last_seen_at": "2026-07-11T00:07:29.467831Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
       "bilibili_dynamic_id": "1223399821994360854",
       "summary": "众主播看siufatbb残局1v2！苏弟都唱起来了！顶级的身位控制！熟悉的残局回来了！TYL vs JDG",
       "creator_metrics": {
@@ -646,7 +685,7 @@
       "url": "https://t.bilibili.com/1223396158432346136",
       "published_at": "2026-07-10T11:21:55Z",
       "first_seen_at": "2026-07-10T12:55:48.450183Z",
-      "last_seen_at": "2026-07-10T21:17:43.367445Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
       "bilibili_dynamic_id": "1223396158432346136",
       "summary": "分享动态",
       "creator_metrics": {
@@ -856,45 +895,6 @@
       "title_bilingual": "众主播看FPX与TE巨变态的最后一回合！xlele大招炸死队友！TE四打二被反翻！没有人类了！"
     },
     {
-      "id": "828844df1b583b02b37f17abfc517981dc15386b",
-      "site_id": "mediacrawler_douyin",
-      "site_name": "MediaCrawler Douyin",
-      "source": "Simon林",
-      "title": "用AI做投研：搭建全球科技资讯实时看板 基于vibe-research搭建的一个模块，专注全球科技资讯 #claudecode#codex #ai新星计划",
-      "url": "https://www.douyin.com/video/7660833544696089907",
-      "published_at": "2026-07-10T09:46:51Z",
-      "first_seen_at": "2026-07-10T10:07:42.302812Z",
-      "last_seen_at": "2026-07-11T00:07:29.467831Z",
-      "creator_metrics": {
-        "likes": 0,
-        "comments": 0,
-        "collects": 0,
-        "shares": 0
-      },
-      "search_surface": "mediacrawler_douyin_creator_jsonl",
-      "summary": "用AI做投研：搭建全球科技资讯实时看板 基于vibe-research搭建的一个模块，专注全球科技资讯\n#claudecode#codex #ai新星计划",
-      "ai_is_related": true,
-      "ai_score": 0.65,
-      "ai_label": "model_release",
-      "ai_relevance_reason": "matched_ai_signal",
-      "ai_signals": [
-        "claude",
-        "codex"
-      ],
-      "ai_noise": [],
-      "source_tier": "self_media",
-      "source_tier_label": "我的订阅",
-      "source_tier_rank": 4,
-      "creator_engagement_total": 0.0,
-      "creator_heat_score": 0.0,
-      "creator_freshness_bonus": 15.0,
-      "creator_hot_score": 15.0,
-      "title_original": "用AI做投研：搭建全球科技资讯实时看板 基于vibe-research搭建的一个模块，专注全球科技资讯 #claudecode#codex #ai新星计划",
-      "title_en": null,
-      "title_zh": "用AI做投研：搭建全球科技资讯实时看板 基于vibe-research搭建的一个模块，专注全球科技资讯 #claudecode#codex #ai新星计划",
-      "title_bilingual": "用AI做投研：搭建全球科技资讯实时看板 基于vibe-research搭建的一个模块，专注全球科技资讯 #claudecode#codex #ai新星计划"
-    },
-    {
       "id": "4f960d876f5c90ff93330ed8a1a6f7c184ce31dc",
       "site_id": "bilibili_dynamic",
       "site_name": "Bilibili Dynamic",
@@ -939,7 +939,7 @@
       "url": "https://www.bilibili.com/video/BV1T3NE6jECj",
       "published_at": "2026-07-10T09:26:30Z",
       "first_seen_at": "2026-07-10T10:03:30.023832Z",
-      "last_seen_at": "2026-07-10T21:17:43.367445Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
       "bilibili_dynamic_id": "1223366415749218328",
       "summary": "用 AI 学技术，我做了一个 skill ｜详细教程附源码",
       "creator_metrics": {
@@ -1159,7 +1159,7 @@
       "url": "https://openai.com/index/deutsche-telekom",
       "published_at": "2026-07-10T07:00:00Z",
       "first_seen_at": "2026-07-10T10:03:30.023832Z",
-      "last_seen_at": "2026-07-11T00:07:29.467831Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
       "ai_is_related": true,
       "ai_score": 0.71,
       "ai_label": "ai_product_update",
@@ -1177,32 +1177,6 @@
       "title_bilingual": "德国电信如何利用人工智能重新布线电信 / How Deutsche Telekom is rewiring telecommunications with AI"
     },
     {
-      "id": "8fc37e3beeaa23aaa5b8ab1ab050dcddef128f39",
-      "site_id": "opmlrss",
-      "site_name": "OPML RSS",
-      "source": "Simon Willison",
-      "title": "Quoting OpenAI",
-      "url": "https://simonwillison.net/2026/Jul/10/openai",
-      "published_at": "2026-07-10T01:05:57Z",
-      "first_seen_at": "2026-07-10T02:42:38.881022Z",
-      "last_seen_at": "2026-07-11T00:07:29.467831Z",
-      "ai_is_related": true,
-      "ai_score": 0.71,
-      "ai_label": "ai_product_update",
-      "ai_relevance_reason": "matched_ai_signal",
-      "ai_signals": [
-        "openai"
-      ],
-      "ai_noise": [],
-      "source_tier": "user_opml",
-      "source_tier_label": "RSS/OPML",
-      "source_tier_rank": 3,
-      "title_original": "Quoting OpenAI",
-      "title_en": "Quoting OpenAI",
-      "title_zh": "引用 OpenAI",
-      "title_bilingual": "引用 OpenAI / Quoting OpenAI"
-    },
-    {
       "id": "15879ea819b6dfed9f325631ea5c6d79b1364d25",
       "site_id": "bilibili_dynamic",
       "site_name": "Bilibili Dynamic",
@@ -1211,7 +1185,7 @@
       "url": "https://www.bilibili.com/video/BV1VuNp6PEBM",
       "published_at": "2026-07-10T15:08:00Z",
       "first_seen_at": "2026-07-10T15:38:59.234494Z",
-      "last_seen_at": "2026-07-11T00:07:29.467831Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
       "bilibili_dynamic_id": "1223454419627016208",
       "summary": "Claude Code、Codex、Cursor，你都用对了吗？#howto入门codex #howto入门vibecoding #姜学长",
       "ai_is_related": true,
@@ -1241,12 +1215,12 @@
       "url": "https://www.douyin.com/video/7660833544696089907",
       "published_at": "2026-07-10T09:46:51Z",
       "first_seen_at": "2026-07-10T10:07:42.302812Z",
-      "last_seen_at": "2026-07-11T00:07:29.467831Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
       "creator_metrics": {
-        "likes": 0,
-        "collects": 0,
-        "comments": 0,
-        "shares": 0
+        "likes": 130,
+        "collects": 100,
+        "comments": 9,
+        "shares": 11
       },
       "search_surface": "mediacrawler_douyin_creator_jsonl",
       "summary": "用AI做投研：搭建全球科技资讯实时看板 基于vibe-research搭建的一个模块，专注全球科技资讯\n#claudecode#codex #ai新星计划",
@@ -1276,7 +1250,7 @@
       "url": "https://www.bilibili.com/video/BV1T3NE6jECj",
       "published_at": "2026-07-10T09:26:30Z",
       "first_seen_at": "2026-07-10T10:03:30.023832Z",
-      "last_seen_at": "2026-07-10T21:17:43.367445Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
       "bilibili_dynamic_id": "1223366415749218328",
       "summary": "用 AI 学技术，我做了一个 skill ｜详细教程附源码",
       "ai_is_related": true,
@@ -1306,7 +1280,7 @@
       "url": "https://openai.com/index/deutsche-telekom",
       "published_at": "2026-07-10T07:00:00Z",
       "first_seen_at": "2026-07-10T10:03:30.023832Z",
-      "last_seen_at": "2026-07-11T00:07:29.467831Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
       "ai_is_related": true,
       "ai_score": 0.71,
       "ai_label": "ai_product_update",
@@ -1324,32 +1298,6 @@
       "title_bilingual": "德国电信如何利用人工智能重新布线电信 / How Deutsche Telekom is rewiring telecommunications with AI"
     },
     {
-      "id": "8fc37e3beeaa23aaa5b8ab1ab050dcddef128f39",
-      "site_id": "opmlrss",
-      "site_name": "OPML RSS",
-      "source": "Simon Willison",
-      "title": "Quoting OpenAI",
-      "url": "https://simonwillison.net/2026/Jul/10/openai",
-      "published_at": "2026-07-10T01:05:57Z",
-      "first_seen_at": "2026-07-10T02:42:38.881022Z",
-      "last_seen_at": "2026-07-11T00:07:29.467831Z",
-      "ai_is_related": true,
-      "ai_score": 0.71,
-      "ai_label": "ai_product_update",
-      "ai_relevance_reason": "matched_ai_signal",
-      "ai_signals": [
-        "openai"
-      ],
-      "ai_noise": [],
-      "source_tier": "user_opml",
-      "source_tier_label": "RSS/OPML",
-      "source_tier_rank": 3,
-      "title_original": "Quoting OpenAI",
-      "title_en": "Quoting OpenAI",
-      "title_zh": "引用 OpenAI",
-      "title_bilingual": "引用 OpenAI / Quoting OpenAI"
-    },
-    {
       "id": "15879ea819b6dfed9f325631ea5c6d79b1364d25",
       "site_id": "bilibili_dynamic",
       "site_name": "Bilibili Dynamic",
@@ -1358,7 +1306,7 @@
       "url": "https://www.bilibili.com/video/BV1VuNp6PEBM",
       "published_at": "2026-07-10T15:08:00Z",
       "first_seen_at": "2026-07-10T15:38:59.234494Z",
-      "last_seen_at": "2026-07-11T00:07:29.467831Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
       "bilibili_dynamic_id": "1223454419627016208",
       "summary": "Claude Code、Codex、Cursor，你都用对了吗？#howto入门codex #howto入门vibecoding #姜学长",
       "ai_is_related": true,
@@ -1388,12 +1336,12 @@
       "url": "https://www.douyin.com/video/7660833544696089907",
       "published_at": "2026-07-10T09:46:51Z",
       "first_seen_at": "2026-07-10T10:07:42.302812Z",
-      "last_seen_at": "2026-07-11T00:07:29.467831Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
       "creator_metrics": {
-        "likes": 0,
-        "collects": 0,
-        "comments": 0,
-        "shares": 0
+        "likes": 130,
+        "collects": 100,
+        "comments": 9,
+        "shares": 11
       },
       "search_surface": "mediacrawler_douyin_creator_jsonl",
       "summary": "用AI做投研：搭建全球科技资讯实时看板 基于vibe-research搭建的一个模块，专注全球科技资讯\n#claudecode#codex #ai新星计划",
@@ -1423,7 +1371,7 @@
       "url": "https://www.bilibili.com/video/BV1T3NE6jECj",
       "published_at": "2026-07-10T09:26:30Z",
       "first_seen_at": "2026-07-10T10:03:30.023832Z",
-      "last_seen_at": "2026-07-10T21:17:43.367445Z",
+      "last_seen_at": "2026-07-11T03:55:57.721760Z",
       "bilibili_dynamic_id": "1223366415749218328",
       "summary": "用 AI 学技术，我做了一个 skill ｜详细教程附源码",
       "ai_is_related": true,
