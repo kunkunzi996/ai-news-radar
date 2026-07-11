@@ -1,6 +1,36 @@
 # HANDOFF.md
 
-## 当前最新交接：线上信源新增、同步、云端采集全链路已验收
+## 当前最新交接：公众号桥接上线 + 面板清空事故修复 + 产品方向转向（2026-07-11）
+
+- 日期：2026-07-11
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 分支：`master`，与远端同步，工作树干净（仅 `计划/` 下本地文档未入库，按惯例不提交）
+- 本轮 14 个提交已全部推送并通过公网页面 + 人工验收
+
+### 本轮已完成（三件大事）
+
+1. **微信公众号（WeRSS）桥接上线**：本机 sidecar 采集 → 导出 JSONL → 私有仓库 `kunkunzi996/wechat-bridge` → Actions 只读部署密钥克隆 → 公网「微信公众号」tab。新增 `we_mp_rss_jsonl` 平行源类型，不影响已有实时 `we_mp_rss` 通道。本机采集脚本作为**第二个动作**追加到已有计划任务 `DouyinCollectAndPush`（10:00/15:00/21:00），未新建任务。
+2. **线上信源面板静默清空事故修复**（`687f385`）：三层根因与三层护栏详见 `PROJECT_STATE.md`。核心教训——**新增线上源 `type` 必须同步加进 `ONLINE_ALLOWED_TYPES` 白名单**，漏了会导致整份配置读取失败并被面板全量覆盖清空。必查清单已写入 `CLAUDE.md`。
+3. **产品方向转向个人订阅聚合器**：AI 相关性不再是筛选标准。`AI_RELEVANCE_THRESHOLD` 改为环境变量，Actions Variable 已设 `0`（不过滤）。四份开工必读文档（`CLAUDE.md` / `AGENTS.md` / `SKILL.md` / `docs/SOURCE_COVERAGE.md`）已同步新方向。
+
+### 下一轮建议从这里开始
+
+- **当前状态**：全部已验收上线，无未完成任务，无阻塞。
+- **继续文件**：按任务而定；新增数据源先读 `CLAUDE.md` 的「新增数据源必查清单」。
+- **验收命令**：`.\.venv\Scripts\python.exe -m pytest -q`（基线 **284 passed**）。浏览器验收是项目铁律，不可只跑单测。
+- **可选待办**（用户尚未拍板，不要擅自动手）：
+  - `docs/CONFIG_REFERENCE.md` 已过时（写着「每 30 分钟」，实际是每小时 7/37 分；也未收录 `AI_RELEVANCE_THRESHOLD` / `WE_MP_RSS_JSONL_DIR` / `WECHAT_BRIDGE_*` 等新变量）。
+  - `README.md` 仍以「AI 新闻雷达」对外定位。这是公开仓库的对外说明，是否跟着改成订阅聚合器由用户决定。
+  - 24h 窗口对低频源（官方 AI 博客 3~10 天一篇）过短，主榜曾长期近空；若要放宽需改 `--window-hours`，属全局参数，改动要慎重。
+- **风险提醒**：
+  - 面板的「同步到线上」会 `commit + push` 真实仓库；护栏已加，但仍应先确认改动面。
+  - 微信 cookie / 授权态只在本机 sidecar 的 `data/` 目录，**绝不可进任何仓库或日志**。JSONL 只含公开字段。
+  - 改 `assets/js/*.js` 后必须 bump `index.html` 里对应的 `?v=` 缓存版本号，否则浏览器复用旧脚本。
+  - 新建 `.ps1` 必须存 UTF-8 **带 BOM**，否则 PowerShell 5.1 按 GBK 解码导致中文乱码。
+
+---
+
+## 历史交接：线上信源新增、同步、云端采集全链路已验收
 
 - 日期：2026-07-10
 - 主项目路径：`E:\AI-news-reader\ai-news-radar-run`

@@ -13,7 +13,11 @@ GitHub Actions refresh jobs, and GitHub Pages publishing.
 - Do not commit private feeds, secrets, tokens, cookies, or `.env` values.
 - Do not commit `feeds/follow.opml`; use `feeds/follow.example.opml` as the public template.
 - Prefer stable public RSS/Atom/OPML sources before adding custom scrapers.
-- Keep the reader-facing product simple: default to a curated AI-focused view, hide noisy or advanced source details behind existing filters/docs.
+- Keep the reader-facing product simple. Since 2026-07-11 the default view is the owner's own
+  subscription feed, **not** a curated AI selection: AI relevance is no longer a filter
+  (`AI_RELEVANCE_THRESHOLD` is set to `0` in production). Do not optimize for "filling the AI
+  feed" and do not suggest adding AI news sources to raise AI content share unless asked.
+  See the "产品方向" section in `CLAUDE.md`.
 
 ## Iron Rules
 
