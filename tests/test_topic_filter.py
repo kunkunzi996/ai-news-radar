@@ -4,6 +4,7 @@ import unittest
 from datetime import datetime, timezone
 from unittest.mock import patch
 
+from scripts.radar.pipeline import prune_archive_records
 from scripts.update_news import (
     add_creator_ranking_fields,
     add_source_tier_fields,
@@ -64,6 +65,53 @@ from scripts.update_news import (
 
 
 class TopicFilterTests(unittest.TestCase):
+    def test_prune_archive_records_keeps_recent_last_seen_and_removes_expired(self):
+        now = datetime.fromisoformat("2026-07-12T10:00:00+00:00")
+        archive = {
+            "recent": {"last_seen_at": "2026-01-14T10:00:00Z"},
+            "expired": {"last_seen_at": "2026-01-12T09:59:59Z"},
+        }
+
+        pruned = prune_archive_records(archive, now, 180)
+
+        self.assertEqual(pruned, {"recent": archive["recent"]})
+
+    def test_prune_archive_records_uses_timestamp_fallbacks_and_keeps_missing(self):
+        now = datetime.fromisoformat("2026-07-12T10:00:00+00:00")
+        archive = {
+            "published": {"published_at": "2026-07-01T10:00:00Z"},
+            "first_seen": {"first_seen_at": "2026-06-01T10:00:00Z"},
+            "missing": {},
+            "expired_published": {"published_at": "2025-01-01T00:00:00Z"},
+            "expired_first_seen": {"first_seen_at": "2025-01-01T00:00:00Z"},
+        }
+
+        pruned = prune_archive_records(archive, now, 180)
+
+        self.assertEqual(set(pruned), {"published", "first_seen", "missing"})
+
+    def test_prune_archive_records_returns_original_archive_when_days_zero(self):
+        now = datetime.fromisoformat("2026-07-12T10:00:00+00:00")
+        archive = {"old": {"last_seen_at": "2020-01-01T00:00:00Z"}}
+
+        pruned = prune_archive_records(archive, now, 0)
+
+        self.assertIs(pruned, archive)
+        self.assertEqual(pruned, archive)
+
+    def test_prune_archive_records_keeps_backfill_seen_now_despite_old_publish_time(self):
+        now = datetime.fromisoformat("2026-07-12T10:00:00+00:00")
+        archive = {
+            "backfill": {
+                "published_at": "2025-12-24T10:00:00Z",
+                "last_seen_at": "2026-07-12T10:00:00Z",
+            }
+        }
+
+        pruned = prune_archive_records(archive, now, 180)
+
+        self.assertEqual(pruned, archive)
+
     def test_paid_source_status_uses_the_persisted_run_timestamps(self):
         now = __import__("datetime").datetime.fromisoformat("2026-05-03T01:00:00+00:00")
         state = {"sources": {}}

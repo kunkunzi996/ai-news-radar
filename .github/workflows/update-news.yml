@@ -108,7 +108,7 @@ jobs:
           WE_MP_RSS_JSONL_DIR: ${{ steps.wechat_bridge.outputs.local_dir }}/output/wechat/jsonl
           GITHUB_TOKEN: ${{ github.token }}
         run: |
-          python scripts/update_news.py --source-config config/online-sources.json --output-dir data --window-hours 24 --archive-days 21
+          python scripts/update_news.py --source-config config/online-sources.json --output-dir data --window-hours 24 --archive-days ${{ vars.ARCHIVE_DAYS || '180' }} --all-time
 
       - name: Commit and push changes
         env:

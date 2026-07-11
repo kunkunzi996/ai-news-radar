@@ -111,6 +111,7 @@ from scripts.radar.pipeline import (
     load_title_zh_cache,
     merge_story_items,
     normalize_source_for_display,
+    prune_archive_records,
     suppress_near_duplicate_items,
 )
 
@@ -870,20 +871,9 @@ def merge_archive_stage(session: Any, ctx: RunContext, collected: CollectStageRe
 
     backfill_bilibili_archive_publish_times(session, archive)
 
-    # Prune old archive unless the generated view intentionally needs all retained history.
-    if not all_time:
-        keep_after = now - timedelta(days=args.archive_days)
-        pruned: dict[str, dict[str, Any]] = {}
-        for item_id, record in archive.items():
-            ts = (
-                parse_iso(record.get("last_seen_at"))
-                or parse_iso(record.get("published_at"))
-                or parse_iso(record.get("first_seen_at"))
-                or now
-            )
-            if ts >= keep_after:
-                pruned[item_id] = record
-        archive = pruned
+    # 归档修剪始终执行；--all-time 只决定发布视图窗口，不再豁免修剪，
+    # 否则线上全量发布会让归档无界增长。
+    archive = prune_archive_records(archive, now, int(args.archive_days))
     return MergeStageResult(
         archive=archive,
         raw_items=raw_items,

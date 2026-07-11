@@ -208,6 +208,31 @@ def archive_source_counts(archive: dict[str, dict[str, Any]]) -> dict[tuple[str,
     return counts
 
 
+def prune_archive_records(
+    archive: dict[str, dict[str, Any]],
+    now: datetime,
+    archive_days: int,
+) -> dict[str, dict[str, Any]]:
+    """按保留天数修剪归档；记录时间取 last_seen_at / published_at / first_seen_at 兜底。
+
+    修剪始终执行（包括 --all-time 全量发布模式），否则线上归档会无界增长。
+    """
+    if archive_days <= 0:
+        return archive
+    keep_after = now - timedelta(days=archive_days)
+    pruned: dict[str, dict[str, Any]] = {}
+    for item_id, record in archive.items():
+        ts = (
+            parse_iso(record.get("last_seen_at"))
+            or parse_iso(record.get("published_at"))
+            or parse_iso(record.get("first_seen_at"))
+            or now
+        )
+        if ts >= keep_after:
+            pruned[item_id] = record
+    return pruned
+
+
 SOURCE_TIER_BY_SITE: dict[str, tuple[str, str, int]] = {
     "official_ai": ("official", "官方一手源", 0),
     "curated_media": ("ai_media", "精选AI媒体", 2),
