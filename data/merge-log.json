@@ -1,6 +1,14 @@
 {
-  "generated_at": "2026-07-11T10:21:07.981958Z",
+  "generated_at": "2026-07-11T11:07:56.794102Z",
   "merge_strategy": "url_or_title_similarity_v0_6",
-  "total_events": 0,
-  "events": []
+  "total_events": 1,
+  "events": [
+    {
+      "story_id": "story_7edcdff80a44",
+      "item_id": "2fac85a245519117fc85637e684f0d255d534364",
+      "merged_into": "story_7edcdff80a44",
+      "reason": "canonical_url",
+      "similarity": 1.0
+    }
+  ]
 }
