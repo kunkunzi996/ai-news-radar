@@ -16,7 +16,9 @@ from urllib.parse import urlparse, urlunparse
 ONLINE_CONFIG_FILENAME = Path("config") / "online-sources.json"
 ONLINE_OPML_FILENAME = Path("feeds") / "online-sources.opml"
 ONLINE_OPML_SOURCE_ID = "online_opmlrss"
-ONLINE_ALLOWED_TYPES = frozenset({"bilibili_dynamic", "github_release", "mediacrawler_jsonl", "rss"})
+ONLINE_ALLOWED_TYPES = frozenset(
+    {"bilibili_dynamic", "github_release", "mediacrawler_jsonl", "rss", "we_mp_rss_jsonl"}
+)
 ONLINE_COMMIT_MESSAGE = "配置：同步线上信源"
 
 SENSITIVE_MARKERS = (
@@ -35,7 +37,13 @@ PRIVATE_PATH_MARKERS = (
     "creator_contents_",
     "feeds/follow.opml",
 )
-TYPE_ORDER = {"bilibili_dynamic": 0, "github_release": 1, "mediacrawler_jsonl": 2, "rss": 3}
+TYPE_ORDER = {
+    "bilibili_dynamic": 0,
+    "github_release": 1,
+    "mediacrawler_jsonl": 2,
+    "we_mp_rss_jsonl": 3,
+    "rss": 4,
+}
 
 
 def utc_timestamp() -> str:
@@ -200,6 +208,21 @@ def normalize_online_source_record(source: dict[str, Any], index: int) -> dict[s
             "channel": "抖音订阅",
             "target": name[:120],
             "locator": homepage,
+            "env": "",
+            "notes": notes[:240] or "云电脑桥接采集",
+        }
+
+    if source_type == "we_mp_rss_jsonl":
+        if not name:
+            raise ValueError(f"sources[{index}].name is required")
+        return {
+            "id": str(source.get("id") or "").strip() or f"online_we_mp_rss_{slug_token(name)}",
+            "name": name[:120],
+            "type": source_type,
+            "enabled": enabled,
+            "channel": "微信公众号",
+            "target": str(source.get("target") or name).strip()[:120],
+            "locator": locator,
             "env": "",
             "notes": notes[:240] or "云电脑桥接采集",
         }
@@ -394,6 +417,19 @@ def write_online_source_config(root_dir: Path, payload: Any) -> dict[str, Any]:
     sources = normalize_online_sources(raw_sources)
     config = build_online_config(sources)
     config_path, _ = ensure_public_online_paths(root_dir)
+    existing_count = 0
+    if config_path.exists():
+        existing_payload = json.loads(config_path.read_text(encoding="utf-8"))
+        existing_sources = existing_payload.get("sources") if isinstance(existing_payload, dict) else []
+        existing_count = len(existing_sources) if isinstance(existing_sources, list) else 0
+    new_count = len(sources)
+    confirm_bulk_delete = payload.get("confirm_bulk_delete") is True
+    if existing_count >= 3 and new_count * 2 < existing_count and not confirm_bulk_delete:
+        raise ValueError(
+            "online_sources_bulk_delete_blocked: "
+            f"本次写入会把 {existing_count} 个线上信源删到 {new_count} 个，已阻止；"
+            "如确实要批量删除，请带 confirm_bulk_delete"
+        )
     write_json_atomic(config_path, config)
     written_feeds = write_online_opml(root_dir, sources)
     return {
@@ -468,13 +504,19 @@ def sync_online_source_config(root_dir: Path, payload: Any | None = None, *, pus
         }
 
     git_checked(root_dir, ["commit", "-m", ONLINE_COMMIT_MESSAGE, "--", *allowed_paths], timeout=60)
-    commit = git_checked(root_dir, ["rev-parse", "--short", "HEAD"]).stdout.strip()
     pushed = False
     push_stdout = ""
     if push:
+        branch = git_checked(root_dir, ["rev-parse", "--abbrev-ref", "HEAD"]).stdout.strip()
+        try:
+            git_checked(root_dir, ["pull", "--rebase", "origin", branch], timeout=120)
+        except RuntimeError as exc:
+            git_run(root_dir, ["rebase", "--abort"], timeout=60)
+            raise ValueError(f"online_sources_rebase_failed: git pull --rebase 失败，已中止推送：{exc}") from exc
         pushed_result = git_checked(root_dir, ["push"], timeout=120)
         pushed = True
         push_stdout = (pushed_result.stdout or pushed_result.stderr or "").strip()
+    commit = git_checked(root_dir, ["rev-parse", "--short", "HEAD"]).stdout.strip()
     return {
         **write_result,
         "synced": True,

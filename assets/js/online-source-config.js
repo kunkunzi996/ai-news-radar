@@ -41,6 +41,17 @@ function onlineSourceFormActionLabel() {
   return "保存配置";
 }
 
+function canWriteOnlineSourceConfig() {
+  return canUseLocalBackend() && state.onlineSourceConfigLoaded === true;
+}
+
+function requireLoadedOnlineSourceConfig() {
+  if (canWriteOnlineSourceConfig()) return true;
+  setOnlineSourceStatus("线上配置尚未加载成功，请先重新加载，避免覆盖线上信源", "bad");
+  renderOnlineSourceConfig();
+  return false;
+}
+
 function setOnlineSourceStatus(message, tone = "") {
   if (!onlineSourceStatusEl) return;
   onlineSourceStatusEl.textContent = message || "";
@@ -57,7 +68,7 @@ function restoreOnlineSourceButton(button, label, delay = 1200) {
   if (!button) return;
   window.setTimeout(() => {
     button.textContent = label;
-    button.disabled = false;
+    button.disabled = !canWriteOnlineSourceConfig();
   }, delay);
 }
 
@@ -158,6 +169,7 @@ function onlineSourceFormRecord() {
 }
 
 function saveOnlineSourceFormToState() {
+  if (!requireLoadedOnlineSourceConfig()) return false;
   const record = onlineSourceFormRecord();
   if (!record.name || !record.locator) {
     setOnlineSourceStatus("名称和关键字段都要填写", "bad");
@@ -217,6 +229,7 @@ function renderOnlineSourceList() {
   if (!onlineSourceListEl) return;
   onlineSourceListEl.innerHTML = "";
   const isLocal = canUseLocalBackend();
+  const canEdit = canWriteOnlineSourceConfig();
   const sources = state.onlineSourceConfig?.sources || [];
   const visibleSources = isLocal ? sources : sources.filter((source) => source.enabled !== false);
   if (!visibleSources.length) {
@@ -237,7 +250,7 @@ function renderOnlineSourceList() {
     main.append(title, meta);
 
     card.appendChild(main);
-    if (isLocal) {
+    if (canEdit) {
       const actions = document.createElement("div");
       actions.className = "online-source-actions";
       const toggleLabel = document.createElement("label");
@@ -273,6 +286,7 @@ function renderOnlineSourceConfig() {
   if (!onlineSourceFormEl && !onlineSourceListEl) return;
   if (!state.onlineSourceConfig) state.onlineSourceConfig = { sources: [] };
   const isLocal = canUseLocalBackend();
+  const canWrite = canWriteOnlineSourceConfig();
   [
     onlineSourceTypeEl,
     onlineSourceNameEl,
@@ -283,7 +297,7 @@ function renderOnlineSourceConfig() {
     onlineSourceClearBtnEl,
     onlineSourceSyncBtnEl,
   ].forEach((node) => {
-    if (node) node.disabled = !isLocal;
+    if (node) node.disabled = !canWrite;
   });
   if (onlineSourceFormEl) onlineSourceFormEl.hidden = !isLocal;
   renderOnlineSourceFormHints();
@@ -294,6 +308,8 @@ function renderOnlineSourceConfig() {
       ? `线上实际追踪 ${fmtNumber(enabledCount)} 个公开信源；修改请在本机打开 127.0.0.1:8080。`
       : "公网静态页不能直接修改线上配置；请在本机打开 127.0.0.1:8080 使用本地控制台同步。";
     setOnlineSourceStatus(message, enabledCount ? "ok" : "warn");
+  } else if (!state.onlineSourceConfigLoaded) {
+    setOnlineSourceStatus("线上配置尚未加载成功，请先重新加载，避免覆盖线上信源", "bad");
   }
 }
 
@@ -304,6 +320,8 @@ async function loadOnlineSourceConfigFromServer(silent = false) {
   }
   const isLocal = canUseLocalBackend();
   const configUrl = isLocal ? "./api/online-source-config" : "./config/online-sources.json";
+  state.onlineSourceConfigLoaded = false;
+  renderOnlineSourceConfig();
   try {
     const res = await fetch(configUrl, {
       headers: { Accept: "application/json" },
@@ -312,16 +330,16 @@ async function loadOnlineSourceConfigFromServer(silent = false) {
     const payload = await res.json().catch(() => ({}));
     if (!res.ok || payload.ok === false) throw new Error(payload.error || `HTTP ${res.status}`);
     state.onlineSourceConfig = normalizeOnlineSourceConfig(payload);
+    state.onlineSourceConfigLoaded = true;
     state.onlineSourceDirty = false;
     renderOnlineSourceConfig();
-    if (!silent) {
-      const sourceCount = payload.source_count || state.onlineSourceConfig.sources.length;
-      const prefix = isLocal ? "已读取" : "已同步线上实际追踪源";
-      setOnlineSourceStatus(`${prefix} ${payload.path || "config/online-sources.json"}，共 ${fmtNumber(sourceCount)} 个线上信源`, "ok");
-    }
+    const sourceCount = payload.source_count || state.onlineSourceConfig.sources.length;
+    const prefix = isLocal ? "已读取" : "已同步线上实际追踪源";
+    setOnlineSourceStatus(`${prefix} ${payload.path || "config/online-sources.json"}，共 ${fmtNumber(sourceCount)} 个线上信源`, "ok");
     return payload;
   } catch (err) {
-    setOnlineSourceStatus(`线上信源读取失败：${err.message}`, "bad");
+    state.onlineSourceConfigLoaded = false;
+    setOnlineSourceStatus(`线上信源读取失败：${err.message}。线上配置尚未加载成功，请先重新加载，避免覆盖线上信源`, "bad");
     renderOnlineSourceConfig();
     return null;
   }
@@ -332,6 +350,7 @@ async function saveOnlineSourceConfigToServer() {
     setOnlineSourceStatus(localBackendUnavailableMessage(), "warn");
     return null;
   }
+  if (!requireLoadedOnlineSourceConfig()) return null;
   if (!syncOnlineSourceFormIfFilled()) return null;
   setOnlineSourceButton(onlineSourceSaveBtnEl, "保存中...", true);
   setOnlineSourceStatus("正在写入公开线上配置...", "warn");
@@ -370,6 +389,7 @@ async function syncOnlineSourceConfigToServer() {
     setOnlineSourceStatus(localBackendUnavailableMessage(), "warn");
     return null;
   }
+  if (!requireLoadedOnlineSourceConfig()) return null;
   if (!syncOnlineSourceFormIfFilled()) return null;
   setOnlineSourceButton(onlineSourceSyncBtnEl, "同步中...", true);
   setOnlineSourceStatus("正在提交并推送线上信源配置...", "warn");

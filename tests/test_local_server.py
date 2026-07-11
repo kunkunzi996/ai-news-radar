@@ -473,6 +473,46 @@ class LocalServerTests(unittest.TestCase):
         self.assertIn("AlkaidLab/foundation-sunshine", [source["locator"] for source in config["sources"]])
         self.assertIn("A &amp; B &lt;AI&gt;", opml_text)
 
+    def test_read_online_source_config_accepts_we_mp_rss_jsonl_with_empty_locator(self):
+        root = Path(self.create_temp_dir())
+        config_path = root / "config" / "online-sources.json"
+        config_path.parent.mkdir(parents=True)
+        config_path.write_text(
+            json.dumps(
+                {
+                    "sources": [
+                        {
+                            "id": "online_we_mp_rss_maobidao",
+                            "name": "猫笔刀",
+                            "type": "we_mp_rss_jsonl",
+                            "locator": "",
+                        }
+                    ]
+                }
+            ),
+            encoding="utf-8",
+        )
+
+        result = read_online_source_config(root)
+
+        self.assertTrue(result["ok"])
+        self.assertEqual(result["source_count"], 1)
+        self.assertEqual(result["sources"][0]["type"], "we_mp_rss_jsonl")
+        self.assertEqual(result["sources"][0]["locator"], "")
+        self.assertEqual(result["sources"][0]["channel"], "微信公众号")
+
+    def test_read_real_online_source_config_accepts_every_source_type(self):
+        """真实配置里的每种类型都必须能被线上同步白名单接受，否则整份配置读取会失败。"""
+        root = Path(__file__).resolve().parents[1]
+
+        result = read_online_source_config(root)
+
+        self.assertTrue(result["ok"], result.get("error"))
+        self.assertIsNone(result.get("error"))
+        # source_count 是用户可编辑源，不含内部 OPML wrapper
+        self.assertEqual(result["source_count"], len(result["sources"]))
+        self.assertIn("we_mp_rss_jsonl", {source["type"] for source in result["sources"]})
+
     def test_write_online_source_config_rejects_private_or_sensitive_values(self):
         root = Path(self.create_temp_dir())
 
@@ -504,6 +544,53 @@ class LocalServerTests(unittest.TestCase):
                     ]
                 },
             )
+
+    def test_write_online_source_config_blocks_bulk_delete(self):
+        root = Path(self.create_temp_dir())
+        existing_sources = [
+            {"name": f"Source {index}", "type": "rss", "locator": f"https://example.com/{index}.xml"}
+            for index in range(20)
+        ]
+        config_path = root / "config" / "online-sources.json"
+        config_path.parent.mkdir(parents=True)
+        config_path.write_text(json.dumps({"sources": existing_sources}), encoding="utf-8")
+
+        with self.assertRaisesRegex(ValueError, "^online_sources_bulk_delete_blocked:"):
+            write_online_source_config(root, {"sources": existing_sources[:1]})
+
+        saved = json.loads((root / "config" / "online-sources.json").read_text(encoding="utf-8"))
+        self.assertEqual(len(saved["sources"]), 20)
+
+    def test_write_online_source_config_allows_confirmed_bulk_delete(self):
+        root = Path(self.create_temp_dir())
+        existing_sources = [
+            {"name": f"Source {index}", "type": "rss", "locator": f"https://example.com/{index}.xml"}
+            for index in range(20)
+        ]
+        config_path = root / "config" / "online-sources.json"
+        config_path.parent.mkdir(parents=True)
+        config_path.write_text(json.dumps({"sources": existing_sources}), encoding="utf-8")
+
+        result = write_online_source_config(
+            root,
+            {"sources": existing_sources[:1], "confirm_bulk_delete": True},
+        )
+
+        self.assertEqual(result["source_count"], 1)
+
+    def test_write_online_source_config_allows_single_delete(self):
+        root = Path(self.create_temp_dir())
+        existing_sources = [
+            {"name": f"Source {index}", "type": "rss", "locator": f"https://example.com/{index}.xml"}
+            for index in range(20)
+        ]
+        config_path = root / "config" / "online-sources.json"
+        config_path.parent.mkdir(parents=True)
+        config_path.write_text(json.dumps({"sources": existing_sources}), encoding="utf-8")
+
+        result = write_online_source_config(root, {"sources": existing_sources[:19]})
+
+        self.assertEqual(result["source_count"], 19)
 
     def test_sync_online_source_config_commits_only_public_config_files(self):
         root = Path(self.create_temp_dir())
