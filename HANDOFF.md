@@ -1,6 +1,30 @@
 # HANDOFF.md
 
-## 当前最新交接：公众号桥接上线 + 面板清空事故修复 + 产品方向转向（2026-07-11）
+## 当前最新交接：公网全量时间流 + 微信新公众号修复（2026-07-12）
+
+- 日期：2026-07-12
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 分支：`master`，与远端同步（仅 `计划/` 下本地文档未入库，按惯例不提交）
+
+### 本轮已完成（两件事，均已公网浏览器验收）
+
+1. **公网数据改为全量归档时间流**（`cd9bf18`）：Actions 加 `--all-time`，公网从 24h 滚动窗口变为全量归档（604 条）；归档保留天数走 Actions Variable `ARCHIVE_DAYS`（默认 180）；修掉 `--all-time` 跳过归档修剪的无界增长隐患（`pipeline.prune_archive_records()`，时间兜底顺序 last_seen→published→first_seen→now 不可改）。动因：公网「已阅」随 24h 窗口滚动消失。
+2. **微信新公众号不出现的两层根因修复**（`a1ac149`）：发现层 `discover_we_mp_rss_feeds()` 从 `/rss`（缓存 XML，新号不更新）改走 `/rss/fresh`（直接查库，limit 100）；读取层 `WE_MP_RSS_JSONL_DEFAULT_MAX_ITEMS` 是全局总行数上限，20→200（否则多号并存时静默截断排后的号）。验收：公网「微信公众号 40」tab 猫笔刀与数字生命卡兹克均可见，0 JS 错误。
+
+### 下一轮建议从这里开始
+
+- **当前状态**：全部已验收上线，无未完成任务，无阻塞。
+- **验收命令**：`.\.venv\Scripts\python.exe -m pytest -q`（基线 **293 passed**）。浏览器验收是项目铁律，不可只跑单测。
+- **协作方式（重要）**：用户当前流程是「Claude 写施工计划到 `计划/` → Codex 执行 → Claude 验证/验收」。**Codex 插件当前不可用**：CC Switch 本地代理（`127.0.0.1:15721`，SUPER NB 分组 / gpt-5.6-sol）对 `/responses` 一律 403（报「Image generation is not enabled for this group」），续接/新线程/review 全被挡；恢复前由用户手动把计划文件投喂给 Codex。派发前可先跑一次 `/codex:review` 之类的轻量命令探活。
+- **口径备忘**：微信桥接三个 20 各不相同——实时通道 `WE_MP_RSS_DEFAULT_MAX_ITEMS=20`（每 feed）、导出脚本 `--max-items 20`（每 feed）、桥接 JSONL 读取上限（全局，已提至 200）。前两个不要动。
+- **可选待办**（用户尚未拍板，不要擅自动手）：
+  - `docs/CONFIG_REFERENCE.md` 已过时（刷新频率、`AI_RELEVANCE_THRESHOLD` / `WE_MP_RSS_JSONL_DIR` / `WECHAT_BRIDGE_*` / `ARCHIVE_DAYS` 等新变量未收录）。
+  - `README.md` 仍以「AI 新闻雷达」对外定位，是否改成订阅聚合器由用户决定。
+  - 王小七Fire 首采多带入的约 15 条超窗老动态仍在线上归档（无害沉底）；要清可在面板删源再重加。
+
+---
+
+## 历史交接：公众号桥接上线 + 面板清空事故修复 + 产品方向转向（2026-07-11）
 
 - 日期：2026-07-11
 - 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
