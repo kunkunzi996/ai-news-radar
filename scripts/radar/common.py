@@ -984,4 +984,31 @@ def first_collect_backfill_days() -> int:
     return max(0, min(env_int("FIRST_COLLECT_BACKFILL_DAYS", FIRST_COLLECT_BACKFILL_DAYS_DEFAULT), 365))
 
 
+def trim_first_collect_backfill_items(
+    items: list[RawItem],
+    now: datetime,
+    keep_latest: int,
+    backfill_days: int | None = None,
+) -> list[RawItem]:
+    """首采回填的统一截断：保留最新 keep_latest 条兜底 + 回填窗口内的其余条目。
+
+    线上 Actions 不带采集窗口参数（管线窗口过滤不生效），所以回填的时间
+    边界必须在 fetcher 层落实，否则首采会带入远超两个月的历史内容。
+    """
+    days = first_collect_backfill_days() if backfill_days is None else backfill_days
+    if days <= 0:
+        return items
+    backfill_start = now - timedelta(days=days)
+    ordered = sorted(
+        items,
+        key=lambda item: item.published_at or datetime.min.replace(tzinfo=timezone.utc),
+        reverse=True,
+    )
+    return [
+        item
+        for index, item in enumerate(ordered)
+        if index < keep_latest or (item.published_at and item.published_at >= backfill_start)
+    ]
+
+
 

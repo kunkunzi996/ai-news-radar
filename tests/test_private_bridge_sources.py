@@ -133,6 +133,35 @@ class PrivateBridgeSourceTests(unittest.TestCase):
         self.assertEqual(len(new_items), 8)
         self.assertTrue(new_statuses[0]["first_collect_backfill"])
 
+    def test_trim_first_collect_backfill_keeps_latest_and_window_only(self):
+        from datetime import timedelta
+
+        from scripts.radar.common import RawItem, trim_first_collect_backfill_items
+
+        now = datetime(2026, 7, 11, tzinfo=timezone.utc)
+
+        def item(age_days: int) -> RawItem:
+            return RawItem(
+                "bilibili_dynamic",
+                "Bilibili",
+                "新UP",
+                f"post {age_days}",
+                f"https://example.com/{age_days}",
+                now - timedelta(days=age_days),
+                {},
+            )
+
+        # 高频源：60 天内 8 条全保留，120/200 天前的超窗条目被丢弃。
+        active = [item(age) for age in (1, 5, 10, 20, 30, 40, 50, 59, 120, 200)]
+        kept = trim_first_collect_backfill_items(active, now, keep_latest=5, backfill_days=60)
+        self.assertEqual([i.title for i in kept], [f"post {age}" for age in (1, 5, 10, 20, 30, 40, 50, 59)])
+
+        # 低频源：两个月内没内容，仍按最新 5 条兜底。
+        stale = [item(age) for age in (100, 120, 140, 160, 180, 200)]
+        kept = trim_first_collect_backfill_items(stale, now, keep_latest=5, backfill_days=60)
+        self.assertEqual(len(kept), 5)
+        self.assertEqual(kept[0].title, "post 100")
+
     def test_resolves_rsshub_telegram_to_public_preview(self):
         bridge = resolve_opml_bridge_source("https://rsshub.app/telegram/channel/AI_News_CN")
         self.assertEqual(bridge["bridge_type"], "telegram")

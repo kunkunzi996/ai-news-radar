@@ -16,7 +16,6 @@ from scripts.radar.common import (
     AGENTMAIL_DIGEST_FILE,
     DEPLOYED_SOURCE_SCOPE_DEFAULT,
     GITHUB_REPO_SUBSCRIPTION_API_URL,
-    GITHUB_REPO_SUBSCRIPTION_BACKFILL_MAX_ITEMS,
     GITHUB_REPO_SUBSCRIPTION_MAX_ITEMS,
     GITHUB_REPO_SUBSCRIPTION_SITE_ID,
     GITHUB_REPO_SUBSCRIPTION_SITE_NAME,
@@ -358,7 +357,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
                     repo_label=repo_label,
                     site_name=subscription.get("name") or GITHUB_REPO_SUBSCRIPTION_SITE_NAME,
                     display_name=display_name,
-                    max_items=GITHUB_REPO_SUBSCRIPTION_BACKFILL_MAX_ITEMS if github_first_collect else GITHUB_REPO_SUBSCRIPTION_MAX_ITEMS,
+                    first_collect_backfill=github_first_collect,
                 )
                 github_repo_items.extend(items)
                 github_status_children.append(

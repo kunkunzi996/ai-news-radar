@@ -31,6 +31,7 @@ from scripts.radar.common import (
     iso,
     normalize_url,
     parse_unix_timestamp,
+    trim_first_collect_backfill_items,
 )
 
 """Bilibili dynamic source fetcher."""
@@ -689,6 +690,12 @@ def maybe_fetch_bilibili_dynamic(
                             max_pages=account_max_pages,
                             api_url=full_api_url,
                         )
+                        if first_collect_backfill:
+                            items = trim_first_collect_backfill_items(
+                                items,
+                                now,
+                                keep_latest=int(status["max_items_per_account"]),
+                            )
                         account_status["fetch_mode"] = "cookie_full_dynamic"
                         account_status["ok"] = True
                         account_status["item_count"] = len(items)
@@ -706,6 +713,12 @@ def maybe_fetch_bilibili_dynamic(
                     max_items=account_max_items,
                     api_url=api_url,
                 )
+                if first_collect_backfill:
+                    items = trim_first_collect_backfill_items(
+                        items,
+                        now,
+                        keep_latest=int(status["max_items_per_account"]),
+                    )
                 account_status["fetch_mode"] = "public_opus_fallback" if errors else "public_opus"
                 if errors:
                     account_status["fallback_reason"] = errors[-1]

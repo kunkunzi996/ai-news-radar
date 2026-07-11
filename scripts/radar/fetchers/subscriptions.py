@@ -7,7 +7,7 @@ import os
 import re
 import time
 import xml.etree.ElementTree as ET
-from datetime import datetime, timedelta
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
@@ -18,6 +18,7 @@ from bs4 import BeautifulSoup
 from scripts.radar.common import (
     BROWSER_UA,
     GITHUB_REPO_SUBSCRIPTION_API_URL,
+    GITHUB_REPO_SUBSCRIPTION_BACKFILL_MAX_ITEMS,
     GITHUB_REPO_SUBSCRIPTION_HTML_URL,
     GITHUB_REPO_SUBSCRIPTION_MAX_ITEMS,
     GITHUB_REPO_SUBSCRIPTION_SITE_ID,
@@ -47,6 +48,7 @@ from scripts.radar.common import (
     env_int,
     first_collect_backfill_days,
     first_non_empty,
+    trim_first_collect_backfill_items,
     host_of_url,
     normalize_url,
     parse_date_any,
@@ -69,8 +71,10 @@ def fetch_github_repo_subscription(
     site_name: str = GITHUB_REPO_SUBSCRIPTION_SITE_NAME,
     display_name: str = "",
     max_items: int = GITHUB_REPO_SUBSCRIPTION_MAX_ITEMS,
+    first_collect_backfill: bool = False,
 ) -> list[RawItem]:
-    params = {"per_page": max(1, min(100, int(max_items or 1)))}
+    fetch_count = GITHUB_REPO_SUBSCRIPTION_BACKFILL_MAX_ITEMS if first_collect_backfill else int(max_items or 1)
+    params = {"per_page": max(1, min(100, fetch_count))}
     headers = {
         "Accept": "application/vnd.github+json",
         "User-Agent": "AI-News-Radar/0.7 github-release-subscription",
@@ -92,7 +96,7 @@ def fetch_github_repo_subscription(
 
     out: list[RawItem] = []
     seen: set[str] = set()
-    for release in payload[:max_items]:
+    for release in payload[:fetch_count]:
         if not isinstance(release, dict) or release.get("draft"):
             continue
         tag = str(release.get("tag_name") or "").strip()
@@ -126,6 +130,8 @@ def fetch_github_repo_subscription(
                 },
             )
         )
+    if first_collect_backfill:
+        out = trim_first_collect_backfill_items(out, now, keep_latest=int(max_items or 1))
     return out
 
 
@@ -955,13 +961,12 @@ def fetch_opml_rss(
                 and all(("opmlrss", item.source) not in existing_source_keys for item in local_items)
             )
             if first_collect_backfill:
-                backfill_start = now - timedelta(days=backfill_days)
-                local_items = [
-                    item
-                    for index, item in enumerate(local_items)
-                    if index < OPML_RSS_DEFAULT_MAX_ITEMS_PER_FEED
-                    or (item.published_at and item.published_at >= backfill_start)
-                ]
+                local_items = trim_first_collect_backfill_items(
+                    local_items,
+                    now,
+                    keep_latest=OPML_RSS_DEFAULT_MAX_ITEMS_PER_FEED,
+                    backfill_days=backfill_days,
+                )
             else:
                 local_items = local_items[:OPML_RSS_DEFAULT_MAX_ITEMS_PER_FEED]
 
