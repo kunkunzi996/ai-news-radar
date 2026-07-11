@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-07-11T10:20:20Z",
+  "updated_at": "2026-07-11T16:08:26Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -99,6 +99,17 @@
       "channel": "B站动态",
       "target": "罗永浩的十字路口",
       "locator": "538596213",
+      "env": "",
+      "notes": "公开 UID"
+    },
+    {
+      "id": "online_bilibili_680677803",
+      "name": "王小七Fire",
+      "type": "bilibili_dynamic",
+      "enabled": true,
+      "channel": "B站动态",
+      "target": "王小七Fire",
+      "locator": "680677803",
       "env": "",
       "notes": "公开 UID"
     },
