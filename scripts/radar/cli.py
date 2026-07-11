@@ -34,6 +34,8 @@ from scripts.radar.common import (
     SOURCE_SCOPE_TESTED_CREATORS,
     UTC,
     WAYTOAGI_DEFAULT,
+    WE_MP_RSS_JSONL_SITE_ID,
+    WE_MP_RSS_JSONL_SITE_NAME,
     WE_MP_RSS_SITE_ID,
     WE_MP_RSS_SITE_NAME,
     WEWE_RSS_SITE_ID,
@@ -81,6 +83,7 @@ from scripts.radar.fetchers.subscriptions import (
     fetch_github_repo_subscription,
     fetch_maobidao_wechat_subscription,
     fetch_opml_rss,
+    fetch_we_mp_rss_jsonl_subscription,
     fetch_we_mp_rss_subscription,
     fetch_wewe_rss_subscription,
 )
@@ -128,6 +131,7 @@ class RunContext:
     collect_window_hours: int
     wewe_rss_enabled: bool
     we_mp_rss_enabled: bool
+    we_mp_rss_jsonl_enabled: bool
     now: datetime
     archive_path: Path
     latest_path: Path
@@ -240,6 +244,11 @@ def prepare_run_context(args: argparse.Namespace) -> RunContext | int:
     )
     if we_mp_rss_enabled and active_source_ids is not None:
         active_source_ids = frozenset(site_id for site_id in active_source_ids if site_id != MAOBIDAO_WECHAT_SITE_ID)
+    we_mp_rss_jsonl_enabled = env_flag("WE_MP_RSS_JSONL_ENABLED") and (
+        active_source_ids is None or WE_MP_RSS_JSONL_SITE_ID in active_source_ids
+    )
+    if we_mp_rss_jsonl_enabled and active_source_ids is not None:
+        active_source_ids = frozenset(site_id for site_id in active_source_ids if site_id != MAOBIDAO_WECHAT_SITE_ID)
 
     now = utc_now()
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -273,6 +282,7 @@ def prepare_run_context(args: argparse.Namespace) -> RunContext | int:
         collect_window_hours=collect_window_hours,
         wewe_rss_enabled=wewe_rss_enabled,
         we_mp_rss_enabled=we_mp_rss_enabled,
+        we_mp_rss_jsonl_enabled=we_mp_rss_jsonl_enabled,
         now=now,
         archive_path=archive_path,
         latest_path=latest_path,
@@ -299,6 +309,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
     scoped_by_config = ctx.scoped_by_config
     wewe_rss_enabled = ctx.wewe_rss_enabled
     we_mp_rss_enabled = ctx.we_mp_rss_enabled
+    we_mp_rss_jsonl_enabled = ctx.we_mp_rss_jsonl_enabled
     paid_source_state = ctx.paid_source_state
     if scoped_to_tested_creators:
         raw_items, statuses = [], []
@@ -424,6 +435,29 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
                 "feeds": we_mp_rss_status.get("feeds"),
                 "coverage_note": we_mp_rss_status.get("coverage_note"),
                 "privacy": we_mp_rss_status.get("privacy"),
+            }
+        )
+    if we_mp_rss_jsonl_enabled:
+        we_mp_rss_jsonl_items, we_mp_rss_jsonl_status = fetch_we_mp_rss_jsonl_subscription(
+            session,
+            now,
+            jsonl_dir=os.environ.get("WE_MP_RSS_JSONL_DIR"),
+        )
+        raw_items.extend(we_mp_rss_jsonl_items)
+        statuses.append(
+            {
+                "site_id": WE_MP_RSS_JSONL_SITE_ID,
+                "site_name": WE_MP_RSS_JSONL_SITE_NAME,
+                "ok": bool(we_mp_rss_jsonl_status.get("ok")),
+                "item_count": int(we_mp_rss_jsonl_status.get("item_count") or 0),
+                "duration_ms": int(we_mp_rss_jsonl_status.get("duration_ms") or 0),
+                "error": we_mp_rss_jsonl_status.get("error"),
+                "source_kind": we_mp_rss_jsonl_status.get("source_kind"),
+                "jsonl_dir": we_mp_rss_jsonl_status.get("jsonl_dir"),
+                "jsonl_file": we_mp_rss_jsonl_status.get("jsonl_file"),
+                "max_items": we_mp_rss_jsonl_status.get("max_items"),
+                "coverage_note": we_mp_rss_jsonl_status.get("coverage_note"),
+                "privacy": we_mp_rss_jsonl_status.get("privacy"),
             }
         )
     bilibili_dynamic_status = bilibili_dynamic_status_base()

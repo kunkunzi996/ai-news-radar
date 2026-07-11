@@ -35,6 +35,9 @@ from scripts.radar.common import (
     UTC,
     WE_MP_RSS_BASE_URL_DEFAULT,
     WE_MP_RSS_DEFAULT_MAX_ITEMS,
+    WE_MP_RSS_JSONL_DEFAULT_MAX_ITEMS,
+    WE_MP_RSS_JSONL_SITE_ID,
+    WE_MP_RSS_JSONL_SITE_NAME,
     WE_MP_RSS_SITE_ID,
     WE_MP_RSS_SITE_NAME,
     WEWE_RSS_BASE_URL_DEFAULT,
@@ -527,6 +530,94 @@ def fetch_we_mp_rss_subscription(
     finally:
         status["duration_ms"] = int((time.perf_counter() - start) * 1000)
 
+
+
+def parse_we_mp_rss_jsonl_items(
+    jsonl_text: str,
+    now: datetime,
+    *,
+    max_items: int,
+) -> list[RawItem]:
+    out: list[RawItem] = []
+    seen_urls: set[str] = set()
+    limit = max(1, min(1000, int(max_items)))
+    for line in str(jsonl_text or "").splitlines():
+        if len(out) >= limit:
+            break
+        if not line.strip():
+            continue
+        try:
+            payload = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if not isinstance(payload, dict):
+            continue
+        url = normalize_url(first_non_empty(payload.get("url")))
+        title = clean_wp_rendered_text(payload.get("title"), max_chars=160)
+        if not url or not title or url in seen_urls:
+            continue
+        seen_urls.add(url)
+        account = clean_wp_rendered_text(payload.get("account"), max_chars=80) or WE_MP_RSS_JSONL_SITE_NAME
+        summary = clean_wp_rendered_text(payload.get("summary"), max_chars=500)
+        feed_id = first_non_empty(payload.get("feed_id"))
+        published_at = parse_date_any(payload.get("published_at"), now)
+        out.append(
+            RawItem(
+                site_id=WE_MP_RSS_SITE_ID,
+                site_name=WE_MP_RSS_SITE_NAME,
+                source=account,
+                title=title,
+                url=url,
+                published_at=published_at,
+                meta={
+                    "summary": summary,
+                    "we_mp_feed_id": feed_id,
+                    "source_kind": "we_mp_rss_wechat_subscription",
+                    "search_surface": "we_mp_rss_jsonl_bridge",
+                },
+            )
+        )
+    return out
+
+
+def fetch_we_mp_rss_jsonl_subscription(
+    session: requests.Session,
+    now: datetime,
+    *,
+    jsonl_dir: str | None = None,
+    max_items: int | None = None,
+) -> tuple[list[RawItem], dict[str, Any]]:
+    del session
+    start = time.perf_counter()
+    configured_dir = str(jsonl_dir if jsonl_dir is not None else os.environ.get("WE_MP_RSS_JSONL_DIR") or "").strip()
+    limit = max(1, min(1000, int(max_items or env_int("WE_MP_RSS_JSONL_MAX_ITEMS", WE_MP_RSS_JSONL_DEFAULT_MAX_ITEMS))))
+    jsonl_path = Path(configured_dir).expanduser() / "wechat_contents_latest.jsonl" if configured_dir else Path()
+    status: dict[str, Any] = {
+        "enabled": True,
+        "ok": False,
+        "item_count": 0,
+        "duration_ms": 0,
+        "error": None,
+        "source_kind": WE_MP_RSS_JSONL_SITE_ID,
+        "jsonl_dir": configured_dir,
+        "jsonl_file": jsonl_path.name if configured_dir else None,
+        "max_items": limit,
+        "coverage_note": "reads_we_mp_rss_bridge_jsonl",
+        "privacy": "public_article_fields_only_no_cookies_or_auth_state",
+    }
+    try:
+        if not configured_dir or not jsonl_path.is_file():
+            status["error"] = "missing_we_mp_rss_jsonl"
+            return [], status
+        items = parse_we_mp_rss_jsonl_items(jsonl_path.read_text(encoding="utf-8-sig"), now, max_items=limit)
+        status["ok"] = True
+        status["item_count"] = len(items)
+        return items, status
+    except OSError as exc:
+        status["error"] = str(exc)
+        return [], status
+    finally:
+        status["duration_ms"] = int((time.perf_counter() - start) * 1000)
 
 
 def parse_opml_subscriptions(opml_path: Path) -> list[dict[str, str]]:

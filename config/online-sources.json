@@ -202,6 +202,17 @@
       "notes": "公开 feed"
     },
     {
+      "id": "online_we_mp_rss_maobidao",
+      "name": "\u732b\u7b14\u5200 (WeRSS)",
+      "type": "we_mp_rss_jsonl",
+      "enabled": false,
+      "channel": "\u5fae\u4fe1\u516c\u4f17\u53f7",
+      "target": "\u732b\u7b14\u5200",
+      "locator": "",
+      "env": "",
+      "notes": "\u672c\u673a sidecar \u91c7\u96c6 \u2192 wechat-bridge \u6865\u63a5\u3002locator \u7559\u7a7a=\u8bfb WE_MP_RSS_JSONL_DIR \u4e0b latest JSONL\u3002"
+    },
+    {
       "id": "online_opmlrss",
       "name": "线上 RSS/YouTube 订阅包",
       "type": "opmlrss",

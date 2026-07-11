@@ -68,12 +68,43 @@ jobs:
             echo "local_dir=" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Fetch WeChat bridge JSONL
+        id: wechat_bridge
+        env:
+          WECHAT_BRIDGE_REPO: ${{ vars.WECHAT_BRIDGE_REPO }}
+          WECHAT_BRIDGE_SSH_KEY: ${{ secrets.WECHAT_BRIDGE_SSH_KEY }}
+        run: |
+          # The private bridge contains public article fields only; auth state stays on the local sidecar.
+          if [ -z "$WECHAT_BRIDGE_REPO" ] || [ -z "$WECHAT_BRIDGE_SSH_KEY" ]; then
+            echo "::warning::wechat bridge not configured; continuing without WeChat"
+            echo "local_dir=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          key_file="$RUNNER_TEMP/wechat_bridge_key"
+          printf '%s\n' "$WECHAT_BRIDGE_SSH_KEY" > "$key_file"
+          chmod 600 "$key_file"
+          bridge_dir="$RUNNER_TEMP/wechat-bridge"
+          if ! GIT_SSH_COMMAND="ssh -i $key_file -o StrictHostKeyChecking=accept-new" git clone --quiet --depth 1 "git@github.com:${WECHAT_BRIDGE_REPO}.git" "$bridge_dir"; then
+            echo "::warning::wechat bridge clone failed; continuing without WeChat"
+            echo "local_dir=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if ls "$bridge_dir"/output/wechat/jsonl/wechat_contents_*.jsonl >/dev/null 2>&1; then
+            echo "bridge jsonl found:"
+            ls -lh "$bridge_dir"/output/wechat/jsonl/
+            echo "local_dir=$bridge_dir" >> "$GITHUB_OUTPUT"
+          else
+            echo "::warning::wechat bridge repo has no wechat_contents_*.jsonl; continuing without WeChat"
+            echo "local_dir=" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Update data
         env:
           BILIBILI_DYNAMIC_MAX_ITEMS: ${{ vars.BILIBILI_DYNAMIC_MAX_ITEMS || 10 }}
           BILIBILI_DYNAMIC_MAX_PAGES: ${{ vars.BILIBILI_DYNAMIC_MAX_PAGES || 8 }}
           BILIBILI_COOKIE: ${{ secrets.BILIBILI_COOKIE }}
           MEDIACRAWLER_LOCAL_DIR: ${{ steps.douyin_bridge.outputs.local_dir }}
+          WE_MP_RSS_JSONL_DIR: ${{ steps.wechat_bridge.outputs.local_dir }}/output/wechat/jsonl
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           python scripts/update_news.py --source-config config/online-sources.json --output-dir data --window-hours 24 --archive-days 21

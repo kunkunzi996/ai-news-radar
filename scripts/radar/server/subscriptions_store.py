@@ -158,6 +158,7 @@ PURGE_TRACKED_SITE_IDS = frozenset(
     {
         "wewe_rss",
         "we_mp_rss",
+        "we_mp_rss_jsonl",
         "bilibili_dynamic",
         "mediacrawler_douyin",
         "mediacrawler_xhs",
