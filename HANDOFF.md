@@ -1,6 +1,90 @@
 # HANDOFF.md
 
-## 当前最新交接：取消订阅联动清理历史条目（2026-07-12）
+## 当前最新交接：信源配置迁入独立设置抽屉（2026-07-13）
+
+- 日期：2026-07-13
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 分支：`master`，已推送（提交 `6134364`），与远端同步
+
+### 本轮已完成（一个提交，本地 + 公网两种形态浏览器验收通过）
+
+**需求**：用户要把信源配置从首页时间流上方「拿走」，给它一个专门入口。
+
+**评估时发现的真问题**（不只是位置）：那个叫「信源配置」的折叠面板里实际塞了**四样东西**：
+
+| 块 | 实际身份 | 写哪个文件 |
+|---|---|---|
+| 工具栏（一键采集/刷新看板/重启本地服务） | 运维控制台，根本不是配置 | 不写文件 |
+| 本地采集 | 运维状态面板 | 不写文件 |
+| 线上信源 | **真·信源配置，决定公网采集什么** | `config/online-sources.json` |
+| 订阅成员 + 高级信源配置 | 本机私有采集配置 | `sources.config.json` |
+
+这两份配置口径不一致**已经真出过事**（2026-07-12 GitHub Release 9 条被误清）。所以只搬家不解决问题，会把混乱原样搬进新房间。
+
+**本轮做的（第一刀）**：首页顶栏加「⚙ 设置」入口 → 全屏抽屉 → 按语义分两个 tab：
+
+- **「信源」tab** = 线上信源，顶部黄色警示条「改动点同步后会推送到 GitHub，决定公网采集哪些信源」
+- **「本机采集」tab** = 工具栏 + 本地采集状态 + 「本机私有配置」折叠区（订阅成员/高级信源配置，标注「写入 sources.config.json，只影响本机采集，不影响公网」）
+- 公网静态页按 `canUseLocalBackend()` **整个隐藏「本机采集」tab**
+
+**没做的（第二刀，用户尚未拍板，不要擅自动手）**：真正统一那两份配置。本轮只在界面上把它们分清楚、标注清楚。
+
+### 把风险压住的关键：所有元素 id 一个没改
+
+`dom.js` 是顶层 `getElementById` 集中缓存。只要 id 不变、元素仍在 DOM 里，搬位置就是安全的——`local-collect.js` / `online-source-config.js` / `source-config.js` / `subscriptions.js` 全部逻辑**零改动**。改动只落在 HTML 挂载位置 + CSS + 新增的 `settings-drawer.js`。
+
+**下次再搬 UI 块时沿用这条**：先确认没有代码依赖被搬容器的状态（本轮确认过：无任何代码依赖 `.source-config-wrap` 这个 `<details>` 的 open 状态），然后只改嵌套位置、不动任何 id。
+
+### 本轮修掉的既有 bug（不是搬家引入的）
+
+`.online-source-form { display: grid }` 的优先级**高于浏览器给 `[hidden]` 的 `display: none`**，导致 `online-source-config.js:320` 那句 `onlineSourceFormEl.hidden = !isLocal` **一直是失效的**——公网访客始终能看到「保存配置」表单，填了点保存只会失败。已加 `.online-source-form[hidden] { display: none }`。
+
+⚠️ **同类隐患**：项目里凡是「JS 设 `el.hidden = true` + CSS 给了 `display: flex/grid/block`」的组合都有这个坑。改这类显隐逻辑时记得配一条 `[hidden] { display: none }`。
+
+### 焦点陷阱：连错三版，全靠浏览器实测抓出来
+
+Codex review 提了 P2（抽屉声明了 `aria-modal` 却没隔离键盘焦点）。修的时候判断「抽屉内哪些元素真能 Tab 到」，**连错三次**：
+
+1. `offsetParent !== null` —— 折叠 `<details>` 里的按钮被误判为可见
+2. `getClientRects().length > 0` —— 一样误判，**Chrome 对折叠 details 的内容仍保留 box**
+3. `closest("details:not([open])")` —— 还是漏，因为「高级信源配置」的 summary **嵌套**在外层折叠的「本机私有配置」里，`closest()` 只看最近一层就放行了
+
+最终改为**逐层上溯所有祖先 `details`**（`isFocusableInDrawer()`）才修对。加上打开时给抽屉兄弟节点设 `inert`、关闭时还原焦点。
+
+**教训**：这三版静态检查全过、`node --check` 全过、看代码全都「对」，只有真跑浏览器按 Tab 才暴露。项目铁律（浏览器验收）不是形式主义。
+
+### 本轮验收结果
+
+- pytest **314 passed**；`npm run test:e2e` **3 passed**
+- Playwright 本地 `127.0.0.1:8080`：首页已无配置面板、23 个线上源真实加载、两 tab 可切、Esc 关闭、**0 JS 错误**
+- Playwright 公网静态形态：「本机采集」tab 隐藏、表单隐藏、同步按钮禁用、**0 JS 错误**
+- 焦点陷阱实测：Tab×40 / Shift+Tab×20 / **4 层折叠区全展开后 Tab×60** 均 **0 次漏出**；强行 focus 背景搜索框会被弹回抽屉
+- 用户已手动验收通过
+
+### 复现「公网形态」的方法（本轮新摸索出来的，很有用）
+
+`canUseLocalBackend()`（`utils.js:42`）只认 `localhost / 127.0.0.1 / ::1 / 0.0.0.0`。所以：
+
+1. 在项目根跑 `python -m http.server 8099`（纯静态，等价 GitHub Pages）
+2. 用**本机局域网 IP** 访问 `http://<局域网IP>:8099/`
+
+即可在本地复现公网静态页形态。**不要用 `--host-resolver-rules` 映射假域名到 8080**——`local_server.py` 的 Host 守卫会直接拒（返回 `ERR_EMPTY_RESPONSE`），这守卫本身是对的。
+
+### 下一轮建议从这里开始
+
+- **当前状态**：全部已验收上线，无未完成任务，无阻塞。
+- **验收命令**：`.\.venv\Scripts\python.exe -m pytest -q`（基线 **314 passed**）。浏览器验收是项目铁律，不可只跑单测。
+- **改前端必查**：改了 `assets/js/*.js` 或 `assets/styles.css` **必须** bump `index.html` 里对应的 `?v=`，否则浏览器复用旧文件。当前版本号：`styles.css?v=settings-drawer-0713a`、`settings-drawer.js?v=settings-drawer-0713b`。
+- **推送前必做**：`git pull --rebase`。Actions 会持续往远端写 `data/*.json` 快照提交，本轮推送前就撞上了一个（`021dac7`），不 rebase 必被拒。
+- **可选待办**（用户尚未拍板，不要擅自动手）：
+  - **两份配置口径统一**（`config/online-sources.json` vs `sources.config.json`）。这是「第二刀」，会碰采集管线，属于要单独立项的活。本轮只做了界面分层与标注。
+  - 小红书通道 `mediacrawler_xhs` 尚未纳入可枚举白名单（取消小红书订阅时历史仍会残留）。当前无小红书数据，暂不处理。
+  - `docs/CONFIG_REFERENCE.md` 已过时（未收录 `AI_RELEVANCE_THRESHOLD` / `WE_MP_RSS_JSONL_DIR` / `WECHAT_BRIDGE_*` / `ARCHIVE_DAYS` / `FIRST_COLLECT_BACKFILL_DAYS` 等变量）。
+  - 工作区有我跑验收时生成的 `output/playwright/` 截图（未跟踪，不影响提交），可自行删除。
+
+---
+
+## 历史交接：取消订阅联动清理历史条目（2026-07-12）
 
 - 日期：2026-07-12
 - 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
