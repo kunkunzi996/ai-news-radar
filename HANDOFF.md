@@ -1,6 +1,55 @@
 # HANDOFF.md
 
-## 当前最新交接：公网全量时间流 + 微信新公众号修复（2026-07-12）
+## 当前最新交接：取消订阅联动清理历史条目（2026-07-12）
+
+- 日期：2026-07-12
+- 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
+- 分支：`master`，与远端同步（仅 `计划/` 下本地文档未入库，按惯例不提交）
+
+### 本轮已完成（两个提交，均已浏览器验收）
+
+**需求**：用户取消了 B站 UP「anno大笨蛋」的订阅，但他之前采集的 77 条历史内容还留在页面上。期望取消订阅后历史一并清除。
+
+1. **首版 `8a13a39`**：新增第二层归档清理 `filter_archive_by_subscriptions()`（`scripts/radar/pipeline.py`）。根因是条目的 `site_id` 只到**通道级**（`bilibili_dynamic`），具体订阅对象只体现在 `source`（作者名）字段，而原有清理只有按 site_id 的 `filter_archive_by_source_ids()` 一层——取消通道内的单个作者，旧条目一条都掉不下去。
+2. **修复 `f25eb25`**：两轮 review 挖出的问题全部修掉（详见下方「三道护栏」）。首版实际**没生效**（清理开关挂在「配置文件名是不是叫 online-sources.json」上，本地默认加载的是 `sources.config.json`，整段被静默跳过，77 条纹丝未动）。
+
+### 三道护栏（缺一不可，全是真踩过的坑，不要「优化」掉）
+
+1. **`is_online_panel_config()`（`config_runtime.py`）只认 `mode=online-public-source-config`**。仓库根 `sources.config.json` 是**容器型**格式：它的 bilibili 记录 `target` 是 `"Koji杨远骋at十字路口,夏鹏本鹏"` 这种**逗号串**（一条记录多个 UP 主）。拿它去清理，会把整串当成一个作者名，一次删光 466 条 B站条目。**不要退回用文件名/路径判断。**
+2. **`ENUMERABLE_SUBSCRIPTION_SITE_IDS`（`common.py`）只含 `bilibili_dynamic` + `mediacrawler_douyin`**。`opmlrss`（一条配置 = 一整个 OPML 包，内含宝玉/Wired AI/NVIDIA/InfoQ…）、`we_mp_rss_jsonl`（一条配置 = 一个目录，内含猫笔刀/数字生命卡兹克/卡尔的AI沃茨）、`github_*`（线上配置里根本没有）都是容器型/遗留通道，**严禁加入**，加了就是整片误删（与 2026-07-11 白名单清空事故同类）。
+3. **熔断：某通道归档条目「零命中」订阅名单却要删条目时，跳过该通道清理**，可用 `--force-subscription-cleanup` 强制放行。⚠️ **熔断绝不可退回按「删除比例」判定**——「技术爬爬虾」一个人就占 B站归档 43%，按比例熔断会让「取消一个大 UP 主」每轮比例不变、永远熔断、永远清不掉，而前端还承诺「下次采集时一并清除」。
+
+### 抖音的特殊处理（别按名字删）
+
+抖音条目的 `source` 存的是**抖音账号真实昵称**（`fetchers/mediacrawler.py` 里 `creator` 优先取 JSONL 的 `nickname`），而面板里的名字是**用户自己起的备注名**，两者只是碰巧一致。故抖音改为按 **`sec_uid` 精确匹配**（配置 locator 就是含 sec_uid 的主页链接）。为此把 `douyin_sec_user_id` 加进了 `PUBLIC_RAW_META_FIELDS` 白名单（否则它落不进归档）。**存量没有 sec_uid 的老条目一律保留，且不计入熔断的命中数**——若把它们算作命中，昵称错配的事故就熔断不了了。
+
+### 关键操作口径
+
+- **本地执行清理必须带配置参数**：`python scripts/update_news.py --source-config config/online-sources.json --output-dir data --window-hours 24 --all-time`。不带 `--source-config` 会加载 `sources.config.json`（容器型），**不做任何清理**——这是设计如此，不是 bug。
+- **先审计再清理**：`python -m scripts.audit_orphan_items`（只读，默认读面板配置，会列出「下次采集将清理谁、各多少条」；加 `--force` 可预览强制清理结果）。
+- 线上 Actions 命令里本来就传了 `--source-config config/online-sources.json`，所以云端自动生效。
+
+### 本轮验收结果
+
+- pytest **304 passed**（基线 293 → 304，新增熔断/容器型保护/抖音 sec_uid 等回归测试）。
+- 数据：`anno大笨蛋` 77 条 → **0 条**，archive 638 → 562。**零误伤**：B站其余 8 个 UP、微信 3 个号、OPML 全部、抖音 4 个号一条没少。
+- Playwright 实测：点「删除」弹窗文案为「该源已采集的历史内容会在下次采集时一并清除」，点取消后该源仍在列表；把开关切到「停用」也弹确认，点取消后**开关正确复位回「启用」**（没有留下假状态）。
+- **副作用（用户已确认接受）**：GitHub Release 的 9 条被**第一层** `filter_archive_by_source_ids` 清掉了。因为面板配置 `config/online-sources.json` 里没有 GitHub 源，改用面板配置跑管线后该通道整体不在启用名单里。这是「两份配置口径不一致」的老账被暴露出来，不是本次功能的 bug。用户决定 GitHub Release 源不要了。
+
+### 下一轮建议从这里开始
+
+- **当前状态**：全部已验收，无未完成任务，无阻塞。
+- **验收命令**：`.\.venv\Scripts\python.exe -m pytest -q`（基线 **304 passed**）。浏览器验收是项目铁律，不可只跑单测。
+- **协作方式**：Claude 写施工计划到 `计划/` → Codex 执行 → Claude 验证/验收。**Codex 插件已恢复可用**（本轮 `/codex:review` 跑通；注意它只审「当前未提交改动」，改动已 commit+push 后再跑它会审不到、转而去挑工作区里其它未跟踪文件）。Codex 有每日用量上限，撞到会提示恢复时间。
+- **已知行为，不是 bug**：在面板里**改某个源的名字**，等于把旧名字的历史内容判成「已取消订阅」而清掉（重采可回来）。B站按名字匹配是安全的（条目 source 就取自配置名）；抖音已改为按 ID 匹配，不受改名影响。
+- **可选待办**（用户尚未拍板，不要擅自动手）：
+  - 小红书通道 `mediacrawler_xhs` 尚未纳入可枚举白名单（结构与抖音同构，取消小红书订阅时历史仍会残留）。当前无小红书数据，暂不处理。
+  - `docs/CONFIG_REFERENCE.md` 已过时（未收录 `AI_RELEVANCE_THRESHOLD` / `WE_MP_RSS_JSONL_DIR` / `WECHAT_BRIDGE_*` / `ARCHIVE_DAYS` / `FIRST_COLLECT_BACKFILL_DAYS` 等变量）。
+  - `README.md` 仍以「AI 新闻雷达」对外定位，是否改成订阅聚合器由用户决定。
+
+---
+
+## 历史交接：公网全量时间流 + 微信新公众号修复（2026-07-12）
 
 - 日期：2026-07-12
 - 主项目路径：`E:\AI-news-reader\ai-news-radar-run`
