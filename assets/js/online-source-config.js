@@ -211,7 +211,14 @@ function editOnlineSourceRecord(record) {
 }
 
 function removeOnlineSourceRecord(recordId) {
-  state.onlineSourceConfig.sources = (state.onlineSourceConfig?.sources || []).filter((source) => source.id !== recordId);
+  const sources = state.onlineSourceConfig?.sources || [];
+  const target = sources.find((source) => source.id === recordId);
+  const label = String(target?.name || target?.target || recordId || "该信源");
+  const confirmed = window.confirm(
+    `确定删除「${label}」吗？\n\n该源已采集的历史内容会在下次采集时一并清除。`
+  );
+  if (!confirmed) return;
+  state.onlineSourceConfig.sources = sources.filter((source) => source.id !== recordId);
   clearOnlineSourceForm();
   renderOnlineSourceConfig();
   markOnlineSourceDirty("未保存：已从线上信源草稿删除");

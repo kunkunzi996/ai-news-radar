@@ -149,6 +149,31 @@ def filter_archive_by_source_ids(
     }
 
 
+def filter_archive_by_subscriptions(
+    archive: dict[str, dict[str, Any]],
+    allowed_names_by_site: dict[str, frozenset[str]] | None,
+) -> tuple[dict[str, dict[str, Any]], dict[tuple[str, str], int]]:
+    """按订阅对象清理归档，并返回各对象被删条数。"""
+    if not allowed_names_by_site:
+        return archive, {}
+
+    kept: dict[str, dict[str, Any]] = {}
+    removed: dict[tuple[str, str], int] = {}
+    for item_id, record in archive.items():
+        site_id = str(record.get("site_id") or "")
+        allowed = allowed_names_by_site.get(site_id)
+        # 未列入白名单或名单为空时宁可不删，避免配置异常造成整片误删。
+        if not allowed:
+            kept[item_id] = record
+            continue
+        source = str(record.get("source") or "")
+        if source in allowed:
+            kept[item_id] = record
+            continue
+        removed[(site_id, source)] = removed.get((site_id, source), 0) + 1
+    return kept, removed
+
+
 def filter_raw_items_by_collect_window(
     raw_items: list[RawItem],
     now: datetime,

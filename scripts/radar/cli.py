@@ -59,6 +59,7 @@ from scripts.radar.config_runtime import (
     load_paid_source_state,
     load_source_config,
     normalize_source_scope,
+    source_config_enabled_subscription_names,
     source_config_subscriptions_for_site,
     source_ids_for_scope,
     sync_paid_source_status_timestamps,
@@ -104,6 +105,7 @@ from scripts.radar.pipeline import (
     collect_all,
     dedupe_items_by_title_url,
     event_time,
+    filter_archive_by_subscriptions,
     filter_archive_by_source_ids,
     filter_raw_items_by_collect_window,
     is_ai_related_record,
@@ -268,6 +270,17 @@ def prepare_run_context(args: argparse.Namespace) -> RunContext | int:
     paid_source_state_path = output_dir / PAID_SOURCE_STATE_FILE
 
     archive = filter_archive_by_source_ids(load_archive(archive_path), active_source_ids)
+    # 第二层清理：取消订阅的 B站 UP 主 / 抖音号，其历史条目一并移除。
+    # 只有线上配置成功加载时才执行；配置异常时绝不清理。
+    source_config_path = Path(str(source_config_status.get("path") or ""))
+    online_source_config_active = source_config_active and source_config_path.name == "online-sources.json"
+    if online_source_config_active:
+        archive, removed_by_subscription = filter_archive_by_subscriptions(
+            archive,
+            source_config_enabled_subscription_names(source_config),
+        )
+        for (site_id, source), count in sorted(removed_by_subscription.items(), key=lambda kv: -kv[1]):
+            print(f"Unsubscribed cleanup: removed {count} archived items for {site_id}/{source}")
     paid_source_state = load_paid_source_state(paid_source_state_path)
     return RunContext(
         args=args,

@@ -438,6 +438,17 @@ SOURCE_CONFIG_TYPE_SITE_IDS: dict[str, tuple[str, ...]] = {
     "we_mp_rss": (WE_MP_RSS_SITE_ID,),
     "we_mp_rss_jsonl": (WE_MP_RSS_JSONL_SITE_ID,),
 }
+# 「一条线上配置 = 一个订阅对象（作者/账号）」的通道。
+# 只有这些通道，才能在取消订阅后按作者名反向清理历史条目。
+#
+# 严禁加入 opmlrss、we_mp_rss_jsonl 或 github_* 等容器型/遗留通道，
+# 否则会把一整组不该删除的历史内容误判成孤儿条目。
+ENUMERABLE_SUBSCRIPTION_SITE_IDS: frozenset[str] = frozenset(
+    {
+        "bilibili_dynamic",
+        MEDIACRAWLER_DOUYIN_SITE_ID,
+    }
+)
 # --- TikHub search ranking / time-window tuning (edit here, no env var needed) ---
 # Exact recency window for TikHub results, in days. Douyin/Xiaohongshu search
 # only expose coarse buckets (不限/一天内/一周内/半年内), so we ask the API for

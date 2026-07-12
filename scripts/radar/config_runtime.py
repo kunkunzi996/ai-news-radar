@@ -10,6 +10,7 @@ from urllib.parse import urlparse
 
 from scripts.radar.common import (
     DEPLOYED_SOURCE_SCOPE_DEFAULT,
+    ENUMERABLE_SUBSCRIPTION_SITE_IDS,
     MEDIACRAWLER_DOUYIN_SITE_ID,
     MEDIACRAWLER_XHS_SITE_ID,
     PAID_SOURCE_DEFAULT_INTERVAL_HOURS,
@@ -309,6 +310,22 @@ def source_config_subscriptions_for_site(config: dict[str, Any] | None, site_id:
             }
         )
     return out
+
+
+def source_config_enabled_subscription_names(
+    config: dict[str, Any] | None,
+) -> dict[str, frozenset[str]]:
+    """返回可枚举通道下启用的订阅对象显示名。"""
+    names_by_site: dict[str, set[str]] = {}
+    for source in source_config_enabled_sources(config):
+        for site_id in source_config_record_site_ids(source):
+            if site_id not in ENUMERABLE_SUBSCRIPTION_SITE_IDS:
+                continue
+            name = str(source.get("target") or source.get("name") or "").strip()
+            if not name:
+                continue
+            names_by_site.setdefault(site_id, set()).add(name)
+    return {site_id: frozenset(names) for site_id, names in names_by_site.items()}
 
 
 
