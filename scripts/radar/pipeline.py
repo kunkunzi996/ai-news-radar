@@ -6,6 +6,7 @@ import math
 import random
 import re
 import time
+from collections import Counter
 from datetime import datetime, timedelta
 from difflib import SequenceMatcher
 from pathlib import Path
@@ -15,6 +16,7 @@ from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 import requests
 
 from scripts.ai_relevance import add_ai_relevance_fields, score_ai_relevance
+from scripts.radar.config_runtime import SubscriptionAllowlist
 from scripts.radar.common import (
     CREATOR_FRESHNESS_BONUS_HOURS,
     CREATOR_FRESHNESS_BONUS_POINTS,
@@ -22,6 +24,7 @@ from scripts.radar.common import (
     CREATOR_SITE_IDS,
     GITHUB_REPO_SUBSCRIPTION_SITE_ID,
     MAOBIDAO_WECHAT_SITE_ID,
+    MEDIACRAWLER_DOUYIN_SITE_ID,
     RawItem,
     SUBSCRIPTION_TEXT_MARKERS,
     SUBSCRIPTION_URL_MARKERS,
@@ -151,27 +154,52 @@ def filter_archive_by_source_ids(
 
 def filter_archive_by_subscriptions(
     archive: dict[str, dict[str, Any]],
-    allowed_names_by_site: dict[str, frozenset[str]] | None,
-) -> tuple[dict[str, dict[str, Any]], dict[tuple[str, str], int]]:
-    """按订阅对象清理归档，并返回各对象被删条数。"""
-    if not allowed_names_by_site:
-        return archive, {}
+    allowed_by_site: dict[str, SubscriptionAllowlist] | None,
+    force: bool = False,
+) -> tuple[dict[str, dict[str, Any]], dict[tuple[str, str], int], list[str]]:
+    """按订阅对象清理归档；零条目命中名单时熔断，force 可明确放行。"""
+    if not allowed_by_site:
+        return archive, {}, []
 
-    kept: dict[str, dict[str, Any]] = {}
-    removed: dict[tuple[str, str], int] = {}
+    doomed: dict[str, tuple[str, str]] = {}
+    matched_by_site: Counter[str] = Counter()
+    doomed_by_site: Counter[str] = Counter()
     for item_id, record in archive.items():
         site_id = str(record.get("site_id") or "")
-        allowed = allowed_names_by_site.get(site_id)
-        # 未列入白名单或名单为空时宁可不删，避免配置异常造成整片误删。
-        if not allowed:
-            kept[item_id] = record
+        allowed = allowed_by_site.get(site_id)
+        if not allowed or not (allowed.names or allowed.sec_uids):
             continue
-        source = str(record.get("source") or "")
-        if source in allowed:
-            kept[item_id] = record
+
+        if site_id == MEDIACRAWLER_DOUYIN_SITE_ID:
+            # 抖音昵称会变化，也可能和面板备注不同；没有精确 ID 时宁可不删。
+            if not allowed.sec_uids:
+                continue
+            sec_uid = str(record.get("douyin_sec_user_id") or "").strip()
+            if not sec_uid:
+                continue
+            if sec_uid in allowed.sec_uids:
+                matched_by_site[site_id] += 1
+                continue
+        elif str(record.get("source") or "") in allowed.names:
+            matched_by_site[site_id] += 1
             continue
-        removed[(site_id, source)] = removed.get((site_id, source), 0) + 1
-    return kept, removed
+
+        doomed[item_id] = (site_id, str(record.get("source") or ""))
+        doomed_by_site[site_id] += 1
+
+    fused_sites: list[str] = []
+    if not force:
+        fused_sites = sorted(site_id for site_id in doomed_by_site if matched_by_site[site_id] == 0)
+    if fused_sites:
+        fused_site_ids = set(fused_sites)
+        doomed = {item_id: key for item_id, key in doomed.items() if key[0] not in fused_site_ids}
+
+    if not doomed:
+        return archive, {}, fused_sites
+
+    kept = {item_id: record for item_id, record in archive.items() if item_id not in doomed}
+    removed = Counter(doomed.values())
+    return kept, dict(removed), fused_sites
 
 
 def filter_raw_items_by_collect_window(

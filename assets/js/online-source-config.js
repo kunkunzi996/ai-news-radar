@@ -227,7 +227,18 @@ function removeOnlineSourceRecord(recordId) {
 function toggleOnlineSourceRecord(recordId, enabled) {
   const source = (state.onlineSourceConfig?.sources || []).find((item) => item.id === recordId);
   if (!source) return;
-  source.enabled = Boolean(enabled);
+  const nextEnabled = Boolean(enabled);
+  if (!nextEnabled && source.enabled !== false) {
+    const label = String(source.name || source.target || recordId || "该信源");
+    const confirmed = window.confirm(
+      `停用「${label}」后，该源已采集的历史内容会在下次采集时一并清除。\n\n确定停用吗？`
+    );
+    if (!confirmed) {
+      renderOnlineSourceConfig();
+      return;
+    }
+  }
+  source.enabled = nextEnabled;
   renderOnlineSourceConfig();
   markOnlineSourceDirty("未保存：启用状态已变更");
 }

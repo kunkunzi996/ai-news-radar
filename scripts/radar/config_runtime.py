@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import os
 import re
+from dataclasses import dataclass
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
@@ -32,6 +33,7 @@ from scripts.radar.common import (
     iso,
     parse_iso,
 )
+from scripts.radar.fetchers.mediacrawler import douyin_sec_uid_from_locator
 
 """Source configuration and paid-source runtime state."""
 
@@ -312,20 +314,52 @@ def source_config_subscriptions_for_site(config: dict[str, Any] | None, site_id:
     return out
 
 
+ONLINE_PANEL_CONFIG_MODE = "online-public-source-config"
+
+
+def is_online_panel_config(config: dict[str, Any] | None) -> bool:
+    """是否为一条记录对应一个订阅对象的线上面板配置。"""
+    if not isinstance(config, dict):
+        return False
+    return str(config.get("mode") or "").strip() == ONLINE_PANEL_CONFIG_MODE
+
+
+@dataclass(frozen=True)
+class SubscriptionAllowlist:
+    """某通道仍在订阅的显示名和抖音 sec_uid。"""
+
+    names: frozenset[str]
+    sec_uids: frozenset[str]
+
+
 def source_config_enabled_subscription_names(
     config: dict[str, Any] | None,
-) -> dict[str, frozenset[str]]:
-    """返回可枚举通道下启用的订阅对象显示名。"""
+) -> dict[str, SubscriptionAllowlist]:
+    """返回面板配置中可枚举通道下启用的订阅对象。"""
+    if not is_online_panel_config(config):
+        return {}
+
     names_by_site: dict[str, set[str]] = {}
+    sec_uids_by_site: dict[str, set[str]] = {}
     for source in source_config_enabled_sources(config):
         for site_id in source_config_record_site_ids(source):
             if site_id not in ENUMERABLE_SUBSCRIPTION_SITE_IDS:
                 continue
             name = str(source.get("target") or source.get("name") or "").strip()
-            if not name:
-                continue
-            names_by_site.setdefault(site_id, set()).add(name)
-    return {site_id: frozenset(names) for site_id, names in names_by_site.items()}
+            if name:
+                names_by_site.setdefault(site_id, set()).add(name)
+            if site_id == MEDIACRAWLER_DOUYIN_SITE_ID:
+                sec_uid = douyin_sec_uid_from_locator(str(source.get("locator") or ""))
+                if sec_uid:
+                    sec_uids_by_site.setdefault(site_id, set()).add(sec_uid)
+
+    return {
+        site_id: SubscriptionAllowlist(
+            names=frozenset(names_by_site.get(site_id) or ()),
+            sec_uids=frozenset(sec_uids_by_site.get(site_id) or ()),
+        )
+        for site_id in set(names_by_site) | set(sec_uids_by_site)
+    }
 
 
 

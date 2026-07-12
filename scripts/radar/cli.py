@@ -56,6 +56,7 @@ from scripts.radar.config_runtime import (
     apply_source_config_runtime,
     github_release_api_url_from_config,
     github_release_repo_label_from_config,
+    is_online_panel_config,
     load_paid_source_state,
     load_source_config,
     normalize_source_scope,
@@ -215,6 +216,11 @@ def parse_cli_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="Source set to publish: tested_creator_sources (default) or all_sources",
     )
     parser.add_argument("--all-time", action="store_true", help="Publish all retained records instead of the rolling window")
+    parser.add_argument(
+        "--force-subscription-cleanup",
+        action="store_true",
+        help="跳过取消订阅清理的熔断保护（确认订阅名单无误时使用）",
+    )
     args = parser.parse_args(argv)
     return args
 
@@ -271,14 +277,20 @@ def prepare_run_context(args: argparse.Namespace) -> RunContext | int:
 
     archive = filter_archive_by_source_ids(load_archive(archive_path), active_source_ids)
     # 第二层清理：取消订阅的 B站 UP 主 / 抖音号，其历史条目一并移除。
-    # 只有线上配置成功加载时才执行；配置异常时绝不清理。
-    source_config_path = Path(str(source_config_status.get("path") or ""))
-    online_source_config_active = source_config_active and source_config_path.name == "online-sources.json"
-    if online_source_config_active:
-        archive, removed_by_subscription = filter_archive_by_subscriptions(
+    # 只认一条配置对应一个作者的面板配置；容器型配置绝不参与清理。
+    if source_config_active and is_online_panel_config(source_config):
+        archive, removed_by_subscription, fused_sites = filter_archive_by_subscriptions(
             archive,
             source_config_enabled_subscription_names(source_config),
+            force=bool(getattr(args, "force_subscription_cleanup", False)),
         )
+        for site_id in fused_sites:
+            print(
+                f"Unsubscribed cleanup SKIPPED for {site_id}: "
+                "归档里没有任何条目命中当前订阅名单，判定为名单/配置异常，已跳过清理。"
+                "确认名单无误后可加 --force-subscription-cleanup 强制清理。",
+                file=sys.stderr,
+            )
         for (site_id, source), count in sorted(removed_by_subscription.items(), key=lambda kv: -kv[1]):
             print(f"Unsubscribed cleanup: removed {count} archived items for {site_id}/{source}")
     paid_source_state = load_paid_source_state(paid_source_state_path)

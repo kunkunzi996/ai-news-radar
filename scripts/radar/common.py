@@ -439,7 +439,9 @@ SOURCE_CONFIG_TYPE_SITE_IDS: dict[str, tuple[str, ...]] = {
     "we_mp_rss_jsonl": (WE_MP_RSS_JSONL_SITE_ID,),
 }
 # 「一条线上配置 = 一个订阅对象（作者/账号）」的通道。
-# 只有这些通道，才能在取消订阅后按作者名反向清理历史条目。
+# 只有这些通道，才能在取消订阅后按订阅对象反向清理历史条目。
+# 前提：只适用于 mode=online-public-source-config 的面板配置。仓库根的
+# sources.config.json 允许一条记录包含多个作者，绝不能用于按作者清理。
 #
 # 严禁加入 opmlrss、we_mp_rss_jsonl 或 github_* 等容器型/遗留通道，
 # 否则会把一整组不该删除的历史内容误判成孤儿条目。
@@ -487,6 +489,7 @@ PUBLIC_RAW_META_FIELDS: tuple[str, ...] = (
     "bilibili_dynamic_id",
     "bilibili_opus_id",
     "creator_metrics",
+    "douyin_sec_user_id",
     "search_surface",
     "summary",
 )
