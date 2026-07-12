@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-07-11T16:27:57Z",
+  "updated_at": "2026-07-12T07:27:46Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -11,17 +11,6 @@
       "channel": "B站动态",
       "target": "中二的大暄哥",
       "locator": "28756625",
-      "env": "",
-      "notes": "公开 UID"
-    },
-    {
-      "id": "online_bilibili_313819014",
-      "name": "anno大笨蛋",
-      "type": "bilibili_dynamic",
-      "enabled": true,
-      "channel": "B站动态",
-      "target": "anno大笨蛋",
-      "locator": "313819014",
       "env": "",
       "notes": "公开 UID"
     },
@@ -112,17 +101,6 @@
       "locator": "680677803",
       "env": "",
       "notes": "公开 UID"
-    },
-    {
-      "id": "online_github_alkaidlab_foundation_sunshine",
-      "name": "AlkaidLab/foundation-sunshine",
-      "type": "github_release",
-      "enabled": true,
-      "channel": "GitHub Release",
-      "target": "AlkaidLab/foundation-sunshine",
-      "locator": "AlkaidLab/foundation-sunshine",
-      "env": "",
-      "notes": "只追踪 release"
     },
     {
       "id": "online_douyin_15e1eb7a80",
