@@ -33,7 +33,7 @@
     <link rel="icon" href="./assets/icons/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png" sizes="180x180" />
     <link rel="manifest" href="./site.webmanifest" />
-    <link rel="stylesheet" href="./assets/styles.css?v=online-source-config-0710c" />
+    <link rel="stylesheet" href="./assets/styles.css?v=settings-drawer-0713a" />
   </head>
   <body>
     <main class="shell">
@@ -53,6 +53,13 @@
           <span class="data-source-pill" id="dataSourcePill">本地数据</span>
           <span class="source-status-pill" id="sourceStatusPill">源状态加载中</span>
           <div class="hero-links" aria-label="项目入口">
+            <button
+              id="settingsOpenBtn"
+              class="hero-link settings-open-btn"
+              type="button"
+              aria-haspopup="dialog"
+              aria-controls="settingsDrawer"
+            >⚙ 设置</button>
             <a
               class="hero-link"
               href="https://github.com/kunkunzi996/ai-news-radar"
@@ -150,13 +157,89 @@
         </div>
       </details>
 
-      <details class="source-config-wrap">
-        <summary>
-          <span>信源配置</span>
-          <span class="source-config-summary" id="sourceConfigSummary">订阅与高级配置未加载</span>
-        </summary>
-        <div class="source-config-content">
-          <div class="source-config-head">
+      <div class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-label="设置" hidden>
+        <div class="settings-drawer-panel">
+          <header class="settings-drawer-head">
+            <div class="settings-drawer-title">
+              <strong>设置</strong>
+              <span class="source-config-summary" id="sourceConfigSummary">订阅与高级配置未加载</span>
+            </div>
+            <button id="settingsCloseBtn" class="settings-close-btn" type="button" aria-label="关闭设置">×</button>
+          </header>
+
+          <div class="settings-tabs" role="tablist" aria-label="设置分区">
+            <button
+              class="settings-tab active"
+              type="button"
+              role="tab"
+              data-settings-tab="sources"
+              aria-selected="true"
+            >信源</button>
+            <button
+              class="settings-tab"
+              type="button"
+              role="tab"
+              data-settings-tab="local"
+              id="settingsTabLocal"
+              aria-selected="false"
+            >本机采集</button>
+          </div>
+
+          <div class="settings-drawer-body">
+            <section class="settings-pane" data-settings-pane="sources">
+              <p class="settings-pane-hint settings-pane-hint-warn">
+                这里的改动点「同步到线上」后会推送到 GitHub，决定公网页面采集哪些信源。
+              </p>
+              <section class="online-source-panel" aria-label="线上信源管理">
+                <div class="online-source-head">
+                  <div>
+                    <strong>线上信源</strong>
+                    <span id="onlineSourceStatus">读取 config/online-sources.json 后，可同步到 GitHub。</span>
+                  </div>
+                  <button id="onlineSourceSyncBtn" class="tool-btn" type="button">同步到线上</button>
+                </div>
+                <div class="online-source-body">
+                  <div id="onlineSourceList" class="online-source-list"></div>
+                  <form id="onlineSourceForm" class="online-source-form">
+                    <label class="field">
+                      <span>新增入口</span>
+                      <select id="onlineSourceType">
+                        <option value="bilibili_dynamic">添加 B站 UP</option>
+                        <option value="github_release">添加 GitHub Release</option>
+                        <option value="mediacrawler_jsonl">添加抖音博主</option>
+                        <option value="rss">添加 RSS/YouTube</option>
+                      </select>
+                    </label>
+                    <label class="field">
+                      <span id="onlineSourceNameLabel">UP 主名称</span>
+                      <input id="onlineSourceName" type="text" autocomplete="off" placeholder="例如：技术爬爬虾" />
+                    </label>
+                    <label class="field source-config-wide">
+                      <span id="onlineSourceLocatorLabel">B站 UID</span>
+                      <input id="onlineSourceLocator" type="text" autocomplete="off" placeholder="例如：316183842" />
+                    </label>
+                    <label class="field source-config-wide">
+                      <span>备注</span>
+                      <input id="onlineSourceNotes" type="text" autocomplete="off" placeholder="可选；不要填写 token、cookie 或私密路径" />
+                    </label>
+                    <label class="source-config-toggle">
+                      <input id="onlineSourceEnabled" type="checkbox" checked />
+                      <span>启用</span>
+                    </label>
+                    <div class="online-source-actions-row">
+                      <button id="onlineSourceSaveBtn" class="mode-btn active" type="submit">保存配置</button>
+                      <button id="onlineSourceClearBtn" class="mode-btn" type="button">清空</button>
+                    </div>
+                  </form>
+                </div>
+              </section>
+            </section>
+
+            <section class="settings-pane" data-settings-pane="local" hidden>
+              <p class="settings-pane-hint">
+                本机采集控制台，只在 <code>127.0.0.1:8080</code> 可用；这里的操作不会改变公网采集的信源。
+              </p>
+              <div class="source-config-head">
           <div class="source-config-tools">
             <label class="source-collection-scope" for="sourceCollectionScopeSelect">
               <span>采集范围</span>
@@ -187,49 +270,11 @@
           <div id="localOpsCollectors" class="local-ops-collectors"></div>
           <div id="localOpsIssues" class="local-ops-issues"></div>
         </section>
-        <section class="online-source-panel" aria-label="线上信源管理">
-          <div class="online-source-head">
-            <div>
-              <strong>线上信源</strong>
-              <span id="onlineSourceStatus">读取 config/online-sources.json 后，可同步到 GitHub。</span>
-            </div>
-            <button id="onlineSourceSyncBtn" class="tool-btn" type="button">同步到线上</button>
-          </div>
-          <div class="online-source-body">
-            <div id="onlineSourceList" class="online-source-list"></div>
-            <form id="onlineSourceForm" class="online-source-form">
-              <label class="field">
-                <span>新增入口</span>
-                <select id="onlineSourceType">
-                  <option value="bilibili_dynamic">添加 B站 UP</option>
-                  <option value="github_release">添加 GitHub Release</option>
-                  <option value="mediacrawler_jsonl">添加抖音博主</option>
-                  <option value="rss">添加 RSS/YouTube</option>
-                </select>
-              </label>
-              <label class="field">
-                <span id="onlineSourceNameLabel">UP 主名称</span>
-                <input id="onlineSourceName" type="text" autocomplete="off" placeholder="例如：技术爬爬虾" />
-              </label>
-              <label class="field source-config-wide">
-                <span id="onlineSourceLocatorLabel">B站 UID</span>
-                <input id="onlineSourceLocator" type="text" autocomplete="off" placeholder="例如：316183842" />
-              </label>
-              <label class="field source-config-wide">
-                <span>备注</span>
-                <input id="onlineSourceNotes" type="text" autocomplete="off" placeholder="可选；不要填写 token、cookie 或私密路径" />
-              </label>
-              <label class="source-config-toggle">
-                <input id="onlineSourceEnabled" type="checkbox" checked />
-                <span>启用</span>
-              </label>
-              <div class="online-source-actions-row">
-                <button id="onlineSourceSaveBtn" class="mode-btn active" type="submit">保存配置</button>
-                <button id="onlineSourceClearBtn" class="mode-btn" type="button">清空</button>
-              </div>
-            </form>
-          </div>
-        </section>
+        <details class="local-private-config-wrap">
+          <summary>
+            <span>本机私有配置</span>
+            <small>写入 sources.config.json，只影响本机采集，不影响公网</small>
+          </summary>
         <section class="subscription-manager" aria-label="订阅成员管理">
           <div class="subscription-manager-head">
             <div>
@@ -328,8 +373,11 @@
             <div id="sourceConfigStatus" class="source-config-status">高级配置会优先尝试读取 sources.config.json。</div>
           </div>
         </details>
+        </details>
+            </section>
+          </div>
         </div>
-      </details>
+      </div>
 
       <section class="waytoagi-wrap">
         <div class="waytoagi-head">
@@ -388,6 +436,7 @@
     <script src="./assets/js/source-config.js?v=github-pages-static-0709a" defer></script>
     <script src="./assets/js/local-collect.js?v=github-pages-static-0709a" defer></script>
     <script src="./assets/js/online-source-config.js?v=online-source-purge-0712b" defer></script>
+    <script src="./assets/js/settings-drawer.js?v=settings-drawer-0713b" defer></script>
     <script src="./assets/js/boot.js?v=online-source-config-0710c" defer></script>
   </body>
 </html>
