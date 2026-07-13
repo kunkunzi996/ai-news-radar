@@ -1,10 +1,12 @@
 import json
 import os
+import tempfile
 import unittest
 from datetime import datetime, timezone
+from pathlib import Path
 from unittest.mock import patch
 
-from scripts.radar.pipeline import prune_archive_records
+from scripts.radar.pipeline import load_archive_for_collection, prune_archive_records
 from scripts.update_news import (
     add_creator_ranking_fields,
     add_source_tier_fields,
@@ -49,7 +51,6 @@ from scripts.update_news import (
     parse_openai_codex_changelog_items,
     parse_wewe_rss_json_feed_items,
     redact_public_text,
-    filter_archive_by_source_ids,
     normalize_source_scope,
     RawItem,
     apply_source_config_runtime,
@@ -670,25 +671,22 @@ class TopicFilterTests(unittest.TestCase):
         self.assertEqual(all_payload["items_all"][0]["title"], "All post")
         self.assertEqual(all_payload["items_all_raw"][0]["title"], "Raw post")
 
-    def test_default_source_scope_keeps_only_tested_creator_sources(self):
+    def test_collection_scope_does_not_remove_archived_sources(self):
         scope = normalize_source_scope("")
         allowed_source_ids = source_ids_for_scope(scope)
-        archive = {
-            "bili": {"site_id": "bilibili_dynamic"},
-            "douyin": {"site_id": "mediacrawler_douyin"},
-            "xhs": {"site_id": "mediacrawler_xhs"},
-            "github": {"site_id": "github_foundation_sunshine_releases"},
-            "maobidao": {"site_id": "maobidao_wudaolu_backup"},
-            "wewe": {"site_id": "wewe_rss"},
-            "official": {"site_id": "official_ai"},
-            "opml": {"site_id": "opmlrss"},
-            "tikhub": {"site_id": "tikhub_douyin"},
-        }
-
-        filtered = filter_archive_by_source_ids(archive, allowed_source_ids)
+        items = [
+            {"id": "bili", "site_id": "bilibili_dynamic"},
+            {"id": "wechat", "site_id": "we_mp_rss_jsonl"},
+            {"id": "official", "site_id": "official_ai"},
+        ]
+        with tempfile.TemporaryDirectory() as temp_dir:
+            archive_path = Path(temp_dir) / "archive.json"
+            archive_path.write_text(json.dumps({"items": items}), encoding="utf-8")
+            archive = load_archive_for_collection(archive_path)
 
         self.assertEqual(scope, "tested_creator_sources")
-        self.assertEqual(set(filtered), {"bili", "douyin", "xhs", "github", "opml"})
+        self.assertNotIn("we_mp_rss_jsonl", allowed_source_ids)
+        self.assertEqual(set(archive), {"bili", "wechat", "official"})
 
     def test_collect_window_filters_new_raw_items_by_publish_time(self):
         import datetime as _dt

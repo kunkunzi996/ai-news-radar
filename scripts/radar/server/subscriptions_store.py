@@ -2,11 +2,13 @@ from __future__ import annotations
 
 import json
 import os
+import threading
 import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
+from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 from scripts.radar.server import OPML_FILENAME
 from scripts.radar.server.common import (
@@ -23,9 +25,11 @@ __all__ = [
     "PURGE_TRACKED_SITE_IDS",
     "alive_source_names_by_site",
     "enabled_source_config_records",
+    "flush_pending_purge",
     "is_item_orphaned",
     "opml_path",
     "purge_deleted_source_data",
+    "queue_pending_purge",
     "read_source_config",
     "read_youtube_subscriptions",
     "resolve_config_path",
@@ -33,6 +37,9 @@ __all__ = [
     "validate_source_config",
     "write_youtube_subscriptions",
 ]
+
+PENDING_PURGE_FILENAME = "pending-purge.json"
+PENDING_PURGE_LOCK = threading.Lock()
 
 
 def youtube_channel_id_from_feed_url(url: str) -> str:
@@ -163,6 +170,7 @@ PURGE_TRACKED_SITE_IDS = frozenset(
         "mediacrawler_douyin",
         "mediacrawler_xhs",
         "github_foundation_sunshine_releases",
+        "opmlrss",
     }
 )
 
@@ -174,13 +182,22 @@ def purge_tracked_site_ids(source: dict[str, Any]) -> set[str]:
     return ids & PURGE_TRACKED_SITE_IDS
 
 
-def source_identity_names(config: dict[str, Any]) -> dict[str, dict[str, str]]:
+def source_identity_names(
+    config: dict[str, Any],
+    *,
+    include_disabled: bool = False,
+) -> dict[str, dict[str, str]]:
     identities: dict[str, dict[str, str]] = {site_id: {} for site_id in PURGE_TRACKED_SITE_IDS}
     sources = config.get("sources") if isinstance(config, dict) else None
     if not isinstance(sources, list):
         return identities
     for source in sources:
         if not isinstance(source, dict):
+            continue
+        if not include_disabled and source.get("enabled") is False:
+            continue
+        source_type = str(source.get("type") or "").strip().lower()
+        if source_type == "opmlrss":
             continue
         site_ids = purge_tracked_site_ids(source)
         if not site_ids:
@@ -199,7 +216,10 @@ def source_identity_names(config: dict[str, Any]) -> dict[str, dict[str, str]]:
             if site_id == "bilibili_dynamic":
                 continue
             record_id = str(source.get("id") or "").strip()
-            display = str(source.get("target") or source.get("name") or "").strip()
+            if site_id == "opmlrss" and source_type == "rss":
+                display = str(source.get("name") or "").strip()
+            else:
+                display = str(source.get("target") or source.get("name") or "").strip()
             if record_id and display:
                 identities[site_id][record_id] = display
     return identities
@@ -219,6 +239,25 @@ def alive_source_names_by_site(
                 names.add(old_name)
         alive[site_id] = names
     return alive
+
+
+def deleted_source_names_by_site(
+    config: dict[str, Any],
+    previous_config: dict[str, Any],
+) -> dict[str, set[str]]:
+    current = source_identity_names(config)
+    previous = source_identity_names(previous_config)
+    deleted: dict[str, set[str]] = {}
+    for site_id in PURGE_TRACKED_SITE_IDS:
+        current_identities = current.get(site_id, {})
+        removed_names = {
+            old_name
+            for identity_key, old_name in previous.get(site_id, {}).items()
+            if identity_key not in current_identities
+        }
+        if removed_names:
+            deleted[site_id] = removed_names
+    return deleted
 
 
 def is_item_orphaned(record: dict[str, Any], alive_names: dict[str, set[str]]) -> bool:
@@ -268,13 +307,76 @@ def write_json_atomic(path: Path, payload: Any, *, compact: bool) -> None:
     os.replace(tmp_path, path)
 
 
-def purge_deleted_source_data(
+def pending_purge_path(root_dir: Path) -> Path:
+    return root_dir / "data" / PENDING_PURGE_FILENAME
+
+
+def read_pending_purge(root_dir: Path) -> dict[str, set[str]]:
+    path = pending_purge_path(root_dir)
+    if not path.exists():
+        return {}
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    raw_sources = payload.get("sources") if isinstance(payload, dict) else None
+    if not isinstance(raw_sources, dict):
+        raise ValueError("pending purge ledger must contain a sources object")
+    return {
+        str(site_id): {str(name).strip() for name in names if str(name).strip()}
+        for site_id, names in raw_sources.items()
+        if site_id in PURGE_TRACKED_SITE_IDS and isinstance(names, list)
+    }
+
+
+def write_pending_purge(root_dir: Path, pending: dict[str, set[str]]) -> None:
+    path = pending_purge_path(root_dir)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "updated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "sources": {
+            site_id: sorted(names)
+            for site_id, names in sorted(pending.items())
+            if names
+        },
+    }
+    write_json_atomic(path, payload, compact=False)
+
+
+def queue_pending_purge(
     root_dir: Path,
-    config: dict[str, Any],
-    *,
-    previous_config: dict[str, Any] | None = None,
+    deleted_names: dict[str, set[str]],
+    current_config: dict[str, Any],
+) -> dict[str, list[str]]:
+    with PENDING_PURGE_LOCK:
+        path_exists = pending_purge_path(root_dir).exists()
+        pending = read_pending_purge(root_dir)
+        for site_id, names in deleted_names.items():
+            if site_id in PURGE_TRACKED_SITE_IDS:
+                pending.setdefault(site_id, set()).update(names)
+
+        alive_names = alive_source_names_by_site(current_config)
+        for site_id in list(pending):
+            pending[site_id].difference_update(alive_names.get(site_id, set()))
+            if not pending[site_id]:
+                del pending[site_id]
+
+        if pending or path_exists:
+            write_pending_purge(root_dir, pending)
+        return {site_id: sorted(names) for site_id, names in sorted(pending.items())}
+
+
+def current_online_source_config(root_dir: Path) -> dict[str, Any]:
+    path = root_dir / "config" / "online-sources.json"
+    if not path.exists():
+        return {"sources": []}
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict) or not isinstance(payload.get("sources"), list):
+        raise ValueError("online source config must contain a sources array")
+    return payload
+
+
+def purge_matching_source_data(
+    root_dir: Path,
+    should_purge: Callable[[dict[str, Any]], bool],
 ) -> dict[str, int]:
-    alive_names = alive_source_names_by_site(config, previous_config)
     data_dir = root_dir / "data"
     summary: dict[str, int] = {}
 
@@ -293,7 +395,8 @@ def purge_deleted_source_data(
             items = payload.get(key)
             if not isinstance(items, list):
                 continue
-            kept, removed = purge_orphaned_from_flat_list(items, alive_names)
+            kept = [item for item in items if not (isinstance(item, dict) and should_purge(item))]
+            removed = len(items) - len(kept)
             payload[key] = kept
             removed_total += removed
         if "total_items" in payload and "items" in list_keys:
@@ -312,7 +415,19 @@ def purge_deleted_source_data(
             return
         if not isinstance(payload, dict) or not isinstance(payload.get(list_key), list):
             return
-        kept, removed = purge_orphaned_from_story_list(payload[list_key], alive_names)
+        kept = []
+        removed = 0
+        for story in payload[list_key]:
+            if not isinstance(story, dict):
+                kept.append(story)
+                continue
+            members = story.get("items")
+            if not isinstance(members, list):
+                members = story.get("sources") if isinstance(story.get("sources"), list) else []
+            if any(isinstance(member, dict) and should_purge(member) for member in members):
+                removed += 1
+                continue
+            kept.append(story)
         payload[list_key] = kept
         if total_key in payload:
             payload[total_key] = len(kept)
@@ -334,5 +449,54 @@ def purge_deleted_source_data(
     rewrite_stories("stories-merged.json", "stories", "total_stories", compact=True)
     rewrite_stories("daily-brief.json", "items", "total_items", compact=False)
     return summary
+
+
+def purge_deleted_source_data(
+    root_dir: Path,
+    config: dict[str, Any],
+    *,
+    previous_config: dict[str, Any] | None = None,
+) -> dict[str, int]:
+    if previous_config is not None:
+        deleted_names = deleted_source_names_by_site(config, previous_config)
+
+        def should_purge(record: dict[str, Any]) -> bool:
+            site_id = str(record.get("site_id") or "").strip()
+            source_name = str(record.get("source") or "").strip()
+            return source_name in deleted_names.get(site_id, set())
+
+    else:
+        alive_names = alive_source_names_by_site(config)
+
+        def should_purge(record: dict[str, Any]) -> bool:
+            return is_item_orphaned(record, alive_names)
+
+    return purge_matching_source_data(root_dir, should_purge)
+
+
+def flush_pending_purge(root_dir: Path) -> dict[str, int]:
+    with PENDING_PURGE_LOCK:
+        pending = read_pending_purge(root_dir)
+        if not pending:
+            return {}
+
+        alive_names = alive_source_names_by_site(current_online_source_config(root_dir))
+        confirmed = {
+            site_id: names - alive_names.get(site_id, set())
+            for site_id, names in pending.items()
+        }
+        confirmed = {site_id: names for site_id, names in confirmed.items() if names}
+        if not confirmed:
+            write_pending_purge(root_dir, {})
+            return {}
+
+        def should_purge(record: dict[str, Any]) -> bool:
+            site_id = str(record.get("site_id") or "").strip()
+            source_name = str(record.get("source") or "").strip()
+            return source_name in confirmed.get(site_id, set())
+
+        summary = purge_matching_source_data(root_dir, should_purge)
+        write_pending_purge(root_dir, {})
+        return summary
 
 

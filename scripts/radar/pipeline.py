@@ -138,18 +138,9 @@ def load_archive(path: Path) -> dict[str, dict[str, Any]]:
     return out
 
 
-
-def filter_archive_by_source_ids(
-    archive: dict[str, dict[str, Any]],
-    allowed_source_ids: frozenset[str] | None,
-) -> dict[str, dict[str, Any]]:
-    if allowed_source_ids is None:
-        return archive
-    return {
-        item_id: record
-        for item_id, record in archive.items()
-        if str(record.get("site_id") or "") in allowed_source_ids
-    }
+def load_archive_for_collection(archive_path: Path) -> dict[str, dict[str, Any]]:
+    """Load history without treating this run's source scope as retention policy."""
+    return load_archive(archive_path)
 
 
 def filter_archive_by_subscriptions(

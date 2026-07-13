@@ -55,7 +55,6 @@ build_stories_payload = _pipeline.build_stories_payload
 calculate_item_importance = _pipeline.calculate_item_importance
 dedupe_items_by_title_url = _pipeline.dedupe_items_by_title_url
 editorial_score = _pipeline.editorial_score
-filter_archive_by_source_ids = _pipeline.filter_archive_by_source_ids
 filter_raw_items_by_collect_window = _pipeline.filter_raw_items_by_collect_window
 is_ai_related_record = _pipeline.is_ai_related_record
 is_subscription_record = _pipeline.is_subscription_record

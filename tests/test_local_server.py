@@ -3,6 +3,7 @@ import subprocess
 import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from unittest.mock import patch
 
 from scripts.local_server import (
     CONFIG_FILENAME,
@@ -12,6 +13,7 @@ from scripts.local_server import (
     alive_source_names_by_site,
     bilibili_cookie_status,
     collect_window_hours_for_scope,
+    flush_pending_purge,
     is_item_orphaned,
     launch_bilibili_dedicated_browser,
     last_collection_time,
@@ -23,11 +25,15 @@ from scripts.local_server import (
     normalize_collection_scope,
     perform_maintenance_action,
     purge_deleted_source_data,
+    queue_pending_purge,
     read_online_source_config,
     read_wewe_rss_feeds,
     refresh_command,
     refresh_env,
     restart_command,
+    run_refresh_background,
+    save_online_source_config,
+    save_and_sync_online_source_config,
     read_youtube_subscriptions,
     resolve_collect_window_hours,
     sync_bilibili_cookie,
@@ -40,6 +46,7 @@ from scripts.local_server import (
     write_online_source_config,
     write_youtube_subscriptions,
 )
+from scripts.radar.server.subscriptions_store import deleted_source_names_by_site
 
 
 class LocalServerTests(unittest.TestCase):
@@ -210,6 +217,82 @@ class LocalServerTests(unittest.TestCase):
 
         self.assertNotIn("猫笔刀", alive["wewe_rss"])
 
+    def test_disabled_source_on_both_sides_is_not_treated_as_deleted(self):
+        disabled = {
+            "id": "douyin_simon",
+            "type": "mediacrawler_douyin",
+            "name": "Simon林",
+            "target": "Simon林",
+            "enabled": False,
+        }
+
+        deleted = deleted_source_names_by_site(
+            {"sources": [disabled.copy()]},
+            {"sources": [disabled.copy()]},
+        )
+
+        self.assertEqual(deleted, {})
+
+    def test_disabling_enabled_source_is_treated_as_deleted(self):
+        enabled = {
+            "id": "bilibili_zhangsan",
+            "type": "bilibili_dynamic",
+            "name": "张三",
+            "target": "张三",
+            "locator": "111",
+            "enabled": True,
+        }
+        disabled = {**enabled, "enabled": False}
+
+        deleted = deleted_source_names_by_site(
+            {"sources": [disabled]},
+            {"sources": [enabled]},
+        )
+
+        self.assertEqual(deleted, {"bilibili_dynamic": {"张三"}})
+
+    def test_rss_source_uses_name_as_opmlrss_identity(self):
+        config = {
+            "sources": [
+                {
+                    "id": "rss_google_ai",
+                    "type": "rss",
+                    "name": "Google AI Blog",
+                    "target": "https://blog.google/technology/ai/rss/",
+                    "enabled": True,
+                },
+                {
+                    "id": "online_rss_bundle",
+                    "type": "opmlrss",
+                    "name": "线上 RSS/YouTube 订阅包",
+                    "enabled": True,
+                },
+            ]
+        }
+
+        alive = alive_source_names_by_site(config)
+
+        self.assertEqual(alive["opmlrss"], {"Google AI Blog"})
+
+    def test_deleted_rss_source_is_purged_but_renamed_source_is_kept(self):
+        old_config = {
+            "sources": [
+                {"id": "rss_keep", "type": "rss", "name": "旧名字", "enabled": True},
+                {"id": "rss_remove", "type": "rss", "name": "Wired AI", "enabled": True},
+            ]
+        }
+        new_config = {
+            "sources": [
+                {"id": "rss_keep", "type": "rss", "name": "新名字", "enabled": True},
+            ]
+        }
+
+        alive = alive_source_names_by_site(new_config, old_config)
+        deleted = deleted_source_names_by_site(new_config, old_config)
+
+        self.assertEqual(alive["opmlrss"], {"旧名字", "新名字"})
+        self.assertEqual(deleted, {"opmlrss": {"Wired AI"}})
+
     def test_alive_source_names_by_site_protects_renamed_bilibili_member(self):
         old_config = {
             "sources": [
@@ -365,6 +448,44 @@ class LocalServerTests(unittest.TestCase):
         self.assertEqual(summary["archive.json"], 0)
         self.assertEqual(archive["items"][0]["title"], "旧名历史")
         self.assertEqual(archive["total_items"], 1)
+
+    def test_purge_deleted_source_data_removes_only_deleted_rss_source(self):
+        root = Path(self.create_temp_dir())
+        data_dir = root / "data"
+        data_dir.mkdir()
+        path = data_dir / "archive.json"
+        path.write_text(
+            json.dumps(
+                {
+                    "items": [
+                        {"site_id": "opmlrss", "source": "Wired AI", "title": "删除"},
+                        {"site_id": "opmlrss", "source": "OpenAI News", "title": "保留 RSS"},
+                        {"site_id": "we_mp_rss_jsonl", "source": "数字生命卡兹克", "title": "保留公众号"},
+                    ],
+                    "total_items": 3,
+                },
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+        old_config = {
+            "sources": [
+                {"id": "rss_wired", "type": "rss", "name": "Wired AI", "enabled": True},
+                {"id": "rss_openai", "type": "rss", "name": "OpenAI News", "enabled": True},
+            ]
+        }
+        new_config = {
+            "sources": [
+                {"id": "rss_openai", "type": "rss", "name": "OpenAI News", "enabled": True},
+            ]
+        }
+
+        summary = purge_deleted_source_data(root, new_config, previous_config=old_config)
+
+        archive = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual(summary["archive.json"], 1)
+        self.assertEqual([item["title"] for item in archive["items"]], ["保留 RSS", "保留公众号"])
+        self.assertEqual(archive["total_items"], 2)
 
     def test_purge_deleted_source_data_skips_missing_data_dir(self):
         root = Path(self.create_temp_dir())
@@ -592,6 +713,167 @@ class LocalServerTests(unittest.TestCase):
 
         self.assertEqual(result["source_count"], 19)
 
+    def test_save_online_source_config_purges_only_deleted_member(self):
+        root = Path(self.create_temp_dir())
+        sources = [
+            {"name": "张三", "type": "bilibili_dynamic", "locator": "111"},
+            {"name": "李四", "type": "bilibili_dynamic", "locator": "222"},
+        ]
+        write_online_source_config(root, {"sources": sources})
+        data_dir = root / "data"
+        data_dir.mkdir()
+        archive_path = data_dir / "archive.json"
+        archive_path.write_text(
+            json.dumps(
+                {
+                    "items": [
+                        {"site_id": "bilibili_dynamic", "source": "张三", "title": "保留"},
+                        {"site_id": "bilibili_dynamic", "source": "李四", "title": "删除"},
+                        {"site_id": "mediacrawler_xhs", "source": "未在线上配置管理", "title": "不误伤"},
+                    ],
+                    "total_items": 3,
+                },
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+
+        result = save_online_source_config(root, {"sources": sources[:1]})
+
+        archive = json.loads(archive_path.read_text(encoding="utf-8"))
+        self.assertEqual(result["purged_items"]["archive.json"], 1)
+        self.assertEqual([item["title"] for item in archive["items"]], ["保留", "不误伤"])
+        self.assertEqual(archive["total_items"], 2)
+
+    def test_save_online_source_config_defers_purge_while_refresh_is_running(self):
+        from scripts.local_server import REFRESH_LOCK
+
+        root = Path(self.create_temp_dir())
+        sources = [
+            {"name": "张三", "type": "bilibili_dynamic", "locator": "111"},
+            {"name": "李四", "type": "bilibili_dynamic", "locator": "222"},
+        ]
+        write_online_source_config(root, {"sources": sources})
+
+        REFRESH_LOCK.acquire()
+        try:
+            result = save_online_source_config(root, {"sources": sources[:1]})
+        finally:
+            REFRESH_LOCK.release()
+
+        pending = json.loads((root / "data" / "pending-purge.json").read_text(encoding="utf-8"))
+        self.assertEqual(result["purged_items"]["deferred"], {"bilibili_dynamic": ["李四"]})
+        self.assertEqual(pending["sources"], {"bilibili_dynamic": ["李四"]})
+
+    def test_pending_purge_merges_multiple_saves(self):
+        root = Path(self.create_temp_dir())
+        config_a = {
+            "sources": [{"id": "a", "type": "bilibili_dynamic", "target": "甲", "locator": "1"}]
+        }
+        config_b = {
+            "sources": [{"id": "b", "type": "bilibili_dynamic", "target": "乙", "locator": "2"}]
+        }
+
+        queue_pending_purge(root, {"bilibili_dynamic": {"甲"}}, config_b)
+        queue_pending_purge(root, {"bilibili_dynamic": {"乙"}}, {"sources": []})
+
+        pending = json.loads((root / "data" / "pending-purge.json").read_text(encoding="utf-8"))
+        self.assertEqual(pending["sources"], {"bilibili_dynamic": ["乙", "甲"]})
+
+    def test_flush_pending_purge_removes_history_and_clears_ledger(self):
+        root = Path(self.create_temp_dir())
+        data_dir = root / "data"
+        data_dir.mkdir()
+        (root / "config").mkdir()
+        (root / "config" / "online-sources.json").write_text(
+            json.dumps({"sources": []}), encoding="utf-8"
+        )
+        (data_dir / "archive.json").write_text(
+            json.dumps(
+                {
+                    "items": [{"site_id": "bilibili_dynamic", "source": "甲", "title": "待清理"}],
+                    "total_items": 1,
+                },
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+        queue_pending_purge(root, {"bilibili_dynamic": {"甲"}}, {"sources": []})
+
+        summary = flush_pending_purge(root)
+
+        archive = json.loads((data_dir / "archive.json").read_text(encoding="utf-8"))
+        pending = json.loads((data_dir / "pending-purge.json").read_text(encoding="utf-8"))
+        self.assertEqual(summary["archive.json"], 1)
+        self.assertEqual(archive["items"], [])
+        self.assertEqual(pending["sources"], {})
+
+    def test_flush_pending_purge_keeps_source_that_was_added_back(self):
+        root = Path(self.create_temp_dir())
+        data_dir = root / "data"
+        data_dir.mkdir()
+        (root / "config").mkdir()
+        current_config = {
+            "sources": [
+                {"id": "a", "type": "bilibili_dynamic", "target": "甲", "locator": "1"}
+            ]
+        }
+        (root / "config" / "online-sources.json").write_text(
+            json.dumps(current_config, ensure_ascii=False), encoding="utf-8"
+        )
+        (data_dir / "archive.json").write_text(
+            json.dumps(
+                {
+                    "items": [{"site_id": "bilibili_dynamic", "source": "甲", "title": "必须保留"}],
+                    "total_items": 1,
+                },
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+        queue_pending_purge(root, {"bilibili_dynamic": {"甲"}}, {"sources": []})
+
+        summary = flush_pending_purge(root)
+
+        archive = json.loads((data_dir / "archive.json").read_text(encoding="utf-8"))
+        pending = json.loads((data_dir / "pending-purge.json").read_text(encoding="utf-8"))
+        self.assertEqual(summary, {})
+        self.assertEqual(archive["items"][0]["title"], "必须保留")
+        self.assertEqual(pending["sources"], {})
+
+    @patch("scripts.radar.server.refresh.time.sleep", return_value=None)
+    @patch("scripts.radar.server.refresh.subprocess.Popen")
+    def test_refresh_flushes_pending_purge_before_releasing_lock(self, popen_mock, _sleep_mock):
+        events = []
+        process = popen_mock.return_value
+        process.poll.return_value = 0
+        process.communicate.return_value = ("", "")
+        process.returncode = 0
+
+        class RecordingLock:
+            def release(self):
+                events.append("release")
+
+        with patch("scripts.radar.server.refresh.flush_pending_purge", side_effect=lambda root: events.append("flush")):
+            with patch("scripts.radar.server.refresh.REFRESH_LOCK", RecordingLock()):
+                run_refresh_background(Path(self.create_temp_dir()), "24h", ["fake"], ["刷新"])
+
+        self.assertEqual(events, ["flush", "release"])
+
+    @patch("scripts.local_server.sync_online_source_config")
+    @patch("scripts.local_server.save_online_source_config")
+    def test_save_and_sync_online_source_config_preserves_purge_summary(self, save_mock, sync_mock):
+        save_mock.return_value = {"ok": True, "purged_items": {"archive.json": 2}}
+        sync_mock.return_value = {"ok": True, "synced": True}
+        root = Path(self.create_temp_dir())
+        payload = {"sources": []}
+
+        result = save_and_sync_online_source_config(root, payload)
+
+        save_mock.assert_called_once_with(root, payload)
+        sync_mock.assert_called_once_with(root, None)
+        self.assertEqual(result["purged_items"], {"archive.json": 2})
+
     def test_sync_online_source_config_commits_only_public_config_files(self):
         root = Path(self.create_temp_dir())
 
@@ -646,7 +928,7 @@ class LocalServerTests(unittest.TestCase):
         self.assertTrue(command[0].endswith("python.exe") or command[0].endswith("python"))
         self.assertEqual(command[1], str(root / "scripts" / "update_news.py"))
         self.assertIn("--source-config", command)
-        self.assertIn(CONFIG_FILENAME, command)
+        self.assertIn("config/online-sources.json", command)
         self.assertIn("--all-time", command)
         self.assertIn("--collect-window-hours", command)
         window_hours = command[command.index("--collect-window-hours") + 1]

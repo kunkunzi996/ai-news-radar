@@ -39,6 +39,8 @@ BILIBILI_DEFAULT_COOKIE_FILE = _server_api.BILIBILI_DEFAULT_COOKIE_FILE
 BILIBILI_PROFILE_DIR = _server_api.BILIBILI_PROFILE_DIR
 PURGE_TRACKED_SITE_IDS = _store_api.PURGE_TRACKED_SITE_IDS
 alive_source_names_by_site = _store_api.alive_source_names_by_site
+deleted_source_names_by_site = _store_api.deleted_source_names_by_site
+flush_pending_purge = _store_api.flush_pending_purge
 bilibili_cookie_status = _common_api.bilibili_cookie_status
 collect_window_hours_for_scope = _refresh_api.collect_window_hours_for_scope
 is_item_orphaned = _store_api.is_item_orphaned
@@ -53,6 +55,7 @@ mediacrawler_douyin_collector_status = _collectors_api.mediacrawler_douyin_colle
 mediacrawler_xhs_collector_status = _collectors_api.mediacrawler_xhs_collector_status
 perform_maintenance_action = _refresh_api.perform_maintenance_action
 purge_deleted_source_data = _store_api.purge_deleted_source_data
+queue_pending_purge = _store_api.queue_pending_purge
 read_online_source_config = _online_api.read_online_source_config
 read_source_config = _store_api.read_source_config
 read_wewe_rss_feeds = _collectors_api.read_wewe_rss_feeds
@@ -73,6 +76,54 @@ sync_bilibili_cookie = _cdp_api.sync_bilibili_cookie
 validate_source_config = _store_api.validate_source_config
 write_online_source_config = _online_api.write_online_source_config
 write_youtube_subscriptions = _store_api.write_youtube_subscriptions
+
+
+def purge_or_defer_source_config(
+    root_dir: Path,
+    config: dict[str, Any],
+    previous_config: dict[str, Any] | None,
+) -> dict[str, Any]:
+    deleted_names = (
+        deleted_source_names_by_site(config, previous_config)
+        if isinstance(previous_config, dict)
+        else {}
+    )
+    deferred = queue_pending_purge(root_dir, deleted_names, config)
+    if not REFRESH_LOCK.acquire(blocking=False):
+        return {"deferred": deferred}
+
+    try:
+        summary = purge_deleted_source_data(
+            root_dir,
+            config,
+            previous_config=previous_config if isinstance(previous_config, dict) else None,
+        )
+        pending_summary = flush_pending_purge(root_dir)
+        for filename, removed in pending_summary.items():
+            summary[filename] = summary.get(filename, 0) + removed
+        return summary
+    except Exception as exc:
+        return {"error": str(exc)}
+    finally:
+        REFRESH_LOCK.release()
+
+
+def save_online_source_config(root_dir: Path, payload: dict[str, Any]) -> dict[str, Any]:
+    previous_config = read_online_source_config(root_dir).get("config")
+    result = write_online_source_config(root_dir, payload)
+    result["purged_items"] = purge_or_defer_source_config(
+        root_dir,
+        result["config"],
+        previous_config if isinstance(previous_config, dict) else None,
+    )
+    return result
+
+
+def save_and_sync_online_source_config(root_dir: Path, payload: dict[str, Any]) -> dict[str, Any]:
+    save_result = save_online_source_config(root_dir, payload)
+    sync_result = sync_online_source_config(root_dir, None)
+    sync_result["purged_items"] = save_result.get("purged_items", {})
+    return sync_result
 
 class LocalRadarHandler(SimpleHTTPRequestHandler):
     server_version = "AIReadRadarLocal/0.1"
@@ -226,16 +277,7 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
         except Exception as exc:
             json_response(self, HTTPStatus.BAD_REQUEST, {"ok": False, "error": str(exc)})
             return
-        purged_items: dict[str, Any]
-        if REFRESH_LOCK.acquire(blocking=False):
-            try:
-                purged_items = purge_deleted_source_data(self.root_dir, payload, previous_config=previous_config)
-            except Exception as exc:
-                purged_items = {"error": str(exc)}
-            finally:
-                REFRESH_LOCK.release()
-        else:
-            purged_items = {"skipped": "refresh_in_progress"}
+        purged_items = purge_or_defer_source_config(self.root_dir, payload, previous_config)
         json_response(
             self,
             HTTPStatus.OK,
@@ -254,7 +296,7 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
         if payload is None:
             return
         try:
-            result = write_online_source_config(self.root_dir, payload)
+            result = save_online_source_config(self.root_dir, payload)
         except Exception as exc:
             json_response(self, HTTPStatus.BAD_REQUEST, {"ok": False, "error": str(exc)})
             return
@@ -267,7 +309,7 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
         if payload is None:
             return
         try:
-            result = sync_online_source_config(self.root_dir, payload)
+            result = save_and_sync_online_source_config(self.root_dir, payload)
         except Exception as exc:
             json_response(self, HTTPStatus.BAD_REQUEST, {"ok": False, "error": str(exc)})
             return

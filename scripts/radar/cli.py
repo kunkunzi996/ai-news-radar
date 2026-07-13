@@ -107,10 +107,9 @@ from scripts.radar.pipeline import (
     dedupe_items_by_title_url,
     event_time,
     filter_archive_by_subscriptions,
-    filter_archive_by_source_ids,
     filter_raw_items_by_collect_window,
     is_ai_related_record,
-    load_archive,
+    load_archive_for_collection,
     load_title_zh_cache,
     merge_story_items,
     normalize_source_for_display,
@@ -207,7 +206,7 @@ def parse_cli_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--source-config",
         default="",
-        help="Optional sources.config.json exported from the dashboard; defaults to ./sources.config.json when present",
+        help="Source subscription config; defaults to config/online-sources.json, then local fallback files",
     )
     parser.add_argument("--bilibili-only", action="store_true", help="Publish only the configured Bilibili dynamic accounts")
     parser.add_argument(
@@ -275,7 +274,7 @@ def prepare_run_context(args: argparse.Namespace) -> RunContext | int:
     email_digest_path = output_dir / AGENTMAIL_DIGEST_FILE
     paid_source_state_path = output_dir / PAID_SOURCE_STATE_FILE
 
-    archive = filter_archive_by_source_ids(load_archive(archive_path), active_source_ids)
+    archive = load_archive_for_collection(archive_path)
     # 第二层清理：取消订阅的 B站 UP 主 / 抖音号，其历史条目一并移除。
     # 只认一条配置对应一个作者的面板配置；容器型配置绝不参与清理。
     if source_config_active and is_online_panel_config(source_config):

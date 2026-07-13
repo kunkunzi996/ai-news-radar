@@ -398,7 +398,11 @@ BUILTIN_COLLECT_SOURCE_IDS = frozenset({
     "aihot",
     "newsnow",
 })
-SOURCE_CONFIG_DEFAULT_FILENAMES = ("sources.config.json", "data/sources.config.json")
+SOURCE_CONFIG_DEFAULT_FILENAMES = (
+    "config/online-sources.json",
+    "sources.config.json",
+    "data/sources.config.json",
+)
 SOURCE_CONFIG_ID_SITE_IDS: dict[str, tuple[str, ...]] = {
     "official_ai_sources": ("official_ai",),
     "curated_ai_media_sources": ("curated_media",),
@@ -426,6 +430,7 @@ SOURCE_CONFIG_TYPE_SITE_IDS: dict[str, tuple[str, ...]] = {
     "aihot": ("aihot",),
     "newsnow": ("newsnow",),
     "opmlrss": ("opmlrss",),
+    "rss": ("opmlrss",),
     "xapi": ("xapi",),
     "socialdata_x": ("socialdata_x",),
     "tikhub_douyin": ("tikhub_douyin", "tikhub_xiaohongshu"),

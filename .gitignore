@@ -31,6 +31,7 @@ local-secrets/
 # Optional private/generated digests
 data/email-digest.json
 data/title-zh-cache.json
+data/pending-purge.json
 
 # Playwright
 node_modules/

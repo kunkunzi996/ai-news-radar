@@ -30,6 +30,7 @@ from scripts.radar.server import (
     start_mediacrawler_xhs,
     start_wewe_rss_sidecar,
 )
+from scripts.radar.server.subscriptions_store import flush_pending_purge
 from scripts.radar.server.common import (
     bilibili_cookie_status,
     dedupe_maintenance_issues,
@@ -156,7 +157,7 @@ def refresh_command(
         sys.executable,
         str(root_dir / "scripts" / "update_news.py"),
         "--source-config",
-        CONFIG_FILENAME,
+        "config/online-sources.json",
         "--output-dir",
         "data",
         "--window-hours",
@@ -349,7 +350,12 @@ def run_refresh_background(root_dir: Path, collection_scope: str, command: list[
         )
         append_refresh_progress(f"刷新失败：{exc}", status="failed")
     finally:
-        REFRESH_LOCK.release()
+        try:
+            flush_pending_purge(root_dir)
+        except Exception as exc:
+            append_refresh_progress(f"待清理台账处理失败：{exc}", status="failed")
+        finally:
+            REFRESH_LOCK.release()
 
 
 def collector_no_new_in_collection_window(collector: dict[str, Any] | None) -> bool:
