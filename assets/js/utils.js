@@ -243,3 +243,25 @@ function pickTopHeadlineClusters(clusters, limit = 3) {
     .slice(0, limit)
     .map((cluster) => ({ ...cluster, score: headlineClusterScore(cluster) }));
 }
+
+// 后端 purged_items 有三种形态：已清理（{文件名: 删除条数}）、延后（采集占着锁，
+// 已记进待清理台账）、失败。三个保存入口共用这段解读，别各写一遍。
+// 延后必须说出来——否则用户删了信源却看到"没清理任何东西"，会以为清理丢了。
+function purgedItemsNote(purgedItems) {
+  const payload = purgedItems && typeof purgedItems === "object" ? purgedItems : {};
+  if (payload.error) return `；历史数据清理失败：${payload.error}`;
+
+  if (payload.deferred && typeof payload.deferred === "object") {
+    const pending = Object.values(payload.deferred).reduce(
+      (sum, names) => sum + (Array.isArray(names) ? names.length : 0),
+      0,
+    );
+    return pending > 0 ? `；${pending} 个已删除信源的历史数据将在本次采集结束后清理` : "";
+  }
+
+  const removed = Object.values(payload).reduce((sum, value) => {
+    const n = Number(value);
+    return sum + (Number.isFinite(n) ? n : 0);
+  }, 0);
+  return removed > 0 ? `；已清理 ${removed} 条已删除信源的历史数据` : "";
+}

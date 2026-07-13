@@ -383,7 +383,10 @@ async function saveOnlineSourceConfigToServer() {
     state.onlineSourceConfig = normalizeOnlineSourceConfig(payload);
     state.onlineSourceDirty = false;
     renderOnlineSourceConfig();
-    setOnlineSourceStatus(`已写入本地线上配置：${fmtNumber(payload.source_count || 0)} 个信源`, "ok");
+    setOnlineSourceStatus(
+      `已写入本地线上配置：${fmtNumber(payload.source_count || 0)} 个信源${purgedItemsNote(payload.purged_items)}`,
+      "ok",
+    );
     setOnlineSourceButton(onlineSourceSaveBtnEl, "已保存", true);
     restoreOnlineSourceButton(onlineSourceSaveBtnEl, onlineSourceFormActionLabel());
     return payload;
@@ -422,14 +425,15 @@ async function syncOnlineSourceConfigToServer() {
     state.onlineSourceConfig = normalizeOnlineSourceConfig(payload);
     state.onlineSourceDirty = false;
     renderOnlineSourceConfig();
+    const purgedNote = purgedItemsNote(payload.purged_items);
     if (payload.no_changes) {
-      setOnlineSourceStatus("线上配置没有变化，不需要提交。", "ok");
+      setOnlineSourceStatus(`线上配置没有变化，不需要提交。${purgedNote}`, "ok");
       setOnlineSourceButton(onlineSourceSyncBtnEl, "无变化", true);
     } else if (payload.pushed) {
-      setOnlineSourceStatus(`已推送，等待 GitHub Actions 刷新（commit ${payload.commit || ""}）`, "ok");
+      setOnlineSourceStatus(`已推送，等待 GitHub Actions 刷新（commit ${payload.commit || ""}）${purgedNote}`, "ok");
       setOnlineSourceButton(onlineSourceSyncBtnEl, "已推送", true);
     } else {
-      setOnlineSourceStatus(`已提交 ${payload.commit || ""}，但未推送。`, "warn");
+      setOnlineSourceStatus(`已提交 ${payload.commit || ""}，但未推送。${purgedNote}`, "warn");
       setOnlineSourceButton(onlineSourceSyncBtnEl, "已提交", true);
     }
     restoreOnlineSourceButton(onlineSourceSyncBtnEl, "同步到线上", 1800);

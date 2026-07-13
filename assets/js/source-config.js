@@ -560,11 +560,7 @@ async function writeSourceConfigToLocalServer(options = {}) {
     if (!res.ok || payload.ok === false) {
       throw new Error(payload.error || `HTTP ${res.status}`);
     }
-    const purgedTotal = Object.values(payload.purged_items || {}).reduce((sum, value) => {
-      const n = Number(value);
-      return sum + (Number.isFinite(n) ? n : 0);
-    }, 0);
-    const purgedNote = purgedTotal > 0 ? `；已清理 ${purgedTotal} 条已删除信源的历史数据` : "";
+    const purgedNote = purgedItemsNote(payload.purged_items);
     saveSourceConfigDraft(`已同步 ${payload.path || "sources.config.json"}，共 ${payload.source_count || 0} 个信源${purgedNote}`);
     renderSourceConfig();
     setSourceConfigButton(button, successLabel, true);
