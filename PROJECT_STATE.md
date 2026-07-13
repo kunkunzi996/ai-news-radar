@@ -1,5 +1,25 @@
 # PROJECT_STATE
 
+## 下一轮入口（2026-07-13 更新）
+
+- **当前状态**：`master` 已推送、与远端同步（`8bade16` / `d8000b7` / `43c1c64` / `99dc4e7`）。
+  工作区干净，无未完成任务。归档 560 条（B站 391 / RSS 62 / 微信 62 / 抖音 34 / GitHub Release 11），
+  僵尸条目 0。
+- **已完成**：设置抽屉（`6134364`）；两份配置口径统一 + 三个静默删数据缺口修复（本轮四个提交）。
+- **未完成 / 可选下一步**（都没动，需用户拍板）：
+  1. `sources.config.json` 已退为本机私有参数，但 `/api/source-config` 接口仍在。要不要彻底
+     下线它，是个独立话题。
+  2. `flush_pending_purge()` 用**线上配置**算存活名单，台账却也可能来自 `/api/source-config`
+     的保存。该偏差**偏保守**（最坏是「该清的没清」，不会误删），随 1 的完成自然消失。
+  3. 小红书 `mediacrawler_xhs` 仍不在 `ENUMERABLE_SUBSCRIPTION_SITE_IDS`（取消订阅不清历史）。
+     当前无小红书数据，不紧急。
+- **继续文件**：`scripts/radar/server/subscriptions_store.py`（清理逻辑）、
+  `scripts/radar/cli.py`（采集入口）、`scripts/local_server.py`（两处保存路径）。
+- **验收命令**：`.\.venv\Scripts\python.exe -m pytest -q`（基线 **326 passed**）；
+  `npm run test:e2e`（3 passed）。
+- **风险提醒**：改清理逻辑前**必读 `CLAUDE.md` 的「清理历史条目的禁区」五条**——三条都真删过
+  数据，且静态检查一条都拦不住。动手前先 `cp data/archive.json` 留底。
+
 ## Current State
 
 - Date: 2026-07-13
