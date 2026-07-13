@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-07-13T02:27:36Z",
+  "updated_at": "2026-07-13T13:57:04Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -101,17 +101,6 @@
       "locator": "680677803",
       "env": "",
       "notes": "公开 UID"
-    },
-    {
-      "id": "online_github_alkaidlab_foundation_sunshine",
-      "name": "AlkaidLab/foundation-sunshine",
-      "type": "github_release",
-      "enabled": true,
-      "channel": "GitHub Release",
-      "target": "AlkaidLab/foundation-sunshine",
-      "locator": "AlkaidLab/foundation-sunshine",
-      "env": "",
-      "notes": "只追踪 release，不追踪普通 commit。"
     },
     {
       "id": "online_douyin_15e1eb7a80",
