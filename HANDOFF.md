@@ -1,6 +1,43 @@
 # HANDOFF.md
 
-## 当前最新交接：两份配置口径统一 + 三个静默删数据缺口修复（2026-07-13）
+## 当前最新交接：同步线上信源 rebase 阻塞修复（2026-07-14）
+
+- 分支：`master`，已推送（`70de6e8`），与远端同步
+- 计划书：`计划/同步线上工作区脏改动阻塞rebase修复计划.md`
+
+### 一句话
+
+「同步到线上」内部要 `git pull --rebase`，git 规定工作区有未提交的已跟踪改动就拒绝 rebase；
+本机采集产物 `data/*.json` 常年脏，所以同步必然报 `online_sources_rebase_failed`——跟删订阅无关。
+
+### 修法（`scripts/radar/server/online_sources.py` 的 `sync_online_source_config`）
+
+commit 配置 → 有已跟踪脏改动才 `git stash push`（不带 `-u`）→ rebase+push →
+`finally` 里 `git restore --source=stash@{0} -- .` + `git stash drop`。
+
+### ⚠️ 两个真踩过的坑（改这段代码前必读）
+
+**坑 1 —— 恢复必须用 `git restore`，不能用 `git checkout stash@{0} -- .`。**
+checkout 会把文件同时写回工作区**和暂存区**：第一次同步成功但 data 变 staged，
+下一次同步被函数开头的 `unrelated_files_already_staged` 闸拦住。Codex 第一版就这么写的，
+单测全绿也没抓住（测试没区分 staged/unstaged、没测连续两次同步），靠独立实验才实锤。
+
+**坑 2 —— 不能用 `--autostash`。** 线上 Actions 每轮都提交 `data/**`，autostash pop 时
+三方合并必冲突，且冲突发生时 rebase 已完成、`rebase --abort` 无效，工作区留一堆冲突标记。
+
+### 未完成 / 待用户拍板
+
+**git `stash@{0}`（备注「本地刷新生成的 data 快照」）里有 6 条工作区已丢失的 GitHub Release
+历史，是唯一备份，严禁 drop。** 待决策要不要恢复进 archive。核对报告：根目录 `stash_cmp_report.txt`。
+
+### 本轮验收
+
+同步相关 pytest 6 passed（新增 3）；浏览器两轮实测（含线上 Actions 中途插入提交、rebase 真实
+跨过的场景）；遗留 stash 隔离实验验证无损。
+
+---
+
+## 历史交接：两份配置口径统一 + 三个静默删数据缺口修复（2026-07-13）
 
 - 分支：`master`，已推送（后端 `1d1a46b` + 前端 `eba3926`）
 - 计划书：`计划/两份配置口径统一实施计划.md`、`计划/停用与删除清理缺口修复计划.md`、`计划/采集中保存配置漏清理修复计划.md`

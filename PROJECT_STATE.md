@@ -1,30 +1,38 @@
 # PROJECT_STATE
 
-## 下一轮入口（2026-07-13 更新）
+## 下一轮入口（2026-07-14 更新）
 
-- **当前状态**：`master` 已推送、与远端同步（`8bade16` / `d8000b7` / `43c1c64` / `99dc4e7`）。
-  工作区干净，无未完成任务。归档 560 条（B站 391 / RSS 62 / 微信 62 / 抖音 34 / GitHub Release 11），
-  僵尸条目 0。
-- **已完成**：设置抽屉（`6134364`）；两份配置口径统一 + 三个静默删数据缺口修复（本轮四个提交）。
-- **未完成 / 可选下一步**（都没动，需用户拍板）：
-  1. `sources.config.json` 已退为本机私有参数，但 `/api/source-config` 接口仍在。要不要彻底
+- **当前状态**：`master` 已推送、与远端同步（`70de6e8` 修复 + 两个配置同步提交 `8473443` / `c616234`）。
+  工作区有 8 个 `data/*.json` 未提交改动（采集产物，属常态，不阻塞任何操作）。
+- **已完成**：同步线上信源不再被本机未提交的数据快照阻塞（`70de6e8`，浏览器两轮实测通过，
+  含「连续两次同步」与「线上 Actions 中途插入新提交」两个关键场景）。
+  计划书：`计划/同步线上工作区脏改动阻塞rebase修复计划.md`。
+- **未完成 / 待用户拍板**：
+  1. **⚠️ git `stash@{0}`（备注「本地刷新生成的 data 快照」）里有 6 条工作区已丢失的
+     GitHub Release 历史**（`github_foundation_sunshine_releases`，2026-07-11 快照），是这
+     6 条数据的唯一备份。**严禁 drop 该 stash**。待决策：要不要恢复进 `archive.json`。
+     核对方法见 `stash_cmp_report.txt`（根目录，未跟踪）。
+  2. `sources.config.json` 已退为本机私有参数，但 `/api/source-config` 接口仍在。要不要彻底
      下线它，是个独立话题。
-  2. `flush_pending_purge()` 用**线上配置**算存活名单，台账却也可能来自 `/api/source-config`
-     的保存。该偏差**偏保守**（最坏是「该清的没清」，不会误删），随 1 的完成自然消失。
-  3. 小红书 `mediacrawler_xhs` 仍不在 `ENUMERABLE_SUBSCRIPTION_SITE_IDS`（取消订阅不清历史）。
+  3. `flush_pending_purge()` 用**线上配置**算存活名单，台账却也可能来自 `/api/source-config`
+     的保存。该偏差**偏保守**（最坏是「该清的没清」，不会误删），随 2 的完成自然消失。
+  4. 小红书 `mediacrawler_xhs` 仍不在 `ENUMERABLE_SUBSCRIPTION_SITE_IDS`（取消订阅不清历史）。
      当前无小红书数据，不紧急。
-- **继续文件**：`scripts/radar/server/subscriptions_store.py`（清理逻辑）、
-  `scripts/radar/cli.py`（采集入口）、`scripts/local_server.py`（两处保存路径）。
-- **验收命令**：`.\.venv\Scripts\python.exe -m pytest -q`（基线 **326 passed**）；
-  `npm run test:e2e`（3 passed）。
-- **风险提醒**：改清理逻辑前**必读 `CLAUDE.md` 的「清理历史条目的禁区」五条**——三条都真删过
-  数据，且静态检查一条都拦不住。动手前先 `cp data/archive.json` 留底。
+- **继续文件**：`scripts/radar/server/online_sources.py`（同步逻辑，本轮已修）、
+  `scripts/radar/server/subscriptions_store.py`（清理逻辑）、`scripts/local_server.py`。
+- **验收命令**：`.\.venv\Scripts\python.exe -m pytest -q`（同步相关 6 passed，含本轮新增 3 个）；
+  `.\.venv\Scripts\python.exe -m pytest tests/test_local_server.py -k sync -v` 单验同步。
+- **风险提醒**：改清理逻辑前**必读 `CLAUDE.md` 的「清理历史条目的禁区」五条**；改同步逻辑
+  注意恢复工作区必须用 `git restore --source=stash@{0}`（只回写工作区），**不能用
+  `git checkout stash@{0}`**（会同时写入暂存区，导致下一次同步被 `unrelated_files_already_staged`
+  闸拦住——本轮真踩过，Codex 第一版就是这么写的）。
 
 ## Current State
 
-- Date: 2026-07-13
+- Date: 2026-07-14
 - Local path: `E:\AI-news-reader\ai-news-radar-run`
 - Branch: `master`
+- **2026-07-14 同步线上信源不再被本机数据快照阻塞（提交 `70de6e8`，浏览器两轮实测通过）**：用户删订阅→保存→同步报 `online_sources_rebase_failed`。根因与删订阅无关：`sync_online_source_config` 在 commit 配置后直接 `git pull --rebase`，而 git 规定工作区有未提交的已跟踪改动就拒绝 rebase——本机采集产物 `data/*.json` 常年处于脏状态，故必然阻塞。**没用 `--autostash`**：线上 Actions 每轮都提交 `data/**`，autostash pop 时三方合并必冲突且冲突后 rebase 已完成、abort 无效，比原错误更糟。方案是「隔离→覆盖恢复」：commit 配置 → 有已跟踪脏改动才 `git stash push`（不带 `-u`）→ rebase+push → `finally` 里 `git restore --source=stash@{0} -- .` + `stash drop`。**两个真踩过的坑**：(1) Codex 第一版用 `git checkout stash@{0} -- .` 恢复，该命令会把文件同时写回工作区**和暂存区**，第一次同步成功但 data 变 staged，下一次同步被函数开头的 `unrelated_files_already_staged` 闸拦住——独立实验实锤后改 `git restore`（只回写工作区）；(2) 函数自身的 stash 操作只碰自己压入的 `stash@{0}`，用户已有的遗留 stash 会被顶到 `stash@{1}` 再自动回位，隔离实验验证无损。测试：`tests/test_local_server.py` 新增 3 个（带脏改动同步成功且 data 保持未暂存、无脏改动不建 stash、rebase 冲突时 finally 恢复且 stash 清空），同步相关 6 passed。浏览器实测两轮：改备注→保存→同步「已推送 commit 8473443」；清理备注→再同步「已推送 commit c616234」，两轮之间线上 Actions 恰好插入新快照提交 `82a474e`，rebase 真实跨过、零冲突，data 全程保持本机版未暂存、遗留 stash 6 条 GitHub Release 无损。
 - **2026-07-13 两份配置口径统一 + 三个静默删数据缺口已修复（提交 `1d1a46b` 后端 + `eba3926` 前端，浏览器验收通过）**：三个缺陷同一病根——**「本轮采集哪些源」被当成了「历史里允许留哪些源」**。(1) **止血**：`cli.py` 原先用 `active_source_ids` 过滤 `archive`，导致两份配置各跑各的、互删对方独有的源——线上跑一次删光 GitHub Release（2026-07-12 真丢过 9 条），**本机跑一次会删光抖音+微信+RSS 共 174 条**（施工前用真实配置纯计算模拟实锤）；`--bilibili-only` / `--source-scope` 走同一行代码、同样会误删。已改为 `load_archive_for_collection()`，归档只由「用户明确删除源」这一显式动作清理，并删掉无调用的 `filter_archive_by_source_ids()` 及转发别名。(2) **统一名单**：本机刷新与 Actions 同读 `config/online-sources.json`（`SOURCE_CONFIG_DEFAULT_FILENAMES` 把它排到首位），`sources.config.json` 退为本机私有参数回退；GitHub Release 迁入线上名单，历史回填 10 条。(3) **补清理能力**：线上面板保存/同步也执行 purge（原先只有本机那份配置有）；**停用（`enabled` true→false）视为取消订阅**，但 `previous` 与 `current` **两边都要排除 disabled**——Codex 建议的「只排除 current」会让 `sources.config.json` 里 20 多个长期 `off` 的源被误判成「刚被删除」（实测会清掉抖音 Simon林、小红书 陈抱一），等于把同一颗雷换马甲复活；`type: rss` 补上 `opmlrss` 身份映射（身份用配置 `name`，容器型 `type: opmlrss` 不进身份表）**之后**才把 `opmlrss` 纳入 `PURGE_TRACKED_SITE_IDS`——**顺序颠倒会让存活名单为空、78 条 RSS 全灭**（实测）。(4) **采集占锁不再静默跳过清理**：原先抢不到 `REFRESH_LOCK` 就返回 `skipped` 且永不补做，等采集结束再保存时新旧配置已相同，删除记录永久丢失。现改为「算账」与「动手」分离——算删了谁是纯计算不需要锁，保存时立即算出并按并集写入 `data/pending-purge.json` 台账（已 `.gitignore`），刷新成功/失败/超时都在**释放锁之前**补做；**补做前用当前配置复核，源若被加回则只从台账划掉、拒绝清理**（安全阀，实测生效）。(5) **前端如实告知**：后端 `purged_items` 有三种形态（已清理/延后/失败），前端原先只认数字，延后时 `Number(对象)` 得 NaN 被跳过、总数算成 0、界面一个字不提；新增 `utils.js` 的 `purgedItemsNote()` 统一解读，接入三个保存入口，线上面板原先根本不读 `purged_items` 也一并补上。**数据结果**：归档 565 → 560；4 个 RSS 僵尸源（Wired AI / 宝玉 / NVIDIA / InfoQ CN，早已不在任何 OPML 里）共 20 条清除，9 个在订 RSS 源一条未损，GitHub Release 回填 10 条。首采临时用 `FIRST_COLLECT_BACKFILL_DAYS=180` 回填，长期默认 60 天规则未改。验收：pytest **326 passed**；`npm run test:e2e` 3 passed；**端到端浏览器实测**——采集进行中删除 B站 UP 主，界面显示「1 个已删除信源的历史数据将在本次采集结束后清理」，把该源加回后台账自动清空，采集结束其 19 条历史一条未损，0 控制台错误。
 - **2026-07-13 信源配置迁入独立设置抽屉已上线（提交 `6134364`，本地 + 公网形态浏览器验收通过）**：首页顶栏新增「⚙ 设置」入口，原本挂在时间流上方的 `<details class="source-config-wrap">` 整块移入全屏抽屉，首页只剩时间流。**动因不只是「碍事」**：那个折叠面板名叫「信源配置」，实际塞了**四样东西**——运维工具栏（一键采集/刷新看板/重启本地服务）、本地采集状态、线上信源（写 `config/online-sources.json`，**决定公网采集什么**）、订阅成员 + 高级信源配置（都写 `sources.config.json`，**只影响本机**）。两份配置口径不一致已真出过事（2026-07-12 GitHub Release 9 条被误清）。故抽屉按语义分两个 tab：「信源」= 线上信源（带警示条「改动会同步到 GitHub」）；「本机采集」= 工具栏 + 本地状态 + 「本机私有配置」折叠区（订阅成员/高级配置，标注不影响公网）。公网静态页按 `canUseLocalBackend()` 隐藏整个「本机采集」tab。**关键约束：所有元素 id 一个没改**，故 `dom.js` 的 `getElementById` 缓存与 `local-collect.js` / `online-source-config.js` / `source-config.js` / `subscriptions.js` 全部逻辑零改动，风险只落在 HTML 挂载位置 + CSS。**顺带修掉一个既有 bug**：`.online-source-form { display: grid }` 优先级高于浏览器给 `[hidden]` 的 `display:none`，导致 `online-source-config.js` 里那句 `form.hidden = !isLocal` **一直失效**，公网访客始终能看到「保存配置」表单（填了点保存必失败）；已加 `.online-source-form[hidden] { display: none }`。**焦点陷阱踩了三次坑（Codex review 提出 P2 后修）**：判断「抽屉内哪些元素真能 Tab 到」，`offsetParent !== null` 和 `getClientRects().length > 0` **都会把折叠 `<details>` 里的按钮误判为可见**（Chrome 对折叠 details 内容仍保留 box），`closest("details:not([open])")` 也不够——「高级信源配置」的 summary **嵌套**在外层折叠的「本机私有配置」里，只查最近一层会放行。最终改为**逐层上溯所有祖先 details**（`isFocusableInDrawer()`，`settings-drawer.js`）才修对；打开时给抽屉的兄弟节点加 `inert`，关闭时还原焦点。三版错误全靠浏览器实测抓出，静态检查一版都拦不住。验收：pytest **314 passed**；`npm run test:e2e` 3 passed；Playwright 实测本地（23 个线上源真实加载、两 tab 可切、Esc 关闭、0 JS 错误）与公网静态形态（用局域网 IP 访问静态服务器复现——`canUseLocalBackend()` 白名单只认 localhost/127.0.0.1/::1/0.0.0.0，故局域网 IP 即等价公网；「本机采集」tab 隐藏、表单隐藏、同步按钮禁用、0 JS 错误）；焦点陷阱实测 Tab×40 / Shift+Tab×20 / 4 层折叠区全展开后 Tab×60 均 0 次漏出。**当时未做的「第二刀」（两份配置口径统一）已于同日完成，见上一条 `1d1a46b`。**
 - **2026-07-12 取消订阅联动清理历史条目已上线（提交 `8a13a39` 首版 + `f25eb25` 修复，浏览器验收通过）**：取消订阅（删除或停用）一个 B站 UP / 抖音号后，其已采集的历史条目会在下次采集时一并清除。根因：条目的 `site_id` 是**通道级**的（`bilibili_dynamic`），订阅对象只体现在 `source`（作者名）字段，而原有清理只有 `filter_archive_by_source_ids()` 一层（按 site_id），取消通道内的单个作者时旧条目一条都掉不下去。现补上第二层 `filter_archive_by_subscriptions()`（`scripts/radar/pipeline.py`）。**三道护栏缺一不可，都是真踩过的坑**：(1) `is_online_panel_config()` 只认 `config/online-sources.json` 的 `mode=online-public-source-config` —— 仓库根 `sources.config.json` 是**容器型**格式，它的 bilibili 记录 `target` 是 `"Koji杨远骋at十字路口,夏鹏本鹏"` 这种**逗号串**，若拿它清理会把整串当一个作者名、一次删光 466 条 B站条目（首版曾用「文件名是否叫 online-sources.json」兜底，脆弱，已换成 mode 字段）；(2) `ENUMERABLE_SUBSCRIPTION_SITE_IDS`（`common.py`）只含 `bilibili_dynamic` + `mediacrawler_douyin` —— `opmlrss`（一条配置=一整个 OPML 包）、`we_mp_rss_jsonl`（一条配置=一个目录含多个公众号）、`github_*`（配置里根本没有）是容器型/遗留通道，**严禁加入**；(3) 熔断：某通道归档条目**零命中**订阅名单却要删条目时跳过清理（挡逗号串/昵称错配这类名单全错的事故），可用 `--force-subscription-cleanup` 强制放行。**熔断不可退回按「删除比例」判定**——那会让「取消一个大 UP 主」（如技术爬爬虾占 B站 43%）每轮比例不变、永远熔断、永远清不掉。抖音特殊：条目 `source` 存的是**抖音真实昵称**（`mediacrawler.py` 的 `nickname`），不等于面板备注名，故改按 `sec_uid` 精确匹配（已把 `douyin_sec_user_id` 加进 `PUBLIC_RAW_META_FIELDS` 白名单才能落库）；**存量无 sec_uid 的老条目一律保留、且不计入命中数**。前端 `assets/js/online-source-config.js` 的删除与停用都加了二次确认（停用等同取消订阅，历史同样会清）。**本地执行清理必须带 `--source-config config/online-sources.json`**，不带参数会加载 `sources.config.json` 而不做任何清理（这是设计如此，审计脚本 `scripts/audit_orphan_items.py` 默认读面板配置并会提示）。验收：pytest **304 passed**；`anno大笨蛋` 77 条 → 0 条（archive 638 → 562），B站其余 8 个 UP / 微信 3 个号 / OPML 全部 / 抖音 4 个号零误伤；Playwright 实测删除与停用弹窗文案正确、点取消后源仍在且开关复位。副作用（用户已确认接受）：GitHub Release 的 9 条被**第一层** `filter_archive_by_source_ids` 清掉——因为面板配置里没有 GitHub 源，改用面板配置跑管线后该通道整体不在启用名单里；这是两份配置口径不一致的老账，非本次功能 bug。
