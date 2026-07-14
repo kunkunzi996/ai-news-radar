@@ -122,6 +122,7 @@ const oneClickCollectBtnEl = document.getElementById("oneClickCollectBtn");
 const sourceConfigRefreshBtnEl = document.getElementById("sourceConfigRefreshBtn");
 const sourceConfigCheckBtnEl = document.getElementById("sourceConfigCheckBtn");
 const localServerRestartBtnEl = document.getElementById("localServerRestartBtn");
+const weMpRssStartBtnEl = document.getElementById("weMpRssStartBtn");
 const sourceCollectionScopeSelectEl = document.getElementById("sourceCollectionScopeSelect");
 const sourceConfigStatusEl = document.getElementById("sourceConfigStatus");
 const localOpsStatusEl = document.getElementById("localOpsStatus");

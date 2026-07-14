@@ -397,4 +397,8 @@ if (localServerRestartBtnEl) {
   localServerRestartBtnEl.addEventListener("click", restartLocalServerFromPage);
 }
 
+if (weMpRssStartBtnEl) {
+  weMpRssStartBtnEl.addEventListener("click", startWeMpRssSidecarFromPage);
+}
+
 init();

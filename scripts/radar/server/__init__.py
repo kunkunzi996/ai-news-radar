@@ -27,6 +27,7 @@ COLLECTION_SCOPE_ALL = "all"
 COLLECTION_SCOPES = {COLLECTION_SCOPE_24H, COLLECTION_SCOPE_ALL}
 MEDIACRAWLER_JSONL_STALE_HOURS = 36
 WEWE_RSS_BASE_URL_DEFAULT = "http://127.0.0.1:4000"
+WE_MP_RSS_BASE_URL_DEFAULT = "http://127.0.0.1:8001"
 LOCAL_HTTP_TIMEOUT_SECONDS = 2.0
 BILIBILI_LOGIN_URL = "https://passport.bilibili.com/login"
 BILIBILI_DEFAULT_COOKIE_FILE = Path("local-secrets") / "bilibili-cookies.txt"
@@ -38,6 +39,11 @@ XIAOHONGSHU_HOME_URL = "https://www.xiaohongshu.com/explore"
 WEWE_RSS_SIDECAR_DIR_NAME = "wewe-rss-sidecar"
 WEWE_RSS_SIDECAR_LOG_OUT = "wewe-rss.out.log"
 WEWE_RSS_SIDECAR_LOG_ERR = "wewe-rss.err.log"
+
+# we-mp-rss（Python / 8001）：微信公众号采集真正依赖的 sidecar，与上面的 WeWe RSS
+# （Node / 4000）是两个不同服务，切勿混用。启动脚本 start-we-mp-rss.ps1 跑 main.py。
+WE_MP_RSS_SIDECAR_DIR_NAME = "we-mp-rss-sidecar"
+WE_MP_RSS_SIDECAR_LOG_OUT = "we-mp-rss.out.log"
 MEDIACRAWLER_LOCAL_DIR_NAME = "MediaCrawler-local-test"
 MEDIACRAWLER_DOUYIN_LOG_OUT = "mediacrawler-douyin.out.log"
 MEDIACRAWLER_DOUYIN_LOG_ERR = "mediacrawler-douyin.err.log"

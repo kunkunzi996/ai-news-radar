@@ -26,9 +26,12 @@ from scripts.radar.server import (
     MEDIACRAWLER_XHS_LOG_OUT,
     MEDIACRAWLER_XHS_PID,
     WEWE_RSS_BASE_URL_DEFAULT,
+    WE_MP_RSS_BASE_URL_DEFAULT,
     WEWE_RSS_SIDECAR_DIR_NAME,
     WEWE_RSS_SIDECAR_LOG_ERR,
     WEWE_RSS_SIDECAR_LOG_OUT,
+    WE_MP_RSS_SIDECAR_DIR_NAME,
+    WE_MP_RSS_SIDECAR_LOG_OUT,
     normalize_collection_scope,
 )
 from scripts.radar.server.common import (
@@ -257,6 +260,83 @@ def start_wewe_rss_sidecar(root_dir: Path, *, execute: bool = True) -> dict[str,
         "action_id": "start_wewe_rss_sidecar",
         "pid": process.pid,
         "url": base_url + "/dash",
+        "executed": True,
+    }
+
+
+def we_mp_rss_sidecar_root(root_dir: Path) -> Path:
+    configured = str(os.environ.get("WE_MP_RSS_SIDECAR_DIR") or "").strip()
+    if configured:
+        return Path(configured).expanduser().resolve()
+    return (root_dir.parent / WE_MP_RSS_SIDECAR_DIR_NAME).resolve()
+
+
+def we_mp_rss_service_running() -> bool:
+    # 8001 sidecar（we-mp-rss，Python）的健康检查打根路径 /，不是 4000 的 /feeds。
+    base_url = (os.environ.get("WE_MP_RSS_BASE_URL") or WE_MP_RSS_BASE_URL_DEFAULT).strip().rstrip("/")
+    request = urllib.request.Request(base_url + "/", headers={"Accept": "*/*"})
+    try:
+        with urllib.request.urlopen(request, timeout=LOCAL_HTTP_TIMEOUT_SECONDS) as response:
+            return response.status < 500
+    except urllib.error.HTTPError:
+        # 有响应（哪怕 4xx）就说明服务在跑
+        return True
+    except (urllib.error.URLError, TimeoutError, OSError):
+        return False
+
+
+def start_we_mp_rss_sidecar(root_dir: Path, *, execute: bool = True) -> dict[str, Any]:
+    # 微信采集依赖的 sidecar：we-mp-rss（Python / 8001），不是 WeWe RSS（Node / 4000）。
+    base_url = (os.environ.get("WE_MP_RSS_BASE_URL") or WE_MP_RSS_BASE_URL_DEFAULT).strip().rstrip("/")
+    if not is_local_http_url(base_url):
+        return {"ok": False, "error": "we_mp_rss_base_url_not_local", "base_url": base_url}
+    if we_mp_rss_service_running():
+        return {"ok": True, "already_running": True, "url": base_url, "executed": False}
+
+    sidecar_root = we_mp_rss_sidecar_root(root_dir)
+    entry = sidecar_root / "main.py"
+    if not entry.exists():
+        return {"ok": False, "error": "we_mp_rss_main_not_found", "path": str(entry)}
+
+    if os.name == "nt":
+        sidecar_python = sidecar_root / ".venv" / "Scripts" / "python.exe"
+    else:
+        sidecar_python = sidecar_root / ".venv" / "bin" / "python"
+    python_exe = str(sidecar_python) if sidecar_python.exists() else (shutil.which("python") or sys.executable)
+    if not python_exe:
+        return {"ok": False, "error": "python_not_found"}
+
+    command = [python_exe, str(entry), "-job", "True", "-init", "True"]
+    if not execute:
+        return {"ok": True, "command": command, "cwd": str(sidecar_root), "url": base_url, "executed": False}
+
+    # 微信是国内服务，走代理会被拒/超时——清掉代理环境变量，与 start-we-mp-rss.ps1 一致。
+    env = os.environ.copy()
+    for proxy_var in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "http_proxy", "https_proxy", "all_proxy"):
+        env.pop(proxy_var, None)
+    env["NO_PROXY"] = "*"
+
+    out_log = sidecar_root / WE_MP_RSS_SIDECAR_LOG_OUT
+    creationflags = 0
+    if os.name == "nt":
+        creationflags = subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS
+    with out_log.open("a", encoding="utf-8", errors="ignore") as stdout_file:
+        process = subprocess.Popen(
+            command,
+            cwd=sidecar_root,
+            env=env,
+            stdout=stdout_file,
+            stderr=subprocess.STDOUT,
+            stdin=subprocess.DEVNULL,
+            close_fds=True,
+            creationflags=creationflags,
+        )
+    return {
+        "ok": True,
+        "kind": "start_service",
+        "action_id": "start_we_mp_rss_sidecar",
+        "pid": process.pid,
+        "url": base_url,
         "executed": True,
     }
 

@@ -30,6 +30,7 @@ from scripts.radar.server import (
     start_mediacrawler_xhs,
     start_wewe_rss_sidecar,
 )
+from scripts.radar.server.collectors import start_we_mp_rss_sidecar
 from scripts.radar.server.subscriptions_store import flush_pending_purge
 from scripts.radar.server.common import (
     bilibili_cookie_status,
@@ -573,6 +574,16 @@ def perform_maintenance_action(
     if direct_start_action:
         return direct_start_action(root_dir, execute=execute, collection_scope=scope)
 
+    # 常驻按需启动的本机 sidecar：UI 是常驻按钮，派发就必须无条件，不能依赖
+    # “出问题才生成”的维护项列表。签名不收 collection_scope，故与上面的字典分开。
+    scope_free_start_actions = {
+        "start_wewe_rss_sidecar": start_wewe_rss_sidecar,
+        "start_we_mp_rss_sidecar": start_we_mp_rss_sidecar,
+    }
+    scope_free_action = scope_free_start_actions.get(str(action_id or "").strip())
+    if scope_free_action:
+        return scope_free_action(root_dir, execute=execute)
+
     action = find_maintenance_action(root_dir, action_id)
     if not action:
         return {"ok": False, "error": "maintenance_action_not_found"}
@@ -624,8 +635,6 @@ def perform_maintenance_action(
             return launch_bilibili_dedicated_browser(root_dir, execute=execute)
         if action_id == "sync_bilibili_cookie":
             return sync_bilibili_cookie(root_dir, execute=execute)
-        if action_id == "start_wewe_rss_sidecar":
-            return start_wewe_rss_sidecar(root_dir, execute=execute)
         if action_id == "start_mediacrawler_douyin":
             return start_mediacrawler_douyin(root_dir, execute=execute, collection_scope=scope)
         if action_id == "start_mediacrawler_xhs":

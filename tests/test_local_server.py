@@ -40,6 +40,7 @@ from scripts.local_server import (
     start_mediacrawler_douyin,
     start_mediacrawler_xhs,
     start_wewe_rss_sidecar,
+    start_we_mp_rss_sidecar,
     sync_online_source_config,
     refresh_step_plan,
     validate_source_config,
@@ -2202,6 +2203,61 @@ class LocalServerTests(unittest.TestCase):
         self.assertIn("MS4wLjABAAAAOzTvIhQXaHWi6jT_P5rG5xEWpWPjufiK", result["command"])
         self.assertNotIn(homepage_url, result["command"])
         self.assertIn("--collect-window-hours", result["command"])
+
+    def test_perform_maintenance_action_can_start_we_mp_rss_without_current_issue(self):
+        import os
+
+        root = Path(self.create_temp_dir()) / "ai-news-radar-run"
+        root.mkdir(parents=True)
+        sidecar_root = root.parent / "we-mp-rss-sidecar-test"
+        sidecar_root.mkdir(parents=True)
+        (sidecar_root / "main.py").write_text("print('fake')\n", encoding="utf-8")
+        python_dir = sidecar_root / ".venv" / "Scripts"
+        python_dir.mkdir(parents=True)
+        python_exe = python_dir / "python.exe"
+        python_exe.write_text("", encoding="utf-8")
+
+        saved = {
+            key: os.environ.get(key)
+            for key in ("WE_MP_RSS_SIDECAR_DIR", "WE_MP_RSS_BASE_URL")
+        }
+        # 指向没人监听的本地端口，让运行探测确定性返回 False，从而走 dry-run 命令分支。
+        os.environ["WE_MP_RSS_SIDECAR_DIR"] = str(sidecar_root)
+        os.environ["WE_MP_RSS_BASE_URL"] = "http://127.0.0.1:8009"
+        try:
+            result = perform_maintenance_action(root, "start_we_mp_rss_sidecar", execute=False)
+        finally:
+            for key, value in saved.items():
+                if value is None:
+                    os.environ.pop(key, None)
+                else:
+                    os.environ[key] = value
+
+        # 关键：维护项列表为空（健康状态）下仍可派发，不再是 maintenance_action_not_found。
+        self.assertTrue(result["ok"])
+        self.assertFalse(result["executed"])
+        self.assertEqual(Path(result["command"][0]), python_exe)
+        self.assertEqual(Path(result["command"][1]), sidecar_root / "main.py")
+
+    def test_perform_maintenance_action_start_wewe_rss_reaches_handler_without_issue(self):
+        import os
+
+        root = Path(self.create_temp_dir()) / "ai-news-radar-run"
+        root.mkdir(parents=True)
+
+        saved = os.environ.get("WEWE_RSS_BASE_URL")
+        # 指向死端口，确保不会命中 already_running；此测只验证路由到达 handler。
+        os.environ["WEWE_RSS_BASE_URL"] = "http://127.0.0.1:4009"
+        try:
+            result = perform_maintenance_action(root, "start_wewe_rss_sidecar", execute=False)
+        finally:
+            if saved is None:
+                os.environ.pop("WEWE_RSS_BASE_URL", None)
+            else:
+                os.environ["WEWE_RSS_BASE_URL"] = saved
+
+        # 无维护项时路由仍到达 handler：不应再是 maintenance_action_not_found。
+        self.assertNotEqual(result.get("error"), "maintenance_action_not_found")
 
     def test_perform_maintenance_action_can_start_mediacrawler_all_scope(self):
         import os

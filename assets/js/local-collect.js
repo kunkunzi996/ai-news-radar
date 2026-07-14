@@ -923,3 +923,42 @@ async function restartLocalServerFromPage() {
     restoreSourceConfigButton(localServerRestartBtnEl, "重启本地服务");
   }
 }
+
+// 启动微信采集依赖的 we-mp-rss sidecar（Python / 8001），启动后开它的后台页供扫码/加公众号。
+// 先开空白窗口再改地址，避开浏览器把异步 window.open 当弹窗拦截（与 runLocalOpsFixAction 一致）。
+async function startWeMpRssSidecarFromPage() {
+  if (!canUseLocalBackend()) {
+    setSourceConfigStatus(localBackendUnavailableMessage(), "warn");
+    setLocalOpsStatus("公网静态页，无法启动本机 sidecar", "warn");
+    return;
+  }
+  const pendingWindow = window.open("about:blank", "_blank");
+  if (pendingWindow) pendingWindow.opener = null;
+  setSourceConfigButton(weMpRssStartBtnEl, "启动中...", true);
+  setLocalOpsStatus("正在启动微信采集 sidecar（8001）", "warn");
+  try {
+    const res = await fetch("./api/maintenance-action", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ action_id: "start_we_mp_rss_sidecar" }),
+    });
+    const payload = await res.json().catch(() => ({}));
+    if (!res.ok || payload.ok === false) {
+      throw new Error(payload.error || `HTTP ${res.status}`);
+    }
+    const target = payload.url || "http://127.0.0.1:8001";
+    if (pendingWindow) pendingWindow.location.href = target;
+    if (payload.already_running) {
+      setSourceConfigStatus("微信 sidecar 已在运行，已打开后台页，可直接加公众号。", "ok");
+    } else {
+      setSourceConfigStatus("微信 sidecar 已启动，已打开后台页；若提示登录失效请扫码。", "ok");
+    }
+    restoreSourceConfigButton(weMpRssStartBtnEl, "启动微信采集", 0);
+  } catch (err) {
+    if (pendingWindow && !pendingWindow.closed) pendingWindow.close();
+    const message = err?.message || "unknown error";
+    setSourceConfigStatus(`启动微信 sidecar 失败：${message}`, "bad");
+    setLocalOpsStatus("微信 sidecar 启动失败", "bad");
+    restoreSourceConfigButton(weMpRssStartBtnEl, "启动微信采集");
+  }
+}

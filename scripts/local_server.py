@@ -73,6 +73,7 @@ schedule_process_restart = _refresh_api.schedule_process_restart
 start_mediacrawler_douyin = _collectors_api.start_mediacrawler_douyin
 start_mediacrawler_xhs = _collectors_api.start_mediacrawler_xhs
 start_wewe_rss_sidecar = _collectors_api.start_wewe_rss_sidecar
+start_we_mp_rss_sidecar = _collectors_api.start_we_mp_rss_sidecar
 sync_online_source_config = _online_api.sync_online_source_config
 sync_bilibili_cookie = _cdp_api.sync_bilibili_cookie
 validate_source_config = _store_api.validate_source_config
