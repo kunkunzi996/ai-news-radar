@@ -82,3 +82,23 @@ fetchers only for stable, public, high-signal sources.
    `HIDDEN_PLATFORM_IDS`（别被历史遗留的平台隐藏挡住）。
 4. 改了 `assets/js/*.js` 必须 bump `index.html` 里对应的 `?v=` 缓存版本号，否则浏览器复用旧脚本。
 5. 新建 `.ps1` 必须存为 UTF-8 **带 BOM**，否则 PowerShell 5.1 按 GBK 解码，中文字面量全乱码。
+6. 新建 `.cmd` / `.bat` 必须存为 **CRLF 换行**（且文件名/内容含中文时存 GBK/936），否则 cmd.exe
+   把 `cd /d` 之类拆坏、双击瞬间闪退（2026-07-15 双击启动器真踩过）。**注意：bash 环境跑 .cmd
+   不在乎换行符，会给出「通过」假象——验收 .cmd 必须用 cmd.exe 真实口径跑**，那才是双击的同一条路径。
+
+## 本机维护按钮的派发禁区
+
+`perform_maintenance_action`（`scripts/radar/server/refresh.py`）有两条派发路，加新按钮前先想清楚走哪条（2026-07-15 微信采集按钮真踩过）：
+
+1. **常驻可见的按钮**（`source-config-tools` 工具条那排，如「启动微信采集」「重启本地服务」）
+   **必须**走函数开头的无条件字典派发（`fixed_start_actions` / `scope_free_start_actions`），
+   **不能**依赖 `find_maintenance_action`。后者只在动态生成的「维护项列表」里查，而那个列表
+   只装「检测到出问题的渠道」——系统健康时列表为空，请求会在 `find_maintenance_action`
+   返回 None 后直接 `maintenance_action_not_found`，`kind == "start_service"` 里那些分支
+   **永远到不了**（曾是死代码：微信按钮健康态恒定失败，WeWe RSS 按钮同病但被「只在挂掉时显示」掩盖）。
+2. **签名要对齐入口**：`fixed_start_actions` 的调用**无条件传 `collection_scope`**，只有收这个
+   参数的 handler（mediacrawler douyin/xhs）能进；不收 scope 的 sidecar handler
+   （`start_we_mp_rss_sidecar` / `start_wewe_rss_sidecar`）必须走 `scope_free_start_actions`，
+   误并进前者会 `unexpected keyword argument 'collection_scope'` 崩。
+3. 前端新增按钮别忘了在 `boot.js` **绑定点击事件**——函数写好但没 `addEventListener`，
+   表现为「点了完全没反应」（同一次事故的另一半）。

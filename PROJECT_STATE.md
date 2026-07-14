@@ -1,10 +1,24 @@
 # PROJECT_STATE
 
-## 下一轮入口（2026-07-14 更新）
+## 下一轮入口（2026-07-15 更新）
 
-- **当前状态**：`master` 已推送、与远端同步（`70de6e8` 修复 + 两个配置同步提交 `8473443` / `c616234`）。
-  工作区有 8 个 `data/*.json` 未提交改动（采集产物，属常态，不阻塞任何操作）。
-- **已完成**：同步线上信源不再被本机未提交的数据快照阻塞（`70de6e8`，浏览器两轮实测通过，
+- **当前状态**：`master` 已推送、与远端同步（`c45ef74` 启动微信采集按钮修复，已 rebase 到线上
+  Actions 的两个 data 快照 `ce93e7e` / `553d98f` 之上）。本地 HEAD 与远程 HEAD 已核对相等。
+- **已完成（2026-07-15）**：「启动微信采集」按钮全链路打通（`c45ef74`），三处坏点一并修复：
+  1. `boot.js` 漏绑按钮点击事件（点了没反应）——已补 `addEventListener`。
+  2. **根因**：`perform_maintenance_action` 分派设计错配——该按钮是常驻可见的，派发却依赖
+     「渠道出问题才生成」的维护项列表；健康状态下列表为空，请求走到 `find_maintenance_action`
+     即返回 `maintenance_action_not_found`，`start_service` 里的正确分支永远够不到。已改为给两个
+     常驻 sidecar 按钮（微信 8001 / WeWe 4000）单开一条 **scope-free 无条件派发入口**
+     （不传 `collection_scope`，避开签名不匹配的 TypeError），并删掉够不到的死分支。
+  3. 顺手消除 WeWe RSS(4000) 按钮的同类隐患（此前只在 4000 挂掉时才可派发）。
+  新增 2 个单测锁住「健康状态下两个 sidecar 按钮仍可派发」；全量 289 测试绿；HTTP API 实测
+  `ok:true`；用户浏览器实测通过（进 8001 后台并成功新增「财联社」公众号）。
+  计划书：`计划/一键启动微信sidecar按钮-施工计划.md`。
+- **易用性（2026-07-15）**：新增双击启动器 `双击运行-刷新线上采集.cmd`，双击即弹出采集菜单，
+  免去开终端敲命令。原 `刷新线上采集.ps1` 未改。注意：`.cmd` 必须存 **CRLF 换行 + GBK 编码**
+  （中文文件名），LF 换行会让 cmd.exe 把 `cd /d` 拆坏导致双击闪退（本轮真踩过）。
+- **历史已完成**：同步线上信源不再被本机未提交的数据快照阻塞（`70de6e8`，浏览器两轮实测通过，
   含「连续两次同步」与「线上 Actions 中途插入新提交」两个关键场景）。
   计划书：`计划/同步线上工作区脏改动阻塞rebase修复计划.md`。
 - **未完成 / 待用户拍板**：
@@ -18,10 +32,15 @@
      的保存。该偏差**偏保守**（最坏是「该清的没清」，不会误删），随 2 的完成自然消失。
   4. 小红书 `mediacrawler_xhs` 仍不在 `ENUMERABLE_SUBSCRIPTION_SITE_IDS`（取消订阅不清历史）。
      当前无小红书数据，不紧急。
-- **继续文件**：`scripts/radar/server/online_sources.py`（同步逻辑，本轮已修）、
-  `scripts/radar/server/subscriptions_store.py`（清理逻辑）、`scripts/local_server.py`。
-- **验收命令**：`.\.venv\Scripts\python.exe -m pytest -q`（同步相关 6 passed，含本轮新增 3 个）；
-  `.\.venv\Scripts\python.exe -m pytest tests/test_local_server.py -k sync -v` 单验同步。
+- **继续文件**：`scripts/radar/server/refresh.py`（`perform_maintenance_action` 派发，本轮已修）、
+  `scripts/radar/server/collectors.py`（`start_we_mp_rss_sidecar` 实现）、`assets/js/local-collect.js`
+  + `assets/js/boot.js`（按钮交互与绑定）；`scripts/radar/server/online_sources.py`（同步逻辑）、
+  `scripts/radar/server/subscriptions_store.py`（清理逻辑）。
+- **验收命令**：`.\.venv\Scripts\python.exe -m unittest discover tests`（289 passed）；
+  单验本轮：`.\.venv\Scripts\python.exe -m unittest tests.test_local_server.LocalServerTests.test_perform_maintenance_action_can_start_we_mp_rss_without_current_issue`。
+- **本机 sidecar 派发要点**：常驻可见的启动按钮（微信 8001 / WeWe 4000）必须走 `perform_maintenance_action`
+  开头的 **scope-free 无条件派发字典**，不能依赖 `find_maintenance_action`（那是给「出问题才冒出来的
+  修复项」用的）。新增此类按钮时照此办理，且其 handler 签名不收 `collection_scope`。
 - **风险提醒**：改清理逻辑前**必读 `CLAUDE.md` 的「清理历史条目的禁区」五条**；改同步逻辑
   注意恢复工作区必须用 `git restore --source=stash@{0}`（只回写工作区），**不能用
   `git checkout stash@{0}`**（会同时写入暂存区，导致下一次同步被 `unrelated_files_already_staged`
