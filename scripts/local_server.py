@@ -55,6 +55,8 @@ mediacrawler_douyin_collector_status = _collectors_api.mediacrawler_douyin_colle
 mediacrawler_xhs_collector_status = _collectors_api.mediacrawler_xhs_collector_status
 perform_maintenance_action = _refresh_api.perform_maintenance_action
 purge_deleted_source_data = _store_api.purge_deleted_source_data
+orphan_history_preview = _store_api.orphan_history_preview
+purge_selected_sources = _store_api.purge_selected_sources
 queue_pending_purge = _store_api.queue_pending_purge
 read_online_source_config = _online_api.read_online_source_config
 read_source_config = _store_api.read_source_config
@@ -206,6 +208,16 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
             except Exception as exc:
                 json_response(self, HTTPStatus.INTERNAL_SERVER_ERROR, {"ok": False, "error": str(exc)})
             return
+        if route == "/api/archive/orphans":
+            if self.reject_nonlocal_origin():
+                return
+            try:
+                config = read_online_source_config(self.root_dir).get("config") or {}
+                orphans = orphan_history_preview(self.root_dir, config)
+                json_response(self, HTTPStatus.OK, {"ok": True, "orphans": orphans})
+            except Exception as exc:
+                json_response(self, HTTPStatus.INTERNAL_SERVER_ERROR, {"ok": False, "error": str(exc)})
+            return
         if route != "/api/source-config":
             return super().do_GET()
         if self.config_path.parent != self.root_dir or self.config_path.name != CONFIG_FILENAME:
@@ -241,6 +253,9 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
             return
         if route == "/api/sync-online-source-config":
             self.handle_sync_online_source_config()
+            return
+        if route == "/api/archive/purge-selected":
+            self.handle_purge_selected()
             return
         if route != "/api/source-config":
             json_response(self, HTTPStatus.NOT_FOUND, {"ok": False, "error": "not_found"})
@@ -288,6 +303,19 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
                 "purged_items": purged_items,
             },
         )
+
+    def handle_purge_selected(self) -> None:
+        if self.reject_nonlocal_origin():
+            return
+        payload = self.read_json_body(MAX_CONFIG_BYTES)
+        if payload is None:
+            return
+        try:
+            result = purge_selected_sources(self.root_dir, payload.get("pairs"))
+        except Exception as exc:
+            json_response(self, HTTPStatus.BAD_REQUEST, {"ok": False, "error": str(exc)})
+            return
+        json_response(self, HTTPStatus.OK, {"ok": True, **result})
 
     def handle_online_source_config(self) -> None:
         if self.reject_nonlocal_origin():

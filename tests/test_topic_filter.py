@@ -2812,5 +2812,154 @@ class TopicFilterTests(unittest.TestCase):
         self.assertEqual(diagnostics["requests"][1]["status_code"], 400)
 
 
+class OrphanHistoryPurgeTests(unittest.TestCase):
+    """一键清理已退订信源历史：预览判定 + 选择性清理。"""
+
+    def _write_archive(self, root: Path, items: list[dict]) -> None:
+        (root / "data").mkdir(parents=True, exist_ok=True)
+        payload = {"generated_at": "2026-07-14T00:00:00Z", "total_items": len(items), "items": items}
+        (root / "data" / "archive.json").write_text(
+            json.dumps(payload, ensure_ascii=False), encoding="utf-8"
+        )
+
+    def _config(self, sources: list[dict]) -> dict:
+        return {"mode": "online-public-source-config", "sources": sources}
+
+    def _sample_archive_items(self) -> list[dict]:
+        return [
+            {
+                "id": "gh-alkaid-1",
+                "site_id": "github_foundation_sunshine_releases",
+                "site_name": "AlkaidLab/foundation-sunshine",
+                "source": "AlkaidLab/foundation-sunshine",
+                "title": "AlkaidLab 预发布",
+                "url": "https://github.com/AlkaidLab/foundation-sunshine/releases/tag/v1",
+            },
+            {
+                "id": "gh-codex-1",
+                "site_id": "github_foundation_sunshine_releases",
+                "site_name": "codex-plugin-cc",
+                "source": "openai/codex-plugin-cc",
+                "title": "codex 正式发布",
+                "url": "https://github.com/openai/codex-plugin-cc/releases/tag/v1",
+            },
+            {
+                "id": "opml-1",
+                "site_id": "opmlrss",
+                "site_name": "OPML RSS",
+                "source": "某 RSS 源",
+                "title": "一条 RSS",
+                "url": "https://example.com/rss-1",
+            },
+        ]
+
+    def test_preview_lists_deleted_source_but_keeps_alive_one(self):
+        from scripts.radar.server.subscriptions_store import orphan_history_preview
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._write_archive(root, self._sample_archive_items())
+            # 配置里只剩 codex（AlkaidLab 已彻底删除）
+            config = self._config(
+                [
+                    {
+                        "id": "online_github_openai_codex_plugin_cc",
+                        "type": "github_release",
+                        "name": "codex-plugin-cc",
+                        "target": "openai/codex-plugin-cc",
+                        "locator": "openai/codex-plugin-cc",
+                        "enabled": True,
+                    }
+                ]
+            )
+            preview = orphan_history_preview(root, config)
+            sources = {(e["site_id"], e["source"]): e["count"] for e in preview}
+            # AlkaidLab 被列为可清理
+            self.assertIn(("github_foundation_sunshine_releases", "AlkaidLab/foundation-sunshine"), sources)
+            # codex 仍存活，不列出
+            self.assertNotIn(("github_foundation_sunshine_releases", "openai/codex-plugin-cc"), sources)
+            # opmlrss 容器型通道永不出现
+            self.assertFalse(any(e["site_id"] == "opmlrss" for e in preview))
+
+    def test_preview_skips_disabled_source(self):
+        from scripts.radar.server.subscriptions_store import orphan_history_preview
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._write_archive(root, self._sample_archive_items())
+            # AlkaidLab 仍在配置里，只是停用；codex 也在
+            config = self._config(
+                [
+                    {
+                        "id": "online_github_alkaidlab_foundation_sunshine",
+                        "type": "github_release",
+                        "name": "AlkaidLab/foundation-sunshine",
+                        "target": "AlkaidLab/foundation-sunshine",
+                        "locator": "AlkaidLab/foundation-sunshine",
+                        "enabled": False,
+                    },
+                    {
+                        "id": "online_github_openai_codex_plugin_cc",
+                        "type": "github_release",
+                        "name": "codex-plugin-cc",
+                        "target": "openai/codex-plugin-cc",
+                        "locator": "openai/codex-plugin-cc",
+                        "enabled": True,
+                    },
+                ]
+            )
+            preview = orphan_history_preview(root, config)
+            # 停用 != 删除：AlkaidLab 不应被列为可清理
+            self.assertFalse(
+                any(e["source"] == "AlkaidLab/foundation-sunshine" for e in preview),
+                "停用的源不应进入清理预览",
+            )
+
+    def test_preview_empty_when_channel_has_no_alive_source(self):
+        from scripts.radar.server.subscriptions_store import orphan_history_preview
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._write_archive(root, self._sample_archive_items())
+            # 配置里没有任何 github 源（删掉了通道最后一个源）
+            config = self._config([])
+            preview = orphan_history_preview(root, config)
+            # 存活名单为空 → 整通道跳过，绝不把历史全判成孤儿
+            self.assertFalse(any(e["site_id"] == "github_foundation_sunshine_releases" for e in preview))
+
+    def test_purge_selected_backs_up_and_removes(self):
+        from scripts.radar.server.subscriptions_store import purge_selected_sources
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._write_archive(root, self._sample_archive_items())
+            result = purge_selected_sources(
+                root, [["github_foundation_sunshine_releases", "AlkaidLab/foundation-sunshine"]]
+            )
+            self.assertEqual(result["selected"], 1)
+            # 备份文件已生成
+            self.assertTrue(result["backup"])
+            self.assertTrue(Path(result["backup"]).exists())
+            # archive 里 AlkaidLab 被删，codex 与 opmlrss 保留
+            payload = json.loads((root / "data" / "archive.json").read_text(encoding="utf-8"))
+            sources = {item["source"] for item in payload["items"]}
+            self.assertNotIn("AlkaidLab/foundation-sunshine", sources)
+            self.assertIn("openai/codex-plugin-cc", sources)
+            self.assertIn("某 RSS 源", sources)
+            self.assertEqual(payload["total_items"], 2)
+
+    def test_purge_selected_noop_on_empty(self):
+        from scripts.radar.server.subscriptions_store import purge_selected_sources
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._write_archive(root, self._sample_archive_items())
+            result = purge_selected_sources(root, [])
+            self.assertEqual(result["selected"], 0)
+            self.assertIsNone(result["backup"])
+            payload = json.loads((root / "data" / "archive.json").read_text(encoding="utf-8"))
+            self.assertEqual(len(payload["items"]), 3)
+
+
 if __name__ == "__main__":
     unittest.main()

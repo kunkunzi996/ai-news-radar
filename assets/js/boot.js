@@ -313,6 +313,22 @@ if (onlineSourceSyncBtnEl) {
   });
 }
 
+if (orphanPurgeReloadBtnEl) {
+  orphanPurgeReloadBtnEl.addEventListener("click", () => {
+    loadOrphanPurgePreview().catch(() => {});
+  });
+}
+
+if (orphanPurgeDeleteBtnEl) {
+  orphanPurgeDeleteBtnEl.addEventListener("click", () => {
+    deleteSelectedOrphanHistory().catch(() => {});
+  });
+}
+
+if (orphanPurgeSelectAllEl) {
+  orphanPurgeSelectAllEl.addEventListener("change", toggleOrphanPurgeSelectAll);
+}
+
 if (subscriptionMemberFormEl) {
   subscriptionMemberFormEl.addEventListener("submit", async (event) => {
     event.preventDefault();
