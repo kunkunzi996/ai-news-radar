@@ -2,10 +2,12 @@ from __future__ import annotations
 
 import json
 import os
+import shutil
 import threading
 import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
+from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
@@ -28,7 +30,9 @@ __all__ = [
     "flush_pending_purge",
     "is_item_orphaned",
     "opml_path",
+    "orphan_history_preview",
     "purge_deleted_source_data",
+    "purge_selected_sources",
     "queue_pending_purge",
     "read_source_config",
     "read_youtube_subscriptions",
@@ -472,6 +476,95 @@ def purge_deleted_source_data(
             return is_item_orphaned(record, alive_names)
 
     return purge_matching_source_data(root_dir, should_purge)
+
+
+def orphan_history_preview(root_dir: Path, config: dict[str, Any]) -> list[dict[str, Any]]:
+    """扫描 archive，返回「配置里已彻底消失的源」的历史条目分组，供手动确认删除。
+
+    安全规则（对照 CLAUDE.md 清理禁区，宁可少删不可错删）：
+    - 只覆盖有逐对象身份的通道。opmlrss 等容器型通道在 source_identity_names 里
+      本就被跳过，其存活名单恒为空，不会进预览。
+    - 存活名单用 include_disabled=True 构建：源只要还在配置里（哪怕 enabled:false 停用），
+      其历史就不算孤儿。只有从配置里彻底删除的源才会被列出。
+    - 某通道存活名单为空时整体跳过（删掉通道最后一个源的场景）——绝不把整通道判成孤儿，
+      这是与 is_item_orphaned 的关键区别，后者对空名单会把整通道条目全判成孤儿。
+    """
+    identities = source_identity_names(config, include_disabled=True)
+    alive_by_site = {site_id: set(names.values()) for site_id, names in identities.items()}
+
+    archive_path = root_dir / "data" / "archive.json"
+    if not archive_path.exists():
+        return []
+    try:
+        payload = json.loads(archive_path.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    items = payload.get("items") if isinstance(payload, dict) else None
+    if not isinstance(items, list):
+        return []
+
+    grouped: dict[tuple[str, str], dict[str, Any]] = {}
+    for record in items:
+        if not isinstance(record, dict):
+            continue
+        site_id = str(record.get("site_id") or "").strip()
+        alive = alive_by_site.get(site_id)
+        # 通道不可逐对象识别，或存活名单为空 → 跳过（安全豁免）
+        if not alive:
+            continue
+        source_name = str(record.get("source") or "").strip()
+        if source_name in alive:
+            continue
+        key = (site_id, source_name)
+        entry = grouped.get(key)
+        if entry is None:
+            grouped[key] = {
+                "site_id": site_id,
+                "site_name": str(record.get("site_name") or "").strip() or site_id,
+                "source": source_name,
+                "count": 1,
+            }
+        else:
+            entry["count"] += 1
+    return sorted(grouped.values(), key=lambda e: (e["site_id"], e["source"]))
+
+
+def purge_selected_sources(
+    root_dir: Path,
+    pairs: list[Any],
+) -> dict[str, Any]:
+    """按用户勾选的 (site_id, source) 对清理全部数据文件。清理前先备份 archive.json。"""
+    wanted: set[tuple[str, str]] = set()
+    for pair in pairs if isinstance(pairs, list) else []:
+        if not isinstance(pair, (list, tuple)) or len(pair) < 2:
+            continue
+        site_id = str(pair[0] or "").strip()
+        source_name = str(pair[1] or "").strip()
+        if site_id and source_name:
+            wanted.add((site_id, source_name))
+    if not wanted:
+        return {"removed": {}, "backup": None, "selected": 0}
+
+    archive_path = root_dir / "data" / "archive.json"
+    backup_path: Path | None = None
+    if archive_path.exists():
+        plan_dir = root_dir / "计划"
+        plan_dir.mkdir(parents=True, exist_ok=True)
+        stamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
+        backup_path = plan_dir / f"archive.backup-{stamp}.json"
+        shutil.copy2(archive_path, backup_path)
+
+    def should_purge(record: dict[str, Any]) -> bool:
+        site_id = str(record.get("site_id") or "").strip()
+        source_name = str(record.get("source") or "").strip()
+        return (site_id, source_name) in wanted
+
+    summary = purge_matching_source_data(root_dir, should_purge)
+    return {
+        "removed": summary,
+        "backup": str(backup_path) if backup_path else None,
+        "selected": len(wanted),
+    }
 
 
 def flush_pending_purge(root_dir: Path) -> dict[str, int]:

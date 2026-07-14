@@ -445,3 +445,160 @@ async function syncOnlineSourceConfigToServer() {
     return null;
   }
 }
+
+// ---- 清理已退订信源的历史（预览 + 全选 + 手动删）----
+// state.orphanPurgeList 缓存后端预览结果；每项形如 {site_id, site_name, source, count}。
+
+function setOrphanPurgeStatus(message, tone = "") {
+  if (!orphanPurgeStatusEl) return;
+  orphanPurgeStatusEl.textContent = message || "";
+  orphanPurgeStatusEl.className = `online-source-status${tone ? ` ${tone}` : ""}`;
+}
+
+function orphanPurgeKey(entry) {
+  return `${entry.site_id} ${entry.source}`;
+}
+
+function renderOrphanPurgeList() {
+  if (!orphanPurgeListEl) return;
+  const entries = state.orphanPurgeList || [];
+  const controls = orphanPurgeControlsEl;
+  orphanPurgeListEl.innerHTML = "";
+  if (!entries.length) {
+    if (controls) controls.hidden = true;
+    const empty = document.createElement("div");
+    empty.className = "online-source-empty";
+    empty.textContent = "没有需要清理的历史——所有历史条目都还对应着配置里的信源。";
+    orphanPurgeListEl.appendChild(empty);
+    return;
+  }
+  if (controls) controls.hidden = false;
+  const checked = state.orphanPurgeChecked || new Set();
+  entries.forEach((entry) => {
+    const key = orphanPurgeKey(entry);
+    const card = document.createElement("article");
+    card.className = "online-source-card";
+    const label = document.createElement("label");
+    label.className = "online-source-enabled";
+    const box = document.createElement("input");
+    box.type = "checkbox";
+    box.checked = checked.has(key);
+    box.addEventListener("change", () => {
+      if (box.checked) checked.add(key);
+      else checked.delete(key);
+      syncOrphanPurgeSelectAllState();
+    });
+    const text = document.createElement("span");
+    text.textContent = `${entry.source}（${onlineSourceTypeLabelForSite(entry.site_id, entry.site_name)} · ${fmtNumber(entry.count)} 条）`;
+    label.append(box, text);
+    card.appendChild(label);
+    orphanPurgeListEl.appendChild(card);
+  });
+  syncOrphanPurgeSelectAllState();
+}
+
+function onlineSourceTypeLabelForSite(siteId, siteName) {
+  // 预览项没有 config type，只有运行时 site_id；给个可读的通道名，取不到就退回 site_name。
+  if (siteId === "github_foundation_sunshine_releases") return "GitHub Release";
+  if (siteId === "bilibili_dynamic") return "B站动态";
+  if (siteId === "mediacrawler_douyin") return "抖音";
+  if (siteId === "mediacrawler_xhs") return "小红书";
+  if (String(siteId || "").startsWith("we_mp_rss") || String(siteId || "").startsWith("wewe_rss")) return "微信公众号";
+  return String(siteName || siteId || "来源");
+}
+
+function syncOrphanPurgeSelectAllState() {
+  if (!orphanPurgeSelectAllEl) return;
+  const entries = state.orphanPurgeList || [];
+  const checked = state.orphanPurgeChecked || new Set();
+  const allChecked = entries.length > 0 && entries.every((entry) => checked.has(orphanPurgeKey(entry)));
+  orphanPurgeSelectAllEl.checked = allChecked;
+}
+
+async function loadOrphanPurgePreview() {
+  if (!orphanPurgeListEl) return;
+  if (!canUseLocalBackend()) {
+    setOrphanPurgeStatus("清理历史只在本机（127.0.0.1:8080）可用。", "warn");
+    return;
+  }
+  setOnlineSourceButton(orphanPurgeReloadBtnEl, "扫描中...", true);
+  setOrphanPurgeStatus("正在扫描历史条目...", "warn");
+  try {
+    const res = await fetch("./api/archive/orphans", {
+      headers: { Accept: "application/json" },
+      cache: "no-store",
+    });
+    const payload = await res.json().catch(() => ({}));
+    if (!res.ok || payload.ok === false) throw new Error(payload.error || `HTTP ${res.status}`);
+    const orphans = Array.isArray(payload.orphans) ? payload.orphans : [];
+    state.orphanPurgeList = orphans;
+    // 默认全选：安全在于删除前的二次确认，而非默认不选。
+    state.orphanPurgeChecked = new Set(orphans.map((entry) => orphanPurgeKey(entry)));
+    renderOrphanPurgeList();
+    const total = orphans.reduce((sum, entry) => sum + (Number(entry.count) || 0), 0);
+    if (!orphans.length) {
+      setOrphanPurgeStatus("没有需要清理的历史。", "ok");
+    } else {
+      setOrphanPurgeStatus(`发现 ${fmtNumber(orphans.length)} 个已退订信源、共 ${fmtNumber(total)} 条历史。默认全选，删除前请核对。`, "warn");
+    }
+  } catch (err) {
+    setOrphanPurgeStatus(`扫描失败：${err.message}`, "bad");
+  } finally {
+    restoreOnlineSourceButton(orphanPurgeReloadBtnEl, "扫描");
+  }
+}
+
+async function deleteSelectedOrphanHistory() {
+  if (!canUseLocalBackend()) {
+    setOrphanPurgeStatus("清理历史只在本机（127.0.0.1:8080）可用。", "warn");
+    return;
+  }
+  const entries = state.orphanPurgeList || [];
+  const checked = state.orphanPurgeChecked || new Set();
+  const selected = entries.filter((entry) => checked.has(orphanPurgeKey(entry)));
+  if (!selected.length) {
+    setOrphanPurgeStatus("没有勾选任何信源。", "warn");
+    return;
+  }
+  const total = selected.reduce((sum, entry) => sum + (Number(entry.count) || 0), 0);
+  const names = selected.map((entry) => `· ${entry.source}（${fmtNumber(entry.count)} 条）`).join("\n");
+  const confirmed = window.confirm(
+    `将永久删除以下 ${selected.length} 个已退订信源、共 ${total} 条历史：\n\n${names}\n\n删除前会自动备份 archive.json。确定删除吗？`,
+  );
+  if (!confirmed) return;
+  const pairs = selected.map((entry) => [entry.site_id, entry.source]);
+  setOnlineSourceButton(orphanPurgeDeleteBtnEl, "删除中...", true);
+  setOrphanPurgeStatus("正在删除并重写数据文件...", "warn");
+  try {
+    const res = await fetch("./api/archive/purge-selected", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ pairs }),
+    });
+    const payload = await res.json().catch(() => ({}));
+    if (!res.ok || payload.ok === false) throw new Error(payload.error || `HTTP ${res.status}`);
+    const removed = payload.removed && typeof payload.removed === "object" ? payload.removed : {};
+    const removedNote = Object.entries(removed)
+      .filter(([, count]) => Number(count) > 0)
+      .map(([file, count]) => `${file}: ${fmtNumber(count)}`)
+      .join("，") || "无改动";
+    setOrphanPurgeStatus(`已删除。${removedNote}。备份：${payload.backup || "无"}。点“读取结果”刷新页面。`, "ok");
+    setOnlineSourceButton(orphanPurgeDeleteBtnEl, "已删除", true);
+    restoreOnlineSourceButton(orphanPurgeDeleteBtnEl, "删除选中的历史");
+    await loadOrphanPurgePreview();
+  } catch (err) {
+    setOrphanPurgeStatus(`删除失败：${err.message}`, "bad");
+    setOnlineSourceButton(orphanPurgeDeleteBtnEl, "删除失败", true);
+    restoreOnlineSourceButton(orphanPurgeDeleteBtnEl, "删除选中的历史");
+  }
+}
+
+function toggleOrphanPurgeSelectAll() {
+  const entries = state.orphanPurgeList || [];
+  const checked = state.orphanPurgeChecked || new Set();
+  const selectAll = orphanPurgeSelectAllEl ? orphanPurgeSelectAllEl.checked : true;
+  if (selectAll) entries.forEach((entry) => checked.add(orphanPurgeKey(entry)));
+  else checked.clear();
+  state.orphanPurgeChecked = checked;
+  renderOrphanPurgeList();
+}
