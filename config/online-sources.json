@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-07-14T03:21:53Z",
+  "updated_at": "2026-07-14T07:34:21Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -101,6 +101,17 @@
       "locator": "680677803",
       "env": "",
       "notes": "公开 UID"
+    },
+    {
+      "id": "online_github_openai_codex_plugin_cc",
+      "name": "codex-plugin-cc",
+      "type": "github_release",
+      "enabled": true,
+      "channel": "GitHub Release",
+      "target": "openai/codex-plugin-cc",
+      "locator": "openai/codex-plugin-cc",
+      "env": "",
+      "notes": "只追踪 release"
     },
     {
       "id": "online_douyin_15e1eb7a80",
