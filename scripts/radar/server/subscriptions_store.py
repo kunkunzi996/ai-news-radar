@@ -178,6 +178,25 @@ PURGE_TRACKED_SITE_IDS = frozenset(
     }
 )
 
+# 「清理已退订信源」预览只能覆盖「配置声明即权威」的通道——手填 UID/repo，
+# 配置里的存活名单与 archive 实际 source 一一对应，「不在配置里」才等于「已退订」。
+#
+# 严禁把桥接/动态发现型通道加进来（we_mp_rss_jsonl / wewe_rss / we_mp_rss）：
+# 微信 JSONL 由 WeRSS sidecar 把后台**所有**公众号导出后采集，配置里往往只显式声明
+# 其中一个（如猫笔刀），其余号是桥接自动带进来的正常在采内容。若用配置存活名单做
+# 孤儿判定，会把这些「从没配过、但一直在采」的号误判成已退订（2026-07-14 真踩过：
+# 卡尔的AI沃茨、数字生命卡兹克被列进待清理）。这与 ENUMERABLE_SUBSCRIPTION_SITE_IDS
+# 只放 bilibili+douyin 是同一个道理——桥接通道的成员不由配置说了算。
+# opmlrss 是容器型订阅包，source_identity_names 本就跳过它，这里再排除一次兜底。
+PREVIEW_ELIGIBLE_SITE_IDS = frozenset(
+    {
+        "bilibili_dynamic",
+        "mediacrawler_douyin",
+        "mediacrawler_xhs",
+        "github_foundation_sunshine_releases",
+    }
+)
+
 
 def purge_tracked_site_ids(source: dict[str, Any]) -> set[str]:
     ids = set(source_config_runtime_ids(source))
@@ -482,15 +501,22 @@ def orphan_history_preview(root_dir: Path, config: dict[str, Any]) -> list[dict[
     """扫描 archive，返回「配置里已彻底消失的源」的历史条目分组，供手动确认删除。
 
     安全规则（对照 CLAUDE.md 清理禁区，宁可少删不可错删）：
-    - 只覆盖有逐对象身份的通道。opmlrss 等容器型通道在 source_identity_names 里
-      本就被跳过，其存活名单恒为空，不会进预览。
+    - 只覆盖「配置声明即权威」的通道（PREVIEW_ELIGIBLE_SITE_IDS）。微信桥接（we_mp_rss*
+      /wewe_rss）的成员由 WeRSS 后台自动发现、不由 online-sources.json 决定，配置存活名单
+      天然不完整，拿它做孤儿判定会把正在采集的号误判成已退订（2026-07-14 卡尔的AI沃茨/
+      数字生命卡兹克真被误列）。这类通道整体不进预览。
+    - opmlrss 等容器型通道在 source_identity_names 里本就被跳过，存活名单恒为空。
     - 存活名单用 include_disabled=True 构建：源只要还在配置里（哪怕 enabled:false 停用），
       其历史就不算孤儿。只有从配置里彻底删除的源才会被列出。
     - 某通道存活名单为空时整体跳过（删掉通道最后一个源的场景）——绝不把整通道判成孤儿，
       这是与 is_item_orphaned 的关键区别，后者对空名单会把整通道条目全判成孤儿。
     """
     identities = source_identity_names(config, include_disabled=True)
-    alive_by_site = {site_id: set(names.values()) for site_id, names in identities.items()}
+    alive_by_site = {
+        site_id: set(names.values())
+        for site_id, names in identities.items()
+        if site_id in PREVIEW_ELIGIBLE_SITE_IDS
+    }
 
     archive_path = root_dir / "data" / "archive.json"
     if not archive_path.exists():

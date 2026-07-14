@@ -2960,6 +2960,84 @@ class OrphanHistoryPurgeTests(unittest.TestCase):
             payload = json.loads((root / "data" / "archive.json").read_text(encoding="utf-8"))
             self.assertEqual(len(payload["items"]), 3)
 
+    def test_preview_excludes_bridge_wechat_even_when_not_in_config(self):
+        """微信 JSONL 由桥接自动发现，配置里往往只声明一个号，其余号是正常在采内容。
+        它们即使不在配置存活名单里也绝不能被判成已退订（2026-07-14 真踩过）。"""
+        from scripts.radar.server.subscriptions_store import orphan_history_preview
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            items = self._sample_archive_items() + [
+                {
+                    "id": "wx-maobidao-1",
+                    "site_id": "we_mp_rss_jsonl",
+                    "site_name": "WeRSS 公众号",
+                    "source": "猫笔刀",
+                    "title": "猫笔刀一篇",
+                    "url": "https://mp.weixin.qq.com/s/maobidao-1",
+                },
+                {
+                    "id": "wx-kaer-1",
+                    "site_id": "we_mp_rss_jsonl",
+                    "site_name": "WeRSS 公众号",
+                    "source": "卡尔的AI沃茨",
+                    "title": "卡尔一篇",
+                    "url": "https://mp.weixin.qq.com/s/kaer-1",
+                },
+                {
+                    "id": "wx-kazike-1",
+                    "site_id": "we_mp_rss_jsonl",
+                    "site_name": "WeRSS 公众号",
+                    "source": "数字生命卡兹克",
+                    "title": "卡兹克一篇",
+                    "url": "https://mp.weixin.qq.com/s/kazike-1",
+                },
+            ]
+            self._write_archive(root, items)
+            # 配置里只显式声明猫笔刀一个微信号；github 只剩 codex（AlkaidLab 已删）
+            config = self._config(
+                [
+                    {
+                        "id": "online_wechat_maobidao",
+                        "type": "we_mp_rss_jsonl",
+                        "name": "猫笔刀",
+                        "target": "猫笔刀",
+                        "enabled": True,
+                    },
+                    {
+                        "id": "online_github_openai_codex_plugin_cc",
+                        "type": "github_release",
+                        "name": "codex-plugin-cc",
+                        "target": "openai/codex-plugin-cc",
+                        "locator": "openai/codex-plugin-cc",
+                        "enabled": True,
+                    },
+                ]
+            )
+            preview = orphan_history_preview(root, config)
+            # 桥接微信号（含配置里没声明的卡尔/卡兹克）一律不进预览
+            self.assertFalse(
+                any(e["site_id"] == "we_mp_rss_jsonl" for e in preview),
+                "桥接型微信通道不应进入清理预览",
+            )
+            # 但同场景下 github 孤儿 AlkaidLab 仍能被正确识别（证明只排除该排除的）
+            self.assertTrue(
+                any(e["source"] == "AlkaidLab/foundation-sunshine" for e in preview),
+                "白名单内通道的真实孤儿仍应被识别",
+            )
+
+    def test_preview_eligible_site_ids_excludes_bridge_channels(self):
+        """守护常量本身：白名单只含配置声明即权威的通道，桥接通道一律不在其中。"""
+        from scripts.radar.server.subscriptions_store import (
+            PREVIEW_ELIGIBLE_SITE_IDS,
+            PURGE_TRACKED_SITE_IDS,
+        )
+
+        for bridge in ("we_mp_rss_jsonl", "wewe_rss", "we_mp_rss", "opmlrss"):
+            self.assertNotIn(bridge, PREVIEW_ELIGIBLE_SITE_IDS)
+        # 白名单必须是可清理集合的子集，不能凭空冒出新 site_id
+        self.assertTrue(PREVIEW_ELIGIBLE_SITE_IDS <= PURGE_TRACKED_SITE_IDS)
+
 
 if __name__ == "__main__":
     unittest.main()
