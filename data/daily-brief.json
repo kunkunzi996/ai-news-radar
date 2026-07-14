@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-14T13:49:10.343148Z",
+  "generated_at": "2026-07-14T15:01:06.896106Z",
   "window_hours": 24,
-  "total_items": 1,
+  "total_items": 2,
   "items": [
     {
       "story_id": "story_774f7412d1a3",
@@ -333,6 +333,84 @@
         "url": "https://www.youtube.com/watch?v=d9-0yv1eIHw",
         "source": "小岛大浪吹-非正经政经频道",
         "source_name": "OPML RSS"
+      }
+    },
+    {
+      "story_id": "story_af65c62c6c37",
+      "title": "如果有装修办公室需求的朋友，我向你诚意推荐这家我们合作了10多年的，可信赖的商业合作伙伴，「北京百川基业建设有限公司」，有兴趣的朋友可邮件联系 [redacted-email]",
+      "url": "https://www.bilibili.com/opus/1220282674373984256",
+      "primary_url": "https://www.bilibili.com/opus/1220282674373984256",
+      "source": "罗永浩的十字路口",
+      "source_name": "Bilibili Dynamic",
+      "sources": [
+        {
+          "id": "95ac216283813b91a76bb7d77fdb7f6c825c7750",
+          "title": "如果有装修办公室需求的朋友，我向你诚意推荐这家我们合作了10多年的，可信赖的商业合作伙伴，「北京百川基业建设有限公司」，有兴趣的朋友可邮件联系 [redacted-email]",
+          "url": "https://www.bilibili.com/opus/1220282674373984256",
+          "source": "罗永浩的十字路口",
+          "source_name": "Bilibili Dynamic",
+          "site_id": "bilibili_dynamic",
+          "published_at": "2026-07-02T02:00:00Z"
+        },
+        {
+          "id": "e3b9d1caebbdd04ca46e03f6f3b2ceb9bdabf970",
+          "title": "如果有装修办公室需求的朋友，我向你诚意推荐这家我们合作了10多年的，可信赖的商业合作伙伴，「北京百川基业建设有限公司」，有兴趣的朋友可邮件联系 bcjyzs",
+          "url": "https://www.bilibili.com/opus/1220282674373984256",
+          "source": "罗永浩的十字路口",
+          "source_name": "Bilibili Dynamic",
+          "site_id": "bilibili_dynamic",
+          "published_at": "2026-07-02T02:00:00Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "罗永浩的十字路口"
+      ],
+      "items": [
+        {
+          "id": "95ac216283813b91a76bb7d77fdb7f6c825c7750",
+          "title": "如果有装修办公室需求的朋友，我向你诚意推荐这家我们合作了10多年的，可信赖的商业合作伙伴，「北京百川基业建设有限公司」，有兴趣的朋友可邮件联系 [redacted-email]",
+          "url": "https://www.bilibili.com/opus/1220282674373984256",
+          "source": "罗永浩的十字路口",
+          "source_name": "Bilibili Dynamic",
+          "site_id": "bilibili_dynamic",
+          "published_at": "2026-07-02T02:00:00Z"
+        },
+        {
+          "id": "e3b9d1caebbdd04ca46e03f6f3b2ceb9bdabf970",
+          "title": "如果有装修办公室需求的朋友，我向你诚意推荐这家我们合作了10多年的，可信赖的商业合作伙伴，「北京百川基业建设有限公司」，有兴趣的朋友可邮件联系 bcjyzs",
+          "url": "https://www.bilibili.com/opus/1220282674373984256",
+          "source": "罗永浩的十字路口",
+          "source_name": "Bilibili Dynamic",
+          "site_id": "bilibili_dynamic",
+          "published_at": "2026-07-02T02:00:00Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.2679,
+      "importance": 0.2679,
+      "importance_score": 0.2679,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.45,
+        "source_tier": 0.48,
+        "ai_relevance": 0.0,
+        "recency": 0.0129,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source"
+      ],
+      "earliest_at": "2026-07-02T02:00:00Z",
+      "latest_at": "2026-07-02T02:00:00Z",
+      "primary_item": {
+        "id": "95ac216283813b91a76bb7d77fdb7f6c825c7750",
+        "title": "如果有装修办公室需求的朋友，我向你诚意推荐这家我们合作了10多年的，可信赖的商业合作伙伴，「北京百川基业建设有限公司」，有兴趣的朋友可邮件联系 [redacted-email]",
+        "url": "https://www.bilibili.com/opus/1220282674373984256",
+        "source": "罗永浩的十字路口",
+        "source_name": "Bilibili Dynamic"
       }
     }
   ]
