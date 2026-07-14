@@ -508,14 +508,25 @@ def sync_online_source_config(root_dir: Path, payload: Any | None = None, *, pus
     push_stdout = ""
     if push:
         branch = git_checked(root_dir, ["rev-parse", "--abbrev-ref", "HEAD"]).stdout.strip()
+        status_lines = git_checked(root_dir, ["status", "--porcelain"]).stdout.splitlines()
+        has_tracked_changes = any(line and not line.startswith("?? ") for line in status_lines)
+        did_stash = False
+        if has_tracked_changes:
+            git_checked(root_dir, ["stash", "push"], timeout=60)
+            did_stash = True
         try:
-            git_checked(root_dir, ["pull", "--rebase", "origin", branch], timeout=120)
-        except RuntimeError as exc:
-            git_run(root_dir, ["rebase", "--abort"], timeout=60)
-            raise ValueError(f"online_sources_rebase_failed: git pull --rebase 失败，已中止推送：{exc}") from exc
-        pushed_result = git_checked(root_dir, ["push"], timeout=120)
-        pushed = True
-        push_stdout = (pushed_result.stdout or pushed_result.stderr or "").strip()
+            try:
+                git_checked(root_dir, ["pull", "--rebase", "origin", branch], timeout=120)
+            except RuntimeError as exc:
+                git_run(root_dir, ["rebase", "--abort"], timeout=60)
+                raise ValueError(f"online_sources_rebase_failed: git pull --rebase 失败，已中止推送：{exc}") from exc
+            pushed_result = git_checked(root_dir, ["push"], timeout=120)
+            pushed = True
+            push_stdout = (pushed_result.stdout or pushed_result.stderr or "").strip()
+        finally:
+            if did_stash:
+                git_checked(root_dir, ["restore", "--source=stash@{0}", "--", "."], timeout=60)
+                git_checked(root_dir, ["stash", "drop", "stash@{0}"], timeout=60)
     commit = git_checked(root_dir, ["rev-parse", "--short", "HEAD"]).stdout.strip()
     return {
         **write_result,

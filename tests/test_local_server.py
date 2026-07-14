@@ -920,6 +920,71 @@ class LocalServerTests(unittest.TestCase):
         self.assertIn("feeds/online-sources.opml", show)
         self.assertNotIn("data/latest-24h.json", show)
 
+    def test_sync_online_source_config_restores_tracked_data_after_rebase_and_push(self):
+        root, origin, peer = self.create_sync_git_repositories()
+        data_path = root / "data" / "latest-24h.json"
+        data_path.write_text('{"version":"local"}\n', encoding="utf-8")
+        peer_data_path = peer / "data" / "latest-24h.json"
+        peer_data_path.write_text('{"version":"online"}\n', encoding="utf-8")
+        self.git(peer, "add", "data/latest-24h.json")
+        self.git(peer, "commit", "-m", "online data update")
+        self.git(peer, "push")
+
+        first_result = sync_online_source_config(root, self.online_source_payload("local"), push=True)
+
+        self.assertTrue(first_result["synced"])
+        self.assertTrue(first_result["pushed"])
+        self.assertEqual(data_path.read_text(encoding="utf-8"), '{"version":"local"}\n')
+        self.assertEqual(self.git(root, "stash", "list").stdout.strip(), "")
+        self.assertIn(
+            " M data/latest-24h.json",
+            self.git(root, "status", "--porcelain").stdout.splitlines(),
+        )
+        self.assertNotIn(
+            "data/latest-24h.json",
+            self.git(root, "diff", "--cached", "--name-only").stdout.splitlines(),
+        )
+
+        second_result = sync_online_source_config(root, self.online_source_payload("local-second"), push=True)
+
+        self.assertTrue(second_result["synced"])
+        self.assertTrue(second_result["pushed"])
+        self.assertIn(
+            " M data/latest-24h.json",
+            self.git(root, "status", "--porcelain").stdout.splitlines(),
+        )
+        remote_log = self.git(origin, "log", "--oneline", "--all").stdout
+        self.assertIn("配置：同步线上信源", remote_log)
+
+    def test_sync_online_source_config_without_tracked_changes_does_not_create_stash(self):
+        root, _origin, _peer = self.create_sync_git_repositories()
+        untracked_path = root / "output" / "local.txt"
+        untracked_path.parent.mkdir()
+        untracked_path.write_text("keep\n", encoding="utf-8")
+
+        result = sync_online_source_config(root, self.online_source_payload("clean"), push=True)
+
+        self.assertTrue(result["synced"])
+        self.assertTrue(result["pushed"])
+        self.assertTrue(untracked_path.exists())
+        self.assertEqual(self.git(root, "stash", "list").stdout.strip(), "")
+
+    def test_sync_online_source_config_restores_data_after_rebase_conflict(self):
+        initial_payload = self.online_source_payload("initial")
+        root, _origin, peer = self.create_sync_git_repositories(initial_payload)
+        data_path = root / "data" / "latest-24h.json"
+        data_path.write_text('{"version":"local"}\n', encoding="utf-8")
+        sync_online_source_config(peer, self.online_source_payload("online"), push=False)
+        self.git(peer, "push")
+
+        with self.assertRaisesRegex(ValueError, "online_sources_rebase_failed"):
+            sync_online_source_config(root, self.online_source_payload("local"), push=True)
+
+        self.assertEqual(data_path.read_text(encoding="utf-8"), '{"version":"local"}\n')
+        self.assertEqual(self.git(root, "stash", "list").stdout.strip(), "")
+        status = self.git(root, "status", "--porcelain").stdout.splitlines()
+        self.assertFalse(any(line.startswith(("UU ", "AA ", "DD ")) for line in status))
+
     def test_refresh_command_uses_fixed_local_update_script(self):
         root = Path("E:/AI-news-reader/ai-news-radar-run")
 
@@ -2193,6 +2258,54 @@ class LocalServerTests(unittest.TestCase):
         tmp = tempfile.TemporaryDirectory(prefix="ai-news-radar-local-server-test-")
         self.addCleanup(tmp.cleanup)
         return tmp.name
+
+    def git(self, root, *args):
+        return subprocess.run(
+            ["git", *args],
+            cwd=root,
+            check=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
+
+    def online_source_payload(self, name):
+        return {
+            "sources": [
+                {
+                    "name": name,
+                    "type": "rss",
+                    "locator": f"https://example.com/{name}.xml",
+                }
+            ]
+        }
+
+    def create_sync_git_repositories(self, initial_payload=None):
+        base = Path(self.create_temp_dir())
+        origin = base / "origin.git"
+        root = base / "local"
+        peer = base / "peer"
+        self.git(base, "init", "--bare", str(origin))
+        root.mkdir()
+        self.git(root, "init", "-b", "master")
+        self.git(root, "config", "user.name", "Test")
+        self.git(root, "config", "user.email", "test@example.com")
+        data_path = root / "data" / "latest-24h.json"
+        data_path.parent.mkdir()
+        data_path.write_text('{"version":"initial"}\n', encoding="utf-8")
+        (root / "README.md").write_text("init\n", encoding="utf-8")
+        self.git(root, "add", "README.md", "data/latest-24h.json")
+        self.git(root, "commit", "-m", "init")
+        if initial_payload is not None:
+            sync_online_source_config(root, initial_payload, push=False)
+        self.git(root, "remote", "add", "origin", str(origin))
+        self.git(root, "push", "-u", "origin", "master")
+        self.git(base, "clone", str(origin), str(peer))
+        self.git(peer, "config", "user.name", "Test")
+        self.git(peer, "config", "user.email", "test@example.com")
+        return root, origin, peer
 
 
 if __name__ == "__main__":
