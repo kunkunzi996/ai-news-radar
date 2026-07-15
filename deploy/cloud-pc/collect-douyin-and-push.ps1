@@ -29,8 +29,12 @@ param(
     [string]$CreatorIds = "",
     # 跳过主仓库 git pull（调试用）
     [switch]$SkipGitPull,
+    # 把采集专用浏览器移到虚拟桌面外（计划任务专用）
+    [switch]$BrowserOffscreen,
     # 日志文件路径（留空不记录；计划任务传入以便无人值守排查）
-    [string]$LogFile = ""
+    [string]$LogFile = "",
+    # 本轮机器可判定状态；conhost 不透传子进程退出码，因此计划任务必须传入
+    [string]$StatusFile = ""
 )
 
 $ErrorActionPreference = "Stop"
@@ -52,107 +56,371 @@ function Invoke-Git([string]$RepoDir, [string[]]$GitArgs) {
     return $LASTEXITCODE
 }
 
+function Invoke-GitText([string]$RepoDir, [string[]]$GitArgs) {
+    $oldPreference = $ErrorActionPreference
+    $ErrorActionPreference = "Continue"
+    try {
+        $output = @(& git -C $RepoDir @GitArgs 2>&1 | ForEach-Object { [string]$_ })
+        $code = $LASTEXITCODE
+    } finally {
+        $ErrorActionPreference = $oldPreference
+    }
+    if ($code -ne 0) { throw "git $($GitArgs -join ' ') failed (exit=$code): $($output -join ' | ')" }
+    return $output
+}
+
+function Assert-RemoteHead([string]$RepoDir) {
+    $branch = ([string](Invoke-GitText $RepoDir @("branch", "--show-current") | Select-Object -First 1)).Trim()
+    if (-not $branch) { throw "Cannot determine bridge branch: $RepoDir" }
+    $localHead = ([string](Invoke-GitText $RepoDir @("rev-parse", "HEAD") | Select-Object -First 1)).Trim()
+    $remoteLine = ([string](Invoke-GitText $RepoDir @("ls-remote", "--exit-code", "origin", "refs/heads/$branch") | Select-Object -First 1)).Trim()
+    $remoteHead = ($remoteLine -split "\s+")[0]
+    if ($localHead -ne $remoteHead) { throw "Bridge local/remote HEAD mismatch: $RepoDir" }
+    return $localHead
+}
+
+$script:RunId = [guid]::NewGuid().ToString("N")
+$script:StartedAt = (Get-Date).ToUniversalTime().ToString("o")
+$script:PipelineLock = $null
+$script:OwnerFile = Join-Path $env:TEMP "ai-news-radar-mediacrawler.pipeline.owner.json"
+$script:LockToken = ""
+$script:CrawlResultFile = ""
+$script:MayWriteStatus = $false
+$script:FailureStage = "unhandled_error"
+$script:Status = [ordered]@{
+    schema_version = 1
+    channel = "douyin"
+    run_id = $script:RunId
+    state = "running"
+    stage = "starting"
+    started_at = $script:StartedAt
+    finished_at = $null
+    exit_code = $null
+    message = "Starting Douyin collection."
+    login_state = "unknown"
+    source_file = ""
+    source_last_write_time = $null
+    source_sha256 = ""
+    output_rows = 0
+    crawl_output_rows = 0
+    new_unique_items = 0
+    requested_creator_count = 0
+    completed_creator_count = 0
+    failed_creator_count = 0
+    creator_results = @()
+    content_changed = $false
+    bridge_changed = $false
+    bridge_head_before = ""
+    bridge_head_after = ""
+    warnings = @()
+}
+
+function Write-AtomicJson([string]$Path, [object]$Value, [string]$RunId) {
+    if (-not $Path) { return }
+    $directory = Split-Path -Parent $Path
+    if ($directory -and -not (Test-Path -LiteralPath $directory)) {
+        [IO.Directory]::CreateDirectory($directory) | Out-Null
+    }
+    $temp = "$Path.$RunId.tmp"
+    $json = $Value | ConvertTo-Json -Depth 12
+    $encoding = New-Object Text.UTF8Encoding($false)
+    $stream = New-Object IO.FileStream($temp, [IO.FileMode]::Create, [IO.FileAccess]::Write, [IO.FileShare]::None)
+    try {
+        $writer = New-Object IO.StreamWriter($stream, $encoding)
+        try { $writer.Write($json); $writer.Write("`n"); $writer.Flush(); $stream.Flush($true) } finally { $writer.Dispose() }
+    } finally {
+        if ($stream) { $stream.Dispose() }
+    }
+    if (Test-Path -LiteralPath $Path) {
+        $replaceBackup = "$Path.$RunId.replace-backup"
+        if (Test-Path -LiteralPath $replaceBackup) { [IO.File]::Delete($replaceBackup) }
+        [IO.File]::Replace($temp, $Path, $replaceBackup)
+        if (Test-Path -LiteralPath $replaceBackup) { [IO.File]::Delete($replaceBackup) }
+    } else {
+        [IO.File]::Move($temp, $Path)
+    }
+}
+
+function Write-RunStatus {
+    if ($StatusFile) { Write-AtomicJson $StatusFile $script:Status $script:RunId }
+}
+
+function Complete-RunStatus([string]$State, [string]$Stage, [string]$Message, [int]$ExitCode) {
+    $script:Status.state = $State
+    $script:Status.stage = $Stage
+    $script:Status.message = $Message
+    $script:Status.exit_code = $ExitCode
+    $script:Status.finished_at = (Get-Date).ToUniversalTime().ToString("o")
+    Write-RunStatus
+}
+
+function Release-PipelineLock {
+    if ($script:OwnerFile -and (Test-Path -LiteralPath $script:OwnerFile)) {
+        try {
+            $owner = Get-Content -LiteralPath $script:OwnerFile -Raw -Encoding UTF8 | ConvertFrom-Json
+            if ([string]$owner.run_id -eq $script:RunId) {
+                Remove-Item -LiteralPath $script:OwnerFile -Force
+            }
+        } catch { Write-Warning "Could not inspect/remove this run's lock owner file: $_" }
+    }
+    if ($script:PipelineLock) { $script:PipelineLock.Dispose(); $script:PipelineLock = $null }
+    Remove-Item Env:AI_NEWS_RADAR_COLLECTION_LOCK_TOKEN -ErrorAction SilentlyContinue
+}
+
+function Remove-RunResult {
+    if ($script:CrawlResultFile -and (Test-Path -LiteralPath $script:CrawlResultFile)) {
+        Remove-Item -LiteralPath $script:CrawlResultFile -Force
+    }
+}
+
+function Exit-Run([string]$State, [string]$Stage, [string]$Message, [int]$ExitCode) {
+    Complete-RunStatus $State $Stage $Message $ExitCode
+    Remove-RunResult
+    Release-PipelineLock
+    if ($LogFile) { try { Stop-Transcript | Out-Null } catch {} }
+    exit $ExitCode
+}
+
+# 独占锁必须覆盖采集、复制、commit 和 push；抢不到时不能覆盖另一个实例的 canonical status。
+$lockPath = Join-Path $env:TEMP "ai-news-radar-mediacrawler.pipeline.lock"
+try {
+    $script:PipelineLock = New-Object IO.FileStream(
+        $lockPath,
+        [IO.FileMode]::OpenOrCreate,
+        [IO.FileAccess]::ReadWrite,
+        [IO.FileShare]::None
+    )
+} catch {
+    [Console]::Error.WriteLine("busy: Douyin collection pipeline is already running")
+    exit 2
+}
+
+$tokenBytes = New-Object byte[] 32
+$rng = [Security.Cryptography.RandomNumberGenerator]::Create()
+try { $rng.GetBytes($tokenBytes) } finally { $rng.Dispose() }
+$script:LockToken = [Convert]::ToBase64String($tokenBytes)
+$sha = [Security.Cryptography.SHA256]::Create()
+try { $tokenHash = ([BitConverter]::ToString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($script:LockToken)))).Replace("-", "").ToLowerInvariant() } finally { $sha.Dispose() }
+$owner = [ordered]@{ owner_pid = $PID; run_id = $script:RunId; token_sha256 = $tokenHash }
+Write-AtomicJson $script:OwnerFile $owner $script:RunId
+$env:AI_NEWS_RADAR_COLLECTION_LOCK_TOKEN = $script:LockToken
+$script:MayWriteStatus = $true
+Write-RunStatus
+
+trap {
+    $message = [string]$_
+    $statusWritten = $false
+    if ($script:MayWriteStatus) {
+        try { Complete-RunStatus "failed" $script:FailureStage $message 1; $statusWritten = $true } catch { [Console]::Error.WriteLine("status write failed: $_") }
+    }
+    if ($statusWritten) { Remove-RunResult }
+    Release-PipelineLock
+    if ($LogFile) { try { Stop-Transcript | Out-Null } catch {} }
+    [Console]::Error.WriteLine($message)
+    exit 1
+}
+
 # ---------- 参数解析与前置检查 ----------
+$script:FailureStage = "preflight"
+$script:Status.stage = "preflight"
+Write-RunStatus
 if (-not $CrawlerRoot) { $CrawlerRoot = Join-Path (Split-Path $RadarRoot -Parent) "MediaCrawler" }
 if (-not $BridgeRoot) { $BridgeRoot = Join-Path (Split-Path $RadarRoot -Parent) "douyin-bridge" }
 if (-not $PythonExe) {
     foreach ($candidate in @("venv\Scripts\python.exe", ".venv\Scripts\python.exe")) {
         $probe = Join-Path $CrawlerRoot $candidate
-        if (Test-Path $probe) { $PythonExe = $probe; break }
+        if (Test-Path -LiteralPath $probe) { $PythonExe = $probe; break }
     }
     if (-not $PythonExe) { $PythonExe = Join-Path $CrawlerRoot ".venv\Scripts\python.exe" }
 }
-
+$runner = Join-Path $RadarRoot "scripts\run_mediacrawler_douyin.py"
 foreach ($check in @(
-        @{ Path = (Join-Path $RadarRoot "scripts\run_mediacrawler_douyin.py"); Hint = "RadarRoot 不是主仓库" },
-        @{ Path = (Join-Path $CrawlerRoot "main.py"); Hint = "CrawlerRoot 不是 MediaCrawler 仓库" },
-        @{ Path = (Join-Path $BridgeRoot ".git"); Hint = "BridgeRoot 不是 git 仓库（先 git clone 私有桥接仓库）" },
-        @{ Path = $PythonExe; Hint = "MediaCrawler venv 缺失（先在 CrawlerRoot 建 .venv 并装依赖）" }
+        @{ Path = $runner; Hint = "RadarRoot is not the main repository" },
+        @{ Path = (Join-Path $CrawlerRoot "main.py"); Hint = "CrawlerRoot is not a MediaCrawler repository" },
+        @{ Path = (Join-Path $BridgeRoot ".git"); Hint = "BridgeRoot is not a git repository" },
+        @{ Path = $PythonExe; Hint = "MediaCrawler venv is missing" }
     )) {
-    if (-not (Test-Path $check.Path)) {
-        throw ("缺少 {0}：{1}" -f $check.Path, $check.Hint)
-    }
+    if (-not (Test-Path -LiteralPath $check.Path)) { throw "Missing $($check.Path): $($check.Hint)" }
 }
 
-# ---------- 1. 更新主仓库，拿最新博主配置 ----------
 if (-not $SkipGitPull) {
+    $script:FailureStage = "radar_pull"
     Write-Step "更新主仓库 $RadarRoot"
-    if ((Invoke-Git $RadarRoot @("pull", "--ff-only")) -ne 0) {
-        Write-Warning "主仓库 git pull 失败，继续用本地已有配置"
-    }
+    Invoke-GitText $RadarRoot @("pull", "--ff-only") | Out-Null
 }
 
-# ---------- 2. 读取启用的抖音博主 ----------
+# ---------- 读取并验证本轮博主 ----------
+$script:FailureStage = "creator_config"
 if ($CreatorIds) {
-    $secUids = $CreatorIds.Split(",") | ForEach-Object { $_.Trim() } | Where-Object { $_ }
-    $creatorNames = @("(手动指定)")
+    $secUids = @($CreatorIds.Split(",") | ForEach-Object { $_.Trim() } | Where-Object { $_ } | Select-Object -Unique)
+    $creatorNames = @("(manual)")
 } else {
     $configPath = Join-Path $RadarRoot "config\online-sources.json"
     $config = Get-Content -LiteralPath $configPath -Raw -Encoding UTF8 | ConvertFrom-Json
     $douyinSources = @($config.sources | Where-Object {
             $_.type -eq "mediacrawler_jsonl" -and $_.enabled -ne $false -and $_.locator -match "douyin\.com/user/"
         })
-    $secUids = @($douyinSources | ForEach-Object { ($_.locator -split "/user/")[1].Split("?")[0].Trim("/") } | Where-Object { $_ })
+    $secUids = @($douyinSources | ForEach-Object { ($_.locator -split "/user/")[1].Split("?")[0].Trim("/") } | Where-Object { $_ } | Select-Object -Unique)
     $creatorNames = @($douyinSources | ForEach-Object { $_.name })
 }
 if (-not $secUids -or $secUids.Count -eq 0) {
-    Write-Step "线上配置中没有启用的抖音博主，本次不采集。"
-    exit 0
+    Exit-Run "succeeded" "completed_no_sources" "No enabled Douyin creators; nothing was collected or pushed." 0
 }
+foreach ($secUid in $secUids) {
+    if ([string]$secUid -notmatch '^[A-Za-z0-9_.-]+$') { throw "Invalid Douyin creator id." }
+}
+$script:Status.requested_creator_count = $secUids.Count
 Write-Step ("本次采集 {0} 个博主：{1}" -f $secUids.Count, ($creatorNames -join "、"))
 
-# ---------- 3. 运行 MediaCrawler 采集 ----------
-$runner = Join-Path $RadarRoot "scripts\run_mediacrawler_douyin.py"
+# ---------- Bridge 开跑前必须完全干净并成功快进 ----------
+$script:FailureStage = "bridge_preflight"
+$bridgeDirty = @((Invoke-GitText $BridgeRoot @("status", "--porcelain")) | Where-Object { $_ })
+if ($bridgeDirty.Count -gt 0) { throw "Douyin bridge has existing changes; refusing to continue." }
+Invoke-GitText $BridgeRoot @("pull", "--ff-only") | Out-Null
+$bridgeHeadBefore = ([string](Invoke-GitText $BridgeRoot @("rev-parse", "HEAD") | Select-Object -First 1)).Trim()
+$script:Status.bridge_head_before = $bridgeHeadBefore
+$script:Status.bridge_head_after = $bridgeHeadBefore
+
+# ---------- 运行带本轮回执的 MediaCrawler ----------
+$script:FailureStage = "runner"
+$script:Status.stage = "collecting"
+Write-RunStatus
 $creatorArg = $secUids -join ","
+$script:CrawlResultFile = Join-Path $env:TEMP ("douyin-crawl-result-{0}.json" -f $script:RunId)
+$runnerArgs = @(
+    "--crawler-root", $CrawlerRoot,
+    "--platform", "douyin",
+    "--creator-id", $creatorArg,
+    "--max-notes", $MaxNotes,
+    "--run-id", $script:RunId,
+    "--result-file", $script:CrawlResultFile,
+    "--parent-holds-collection-lock"
+)
+if ($BrowserOffscreen) { $runnerArgs += "--offscreen" }
 Write-Step "启动 MediaCrawler（max-notes=$MaxNotes）"
-& $PythonExe $runner --crawler-root $CrawlerRoot --platform douyin --creator-id $creatorArg --max-notes $MaxNotes
-if ($LASTEXITCODE -ne 0) {
-    throw "MediaCrawler 采集失败（exit=$LASTEXITCODE），本次不推送。"
+& $PythonExe $runner @runnerArgs
+$runnerExit = $LASTEXITCODE
+$runnerResult = $null
+if (Test-Path -LiteralPath $script:CrawlResultFile) {
+    try { $runnerResult = Get-Content -LiteralPath $script:CrawlResultFile -Raw -Encoding UTF8 | ConvertFrom-Json } catch { throw "Runner result JSON is invalid." }
+}
+if ($runnerResult) {
+    foreach ($field in @("login_state", "source_file", "source_last_write_time", "source_sha256", "output_rows", "crawl_output_rows", "new_unique_items", "requested_creator_count", "completed_creator_count", "failed_creator_count", "creator_results")) {
+        if ($runnerResult.PSObject.Properties.Name -contains $field) { $script:Status[$field] = $runnerResult.$field }
+    }
+    $script:Status.warnings = @($runnerResult.warnings)
+}
+if ($runnerExit -ne 0) {
+    if ($runnerResult -and $runnerResult.login_state -eq "login_required") { $script:FailureStage = "login_required" }
+    throw "MediaCrawler failed (exit=$runnerExit); bridge was not changed."
+}
+if (-not $runnerResult -or [string]$runnerResult.run_id -ne $script:RunId) {
+    Exit-Run "warning" "output_delta_ambiguous" "Runner result is missing or belongs to another run; bridge was not changed." 1
+}
+if ($runnerResult.ambiguous -eq $true) {
+    Exit-Run "warning" "output_delta_ambiguous" "Crawler output delta is ambiguous; bridge was not changed." 1
+}
+$creatorReceipts = @($runnerResult.creator_results)
+$receiptsValid = (
+    [int]$runnerResult.requested_creator_count -eq $secUids.Count -and
+    [int]$runnerResult.completed_creator_count -eq $secUids.Count -and
+    [int]$runnerResult.failed_creator_count -eq 0 -and
+    $creatorReceipts.Count -eq $secUids.Count -and
+    @($creatorReceipts | Where-Object {
+            $_.state -ne "completed" -or $_.profile_valid -ne $true -or $_.api_pages_valid -ne $true -or
+            [int]$_.written_rows -ne [int]$_.listed_count
+        }).Count -eq 0
+)
+if (-not $receiptsValid) {
+    Exit-Run "warning" "partial_creator_failure" "One or more creator receipts are incomplete; bridge was not changed." 1
 }
 
-# ---------- 4. 取最新 JSONL，复制进桥接仓库 ----------
-$jsonlDir = Join-Path $CrawlerRoot "output\douyin\jsonl"
-$newest = Get-ChildItem -LiteralPath $jsonlDir -Filter "creator_contents_*.jsonl" -ErrorAction SilentlyContinue |
-    Where-Object { $_.Length -gt 0 } | Sort-Object LastWriteTime -Descending | Select-Object -First 1
-if (-not $newest) {
-    throw "采集后没有找到非空的 creator_contents_*.jsonl：$jsonlDir"
-}
-Write-Step ("最新 JSONL：{0}（{1:N0} 字节）" -f $newest.Name, $newest.Length)
-
-$bridgeJsonlDir = Join-Path $BridgeRoot "output\douyin\jsonl"
-New-Item -ItemType Directory -Force -Path $bridgeJsonlDir | Out-Null
-# 桥接仓库始终只保留一个固定文件名，避免 Actions 端 mtime 排序歧义
-Get-ChildItem -LiteralPath $bridgeJsonlDir -Filter "creator_contents_*.jsonl" -ErrorAction SilentlyContinue |
-    Where-Object { $_.Name -ne "creator_contents_latest.jsonl" } | Remove-Item -Force
-Copy-Item -LiteralPath $newest.FullName -Destination (Join-Path $bridgeJsonlDir "creator_contents_latest.jsonl") -Force
-
-$lineCount = 0
-Get-Content -LiteralPath $newest.FullName -ReadCount 1000 | ForEach-Object { $lineCount += $_.Count }
-$manifest = [ordered]@{
-    generated_at  = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
-    source_file   = $newest.Name
-    line_count    = $lineCount
-    creator_count = $secUids.Count
-    max_notes     = $MaxNotes
-}
 $manifestPath = Join-Path $BridgeRoot "manifest.json"
-($manifest | ConvertTo-Json) | Set-Content -LiteralPath $manifestPath -Encoding UTF8
+$bridgeJsonlDir = Join-Path $BridgeRoot "output\douyin\jsonl"
+$bridgeJsonl = Join-Path $bridgeJsonlDir "creator_contents_latest.jsonl"
+$legacyFiles = @()
+if (Test-Path -LiteralPath $bridgeJsonlDir) {
+    $legacyFiles = @(Get-ChildItem -LiteralPath $bridgeJsonlDir -Filter "creator_contents_*.jsonl" -File -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -ne "creator_contents_latest.jsonl" } | ForEach-Object { $_.FullName })
+}
+if ($legacyFiles.Count -gt 0) { $script:Status.warnings += @($legacyFiles | ForEach-Object { "Legacy JSONL retained for manual review: $_" }) }
 
-# ---------- 5. 提交并推送桥接仓库 ----------
-Write-Step "推送桥接仓库 $BridgeRoot"
-if ((Invoke-Git $BridgeRoot @("pull", "--ff-only")) -ne 0) {
-    Write-Warning "桥接仓库 pull 失败，尝试直接提交推送"
+# 0 行只能在所有账号明确返回合法空列表时成功，不能退回旧 JSONL。
+if ([int]$runnerResult.crawl_output_rows -eq 0) {
+    $allExplicitlyEmpty = @($creatorReceipts | Where-Object {
+            $_.profile_valid -ne $true -or $_.api_pages_valid -ne $true -or [int]$_.listed_count -ne 0
+        }).Count -eq 0
+    if (-not $allExplicitlyEmpty) {
+        Exit-Run "warning" "no_crawl_output" "No rows were appended without complete empty-account receipts; bridge was not changed." 1
+    }
+    try {
+        if (-not (Test-Path -LiteralPath $manifestPath)) { throw "Bridge manifest is missing." }
+        $existingManifest = Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
+        if (-not $existingManifest) { throw "Bridge manifest is invalid." }
+    } catch {
+        $script:Status.warnings += [string]$_
+        Exit-Run "warning" "no_crawl_output" "No rows were appended and the existing manifest is unavailable; bridge was not changed." 1
+    }
+    $script:Status.content_changed = $false
+    $script:Status.bridge_changed = $false
+    $script:Status.bridge_head_after = Assert-RemoteHead $BridgeRoot
+    Exit-Run "succeeded" "completed_no_change" "All creators completed with no returned works; bridge remains unchanged." 0
 }
-Invoke-Git $BridgeRoot @("add", "-A") | Out-Null
+
+# ---------- 复制 candidate，按字节判断内容变化，并精确暂存 ----------
+$script:FailureStage = "bridge_update"
+$sourceFile = [string]$runnerResult.source_file
+if (-not $sourceFile -or -not (Test-Path -LiteralPath $sourceFile)) {
+    Exit-Run "warning" "output_delta_ambiguous" "Runner candidate file is missing; bridge was not changed." 1
+}
+if ((Get-FileHash -Algorithm SHA256 -LiteralPath $sourceFile).Hash.ToLowerInvariant() -ne ([string]$runnerResult.source_sha256).ToLowerInvariant()) {
+    Exit-Run "warning" "output_delta_ambiguous" "Runner candidate SHA256 changed before copy; bridge was not changed." 1
+}
+$targetHashBefore = if (Test-Path -LiteralPath $bridgeJsonl) { (Get-FileHash -Algorithm SHA256 -LiteralPath $bridgeJsonl).Hash } else { "" }
+$contentChanged = (-not $targetHashBefore) -or $targetHashBefore.ToLowerInvariant() -ne ([string]$runnerResult.source_sha256).ToLowerInvariant()
+$script:Status.content_changed = $contentChanged
+$manifestNeedsMigration = $true
+if (Test-Path -LiteralPath $manifestPath) {
+    try {
+        $existingManifest = Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
+        $manifestNeedsMigration = [int]$existingManifest.schema_version -ne 1
+    } catch { $script:Status.warnings += "Existing manifest is invalid and will be replaced after valid crawler output." }
+}
+if ($contentChanged) {
+    [IO.Directory]::CreateDirectory($bridgeJsonlDir) | Out-Null
+    Copy-Item -LiteralPath $sourceFile -Destination $bridgeJsonl -Force
+    if ((Get-FileHash -Algorithm SHA256 -LiteralPath $bridgeJsonl).Hash.ToLowerInvariant() -ne ([string]$runnerResult.source_sha256).ToLowerInvariant()) {
+        throw "Bridge JSONL SHA256 does not match the runner candidate after copy."
+    }
+}
+if ($contentChanged -or $manifestNeedsMigration) {
+    $manifest = [ordered]@{
+        schema_version = 1
+        generated_at = (Get-Date).ToUniversalTime().ToString("o")
+        source_file = [IO.Path]::GetFileName($sourceFile)
+        source_sha256 = [string]$runnerResult.source_sha256
+        output_rows = $runnerResult.output_rows
+        crawl_output_rows = $runnerResult.crawl_output_rows
+        new_unique_items = $runnerResult.new_unique_items
+        creator_count = $secUids.Count
+        max_notes = $MaxNotes
+    }
+    Write-AtomicJson $manifestPath $manifest "$($script:RunId)-manifest"
+}
+
+if ((Invoke-Git $BridgeRoot @("add", "--", "output/douyin/jsonl/creator_contents_latest.jsonl", "manifest.json")) -ne 0) {
+    throw "Precise bridge staging failed."
+}
 & git -C $BridgeRoot diff --cached --quiet
-if ($LASTEXITCODE -eq 0) {
-    Write-Step "桥接仓库无变化，不需要推送。"
-    exit 0
+$script:Status.bridge_changed = $LASTEXITCODE -ne 0
+if (-not $script:Status.bridge_changed) {
+    $script:Status.bridge_head_after = Assert-RemoteHead $BridgeRoot
+    Exit-Run "succeeded" "completed_no_change" ("Collection completed: {0} appended rows, {1} new unique works; bridge bytes unchanged." -f $runnerResult.crawl_output_rows, $runnerResult.new_unique_items) 0
 }
-if ((Invoke-Git $BridgeRoot @("commit", "-m", "数据：更新抖音采集 JSONL")) -ne 0) {
-    throw "桥接仓库 commit 失败"
-}
-if ((Invoke-Git $BridgeRoot @("push")) -ne 0) {
-    throw "桥接仓库 push 失败（检查凭证/网络）"
-}
-Write-Step ("完成：{0} 行 JSONL 已推送，等待线上下一次刷新。" -f $lineCount)
+
+$stage = if ($contentChanged) { "completed_pushed" } else { "completed_pushed_metadata_only" }
+$commitMessage = if ($contentChanged) { "数据：更新抖音采集 JSONL" } else { "数据：迁移抖音桥接清单格式" }
+if ((Invoke-Git $BridgeRoot @("commit", "-m", $commitMessage)) -ne 0) { throw "Bridge commit failed." }
+if ((Invoke-Git $BridgeRoot @("push")) -ne 0) { throw "Bridge push failed." }
+$script:Status.bridge_head_after = Assert-RemoteHead $BridgeRoot
+Exit-Run "succeeded" $stage ("Collection completed: {0} appended rows, {1} new unique works; bridge pushed." -f $runnerResult.crawl_output_rows, $runnerResult.new_unique_items) 0

@@ -5,7 +5,8 @@
     [string]$BaseUrl = "http://127.0.0.1:8001",
     [int]$MaxItems = 20,
     [switch]$SkipSync,
-    [string]$LogFile = ""
+    [string]$LogFile = "",
+    [string]$StatusFile = ""
 )
 
 $ErrorActionPreference = "Stop"
@@ -24,6 +25,148 @@ function Invoke-Git([string]$RepoDir, [string[]]$GitArgs) {
     return $LASTEXITCODE
 }
 
+function Invoke-GitText([string]$RepoDir, [string[]]$GitArgs) {
+    $oldPreference = $ErrorActionPreference
+    $ErrorActionPreference = "Continue"
+    try {
+        $output = @(& git -C $RepoDir @GitArgs 2>&1 | ForEach-Object { [string]$_ })
+        $code = $LASTEXITCODE
+    } finally {
+        $ErrorActionPreference = $oldPreference
+    }
+    if ($code -ne 0) { throw "git $($GitArgs -join ' ') failed (exit=$code): $($output -join ' | ')" }
+    return $output
+}
+
+function Assert-RemoteHead([string]$RepoDir) {
+    $branch = ([string](Invoke-GitText $RepoDir @("branch", "--show-current") | Select-Object -First 1)).Trim()
+    if (-not $branch) { throw "Cannot determine bridge branch: $RepoDir" }
+    $localHead = ([string](Invoke-GitText $RepoDir @("rev-parse", "HEAD") | Select-Object -First 1)).Trim()
+    $remoteLine = ([string](Invoke-GitText $RepoDir @("ls-remote", "--exit-code", "origin", "refs/heads/$branch") | Select-Object -First 1)).Trim()
+    $remoteHead = ($remoteLine -split "\s+")[0]
+    if ($localHead -ne $remoteHead) { throw "Bridge local/remote HEAD mismatch: $RepoDir" }
+    return $localHead
+}
+
+$script:RunId = [guid]::NewGuid().ToString("N")
+$script:StartedAt = (Get-Date).ToUniversalTime().ToString("o")
+$script:PipelineMutex = $null
+$script:MutexAcquired = $false
+$script:MayWriteStatus = $false
+$script:FailureStage = "unhandled_error"
+$script:TempJsonl = ""
+$script:Status = [ordered]@{
+    schema_version = 1
+    channel = "wechat"
+    run_id = $script:RunId
+    state = "running"
+    stage = "starting"
+    started_at = $script:StartedAt
+    finished_at = $null
+    exit_code = $null
+    message = "Starting WeChat collection."
+    login_state = "not_applicable"
+    source_file = ""
+    source_last_write_time = $null
+    source_sha256 = ""
+    output_rows = 0
+    crawl_output_rows = 0
+    new_unique_items = 0
+    requested_creator_count = 0
+    completed_creator_count = 0
+    failed_creator_count = 0
+    creator_results = @()
+    content_changed = $false
+    bridge_changed = $false
+    bridge_head_before = ""
+    bridge_head_after = ""
+    warnings = @()
+}
+
+function Write-AtomicJson([string]$Path, [object]$Value, [string]$RunId) {
+    if (-not $Path) { return }
+    $directory = Split-Path -Parent $Path
+    if ($directory -and -not (Test-Path -LiteralPath $directory)) { [IO.Directory]::CreateDirectory($directory) | Out-Null }
+    $temp = "$Path.$RunId.tmp"
+    $json = $Value | ConvertTo-Json -Depth 12
+    $encoding = New-Object Text.UTF8Encoding($false)
+    $stream = New-Object IO.FileStream($temp, [IO.FileMode]::Create, [IO.FileAccess]::Write, [IO.FileShare]::None)
+    try {
+        $writer = New-Object IO.StreamWriter($stream, $encoding)
+        try { $writer.Write($json); $writer.Write("`n"); $writer.Flush(); $stream.Flush($true) } finally { $writer.Dispose() }
+    } finally {
+        if ($stream) { $stream.Dispose() }
+    }
+    if (Test-Path -LiteralPath $Path) {
+        $replaceBackup = "$Path.$RunId.replace-backup"
+        if (Test-Path -LiteralPath $replaceBackup) { [IO.File]::Delete($replaceBackup) }
+        [IO.File]::Replace($temp, $Path, $replaceBackup)
+        if (Test-Path -LiteralPath $replaceBackup) { [IO.File]::Delete($replaceBackup) }
+    } else {
+        [IO.File]::Move($temp, $Path)
+    }
+}
+
+function Write-RunStatus {
+    if ($StatusFile) { Write-AtomicJson $StatusFile $script:Status $script:RunId }
+}
+
+function Complete-RunStatus([string]$State, [string]$Stage, [string]$Message, [int]$ExitCode) {
+    $script:Status.state = $State
+    $script:Status.stage = $Stage
+    $script:Status.message = $Message
+    $script:Status.exit_code = $ExitCode
+    $script:Status.finished_at = (Get-Date).ToUniversalTime().ToString("o")
+    Write-RunStatus
+}
+
+function Release-PipelineMutex {
+    if ($script:PipelineMutex) {
+        if ($script:MutexAcquired) { try { $script:PipelineMutex.ReleaseMutex() } catch {} }
+        $script:PipelineMutex.Dispose()
+        $script:PipelineMutex = $null
+        $script:MutexAcquired = $false
+    }
+}
+
+function Exit-Run([string]$State, [string]$Stage, [string]$Message, [int]$ExitCode) {
+    Complete-RunStatus $State $Stage $Message $ExitCode
+    if ($State -eq "succeeded" -and $script:TempJsonl -and (Test-Path -LiteralPath $script:TempJsonl)) {
+        Remove-Item -LiteralPath $script:TempJsonl -Force
+    }
+    Release-PipelineMutex
+    if ($LogFile) { try { Stop-Transcript | Out-Null } catch {} }
+    exit $ExitCode
+}
+
+$script:PipelineMutex = New-Object Threading.Mutex($false, "Local\AI-News-Radar-WeChat-CollectAndPush")
+try {
+    $script:MutexAcquired = $script:PipelineMutex.WaitOne(0)
+} catch [Threading.AbandonedMutexException] {
+    $script:MutexAcquired = $true
+}
+if (-not $script:MutexAcquired) {
+    [Console]::Error.WriteLine("busy: WeChat collection pipeline is already running")
+    $script:PipelineMutex.Dispose()
+    exit 2
+}
+$script:MayWriteStatus = $true
+Write-RunStatus
+
+trap {
+    $message = [string]$_
+    if ($script:MayWriteStatus) {
+        try { Complete-RunStatus "failed" $script:FailureStage $message 1 } catch { [Console]::Error.WriteLine("status write failed: $_") }
+    }
+    Release-PipelineMutex
+    if ($LogFile) { try { Stop-Transcript | Out-Null } catch {} }
+    [Console]::Error.WriteLine($message)
+    exit 1
+}
+
+$script:FailureStage = "preflight"
+$script:Status.stage = "preflight"
+Write-RunStatus
 if (-not $SidecarRoot) { $SidecarRoot = Join-Path (Split-Path $RadarRoot -Parent) "we-mp-rss-sidecar" }
 if (-not $BridgeRoot) { $BridgeRoot = Join-Path (Split-Path $RadarRoot -Parent) "wechat-bridge" }
 $PythonExe = Join-Path $RadarRoot ".venv\Scripts\python.exe"
@@ -54,14 +197,6 @@ function Show-FetchAlert {
     Write-Host "=================================================" -ForegroundColor Red
 }
 
-# 脚本后半段（导出 / git commit / git push）任何一步 throw 都会跳过末尾的
-# Show-FetchAlert，导致抓取告警被异常吞掉 —— 断网时就是这样：抓取失败 + push 也失败，
-# 用户只看到 push 报错，完全不知道文章根本没抓到。用 trap 兜住所有终止性错误。
-trap {
-    Show-FetchAlert
-    break
-}
-
 foreach ($check in @(
         @{ Path = $Exporter; Hint = "RadarRoot is not the AI News Radar repository" },
         @{ Path = $PythonExe; Hint = "Radar venv is missing" },
@@ -73,6 +208,14 @@ foreach ($check in @(
     }
 }
 
+$script:FailureStage = "bridge_preflight"
+$bridgeDirty = @((Invoke-GitText $BridgeRoot @("status", "--porcelain")) | Where-Object { $_ })
+if ($bridgeDirty.Count -gt 0) { throw "WeChat bridge has existing changes; refusing to continue." }
+Invoke-GitText $BridgeRoot @("pull", "--ff-only") | Out-Null
+$bridgeHeadBefore = ([string](Invoke-GitText $BridgeRoot @("rev-parse", "HEAD") | Select-Object -First 1)).Trim()
+$script:Status.bridge_head_before = $bridgeHeadBefore
+$script:Status.bridge_head_after = $bridgeHeadBefore
+
 function Test-SidecarReady {
     try {
         Invoke-WebRequest -Uri "$BaseUrl/" -UseBasicParsing -TimeoutSec 3 | Out-Null
@@ -83,8 +226,12 @@ function Test-SidecarReady {
 }
 
 if (-not (Test-SidecarReady)) {
+    $script:FailureStage = "sidecar_start"
+    $script:Status.stage = "starting_sidecar"
+    Write-RunStatus
     Write-Step "WeRSS sidecar is offline; starting it now."
-    Start-Process powershell.exe -ArgumentList @("-NoProfile", "-ExecutionPolicy", "Bypass", "-File", $SidecarStarter) -WindowStyle Hidden
+    $sidecarArgs = '--headless powershell.exe -NoProfile -ExecutionPolicy Bypass -File "{0}"' -f $SidecarStarter
+    Start-Process -FilePath "$env:SystemRoot\System32\conhost.exe" -ArgumentList $sidecarArgs
     $ready = $false
     for ($attempt = 0; $attempt -lt 20; $attempt++) {
         Start-Sleep -Seconds 2
@@ -94,11 +241,15 @@ if (-not (Test-SidecarReady)) {
 }
 
 if ($SkipSync) {
+    $fetchWarning = "WeRSS fetch was skipped by -SkipSync; bridge was not changed."
     Write-Step "Skipping WeRSS fetch (-SkipSync)."
 } elseif (-not (Test-Path -LiteralPath $SidecarPython)) {
     $fetchWarning = "找不到 sidecar 的 Python：$SidecarPython —— 本次没有抓取新文章，导出的是数据库里的旧数据。"
     Write-Step "Sidecar python missing; skipping fetch."
 } else {
+    $script:FailureStage = "wechat_fetch"
+    $script:Status.stage = "fetching"
+    Write-RunStatus
     Write-Step "Triggering WeRSS to fetch new articles from WeChat."
     # cwd 必须是 sidecar 根目录：它的 config.yaml / data/db.db 都按相对路径读取
     Push-Location $SidecarRoot
@@ -136,43 +287,79 @@ if ($SkipSync) {
     }
 }
 
-$tempJsonl = Join-Path $env:TEMP "wechat_contents_latest.jsonl"
+$script:Status.warnings = @(
+    @($fetchFailedAccounts | ForEach-Object { "WeChat fetch failed: $_" })
+    if ($fetchWarning) { $fetchWarning }
+)
+
+$script:FailureStage = "export"
+$script:Status.stage = "exporting"
+Write-RunStatus
+$script:TempJsonl = Join-Path $env:TEMP ("wechat-contents-{0}.jsonl" -f $script:RunId)
 Write-Step "Exporting public WeRSS article fields."
-& $PythonExe $Exporter --base-url $BaseUrl --out $tempJsonl --max-items $MaxItems
+& $PythonExe $Exporter --base-url $BaseUrl --out $script:TempJsonl --max-items $MaxItems
 if ($LASTEXITCODE -ne 0) { throw "WeRSS JSONL export failed (exit=$LASTEXITCODE)." }
+$lineCount = 0
+Get-Content -LiteralPath $script:TempJsonl -ReadCount 1000 | ForEach-Object { $lineCount += $_.Count }
+$sourceHash = (Get-FileHash -Algorithm SHA256 -LiteralPath $script:TempJsonl).Hash
+$sourceItem = Get-Item -LiteralPath $script:TempJsonl
+$script:Status.source_file = $script:TempJsonl
+$script:Status.source_last_write_time = $sourceItem.LastWriteTimeUtc.ToString("o")
+$script:Status.source_sha256 = $sourceHash
+$script:Status.output_rows = $lineCount
+if ($lineCount -eq 0) { $script:Status.warnings += "WeRSS export returned 0 articles." }
+
+# 抓取失败时可以留下导出产物排错，但绝不能覆盖 bridge 或伪装成功。
+if ($fetchFailedAccounts.Count -gt 0 -or $fetchWarning) {
+    Show-FetchAlert
+    Exit-Run "warning" "fetch_warning" "WeChat fetch was incomplete; diagnostic export was retained and bridge was not changed." 1
+}
 
 $bridgeJsonlDir = Join-Path $BridgeRoot "output\wechat\jsonl"
-New-Item -ItemType Directory -Force -Path $bridgeJsonlDir | Out-Null
 $bridgeJsonl = Join-Path $bridgeJsonlDir "wechat_contents_latest.jsonl"
-Copy-Item -LiteralPath $tempJsonl -Destination $bridgeJsonl -Force
-
-$lineCount = 0
-Get-Content -LiteralPath $bridgeJsonl -ReadCount 1000 | ForEach-Object { $lineCount += $_.Count }
-if ($lineCount -eq 0) { Write-Warning "WeRSS export returned 0 articles; pushing the empty public snapshot is allowed." }
-$manifest = [ordered]@{
-    generated_at = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
-    source_file = "wechat_contents_latest.jsonl"
-    line_count = $lineCount
-    max_items = $MaxItems
+$manifestPath = Join-Path $BridgeRoot "manifest.json"
+$targetHashBefore = if (Test-Path -LiteralPath $bridgeJsonl) { (Get-FileHash -Algorithm SHA256 -LiteralPath $bridgeJsonl).Hash } else { "" }
+$contentChanged = (-not $targetHashBefore) -or $targetHashBefore.ToLowerInvariant() -ne $sourceHash.ToLowerInvariant()
+$script:Status.content_changed = $contentChanged
+$manifestNeedsMigration = $true
+if (Test-Path -LiteralPath $manifestPath) {
+    try {
+        $existingManifest = Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
+        $manifestNeedsMigration = [int]$existingManifest.schema_version -ne 1
+    } catch { $script:Status.warnings += "Existing manifest is invalid and will be replaced after a successful fetch." }
 }
-($manifest | ConvertTo-Json) | Set-Content -LiteralPath (Join-Path $BridgeRoot "manifest.json") -Encoding UTF8
-
-Write-Step "Pushing WeChat bridge repository."
-if ((Invoke-Git $BridgeRoot @("pull", "--ff-only")) -ne 0) {
-    Write-Warning "Bridge repository pull failed; attempting to commit the local snapshot."
+if ($contentChanged) {
+    [IO.Directory]::CreateDirectory($bridgeJsonlDir) | Out-Null
+    Copy-Item -LiteralPath $script:TempJsonl -Destination $bridgeJsonl -Force
+    if ((Get-FileHash -Algorithm SHA256 -LiteralPath $bridgeJsonl).Hash.ToLowerInvariant() -ne $sourceHash.ToLowerInvariant()) {
+        throw "Bridge JSONL SHA256 does not match the export after copy."
+    }
 }
-Invoke-Git $BridgeRoot @("add", "output/wechat/jsonl/wechat_contents_latest.jsonl", "manifest.json") | Out-Null
+if ($contentChanged -or $manifestNeedsMigration) {
+    $manifest = [ordered]@{
+        schema_version = 1
+        generated_at = (Get-Date).ToUniversalTime().ToString("o")
+        source_file = "wechat_contents_latest.jsonl"
+        source_sha256 = $sourceHash
+        output_rows = $lineCount
+        max_items = $MaxItems
+    }
+    Write-AtomicJson $manifestPath $manifest "$($script:RunId)-manifest"
+}
+
+$script:FailureStage = "bridge_update"
+if ((Invoke-Git $BridgeRoot @("add", "--", "output/wechat/jsonl/wechat_contents_latest.jsonl", "manifest.json")) -ne 0) {
+    throw "Precise bridge staging failed."
+}
 & git -C $BridgeRoot diff --cached --quiet
-if ($LASTEXITCODE -eq 0) {
-    Write-Step "Bridge repository has no changes."
-    Show-FetchAlert
-    exit 0
+$script:Status.bridge_changed = $LASTEXITCODE -ne 0
+if (-not $script:Status.bridge_changed) {
+    $script:Status.bridge_head_after = Assert-RemoteHead $BridgeRoot
+    Exit-Run "succeeded" "completed_no_change" ("WeChat fetch completed with {0} exported rows; bridge bytes are unchanged." -f $lineCount) 0
 }
-if ((Invoke-Git $BridgeRoot @("commit", "-m", "数据：更新微信公众号公开文章 JSONL")) -ne 0) {
-    throw "Bridge repository commit failed."
-}
-if ((Invoke-Git $BridgeRoot @("push")) -ne 0) {
-    throw "Bridge repository push failed."
-}
-Write-Step ("Done: pushed {0} public article rows." -f $lineCount)
-Show-FetchAlert
+$stage = if ($contentChanged) { "completed_pushed" } else { "completed_pushed_metadata_only" }
+$commitMessage = if ($contentChanged) { "数据：更新微信公众号公开文章 JSONL" } else { "数据：迁移微信公众号桥接清单格式" }
+if ((Invoke-Git $BridgeRoot @("commit", "-m", $commitMessage)) -ne 0) { throw "Bridge repository commit failed." }
+if ((Invoke-Git $BridgeRoot @("push")) -ne 0) { throw "Bridge repository push failed." }
+$script:Status.bridge_head_after = Assert-RemoteHead $BridgeRoot
+Exit-Run "succeeded" $stage ("WeChat fetch completed and pushed {0} exported rows." -f $lineCount) 0

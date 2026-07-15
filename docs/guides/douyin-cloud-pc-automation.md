@@ -93,16 +93,47 @@ powershell -ExecutionPolicy Bypass -File deploy\cloud-pc\collect-douyin-and-push
 
 ## 第五步：注册计划任务（每天 3 次示例）
 
+`conhost.exe --headless` 用来避免 Windows 11 把 PowerShell 控制台交给 Windows Terminal 后仍弹窗。
+它只负责隐藏控制台，**不会透传子 PowerShell 的失败退出码**；机器可判定结果必须读取脚本写出的
+状态 JSON，不能把 `LastTaskResult=0` 当成成功。
+
+全新部署且任务只有抖音一条 action 时，可以这样注册：
+
 ```powershell
-$action = New-ScheduledTaskAction -Execute "powershell.exe" `
-  -Argument "-ExecutionPolicy Bypass -File D:\ai-news\ai-news-radar\deploy\cloud-pc\collect-douyin-and-push.ps1 -CrawlerRoot D:\ai-news\MediaCrawler -BridgeRoot D:\ai-news\douyin-bridge"
+$conhost = "$env:SystemRoot\System32\conhost.exe"
+$arguments = '--headless powershell.exe -NoProfile -ExecutionPolicy Bypass -File "D:\ai-news\ai-news-radar\deploy\cloud-pc\collect-douyin-and-push.ps1" -CrawlerRoot "D:\ai-news\MediaCrawler" -BridgeRoot "D:\ai-news\douyin-bridge" -BrowserOffscreen -LogFile "D:\ai-news\douyin-collect.log" -StatusFile "D:\ai-news\douyin-collect-status.json"'
+$action = New-ScheduledTaskAction -Execute $conhost -Argument $arguments
 $triggers = @("08:10", "13:10", "20:10") | ForEach-Object { New-ScheduledTaskTrigger -Daily -At $_ }
 Register-ScheduledTask -TaskName "DouyinCollectAndPush" -Action $action -Trigger $triggers `
   -Settings (New-ScheduledTaskSettingsSet -StartWhenAvailable -ExecutionTimeLimit (New-TimeSpan -Hours 1))
 ```
 
+当前本机的 `DouyinCollectAndPush` 同时承载抖音和微信，修改时必须保留两条 action；不能拿上面的
+单 action 示例覆盖现有任务。两条 action 都使用 `conhost.exe --headless`，分别传入：
+
+- 抖音状态：`E:\AI-news-reader\douyin-collect-status.json`
+- 微信状态：`E:\AI-news-reader\wechat-collect-status.json`
+
+PowerShell 的 `-Argument` 外层使用单引号时，路径两侧直接写普通双引号，例如 `"E:\路径\脚本.ps1"`；
+不要写成反斜杠引号 `\"E:\路径\脚本.ps1\"`。
+
 注意任务属性里保持默认的 **"只在用户登录时运行"**（Run only when user is logged on），
 否则 Chrome 起不来。
+
+定时模式显式传 `-BrowserOffscreen`。手动扫码或登录过期时，不要触发采集和 bridge push，直接运行
+可见的安全入口：
+
+```powershell
+E:\AI-news-reader\MediaCrawler-local-test\venv\Scripts\python.exe `
+  E:\AI-news-reader\ai-news-radar-run\scripts\run_mediacrawler_douyin.py `
+  --crawler-root E:\AI-news-reader\MediaCrawler-local-test --platform douyin --browser-only
+```
+
+命令输出 `login_state=logged_in` 才表示登录恢复。定时状态以本轮新 `run_id` 对应的 JSON 为准；
+`state=warning/failed` 都不能算成功，即使任务计划程序显示 `LastTaskResult=0`。
+
+屏幕外模式下，任务栏缩略图仍可能显示采集页面；点击任务栏图标只会激活屏幕外窗口，不会把它移回桌面。
+需要扫码或检查页面时，必须运行上面的可见 `--browser-only` 命令。
 
 频率建议每天 2~4 次即可，**不要**跟着 Actions 每 30 分钟跑——采集频率越高，
 抖音风控风险越大；内容进页面的实时性由 Actions 端每 30 分钟的读取保证。
