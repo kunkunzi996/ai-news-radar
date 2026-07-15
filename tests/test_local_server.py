@@ -670,7 +670,12 @@ class LocalServerTests(unittest.TestCase):
     def test_write_online_source_config_blocks_bulk_delete(self):
         root = Path(self.create_temp_dir())
         existing_sources = [
-            {"name": f"Source {index}", "type": "rss", "locator": f"https://example.com/{index}.xml"}
+            {
+                "id": f"source_{index}",
+                "name": f"Source {index}",
+                "type": "rss",
+                "locator": f"https://example.com/{index}.xml",
+            }
             for index in range(20)
         ]
         config_path = root / "config" / "online-sources.json"
@@ -686,7 +691,12 @@ class LocalServerTests(unittest.TestCase):
     def test_write_online_source_config_allows_confirmed_bulk_delete(self):
         root = Path(self.create_temp_dir())
         existing_sources = [
-            {"name": f"Source {index}", "type": "rss", "locator": f"https://example.com/{index}.xml"}
+            {
+                "id": f"source_{index}",
+                "name": f"Source {index}",
+                "type": "rss",
+                "locator": f"https://example.com/{index}.xml",
+            }
             for index in range(20)
         ]
         config_path = root / "config" / "online-sources.json"
@@ -703,7 +713,12 @@ class LocalServerTests(unittest.TestCase):
     def test_write_online_source_config_allows_single_delete(self):
         root = Path(self.create_temp_dir())
         existing_sources = [
-            {"name": f"Source {index}", "type": "rss", "locator": f"https://example.com/{index}.xml"}
+            {
+                "id": f"source_{index}",
+                "name": f"Source {index}",
+                "type": "rss",
+                "locator": f"https://example.com/{index}.xml",
+            }
             for index in range(20)
         ]
         config_path = root / "config" / "online-sources.json"
@@ -765,6 +780,49 @@ class LocalServerTests(unittest.TestCase):
         pending = json.loads((root / "data" / "pending-purge.json").read_text(encoding="utf-8"))
         self.assertEqual(result["purged_items"]["deferred"], {"bilibili_dynamic": ["李四"]})
         self.assertEqual(pending["sources"], {"bilibili_dynamic": ["李四"]})
+
+    def test_managed_source_tampering_is_rejected_before_purge(self):
+        root = Path(self.create_temp_dir())
+        config_path = root / "config" / "online-sources.json"
+        config_path.parent.mkdir(parents=True)
+        managed_source = {
+            "id": "online_github_repo_987654321",
+            "name": "owner/repo",
+            "type": "github_release",
+            "enabled": True,
+            "channel": "GitHub Release",
+            "target": "owner/repo",
+            "locator": "owner/repo",
+            "env": "",
+            "notes": "只追踪 release",
+            "managed_by": "github_stars",
+            "managed_account_id": 12345678,
+            "managed_repo_id": 987654321,
+            "managed_state": "active",
+        }
+        config_path.write_text(
+            json.dumps(
+                {
+                    "github_star_sync": {
+                        "version": 1,
+                        "account_id": 12345678,
+                        "account_login": "example-user",
+                    },
+                    "sources": [managed_source],
+                }
+            ),
+            encoding="utf-8",
+        )
+        before = config_path.read_bytes()
+        tampered = {**managed_source, "enabled": False}
+
+        with patch("scripts.local_server.purge_or_defer_source_config") as purge_mock:
+            with self.assertRaisesRegex(ValueError, "^github_star_managed_fields_readonly:"):
+                save_online_source_config(root, {"sources": [tampered]})
+
+        purge_mock.assert_not_called()
+        self.assertEqual(config_path.read_bytes(), before)
+        self.assertFalse((root / "data" / "pending-purge.json").exists())
 
     def test_pending_purge_merges_multiple_saves(self):
         root = Path(self.create_temp_dir())
