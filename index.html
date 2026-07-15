@@ -33,61 +33,69 @@
     <link rel="icon" href="./assets/icons/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png" sizes="180x180" />
     <link rel="manifest" href="./site.webmanifest" />
-    <link rel="stylesheet" href="./assets/styles.css?v=settings-drawer-0713a" />
+    <link rel="stylesheet" href="./assets/styles.css?v=aihot-reader-0715a" />
+    <link rel="stylesheet" href="./assets/reader-layout.css?v=aihot-reader-0715b" />
   </head>
   <body>
-    <main class="shell">
-      <header class="hero">
-        <div class="hero-main">
-          <div class="hero-headline">
-            <img class="hero-logo" src="./assets/logo.svg" alt="AI News Radar Logo" />
-            <div>
-              <p class="hero-tag">AI INTELLIGENCE RADAR</p>
-              <h1>AI News Radar</h1>
+    <div class="shell app-layout">
+      <aside class="app-sidebar" aria-label="栏目导航">
+        <header class="hero">
+          <div class="hero-main">
+            <div class="hero-headline">
+              <img class="hero-logo" src="./assets/logo.svg" alt="AI News Radar Logo" />
+              <div>
+                <p class="hero-tag">AI INTELLIGENCE RADAR</p>
+                <h1>AI News Radar</h1>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="hero-meta">
-          <span class="updated-label">更新时间</span>
-          <span class="updated" id="updatedAt">加载中...</span>
-          <span class="data-source-pill" id="dataSourcePill">本地数据</span>
-          <span class="source-status-pill" id="sourceStatusPill">源状态加载中</span>
-          <div class="hero-links" aria-label="项目入口">
-            <button
-              id="settingsOpenBtn"
-              class="hero-link settings-open-btn"
-              type="button"
-              aria-haspopup="dialog"
-              aria-controls="settingsDrawer"
-            >⚙ 设置</button>
-            <a
-              class="hero-link"
-              href="https://github.com/kunkunzi996/ai-news-radar"
-              target="_blank"
-              rel="noopener noreferrer"
-            >接入 Agent</a>
+
+          <nav class="sidebar-nav" aria-label="订阅栏目">
+            <div class="section-tabs" id="sectionTabs" aria-label="订阅栏目"></div>
+          </nav>
+
+          <div class="hero-meta sidebar-foot">
+            <span class="updated-label">更新时间</span>
+            <span class="updated" id="updatedAt">加载中...</span>
+            <span class="data-source-pill" id="dataSourcePill">本地数据</span>
+            <span class="source-status-pill" id="sourceStatusPill">源状态加载中</span>
+            <div class="hero-links" aria-label="项目入口">
+              <button
+                id="settingsOpenBtn"
+                class="hero-link settings-open-btn"
+                type="button"
+                aria-haspopup="dialog"
+                aria-controls="settingsDrawer"
+              >⚙ 设置</button>
+              <a
+                class="hero-link"
+                href="https://github.com/kunkunzi996/ai-news-radar"
+                target="_blank"
+                rel="noopener noreferrer"
+              >接入 Agent</a>
+            </div>
           </div>
-        </div>
+        </header>
+      </aside>
 
-        <section class="stats" id="stats"></section>
-
-        <section class="section-nav-wrap" aria-label="内容栏目">
-          <div class="section-tabs" id="sectionTabs" role="tablist" aria-label="AI 新闻栏目"></div>
+      <main class="app-main">
+        <header class="main-header">
           <div class="section-summary" id="sectionSummary">正在整理栏目...</div>
-        </section>
-      </header>
 
-      <section class="primary-controls">
-        <input id="searchInput" type="search" placeholder="搜索 AI 信号 / 来源" />
-        <div class="mode-hint" id="modeHint">全量</div>
-      </section>
+          <div class="main-toolbar">
+            <section class="primary-controls">
+              <input id="searchInput" type="search" placeholder="搜索 AI 信号 / 来源" />
+              <div class="mode-hint" id="modeHint">全量</div>
+            </section>
+            <div class="list-sort-tools" id="listSortTools" role="group" aria-label="全量列表排序">
+              <button class="list-sort-btn" type="button" data-sort="priority" title="综合来源权重、AI相关度、新鲜度与信号强度">综合</button>
+              <button class="list-sort-btn active" type="button" data-sort="time" title="按发布时间或发现时间倒序">时间</button>
+              <button class="list-sort-btn" type="button" data-sort="ai" title="按高相关度信号倒序">高分</button>
+              <button class="list-sort-btn" type="button" data-sort="source" title="按来源聚合度整理">来源</button>
+            </div>
+          </div>
 
-      <div class="sticky-summary-bar" aria-label="当前视图摘要">
-        <strong>AI News Radar</strong>
-        <span id="stickySummaryText">正在整理 24 小时信号...</span>
-      </div>
-
-      <details class="advanced-panel">
+          <details class="advanced-panel">
         <summary>
           <span>高级筛选</span>
           <span class="advanced-summary" id="advancedSummary">加载中...</span>
@@ -155,7 +163,41 @@
             <section class="site-pills" id="sitePills"></section>
           </details>
         </div>
-      </details>
+          </details>
+        </header>
+
+        <section class="stats" id="stats"></section>
+
+        <div class="sticky-summary-bar" aria-label="当前视图摘要">
+          <strong>AI News Radar</strong>
+          <span id="stickySummaryText">正在整理 24 小时信号...</span>
+        </div>
+
+        <section class="waytoagi-wrap">
+          <div class="waytoagi-head">
+            <h2>社区更新 · WaytoAGI</h2>
+            <div class="waytoagi-tools">
+              <div class="waytoagi-switch">
+                <button id="waytoagiTodayBtn" class="waytoagi-btn active" type="button">最近更新日</button>
+                <button id="waytoagi7dBtn" class="waytoagi-btn" type="button">近7日</button>
+              </div>
+              <span id="waytoagiUpdatedAt">加载中...</span>
+            </div>
+          </div>
+          <div id="waytoagiMeta" class="waytoagi-meta"></div>
+          <div id="waytoagiList" class="waytoagi-list"></div>
+        </section>
+
+        <section class="list-wrap">
+          <div class="list-head">
+            <h2 id="listTitle">全量 AI 情报源</h2>
+            <div class="list-head-tools">
+              <span id="resultCount">0 条</span>
+            </div>
+          </div>
+          <div id="newsList" class="news-list"></div>
+        </section>
+      </main>
 
       <div class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-label="设置" hidden>
         <div class="settings-drawer-panel">
@@ -397,49 +439,18 @@
           </div>
         </div>
       </div>
-
-      <section class="waytoagi-wrap">
-        <div class="waytoagi-head">
-          <h2>社区更新 · WaytoAGI</h2>
-          <div class="waytoagi-tools">
-            <div class="waytoagi-switch">
-              <button id="waytoagiTodayBtn" class="waytoagi-btn active" type="button">最近更新日</button>
-              <button id="waytoagi7dBtn" class="waytoagi-btn" type="button">近7日</button>
-            </div>
-            <span id="waytoagiUpdatedAt">加载中...</span>
-          </div>
-        </div>
-        <div id="waytoagiMeta" class="waytoagi-meta"></div>
-        <div id="waytoagiList" class="waytoagi-list"></div>
-      </section>
-
-      <section class="list-wrap">
-        <div class="list-head">
-          <h2 id="listTitle">全量 AI 情报源</h2>
-          <div class="list-head-tools">
-            <div class="list-sort-tools" id="listSortTools" role="group" aria-label="全量列表排序">
-              <button class="list-sort-btn" type="button" data-sort="priority" title="综合来源权重、AI相关度、新鲜度与信号强度">综合</button>
-              <button class="list-sort-btn active" type="button" data-sort="time" title="按发布时间或发现时间倒序">时间</button>
-              <button class="list-sort-btn" type="button" data-sort="ai" title="按高相关度信号倒序">高分</button>
-              <button class="list-sort-btn" type="button" data-sort="source" title="按来源聚合度整理">来源</button>
-            </div>
-            <span id="resultCount">0 条</span>
-          </div>
-        </div>
-        <div id="newsList" class="news-list"></div>
-      </section>
-
-    </main>
+    </div>
 
     <template id="itemTpl">
       <article class="news-card">
-        <a class="title" target="_blank" rel="noopener noreferrer"></a>
         <div class="meta-row">
+          <span class="card-avatar" aria-hidden="true"></span>
           <span class="site"></span>
           <span class="category"></span>
           <span class="source"></span>
           <time class="time"></time>
         </div>
+        <a class="title" target="_blank" rel="noopener noreferrer"></a>
         <p class="news-summary"></p>
       </article>
     </template>
@@ -448,8 +459,8 @@
     <script src="./assets/motion.js?v=ui-adjustment-0620a" defer></script>
     <script src="./assets/js/dom.js?v=we-mp-rss-btn-0714b" defer></script>
     <script src="./assets/js/utils.js?v=purge-deferred-note-0713a" defer></script>
-    <script src="./assets/js/render-meta.js?v=github-pages-static-0709a" defer></script>
-    <script src="./assets/js/render-list.js?v=github-pages-static-0709a" defer></script>
+    <script src="./assets/js/render-meta.js?v=aihot-reader-0715a" defer></script>
+    <script src="./assets/js/render-list.js?v=aihot-reader-0715a" defer></script>
     <script src="./assets/js/render-panels.js?v=github-pages-static-0709a" defer></script>
     <script src="./assets/js/subscriptions.js?v=github-tab-0711a" defer></script>
     <script src="./assets/js/source-config.js?v=purge-deferred-note-0713a" defer></script>

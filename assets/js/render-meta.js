@@ -327,8 +327,7 @@ function renderSectionTabs() {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = `section-tab ${state.activeSection === section.id ? "active" : ""}`;
-    btn.setAttribute("role", "tab");
-    btn.setAttribute("aria-selected", state.activeSection === section.id ? "true" : "false");
+    btn.setAttribute("aria-pressed", state.activeSection === section.id ? "true" : "false");
     btn.dataset.section = section.id;
     btn.innerHTML = `<span>${section.label}</span><strong>${fmtNumber(stats.count)}</strong>`;
     btn.addEventListener("click", () => {
@@ -684,14 +683,16 @@ function timelineIso(item) {
   const published = item.published_at || "";
   const seen = item.first_seen_at || "";
   const generated = state.generatedAt || "";
-  if (published && generated) {
-    const publishedMs = new Date(published).getTime();
-    const generatedMs = new Date(generated).getTime();
-    if (Number.isFinite(publishedMs) && Number.isFinite(generatedMs) && publishedMs > generatedMs + 10 * 60 * 1000) {
-      return seen || published;
-    }
+  const publishedMs = new Date(published).getTime();
+  const seenMs = new Date(seen).getTime();
+  const generatedMs = new Date(generated).getTime();
+
+  if (Number.isFinite(publishedMs)) {
+    const publishedIsFuture = Number.isFinite(generatedMs) && publishedMs > generatedMs + 10 * 60 * 1000;
+    if (publishedIsFuture && Number.isFinite(seenMs)) return seen;
+    return published;
   }
-  return published || seen;
+  return Number.isFinite(seenMs) ? seen : "";
 }
 function timelineMs(item) {
   const d = new Date(timelineIso(item));

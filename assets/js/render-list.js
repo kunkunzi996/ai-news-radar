@@ -147,7 +147,11 @@ function buildBoleLead(row) {
 
   const foot = document.createElement("div");
   foot.className = "bole-lead-foot";
-  foot.innerHTML = `<span>${item.site_name || "来源"}</span><span>${item.source || "未分区"}</span>`;
+  const site = document.createElement("span");
+  site.textContent = item.site_name || "来源";
+  const source = document.createElement("span");
+  source.textContent = item.source || "未分区";
+  foot.append(site, source);
 
   lead.append(top, title, reason, foot);
   return lead;
@@ -168,7 +172,13 @@ function buildBoleTimelineRow(row, rank) {
   body.className = "bole-row-body";
   const meta = document.createElement("div");
   meta.className = "bole-row-meta";
-  meta.innerHTML = `<span>#${rank}</span><span>${item.site_name || "来源"}</span><strong>${score}分</strong>`;
+  const rankEl = document.createElement("span");
+  rankEl.textContent = `#${rank}`;
+  const siteEl = document.createElement("span");
+  siteEl.textContent = item.site_name || "来源";
+  const scoreEl = document.createElement("strong");
+  scoreEl.textContent = `${score}分`;
+  meta.append(rankEl, siteEl, scoreEl);
   (row.sourceSignals || []).slice(0, 4).forEach((signal) => {
     appendSourceChip(meta, signal, sourceSignalTone(signal), "source-chip source-hit");
   });
@@ -930,8 +940,41 @@ function feedSummaryText(item) {
   if (reason && !reason.startsWith("来源与标题")) return reason.replace(/^命中方向：/, "相关线索：");
   return `${labelText(item)} · AI 相关度 ${scorePercent(item) || "待评估"}。`;
 }
+function timelineItemDate(item) {
+  const date = new Date(timelineIso(item));
+  return Number.isNaN(date.getTime()) ? null : date;
+}
+function timelineDayKey(item) {
+  const date = timelineItemDate(item);
+  if (!date) return "unknown";
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+function timelineClockText(date) {
+  return new Intl.DateTimeFormat("zh-CN", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+  }).format(date);
+}
+function timelineDateText(date) {
+  return `${date.getMonth() + 1}月${date.getDate()}日`;
+}
+function timelineWeekdayText(date) {
+  return ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"][date.getDay()];
+}
 function renderItemNode(item, context = {}) {
   const node = itemTpl.content.firstElementChild.cloneNode(true);
+  const platformKey = itemPlatformSection(item) || "rss";
+  node.classList.add(`platform-${platformKey}`);
+  if (item.id) node.dataset.itemId = String(item.id);
+
+  const avatarEl = node.querySelector(".card-avatar");
+  const avatarText = String(item.source || item.site_name || sourceDisplayName(item) || "源").trim();
+  if (avatarEl) avatarEl.textContent = Array.from(avatarText)[0] || "源";
+
   const metaRow = node.querySelector(".meta-row");
   const siteEl = node.querySelector(".site");
   siteEl.textContent = item.source || item.site_name;
@@ -966,7 +1009,16 @@ function renderItemNode(item, context = {}) {
       metaRow.insertBefore(itemTagChip(label), sourceEl);
     });
 
-  node.querySelector(".time").textContent = fmtTime(item.published_at || item.first_seen_at);
+  const timeEl = node.querySelector(".time");
+  const timeline = timelineIso(item);
+  const timelineDate = timelineItemDate(item);
+  if (timelineDate) {
+    timeEl.textContent = fmtTime(timeline);
+    timeEl.setAttribute("datetime", timeline);
+  } else {
+    timeEl.textContent = "时间未知";
+    timeEl.removeAttribute("datetime");
+  }
 
   const titleEl = node.querySelector(".title");
   const zh = (item.title_zh || "").trim();
@@ -1216,13 +1268,81 @@ function addLoadMoreButton(parent, label, onClick) {
   parent.appendChild(moreBtn);
   return moreBtn;
 }
+function buildTimelineRow(item) {
+  const row = document.createElement("div");
+  const platformKey = itemPlatformSection(item) || "rss";
+  row.className = `timeline-row platform-${platformKey}`;
+
+  const time = document.createElement("time");
+  time.className = "timeline-time";
+  const timeline = timelineIso(item);
+  const date = timelineItemDate(item);
+  if (date) {
+    time.textContent = timelineClockText(date);
+    time.setAttribute("datetime", timeline);
+  } else {
+    time.textContent = "--:--";
+  }
+
+  const rail = document.createElement("span");
+  rail.className = "timeline-rail";
+  rail.setAttribute("aria-hidden", "true");
+  const dot = document.createElement("span");
+  dot.className = "timeline-dot";
+  rail.appendChild(dot);
+
+  row.append(time, rail, renderItemNode(item, { readToggleEligible: true }));
+  return row;
+}
+function buildTimelineDaySection(key, items) {
+  const section = document.createElement("section");
+  section.className = "timeline-day";
+  const headingId = `timeline-day-${key}`;
+  section.setAttribute("aria-labelledby", headingId);
+
+  const header = document.createElement("header");
+  header.className = "timeline-day-head";
+  const title = document.createElement("h3");
+  title.className = "timeline-date";
+  title.id = headingId;
+  const meta = document.createElement("span");
+  meta.className = "timeline-day-meta";
+  const date = key === "unknown" ? null : timelineItemDate(items[0]);
+  if (date) {
+    title.textContent = timelineDateText(date);
+    meta.textContent = `${timelineWeekdayText(date)} · ${fmtNumber(items.length)} 条`;
+  } else {
+    title.textContent = "日期未知";
+    meta.textContent = `时间字段无效 · ${fmtNumber(items.length)} 条`;
+  }
+  header.append(title, meta);
+
+  const rows = document.createElement("div");
+  rows.className = "timeline-day-items";
+  items.forEach((item) => rows.appendChild(buildTimelineRow(item)));
+  section.append(header, rows);
+  return section;
+}
 function renderFlatTimeline(items) {
   const pageSize = 80;
   const shown = state.siteGroupsExpanded ? items.length : Math.min(pageSize, items.length);
+  const visibleItems = items.slice(0, shown);
   const frag = document.createDocumentFragment();
-  items.slice(0, shown).forEach((item) => {
-    frag.appendChild(renderItemNode(item, { readToggleEligible: true }));
-  });
+  if (state.listSort === "time") {
+    const groups = new Map();
+    visibleItems.forEach((item) => {
+      const key = timelineDayKey(item);
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(item);
+    });
+    groups.forEach((groupItems, key) => {
+      frag.appendChild(buildTimelineDaySection(key, groupItems));
+    });
+  } else {
+    visibleItems.forEach((item) => {
+      frag.appendChild(renderItemNode(item, { readToggleEligible: true }));
+    });
+  }
   newsListEl.appendChild(frag);
 
   if (items.length > pageSize) {
@@ -1266,6 +1386,12 @@ function renderSiteGroups(items) {
 function renderList() {
   const filtered = getFilteredItems();
   renderListSortTools();
+  newsListEl.classList.remove("timeline-mode", "flat-mode", "group-mode");
+  if (isSubscriptionSection(state.activeSection)) {
+    newsListEl.classList.add(state.listSort === "time" ? "timeline-mode" : "flat-mode");
+  } else {
+    newsListEl.classList.add("group-mode");
+  }
   resultCountEl.textContent = `${fmtNumber(filtered.length)} 条`;
   renderSectionSummary(filtered);
 
