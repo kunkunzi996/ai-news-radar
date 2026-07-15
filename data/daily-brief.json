@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-14T23:33:06.437806Z",
+  "generated_at": "2026-07-15T00:57:35.152734Z",
   "window_hours": 24,
-  "total_items": 1,
+  "total_items": 2,
   "items": [
     {
       "story_id": "story_774f7412d1a3",
@@ -332,6 +332,84 @@
         "title": "【小岛浪吹】DeepSeek适配华为最新昇腾芯片，韬定律横空出世打破极限，主观分析下中国AI到底处于什么水平",
         "url": "https://www.youtube.com/watch?v=d9-0yv1eIHw",
         "source": "小岛大浪吹-非正经政经频道",
+        "source_name": "OPML RSS"
+      }
+    },
+    {
+      "story_id": "story_b82951733718",
+      "title": "引用 GitHub Changeling / Quoting GitHub Changeling",
+      "url": "https://simonwillison.net/2026/Jul/14/github-changeling",
+      "primary_url": "https://simonwillison.net/2026/Jul/14/github-changeling",
+      "source": "Simon Willison",
+      "source_name": "OPML RSS",
+      "sources": [
+        {
+          "id": "f577e2149aca778285c98d55213e0a624ca71ec3",
+          "title": "引用 GitHub Changeling / Quoting GitHub Changeling",
+          "url": "https://simonwillison.net/2026/Jul/14/github-changeling",
+          "source": "Simon Willison",
+          "source_name": "OPML RSS",
+          "site_id": "opmlrss",
+          "published_at": "2026-07-14T22:43:35Z"
+        },
+        {
+          "id": "8ad55b52f5c9095a6c2de744f06f23b34e554ff8",
+          "title": "引用 GitHub Changelog / Quoting GitHub Changelog",
+          "url": "https://simonwillison.net/2026/Jul/14/github-changeling",
+          "source": "Simon Willison",
+          "source_name": "OPML RSS",
+          "site_id": "opmlrss",
+          "published_at": "2026-07-14T22:43:35Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Simon Willison"
+      ],
+      "items": [
+        {
+          "id": "f577e2149aca778285c98d55213e0a624ca71ec3",
+          "title": "引用 GitHub Changeling / Quoting GitHub Changeling",
+          "url": "https://simonwillison.net/2026/Jul/14/github-changeling",
+          "source": "Simon Willison",
+          "source_name": "OPML RSS",
+          "site_id": "opmlrss",
+          "published_at": "2026-07-14T22:43:35Z"
+        },
+        {
+          "id": "8ad55b52f5c9095a6c2de744f06f23b34e554ff8",
+          "title": "引用 GitHub Changelog / Quoting GitHub Changelog",
+          "url": "https://simonwillison.net/2026/Jul/14/github-changeling",
+          "source": "Simon Willison",
+          "source_name": "OPML RSS",
+          "site_id": "opmlrss",
+          "published_at": "2026-07-14T22:43:35Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.4743,
+      "importance": 0.4743,
+      "importance_score": 0.4743,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.45,
+        "source_tier": 0.5,
+        "ai_relevance": 0.15,
+        "recency": 0.9683,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source"
+      ],
+      "earliest_at": "2026-07-14T22:43:35Z",
+      "latest_at": "2026-07-14T22:43:35Z",
+      "primary_item": {
+        "id": "f577e2149aca778285c98d55213e0a624ca71ec3",
+        "title": "引用 GitHub Changeling / Quoting GitHub Changeling",
+        "url": "https://simonwillison.net/2026/Jul/14/github-changeling",
+        "source": "Simon Willison",
         "source_name": "OPML RSS"
       }
     }
