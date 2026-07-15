@@ -33,10 +33,11 @@ test("tabs and time range filter do not throw", async ({ page }) => {
   expect(errors).toEqual([]);
 });
 
-test("remote data base query loads data files", async ({ page }) => {
+test("remote data base query loads data files", async ({ page }, testInfo) => {
   const errors = [];
   collectErrors(page, errors);
-  await page.goto("/?dataBase=http://127.0.0.1:8080/data/");
+  const dataBase = new URL("/data/", testInfo.project.use.baseURL).toString();
+  await page.goto(`/?dataBase=${encodeURIComponent(dataBase)}`);
   await expect(page.locator("#dataSourcePill")).toContainText("远程数据");
   await expect(page.locator("#sectionTabs")).toBeVisible();
   await page.waitForTimeout(1000);
