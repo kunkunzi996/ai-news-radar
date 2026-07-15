@@ -20,6 +20,7 @@ ONLINE_ALLOWED_TYPES = frozenset(
     {"bilibili_dynamic", "github_release", "mediacrawler_jsonl", "rss", "we_mp_rss_jsonl"}
 )
 ONLINE_COMMIT_MESSAGE = "配置：同步线上信源"
+ONLINE_SYNC_STASH_MESSAGE = "ai-news-radar:online-source-sync"
 
 SENSITIVE_MARKERS = (
     "token",
@@ -471,6 +472,27 @@ def git_name_list(root_dir: Path, args: list[str]) -> list[str]:
     return [line.strip().replace("\\", "/") for line in completed.stdout.splitlines() if line.strip()]
 
 
+def git_nul_name_list(root_dir: Path, args: list[str]) -> list[str]:
+    completed = git_checked(root_dir, args)
+    return [path.replace("\\", "/") for path in completed.stdout.split("\0") if path]
+
+
+def git_stash_selector_for_oid(root_dir: Path, stash_oid: str) -> str:
+    stash_lines = git_checked(root_dir, ["stash", "list", "--format=%gd%x09%H"]).stdout.splitlines()
+    matches = []
+    for line in stash_lines:
+        selector, separator, oid = line.partition("\t")
+        if separator and oid.strip() == stash_oid:
+            matches.append(selector.strip())
+    if len(matches) != 1:
+        raise RuntimeError("online sync stash ownership is missing or ambiguous")
+    selector = matches[0]
+    resolved_oid = git_checked(root_dir, ["rev-parse", "--verify", selector]).stdout.strip()
+    if resolved_oid != stash_oid:
+        raise RuntimeError("online sync stash selector changed before drop")
+    return selector
+
+
 def sync_online_source_config(root_dir: Path, payload: Any | None = None, *, push: bool = True) -> dict[str, Any]:
     write_result = write_online_source_config(root_dir, payload) if payload is not None else read_online_source_config(root_dir)
     allowed_paths = [
@@ -508,12 +530,22 @@ def sync_online_source_config(root_dir: Path, payload: Any | None = None, *, pus
     push_stdout = ""
     if push:
         branch = git_checked(root_dir, ["rev-parse", "--abbrev-ref", "HEAD"]).stdout.strip()
-        status_lines = git_checked(root_dir, ["status", "--porcelain"]).stdout.splitlines()
-        has_tracked_changes = any(line and not line.startswith("?? ") for line in status_lines)
-        did_stash = False
-        if has_tracked_changes:
-            git_checked(root_dir, ["stash", "push"], timeout=60)
-            did_stash = True
+        dirty_tracked_paths = git_nul_name_list(root_dir, ["diff", "--name-only", "-z"])
+        operation_stash_oid = ""
+        if dirty_tracked_paths:
+            previous_stash = git_run(root_dir, ["rev-parse", "--verify", "refs/stash"])
+            previous_stash_oid = previous_stash.stdout.strip() if previous_stash.returncode == 0 else ""
+            git_checked(
+                root_dir,
+                ["stash", "push", "-m", ONLINE_SYNC_STASH_MESSAGE, "--", *dirty_tracked_paths],
+                timeout=60,
+            )
+            operation_stash_oid = git_checked(
+                root_dir,
+                ["rev-parse", "--verify", "refs/stash"],
+            ).stdout.strip()
+            if not operation_stash_oid or operation_stash_oid == previous_stash_oid:
+                raise RuntimeError("online sync failed to identify its operation stash")
         try:
             try:
                 git_checked(root_dir, ["pull", "--rebase", "origin", branch], timeout=120)
@@ -524,9 +556,20 @@ def sync_online_source_config(root_dir: Path, payload: Any | None = None, *, pus
             pushed = True
             push_stdout = (pushed_result.stdout or pushed_result.stderr or "").strip()
         finally:
-            if did_stash:
-                git_checked(root_dir, ["restore", "--source=stash@{0}", "--", "."], timeout=60)
-                git_checked(root_dir, ["stash", "drop", "stash@{0}"], timeout=60)
+            if operation_stash_oid:
+                git_checked(
+                    root_dir,
+                    [
+                        "restore",
+                        f"--source={operation_stash_oid}",
+                        "--worktree",
+                        "--",
+                        *dirty_tracked_paths,
+                    ],
+                    timeout=60,
+                )
+                stash_selector = git_stash_selector_for_oid(root_dir, operation_stash_oid)
+                git_checked(root_dir, ["stash", "drop", stash_selector], timeout=60)
     commit = git_checked(root_dir, ["rev-parse", "--short", "HEAD"]).stdout.strip()
     return {
         **write_result,

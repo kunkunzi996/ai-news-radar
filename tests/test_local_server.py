@@ -957,6 +957,106 @@ class LocalServerTests(unittest.TestCase):
         remote_log = self.git(origin, "log", "--oneline", "--all").stdout
         self.assertIn("配置：同步线上信源", remote_log)
 
+    def test_sync_online_source_config_does_not_overwrite_remote_changes_to_clean_paths(self):
+        root, _origin, peer = self.create_sync_git_repositories()
+        data_path = root / "data" / "latest-24h.json"
+        data_path.write_text('{"version":"local"}\n', encoding="utf-8")
+        peer_readme_path = peer / "README.md"
+        peer_readme_path.write_text("remote update\n", encoding="utf-8")
+        self.git(peer, "add", "README.md")
+        self.git(peer, "commit", "-m", "remote clean path update")
+        self.git(peer, "push")
+
+        result = sync_online_source_config(root, self.online_source_payload("local"), push=True)
+
+        self.assertTrue(result["synced"])
+        self.assertTrue(result["pushed"])
+        self.assertEqual(data_path.read_text(encoding="utf-8"), '{"version":"local"}\n')
+        self.assertEqual((root / "README.md").read_text(encoding="utf-8"), "remote update\n")
+        self.assertEqual(
+            self.git(root, "diff", "--name-only", "--", "README.md").stdout.strip(),
+            "",
+        )
+
+    def test_sync_online_source_config_restores_named_paths_by_stash_oid(self):
+        import scripts.radar.server.online_sources as online_sources
+
+        root, _origin, peer = self.create_sync_git_repositories()
+        special_relative_path = "data/中文 路径.json"
+        special_path = root / special_relative_path
+        special_path.write_text('{"version":"initial-special"}\n', encoding="utf-8")
+        self.git(root, "add", "--", special_relative_path)
+        self.git(root, "commit", "-m", "add unicode data path")
+        self.git(root, "push")
+        self.git(peer, "pull", "--ff-only")
+
+        readme_path = root / "README.md"
+        readme_path.write_text("legacy local draft\n", encoding="utf-8")
+        self.git(root, "stash", "push", "-m", "legacy-user-stash", "--", "README.md")
+        legacy_stash_oid = self.git(root, "rev-parse", "refs/stash").stdout.strip()
+
+        special_path.write_text('{"version":"local-special"}\n', encoding="utf-8")
+        peer_data_path = peer / "data" / "latest-24h.json"
+        peer_data_path.write_text('{"version":"remote"}\n', encoding="utf-8")
+        self.git(peer, "add", "data/latest-24h.json")
+        self.git(peer, "commit", "-m", "remote data update")
+        self.git(peer, "push")
+
+        original_git_checked = online_sources.git_checked
+        injected_stash_oid = {"value": ""}
+
+        def git_checked_with_interleaved_stash(root_dir, args, timeout=60):
+            completed = original_git_checked(root_dir, args, timeout=timeout)
+            if args[:2] == ["pull", "--rebase"] and not injected_stash_oid["value"]:
+                injected_readme_path = Path(root_dir) / "README.md"
+                injected_readme_path.write_text("interleaved local draft\n", encoding="utf-8")
+                self.git(root_dir, "stash", "push", "-m", "interleaved-user-stash", "--", "README.md")
+                injected_stash_oid["value"] = self.git(root_dir, "rev-parse", "refs/stash").stdout.strip()
+            return completed
+
+        with patch.object(online_sources, "git_checked", side_effect=git_checked_with_interleaved_stash):
+            result = sync_online_source_config(root, self.online_source_payload("local"), push=True)
+
+        self.assertTrue(result["synced"])
+        self.assertTrue(result["pushed"])
+        self.assertEqual(special_path.read_text(encoding="utf-8"), '{"version":"local-special"}\n')
+        unstaged_paths = {
+            path for path in self.git(root, "diff", "--name-only", "-z").stdout.split("\0") if path
+        }
+        staged_paths = {
+            path
+            for path in self.git(root, "diff", "--cached", "--name-only", "-z").stdout.split("\0")
+            if path
+        }
+        self.assertIn(special_relative_path, unstaged_paths)
+        self.assertNotIn(special_relative_path, staged_paths)
+        remaining_stash_oids = {
+            line.split(" ", 1)[0]
+            for line in self.git(root, "stash", "list", "--format=%H %s").stdout.splitlines()
+            if line
+        }
+        self.assertEqual(
+            remaining_stash_oids,
+            {legacy_stash_oid, injected_stash_oid["value"]},
+        )
+
+    def test_sync_online_source_config_rejects_existing_index_without_mutating_it(self):
+        initial_payload = self.online_source_payload("initial")
+        root, _origin, _peer = self.create_sync_git_repositories(initial_payload)
+        data_path = root / "data" / "latest-24h.json"
+        data_path.write_text('{"version":"staged"}\n', encoding="utf-8")
+        self.git(root, "add", "data/latest-24h.json")
+        index_tree_before = self.git(root, "write-tree").stdout.strip()
+        head_before = self.git(root, "rev-parse", "HEAD").stdout.strip()
+        stash_before = self.git(root, "stash", "list", "--format=%H %s").stdout
+
+        with self.assertRaisesRegex(ValueError, "unrelated_files_already_staged"):
+            sync_online_source_config(root, None, push=True)
+
+        self.assertEqual(self.git(root, "write-tree").stdout.strip(), index_tree_before)
+        self.assertEqual(self.git(root, "rev-parse", "HEAD").stdout.strip(), head_before)
+        self.assertEqual(self.git(root, "stash", "list", "--format=%H %s").stdout, stash_before)
+
     def test_sync_online_source_config_without_tracked_changes_does_not_create_stash(self):
         root, _origin, _peer = self.create_sync_git_repositories()
         untracked_path = root / "output" / "local.txt"
@@ -985,6 +1085,14 @@ class LocalServerTests(unittest.TestCase):
         self.assertEqual(self.git(root, "stash", "list").stdout.strip(), "")
         status = self.git(root, "status", "--porcelain").stdout.splitlines()
         self.assertFalse(any(line.startswith(("UU ", "AA ", "DD ")) for line in status))
+        self.assertNotIn(
+            "data/latest-24h.json",
+            self.git(root, "diff", "--cached", "--name-only").stdout.splitlines(),
+        )
+        rebase_merge_path = Path(self.git(root, "rev-parse", "--git-path", "rebase-merge").stdout.strip())
+        rebase_apply_path = Path(self.git(root, "rev-parse", "--git-path", "rebase-apply").stdout.strip())
+        self.assertFalse((root / rebase_merge_path).exists())
+        self.assertFalse((root / rebase_apply_path).exists())
 
     def test_refresh_command_uses_fixed_local_update_script(self):
         root = Path("E:/AI-news-reader/ai-news-radar-run")
