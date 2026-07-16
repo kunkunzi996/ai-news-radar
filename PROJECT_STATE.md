@@ -2,10 +2,10 @@
 
 ## 下一轮入口（2026-07-16 更新）
 
-- **2026-07-16 微信公众号退订历史清理修复已完成本地生产就绪实现，尚未上线**：施工位于独立
-  worktree `E:\AI-news-reader\ai-news-radar-wechat-cleanup`、分支 `fix/wechat-unsubscribe-cleanup`，
-  基线为 `origin/master`。原工作区 `E:\AI-news-reader\ai-news-radar-run` 的脏 `master`、用户 stash、
-  `data/**` 和真实 `wechat-bridge` 均未修改；当前改动尚未 commit、push。
+- **2026-07-16 微信公众号退订历史清理修复已完成线上灰度与真实验收**：代码在独立 worktree
+  `E:\AI-news-reader\ai-news-radar-wechat-cleanup`、分支 `fix/wechat-unsubscribe-cleanup` 施工，功能提交
+  `fdec276`，合并最新主线后普通推送至 `master`，全程未 force/rebase 覆盖远端。原脏 master、用户
+  stash 和本机 `data/**` 未改；当前远端运行模式为 `on`，workflow 已恢复 `active`。
   - **最终业务契约**：sidecar 数据库一次读取后生成 schema 2 权威快照；`known` 是仍存在的非系统
     Feed，`active` 与 `DB.get_all_mps()` 同口径。Feed hard delete 才清对应稳定 `feed_id` 的历史；
     `status=0` 只停采，因 ID 仍在 `known` 中而保留历史。exporter 只消费该权威输入，不再把
@@ -14,30 +14,29 @@
     哈希、条数、集合和通道状态校验。缺失或非法 `feed_id` 的行在 `RawItem` 前拒绝；无 ID、快照不完整、
     commit 不符、通道失败或任何门控不通过都 fail-safe，一条不删。清理只按 ID，禁止按名称、URL 或
     本轮文章集合推断；回滚只按 `item_id` 精确回插，禁止整份 archive 覆盖。
-  - **一次性迁移 dry-run（真实数据只读）**：archive 共 590 条，其中微信 89 条、原本无 ID 89 条；
-    可唯一补齐 89、未匹配 0、冲突 0、删除 0，动态覆盖率 100%，硬条件全部满足。这里只执行了
-    dry-run，未执行 apply，也未改真实 archive；89 只是本次基线，正式维护窗口必须按当时数据重算。
-  - **灰度状态**：`WE_MP_ORPHAN_CLEANUP_MODE` 默认 `off`，非法值也回退 `off`。本地已验证
-    `off/audit/on` 行为，但真实 Actions 变量未修改、workflow 未触发、真实 audit/on 未执行。
-    `audit` 必须只出现目标 hard-delete feed_id；出现其它 ID、来源、item_id 或 ID 覆盖不足 100% 时
-    立即保持/切回 `off` 并停止。
-  - **自动验收**：`test_we_mp_rss_sync_once.py` 17 passed；`test_we_mp_rss_jsonl_source.py` 22 passed；
-    `test_orphan_subscription_cleanup.py` 20 passed（另 5 subtests）；全量 pytest 389 passed、1 warning
-    （另 7 subtests）；PowerShell AST 解析错误 0；`git diff --check` 退出码 0。新 worktree 没有独立
+  - **真实 bridge 与迁移**：bridge commit `2295f32` 发布 schema 2 三件套，60 条文章、known/active=3/3，
+    完整哈希链通过。维护窗口基线 `00daa9f` 的 archive 共 625 条、微信 103 条；当时缺 ID 的 43 条全部
+    唯一补齐，0 未匹配、0 冲突、0 删除、覆盖率 100%。迁移提交 `b9315ba`，完整 Radar 重建后总数和
+    所有通道数量均未下降。
+  - **真实灰度结果**：`off` run `29484708544` 确认 103/103 微信记录有 ID、候选/删除 0；`audit` run
+    `29484779366` 的 30 个唯一候选只属于 `MP_WXS_3893127105 / 财联社`，异常候选 0；`on` run
+    `29484879533` 精确删除这 30 条，archive 625→595、微信 103→73、其它通道下降 0；下一轮 run
+    `29484975158` 候选/删除均为 0，财联社未反弹。清理提交为 `399fb67`，清理前回滚基线为 `1f89713`。
+  - **自动与浏览器验收**：`test_we_mp_rss_sync_once.py` 17 passed；`test_we_mp_rss_jsonl_source.py`
+    22 passed；`test_orphan_subscription_cleanup.py` 20 passed（另 5 subtests）；合并最新主线后全量 pytest
+    529 passed、1 warning（另 98 subtests）；PowerShell AST 解析错误 0，`git diff --check` 退出码 0。
+    公网页微信公众号栏目显示 73 条、4/4 源正常；搜索财联社为 0，猫笔刀/卡尔的AI沃茨/数字生命卡兹克
+    分别有 25/23/25 条可见记录，控制台错误 0。新 worktree 没有独立
     `.venv`，验收从该 worktree cwd 使用原仓库只读虚拟环境
     `E:\AI-news-reader\ai-news-radar-run\.venv\Scripts\python.exe` 执行。
   - **临时 bridge 验收**：文章与快照都不变时不提交；仅快照语义改变时提交；只改 `generated_at`
     不制造提交；`-SkipSync` 不改 HEAD 或正式三件套；三件套同 commit 且全哈希通过；坏 `feed_id`
     行不入 archive；`status=0` 停采留历史；hard delete 只命中目标 ID；精确恢复后新增数据仍保留。
-  - **发布门（未授权、未执行）**：先在 `off` 验证，再约维护窗口重新跑迁移 dry-run 并单独授权 apply；
-    确认下一轮真实 Actions 仍为 100% ID 后才能切 `audit`；人工核对候选精确无误后再单独授权 `on`，
-    并跑下一轮确认不反弹和浏览器验收。完成这些门之前只能称“本地生产就绪”，不能称线上已修复。
   - **精确回滚**：紧急时把 mode 保持/切回 `off`；代码用正常 revert，不强推、不重写历史；数据恢复
-    从清理 commit 的父提交取目标 `item_id`，用 `scripts/restore_we_mp_cleanup.py` 只补当前 archive 缺失项，
+    从 `1f89713` 取本次 30 个目标 `item_id`，用 `scripts/restore_we_mp_cleanup.py` 只补当前 archive 缺失项，
     前后核对 SHA256、总条数和 site_id/source 分布，再重建派生文件。
-  - 方案与施工边界：`计划/微信公众号退订后历史消息残留-修复方案.md`。下一轮先完成本分支验收/保存
-    决策；未经逐项授权，不得 commit、push、执行迁移 apply、修改 Actions、触发 workflow、写真实 bridge、
-    切换 audit/on 或清理真实数据。
+  - 方案与施工边界：`计划/微信公众号退订后历史消息残留-修复方案.md`。后续 hard delete 会由 `on`
+    模式按同一 ID-only 契约清理；`status=0` 仍只停采、不删历史。任何异常先把 Actions 变量切回 `off`。
 ## GitHub 星标安全同步 V3（2026-07-16）
 
 - 当前分支：`feature/github-star-safe-sync-v3`，已 rebase 到 `origin/master@6c61bf8`；未 push。
