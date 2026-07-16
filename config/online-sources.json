@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-07-16T13:22:23Z",
+  "updated_at": "2026-07-16T13:23:35Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -100,11 +100,7 @@
       "target": "openai/codex-plugin-cc",
       "locator": "openai/codex-plugin-cc",
       "env": "",
-      "notes": "只追踪 release",
-      "managed_by": "github_stars",
-      "managed_account_id": 284580915,
-      "managed_repo_id": 1196321162,
-      "managed_state": "active"
+      "notes": "只追踪 release"
     },
     {
       "id": "online_github_repo_1073224795",
@@ -115,11 +111,7 @@
       "target": "obra/superpowers",
       "locator": "obra/superpowers",
       "env": "",
-      "notes": "只追踪 release",
-      "managed_by": "github_stars",
-      "managed_account_id": 284580915,
-      "managed_repo_id": 1073224795,
-      "managed_state": "active"
+      "notes": "只追踪 release"
     },
     {
       "id": "online_github_repo_1083162948",
@@ -130,11 +122,7 @@
       "target": "SeemSeam/claude_codex_bridge",
       "locator": "SeemSeam/claude_codex_bridge",
       "env": "",
-      "notes": "只追踪 release",
-      "managed_by": "github_stars",
-      "managed_account_id": 284580915,
-      "managed_repo_id": 1083162948,
-      "managed_state": "active"
+      "notes": "只追踪 release"
     },
     {
       "id": "online_github_repo_1150301754",
@@ -145,11 +133,7 @@
       "target": "AlkaidLab/moonlight-harmony",
       "locator": "AlkaidLab/moonlight-harmony",
       "env": "",
-      "notes": "只追踪 release",
-      "managed_by": "github_stars",
-      "managed_account_id": 284580915,
-      "managed_repo_id": 1150301754,
-      "managed_state": "auto_disabled"
+      "notes": "只追踪 release"
     },
     {
       "id": "online_github_repo_1163112839",
@@ -160,11 +144,7 @@
       "target": "LearnPrompt/ai-news-radar",
       "locator": "LearnPrompt/ai-news-radar",
       "env": "",
-      "notes": "只追踪 release",
-      "managed_by": "github_stars",
-      "managed_account_id": 284580915,
-      "managed_repo_id": 1163112839,
-      "managed_state": "active"
+      "notes": "只追踪 release"
     },
     {
       "id": "online_github_repo_1165277268",
@@ -175,11 +155,7 @@
       "target": "Panniantong/Agent-Reach",
       "locator": "Panniantong/Agent-Reach",
       "env": "",
-      "notes": "只追踪 release",
-      "managed_by": "github_stars",
-      "managed_account_id": 284580915,
-      "managed_repo_id": 1165277268,
-      "managed_state": "active"
+      "notes": "只追踪 release"
     },
     {
       "id": "online_github_repo_1170291083",
@@ -190,11 +166,7 @@
       "target": "xingkongliang/skills-manager",
       "locator": "xingkongliang/skills-manager",
       "env": "",
-      "notes": "只追踪 release",
-      "managed_by": "github_stars",
-      "managed_account_id": 284580915,
-      "managed_repo_id": 1170291083,
-      "managed_state": "active"
+      "notes": "只追踪 release"
     },
     {
       "id": "online_github_repo_1197515131",
@@ -205,11 +177,7 @@
       "target": "VoltAgent/awesome-design-md",
       "locator": "VoltAgent/awesome-design-md",
       "env": "",
-      "notes": "只追踪 release",
-      "managed_by": "github_stars",
-      "managed_account_id": 284580915,
-      "managed_repo_id": 1197515131,
-      "managed_state": "active"
+      "notes": "只追踪 release"
     },
     {
       "id": "online_github_repo_1202599845",
@@ -220,11 +188,7 @@
       "target": "KKKKhazix/khazix-skills",
       "locator": "KKKKhazix/khazix-skills",
       "env": "",
-      "notes": "只追踪 release",
-      "managed_by": "github_stars",
-      "managed_account_id": 284580915,
-      "managed_repo_id": 1202599845,
-      "managed_state": "active"
+      "notes": "只追踪 release"
     },
     {
       "id": "online_github_repo_1219719583",
@@ -235,11 +199,7 @@
       "target": "javaht/claude-desktop-zh-cn",
       "locator": "javaht/claude-desktop-zh-cn",
       "env": "",
-      "notes": "只追踪 release",
-      "managed_by": "github_stars",
-      "managed_account_id": 284580915,
-      "managed_repo_id": 1219719583,
-      "managed_state": "active"
+      "notes": "只追踪 release"
     },
     {
       "id": "online_github_repo_1229284184",
@@ -250,11 +210,7 @@
       "target": "WenyuChiou/awesome-agentic-ai-zh",
       "locator": "WenyuChiou/awesome-agentic-ai-zh",
       "env": "",
-      "notes": "只追踪 release",
-      "managed_by": "github_stars",
-      "managed_account_id": 284580915,
-      "managed_repo_id": 1229284184,
-      "managed_state": "active"
+      "notes": "只追踪 release"
     },
     {
       "id": "online_github_repo_1230751102",
@@ -265,11 +221,7 @@
       "target": "BigPizzaV3/CodexPlusPlus",
       "locator": "BigPizzaV3/CodexPlusPlus",
       "env": "",
-      "notes": "只追踪 release",
-      "managed_by": "github_stars",
-      "managed_account_id": 284580915,
-      "managed_repo_id": 1230751102,
-      "managed_state": "active"
+      "notes": "只追踪 release"
     },
     {
       "id": "online_github_repo_1246386725",
@@ -280,11 +232,7 @@
       "target": "zhaoyue4810/pianke",
       "locator": "zhaoyue4810/pianke",
       "env": "",
-      "notes": "只追踪 release",
-      "managed_by": "github_stars",
-      "managed_account_id": 284580915,
-      "managed_repo_id": 1246386725,
-      "managed_state": "active"
+      "notes": "只追踪 release"
     },
     {
       "id": "online_github_repo_1266385233",
@@ -295,11 +243,7 @@
       "target": "joeseesun/qiaomu-goal-meta-skill",
       "locator": "joeseesun/qiaomu-goal-meta-skill",
       "env": "",
-      "notes": "只追踪 release",
-      "managed_by": "github_stars",
-      "managed_account_id": 284580915,
-      "managed_repo_id": 1266385233,
-      "managed_state": "active"
+      "notes": "只追踪 release"
     },
     {
       "id": "online_github_repo_1276562170",
@@ -310,11 +254,7 @@
       "target": "bayernjf/soft-desk",
       "locator": "bayernjf/soft-desk",
       "env": "",
-      "notes": "只追踪 release",
-      "managed_by": "github_stars",
-      "managed_account_id": 284580915,
-      "managed_repo_id": 1276562170,
-      "managed_state": "active"
+      "notes": "只追踪 release"
     },
     {
       "id": "online_github_repo_872119017",
@@ -325,11 +265,7 @@
       "target": "D4Vinci/Scrapling",
       "locator": "D4Vinci/Scrapling",
       "env": "",
-      "notes": "只追踪 release",
-      "managed_by": "github_stars",
-      "managed_account_id": 284580915,
-      "managed_repo_id": 872119017,
-      "managed_state": "active"
+      "notes": "只追踪 release"
     },
     {
       "id": "online_douyin_15e1eb7a80",
@@ -496,10 +432,5 @@
       "env": "",
       "notes": "公开 feed 列表"
     }
-  ],
-  "github_star_sync": {
-    "version": 1,
-    "account_id": 284580915,
-    "account_login": "kunkunzi996"
-  }
+  ]
 }
