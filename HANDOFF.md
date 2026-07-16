@@ -2,6 +2,16 @@
 
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，项目状态在 `PROJECT_STATE.md`。
 
+## GitHub 星标安全同步 V3：代码完成（2026-07-16）
+
+- 分支：`feature/github-star-safe-sync-v3`，基线 `origin/master@6c61bf8`，未 push。
+- Task 1 已独立提交；Task 2→5 已完成；Task 6 前端与 mock E2E 已提交：`a6f20f3`（`完善 GitHub 星标同步前端验收`）。
+- Task 7 文档已同步到 README 中英文与 `docs/SOURCE_COVERAGE.md`，并补充本交接记录。
+- 自动验收：专项 `344 passed, 91 subtests`；全量 `498 passed, 1 warning, 96 subtests`；`npm run test:e2e` 为 `19 passed`；390/768/1440 三档 mock 浏览器为 `6 passed`，0 pageerror、0 console error。
+- 当前状态是“代码完成，待真实验收”：尚未用真实账号 Apply、尚未修改真实配置、尚未 push；不得写成“已上线”。
+- 工程默认仍为单账号、最多 50 个公开星标、第 51 个整次中止、每仓库每 UTC 日最多一个最新 commit 快照。
+- `stash@{0}` 仍为用户原有数据快照，严禁按位置恢复、drop 或覆盖；真实配置与 OPML 哈希未变。
+
 ## 当前最新交接：订阅源二级页时间平铺（2026-07-16）
 
 - 分支：`master`，提交 `9e24f01`，已推送到 `origin/master`。
