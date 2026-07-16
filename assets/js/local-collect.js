@@ -664,6 +664,10 @@ async function loadLocalStatusFromServer(showErrors = false) {
       throw new Error(payload.error || `HTTP ${res.status}`);
     }
     state.localOpsStatus = payload;
+    if (payload.source_status && typeof payload.source_status === "object") {
+      state.sourceStatus = payload.source_status;
+      renderGithubStarCollectionStatus();
+    }
     renderLocalOpsStatus(payload);
     renderSourceConfig();
     return payload;

@@ -7,6 +7,7 @@ function setStats() {
   const visibleSites = visibleSourceStatusSites(status);
   const totalSites = visibleSites.length;
   const okSites = visibleSites.filter((site) => site.ok).length;
+  const partialSites = visibleSites.filter((site) => site.partial).length;
   const health = totalSites ? `${fmtNumber(okSites)}/${fmtNumber(totalSites)}正常` : "加载中";
   const cards = [
     ["AI", `${fmtNumber(items.length)}条`],
@@ -51,11 +52,12 @@ function renderSourceStatusPill(errorMessage = "") {
   const visibleSites = visibleSourceStatusSites(status);
   const totalSites = visibleSites.length;
   const okSites = visibleSites.filter((site) => site.ok).length;
+  const partialSites = visibleSites.filter((site) => site.partial).length;
   const failed = failedSourceCount(status);
-  sourceStatusPillEl.textContent = failed
-    ? `${fmtNumber(okSites)}/${fmtNumber(totalSites)} 源正常 · 失败 ${fmtNumber(failed)}`
+  sourceStatusPillEl.textContent = failed || partialSites
+    ? `${fmtNumber(okSites)}/${fmtNumber(totalSites)} 源正常 · 部分 ${fmtNumber(partialSites)} · 失败 ${fmtNumber(failed)}`
     : `${fmtNumber(okSites)}/${fmtNumber(totalSites)} 源正常`;
-  if (failed) sourceStatusPillEl.classList.add("warn");
+  if (failed || partialSites) sourceStatusPillEl.classList.add("warn");
 }
 function renderDataSourcePill() {
   if (!dataSourcePillEl) return;
@@ -263,8 +265,9 @@ function renderAdvancedSummary() {
   const sites = visibleSourceStatusSites(status);
   const totalSites = sites.length;
   const okSites = sites.filter((site) => site.ok).length;
+  const partialSites = sites.filter((site) => site.partial).length;
   const failed = failedSourceCount(status);
-  advancedSummaryEl.textContent = `${fmtNumber(filteredCount)} 条结果 · ${fmtNumber(okSites)}/${fmtNumber(totalSites)} 源正常${failed ? ` · 失败 ${fmtNumber(failed)}` : ""}`;
+  advancedSummaryEl.textContent = `${fmtNumber(filteredCount)} 条结果 · ${fmtNumber(okSites)}/${fmtNumber(totalSites)} 源正常${partialSites ? ` · 部分 ${fmtNumber(partialSites)}` : ""}${failed ? ` · 失败 ${fmtNumber(failed)}` : ""}`;
 }
 function computeSiteStats(items) {
   const m = new Map();

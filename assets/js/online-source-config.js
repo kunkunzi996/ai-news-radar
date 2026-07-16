@@ -329,6 +329,7 @@ function renderOnlineSourceConfig() {
   } else if (!state.onlineSourceConfigLoaded) {
     setOnlineSourceStatus("线上配置尚未加载成功，请先重新加载，避免覆盖线上信源", "bad");
   }
+  renderGithubStarPanel();
 }
 
 async function loadOnlineSourceConfigFromServer(silent = false) {
@@ -347,9 +348,15 @@ async function loadOnlineSourceConfigFromServer(silent = false) {
     });
     const payload = await res.json().catch(() => ({}));
     if (!res.ok || payload.ok === false) throw new Error(payload.error || `HTTP ${res.status}`);
-    state.onlineSourceConfig = normalizeOnlineSourceConfig(payload);
+    const configPayload = payload.config && typeof payload.config === "object"
+      ? { ...payload.config, sources: Array.isArray(payload.sources) ? payload.sources : payload.config.sources }
+      : payload;
+    state.onlineSourceConfig = normalizeOnlineSourceConfig(configPayload);
     state.onlineSourceConfigLoaded = true;
     state.onlineSourceDirty = false;
+    state.githubStarEtag = String(res.headers.get("ETag") || payload.etag || state.githubStarEtag || "");
+    state.githubStarConfigDigest = String(payload.base_config_digest || state.githubStarConfigDigest || "");
+    state.githubStarRecovery = payload.recovery || null;
     renderOnlineSourceConfig();
     const sourceCount = payload.source_count || state.onlineSourceConfig.sources.length;
     const prefix = isLocal ? "已读取" : "已同步线上实际追踪源";
@@ -380,7 +387,7 @@ async function saveOnlineSourceConfigToServer() {
     });
     const payload = await res.json().catch(() => ({}));
     if (!res.ok || payload.ok === false) throw new Error(payload.error || `HTTP ${res.status}`);
-    state.onlineSourceConfig = normalizeOnlineSourceConfig(payload);
+    state.onlineSourceConfig = normalizeOnlineSourceConfig(onlineConfigFromResponse(payload));
     state.onlineSourceDirty = false;
     renderOnlineSourceConfig();
     setOnlineSourceStatus(
@@ -422,7 +429,7 @@ async function syncOnlineSourceConfigToServer() {
     });
     const payload = await res.json().catch(() => ({}));
     if (!res.ok || payload.ok === false) throw new Error(payload.error || `HTTP ${res.status}`);
-    state.onlineSourceConfig = normalizeOnlineSourceConfig(payload);
+    state.onlineSourceConfig = normalizeOnlineSourceConfig(onlineConfigFromResponse(payload));
     state.onlineSourceDirty = false;
     renderOnlineSourceConfig();
     const purgedNote = purgedItemsNote(payload.purged_items);
@@ -602,3 +609,284 @@ function toggleOrphanPurgeSelectAll() {
   state.orphanPurgeChecked = checked;
   renderOrphanPurgeList();
 }
+
+// ---- GitHub 星标安全同步 ----
+function githubStarBinding() {
+  const binding = state.onlineSourceConfig?.github_star_sync;
+  return binding && typeof binding === "object" ? binding : null;
+}
+
+function onlineConfigFromResponse(payload = {}) {
+  if (payload.config && typeof payload.config === "object") {
+    return { ...payload.config, sources: Array.isArray(payload.sources) ? payload.sources : payload.config.sources };
+  }
+  return payload;
+}
+
+function githubStarErrorText(code) {
+  const messages = {
+    github_username_invalid: "GitHub 用户名格式不正确。",
+    github_user_not_found: "没有找到这个 GitHub 用户名，请检查拼写。",
+    github_star_limit_exceeded: "公开星标超过 50 个，本次已中止。",
+    github_star_capacity_exceeded: "线上信源总数超过安全上限，本次已中止。",
+    github_star_preview_stale: "配置已变化，这份预览已过期，请重新预览。",
+    github_star_account_mismatch: "账号身份已变化，请重新加载配置。",
+    github_upstream_rate_limited: "GitHub 当前限流，请稍后重试。",
+    github_upstream_forbidden: "GitHub 拒绝了请求，请检查公开访问权限。",
+    github_upstream_timeout: "GitHub 请求超时，请稍后重试。",
+    online_sources_busy: "当前已有同步操作，请稍后再试。",
+    online_sources_config_stale: "配置已变化，请重新加载后再操作。",
+  };
+  return messages[code] || code || "操作失败，请查看本地服务状态。";
+}
+
+function setGithubStarStatus(message, tone = "") {
+  state.githubStarStatus = { message: String(message || ""), tone: String(tone || "") };
+  renderGithubStarStatus();
+}
+
+function renderGithubStarStatus() {
+  if (!githubStarStatusEl) return;
+  if (state.githubStarStatus) {
+    githubStarStatusEl.textContent = state.githubStarStatus.message;
+    githubStarStatusEl.className = `online-source-status${state.githubStarStatus.tone ? ` ${state.githubStarStatus.tone}` : ""}`;
+    return;
+  }
+  const binding = githubStarBinding();
+  const local = canUseLocalBackend();
+  githubStarStatusEl.textContent = !local
+    ? "GitHub 星标同步只在本机控制台可用。"
+    : binding
+      ? `已绑定 ${binding.account_login || binding.account_id}`
+      : "未绑定 GitHub 账号";
+  githubStarStatusEl.className = `online-source-status ${local && binding ? "ok" : local ? "" : "warn"}`.trim();
+}
+
+function githubStarSetResponseState(payload, response = null) {
+  if (!payload || typeof payload !== "object") return;
+  if (payload.config && typeof payload.config === "object") {
+    state.onlineSourceConfig = normalizeOnlineSourceConfig(onlineConfigFromResponse(payload));
+    state.onlineSourceConfigLoaded = true;
+  }
+  state.githubStarConfigDigest = String(payload.base_config_digest || state.githubStarConfigDigest || "");
+  state.githubStarEtag = String(payload.etag || response?.headers?.get("ETag") || state.githubStarEtag || "");
+  if (Object.prototype.hasOwnProperty.call(payload, "recovery")) {
+    state.githubStarRecovery = payload.recovery || null;
+  }
+}
+
+async function githubStarRequest(path, options = {}) {
+  const response = await fetch(path, {
+    ...options,
+    headers: {
+      Accept: "application/json",
+      ...(options.headers || {}),
+    },
+  });
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok || payload.ok === false) {
+    const error = new Error(githubStarErrorText(payload.error || `HTTP ${response.status}`));
+    error.code = payload.error || `HTTP ${response.status}`;
+    error.payload = payload;
+    error.status = response.status;
+    throw error;
+  }
+  githubStarSetResponseState(payload, response);
+  return payload;
+}
+
+function githubStarSetOutcome(outcome, payload = {}) {
+  if (!githubStarOutcomeEl) return;
+  const labels = {
+    no_change: "无变化",
+    pushed: "已推送",
+    saved_not_committed: "已保存，待提交",
+    committed_not_pushed: "已提交，待推送",
+  };
+  const label = labels[outcome] || "";
+  const detail = payload.recovery_pending ? " · 本机恢复待处理" : "";
+  githubStarOutcomeEl.textContent = label ? `${label}${detail}` : "";
+  githubStarOutcomeEl.className = `github-star-outcome${outcome === "pushed" || outcome === "no_change" ? " ok" : outcome ? " warn" : ""}`;
+}
+
+function githubStarSummaryText(summary = {}) {
+  const labels = [
+    ["added", "新增"],
+    ["adopted", "收编"],
+    ["renamed", "改名"],
+    ["re_enabled", "恢复"],
+    ["disabled", "停用"],
+    ["skipped_manual_disabled", "跳过"],
+  ];
+  const parts = [];
+  labels.forEach(([key, label]) => {
+    const list = Array.isArray(summary[key]) ? summary[key] : [];
+    if (!list.length) return;
+    const names = list.slice(0, 4).map((entry) => String(entry.full_name || entry.name || entry.repo || entry.id || "")).filter(Boolean);
+    parts.push(`${label} ${fmtNumber(list.length)}${names.length ? `：${names.join("、")}` : ""}`);
+  });
+  return parts.length ? parts.join("；") : "没有配置变化";
+}
+
+function renderGithubStarCollectionStatus() {
+  if (!githubStarCollectionStatusEl) return;
+  const site = (state.sourceStatus?.sites || []).find((item) => item?.site_id === "github_foundation_sunshine_releases");
+  if (!site) {
+    githubStarCollectionStatusEl.hidden = true;
+    return;
+  }
+  const children = Array.isArray(site.repos || site.children) ? (site.repos || site.children) : [];
+  const failed = Number(site.failed_count || 0);
+  const deferred = Number(site.deferred_count || 0);
+  const skipped = Number(site.expected_skip_count || site.daily_coalesced || 0);
+  const succeeded = Number(site.succeeded_count || 0);
+  const tone = site.partial ? "warn" : (site.ok ? "ok" : "bad");
+  githubStarCollectionStatusEl.hidden = false;
+  githubStarCollectionStatusEl.className = `github-star-collection-status ${tone}`;
+  const childNote = children.length ? `；已展开 ${fmtNumber(children.length)} 个仓库状态` : "";
+  githubStarCollectionStatusEl.textContent = `GitHub 采集：成功 ${fmtNumber(succeeded)}，正常跳过 ${fmtNumber(skipped)}，失败 ${fmtNumber(failed)}，延后 ${fmtNumber(deferred)}${childNote}`;
+}
+
+function renderGithubStarRecovery() {
+  if (!githubStarRecoveryEl) return;
+  const recovery = state.githubStarRecovery;
+  if (!recovery) {
+    githubStarRecoveryEl.hidden = true;
+    return;
+  }
+  const actions = new Set(Array.isArray(recovery.allowed_actions) ? recovery.allowed_actions : []);
+  githubStarRecoveryEl.hidden = false;
+  githubStarRecoveryTextEl.textContent = `${recovery.phase || "未知阶段"} · ${recovery.outcome || "待核对"} · 可恢复`;
+  githubStarRetryBtnEl.hidden = !actions.has("retry_push");
+  githubStarRollbackBtnEl.hidden = !actions.has("rollback");
+}
+
+function renderGithubStarPanel() {
+  if (!githubStarSyncPanelEl) return;
+  const binding = githubStarBinding();
+  const local = canUseLocalBackend();
+  renderGithubStarStatus();
+  githubStarBindingFormEl.hidden = Boolean(binding) || !local;
+  githubStarBoundAccountEl.hidden = !binding;
+  githubStarBoundAccountEl.textContent = binding ? `当前账号：${binding.account_login || binding.account_id}（数字 ID ${binding.account_id}）` : "";
+  githubStarUnbindBtnEl.hidden = !binding || !local;
+  githubStarPreviewEl.hidden = !state.githubStarPreview;
+  if (state.githubStarPreview) {
+    const preview = state.githubStarPreview;
+    githubStarPreviewSummaryEl.textContent = `${preview.account?.login || "账号"}：公开星标 ${fmtNumber(preview.starred_count || 0)} 个${preview.private_skipped_count ? `，另有 ${fmtNumber(preview.private_skipped_count)} 个非公开仓库已跳过` : ""}。${githubStarSummaryText(preview.summary)}`;
+    githubStarApplyBtnEl.disabled = !preview.requires_confirmation || !githubStarConfirmEl?.checked;
+  }
+  renderGithubStarRecovery();
+  renderGithubStarCollectionStatus();
+}
+
+async function previewGithubStarSync() {
+  const username = String(githubStarUsernameEl?.value || "").trim();
+  if (!username) {
+    setGithubStarStatus("请填写 GitHub 用户名。", "bad");
+    return;
+  }
+  state.githubStarPreview = null;
+  if (githubStarConfirmEl) githubStarConfirmEl.checked = false;
+  if (githubStarApplyBtnEl) githubStarApplyBtnEl.disabled = true;
+  githubStarPreviewBtnEl.disabled = true;
+  setGithubStarStatus("正在读取公开星标...", "warn");
+  try {
+    const payload = await githubStarRequest("./api/github-stars/preview", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username }),
+    });
+    state.githubStarPreview = payload;
+    state.githubStarConfigDigest = String(payload.base_config_digest || state.githubStarConfigDigest || "");
+    setGithubStarStatus("预览已生成，请确认后同步。", "warn");
+    renderGithubStarPanel();
+  } catch (err) {
+    state.githubStarPreview = null;
+    setGithubStarStatus(err.message, "bad");
+    renderGithubStarPanel();
+  } finally {
+    githubStarPreviewBtnEl.disabled = false;
+  }
+}
+
+async function applyGithubStarSync() {
+  const preview = state.githubStarPreview;
+  if (!preview || !githubStarConfirmEl?.checked) {
+    setGithubStarStatus("请先勾选确认，再同步。", "warn");
+    return;
+  }
+  githubStarApplyBtnEl.disabled = true;
+  setGithubStarStatus("正在安全写入并核对 Git...", "warn");
+  try {
+    const payload = await githubStarRequest("./api/github-stars/apply", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ account_id: Number(preview.account?.id), preview_hash: preview.preview_hash }),
+    });
+    state.githubStarPreview = null;
+    githubStarSetOutcome(payload.outcome, payload);
+    setGithubStarStatus(payload.partial ? "同步未完全结束，请按恢复提示处理。" : "同步完成。", payload.partial ? "warn" : "ok");
+    renderGithubStarPanel();
+  } catch (err) {
+    githubStarSetOutcome("", {});
+    setGithubStarStatus(err.message, err.code === "github_star_preview_stale" ? "warn" : "bad");
+    if (err.code === "github_star_preview_stale") state.githubStarPreview = null;
+    renderGithubStarPanel();
+  } finally {
+    githubStarApplyBtnEl.disabled = !state.githubStarPreview || !githubStarConfirmEl?.checked;
+  }
+}
+
+async function recoverGithubStarOperation(action) {
+  const recovery = state.githubStarRecovery;
+  if (!recovery?.operation_id || !recovery?.manifest_digest) return;
+  if (action === "rollback" && !window.confirm("确认撤销这次未完成的 GitHub 星标同步吗？")) return;
+  const button = action === "retry_push" ? githubStarRetryBtnEl : githubStarRollbackBtnEl;
+  button.disabled = true;
+  try {
+    const payload = await githubStarRequest("./api/online-source-config/recovery", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action, operation_id: recovery.operation_id, manifest_digest: recovery.manifest_digest, confirmed: action === "rollback" }),
+    });
+    state.githubStarRecovery = payload.recovery || null;
+    githubStarSetOutcome(payload.outcome, payload);
+    setGithubStarStatus(payload.recovery_pending ? "恢复仍待处理。" : "恢复完成。", payload.recovery_pending ? "warn" : "ok");
+    renderGithubStarPanel();
+  } catch (err) {
+    setGithubStarStatus(err.message, "bad");
+  } finally {
+    button.disabled = false;
+  }
+}
+
+async function unbindGithubStarSync() {
+  const binding = githubStarBinding();
+  if (!binding || !window.confirm(`确认解绑 GitHub 账号 ${binding.account_login || binding.account_id} 吗？`)) return;
+  githubStarUnbindBtnEl.disabled = true;
+  try {
+    const payload = await githubStarRequest("./api/github-stars/unbind", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", ...(state.githubStarEtag ? { "If-Match": state.githubStarEtag } : {}) },
+      body: JSON.stringify({ account_id: Number(binding.account_id), confirmed: true }),
+    });
+    state.githubStarPreview = null;
+    githubStarSetOutcome(payload.outcome, payload);
+    setGithubStarStatus("已解绑，托管源已保留为普通配置。", "ok");
+    renderOnlineSourceConfig();
+    renderGithubStarPanel();
+  } catch (err) {
+    setGithubStarStatus(err.message, "bad");
+  } finally {
+    githubStarUnbindBtnEl.disabled = false;
+  }
+}
+
+if (githubStarBindingFormEl) githubStarBindingFormEl.addEventListener("submit", (event) => { event.preventDefault(); previewGithubStarSync().catch(() => {}); });
+if (githubStarConfirmEl) githubStarConfirmEl.addEventListener("change", () => { githubStarApplyBtnEl.disabled = !state.githubStarPreview || !githubStarConfirmEl.checked; });
+if (githubStarApplyBtnEl) githubStarApplyBtnEl.addEventListener("click", () => { applyGithubStarSync().catch(() => {}); });
+if (githubStarPreviewCancelBtnEl) githubStarPreviewCancelBtnEl.addEventListener("click", () => { state.githubStarPreview = null; renderGithubStarPanel(); });
+if (githubStarRetryBtnEl) githubStarRetryBtnEl.addEventListener("click", () => { recoverGithubStarOperation("retry_push").catch(() => {}); });
+if (githubStarRollbackBtnEl) githubStarRollbackBtnEl.addEventListener("click", () => { recoverGithubStarOperation("rollback").catch(() => {}); });
+if (githubStarUnbindBtnEl) githubStarUnbindBtnEl.addEventListener("click", () => { unbindGithubStarSync().catch(() => {}); });

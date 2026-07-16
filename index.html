@@ -33,7 +33,7 @@
     <link rel="icon" href="./assets/icons/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png" sizes="180x180" />
     <link rel="manifest" href="./site.webmanifest" />
-    <link rel="stylesheet" href="./assets/styles.css?v=aihot-reader-0715a" />
+    <link rel="stylesheet" href="./assets/styles.css?v=github-stars-sync-0716a" />
     <link rel="stylesheet" href="./assets/reader-layout.css?v=aihot-reader-0715b" />
   </head>
   <body>
@@ -275,6 +275,46 @@
                   </form>
                 </div>
               </section>
+              <section class="online-source-panel github-star-panel" id="githubStarSyncPanel" aria-label="GitHub 星标同步">
+                <div class="online-source-head">
+                  <div>
+                    <strong>GitHub 星标同步</strong>
+                    <span id="githubStarStatus">未绑定 GitHub 账号</span>
+                  </div>
+                  <span id="githubStarOutcome" class="github-star-outcome" aria-live="polite"></span>
+                </div>
+                <div class="github-star-body">
+                  <form id="githubStarBindingForm" class="github-star-binding-form">
+                    <label class="field">
+                      <span>GitHub 用户名</span>
+                      <input id="githubStarUsername" type="text" autocomplete="off" placeholder="例如：octocat" />
+                    </label>
+                    <button id="githubStarPreviewBtn" class="tool-btn" type="submit">预览星标</button>
+                  </form>
+                  <div id="githubStarBoundAccount" class="github-star-bound-account" hidden></div>
+                  <div id="githubStarPreview" class="github-star-preview" hidden>
+                    <div id="githubStarPreviewSummary" class="github-star-preview-summary"></div>
+                    <label class="github-star-confirm">
+                      <input id="githubStarConfirm" type="checkbox" />
+                      <span>我确认按以上公开星标更新线上信源</span>
+                    </label>
+                    <div class="github-star-actions">
+                      <button id="githubStarApplyBtn" class="tool-btn" type="button" disabled>确认同步</button>
+                      <button id="githubStarPreviewCancelBtn" class="tool-btn" type="button">取消</button>
+                    </div>
+                  </div>
+                  <div id="githubStarRecovery" class="github-star-recovery" hidden>
+                    <strong>检测到可恢复操作</strong>
+                    <span id="githubStarRecoveryText"></span>
+                    <div class="github-star-actions">
+                      <button id="githubStarRetryBtn" class="tool-btn" type="button" hidden>重试推送</button>
+                      <button id="githubStarRollbackBtn" class="tool-btn danger" type="button" hidden>撤销本次操作</button>
+                    </div>
+                  </div>
+                  <div id="githubStarCollectionStatus" class="github-star-collection-status" hidden></div>
+                  <button id="githubStarUnbindBtn" class="tool-btn danger" type="button" hidden>解绑 GitHub 账号</button>
+                </div>
+              </section>
               <section class="online-source-panel" aria-label="清理已退订信源的历史">
                 <div class="online-source-head">
                   <div>
@@ -457,15 +497,15 @@
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous" defer></script>
     <script src="./assets/motion.js?v=ui-adjustment-0620a" defer></script>
-    <script src="./assets/js/dom.js?v=we-mp-rss-btn-0714b" defer></script>
+    <script src="./assets/js/dom.js?v=github-stars-sync-0716a" defer></script>
     <script src="./assets/js/utils.js?v=purge-deferred-note-0713a" defer></script>
-    <script src="./assets/js/render-meta.js?v=aihot-reader-0715a" defer></script>
+    <script src="./assets/js/render-meta.js?v=github-stars-sync-0716a" defer></script>
     <script src="./assets/js/render-list.js?v=wechat-flat-layout-0716a" defer></script>
-    <script src="./assets/js/render-panels.js?v=github-pages-static-0709a" defer></script>
+    <script src="./assets/js/render-panels.js?v=github-stars-sync-0716a" defer></script>
     <script src="./assets/js/subscriptions.js?v=github-tab-0711a" defer></script>
     <script src="./assets/js/source-config.js?v=purge-deferred-note-0713a" defer></script>
-    <script src="./assets/js/local-collect.js?v=we-mp-rss-btn-0714b" defer></script>
-    <script src="./assets/js/online-source-config.js?v=orphan-purge-0714a" defer></script>
+    <script src="./assets/js/local-collect.js?v=github-stars-sync-0716a" defer></script>
+    <script src="./assets/js/online-source-config.js?v=github-stars-sync-0716a" defer></script>
     <script src="./assets/js/settings-drawer.js?v=settings-drawer-0713b" defer></script>
     <script src="./assets/js/boot.js?v=we-mp-rss-btn-0715a" defer></script>
   </body>
