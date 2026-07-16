@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-07-16T09:15:33Z",
+  "updated_at": "2026-07-16T12:21:21Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -140,7 +140,7 @@
       "id": "online_github_repo_1150301754",
       "name": "AlkaidLab/moonlight-harmony",
       "type": "github_release",
-      "enabled": true,
+      "enabled": false,
       "channel": "GitHub Release",
       "target": "AlkaidLab/moonlight-harmony",
       "locator": "AlkaidLab/moonlight-harmony",
@@ -149,7 +149,7 @@
       "managed_by": "github_stars",
       "managed_account_id": 284580915,
       "managed_repo_id": 1150301754,
-      "managed_state": "active"
+      "managed_state": "auto_disabled"
     },
     {
       "id": "online_github_repo_1163112839",
