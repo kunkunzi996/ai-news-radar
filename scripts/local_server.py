@@ -31,6 +31,7 @@ from scripts.radar.server import (
 from scripts.radar.server import cdp as _cdp_api  # noqa: E402
 from scripts.radar.server import common as _common_api  # noqa: E402
 from scripts.radar.server import collectors as _collectors_api  # noqa: E402
+from scripts.radar.server import github_stars as _github_stars_api  # noqa: E402
 from scripts.radar.server import online_sources as _online_api  # noqa: E402
 from scripts.radar.server import refresh as _refresh_api  # noqa: E402
 from scripts.radar.server import subscriptions_store as _store_api  # noqa: E402
@@ -59,6 +60,9 @@ orphan_history_preview = _store_api.orphan_history_preview
 purge_selected_sources = _store_api.purge_selected_sources
 queue_pending_purge = _store_api.queue_pending_purge
 read_online_source_config = _online_api.read_online_source_config
+apply_github_star_sync = _github_stars_api.apply_github_star_sync
+preview_github_star_sync = _github_stars_api.preview_github_star_sync
+unbind_github_star_sync = _github_stars_api.unbind_github_star_sync
 read_source_config = _store_api.read_source_config
 read_wewe_rss_feeds = _collectors_api.read_wewe_rss_feeds
 read_youtube_subscriptions = _store_api.read_youtube_subscriptions
@@ -75,6 +79,7 @@ start_mediacrawler_xhs = _collectors_api.start_mediacrawler_xhs
 start_wewe_rss_sidecar = _collectors_api.start_wewe_rss_sidecar
 start_we_mp_rss_sidecar = _collectors_api.start_we_mp_rss_sidecar
 sync_online_source_config = _online_api.sync_online_source_config
+sync_saved_online_source_config = _online_api.sync_saved_online_source_config
 sync_bilibili_cookie = _cdp_api.sync_bilibili_cookie
 validate_source_config = _store_api.validate_source_config
 write_online_source_config = _online_api.write_online_source_config
@@ -111,22 +116,103 @@ def purge_or_defer_source_config(
         REFRESH_LOCK.release()
 
 
-def save_online_source_config(root_dir: Path, payload: dict[str, Any]) -> dict[str, Any]:
-    previous_config = read_online_source_config(root_dir).get("config")
-    result = write_online_source_config(root_dir, payload)
-    result["purged_items"] = purge_or_defer_source_config(
-        root_dir,
-        result["config"],
-        previous_config if isinstance(previous_config, dict) else None,
-    )
-    return result
+def read_online_source_config_state(root_dir: Path) -> dict[str, Any]:
+    with _online_api.online_sources_guard():
+        recovery = _online_api.audit_online_source_operation(root_dir)
+        result = read_online_source_config(root_dir)
+        result["recovery"] = recovery
+        return result
 
 
-def save_and_sync_online_source_config(root_dir: Path, payload: dict[str, Any]) -> dict[str, Any]:
-    save_result = save_online_source_config(root_dir, payload)
-    sync_result = sync_online_source_config(root_dir, None)
-    sync_result["purged_items"] = save_result.get("purged_items", {})
-    return sync_result
+def save_online_source_config(
+    root_dir: Path,
+    payload: dict[str, Any],
+    *,
+    if_match: Any = None,
+) -> dict[str, Any]:
+    with _online_api.online_sources_guard():
+        previous_config = read_online_source_config(root_dir).get("config")
+        if if_match is None:
+            result = write_online_source_config(root_dir, payload)
+        else:
+            if not isinstance(previous_config, dict):
+                raise _online_api.OnlineSourcesError(
+                    "online_sources_config_stale",
+                    status_code=409,
+                )
+            current_digest = _online_api.online_config_digest(previous_config)
+            _online_api.require_online_config_match(if_match, current_digest)
+            _current, candidate, _sources, _changed = _online_api.prepare_manual_online_config(
+                root_dir,
+                payload,
+                current_config=previous_config,
+            )
+            deleted_names = deleted_source_names_by_site(candidate, previous_config)
+            if deleted_names:
+                queue_pending_purge(root_dir, deleted_names, candidate)
+            try:
+                result = _online_api.save_online_source_config_transaction(
+                    root_dir,
+                    payload,
+                    if_match=if_match,
+                )
+            except Exception:
+                if deleted_names:
+                    queue_pending_purge(root_dir, {}, previous_config)
+                raise
+        result["purged_items"] = purge_or_defer_source_config(
+            root_dir,
+            result["config"],
+            previous_config if isinstance(previous_config, dict) else None,
+        )
+        return result
+
+
+def save_and_sync_online_source_config(
+    root_dir: Path,
+    payload: dict[str, Any],
+    *,
+    if_match: Any = None,
+) -> dict[str, Any]:
+    with _online_api.online_sources_guard():
+        save_result = (
+            save_online_source_config(root_dir, payload)
+            if if_match is None
+            else save_online_source_config(root_dir, payload, if_match=if_match)
+        )
+        sync_result = (
+            sync_saved_online_source_config(root_dir, if_match=save_result["etag"])
+            if if_match is not None
+            else sync_online_source_config(root_dir, None)
+        )
+        sync_result["purged_items"] = save_result.get("purged_items", {})
+        return sync_result
+
+
+def api_error_payload(exc: Exception) -> tuple[int, dict[str, Any]]:
+    if isinstance(exc, (_online_api.OnlineSourcesError, _github_stars_api.GitHubStarsError)):
+        payload: dict[str, Any] = {"ok": False, "error": exc.code}
+        safe_details = {
+            key: value
+            for key, value in exc.details.items()
+            if key in {"reason", "retry_after", "rate_limit_remaining", "rate_limit_reset"}
+            and isinstance(value, (str, int, float, bool))
+        }
+        if safe_details:
+            payload["details"] = safe_details
+        return exc.status_code, payload
+    if isinstance(exc, ValueError):
+        code = str(exc).split(":", 1)[0]
+        status_by_code = {
+            "github_star_managed_fields_readonly": HTTPStatus.CONFLICT,
+            "online_source_id_migration_required": HTTPStatus.CONFLICT,
+            "online_source_id_conflict": HTTPStatus.CONFLICT,
+            "online_sources_bulk_delete_blocked": HTTPStatus.UNPROCESSABLE_ENTITY,
+        }
+        if code in status_by_code:
+            return status_by_code[code], {"ok": False, "error": code}
+        return HTTPStatus.BAD_REQUEST, {"ok": False, "error": "invalid_request"}
+    return HTTPStatus.INTERNAL_SERVER_ERROR, {"ok": False, "error": "internal_error"}
 
 class LocalRadarHandler(SimpleHTTPRequestHandler):
     server_version = "AIReadRadarLocal/0.1"
@@ -155,7 +241,8 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
         if length <= 0 or length > max_bytes:
             json_response(self, HTTPStatus.BAD_REQUEST, {"ok": False, "error": "invalid_content_length"})
             return None
-        if "application/json" not in str(self.headers.get("Content-Type") or ""):
+        media_type = str(self.headers.get("Content-Type") or "").split(";", 1)[0].strip().casefold()
+        if media_type != "application/json":
             json_response(self, HTTPStatus.UNSUPPORTED_MEDIA_TYPE, {"ok": False, "error": "json_required"})
             return None
         try:
@@ -164,9 +251,40 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
             if not isinstance(payload, dict):
                 raise ValueError("payload must be a JSON object")
             return payload
-        except Exception as exc:
-            json_response(self, HTTPStatus.BAD_REQUEST, {"ok": False, "error": str(exc)})
+        except (UnicodeDecodeError, json.JSONDecodeError, ValueError):
+            json_response(self, HTTPStatus.BAD_REQUEST, {"ok": False, "error": "invalid_json"})
             return None
+
+    def send_api_error(self, exc: Exception) -> None:
+        status, payload = api_error_payload(exc)
+        json_response(self, status, payload)
+
+    def require_fields(
+        self,
+        payload: dict[str, Any],
+        *,
+        allowed: set[str],
+        required: set[str],
+    ) -> bool:
+        if not required.issubset(payload) or not set(payload).issubset(allowed):
+            json_response(
+                self,
+                HTTPStatus.BAD_REQUEST,
+                {"ok": False, "error": "invalid_request_fields"},
+            )
+            return False
+        return True
+
+    def require_if_match(self) -> str | None:
+        value = self.headers.get("If-Match")
+        if not isinstance(value, str) or not value:
+            json_response(
+                self,
+                HTTPStatus.CONFLICT,
+                {"ok": False, "error": "online_sources_config_stale"},
+            )
+            return None
+        return value
 
     def do_GET(self) -> None:
         route = self.path.split("?", 1)[0]
@@ -205,9 +323,15 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
             if self.reject_nonlocal_origin():
                 return
             try:
-                json_response(self, HTTPStatus.OK, read_online_source_config(self.root_dir))
+                result = read_online_source_config_state(self.root_dir)
+                json_response(
+                    self,
+                    HTTPStatus.OK,
+                    result,
+                    headers={"ETag": result["etag"]},
+                )
             except Exception as exc:
-                json_response(self, HTTPStatus.INTERNAL_SERVER_ERROR, {"ok": False, "error": str(exc)})
+                self.send_api_error(exc)
             return
         if route == "/api/archive/orphans":
             if self.reject_nonlocal_origin():
@@ -254,6 +378,18 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
             return
         if route == "/api/sync-online-source-config":
             self.handle_sync_online_source_config()
+            return
+        if route == "/api/github-stars/preview":
+            self.handle_github_stars_preview()
+            return
+        if route == "/api/github-stars/apply":
+            self.handle_github_stars_apply()
+            return
+        if route == "/api/github-stars/unbind":
+            self.handle_github_stars_unbind()
+            return
+        if route == "/api/online-source-config/recovery":
+            self.handle_online_source_recovery()
             return
         if route == "/api/archive/purge-selected":
             self.handle_purge_selected()
@@ -324,12 +460,19 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
         payload = self.read_json_body(MAX_CONFIG_BYTES)
         if payload is None:
             return
-        try:
-            result = save_online_source_config(self.root_dir, payload)
-        except Exception as exc:
-            json_response(self, HTTPStatus.BAD_REQUEST, {"ok": False, "error": str(exc)})
+        if_match = self.require_if_match()
+        if if_match is None:
             return
-        json_response(self, HTTPStatus.OK, result)
+        try:
+            result = save_online_source_config(
+                self.root_dir,
+                payload,
+                if_match=if_match,
+            )
+        except Exception as exc:
+            self.send_api_error(exc)
+            return
+        json_response(self, HTTPStatus.OK, result, headers={"ETag": result["etag"]})
 
     def handle_sync_online_source_config(self) -> None:
         if self.reject_nonlocal_origin():
@@ -337,12 +480,103 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
         payload = self.read_json_body(MAX_CONFIG_BYTES)
         if payload is None:
             return
+        if not self.require_fields(payload, allowed=set(), required=set()):
+            return
+        if_match = self.require_if_match()
+        if if_match is None:
+            return
         try:
-            result = save_and_sync_online_source_config(self.root_dir, payload)
+            result = sync_saved_online_source_config(
+                self.root_dir,
+                if_match=if_match,
+            )
         except Exception as exc:
-            json_response(self, HTTPStatus.BAD_REQUEST, {"ok": False, "error": str(exc)})
+            self.send_api_error(exc)
+            return
+        json_response(self, HTTPStatus.OK, result, headers={"ETag": result["etag"]})
+
+    def handle_github_stars_preview(self) -> None:
+        if self.reject_nonlocal_origin():
+            return
+        payload = self.read_json_body(MAX_ACTION_BYTES)
+        if payload is None:
+            return
+        if not self.require_fields(payload, allowed={"username"}, required=set()):
+            return
+        try:
+            result = preview_github_star_sync(self.root_dir, payload)
+        except Exception as exc:
+            self.send_api_error(exc)
             return
         json_response(self, HTTPStatus.OK, result)
+
+    def handle_github_stars_apply(self) -> None:
+        if self.reject_nonlocal_origin():
+            return
+        payload = self.read_json_body(MAX_ACTION_BYTES)
+        if payload is None:
+            return
+        if not self.require_fields(
+            payload,
+            allowed={"account_id", "preview_hash"},
+            required={"account_id", "preview_hash"},
+        ):
+            return
+        try:
+            result = apply_github_star_sync(self.root_dir, payload)
+        except Exception as exc:
+            self.send_api_error(exc)
+            return
+        json_response(self, HTTPStatus.OK, result, headers={"ETag": result["etag"]})
+
+    def handle_github_stars_unbind(self) -> None:
+        if self.reject_nonlocal_origin():
+            return
+        payload = self.read_json_body(MAX_ACTION_BYTES)
+        if payload is None:
+            return
+        if not self.require_fields(
+            payload,
+            allowed={"account_id", "confirmed"},
+            required={"account_id", "confirmed"},
+        ):
+            return
+        if_match = self.require_if_match()
+        if if_match is None:
+            return
+        try:
+            result = unbind_github_star_sync(
+                self.root_dir,
+                payload,
+                if_match=if_match,
+            )
+        except Exception as exc:
+            self.send_api_error(exc)
+            return
+        json_response(self, HTTPStatus.OK, result, headers={"ETag": result["etag"]})
+
+    def handle_online_source_recovery(self) -> None:
+        if self.reject_nonlocal_origin():
+            return
+        payload = self.read_json_body(MAX_ACTION_BYTES)
+        if payload is None:
+            return
+        allowed = {"action", "operation_id", "manifest_digest", "confirmed"}
+        required = {"action", "operation_id", "manifest_digest"}
+        if not self.require_fields(payload, allowed=allowed, required=required):
+            return
+        try:
+            result = _online_api.recover_online_source_operation(
+                self.root_dir,
+                action=payload.get("action"),
+                operation_id=payload.get("operation_id"),
+                manifest_digest=payload.get("manifest_digest"),
+                confirmed=payload.get("confirmed") is True,
+            )
+        except Exception as exc:
+            self.send_api_error(exc)
+            return
+        json_response(self, HTTPStatus.OK, result, headers={"ETag": result["etag"]})
 
     def handle_youtube_subscriptions(self) -> None:
         if self.reject_nonlocal_origin():

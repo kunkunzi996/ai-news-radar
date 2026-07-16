@@ -46,10 +46,17 @@ function visibleSourceStatusSites(status = state.sourceStatus) {
   return (Array.isArray(status?.sites) ? status.sites : []).filter((site) => !isHiddenStatusSite(site));
 }
 function visibleFailedSites(status = state.sourceStatus) {
-  return (Array.isArray(status?.failed_sites) ? status.failed_sites : []).filter((item) => !isHiddenSourceId(item) && !hiddenWeChatText(item));
+  const partial = new Set(
+    (Array.isArray(status?.sites) ? status.sites : [])
+      .filter((site) => site?.partial)
+      .map((site) => String(site.site_id || "")),
+  );
+  return (Array.isArray(status?.failed_sites) ? status.failed_sites : []).filter((item) => !partial.has(String(item)) && !isHiddenSourceId(item) && !hiddenWeChatText(item));
 }
 function visibleZeroSites(status = state.sourceStatus) {
-  return (Array.isArray(status?.zero_item_sites) ? status.zero_item_sites : []).filter((item) => !isHiddenSourceId(item) && !hiddenWeChatText(item));
+  const normalZero = new Set(["empty_repository", "daily_coalesced"]);
+  const github = (Array.isArray(status?.sites) ? status.sites : []).find((site) => site?.site_id === "github_foundation_sunshine_releases" && (normalZero.has(String(site.skip_reason || "")) || Number(site.daily_coalesced || 0) > 0));
+  return (Array.isArray(status?.zero_item_sites) ? status.zero_item_sites : []).filter((item) => !(github && String(item) === github.site_id) && !isHiddenSourceId(item) && !hiddenWeChatText(item));
 }
 function visibleIssueList(issues = []) {
   return (Array.isArray(issues) ? issues : []).filter((issue) => {

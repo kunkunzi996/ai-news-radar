@@ -46,6 +46,11 @@ const state = {
   onlineSourceConfig: { sources: [] },
   onlineSourceSelectedId: "",
   onlineSourceDirty: false,
+  githubStarPreview: null,
+  githubStarRecovery: null,
+  githubStarEtag: "",
+  githubStarConfigDigest: "",
+  githubStarStatus: null,
   subscriptionPlatform: "bilibili",
   youtubeSubscriptions: [],
   localOpsStatus: null,
@@ -143,6 +148,24 @@ const onlineSourceEnabledEl = document.getElementById("onlineSourceEnabled");
 const onlineSourceSaveBtnEl = document.getElementById("onlineSourceSaveBtn");
 const onlineSourceClearBtnEl = document.getElementById("onlineSourceClearBtn");
 const onlineSourceSyncBtnEl = document.getElementById("onlineSourceSyncBtn");
+const githubStarSyncPanelEl = document.getElementById("githubStarSyncPanel");
+const githubStarStatusEl = document.getElementById("githubStarStatus");
+const githubStarOutcomeEl = document.getElementById("githubStarOutcome");
+const githubStarBindingFormEl = document.getElementById("githubStarBindingForm");
+const githubStarUsernameEl = document.getElementById("githubStarUsername");
+const githubStarPreviewBtnEl = document.getElementById("githubStarPreviewBtn");
+const githubStarBoundAccountEl = document.getElementById("githubStarBoundAccount");
+const githubStarPreviewEl = document.getElementById("githubStarPreview");
+const githubStarPreviewSummaryEl = document.getElementById("githubStarPreviewSummary");
+const githubStarConfirmEl = document.getElementById("githubStarConfirm");
+const githubStarApplyBtnEl = document.getElementById("githubStarApplyBtn");
+const githubStarPreviewCancelBtnEl = document.getElementById("githubStarPreviewCancelBtn");
+const githubStarRecoveryEl = document.getElementById("githubStarRecovery");
+const githubStarRecoveryTextEl = document.getElementById("githubStarRecoveryText");
+const githubStarRetryBtnEl = document.getElementById("githubStarRetryBtn");
+const githubStarRollbackBtnEl = document.getElementById("githubStarRollbackBtn");
+const githubStarCollectionStatusEl = document.getElementById("githubStarCollectionStatus");
+const githubStarUnbindBtnEl = document.getElementById("githubStarUnbindBtn");
 const orphanPurgeStatusEl = document.getElementById("orphanPurgeStatus");
 const orphanPurgeReloadBtnEl = document.getElementById("orphanPurgeReloadBtn");
 const orphanPurgeControlsEl = document.querySelector(".orphan-purge-controls");
