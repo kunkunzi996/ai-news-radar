@@ -2,15 +2,16 @@
 
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，项目状态在 `PROJECT_STATE.md`。
 
-## GitHub 星标安全同步 V3：代码完成（2026-07-16）
+## GitHub 星标安全同步 V3：真实上线完成（2026-07-16）
 
-- 分支：`feature/github-star-safe-sync-v3`，基线 `origin/master@6c61bf8`，未 push。
-- Task 1 已独立提交；Task 2→5 已完成；Task 6 前端与 mock E2E 已提交：`a6f20f3`（`完善 GitHub 星标同步前端验收`）。
-- Task 7 文档已同步到 README 中英文与 `docs/SOURCE_COVERAGE.md`，并补充本交接记录。
-- 自动验收：专项 `344 passed, 91 subtests`；全量 `498 passed, 1 warning, 96 subtests`；`npm run test:e2e` 为 `19 passed`；390/768/1440 三档 mock 浏览器为 `6 passed`，0 pageerror、0 console error。
-- 当前状态是“代码完成，待真实验收”：尚未用真实账号 Apply、尚未修改真实配置、尚未 push；不得写成“已上线”。
-- 工程默认仍为单账号、最多 50 个公开星标、第 51 个整次中止、每仓库每 UTC 日最多一个最新 commit 快照。
-- `stash@{0}` 仍为用户原有数据快照，严禁按位置恢复、drop 或覆盖；真实配置与 OPML 哈希未变。
+- 干净验收仓库：`E:\AI-news-reader\ai-news-radar-github-stars-acceptance-shallow-20260716`；真实验收完成时的功能与数据基线为 `47286b35ccef76819df37d7b394936cf00ce1422`，当时 `master` 与 `origin/master` 一致、ahead/behind `0/0`。
+- 已绑定 `kunkunzi996`（数字 account id `284580915`），当前 15 个公开星标、15 个受管信源。最终配置 SHA256 `C4B1E08F8D6F2CF61E5986B8BACD5D6F188778FB8984A35172E7111808CF88E8`，OPML SHA256 `25A7984823CA46F4591CEC90E23A7707455BE596A882960EF49E0BE962B67058`。
+- §17.2 精确 operation commits：停用 qiaomu `450d6b5f42fabc11bbd39c4a497f9871d132ccf7`；恢复 `b8e51e7fa5330ff14d430955145879ed42110e8e`；解绑 `c6643d99e1bb89fece21d74230419891c1cd26de`；重绑 `cb21d9bcb16de63718bc7f0e5f7c026a0ffbaca1`。均已推送且只修改配置文件。
+- qiaomu 的数字 repo id、source id、历史在停用/恢复和解绑/重绑中保持稳定；moonlight 保持停用，历史仍保留，未产生 pending purge。重绑后的第二次 Apply 为 `no_change`，HEAD、配置、OPML 和 `updated_at` 均不变。
+- 自动验收：专项 `344 passed, 91 subtests`；全量 `529 passed, 1 warning, 98 subtests`；Playwright `20 passed`；三档 mock 浏览器 `6 passed`，0 pageerror、0 console error。真实本地浏览器显示绑定账号与 15 个仓库状态；公网 Update run `29502225101`、Pages run `29502283288` 成功，公网 GitHub 采集 succeeded 15、failed/deferred 0。
+- 公网页面在内置浏览器直接导航时超时；已由公网 HTTP 200、配置/OPML 哈希一致、Pages workflow 成功及本地真实浏览器补足证据。用户原有 stash 未改。
+- 精确回滚：只允许逐个执行普通 `git revert <operation_sha>`，每次先 fetch 并确认目标提交只改 `config/online-sources.json`；禁止 reset、强推和批量回滚。若需撤销整段真实验收，按 `cb21d9b` → `c6643d9` → `b8e51e7` → `450d6b5` 的逆序逐项评估、逐项 revert。
+- 状态文档已在真实验收取得完整证据后同步；文档提交与 operation commits 分开保存，不混入线上配置事务。
 
 ## 当前最新交接：订阅源二级页时间平铺（2026-07-16）
 

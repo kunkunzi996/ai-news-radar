@@ -37,14 +37,16 @@
     前后核对 SHA256、总条数和 site_id/source 分布，再重建派生文件。
   - 方案与施工边界：`计划/微信公众号退订后历史消息残留-修复方案.md`。后续 hard delete 会由 `on`
     模式按同一 ID-only 契约清理；`status=0` 仍只停采、不删历史。任何异常先把 Actions 变量切回 `off`。
-## GitHub 星标安全同步 V3（2026-07-16）
+## GitHub 星标安全同步 V3：真实上线完成（2026-07-16）
 
-- 当前分支：`feature/github-star-safe-sync-v3`，已 rebase 到 `origin/master@6c61bf8`；未 push。
-- Task 1→Task 7 已完成施工。Task 6 提交为 `a6f20f3`；Task 7 已同步 README 中英文、`docs/SOURCE_COVERAGE.md` 与本状态/交接记录。
-- 代码完成证据：专项 pytest `344 passed, 91 subtests`；全量 pytest `498 passed, 1 warning, 96 subtests`；Playwright `19 passed`；390/768/1440 mock 浏览器 `6 passed`，0 pageerror、0 console error；编译、Node 语法和 diff 检查通过。
-- 仅完成 mock 与临时仓库证据，真实账号 Preview/Apply、真实配置变更、远端 push 和公网 Actions 尚未授权/执行；当前口径为“代码完成，待真实验收”，不是“已上线”。
-- 固定默认：单账号、最多 50 个公开星标、第 51 个整次中止；每仓库每 UTC 日最多一个最新 commit 快照；取消星标只停用、不删除历史。
-- 真实配置哈希未变：`config/online-sources.json=DB13C860...`，`feeds/online-sources.opml=03C16193...`；用户 stash 未变，仍保留原有一条。
+- 功能与后续重复同步修复均已合并到 `master`；真实验收完成时的功能与数据基线为 `47286b35ccef76819df37d7b394936cf00ce1422`，当时 `HEAD=origin/master`、ahead/behind 为 `0/0`。
+- 真实账号 `kunkunzi996`（数字 account id `284580915`）已绑定；当前公开星标 15 个，对应 15 个受管信源。固定门禁仍为单账号、最多 50 个公开星标、第 51 个整次中止、每仓库每 UTC 日最多一个最新 commit 快照。
+- §17.2 真实验收已完成：临时取消并恢复 `joeseesun/qiaomu-goal-meta-skill` 星标，停用 operation commit 为 `450d6b5f42fabc11bbd39c4a497f9871d132ccf7`，恢复为 `b8e51e7fa5330ff14d430955145879ed42110e8e`；随后解绑为 `c6643d99e1bb89fece21d74230419891c1cd26de`，重新绑定为 `cb21d9bcb16de63718bc7f0e5f7c026a0ffbaca1`。四个提交都只修改 `config/online-sources.json`，并带有独立 operation trailer。
+- 取消星标只自动停用、不删除信源、不触发 pending purge；目标 source id `online_github_repo_1266385233`、repo id `1266385233` 在停用/恢复与解绑/重绑全程稳定，历史仍保留。此前取消星标的 `AlkaidLab/moonlight-harmony` 保持停用且历史仍为 1 条。
+- 重新绑定后再次 Preview/Apply 得到 `no_change`：HEAD、配置字节、OPML、`updated_at=2026-07-16T13:26:41Z` 均未变化。最终配置 SHA256 为 `C4B1E08F8D6F2CF61E5986B8BACD5D6F188778FB8984A35172E7111808CF88E8`，OPML SHA256 为 `25A7984823CA46F4591CEC90E23A7707455BE596A882960EF49E0BE962B67058`。
+- 公网 Actions 与 Pages 已成功：Update run `29502225101`、Pages run `29502283288`；公网配置/OPML 哈希与本地一致，GitHub 采集状态为 eligible/succeeded 15、failed/deferred 0、fallback 5。
+- 自动验收：专项 pytest `344 passed, 91 subtests`；全量 pytest `529 passed, 1 warning, 98 subtests`；Playwright `20 passed`；390/768/1440 mock 浏览器 `6 passed`，0 pageerror、0 console error；编译、Node 语法和 diff 检查通过。真实本地浏览器确认绑定账号和 15 个仓库状态；公网页面在内置浏览器直开时超时，但公网 HTTP、Pages workflow 和本地真实浏览器证据均已通过。
+- 用户原有 stash 未改，仍保留 `stash@{0}: On master: 本地刷新生成的 data 快照（可丢弃，下次刷新会重新生成）`。回滚只能对精确 operation commit 使用普通 `git revert <sha>`，一次一个并复核只改配置；禁止 reset、强推或重写历史。
 
 ## 历史入口（2026-07-15）
 
