@@ -79,6 +79,20 @@ REGULAR_ITEMS[10] = makeItem(10, {
   creator_hot_score: 99,
 });
 
+const PLATFORM_FIXTURES = [
+  [68, { id: "douyin-alpha", site_id: "mediacrawler_douyin", site_name: "抖音", source: "抖音甲", url: "https://www.douyin.com/video/fixture-alpha" }],
+  [69, { id: "douyin-beta", site_id: "mediacrawler_douyin", site_name: "抖音", source: "抖音乙", url: "https://www.douyin.com/video/fixture-beta" }],
+  [70, { id: "xhs-alpha", site_id: "mediacrawler_xhs", site_name: "小红书", source: "小红书甲", url: "https://www.xiaohongshu.com/explore/fixture-alpha" }],
+  [71, { id: "xhs-beta", site_id: "mediacrawler_xhs", site_name: "小红书", source: "小红书乙", url: "https://www.xiaohongshu.com/explore/fixture-beta" }],
+  [72, { id: "youtube-alpha", site_id: "opmlrss", site_name: "YouTube", source: "YouTube 甲", url: "https://www.youtube.com/watch?v=fixture-alpha" }],
+  [73, { id: "youtube-beta", site_id: "opmlrss", site_name: "YouTube", source: "YouTube 乙", url: "https://www.youtube.com/watch?v=fixture-beta" }],
+  [74, { id: "github-alpha", site_id: "github_foundation_sunshine_releases", site_name: "GitHub Release", source: "项目甲", url: "https://github.com/example/alpha/releases/tag/v1" }],
+  [75, { id: "github-beta", site_id: "github_foundation_sunshine_releases", site_name: "GitHub Release", source: "项目乙", url: "https://github.com/example/beta/releases/tag/v1" }],
+];
+PLATFORM_FIXTURES.forEach(([index, overrides]) => {
+  REGULAR_ITEMS[index] = makeItem(index, overrides);
+});
+
 const SPECIAL_ITEMS = [
   makeItem(76, {
     id: "future-fallback",
@@ -143,8 +157,12 @@ const NEWS_PAYLOAD = {
 const SOURCE_STATUS = {
   generated_at: GENERATED_AT,
   sites: [
-    { site_id: "bilibili_dynamic", site_name: "B站", ok: true, item_count: 79 },
+    { site_id: "bilibili_dynamic", site_name: "B站", ok: true, item_count: 71 },
+    { site_id: "mediacrawler_douyin", site_name: "抖音", ok: true, item_count: 2 },
+    { site_id: "mediacrawler_xhs", site_name: "小红书", ok: true, item_count: 2 },
     { site_id: "we_mp_rss_jsonl", site_name: "微信公众号", ok: true, item_count: 2 },
+    { site_id: "opmlrss", site_name: "YouTube", ok: true, item_count: 2 },
+    { site_id: "github_foundation_sunshine_releases", site_name: "GitHub Release", ok: true, item_count: 2 },
   ],
   failed_sites: [],
   rss_opml: { enabled: false, failed_feeds: [] },
@@ -211,6 +229,22 @@ async function openFixture(page) {
   await page.goto("/");
   await expect(page.locator("#resultCount")).toHaveText("81 条");
   await expect(page.locator("#newsList .news-card")).toHaveCount(80);
+}
+
+async function waitForListRender(page) {
+  await expect(page.locator("#newsList .list-loading")).toHaveCount(0);
+  await expect(page.locator("#newsList .news-card")).not.toHaveCount(0);
+}
+
+async function openSection(page, sectionId) {
+  await page.locator(`#sectionTabs [data-section="${sectionId}"]`).click();
+  await waitForListRender(page);
+}
+
+function listModeClasses(page) {
+  return page.locator("#newsList").evaluate((node) => (
+    ["timeline-mode", "flat-mode", "group-mode"].filter((className) => node.classList.contains(className))
+  ));
 }
 
 test("语义骨架、栏目 ARIA 和设置抽屉兄弟关系", async ({ page }) => {
@@ -353,18 +387,110 @@ test("四种排序只在时间排序显示日期轴", async ({ page }) => {
   expect(errors).toEqual([]);
 });
 
-test("微信公众号继续按来源分组", async ({ page }) => {
+test("微信公众号只切换平铺布局，业务栏目口径保持不变", async ({ page }) => {
   const errors = collectErrors(page);
   await openFixture(page);
 
-  await page.locator('#sectionTabs [data-section="wechat"]').click();
-  expect(await page.locator("#newsList").evaluate((node) => (
-    ["timeline-mode", "flat-mode", "group-mode"].filter((className) => node.classList.contains(className))
-  ))).toEqual(["group-mode"]);
-  await expect(page.locator(".timeline-day")).toHaveCount(0);
-  await expect(page.locator("#newsList .source-group")).toHaveCount(2);
-  const headings = await page.locator("#newsList .source-group-head h3").allTextContents();
-  expect(headings.sort()).toEqual(["乙号", "甲号"]);
+  expect(await page.evaluate(() => ({
+    layout: usesFlatTimelineLayout("wechat"),
+    subscriptionBusinessMode: isSubscriptionSection("wechat"),
+  }))).toEqual({ layout: true, subscriptionBusinessMode: false });
+
+  await openSection(page, "wechat");
+  expect(await listModeClasses(page)).toEqual(["timeline-mode"]);
+  await expect(page.locator("#resultCount")).toHaveText("2 条");
+  await expect(page.locator("#newsList .source-group")).toHaveCount(0);
+  await expect(page.locator("#newsList .site-group")).toHaveCount(0);
+  const days = page.locator("#newsList .timeline-day");
+  await expect(days).toHaveCount(2);
+  await expect(days.nth(0).locator(".timeline-date")).toHaveText("7月15日");
+  await expect(days.nth(0).locator(".timeline-day-meta")).toContainText("星期三");
+  await expect(days.nth(1).locator(".timeline-date")).toHaveText("7月14日");
+  await expect(days.nth(1).locator(".timeline-day-meta")).toContainText("星期二");
+  const cardIds = await page.locator("#newsList .news-card").evaluateAll((nodes) => (
+    nodes.map((node) => node.dataset.itemId)
+  ));
+  expect(cardIds).toEqual(["wechat-alpha", "wechat-beta"]);
+  await expect(page.locator('script[src*="render-list.js?v=wechat-flat-layout-0716a"]')).toHaveCount(1);
+
+  await page.locator('#listSortTools [data-sort="source"]').click();
+  await waitForListRender(page);
+  expect(await listModeClasses(page)).toEqual(["flat-mode"]);
+  await expect(page.locator("#newsList .timeline-day")).toHaveCount(0);
+  await expect(page.locator("#newsList .news-card")).toHaveCount(2);
+  await expect(page.locator("#newsList .source-group")).toHaveCount(0);
+  await page.locator('#listSortTools [data-sort="time"]').click();
+  await waitForListRender(page);
+  expect(await listModeClasses(page)).toEqual(["timeline-mode"]);
+  await expect(page.locator("#newsList .timeline-day")).toHaveCount(2);
+  expect(errors).toEqual([]);
+});
+
+test("所有平台 tab 都完成真实时间流渲染", async ({ page }) => {
+  const errors = collectErrors(page);
+  await openFixture(page);
+
+  await page.locator('#newsList .news-card[data-item-id="read-target"] .read-toggle-btn').click();
+  await waitForListRender(page);
+  await expect(page.locator('#newsList .news-card[data-item-id="read-target"]')).toHaveCount(0);
+
+  const sectionIds = await page.locator("#sectionTabs [data-section]").evaluateAll((nodes) => (
+    nodes.map((node) => node.dataset.section)
+  ));
+  const expectedSectionIds = [
+    "creator",
+    "douyin",
+    "xiaohongshu",
+    "wechat",
+    "bilibili",
+    "youtube",
+    "github",
+    "read",
+  ];
+  expect(sectionIds).toEqual(expectedSectionIds);
+
+  for (const sectionId of expectedSectionIds) {
+    await openSection(page, sectionId);
+    expect(await listModeClasses(page), `tab ${sectionId} 默认必须是时间轴`).toEqual(["timeline-mode"]);
+    await expect(page.locator("#newsList .news-card")).not.toHaveCount(0);
+    await expect(page.locator("#newsList .timeline-day")).not.toHaveCount(0);
+    await expect(page.locator("#newsList .source-group")).toHaveCount(0);
+    await expect(page.locator("#newsList .site-group")).toHaveCount(0);
+    const timeValues = await page.locator("#newsList .news-card .time[datetime]").evaluateAll((nodes) => (
+      nodes.map((node) => Date.parse(node.getAttribute("datetime")))
+    ));
+    expect(
+      timeValues.every((value, index) => index === 0 || timeValues[index - 1] >= value),
+      `tab ${sectionId} 的卡片必须按时间非递增排列`,
+    ).toBe(true);
+  }
+  expect(errors).toEqual([]);
+});
+
+test("微信公众号平铺模式下已阅和恢复保持可用", async ({ page }) => {
+  const errors = collectErrors(page);
+  await openFixture(page);
+  await openSection(page, "wechat");
+
+  const alpha = page.locator('#newsList .news-card[data-item-id="wechat-alpha"]');
+  await alpha.locator(".read-toggle-btn").click();
+  await waitForListRender(page);
+  await expect(alpha).toHaveCount(0);
+  await expect(page.locator("#resultCount")).toHaveText("1 条");
+
+  await openSection(page, "read");
+  const readAlpha = page.locator('#newsList .news-card[data-item-id="wechat-alpha"]');
+  await expect(readAlpha).toHaveCount(1);
+  await expect(readAlpha.locator(".read-toggle-btn")).toHaveText("恢复");
+  await readAlpha.locator(".read-toggle-btn").click();
+  await expect(page.locator("#resultCount")).toHaveText("0 条");
+  await expect(page.locator("#newsList > .empty")).toHaveCount(1);
+
+  await openSection(page, "wechat");
+  const restoredIds = await page.locator("#newsList .news-card").evaluateAll((nodes) => (
+    nodes.map((node) => node.dataset.itemId)
+  ));
+  expect(restoredIds).toEqual(["wechat-alpha", "wechat-beta"]);
   expect(errors).toEqual([]);
 });
 

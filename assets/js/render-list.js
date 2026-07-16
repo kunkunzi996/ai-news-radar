@@ -1383,11 +1383,14 @@ function renderSiteGroups(items) {
   }
   document.dispatchEvent(new CustomEvent("aiRadar:listRendered"));
 }
+function usesFlatTimelineLayout(sectionId) {
+  return Boolean(SECTION_BY_ID[sectionId]);
+}
 function renderList() {
   const filtered = getFilteredItems();
   renderListSortTools();
   newsListEl.classList.remove("timeline-mode", "flat-mode", "group-mode");
-  if (isSubscriptionSection(state.activeSection)) {
+  if (usesFlatTimelineLayout(state.activeSection)) {
     newsListEl.classList.add(state.listSort === "time" ? "timeline-mode" : "flat-mode");
   } else {
     newsListEl.classList.add("group-mode");
@@ -1412,7 +1415,7 @@ function renderList() {
     if (token !== _renderListToken) return;   // stale render, abort
     const sorted = sortItemsForList(filtered);
     newsListEl.innerHTML = "";
-    if (isSubscriptionSection(state.activeSection)) {
+    if (usesFlatTimelineLayout(state.activeSection)) {
       renderFlatTimeline(sorted);
     } else {
       renderSiteGroups(sorted);
