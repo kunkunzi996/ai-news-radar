@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-07-16T13:20:26Z",
+  "updated_at": "2026-07-16T13:22:23Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -290,7 +290,7 @@
       "id": "online_github_repo_1266385233",
       "name": "joeseesun/qiaomu-goal-meta-skill",
       "type": "github_release",
-      "enabled": false,
+      "enabled": true,
       "channel": "GitHub Release",
       "target": "joeseesun/qiaomu-goal-meta-skill",
       "locator": "joeseesun/qiaomu-goal-meta-skill",
@@ -299,7 +299,7 @@
       "managed_by": "github_stars",
       "managed_account_id": 284580915,
       "managed_repo_id": 1266385233,
-      "managed_state": "auto_disabled"
+      "managed_state": "active"
     },
     {
       "id": "online_github_repo_1276562170",
