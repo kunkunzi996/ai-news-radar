@@ -1119,6 +1119,10 @@ summary:focus-visible {
   flex-wrap: wrap;
 }
 
+.github-star-binding-form[hidden] {
+  display: none;
+}
+
 .github-star-binding-form .field {
   flex: 1 1 240px;
   min-width: 0;

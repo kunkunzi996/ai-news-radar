@@ -94,6 +94,74 @@ test("GitHub 星标首次绑定、确认、Apply 与四种 outcome 可展示", a
   expect(errors).toEqual([]);
 });
 
+test("GitHub 星标已绑定后使用数字账号身份重新预览", async ({ page }) => {
+  const errors = [];
+  const previewBodies = [];
+  const applyBodies = [];
+  collectErrors(page, errors);
+  const boundConfig = {
+    ...baseConfig,
+    config: {
+      ...baseConfig.config,
+      github_star_sync: { version: 1, account_id: account.id, account_login: account.login },
+      sources: [],
+    },
+  };
+  await page.route("**/api/online-source-config", async (route) => {
+    await route.fulfill({ status: 200, headers: { ETag: boundConfig.etag }, json: boundConfig });
+  });
+  await page.route("**/api/github-stars/preview", async (route) => {
+    previewBodies.push(route.request().postDataJSON());
+    await route.fulfill({
+      status: 200,
+      json: {
+        ...previewPayload(),
+        summary: { added: [], disabled: [], re_enabled: [], adopted: [], renamed: [], skipped_manual_disabled: [] },
+        requires_confirmation: false,
+      },
+    });
+  });
+  await page.route("**/api/github-stars/apply", async (route) => {
+    applyBodies.push(route.request().postDataJSON());
+    await route.fulfill({
+      status: 200,
+      headers: { ETag: boundConfig.etag },
+      json: {
+        ok: true,
+        outcome: "no_change",
+        config: boundConfig.config,
+        base_config_digest: boundConfig.base_config_digest,
+        etag: boundConfig.etag,
+        config_changed: false,
+        commit: null,
+        pushed: false,
+        partial: false,
+        recovery_pending: false,
+        summary: {},
+      },
+    });
+  });
+  await page.route("**/api/local-status", async (route) => {
+    await route.fulfill({ status: 200, json: { ok: true, sites: [] } });
+  });
+
+  const configLoaded = page.waitForResponse("**/api/online-source-config");
+  await page.goto("/");
+  await configLoaded;
+  await page.locator("#settingsOpenBtn").click();
+  await expect(page.locator("#githubStarBoundAccount")).toContainText(`数字 ID ${account.id}`);
+  await expect(page.locator("#githubStarUsername")).toHaveValue(account.login);
+  await page.locator("#githubStarPreviewBtn").click();
+  await expect(page.locator("#githubStarPreview")).toBeVisible();
+  await expect(page.locator("#githubStarPreviewSummary")).toContainText("没有配置变化");
+  await expect(page.locator("#githubStarApplyBtn")).toBeEnabled();
+  await page.locator("#githubStarApplyBtn").click();
+  await expect(page.locator("#githubStarOutcome")).toContainText("无变化");
+  expect(previewBodies).toEqual([{}]);
+  expect(applyBodies).toEqual([{ account_id: account.id, preview_hash: "p".repeat(64) }]);
+  expect(errors).toEqual([]);
+});
+
 test("GitHub 星标 stale、Recovery、解绑和 partial/deferred 状态可见", async ({ page }) => {
   const errors = [];
   collectErrors(page, errors);

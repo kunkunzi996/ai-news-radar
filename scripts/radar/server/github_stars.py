@@ -850,16 +850,16 @@ def preview_github_star_sync(
         if binding is None:
             if set(payload) != {"username"}:
                 raise _error("github_username_invalid", 422)
-            username = validate_github_username(payload.get("username"))
+            account_lookup = {"username": validate_github_username(payload.get("username"))}
         else:
             if payload:
                 raise _error("github_star_account_mismatch", 409)
-            username = binding["account_login"]
+            account_lookup = {"account_id": binding["account_id"]}
 
     owned_session = session is None
     active_session = session or create_github_stars_session()
     try:
-        snapshot = fetch_github_star_snapshot(active_session, username=username)
+        snapshot = fetch_github_star_snapshot(active_session, **account_lookup)
     finally:
         if owned_session:
             active_session.close()

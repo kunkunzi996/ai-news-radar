@@ -949,8 +949,8 @@ class GitHubStarServiceTests(GitHubStarsTestCase):
 
         self.assertTrue(result["ok"])
         fetch_mock.assert_called_once()
-        self.assertEqual(fetch_mock.call_args.kwargs["username"], ACCOUNT["login"])
-        self.assertNotIn("account_id", fetch_mock.call_args.kwargs)
+        self.assertEqual(fetch_mock.call_args.kwargs["account_id"], ACCOUNT["id"])
+        self.assertNotIn("username", fetch_mock.call_args.kwargs)
 
     def test_apply_requeries_account_id_and_rejects_config_changed_after_network(self):
         initial = config_with([], bound=False)

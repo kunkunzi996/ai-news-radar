@@ -766,7 +766,11 @@ function renderGithubStarPanel() {
   const binding = githubStarBinding();
   const local = canUseLocalBackend();
   renderGithubStarStatus();
-  githubStarBindingFormEl.hidden = Boolean(binding) || !local;
+  githubStarBindingFormEl.hidden = !local;
+  if (githubStarUsernameEl) {
+    githubStarUsernameEl.readOnly = Boolean(binding);
+    if (binding) githubStarUsernameEl.value = String(binding.account_login || "");
+  }
   githubStarBoundAccountEl.hidden = !binding;
   githubStarBoundAccountEl.textContent = binding ? `当前账号：${binding.account_login || binding.account_id}（数字 ID ${binding.account_id}）` : "";
   githubStarUnbindBtnEl.hidden = !binding || !local;
@@ -774,15 +778,16 @@ function renderGithubStarPanel() {
   if (state.githubStarPreview) {
     const preview = state.githubStarPreview;
     githubStarPreviewSummaryEl.textContent = `${preview.account?.login || "账号"}：公开星标 ${fmtNumber(preview.starred_count || 0)} 个${preview.private_skipped_count ? `，另有 ${fmtNumber(preview.private_skipped_count)} 个非公开仓库已跳过` : ""}。${githubStarSummaryText(preview.summary)}`;
-    githubStarApplyBtnEl.disabled = !preview.requires_confirmation || !githubStarConfirmEl?.checked;
+    githubStarApplyBtnEl.disabled = Boolean(preview.requires_confirmation) && !githubStarConfirmEl?.checked;
   }
   renderGithubStarRecovery();
   renderGithubStarCollectionStatus();
 }
 
 async function previewGithubStarSync() {
+  const binding = githubStarBinding();
   const username = String(githubStarUsernameEl?.value || "").trim();
-  if (!username) {
+  if (!binding && !username) {
     setGithubStarStatus("请填写 GitHub 用户名。", "bad");
     return;
   }
@@ -795,7 +800,7 @@ async function previewGithubStarSync() {
     const payload = await githubStarRequest("./api/github-stars/preview", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username }),
+      body: JSON.stringify(binding ? {} : { username }),
     });
     state.githubStarPreview = payload;
     state.githubStarConfigDigest = String(payload.base_config_digest || state.githubStarConfigDigest || "");
@@ -812,7 +817,7 @@ async function previewGithubStarSync() {
 
 async function applyGithubStarSync() {
   const preview = state.githubStarPreview;
-  if (!preview || !githubStarConfirmEl?.checked) {
+  if (!preview || (preview.requires_confirmation && !githubStarConfirmEl?.checked)) {
     setGithubStarStatus("请先勾选确认，再同步。", "warn");
     return;
   }
@@ -834,7 +839,7 @@ async function applyGithubStarSync() {
     if (err.code === "github_star_preview_stale") state.githubStarPreview = null;
     renderGithubStarPanel();
   } finally {
-    githubStarApplyBtnEl.disabled = !state.githubStarPreview || !githubStarConfirmEl?.checked;
+    githubStarApplyBtnEl.disabled = !state.githubStarPreview || (state.githubStarPreview.requires_confirmation && !githubStarConfirmEl?.checked);
   }
 }
 
@@ -884,7 +889,7 @@ async function unbindGithubStarSync() {
 }
 
 if (githubStarBindingFormEl) githubStarBindingFormEl.addEventListener("submit", (event) => { event.preventDefault(); previewGithubStarSync().catch(() => {}); });
-if (githubStarConfirmEl) githubStarConfirmEl.addEventListener("change", () => { githubStarApplyBtnEl.disabled = !state.githubStarPreview || !githubStarConfirmEl.checked; });
+if (githubStarConfirmEl) githubStarConfirmEl.addEventListener("change", () => { githubStarApplyBtnEl.disabled = !state.githubStarPreview || (state.githubStarPreview.requires_confirmation && !githubStarConfirmEl.checked); });
 if (githubStarApplyBtnEl) githubStarApplyBtnEl.addEventListener("click", () => { applyGithubStarSync().catch(() => {}); });
 if (githubStarPreviewCancelBtnEl) githubStarPreviewCancelBtnEl.addEventListener("click", () => { state.githubStarPreview = null; renderGithubStarPanel(); });
 if (githubStarRetryBtnEl) githubStarRetryBtnEl.addEventListener("click", () => { recoverGithubStarOperation("retry_push").catch(() => {}); });
