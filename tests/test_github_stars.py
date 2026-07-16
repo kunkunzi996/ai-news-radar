@@ -3,7 +3,9 @@ from __future__ import annotations
 import copy
 import json
 import re
+import threading
 import unittest
+from unittest.mock import patch
 
 import requests
 
@@ -884,6 +886,141 @@ class GitHubStarPreviewHashTests(GitHubStarsTestCase):
                     "github_upstream_invalid_response",
                     lambda snapshot=snapshot: github_stars.build_github_star_preview(config, snapshot),
                 )
+
+
+class GitHubStarServiceTests(GitHubStarsTestCase):
+    def test_preview_releases_shared_lock_before_github_network(self):
+        config = config_with([], bound=False)
+        snapshot = {
+            "account": ACCOUNT,
+            "repositories": [],
+            "starred_count": 0,
+            "private_skipped_count": 0,
+        }
+        lock_results = []
+
+        def fetch_while_other_thread_takes_lock(*_args, **_kwargs):
+            finished = threading.Event()
+
+            def take_lock():
+                try:
+                    with online_sources.online_sources_guard():
+                        lock_results.append("acquired")
+                except online_sources.OnlineSourcesError as exc:
+                    lock_results.append(exc.code)
+                finally:
+                    finished.set()
+
+            thread = threading.Thread(target=take_lock)
+            thread.start()
+            self.assertTrue(finished.wait(2))
+            thread.join(2)
+            return snapshot
+
+        with patch.object(online_sources, "audit_online_source_operation", return_value=None), patch.object(
+            online_sources, "_read_online_json_config", return_value=config
+        ), patch.object(
+            github_stars,
+            "fetch_github_star_snapshot",
+            side_effect=fetch_while_other_thread_takes_lock,
+        ):
+            result = github_stars.preview_github_star_sync(
+                object(),
+                {"username": ACCOUNT["login"]},
+            )
+
+        self.assertTrue(result["ok"])
+        self.assertEqual(lock_results, ["acquired"])
+
+    def test_preview_reads_bound_identity_then_fetches_outside_config_snapshot(self):
+        config = config_with([managed_source(1, "owner/one")])
+        snapshot = {
+            "account": ACCOUNT,
+            "repositories": [{"id": 1, "full_name": "owner/one"}],
+            "starred_count": 1,
+            "private_skipped_count": 0,
+        }
+        with patch.object(online_sources, "audit_online_source_operation", return_value=None), patch.object(
+            online_sources, "_read_online_json_config", return_value=config
+        ), patch.object(
+            github_stars, "fetch_github_star_snapshot", return_value=snapshot
+        ) as fetch_mock:
+            result = github_stars.preview_github_star_sync(object(), {})
+
+        self.assertTrue(result["ok"])
+        fetch_mock.assert_called_once()
+        self.assertEqual(fetch_mock.call_args.kwargs["username"], ACCOUNT["login"])
+        self.assertNotIn("account_id", fetch_mock.call_args.kwargs)
+
+    def test_apply_requeries_account_id_and_rejects_config_changed_after_network(self):
+        initial = config_with([], bound=False)
+        changed = config_with([rss_source(1)], bound=False)
+        snapshot = {
+            "account": ACCOUNT,
+            "repositories": [{"id": 1, "full_name": "owner/one"}],
+            "starred_count": 1,
+            "private_skipped_count": 0,
+        }
+        preview_hash = github_stars.build_github_star_preview(initial, snapshot)["preview_hash"]
+        with patch.object(online_sources, "audit_online_source_operation", return_value=None), patch.object(
+            online_sources,
+            "_read_online_json_config",
+            side_effect=[initial, changed],
+        ), patch.object(
+            github_stars, "fetch_github_star_snapshot", return_value=snapshot
+        ) as fetch_mock, patch.object(
+            online_sources, "apply_online_source_config_operation"
+        ) as apply_mock:
+            with self.assertRaises(github_stars.GitHubStarsError) as raised:
+                github_stars.apply_github_star_sync(
+                    object(),
+                    {"account_id": ACCOUNT["id"], "preview_hash": preview_hash},
+                )
+
+        self.assertEqual(raised.exception.code, "github_star_preview_stale")
+        self.assertEqual(fetch_mock.call_args.kwargs["account_id"], ACCOUNT["id"])
+        apply_mock.assert_not_called()
+
+    def test_unbind_only_removes_binding_and_managed_fields(self):
+        source = managed_source(
+            1,
+            "owner/one",
+            name="Keep name",
+            notes="Keep notes",
+            state="auto_disabled",
+        )
+        config = config_with([source])
+        captured = {}
+
+        def capture_operation(_root, candidate, **kwargs):
+            captured["candidate"] = candidate
+            captured["kwargs"] = kwargs
+            return {"ok": True, "outcome": "pushed"}
+
+        with patch.object(online_sources, "audit_online_source_operation", return_value=None), patch.object(
+            online_sources, "_read_online_json_config", return_value=config
+        ), patch.object(
+            online_sources,
+            "apply_online_source_config_operation",
+            side_effect=capture_operation,
+        ):
+            result = github_stars.unbind_github_star_sync(
+                object(),
+                {"account_id": ACCOUNT["id"], "confirmed": True},
+                if_match=online_sources.online_config_etag(config),
+            )
+
+        unbound = captured["candidate"]
+        kept = unbound["sources"][0]
+        self.assertTrue(result["ok"])
+        self.assertNotIn("github_star_sync", unbound)
+        for field in online_sources.GITHUB_MANAGED_FIELDS:
+            self.assertNotIn(field, kept)
+        self.assertEqual(kept["id"], source["id"])
+        self.assertEqual(kept["enabled"], source["enabled"])
+        self.assertEqual(kept["name"], source["name"])
+        self.assertEqual(kept["notes"], source["notes"])
+        self.assertEqual(captured["kwargs"]["operation_kind"], "unbind")
 
 
 if __name__ == "__main__":

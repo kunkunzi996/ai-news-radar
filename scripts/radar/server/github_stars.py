@@ -13,6 +13,8 @@ from requests.adapters import HTTPAdapter
 from requests.utils import parse_header_links
 from urllib3.util import Retry
 
+from scripts.radar.server import online_sources as _online_sources
+
 from scripts.radar.server.online_sources import (
     GITHUB_LOGIN_PATTERN,
     ONLINE_OPML_SOURCE_ID,
@@ -822,3 +824,140 @@ def build_github_star_preview(config: dict[str, Any], snapshot: dict[str, Any]) 
         "base_config_digest": base_digest,
         "config_changed": merge["config_changed"],
     }
+
+
+def _read_service_config(root_dir: Any) -> dict[str, Any]:
+    recovery = _online_sources.audit_online_source_operation(root_dir)
+    if recovery is not None:
+        raise _online_sources.OnlineSourcesError(
+            "online_sources_recovery_pending",
+            status_code=409,
+        )
+    return _online_sources._read_online_json_config(root_dir)
+
+
+def preview_github_star_sync(
+    root_dir: Any,
+    payload: Any,
+    *,
+    session: requests.Session | None = None,
+) -> dict[str, Any]:
+    if not isinstance(payload, dict):
+        raise _error("github_username_invalid", 422)
+    with _online_sources.online_sources_guard():
+        config = _read_service_config(root_dir)
+        binding = config.get("github_star_sync")
+        if binding is None:
+            if set(payload) != {"username"}:
+                raise _error("github_username_invalid", 422)
+            username = validate_github_username(payload.get("username"))
+        else:
+            if payload:
+                raise _error("github_star_account_mismatch", 409)
+            username = binding["account_login"]
+
+    owned_session = session is None
+    active_session = session or create_github_stars_session()
+    try:
+        snapshot = fetch_github_star_snapshot(active_session, username=username)
+    finally:
+        if owned_session:
+            active_session.close()
+    return build_github_star_preview(config, snapshot)
+
+
+def apply_github_star_sync(
+    root_dir: Any,
+    payload: Any,
+    *,
+    session: requests.Session | None = None,
+) -> dict[str, Any]:
+    if not isinstance(payload, dict) or set(payload) != {"account_id", "preview_hash"}:
+        raise _error("github_star_preview_stale", 409)
+    account_id = payload.get("account_id")
+    preview_hash = payload.get("preview_hash")
+    if not positive_integer(account_id) or not isinstance(preview_hash, str) or not re.fullmatch(
+        r"[0-9a-f]{64}", preview_hash
+    ):
+        raise _error("github_star_preview_stale", 409)
+
+    with _online_sources.online_sources_guard():
+        initial_config = _read_service_config(root_dir)
+        binding = initial_config.get("github_star_sync")
+        if binding is not None and binding["account_id"] != account_id:
+            raise _error("github_star_account_mismatch", 409)
+
+    owned_session = session is None
+    active_session = session or create_github_stars_session()
+    try:
+        snapshot = fetch_github_star_snapshot(active_session, account_id=account_id)
+    finally:
+        if owned_session:
+            active_session.close()
+
+    with _online_sources.online_sources_guard():
+        current_config = _read_service_config(root_dir)
+        current_binding = current_config.get("github_star_sync")
+        if current_binding is not None and current_binding["account_id"] != account_id:
+            raise _error("github_star_account_mismatch", 409)
+        current_preview = build_github_star_preview(current_config, snapshot)
+        if current_preview["preview_hash"] != preview_hash:
+            raise _error("github_star_preview_stale", 409)
+        merge = merge_github_star_sources(
+            current_config,
+            account=snapshot["account"],
+            repositories=snapshot["repositories"],
+        )
+        try:
+            return _online_sources.apply_online_source_config_operation(
+                root_dir,
+                merge["config"],
+                operation_kind="apply",
+                base_config_digest=current_preview["base_config_digest"],
+                preview_hash=preview_hash,
+                summary=merge["summary"],
+            )
+        except _online_sources.OnlineSourcesError as exc:
+            if exc.code == "online_sources_config_stale":
+                raise _error("github_star_preview_stale", 409) from exc
+            raise
+
+
+def unbind_github_star_sync(
+    root_dir: Any,
+    payload: Any,
+    *,
+    if_match: Any,
+) -> dict[str, Any]:
+    if not isinstance(payload, dict) or set(payload) != {"account_id", "confirmed"}:
+        raise _error("github_star_account_mismatch", 409)
+    account_id = payload.get("account_id")
+    if not positive_integer(account_id) or payload.get("confirmed") is not True:
+        raise _error("github_star_account_mismatch", 409)
+    with _online_sources.online_sources_guard():
+        current_config = _read_service_config(root_dir)
+        current_digest = online_config_digest(current_config)
+        _online_sources.require_online_config_match(if_match, current_digest)
+        binding = current_config.get("github_star_sync")
+        if binding is None or binding["account_id"] != account_id:
+            raise _error("github_star_account_mismatch", 409)
+        sources = []
+        for source in _online_sources.online_user_sources_from_config(current_config):
+            sources.append(
+                {
+                    key: value
+                    for key, value in source.items()
+                    if key not in _online_sources.GITHUB_MANAGED_FIELDS
+                }
+            )
+        candidate = _online_sources.build_online_config(
+            sources,
+            updated_at=current_config.get("updated_at"),
+        )
+        return _online_sources.apply_online_source_config_operation(
+            root_dir,
+            candidate,
+            operation_kind="unbind",
+            base_config_digest=current_digest,
+            summary=_empty_summary(),
+        )

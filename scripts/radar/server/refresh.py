@@ -49,12 +49,22 @@ from scripts.radar.server.cdp import (
 
 """Refresh orchestration and local maintenance actions."""
 
-def json_response(handler: SimpleHTTPRequestHandler, status: int, payload: dict[str, Any]) -> None:
+def json_response(
+    handler: SimpleHTTPRequestHandler,
+    status: int,
+    payload: dict[str, Any],
+    *,
+    headers: dict[str, str] | None = None,
+) -> None:
     body = json.dumps(payload, ensure_ascii=False, indent=2).encode("utf-8")
     handler.send_response(status)
     handler.send_header("Content-Type", "application/json; charset=utf-8")
     handler.send_header("Content-Length", str(len(body)))
     handler.send_header("Cache-Control", "no-store")
+    for name, value in (headers or {}).items():
+        if "\r" in name or "\n" in name or "\r" in value or "\n" in value:
+            raise ValueError("invalid response header")
+        handler.send_header(name, value)
     handler.end_headers()
     handler.wfile.write(body)
 
