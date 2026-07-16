@@ -1,7 +1,10 @@
+import http.client
 import json
 import subprocess
+import threading
 import unittest
 from datetime import datetime, timedelta, timezone
+from http.server import ThreadingHTTPServer
 from pathlib import Path
 from unittest.mock import patch
 
@@ -9,6 +12,7 @@ from scripts.local_server import (
     CONFIG_FILENAME,
     BILIBILI_DEFAULT_COOKIE_FILE,
     BILIBILI_PROFILE_DIR,
+    LocalRadarHandler,
     PURGE_TRACKED_SITE_IDS,
     alive_source_names_by_site,
     bilibili_cookie_status,
@@ -48,6 +52,7 @@ from scripts.local_server import (
     write_youtube_subscriptions,
 )
 from scripts.radar.server.subscriptions_store import deleted_source_names_by_site
+from scripts.radar.server import github_stars, online_sources
 
 
 class LocalServerTests(unittest.TestCase):
@@ -670,7 +675,12 @@ class LocalServerTests(unittest.TestCase):
     def test_write_online_source_config_blocks_bulk_delete(self):
         root = Path(self.create_temp_dir())
         existing_sources = [
-            {"name": f"Source {index}", "type": "rss", "locator": f"https://example.com/{index}.xml"}
+            {
+                "id": f"source_{index}",
+                "name": f"Source {index}",
+                "type": "rss",
+                "locator": f"https://example.com/{index}.xml",
+            }
             for index in range(20)
         ]
         config_path = root / "config" / "online-sources.json"
@@ -686,7 +696,12 @@ class LocalServerTests(unittest.TestCase):
     def test_write_online_source_config_allows_confirmed_bulk_delete(self):
         root = Path(self.create_temp_dir())
         existing_sources = [
-            {"name": f"Source {index}", "type": "rss", "locator": f"https://example.com/{index}.xml"}
+            {
+                "id": f"source_{index}",
+                "name": f"Source {index}",
+                "type": "rss",
+                "locator": f"https://example.com/{index}.xml",
+            }
             for index in range(20)
         ]
         config_path = root / "config" / "online-sources.json"
@@ -703,7 +718,12 @@ class LocalServerTests(unittest.TestCase):
     def test_write_online_source_config_allows_single_delete(self):
         root = Path(self.create_temp_dir())
         existing_sources = [
-            {"name": f"Source {index}", "type": "rss", "locator": f"https://example.com/{index}.xml"}
+            {
+                "id": f"source_{index}",
+                "name": f"Source {index}",
+                "type": "rss",
+                "locator": f"https://example.com/{index}.xml",
+            }
             for index in range(20)
         ]
         config_path = root / "config" / "online-sources.json"
@@ -765,6 +785,106 @@ class LocalServerTests(unittest.TestCase):
         pending = json.loads((root / "data" / "pending-purge.json").read_text(encoding="utf-8"))
         self.assertEqual(result["purged_items"]["deferred"], {"bilibili_dynamic": ["李四"]})
         self.assertEqual(pending["sources"], {"bilibili_dynamic": ["李四"]})
+
+    def test_transactional_save_queues_purge_before_write_and_cancels_it_on_failure(self):
+        sources = [
+            {"name": "张三", "type": "bilibili_dynamic", "locator": "111"},
+            {"name": "李四", "type": "bilibili_dynamic", "locator": "222"},
+        ]
+        root, _origin, _peer = self.create_sync_git_repositories({"sources": sources})
+        archive_path = root / "data" / "archive.json"
+        archive_path.write_text(
+            json.dumps(
+                {
+                    "items": [
+                        {"site_id": "bilibili_dynamic", "source": "李四", "title": "必须保留"}
+                    ],
+                    "total_items": 1,
+                },
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+        archive_before = archive_path.read_bytes()
+        current = read_online_source_config(root)
+        events = []
+        original_queue = queue_pending_purge
+        original_replace = online_sources.atomic_replace_bytes
+        config_path = root / "config" / "online-sources.json"
+        failed = False
+
+        def record_queue(*args, **kwargs):
+            events.append("queue")
+            return original_queue(*args, **kwargs)
+
+        def fail_config_once(path, content):
+            nonlocal failed
+            if path == config_path and not failed:
+                failed = True
+                events.append("config_replace")
+                raise OSError("injected config failure")
+            return original_replace(path, content)
+
+        with patch("scripts.local_server.queue_pending_purge", side_effect=record_queue), patch.object(
+            online_sources,
+            "atomic_replace_bytes",
+            side_effect=fail_config_once,
+        ):
+            with self.assertRaises(online_sources.OnlineSourcesError) as raised:
+                save_online_source_config(
+                    root,
+                    {"sources": [sources[0]]},
+                    if_match=current["etag"],
+                )
+
+        self.assertEqual(raised.exception.code, "online_sources_write_failed")
+        self.assertEqual(events[:2], ["queue", "config_replace"])
+        self.assertEqual(archive_path.read_bytes(), archive_before)
+        pending = json.loads((root / "data" / "pending-purge.json").read_text(encoding="utf-8"))
+        self.assertEqual(pending["sources"], {})
+
+    def test_managed_source_tampering_is_rejected_before_purge(self):
+        root = Path(self.create_temp_dir())
+        config_path = root / "config" / "online-sources.json"
+        config_path.parent.mkdir(parents=True)
+        managed_source = {
+            "id": "online_github_repo_987654321",
+            "name": "owner/repo",
+            "type": "github_release",
+            "enabled": True,
+            "channel": "GitHub Release",
+            "target": "owner/repo",
+            "locator": "owner/repo",
+            "env": "",
+            "notes": "只追踪 release",
+            "managed_by": "github_stars",
+            "managed_account_id": 12345678,
+            "managed_repo_id": 987654321,
+            "managed_state": "active",
+        }
+        config_path.write_text(
+            json.dumps(
+                {
+                    "github_star_sync": {
+                        "version": 1,
+                        "account_id": 12345678,
+                        "account_login": "example-user",
+                    },
+                    "sources": [managed_source],
+                }
+            ),
+            encoding="utf-8",
+        )
+        before = config_path.read_bytes()
+        tampered = {**managed_source, "enabled": False}
+
+        with patch("scripts.local_server.purge_or_defer_source_config") as purge_mock:
+            with self.assertRaisesRegex(ValueError, "^github_star_managed_fields_readonly:"):
+                save_online_source_config(root, {"sources": [tampered]})
+
+        purge_mock.assert_not_called()
+        self.assertEqual(config_path.read_bytes(), before)
+        self.assertFalse((root / "data" / "pending-purge.json").exists())
 
     def test_pending_purge_merges_multiple_saves(self):
         root = Path(self.create_temp_dir())
@@ -875,6 +995,182 @@ class LocalServerTests(unittest.TestCase):
         sync_mock.assert_called_once_with(root, None)
         self.assertEqual(result["purged_items"], {"archive.json": 2})
 
+    def test_fresh_preflight_allows_remote_data_only_commits_without_mutating_local_state(self):
+        root, origin, peer = self.create_sync_git_repositories(self.online_source_payload("initial"))
+        peer_data = peer / "data" / "latest-24h.json"
+        peer_data.write_text('{"version":"remote-data"}\n', encoding="utf-8")
+        self.git(peer, "add", "data/latest-24h.json")
+        self.git(peer, "commit", "-m", "remote data snapshot")
+        self.git(peer, "push")
+        head_before = self.git(root, "rev-parse", "HEAD").stdout.strip()
+        status_before = self.git(root, "status", "--porcelain=v1").stdout
+        stash_before = self.git(root, "stash", "list", "--format=%H %s").stdout
+
+        target = online_sources.fresh_git_preflight(root)
+
+        self.assertEqual(target["pre_head"], head_before)
+        self.assertEqual(target["branch"], "master")
+        self.assertEqual(target["remote_name"], "origin")
+        self.assertEqual(target["remote_ref"], "refs/heads/master")
+        self.assertEqual(target["fetched_oid"], self.git(origin, "rev-parse", "master").stdout.strip())
+        self.assertRegex(target["fetch_url_digest"], "^[0-9a-f]{64}$")
+        self.assertEqual(target["fetch_url_digest"], target["push_url_digest"])
+        self.assertEqual(self.git(root, "rev-parse", "HEAD").stdout.strip(), head_before)
+        self.assertEqual(self.git(root, "status", "--porcelain=v1").stdout, status_before)
+        self.assertEqual(self.git(root, "stash", "list", "--format=%H %s").stdout, stash_before)
+
+    def test_github_star_apply_no_change_and_unbind_use_real_safe_git_transaction(self):
+        root, origin, _peer = self.create_sync_git_repositories(
+            self.online_source_payload("initial")
+        )
+        archive_path = root / "data" / "archive.json"
+        archive_path.write_text('{"items":[{"id":"keep-history"}]}\n', encoding="utf-8")
+        archive_before = archive_path.read_bytes()
+        snapshot = {
+            "account": {"id": 12345678, "login": "example-user"},
+            "repositories": [{"id": 987654321, "full_name": "owner/starred-repo"}],
+            "starred_count": 1,
+            "private_skipped_count": 0,
+        }
+
+        with patch.object(github_stars, "fetch_github_star_snapshot", return_value=snapshot):
+            preview = github_stars.preview_github_star_sync(root, {"username": "example-user"})
+            applied = github_stars.apply_github_star_sync(
+                root,
+                {
+                    "account_id": 12345678,
+                    "preview_hash": preview["preview_hash"],
+                },
+            )
+
+        self.assertEqual(applied["outcome"], "pushed", applied)
+        self.assertEqual(
+            self.git(root, "rev-parse", "HEAD").stdout.strip(),
+            self.git(origin, "rev-parse", "master").stdout.strip(),
+        )
+        managed = next(
+            source
+            for source in applied["sources"]
+            if source.get("managed_repo_id") == 987654321
+        )
+        self.assertEqual(managed["id"], "online_github_repo_987654321")
+        before_repeat = {
+            "head": self.git(root, "rev-parse", "HEAD").stdout.strip(),
+            "config": (root / "config" / "online-sources.json").read_bytes(),
+            "opml": (root / "feeds" / "online-sources.opml").read_bytes(),
+            "updated_at": applied["config"]["updated_at"],
+        }
+
+        with patch.object(github_stars, "fetch_github_star_snapshot", return_value=snapshot):
+            second_preview = github_stars.preview_github_star_sync(root, {})
+            repeated = github_stars.apply_github_star_sync(
+                root,
+                {
+                    "account_id": 12345678,
+                    "preview_hash": second_preview["preview_hash"],
+                },
+            )
+
+        self.assertEqual(repeated["outcome"], "no_change")
+        self.assertEqual(self.git(root, "rev-parse", "HEAD").stdout.strip(), before_repeat["head"])
+        self.assertEqual((root / "config" / "online-sources.json").read_bytes(), before_repeat["config"])
+        self.assertEqual((root / "feeds" / "online-sources.opml").read_bytes(), before_repeat["opml"])
+        self.assertEqual(repeated["config"]["updated_at"], before_repeat["updated_at"])
+
+        unbound = github_stars.unbind_github_star_sync(
+            root,
+            {"account_id": 12345678, "confirmed": True},
+            if_match=repeated["etag"],
+        )
+        restored_source = next(source for source in unbound["sources"] if source["id"] == managed["id"])
+        self.assertEqual(unbound["outcome"], "pushed")
+        self.assertNotIn("github_star_sync", unbound["config"])
+        self.assertEqual(restored_source["enabled"], managed["enabled"])
+        self.assertEqual(restored_source["notes"], managed["notes"])
+        for field in online_sources.GITHUB_MANAGED_FIELDS:
+            self.assertNotIn(field, restored_source)
+        self.assertEqual(archive_path.read_bytes(), archive_before)
+        self.assertFalse((root / "data" / "pending-purge.json").exists())
+
+    def test_fresh_preflight_rejects_non_master_and_existing_index(self):
+        for label in ("branch", "index"):
+            with self.subTest(label=label):
+                root, _origin, _peer = self.create_sync_git_repositories(
+                    self.online_source_payload("initial")
+                )
+                if label == "branch":
+                    self.git(root, "switch", "-c", "feature/not-master")
+                else:
+                    readme = root / "README.md"
+                    readme.write_text("staged user change\n", encoding="utf-8")
+                    self.git(root, "add", "README.md")
+                head_before = self.git(root, "rev-parse", "HEAD").stdout.strip()
+                index_before = self.git(root, "write-tree").stdout.strip()
+
+                with self.assertRaises(online_sources.OnlineSourcesError) as raised:
+                    online_sources.fresh_git_preflight(root)
+
+                self.assertEqual(raised.exception.code, "online_sources_preflight_failed")
+                self.assertEqual(self.git(root, "rev-parse", "HEAD").stdout.strip(), head_before)
+                self.assertEqual(self.git(root, "write-tree").stdout.strip(), index_before)
+
+    def test_fresh_preflight_rejects_dirty_config_before_fetch_or_write(self):
+        root, _origin, _peer = self.create_sync_git_repositories(self.online_source_payload("initial"))
+        config_path = root / "config" / "online-sources.json"
+        config_path.write_text(config_path.read_text(encoding="utf-8") + " ", encoding="utf-8")
+        before = config_path.read_bytes()
+        fetch_head_path = Path(self.git(root, "rev-parse", "--git-path", "FETCH_HEAD").stdout.strip())
+        if not fetch_head_path.is_absolute():
+            fetch_head_path = root / fetch_head_path
+        fetch_head_before = fetch_head_path.read_bytes() if fetch_head_path.exists() else None
+
+        with self.assertRaises(online_sources.OnlineSourcesError) as raised:
+            online_sources.fresh_git_preflight(root)
+
+        self.assertEqual(raised.exception.code, "online_sources_preflight_failed")
+        self.assertEqual(config_path.read_bytes(), before)
+        fetch_head_after = fetch_head_path.read_bytes() if fetch_head_path.exists() else None
+        self.assertEqual(fetch_head_after, fetch_head_before)
+
+    def test_fresh_preflight_rejects_remote_config_change_and_unknown_ahead_commit(self):
+        for label in ("remote_config", "local_ahead"):
+            with self.subTest(label=label):
+                root, origin, peer = self.create_sync_git_repositories(
+                    self.online_source_payload("initial")
+                )
+                if label == "remote_config":
+                    sync_online_source_config(peer, self.online_source_payload("remote"), push=False)
+                    self.git(peer, "push")
+                else:
+                    readme = root / "README.md"
+                    readme.write_text("local user commit\n", encoding="utf-8")
+                    self.git(root, "add", "README.md")
+                    self.git(root, "commit", "-m", "user ahead commit")
+                local_head = self.git(root, "rev-parse", "HEAD").stdout.strip()
+                remote_head = self.git(origin, "rev-parse", "master").stdout.strip()
+                config_before = (root / "config" / "online-sources.json").read_bytes()
+
+                with self.assertRaises(online_sources.OnlineSourcesError) as raised:
+                    online_sources.fresh_git_preflight(root)
+
+                self.assertEqual(raised.exception.code, "online_sources_preflight_failed")
+                self.assertEqual(self.git(root, "rev-parse", "HEAD").stdout.strip(), local_head)
+                self.assertEqual(self.git(origin, "rev-parse", "master").stdout.strip(), remote_head)
+                self.assertEqual((root / "config" / "online-sources.json").read_bytes(), config_before)
+
+    def test_fresh_preflight_rejects_fetch_and_push_remote_mismatch(self):
+        root, _origin, _peer = self.create_sync_git_repositories(self.online_source_payload("initial"))
+        second_origin = root.parent / "second-origin.git"
+        self.git(root.parent, "init", "--bare", str(second_origin))
+        self.git(root, "remote", "set-url", "--push", "origin", str(second_origin))
+        head_before = self.git(root, "rev-parse", "HEAD").stdout.strip()
+
+        with self.assertRaises(online_sources.OnlineSourcesError) as raised:
+            online_sources.fresh_git_preflight(root)
+
+        self.assertEqual(raised.exception.code, "online_sources_preflight_failed")
+        self.assertEqual(self.git(root, "rev-parse", "HEAD").stdout.strip(), head_before)
+
     def test_sync_online_source_config_commits_only_public_config_files(self):
         root = Path(self.create_temp_dir())
 
@@ -915,7 +1211,7 @@ class LocalServerTests(unittest.TestCase):
             stdout=subprocess.PIPE,
         ).stdout
 
-        self.assertTrue(result["synced"])
+        self.assertTrue(result["synced"], result)
         self.assertFalse(result["pushed"])
         self.assertIn("config/online-sources.json", show)
         self.assertIn("feeds/online-sources.opml", show)
@@ -957,6 +1253,120 @@ class LocalServerTests(unittest.TestCase):
         remote_log = self.git(origin, "log", "--oneline", "--all").stdout
         self.assertIn("配置：同步线上信源", remote_log)
 
+    def test_sync_online_source_config_rejects_remote_non_data_changes_without_overwrite(self):
+        root, origin, peer = self.create_sync_git_repositories()
+        data_path = root / "data" / "latest-24h.json"
+        data_path.write_text('{"version":"local"}\n', encoding="utf-8")
+        head_before = self.git(root, "rev-parse", "HEAD").stdout.strip()
+        readme_before = (root / "README.md").read_bytes()
+        stash_before = self.git(root, "stash", "list", "--format=%H%x09%gs").stdout
+        peer_readme_path = peer / "README.md"
+        peer_readme_path.write_text("remote update\n", encoding="utf-8")
+        self.git(peer, "add", "README.md")
+        self.git(peer, "commit", "-m", "remote clean path update")
+        self.git(peer, "push")
+        remote_head = self.git(peer, "rev-parse", "HEAD").stdout.strip()
+
+        with self.assertRaises(online_sources.OnlineSourcesError) as raised:
+            sync_online_source_config(root, self.online_source_payload("local"), push=True)
+
+        self.assertEqual(raised.exception.code, "online_sources_preflight_failed")
+        self.assertEqual(raised.exception.details.get("reason"), "remote_non_data_changes")
+        self.assertEqual(self.git(root, "rev-parse", "HEAD").stdout.strip(), head_before)
+        self.assertEqual(data_path.read_text(encoding="utf-8"), '{"version":"local"}\n')
+        self.assertEqual((root / "README.md").read_bytes(), readme_before)
+        self.assertEqual(self.git(origin, "rev-parse", "master").stdout.strip(), remote_head)
+        self.assertEqual(
+            self.git(origin, "show", "master:README.md").stdout,
+            "remote update\n",
+        )
+        self.assertEqual(
+            self.git(root, "stash", "list", "--format=%H%x09%gs").stdout,
+            stash_before,
+        )
+        self.assertFalse(online_sources.operation_manifest_path(root).exists())
+
+    def test_sync_online_source_config_restores_named_paths_by_stash_oid(self):
+        import scripts.radar.server.online_sources as online_sources
+
+        root, _origin, peer = self.create_sync_git_repositories()
+        special_relative_path = "data/中文 路径.json"
+        special_path = root / special_relative_path
+        special_path.write_text('{"version":"initial-special"}\n', encoding="utf-8")
+        self.git(root, "add", "--", special_relative_path)
+        self.git(root, "commit", "-m", "add unicode data path")
+        self.git(root, "push")
+        self.git(peer, "pull", "--ff-only")
+
+        readme_path = root / "README.md"
+        readme_path.write_text("legacy local draft\n", encoding="utf-8")
+        self.git(root, "stash", "push", "-m", "legacy-user-stash", "--", "README.md")
+        legacy_stash_oid = self.git(root, "rev-parse", "refs/stash").stdout.strip()
+
+        special_path.write_text('{"version":"local-special"}\n', encoding="utf-8")
+        peer_data_path = peer / "data" / "latest-24h.json"
+        peer_data_path.write_text('{"version":"remote"}\n', encoding="utf-8")
+        self.git(peer, "add", "data/latest-24h.json")
+        self.git(peer, "commit", "-m", "remote data update")
+        self.git(peer, "push")
+
+        original_git_checked = online_sources.git_checked
+        injected_stash_oid = {"value": ""}
+
+        def git_checked_with_interleaved_stash(root_dir, args, timeout=60):
+            completed = original_git_checked(root_dir, args, timeout=timeout)
+            if args and args[0] == "rebase" and not injected_stash_oid["value"]:
+                injected_readme_path = Path(root_dir) / "README.md"
+                injected_readme_path.write_text("interleaved local draft\n", encoding="utf-8")
+                self.git(root_dir, "stash", "push", "-m", "interleaved-user-stash", "--", "README.md")
+                injected_stash_oid["value"] = self.git(root_dir, "rev-parse", "refs/stash").stdout.strip()
+            return completed
+
+        with patch.object(online_sources, "git_checked", side_effect=git_checked_with_interleaved_stash):
+            result = sync_online_source_config(root, self.online_source_payload("local"), push=True)
+
+        self.assertTrue(result["synced"])
+        self.assertTrue(result["pushed"])
+        self.assertEqual(special_path.read_text(encoding="utf-8"), '{"version":"local-special"}\n')
+        unstaged_paths = {
+            path for path in self.git(root, "diff", "--name-only", "-z").stdout.split("\0") if path
+        }
+        staged_paths = {
+            path
+            for path in self.git(root, "diff", "--cached", "--name-only", "-z").stdout.split("\0")
+            if path
+        }
+        self.assertIn(special_relative_path, unstaged_paths)
+        self.assertNotIn(special_relative_path, staged_paths)
+        remaining_stash_oids = {
+            line.split(" ", 1)[0]
+            for line in self.git(root, "stash", "list", "--format=%H %s").stdout.splitlines()
+            if line
+        }
+        self.assertEqual(
+            remaining_stash_oids,
+            {legacy_stash_oid, injected_stash_oid["value"]},
+        )
+
+    def test_sync_online_source_config_rejects_existing_index_without_mutating_it(self):
+        initial_payload = self.online_source_payload("initial")
+        root, _origin, _peer = self.create_sync_git_repositories(initial_payload)
+        data_path = root / "data" / "latest-24h.json"
+        data_path.write_text('{"version":"staged"}\n', encoding="utf-8")
+        self.git(root, "add", "data/latest-24h.json")
+        index_tree_before = self.git(root, "write-tree").stdout.strip()
+        head_before = self.git(root, "rev-parse", "HEAD").stdout.strip()
+        stash_before = self.git(root, "stash", "list", "--format=%H %s").stdout
+
+        with self.assertRaises(online_sources.OnlineSourcesError) as raised:
+            sync_online_source_config(root, None, push=True)
+
+        self.assertEqual(raised.exception.code, "online_sources_preflight_failed")
+        self.assertEqual(raised.exception.details.get("reason"), "index_not_clean")
+        self.assertEqual(self.git(root, "write-tree").stdout.strip(), index_tree_before)
+        self.assertEqual(self.git(root, "rev-parse", "HEAD").stdout.strip(), head_before)
+        self.assertEqual(self.git(root, "stash", "list", "--format=%H %s").stdout, stash_before)
+
     def test_sync_online_source_config_without_tracked_changes_does_not_create_stash(self):
         root, _origin, _peer = self.create_sync_git_repositories()
         untracked_path = root / "output" / "local.txt"
@@ -965,7 +1375,7 @@ class LocalServerTests(unittest.TestCase):
 
         result = sync_online_source_config(root, self.online_source_payload("clean"), push=True)
 
-        self.assertTrue(result["synced"])
+        self.assertTrue(result["synced"], result)
         self.assertTrue(result["pushed"])
         self.assertTrue(untracked_path.exists())
         self.assertEqual(self.git(root, "stash", "list").stdout.strip(), "")
@@ -975,16 +1385,36 @@ class LocalServerTests(unittest.TestCase):
         root, _origin, peer = self.create_sync_git_repositories(initial_payload)
         data_path = root / "data" / "latest-24h.json"
         data_path.write_text('{"version":"local"}\n', encoding="utf-8")
-        sync_online_source_config(peer, self.online_source_payload("online"), push=False)
+        peer_data_path = peer / "data" / "latest-24h.json"
+        peer_data_path.write_text('{"version":"remote"}\n', encoding="utf-8")
+        self.git(peer, "add", "data/latest-24h.json")
+        self.git(peer, "commit", "-m", "remote data update")
         self.git(peer, "push")
 
-        with self.assertRaisesRegex(ValueError, "online_sources_rebase_failed"):
-            sync_online_source_config(root, self.online_source_payload("local"), push=True)
+        original_git_checked = online_sources.git_checked
 
+        def fail_rebase(root_dir, args, timeout=60):
+            if args and args[0] == "rebase":
+                raise RuntimeError("injected rebase conflict")
+            return original_git_checked(root_dir, args, timeout=timeout)
+
+        with patch.object(online_sources, "git_checked", side_effect=fail_rebase):
+            result = sync_online_source_config(root, self.online_source_payload("local"), push=True)
+
+        self.assertEqual(result["outcome"], "committed_not_pushed")
+        self.assertTrue(result["partial"])
         self.assertEqual(data_path.read_text(encoding="utf-8"), '{"version":"local"}\n')
         self.assertEqual(self.git(root, "stash", "list").stdout.strip(), "")
         status = self.git(root, "status", "--porcelain").stdout.splitlines()
         self.assertFalse(any(line.startswith(("UU ", "AA ", "DD ")) for line in status))
+        self.assertNotIn(
+            "data/latest-24h.json",
+            self.git(root, "diff", "--cached", "--name-only").stdout.splitlines(),
+        )
+        rebase_merge_path = Path(self.git(root, "rev-parse", "--git-path", "rebase-merge").stdout.strip())
+        rebase_apply_path = Path(self.git(root, "rev-parse", "--git-path", "rebase-apply").stdout.strip())
+        self.assertFalse((root / rebase_merge_path).exists())
+        self.assertFalse((root / rebase_apply_path).exists())
 
     def test_refresh_command_uses_fixed_local_update_script(self):
         root = Path("E:/AI-news-reader/ai-news-radar-run")
@@ -1175,6 +1605,45 @@ class LocalServerTests(unittest.TestCase):
         self.assertIn("open_bilibili_login", action_ids)
         self.assertIn("sync_bilibili_cookie", action_ids)
         self.assertIn("open_bilibili_cookie_folder", action_ids)
+
+    def test_github_partial_status_is_yellow_and_preserves_counters(self):
+        issues = maintenance_issues_from_status(
+            {
+                "sites": [
+                    {
+                        "site_id": "github_foundation_sunshine_releases",
+                        "site_name": "GitHub Release",
+                        "ok": False,
+                        "partial": True,
+                        "succeeded_count": 1,
+                        "expected_skip_count": 2,
+                        "failed_count": 1,
+                        "deferred_count": 3,
+                        "item_count": 1,
+                    }
+                ]
+            }
+        )
+        self.assertEqual(len(issues), 1)
+        self.assertEqual(issues[0]["severity"], "warn")
+        self.assertIn("成功 1 个", issues[0]["detail"])
+        self.assertIn("延后 3 个", issues[0]["detail"])
+
+    def test_github_empty_repository_does_not_create_zero_item_warning(self):
+        issues = maintenance_issues_from_status(
+            {
+                "sites": [
+                    {
+                        "site_id": "github_foundation_sunshine_releases",
+                        "site_name": "GitHub Release",
+                        "ok": True,
+                        "item_count": 0,
+                        "skip_reason": "empty_repository",
+                    }
+                ]
+            }
+        )
+        self.assertEqual(issues, [])
 
     def test_bilibili_cookie_status_uses_default_local_file(self):
         root = Path(self.create_temp_dir())
@@ -2348,6 +2817,7 @@ class LocalServerTests(unittest.TestCase):
         self.git(root, "init", "-b", "master")
         self.git(root, "config", "user.name", "Test")
         self.git(root, "config", "user.email", "test@example.com")
+        self.git(root, "config", "core.autocrlf", "false")
         data_path = root / "data" / "latest-24h.json"
         data_path.parent.mkdir()
         data_path.write_text('{"version":"initial"}\n', encoding="utf-8")
@@ -2361,7 +2831,215 @@ class LocalServerTests(unittest.TestCase):
         self.git(base, "clone", str(origin), str(peer))
         self.git(peer, "config", "user.name", "Test")
         self.git(peer, "config", "user.email", "test@example.com")
+        self.git(peer, "config", "core.autocrlf", "false")
         return root, origin, peer
+
+
+class LocalGitHubStarsApiTests(unittest.TestCase):
+    class QuietHandler(LocalRadarHandler):
+        def log_message(self, _format, *args):
+            return
+
+    def setUp(self):
+        self.temp_dir = self.enterContext(
+            __import__("tempfile").TemporaryDirectory(prefix="github-stars-api-")
+        )
+        self.root = Path(self.temp_dir)
+        self.server = ThreadingHTTPServer(("127.0.0.1", 0), self.QuietHandler)
+        self.server.root_dir = str(self.root)
+        self.thread = threading.Thread(target=self.server.serve_forever, daemon=True)
+        self.thread.start()
+        self.addCleanup(self.stop_server)
+
+    def stop_server(self):
+        self.server.shutdown()
+        self.server.server_close()
+        self.thread.join(2)
+
+    def request(self, method, path, payload=None, *, content_type="application/json", headers=None):
+        body = None if payload is None else json.dumps(payload).encode("utf-8")
+        origin = f"http://127.0.0.1:{self.server.server_address[1]}"
+        request_headers = {"Origin": origin, "Referer": origin + "/"}
+        if body is not None:
+            request_headers["Content-Type"] = content_type
+            request_headers["Content-Length"] = str(len(body))
+        request_headers.update(headers or {})
+        connection = http.client.HTTPConnection(*self.server.server_address, timeout=5)
+        try:
+            connection.request(method, path, body=body, headers=request_headers)
+            response = connection.getresponse()
+            raw = response.read()
+            return response.status, dict(response.getheaders()), json.loads(raw.decode("utf-8"))
+        finally:
+            connection.close()
+
+    @patch("scripts.local_server.preview_github_star_sync")
+    def test_preview_route_uses_strict_json_gate_and_small_body(self, preview_mock):
+        preview_mock.return_value = {
+            "ok": True,
+            "preview_hash": "1" * 64,
+            "base_config_digest": "2" * 64,
+        }
+
+        status, _headers, body = self.request(
+            "POST",
+            "/api/github-stars/preview",
+            {"username": "example-user"},
+        )
+
+        self.assertEqual(status, 200)
+        self.assertTrue(body["ok"])
+        preview_mock.assert_called_once_with(self.root, {"username": "example-user"})
+
+        preview_mock.reset_mock()
+        status, _headers, body = self.request(
+            "POST",
+            "/api/github-stars/preview",
+            {"username": "example-user"},
+            content_type="application/json-evil",
+        )
+        self.assertEqual(status, 415)
+        self.assertEqual(body["error"], "json_required")
+        preview_mock.assert_not_called()
+
+        status, _headers, body = self.request(
+            "POST",
+            "/api/github-stars/preview",
+            {"username": "x" * 5000},
+        )
+        self.assertEqual(status, 400)
+        self.assertEqual(body["error"], "invalid_content_length")
+        preview_mock.assert_not_called()
+
+    @patch("scripts.local_server.apply_github_star_sync")
+    def test_apply_rejects_client_summary_before_service(self, apply_mock):
+        status, _headers, body = self.request(
+            "POST",
+            "/api/github-stars/apply",
+            {
+                "account_id": 12345678,
+                "preview_hash": "1" * 64,
+                "summary": {"added": []},
+            },
+        )
+
+        self.assertEqual(status, 400)
+        self.assertEqual(body["error"], "invalid_request_fields")
+        apply_mock.assert_not_called()
+
+    @patch("scripts.local_server.preview_github_star_sync")
+    def test_structured_service_error_does_not_return_exception_text(self, preview_mock):
+        preview_mock.side_effect = online_sources.OnlineSourcesError(
+            "online_sources_busy",
+            status_code=409,
+        )
+
+        status, _headers, body = self.request(
+            "POST",
+            "/api/github-stars/preview",
+            {"username": "example-user"},
+        )
+
+        self.assertEqual(status, 409)
+        self.assertEqual(body, {"ok": False, "error": "online_sources_busy"})
+
+    def test_get_online_config_emits_matching_http_etag(self):
+        source = {
+            "id": "rss_one",
+            "name": "Feed One",
+            "type": "rss",
+            "enabled": True,
+            "channel": "RSS/YouTube",
+            "target": "Feed One",
+            "locator": "https://example.com/one.xml",
+            "env": "",
+            "notes": "public feed",
+        }
+        config = online_sources.build_online_config(
+            [source],
+            updated_at="2026-07-16T00:00:00Z",
+        )
+        online_sources.write_json_atomic(online_sources.online_config_path(self.root), config)
+        online_sources.write_online_opml(self.root, [source])
+        with patch.object(online_sources, "audit_online_source_operation", return_value=None):
+            status, headers, body = self.request("GET", "/api/online-source-config")
+
+        self.assertEqual(status, 200)
+        self.assertEqual(headers["ETag"], body["etag"])
+        self.assertEqual(body["recovery"], None)
+
+    @patch("scripts.local_server.save_online_source_config")
+    def test_save_requires_if_match_before_service(self, save_mock):
+        status, _headers, body = self.request(
+            "POST",
+            "/api/online-source-config",
+            {"sources": []},
+        )
+
+        self.assertEqual(status, 409)
+        self.assertEqual(body["error"], "online_sources_config_stale")
+        save_mock.assert_not_called()
+
+    @patch("scripts.local_server.save_online_source_config")
+    def test_save_maps_managed_field_violation_without_leaking_text(self, save_mock):
+        save_mock.side_effect = ValueError(
+            "github_star_managed_fields_readonly: secret payload details"
+        )
+        status, _headers, body = self.request(
+            "POST",
+            "/api/online-source-config",
+            {"sources": []},
+            headers={"If-Match": '"' + "7" * 64 + '"'},
+        )
+
+        self.assertEqual(status, 409)
+        self.assertEqual(body, {"ok": False, "error": "github_star_managed_fields_readonly"})
+        self.assertNotIn("secret", json.dumps(body))
+
+    @patch("scripts.local_server.unbind_github_star_sync")
+    def test_unbind_passes_if_match_and_returns_new_etag(self, unbind_mock):
+        etag = '"' + "4" * 64 + '"'
+        unbind_mock.return_value = {
+            "ok": True,
+            "outcome": "pushed",
+            "etag": etag,
+        }
+
+        status, headers, body = self.request(
+            "POST",
+            "/api/github-stars/unbind",
+            {"account_id": 12345678, "confirmed": True},
+            headers={"If-Match": '"' + "3" * 64 + '"'},
+        )
+
+        self.assertEqual(status, 200)
+        self.assertEqual(headers["ETag"], etag)
+        self.assertEqual(body["outcome"], "pushed")
+        unbind_mock.assert_called_once_with(
+            self.root,
+            {"account_id": 12345678, "confirmed": True},
+            if_match='"' + "3" * 64 + '"',
+        )
+
+    @patch("scripts.radar.server.online_sources.recover_online_source_operation")
+    def test_recovery_route_maps_stale_manifest_to_409(self, recovery_mock):
+        recovery_mock.side_effect = online_sources.OnlineSourcesError(
+            "online_sources_recovery_mismatch",
+            status_code=409,
+        )
+
+        status, _headers, body = self.request(
+            "POST",
+            "/api/online-source-config/recovery",
+            {
+                "action": "retry_push",
+                "operation_id": "old-operation",
+                "manifest_digest": "5" * 64,
+            },
+        )
+
+        self.assertEqual(status, 409)
+        self.assertEqual(body["error"], "online_sources_recovery_mismatch")
 
 
 if __name__ == "__main__":

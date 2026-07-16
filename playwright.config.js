@@ -17,16 +17,19 @@ const testServerCode = [
   "raise SystemExit(m.main())",
 ].join("; ");
 
+const e2ePort = 18080;
+const e2eBaseURL = `http://127.0.0.1:${e2ePort}`;
+
 module.exports = defineConfig({
   testDir: "tests/e2e",
   timeout: 30000,
   use: {
-    baseURL: "http://127.0.0.1:8080",
+    baseURL: e2eBaseURL,
     timezoneId: "Asia/Singapore",
   },
   webServer: {
-    command: `.\\.venv\\Scripts\\python.exe -c "${testServerCode}"`,
-    url: "http://127.0.0.1:8080/api/local-status",
+    command: `.\\.venv\\Scripts\\python.exe -c "${testServerCode}" --host 127.0.0.1 --port ${e2ePort}`,
+    url: `${e2eBaseURL}/api/local-status`,
     reuseExistingServer: false,
     timeout: 30000,
   },

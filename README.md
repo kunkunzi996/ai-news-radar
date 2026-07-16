@@ -318,6 +318,22 @@ https://kunkunzi996.github.io/ai-news-radar/data/source-status.json
 或任何私密文件。公网 GitHub Pages 是静态页，不能直接写 GitHub；要改线上信源，
 请用本机 `127.0.0.1:8080` 控制台。
 
+### GitHub 星标安全同步（V3）
+
+本地控制台还提供 GitHub 星标同步入口。它只读取公开星标，不需要 Preview token、
+TTL、cursor 或 GitHub 登录态；绑定记录保存数字 `account_id`，托管仓库保存数字
+`repo_id`。每次同步都先 Preview，再由用户勾选确认后 Apply。
+
+- 只支持单个 GitHub 账号，最多处理 50 个公开星标；出现第 51 个公开星标时整次中止。
+- 非公开仓库只计入跳过数量，不展示名称、URL 或 id。
+- Release 优先；没有 Release 时才读取公开 commit，并按稳定仓库身份每天 UTC 最多保留一个最新 commit 快照。
+- 取消星标只会自动停用托管源，不删除源、不触发 pending-purge，历史按 `archive_days` 自然老化。
+- 页面会明确显示 `无变化`、`已推送`、`已保存，待提交`、`已提交，待推送`，以及 partial/deferred、stale 和 Recovery 状态。
+- Apply 只允许经过 manifest、operation trailer、稳定 patch-id 和文件哈希核对的精确操作提交；不会使用裸 `git push` 或全仓库恢复。
+
+V3 代码已完成自动化和 mock 浏览器验收，当前仍待用户授权真实账号的首次 Preview/Apply；
+在真实配置推送前，不应把它描述为已上线。
+
 推荐流程：
 
 1. 启动本地小后台：

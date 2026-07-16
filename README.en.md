@@ -231,6 +231,23 @@ When a new agent takes over validation, read these first:
 - Archive retention is controlled by the `ARCHIVE_DAYS` variable (default 180); AI filtering by `AI_RELEVANCE_THRESHOLD` (`0` in this deployment = no filtering)
 - AgentMail, X API, SocialData, TikHub, and WaytoAGI are no longer part of the default deployment output. To restore the old all-sources mode, run `python scripts/update_news.py --source-scope all_sources ...` locally
 
+### Safe GitHub starred-repository sync (V3)
+
+The local console also includes a GitHub starred-repository sync flow. It reads public stars only;
+there is no Preview token, TTL, cursor, or GitHub login state. The binding stores a numeric
+`account_id`, and managed repositories store numeric `repo_id` values. Every run starts with
+Preview and requires an explicit confirmation before Apply.
+
+- One GitHub account is supported, with at most 50 public stars; the 51st public star aborts the entire run.
+- Private repositories contribute only to a skipped count; their names, URLs, and ids are never shown.
+- Releases are preferred. Only when a repository has no Release does the fetcher read public commits, keeping at most one newest commit snapshot per stable repository identity per UTC day.
+- Unstarring only disables the managed source. It does not delete the source or trigger pending purge; history ages out under `archive_days`.
+- The UI reports `no_change`, `pushed`, `saved_not_committed`, and `committed_not_pushed`, plus partial/deferred, stale, and Recovery states.
+- Apply pushes only an exact operation commit proven by its manifest, operation trailer, stable patch-id, and file hashes; it never uses a bare `git push` or whole-worktree restore.
+
+The V3 code is complete and has passed automated and mock-browser checks. A real account Preview/Apply
+is still pending, so this feature must not be described as live before that acceptance.
+
 By default, the core pipeline requires no API keys.
 
 Advanced source templates live in `examples/advanced-sources.env.example`.

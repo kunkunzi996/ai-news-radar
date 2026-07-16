@@ -49,12 +49,22 @@ from scripts.radar.server.cdp import (
 
 """Refresh orchestration and local maintenance actions."""
 
-def json_response(handler: SimpleHTTPRequestHandler, status: int, payload: dict[str, Any]) -> None:
+def json_response(
+    handler: SimpleHTTPRequestHandler,
+    status: int,
+    payload: dict[str, Any],
+    *,
+    headers: dict[str, str] | None = None,
+) -> None:
     body = json.dumps(payload, ensure_ascii=False, indent=2).encode("utf-8")
     handler.send_response(status)
     handler.send_header("Content-Type", "application/json; charset=utf-8")
     handler.send_header("Content-Length", str(len(body)))
     handler.send_header("Cache-Control", "no-store")
+    for name, value in (headers or {}).items():
+        if "\r" in name or "\n" in name or "\r" in value or "\n" in value:
+            raise ValueError("invalid response header")
+        handler.send_header(name, value)
     handler.end_headers()
     handler.wfile.write(body)
 
@@ -446,6 +456,19 @@ def source_status_summary(
                 "error": site.get("error"),
                 "cookie_present": site.get("cookie_present"),
                 "fetch_mode": site.get("fetch_mode"),
+                "partial": site.get("partial"),
+                "eligible_count": site.get("eligible_count"),
+                "attempted_count": site.get("attempted_count"),
+                "succeeded_count": site.get("succeeded_count"),
+                "expected_skip_count": site.get("expected_skip_count"),
+                "failed_count": site.get("failed_count"),
+                "deferred_count": site.get("deferred_count"),
+                "skip_reason": site.get("skip_reason"),
+                "daily_coalesced": site.get("daily_coalesced"),
+                "budget_ms": site.get("budget_ms"),
+                "elapsed_ms": site.get("elapsed_ms"),
+                "overrun_ms": site.get("overrun_ms"),
+                "children": site.get("repos") or site.get("children") or [],
             }
             for site in payload.get("sites", [])
             if isinstance(site, dict)

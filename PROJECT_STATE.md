@@ -38,6 +38,16 @@
   - 方案与施工边界：`计划/微信公众号退订后历史消息残留-修复方案.md`。下一轮先完成本分支验收/保存
     决策；未经逐项授权，不得 commit、push、执行迁移 apply、修改 Actions、触发 workflow、写真实 bridge、
     切换 audit/on 或清理真实数据。
+## GitHub 星标安全同步 V3（2026-07-16）
+
+- 当前分支：`feature/github-star-safe-sync-v3`，已 rebase 到 `origin/master@6c61bf8`；未 push。
+- Task 1→Task 7 已完成施工。Task 6 提交为 `a6f20f3`；Task 7 已同步 README 中英文、`docs/SOURCE_COVERAGE.md` 与本状态/交接记录。
+- 代码完成证据：专项 pytest `344 passed, 91 subtests`；全量 pytest `498 passed, 1 warning, 96 subtests`；Playwright `19 passed`；390/768/1440 mock 浏览器 `6 passed`，0 pageerror、0 console error；编译、Node 语法和 diff 检查通过。
+- 仅完成 mock 与临时仓库证据，真实账号 Preview/Apply、真实配置变更、远端 push 和公网 Actions 尚未授权/执行；当前口径为“代码完成，待真实验收”，不是“已上线”。
+- 固定默认：单账号、最多 50 个公开星标、第 51 个整次中止；每仓库每 UTC 日最多一个最新 commit 快照；取消星标只停用、不删除历史。
+- 真实配置哈希未变：`config/online-sources.json=DB13C860...`，`feeds/online-sources.opml=03C16193...`；用户 stash 未变，仍保留原有一条。
+
+## 历史入口（2026-07-15）
 
 - **2026-07-16 已完成**：订阅源二级栏目统一改为按时间平铺。布局判断已从业务筛选
   `isSubscriptionSection()` 中独立出来，微信公众号只改变列表排版，不改变条目集合、Top3、摘要、来源

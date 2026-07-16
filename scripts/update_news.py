@@ -23,6 +23,7 @@ from scripts.radar.fetchers import waytoagi as _waytoagi  # noqa: E402
 
 BROWSER_UA = _common.BROWSER_UA
 RawItem = _common.RawItem
+create_github_session = _common.create_github_session
 SH_TZ = _common.SH_TZ
 decode_escaped_json = _common.decode_escaped_json
 event_time = _common.event_time
@@ -40,6 +41,7 @@ utc_now = _common.utc_now
 apply_source_config_runtime = _config_runtime.apply_source_config_runtime
 normalize_source_scope = _config_runtime.normalize_source_scope
 source_config_enabled_site_ids = _config_runtime.source_config_enabled_site_ids
+source_config_subscriptions_for_site = _config_runtime.source_config_subscriptions_for_site
 source_ids_for_scope = _config_runtime.source_ids_for_scope
 sync_paid_source_status_timestamps = _config_runtime.sync_paid_source_status_timestamps
 update_paid_source_state = _config_runtime.update_paid_source_state
@@ -56,6 +58,7 @@ calculate_item_importance = _pipeline.calculate_item_importance
 dedupe_items_by_title_url = _pipeline.dedupe_items_by_title_url
 editorial_score = _pipeline.editorial_score
 filter_raw_items_by_collect_window = _pipeline.filter_raw_items_by_collect_window
+prepare_github_items_for_collection_window = _pipeline.prepare_github_items_for_collection_window
 is_ai_related_record = _pipeline.is_ai_related_record
 is_subscription_record = _pipeline.is_subscription_record
 merge_story_items = _pipeline.merge_story_items

@@ -18,10 +18,12 @@ from scripts.update_news import (
     fetch_aihot,
     fetch_ai_hubtoday,
     fetch_github_repo_subscription,
+    create_github_session,
     fetch_maobidao_wechat_subscription,
     fetch_wewe_rss_subscription,
     fetch_hacker_news_algolia,
     filter_raw_items_by_collect_window,
+    prepare_github_items_for_collection_window,
     fetch_socialdata_list_tweets,
     fetch_tikhub_search,
     hn_algolia_keyword_score,
@@ -55,6 +57,7 @@ from scripts.update_news import (
     RawItem,
     apply_source_config_runtime,
     source_config_enabled_site_ids,
+    source_config_subscriptions_for_site,
     source_ids_for_scope,
     source_tier_for_site,
     source_tier_sort_key,
@@ -1402,10 +1405,154 @@ class TopicFilterTests(unittest.TestCase):
             )
 
         github_headers = session.calls[0][1]["headers"]
-        external_headers = session.calls[1][1]["headers"]
+        external_headers = next(kwargs["headers"] for url, kwargs in session.calls if "example.com" in url)
         self.assertEqual(github_headers["Authorization"], "Bearer ghs_test_token")
         self.assertEqual(github_headers["X-GitHub-Api-Version"], "2022-11-28")
         self.assertNotIn("Authorization", external_headers)
+
+    def test_github_release_empty_list_falls_back_to_latest_commit_with_stable_meta(self):
+        class FakeResponse:
+            def __init__(self, payload):
+                self.payload = payload
+
+            def raise_for_status(self):
+                return None
+
+            def json(self):
+                return self.payload
+
+        class FakeSession:
+            def __init__(self):
+                self.calls = []
+
+            def get(self, url, **kwargs):
+                self.calls.append((url, kwargs))
+                if url.endswith("/releases"):
+                    return FakeResponse([])
+                return FakeResponse([
+                    {
+                        "sha": "a" * 40,
+                        "html_url": "https://github.com/example/repo/commit/" + "a" * 40,
+                        "commit": {
+                            "message": "最新提交\n\n详细说明",
+                            "committer": {"date": "2026-07-15T12:00:00Z"},
+                            "author": {"date": "2026-07-15T11:00:00Z"},
+                        },
+                    }
+                ])
+
+        session = FakeSession()
+        items = fetch_github_repo_subscription(
+            session,
+            datetime.fromisoformat("2026-07-16T00:00:00+00:00"),
+            api_url="https://api.github.com/repos/example/repo/releases",
+            repo_label="example/repo",
+            source_id="online_github_manual_abc",
+        )
+
+        self.assertEqual([call[0] for call in session.calls], [
+            "https://api.github.com/repos/example/repo/releases",
+            "https://api.github.com/repos/example/repo/commits",
+        ])
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0].title, "example/repo 提交: 最新提交")
+        self.assertEqual(items[0].meta["github_source_kind"], "commit_fallback")
+        self.assertEqual(items[0].meta["github_entry_identity"], "commit:" + "a" * 40)
+        self.assertEqual(items[0].meta["github_repo_identity"], "online_github_manual_abc")
+        self.assertEqual(items[0].meta["commit_sha"], "a" * 40)
+
+    def test_github_empty_commit_response_is_a_normal_empty_repository(self):
+        class FakeResponse:
+            def raise_for_status(self):
+                return None
+
+            def json(self):
+                return []
+
+        class FakeSession:
+            def get(self, url, **kwargs):
+                return FakeResponse()
+
+        items = fetch_github_repo_subscription(
+            FakeSession(),
+            datetime.fromisoformat("2026-07-16T00:00:00+00:00"),
+            api_url="https://api.github.com/repos/example/repo/releases",
+            repo_label="example/repo",
+        )
+        self.assertEqual(items, [])
+
+    def test_github_session_has_no_automatic_retries(self):
+        session = create_github_session()
+        adapter = session.get_adapter("https://api.github.com")
+        self.assertEqual(adapter.max_retries.total, 0)
+
+    def test_github_source_projection_keeps_source_and_repo_identity(self):
+        config = {
+            "sources": [{
+                "id": "online_github_repo_123",
+                "name": "owner/repo",
+                "type": "github_release",
+                "enabled": True,
+                "locator": "owner/repo",
+                "managed_repo_id": 123,
+            }]
+        }
+        projected = source_config_subscriptions_for_site(config, "github_foundation_sunshine_releases")
+        self.assertEqual(projected[0]["id"], "online_github_repo_123")
+        self.assertEqual(projected[0]["managed_repo_id"], 123)
+
+    def test_github_daily_commit_helper_keeps_seen_and_coalesces_same_utc_day(self):
+        now = datetime.fromisoformat("2026-07-16T12:00:00+00:00")
+        old = RawItem(
+            site_id="github_foundation_sunshine_releases",
+            site_name="GitHub",
+            source="example/repo",
+            title="example/repo 提交: yesterday",
+            url="https://github.com/example/repo/commit/old",
+            published_at=datetime.fromisoformat("2026-01-01T00:00:00+00:00"),
+            meta={
+                "github_source_kind": "commit_fallback",
+                "github_repo_identity": "987",
+                "github_entry_identity": "commit:old",
+            },
+        )
+        current = RawItem(
+            site_id=old.site_id,
+            site_name=old.site_name,
+            source=old.source,
+            title="example/repo 提交: current",
+            url="https://github.com/example/repo/commit/current",
+            published_at=datetime.fromisoformat("2026-01-02T00:00:00+00:00"),
+            meta={
+                "github_source_kind": "commit_fallback",
+                "github_repo_identity": "987",
+                "github_entry_identity": "commit:current",
+            },
+        )
+        archive = {"old-id": {
+            "id": "old-id",
+            "site_id": old.site_id,
+            "source": old.source,
+            "url": old.url,
+            "first_seen_at": "2026-07-15T10:00:00Z",
+            "github_source_kind": "commit_fallback",
+            "github_repo_identity": "987",
+            "github_entry_identity": "commit:old",
+        }}
+        prepared, stats = prepare_github_items_for_collection_window([current], archive, now)
+        self.assertEqual(len(prepared), 1)
+        self.assertTrue(prepared[0].meta["github_window_bypass"])
+        self.assertEqual(stats["daily_coalesced"], 0)
+
+        archive["today-id"] = {
+            **archive["old-id"],
+            "id": "today-id",
+            "first_seen_at": "2026-07-16T10:00:00Z",
+            "github_entry_identity": "commit:earlier-today",
+        }
+        prepared, stats = prepare_github_items_for_collection_window([current], archive, now)
+        self.assertEqual(prepared, [])
+        self.assertEqual(stats["daily_coalesced"], 1)
 
     def test_source_tier_fields_and_sort_put_discussion_after_core_sources(self):
         official = add_source_tier_fields(

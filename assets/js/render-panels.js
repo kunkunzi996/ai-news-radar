@@ -170,10 +170,11 @@ function renderSourceHealthSummaryNode(status, errorMessage = "") {
   }
   const sites = visibleSourceStatusSites(status);
   const okSites = sites.filter((site) => site.ok).length;
+  const partialSites = sites.filter((site) => site.partial).length;
   const failed = failedSourceCount(status);
   const fetched = Number(status.fetched_raw_items || state.totalRaw || status.items_before_topic_filter || 0);
-  node.classList.toggle("warn", failed > 0);
-  node.innerHTML = `<strong>${fmtNumber(okSites)}/${fmtNumber(sites.length)} 源正常</strong><span>今日采集 ${fmtNumber(fetched)} 条 · 失败 ${fmtNumber(failed)}</span>`;
+  node.classList.toggle("warn", failed > 0 || partialSites > 0);
+  node.innerHTML = `<strong>${fmtNumber(okSites)}/${fmtNumber(sites.length)} 源正常</strong><span>今日采集 ${fmtNumber(fetched)} 条 · 部分完成 ${fmtNumber(partialSites)} · 失败 ${fmtNumber(failed)}</span>`;
   return node;
 }
 function renderSourceStatusTable(status) {
@@ -204,12 +205,13 @@ function renderSourceStatusTable(status) {
   rows.forEach((site) => {
     const row = document.createElement("div");
     row.className = "source-table-row";
-    const statusText = site.ok ? "正常" : "异常";
+    const statusText = site.partial ? "部分完成" : (site.ok ? "正常" : "异常");
+    const statusTone = site.partial ? "warn" : (site.ok ? "ok" : "bad");
     row.innerHTML = `
       <span>${site.displayName}</span>
       <span>${fmtNumber(site.aiCount)} / ${fmtNumber(site.rawCount)}</span>
       <span>${fmtNumber(site.ratio)}%</span>
-      <span class="${site.ok ? "ok" : "bad"}">${statusText}</span>
+      <span class="${statusTone}">${statusText}</span>
     `;
     table.appendChild(row);
   });

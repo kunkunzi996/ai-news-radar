@@ -260,6 +260,7 @@ GITHUB_REPO_SUBSCRIPTION_API_URL = "https://api.github.com/repos/AlkaidLab/found
 GITHUB_REPO_SUBSCRIPTION_HTML_URL = "https://github.com/AlkaidLab/foundation-sunshine"
 GITHUB_REPO_SUBSCRIPTION_MAX_ITEMS = 5
 GITHUB_REPO_SUBSCRIPTION_BACKFILL_MAX_ITEMS = 30
+GITHUB_REPO_SUBSCRIPTION_BUDGET_SECONDS = 180
 MAOBIDAO_WECHAT_SITE_ID = "maobidao_wudaolu_backup"
 MAOBIDAO_WECHAT_SITE_NAME = "Maobidao Wudaolu Backup"
 MAOBIDAO_WECHAT_API_URL = "https://wudaolu.com/c/dav/7.json"
@@ -498,6 +499,16 @@ PUBLIC_RAW_META_FIELDS: tuple[str, ...] = (
     "douyin_sec_user_id",
     "search_surface",
     "summary",
+    # GitHub 订阅只保留可验证的最小身份字段，不把原始 API 对象落盘。
+    "github_repo_identity",
+    "github_entry_identity",
+    "github_source_kind",
+    "commit_sha",
+    "release_id",
+    "repo",
+    "tag_name",
+    "release_name",
+    "prerelease",
 )
 EMAIL_RE = re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b")
 SECRET_LIKE_RE = re.compile(r"\b(sk-(?!hynix\b)[A-Za-z0-9_-]{12,}|(?:api[_-]?key|secret|token)=([^\s&]{6,}))\b", re.I)
@@ -895,6 +906,17 @@ def create_session() -> requests.Session:
     session.mount("http://", adapter)
     session.mount("https://", adapter)
     session.headers.update({"User-Agent": BROWSER_UA, "Accept-Language": "zh-CN,zh;q=0.9"})
+    return session
+
+
+def create_github_session() -> requests.Session:
+    """GitHub 采集专用会话：禁止沿用全局的 429/5xx 自动重试。"""
+    session = requests.Session()
+    retry = Retry(total=0, connect=0, read=0, redirect=0, status=0)
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount("http://", adapter)
+    session.mount("https://", adapter)
+    session.headers.update({"User-Agent": "AI-News-Radar/0.7 github-subscription", "Accept-Language": "zh-CN,zh;q=0.9"})
     return session
 
 
