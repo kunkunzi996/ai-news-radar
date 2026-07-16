@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-07-16T13:44:15.191225Z",
+  "generated_at": "2026-07-16T15:08:32.814860Z",
   "sites": [
     {
       "site_id": "github_foundation_sunshine_releases",
       "site_name": "GitHub Foundation Sunshine",
       "ok": true,
       "item_count": 55,
-      "duration_ms": 5094,
+      "duration_ms": 7097,
       "error": null,
       "source_kind": "github_release_subscription",
       "repo": "openai/codex-plugin-cc, obra/superpowers, SeemSeam/claude_codex_bridge, LearnPrompt/ai-news-radar, Panniantong/Agent-Reach, xingkongliang/skills-manager, VoltAgent/awesome-design-md, KKKKhazix/khazix-skills, javaht/claude-desktop-zh-cn, WenyuChiou/awesome-agentic-ai-zh, BigPizzaV3/CodexPlusPlus, zhaoyue4810/pianke, joeseesun/qiaomu-goal-meta-skill, bayernjf/soft-desk, D4Vinci/Scrapling",
@@ -19,7 +19,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 343,
+          "duration_ms": 403,
           "first_collect_backfill": false
         },
         {
@@ -30,7 +30,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 275,
+          "duration_ms": 335,
           "first_collect_backfill": false
         },
         {
@@ -41,7 +41,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 305,
+          "duration_ms": 485,
           "first_collect_backfill": false
         },
         {
@@ -52,7 +52,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 265,
+          "duration_ms": 431,
           "first_collect_backfill": false
         },
         {
@@ -63,7 +63,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 277,
+          "duration_ms": 332,
           "first_collect_backfill": false
         },
         {
@@ -74,7 +74,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 365,
+          "duration_ms": 430,
           "first_collect_backfill": false
         },
         {
@@ -85,7 +85,7 @@
           "source_kind": "commit_fallback",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 425,
+          "duration_ms": 597,
           "first_collect_backfill": false
         },
         {
@@ -96,7 +96,7 @@
           "source_kind": "commit_fallback",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 357,
+          "duration_ms": 563,
           "first_collect_backfill": false
         },
         {
@@ -118,7 +118,7 @@
           "source_kind": "commit_fallback",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 377,
+          "duration_ms": 829,
           "first_collect_backfill": false
         },
         {
@@ -129,7 +129,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 325,
+          "duration_ms": 387,
           "first_collect_backfill": false
         },
         {
@@ -140,7 +140,7 @@
           "source_kind": "commit_fallback",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 402,
+          "duration_ms": 591,
           "first_collect_backfill": false
         },
         {
@@ -151,7 +151,7 @@
           "source_kind": "commit_fallback",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 451,
+          "duration_ms": 627,
           "first_collect_backfill": false
         },
         {
@@ -162,7 +162,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 302,
+          "duration_ms": 381,
           "first_collect_backfill": false
         },
         {
@@ -173,7 +173,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 280,
+          "duration_ms": 361,
           "first_collect_backfill": false
         }
       ],
@@ -186,13 +186,13 @@
       "deferred_count": 0,
       "partial": false,
       "budget_ms": 180000,
-      "elapsed_ms": 5094,
+      "elapsed_ms": 7097,
       "overrun_ms": 0,
-      "seen_only": 5,
-      "daily_coalesced": 0,
+      "seen_only": 4,
+      "daily_coalesced": 1,
       "window_bypassed": 0,
       "raw_item_count": 55,
-      "window_item_count": 55,
+      "window_item_count": 54,
       "collection_window_hours": 0
     },
     {
@@ -201,7 +201,7 @@
       "enabled": true,
       "ok": true,
       "item_count": 60,
-      "duration_ms": 28,
+      "duration_ms": 27,
       "error": null,
       "source_kind": "we_mp_rss_jsonl",
       "jsonl_dir": "/home/runner/work/_temp/wechat-bridge/output/wechat/jsonl",
@@ -209,36 +209,32 @@
       "max_items": 200,
       "coverage_note": "reads_we_mp_rss_bridge_jsonl",
       "privacy": "public_article_fields_only_no_cookies_or_auth_state",
-      "manifest_schema": 2,
-      "snapshot_schema": 1,
-      "cleanup_capable": true,
-      "cleanup_contract_reason": null,
-      "known_feed_ids": [
-        "MP_WXS_3198966508",
-        "MP_WXS_3223096120",
-        "MP_WXS_3871977637"
-      ],
-      "active_feed_ids": [
-        "MP_WXS_3198966508",
-        "MP_WXS_3223096120",
-        "MP_WXS_3871977637"
-      ],
-      "known_count": 3,
-      "active_count": 3,
+      "manifest_schema": 1,
+      "snapshot_schema": null,
+      "cleanup_capable": false,
+      "cleanup_contract_reason": "contract_not_cleanup_capable",
+      "known_feed_ids": [],
+      "active_feed_ids": [],
+      "known_count": 0,
+      "active_count": 0,
       "empty_confirmations": 0,
       "rejected_rows": 0,
       "rejected_row_details": [],
-      "bridge_commit": "2295f3232f5bb34172daaf3b52f5471c66b4ead9",
+      "bridge_commit": "e0e17dd87202ba5da9a912f07b3a8885ffb66c57",
       "subscription_cleanup": {
         "mode": "on",
-        "applied": true,
+        "applied": false,
         "candidate_count": 0,
         "deleted_count": 0,
         "candidate_item_ids": [],
         "candidate_feed_ids": [],
         "candidate_sources": [],
-        "candidate_digest": "659f2f08a2d1e521caa043212f43b4c200e0f15f030a7e711d5bff83fd17c16c",
-        "skip_reasons": []
+        "candidate_digest": null,
+        "skip_reasons": [
+          "contract_not_cleanup_capable",
+          "empty_snapshot_not_confirmed",
+          "invalid_authoritative_contract"
+        ]
       },
       "raw_item_count": 60,
       "window_item_count": 60,
@@ -248,8 +244,8 @@
       "site_id": "bilibili_dynamic",
       "site_name": "Bilibili Dynamic",
       "ok": true,
-      "item_count": 66,
-      "duration_ms": 15333,
+      "item_count": 56,
+      "duration_ms": 12324,
       "error": null,
       "uid": "28756625,316183842,3546800797518640,3546884870244925,385670211,50247550,505301413,680677803",
       "uids": [
@@ -268,8 +264,8 @@
       "coverage_note": "tries_cookie_full_dynamic_then_public_opus_fallback",
       "cookie_present": true,
       "fetch_mode": "mixed",
-      "fallback_reason": "28756625:cookie_full_dynamic_failed:ValueError; 50247550:cookie_full_dynamic_failed:ValueError; 505301413:cookie_full_dynamic_failed:ValueError",
-      "partial_failure_count": 0,
+      "fallback_reason": "3546800797518640:cookie_full_dynamic_failed:ValueError; 505301413:cookie_full_dynamic_failed:ValueError; 680677803:cookie_full_dynamic_failed:ValueError",
+      "partial_failure_count": 1,
       "max_items": 10,
       "max_items_per_account": 10,
       "max_pages": 8,
@@ -279,8 +275,7 @@
           "source_name": "中二的大暄哥",
           "ok": true,
           "item_count": 10,
-          "fetch_mode": "public_opus_fallback",
-          "fallback_reason": "cookie_full_dynamic_failed:ValueError"
+          "fetch_mode": "cookie_full_dynamic"
         },
         {
           "uid": "316183842",
@@ -293,15 +288,16 @@
           "uid": "3546800797518640",
           "source_name": "夏鹏本鹏",
           "ok": true,
-          "item_count": 10,
-          "fetch_mode": "cookie_full_dynamic"
+          "item_count": 1,
+          "fetch_mode": "public_opus_fallback",
+          "fallback_reason": "cookie_full_dynamic_failed:ValueError"
         },
         {
           "uid": "3546884870244925",
           "source_name": "杰森的效率工坊",
-          "ok": true,
-          "item_count": 10,
-          "fetch_mode": "cookie_full_dynamic"
+          "ok": false,
+          "item_count": 0,
+          "error": "bilibili_dynamic_no_items"
         },
         {
           "uid": "385670211",
@@ -314,9 +310,8 @@
           "uid": "50247550",
           "source_name": "清华姜学长",
           "ok": true,
-          "item_count": 1,
-          "fetch_mode": "public_opus_fallback",
-          "fallback_reason": "cookie_full_dynamic_failed:ValueError"
+          "item_count": 10,
+          "fetch_mode": "cookie_full_dynamic"
         },
         {
           "uid": "505301413",
@@ -331,19 +326,20 @@
           "source_name": "王小七Fire",
           "ok": true,
           "item_count": 10,
-          "fetch_mode": "cookie_full_dynamic"
+          "fetch_mode": "public_opus_fallback",
+          "fallback_reason": "cookie_full_dynamic_failed:ValueError"
         }
       ],
-      "raw_item_count": 66,
-      "window_item_count": 66,
+      "raw_item_count": 56,
+      "window_item_count": 56,
       "collection_window_hours": 0
     },
     {
       "site_id": "mediacrawler_douyin",
       "site_name": "MediaCrawler Douyin",
       "ok": true,
-      "item_count": 31,
-      "duration_ms": 10,
+      "item_count": 32,
+      "duration_ms": 13,
       "error": null,
       "source_name": "珍妮丁丁说AI, Simon林, FredTalk, 匿名用户996",
       "privacy": "local_jsonl_only_no_cookies",
@@ -368,7 +364,7 @@
           "locator": "https://www.douyin.com/user/MS4wLjABAAAACsVvwoWhwaNZkd4kOY7bu6UhcfCiYmd_k_wcUnN9bYo8jOANJ1iyts7MXQB8nsZ0",
           "locator_kind": "homepage_url",
           "jsonl_file_configured": "jsonl",
-          "item_count": 10,
+          "item_count": 11,
           "ok": true,
           "jsonl_file": "creator_contents_latest.jsonl",
           "jsonl_file_resolved_from": "jsonl"
@@ -395,8 +391,8 @@
         }
       ],
       "subscription_count": 4,
-      "raw_item_count": 31,
-      "window_item_count": 31,
+      "raw_item_count": 32,
+      "window_item_count": 32,
       "collection_window_hours": 0
     },
     {
@@ -405,7 +401,7 @@
       "ok": true,
       "partial_failures": 0,
       "item_count": 45,
-      "duration_ms": 3917,
+      "duration_ms": 3511,
       "error": null,
       "feed_count": 9,
       "effective_feed_count": 9,
@@ -426,11 +422,11 @@
   "failed_sites": [],
   "zero_item_sites": [],
   "empty_advanced_sources": [],
-  "fetched_raw_items": 257,
-  "raw_items_before_collection_window": 257,
+  "fetched_raw_items": 247,
+  "raw_items_before_collection_window": 248,
   "skipped_collection_window_items": 0,
-  "items_before_topic_filter": 749,
-  "items_in_24h": 748,
+  "items_before_topic_filter": 752,
+  "items_in_24h": 751,
   "rss_opml": {
     "enabled": true,
     "path": "configured",
@@ -451,7 +447,7 @@
         "effective_feed_url": "https://blog.google/technology/ai/rss",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 343,
+        "duration_ms": 316,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -468,7 +464,7 @@
         "effective_feed_url": "https://deepmind.google/blog/rss.xml",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 460,
+        "duration_ms": 469,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -485,7 +481,7 @@
         "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCzkPX3KCIVquUPa8oXjHn0g",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 263,
+        "duration_ms": 394,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -502,7 +498,7 @@
         "effective_feed_url": "https://huggingface.co/blog/feed.xml",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 428,
+        "duration_ms": 426,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -519,7 +515,7 @@
         "effective_feed_url": "https://news.microsoft.com/source/topics/ai/feed",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 443,
+        "duration_ms": 782,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -536,7 +532,7 @@
         "effective_feed_url": "https://openai.com/news/rss.xml",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 957,
+        "duration_ms": 884,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -553,7 +549,7 @@
         "effective_feed_url": "https://simonwillison.net/atom/everything",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 524,
+        "duration_ms": 133,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -570,7 +566,7 @@
         "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 291,
+        "duration_ms": 61,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -587,7 +583,7 @@
         "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC26hLZoe-haxcuLYxzWAiNg",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 208,
+        "duration_ms": 46,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -627,7 +623,7 @@
   "mediacrawler_douyin": {
     "enabled": true,
     "ok": true,
-    "item_count": 31,
+    "item_count": 32,
     "source_kind": "mediacrawler_douyin",
     "privacy": "local_jsonl_only_no_cookies",
     "coverage_note": "reads_mediacrawler_douyin_creator_jsonl",
@@ -651,7 +647,7 @@
         "locator": "https://www.douyin.com/user/MS4wLjABAAAACsVvwoWhwaNZkd4kOY7bu6UhcfCiYmd_k_wcUnN9bYo8jOANJ1iyts7MXQB8nsZ0",
         "locator_kind": "homepage_url",
         "jsonl_file_configured": "jsonl",
-        "item_count": 10,
+        "item_count": 11,
         "ok": true,
         "jsonl_file": "creator_contents_latest.jsonl",
         "jsonl_file_resolved_from": "jsonl"
@@ -679,7 +675,7 @@
     ],
     "subscription_count": 4,
     "error": null,
-    "duration_ms": 10
+    "duration_ms": 13
   },
   "mediacrawler_xhs": {
     "enabled": false,
