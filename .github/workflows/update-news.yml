@@ -93,6 +93,7 @@ jobs:
             echo "bridge jsonl found:"
             ls -lh "$bridge_dir"/output/wechat/jsonl/
             echo "local_dir=$bridge_dir" >> "$GITHUB_OUTPUT"
+            echo "commit=$(git -C "$bridge_dir" rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           else
             echo "::warning::wechat bridge repo has no wechat_contents_*.jsonl; continuing without WeChat"
             echo "local_dir=" >> "$GITHUB_OUTPUT"
@@ -106,6 +107,9 @@ jobs:
           BILIBILI_COOKIE: ${{ secrets.BILIBILI_COOKIE }}
           MEDIACRAWLER_LOCAL_DIR: ${{ steps.douyin_bridge.outputs.local_dir }}
           WE_MP_RSS_JSONL_DIR: ${{ steps.wechat_bridge.outputs.local_dir }}/output/wechat/jsonl
+          WE_MP_RSS_BRIDGE_ROOT: ${{ steps.wechat_bridge.outputs.local_dir }}
+          WE_MP_RSS_BRIDGE_COMMIT: ${{ steps.wechat_bridge.outputs.commit }}
+          WE_MP_RSS_SUBSCRIPTION_CLEANUP_MODE: ${{ vars.WE_MP_RSS_SUBSCRIPTION_CLEANUP_MODE || 'off' }}
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           python scripts/update_news.py --source-config config/online-sources.json --output-dir data --window-hours 24 --archive-days ${{ vars.ARCHIVE_DAYS || '180' }} --all-time

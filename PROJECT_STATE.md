@@ -1,6 +1,43 @@
 # PROJECT_STATE
 
-## 下一轮入口（2026-07-15 更新）
+## 下一轮入口（2026-07-16 更新）
+
+- **2026-07-16 微信公众号退订历史清理修复已完成本地生产就绪实现，尚未上线**：施工位于独立
+  worktree `E:\AI-news-reader\ai-news-radar-wechat-cleanup`、分支 `fix/wechat-unsubscribe-cleanup`，
+  基线为 `origin/master`。原工作区 `E:\AI-news-reader\ai-news-radar-run` 的脏 `master`、用户 stash、
+  `data/**` 和真实 `wechat-bridge` 均未修改；当前改动尚未 commit、push。
+  - **最终业务契约**：sidecar 数据库一次读取后生成 schema 2 权威快照；`known` 是仍存在的非系统
+    Feed，`active` 与 `DB.get_all_mps()` 同口径。Feed hard delete 才清对应稳定 `feed_id` 的历史；
+    `status=0` 只停采，因 ID 仍在 `known` 中而保留历史。exporter 只消费该权威输入，不再把
+    `/rss/fresh` 或 `WE_MP_RSS_FEEDS` 当有效订阅名单。
+  - **完整安全门**：manifest、JSONL、订阅快照必须在同一 bridge commit，并通过 schema 2、路径边界、
+    哈希、条数、集合和通道状态校验。缺失或非法 `feed_id` 的行在 `RawItem` 前拒绝；无 ID、快照不完整、
+    commit 不符、通道失败或任何门控不通过都 fail-safe，一条不删。清理只按 ID，禁止按名称、URL 或
+    本轮文章集合推断；回滚只按 `item_id` 精确回插，禁止整份 archive 覆盖。
+  - **一次性迁移 dry-run（真实数据只读）**：archive 共 590 条，其中微信 89 条、原本无 ID 89 条；
+    可唯一补齐 89、未匹配 0、冲突 0、删除 0，动态覆盖率 100%，硬条件全部满足。这里只执行了
+    dry-run，未执行 apply，也未改真实 archive；89 只是本次基线，正式维护窗口必须按当时数据重算。
+  - **灰度状态**：`WE_MP_ORPHAN_CLEANUP_MODE` 默认 `off`，非法值也回退 `off`。本地已验证
+    `off/audit/on` 行为，但真实 Actions 变量未修改、workflow 未触发、真实 audit/on 未执行。
+    `audit` 必须只出现目标 hard-delete feed_id；出现其它 ID、来源、item_id 或 ID 覆盖不足 100% 时
+    立即保持/切回 `off` 并停止。
+  - **自动验收**：`test_we_mp_rss_sync_once.py` 17 passed；`test_we_mp_rss_jsonl_source.py` 22 passed；
+    `test_orphan_subscription_cleanup.py` 20 passed（另 5 subtests）；全量 pytest 389 passed、1 warning
+    （另 7 subtests）；PowerShell AST 解析错误 0；`git diff --check` 退出码 0。新 worktree 没有独立
+    `.venv`，验收从该 worktree cwd 使用原仓库只读虚拟环境
+    `E:\AI-news-reader\ai-news-radar-run\.venv\Scripts\python.exe` 执行。
+  - **临时 bridge 验收**：文章与快照都不变时不提交；仅快照语义改变时提交；只改 `generated_at`
+    不制造提交；`-SkipSync` 不改 HEAD 或正式三件套；三件套同 commit 且全哈希通过；坏 `feed_id`
+    行不入 archive；`status=0` 停采留历史；hard delete 只命中目标 ID；精确恢复后新增数据仍保留。
+  - **发布门（未授权、未执行）**：先在 `off` 验证，再约维护窗口重新跑迁移 dry-run 并单独授权 apply；
+    确认下一轮真实 Actions 仍为 100% ID 后才能切 `audit`；人工核对候选精确无误后再单独授权 `on`，
+    并跑下一轮确认不反弹和浏览器验收。完成这些门之前只能称“本地生产就绪”，不能称线上已修复。
+  - **精确回滚**：紧急时把 mode 保持/切回 `off`；代码用正常 revert，不强推、不重写历史；数据恢复
+    从清理 commit 的父提交取目标 `item_id`，用 `scripts/restore_we_mp_cleanup.py` 只补当前 archive 缺失项，
+    前后核对 SHA256、总条数和 site_id/source 分布，再重建派生文件。
+  - 方案与施工边界：`计划/微信公众号退订后历史消息残留-修复方案.md`。下一轮先完成本分支验收/保存
+    决策；未经逐项授权，不得 commit、push、执行迁移 apply、修改 Actions、触发 workflow、写真实 bridge、
+    切换 audit/on 或清理真实数据。
 
 - **2026-07-16 已完成**：订阅源二级栏目统一改为按时间平铺。布局判断已从业务筛选
   `isSubscriptionSection()` 中独立出来，微信公众号只改变列表排版，不改变条目集合、Top3、摘要、来源

@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 from collections import Counter
 from dataclasses import dataclass
+import hashlib
 import json
 import os
 import sys
@@ -107,6 +108,7 @@ from scripts.radar.pipeline import (
     dedupe_items_by_title_url,
     event_time,
     filter_archive_by_subscriptions,
+    filter_we_mp_archive_by_known_feed_ids,
     filter_raw_items_by_collect_window,
     is_ai_related_record,
     load_archive_for_collection,
@@ -136,6 +138,7 @@ class RunContext:
     wewe_rss_enabled: bool
     we_mp_rss_enabled: bool
     we_mp_rss_jsonl_enabled: bool
+    we_mp_cleanup_mode: str
     now: datetime
     archive_path: Path
     latest_path: Path
@@ -258,6 +261,8 @@ def prepare_run_context(args: argparse.Namespace) -> RunContext | int:
     )
     if we_mp_rss_jsonl_enabled and active_source_ids is not None:
         active_source_ids = frozenset(site_id for site_id in active_source_ids if site_id != MAOBIDAO_WECHAT_SITE_ID)
+    configured_cleanup_mode = str(os.environ.get("WE_MP_RSS_SUBSCRIPTION_CLEANUP_MODE") or "off").strip().lower()
+    we_mp_cleanup_mode = configured_cleanup_mode if configured_cleanup_mode in {"off", "audit", "on"} else "off"
 
     now = utc_now()
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -309,6 +314,7 @@ def prepare_run_context(args: argparse.Namespace) -> RunContext | int:
         wewe_rss_enabled=wewe_rss_enabled,
         we_mp_rss_enabled=we_mp_rss_enabled,
         we_mp_rss_jsonl_enabled=we_mp_rss_jsonl_enabled,
+        we_mp_cleanup_mode=we_mp_cleanup_mode,
         now=now,
         archive_path=archive_path,
         latest_path=latest_path,
@@ -478,22 +484,14 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
             session,
             now,
             jsonl_dir=os.environ.get("WE_MP_RSS_JSONL_DIR"),
+            bridge_root=os.environ.get("WE_MP_RSS_BRIDGE_ROOT"),
         )
         raw_items.extend(we_mp_rss_jsonl_items)
         statuses.append(
             {
                 "site_id": WE_MP_RSS_JSONL_SITE_ID,
                 "site_name": WE_MP_RSS_JSONL_SITE_NAME,
-                "ok": bool(we_mp_rss_jsonl_status.get("ok")),
-                "item_count": int(we_mp_rss_jsonl_status.get("item_count") or 0),
-                "duration_ms": int(we_mp_rss_jsonl_status.get("duration_ms") or 0),
-                "error": we_mp_rss_jsonl_status.get("error"),
-                "source_kind": we_mp_rss_jsonl_status.get("source_kind"),
-                "jsonl_dir": we_mp_rss_jsonl_status.get("jsonl_dir"),
-                "jsonl_file": we_mp_rss_jsonl_status.get("jsonl_file"),
-                "max_items": we_mp_rss_jsonl_status.get("max_items"),
-                "coverage_note": we_mp_rss_jsonl_status.get("coverage_note"),
-                "privacy": we_mp_rss_jsonl_status.get("privacy"),
+                **we_mp_rss_jsonl_status,
             }
         )
     bilibili_dynamic_status = bilibili_dynamic_status_base()
@@ -823,6 +821,98 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
         waytoagi_payload=waytoagi_payload,
     )
 
+def ensure_we_mp_cleanup_audit_status(
+    statuses: list[dict[str, Any]], mode: str
+) -> tuple[dict[str, Any] | None, bool]:
+    status = next(
+        (entry for entry in statuses if str(entry.get("site_id") or "") == WE_MP_RSS_JSONL_SITE_ID),
+        None,
+    )
+    executed = status is not None
+    if status is None and mode in {"audit", "on"}:
+        status = {
+            "site_id": WE_MP_RSS_JSONL_SITE_ID,
+            "site_name": WE_MP_RSS_JSONL_SITE_NAME,
+            "ok": False,
+            "cleanup_capable": False,
+            "cleanup_contract_reason": "contract_not_cleanup_capable",
+            "manifest_schema": None,
+            "snapshot_schema": None,
+            "known_feed_ids": [],
+            "empty_confirmations": 0,
+            "bridge_commit": None,
+            "synthetic_cleanup_audit": True,
+        }
+        statuses.append(status)
+    return status, executed
+
+
+def apply_we_mp_subscription_cleanup(
+    archive: dict[str, dict[str, Any]],
+    status: dict[str, Any] | None,
+    *,
+    channel_enabled: bool,
+    channel_executed: bool = True,
+    mode: str,
+    expected_bridge_commit: str,
+) -> dict[str, dict[str, Any]]:
+    if status is None:
+        return archive
+    cleanup = {
+        "mode": mode,
+        "applied": False,
+        "candidate_count": 0,
+        "deleted_count": 0,
+        "candidate_item_ids": [],
+        "candidate_feed_ids": [],
+        "candidate_sources": [],
+        "candidate_digest": None,
+        "skip_reasons": [],
+    }
+    status["subscription_cleanup"] = cleanup
+    if mode == "off":
+        cleanup["skip_reasons"] = ["mode_off"]
+        return archive
+    reasons: list[str] = []
+    if not channel_enabled:
+        reasons.append("channel_not_enabled")
+    elif not channel_executed:
+        reasons.append("channel_not_executed")
+    if status.get("ok") is not True:
+        reasons.append("channel_failed")
+    if status.get("cleanup_capable") is not True:
+        reasons.append(str(status.get("cleanup_contract_reason") or "contract_not_cleanup_capable"))
+    if status.get("manifest_schema") != 2 or status.get("snapshot_schema") != 1:
+        reasons.append("invalid_authoritative_contract")
+    if not expected_bridge_commit or str(status.get("bridge_commit") or "").strip() != expected_bridge_commit:
+        reasons.append("bridge_commit_not_bound")
+    known = set(status.get("known_feed_ids") or [])
+    if not known and int(status.get("empty_confirmations") or 0) < 2:
+        reasons.append("empty_snapshot_not_confirmed")
+    proposed = archive
+    if not reasons:
+        proposed, candidates, fuse_reasons = filter_we_mp_archive_by_known_feed_ids(archive, known)
+        reasons.extend(fuse_reasons)
+        if not reasons:
+            item_ids = sorted(str(record.get("id") or "") for record in candidates)
+            feed_ids = sorted({str(record.get("we_mp_feed_id") or "") for record in candidates})
+            sources = sorted({str(record.get("source") or "") for record in candidates})
+            cleanup.update(
+                candidate_count=len(candidates),
+                candidate_item_ids=item_ids,
+                candidate_feed_ids=feed_ids,
+                candidate_sources=sources,
+                candidate_digest=hashlib.sha256(
+                    json.dumps({"items": item_ids, "feeds": feed_ids}, sort_keys=True).encode("utf-8")
+                ).hexdigest(),
+            )
+            if mode == "on":
+                cleanup["applied"] = True
+                cleanup["deleted_count"] = len(candidates)
+    cleanup["skip_reasons"] = sorted(set(reasons))
+    return proposed if mode == "on" and not reasons else archive
+
+
 def merge_archive_stage(session: Any, ctx: RunContext, collected: CollectStageResult) -> MergeStageResult:
     args = ctx.args
     now = ctx.now
@@ -832,9 +922,22 @@ def merge_archive_stage(session: Any, ctx: RunContext, collected: CollectStageRe
     archive = ctx.archive
     raw_items = collected.raw_items
     statuses = collected.statuses
+    wechat_status, channel_executed = ensure_we_mp_cleanup_audit_status(statuses, ctx.we_mp_cleanup_mode)
+    archive = apply_we_mp_subscription_cleanup(
+        archive,
+        wechat_status,
+        channel_enabled=ctx.we_mp_rss_jsonl_enabled,
+        channel_executed=channel_executed,
+        mode=ctx.we_mp_cleanup_mode,
+        expected_bridge_commit=str(os.environ.get("WE_MP_RSS_BRIDGE_COMMIT") or "").strip(),
+    )
     if active_source_ids is not None:
         raw_items = [item for item in raw_items if item.site_id in active_source_ids]
-        statuses = [status for status in statuses if str(status.get("site_id") or "") in active_source_ids]
+        statuses = [
+            status for status in statuses
+            if str(status.get("site_id") or "") in active_source_ids
+            or bool(status.get("synthetic_cleanup_audit"))
+        ]
     raw_items_before_collect_window = len(raw_items)
     raw_item_counts_by_site = Counter(item.site_id for item in raw_items)
     raw_items, skipped_collect_window_items = filter_raw_items_by_collect_window(

@@ -488,6 +488,7 @@ class RawItem:
 
 
 PUBLIC_RAW_META_FIELDS: tuple[str, ...] = (
+    "we_mp_feed_id",
     "aihot_score",
     "aihot_category",
     "aihot_selected",

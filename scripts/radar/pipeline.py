@@ -193,6 +193,31 @@ def filter_archive_by_subscriptions(
     return kept, dict(removed), fused_sites
 
 
+def filter_we_mp_archive_by_known_feed_ids(
+    archive: dict[str, dict[str, Any]],
+    known_feed_ids: set[str] | frozenset[str],
+) -> tuple[dict[str, dict[str, Any]], list[dict[str, Any]], list[str]]:
+    """Build an ID-only cleanup proposal; incomplete history fails closed."""
+    known = {str(value).strip() for value in known_feed_ids if str(value).strip()}
+    wechat = [
+        (item_id, record)
+        for item_id, record in archive.items()
+        if str(record.get("site_id") or "") == "we_mp_rss_jsonl"
+    ]
+    if any(not str(record.get("we_mp_feed_id") or "").strip() for _item_id, record in wechat):
+        return archive, [], ["archive_missing_we_mp_feed_id"]
+    if wechat and known and not any(str(record.get("we_mp_feed_id") or "").strip() in known for _item_id, record in wechat):
+        return archive, [], ["known_feed_ids_no_archive_match"]
+    candidate_pairs = sorted(
+        ((item_id, record) for item_id, record in wechat if str(record.get("we_mp_feed_id") or "").strip() not in known),
+        key=lambda pair: pair[0],
+    )
+    candidate_ids = {item_id for item_id, _record in candidate_pairs}
+    candidates = [{**record, "id": item_id} for item_id, record in candidate_pairs]
+    kept = {item_id: record for item_id, record in archive.items() if item_id not in candidate_ids}
+    return kept, candidates, []
+
+
 def filter_raw_items_by_collect_window(
     raw_items: list[RawItem],
     now: datetime,

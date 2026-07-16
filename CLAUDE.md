@@ -33,7 +33,8 @@ fetchers only for stable, public, high-signal sources.
 
 ## 清理历史条目的禁区
 
-能删 `data/archive.json` 历史条目的只有「保存/同步信源配置」这一条路径。下面每一条都
+除下述“微信公众号 schema 2 清理窄例外”外，能删 `data/archive.json` 历史条目的只有
+「保存/同步信源配置」这一条路径。下面每一条都
 真删过数据（2026-07-12 丢 9 条 GitHub Release；2026-07-13 差点再丢 174 条和 78 条）：
 
 1. **「本轮采集哪些源」≠「历史里允许留哪些源」。** 采集范围（`active_source_ids`）
@@ -54,6 +55,24 @@ fetchers only for stable, public, high-signal sources.
 
 5. 延后清理台账 `data/pending-purge.json`（已 gitignore）**补做前必须用当前配置复核**：
    源若被重新加回，只从台账划掉、拒绝清理。
+
+### 微信公众号 schema 2 清理窄例外
+
+`we_mp_rss_jsonl` 允许在采集管线内清理历史，但这不是通用通道规则，只能同时满足以下条件时启用：
+
+1. 清理身份只能使用稳定 `we_mp_feed_id`。禁止按来源名称、URL 前缀、本轮文章集合或 active 采集范围
+   猜测删除对象，也禁止把微信加入 `ENUMERABLE_SUBSCRIPTION_SITE_IDS` 或把本例外类推到其它通道。
+2. 只有 sidecar 数据库中的 Feed 被 **hard delete**，即其 ID 不再出现在 schema 2 快照 `known` 中，
+   才能成为候选；`status=0` 只是不在 `active` 中、仍在 `known` 中，必须停采但保留全部历史。
+3. manifest、JSONL、订阅快照必须属于同一 bridge commit，并通过 schema、路径边界、SHA256、条数、
+   `known/active` 集合和 `active ⊆ known` 校验；本轮微信通道还必须真实启用、读取成功且状态完整。
+4. archive 中所有微信记录必须 100% 具备合法 ID。任何无 ID、重复 ID、坏行、坏快照、哈希不符、
+   commit 不符、通道失败或门控缺失都必须 fail-safe：记录失败状态并且一条不删。非法 JSONL 行必须在
+   `RawItem` 构造前拒绝，不能进入 archive。
+5. `WE_MP_ORPHAN_CLEANUP_MODE` 只允许 `off/audit/on`，默认和非法值均按 `off`；`audit` 只报告候选，
+   `on` 才能按候选 ID 删除。没有完成 100% ID 迁移、真实 audit 人工确认和发布授权前，保持 `off`。
+6. 数据恢复只能用 `scripts/restore_we_mp_cleanup.py` 按 `item_id` 精确回插缺失记录；禁止用旧
+   `archive.json` 整文件覆盖当前归档，以免抹掉清理后新增的其它数据。
 
 改动这块时，光跑单测不算数——必须真在浏览器里走一遍「删除 / 停用 / 改名 / 原样保存」四种
 操作，逐一核对 `data/archive.json` 的条数与 site_id 分布。

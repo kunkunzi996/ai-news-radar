@@ -5,6 +5,7 @@ import hashlib
 import json
 import os
 import re
+import subprocess
 import time
 import xml.etree.ElementTree as ET
 from datetime import datetime
@@ -466,6 +467,7 @@ def fetch_we_mp_rss_subscription(
     *,
     base_url: str | None = None,
     feeds_config: str | None = None,
+    feeds: list[dict[str, str]] | None = None,
     max_items: int | None = None,
 ) -> tuple[list[RawItem], dict[str, Any]]:
     start = time.perf_counter()
@@ -495,15 +497,15 @@ def fetch_we_mp_rss_subscription(
 
     configured_feeds = wewe_rss_feeds_from_env(feeds_config if feeds_config is not None else os.environ.get("WE_MP_RSS_FEEDS"))
     try:
-        feeds = configured_feeds or discover_we_mp_rss_feeds(session, base)
-        if not feeds:
+        selected_feeds = list(feeds) if feeds is not None else (configured_feeds or discover_we_mp_rss_feeds(session, base))
+        if not selected_feeds:
             status["ok"] = True
             status["error"] = "we_mp_rss_no_feeds"
             return [], status
 
         all_items: list[RawItem] = []
         feed_statuses: list[dict[str, Any]] = []
-        for feed in feeds:
+        for feed in selected_feeds:
             feed_id = feed["id"]
             source_name = feed.get("name") or feed_id
             feed_status = {"id": feed_id, "name": source_name, "ok": False, "item_count": 0, "error": None}
@@ -543,46 +545,82 @@ def fetch_we_mp_rss_subscription(
 
 
 
-def parse_we_mp_rss_jsonl_items(
+def _scan_we_mp_rss_jsonl_rows(
     jsonl_text: str,
     now: datetime,
     *,
-    max_items: int,
-) -> list[RawItem]:
-    out: list[RawItem] = []
-    seen_urls: set[str] = set()
-    limit = max(1, min(1000, int(max_items)))
-    for line in str(jsonl_text or "").splitlines():
-        if len(out) >= limit:
-            break
+    active_feed_ids: set[str] | None,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]], int]:
+    """完整扫描并规范化；此阶段绝不构造 RawItem。"""
+    valid: list[dict[str, Any]] = []
+    rejected: list[dict[str, Any]] = []
+    nonempty_rows = 0
+    for line_number, line in enumerate(str(jsonl_text or "").splitlines(), start=1):
         if not line.strip():
             continue
+        nonempty_rows += 1
         try:
             payload = json.loads(line)
         except json.JSONDecodeError:
+            rejected.append({"line": line_number, "reason": "invalid_json"})
             continue
         if not isinstance(payload, dict):
+            rejected.append({"line": line_number, "reason": "row_not_object"})
             continue
         url = normalize_url(first_non_empty(payload.get("url")))
         title = clean_wp_rendered_text(payload.get("title"), max_chars=160)
-        if not url or not title or url in seen_urls:
+        account = clean_wp_rendered_text(payload.get("account"), max_chars=80)
+        feed_id = first_non_empty(payload.get("feed_id")).strip()
+        reason = None
+        if not feed_id:
+            reason = "feed_id_missing"
+        elif active_feed_ids is not None and feed_id not in active_feed_ids:
+            reason = "feed_id_not_active"
+        elif not account:
+            reason = "account_missing"
+        elif not title:
+            reason = "title_missing"
+        elif not url or not url.startswith("http"):
+            reason = "url_invalid"
+        if reason:
+            rejected.append({"line": line_number, "reason": reason})
+            continue
+        summary = clean_wp_rendered_text(payload.get("summary"), max_chars=500)
+        valid.append(
+            {
+                "title": title,
+                "url": url,
+                "account": account,
+                "summary": summary,
+                "feed_id": feed_id,
+                "published_at": parse_date_any(payload.get("published_at"), now),
+            }
+        )
+    return valid, rejected, nonempty_rows
+
+
+def _raw_items_from_we_mp_rows(rows: list[dict[str, Any]], *, max_items: int) -> list[RawItem]:
+    out: list[RawItem] = []
+    seen_urls: set[str] = set()
+    limit = max(1, min(1000, int(max_items)))
+    for payload in rows:
+        if len(out) >= limit:
+            break
+        url = str(payload["url"])
+        if url in seen_urls:
             continue
         seen_urls.add(url)
-        account = clean_wp_rendered_text(payload.get("account"), max_chars=80) or WE_MP_RSS_JSONL_SITE_NAME
-        summary = clean_wp_rendered_text(payload.get("summary"), max_chars=500)
-        feed_id = first_non_empty(payload.get("feed_id"))
-        published_at = parse_date_any(payload.get("published_at"), now)
         out.append(
             RawItem(
                 site_id=WE_MP_RSS_JSONL_SITE_ID,
                 site_name=WE_MP_RSS_JSONL_SITE_NAME,
-                source=account,
-                title=title,
+                source=str(payload["account"]),
+                title=str(payload["title"]),
                 url=url,
-                published_at=published_at,
+                published_at=payload.get("published_at"),
                 meta={
-                    "summary": summary,
-                    "we_mp_feed_id": feed_id,
+                    "summary": str(payload.get("summary") or ""),
+                    "we_mp_feed_id": str(payload["feed_id"]),
                     "source_kind": "we_mp_rss_wechat_subscription",
                     "search_surface": "we_mp_rss_jsonl_bridge",
                 },
@@ -591,15 +629,102 @@ def parse_we_mp_rss_jsonl_items(
     return out
 
 
+def parse_we_mp_rss_jsonl_items(
+    jsonl_text: str,
+    now: datetime,
+    *,
+    max_items: int,
+) -> list[RawItem]:
+    rows, _rejected, _count = _scan_we_mp_rss_jsonl_rows(jsonl_text, now, active_feed_ids=None)
+    return _raw_items_from_we_mp_rows(rows, max_items=max_items)
+
+
+def _sha256_path(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _bridge_member_path(bridge_root: Path, raw_path: Any) -> Path:
+    value = str(raw_path or "").strip().replace("\\", "/")
+    candidate_relative = Path(value)
+    if not value or candidate_relative.is_absolute() or any(part == ".." for part in candidate_relative.parts):
+        raise ValueError("invalid_we_mp_rss_manifest_path")
+    root = bridge_root.resolve(strict=True)
+    candidate = (root / candidate_relative).resolve(strict=True)
+    try:
+        candidate.relative_to(root)
+    except ValueError as exc:
+        raise ValueError("invalid_we_mp_rss_manifest_path") from exc
+    if not candidate.is_file():
+        raise ValueError("invalid_we_mp_rss_manifest_path")
+    return candidate
+
+
+def _validate_we_mp_snapshot(payload: Any) -> tuple[dict[str, Any], set[str], set[str]]:
+    if not isinstance(payload, dict) or payload.get("schema_version") != 1:
+        raise ValueError("invalid_we_mp_rss_snapshot")
+    if payload.get("authority_source") != "sidecar_db_feed_table":
+        raise ValueError("invalid_we_mp_rss_snapshot")
+    if payload.get("retention_policy") != "feed_row_exists":
+        raise ValueError("invalid_we_mp_rss_snapshot")
+    if payload.get("active_policy") != "status_1_excluding_featured_v1":
+        raise ValueError("invalid_we_mp_rss_snapshot")
+    feeds = payload.get("feeds")
+    if not isinstance(feeds, list):
+        raise ValueError("invalid_we_mp_rss_snapshot")
+    known: set[str] = set()
+    active: set[str] = set()
+    for row in feeds:
+        if not isinstance(row, dict):
+            raise ValueError("invalid_we_mp_rss_snapshot")
+        feed_id = str(row.get("feed_id") or "").strip()
+        account = str(row.get("account") or "").strip()
+        status = row.get("status")
+        is_active = row.get("active")
+        if not feed_id or not account or feed_id in known:
+            raise ValueError("invalid_we_mp_rss_snapshot")
+        if status not in (0, 1) or not isinstance(is_active, bool) or is_active != (status == 1):
+            raise ValueError("invalid_we_mp_rss_snapshot")
+        known.add(feed_id)
+        if is_active:
+            active.add(feed_id)
+    if payload.get("known_count") != len(known) or payload.get("active_count") != len(active):
+        raise ValueError("invalid_we_mp_rss_snapshot")
+    empty_confirmations = payload.get("empty_confirmations")
+    if not isinstance(empty_confirmations, int) or not 0 <= empty_confirmations <= 2:
+        raise ValueError("invalid_we_mp_rss_snapshot")
+    if known and empty_confirmations != 0:
+        raise ValueError("invalid_we_mp_rss_snapshot")
+    return payload, known, active
+
+
+def _git_checkout_head(root: Path) -> str | None:
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(root), "rev-parse", "--verify", "HEAD"],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            timeout=3,
+            check=False,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return None
+    value = result.stdout.strip().lower()
+    return value if result.returncode == 0 and re.fullmatch(r"[0-9a-f]{40,64}", value) else None
+
+
 def fetch_we_mp_rss_jsonl_subscription(
     session: requests.Session,
     now: datetime,
     *,
     jsonl_dir: str | None = None,
+    bridge_root: str | None = None,
     max_items: int | None = None,
 ) -> tuple[list[RawItem], dict[str, Any]]:
     del session
     start = time.perf_counter()
+    configured_root = str(bridge_root if bridge_root is not None else os.environ.get("WE_MP_RSS_BRIDGE_ROOT") or "").strip()
     configured_dir = str(jsonl_dir if jsonl_dir is not None else os.environ.get("WE_MP_RSS_JSONL_DIR") or "").strip()
     limit = max(1, min(1000, int(max_items or env_int("WE_MP_RSS_JSONL_MAX_ITEMS", WE_MP_RSS_JSONL_DEFAULT_MAX_ITEMS))))
     jsonl_path = Path(configured_dir).expanduser() / "wechat_contents_latest.jsonl" if configured_dir else Path()
@@ -615,16 +740,98 @@ def fetch_we_mp_rss_jsonl_subscription(
         "max_items": limit,
         "coverage_note": "reads_we_mp_rss_bridge_jsonl",
         "privacy": "public_article_fields_only_no_cookies_or_auth_state",
+        "manifest_schema": None,
+        "snapshot_schema": None,
+        "cleanup_capable": False,
+        "cleanup_contract_reason": "contract_not_cleanup_capable",
+        "known_feed_ids": [],
+        "active_feed_ids": [],
+        "known_count": 0,
+        "active_count": 0,
+        "empty_confirmations": 0,
+        "rejected_rows": 0,
+        "rejected_row_details": [],
+        "bridge_commit": None,
     }
     try:
-        if not configured_dir or not jsonl_path.is_file():
+        active_feed_ids: set[str] | None = None
+        expected_rows: int | None = None
+        if configured_root:
+            root = Path(configured_root).expanduser()
+            status["bridge_commit"] = _git_checkout_head(root)
+            manifest_path = root / "manifest.json"
+            if not manifest_path.is_file():
+                status["error"] = "missing_we_mp_rss_manifest"
+                return [], status
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8-sig"))
+            if not isinstance(manifest, dict):
+                status["error"] = "invalid_we_mp_rss_manifest"
+                return [], status
+            schema = manifest.get("schema_version")
+            status["manifest_schema"] = schema
+            if schema == 2:
+                try:
+                    jsonl_path = _bridge_member_path(root, manifest.get("article_file"))
+                    snapshot_path = _bridge_member_path(root, manifest.get("subscription_file"))
+                except (OSError, ValueError) as exc:
+                    status["error"] = str(exc) or "invalid_we_mp_rss_manifest_path"
+                    return [], status
+                article_hash = _sha256_path(jsonl_path)
+                snapshot_hash = _sha256_path(snapshot_path)
+                if article_hash != str(manifest.get("article_sha256") or "").lower() or snapshot_hash != str(manifest.get("subscription_sha256") or "").lower():
+                    status["error"] = "we_mp_rss_manifest_hash_mismatch"
+                    return [], status
+                snapshot, known_ids, active_ids = _validate_we_mp_snapshot(
+                    json.loads(snapshot_path.read_text(encoding="utf-8-sig"))
+                )
+                status["snapshot_schema"] = snapshot.get("schema_version")
+                status["known_feed_ids"] = sorted(known_ids)
+                status["active_feed_ids"] = sorted(active_ids)
+                status["known_count"] = len(known_ids)
+                status["active_count"] = len(active_ids)
+                status["empty_confirmations"] = int(snapshot.get("empty_confirmations") or 0)
+                if str(snapshot.get("source_jsonl_sha256") or "").lower() != article_hash:
+                    status["error"] = "we_mp_rss_snapshot_hash_mismatch"
+                    return [], status
+                if manifest.get("known_feed_count") != len(known_ids) or manifest.get("active_feed_count") != len(active_ids):
+                    status["error"] = "we_mp_rss_manifest_count_mismatch"
+                    return [], status
+                expected_rows = manifest.get("output_rows")
+                if not isinstance(expected_rows, int) or expected_rows < 0:
+                    status["error"] = "invalid_we_mp_rss_manifest"
+                    return [], status
+                active_feed_ids = active_ids
+                status["cleanup_capable"] = snapshot.get("complete") is True
+                status["cleanup_contract_reason"] = None if status["cleanup_capable"] else "snapshot_incomplete"
+            elif schema == 1:
+                legacy_name = str(manifest.get("source_file") or "wechat_contents_latest.jsonl")
+                jsonl_path = root / "output" / "wechat" / "jsonl" / Path(legacy_name).name
+                status["cleanup_contract_reason"] = "contract_not_cleanup_capable"
+            else:
+                status["error"] = "invalid_we_mp_rss_manifest_schema"
+                return [], status
+        if not (configured_root or configured_dir) or not jsonl_path.is_file():
             status["error"] = "missing_we_mp_rss_jsonl"
             return [], status
-        items = parse_we_mp_rss_jsonl_items(jsonl_path.read_text(encoding="utf-8-sig"), now, max_items=limit)
-        status["ok"] = True
+        rows, rejected, nonempty_rows = _scan_we_mp_rss_jsonl_rows(
+            jsonl_path.read_text(encoding="utf-8-sig"),
+            now,
+            active_feed_ids=active_feed_ids,
+        )
+        items = _raw_items_from_we_mp_rows(rows, max_items=limit)
+        status["rejected_rows"] = len(rejected)
+        status["rejected_row_details"] = rejected[:20]
+        if expected_rows is not None and expected_rows != nonempty_rows:
+            status["error"] = "we_mp_rss_jsonl_row_count_mismatch"
+            status["cleanup_capable"] = False
+        elif rejected:
+            status["error"] = "invalid_we_mp_rss_jsonl"
+            status["cleanup_capable"] = False
+        else:
+            status["ok"] = True
         status["item_count"] = len(items)
         return items, status
-    except OSError as exc:
+    except (OSError, ValueError, json.JSONDecodeError) as exc:
         status["error"] = str(exc)
         return [], status
     finally:
