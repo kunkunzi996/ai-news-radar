@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-16T21:10:23.613268Z",
+  "generated_at": "2026-07-16T22:31:07.114349Z",
   "sites": [
     {
       "site_id": "github_foundation_sunshine_releases",
       "site_name": "GitHub Foundation Sunshine",
-      "ok": true,
-      "item_count": 55,
-      "duration_ms": 6894,
-      "error": null,
+      "ok": false,
+      "item_count": 51,
+      "duration_ms": 7014,
+      "error": "github_upstream_server_error",
       "source_kind": "github_release_subscription",
       "repo": "openai/codex-plugin-cc, obra/superpowers, SeemSeam/claude_codex_bridge, LearnPrompt/ai-news-radar, Panniantong/Agent-Reach, xingkongliang/skills-manager, VoltAgent/awesome-design-md, KKKKhazix/khazix-skills, javaht/claude-desktop-zh-cn, WenyuChiou/awesome-agentic-ai-zh, BigPizzaV3/CodexPlusPlus, zhaoyue4810/pianke, joeseesun/qiaomu-goal-meta-skill, bayernjf/soft-desk, D4Vinci/Scrapling",
       "repos": [
@@ -19,7 +19,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 286,
+          "duration_ms": 336,
           "first_collect_backfill": false
         },
         {
@@ -30,7 +30,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 198,
+          "duration_ms": 193,
           "first_collect_backfill": false
         },
         {
@@ -41,7 +41,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 339,
+          "duration_ms": 283,
           "first_collect_backfill": false
         },
         {
@@ -52,7 +52,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 1329,
+          "duration_ms": 328,
           "first_collect_backfill": false
         },
         {
@@ -63,7 +63,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 246,
+          "duration_ms": 263,
           "first_collect_backfill": false
         },
         {
@@ -74,30 +74,26 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 387,
+          "duration_ms": 424,
           "first_collect_backfill": false
         },
         {
           "repo": "VoltAgent/awesome-design-md",
           "api_url": "https://api.github.com/repos/VoltAgent/awesome-design-md/releases",
-          "ok": true,
-          "item_count": 1,
-          "source_kind": "commit_fallback",
-          "skip_reason": "",
-          "error_code": "",
-          "duration_ms": 421,
-          "first_collect_backfill": false
+          "ok": false,
+          "item_count": 0,
+          "error": "github_upstream_server_error",
+          "error_code": "github_upstream_server_error",
+          "duration_ms": 360
         },
         {
           "repo": "KKKKhazix/khazix-skills",
           "api_url": "https://api.github.com/repos/KKKKhazix/khazix-skills/releases",
-          "ok": true,
-          "item_count": 1,
-          "source_kind": "commit_fallback",
-          "skip_reason": "",
-          "error_code": "",
-          "duration_ms": 407,
-          "first_collect_backfill": false
+          "ok": false,
+          "item_count": 0,
+          "error": "github_upstream_server_error",
+          "error_code": "github_upstream_server_error",
+          "duration_ms": 456
         },
         {
           "repo": "javaht/claude-desktop-zh-cn",
@@ -107,19 +103,17 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 1381,
+          "duration_ms": 279,
           "first_collect_backfill": false
         },
         {
           "repo": "WenyuChiou/awesome-agentic-ai-zh",
           "api_url": "https://api.github.com/repos/WenyuChiou/awesome-agentic-ai-zh/releases",
-          "ok": true,
-          "item_count": 1,
-          "source_kind": "commit_fallback",
-          "skip_reason": "",
-          "error_code": "",
-          "duration_ms": 418,
-          "first_collect_backfill": false
+          "ok": false,
+          "item_count": 0,
+          "error": "github_upstream_server_error",
+          "error_code": "github_upstream_server_error",
+          "duration_ms": 355
         },
         {
           "repo": "BigPizzaV3/CodexPlusPlus",
@@ -129,7 +123,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 225,
+          "duration_ms": 329,
           "first_collect_backfill": false
         },
         {
@@ -140,19 +134,17 @@
           "source_kind": "commit_fallback",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 455,
+          "duration_ms": 2455,
           "first_collect_backfill": false
         },
         {
           "repo": "joeseesun/qiaomu-goal-meta-skill",
           "api_url": "https://api.github.com/repos/joeseesun/qiaomu-goal-meta-skill/releases",
-          "ok": true,
-          "item_count": 1,
-          "source_kind": "commit_fallback",
-          "skip_reason": "",
-          "error_code": "",
-          "duration_ms": 365,
-          "first_collect_backfill": false
+          "ok": false,
+          "item_count": 0,
+          "error": "github_upstream_server_error",
+          "error_code": "github_upstream_server_error",
+          "duration_ms": 282
         },
         {
           "repo": "bayernjf/soft-desk",
@@ -162,7 +154,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 241,
+          "duration_ms": 406,
           "first_collect_backfill": false
         },
         {
@@ -173,26 +165,26 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 188,
+          "duration_ms": 256,
           "first_collect_backfill": false
         }
       ],
       "max_items": 5,
       "eligible_count": 15,
       "attempted_count": 15,
-      "succeeded_count": 15,
+      "succeeded_count": 11,
       "expected_skip_count": 0,
-      "failed_count": 0,
+      "failed_count": 4,
       "deferred_count": 0,
-      "partial": false,
+      "partial": true,
       "budget_ms": 180000,
-      "elapsed_ms": 6894,
+      "elapsed_ms": 7014,
       "overrun_ms": 0,
-      "seen_only": 4,
-      "daily_coalesced": 1,
+      "seen_only": 1,
+      "daily_coalesced": 0,
       "window_bypassed": 0,
-      "raw_item_count": 55,
-      "window_item_count": 54,
+      "raw_item_count": 51,
+      "window_item_count": 51,
       "collection_window_hours": 0
     },
     {
@@ -201,7 +193,7 @@
       "enabled": true,
       "ok": true,
       "item_count": 60,
-      "duration_ms": 27,
+      "duration_ms": 126,
       "error": null,
       "source_kind": "we_mp_rss_jsonl",
       "jsonl_dir": "/home/runner/work/_temp/wechat-bridge/output/wechat/jsonl",
@@ -244,8 +236,8 @@
       "site_id": "bilibili_dynamic",
       "site_name": "Bilibili Dynamic",
       "ok": true,
-      "item_count": 80,
-      "duration_ms": 18565,
+      "item_count": 75,
+      "duration_ms": 8520,
       "error": null,
       "uid": "28756625,316183842,3546800797518640,3546884870244925,385670211,50247550,505301413,680677803",
       "uids": [
@@ -264,7 +256,7 @@
       "coverage_note": "tries_cookie_full_dynamic_then_public_opus_fallback",
       "cookie_present": true,
       "fetch_mode": "mixed",
-      "fallback_reason": "28756625:cookie_full_dynamic_failed:ValueError; 680677803:cookie_full_dynamic_failed:ValueError",
+      "fallback_reason": "505301413:cookie_full_dynamic_failed:ValueError",
       "partial_failure_count": 0,
       "max_items": 10,
       "max_items_per_account": 10,
@@ -275,8 +267,7 @@
           "source_name": "中二的大暄哥",
           "ok": true,
           "item_count": 10,
-          "fetch_mode": "public_opus_fallback",
-          "fallback_reason": "cookie_full_dynamic_failed:ValueError"
+          "fetch_mode": "cookie_full_dynamic"
         },
         {
           "uid": "316183842",
@@ -317,20 +308,20 @@
           "uid": "505301413",
           "source_name": "Koji杨远骋at十字路口",
           "ok": true,
-          "item_count": 10,
-          "fetch_mode": "cookie_full_dynamic"
+          "item_count": 5,
+          "fetch_mode": "public_opus_fallback",
+          "fallback_reason": "cookie_full_dynamic_failed:ValueError"
         },
         {
           "uid": "680677803",
           "source_name": "王小七Fire",
           "ok": true,
           "item_count": 10,
-          "fetch_mode": "public_opus_fallback",
-          "fallback_reason": "cookie_full_dynamic_failed:ValueError"
+          "fetch_mode": "cookie_full_dynamic"
         }
       ],
-      "raw_item_count": 80,
-      "window_item_count": 80,
+      "raw_item_count": 75,
+      "window_item_count": 75,
       "collection_window_hours": 0
     },
     {
@@ -338,7 +329,7 @@
       "site_name": "MediaCrawler Douyin",
       "ok": true,
       "item_count": 32,
-      "duration_ms": 13,
+      "duration_ms": 10,
       "error": null,
       "source_name": "珍妮丁丁说AI, Simon林, FredTalk, 匿名用户996",
       "privacy": "local_jsonl_only_no_cookies",
@@ -400,7 +391,7 @@
       "ok": true,
       "partial_failures": 0,
       "item_count": 45,
-      "duration_ms": 3380,
+      "duration_ms": 3754,
       "error": null,
       "feed_count": 9,
       "effective_feed_count": 9,
@@ -417,12 +408,14 @@
   "time_scope": "all_time",
   "source_scope": "configured_sources",
   "collection_window_hours": 0,
-  "successful_sites": 5,
-  "failed_sites": [],
+  "successful_sites": 4,
+  "failed_sites": [
+    "github_foundation_sunshine_releases"
+  ],
   "zero_item_sites": [],
   "empty_advanced_sources": [],
-  "fetched_raw_items": 271,
-  "raw_items_before_collection_window": 272,
+  "fetched_raw_items": 263,
+  "raw_items_before_collection_window": 263,
   "skipped_collection_window_items": 0,
   "items_before_topic_filter": 761,
   "items_in_24h": 760,
@@ -446,7 +439,7 @@
         "effective_feed_url": "https://blog.google/technology/ai/rss",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 317,
+        "duration_ms": 333,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -463,7 +456,7 @@
         "effective_feed_url": "https://deepmind.google/blog/rss.xml",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 499,
+        "duration_ms": 537,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -480,7 +473,7 @@
         "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCzkPX3KCIVquUPa8oXjHn0g",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 314,
+        "duration_ms": 253,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -497,7 +490,7 @@
         "effective_feed_url": "https://huggingface.co/blog/feed.xml",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 500,
+        "duration_ms": 508,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -514,7 +507,7 @@
         "effective_feed_url": "https://news.microsoft.com/source/topics/ai/feed",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 284,
+        "duration_ms": 326,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -531,7 +524,7 @@
         "effective_feed_url": "https://openai.com/news/rss.xml",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 967,
+        "duration_ms": 827,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -548,7 +541,7 @@
         "effective_feed_url": "https://simonwillison.net/atom/everything",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 129,
+        "duration_ms": 387,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -565,7 +558,7 @@
         "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 228,
+        "duration_ms": 301,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -582,7 +575,7 @@
         "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC26hLZoe-haxcuLYxzWAiNg",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 142,
+        "duration_ms": 282,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -674,7 +667,7 @@
     ],
     "subscription_count": 4,
     "error": null,
-    "duration_ms": 13
+    "duration_ms": 10
   },
   "mediacrawler_xhs": {
     "enabled": false,
