@@ -16,6 +16,7 @@ from scripts.radar.common import (
     AGENTMAIL_DIGEST_FILE,
     DEPLOYED_SOURCE_SCOPE_DEFAULT,
     GITHUB_REPO_SUBSCRIPTION_API_URL,
+    GITHUB_REPO_SUBSCRIPTION_BUDGET_SECONDS,
     GITHUB_REPO_SUBSCRIPTION_MAX_ITEMS,
     GITHUB_REPO_SUBSCRIPTION_SITE_ID,
     GITHUB_REPO_SUBSCRIPTION_SITE_NAME,
@@ -42,6 +43,7 @@ from scripts.radar.common import (
     WEWE_RSS_SITE_NAME,
     apply_public_raw_meta,
     create_session,
+    create_github_session,
     env_flag,
     first_collect_backfill_days,
     iso,
@@ -108,6 +110,7 @@ from scripts.radar.pipeline import (
     event_time,
     filter_archive_by_subscriptions,
     filter_raw_items_by_collect_window,
+    prepare_github_items_for_collection_window,
     is_ai_related_record,
     load_archive_for_collection,
     load_title_zh_cache,
@@ -364,25 +367,52 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
                 }
             ]
         github_status_children: list[dict[str, Any]] = []
-        try:
-            for subscription in github_subscriptions:
-                api_url = github_release_api_url_from_config(subscription.get("locator", ""))
-                repo_label = github_release_repo_label_from_config(
-                    subscription.get("locator", ""),
-                    subscription.get("target") or subscription.get("name") or "GitHub Repo",
-                )
+        github_deadline = time.monotonic() + GITHUB_REPO_SUBSCRIPTION_BUDGET_SECONDS
+        github_session = create_github_session()
+        rate_limited = False
+        for subscription in github_subscriptions:
+            repo_label = github_release_repo_label_from_config(
+                subscription.get("locator", ""),
+                subscription.get("target") or subscription.get("name") or "GitHub Repo",
+            )
+            api_url = github_release_api_url_from_config(subscription.get("locator", ""))
+            child_start = time.perf_counter()
+            if rate_limited:
+                github_status_children.append({
+                    "repo": repo_label,
+                    "ok": False,
+                    "item_count": 0,
+                    "skip_reason": "skipped_due_to_rate_limit",
+                    "error_code": "github_upstream_rate_limited",
+                    "duration_ms": int((time.perf_counter() - child_start) * 1000),
+                })
+                continue
+            if time.monotonic() >= github_deadline:
+                github_status_children.append({
+                    "repo": repo_label,
+                    "ok": False,
+                    "item_count": 0,
+                    "skip_reason": "skipped_due_to_budget",
+                    "error_code": "github_budget_exceeded",
+                    "duration_ms": int((time.perf_counter() - child_start) * 1000),
+                })
+                continue
+            try:
                 display_name = str(subscription.get("target") or subscription.get("name") or repo_label).strip()
                 # 首采的仓库回填更多历史 release，之后恢复常规上限。
                 github_source_key = (GITHUB_REPO_SUBSCRIPTION_SITE_ID, display_name or "GitHub版本订阅")
                 github_first_collect = github_source_key not in existing_source_keys
                 items = fetch_github_repo_subscription(
-                    session,
+                    github_session,
                     now,
                     api_url=api_url,
                     repo_label=repo_label,
                     site_name=subscription.get("name") or GITHUB_REPO_SUBSCRIPTION_SITE_NAME,
                     display_name=display_name,
                     first_collect_backfill=github_first_collect,
+                    source_id=subscription.get("id") or "",
+                    managed_repo_id=subscription.get("managed_repo_id"),
+                    deadline=github_deadline,
                 )
                 github_repo_items.extend(items)
                 github_status_children.append(
@@ -391,24 +421,61 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
                         "api_url": api_url,
                         "ok": True,
                         "item_count": len(items),
+                        "source_kind": (items[0].meta.get("github_source_kind") if items else "github_release_subscription"),
+                        "skip_reason": "empty_repository" if not items else "",
+                        "error_code": "",
+                        "duration_ms": int((time.perf_counter() - child_start) * 1000),
                         "first_collect_backfill": github_first_collect,
                     }
                 )
-            raw_items.extend(github_repo_items)
-        except Exception as exc:
-            github_repo_error = str(exc)
+            except Exception as exc:
+                error_text = str(exc)
+                error_code = error_text.split(":", 1)[0] or "github_fetch_failed"
+                if "rate" in error_text.lower() or "429" in error_text:
+                    rate_limited = True
+                github_repo_error = github_repo_error or error_text
+                github_status_children.append(
+                    {
+                        "repo": repo_label,
+                        "api_url": api_url,
+                        "ok": False,
+                        "item_count": 0,
+                        "error": error_text,
+                        "error_code": error_code,
+                        "duration_ms": int((time.perf_counter() - child_start) * 1000),
+                    }
+                )
+        raw_items.extend(github_repo_items)
+        eligible_count = len(github_status_children)
+        attempted_children = [child for child in github_status_children if child.get("skip_reason") not in {"skipped_due_to_budget", "skipped_due_to_rate_limit"}]
+        deferred_count = eligible_count - len(attempted_children)
+        failed_count = sum(1 for child in attempted_children if child.get("ok") is False)
+        succeeded_count = sum(1 for child in attempted_children if child.get("ok") is True)
+        expected_skip_count = sum(1 for child in attempted_children if child.get("ok") is True and child.get("skip_reason"))
+        elapsed_ms = int((time.perf_counter() - github_repo_start) * 1000)
+        budget_ms = int(GITHUB_REPO_SUBSCRIPTION_BUDGET_SECONDS * 1000)
         statuses.append(
             {
                 "site_id": GITHUB_REPO_SUBSCRIPTION_SITE_ID,
                 "site_name": GITHUB_REPO_SUBSCRIPTION_SITE_NAME,
-                "ok": github_repo_error is None,
+                "ok": github_repo_error is None and deferred_count == 0,
                 "item_count": len(github_repo_items),
-                "duration_ms": int((time.perf_counter() - github_repo_start) * 1000),
+                "duration_ms": elapsed_ms,
                 "error": github_repo_error,
                 "source_kind": "github_release_subscription",
                 "repo": ", ".join(item.get("repo", "") for item in github_status_children if item.get("repo")) or "AlkaidLab/foundation-sunshine",
                 "repos": github_status_children,
                 "max_items": GITHUB_REPO_SUBSCRIPTION_MAX_ITEMS,
+                "eligible_count": eligible_count,
+                "attempted_count": len(attempted_children),
+                "succeeded_count": succeeded_count,
+                "expected_skip_count": expected_skip_count,
+                "failed_count": failed_count,
+                "deferred_count": deferred_count,
+                "partial": bool((failed_count or deferred_count) and succeeded_count),
+                "budget_ms": budget_ms,
+                "elapsed_ms": elapsed_ms,
+                "overrun_ms": max(0, elapsed_ms - budget_ms),
             }
         )
     if wewe_rss_enabled:
@@ -837,6 +904,10 @@ def merge_archive_stage(session: Any, ctx: RunContext, collected: CollectStageRe
         statuses = [status for status in statuses if str(status.get("site_id") or "") in active_source_ids]
     raw_items_before_collect_window = len(raw_items)
     raw_item_counts_by_site = Counter(item.site_id for item in raw_items)
+    raw_items, github_prepare_stats = prepare_github_items_for_collection_window(raw_items, archive, now)
+    for status in statuses:
+        if str(status.get("site_id") or "") == GITHUB_REPO_SUBSCRIPTION_SITE_ID:
+            status.update(github_prepare_stats)
     raw_items, skipped_collect_window_items = filter_raw_items_by_collect_window(
         raw_items,
         now,
@@ -863,7 +934,8 @@ def merge_archive_stage(session: Any, ctx: RunContext, collected: CollectStageRe
         if not url.startswith("http"):
             continue
 
-        item_id = make_item_id(raw.site_id, raw.source, title, url)
+        internal_archive_id = str((raw.meta or {}).get("__github_archive_item_id") or "").strip()
+        item_id = internal_archive_id or make_item_id(raw.site_id, raw.source, title, url)
         seen_this_run.add(item_id)
 
         existing = archive.get(item_id)

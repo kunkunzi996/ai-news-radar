@@ -293,8 +293,8 @@ def github_release_repo_label_from_config(locator: str, fallback: str = "") -> s
     return fallback or raw
 
 
-def source_config_subscriptions_for_site(config: dict[str, Any] | None, site_id: str) -> list[dict[str, str]]:
-    out: list[dict[str, str]] = []
+def source_config_subscriptions_for_site(config: dict[str, Any] | None, site_id: str) -> list[dict[str, Any]]:
+    out: list[dict[str, Any]] = []
     for source in source_config_enabled_sources(config):
         if site_id not in source_config_record_site_ids(source):
             continue
@@ -309,6 +309,7 @@ def source_config_subscriptions_for_site(config: dict[str, Any] | None, site_id:
                 "name": name,
                 "target": target or name,
                 "locator": locator,
+                "managed_repo_id": source.get("managed_repo_id"),
             }
         )
     return out

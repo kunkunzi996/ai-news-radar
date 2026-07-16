@@ -221,6 +221,11 @@ def filter_raw_items_by_collect_window(
     filtered: list[RawItem] = []
     skipped = 0
     for item in raw_items:
+        if isinstance(item.meta, dict) and (
+            item.meta.get("github_window_bypass") or item.meta.get("github_seen_only")
+        ):
+            filtered.append(item)
+            continue
         source_key = (item.site_id, item.source)
         existing_count = int((existing_source_counts or {}).get(source_key, 0))
         if existing_source_counts is not None and existing_count < seed_min_items_per_source:
@@ -240,6 +245,68 @@ def filter_raw_items_by_collect_window(
             continue
         filtered.append(item)
     return filtered, skipped
+
+
+def prepare_github_items_for_collection_window(
+    raw_items: list[RawItem],
+    archive: dict[str, dict[str, Any]],
+    now: datetime,
+) -> tuple[list[RawItem], dict[str, int]]:
+    """在通用时间窗之前处理 GitHub commit 的稳定身份和每日合并规则。
+
+    这些标记只在本轮内存中使用，`apply_public_raw_meta` 不会把内部控制字段写入公开归档。
+    """
+    github_items = [item for item in raw_items if item.site_id == GITHUB_REPO_SUBSCRIPTION_SITE_ID]
+    if not github_items:
+        return raw_items, {"seen_only": 0, "daily_coalesced": 0, "window_bypassed": 0}
+
+    identity_to_id: dict[tuple[str, str], str] = {}
+    url_to_id: dict[str, str] = {}
+    repo_today: set[str] = set()
+    repo_has_history: set[str] = set()
+    today = now.astimezone(UTC).date()
+    for item_id, record in archive.items():
+        if str(record.get("site_id") or "") != GITHUB_REPO_SUBSCRIPTION_SITE_ID:
+            continue
+        url = normalize_url(str(record.get("url") or ""))
+        if url:
+            url_to_id[url] = item_id
+        repo_identity = str(record.get("github_repo_identity") or "").strip()
+        entry_identity = str(record.get("github_entry_identity") or "").strip()
+        source_kind = str(record.get("github_source_kind") or "").strip()
+        if repo_identity and entry_identity:
+            identity_to_id[(repo_identity, entry_identity)] = item_id
+        if source_kind != "commit_fallback" or not repo_identity:
+            continue
+        repo_has_history.add(repo_identity)
+        first_seen = parse_iso(record.get("first_seen_at"))
+        if first_seen and first_seen.astimezone(UTC).date() == today:
+            repo_today.add(repo_identity)
+
+    prepared: list[RawItem] = []
+    stats = {"seen_only": 0, "daily_coalesced": 0, "window_bypassed": 0}
+    for item in raw_items:
+        meta = dict(item.meta or {})
+        if item.site_id == GITHUB_REPO_SUBSCRIPTION_SITE_ID:
+            github_kind = str(meta.get("github_source_kind") or "")
+            repo_identity = str(meta.get("github_repo_identity") or "").strip()
+            entry_identity = str(meta.get("github_entry_identity") or "").strip()
+            existing_id = identity_to_id.get((repo_identity, entry_identity)) or url_to_id.get(normalize_url(item.url))
+            if existing_id and github_kind == "commit_fallback":
+                meta["github_seen_only"] = True
+                meta["__github_archive_item_id"] = existing_id
+                stats["seen_only"] += 1
+            elif existing_id:
+                meta["__github_archive_item_id"] = existing_id
+            elif github_kind == "commit_fallback" and repo_identity in repo_today:
+                stats["daily_coalesced"] += 1
+                continue
+            elif github_kind == "commit_fallback" and repo_identity in repo_has_history:
+                meta["github_window_bypass"] = True
+                stats["window_bypassed"] += 1
+            item = RawItem(item.site_id, item.site_name, item.source, item.title, item.url, item.published_at, meta)
+        prepared.append(item)
+    return prepared, stats
 
 
 def archive_source_counts(archive: dict[str, dict[str, Any]]) -> dict[tuple[str, str], int]:

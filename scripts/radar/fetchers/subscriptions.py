@@ -62,6 +62,140 @@ except ModuleNotFoundError:
 
 """Subscription and bridge source fetchers."""
 
+GITHUB_RESPONSE_MAX_BYTES = 4 * 1024 * 1024
+GITHUB_READ_TIMEOUT_SECONDS = 10.0
+
+
+def _github_deadline_timeout(deadline: float | None) -> float:
+    if deadline is None:
+        return GITHUB_READ_TIMEOUT_SECONDS
+    remaining = float(deadline) - time.monotonic()
+    if remaining <= 0:
+        raise TimeoutError("github_budget_exceeded")
+    return max(0.05, min(GITHUB_READ_TIMEOUT_SECONDS, remaining))
+
+
+def _github_get_json(
+    session: requests.Session,
+    url: str,
+    *,
+    params: dict[str, Any] | None,
+    headers: dict[str, str],
+    deadline: float | None,
+) -> Any:
+    """读取 GitHub JSON 时限制响应大小，并在每个 chunk 边界检查预算。"""
+    response = session.get(
+        url,
+        params=params,
+        headers=headers,
+        timeout=_github_deadline_timeout(deadline),
+        stream=True,
+    )
+    try:
+        status_code = int(getattr(response, "status_code", 0) or 0)
+        response_headers = getattr(response, "headers", {}) or {}
+        if status_code == 429 or (
+            status_code == 403
+            and (
+                str(response_headers.get("X-RateLimit-Remaining") or "") == "0"
+                or response_headers.get("Retry-After")
+            )
+        ):
+            raise ValueError("github_upstream_rate_limited")
+        if status_code == 403:
+            raise ValueError("github_upstream_forbidden")
+        if 500 <= status_code <= 599:
+            raise ValueError("github_upstream_server_error")
+        response.raise_for_status()
+        iterator = getattr(response, "iter_content", None)
+        if not callable(iterator):
+            return response.json()
+        chunks: list[bytes] = []
+        total = 0
+        for chunk in iterator(chunk_size=65536):
+            _github_deadline_timeout(deadline)
+            if not chunk:
+                continue
+            data = chunk if isinstance(chunk, bytes) else str(chunk).encode("utf-8")
+            total += len(data)
+            if total > GITHUB_RESPONSE_MAX_BYTES:
+                raise ValueError("github_upstream_response_too_large")
+            chunks.append(data)
+        _github_deadline_timeout(deadline)
+        return json.loads(b"".join(chunks).decode("utf-8"))
+    finally:
+        close = getattr(response, "close", None)
+        if callable(close):
+            close()
+
+
+def _github_commits_url(api_url: str) -> str:
+    parsed = urlparse(str(api_url or ""))
+    path = parsed.path.rstrip("/")
+    if path.endswith("/releases"):
+        path = path[: -len("/releases")] + "/commits"
+    elif path.endswith("/releases/latest"):
+        path = path[: -len("/releases/latest")] + "/commits"
+    else:
+        path = path + "/commits"
+    return parsed._replace(path=path, query="", fragment="").geturl()
+
+
+def _github_repo_identity(*, managed_repo_id: Any = None, source_id: str = "", repo_label: str = "") -> str:
+    value = str(managed_repo_id or source_id or repo_label).strip()
+    return value
+
+
+def _github_release_item(
+    release: dict[str, Any],
+    *,
+    now: datetime,
+    repo_label: str,
+    site_name: str,
+    display_name: str,
+    repo_identity: str,
+) -> RawItem | None:
+    if release.get("draft"):
+        return None
+    tag = str(release.get("tag_name") or "").strip()
+    name = str(release.get("name") or "").strip() or tag
+    url = str(release.get("html_url") or "").strip()
+    if not name or not url:
+        return None
+    release_id = release.get("id")
+    try:
+        release_identity = str(int(release_id)) if int(release_id) > 0 else ""
+    except (TypeError, ValueError):
+        release_identity = ""
+    if not release_identity:
+        # 兼容早期 GitHub 公开响应测试夹具；真实响应优先使用数字 release id。
+        release_identity = tag or url
+    published = parse_date_any(release.get("published_at") or release.get("created_at"), now)
+    if published is None:
+        return None
+    release_type = "预发布" if release.get("prerelease") else "正式发布"
+    title = f"{repo_label} {release_type}: {name}"
+    return RawItem(
+        site_id=GITHUB_REPO_SUBSCRIPTION_SITE_ID,
+        site_name=site_name,
+        source=display_name or "GitHub版本订阅",
+        title=title,
+        url=url,
+        published_at=published,
+        meta={
+            "summary": title,
+            "source_kind": "github_release_subscription",
+            "github_source_kind": "release",
+            "github_repo_identity": repo_identity,
+            "github_entry_identity": f"release:{release_identity}",
+            "release_id": release_identity,
+            "repo": repo_label,
+            "tag_name": tag,
+            "release_name": name,
+            "prerelease": bool(release.get("prerelease")),
+        },
+    )
+
 def fetch_github_repo_subscription(
     session: requests.Session,
     now: datetime,
@@ -72,6 +206,9 @@ def fetch_github_repo_subscription(
     display_name: str = "",
     max_items: int = GITHUB_REPO_SUBSCRIPTION_MAX_ITEMS,
     first_collect_backfill: bool = False,
+    source_id: str = "",
+    managed_repo_id: int | str | None = None,
+    deadline: float | None = None,
 ) -> list[RawItem]:
     fetch_count = GITHUB_REPO_SUBSCRIPTION_BACKFILL_MAX_ITEMS if first_collect_backfill else int(max_items or 1)
     params = {"per_page": max(1, min(100, fetch_count))}
@@ -83,53 +220,80 @@ def fetch_github_repo_subscription(
     if github_token and urlparse(api_url).netloc.lower() == "api.github.com":
         headers["Authorization"] = f"Bearer {github_token}"
         headers["X-GitHub-Api-Version"] = "2022-11-28"
-    resp = session.get(
-        api_url,
-        params=params,
-        headers=headers,
-        timeout=30,
-    )
-    resp.raise_for_status()
-    payload = resp.json()
+    payload = _github_get_json(session, api_url, params=params, headers=headers, deadline=deadline)
     if not isinstance(payload, list):
-        return []
+        raise ValueError("github_releases_invalid_response")
 
     out: list[RawItem] = []
     seen: set[str] = set()
+    repo_identity = _github_repo_identity(
+        managed_repo_id=managed_repo_id,
+        source_id=source_id,
+        repo_label=repo_label,
+    )
     for release in payload[:fetch_count]:
-        if not isinstance(release, dict) or release.get("draft"):
+        if not isinstance(release, dict):
             continue
-        tag = str(release.get("tag_name") or "").strip()
-        name = str(release.get("name") or "").strip() or tag
-        url = str(release.get("html_url") or "").strip()
-        if not url and tag:
-            url = f"{GITHUB_REPO_SUBSCRIPTION_HTML_URL}/releases/tag/{tag}"
-        if not name or not url:
-            continue
-        if url in seen:
-            continue
-        seen.add(url)
-        published = parse_date_any(release.get("published_at") or release.get("created_at"), now) or now
-        release_type = "预发布" if release.get("prerelease") else "正式发布"
-        title = f"{repo_label} {release_type}: {name}"
-        out.append(
-            RawItem(
-                site_id=GITHUB_REPO_SUBSCRIPTION_SITE_ID,
-                site_name=site_name,
-                source=display_name or "GitHub版本订阅",
-                title=title,
-                url=url,
-                published_at=published,
-                meta={
-                    "summary": title,
-                    "source_kind": "github_release_subscription",
-                    "repo": repo_label,
-                    "tag_name": tag,
-                    "release_name": name,
-                    "prerelease": bool(release.get("prerelease")),
-                },
-            )
+        item = _github_release_item(
+            release,
+            now=now,
+            repo_label=repo_label,
+            site_name=site_name,
+            display_name=display_name,
+            repo_identity=repo_identity,
         )
+        if item is None or item.url in seen:
+            continue
+        seen.add(item.url)
+        out.append(item)
+
+    if payload and not out:
+        raise ValueError("github_releases_invalid_response")
+    if not payload:
+        commit_payload = _github_get_json(
+            session,
+            _github_commits_url(api_url),
+            params={"per_page": 1},
+            headers=headers,
+            deadline=deadline,
+        )
+        if not isinstance(commit_payload, list):
+            raise ValueError("github_commits_invalid_response")
+        if commit_payload:
+            commit = commit_payload[0]
+            if not isinstance(commit, dict):
+                raise ValueError("github_commits_invalid_response")
+            sha = str(commit.get("sha") or "").strip()
+            commit_data = commit.get("commit") if isinstance(commit.get("commit"), dict) else {}
+            message = str(commit_data.get("message") or "").strip().splitlines()[0].strip()
+            message = message or sha[:12]
+            timestamp = parse_date_any(
+                (commit_data.get("committer") or {}).get("date")
+                or (commit_data.get("author") or {}).get("date"),
+                now,
+            )
+            if not sha or timestamp is None:
+                raise ValueError("github_commit_timestamp_invalid" if sha else "github_commit_invalid_response")
+            url = str(commit.get("html_url") or "").strip() or f"https://github.com/{repo_label}/commit/{sha}"
+            title = f"{repo_label} 提交: {message}"
+            out.append(
+                RawItem(
+                    site_id=GITHUB_REPO_SUBSCRIPTION_SITE_ID,
+                    site_name=site_name,
+                    source=display_name or "GitHub版本订阅",
+                    title=title,
+                    url=url,
+                    published_at=timestamp,
+                    meta={
+                        "summary": title,
+                        "github_source_kind": "commit_fallback",
+                        "github_repo_identity": repo_identity,
+                        "github_entry_identity": f"commit:{sha}",
+                        "commit_sha": sha,
+                        "repo": repo_label,
+                    },
+                )
+            )
     if first_collect_backfill:
         out = trim_first_collect_backfill_items(out, now, keep_latest=int(max_items or 1))
     return out

@@ -456,6 +456,19 @@ def source_status_summary(
                 "error": site.get("error"),
                 "cookie_present": site.get("cookie_present"),
                 "fetch_mode": site.get("fetch_mode"),
+                "partial": site.get("partial"),
+                "eligible_count": site.get("eligible_count"),
+                "attempted_count": site.get("attempted_count"),
+                "succeeded_count": site.get("succeeded_count"),
+                "expected_skip_count": site.get("expected_skip_count"),
+                "failed_count": site.get("failed_count"),
+                "deferred_count": site.get("deferred_count"),
+                "skip_reason": site.get("skip_reason"),
+                "daily_coalesced": site.get("daily_coalesced"),
+                "budget_ms": site.get("budget_ms"),
+                "elapsed_ms": site.get("elapsed_ms"),
+                "overrun_ms": site.get("overrun_ms"),
+                "children": site.get("repos") or site.get("children") or [],
             }
             for site in payload.get("sites", [])
             if isinstance(site, dict)

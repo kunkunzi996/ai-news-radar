@@ -1606,6 +1606,45 @@ class LocalServerTests(unittest.TestCase):
         self.assertIn("sync_bilibili_cookie", action_ids)
         self.assertIn("open_bilibili_cookie_folder", action_ids)
 
+    def test_github_partial_status_is_yellow_and_preserves_counters(self):
+        issues = maintenance_issues_from_status(
+            {
+                "sites": [
+                    {
+                        "site_id": "github_foundation_sunshine_releases",
+                        "site_name": "GitHub Release",
+                        "ok": False,
+                        "partial": True,
+                        "succeeded_count": 1,
+                        "expected_skip_count": 2,
+                        "failed_count": 1,
+                        "deferred_count": 3,
+                        "item_count": 1,
+                    }
+                ]
+            }
+        )
+        self.assertEqual(len(issues), 1)
+        self.assertEqual(issues[0]["severity"], "warn")
+        self.assertIn("成功 1 个", issues[0]["detail"])
+        self.assertIn("延后 3 个", issues[0]["detail"])
+
+    def test_github_empty_repository_does_not_create_zero_item_warning(self):
+        issues = maintenance_issues_from_status(
+            {
+                "sites": [
+                    {
+                        "site_id": "github_foundation_sunshine_releases",
+                        "site_name": "GitHub Release",
+                        "ok": True,
+                        "item_count": 0,
+                        "skip_reason": "empty_repository",
+                    }
+                ]
+            }
+        )
+        self.assertEqual(issues, [])
+
     def test_bilibili_cookie_status_uses_default_local_file(self):
         root = Path(self.create_temp_dir())
         cookie_file = root / BILIBILI_DEFAULT_COOKIE_FILE

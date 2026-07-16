@@ -293,7 +293,23 @@ def maintenance_issues_from_status(payload: dict[str, Any], root_dir: Path | Non
             isinstance(feed, dict) and feed.get("ok") is False
             for feed in site.get("feeds") or []
         )
-        if site.get("ok") is False and not has_failed_wewe_feed:
+        is_partial = bool(site.get("partial"))
+        if is_partial:
+            add_maintenance_issue(
+                issues,
+                f"{site_id or 'source'}_partial",
+                "warn",
+                site_id,
+                f"{name} 本轮部分完成",
+                (
+                    f"成功 {int(site.get('succeeded_count') or 0)} 个，"
+                    f"正常跳过 {int(site.get('expected_skip_count') or 0)} 个，"
+                    f"失败 {int(site.get('failed_count') or 0)} 个，"
+                    f"延后 {int(site.get('deferred_count') or 0)} 个。"
+                ),
+                "稍后重跑；先检查失败仓库或 GitHub 限流状态。",
+            )
+        if site.get("ok") is False and not has_failed_wewe_feed and not is_partial:
             add_maintenance_issue(
                 issues,
                 f"{site_id or 'source'}_failed",
@@ -304,7 +320,14 @@ def maintenance_issues_from_status(payload: dict[str, Any], root_dir: Path | Non
                 maintenance_action_for_error(site_id, error),
                 wewe_fix_actions(include_start=True) if site_id == "wewe_rss" else bilibili_fix_actions(root_dir) if site_id == "bilibili_dynamic" else [],
             )
-        elif site.get("ok") is True and int(site.get("item_count") or 0) == 0 and not is_no_new_in_collection_window(site):
+        elif (
+            site.get("ok") is True
+            and int(site.get("item_count") or 0) == 0
+            and not is_no_new_in_collection_window(site)
+            and str(site.get("skip_reason") or "") not in {"empty_repository", "daily_coalesced"}
+            and int(site.get("expected_skip_count") or 0) == 0
+            and int(site.get("daily_coalesced") or 0) == 0
+        ):
             add_maintenance_issue(
                 issues,
                 f"{site_id or 'source'}_zero_items",
