@@ -2,6 +2,16 @@
 
 ## 下一轮入口（2026-07-16 更新）
 
+- **2026-07-17 工作台收藏桥（雷达侧）已完成人工验收，准备合入主线**：隔离 worktree 为
+  `E:\AI-news-reader\ai-news-radar-workbench-bridge`，分支为
+  `feature/workbench-collect-bridge`，基线来自 `origin/master` 的 `39375d3`；原工作区的运行数据、
+  未跟踪文件和 `stash@{0}` 均未触碰。已实现 iframe 白名单握手、收藏回执配对、卡片收藏按钮及 4 组真实
+  iframe E2E；新增桥接 E2E 为 `4 passed`，完整 `npm run test:e2e` 为 `24 passed`，两份 Node 语法检查与
+  `git diff --check` 均通过。测试期间临时停止的 `万有 OMNIA 服务` 已恢复运行，8765 端口已由工作台重新监听。
+  用户已在 `万有 OMNIA → AI 雷达 → 本机版` 确认卡片显示收藏按钮并通过人工验收；独立打开或尚未部署桥接代码的
+  GitHub Pages 不显示该按钮是预期行为。本轮未改 Python、`.github/workflows/**`、`config/**` 或 `data/**`；保存后
+  需要确认 GitHub Pages 完成部署，再验收工作台“公网版”的收藏入口。
+
 - **2026-07-16 微信公众号退订历史清理修复已完成线上灰度与真实验收**：代码在独立 worktree
   `E:\AI-news-reader\ai-news-radar-wechat-cleanup`、分支 `fix/wechat-unsubscribe-cleanup` 施工，功能提交
   `fdec276`，合并最新主线后普通推送至 `master`，全程未 force/rebase 覆盖远端。原脏 master、用户

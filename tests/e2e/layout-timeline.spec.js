@@ -411,7 +411,7 @@ test("微信公众号只切换平铺布局，业务栏目口径保持不变", as
     nodes.map((node) => node.dataset.itemId)
   ));
   expect(cardIds).toEqual(["wechat-alpha", "wechat-beta"]);
-  await expect(page.locator('script[src*="render-list.js?v=wechat-flat-layout-0716a"]')).toHaveCount(1);
+  await expect(page.locator('script[src*="render-list.js?v=workbench-bridge-0717a"]')).toHaveCount(1);
 
   await page.locator('#listSortTools [data-sort="source"]').click();
   await waitForListRender(page);

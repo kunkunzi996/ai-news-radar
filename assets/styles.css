@@ -3131,6 +3131,31 @@ summary:focus-visible {
   background: var(--surface-soft);
 }
 
+.collect-btn {
+  min-height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.collect-btn:hover,
+.collect-btn:focus-visible {
+  border-color: rgba(18, 106, 115, 0.45);
+  outline: none;
+}
+
+.collect-btn.is-collected,
+.collect-btn:disabled {
+  color: var(--muted);
+  background: var(--surface-soft);
+  cursor: default;
+}
+
 .empty {
   padding: 24px 16px;
   color: var(--muted);

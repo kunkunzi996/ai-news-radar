@@ -1038,17 +1038,14 @@ function renderItemNode(item, context = {}) {
   titleEl.href = item.url;
   const summaryEl = node.querySelector(".news-summary");
   if (summaryEl) summaryEl.textContent = feedSummaryText(item);
-  if (shouldRenderReadToggle(item, context)) {
-    node.appendChild(buildReadToggleButton(item));
-  }
+  const actions = buildItemActions(item, context);
+  if (actions) node.appendChild(actions);
   return node;
 }
 function shouldRenderReadToggle(item, context = {}) {
   return context.readToggleEligible === true || isSubscriptionItem(item);
 }
 function buildReadToggleButton(item) {
-  const wrap = document.createElement("div");
-  wrap.className = "item-actions";
   const btn = document.createElement("button");
   btn.type = "button";
   const read = isItemRead(item);
@@ -1056,7 +1053,53 @@ function buildReadToggleButton(item) {
   btn.textContent = read ? "恢复" : "已阅";
   btn.title = read ? "恢复到我的订阅" : "标记已阅，从看板中移出";
   btn.addEventListener("click", () => toggleItemRead(item));
-  wrap.appendChild(btn);
+  return btn;
+}
+function buildCollectButton(item) {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  const collected = window.WorkbenchBridge.isCollected(item.url);
+  const idleTitle = "收藏到工作台收藏库，并标记已阅";
+  btn.className = `collect-btn${collected ? " is-collected" : ""}`;
+  btn.textContent = collected ? "已收藏" : "收藏";
+  btn.title = collected ? "已收藏到工作台收藏库" : idleTitle;
+  btn.disabled = collected;
+  btn.addEventListener("click", async () => {
+    btn.disabled = true;
+    btn.textContent = "收藏中…";
+    try {
+      await window.WorkbenchBridge.collect({
+        title: itemTitleText(item) || item.title || "",
+        url: item.url || "",
+        summary: feedSummaryText(item),
+        source: item.source || item.site_name || "",
+        publishedAt: item.published_at || "",
+      });
+      window.WorkbenchBridge.markCollected(item.url);
+      btn.textContent = "已收藏";
+      btn.classList.add("is-collected");
+      // 收藏成功顺手标已阅；toggleItemRead 触发重渲染后，按钮状态由 isCollected 记住
+      if (!isItemRead(item) && readTrackingKeys(item).size) toggleItemRead(item);
+    } catch (err) {
+      btn.textContent = "收藏失败";
+      btn.title = String((err && err.message) || err);
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = "收藏";
+        btn.title = idleTitle;
+      }, 3000);
+    }
+  });
+  return btn;
+}
+function buildItemActions(item, context = {}) {
+  const bridgeOn = !!(window.WorkbenchBridge && window.WorkbenchBridge.connected());
+  const showRead = shouldRenderReadToggle(item, context);
+  if (!bridgeOn && !showRead) return null;
+  const wrap = document.createElement("div");
+  wrap.className = "item-actions";
+  if (bridgeOn && item.url) wrap.appendChild(buildCollectButton(item));
+  if (showRead) wrap.appendChild(buildReadToggleButton(item));
   return wrap;
 }
 function buildSourceGroupNode(source, items, rawCount = items.length) {
