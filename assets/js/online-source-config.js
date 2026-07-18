@@ -453,7 +453,7 @@ async function syncOnlineSourceConfigToServer() {
     state.onlineSourceDirty = false;
     renderOnlineSourceConfig();
     const purgedNote = purgedItemsNote(payload.purged_items);
-    if (payload.no_changes) {
+    if (payload.no_changes || payload.outcome === "no_change") {
       setOnlineSourceStatus(`线上配置没有变化，不需要提交。${purgedNote}`, "ok");
       setOnlineSourceButton(onlineSourceSyncBtnEl, "无变化", true);
     } else if (payload.pushed) {

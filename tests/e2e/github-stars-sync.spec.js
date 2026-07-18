@@ -80,6 +80,32 @@ test("线上信源保存和同步遵守版本号与空请求契约", async ({ pa
   expect(errors.filter((message) => !message.includes("status of 409"))).toEqual([]);
 });
 
+test("线上信源无改动时显示无需提交", async ({ page }) => {
+  const errors = [];
+  collectErrors(page, errors);
+  await page.route("**/api/online-source-config", async (route) => {
+    await route.fulfill({ status: 200, headers: { ETag: baseConfig.etag }, json: baseConfig });
+  });
+  await page.route("**/api/sync-online-source-config", async (route) => {
+    expect(route.request().postDataJSON()).toEqual({});
+    expect(route.request().headers()["if-match"]).toBe(baseConfig.etag);
+    await route.fulfill({
+      status: 200,
+      headers: { ETag: baseConfig.etag },
+      json: { ...baseConfig, outcome: "no_change", config_changed: false, pushed: false },
+    });
+  });
+
+  const configLoaded = page.waitForResponse("**/api/online-source-config");
+  await page.goto("/");
+  await configLoaded;
+  await page.locator("#settingsOpenBtn").click();
+  await page.locator("#onlineSourceSyncBtn").click();
+
+  await expect(page.locator("#onlineSourceStatus")).toContainText("线上配置没有变化，不需要提交");
+  expect(errors).toEqual([]);
+});
+
 test("GitHub 星标首次绑定、确认、Apply 与四种 outcome 可展示", async ({ page }) => {
   const errors = [];
   collectErrors(page, errors);
