@@ -2,8 +2,8 @@
 
 ## 下一轮入口（2026-07-18 更新）
 
-- **主工作区同步与洁癖（2026-07-18）**：主工作区已从 `853e6f4` 快进到
-  `1757d34`，与 `origin/master` 一致。本机旧的 7 月 14 日数据快照、临时截图、实测脚本与
+- **主工作区同步与洁癖（2026-07-18）**：主工作区当前为 `da4250b`，与
+  `origin/master` 一致。本机旧的 7 月 14 日数据快照、临时截图、实测脚本与
   历史计划文件已整体保护到 `stash@{0}`（`0e94dbf`），不应整批恢复或提交；原有 6 条
   GitHub Release 历史备份仍在 `stash@{1}`（`a8d0acd`），严禁丢弃。下一轮开始先检查
   `git status --short --branch` 与 `git stash list`，恢复内容必须逐个按用途评估。
@@ -54,10 +54,10 @@
     前后核对 SHA256、总条数和 site_id/source 分布，再重建派生文件。
   - 方案与施工边界：`计划/微信公众号退订后历史消息残留-修复方案.md`。后续 hard delete 会由 `on`
     模式按同一 ID-only 契约清理；`status=0` 仍只停采、不删历史。任何异常先把 Actions 变量切回 `off`。
-## GitHub 星标安全同步 V3：真实上线完成（2026-07-16）
+## GitHub 星标安全同步 V3 与定时自动同步：真实上线完成（2026-07-18）
 
-- 功能与后续重复同步修复均已合并到 `master`；真实验收完成时的功能与数据基线为 `47286b35ccef76819df37d7b394936cf00ce1422`，当时 `HEAD=origin/master`、ahead/behind 为 `0/0`。
-- 真实账号 `kunkunzi996`（数字 account id `284580915`）已绑定；当前公开星标 15 个，对应 15 个受管信源。固定门禁仍为单账号、最多 50 个公开星标、第 51 个整次中止、每仓库每 UTC 日最多一个最新 commit 快照。
+- 手动 V3、云端定时自动同步及两次线上面板修复均已合并到 `master`；自动同步功能提交为 `699f34a`，随后修复为 `e0c9ca5` 与 `98868a5`。Actions 在每轮采集前同步星标配置，配置变更单独以“配置：GitHub星标自动同步”提交；本机 8092 页面只读本地文件，需拉取后刷新才能显示云端新配置。
+- 真实账号 `kunkunzi996`（数字 account id `284580915`）已绑定；当前公开星标 16 个，对应 16 个受管信源，`multica-ai/multica` 已由自动同步新增并启用。最新状态心跳为 `2026-07-18T13:58:59Z` 的 `no_change`。固定门禁仍为单账号、最多 50 个公开星标、第 51 个整次中止、每仓库每 UTC 日最多一个最新 commit 快照。
 - §17.2 真实验收已完成：临时取消并恢复 `joeseesun/qiaomu-goal-meta-skill` 星标，停用 operation commit 为 `450d6b5f42fabc11bbd39c4a497f9871d132ccf7`，恢复为 `b8e51e7fa5330ff14d430955145879ed42110e8e`；随后解绑为 `c6643d99e1bb89fece21d74230419891c1cd26de`，重新绑定为 `cb21d9bcb16de63718bc7f0e5f7c026a0ffbaca1`。四个提交都只修改 `config/online-sources.json`，并带有独立 operation trailer。
 - 取消星标只自动停用、不删除信源、不触发 pending purge；目标 source id `online_github_repo_1266385233`、repo id `1266385233` 在停用/恢复与解绑/重绑全程稳定，历史仍保留。此前取消星标的 `AlkaidLab/moonlight-harmony` 保持停用且历史仍为 1 条。
 - 重新绑定后再次 Preview/Apply 得到 `no_change`：HEAD、配置字节、OPML、`updated_at=2026-07-16T13:26:41Z` 均未变化。最终配置 SHA256 为 `C4B1E08F8D6F2CF61E5986B8BACD5D6F188778FB8984A35172E7111808CF88E8`，OPML SHA256 为 `25A7984823CA46F4591CEC90E23A7707455BE596A882960EF49E0BE962B67058`。
