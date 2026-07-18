@@ -245,8 +245,16 @@ Preview and requires an explicit confirmation before Apply.
 - The UI reports `no_change`, `pushed`, `saved_not_committed`, and `committed_not_pushed`, plus partial/deferred, stale, and Recovery states.
 - Apply pushes only an exact operation commit proven by its manifest, operation trailer, stable patch-id, and file hashes; it never uses a bare `git push` or whole-worktree restore.
 
-The V3 code is complete and has passed automated and mock-browser checks. A real account Preview/Apply
-is still pending, so this feature must not be described as live before that acceptance.
+V3 completed real-account acceptance on 2026-07-16. The local console still handles first binding,
+adopting an existing manual source, and unbinding; each of those actions requires Preview followed by
+explicit user confirmation before Apply.
+
+For a bound account, stars automatically sync before every Actions collection run (about every 30
+minutes): unstarring auto-disables the managed source while its history ages out under `archive_days`,
+and newly starred repositories are automatically managed. An empty snapshot or a sharp count drop
+trips a circuit breaker and requires manual handling. See `data/github-star-autosync.json` for status.
+When there is no configuration change, the configuration files and `updated_at` stay unchanged while
+the status heartbeat still refreshes.
 
 By default, the core pipeline requires no API keys.
 

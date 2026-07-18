@@ -37,6 +37,28 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Sync GitHub stars
+        id: github_star_sync
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          # 星标自动同步：取消星标自动停用、新星标自动接管。
+          # 任何失败（限流/需人工确认/熔断）都不阻塞后面的正常采集。
+          python scripts/github_star_autosync.py --root .
+
+      - name: Guard GitHub star sync writes
+        id: github_star_guard
+        if: ${{ always() }}
+        run: |
+          # 预期失败必须保持两个配置文件零 diff；否则说明回滚没完成，整轮禁止继续。
+          if [ "${{ steps.github_star_sync.outcome }}" != "success" ] && \
+             ! git diff --quiet -- config/online-sources.json feeds/online-sources.opml; then
+            echo "::error::GitHub star sync failed with unsafe config changes; refusing to continue"
+            git status --short -- config/online-sources.json feeds/online-sources.opml
+            exit 1
+          fi
+
       - name: Fetch Douyin bridge JSONL
         id: douyin_bridge
         env:
@@ -100,6 +122,7 @@ jobs:
           fi
 
       - name: Update data
+        id: update_data
         env:
           AI_RELEVANCE_THRESHOLD: ${{ vars.AI_RELEVANCE_THRESHOLD || '0.65' }}
           BILIBILI_DYNAMIC_MAX_ITEMS: ${{ vars.BILIBILI_DYNAMIC_MAX_ITEMS || 10 }}
@@ -115,29 +138,51 @@ jobs:
           python scripts/update_news.py --source-config config/online-sources.json --output-dir data --window-hours 24 --archive-days ${{ vars.ARCHIVE_DAYS || '180' }} --all-time
 
       - name: Commit and push changes
+        if: ${{ always() && !cancelled() && steps.github_star_guard.outcome == 'success' }}
         env:
           EMAIL_DIGEST_PUBLISH: ${{ secrets.EMAIL_DIGEST_PUBLISH || vars.EMAIL_DIGEST_PUBLISH }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # Stage the whole data dir so newly added output files can never be
-          # silently dropped again (the daily-brief/stories-merged freeze was
-          # caused by a stale filename whitelist here). .gitignore keeps
-          # data/email-digest.json out of this add.
-          git add data/
-          if [ -f data/email-digest.json ] && [ "$EMAIL_DIGEST_PUBLISH" = "1" ]; then
-            git add -f data/email-digest.json
+          has_commit=0
+
+          # 只有同步步骤成功时才允许提交配置；失败状态下即使有 diff 也绝不暂存。
+          if [ "${{ steps.github_star_sync.outcome }}" = "success" ] && \
+             ! git diff --quiet -- config/online-sources.json feeds/online-sources.opml; then
+            git add config/online-sources.json feeds/online-sources.opml
+            git commit -m "配置：GitHub星标自动同步"
+            has_commit=1
           fi
-          # Self-check: fail loudly if anything under data/ is still unstaged,
-          # instead of green-but-stale runs.
-          if [ -n "$(git status --porcelain --untracked-files=all -- data/ | grep -v '^[MADRC]' || true)" ]; then
-            echo "::error::Generated files under data/ were not staged:"
-            git status --porcelain --untracked-files=all -- data/ | grep -v '^[MADRC]'
-            exit 1
+
+          # 状态文件是独立心跳；普通采集失败时也允许精确提交它。
+          if [ -f data/github-star-autosync.json ]; then
+            git add data/github-star-autosync.json
           fi
-          if git diff --cached --quiet; then
+
+          if [ "${{ steps.update_data.outcome }}" = "success" ]; then
+            # 正常采集成功才暂存完整 data 目录。
+            git add data/
+            if [ -f data/email-digest.json ] && [ "$EMAIL_DIGEST_PUBLISH" = "1" ]; then
+              git add -f data/email-digest.json
+            fi
+            # 保留原有自检：正常采集成功后，data 下不得残留未暂存生成物。
+            if [ -n "$(git status --porcelain --untracked-files=all -- data/ | grep -v '^[MADRC]' || true)" ]; then
+              echo "::error::Generated files under data/ were not staged:"
+              git status --porcelain --untracked-files=all -- data/ | grep -v '^[MADRC]'
+              exit 1
+            fi
+            data_commit_message="数据：更新 AI 新闻快照"
+          else
+            echo "::warning::Update data failed or was skipped; committing only safe GitHub star status/config changes"
+            data_commit_message="状态：记录 GitHub 星标自动同步"
+          fi
+
+          if ! git diff --cached --quiet; then
+            git commit -m "$data_commit_message"
+            has_commit=1
+          fi
+          if [ "$has_commit" -eq 0 ]; then
             echo "No changes to commit"
             exit 0
           fi
-          git commit -m "chore: update ai news snapshot"
           git push
