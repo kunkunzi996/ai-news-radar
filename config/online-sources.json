@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-07-18T17:35:36Z",
+  "updated_at": "2026-07-18T18:02:37Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -241,7 +241,7 @@
       "id": "online_github_repo_1219719583",
       "name": "javaht/claude-desktop-zh-cn",
       "type": "github_release",
-      "enabled": true,
+      "enabled": false,
       "channel": "GitHub Release",
       "target": "javaht/claude-desktop-zh-cn",
       "locator": "javaht/claude-desktop-zh-cn",
@@ -250,7 +250,7 @@
       "managed_by": "github_stars",
       "managed_account_id": 284580915,
       "managed_repo_id": 1219719583,
-      "managed_state": "active"
+      "managed_state": "auto_disabled"
     },
     {
       "id": "online_github_repo_1229284184",
