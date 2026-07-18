@@ -2980,6 +2980,38 @@ class LocalGitHubStarsApiTests(unittest.TestCase):
         self.assertEqual(body["error"], "online_sources_config_stale")
         save_mock.assert_not_called()
 
+    @patch("scripts.local_server.sync_saved_online_source_config")
+    def test_sync_requires_empty_payload_and_passes_if_match(self, sync_mock):
+        etag = '"' + "8" * 64 + '"'
+        sync_mock.return_value = {
+            "ok": True,
+            "outcome": "no_change",
+            "etag": etag,
+        }
+
+        status, _headers, body = self.request(
+            "POST",
+            "/api/sync-online-source-config",
+            {"sources": []},
+            headers={"If-Match": etag},
+        )
+
+        self.assertEqual(status, 400)
+        self.assertEqual(body["error"], "invalid_request_fields")
+        sync_mock.assert_not_called()
+
+        status, headers, body = self.request(
+            "POST",
+            "/api/sync-online-source-config",
+            {},
+            headers={"If-Match": etag},
+        )
+
+        self.assertEqual(status, 200)
+        self.assertEqual(headers["ETag"], etag)
+        self.assertEqual(body["outcome"], "no_change")
+        sync_mock.assert_called_once_with(self.root, if_match=etag)
+
     @patch("scripts.local_server.save_online_source_config")
     def test_save_maps_managed_field_violation_without_leaking_text(self, save_mock):
         save_mock.side_effect = ValueError(

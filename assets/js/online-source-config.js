@@ -382,12 +382,18 @@ async function saveOnlineSourceConfigToServer() {
   try {
     const res = await fetch("./api/online-source-config", {
       method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        ...(state.githubStarEtag ? { "If-Match": state.githubStarEtag } : {}),
+      },
       body: JSON.stringify(onlineSourcePayload()),
     });
     const payload = await res.json().catch(() => ({}));
     if (!res.ok || payload.ok === false) throw new Error(payload.error || `HTTP ${res.status}`);
     state.onlineSourceConfig = normalizeOnlineSourceConfig(onlineConfigFromResponse(payload));
+    state.githubStarEtag = String(res.headers.get("ETag") || payload.etag || state.githubStarEtag || "");
+    state.githubStarConfigDigest = String(payload.base_config_digest || state.githubStarConfigDigest || "");
     state.onlineSourceDirty = false;
     renderOnlineSourceConfig();
     setOnlineSourceStatus(
@@ -406,10 +412,14 @@ async function saveOnlineSourceConfigToServer() {
 }
 
 function onlineSyncErrorMessage(message) {
-  if (String(message || "").includes("unrelated_files_already_staged")) {
+  const code = String(message || "");
+  if (code.includes("unrelated_files_already_staged")) {
     return "已有无关文件处于 staged 状态。请先取消暂存这些文件，再同步线上信源。";
   }
-  return message || "unknown error";
+  if (code.includes("online_sources_preflight_failed") || code.includes("online_sources_config_stale")) {
+    return "远端线上配置已变化。请先更新本地工作区并重新读取线上信源，不能强制覆盖。";
+  }
+  return code || "unknown error";
 }
 
 async function syncOnlineSourceConfigToServer() {
@@ -419,17 +429,27 @@ async function syncOnlineSourceConfigToServer() {
   }
   if (!requireLoadedOnlineSourceConfig()) return null;
   if (!syncOnlineSourceFormIfFilled()) return null;
+  if (state.onlineSourceDirty) {
+    setOnlineSourceStatus("当前配置尚未保存，请先点“保存配置”，再同步到线上。", "warn");
+    return null;
+  }
   setOnlineSourceButton(onlineSourceSyncBtnEl, "同步中...", true);
   setOnlineSourceStatus("正在提交并推送线上信源配置...", "warn");
   try {
     const res = await fetch("./api/sync-online-source-config", {
       method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify(onlineSourcePayload()),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        ...(state.githubStarEtag ? { "If-Match": state.githubStarEtag } : {}),
+      },
+      body: JSON.stringify({}),
     });
     const payload = await res.json().catch(() => ({}));
     if (!res.ok || payload.ok === false) throw new Error(payload.error || `HTTP ${res.status}`);
     state.onlineSourceConfig = normalizeOnlineSourceConfig(onlineConfigFromResponse(payload));
+    state.githubStarEtag = String(res.headers.get("ETag") || payload.etag || state.githubStarEtag || "");
+    state.githubStarConfigDigest = String(payload.base_config_digest || state.githubStarConfigDigest || "");
     state.onlineSourceDirty = false;
     renderOnlineSourceConfig();
     const purgedNote = purgedItemsNote(payload.purged_items);

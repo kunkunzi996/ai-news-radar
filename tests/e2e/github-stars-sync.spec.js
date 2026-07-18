@@ -36,6 +36,50 @@ function previewPayload() {
   };
 }
 
+test("线上信源保存和同步遵守版本号与空请求契约", async ({ page }) => {
+  const errors = [];
+  const saves = [];
+  const syncs = [];
+  collectErrors(page, errors);
+  await page.route("**/api/online-source-config", async (route) => {
+    if (route.request().method() === "GET") {
+      await route.fulfill({ status: 200, headers: { ETag: baseConfig.etag }, json: baseConfig });
+      return;
+    }
+    saves.push({
+      body: route.request().postDataJSON(),
+      etag: route.request().headers()["if-match"],
+    });
+    await route.fulfill({
+      status: 200,
+      headers: { ETag: baseConfig.etag },
+      json: { ...baseConfig, source_count: 0 },
+    });
+  });
+  await page.route("**/api/sync-online-source-config", async (route) => {
+    syncs.push({
+      body: route.request().postDataJSON(),
+      etag: route.request().headers()["if-match"],
+    });
+    await route.fulfill({
+      status: 409,
+      json: { ok: false, error: "online_sources_preflight_failed" },
+    });
+  });
+
+  const configLoaded = page.waitForResponse("**/api/online-source-config");
+  await page.goto("/");
+  await configLoaded;
+  await page.locator("#settingsOpenBtn").click();
+  await page.locator("#onlineSourceSaveBtn").click();
+  await page.locator("#onlineSourceSyncBtn").click();
+
+  expect(saves).toEqual([{ body: { version: "1.0", sources: [] }, etag: baseConfig.etag }]);
+  expect(syncs).toEqual([{ body: {}, etag: baseConfig.etag }]);
+  await expect(page.locator("#onlineSourceStatus")).toContainText("远端线上配置已变化");
+  expect(errors.filter((message) => !message.includes("status of 409"))).toEqual([]);
+});
+
 test("GitHub 星标首次绑定、确认、Apply 与四种 outcome 可展示", async ({ page }) => {
   const errors = [];
   collectErrors(page, errors);
