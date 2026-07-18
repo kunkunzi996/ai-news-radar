@@ -4,8 +4,8 @@
 
 ## 当前状态（2026-07-18）
 
-- 主工作区：`E:\AI-news-reader\ai-news-radar-run`，分支 `master`。当前基线为
-  `da4250b`，与 `origin/master` 一致；本次收尾只会提交已核实的状态文档，计划草稿保持未跟踪。
+- 主工作区：`E:\AI-news-reader\ai-news-radar-run`，分支 `master`。云端 Actions 会持续写入
+  `data/**` 快照；下一轮先用 `git status --short --branch` 确认本地与 `origin/master` 一致，计划草稿保持未跟踪。
 - 已上线且无需重复施工：微信公众号按稳定 `feed_id` 清理退订历史、GitHub 星标安全同步 V3、工作台收藏桥。
   工作台收藏桥仅剩 GitHub Pages 部署后在工作台“公网版”完成一次真实收藏确认。
 - GitHub 星标定时自动同步已于 2026-07-18 完成、合入并推送 `master`：每轮 Actions 采集前自动同步
@@ -26,3 +26,4 @@
 2. 改历史清理逻辑前，先读 `CLAUDE.md` 的“清理历史条目的禁区”；任何无法证明名单、身份与文件同源的情况都不能删除数据。
 3. 改线上同步逻辑前，先读 `CLAUDE.md` 的 Git 编排禁区；恢复工作区只允许 `git restore`，不能用 `git checkout`。
 4. 新增本机维护按钮前，先读 `CLAUDE.md` 的派发禁区；常驻按钮不能依赖“故障时才出现”的维护项。
+5. 本轮状态与交接文档已经完成收口；无需重复执行 GitHub 星标自动同步施工或线上面板修复。
