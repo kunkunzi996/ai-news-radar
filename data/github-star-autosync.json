@@ -1,21 +1,15 @@
 {
   "version": 1,
   "ok": true,
-  "outcome": "synced",
-  "finished_at": "2026-07-18T11:08:17Z",
+  "outcome": "no_change",
+  "finished_at": "2026-07-18T11:10:27Z",
   "error_code": "",
   "account_id": 284580915,
   "account_login": "kunkunzi996",
   "starred_count": 16,
   "private_skipped_count": 0,
   "summary": {
-    "added": [
-      {
-        "repo_id": 1133707766,
-        "repo": "multica-ai/multica",
-        "source_id": "online_github_repo_1133707766"
-      }
-    ],
+    "added": [],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
