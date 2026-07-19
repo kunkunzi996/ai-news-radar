@@ -1,6 +1,15 @@
 # PROJECT_STATE
 
-## 下一轮入口（2026-07-18 更新）
+## 下一轮入口（2026-07-19 更新）
+
+- **2026-07-19 微信采集健康看门狗与 MeoW 告警已完成并真实验收**：功能已通过
+  `b2a8614 合并：微信采集健康看门狗与登录状态告警` 合入并推送 `master`。Windows 计划任务
+  `WechatHealthWatchdog` 每小时执行；验收时状态为 `Ready`、上次结果 `0`。它只读取采集和登录状态，
+  不启动或停止采集，也不修改新闻数据。手机 MeoW 触达已验收；真实采集为
+  `succeeded / completed_no_change / exit_code=0 / login_state=valid / output_rows=60`，正式看门狗为
+  `succeeded / healthy / exit_code=0`。合并后全量测试为 `585 passed, 1 warning, 98 subtests passed`，
+  PowerShell AST、UTF-8 BOM 与 `git diff --check` 均通过。密钥继续仅保留在
+  `local-secrets/meow-push.json`；工作区外的看门狗状态、日志和采集运行文件均须保留，不提交或删除。
 
 - **主工作区同步与洁癖（2026-07-18）**：云端 Actions 会持续产生 `data/**` 快照；每次新窗口开始
   先核对 `master` 与 `origin/master` 是否一致。本机旧的 7 月 14 日数据快照、临时截图、实测脚本与
