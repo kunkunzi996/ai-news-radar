@@ -9,6 +9,7 @@ import socketserver
 import subprocess
 import sys
 import threading
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -439,14 +440,16 @@ def test_powershell_bridge_transaction_semantics(tmp_path) -> None:
     (sidecar_root / "start-we-mp-rss.ps1").write_text("exit 0\n", encoding="utf-8")
 
     fake_sync = r'''
-import argparse, json
+import argparse, json, time
 from pathlib import Path
 p=argparse.ArgumentParser(); p.add_argument("--subscriptions-out", required=True); p.add_argument("--snapshot-only", action="store_true")
 a=p.parse_args(); root=Path(__file__).resolve().parents[2]; scenario=json.loads((root/"scenario.json").read_text(encoding="utf-8"))
+time.sleep(float(scenario.get("sync_delay_seconds", 0)))
 payload=dict(scenario["authority"]); payload["generated_at"]=scenario["generated_at"]
 if a.snapshot_only: payload.update({"complete":False,"reason":"sync_skipped"})
 Path(a.subscriptions_out).write_text(json.dumps(payload,ensure_ascii=False),encoding="utf-8")
-print("[sync] 完成：成功 1 个 / 失败 0 个 / 新增 0 条")
+for line in scenario.get("sync_output", ["[sync] 完成：成功 1 个 / 失败 0 个 / 新增 0 条"]): print(line, flush=True)
+raise SystemExit(int(scenario.get("sync_exit", 0)))
 '''.strip() + "\n"
     (radar_root / "deploy" / "local" / "we_mp_rss_sync_once.py").write_text(fake_sync, encoding="utf-8")
 
@@ -468,10 +471,29 @@ Path(a.snapshot_out).write_text(json.dumps(snapshot,ensure_ascii=False,indent=2)
     paused = {"feed_id": "paused-id", "account": "停用号", "status": 0, "active": False}
     article_line = jsonl_line(feed_id="active-id", account="启用号")
 
-    def write_scenario(generated_at: str, feeds: list[dict]) -> None:
+    def write_scenario(
+        generated_at: str,
+        feeds: list[dict],
+        *,
+        sync_output: list[str] | None = None,
+        sync_exit: int = 0,
+        sync_delay_seconds: float = 0,
+    ) -> None:
         payload = authority_payload(feeds=feeds)
         (radar_root / "scenario.json").write_text(
-            json.dumps({"generated_at": generated_at, "authority": payload, "jsonl": article_line}, ensure_ascii=False),
+            json.dumps(
+                {
+                    "generated_at": generated_at,
+                    "authority": payload,
+                    "jsonl": article_line,
+                    "sync_output": sync_output
+                    if sync_output is not None
+                    else ["[sync] 完成：成功 1 个 / 失败 0 个 / 新增 0 条"],
+                    "sync_exit": sync_exit,
+                    "sync_delay_seconds": sync_delay_seconds,
+                },
+                ensure_ascii=False,
+            ),
             encoding="utf-8",
         )
 
@@ -505,11 +527,11 @@ Path(a.snapshot_out).write_text(json.dumps(snapshot,ensure_ascii=False,indent=2)
     base_url = f"http://127.0.0.1:{server.server_address[1]}"
     script = repo_root / "deploy" / "local" / "collect-wechat-and-push.ps1"
 
-    def run_bridge(
+    def build_bridge_command(
         *extra: str,
         fail_after_replace: int = 0,
         fail_git_add: bool = False,
-    ) -> subprocess.CompletedProcess[str]:
+    ) -> tuple[list[str], dict[str, str]]:
         env = os.environ.copy()
         if fail_after_replace or fail_git_add:
             env["WE_MP_RSS_ENABLE_TEST_FAILURES"] = "1"
@@ -517,16 +539,68 @@ Path(a.snapshot_out).write_text(json.dumps(snapshot,ensure_ascii=False,indent=2)
             env["WE_MP_RSS_TEST_FAIL_AFTER_REPLACE"] = str(fail_after_replace)
         if fail_git_add:
             env["WE_MP_RSS_TEST_FAIL_GIT_ADD"] = "1"
-        return subprocess.run(
+        return (
             [
                 "powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", str(script),
                 "-RadarRoot", str(radar_root), "-SidecarRoot", str(sidecar_root),
                 "-BridgeRoot", str(bridge_root), "-BaseUrl", base_url, *extra,
             ],
+            env,
+        )
+
+    def run_bridge(
+        *extra: str,
+        fail_after_replace: int = 0,
+        fail_git_add: bool = False,
+    ) -> subprocess.CompletedProcess[str]:
+        command, env = build_bridge_command(
+            *extra,
+            fail_after_replace=fail_after_replace,
+            fail_git_add=fail_git_add,
+        )
+        return subprocess.run(
+            command,
             capture_output=True, text=True, encoding="utf-8", errors="replace", check=False, env=env,
         )
 
     try:
+        precheck_status_path = tmp_path / "precheck-status.json"
+        write_scenario("2026-07-16T00:30:00Z", [active, paused], sync_delay_seconds=2)
+        precheck_command, precheck_env = build_bridge_command(
+            "-SkipSync", "-StatusFile", str(precheck_status_path)
+        )
+        precheck = subprocess.Popen(
+            precheck_command,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            env=precheck_env,
+        )
+        try:
+            initial_status = None
+            deadline = time.monotonic() + 10
+            while time.monotonic() < deadline:
+                if precheck_status_path.is_file():
+                    try:
+                        candidate = json.loads(precheck_status_path.read_text(encoding="utf-8-sig"))
+                    except json.JSONDecodeError:
+                        candidate = None
+                    if candidate and candidate.get("stage") == "fetching":
+                        initial_status = candidate
+                        break
+                time.sleep(0.05)
+            stdout, stderr = precheck.communicate(timeout=15)
+            assert initial_status is not None, stdout + stderr
+            assert initial_status["login_state"] == "not_checked"
+            assert initial_status["failed_creator_count"] == 0
+            assert precheck.returncode == 1, stdout + stderr
+        finally:
+            if precheck.poll() is None:
+                precheck.kill()
+                precheck.communicate()
+
         write_scenario("2026-07-16T01:00:00Z", [active, paused])
         initial_head = git("rev-parse", "HEAD")
         initial_hashes = {
@@ -547,8 +621,12 @@ Path(a.snapshot_out).write_text(json.dumps(snapshot,ensure_ascii=False,indent=2)
         assert not (bridge_root / "output" / "wechat" / "jsonl" / "wechat_subscriptions_latest.json").exists()
         assert initial_hashes == {path: hashlib.sha256(path.read_bytes()).hexdigest() for path in initial_hashes}
 
-        first = run_bridge()
+        valid_status_path = tmp_path / "valid-status.json"
+        first = run_bridge("-StatusFile", str(valid_status_path))
         assert first.returncode == 0, first.stdout + first.stderr
+        valid_status = json.loads(valid_status_path.read_text(encoding="utf-8-sig"))
+        assert valid_status["login_state"] == "valid"
+        assert valid_status["failed_creator_count"] == 0
         head_one = git("rev-parse", "HEAD")
 
         write_scenario("2026-07-16T02:00:00Z", [paused, active])
@@ -583,13 +661,63 @@ Path(a.snapshot_out).write_text(json.dumps(snapshot,ensure_ascii=False,indent=2)
         assert snapshot["source_jsonl_sha256"] == manifest["article_sha256"]
         assert snapshot["known_count"] == 1
 
+        login_expiry_markers = [
+            "Invalid Session",
+            "session invalid",
+            "session expired",
+            "登录过期",
+            "凭证失效",
+        ]
+        for index, marker in enumerate(login_expiry_markers):
+            status_path = tmp_path / f"expired-status-{index}.json"
+            write_scenario(
+                f"2026-07-16T04:0{index}:00Z",
+                [active],
+                sync_output=[f"[sync] FAIL 公众号A {marker}"],
+                sync_exit=1,
+            )
+            expired = run_bridge("-StatusFile", str(status_path))
+            assert expired.returncode == 1, expired.stdout + expired.stderr
+            expired_status = json.loads(status_path.read_text(encoding="utf-8-sig"))
+            assert expired_status["login_state"] == "expired"
+            assert expired_status["failed_creator_count"] == 1
+            assert git("rev-parse", "HEAD") == head_two
+
+        unknown_status_path = tmp_path / "unknown-status.json"
+        write_scenario(
+            "2026-07-16T04:30:00Z",
+            [active],
+            sync_output=["[sync] FAIL 公众号A RuntimeError: transport failed"],
+            sync_exit=2,
+        )
+        unknown = run_bridge("-StatusFile", str(unknown_status_path))
+        assert unknown.returncode == 1, unknown.stdout + unknown.stderr
+        unknown_status = json.loads(unknown_status_path.read_text(encoding="utf-8-sig"))
+        assert unknown_status["login_state"] == "unknown"
+        assert unknown_status["failed_creator_count"] == 1
+        assert git("rev-parse", "HEAD") == head_two
+
+        unparsable_status_path = tmp_path / "unparsable-status.json"
+        write_scenario(
+            "2026-07-16T05:00:00Z",
+            [active],
+            sync_output=["sidecar output did not include a sync line"],
+        )
+        unparsable = run_bridge("-StatusFile", str(unparsable_status_path))
+        assert unparsable.returncode == 0, unparsable.stdout + unparsable.stderr
+        unparsable_status = json.loads(unparsable_status_path.read_text(encoding="utf-8-sig"))
+        assert unparsable_status["state"] == "succeeded"
+        assert unparsable_status["login_state"] == "unknown"
+        assert unparsable_status["failed_creator_count"] == 0
+
         formal_hashes = {
             path: hashlib.sha256(path.read_bytes()).hexdigest()
             for path in (published_article, snapshot_path, bridge_root / "manifest.json")
         }
+        head_before_skip = git("rev-parse", "HEAD")
         skipped = run_bridge("-SkipSync")
         assert skipped.returncode == 1
-        assert git("rev-parse", "HEAD") == head_two
+        assert git("rev-parse", "HEAD") == head_before_skip
         assert formal_hashes == {path: hashlib.sha256(path.read_bytes()).hexdigest() for path in formal_hashes}
     finally:
         server.shutdown()

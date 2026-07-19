@@ -67,7 +67,7 @@ $script:Status = [ordered]@{
     finished_at = $null
     exit_code = $null
     message = "Starting WeChat collection."
-    login_state = "not_applicable"
+    login_state = "not_checked"
     source_file = ""
     source_last_write_time = $null
     source_sha256 = ""
@@ -182,6 +182,38 @@ $Syncer = Join-Path $RadarRoot "deploy\local\we_mp_rss_sync_once.py"
 # 抓取结果收集在这两个变量里，等脚本最末尾统一红字告警（中途报会被 git 输出刷走）
 $fetchFailedAccounts = @()
 $fetchWarning = ""
+$syncAttempted = $false
+$syncExit = 0
+$syncOutput = @()
+$hasParseableSyncOutput = $false
+
+function Update-CollectionHealthMetadata(
+    [bool]$SyncAttempted,
+    [object[]]$SyncOutput,
+    [bool]$HasParseableSyncOutput,
+    [int]$SyncExit,
+    [int]$FailedCreatorCount,
+    [bool]$SyncSkipped
+) {
+    $script:Status.failed_creator_count = [Math]::Max(0, $FailedCreatorCount)
+    $syncText = (@($SyncOutput) | ForEach-Object { [string]$_ }) -join "`n"
+
+    if ($syncText -match 'Invalid\s+Session|session\s+(?:invalid|expired)|登录\s*(?:失效|过期)|凭证\s*(?:失效|过期)') {
+        $script:Status.login_state = "expired"
+    } elseif (
+        $SyncAttempted -and
+        $HasParseableSyncOutput -and
+        -not $SyncSkipped -and
+        $SyncExit -eq 0 -and
+        $FailedCreatorCount -eq 0
+    ) {
+        $script:Status.login_state = "valid"
+    } else {
+        $script:Status.login_state = "unknown"
+    }
+
+    Write-RunStatus
+}
 
 function Show-FetchAlert {
     if ($fetchFailedAccounts.Count -eq 0 -and -not $fetchWarning) {
@@ -260,11 +292,24 @@ if (-not (Test-Path -LiteralPath $SidecarPython)) {
         # 保留完整输出：抓取脚本崩了的时候，真正的报错就在这里面，不能过滤掉
         $syncArgs = @($Syncer, "--subscriptions-out", $script:TempAuthority)
         if ($SkipSync) { $syncArgs += "--snapshot-only" }
-        $rawOutput = & $SidecarPython @syncArgs 2>&1
-        $syncExit = $LASTEXITCODE
+        $oldConsoleOutputEncoding = [Console]::OutputEncoding
+        $oldOutputEncoding = $OutputEncoding
+        try {
+            # 计划任务没有控制台时，Windows PowerShell 5.1 会错误解码 UTF-8 的 Python 输出。
+            # 同步脚本的中文登录失效提示必须按 UTF-8 读入，才能写出正确的安全状态码。
+            [Console]::OutputEncoding = [Text.Encoding]::UTF8
+            $OutputEncoding = [Text.Encoding]::UTF8
+            $rawOutput = & $SidecarPython @syncArgs 2>&1
+            $syncExit = $LASTEXITCODE
+            $syncAttempted = $true
+        } finally {
+            [Console]::OutputEncoding = $oldConsoleOutputEncoding
+            $OutputEncoding = $oldOutputEncoding
+        }
 
         # sidecar 的输出里混着大量 SQL 日志，屏幕上只显示我们自己打的进度行
-        $syncOutput = $rawOutput | Where-Object { $_ -match '^\[sync\]' }
+        $syncOutput = @($rawOutput | Where-Object { $_ -match '^\[sync\]' })
+        $hasParseableSyncOutput = $syncOutput.Count -gt 0
         $syncOutput | ForEach-Object { Write-Host ("  {0}" -f $_) }
 
         # 从 "[sync] FAIL 猫笔刀 XxxError: ..." 里把失败的公众号名字捞出来
@@ -292,6 +337,14 @@ if (-not (Test-Path -LiteralPath $SidecarPython)) {
         Pop-Location
     }
 }
+
+Update-CollectionHealthMetadata `
+    -SyncAttempted $syncAttempted `
+    -SyncOutput $syncOutput `
+    -HasParseableSyncOutput $hasParseableSyncOutput `
+    -SyncExit $syncExit `
+    -FailedCreatorCount $fetchFailedAccounts.Count `
+    -SyncSkipped ([bool]$SkipSync)
 
 $script:Status.warnings = @(
     @($fetchFailedAccounts | ForEach-Object { "WeChat fetch failed: $_" })
