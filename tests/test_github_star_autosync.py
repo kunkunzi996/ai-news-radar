@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import io
 import json
 import os
@@ -67,6 +68,27 @@ class GitHubStarAutosyncTests(unittest.TestCase):
 
     def config_bytes(self) -> tuple[bytes, bytes]:
         return self.config_path().read_bytes(), self.opml_path().read_bytes()
+
+    def run_with_workflow(
+        self,
+        repositories: list[dict],
+        *,
+        run_id: str,
+        attempt: str = "1",
+        sha: str = "a" * 40,
+    ) -> dict:
+        with patch.dict(
+            os.environ,
+            {
+                "GITHUB_RUN_ID": run_id,
+                "GITHUB_RUN_ATTEMPT": attempt,
+                "GITHUB_SHA": sha,
+            },
+            clear=False,
+        ):
+            return github_star_autosync.run_autosync(
+                self.root, session=self.session_for(repositories)
+            )
 
     def changed_pair_contents(self) -> tuple[bytes, bytes]:
         config = online_sources._read_online_json_config(self.root)
@@ -144,9 +166,8 @@ class GitHubStarAutosyncTests(unittest.TestCase):
             )
         )
 
-        result = github_star_autosync.run_autosync(
-            self.root, session=self.session_for([public_repo(2, "owner/two")])
-        )
+        self.run_with_workflow([public_repo(2, "owner/two")], run_id="101")
+        result = self.run_with_workflow([public_repo(2, "owner/two")], run_id="102")
 
         after = online_sources._read_online_json_config(self.root)
         disabled = next(item for item in after["sources"] if item["id"] == "online_github_repo_1")
@@ -171,12 +192,9 @@ class GitHubStarAutosyncTests(unittest.TestCase):
         self.write_config(config_with(sources))
         before = self.config_bytes()
 
-        result = github_star_autosync.run_autosync(
-            self.root,
-            session=self.session_for(
-                [public_repo(index, f"owner/repo-{index}") for index in range(5, 16)]
-            ),
-        )
+        repositories = [public_repo(index, f"owner/repo-{index}") for index in range(5, 16)]
+        self.run_with_workflow(repositories, run_id="101")
+        result = self.run_with_workflow(repositories, run_id="102")
 
         self.assertEqual(result["outcome"], "refused_mass_disable")
         self.assertEqual(len(result["summary"]["disabled"]), 4)
@@ -186,12 +204,9 @@ class GitHubStarAutosyncTests(unittest.TestCase):
         sources = [managed_source(index, f"owner/repo-{index}") for index in range(1, 16)]
         self.write_config(config_with(sources))
 
-        result = github_star_autosync.run_autosync(
-            self.root,
-            session=self.session_for(
-                [public_repo(index, f"owner/repo-{index}") for index in range(4, 16)]
-            ),
-        )
+        repositories = [public_repo(index, f"owner/repo-{index}") for index in range(4, 16)]
+        self.run_with_workflow(repositories, run_id="101")
+        result = self.run_with_workflow(repositories, run_id="102")
 
         after = online_sources._read_online_json_config(self.root)
         disabled = [item for item in after["sources"] if item.get("managed_state") == "auto_disabled"]
@@ -203,12 +218,9 @@ class GitHubStarAutosyncTests(unittest.TestCase):
         self.write_config(config_with(sources))
         before = self.config_bytes()
 
-        result = github_star_autosync.run_autosync(
-            self.root,
-            session=self.session_for(
-                [public_repo(index, f"owner/repo-{index}") for index in (4, 5)]
-            ),
-        )
+        repositories = [public_repo(index, f"owner/repo-{index}") for index in (4, 5)]
+        self.run_with_workflow(repositories, run_id="101")
+        result = self.run_with_workflow(repositories, run_id="102")
 
         self.assertEqual(result["outcome"], "refused_mass_disable")
         self.assertEqual(len(result["summary"]["disabled"]), 3)
@@ -431,6 +443,89 @@ class GitHubStarAutosyncTests(unittest.TestCase):
 
         self.assertEqual(raised.exception.code, "config_pair_rollback_failed")
         self.assertEqual(self.config_path().read_bytes(), config_before)
+
+    def test_first_absence_only_records_pending_and_second_run_disables(self):
+        self.write_config(config_with([managed_source(1, "owner/one"), managed_source(2, "owner/two")]))
+
+        first = self.run_with_workflow([public_repo(2, "owner/two")], run_id="101")
+        after_first = online_sources._read_online_json_config(self.root)
+        first_state_path = self.root / github_star_autosync.PURGE_STATE_FILENAME
+        first_state_bytes = first_state_path.read_bytes()
+        first_state = json.loads(first_state_bytes.decode("utf-8"))
+
+        second = self.run_with_workflow([public_repo(2, "owner/two")], run_id="102")
+        after_second = online_sources._read_online_json_config(self.root)
+
+        self.assertEqual(first["pending_absent_repo_ids"], ["1"])
+        self.assertEqual(first["confirmed_absent_repo_ids"], [])
+        self.assertEqual(first["version"], 2)
+        self.assertTrue(first["snapshot_complete"])
+        self.assertEqual(first["workflow_run_id"], "101")
+        self.assertEqual(
+            first["purge_state_sha256"],
+            hashlib.sha256(first_state_bytes).hexdigest(),
+        )
+        self.assertTrue(next(item for item in after_first["sources"] if item["managed_repo_id"] == 1)["enabled"])
+        self.assertEqual(first_state["absence_confirmations"], {"1": 1})
+        self.assertEqual(second["confirmed_absent_repo_ids"], ["1"])
+        self.assertFalse(next(item for item in after_second["sources"] if item["managed_repo_id"] == 1)["enabled"])
+
+    def test_same_run_cannot_count_as_the_second_absence_confirmation(self):
+        self.write_config(config_with([managed_source(1, "owner/one"), managed_source(2, "owner/two")]))
+
+        self.run_with_workflow([public_repo(2, "owner/two")], run_id="101")
+        repeated = self.run_with_workflow([public_repo(2, "owner/two")], run_id="101", attempt="2")
+
+        config = online_sources._read_online_json_config(self.root)
+        state = json.loads((self.root / github_star_autosync.PURGE_STATE_FILENAME).read_text(encoding="utf-8"))
+        self.assertEqual(repeated["pending_absent_repo_ids"], ["1"])
+        self.assertEqual(repeated["confirmed_absent_repo_ids"], [])
+        self.assertEqual(state["absence_confirmations"], {"1": 1})
+        self.assertTrue(next(item for item in config["sources"] if item["managed_repo_id"] == 1)["enabled"])
+
+    def test_reappearing_repo_clears_pending_absence_state(self):
+        self.write_config(config_with([managed_source(1, "owner/one"), managed_source(2, "owner/two")]))
+        self.run_with_workflow([public_repo(2, "owner/two")], run_id="101")
+        self.run_with_workflow([public_repo(2, "owner/two")], run_id="102")
+
+        result = self.run_with_workflow(
+            [public_repo(1, "owner/one"), public_repo(2, "owner/two")], run_id="103"
+        )
+
+        config = online_sources._read_online_json_config(self.root)
+        state = json.loads((self.root / github_star_autosync.PURGE_STATE_FILENAME).read_text(encoding="utf-8"))
+        self.assertEqual(result["pending_absent_repo_ids"], [])
+        self.assertEqual(state["absence_confirmations"], {})
+        self.assertTrue(next(item for item in config["sources"] if item["managed_repo_id"] == 1)["enabled"])
+
+    def test_failed_snapshot_does_not_advance_existing_confirmation_state(self):
+        self.write_config(config_with([managed_source(1, "owner/one"), managed_source(2, "owner/two")]))
+        self.run_with_workflow([public_repo(2, "owner/two")], run_id="101")
+        state_path = self.root / github_star_autosync.PURGE_STATE_FILENAME
+        before = state_path.read_bytes()
+        failed_session = AutosyncFakeSession(
+            [FakeResponse(200, ACCOUNT), FakeResponse(500, {"message": "internal"})]
+        )
+
+        with patch.dict(
+            os.environ,
+            {"GITHUB_RUN_ID": "102", "GITHUB_RUN_ATTEMPT": "1", "GITHUB_SHA": "a" * 40},
+            clear=False,
+        ):
+            with self.assertRaises(github_stars.GitHubStarsError):
+                github_star_autosync.run_autosync(self.root, session=failed_session)
+
+        self.assertEqual(state_path.read_bytes(), before)
+
+    def test_empty_snapshot_preserves_prior_absence_confirmation_state(self):
+        self.write_config(config_with([managed_source(1, "owner/one"), managed_source(2, "owner/two")]))
+        self.run_with_workflow([public_repo(2, "owner/two")], run_id="101")
+        before = (self.root / github_star_autosync.PURGE_STATE_FILENAME).read_bytes()
+
+        result = self.run_with_workflow([], run_id="102")
+
+        self.assertEqual(result["outcome"], "refused_empty_snapshot")
+        self.assertEqual((self.root / github_star_autosync.PURGE_STATE_FILENAME).read_bytes(), before)
 
 
 if __name__ == "__main__":

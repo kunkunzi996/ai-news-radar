@@ -12,6 +12,8 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
 
+from scripts import github_star_autosync
+
 from scripts.ai_relevance import AI_RELEVANCE_THRESHOLD, add_ai_relevance_fields
 from scripts.radar.common import (
     AGENTMAIL_DIGEST_FILE,
@@ -113,6 +115,7 @@ from scripts.radar.pipeline import (
     filter_we_mp_archive_by_known_feed_ids,
     filter_raw_items_by_collect_window,
     prepare_github_items_for_collection_window,
+    propose_github_star_subscription_cleanup,
     is_ai_related_record,
     load_archive_for_collection,
     load_title_zh_cache,
@@ -121,6 +124,7 @@ from scripts.radar.pipeline import (
     prune_archive_records,
     suppress_near_duplicate_items,
 )
+from scripts.radar.server import online_sources as _online_sources
 
 """Command-line entry point for update_news."""
 
@@ -142,6 +146,7 @@ class RunContext:
     we_mp_rss_enabled: bool
     we_mp_rss_jsonl_enabled: bool
     we_mp_cleanup_mode: str
+    github_cleanup_mode: str
     now: datetime
     archive_path: Path
     latest_path: Path
@@ -154,6 +159,9 @@ class RunContext:
     title_cache_path: Path
     email_digest_path: Path
     paid_source_state_path: Path
+    github_autosync_status_path: Path
+    github_purge_state_path: Path
+    github_cleanup_audit_path: Path
     archive: dict[str, dict[str, Any]]
     paid_source_state: dict[str, Any]
 
@@ -180,6 +188,7 @@ class MergeStageResult:
     statuses: list[dict[str, Any]]
     raw_items_before_collect_window: int
     skipped_collect_window_items: int
+    github_cleanup: dict[str, Any]
 
 @dataclass
 class EnrichStageResult:
@@ -266,6 +275,14 @@ def prepare_run_context(args: argparse.Namespace) -> RunContext | int:
         active_source_ids = frozenset(site_id for site_id in active_source_ids if site_id != MAOBIDAO_WECHAT_SITE_ID)
     configured_cleanup_mode = str(os.environ.get("WE_MP_RSS_SUBSCRIPTION_CLEANUP_MODE") or "off").strip().lower()
     we_mp_cleanup_mode = configured_cleanup_mode if configured_cleanup_mode in {"off", "audit", "on"} else "off"
+    configured_github_cleanup_mode = str(
+        os.environ.get("STAR_SUBSCRIPTION_CLEANUP_MODE") or "off"
+    ).strip().lower()
+    github_cleanup_mode = (
+        configured_github_cleanup_mode
+        if configured_github_cleanup_mode in {"off", "audit", "on"}
+        else "off"
+    )
 
     now = utc_now()
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -281,6 +298,9 @@ def prepare_run_context(args: argparse.Namespace) -> RunContext | int:
     title_cache_path = output_dir / "title-zh-cache.json"
     email_digest_path = output_dir / AGENTMAIL_DIGEST_FILE
     paid_source_state_path = output_dir / PAID_SOURCE_STATE_FILE
+    github_autosync_status_path = output_dir / "github-star-autosync.json"
+    github_purge_state_path = output_dir / "github-star-purge-state.json"
+    github_cleanup_audit_path = output_dir / "github-star-subscription-cleanup.json"
 
     archive = load_archive_for_collection(archive_path)
     # 第二层清理：取消订阅的 B站 UP 主 / 抖音号，其历史条目一并移除。
@@ -318,6 +338,7 @@ def prepare_run_context(args: argparse.Namespace) -> RunContext | int:
         we_mp_rss_enabled=we_mp_rss_enabled,
         we_mp_rss_jsonl_enabled=we_mp_rss_jsonl_enabled,
         we_mp_cleanup_mode=we_mp_cleanup_mode,
+        github_cleanup_mode=github_cleanup_mode,
         now=now,
         archive_path=archive_path,
         latest_path=latest_path,
@@ -330,6 +351,9 @@ def prepare_run_context(args: argparse.Namespace) -> RunContext | int:
         title_cache_path=title_cache_path,
         email_digest_path=email_digest_path,
         paid_source_state_path=paid_source_state_path,
+        github_autosync_status_path=github_autosync_status_path,
+        github_purge_state_path=github_purge_state_path,
+        github_cleanup_audit_path=github_cleanup_audit_path,
         archive=archive,
         paid_source_state=paid_source_state,
     )
@@ -980,6 +1004,106 @@ def apply_we_mp_subscription_cleanup(
     return proposed if mode == "on" and not reasons else archive
 
 
+def _read_json_object(path: Path) -> dict[str, Any] | None:
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    return payload if isinstance(payload, dict) else None
+
+
+def _sha256_file(path: Path) -> str:
+    try:
+        return hashlib.sha256(path.read_bytes()).hexdigest()
+    except OSError:
+        return ""
+
+
+def apply_github_subscription_cleanup(
+    archive: dict[str, dict[str, Any]],
+    source_config: dict[str, Any] | None,
+    *,
+    mode: str,
+    autosync_status: dict[str, Any] | None,
+    purge_state: dict[str, Any] | None,
+    purge_state_sha256: str,
+    workflow_identity: dict[str, str] | None,
+    archive_sha256_before: str,
+    approval_digest: str,
+    audit_path: Path,
+) -> tuple[dict[str, dict[str, Any]], dict[str, Any]]:
+    """Apply the narrow GitHub cleanup contract after generating an audit record."""
+    mode = mode if mode in {"off", "audit", "on"} else "off"
+    if mode == "off":
+        return archive, {
+            "version": 1,
+            "mode": "off",
+            "applied": False,
+            "deleted_count": 0,
+            "candidate_repo_ids": [],
+            "candidate_item_ids": [],
+            "candidate_counts": {},
+            "approval_digest": "",
+            "archive_sha256_before": archive_sha256_before,
+            "purge_state_sha256": purge_state_sha256,
+            "workflow_run_id": "",
+            "workflow_run_attempt": "",
+            "workflow_head_sha": "",
+            "skip_reasons": ["mode_off"],
+        }
+
+    proposed, proposal = propose_github_star_subscription_cleanup(
+        archive,
+        source_config,
+        autosync_status=autosync_status,
+        purge_state=purge_state,
+        purge_state_sha256=purge_state_sha256,
+        workflow_identity=workflow_identity,
+        archive_sha256_before=archive_sha256_before,
+    )
+    cleanup = {
+        **proposal,
+        "mode": mode,
+        "applied": False,
+        "deleted_count": 0,
+    }
+    reasons = list(cleanup["skip_reasons"])
+    if mode == "on" and not reasons:
+        if not approval_digest or approval_digest != cleanup["approval_digest"]:
+            reasons.append("approval_digest_mismatch")
+        else:
+            cleanup["applied"] = True
+            cleanup["deleted_count"] = len(cleanup["candidate_item_ids"])
+    cleanup["skip_reasons"] = sorted(set(reasons))
+    if cleanup["skip_reasons"]:
+        cleanup["applied"] = False
+        cleanup["deleted_count"] = 0
+
+    audit_payload = {
+        "version": 1,
+        "mode": cleanup["mode"],
+        "applied": cleanup["applied"],
+        "skip_reason": ",".join(cleanup["skip_reasons"]),
+        "candidate_repo_ids": cleanup["candidate_repo_ids"],
+        "candidate_item_ids": cleanup["candidate_item_ids"],
+        "candidate_counts": cleanup["candidate_counts"],
+        "workflow_run_id": cleanup["workflow_run_id"],
+        "workflow_run_attempt": cleanup["workflow_run_attempt"],
+        "workflow_head_sha": cleanup["workflow_head_sha"],
+        "archive_sha256_before": cleanup["archive_sha256_before"],
+        "purge_state_sha256": cleanup["purge_state_sha256"],
+        "approval_digest": cleanup["approval_digest"],
+    }
+    try:
+        _online_sources.write_json_atomic(audit_path, audit_payload)
+    except OSError:
+        cleanup["applied"] = False
+        cleanup["deleted_count"] = 0
+        cleanup["skip_reasons"] = sorted(set(cleanup["skip_reasons"] + ["audit_write_failed"]))
+        return archive, cleanup
+    return (proposed if cleanup["applied"] else archive), cleanup
+
+
 def merge_archive_stage(session: Any, ctx: RunContext, collected: CollectStageResult) -> MergeStageResult:
     args = ctx.args
     now = ctx.now
@@ -997,6 +1121,20 @@ def merge_archive_stage(session: Any, ctx: RunContext, collected: CollectStageRe
         channel_executed=channel_executed,
         mode=ctx.we_mp_cleanup_mode,
         expected_bridge_commit=str(os.environ.get("WE_MP_RSS_BRIDGE_COMMIT") or "").strip(),
+    )
+    autosync_status = _read_json_object(ctx.github_autosync_status_path)
+    purge_state = github_star_autosync.load_purge_state(ctx.github_purge_state_path)
+    archive, github_cleanup = apply_github_subscription_cleanup(
+        archive,
+        ctx.source_config,
+        mode=ctx.github_cleanup_mode,
+        autosync_status=autosync_status,
+        purge_state=purge_state,
+        purge_state_sha256=_sha256_file(ctx.github_purge_state_path),
+        workflow_identity=github_star_autosync.workflow_identity_from_environment(),
+        archive_sha256_before=_sha256_file(ctx.archive_path),
+        approval_digest=str(os.environ.get("STAR_SUBSCRIPTION_CLEANUP_APPROVAL_DIGEST") or ""),
+        audit_path=ctx.github_cleanup_audit_path,
     )
     if active_source_ids is not None:
         raw_items = [item for item in raw_items if item.site_id in active_source_ids]
@@ -1079,6 +1217,7 @@ def merge_archive_stage(session: Any, ctx: RunContext, collected: CollectStageRe
         statuses=statuses,
         raw_items_before_collect_window=raw_items_before_collect_window,
         skipped_collect_window_items=skipped_collect_window_items,
+        github_cleanup=github_cleanup,
     )
 
 def enrich_stage(session: Any, ctx: RunContext, collected: CollectStageResult, merged: MergeStageResult) -> EnrichStageResult:
@@ -1328,6 +1467,7 @@ def enrich_stage(session: Any, ctx: RunContext, collected: CollectStageResult, m
             **source_config_runtime,
             "active": source_config_active,
         },
+        "github_star_subscription_cleanup": merged.github_cleanup,
     }
     latest_payload, latest_all_payload = build_latest_payloads(latest_payload)
     return EnrichStageResult(

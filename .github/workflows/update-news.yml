@@ -59,6 +59,40 @@ jobs:
             exit 1
           fi
 
+          # 确认进度只能和本轮成功状态成对入库，避免旧的 ok 状态配合新状态文件。
+          if [ -n "$(git status --porcelain -- data/github-star-purge-state.json)" ]; then
+            if [ "${{ steps.github_star_sync.outcome }}" != "success" ]; then
+              echo "::error::GitHub purge state changed while autosync was not successful"
+              exit 1
+            fi
+            python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          state_path = Path("data/github-star-purge-state.json")
+          status_path = Path("data/github-star-autosync.json")
+          try:
+              status = json.loads(status_path.read_text(encoding="utf-8"))
+              state_sha = hashlib.sha256(state_path.read_bytes()).hexdigest()
+          except (OSError, json.JSONDecodeError) as exc:
+              raise SystemExit(f"::error::GitHub purge-state pair is unreadable: {exc}")
+          expected = {
+              "workflow_run_id": os.environ.get("GITHUB_RUN_ID", ""),
+              "workflow_run_attempt": os.environ.get("GITHUB_RUN_ATTEMPT", ""),
+              "workflow_head_sha": os.environ.get("GITHUB_SHA", "").lower(),
+          }
+          if (
+              status.get("ok") is not True
+              or status.get("snapshot_complete") is not True
+              or status.get("purge_state_sha256") != state_sha
+              or any(status.get(key) != value for key, value in expected.items())
+          ):
+              raise SystemExit("::error::GitHub purge-state pair does not belong to this successful run")
+          PY
+          fi
+
       - name: Fetch Douyin bridge JSONL
         id: douyin_bridge
         env:
@@ -133,6 +167,8 @@ jobs:
           WE_MP_RSS_BRIDGE_ROOT: ${{ steps.wechat_bridge.outputs.local_dir }}
           WE_MP_RSS_BRIDGE_COMMIT: ${{ steps.wechat_bridge.outputs.commit }}
           WE_MP_RSS_SUBSCRIPTION_CLEANUP_MODE: ${{ vars.WE_MP_RSS_SUBSCRIPTION_CLEANUP_MODE || 'off' }}
+          STAR_SUBSCRIPTION_CLEANUP_MODE: ${{ vars.STAR_SUBSCRIPTION_CLEANUP_MODE || 'off' }}
+          STAR_SUBSCRIPTION_CLEANUP_APPROVAL_DIGEST: ${{ vars.STAR_SUBSCRIPTION_CLEANUP_APPROVAL_DIGEST || '' }}
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           python scripts/update_news.py --source-config config/online-sources.json --output-dir data --window-hours 24 --archive-days ${{ vars.ARCHIVE_DAYS || '180' }} --all-time
@@ -154,9 +190,12 @@ jobs:
             has_commit=1
           fi
 
-          # 状态文件是独立心跳；普通采集失败时也允许精确提交它。
+          # 状态文件与确认进度是同一份心跳；普通采集失败时也必须成对提交。
           if [ -f data/github-star-autosync.json ]; then
             git add data/github-star-autosync.json
+          fi
+          if [ -f data/github-star-purge-state.json ]; then
+            git add data/github-star-purge-state.json
           fi
 
           if [ "${{ steps.update_data.outcome }}" = "success" ]; then
