@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-07-18T18:02:37Z",
+  "updated_at": "2026-07-20T03:54:08Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -205,6 +205,21 @@
       "managed_by": "github_stars",
       "managed_account_id": 284580915,
       "managed_repo_id": 1170291083,
+      "managed_state": "active"
+    },
+    {
+      "id": "online_github_repo_1188777409",
+      "name": "Wechat-ggGitHub/wechat-claude-code",
+      "type": "github_release",
+      "enabled": true,
+      "channel": "GitHub Release",
+      "target": "Wechat-ggGitHub/wechat-claude-code",
+      "locator": "Wechat-ggGitHub/wechat-claude-code",
+      "env": "",
+      "notes": "只追踪 release",
+      "managed_by": "github_stars",
+      "managed_account_id": 284580915,
+      "managed_repo_id": 1188777409,
       "managed_state": "active"
     },
     {
