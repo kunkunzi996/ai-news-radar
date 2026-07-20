@@ -1,15 +1,21 @@
 {
   "version": 1,
   "ok": true,
-  "outcome": "no_change",
-  "finished_at": "2026-07-20T00:03:24Z",
+  "outcome": "synced",
+  "finished_at": "2026-07-20T03:54:08Z",
   "error_code": "",
   "account_id": 284580915,
   "account_login": "kunkunzi996",
-  "starred_count": 14,
+  "starred_count": 15,
   "private_skipped_count": 0,
   "summary": {
-    "added": [],
+    "added": [
+      {
+        "repo_id": 1188777409,
+        "repo": "Wechat-ggGitHub/wechat-claude-code",
+        "source_id": "online_github_repo_1188777409"
+      }
+    ],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
