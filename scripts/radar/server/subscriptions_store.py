@@ -402,8 +402,16 @@ def purge_matching_source_data(
 ) -> dict[str, int]:
     data_dir = root_dir / "data"
     summary: dict[str, int] = {}
+    archive_total_after_purge: int | None = None
+    all_mode_total_after_purge: int | None = None
+    all_mode_raw_total_after_purge: int | None = None
+    raw_count_by_site_after_purge: Counter[str] | None = None
 
     def rewrite_flat(filename: str, list_keys: tuple[str, ...], *, compact: bool) -> None:
+        nonlocal archive_total_after_purge
+        nonlocal all_mode_total_after_purge
+        nonlocal all_mode_raw_total_after_purge
+        nonlocal raw_count_by_site_after_purge
         path = data_dir / filename
         if not path.exists():
             return
@@ -422,9 +430,112 @@ def purge_matching_source_data(
             removed = len(items) - len(kept)
             payload[key] = kept
             removed_total += removed
+
+        metadata_changed = False
+
+        def update_count(key: str, value: int) -> None:
+            nonlocal metadata_changed
+            if key in payload and payload.get(key) != value:
+                payload[key] = value
+                metadata_changed = True
+
         if "total_items" in payload and "items" in list_keys:
-            payload["total_items"] = len(payload.get("items") or [])
-        if removed_total:
+            total_items = len(payload.get("items") or [])
+            update_count("total_items", total_items)
+        if filename == "archive.json" and isinstance(payload.get("items"), list):
+            archive_total_after_purge = len(payload["items"])
+
+        if filename == "latest-24h.json":
+            items = payload.get("items") if isinstance(payload.get("items"), list) else []
+            has_items_all = isinstance(payload.get("items_all"), list)
+            has_items_all_raw = isinstance(payload.get("items_all_raw"), list)
+            items_all = payload.get("items_all") if has_items_all else []
+            items_all_raw = payload.get("items_all_raw") if has_items_all_raw else []
+
+            if archive_total_after_purge is not None:
+                update_count("archive_total", archive_total_after_purge)
+            if has_items_all:
+                update_count("total_items_all_mode", len(items_all))
+            elif all_mode_total_after_purge is not None:
+                update_count("total_items_all_mode", all_mode_total_after_purge)
+            if has_items_all_raw:
+                update_count("total_items_raw", len(items_all_raw))
+            elif all_mode_raw_total_after_purge is not None:
+                update_count("total_items_raw", all_mode_raw_total_after_purge)
+            if (
+                "total_items_ai_raw" in payload
+                and payload.get("ai_relevance_threshold") == 0
+                and all_mode_raw_total_after_purge is not None
+            ):
+                update_count("total_items_ai_raw", all_mode_raw_total_after_purge)
+            update_count(
+                "source_count",
+                len(
+                    {
+                        f"{item.get('site_id')}::{item.get('source')}"
+                        for item in items
+                        if isinstance(item, dict) and item.get("site_id") and item.get("source")
+                    }
+                ),
+            )
+
+            site_stats = payload.get("site_stats")
+            if isinstance(site_stats, list):
+                item_count_by_site = Counter(
+                    str(item.get("site_id") or "")
+                    for item in items
+                    if isinstance(item, dict) and item.get("site_id")
+                )
+                raw_count_by_site = (
+                    Counter(
+                        str(item.get("site_id") or "")
+                        for item in items_all_raw
+                        if isinstance(item, dict) and item.get("site_id")
+                    )
+                    if has_items_all_raw
+                    else raw_count_by_site_after_purge
+                )
+                refreshed_stats = []
+                for site in site_stats:
+                    if not isinstance(site, dict):
+                        refreshed_stats.append(site)
+                        continue
+                    site_id = str(site.get("site_id") or "")
+                    if not site_id:
+                        refreshed_stats.append(site)
+                        continue
+                    refreshed = dict(site)
+                    refreshed["count"] = item_count_by_site.get(site_id, 0)
+                    if raw_count_by_site is not None:
+                        refreshed["raw_count"] = raw_count_by_site.get(site_id, 0)
+                    refreshed_stats.append(refreshed)
+                if refreshed_stats != site_stats:
+                    payload["site_stats"] = refreshed_stats
+                    metadata_changed = True
+                update_count(
+                    "site_count",
+                    sum(
+                        1
+                        for site in refreshed_stats
+                        if isinstance(site, dict) and str(site.get("site_id") or "")
+                    ),
+                )
+        elif filename == "latest-24h-all.json":
+            items_all = payload.get("items_all")
+            items_all_raw = payload.get("items_all_raw")
+            if isinstance(items_all, list):
+                all_mode_total_after_purge = len(items_all)
+                update_count("total_items_all_mode", all_mode_total_after_purge)
+            if isinstance(items_all_raw, list):
+                all_mode_raw_total_after_purge = len(items_all_raw)
+                raw_count_by_site_after_purge = Counter(
+                    str(item.get("site_id") or "")
+                    for item in items_all_raw
+                    if isinstance(item, dict) and item.get("site_id")
+                )
+                update_count("total_items_raw", all_mode_raw_total_after_purge)
+
+        if removed_total or metadata_changed:
             write_json_atomic(path, payload, compact=compact)
         summary[filename] = removed_total
 
@@ -460,14 +571,21 @@ def purge_matching_source_data(
 
     rewrite_flat("archive.json", ("items",), compact=True)
     rewrite_flat(
-        "latest-24h.json",
-        ("items", "items_ai", "creator_items_ai", "creator_items_all"),
-        compact=False,
-    )
-    rewrite_flat(
         "latest-24h-all.json",
         ("items_all", "items_all_raw", "creator_items_all"),
         compact=True,
+    )
+    rewrite_flat(
+        "latest-24h.json",
+        (
+            "items",
+            "items_ai",
+            "items_all",
+            "items_all_raw",
+            "creator_items_ai",
+            "creator_items_all",
+        ),
+        compact=False,
     )
     rewrite_stories("stories-merged.json", "stories", "total_stories", compact=True)
     rewrite_stories("daily-brief.json", "items", "total_items", compact=False)
