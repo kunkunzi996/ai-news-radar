@@ -50,6 +50,6 @@
    `E:\AI-news-reader\ai-news-radar-online-source-sync` 的 Git worktree 登记也已移除。该路径目前只剩被
    `pwsh.exe` 占用的空目录，不能强删；关闭占用它的终端后再手动移除即可。
 6. `backup/local-opml-trigger-20260709-80fe98f` 与 `fix/online-sync-directed-stash-restore` 未合入主线，
-   必须保留。`E:\AI-news-reader\ai-news-radar-github-stars-integration` 仍有未提交改动，严禁删除；两个远端
-   feature/fix 分支也未做删除。
+   必须保留。`E:\AI-news-reader\ai-news-radar-github-stars-integration` 仍有未提交改动，严禁删除；已合并的
+   `feature/local-trigger-console` 与 `fix/wechat-unsubscribe-cleanup` 远端分支已于 2026-07-20 删除。
 7. 本轮状态与交接文档已经完成收口；无需重复执行微信看门狗、GitHub 星标自动同步施工或线上面板修复。
