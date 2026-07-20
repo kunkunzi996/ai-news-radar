@@ -16,7 +16,11 @@ from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 import requests
 
 from scripts.ai_relevance import add_ai_relevance_fields, score_ai_relevance
-from scripts.radar.config_runtime import SubscriptionAllowlist
+from scripts.radar.config_runtime import (
+    SubscriptionAllowlist,
+    managed_github_repo_sources,
+    normalize_repo_identity,
+)
 from scripts.radar.common import (
     CREATOR_FRESHNESS_BONUS_HOURS,
     CREATOR_FRESHNESS_BONUS_POINTS,
@@ -216,6 +220,215 @@ def filter_we_mp_archive_by_known_feed_ids(
     candidates = [{**record, "id": item_id} for item_id, record in candidate_pairs]
     kept = {item_id: record for item_id, record in archive.items() if item_id not in candidate_ids}
     return kept, candidates, []
+
+
+def _github_cleanup_digest(payload: Any) -> str:
+    return hashlib.sha256(
+        json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+
+
+def _canonical_absence_confirmations(payload: Any) -> dict[str, int] | None:
+    if not isinstance(payload, dict):
+        return None
+    confirmations: dict[str, int] = {}
+    for raw_repo_id, raw_count in payload.items():
+        try:
+            repo_id = normalize_repo_identity(raw_repo_id, allow_integer=False)
+        except ValueError:
+            return None
+        if repo_id in confirmations or type(raw_count) is not int or raw_count not in {1, 2}:
+            return None
+        confirmations[repo_id] = raw_count
+    return confirmations
+
+
+def _valid_purge_state(payload: Any) -> tuple[dict[str, Any] | None, str | None]:
+    if not isinstance(payload, dict) or type(payload.get("version")) is not int or payload.get("version") != 1:
+        return None, "invalid_purge_state"
+    try:
+        account_id = normalize_repo_identity(payload.get("account_id"))
+    except ValueError:
+        return None, "invalid_purge_state"
+    required_text = (
+        "last_complete_snapshot_at",
+        "last_snapshot_run_id",
+        "last_snapshot_run_attempt",
+        "last_snapshot_head_sha",
+    )
+    if any(not isinstance(payload.get(key), str) or not payload[key] for key in required_text):
+        return None, "invalid_purge_state"
+    if not re.fullmatch(r"[0-9a-fA-F]{40}", payload["last_snapshot_head_sha"]):
+        return None, "invalid_purge_state"
+    confirmations = _canonical_absence_confirmations(payload.get("absence_confirmations"))
+    if confirmations is None:
+        return None, "invalid_purge_state"
+    return {"account_id": account_id, "absence_confirmations": confirmations}, None
+
+
+def _canonical_workflow_identity(payload: Any) -> dict[str, str] | None:
+    if not isinstance(payload, dict):
+        return None
+    run_id = payload.get("run_id")
+    run_attempt = payload.get("run_attempt")
+    head_sha = payload.get("head_sha")
+    if not all(isinstance(value, str) and value for value in (run_id, run_attempt, head_sha)):
+        return None
+    if not re.fullmatch(r"[0-9a-fA-F]{40}", head_sha):
+        return None
+    return {"run_id": run_id, "run_attempt": run_attempt, "head_sha": head_sha.lower()}
+
+
+def propose_github_star_subscription_cleanup(
+    archive: dict[str, dict[str, Any]],
+    source_config: dict[str, Any] | None,
+    *,
+    autosync_status: dict[str, Any] | None,
+    purge_state: dict[str, Any] | None,
+    purge_state_sha256: str,
+    workflow_identity: dict[str, str] | None,
+    archive_sha256_before: str,
+) -> tuple[dict[str, dict[str, Any]], dict[str, Any]]:
+    """Build an ID-only GitHub cleanup proposal and fail closed on any mismatch."""
+    report: dict[str, Any] = {
+        "version": 1,
+        "candidate_repo_ids": [],
+        "candidate_item_ids": [],
+        "candidate_counts": {},
+        "approval_digest": "",
+        "archive_sha256_before": archive_sha256_before,
+        "purge_state_sha256": purge_state_sha256,
+        "workflow_run_id": "",
+        "workflow_run_attempt": "",
+        "workflow_head_sha": "",
+        "skip_reasons": [],
+    }
+    reasons: list[str] = []
+    workflow = _canonical_workflow_identity(workflow_identity)
+    if workflow is None:
+        reasons.append("missing_workflow_identity")
+    else:
+        report.update(
+            workflow_run_id=workflow["run_id"],
+            workflow_run_attempt=workflow["run_attempt"],
+            workflow_head_sha=workflow["head_sha"],
+        )
+
+    purge, purge_error = _valid_purge_state(purge_state)
+    if purge_error:
+        reasons.append(purge_error)
+
+    try:
+        managed_sources = managed_github_repo_sources(source_config)
+    except ValueError as exc:
+        managed_sources = {}
+        reasons.append(str(exc) or "invalid_github_managed_source_config")
+    binding = source_config.get("github_star_sync") if isinstance(source_config, dict) else None
+    try:
+        binding_account_id = normalize_repo_identity(binding.get("account_id")) if isinstance(binding, dict) else None
+    except ValueError:
+        binding_account_id = None
+        reasons.append("invalid_github_managed_source_config")
+    if binding_account_id is None:
+        reasons.append("github_star_not_bound")
+
+    status = autosync_status if isinstance(autosync_status, dict) else None
+    confirmed_ids: list[str] = []
+    if status is None:
+        reasons.append("missing_autosync_status")
+    else:
+        if type(status.get("version")) is not int or status.get("version") < 2:
+            reasons.append("invalid_autosync_status")
+        if status.get("ok") is not True or status.get("snapshot_complete") is not True:
+            reasons.append("autosync_snapshot_incomplete")
+        if workflow is not None and (
+            status.get("workflow_run_id") != workflow["run_id"]
+            or status.get("workflow_run_attempt") != workflow["run_attempt"]
+            or str(status.get("workflow_head_sha") or "").lower() != workflow["head_sha"]
+        ):
+            reasons.append("stale_autosync_status")
+        if str(status.get("purge_state_sha256") or "").lower() != purge_state_sha256.lower():
+            reasons.append("purge_state_digest_mismatch")
+        try:
+            status_account_id = normalize_repo_identity(status.get("account_id"))
+        except ValueError:
+            status_account_id = None
+            reasons.append("invalid_autosync_status")
+        if binding_account_id is not None and status_account_id != binding_account_id:
+            reasons.append("github_star_account_mismatch")
+        raw_confirmed = status.get("confirmed_absent_repo_ids")
+        if not isinstance(raw_confirmed, list):
+            reasons.append("invalid_autosync_status")
+        else:
+            try:
+                confirmed_ids = [normalize_repo_identity(value, allow_integer=False) for value in raw_confirmed]
+            except ValueError:
+                reasons.append("invalid_autosync_status")
+            else:
+                if len(set(confirmed_ids)) != len(confirmed_ids):
+                    reasons.append("invalid_autosync_status")
+
+    if purge is not None:
+        if binding_account_id is not None and purge["account_id"] != binding_account_id:
+            reasons.append("github_star_account_mismatch")
+        if any(purge["absence_confirmations"].get(repo_id) != 2 for repo_id in confirmed_ids):
+            reasons.append("confirmed_repo_not_twice_confirmed")
+
+    auto_disabled = {
+        repo_id: source
+        for repo_id, source in managed_sources.items()
+        if source.get("managed_state") == "auto_disabled"
+    }
+    if any(repo_id not in auto_disabled for repo_id in confirmed_ids):
+        reasons.append("confirmed_repo_not_auto_disabled")
+
+    github_records: list[tuple[str, dict[str, Any], str, str]] = []
+    for archive_key, record in archive.items():
+        if not isinstance(record, dict) or str(record.get("site_id") or "") != GITHUB_REPO_SUBSCRIPTION_SITE_ID:
+            continue
+        item_id = record.get("id")
+        if not isinstance(item_id, str) or not item_id:
+            reasons.append("archive_missing_github_item_id")
+            continue
+        try:
+            repo_id = normalize_repo_identity(record.get("github_repo_identity"), allow_integer=False)
+        except ValueError:
+            reasons.append("archive_missing_github_repo_identity")
+            continue
+        github_records.append((str(archive_key), record, item_id, repo_id))
+
+    if reasons:
+        report["skip_reasons"] = sorted(set(reasons))
+        return archive, report
+
+    candidate_repo_ids = sorted(set(confirmed_ids))
+    candidate_keys: set[str] = set()
+    candidate_items: list[dict[str, Any]] = []
+    for archive_key, record, item_id, repo_id in github_records:
+        if repo_id not in candidate_repo_ids:
+            continue
+        candidate_keys.add(archive_key)
+        candidate_items.append(
+            {
+                "repo_id": repo_id,
+                "item_id": item_id,
+                "github_repo_identity": repo_id,
+                "github_entry_identity": str(record.get("github_entry_identity") or ""),
+                "title": str(record.get("title") or ""),
+                "url": str(record.get("url") or ""),
+                "published_at": str(record.get("published_at") or ""),
+            }
+        )
+    candidate_items.sort(key=lambda item: (item["repo_id"], item["item_id"]))
+    counts = Counter(item["repo_id"] for item in candidate_items)
+    report.update(
+        candidate_repo_ids=candidate_repo_ids,
+        candidate_item_ids=[item["item_id"] for item in candidate_items],
+        candidate_counts={repo_id: counts[repo_id] for repo_id in candidate_repo_ids},
+        approval_digest=_github_cleanup_digest({"version": 1, "candidates": candidate_items}),
+    )
+    proposed = {archive_key: record for archive_key, record in archive.items() if archive_key not in candidate_keys}
+    return proposed, report
 
 
 def filter_raw_items_by_collect_window(

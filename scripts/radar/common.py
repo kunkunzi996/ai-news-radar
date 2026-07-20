@@ -450,7 +450,8 @@ SOURCE_CONFIG_TYPE_SITE_IDS: dict[str, tuple[str, ...]] = {
 # sources.config.json 允许一条记录包含多个作者，绝不能用于按作者清理。
 #
 # 严禁加入 opmlrss、we_mp_rss_jsonl 或 github_* 等容器型/遗留通道，
-# 否则会把一整组不该删除的历史内容误判成孤儿条目。
+# 否则会把一整组不该删除的历史内容误判成孤儿条目。GitHub 本身不是容器，
+# 但仍故意不进入这个名称型集合：它走 managed_repo_id / github_repo_identity 的专用契约。
 ENUMERABLE_SUBSCRIPTION_SITE_IDS: frozenset[str] = frozenset(
     {
         "bilibili_dynamic",

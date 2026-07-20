@@ -37,6 +37,60 @@ from scripts.radar.fetchers.mediacrawler import douyin_sec_uid_from_locator
 
 """Source configuration and paid-source runtime state."""
 
+
+_CANONICAL_REPO_ID = re.compile(r"^[1-9][0-9]*$")
+
+
+def normalize_repo_identity(value: Any, *, allow_integer: bool = True) -> str:
+    """Return the canonical decimal GitHub repository ID or reject the value.
+
+    Config keeps ``managed_repo_id`` as an integer, while the cleanup boundary
+    uses canonical strings so JSON object keys and archive metadata compare
+    without coercion surprises. In particular, ``bool`` must not inherit the
+    permissive ``int`` path.
+    """
+    if type(value) is int and allow_integer:
+        if value > 0:
+            return str(value)
+        raise ValueError("invalid_github_repo_identity")
+    if type(value) is str and _CANONICAL_REPO_ID.fullmatch(value):
+        return value
+    raise ValueError("invalid_github_repo_identity")
+
+
+def managed_github_repo_sources(
+    config: dict[str, Any] | None,
+    *,
+    managed_state: str | None = None,
+) -> dict[str, dict[str, Any]]:
+    """Project only github_stars-managed sources by their stable repository ID."""
+    if not isinstance(config, dict) or not isinstance(config.get("sources"), list):
+        raise ValueError("invalid_github_managed_source_config")
+
+    binding = config.get("github_star_sync")
+    binding_account_id: str | None = None
+    if binding is not None:
+        if not isinstance(binding, dict):
+            raise ValueError("invalid_github_managed_source_config")
+        binding_account_id = normalize_repo_identity(binding.get("account_id"))
+
+    projected: dict[str, dict[str, Any]] = {}
+    for source in config["sources"]:
+        if not isinstance(source, dict) or source.get("managed_by") != "github_stars":
+            continue
+        repo_id = normalize_repo_identity(source.get("managed_repo_id"))
+        account_id = normalize_repo_identity(source.get("managed_account_id"))
+        state = str(source.get("managed_state") or "")
+        if state not in {"active", "auto_disabled"}:
+            raise ValueError("invalid_github_managed_source_config")
+        if binding_account_id is not None and account_id != binding_account_id:
+            raise ValueError("github_star_account_mismatch")
+        if repo_id in projected:
+            raise ValueError("duplicate_github_managed_repo_id")
+        if managed_state is None or state == managed_state:
+            projected[repo_id] = dict(source)
+    return projected
+
 def normalize_source_scope(raw_scope: str | None) -> str:
     raw = str(raw_scope or "").strip().lower().replace("-", "_")
     if raw in {"", "tested", "tested_creators", "tested_creator_sources", "creator_sources", "social_sources"}:

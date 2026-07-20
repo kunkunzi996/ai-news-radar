@@ -77,6 +77,25 @@ fetchers only for stable, public, high-signal sources.
 改动这块时，光跑单测不算数——必须真在浏览器里走一遍「删除 / 停用 / 改名 / 原样保存」四种
 操作，逐一核对 `data/archive.json` 的条数与 site_id 分布。
 
+### GitHub 星标托管清理窄例外
+
+GitHub 只能走独立的稳定 repo ID 契约，不能进入名称型订阅清理或复用 generic force：
+
+1. 仅 `managed_by=github_stars` 且 `managed_state=auto_disabled` 的受管源可成为候选；手动 GitHub
+   `enabled:false` 只表示暂停，绝不自动删历史。
+2. 清理身份只能是规范十进制 `managed_repo_id` / `github_repo_identity`，禁止按 owner/repo、来源名称、
+   URL、本轮采集范围或 target 推断。
+3. 同一 repo 必须在两个不同 `GITHUB_RUN_ID` 的非空完整公开星标快照中连续缺失；空快照、分页/账户失败、
+   重复 repo ID 和同一 run 重试都必须熔断，不能推进确认或停用。
+4. audit/on 只接受与当前 `GITHUB_RUN_ID`、`GITHUB_RUN_ATTEMPT`、`GITHUB_SHA` 完全配对的 autosync
+   状态，并重算 `github-star-purge-state.json` 的 SHA256；任一状态、账号、哈希或 100% 归档身份覆盖不成立，
+   一条不删。
+5. `STAR_SUBSCRIPTION_CLEANUP_MODE` 仅允许 `off/audit/on`，默认 `off`；`audit` 只写候选和摘要，
+   `on` 还必须精确匹配本轮 `STAR_SUBSCRIPTION_CLEANUP_APPROVAL_DIGEST`。摘要失配必须回 audit 重审，
+   不能复用或放宽。
+6. 回滚只允许 `scripts/restore_github_subscription_cleanup.py --item-id <record.id>` 精确回插 GitHub
+   条目；禁止拿旧 `archive.json` 整体覆盖当前归档。
+
 ## 同步线上（sync_online_source_config）的 git 编排禁区
 
 该函数用「stash 隔离 → rebase+push → finally 覆盖恢复」处理工作区脏 data（2026-07-14 上线）。改动时：

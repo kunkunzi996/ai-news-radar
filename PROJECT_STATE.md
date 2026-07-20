@@ -1,5 +1,17 @@
 # PROJECT_STATE
 
+## 当前施工状态（2026-07-20）
+
+- GitHub 取消星标联动清历史已在 `E:\AI-news-reader\ai-news-radar-unsubscribe-purge-github` 的
+  `feature/unsubscribe-purge-github` 完成本地施工和验收；**流水线挡位：手动挡**。专项测试、全量 pytest
+  （`600 passed, 1 warning, 109 subtests passed`）、`py_compile` 和 `git diff --check` 已通过。
+  当前已提交待推送、未建 PR、未修改 Actions Variables、未触发线上清理。
+- 本轮边界是稳定 repo ID、两次非空完整快照、本轮状态哈希配对和 `off -> audit -> on` 一次性审批；不改
+  B站、抖音、微信、RSS、小红书、前端、数据库、依赖或部署结构。
+- 本地只读 audit 已确认当前没有可删除候选：本机没有本轮 Actions 身份与 purge-state 配对，这是预期
+  fail-safe。合入后仍须先保持 `STAR_SUBSCRIPTION_CLEANUP_MODE=off`，等待两个不同 run 的成功非空完整同步，
+  再由用户按 audit -> on 灰度。
+
 ## 下一轮入口（2026-07-19 更新）
 
 - **2026-07-19 微信采集健康看门狗与 MeoW 告警已完成并真实验收**：功能已通过

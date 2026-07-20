@@ -14,6 +14,7 @@ from requests.utils import parse_header_links
 from urllib3.util import Retry
 
 from scripts.radar.server import online_sources as _online_sources
+from scripts.radar.config_runtime import normalize_repo_identity
 
 from scripts.radar.server.online_sources import (
     GITHUB_LOGIN_PATTERN,
@@ -426,7 +427,8 @@ def _add_repository_page(
     for raw_repo in payload:
         repo_id, full_name, is_public = _normalize_repository_identity(raw_repo)
         previous = identities.get(repo_id)
-        if previous is not None and previous != (full_name, is_public):
+        # A complete paginated snapshot must not contain the same repository twice.
+        if previous is not None:
             raise _error("github_upstream_invalid_response", 502)
         name_key = full_name.casefold()
         previous_id = names.get(name_key)
@@ -617,6 +619,7 @@ def merge_github_star_sources(
     *,
     account: dict[str, Any],
     repositories: list[dict[str, Any]],
+    allow_auto_disable_repo_ids: set[str] | frozenset[str] | None = None,
 ) -> dict[str, Any]:
     normalized_config = _validate_merge_config(config)
     normalized_account = _normalize_preview_account(account)
@@ -630,6 +633,14 @@ def merge_github_star_sources(
         raise _error("github_star_binding_ambiguous", 409)
 
     managed_by_repo_id: dict[int, int] = {}
+    allowed_auto_disable_repo_ids: set[str] | None = None
+    if allow_auto_disable_repo_ids is not None:
+        try:
+            allowed_auto_disable_repo_ids = {
+                normalize_repo_identity(repo_id) for repo_id in allow_auto_disable_repo_ids
+            }
+        except ValueError as exc:
+            raise _error("github_upstream_invalid_response", 502) from exc
     manual_by_repo: dict[str, int] = {}
     used_ids = {source["id"] for source in sources}
     for index, source in enumerate(sources):
@@ -714,6 +725,12 @@ def merge_github_star_sources(
             and source["managed_repo_id"] not in starred_repo_ids
             and source["managed_state"] == "active"
         ):
+            if (
+                allowed_auto_disable_repo_ids is not None
+                and normalize_repo_identity(source["managed_repo_id"])
+                not in allowed_auto_disable_repo_ids
+            ):
+                continue
             source["enabled"] = False
             source["managed_state"] = "auto_disabled"
             summary["disabled"].append(

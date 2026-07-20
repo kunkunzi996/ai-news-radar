@@ -269,7 +269,7 @@ class GitHubStarPaginationTests(GitHubStarsTestCase):
                 self.assertEqual(snapshot["repositories"], expected)
                 self.assertEqual(snapshot["starred_count"], len(expected))
 
-    def test_link_next_is_followed_even_when_page_is_short(self):
+    def test_duplicate_repo_id_across_pages_refuses_the_snapshot(self):
         next_url = "https://api.github.com/users/example-user/starred?per_page=100&page=2"
         session = FakeSession([
             FakeResponse(200, ACCOUNT),
@@ -281,12 +281,9 @@ class GitHubStarPaginationTests(GitHubStarsTestCase):
             FakeResponse(200, [public_repo(10, "owner/ten"), public_repo(20, "owner/twenty")]),
         ])
 
-        snapshot = github_stars.fetch_github_star_snapshot(session, username=ACCOUNT["login"])
+        with self.assertRaisesRegex(github_stars.GitHubStarsError, "^github_upstream_invalid_response$"):
+            github_stars.fetch_github_star_snapshot(session, username=ACCOUNT["login"])
 
-        self.assertEqual(
-            snapshot["repositories"],
-            [{"id": 10, "full_name": "owner/ten"}, {"id": 20, "full_name": "owner/twenty"}],
-        )
         self.assertEqual(session.calls[1]["params"], {"per_page": 100})
         self.assertEqual(session.calls[2]["url"], next_url)
         self.assertNotIn("params", session.calls[2])
@@ -627,6 +624,21 @@ class GitHubStarMergeTruthTableTests(GitHubStarsTestCase):
             ),
         )
         self.assertEqual(legacy, legacy_before)
+
+    def test_autosync_disable_allowlist_only_disables_confirmed_repo_ids(self):
+        config = config_with([managed_source(1, "owner/one"), managed_source(2, "owner/two")])
+
+        result = github_stars.merge_github_star_sources(
+            config,
+            account=ACCOUNT,
+            repositories=[],
+            allow_auto_disable_repo_ids={"2"},
+        )
+
+        by_repo_id = {source.get("managed_repo_id"): source for source in result["config"]["sources"]}
+        self.assertTrue(by_repo_id[1]["enabled"])
+        self.assertFalse(by_repo_id[2]["enabled"])
+        self.assertEqual([item["repo_id"] for item in result["summary"]["disabled"]], [2])
 
     def test_confirmation_is_required_only_for_risky_merge_classes_or_first_binding(self):
         cases = [
