@@ -3,16 +3,19 @@
 ## 当前施工状态（2026-07-20）
 
 - GitHub 取消星标联动清历史已在 `E:\AI-news-reader\ai-news-radar-unsubscribe-purge-github` 的
-  `feature/unsubscribe-purge-github` 完成本地施工和验收；**流水线挡位：手动挡**。专项测试、全量 pytest
-  （`600 passed, 1 warning, 109 subtests passed`）、`py_compile` 和 `git diff --check` 已通过。
-  当前已提交待推送、未建 PR、未修改 Actions Variables、未触发线上清理。
+  `feature/unsubscribe-purge-github` 完成施工和验收；功能提交为 `a16f81a`，已由合并提交 `ef4ddf2`
+  纳入 `master`。**流水线挡位：手动挡**；专项测试、全量 pytest（`600 passed, 1 warning, 109 subtests passed`）、
+  `py_compile` 和 `git diff --check` 已通过。尚未修改 Actions Variables 或触发线上清理。
 - 本轮边界是稳定 repo ID、两次非空完整快照、本轮状态哈希配对和 `off -> audit -> on` 一次性审批；不改
   B站、抖音、微信、RSS、小红书、前端、数据库、依赖或部署结构。
 - 本地只读 audit 已确认当前没有可删除候选：本机没有本轮 Actions 身份与 purge-state 配对，这是预期
   fail-safe。合入后仍须先保持 `STAR_SUBSCRIPTION_CLEANUP_MODE=off`，等待两个不同 run 的成功非空完整同步，
   再由用户按 audit -> on 灰度。
+- **线上信源合并与停用联动修复已完成并验收**：功能提交 `b94039e` 已由 PR #7 的合并提交 `db47d62`
+  纳入 `master`。修复会在停用信源清理历史后，同步重写展示数据及统计字段；用户已完成实际验收。当前云端
+  配置保留“中二的大暄哥”为停用状态，并保留云端新增的 `Wechat-ggGitHub/wechat-claude-code` 信源。
 
-## 下一轮入口（2026-07-19 更新）
+## 下一轮入口（2026-07-20 更新）
 
 - **2026-07-19 微信采集健康看门狗与 MeoW 告警已完成并真实验收**：功能已通过
   `b2a8614 合并：微信采集健康看门狗与登录状态告警` 合入并推送 `master`。Windows 计划任务
@@ -23,11 +26,12 @@
   PowerShell AST、UTF-8 BOM 与 `git diff --check` 均通过。密钥继续仅保留在
   `local-secrets/meow-push.json`；工作区外的看门狗状态、日志和采集运行文件均须保留，不提交或删除。
 
-- **主工作区同步与洁癖（2026-07-18）**：云端 Actions 会持续产生 `data/**` 快照；每次新窗口开始
-  先核对 `master` 与 `origin/master` 是否一致。本机旧的 7 月 14 日数据快照、临时截图、实测脚本与
-  历史计划文件已整体保护到 `stash@{0}`（`0e94dbf`），不应整批恢复或提交；原有 6 条
-  GitHub Release 历史备份仍在 `stash@{1}`（`a8d0acd`），严禁丢弃。下一轮开始先检查
-  `git status --short --branch` 与 `git stash list`，恢复内容必须逐个按用途评估。
+- **主工作区同步与洁癖（2026-07-20）**：主工作区已仅快进到 `9f3ea85`，与 `origin/master` 一致；云端
+  Actions 会持续产生 `data/**` 快照。同步前本机数据、配置和计划草稿已保护为当前 `stash@{0}`（名称为
+  “收尾前保护：本机快照与计划草稿（2026-07-20）”）；该存档中的四份计划书与当前受 Git 管理的版本逐字一致，
+  但整份存档仍不得自动丢弃。此前旧数据、临时截图和实测脚本当前为 `stash@{1}`，6 条 GitHub Release
+  历史的唯一备份当前为 `stash@{2}`，同样严禁丢弃。stash 编号会随新存档变化，下一轮必须先用
+  `git stash list` 按名称核对，再逐个恢复。
 
 - **2026-07-18 工作台收藏桥（雷达侧）已合入并推送 `master`**：功能提交为
   `4badc1b 功能：接入工作台收藏桥`，隔离 worktree 为
