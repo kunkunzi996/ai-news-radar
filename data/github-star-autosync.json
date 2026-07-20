@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "synced",
-  "finished_at": "2026-07-20T14:50:57Z",
+  "outcome": "no_change",
+  "finished_at": "2026-07-20T16:37:57Z",
   "error_code": "",
-  "workflow_run_id": "29752457930",
+  "workflow_run_id": "29760416869",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "bbde51a189856f372c9ffcf738f0a736859aac80",
+  "workflow_head_sha": "515875da6d0ea027c718df372c61820a817e8860",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-07-20T14:50:57Z",
-  "purge_state_sha256": "ffa9877605b0fff12a898ff037aa6f41faf7a344197523059c2f4a174840ec8d",
+  "snapshot_completed_at": "2026-07-20T16:37:57Z",
+  "purge_state_sha256": "45405d7172163a086907de56ad9c762578e082f11653cc7c902c0add87d5ce41",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -20,13 +20,7 @@
   "starred_count": 16,
   "private_skipped_count": 0,
   "summary": {
-    "added": [
-      {
-        "repo_id": 104337773,
-        "repo": "1c7/chinese-independent-developer",
-        "source_id": "online_github_repo_104337773"
-      }
-    ],
+    "added": [],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
