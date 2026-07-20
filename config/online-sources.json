@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-07-20T10:51:28Z",
+  "updated_at": "2026-07-20T14:50:57Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -104,6 +104,21 @@
       "managed_by": "github_stars",
       "managed_account_id": 284580915,
       "managed_repo_id": 1196321162,
+      "managed_state": "active"
+    },
+    {
+      "id": "online_github_repo_104337773",
+      "name": "1c7/chinese-independent-developer",
+      "type": "github_release",
+      "enabled": true,
+      "channel": "GitHub Release",
+      "target": "1c7/chinese-independent-developer",
+      "locator": "1c7/chinese-independent-developer",
+      "env": "",
+      "notes": "只追踪 release",
+      "managed_by": "github_stars",
+      "managed_account_id": 284580915,
+      "managed_repo_id": 104337773,
       "managed_state": "active"
     },
     {
