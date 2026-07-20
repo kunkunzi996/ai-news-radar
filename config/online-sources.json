@@ -1,13 +1,13 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-07-20T03:54:08Z",
+  "updated_at": "2026-07-20T10:51:28Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
       "name": "中二的大暄哥",
       "type": "bilibili_dynamic",
-      "enabled": true,
+      "enabled": false,
       "channel": "B站动态",
       "target": "中二的大暄哥",
       "locator": "28756625",

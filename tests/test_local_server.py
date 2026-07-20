@@ -387,7 +387,33 @@ class LocalServerTests(unittest.TestCase):
                     "items_ai": [deleted],
                     "creator_items_ai": [kept, deleted],
                     "creator_items_all": [unrelated],
-                    "site_stats": {"bilibili_dynamic": 2},
+                    "items_all": [kept, deleted, unrelated],
+                    "items_all_raw": [kept, deleted, unrelated],
+                    "archive_total": 3,
+                    "ai_relevance_threshold": 0,
+                    "total_items": 3,
+                    "total_items_ai_raw": 3,
+                    "total_items_raw": 3,
+                    "total_items_all_mode": 3,
+                    "source_count": 3,
+                    "site_count": 2,
+                    "site_stats": [
+                        {"site_id": "bilibili_dynamic", "count": 2, "raw_count": 2},
+                        {"site_id": "hackernews", "count": 1, "raw_count": 1},
+                    ],
+                },
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+        (data_dir / "latest-24h-all.json").write_text(
+            json.dumps(
+                {
+                    "items_all": [kept, deleted, unrelated],
+                    "items_all_raw": [kept, deleted, unrelated],
+                    "creator_items_all": [unrelated],
+                    "total_items_raw": 3,
+                    "total_items_all_mode": 3,
                 },
                 ensure_ascii=False,
             ),
@@ -412,13 +438,31 @@ class LocalServerTests(unittest.TestCase):
 
         archive = json.loads((data_dir / "archive.json").read_text(encoding="utf-8"))
         latest = json.loads((data_dir / "latest-24h.json").read_text(encoding="utf-8"))
+        all_mode = json.loads((data_dir / "latest-24h-all.json").read_text(encoding="utf-8"))
         stories = json.loads((data_dir / "stories-merged.json").read_text(encoding="utf-8"))
         self.assertEqual(summary["archive.json"], 1)
-        self.assertEqual(summary["latest-24h.json"], 3)
+        self.assertEqual(summary["latest-24h-all.json"], 2)
+        self.assertEqual(summary["latest-24h.json"], 5)
         self.assertEqual(summary["stories-merged.json"], 1)
         self.assertEqual(archive["total_items"], 2)
         self.assertEqual([item["title"] for item in archive["items"]], ["保留", "无关"])
         self.assertEqual([item["title"] for item in latest["items"]], ["保留", "无关"])
+        self.assertEqual(latest["archive_total"], 2)
+        self.assertEqual(latest["total_items"], 2)
+        self.assertEqual(latest["total_items_ai_raw"], 2)
+        self.assertEqual(latest["total_items_raw"], 2)
+        self.assertEqual(latest["total_items_all_mode"], 2)
+        self.assertEqual(latest["source_count"], 2)
+        self.assertEqual(latest["site_count"], 2)
+        self.assertEqual(
+            latest["site_stats"],
+            [
+                {"site_id": "bilibili_dynamic", "count": 1, "raw_count": 1},
+                {"site_id": "hackernews", "count": 1, "raw_count": 1},
+            ],
+        )
+        self.assertEqual(all_mode["total_items_raw"], 2)
+        self.assertEqual(all_mode["total_items_all_mode"], 2)
         self.assertEqual([story["title"] for story in stories["stories"]], ["保留故事", "无关故事"])
         self.assertEqual(stories["total_stories"], 2)
 
