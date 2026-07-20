@@ -1,21 +1,26 @@
 {
-  "version": 1,
+  "version": 2,
   "ok": true,
-  "outcome": "synced",
-  "finished_at": "2026-07-20T03:54:08Z",
+  "outcome": "no_change",
+  "finished_at": "2026-07-20T06:42:00Z",
   "error_code": "",
+  "workflow_run_id": "29722408653",
+  "workflow_run_attempt": "1",
+  "workflow_head_sha": "ef4ddf2bdce30b44b259a15d2a7ea732faec5740",
+  "snapshot_complete": true,
+  "snapshot_completed_at": "2026-07-20T06:42:00Z",
+  "purge_state_sha256": "9cc6d360edad215197d65c34ec31b6b77498b3f5e331fc05b0daee1da3170e2c",
+  "pending_absent_repo_ids": [
+    "1219719583",
+    "1276562170"
+  ],
+  "confirmed_absent_repo_ids": [],
   "account_id": 284580915,
   "account_login": "kunkunzi996",
   "starred_count": 15,
   "private_skipped_count": 0,
   "summary": {
-    "added": [
-      {
-        "repo_id": 1188777409,
-        "repo": "Wechat-ggGitHub/wechat-claude-code",
-        "source_id": "online_github_repo_1188777409"
-      }
-    ],
+    "added": [],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
