@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "synced",
-  "finished_at": "2026-07-21T09:12:26Z",
+  "outcome": "no_change",
+  "finished_at": "2026-07-21T11:25:11Z",
   "error_code": "",
-  "workflow_run_id": "29817317550",
+  "workflow_run_id": "29826014164",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "7b2ea99d8c9a89cf842497a815c552f2c14f563a",
+  "workflow_head_sha": "0d6c42d094bb8c694e18d1a2b66c0d1df8ea6dcf",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-07-21T09:12:26Z",
-  "purge_state_sha256": "de474ade5edd417fb1c9229b57a479d3b2edcb1d971a9ccc2cb93217272da738",
+  "snapshot_completed_at": "2026-07-21T11:25:11Z",
+  "purge_state_sha256": "ed7db6c186a542f1d15ed6c69652cb2646d6b6d27534f96df49dccde5903f677",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -20,13 +20,7 @@
   "starred_count": 17,
   "private_skipped_count": 0,
   "summary": {
-    "added": [
-      {
-        "repo_id": 1176028663,
-        "repo": "liliBestCoder/ghost-proxifier",
-        "source_id": "online_github_repo_1176028663"
-      }
-    ],
+    "added": [],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
