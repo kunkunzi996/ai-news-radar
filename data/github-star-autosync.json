@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "no_change",
-  "finished_at": "2026-07-21T07:31:53Z",
+  "outcome": "synced",
+  "finished_at": "2026-07-21T09:12:26Z",
   "error_code": "",
-  "workflow_run_id": "29810777454",
+  "workflow_run_id": "29817317550",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "58f43eb2208dce073f5ac40ea91032ed65bc93fa",
+  "workflow_head_sha": "7b2ea99d8c9a89cf842497a815c552f2c14f563a",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-07-21T07:31:53Z",
-  "purge_state_sha256": "df32c3db173af377f4c128001ff45c2916694f5264b4e9023255aa7f0f05a773",
+  "snapshot_completed_at": "2026-07-21T09:12:26Z",
+  "purge_state_sha256": "de474ade5edd417fb1c9229b57a479d3b2edcb1d971a9ccc2cb93217272da738",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -17,10 +17,16 @@
   ],
   "account_id": 284580915,
   "account_login": "kunkunzi996",
-  "starred_count": 16,
+  "starred_count": 17,
   "private_skipped_count": 0,
   "summary": {
-    "added": [],
+    "added": [
+      {
+        "repo_id": 1176028663,
+        "repo": "liliBestCoder/ghost-proxifier",
+        "source_id": "online_github_repo_1176028663"
+      }
+    ],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
