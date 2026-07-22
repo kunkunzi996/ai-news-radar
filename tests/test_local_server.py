@@ -46,6 +46,7 @@ from scripts.local_server import (
     start_wewe_rss_sidecar,
     start_we_mp_rss_sidecar,
     sync_online_source_config,
+    api_error_payload,
     refresh_step_plan,
     validate_source_config,
     write_online_source_config,
@@ -53,6 +54,64 @@ from scripts.local_server import (
 )
 from scripts.radar.server.subscriptions_store import deleted_source_names_by_site
 from scripts.radar.server import github_stars, online_sources
+
+
+class ApiErrorPayloadTests(unittest.TestCase):
+    def test_merge_conflicts_are_bounded_and_redacted(self):
+        credential_shape = "ghp_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN"
+        conflicts = [
+            {
+                "kind": "field_diff",
+                "source_id": "online_bilibili_123",
+                "source_name": "Example source",
+                "field": "notes",
+                "local_value": credential_shape,
+                "remote_value": "remote note",
+                "locator": "https://private.example.invalid/secret",
+            }
+            for _ in range(24)
+        ]
+        error = online_sources.OnlineSourcesError(
+            "online_sources_merge_conflict",
+            status_code=409,
+            details={"conflicts": conflicts, "config": {"sources": [credential_shape]}},
+        )
+
+        status, payload = api_error_payload(error)
+
+        self.assertEqual(status, 409)
+        self.assertEqual(payload["error"], "online_sources_merge_conflict")
+        self.assertEqual(len(payload["details"]["conflicts"]), 20)
+        self.assertIsNone(payload["details"]["conflicts"][0]["local_value"])
+        self.assertEqual(payload["details"]["conflicts"][0]["remote_value"], "remote note")
+        self.assertNotIn("locator", payload["details"]["conflicts"][0])
+        self.assertNotIn(credential_shape, json.dumps(payload))
+        self.assertNotIn("config", payload.get("details", {}))
+
+    def test_merge_conflicts_drop_long_or_invalid_fields(self):
+        error = online_sources.OnlineSourcesError(
+            "online_sources_merge_conflict",
+            status_code=409,
+            details={
+                "conflicts": [
+                    {
+                        "kind": "field_diff",
+                        "source_id": "x" * 81,
+                        "source_name": "normal",
+                        "field": "notes",
+                        "local_value": "x" * 81,
+                        "remote_value": False,
+                    }
+                ]
+            },
+        )
+
+        _status, payload = api_error_payload(error)
+
+        conflict = payload["details"]["conflicts"][0]
+        self.assertEqual(conflict["source_id"], "")
+        self.assertIsNone(conflict["local_value"])
+        self.assertFalse(conflict["remote_value"])
 
 
 class LocalServerTests(unittest.TestCase):
@@ -1063,6 +1122,28 @@ class LocalServerTests(unittest.TestCase):
         self.assertEqual(self.git(root, "status", "--porcelain=v1").stdout, status_before)
         self.assertEqual(self.git(root, "stash", "list", "--format=%H %s").stdout, stash_before)
 
+    def test_manual_preflight_allows_remote_online_config_only_commit(self):
+        root, origin, peer = self.create_sync_git_repositories(self.online_source_payload("initial"))
+        sync_online_source_config(peer, self.online_source_payload("remote"), push=False)
+        self.git(peer, "push")
+
+        target = online_sources._manual_sync_git_preflight(root)
+
+        self.assertEqual(target["fetched_oid"], self.git(origin, "rev-parse", "master").stdout.strip())
+        with self.assertRaises(online_sources.OnlineSourcesError) as raised:
+            online_sources.fresh_git_preflight(root)
+        self.assertEqual(raised.exception.details.get("reason"), "remote_non_data_changes")
+
+    def test_remote_advance_requires_explicit_online_config_policy(self):
+        root, _origin, _peer = self.create_sync_git_repositories(self.online_source_payload("initial"))
+        head = self.git(root, "rev-parse", "HEAD").stdout.strip()
+
+        with self.assertRaises(TypeError):
+            online_sources._assert_remote_advance(root, head, head)
+        online_sources._assert_remote_advance(root, head, head, allow_online_config=False)
+        self.assertFalse(online_sources._remote_advance_policy({"operation_kind": "manual_sync"}))
+        self.assertTrue(online_sources._remote_advance_policy({"operation_kind": "merge_sync"}))
+
     def test_github_star_apply_no_change_and_unbind_use_real_safe_git_transaction(self):
         root, origin, _peer = self.create_sync_git_repositories(
             self.online_source_payload("initial")
@@ -1459,6 +1540,617 @@ class LocalServerTests(unittest.TestCase):
         rebase_apply_path = Path(self.git(root, "rev-parse", "--git-path", "rebase-apply").stdout.strip())
         self.assertFalse((root / rebase_merge_path).exists())
         self.assertFalse((root / rebase_apply_path).exists())
+
+    def test_merge_sync_pushes_remote_managed_source_and_local_disable_without_base_restore(self):
+        root, origin, peer = self.create_sync_git_repositories(self.merge_sync_initial_payload())
+        pre_head = self.git(root, "rev-parse", "HEAD").stdout.strip()
+        self.commit_peer_online_config(peer, self.merge_sync_remote_config(peer), "remote managed source")
+        self.save_local_merge_sync_change(root, enabled=False)
+        archive_path = root / "data" / "archive.json"
+        archive_before = (
+            b'{"total_items":1,"items":[{"site_id":"bilibili_dynamic","source":"Bili source"}]}\n'
+        )
+        archive_path.write_bytes(archive_before)
+        calls = []
+        original_git_checked = online_sources.git_checked
+
+        def record_git_checked(root_dir, args, timeout=60):
+            calls.append(list(args))
+            return original_git_checked(root_dir, args, timeout=timeout)
+
+        with patch.object(
+            online_sources,
+            "_merge_sync_untracked_collisions",
+            wraps=online_sources._merge_sync_untracked_collisions,
+        ) as collision_check, patch.object(
+            online_sources,
+            "git_checked",
+            side_effect=record_git_checked,
+        ):
+            result = sync_online_source_config(root, None, push=True)
+
+        origin_config = json.loads(
+            self.git(origin, "show", "master:config/online-sources.json").stdout
+        )
+        root_config = read_online_source_config(root)
+        bili_source = next(
+            source for source in origin_config["sources"] if source["type"] == "bilibili_dynamic"
+        )
+        managed_source = next(
+            source
+            for source in origin_config["sources"]
+            if source.get("managed_repo_id") == 987654321
+        )
+
+        self.assertEqual(result["outcome"], "pushed", result)
+        self.assertTrue(result["merged"])
+        self.assertTrue(result["pushed"])
+        self.assertFalse(bili_source["enabled"])
+        self.assertEqual(managed_source["target"], "Wechat-ggGitHub/wechat-claude-code")
+        self.assertEqual(root_config["config"], origin_config)
+        self.assertEqual(
+            self.git(root, "rev-parse", "HEAD").stdout.strip(),
+            self.git(origin, "rev-parse", "master").stdout.strip(),
+        )
+        self.assertEqual(self.git(root, "stash", "list").stdout.strip(), "")
+        self.assertEqual(self.git(root, "diff", "--cached", "--name-only").stdout.strip(), "")
+        self.assertFalse(online_sources.operation_manifest_path(root).exists())
+        self.assertFalse(online_sources._git_path(root, "ai-news-radar-merge-index").exists())
+        self.assertFalse(online_sources._git_path(root, "ai-news-radar-merge-index.lock").exists())
+        self.assertEqual(archive_path.read_bytes(), archive_before)
+        self.assertEqual(collision_check.call_count, 2)
+        self.assertFalse(any(args and args[0] == "merge" for args in calls))
+        self.assertFalse(
+            any(f"--source={pre_head}" in args for args in calls),
+            "merge_sync must restore the source files from C, never reset them to B",
+        )
+
+        before_repeat = {
+            "head": self.git(root, "rev-parse", "HEAD").stdout.strip(),
+            "config": (root / "config" / "online-sources.json").read_bytes(),
+            "opml": (root / "feeds" / "online-sources.opml").read_bytes(),
+        }
+        repeated = sync_online_source_config(root, None, push=True)
+
+        self.assertEqual(repeated["outcome"], "no_change", repeated)
+        self.assertNotIn("merged", repeated)
+        self.assertFalse(repeated.get("pushed", False))
+        self.assertEqual(self.git(root, "rev-parse", "HEAD").stdout.strip(), before_repeat["head"])
+        self.assertEqual((root / "config" / "online-sources.json").read_bytes(), before_repeat["config"])
+        self.assertEqual((root / "feeds" / "online-sources.opml").read_bytes(), before_repeat["opml"])
+        self.assertEqual(archive_path.read_bytes(), archive_before)
+        self.assertEqual(self.git(root, "stash", "list").stdout.strip(), "")
+        self.assertEqual(self.git(root, "diff", "--cached", "--name-only").stdout.strip(), "")
+        self.assertFalse(online_sources.operation_manifest_path(root).exists())
+
+    def test_merge_sync_fast_forwards_when_merged_config_matches_remote(self):
+        root, origin, peer = self.create_sync_git_repositories(self.merge_sync_initial_payload())
+        current = read_online_source_config(peer)
+        remote_sources = [
+            {**source, "enabled": False}
+            if source["type"] == "bilibili_dynamic"
+            else dict(source)
+            for source in current["sources"]
+            if source["id"] != online_sources.ONLINE_OPML_SOURCE_ID
+        ]
+        self.commit_peer_online_config(
+            peer,
+            online_sources.build_online_config(remote_sources),
+            "remote disable",
+        )
+        self.save_local_merge_sync_change(root, enabled=False)
+
+        result = sync_online_source_config(root, None, push=True)
+
+        self.assertEqual(result["outcome"], "no_change", result)
+        self.assertTrue(result["merged"])
+        self.assertFalse(result["pushed"])
+        self.assertEqual(
+            self.git(root, "rev-parse", "HEAD").stdout.strip(),
+            self.git(origin, "rev-parse", "master").stdout.strip(),
+        )
+        self.assertEqual(
+            (root / "config" / "online-sources.json").read_bytes(),
+            self.git(origin, "show", "master:config/online-sources.json").stdout.encode("utf-8"),
+        )
+        self.assertEqual(self.git(root, "diff", "--cached", "--name-only").stdout.strip(), "")
+        self.assertFalse(online_sources.operation_manifest_path(root).exists())
+
+    def test_merge_sync_restores_dirty_tracked_data_after_push(self):
+        root, _origin, peer = self.create_sync_git_repositories(self.merge_sync_initial_payload())
+        self.commit_peer_online_config(peer, self.merge_sync_remote_config(peer), "remote managed source")
+        data_path = root / "data" / "latest-24h.json"
+        dirty_bytes = b'{"version":"local-dirty"}\n'
+        data_path.write_bytes(dirty_bytes)
+        self.save_local_merge_sync_change(root, enabled=False)
+
+        result = sync_online_source_config(root, None, push=True)
+
+        self.assertEqual(result["outcome"], "pushed", result)
+        self.assertEqual(data_path.read_bytes(), dirty_bytes)
+        self.assertEqual(self.git(root, "stash", "list").stdout.strip(), "")
+        self.assertEqual(self.git(root, "diff", "--cached", "--name-only").stdout.strip(), "")
+        self.assertIn(
+            " M data/latest-24h.json",
+            self.git(root, "status", "--porcelain").stdout.splitlines(),
+        )
+
+    def test_merge_sync_same_source_conflict_leaves_local_and_remote_unchanged(self):
+        root, origin, peer = self.create_sync_git_repositories(self.merge_sync_initial_payload())
+        base = read_online_source_config(peer)
+        remote_sources = [
+            {**source, "notes": "remote note"}
+            if source["type"] == "bilibili_dynamic"
+            else dict(source)
+            for source in base["sources"]
+            if source["id"] != online_sources.ONLINE_OPML_SOURCE_ID
+        ]
+        self.commit_peer_online_config(
+            peer,
+            online_sources.build_online_config(remote_sources),
+            "remote note change",
+        )
+        self.save_local_merge_sync_change(root, notes="local note")
+        head_before = self.git(root, "rev-parse", "HEAD").stdout.strip()
+        local_config_before = (root / "config" / "online-sources.json").read_bytes()
+        local_opml_before = (root / "feeds" / "online-sources.opml").read_bytes()
+        stash_before = self.git(root, "stash", "list", "--format=%H %s").stdout
+        remote_head = self.git(origin, "rev-parse", "master").stdout.strip()
+
+        with self.assertRaises(online_sources.OnlineSourcesError) as raised:
+            sync_online_source_config(root, None, push=True)
+
+        self.assertEqual(raised.exception.code, "online_sources_merge_conflict")
+        conflict = raised.exception.details["conflicts"][0]
+        self.assertEqual(conflict["field"], "notes")
+        self.assertEqual(self.git(root, "rev-parse", "HEAD").stdout.strip(), head_before)
+        self.assertEqual((root / "config" / "online-sources.json").read_bytes(), local_config_before)
+        self.assertEqual((root / "feeds" / "online-sources.opml").read_bytes(), local_opml_before)
+        self.assertEqual(self.git(root, "stash", "list", "--format=%H %s").stdout, stash_before)
+        self.assertEqual(self.git(origin, "rev-parse", "master").stdout.strip(), remote_head)
+        self.assertFalse(online_sources.operation_manifest_path(root).exists())
+
+    def test_merge_sync_push_race_deletes_manifest_without_mutating_local_repository(self):
+        root, origin, peer = self.create_sync_git_repositories(self.merge_sync_initial_payload())
+        self.commit_peer_online_config(peer, self.merge_sync_remote_config(peer), "remote managed source")
+        self.save_local_merge_sync_change(root, enabled=False)
+        head_before = self.git(root, "rev-parse", "HEAD").stdout.strip()
+        config_before = (root / "config" / "online-sources.json").read_bytes()
+        opml_before = (root / "feeds" / "online-sources.opml").read_bytes()
+        stash_before = self.git(root, "stash", "list", "--format=%H %s").stdout
+        original_git_checked = online_sources.git_checked
+        advanced = False
+
+        def advance_peer_before_root_push(root_dir, args, timeout=60):
+            nonlocal advanced
+            if Path(root_dir).resolve() == root.resolve() and args and args[0] == "push" and not advanced:
+                advanced = True
+                race_path = peer / "data" / "race.json"
+                race_path.write_text('{"race":true}\n', encoding="utf-8")
+                self.git(peer, "add", "data/race.json")
+                self.git(peer, "commit", "-m", "remote race")
+                self.git(peer, "push")
+            return original_git_checked(root_dir, args, timeout=timeout)
+
+        with patch.object(online_sources, "git_checked", side_effect=advance_peer_before_root_push):
+            with self.assertRaises(online_sources.OnlineSourcesError) as raised:
+                sync_online_source_config(root, None, push=True)
+
+        self.assertTrue(advanced)
+        self.assertEqual(raised.exception.code, "online_sources_preflight_failed")
+        self.assertEqual(raised.exception.details.get("reason"), "remote_changed_during_merge_push")
+        self.assertEqual(self.git(root, "rev-parse", "HEAD").stdout.strip(), head_before)
+        self.assertEqual((root / "config" / "online-sources.json").read_bytes(), config_before)
+        self.assertEqual((root / "feeds" / "online-sources.opml").read_bytes(), opml_before)
+        self.assertEqual(self.git(root, "stash", "list", "--format=%H %s").stdout, stash_before)
+        self.assertFalse(online_sources.operation_manifest_path(root).exists())
+        self.assertNotEqual(self.git(origin, "rev-parse", "master").stdout.strip(), head_before)
+
+    def test_merge_sync_rejects_untracked_data_collision_before_push(self):
+        root, origin, peer = self.create_sync_git_repositories(self.merge_sync_initial_payload())
+        self.commit_peer_online_config(peer, self.merge_sync_remote_config(peer), "remote managed source")
+        peer_data_path = peer / "data" / "remote-only.json"
+        peer_data_path.write_text('{"remote":true}\n', encoding="utf-8")
+        self.git(peer, "add", "data/remote-only.json")
+        self.git(peer, "commit", "-m", "remote data addition")
+        self.git(peer, "push")
+        local_collision = root / "data" / "remote-only.json"
+        local_bytes = b'{"local":"keep"}\n'
+        local_collision.write_bytes(local_bytes)
+        self.save_local_merge_sync_change(root, enabled=False)
+        head_before = self.git(root, "rev-parse", "HEAD").stdout.strip()
+        config_before = (root / "config" / "online-sources.json").read_bytes()
+        remote_head = self.git(origin, "rev-parse", "master").stdout.strip()
+
+        with self.assertRaises(online_sources.OnlineSourcesError) as raised:
+            sync_online_source_config(root, None, push=True)
+
+        self.assertEqual(raised.exception.code, "online_sources_untracked_collision")
+        self.assertEqual(raised.exception.details["paths"], ["data/remote-only.json"])
+        self.assertEqual(local_collision.read_bytes(), local_bytes)
+        self.assertEqual(self.git(root, "rev-parse", "HEAD").stdout.strip(), head_before)
+        self.assertEqual((root / "config" / "online-sources.json").read_bytes(), config_before)
+        self.assertEqual(self.git(origin, "rev-parse", "master").stdout.strip(), remote_head)
+        self.assertEqual(self.git(root, "stash", "list").stdout.strip(), "")
+        self.assertFalse(online_sources.operation_manifest_path(root).exists())
+
+    def test_merge_sync_applies_remote_data_deletion_with_clean_index(self):
+        root, origin, peer = self.create_sync_git_repositories(self.merge_sync_initial_payload())
+        self.commit_peer_online_config(peer, self.merge_sync_remote_config(peer), "remote managed source")
+        peer_data_path = peer / "data" / "latest-24h.json"
+        peer_data_path.unlink()
+        self.git(peer, "rm", "data/latest-24h.json")
+        self.git(peer, "commit", "-m", "remote data deletion")
+        self.git(peer, "push")
+        self.save_local_merge_sync_change(root, enabled=False)
+        pending_purge_path = root / "data" / "pending-purge.json"
+        pending_purge_before = pending_purge_path.read_bytes()
+
+        result = sync_online_source_config(root, None, push=True)
+
+        self.assertEqual(result["outcome"], "pushed", result)
+        self.assertFalse((root / "data" / "latest-24h.json").exists())
+        self.assertEqual(
+            self.git(root, "rev-parse", "HEAD").stdout.strip(),
+            self.git(origin, "rev-parse", "master").stdout.strip(),
+        )
+        self.assertEqual(self.git(root, "diff", "--cached", "--name-only").stdout.strip(), "")
+        self.assertEqual(self.git(root, "diff", "--name-only").stdout.strip(), "")
+        self.assertEqual(pending_purge_path.read_bytes(), pending_purge_before)
+        self.assertFalse(online_sources.operation_manifest_path(root).exists())
+
+    def test_merge_sync_recovery_repairs_prepared_manifest_from_local_config(self):
+        root, _origin, peer = self.create_sync_git_repositories(self.merge_sync_initial_payload())
+        self.commit_peer_online_config(peer, self.merge_sync_remote_config(peer), "remote managed source")
+        self.save_local_merge_sync_change(root, enabled=False)
+        local_config = online_sources._read_online_json_config(root)
+        target = online_sources._manual_sync_git_preflight(root)
+
+        with patch.object(
+            online_sources,
+            "_merge_commit_and_push_operation",
+            side_effect=KeyboardInterrupt,
+        ):
+            with self.assertRaises(KeyboardInterrupt):
+                online_sources._sync_merged_online_source_config(
+                    root,
+                    local_config,
+                    target=target,
+                    base_config_digest=online_sources.online_config_digest(local_config),
+                )
+
+        manifest = online_sources.read_operation_manifest(root)
+        self.assertIsNotNone(manifest)
+        self.assertEqual(manifest["operation_kind"], "merge_sync")
+        self.assertEqual(manifest["phase"], "prepared")
+        self.assertEqual(manifest["operation_commit_oid"], "")
+        expected_opml, _ = online_sources.render_online_opml_bytes(local_config["sources"])
+        (root / "feeds" / "online-sources.opml").write_bytes(b"<broken />\n")
+
+        recovery = online_sources.audit_online_source_operation(root)
+
+        self.assertIsNone(recovery)
+        self.assertEqual((root / "feeds" / "online-sources.opml").read_bytes(), expected_opml)
+        self.assertFalse(online_sources.operation_manifest_path(root).exists())
+
+    def test_merge_sync_recovery_discards_unpushed_commit_without_touching_local_candidate(self):
+        root, origin, peer = self.create_sync_git_repositories(self.merge_sync_initial_payload())
+        self.commit_peer_online_config(peer, self.merge_sync_remote_config(peer), "remote managed source")
+        self.save_local_merge_sync_change(root, enabled=False)
+
+        with patch.object(
+            online_sources,
+            "_merge_sync_untracked_collisions",
+            side_effect=KeyboardInterrupt,
+        ):
+            with self.assertRaises(KeyboardInterrupt):
+                sync_online_source_config(root, None, push=True)
+
+        manifest = online_sources.read_operation_manifest(root)
+        self.assertIsNotNone(manifest)
+        self.assertEqual(manifest["phase"], "committed")
+        commit_oid = manifest["operation_commit_oid"]
+        self.assertTrue(commit_oid)
+        self.assertNotEqual(self.git(origin, "rev-parse", "master").stdout.strip(), commit_oid)
+        self.assertEqual(
+            [online_sources._online_file_sha256(root / path) for path in online_sources._allowed_online_paths()],
+            [manifest["files"][path]["before_sha256"] for path in online_sources._allowed_online_paths()],
+        )
+
+        recovery = online_sources.audit_online_source_operation(root)
+
+        self.assertIsNone(recovery)
+        self.assertFalse(online_sources.operation_manifest_path(root).exists())
+        self.assertEqual(self.git(root, "stash", "list").stdout.strip(), "")
+
+    def test_merge_sync_recovery_finishes_from_local_candidate_after_push(self):
+        root, origin, manifest, _dirty_bytes = self.interrupt_merge_sync_after_remote_push()
+
+        recovery = online_sources.audit_online_source_operation(root)
+
+        self.assertEqual(recovery["phase"], "restoring_worktree")
+        self.assertEqual(recovery["outcome"], "pushed")
+        self.assertEqual(recovery["allowed_actions"], ["finish_local_fast_forward"])
+        result = online_sources.recover_online_source_operation(
+            root,
+            action="finish_local_fast_forward",
+            operation_id=manifest["operation_id"],
+            manifest_digest=recovery["manifest_digest"],
+        )
+
+        self.assertEqual(result["outcome"], "pushed")
+        self.assertTrue(result["pushed"])
+        self.assertEqual(
+            self.git(root, "rev-parse", "HEAD").stdout.strip(),
+            self.git(origin, "rev-parse", "master").stdout.strip(),
+        )
+        self.assertFalse(online_sources.operation_manifest_path(root).exists())
+        self.assertEqual(self.git(root, "stash", "list").stdout.strip(), "")
+
+    def test_merge_sync_recovery_resumes_after_files_restored_before_ref_update(self):
+        root, origin, manifest, _dirty_bytes = self.interrupt_merge_sync_after_remote_push()
+        recovery = online_sources.audit_online_source_operation(root)
+        original_git_checked = online_sources.git_checked
+        interrupted = False
+
+        def interrupt_ref_update(root_dir, args, timeout=60):
+            nonlocal interrupted
+            if (
+                Path(root_dir).resolve() == root.resolve()
+                and args
+                and args[:2] == ["update-ref", "refs/heads/master"]
+                and not interrupted
+            ):
+                interrupted = True
+                raise KeyboardInterrupt
+            return original_git_checked(root_dir, args, timeout=timeout)
+
+        with patch.object(online_sources, "git_checked", side_effect=interrupt_ref_update):
+            with self.assertRaises(KeyboardInterrupt):
+                online_sources.recover_online_source_operation(
+                    root,
+                    action="finish_local_fast_forward",
+                    operation_id=manifest["operation_id"],
+                    manifest_digest=recovery["manifest_digest"],
+                )
+
+        self.assertTrue(interrupted)
+        interrupted_manifest = online_sources.read_operation_manifest(root)
+        self.assertIsNotNone(interrupted_manifest)
+        self.assertEqual(interrupted_manifest["phase"], "restoring_worktree")
+        self.assertEqual(
+            self.git(root, "rev-parse", "HEAD").stdout.strip(),
+            interrupted_manifest["pre_head"],
+        )
+        self.assertEqual(
+            [online_sources._online_file_sha256(root / path) for path in online_sources._allowed_online_paths()],
+            [interrupted_manifest["files"][path]["after_sha256"] for path in online_sources._allowed_online_paths()],
+        )
+
+        resumed = online_sources.audit_online_source_operation(root)
+        result = online_sources.recover_online_source_operation(
+            root,
+            action="finish_local_fast_forward",
+            operation_id=interrupted_manifest["operation_id"],
+            manifest_digest=resumed["manifest_digest"],
+        )
+
+        self.assertEqual(result["outcome"], "pushed")
+        self.assertEqual(
+            self.git(root, "rev-parse", "HEAD").stdout.strip(),
+            self.git(origin, "rev-parse", "master").stdout.strip(),
+        )
+        self.assertFalse(online_sources.operation_manifest_path(root).exists())
+
+    def test_merge_sync_recovery_resumes_stash_restore_after_ref_update(self):
+        root, origin, manifest, dirty_bytes = self.interrupt_merge_sync_after_remote_push(dirty_data=True)
+        recovery = online_sources.audit_online_source_operation(root)
+
+        with patch.object(online_sources, "_restore_owned_stash", side_effect=KeyboardInterrupt):
+            with self.assertRaises(KeyboardInterrupt):
+                online_sources.recover_online_source_operation(
+                    root,
+                    action="finish_local_fast_forward",
+                    operation_id=manifest["operation_id"],
+                    manifest_digest=recovery["manifest_digest"],
+                )
+
+        interrupted_manifest = online_sources.read_operation_manifest(root)
+        self.assertIsNotNone(interrupted_manifest)
+        self.assertEqual(interrupted_manifest["phase"], "restoring_worktree")
+        self.assertTrue(interrupted_manifest["stash"]["oid"])
+        self.assertEqual(
+            self.git(root, "rev-parse", "HEAD").stdout.strip(),
+            interrupted_manifest["operation_commit_oid"],
+        )
+        self.assertEqual(
+            [online_sources._online_file_sha256(root / path) for path in online_sources._allowed_online_paths()],
+            [interrupted_manifest["files"][path]["after_sha256"] for path in online_sources._allowed_online_paths()],
+        )
+
+        resumed = online_sources.audit_online_source_operation(root)
+        result = online_sources.recover_online_source_operation(
+            root,
+            action="finish_local_fast_forward",
+            operation_id=interrupted_manifest["operation_id"],
+            manifest_digest=resumed["manifest_digest"],
+        )
+
+        self.assertEqual(result["outcome"], "pushed")
+        self.assertEqual((root / "data" / "latest-24h.json").read_bytes(), dirty_bytes)
+        self.assertEqual(self.git(root, "stash", "list").stdout.strip(), "")
+        self.assertEqual(
+            self.git(root, "rev-parse", "HEAD").stdout.strip(),
+            self.git(origin, "rev-parse", "master").stdout.strip(),
+        )
+        self.assertFalse(online_sources.operation_manifest_path(root).exists())
+
+    def test_merge_sync_recovery_resumes_after_stash_manifest_is_written_before_stash_exists(self):
+        root, origin, manifest, dirty_bytes = self.interrupt_merge_sync_after_remote_push(dirty_data=True)
+        recovery = online_sources.audit_online_source_operation(root)
+        original_git_checked = online_sources.git_checked
+        interrupted = False
+
+        def interrupt_stash_creation(root_dir, args, timeout=60):
+            nonlocal interrupted
+            if (
+                Path(root_dir).resolve() == root.resolve()
+                and args[:2] == ["--literal-pathspecs", "stash"]
+                and "push" in args
+                and not interrupted
+            ):
+                interrupted = True
+                raise KeyboardInterrupt
+            return original_git_checked(root_dir, args, timeout=timeout)
+
+        with patch.object(online_sources, "git_checked", side_effect=interrupt_stash_creation):
+            with self.assertRaises(KeyboardInterrupt):
+                online_sources.recover_online_source_operation(
+                    root,
+                    action="finish_local_fast_forward",
+                    operation_id=manifest["operation_id"],
+                    manifest_digest=recovery["manifest_digest"],
+                )
+
+        self.assertTrue(interrupted)
+        interrupted_manifest = online_sources.read_operation_manifest(root)
+        self.assertIsNotNone(interrupted_manifest)
+        self.assertEqual(interrupted_manifest["phase"], "restoring_worktree")
+        self.assertEqual(interrupted_manifest["stash"]["oid"], "")
+        self.assertTrue(interrupted_manifest["stash"]["paths"])
+        self.assertEqual((root / "data" / "latest-24h.json").read_bytes(), dirty_bytes)
+
+        resumed = online_sources.audit_online_source_operation(root)
+        self.assertEqual(resumed["allowed_actions"], ["finish_local_fast_forward"])
+        result = online_sources.recover_online_source_operation(
+            root,
+            action="finish_local_fast_forward",
+            operation_id=interrupted_manifest["operation_id"],
+            manifest_digest=resumed["manifest_digest"],
+        )
+
+        self.assertEqual(result["outcome"], "pushed")
+        self.assertEqual((root / "data" / "latest-24h.json").read_bytes(), dirty_bytes)
+        self.assertEqual(self.git(root, "stash", "list").stdout.strip(), "")
+        self.assertEqual(
+            self.git(root, "rev-parse", "HEAD").stdout.strip(),
+            self.git(origin, "rev-parse", "master").stdout.strip(),
+        )
+        self.assertFalse(online_sources.operation_manifest_path(root).exists())
+
+    def test_merge_sync_recovery_adopts_stash_created_before_manifest_oid(self):
+        root, origin, manifest, dirty_bytes = self.interrupt_merge_sync_after_remote_push(dirty_data=True)
+        recovery = online_sources.audit_online_source_operation(root)
+        original_git_checked = online_sources.git_checked
+        interrupted = False
+
+        def interrupt_after_stash_push(root_dir, args, timeout=60):
+            nonlocal interrupted
+            completed = original_git_checked(root_dir, args, timeout=timeout)
+            if (
+                Path(root_dir).resolve() == root.resolve()
+                and args[:2] == ["--literal-pathspecs", "stash"]
+                and "push" in args
+                and not interrupted
+            ):
+                interrupted = True
+                raise KeyboardInterrupt
+            return completed
+
+        with patch.object(online_sources, "git_checked", side_effect=interrupt_after_stash_push):
+            with self.assertRaises(KeyboardInterrupt):
+                online_sources.recover_online_source_operation(
+                    root,
+                    action="finish_local_fast_forward",
+                    operation_id=manifest["operation_id"],
+                    manifest_digest=recovery["manifest_digest"],
+                )
+
+        self.assertTrue(interrupted)
+        interrupted_manifest = online_sources.read_operation_manifest(root)
+        self.assertIsNotNone(interrupted_manifest)
+        self.assertEqual(interrupted_manifest["stash"]["oid"], "")
+        self.assertTrue(interrupted_manifest["stash"]["paths"])
+        self.assertNotEqual((root / "data" / "latest-24h.json").read_bytes(), dirty_bytes)
+
+        resumed = online_sources.audit_online_source_operation(root)
+        self.assertEqual(resumed["allowed_actions"], ["finish_local_fast_forward"])
+        result = online_sources.recover_online_source_operation(
+            root,
+            action="finish_local_fast_forward",
+            operation_id=interrupted_manifest["operation_id"],
+            manifest_digest=resumed["manifest_digest"],
+        )
+
+        self.assertEqual(result["outcome"], "pushed")
+        self.assertEqual((root / "data" / "latest-24h.json").read_bytes(), dirty_bytes)
+        self.assertEqual(self.git(root, "stash", "list").stdout.strip(), "")
+        self.assertEqual(
+            self.git(root, "rev-parse", "HEAD").stdout.strip(),
+            self.git(origin, "rev-parse", "master").stdout.strip(),
+        )
+        self.assertFalse(online_sources.operation_manifest_path(root).exists())
+    def test_merge_sync_recovery_preserves_user_edit_after_push_and_offers_no_action(self):
+        root, _origin, manifest, _dirty_bytes = self.interrupt_merge_sync_after_remote_push()
+        self.save_local_merge_sync_change(root, notes="user edit after push")
+        config_bytes = (root / "config" / "online-sources.json").read_bytes()
+        opml_bytes = (root / "feeds" / "online-sources.opml").read_bytes()
+
+        recovery = online_sources.audit_online_source_operation(root)
+
+        self.assertEqual(recovery["outcome"], "pushed")
+        self.assertEqual(recovery["allowed_actions"], [])
+        with self.assertRaises(online_sources.OnlineSourcesError) as raised:
+            online_sources.recover_online_source_operation(
+                root,
+                action="finish_local_fast_forward",
+                operation_id=manifest["operation_id"],
+                manifest_digest=recovery["manifest_digest"],
+            )
+        self.assertEqual(raised.exception.code, "online_sources_recovery_mismatch")
+        self.assertEqual((root / "config" / "online-sources.json").read_bytes(), config_bytes)
+        self.assertEqual((root / "feeds" / "online-sources.opml").read_bytes(), opml_bytes)
+        self.assertTrue(online_sources.operation_manifest_path(root).exists())
+
+    def test_merge_sync_recovery_rejects_generic_rollback_and_retry_commit(self):
+        root, _origin, manifest, _dirty_bytes = self.interrupt_merge_sync_after_remote_push()
+        digest = online_sources.operation_manifest_digest(manifest)
+        fake_recovery = online_sources.public_operation_recovery(
+            manifest,
+            actual_phase="restoring_worktree",
+            outcome="pushed",
+            recovery_pending=True,
+            allowed_actions=["rollback", "retry_commit"],
+        )
+
+        with patch.object(online_sources, "audit_online_source_operation", return_value=fake_recovery), patch.object(
+            online_sources,
+            "_safe_write_rollback_states",
+            side_effect=AssertionError("merge_sync must not enter generic rollback"),
+        ):
+            with self.assertRaises(online_sources.OnlineSourcesError) as rollback_raised:
+                online_sources.recover_online_source_operation(
+                    root,
+                    action="rollback",
+                    operation_id=manifest["operation_id"],
+                    manifest_digest=digest,
+                    confirmed=True,
+                )
+        self.assertEqual(rollback_raised.exception.code, "online_sources_recovery_mismatch")
+
+        with patch.object(online_sources, "audit_online_source_operation", return_value=fake_recovery), patch.object(
+            online_sources,
+            "_commit_and_push_operation",
+            side_effect=AssertionError("merge_sync must not enter generic retry"),
+        ):
+            with self.assertRaises(online_sources.OnlineSourcesError) as retry_raised:
+                online_sources.recover_online_source_operation(
+                    root,
+                    action="retry_commit",
+                    operation_id=manifest["operation_id"],
+                    manifest_digest=digest,
+                )
+        self.assertEqual(retry_raised.exception.code, "online_sources_recovery_mismatch")
 
     def test_refresh_command_uses_fixed_local_update_script(self):
         root = Path("E:/AI-news-reader/ai-news-radar-run")
@@ -2850,6 +3542,103 @@ class LocalServerTests(unittest.TestCase):
                 }
             ]
         }
+
+    def merge_sync_initial_payload(self):
+        return {
+            "sources": [
+                {
+                    "name": "Bili source",
+                    "type": "bilibili_dynamic",
+                    "locator": "398886600",
+                    "enabled": True,
+                    "notes": "base note",
+                }
+            ]
+        }
+
+    def merge_sync_remote_config(self, peer):
+        current = read_online_source_config(peer)
+        sources = [
+            dict(source)
+            for source in current["sources"]
+            if source["id"] != online_sources.ONLINE_OPML_SOURCE_ID
+        ]
+        sources.append(
+            {
+                "id": "online_github_repo_987654321",
+                "name": "Wechat-ggGitHub/wechat-claude-code",
+                "type": "github_release",
+                "enabled": True,
+                "channel": "GitHub Release",
+                "target": "Wechat-ggGitHub/wechat-claude-code",
+                "locator": "Wechat-ggGitHub/wechat-claude-code",
+                "env": "",
+                "notes": "managed release",
+                "managed_by": "github_stars",
+                "managed_account_id": 12345678,
+                "managed_repo_id": 987654321,
+                "managed_state": "active",
+            }
+        )
+        return online_sources.build_online_config(
+            sources,
+            github_star_sync={
+                "version": 1,
+                "account_id": 12345678,
+                "account_login": "example-user",
+            },
+        )
+
+    def commit_peer_online_config(self, peer, config, message):
+        normalized = online_sources.validate_online_config_schema(config, existing=True)
+        config_path = peer / "config" / "online-sources.json"
+        opml_path = peer / "feeds" / "online-sources.opml"
+        config_path.write_bytes(online_sources.render_json_bytes(normalized))
+        opml_bytes, _ = online_sources.render_online_opml_bytes(normalized["sources"])
+        opml_path.write_bytes(opml_bytes)
+        self.git(peer, "add", "config/online-sources.json", "feeds/online-sources.opml")
+        self.git(peer, "commit", "-m", message)
+        self.git(peer, "push")
+
+    def save_local_merge_sync_change(self, root, *, enabled=None, notes=None):
+        current = read_online_source_config(root)
+        sources = []
+        for source in current["sources"]:
+            if source["id"] == online_sources.ONLINE_OPML_SOURCE_ID:
+                continue
+            updated = dict(source)
+            if source["type"] == "bilibili_dynamic":
+                if enabled is not None:
+                    updated["enabled"] = enabled
+                if notes is not None:
+                    updated["notes"] = notes
+            sources.append(updated)
+        save_online_source_config(root, {"sources": sources})
+        return read_online_source_config(root)
+
+    def interrupt_merge_sync_after_remote_push(self, *, dirty_data=False):
+        root, origin, peer = self.create_sync_git_repositories(self.merge_sync_initial_payload())
+        self.commit_peer_online_config(peer, self.merge_sync_remote_config(peer), "remote managed source")
+        dirty_bytes = None
+        if dirty_data:
+            dirty_bytes = b'{"version":"local-dirty"}\n'
+            (root / "data" / "latest-24h.json").write_bytes(dirty_bytes)
+        self.save_local_merge_sync_change(root, enabled=False)
+
+        with patch.object(
+            online_sources,
+            "_merge_sync_finish_local_fast_forward",
+            side_effect=KeyboardInterrupt,
+        ):
+            with self.assertRaises(KeyboardInterrupt):
+                sync_online_source_config(root, None, push=True)
+
+        manifest = online_sources.read_operation_manifest(root)
+        self.assertIsNotNone(manifest)
+        self.assertEqual(manifest["operation_kind"], "merge_sync")
+        self.assertEqual(manifest["phase"], "committed")
+        self.assertTrue(manifest["operation_commit_oid"])
+        return root, origin, manifest, dirty_bytes
 
     def create_sync_git_repositories(self, initial_payload=None):
         base = Path(self.create_temp_dir())

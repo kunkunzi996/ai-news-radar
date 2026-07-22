@@ -189,6 +189,47 @@ def save_and_sync_online_source_config(
         return sync_result
 
 
+def _safe_merge_conflicts(raw_conflicts: Any) -> list[dict[str, Any]]:
+    if not isinstance(raw_conflicts, list):
+        return []
+    allowed_kinds = {"top_level", "binding", "added_both", "field_diff", "delete_vs_modify"}
+    safe_conflicts: list[dict[str, Any]] = []
+    for raw_conflict in raw_conflicts[:20]:
+        if not isinstance(raw_conflict, dict):
+            continue
+        kind = raw_conflict.get("kind")
+        if not isinstance(kind, str) or kind not in allowed_kinds:
+            continue
+        conflict: dict[str, Any] = {"kind": kind}
+        for key in ("source_id", "source_name", "field"):
+            value = raw_conflict.get(key, "")
+            if not isinstance(value, str) or len(value) > 80:
+                conflict[key] = ""
+                continue
+            try:
+                _online_api.check_public_text_safe(value, f"details.conflicts.{key}")
+            except ValueError:
+                conflict[key] = ""
+            else:
+                conflict[key] = value
+        for key in ("local_value", "remote_value"):
+            value = raw_conflict.get(key)
+            if isinstance(value, bool):
+                conflict[key] = value
+                continue
+            if not isinstance(value, str) or len(value) > 80:
+                conflict[key] = None
+                continue
+            try:
+                _online_api.check_public_text_safe(value, f"details.conflicts.{key}")
+            except ValueError:
+                conflict[key] = None
+            else:
+                conflict[key] = value
+        safe_conflicts.append(conflict)
+    return safe_conflicts
+
+
 def api_error_payload(exc: Exception) -> tuple[int, dict[str, Any]]:
     if isinstance(exc, (_online_api.OnlineSourcesError, _github_stars_api.GitHubStarsError)):
         payload: dict[str, Any] = {"ok": False, "error": exc.code}
@@ -198,6 +239,9 @@ def api_error_payload(exc: Exception) -> tuple[int, dict[str, Any]]:
             if key in {"reason", "retry_after", "rate_limit_remaining", "rate_limit_reset"}
             and isinstance(value, (str, int, float, bool))
         }
+        conflicts = _safe_merge_conflicts(exc.details.get("conflicts"))
+        if conflicts:
+            safe_details["conflicts"] = conflicts
         if safe_details:
             payload["details"] = safe_details
         return exc.status_code, payload
