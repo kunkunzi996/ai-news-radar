@@ -29,6 +29,8 @@ const ONLINE_SOURCE_TYPE_DEFS = {
   },
 };
 
+const onlineSourceConflictListEl = document.getElementById("onlineSourceConflictList");
+
 function onlineSourceTypeDef(type = onlineSourceTypeEl?.value) {
   return ONLINE_SOURCE_TYPE_DEFS[type] || ONLINE_SOURCE_TYPE_DEFS.rss;
 }
@@ -56,6 +58,48 @@ function setOnlineSourceStatus(message, tone = "") {
   if (!onlineSourceStatusEl) return;
   onlineSourceStatusEl.textContent = message || "";
   onlineSourceStatusEl.className = `online-source-status${tone ? ` ${tone}` : ""}`;
+}
+
+function onlineSourceRequestError(payload, response) {
+  const code = payload.error || `HTTP ${response.status}`;
+  const error = new Error(code);
+  error.code = code;
+  error.payload = payload;
+  error.status = response.status;
+  return error;
+}
+
+function onlineSourceConflictValue(value) {
+  if (typeof value === "boolean") return String(value);
+  if (typeof value === "string" && value) return value;
+  return "未设置";
+}
+
+function renderOnlineSourceConflicts(conflicts = []) {
+  if (!onlineSourceConflictListEl) return;
+  onlineSourceConflictListEl.replaceChildren();
+  const entries = Array.isArray(conflicts) ? conflicts.filter((entry) => entry && typeof entry === "object") : [];
+  onlineSourceConflictListEl.hidden = entries.length === 0;
+  entries.forEach((conflict) => {
+    const card = document.createElement("article");
+    card.className = "online-source-card";
+    const main = document.createElement("div");
+    const title = document.createElement("strong");
+    const sourceName = String(conflict.source_name || conflict.source_id || "线上信源");
+    const sourceId = String(conflict.source_id || "");
+    title.textContent = sourceId ? `${sourceName}（${sourceId}）` : sourceName;
+    const detail = document.createElement("span");
+    const field = String(conflict.field || conflict.kind || "冲突");
+    detail.textContent = `${field} · 本机 ${onlineSourceConflictValue(conflict.local_value)} / 云端 ${onlineSourceConflictValue(conflict.remote_value)}`;
+    main.append(title, detail);
+    card.appendChild(main);
+    onlineSourceConflictListEl.appendChild(card);
+  });
+}
+
+function mergedOnlineSourceChangeCount(summary = {}) {
+  const adoptedRemote = Number(summary?.adopted_remote);
+  return Number.isFinite(adoptedRemote) && adoptedRemote > 0 ? Math.floor(adoptedRemote) : 0;
 }
 
 function setOnlineSourceButton(button, label, disabled = false) {
@@ -435,6 +479,7 @@ async function syncOnlineSourceConfigToServer() {
   }
   setOnlineSourceButton(onlineSourceSyncBtnEl, "同步中...", true);
   setOnlineSourceStatus("正在提交并推送线上信源配置...", "warn");
+  renderOnlineSourceConflicts();
   try {
     const res = await fetch("./api/sync-online-source-config", {
       method: "POST",
@@ -446,14 +491,17 @@ async function syncOnlineSourceConfigToServer() {
       body: JSON.stringify({}),
     });
     const payload = await res.json().catch(() => ({}));
-    if (!res.ok || payload.ok === false) throw new Error(payload.error || `HTTP ${res.status}`);
+    if (!res.ok || payload.ok === false) throw onlineSourceRequestError(payload, res);
     state.onlineSourceConfig = normalizeOnlineSourceConfig(onlineConfigFromResponse(payload));
     state.githubStarEtag = String(res.headers.get("ETag") || payload.etag || state.githubStarEtag || "");
     state.githubStarConfigDigest = String(payload.base_config_digest || state.githubStarConfigDigest || "");
     state.onlineSourceDirty = false;
     renderOnlineSourceConfig();
     const purgedNote = purgedItemsNote(payload.purged_items);
-    if (payload.no_changes || payload.outcome === "no_change") {
+    if (payload.merged) {
+      setOnlineSourceStatus(`已自动合并云端 ${fmtNumber(mergedOnlineSourceChangeCount(payload.merged_summary))} 项变更${purgedNote}`, "ok");
+      setOnlineSourceButton(onlineSourceSyncBtnEl, payload.pushed ? "已推送" : "已合并", true);
+    } else if (payload.no_changes || payload.outcome === "no_change") {
       setOnlineSourceStatus(`线上配置没有变化，不需要提交。${purgedNote}`, "ok");
       setOnlineSourceButton(onlineSourceSyncBtnEl, "无变化", true);
     } else if (payload.pushed) {
@@ -466,7 +514,9 @@ async function syncOnlineSourceConfigToServer() {
     restoreOnlineSourceButton(onlineSourceSyncBtnEl, "同步到线上", 1800);
     return payload;
   } catch (err) {
-    setOnlineSourceStatus(`推送失败：${onlineSyncErrorMessage(err.message)}`, "bad");
+    const conflicts = err.code === "online_sources_merge_conflict" ? err.payload?.details?.conflicts : [];
+    renderOnlineSourceConflicts(conflicts);
+    setOnlineSourceStatus(`推送失败：${onlineSyncErrorMessage(err.code || err.message)}`, "bad");
     setOnlineSourceButton(onlineSourceSyncBtnEl, "推送失败", true);
     restoreOnlineSourceButton(onlineSourceSyncBtnEl, "同步到线上");
     return null;

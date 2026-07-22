@@ -35,8 +35,8 @@ GITHUB_MANAGED_FIELDS = (
 )
 GITHUB_SAFE_TEXT_FIELDS = frozenset({"id", "name", "target", "locator"})
 ONLINE_SOURCES_LOCK = threading.RLock()
-ONLINE_OPERATION_SCHEMA_VERSION = 1
-ONLINE_OPERATION_KINDS = frozenset({"apply", "unbind", "manual_save", "manual_sync"})
+ONLINE_OPERATION_SCHEMA_VERSION = 2
+ONLINE_OPERATION_KINDS = frozenset({"apply", "unbind", "manual_save", "manual_sync", "merge_sync"})
 ONLINE_OPERATION_PHASES = frozenset(
     {
         "prepared",
@@ -741,6 +741,205 @@ def online_user_sources_from_config(config: dict[str, Any]) -> list[dict[str, An
     return normalized
 
 
+def _safe_merge_conflict_value(value: Any, path: str) -> bool | str | None:
+    if isinstance(value, bool):
+        return value
+    if not isinstance(value, str) or len(value) > 80:
+        return None
+    try:
+        check_public_text_safe(value, path)
+    except ValueError:
+        return None
+    return value
+
+
+def _online_merge_conflict(
+    kind: str,
+    *,
+    source_id: str = "",
+    source_name: str = "",
+    field: str = "",
+    local_value: Any = None,
+    remote_value: Any = None,
+) -> dict[str, Any]:
+    return {
+        "kind": kind,
+        "source_id": source_id[:80],
+        "source_name": _safe_merge_conflict_value(source_name, "merge.source_name") or "",
+        "field": field[:80],
+        "local_value": _safe_merge_conflict_value(local_value, "merge.local_value"),
+        "remote_value": _safe_merge_conflict_value(remote_value, "merge.remote_value"),
+    }
+
+
+def _merge_source_record(
+    base: dict[str, Any] | None,
+    local: dict[str, Any] | None,
+    remote: dict[str, Any] | None,
+    *,
+    source_id: str,
+    source_name: str,
+    conflict_kind: str,
+    field_prefix: str = "",
+) -> tuple[dict[str, Any] | None, list[dict[str, Any]]]:
+    if base is None:
+        if local is None:
+            return (dict(remote) if remote is not None else None), []
+        if remote is None:
+            return dict(local), []
+        if local == remote:
+            return dict(local), []
+        return None, [
+            _online_merge_conflict(
+                conflict_kind if conflict_kind == "binding" else "added_both",
+                source_id=source_id,
+                source_name=source_name,
+                field=field_prefix.rstrip("."),
+            )
+        ]
+
+    local_changed = local != base
+    remote_changed = remote != base
+    if not local_changed:
+        return (dict(remote) if remote is not None else None), []
+    if not remote_changed:
+        return (dict(local) if local is not None else None), []
+    if local is None or remote is None:
+        if local is None and remote is None:
+            return None, []
+        return None, [
+            _online_merge_conflict(
+                conflict_kind if conflict_kind == "binding" else "delete_vs_modify",
+                source_id=source_id,
+                source_name=source_name,
+                field=field_prefix.rstrip("."),
+            )
+        ]
+
+    merged = dict(base)
+    conflicts: list[dict[str, Any]] = []
+    for key in sorted(set(base) | set(local) | set(remote)):
+        base_value = base.get(key)
+        local_value = local.get(key)
+        remote_value = remote.get(key)
+        if local_value == remote_value:
+            merged[key] = local_value
+        elif local_value == base_value:
+            merged[key] = remote_value
+        elif remote_value == base_value:
+            merged[key] = local_value
+        else:
+            conflicts.append(
+                _online_merge_conflict(
+                    conflict_kind if conflict_kind == "binding" else "field_diff",
+                    source_id=source_id,
+                    source_name=source_name,
+                    field=f"{field_prefix}{key}",
+                    local_value=local_value,
+                    remote_value=remote_value,
+                )
+            )
+    return (None if conflicts else merged), conflicts
+
+
+def merge_online_source_configs(
+    base: dict[str, Any],
+    local: dict[str, Any],
+    remote: dict[str, Any],
+) -> tuple[dict[str, Any] | None, list[dict[str, Any]]]:
+    """Merge validated online configs by stable source id without side effects."""
+    expected_top_level = {
+        "version": "1.0",
+        "mode": "online-public-source-config",
+    }
+    top_level_conflicts: list[dict[str, Any]] = []
+    for field, expected in expected_top_level.items():
+        if any(config.get(field) != expected for config in (base, local, remote)):
+            top_level_conflicts.append(
+                _online_merge_conflict(
+                    "top_level",
+                    field=field,
+                    local_value=local.get(field),
+                    remote_value=remote.get(field),
+                )
+            )
+    if top_level_conflicts:
+        return None, top_level_conflicts
+
+    base_normalized = validate_online_config_schema(base, existing=True)
+    local_normalized = validate_online_config_schema(local, existing=True)
+    remote_normalized = validate_online_config_schema(remote, existing=True)
+    source_maps = []
+    for config in (base_normalized, local_normalized, remote_normalized):
+        source_maps.append(
+            {
+                source["id"]: source
+                for source in online_user_sources_from_config(config)
+                if source["id"] != ONLINE_OPML_SOURCE_ID and source["type"] != "opmlrss"
+            }
+        )
+    base_sources, local_sources, remote_sources = source_maps
+
+    merged_sources: list[dict[str, Any]] = []
+    conflicts: list[dict[str, Any]] = []
+    for source_id in sorted(set(base_sources) | set(local_sources) | set(remote_sources)):
+        base_source = base_sources.get(source_id)
+        local_source = local_sources.get(source_id)
+        remote_source = remote_sources.get(source_id)
+        source_name = next(
+            (
+                str(source.get("name") or "")
+                for source in (local_source, remote_source, base_source)
+                if source is not None
+            ),
+            "",
+        )
+        merged_source, source_conflicts = _merge_source_record(
+            base_source,
+            local_source,
+            remote_source,
+            source_id=source_id,
+            source_name=source_name,
+            conflict_kind="source",
+        )
+        conflicts.extend(source_conflicts)
+        if merged_source is not None:
+            merged_sources.append(merged_source)
+
+    merged_binding, binding_conflicts = _merge_source_record(
+        base_normalized.get("github_star_sync"),
+        local_normalized.get("github_star_sync"),
+        remote_normalized.get("github_star_sync"),
+        source_id="github_star_sync",
+        source_name="GitHub star sync",
+        conflict_kind="binding",
+        field_prefix="github_star_sync.",
+    )
+    conflicts.extend(binding_conflicts)
+    if conflicts:
+        return None, conflicts
+
+    merged = build_online_config(merged_sources, github_star_sync=merged_binding)
+    try:
+        merged = validate_online_config_schema(merged, existing=True)
+        if protected_online_config_projection(merged) != protected_online_config_projection(remote_normalized):
+            return None, [
+                _online_merge_conflict(
+                    "binding",
+                    source_id="github_star_sync",
+                    source_name="GitHub star sync",
+                    field="protected_online_config_projection",
+                )
+            ]
+        rendered_json = render_json_bytes(merged)
+        rendered_opml, _ = render_online_opml_bytes(merged["sources"])
+        if json.loads(rendered_json.decode("utf-8")) != merged or not rendered_opml:
+            return None, [_online_merge_conflict("top_level", field="derived_config")]
+    except (TypeError, ValueError, json.JSONDecodeError):
+        return None, [_online_merge_conflict("top_level", field="schema")]
+    return merged, []
+
+
 def read_online_source_config(root_dir: Path) -> dict[str, Any]:
     config_path, opml_path = ensure_public_online_paths(root_dir)
     config: dict[str, Any]
@@ -1104,14 +1303,20 @@ def _validate_operation_manifest(raw_manifest: Any) -> dict[str, Any]:
         "commit_trailer",
         "stash",
     }
+    schema_version = raw_manifest.get("schema_version")
+    if schema_version == 2:
+        required_keys.add("merge")
     if set(raw_manifest) != required_keys:
         raise _online_error("online_sources_recovery_mismatch", 409)
-    if raw_manifest.get("schema_version") != ONLINE_OPERATION_SCHEMA_VERSION:
+    if schema_version not in {1, ONLINE_OPERATION_SCHEMA_VERSION}:
         raise _online_error("online_sources_recovery_mismatch", 409)
     operation_id = raw_manifest.get("operation_id")
     if not isinstance(operation_id, str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}", operation_id):
         raise _online_error("online_sources_recovery_mismatch", 409)
-    if raw_manifest.get("operation_kind") not in ONLINE_OPERATION_KINDS:
+    operation_kind = raw_manifest.get("operation_kind")
+    if operation_kind not in ONLINE_OPERATION_KINDS:
+        raise _online_error("online_sources_recovery_mismatch", 409)
+    if schema_version == 1 and operation_kind == "merge_sync":
         raise _online_error("online_sources_recovery_mismatch", 409)
     if raw_manifest.get("phase") not in ONLINE_OPERATION_PHASES:
         raise _online_error("online_sources_recovery_mismatch", 409)
@@ -1153,6 +1358,24 @@ def _validate_operation_manifest(raw_manifest: Any) -> dict[str, Any]:
             for key in ("before_sha256", "after_sha256")
         ):
             raise _online_error("online_sources_recovery_mismatch", 409)
+    merge = raw_manifest.get("merge") if schema_version == 2 else None
+    if operation_kind != "merge_sync":
+        if merge is not None:
+            raise _online_error("online_sources_recovery_mismatch", 409)
+    else:
+        if not isinstance(merge, dict) or set(merge) != {"fetched_oid", "base_oid", "remote_sha256"}:
+            raise _online_error("online_sources_recovery_mismatch", 409)
+        for key in ("fetched_oid", "base_oid"):
+            if not re.fullmatch(r"[0-9a-f]{40,64}", str(merge.get(key) or "")):
+                raise _online_error("online_sources_recovery_mismatch", 409)
+        if merge["base_oid"] != raw_manifest["pre_head"]:
+            raise _online_error("online_sources_recovery_mismatch", 409)
+        remote_sha256 = merge.get("remote_sha256")
+        if not isinstance(remote_sha256, dict) or set(remote_sha256) != allowed_paths:
+            raise _online_error("online_sources_recovery_mismatch", 409)
+        if any(not re.fullmatch(r"[0-9a-f]{64}", str(value or "")) for value in remote_sha256.values()):
+            raise _online_error("online_sources_recovery_mismatch", 409)
+
 
     stash = raw_manifest.get("stash")
     if not isinstance(stash, dict) or set(stash) != {"message", "oid", "paths"}:
@@ -1429,7 +1652,13 @@ def _fetch_remote_ref_oid(
     return fetched_oid
 
 
-def _assert_remote_data_only_advance(root_dir: Path, base_oid: str, fetched_oid: str) -> None:
+def _assert_remote_advance(
+    root_dir: Path,
+    base_oid: str,
+    fetched_oid: str,
+    *,
+    allow_online_config: bool,
+) -> None:
     if git_run(root_dir, ["merge-base", "--is-ancestor", base_oid, fetched_oid]).returncode != 0:
         raise _preflight_error("remote_history_diverged")
     commits = [
@@ -1452,7 +1681,10 @@ def _assert_remote_data_only_advance(root_dir: Path, base_oid: str, fetched_oid:
             root_dir,
             ["diff-tree", "--no-commit-id", "--name-only", "-r", "-z", commit_oid],
         )
-        if any(not path.startswith("data/") for path in changed):
+        allowed_online_paths = set(_allowed_online_paths())
+        is_data_only = bool(changed) and all(path.startswith("data/") for path in changed)
+        is_online_config_only = bool(changed) and set(changed).issubset(allowed_online_paths)
+        if not is_data_only and not (allow_online_config and is_online_config_only):
             raise _preflight_error("remote_non_data_changes")
         previous_oid = commit_oid
     if previous_oid != fetched_oid:
@@ -1461,11 +1693,17 @@ def _assert_remote_data_only_advance(root_dir: Path, base_oid: str, fetched_oid:
         root_dir,
         ["diff", "--name-only", "-z", base_oid, fetched_oid, "--"],
     )
-    if any(not path.startswith("data/") for path in changed):
+    allowed_online_paths = set(_allowed_online_paths())
+    if any(not path.startswith("data/") and path not in allowed_online_paths for path in changed):
         raise _preflight_error("remote_non_data_changes")
-    for path in _allowed_online_paths():
-        if _git_blob_oid(root_dir, base_oid, path) != _git_blob_oid(root_dir, fetched_oid, path):
-            raise _preflight_error("remote_online_files_changed")
+    if not allow_online_config:
+        for path in _allowed_online_paths():
+            if _git_blob_oid(root_dir, base_oid, path) != _git_blob_oid(root_dir, fetched_oid, path):
+                raise _preflight_error("remote_online_files_changed")
+
+
+def _remote_advance_policy(manifest: dict[str, Any]) -> bool:
+    return manifest["operation_kind"] == "merge_sync"
 
 
 def _git_blob_oid(root_dir: Path, revision: str, path: str) -> str | None:
@@ -1519,7 +1757,7 @@ def fresh_git_preflight(root_dir: Path) -> dict[str, str]:
             target,
             operation_token=uuid.uuid4().hex,
         )
-        _assert_remote_data_only_advance(root, pre_head, fetched_oid)
+        _assert_remote_advance(root, pre_head, fetched_oid, allow_online_config=False)
         _assert_head(root, pre_head, "head_changed_during_fetch")
         if git_name_list(root, ["diff", "--cached", "--name-only"]):
             raise _preflight_error("index_changed_during_fetch")
@@ -1578,6 +1816,7 @@ def new_operation_manifest(
     after_hashes: dict[str, str],
     preview_hash: str = "",
     base_config_digest: str,
+    merge: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     operation_id = uuid.uuid4().hex
     allowed_paths = (
@@ -1608,6 +1847,7 @@ def new_operation_manifest(
         "operation_commit_oid": "",
         "stable_patch_id": "",
         "commit_trailer": f"AI-News-Radar-Operation: {operation_id}",
+        "merge": merge,
         "stash": {
             "message": f"ai-news-radar:{operation_id}",
             "oid": "",
@@ -1911,6 +2151,670 @@ def _verify_operation_commit(
     return _stable_patch_id(root_dir, commit_oid)
 
 
+def _read_git_online_config_pair(
+    root_dir: Path,
+    revision: str,
+    *,
+    failure_reason: str,
+) -> tuple[dict[str, Any], dict[str, bytes]]:
+    paths = _allowed_online_paths()
+    contents = {path: _git_blob_bytes(root_dir, revision, path) for path in paths}
+    try:
+        config = validate_online_config_schema(
+            json.loads(contents[paths[0]].decode("utf-8")),
+            existing=True,
+        )
+        expected_opml, _ = render_online_opml_bytes(config["sources"])
+    except (UnicodeDecodeError, TypeError, ValueError, json.JSONDecodeError) as exc:
+        raise _preflight_error(failure_reason) from exc
+    if _normalized_online_text_bytes(contents[paths[1]]) != _normalized_online_text_bytes(expected_opml):
+        raise _preflight_error(failure_reason)
+    return config, contents
+
+
+def _temporary_merge_index_git(
+    root_dir: Path,
+    index_path: Path,
+    args: list[str],
+    *,
+    input_bytes: bytes | None = None,
+) -> bytes:
+    environment = dict(os.environ)
+    environment["GIT_INDEX_FILE"] = str(index_path)
+    completed = subprocess.run(
+        ["git", *args],
+        cwd=str(root_dir),
+        input=input_bytes,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+        env=environment,
+    )
+    if completed.returncode != 0:
+        message = (completed.stderr or completed.stdout or b"git command failed").decode(
+            "utf-8",
+            errors="replace",
+        ).strip()
+        raise RuntimeError(message)
+    return completed.stdout
+
+
+def _merge_sync_tree(
+    root_dir: Path,
+    manifest: dict[str, Any],
+    merged_contents: dict[str, bytes],
+) -> str:
+    normalized = _validate_operation_manifest(manifest)
+    if normalized["operation_kind"] != "merge_sync":
+        raise _online_error("online_sources_recovery_mismatch", 409)
+    paths = _allowed_online_paths()
+    merge = normalized["merge"]
+    for path in paths:
+        if _online_content_sha256(_git_blob_bytes(root_dir, merge["fetched_oid"], path)) != merge[
+            "remote_sha256"
+        ][path]:
+            raise _online_error("online_sources_recovery_mismatch", 409)
+        if _online_content_sha256(merged_contents[path]) != normalized["files"][path]["after_sha256"]:
+            raise _online_error("online_sources_recovery_mismatch", 409)
+
+    index_path = _git_path(root_dir, "ai-news-radar-merge-index")
+    index_lock_path = index_path.with_name(index_path.name + ".lock")
+    if index_path.exists() or index_lock_path.exists():
+        raise _preflight_error("merge_index_in_use")
+    try:
+        _temporary_merge_index_git(root_dir, index_path, ["read-tree", merge["fetched_oid"]])
+        blob_oids: dict[str, str] = {}
+        for path in paths:
+            blob_oid = _temporary_merge_index_git(
+                root_dir,
+                index_path,
+                ["hash-object", "-w", "--stdin"],
+                input_bytes=merged_contents[path],
+            ).decode("ascii", errors="strict").strip()
+            if not re.fullmatch(r"[0-9a-f]{40,64}", blob_oid):
+                raise _online_error("online_sources_recovery_mismatch", 409)
+            blob_oids[path] = blob_oid
+            _temporary_merge_index_git(
+                root_dir,
+                index_path,
+                ["update-index", "--add", "--cacheinfo", f"100644,{blob_oid},{path}"],
+            )
+        tree_oid = _temporary_merge_index_git(root_dir, index_path, ["write-tree"])
+        tree_oid_text = tree_oid.decode("ascii", errors="strict").strip()
+        if not re.fullmatch(r"[0-9a-f]{40,64}", tree_oid_text):
+            raise _online_error("online_sources_recovery_mismatch", 409)
+        changed = {
+            path.replace("\\", "/")
+            for path in _temporary_merge_index_git(
+                root_dir,
+                index_path,
+                [
+                    "diff-tree",
+                    "--no-commit-id",
+                    "--name-only",
+                    "-r",
+                    "-z",
+                    merge["fetched_oid"],
+                    tree_oid_text,
+                ],
+            )
+            .decode("utf-8", errors="strict")
+            .split("\0")
+            if path
+        }
+        if not changed.issubset(set(paths)):
+            raise _online_error("online_sources_recovery_mismatch", 409)
+        for path in paths:
+            if _git_blob_oid(root_dir, tree_oid_text, path) != blob_oids[path]:
+                raise _online_error("online_sources_recovery_mismatch", 409)
+            if _online_content_sha256(_git_blob_bytes(root_dir, tree_oid_text, path)) != normalized[
+                "files"
+            ][path]["after_sha256"]:
+                raise _online_error("online_sources_recovery_mismatch", 409)
+        return tree_oid_text
+    finally:
+        for temporary_path in (index_path, index_lock_path):
+            try:
+                temporary_path.unlink()
+            except FileNotFoundError:
+                pass
+
+
+def _verify_merge_operation_commit(
+    root_dir: Path,
+    manifest: dict[str, Any],
+    commit_oid: str,
+) -> str:
+    normalized = _validate_operation_manifest(manifest)
+    if normalized["operation_kind"] != "merge_sync" or not re.fullmatch(r"[0-9a-f]{40,64}", commit_oid):
+        raise _online_error("online_sources_recovery_mismatch", 409)
+    parents = git_checked(root_dir, ["show", "-s", "--format=%P", commit_oid]).stdout.split()
+    if parents != [normalized["merge"]["fetched_oid"]]:
+        raise _online_error("online_sources_recovery_mismatch", 409)
+    changed = set(
+        git_nul_name_list(
+            root_dir,
+            ["diff-tree", "--no-commit-id", "--name-only", "-r", "-z", commit_oid],
+        )
+    )
+    if not changed.issubset(set(_allowed_online_paths())):
+        raise _online_error("online_sources_recovery_mismatch", 409)
+    message_lines = git_checked(root_dir, ["show", "-s", "--format=%B", commit_oid]).stdout.splitlines()
+    if message_lines.count(normalized["commit_trailer"]) != 1:
+        raise _online_error("online_sources_recovery_mismatch", 409)
+    for path, proof in normalized["files"].items():
+        if _online_content_sha256(_git_blob_bytes(root_dir, commit_oid, path)) != proof["after_sha256"]:
+            raise _online_error("online_sources_recovery_mismatch", 409)
+    return _stable_patch_id(root_dir, commit_oid)
+
+
+def _merge_sync_untracked_collisions(root_dir: Path, manifest: dict[str, Any]) -> None:
+    normalized = _validate_operation_manifest(manifest)
+    if normalized["operation_kind"] != "merge_sync":
+        raise _online_error("online_sources_recovery_mismatch", 409)
+    merge = normalized["merge"]
+    added_paths = git_nul_name_list(
+        root_dir,
+        [
+            "diff",
+            "--name-only",
+            "--diff-filter=A",
+            "-z",
+            merge["base_oid"],
+            merge["fetched_oid"],
+            "--",
+        ],
+    )
+    collisions: list[str] = []
+    for path in added_paths:
+        relative = Path(path)
+        if relative.is_absolute() or ".." in relative.parts:
+            raise _online_error("online_sources_recovery_mismatch", 409)
+        tracked = git_run(root_dir, ["ls-files", "--error-unmatch", "--", path])
+        if tracked.returncode not in {0, 1}:
+            raise _online_error("online_sources_recovery_mismatch", 409)
+        if tracked.returncode == 1 and os.path.lexists(root_dir / relative):
+            collisions.append(path)
+    if collisions:
+        raise _online_error(
+            "online_sources_untracked_collision",
+            409,
+            {"paths": collisions[:20]},
+        )
+
+
+def _merge_sync_changed_paths(
+    root_dir: Path,
+    manifest: dict[str, Any],
+    commit_oid: str,
+) -> list[tuple[str, str]]:
+    output = git_checked(
+        root_dir,
+        [
+            "diff",
+            "--name-status",
+            "-z",
+            "--no-renames",
+            manifest["pre_head"],
+            commit_oid,
+            "--",
+        ],
+    ).stdout
+    fields = output.split("\0")
+    if fields and fields[-1] == "":
+        fields.pop()
+    if len(fields) % 2:
+        raise _online_error("online_sources_recovery_mismatch", 409)
+    changes: list[tuple[str, str]] = []
+    allowed_online_paths = set(_allowed_online_paths())
+    for status, path in zip(fields[::2], fields[1::2]):
+        normalized_path = path.replace("\\", "/")
+        if status not in {"A", "M", "D", "T"}:
+            raise _online_error("online_sources_recovery_mismatch", 409)
+        if not normalized_path.startswith("data/") and normalized_path not in allowed_online_paths:
+            raise _online_error("online_sources_recovery_mismatch", 409)
+        if status == "D" and normalized_path in allowed_online_paths:
+            raise _online_error("online_sources_recovery_mismatch", 409)
+        changes.append((status, normalized_path))
+    return changes
+
+
+def _merge_sync_file_state(root_dir: Path, manifest: dict[str, Any]) -> str:
+    matches_before = True
+    matches_after = True
+    for path, proof in manifest["files"].items():
+        actual = _online_file_sha256(root_dir / path)
+        if actual not in {proof["before_sha256"], proof["after_sha256"]}:
+            raise _online_error("online_sources_recovery_mismatch", 409)
+        matches_before = matches_before and actual == proof["before_sha256"]
+        matches_after = matches_after and actual == proof["after_sha256"]
+    if matches_after:
+        return "after"
+    if matches_before:
+        return "before"
+    raise _online_error("online_sources_recovery_mismatch", 409)
+
+
+def _merge_sync_local_gate(
+    root_dir: Path,
+    manifest: dict[str, Any],
+    manifest_digest: str,
+    commit_oid: str,
+) -> tuple[dict[str, Any], str]:
+    current = read_operation_manifest(root_dir)
+    if current is None or operation_manifest_digest(current) != manifest_digest:
+        raise _online_error("online_sources_recovery_mismatch", 409)
+    normalized = _validate_operation_manifest(current)
+    if normalized["operation_kind"] != "merge_sync":
+        raise _online_error("online_sources_recovery_mismatch", 409)
+    if normalized["operation_commit_oid"]:
+        if normalized["operation_commit_oid"] != commit_oid:
+            raise _online_error("online_sources_recovery_mismatch", 409)
+    elif commit_oid != normalized["merge"]["fetched_oid"]:
+        raise _online_error("online_sources_recovery_mismatch", 409)
+    _assert_operation_git_context(root_dir, normalized)
+    file_state = _merge_sync_file_state(root_dir, normalized)
+    head = _git_head(root_dir)
+    if head not in {normalized["pre_head"], commit_oid}:
+        raise _online_error("online_sources_recovery_mismatch", 409)
+    if head == commit_oid and file_state != "after":
+        raise _online_error("online_sources_recovery_mismatch", 409)
+    stash = normalized["stash"]
+    if stash["oid"]:
+        _owned_stash_oid(root_dir, normalized)
+        if not _stash_restore_can_continue(root_dir, normalized):
+            raise _online_error("online_sources_recovery_mismatch", 409)
+    return normalized, operation_manifest_digest(normalized)
+
+
+def _merge_sync_stash_dirty_paths(
+    root_dir: Path,
+    manifest: dict[str, Any],
+) -> tuple[dict[str, Any], str]:
+    stash = manifest["stash"]
+    if stash["oid"]:
+        _owned_stash_oid(root_dir, manifest)
+        if not _stash_restore_can_continue(root_dir, manifest):
+            raise _online_error("online_sources_recovery_mismatch", 409)
+        return manifest, operation_manifest_digest(manifest)
+
+    proofs = stash["paths"]
+    if not proofs:
+        dirty_paths = [
+            path
+            for path in git_nul_name_list(root_dir, ["diff", "--name-only", "-z"])
+            if path not in _allowed_online_paths()
+        ]
+        if not dirty_paths:
+            return manifest, operation_manifest_digest(manifest)
+        proofs = [_stash_path_proof(root_dir, path) for path in dirty_paths]
+        if not all(_stash_path_matches(root_dir, proof) for proof in proofs):
+            raise _online_error("online_sources_recovery_mismatch", 409)
+        manifest, manifest_digest = update_operation_manifest(
+            root_dir,
+            manifest,
+            phase="restoring_worktree",
+            stash={**stash, "paths": proofs},
+        )
+    else:
+        manifest_digest = operation_manifest_digest(manifest)
+        dirty_paths = [proof["path"] for proof in proofs]
+        pending_stash_oid = _owned_stash_oid(root_dir, manifest)
+        if pending_stash_oid:
+            manifest, manifest_digest = update_operation_manifest(
+                root_dir,
+                manifest,
+                stash={**manifest["stash"], "oid": pending_stash_oid},
+            )
+            if not _stash_restore_can_continue(root_dir, manifest):
+                raise _online_error("online_sources_recovery_mismatch", 409)
+            return manifest, manifest_digest
+
+    _assert_operation_git_context(root_dir, manifest)
+    if git_name_list(root_dir, ["diff", "--cached", "--name-only"]):
+        raise _preflight_error("index_changed_before_stash")
+    if not all(_stash_path_matches(root_dir, proof) for proof in proofs):
+        raise _online_error("online_sources_recovery_mismatch", 409)
+    previous = git_run(root_dir, ["rev-parse", "--verify", "refs/stash"])
+    previous_oid = previous.stdout.strip() if previous.returncode == 0 else ""
+    git_checked(
+        root_dir,
+        [
+            "--literal-pathspecs",
+            "stash",
+            "push",
+            "--keep-index",
+            "-m",
+            manifest["stash"]["message"],
+            "--",
+            *dirty_paths,
+        ],
+        timeout=60,
+    )
+    stash_oid = git_checked(root_dir, ["rev-parse", "--verify", "refs/stash"]).stdout.strip()
+    if not stash_oid or stash_oid == previous_oid:
+        raise _online_error("online_sources_recovery_mismatch", 409)
+    return update_operation_manifest(
+        root_dir,
+        manifest,
+        stash={**manifest["stash"], "oid": stash_oid},
+    )
+
+
+def _merge_sync_finish_local_fast_forward(
+    root_dir: Path,
+    manifest: dict[str, Any],
+    manifest_digest: str,
+    commit_oid: str,
+) -> None:
+    manifest, manifest_digest = _merge_sync_local_gate(
+        root_dir,
+        manifest,
+        manifest_digest,
+        commit_oid,
+    )
+    if manifest["phase"] != "restoring_worktree":
+        manifest, manifest_digest = update_operation_manifest(
+            root_dir,
+            manifest,
+            phase="restoring_worktree",
+        )
+    manifest, manifest_digest = _merge_sync_stash_dirty_paths(root_dir, manifest)
+    manifest, manifest_digest = _merge_sync_local_gate(
+        root_dir,
+        manifest,
+        manifest_digest,
+        commit_oid,
+    )
+    file_state = _merge_sync_file_state(root_dir, manifest)
+    changes = _merge_sync_changed_paths(root_dir, manifest, commit_oid)
+    needs_checkout = file_state == "before" or any(
+        git_run(root_dir, ["diff", "--cached", "--quiet", commit_oid, "--", path]).returncode != 0
+        or git_run(root_dir, ["diff", "--quiet", commit_oid, "--", path]).returncode != 0
+        for _status, path in changes
+    )
+    if needs_checkout:
+        _merge_sync_untracked_collisions(root_dir, manifest)
+        restore_paths = [path for status, path in changes if status in {"A", "M", "T"}]
+        delete_paths = [path for status, path in changes if status == "D"]
+        if restore_paths:
+            git_checked(
+                root_dir,
+                [
+                    "--literal-pathspecs",
+                    "restore",
+                    f"--source={commit_oid}",
+                    "--staged",
+                    "--worktree",
+                    "--",
+                    *restore_paths,
+                ],
+                timeout=60,
+            )
+        if delete_paths:
+            git_checked(
+                root_dir,
+                ["--literal-pathspecs", "rm", "-f", "--", *delete_paths],
+                timeout=60,
+            )
+    elif file_state != "after":
+        raise _online_error("online_sources_recovery_mismatch", 409)
+    _assert_online_file_hashes(root_dir, manifest["files"], "after_sha256")
+    for _status, path in changes:
+        if (
+            git_run(root_dir, ["diff", "--cached", "--quiet", commit_oid, "--", path]).returncode
+            != 0
+            or git_run(root_dir, ["diff", "--quiet", commit_oid, "--", path]).returncode != 0
+        ):
+            raise _online_error("online_sources_recovery_mismatch", 409)
+    head = _git_head(root_dir)
+    if head == manifest["pre_head"]:
+        git_checked(
+            root_dir,
+            ["update-ref", "refs/heads/master", commit_oid, manifest["pre_head"]],
+        )
+    elif head != commit_oid:
+        raise _online_error("online_sources_recovery_mismatch", 409)
+    _assert_head(root_dir, commit_oid)
+    if git_name_list(root_dir, ["diff", "--cached", "--name-only"]):
+        raise _online_error("online_sources_recovery_mismatch", 409)
+    if manifest["stash"]["oid"] or manifest["stash"]["paths"]:
+        manifest, manifest_digest = _restore_owned_stash(root_dir, manifest)
+    if git_name_list(root_dir, ["diff", "--cached", "--name-only"]):
+        raise _online_error("online_sources_recovery_mismatch", 409)
+    delete_operation_manifest(root_dir, expected_digest=manifest_digest)
+
+
+def _merge_sync_summary(
+    base: dict[str, Any],
+    local: dict[str, Any],
+    remote: dict[str, Any],
+    merged: dict[str, Any],
+) -> dict[str, int]:
+    def source_map(config: dict[str, Any]) -> dict[str, dict[str, Any]]:
+        return {
+            source["id"]: source
+            for source in online_user_sources_from_config(config)
+            if source["id"] != ONLINE_OPML_SOURCE_ID and source["type"] != "opmlrss"
+        }
+
+    base_sources, local_sources, remote_sources, merged_sources = (
+        source_map(config) for config in (base, local, remote, merged)
+    )
+    adopted_remote = sum(
+        1
+        for source_id, remote_source in remote_sources.items()
+        if remote_source != base_sources.get(source_id)
+        and merged_sources.get(source_id) == remote_source
+    )
+    kept_local = sum(
+        1
+        for source_id, local_source in local_sources.items()
+        if local_source != base_sources.get(source_id)
+        and merged_sources.get(source_id) == local_source
+    )
+    for key in ("github_star_sync",):
+        if remote.get(key) != base.get(key) and merged.get(key) == remote.get(key):
+            adopted_remote += 1
+        if local.get(key) != base.get(key) and merged.get(key) == local.get(key):
+            kept_local += 1
+    return {
+        "adopted_remote": adopted_remote,
+        "kept_local": kept_local,
+        "added": len(set(merged_sources) - set(base_sources)),
+        "removed": len(set(base_sources) - set(merged_sources)),
+    }
+
+
+def _merge_sync_result(
+    config: dict[str, Any],
+    *,
+    outcome: str,
+    config_changed: bool,
+    commit: str,
+    pushed: bool,
+    summary: dict[str, int],
+) -> dict[str, Any]:
+    result = _operation_result(
+        config,
+        outcome=outcome,
+        config_changed=config_changed,
+        write_complete=True,
+        commit=commit,
+        pushed=pushed,
+        summary=summary,
+    )
+    result["merged"] = True
+    result["merged_summary"] = dict(summary)
+    return result
+
+
+def _merge_commit_and_push_operation(
+    root_dir: Path,
+    manifest: dict[str, Any],
+    manifest_digest: str,
+    merged_config: dict[str, Any],
+    merged_contents: dict[str, bytes],
+    *,
+    config_changed: bool,
+    summary: dict[str, int],
+    remote_equivalent: bool,
+) -> dict[str, Any]:
+    if remote_equivalent:
+        commit_oid = manifest["merge"]["fetched_oid"]
+        _merge_sync_finish_local_fast_forward(root_dir, manifest, manifest_digest, commit_oid)
+        return _merge_sync_result(
+            merged_config,
+            outcome="no_change",
+            config_changed=False,
+            commit="",
+            pushed=False,
+            summary=summary,
+        )
+
+    _assert_operation_git_context(root_dir, manifest)
+    _assert_head(root_dir, manifest["pre_head"])
+    if git_name_list(root_dir, ["diff", "--cached", "--name-only"]):
+        raise _preflight_error("index_changed_before_commit")
+    _assert_online_file_hashes(root_dir, manifest["files"], "before_sha256")
+    tree_oid = _merge_sync_tree(root_dir, manifest, merged_contents)
+    commit_oid = git_checked(
+        root_dir,
+        [
+            "commit-tree",
+            tree_oid,
+            "-p",
+            manifest["merge"]["fetched_oid"],
+            "-m",
+            ONLINE_COMMIT_MESSAGE,
+            "-m",
+            manifest["commit_trailer"],
+        ],
+        timeout=60,
+    ).stdout.strip()
+    patch_id = _verify_merge_operation_commit(root_dir, manifest, commit_oid)
+    manifest, manifest_digest = update_operation_manifest(
+        root_dir,
+        manifest,
+        phase="committed",
+        operation_commit_oid=commit_oid,
+        stable_patch_id=patch_id,
+    )
+    try:
+        _merge_sync_untracked_collisions(root_dir, manifest)
+    except OnlineSourcesError as exc:
+        if exc.code == "online_sources_untracked_collision":
+            delete_operation_manifest(root_dir, expected_digest=manifest_digest)
+        raise
+
+    try:
+        push_target = _verified_operation_remote_target(root_dir, manifest)
+        git_checked(
+            root_dir,
+            ["push", "--", push_target["push_url"], f"{commit_oid}:{manifest['remote_ref']}"],
+            timeout=120,
+        )
+    except (OSError, RuntimeError, subprocess.SubprocessError, ValueError) as exc:
+        remote_status = _operation_remote_status(root_dir, manifest, commit_oid)
+        if remote_status == "retryable":
+            delete_operation_manifest(root_dir, expected_digest=manifest_digest)
+            raise _preflight_error("remote_changed_during_merge_push") from exc
+        if remote_status != "pushed":
+            raise _online_error("online_sources_recovery_pending", 409) from exc
+    if _operation_remote_status(root_dir, manifest, commit_oid) != "pushed":
+        raise _online_error("online_sources_recovery_pending", 409)
+    _merge_sync_finish_local_fast_forward(root_dir, manifest, manifest_digest, commit_oid)
+    return _merge_sync_result(
+        merged_config,
+        outcome="pushed",
+        config_changed=config_changed,
+        commit=commit_oid,
+        pushed=True,
+        summary=summary,
+    )
+
+
+def _sync_merged_online_source_config(
+    root_dir: Path,
+    local_config: dict[str, Any],
+    *,
+    target: dict[str, str],
+    base_config_digest: str,
+) -> dict[str, Any]:
+    base_config, _base_contents = _read_git_online_config_pair(
+        root_dir,
+        target["pre_head"],
+        failure_reason="base_derived_opml_mismatch",
+    )
+    remote_config, remote_contents = _read_git_online_config_pair(
+        root_dir,
+        target["fetched_oid"],
+        failure_reason="remote_derived_opml_mismatch",
+    )
+    merged_config, conflicts = merge_online_source_configs(base_config, local_config, remote_config)
+    if conflicts:
+        raise _online_error(
+            "online_sources_merge_conflict",
+            409,
+            {"conflicts": conflicts},
+        )
+    if merged_config is None:
+        raise _online_error("online_sources_recovery_mismatch", 409)
+    paths = _allowed_online_paths()
+    merged_opml, _ = render_online_opml_bytes(merged_config["sources"])
+    merged_contents = {
+        paths[0]: render_json_bytes(merged_config),
+        paths[1]: merged_opml,
+    }
+    remote_equivalent = (
+        online_config_digest(merged_config) == online_config_digest(remote_config)
+        and _normalized_online_text_bytes(merged_contents[paths[1]])
+        == _normalized_online_text_bytes(remote_contents[paths[1]])
+    )
+    if remote_equivalent:
+        merged_config = remote_config
+        merged_contents = remote_contents
+    before_hashes = {path: _online_file_sha256(root_dir / path) for path in paths}
+    after_hashes = {
+        path: _online_content_sha256(content)
+        for path, content in merged_contents.items()
+    }
+    remote_sha256 = {
+        path: _online_content_sha256(content)
+        for path, content in remote_contents.items()
+    }
+    manifest = new_operation_manifest(
+        operation_kind="merge_sync",
+        target=target,
+        before_hashes=before_hashes,
+        after_hashes=after_hashes,
+        base_config_digest=base_config_digest,
+        merge={
+            "fetched_oid": target["fetched_oid"],
+            "base_oid": target["pre_head"],
+            "remote_sha256": remote_sha256,
+        },
+    )
+    manifest_digest = write_operation_manifest(root_dir, manifest)
+    return _merge_commit_and_push_operation(
+        root_dir,
+        manifest,
+        manifest_digest,
+        merged_config,
+        merged_contents,
+        config_changed=online_config_digest(merged_config) != online_config_digest(local_config),
+        summary=_merge_sync_summary(base_config, local_config, remote_config, merged_config),
+        remote_equivalent=remote_equivalent,
+    )
+
+
+def _remote_online_files_changed(root_dir: Path, base_oid: str, fetched_oid: str) -> bool:
+    return any(
+        _git_blob_oid(root_dir, base_oid, path) != _git_blob_oid(root_dir, fetched_oid, path)
+        for path in _allowed_online_paths()
+    )
+
+
 def _manual_sync_git_preflight(root_dir: Path) -> dict[str, str]:
     root = root_dir.resolve()
     try:
@@ -1926,7 +2830,7 @@ def _manual_sync_git_preflight(root_dir: Path) -> dict[str, str]:
             target,
             operation_token=uuid.uuid4().hex,
         )
-        _assert_remote_data_only_advance(root, target["pre_head"], fetched_oid)
+        _assert_remote_advance(root, target["pre_head"], fetched_oid, allow_online_config=True)
         _assert_head(root, target["pre_head"], "head_changed_during_fetch")
         if git_name_list(root, ["diff", "--cached", "--name-only"]):
             raise _preflight_error("index_changed_during_fetch")
@@ -2113,7 +3017,12 @@ def _operation_remote_status(
     if git_run(root_dir, ["merge-base", "--is-ancestor", commit_oid, fetched_oid]).returncode == 0:
         return "pushed"
     try:
-        _assert_remote_data_only_advance(root_dir, manifest["pre_head"], fetched_oid)
+        _assert_remote_advance(
+            root_dir,
+            manifest["pre_head"],
+            fetched_oid,
+            allow_online_config=_remote_advance_policy(manifest),
+        )
     except OnlineSourcesError:
         return "unsafe"
     return "retryable"
@@ -2135,7 +3044,12 @@ def _operation_commit_parent_is_trusted(
         parent_oid = _operation_commit_parent_oid(root_dir, operation_oid)
         if parent_oid == manifest["pre_head"]:
             return True
-        _assert_remote_data_only_advance(root_dir, manifest["pre_head"], parent_oid)
+        _assert_remote_advance(
+            root_dir,
+            manifest["pre_head"],
+            parent_oid,
+            allow_online_config=_remote_advance_policy(manifest),
+        )
         fetched_oid = _fetch_operation_remote(root_dir, manifest)
         return (
             git_run(root_dir, ["merge-base", "--is-ancestor", parent_oid, fetched_oid]).returncode
@@ -2204,7 +3118,12 @@ def _owned_operation_rebase_proof(
         )
         if patch_id != stable_patch_id:
             return None
-        _assert_remote_data_only_advance(root_dir, manifest["pre_head"], onto)
+        _assert_remote_advance(
+            root_dir,
+            manifest["pre_head"],
+            onto,
+            allow_online_config=_remote_advance_policy(manifest),
+        )
         fetched_oid = _fetch_operation_remote(
             root_dir,
             manifest,
@@ -2334,6 +3253,8 @@ def _owned_stash_oid(root_dir: Path, manifest: dict[str, Any]) -> str:
             for oid, subject in entries
             if subject == stash["message"] or subject.endswith(f": {stash['message']}")
         ]
+    if not matches and not stash["oid"]:
+        return ""
     if len(matches) != 1:
         raise _online_error("online_sources_recovery_mismatch", 409)
     return matches[0]
@@ -2388,10 +3309,106 @@ def _restore_owned_stash(
     )
 
 
+def _merge_sync_recovery(root_dir: Path, manifest: dict[str, Any]) -> dict[str, Any] | None:
+    manifest_digest = operation_manifest_digest(manifest)
+    commit_oid = manifest["operation_commit_oid"]
+    if _active_foreign_git_operation_paths(root_dir):
+        return public_operation_recovery(
+            manifest,
+            actual_phase="committed" if commit_oid else manifest["phase"],
+            outcome="committed_not_pushed" if commit_oid else "saved_not_committed",
+            recovery_pending=True,
+            allowed_actions=[],
+        )
+
+    if not commit_oid:
+        repaired = _manual_save_recovery(root_dir, manifest)
+        if repaired is None:
+            return None
+        return public_operation_recovery(
+            manifest,
+            actual_phase="prepared",
+            outcome="saved_not_committed",
+            recovery_pending=True,
+            allowed_actions=[],
+        )
+
+    try:
+        if not manifest["stable_patch_id"]:
+            raise _online_error("online_sources_recovery_mismatch", 409)
+        if _verify_merge_operation_commit(root_dir, manifest, commit_oid) != manifest["stable_patch_id"]:
+            raise _online_error("online_sources_recovery_mismatch", 409)
+        _assert_operation_git_context(root_dir, manifest)
+        remote_status = _operation_remote_status(root_dir, manifest, commit_oid)
+    except (OnlineSourcesError, OSError, RuntimeError, subprocess.SubprocessError, ValueError):
+        return public_operation_recovery(
+            manifest,
+            actual_phase="committed",
+            outcome="committed_not_pushed",
+            recovery_pending=True,
+            allowed_actions=[],
+        )
+
+    if remote_status == "retryable":
+        try:
+            file_state = _merge_sync_file_state(root_dir, manifest)
+            head = _git_head(root_dir)
+            index_is_clean = not git_name_list(root_dir, ["diff", "--cached", "--name-only"])
+        except (OSError, RuntimeError, subprocess.SubprocessError, ValueError):
+            index_is_clean = False
+            file_state = "other"
+            head = ""
+        if file_state == "before" and head == manifest["pre_head"] and index_is_clean:
+            delete_operation_manifest(root_dir, expected_digest=manifest_digest)
+            return None
+        return public_operation_recovery(
+            manifest,
+            actual_phase="committed",
+            outcome="committed_not_pushed",
+            recovery_pending=True,
+            allowed_actions=[],
+        )
+
+    if remote_status != "pushed":
+        return public_operation_recovery(
+            manifest,
+            actual_phase="committed",
+            outcome="committed_not_pushed",
+            recovery_pending=True,
+            allowed_actions=[],
+        )
+
+    try:
+        _merge_sync_local_gate(root_dir, manifest, manifest_digest, commit_oid)
+    except (OnlineSourcesError, OSError, RuntimeError, subprocess.SubprocessError, ValueError):
+        allowed_actions: list[str] = []
+    else:
+        allowed_actions = ["finish_local_fast_forward"]
+    return public_operation_recovery(
+        manifest,
+        actual_phase="restoring_worktree",
+        outcome="pushed",
+        recovery_pending=True,
+        allowed_actions=allowed_actions,
+    )
+
+
 def audit_online_source_operation(root_dir: Path) -> dict[str, Any] | None:
     manifest = read_operation_manifest(root_dir)
     if manifest is None:
         return None
+    if manifest["operation_kind"] == "manual_save":
+        if _active_foreign_git_operation_paths(root_dir):
+            return public_operation_recovery(
+                manifest,
+                actual_phase=manifest["phase"],
+                outcome="saved_not_committed",
+                recovery_pending=True,
+                allowed_actions=[],
+            )
+        return _manual_save_recovery(root_dir, manifest)
+    if manifest["operation_kind"] == "merge_sync":
+        return _merge_sync_recovery(root_dir, manifest)
     if _active_foreign_git_operation_paths(root_dir):
         committed = bool(manifest["operation_commit_oid"] or manifest["stable_patch_id"])
         return public_operation_recovery(
@@ -2401,8 +3418,6 @@ def audit_online_source_operation(root_dir: Path) -> dict[str, Any] | None:
             recovery_pending=True,
             allowed_actions=[],
         )
-    if manifest["operation_kind"] == "manual_save":
-        return _manual_save_recovery(root_dir, manifest)
 
     if _active_rebase_paths(root_dir):
         if not _abort_owned_operation_rebase(root_dir, manifest):
@@ -2780,7 +3795,12 @@ def _commit_and_push_operation(
             raise _preflight_error("index_changed_after_stash")
         fetched_oid = _fetch_operation_remote(root_dir, manifest)
         _assert_operation_git_context(root_dir, manifest)
-        _assert_remote_data_only_advance(root_dir, manifest["pre_head"], fetched_oid)
+        _assert_remote_advance(
+            root_dir,
+            manifest["pre_head"],
+            fetched_oid,
+            allow_online_config=_remote_advance_policy(manifest),
+        )
         if fetched_oid != manifest["pre_head"]:
             manifest, manifest_digest = update_operation_manifest(
                 root_dir,
@@ -2953,6 +3973,13 @@ def sync_saved_online_source_config(
         post_fetch_opml, _ = render_online_opml_bytes(post_fetch_config["sources"])
         if not _online_file_matches(opml_path, post_fetch_opml):
             raise _online_error("online_sources_config_stale", 409)
+        if _remote_online_files_changed(root_dir, target["pre_head"], target["fetched_oid"]):
+            return _sync_merged_online_source_config(
+                root_dir,
+                config,
+                target=target,
+                base_config_digest=digest,
+            )
         if not _online_paths_changed_from_head(root_dir):
             return _operation_result(
                 config,
@@ -3283,7 +4310,12 @@ def _retry_owned_operation_push(
         if git_run(root_dir, ["merge-base", "--is-ancestor", operation_oid, fetched_oid]).returncode == 0:
             pushed = True
         else:
-            _assert_remote_data_only_advance(root_dir, manifest["pre_head"], fetched_oid)
+            _assert_remote_advance(
+                root_dir,
+                manifest["pre_head"],
+                fetched_oid,
+                allow_online_config=_remote_advance_policy(manifest),
+            )
             if fetched_oid != manifest["pre_head"]:
                 manifest, manifest_digest = update_operation_manifest(
                     root_dir,
@@ -3445,6 +4477,34 @@ def recover_online_source_operation(
         current_digest = operation_manifest_digest(manifest)
         if operation_id != manifest["operation_id"] or manifest_digest != current_digest:
             raise _online_error("online_sources_recovery_mismatch", 409)
+
+        if manifest["operation_kind"] == "merge_sync":
+            if (
+                not isinstance(action, str)
+                or action in {"rollback", "retry_commit"}
+                or action != "finish_local_fast_forward"
+                or action not in recovery["allowed_actions"]
+            ):
+                raise _online_error("online_sources_recovery_mismatch", 409)
+            commit_oid = manifest["operation_commit_oid"]
+            if not commit_oid or not _remote_contains_commit(root_dir, manifest, commit_oid):
+                raise _online_error("online_sources_recovery_mismatch", 409)
+            _merge_sync_finish_local_fast_forward(
+                root_dir,
+                manifest,
+                current_digest,
+                commit_oid,
+            )
+            config = _read_online_json_config(root_dir)
+            return _merge_sync_result(
+                config,
+                outcome="pushed",
+                config_changed=True,
+                commit=commit_oid,
+                pushed=True,
+                summary={},
+            )
+
         if not isinstance(action, str) or action not in recovery["allowed_actions"]:
             raise _online_error("online_sources_recovery_mismatch", 409)
 

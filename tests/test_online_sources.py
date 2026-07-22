@@ -485,6 +485,146 @@ class OnlineSourceSchemaTests(unittest.TestCase):
             self.assertEqual(path.read_bytes(), before)
 
 
+class OnlineSourceMergeTests(unittest.TestCase):
+    def source(
+        self,
+        source_id: str,
+        *,
+        enabled: bool = True,
+        notes: str = "base",
+    ) -> dict:
+        return online_sources.normalize_online_source_record(
+            {
+                "id": source_id,
+                "name": source_id,
+                "type": "bilibili_dynamic",
+                "locator": str(100000 + sum(ord(char) for char in source_id)),
+                "enabled": enabled,
+                "notes": notes,
+            },
+            0,
+        )
+
+    def config(self, *sources: dict, binding: dict | None = None) -> dict:
+        return online_sources.build_online_config(
+            list(sources),
+            updated_at="2026-07-21T00:00:00Z",
+            github_star_sync=binding,
+        )
+
+    def source_by_id(self, config: dict, source_id: str) -> dict | None:
+        return next((source for source in config["sources"] if source["id"] == source_id), None)
+
+    def test_merge_rule_table_for_sources(self):
+        base = self.source("online_bilibili_base")
+        local_changed = self.source("online_bilibili_base", enabled=False)
+        remote_changed = self.source("online_bilibili_base", notes="remote")
+        remote_same_field = self.source("online_bilibili_base", enabled=False)
+        local_added = self.source("online_bilibili_local")
+        remote_added = self.source("online_bilibili_remote")
+        both_added = self.source("online_bilibili_added", notes="same")
+        both_added_other = self.source("online_bilibili_added", notes="other")
+        cases = (
+            ("remote_add", self.config(), self.config(), self.config(remote_added), remote_added["id"], None),
+            ("local_add", self.config(), self.config(local_added), self.config(), local_added["id"], None),
+            ("same_add", self.config(), self.config(both_added), self.config(both_added), both_added["id"], None),
+            ("different_add", self.config(), self.config(both_added), self.config(both_added_other), None, "added_both"),
+            ("remote_change", self.config(base), self.config(base), self.config(remote_changed), base["id"], None),
+            ("local_change", self.config(base), self.config(local_changed), self.config(base), base["id"], None),
+            ("different_fields", self.config(base), self.config(local_changed), self.config(remote_changed), base["id"], None),
+            ("same_field", self.config(base), self.config(remote_same_field), self.config(remote_same_field), base["id"], None),
+            ("field_diff", self.config(base), self.config(local_changed), self.config(remote_changed), base["id"], None),
+            ("local_delete", self.config(base), self.config(), self.config(base), None, None),
+            ("remote_delete", self.config(base), self.config(base), self.config(), None, None),
+            ("both_delete", self.config(base), self.config(), self.config(), None, None),
+            ("delete_vs_modify", self.config(base), self.config(), self.config(remote_changed), None, "delete_vs_modify"),
+            ("modify_vs_delete", self.config(base), self.config(local_changed), self.config(), None, "delete_vs_modify"),
+        )
+        for name, base_config, local_config, remote_config, source_id, conflict_kind in cases:
+            with self.subTest(name=name):
+                merged, conflicts = online_sources.merge_online_source_configs(
+                    base_config,
+                    local_config,
+                    remote_config,
+                )
+                if conflict_kind is not None:
+                    self.assertIsNone(merged)
+                    self.assertEqual(conflicts[0]["kind"], conflict_kind)
+                    continue
+                self.assertEqual(conflicts, [])
+                if source_id is None:
+                    self.assertIsNone(self.source_by_id(merged, base["id"]))
+                else:
+                    self.assertIsNotNone(self.source_by_id(merged, source_id))
+                if name == "different_fields":
+                    self.assertFalse(self.source_by_id(merged, base["id"])["enabled"])
+                    self.assertEqual(self.source_by_id(merged, base["id"])["notes"], "remote")
+
+    def test_merge_reports_same_field_different_value(self):
+        base = self.source("online_bilibili_base")
+        merged, conflicts = online_sources.merge_online_source_configs(
+            self.config(self.source("online_bilibili_base", notes="base")),
+            self.config(self.source("online_bilibili_base", notes="local")),
+            self.config(self.source("online_bilibili_base", notes="remote")),
+        )
+
+        self.assertIsNone(merged)
+        self.assertEqual(conflicts[0]["kind"], "field_diff")
+        self.assertEqual(conflicts[0]["field"], "notes")
+        self.assertEqual(conflicts[0]["local_value"], "local")
+        self.assertEqual(conflicts[0]["remote_value"], "remote")
+
+    def test_merge_top_level_guards_reject_noncanonical_values(self):
+        base = self.config(self.source("online_bilibili_base"))
+        variants = (
+            ("remote_only", base, base, {**base, "version": "2.0"}),
+            ("local_only", base, {**base, "mode": "other"}, base),
+            ("both_same", base, {**base, "mode": "other"}, {**base, "mode": "other"}),
+            ("both_different", base, {**base, "version": "2.0"}, {**base, "version": "3.0"}),
+        )
+        for name, base_config, local_config, remote_config in variants:
+            with self.subTest(name=name):
+                merged, conflicts = online_sources.merge_online_source_configs(
+                    base_config,
+                    local_config,
+                    remote_config,
+                )
+                self.assertIsNone(merged)
+                self.assertEqual(conflicts[0]["kind"], "top_level")
+
+    def test_merge_binding_uses_conflict_contract_and_remote_projection(self):
+        binding = {"version": 1, "account_id": 12345678, "account_login": "owner"}
+        changed_binding = {**binding, "account_login": "other-owner"}
+        managed = managed_github_source()
+        base = self.config(managed, binding=binding)
+        local = self.config(managed, binding=changed_binding)
+        remote = self.config(managed, binding={**binding, "account_login": "remote-owner"})
+
+        merged, conflicts = online_sources.merge_online_source_configs(base, local, remote)
+
+        self.assertIsNone(merged)
+        self.assertEqual(conflicts[0]["kind"], "binding")
+        self.assertEqual(conflicts[0]["field"], "github_star_sync.account_login")
+
+    def test_merge_rebuilds_derived_config_and_excludes_generated_container(self):
+        base = self.config(self.source("online_bilibili_base"))
+        remote = self.config(self.source("online_bilibili_base"), self.source("online_bilibili_remote"))
+
+        merged, conflicts = online_sources.merge_online_source_configs(base, base, remote)
+
+        self.assertEqual(conflicts, [])
+        self.assertEqual(online_sources.validate_online_config_schema(merged, existing=True), merged)
+        self.assertEqual(
+            online_sources.protected_online_config_projection(merged),
+            online_sources.protected_online_config_projection(remote),
+        )
+        self.assertEqual(
+            json.loads(online_sources.render_json_bytes(merged).decode("utf-8")),
+            merged,
+        )
+        expected_opml, _ = online_sources.render_online_opml_bytes(merged["sources"])
+        self.assertTrue(expected_opml.startswith(b"<?xml"))
+
 class OnlineSourceTransactionFoundationTests(unittest.TestCase):
     def git(self, root: Path, *args: str) -> subprocess.CompletedProcess[str]:
         completed = subprocess.run(
@@ -755,6 +895,63 @@ class OnlineSourceTransactionFoundationTests(unittest.TestCase):
                 online_sources.OnlineSourcesError
             ) as raised:
                 online_sources.write_operation_manifest(root, manifest)
+            self.assertEqual(raised.exception.code, "online_sources_recovery_mismatch")
+
+    def test_new_operation_manifest_uses_schema_v2_with_no_merge_proof_for_existing_kinds(self):
+        root, _source, config = self.create_transaction_repo()
+        target = online_sources._local_git_target(root)
+        hashes = {
+            path: online_sources.sha256_file(root / path)
+            for path in online_sources._allowed_online_paths()
+        }
+        manifest = online_sources.new_operation_manifest(
+            operation_kind="manual_sync",
+            target=target,
+            before_hashes=hashes,
+            after_hashes=hashes,
+            base_config_digest=online_sources.online_config_digest(config),
+        )
+
+        self.assertEqual(manifest["schema_version"], 2)
+        self.assertIsNone(manifest["merge"])
+        self.assertEqual(online_sources._validate_operation_manifest(manifest), manifest)
+
+        invalid = {**manifest, "merge": {"unexpected": "proof"}}
+        with self.assertRaises(online_sources.OnlineSourcesError) as raised:
+            online_sources._validate_operation_manifest(invalid)
+        self.assertEqual(raised.exception.code, "online_sources_recovery_mismatch")
+
+    def test_merge_sync_manifest_requires_complete_v2_merge_proof(self):
+        root, _source, config = self.create_transaction_repo()
+        target = online_sources._local_git_target(root)
+        hashes = {
+            path: online_sources.sha256_file(root / path)
+            for path in online_sources._allowed_online_paths()
+        }
+        merge = {
+            "fetched_oid": "a" * 40,
+            "base_oid": target["pre_head"],
+            "remote_sha256": hashes,
+        }
+        manifest = online_sources.new_operation_manifest(
+            operation_kind="merge_sync",
+            target=target,
+            before_hashes=hashes,
+            after_hashes=hashes,
+            base_config_digest=online_sources.online_config_digest(config),
+            merge=merge,
+        )
+
+        self.assertEqual(online_sources._validate_operation_manifest(manifest), manifest)
+        for invalid_merge in (
+            None,
+            {**merge, "base_oid": "b" * 40},
+            {**merge, "remote_sha256": {}},
+        ):
+            with self.subTest(invalid_merge=invalid_merge), self.assertRaises(
+                online_sources.OnlineSourcesError
+            ) as raised:
+                online_sources._validate_operation_manifest({**manifest, "merge": invalid_merge})
             self.assertEqual(raised.exception.code, "online_sources_recovery_mismatch")
 
     def test_canonical_remote_url_distinguishes_explicit_ports(self):
@@ -1329,6 +1526,22 @@ class OnlineSourceTransactionFoundationTests(unittest.TestCase):
             set(self.git(root, "diff", "--cached", "--name-only").stdout.splitlines()),
             {"config/online-sources.json", "feeds/online-sources.opml"},
         )
+
+    def test_v1_apply_manifest_is_still_auditable_after_schema_upgrade(self):
+        root, _config, _result = self.create_saved_not_committed_operation()
+        manifest = online_sources.read_operation_manifest(root)
+        self.assertIsNotNone(manifest)
+        legacy_manifest = {key: value for key, value in manifest.items() if key != "merge"}
+        legacy_manifest["schema_version"] = 1
+        online_sources.write_operation_manifest(root, legacy_manifest)
+
+        recovery = online_sources.audit_online_source_operation(root)
+
+        self.assertIsNotNone(recovery)
+        self.assertEqual(recovery["operation_kind"], "apply")
+        self.assertEqual(recovery["outcome"], "saved_not_committed")
+        self.assertCountEqual(recovery["allowed_actions"], ["rollback", "retry_commit"])
+        self.assertTrue(online_sources.operation_manifest_path(root).exists())
 
     def create_saved_not_committed_operation(self):
         root, source, config = self.create_transaction_repo()
