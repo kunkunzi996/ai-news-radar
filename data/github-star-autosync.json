@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "no_change",
-  "finished_at": "2026-07-25T06:40:06Z",
+  "outcome": "synced",
+  "finished_at": "2026-07-25T09:05:13Z",
   "error_code": "",
-  "workflow_run_id": "30147893999",
+  "workflow_run_id": "30152220258",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "5d1c1effd90923e40205e7f7893f8712320f66a8",
+  "workflow_head_sha": "839a4236546dfa01d8e4daf4137a322198710273",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-07-25T06:40:06Z",
-  "purge_state_sha256": "608aefacfa7d8ca50c8fc0bcd62ec478ed08b1c588374ad29656ec938c0998f9",
+  "snapshot_completed_at": "2026-07-25T09:05:13Z",
+  "purge_state_sha256": "f3850e4d7faaa5caa2bec6588f6b39f6645314df7b508dadd93946ec55dbd003",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -17,10 +17,26 @@
   ],
   "account_id": 284580915,
   "account_login": "kunkunzi996",
-  "starred_count": 17,
+  "starred_count": 20,
   "private_skipped_count": 0,
   "summary": {
-    "added": [],
+    "added": [
+      {
+        "repo_id": 113564448,
+        "repo": "mml-book/mml-book.github.io",
+        "source_id": "online_github_repo_113564448"
+      },
+      {
+        "repo_id": 1201932323,
+        "repo": "lewislulu/llm-wiki-skill",
+        "source_id": "online_github_repo_1201932323"
+      },
+      {
+        "repo_id": 1211235520,
+        "repo": "lewislulu/html-ppt-skill",
+        "source_id": "online_github_repo_1211235520"
+      }
+    ],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
