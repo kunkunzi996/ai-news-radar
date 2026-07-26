@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-07-22T04:27:45.425583Z",
+  "generated_at": "2026-07-26T09:19:38.821630Z",
   "sites": [
     {
       "site_id": "github_foundation_sunshine_releases",
       "site_name": "GitHub Foundation Sunshine",
       "ok": true,
-      "item_count": 55,
-      "duration_ms": 5144,
+      "item_count": 58,
+      "duration_ms": 6061,
       "error": null,
       "source_kind": "github_release_subscription",
-      "repo": "openai/codex-plugin-cc, 1c7/chinese-independent-developer, obra/superpowers, SeemSeam/claude_codex_bridge, multica-ai/multica, LearnPrompt/ai-news-radar, Panniantong/Agent-Reach, xingkongliang/skills-manager, liliBestCoder/ghost-proxifier, Wechat-ggGitHub/wechat-claude-code, VoltAgent/awesome-design-md, KKKKhazix/khazix-skills, WenyuChiou/awesome-agentic-ai-zh, BigPizzaV3/CodexPlusPlus, zhaoyue4810/pianke, joeseesun/qiaomu-goal-meta-skill, D4Vinci/Scrapling",
+      "repo": "openai/codex-plugin-cc, 1c7/chinese-independent-developer, obra/superpowers, SeemSeam/claude_codex_bridge, multica-ai/multica, mml-book/mml-book.github.io, LearnPrompt/ai-news-radar, Panniantong/Agent-Reach, xingkongliang/skills-manager, liliBestCoder/ghost-proxifier, Wechat-ggGitHub/wechat-claude-code, VoltAgent/awesome-design-md, lewislulu/llm-wiki-skill, KKKKhazix/khazix-skills, lewislulu/html-ppt-skill, WenyuChiou/awesome-agentic-ai-zh, BigPizzaV3/CodexPlusPlus, zhaoyue4810/pianke, joeseesun/qiaomu-goal-meta-skill, D4Vinci/Scrapling",
       "repos": [
         {
           "repo": "openai/codex-plugin-cc",
@@ -19,7 +19,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 187,
+          "duration_ms": 246,
           "first_collect_backfill": false
         },
         {
@@ -30,7 +30,7 @@
           "source_kind": "commit_fallback",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 423,
+          "duration_ms": 363,
           "first_collect_backfill": false
         },
         {
@@ -41,7 +41,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 253,
+          "duration_ms": 240,
           "first_collect_backfill": false
         },
         {
@@ -52,7 +52,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 208,
+          "duration_ms": 289,
           "first_collect_backfill": false
         },
         {
@@ -63,7 +63,18 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 296,
+          "duration_ms": 301,
+          "first_collect_backfill": false
+        },
+        {
+          "repo": "mml-book/mml-book.github.io",
+          "api_url": "https://api.github.com/repos/mml-book/mml-book.github.io/releases",
+          "ok": true,
+          "item_count": 1,
+          "source_kind": "commit_fallback",
+          "skip_reason": "",
+          "error_code": "",
+          "duration_ms": 278,
           "first_collect_backfill": false
         },
         {
@@ -74,7 +85,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 236,
+          "duration_ms": 237,
           "first_collect_backfill": false
         },
         {
@@ -85,7 +96,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 280,
+          "duration_ms": 255,
           "first_collect_backfill": false
         },
         {
@@ -96,7 +107,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 331,
+          "duration_ms": 358,
           "first_collect_backfill": false
         },
         {
@@ -107,7 +118,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 267,
+          "duration_ms": 261,
           "first_collect_backfill": false
         },
         {
@@ -118,7 +129,7 @@
           "source_kind": "commit_fallback",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 370,
+          "duration_ms": 363,
           "first_collect_backfill": false
         },
         {
@@ -129,7 +140,18 @@
           "source_kind": "commit_fallback",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 427,
+          "duration_ms": 303,
+          "first_collect_backfill": false
+        },
+        {
+          "repo": "lewislulu/llm-wiki-skill",
+          "api_url": "https://api.github.com/repos/lewislulu/llm-wiki-skill/releases",
+          "ok": true,
+          "item_count": 1,
+          "source_kind": "commit_fallback",
+          "skip_reason": "",
+          "error_code": "",
+          "duration_ms": 356,
           "first_collect_backfill": false
         },
         {
@@ -140,7 +162,18 @@
           "source_kind": "commit_fallback",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 342,
+          "duration_ms": 366,
+          "first_collect_backfill": false
+        },
+        {
+          "repo": "lewislulu/html-ppt-skill",
+          "api_url": "https://api.github.com/repos/lewislulu/html-ppt-skill/releases",
+          "ok": true,
+          "item_count": 1,
+          "source_kind": "commit_fallback",
+          "skip_reason": "",
+          "error_code": "",
+          "duration_ms": 347,
           "first_collect_backfill": false
         },
         {
@@ -151,7 +184,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 264,
+          "duration_ms": 237,
           "first_collect_backfill": false
         },
         {
@@ -162,7 +195,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 196,
+          "duration_ms": 268,
           "first_collect_backfill": false
         },
         {
@@ -173,7 +206,7 @@
           "source_kind": "commit_fallback",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 420,
+          "duration_ms": 364,
           "first_collect_backfill": false
         },
         {
@@ -184,7 +217,7 @@
           "source_kind": "commit_fallback",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 396,
+          "duration_ms": 382,
           "first_collect_backfill": false
         },
         {
@@ -195,26 +228,26 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 242,
+          "duration_ms": 235,
           "first_collect_backfill": false
         }
       ],
       "max_items": 5,
-      "eligible_count": 17,
-      "attempted_count": 17,
-      "succeeded_count": 17,
+      "eligible_count": 20,
+      "attempted_count": 20,
+      "succeeded_count": 20,
       "expected_skip_count": 0,
       "failed_count": 0,
       "deferred_count": 0,
       "partial": false,
       "budget_ms": 180000,
-      "elapsed_ms": 5144,
+      "elapsed_ms": 6061,
       "overrun_ms": 0,
-      "seen_only": 6,
-      "daily_coalesced": 0,
+      "seen_only": 8,
+      "daily_coalesced": 1,
       "window_bypassed": 0,
-      "raw_item_count": 55,
-      "window_item_count": 55,
+      "raw_item_count": 58,
+      "window_item_count": 57,
       "collection_window_hours": 0
     },
     {
@@ -223,7 +256,7 @@
       "enabled": true,
       "ok": true,
       "item_count": 60,
-      "duration_ms": 27,
+      "duration_ms": 29,
       "error": null,
       "source_kind": "we_mp_rss_jsonl",
       "jsonl_dir": "/home/runner/work/_temp/wechat-bridge/output/wechat/jsonl",
@@ -250,7 +283,7 @@
       "empty_confirmations": 0,
       "rejected_rows": 0,
       "rejected_row_details": [],
-      "bridge_commit": "7938941fc015b39885c85b9d409e41243f01acbc",
+      "bridge_commit": "176e9644f6d6ddc7a6520fd07bfaccc38c01102d",
       "subscription_cleanup": {
         "mode": "on",
         "applied": true,
@@ -271,7 +304,7 @@
       "site_name": "Bilibili Dynamic",
       "ok": true,
       "item_count": 70,
-      "duration_ms": 9581,
+      "duration_ms": 10254,
       "error": null,
       "uid": "316183842,3546800797518640,3546884870244925,385670211,50247550,505301413,680677803",
       "uids": [
@@ -354,7 +387,7 @@
       "site_id": "mediacrawler_douyin",
       "site_name": "MediaCrawler Douyin",
       "ok": true,
-      "item_count": 31,
+      "item_count": 32,
       "duration_ms": 5,
       "error": null,
       "source_name": "珍妮丁丁说AI, Simon林, FredTalk, 匿名用户996",
@@ -400,15 +433,15 @@
           "locator": "https://www.douyin.com/user/MS4wLjABAAAADkIjUrjejFZS4MWryWIqBiY2KA7NUpTHGH_BWm-AipgtONGJ7CMCT2WZ9yHX1Ptx",
           "locator_kind": "homepage_url",
           "jsonl_file_configured": "jsonl",
-          "item_count": 1,
+          "item_count": 2,
           "ok": true,
           "jsonl_file": "creator_contents_latest.jsonl",
           "jsonl_file_resolved_from": "jsonl"
         }
       ],
       "subscription_count": 4,
-      "raw_item_count": 31,
-      "window_item_count": 31,
+      "raw_item_count": 32,
+      "window_item_count": 32,
       "collection_window_hours": 0
     },
     {
@@ -417,7 +450,7 @@
       "ok": true,
       "partial_failures": 0,
       "item_count": 45,
-      "duration_ms": 3474,
+      "duration_ms": 4351,
       "error": null,
       "feed_count": 9,
       "effective_feed_count": 9,
@@ -438,11 +471,11 @@
   "failed_sites": [],
   "zero_item_sites": [],
   "empty_advanced_sources": [],
-  "fetched_raw_items": 261,
-  "raw_items_before_collection_window": 261,
+  "fetched_raw_items": 264,
+  "raw_items_before_collection_window": 265,
   "skipped_collection_window_items": 0,
-  "items_before_topic_filter": 844,
-  "items_in_24h": 843,
+  "items_before_topic_filter": 907,
+  "items_in_24h": 906,
   "rss_opml": {
     "enabled": true,
     "path": "configured",
@@ -463,7 +496,7 @@
         "effective_feed_url": "https://blog.google/technology/ai/rss",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 318,
+        "duration_ms": 520,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -480,7 +513,7 @@
         "effective_feed_url": "https://deepmind.google/blog/rss.xml",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 775,
+        "duration_ms": 736,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -497,7 +530,7 @@
         "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCzkPX3KCIVquUPa8oXjHn0g",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 277,
+        "duration_ms": 292,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -514,7 +547,7 @@
         "effective_feed_url": "https://huggingface.co/blog/feed.xml",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 285,
+        "duration_ms": 618,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -531,7 +564,7 @@
         "effective_feed_url": "https://news.microsoft.com/source/topics/ai/feed",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 185,
+        "duration_ms": 244,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -548,7 +581,7 @@
         "effective_feed_url": "https://openai.com/news/rss.xml",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 760,
+        "duration_ms": 942,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -565,7 +598,7 @@
         "effective_feed_url": "https://simonwillison.net/atom/everything",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 377,
+        "duration_ms": 303,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -582,7 +615,7 @@
         "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 203,
+        "duration_ms": 371,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -599,7 +632,7 @@
         "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC26hLZoe-haxcuLYxzWAiNg",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 294,
+        "duration_ms": 325,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -639,7 +672,7 @@
   "mediacrawler_douyin": {
     "enabled": true,
     "ok": true,
-    "item_count": 31,
+    "item_count": 32,
     "source_kind": "mediacrawler_douyin",
     "privacy": "local_jsonl_only_no_cookies",
     "coverage_note": "reads_mediacrawler_douyin_creator_jsonl",
@@ -683,7 +716,7 @@
         "locator": "https://www.douyin.com/user/MS4wLjABAAAADkIjUrjejFZS4MWryWIqBiY2KA7NUpTHGH_BWm-AipgtONGJ7CMCT2WZ9yHX1Ptx",
         "locator_kind": "homepage_url",
         "jsonl_file_configured": "jsonl",
-        "item_count": 1,
+        "item_count": 2,
         "ok": true,
         "jsonl_file": "creator_contents_latest.jsonl",
         "jsonl_file_resolved_from": "jsonl"
@@ -707,8 +740,8 @@
       "config/online-sources.json"
     ],
     "error": null,
-    "source_count": 43,
-    "enabled_source_count": 39,
+    "source_count": 46,
+    "enabled_source_count": 42,
     "enabled_site_ids": [
       "bilibili_dynamic",
       "github_foundation_sunshine_releases",
@@ -739,8 +772,8 @@
     "candidate_item_ids": [],
     "candidate_counts": {},
     "approval_digest": "",
-    "archive_sha256_before": "427cce1fd57ae9d8168c6080b4b40e94776871135cf951d8dcdd07540b5389b2",
-    "purge_state_sha256": "3e6fb3bba466b9fa9a2ceae2c461b0ce2d904590f2a81a24ecfd2c3e4546af3e",
+    "archive_sha256_before": "435741b1fd9c353480e4dc1d1b3efeddda57a448d01556959d7b7c30e777c15b",
+    "purge_state_sha256": "30e129aa000f9a96a5e79d3df53729dc4b47d3ad180e7ff374f4265117b26f3b",
     "workflow_run_id": "",
     "workflow_run_attempt": "",
     "workflow_head_sha": "",

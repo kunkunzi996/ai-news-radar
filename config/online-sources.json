@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-07-21T09:12:26Z",
+  "updated_at": "2026-07-25T09:05:13Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -167,6 +167,21 @@
       "managed_state": "active"
     },
     {
+      "id": "online_github_repo_113564448",
+      "name": "mml-book/mml-book.github.io",
+      "type": "github_release",
+      "enabled": true,
+      "channel": "GitHub Release",
+      "target": "mml-book/mml-book.github.io",
+      "locator": "mml-book/mml-book.github.io",
+      "env": "",
+      "notes": "只追踪 release",
+      "managed_by": "github_stars",
+      "managed_account_id": 284580915,
+      "managed_repo_id": 113564448,
+      "managed_state": "active"
+    },
+    {
       "id": "online_github_repo_1150301754",
       "name": "AlkaidLab/moonlight-harmony",
       "type": "github_release",
@@ -268,6 +283,21 @@
       "managed_state": "active"
     },
     {
+      "id": "online_github_repo_1201932323",
+      "name": "lewislulu/llm-wiki-skill",
+      "type": "github_release",
+      "enabled": true,
+      "channel": "GitHub Release",
+      "target": "lewislulu/llm-wiki-skill",
+      "locator": "lewislulu/llm-wiki-skill",
+      "env": "",
+      "notes": "只追踪 release",
+      "managed_by": "github_stars",
+      "managed_account_id": 284580915,
+      "managed_repo_id": 1201932323,
+      "managed_state": "active"
+    },
+    {
       "id": "online_github_repo_1202599845",
       "name": "KKKKhazix/khazix-skills",
       "type": "github_release",
@@ -280,6 +310,21 @@
       "managed_by": "github_stars",
       "managed_account_id": 284580915,
       "managed_repo_id": 1202599845,
+      "managed_state": "active"
+    },
+    {
+      "id": "online_github_repo_1211235520",
+      "name": "lewislulu/html-ppt-skill",
+      "type": "github_release",
+      "enabled": true,
+      "channel": "GitHub Release",
+      "target": "lewislulu/html-ppt-skill",
+      "locator": "lewislulu/html-ppt-skill",
+      "env": "",
+      "notes": "只追踪 release",
+      "managed_by": "github_stars",
+      "managed_account_id": 284580915,
+      "managed_repo_id": 1211235520,
       "managed_state": "active"
     },
     {
