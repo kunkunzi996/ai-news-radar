@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-07-25T09:05:13Z",
+  "updated_at": "2026-07-26T17:09:41Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -385,6 +385,21 @@
       "managed_by": "github_stars",
       "managed_account_id": 284580915,
       "managed_repo_id": 1246386725,
+      "managed_state": "active"
+    },
+    {
+      "id": "online_github_repo_1252544842",
+      "name": "plustar35/echo-reading",
+      "type": "github_release",
+      "enabled": true,
+      "channel": "GitHub Release",
+      "target": "plustar35/echo-reading",
+      "locator": "plustar35/echo-reading",
+      "env": "",
+      "notes": "只追踪 release",
+      "managed_by": "github_stars",
+      "managed_account_id": 284580915,
+      "managed_repo_id": 1252544842,
       "managed_state": "active"
     },
     {
