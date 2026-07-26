@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "synced",
-  "finished_at": "2026-07-26T17:09:41Z",
+  "outcome": "no_change",
+  "finished_at": "2026-07-26T18:34:10Z",
   "error_code": "",
-  "workflow_run_id": "30211984353",
+  "workflow_run_id": "30214986926",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "59a1a12b353a42ae847bfec9560539b7f65c106e",
+  "workflow_head_sha": "1a9618da504060932b44b133a16f1a1dc9cede4a",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-07-26T17:09:41Z",
-  "purge_state_sha256": "db3f0f280362f30a1a1029d5b20fc84f7238590473b93ab468fc41ad9c1079f7",
+  "snapshot_completed_at": "2026-07-26T18:34:10Z",
+  "purge_state_sha256": "042b96b980a49dd9c02b55738c208a0dacb842a78b6462fc421ddea5bb4da162",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -20,13 +20,7 @@
   "starred_count": 21,
   "private_skipped_count": 0,
   "summary": {
-    "added": [
-      {
-        "repo_id": 1252544842,
-        "repo": "plustar35/echo-reading",
-        "source_id": "online_github_repo_1252544842"
-      }
-    ],
+    "added": [],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
