@@ -188,8 +188,9 @@ SocialData 同时跑两路:① 中英关键词搜索发现新声音;② 一个�
 | `WECHAT_BRIDGE_SSH_KEY` | Actions **Secrets** | **只读**部署密钥私钥,仅授权该单仓库 |
 | `WE_MP_RSS_JSONL_DIR` | workflow 内部注入 | Actions 克隆桥接仓库后的 JSONL 目录,由 `Fetch WeChat bridge JSONL` 步骤产出;桥接缺失时静默跳过,不会让 Actions 失败 |
 
-本机侧:采集脚本 `deploy/local/collect-wechat-and-push.ps1`,作为第二个动作挂在计划任务
-`DouyinCollectAndPush` 上(10:00/15:00/21:00),日志 `E:\AI-news-reader\wechat-collect.log`。
+NUC 生产侧：采集脚本 `deploy/local/collect-wechat-and-push.ps1` 作为第二个动作挂在 NUC 计划任务
+`DouyinCollectAndPush` 上（`08:10 / 13:10 / 20:10`），日志为 `C:\AI-news-reader\wechat-collect.log`。
+旧电脑同名任务已停用，仅保留作回退；不得双节点并行采集。
 **微信 cookie / 授权态只留在本机 sidecar 的 `data/` 目录,绝不进仓库或日志;JSONL 只含公开字段。**
 
 ### 抖音桥接(同构,2026-07-10 上线)

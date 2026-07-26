@@ -31,9 +31,12 @@ for AI news collection:
 - public newsletter archives and static pages
 - optional secret-backed adapters for sources that need user-owned credentials
 
-It does not promise reliable default coverage for private inboxes, cookies,
+It does not promise reliable public-default coverage for private inboxes, cookies,
 WeChat accounts, or raw social timelines. Those belong in the advanced layer or
-private forks because they need credentials, bridges, or ongoing maintenance.
+private forks because they need credentials, bridges, or ongoing maintenance. The
+owner currently enables one private `we_mp_rss_jsonl` source through the NUC
+WeChat Bridge; it is not a public default source and must not expose cookies,
+logged-in state, or credentials.
 
 ## Current Deployment Scope
 
@@ -68,7 +71,7 @@ default deployed output.
 | GitHub starred repositories | V3 accepted with local binding plus cloud auto-sync | Use the local console's Preview -> confirmation -> Apply flow for first binding, manual-source adoption, and unbinding | A bound account synchronizes before each Actions collection run (about every 30 minutes): new stars become managed and unstars auto-disable without deleting history. Empty snapshots and sharp count drops require manual handling. Status is published at `data/github-star-autosync.json`; unchanged configuration keeps both config files and `updated_at` stable. One numeric account id is supported, with up to 50 public stars; the 51st aborts. Private repositories are skipped without exposing identity. Releases are preferred; commit fallback keeps one newest snapshot per stable repository identity per UTC day. |
 | Newsletters | Partially supported | Prefer public archive RSS or stable archive pages | Do not scrape private inboxes. |
 | X / Twitter | Supported only through curated central feeds or opt-in API adapters | Prefer public generated feeds that already use official X API; keep direct X API optional and secret-backed | Following a person often imports noise; public bridge routes can be unstable. |
-| WeChat public accounts | Retired from the default source set | Do not enable until a stable collector is available | Old WeWe RSS and backup-site code may remain for explicit local experiments, but cloud output no longer collects public-account sources. |
+| WeChat public accounts | One owner-only private NUC Bridge is enabled; it is not a public default source | Keep the sidecar and Bridge on the owner's NUC only | Never commit cookies, logged-in state, credentials, or private JSONL; public defaults must not depend on this bridge. |
 | Telegram / Bilibili / Zhihu / podcasts | Skipped by default when feeds are unreliable | Add only as opt-in OPML entries | These can be noisy or bridge-dependent. |
 
 ## Source Selection Rules

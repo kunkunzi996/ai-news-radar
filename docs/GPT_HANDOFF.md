@@ -1,9 +1,10 @@
-# GPT Handoff: AI News Radar V2
+# GPT Handoff: AI News Radar V2（历史交接）
 
-Use this document to hand the project to a fresh GPT/Codex/Claude session for
-verification.
+> **状态（2026-07-26）**：这是一份 V2 历史交接记录，保留用于追溯，不是当前接手入口。
+> 当前任务先读根目录的 `HANDOFF.md`、`PROJECT_STATE.md`、`AGENTS.md` 和 `CLAUDE.md`。
+> 当前 NUC 采集节点迁移已完成；不要按本文件的历史路径或提示词重做迁移。
 
-## Local Project
+## 历史 V2 本地项目
 
 - Local path: `/Users/carl2077/workspace/ai-news-radar`
 - Public site: `https://learnprompt.github.io/ai-news-radar/`
@@ -102,10 +103,12 @@ Please verify:
 7. Maintenance: Are validation commands and source-intake rules clear enough for
    a future agent to add or reject new sources?
 
-## Suggested Prompt For New GPT
+## 历史 V2 的建议提示词
 
 ```text
-你现在接手本地项目：
+你正在查看历史 V2 交接记录。当前项目请先读取根目录的 HANDOFF.md、PROJECT_STATE.md、AGENTS.md 和 CLAUDE.md。
+
+历史本地项目：
 /Users/carl2077/workspace/ai-news-radar
 
 请使用项目内 Skill：

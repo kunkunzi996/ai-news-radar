@@ -5,17 +5,19 @@
 - **NUC 采集节点迁移已完成**：NUC 已成为唯一启用的采集节点。`DouyinCollectAndPush` 保持每日
   `08:10 / 13:10 / 20:10`、`Interactive` 桌面会话和 `IgnoreNew` 防并发；在 `18:00`、`18:15`
   的两次真实计划触发均成功。两轮抖音均为 `4/4` 完成、失败 `0`，微信均成功；两个 Bridge 均为干净的
-  `main`，且与实时远端一致。
+  `main`，且与实时远端一致。NUC 的 `WechatHealthWatchdog` 已迁移为每小时只读检查，最近回读为
+  `Ready`；它不启动或停止采集，也不修改新闻数据。
 - **观察期由用户明确跳过**：迁移直接记为完成，但不清理任何回退资源。旧电脑的
   `DouyinCollectAndPush`、`LaunchDouyinGuard`、`WechatHealthWatchdog` 均为停用状态并继续保留；
   只有发生故障时才按既有回退规则处理，禁止以旧历史覆盖 Bridge。
-- **NUC 采集节点迁移进行中，尚未完成验收**：目标根目录为 `C:\AI-news-reader`。主仓库、
+- **历史记录（2026-07-24，已闭环）**：NUC 采集节点迁移当时尚未完成验收，目标根目录为
+  `C:\AI-news-reader`。主仓库、
   `MediaCrawler-local-test`、`we-mp-rss-sidecar`、`douyin-bridge`、`wechat-bridge` 已恢复或克隆；
   三套 Python 环境与 Playwright 浏览器已验收。微信公众号服务现运行于 `127.0.0.1:8001`，用户扫码后
   刷新仍保持登录，页面与订阅内容正常。抖音专用 Chrome 使用 `127.0.0.1:9333` 和独立
   `chrome-profile`，直接登录检测为 `logged_in`；NUC 的 `douyin-bridge` 曾快进至当时远端
   `5420d632f0aef1d67cde0809b52f437dc89b11f9`，工作区干净且读写 dry-run 已通过。
-- **当前阻塞在首次抖音真实采集的进程入口诊断**：2026-07-24 的采集命令被终端记录为已调用，但没有
+- **历史记录（2026-07-24，已闭环）**：首次抖音真实采集当时阻塞在进程入口诊断；采集命令被终端记录为已调用，但没有
   捕获子进程退出码，`douyin-collect-status.json` 也未生成；终态无采集进程、无锁、无输出、无 Bridge
   改动或远端写入。因此这不是 MediaCrawler 采集失败证据，也不能记为采集成功。下一轮先按
   `HANDOFF.md` 做只读的脚本加载、PowerShell 退出码、日志/owner/锁痕迹诊断；诊断前禁止重试。
@@ -45,13 +47,14 @@
 
 - **NUC 迁移无需重复执行**：保持 NUC 正式排程和旧电脑任务停用状态；不要重跑阶段 1-6、不要重新启用
   旧电脑任务，也不要删除旧电脑资源。阶段 7 已由用户授权跳过，后续只在真实故障时走回退决策。
-- **最高优先级是继续 NUC 迁移诊断，不是重复旧功能施工**：先读 `HANDOFF.md` 的“NUC 迁移下一轮入口”，
-  对首次抖音调用未生成状态文件做只读定位。旧电脑采集任务仍启用，NUC 每次真实采集前都必须重新查询
-  Bridge 实时远端并只做可证明的 `--ff-only` 同步；全链路验收前不得停用旧电脑任务。
+- **历史入口（2026-07-24，已闭环）**：当时的最高优先级曾是继续 NUC 迁移诊断：先读
+  `HANDOFF.md` 的“NUC 迁移下一轮入口”，对首次抖音调用未生成状态文件做只读定位；当时旧电脑采集任务
+  仍启用，NUC 每次真实采集前都必须重新查询 Bridge 实时远端并只做可证明的 `--ff-only` 同步。
+  后续两次成功计划运行已完成验收，旧电脑任务现已停用；不要再执行这条诊断入口。
 
-- **2026-07-19 微信采集健康看门狗与 MeoW 告警已完成并真实验收**：功能已通过
+- **2026-07-19 微信采集健康看门狗与 MeoW 告警已完成并真实验收（当前在 NUC 运行）**：功能已通过
   `b2a8614 合并：微信采集健康看门狗与登录状态告警` 合入并推送 `master`。Windows 计划任务
-  `WechatHealthWatchdog` 每小时执行；验收时状态为 `Ready`、上次结果 `0`。它只读取采集和登录状态，
+  NUC 计划任务 `WechatHealthWatchdog` 每小时执行；验收时状态为 `Ready`、上次结果 `0`。它只读取采集和登录状态，
   不启动或停止采集，也不修改新闻数据。手机 MeoW 触达已验收；真实采集为
   `succeeded / completed_no_change / exit_code=0 / login_state=valid / output_rows=60`，正式看门狗为
   `succeeded / healthy / exit_code=0`。合并后全量测试为 `585 passed, 1 warning, 98 subtests passed`，
@@ -174,7 +177,7 @@
   `git checkout stash@{0}`**（会同时写入暂存区，导致下一次同步被 `unrelated_files_already_staged`
   闸拦住——本轮真踩过，Codex 第一版就是这么写的）。
 
-## Current State
+## 历史状态（截至 2026-07-14，仅供追溯）
 
 - Date: 2026-07-14
 - Local path: `E:\AI-news-reader\ai-news-radar-run`

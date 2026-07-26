@@ -3,6 +3,10 @@
 Date: 2026-07-10
 Scope: 把抖音博主订阅接入公网自动刷新（GitHub Actions），采集端跑在 24 小时在线的云 Windows 上。
 
+> **生产现状（2026-07-26）**：本方案已迁移到 NUC（`C:\AI-news-reader`）。生产任务
+> `DouyinCollectAndPush` 在 `08:10 / 13:10 / 20:10` 运行；旧电脑同名任务已停用，仅保留作回退。
+> 禁止同时启用两个采集节点，故障时先按回退流程核对 Bridge 远端再决定恢复节点。
+
 ## 一句话架构
 
 ```
@@ -108,11 +112,11 @@ Register-ScheduledTask -TaskName "DouyinCollectAndPush" -Action $action -Trigger
   -Settings (New-ScheduledTaskSettingsSet -StartWhenAvailable -ExecutionTimeLimit (New-TimeSpan -Hours 1))
 ```
 
-当前本机的 `DouyinCollectAndPush` 同时承载抖音和微信，修改时必须保留两条 action；不能拿上面的
+当前生产 NUC 的 `DouyinCollectAndPush` 同时承载抖音和微信，修改时必须保留两条 action；不能拿上面的
 单 action 示例覆盖现有任务。两条 action 都使用 `conhost.exe --headless`，分别传入：
 
-- 抖音状态：`E:\AI-news-reader\douyin-collect-status.json`
-- 微信状态：`E:\AI-news-reader\wechat-collect-status.json`
+- 抖音状态：`C:\AI-news-reader\douyin-collect-status.json`
+- 微信状态：`C:\AI-news-reader\wechat-collect-status.json`
 
 PowerShell 的 `-Argument` 外层使用单引号时，路径两侧直接写普通双引号，例如 `"E:\路径\脚本.ps1"`；
 不要写成反斜杠引号 `\"E:\路径\脚本.ps1\"`。
@@ -124,9 +128,9 @@ PowerShell 的 `-Argument` 外层使用单引号时，路径两侧直接写普�
 可见的安全入口：
 
 ```powershell
-E:\AI-news-reader\MediaCrawler-local-test\venv\Scripts\python.exe `
-  E:\AI-news-reader\ai-news-radar-run\scripts\run_mediacrawler_douyin.py `
-  --crawler-root E:\AI-news-reader\MediaCrawler-local-test --platform douyin --browser-only
+C:\AI-news-reader\MediaCrawler-local-test\venv\Scripts\python.exe `
+  C:\AI-news-reader\ai-news-radar-run\scripts\run_mediacrawler_douyin.py `
+  --crawler-root C:\AI-news-reader\MediaCrawler-local-test --platform douyin --browser-only
 ```
 
 命令输出 `login_state=logged_in` 才表示登录恢复。定时状态以本轮新 `run_id` 对应的 JSON 为准；
