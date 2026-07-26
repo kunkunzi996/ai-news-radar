@@ -1,6 +1,32 @@
 # PROJECT_STATE
 
-## 当前施工状态（2026-07-20）
+## 当前施工状态（2026-07-26）
+
+- **NUC 采集节点迁移已完成**：NUC 已成为唯一启用的采集节点。`DouyinCollectAndPush` 保持每日
+  `08:10 / 13:10 / 20:10`、`Interactive` 桌面会话和 `IgnoreNew` 防并发；在 `18:00`、`18:15`
+  的两次真实计划触发均成功。两轮抖音均为 `4/4` 完成、失败 `0`，微信均成功；两个 Bridge 均为干净的
+  `main`，且与实时远端一致。
+- **观察期由用户明确跳过**：迁移直接记为完成，但不清理任何回退资源。旧电脑的
+  `DouyinCollectAndPush`、`LaunchDouyinGuard`、`WechatHealthWatchdog` 均为停用状态并继续保留；
+  只有发生故障时才按既有回退规则处理，禁止以旧历史覆盖 Bridge。
+- **NUC 采集节点迁移进行中，尚未完成验收**：目标根目录为 `C:\AI-news-reader`。主仓库、
+  `MediaCrawler-local-test`、`we-mp-rss-sidecar`、`douyin-bridge`、`wechat-bridge` 已恢复或克隆；
+  三套 Python 环境与 Playwright 浏览器已验收。微信公众号服务现运行于 `127.0.0.1:8001`，用户扫码后
+  刷新仍保持登录，页面与订阅内容正常。抖音专用 Chrome 使用 `127.0.0.1:9333` 和独立
+  `chrome-profile`，直接登录检测为 `logged_in`；NUC 的 `douyin-bridge` 曾快进至当时远端
+  `5420d632f0aef1d67cde0809b52f437dc89b11f9`，工作区干净且读写 dry-run 已通过。
+- **当前阻塞在首次抖音真实采集的进程入口诊断**：2026-07-24 的采集命令被终端记录为已调用，但没有
+  捕获子进程退出码，`douyin-collect-status.json` 也未生成；终态无采集进程、无锁、无输出、无 Bridge
+  改动或远端写入。因此这不是 MediaCrawler 采集失败证据，也不能记为采集成功。下一轮先按
+  `HANDOFF.md` 做只读的脚本加载、PowerShell 退出码、日志/owner/锁痕迹诊断；诊断前禁止重试。
+
+- **线上信源自动合并同步（WS-3）已闭环并上线**：功能提交 `17a6e50` 已通过 PR #9 的合并提交
+  `18b1f07` 纳入 `master`，当前主线为 `7efa8bf`。本机在云端配置推进时以共同基线 B、本机候选 L、
+  云端 R 按稳定 `source.id` 做三方合并；安全可证明时先推送合并提交再将本机 L 一步切至 M，无法证明时
+  保持零副作用并返回受限冲突明细。台账 schema v2、stash 恢复、未跟踪 data 碰撞门禁、冲突前端提示
+  与文档禁区均已完成。验收包含 20 个 local-server 剧本、两条真实浏览器路径以及
+  `tests/test_local_server.py` 134 passed、`tests/test_online_sources.py` 94 passed；合并后云端
+  GitHub 星标自动同步与 Pages 均正常。用户已决定暂不处理冲突折叠提示、分类标签和英文内部码三个小迭代。
 
 - GitHub 取消星标联动清历史已在 `E:\AI-news-reader\ai-news-radar-unsubscribe-purge-github` 的
   `feature/unsubscribe-purge-github` 完成施工和验收；功能提交为 `a16f81a`，已由合并提交 `ef4ddf2`
@@ -15,7 +41,13 @@
   纳入 `master`。修复会在停用信源清理历史后，同步重写展示数据及统计字段；用户已完成实际验收。当前云端
   配置保留“中二的大暄哥”为停用状态，并保留云端新增的 `Wechat-ggGitHub/wechat-claude-code` 信源。
 
-## 下一轮入口（2026-07-20 更新）
+## 下一轮入口（2026-07-26 更新）
+
+- **NUC 迁移无需重复执行**：保持 NUC 正式排程和旧电脑任务停用状态；不要重跑阶段 1-6、不要重新启用
+  旧电脑任务，也不要删除旧电脑资源。阶段 7 已由用户授权跳过，后续只在真实故障时走回退决策。
+- **最高优先级是继续 NUC 迁移诊断，不是重复旧功能施工**：先读 `HANDOFF.md` 的“NUC 迁移下一轮入口”，
+  对首次抖音调用未生成状态文件做只读定位。旧电脑采集任务仍启用，NUC 每次真实采集前都必须重新查询
+  Bridge 实时远端并只做可证明的 `--ff-only` 同步；全链路验收前不得停用旧电脑任务。
 
 - **2026-07-19 微信采集健康看门狗与 MeoW 告警已完成并真实验收**：功能已通过
   `b2a8614 合并：微信采集健康看门狗与登录状态告警` 合入并推送 `master`。Windows 计划任务
@@ -26,7 +58,7 @@
   PowerShell AST、UTF-8 BOM 与 `git diff --check` 均通过。密钥继续仅保留在
   `local-secrets/meow-push.json`；工作区外的看门狗状态、日志和采集运行文件均须保留，不提交或删除。
 
-- **主工作区同步与洁癖（2026-07-20）**：主工作区已仅快进到 `9f3ea85`，与 `origin/master` 一致；云端
+- **主工作区同步与洁癖（2026-07-22）**：主工作区当前为 `7efa8bf`，与 `origin/master` 一致；云端
   Actions 会持续产生 `data/**` 快照。同步前本机数据、配置和计划草稿已保护为当前 `stash@{0}`（名称为
   “收尾前保护：本机快照与计划草稿（2026-07-20）”）；该存档中的四份计划书与当前受 Git 管理的版本逐字一致，
   但整份存档仍不得自动丢弃。此前旧数据、临时截图和实测脚本当前为 `stash@{1}`，6 条 GitHub Release
