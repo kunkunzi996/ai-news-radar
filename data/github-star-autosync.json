@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "synced",
-  "finished_at": "2026-07-28T15:01:53Z",
+  "outcome": "no_change",
+  "finished_at": "2026-07-28T16:45:21Z",
   "error_code": "",
-  "workflow_run_id": "30371301791",
+  "workflow_run_id": "30379714682",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "7ee448a543d919ef52497e1ffae9910888d69af9",
+  "workflow_head_sha": "7231796e76985eb2693648b8baa75de493a154f2",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-07-28T15:01:53Z",
-  "purge_state_sha256": "ffef2d3edb7cca2cc05369b94c998d288328c3749c446b8d972ebbb0637c4f14",
+  "snapshot_completed_at": "2026-07-28T16:45:21Z",
+  "purge_state_sha256": "d9fcde13ff90260477e26f29c7d24e868737fa03e067ae3b88cbdfaa49ca54e8",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -20,13 +20,7 @@
   "starred_count": 22,
   "private_skipped_count": 0,
   "summary": {
-    "added": [
-      {
-        "repo_id": 1312153246,
-        "repo": "joeseesun/qiaomu-bento-ppt",
-        "source_id": "online_github_repo_1312153246"
-      }
-    ],
+    "added": [],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
