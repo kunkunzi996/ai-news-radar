@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "no_change",
-  "finished_at": "2026-07-28T12:23:10Z",
+  "outcome": "synced",
+  "finished_at": "2026-07-28T15:01:53Z",
   "error_code": "",
-  "workflow_run_id": "30358684024",
+  "workflow_run_id": "30371301791",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "2d975ea7dd6e40e1f2da6e3faeccdd3be85736d2",
+  "workflow_head_sha": "7ee448a543d919ef52497e1ffae9910888d69af9",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-07-28T12:23:10Z",
-  "purge_state_sha256": "25037609a7cb8b2566b8b08afff4bc84555daf31cbc87dbebafe4b64f22e2da1",
+  "snapshot_completed_at": "2026-07-28T15:01:53Z",
+  "purge_state_sha256": "ffef2d3edb7cca2cc05369b94c998d288328c3749c446b8d972ebbb0637c4f14",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -17,10 +17,16 @@
   ],
   "account_id": 284580915,
   "account_login": "kunkunzi996",
-  "starred_count": 21,
+  "starred_count": 22,
   "private_skipped_count": 0,
   "summary": {
-    "added": [],
+    "added": [
+      {
+        "repo_id": 1312153246,
+        "repo": "joeseesun/qiaomu-bento-ppt",
+        "source_id": "online_github_repo_1312153246"
+      }
+    ],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
