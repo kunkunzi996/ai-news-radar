@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "no_change",
-  "finished_at": "2026-07-29T12:31:55Z",
+  "outcome": "synced",
+  "finished_at": "2026-07-29T14:53:27Z",
   "error_code": "",
-  "workflow_run_id": "30451966275",
+  "workflow_run_id": "30463104176",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "6cf9d27cf240a4814269ad1938b4fe7b72c037c0",
+  "workflow_head_sha": "d20d7710e05aaf8aef48b9cf2feab395d3676e37",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-07-29T12:31:55Z",
-  "purge_state_sha256": "3bbf249c77c041dab9861bd2fa5511438919e588e8e22fe6b635db16422c4921",
+  "snapshot_completed_at": "2026-07-29T14:53:27Z",
+  "purge_state_sha256": "76827957e8459a5cb01cb0d83372fbaa0306f4412c8e1026cc8fd4f1eae61666",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -17,10 +17,16 @@
   ],
   "account_id": 284580915,
   "account_login": "kunkunzi996",
-  "starred_count": 22,
+  "starred_count": 23,
   "private_skipped_count": 0,
   "summary": {
-    "added": [],
+    "added": [
+      {
+        "repo_id": 1278404368,
+        "repo": "LearnPrompt/partner-skill",
+        "source_id": "online_github_repo_1278404368"
+      }
+    ],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
