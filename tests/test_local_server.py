@@ -1,5 +1,6 @@
 import http.client
 import json
+import os
 import subprocess
 import threading
 import unittest
@@ -3905,6 +3906,350 @@ class LocalGitHubStarsApiTests(unittest.TestCase):
 
         self.assertEqual(status, 409)
         self.assertEqual(body["error"], "online_sources_recovery_mismatch")
+
+
+class AdminTokenHelpersTests(unittest.TestCase):
+    def setUp(self):
+        self._env_patch = patch.dict(os.environ, {}, clear=False)
+        self._env_patch.start()
+        for key in ("RADAR_ADMIN_TOKEN", "RADAR_TRUSTED_ORIGINS"):
+            os.environ.pop(key, None)
+        self.addCleanup(self._env_patch.stop)
+
+    def test_token_not_required_by_default(self):
+        from scripts.local_server import admin_token_required, check_admin_token_value
+
+        self.assertFalse(admin_token_required())
+        self.assertEqual(check_admin_token_value(None), "ok")
+
+    def test_check_admin_token_value_verdicts(self):
+        from scripts.local_server import admin_token_required, check_admin_token_value
+
+        os.environ["RADAR_ADMIN_TOKEN"] = "s3cret-token"
+        self.assertTrue(admin_token_required())
+        self.assertEqual(check_admin_token_value(None), "missing")
+        self.assertEqual(check_admin_token_value("   "), "missing")
+        self.assertEqual(check_admin_token_value("wrong"), "invalid")
+        self.assertEqual(check_admin_token_value("s3cret-token"), "ok")
+
+    def test_trusted_origins_matching(self):
+        from scripts.local_server import is_trusted_origin, reflected_cors_origin, trusted_origins
+
+        os.environ["RADAR_TRUSTED_ORIGINS"] = " https://kunkunzi996.github.io/ , http://192.168.1.8:8080 "
+        self.assertEqual(
+            trusted_origins(),
+            ("https://kunkunzi996.github.io", "http://192.168.1.8:8080"),
+        )
+        self.assertTrue(is_trusted_origin("https://kunkunzi996.github.io"))
+        self.assertTrue(is_trusted_origin("https://kunkunzi996.github.io/ai-news-radar/"))
+        self.assertTrue(is_trusted_origin("http://127.0.0.1:8080"))
+        self.assertTrue(is_trusted_origin(""))
+        self.assertFalse(is_trusted_origin("https://evil.example"))
+        self.assertFalse(is_trusted_origin("https://kunkunzi996.github.io.evil.example"))
+        self.assertEqual(
+            reflected_cors_origin("https://kunkunzi996.github.io"),
+            "https://kunkunzi996.github.io",
+        )
+        self.assertEqual(reflected_cors_origin("https://kunkunzi996.github.io/ai-news-radar/"), "")
+        self.assertEqual(reflected_cors_origin("https://evil.example"), "")
+        self.assertEqual(reflected_cors_origin("http://127.0.0.1:8080"), "")
+        self.assertEqual(reflected_cors_origin("http://192.168.1.8:8080"), "http://192.168.1.8:8080")
+        self.assertEqual(reflected_cors_origin(""), "")
+
+    def test_rate_limit_lockout_and_reset(self):
+        from scripts.local_server import (
+            admin_auth_block_remaining,
+            record_admin_auth_failure,
+            reset_admin_auth_failures,
+        )
+        from scripts.radar.server.refresh import ADMIN_AUTH_MAX_FAILURES
+
+        ip = "203.0.113.9"
+        for _ in range(ADMIN_AUTH_MAX_FAILURES - 1):
+            record_admin_auth_failure(ip)
+        self.assertEqual(admin_auth_block_remaining(ip), 0.0)
+        record_admin_auth_failure(ip)
+        self.assertGreater(admin_auth_block_remaining(ip), 0.0)
+        reset_admin_auth_failures(ip)
+        self.assertEqual(admin_auth_block_remaining(ip), 0.0)
+
+
+class AdminTokenModeServerTests(unittest.TestCase):
+    class QuietHandler(LocalRadarHandler):
+        def log_message(self, _format, *args):
+            return
+
+    TOKEN = "test-admin-token-0123456789"
+    TRUSTED = "https://kunkunzi996.github.io"
+
+    def setUp(self):
+        import tempfile
+
+        self.temp_dir = self.enterContext(tempfile.TemporaryDirectory(prefix="admin-token-api-"))
+        self.root = Path(self.temp_dir)
+        (self.root / "index.html").write_text("<html>ok</html>", encoding="utf-8")
+        (self.root / "assets").mkdir()
+        (self.root / "assets" / "app.js").write_text("console.log(1)", encoding="utf-8")
+        (self.root / "data").mkdir()
+        (self.root / "data" / "source-status.json").write_text("{}", encoding="utf-8")
+        (self.root / "data" / "pending-purge.json").write_text("{}", encoding="utf-8")
+        (self.root / "sources.config.json").write_text('{"sources": []}', encoding="utf-8")
+        (self.root / "local-secrets").mkdir()
+        (self.root / "local-secrets" / "cookie.txt").write_text("secret", encoding="utf-8")
+        (self.root / "config").mkdir()
+        (self.root / "config" / "online-sources.json").write_text(
+            json.dumps({"version": 1, "sources": []}), encoding="utf-8"
+        )
+        (self.root / "feeds").mkdir()
+        (self.root / "feeds" / "online-sources.opml").write_text("<opml/>", encoding="utf-8")
+
+        self._env_patch = patch.dict(
+            os.environ,
+            {"RADAR_ADMIN_TOKEN": self.TOKEN, "RADAR_TRUSTED_ORIGINS": self.TRUSTED},
+            clear=False,
+        )
+        self._env_patch.start()
+        self.addCleanup(self._env_patch.stop)
+
+        self._init_git_repo()
+
+        root_dir = str(self.root)
+        quiet_handler = self.QuietHandler
+
+        class BoundHandler(quiet_handler):
+            def __init__(self, *args, **kwargs):
+                super().__init__(*args, directory=root_dir, **kwargs)
+
+        self.server = ThreadingHTTPServer(("127.0.0.1", 0), BoundHandler)
+        self.server.root_dir = str(self.root)
+        self.thread = threading.Thread(target=self.server.serve_forever, daemon=True)
+        self.thread.start()
+        self.addCleanup(self.stop_server)
+
+    def _init_git_repo(self):
+        """The online-source endpoints audit operation manifests via git; a plain
+        directory would raise RuntimeError (not a git repository)."""
+        for args in (
+            ["init", "-b", "master"],
+            ["config", "user.name", "Test"],
+            ["config", "user.email", "test@example.com"],
+            ["add", "-A"],
+            ["commit", "-m", "init"],
+        ):
+            subprocess.run(
+                ["git", *args], cwd=self.root, check=True, capture_output=True
+            )
+
+    def stop_server(self):
+        self.server.shutdown()
+        self.server.server_close()
+        self.thread.join(2)
+
+    def request(self, method, path, payload=None, *, headers=None, token=None, origin=None):
+        body = None if payload is None else json.dumps(payload).encode("utf-8")
+        request_headers: dict[str, str] = {}
+        if origin is not None:
+            request_headers["Origin"] = origin
+            request_headers["Referer"] = origin + "/"
+        if token is not None:
+            request_headers["X-Admin-Token"] = token
+        if body is not None:
+            request_headers["Content-Type"] = "application/json"
+            request_headers["Content-Length"] = str(len(body))
+        connection = http.client.HTTPConnection(*self.server.server_address, timeout=5)
+        try:
+            connection.request(method, path, body=body, headers=request_headers)
+            response = connection.getresponse()
+            raw = response.read()
+            try:
+                parsed = json.loads(raw.decode("utf-8")) if raw else {}
+            except (UnicodeDecodeError, json.JSONDecodeError):
+                parsed = {}
+            return response.status, dict(response.getheaders()), parsed
+        finally:
+            connection.close()
+
+    def test_api_requires_token(self):
+        status, _headers, body = self.request("GET", "/api/online-source-config")
+        self.assertEqual(status, 401)
+        self.assertEqual(body["error"], "admin_token_required")
+
+    def test_api_rejects_wrong_token(self):
+        status, _headers, body = self.request("GET", "/api/online-source-config", token="nope")
+        self.assertEqual(status, 403)
+        self.assertEqual(body["error"], "admin_token_invalid")
+
+    def test_api_accepts_correct_token(self):
+        status, headers, body = self.request(
+            "GET", "/api/online-source-config", token=self.TOKEN, origin=self.TRUSTED
+        )
+        self.assertEqual(status, 200)
+        self.assertTrue(body.get("ok"))
+        self.assertEqual(headers.get("Access-Control-Allow-Origin"), self.TRUSTED)
+        self.assertEqual(headers.get("Vary"), "Origin")
+
+    def test_cors_not_reflected_for_untrusted_origin(self):
+        status, headers, _body = self.request(
+            "GET", "/api/online-source-config", token=self.TOKEN, origin="https://evil.example"
+        )
+        self.assertEqual(status, 403)
+        self.assertNotIn("Access-Control-Allow-Origin", headers)
+
+    def test_options_preflight_for_trusted_origin(self):
+        status, headers, _body = self.request("OPTIONS", "/api/online-source-config", origin=self.TRUSTED)
+        self.assertEqual(status, 204)
+        self.assertEqual(headers.get("Access-Control-Allow-Origin"), self.TRUSTED)
+        self.assertIn("X-Admin-Token", headers.get("Access-Control-Allow-Headers", ""))
+        self.assertIn("If-Match", headers.get("Access-Control-Allow-Headers", ""))
+
+    def test_options_preflight_without_cors_for_untrusted_origin(self):
+        status, headers, _body = self.request("OPTIONS", "/api/online-source-config", origin="https://evil.example")
+        self.assertEqual(status, 204)
+        self.assertNotIn("Access-Control-Allow-Origin", headers)
+
+    def test_static_allowlist_blocks_private_files(self):
+        for path in (
+            "/sources.config.json",
+            "/local-secrets/cookie.txt",
+            "/data/pending-purge.json",
+            "/assets/%2e%2e/sources.config.json",
+            "/%2e%2e/sources.config.json",
+            "/scripts/local_server.py",
+            "/%E8%AE%A1%E5%88%92/plan.md",
+        ):
+            status, _headers, _body = self.request("GET", path)
+            self.assertEqual(status, 404, path)
+
+    def test_static_allowlist_blocks_head(self):
+        connection = http.client.HTTPConnection(*self.server.server_address, timeout=5)
+        try:
+            connection.request("HEAD", "/sources.config.json")
+            response = connection.getresponse()
+            response.read()
+            self.assertEqual(response.status, 404)
+        finally:
+            connection.close()
+
+    def test_static_allowlist_serves_public_files(self):
+        for path in ("/", "/index.html", "/assets/app.js", "/data/source-status.json"):
+            status, _headers, _body = self.request("GET", path)
+            self.assertEqual(status, 200, path)
+
+    def test_rate_limit_lockout_after_repeated_failures(self):
+        from scripts.radar.server.refresh import ADMIN_AUTH_MAX_FAILURES
+
+        for _ in range(ADMIN_AUTH_MAX_FAILURES):
+            status, _headers, _body = self.request("GET", "/api/online-source-config", token="bad")
+            self.assertEqual(status, 403)
+        status, headers, body = self.request("GET", "/api/online-source-config", token=self.TOKEN)
+        self.assertEqual(status, 429)
+        self.assertEqual(body["error"], "admin_auth_rate_limited")
+        self.assertIn("Retry-After", headers)
+
+
+class DefaultModeServerRegressionTests(unittest.TestCase):
+    """Without RADAR_ADMIN_TOKEN the server keeps its legacy loopback behavior."""
+
+    class QuietHandler(LocalRadarHandler):
+        def log_message(self, _format, *args):
+            return
+
+    def setUp(self):
+        import tempfile
+
+        self.temp_dir = self.enterContext(tempfile.TemporaryDirectory(prefix="default-mode-api-"))
+        self.root = Path(self.temp_dir)
+        (self.root / "index.html").write_text("<html>ok</html>", encoding="utf-8")
+        (self.root / "sources.config.json").write_text('{"sources": []}', encoding="utf-8")
+        (self.root / "config").mkdir()
+        (self.root / "config" / "online-sources.json").write_text(
+            json.dumps({"version": 1, "sources": []}), encoding="utf-8"
+        )
+        (self.root / "feeds").mkdir()
+        (self.root / "feeds" / "online-sources.opml").write_text("<opml/>", encoding="utf-8")
+
+        self._env_patch = patch.dict(os.environ, {}, clear=False)
+        self._env_patch.start()
+        for key in ("RADAR_ADMIN_TOKEN", "RADAR_TRUSTED_ORIGINS"):
+            os.environ.pop(key, None)
+        self.addCleanup(self._env_patch.stop)
+
+        for args in (
+            ["init", "-b", "master"],
+            ["config", "user.name", "Test"],
+            ["config", "user.email", "test@example.com"],
+            ["add", "-A"],
+            ["commit", "-m", "init"],
+        ):
+            subprocess.run(
+                ["git", *args], cwd=self.root, check=True, capture_output=True
+            )
+
+        root_dir = str(self.root)
+        quiet_handler = self.QuietHandler
+
+        class BoundHandler(quiet_handler):
+            def __init__(self, *args, **kwargs):
+                super().__init__(*args, directory=root_dir, **kwargs)
+
+        self.server = ThreadingHTTPServer(("127.0.0.1", 0), BoundHandler)
+        self.server.root_dir = str(self.root)
+        self.thread = threading.Thread(target=self.server.serve_forever, daemon=True)
+        self.thread.start()
+        self.addCleanup(self.stop_server)
+
+    def stop_server(self):
+        self.server.shutdown()
+        self.server.server_close()
+        self.thread.join(2)
+
+    def test_api_open_without_token(self):
+        connection = http.client.HTTPConnection(*self.server.server_address, timeout=5)
+        try:
+            connection.request("GET", "/api/online-source-config")
+            response = connection.getresponse()
+            response.read()
+            self.assertEqual(response.status, 200)
+        finally:
+            connection.close()
+
+    def test_private_static_still_served_locally(self):
+        connection = http.client.HTTPConnection(*self.server.server_address, timeout=5)
+        try:
+            connection.request("GET", "/sources.config.json")
+            response = connection.getresponse()
+            response.read()
+            self.assertEqual(response.status, 200)
+        finally:
+            connection.close()
+
+
+class ProcessIsRunningTests(unittest.TestCase):
+    """tasklist 输出是 GBK：进程名含中文时 text=True 解码异常只发生在读取线程，
+    run() 会返回 stdout=None。实现必须按字节匹配且容忍 None。"""
+
+    def test_matches_pid_in_bytes_output(self):
+        from scripts.radar.server import collectors
+
+        completed = subprocess.CompletedProcess(
+            args=["tasklist"], returncode=0, stdout='"中文进程.exe","22912","Console","1","12,000 K"\r\n'.encode("gbk")
+        )
+        with patch("subprocess.run", return_value=completed):
+            self.assertTrue(collectors.process_is_running(22912))
+            self.assertFalse(collectors.process_is_running(22913))
+
+    def test_tolerates_none_stdout(self):
+        from scripts.radar.server import collectors
+
+        completed = subprocess.CompletedProcess(args=["tasklist"], returncode=0, stdout=None)
+        with patch("subprocess.run", return_value=completed):
+            self.assertFalse(collectors.process_is_running(22912))
+
+    def test_tolerates_run_failure(self):
+        from scripts.radar.server import collectors
+
+        with patch("subprocess.run", side_effect=OSError("boom")):
+            self.assertFalse(collectors.process_is_running(22912))
 
 
 if __name__ == "__main__":

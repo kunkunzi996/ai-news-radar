@@ -2,6 +2,19 @@
 
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，完整状态在 `PROJECT_STATE.md`。
 
+## 当前状态（2026-07-29）
+
+- **远程管理后台功能已提交在 `feature/remote-admin-console`（提交 `d67ba93`），未合入 master、未推送。**
+  合并前注意：(1) 本机 git 环境间歇性吞 ref 写入，合并/推送操作若异常，手工钉 ref
+  （提交对象本身在 odb 中持久）；(2) 合并后推送 master 会自动部署 Pages 新前端（无配置时
+  对访客零影响）；(3) NUC 部署清单见 `计划/2026-07-29-订阅源管理合并入公网页面实施计划.md`
+  阶段 5：pull、生成 48 位令牌、建 `RadarAdminServer` 计划任务、cloudflared 命名隧道
+  指到回环 8080、用户浏览器完成一次 `cloudflared tunnel login` 授权、按阶段 5 第 4 条
+  做公网带令牌/无令牌/私密文件 404 三项验证。(4) NUC 上先确认 git 无本机的
+  `refs/remotes` 不落盘问题（`git fetch` 后 `git for-each-ref refs/remotes/` 非空即正常）。
+- 本机 84 个 git 事务测试失败为环境问题（未改动 HEAD 基线同挂，清单与功能分支完全一致），
+  不是本功能引入；如需恢复本地测试环境，排查 git 2.54.0.windows.1 的 ref 写入。
+
 ## 当前状态（2026-07-26）
 
 - **NUC 迁移已完成，后续不要重复阶段 1-6**：NUC 为唯一启用采集节点；`DouyinCollectAndPush` 保持每日

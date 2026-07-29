@@ -39,12 +39,75 @@ function normalizeDataBaseUrl(raw) {
     return "";
   }
 }
+const ADMIN_API_BASE_STORAGE_KEY = "radarAdminApiBase";
+const ADMIN_TOKEN_STORAGE_KEY = "radarAdminToken";
+function normalizeAdminApiBase(raw) {
+  const text = String(raw || "").trim();
+  if (!text) return "";
+  try {
+    const url = new URL(text);
+    if (url.protocol !== "http:" && url.protocol !== "https:") return "";
+    url.hash = "";
+    url.search = "";
+    return url.toString().replace(/\/+$/, "");
+  } catch {
+    return "";
+  }
+}
+function getAdminApiBase() {
+  try {
+    return normalizeAdminApiBase(window.localStorage.getItem(ADMIN_API_BASE_STORAGE_KEY));
+  } catch {
+    return "";
+  }
+}
+function getAdminToken() {
+  try {
+    return String(window.localStorage.getItem(ADMIN_TOKEN_STORAGE_KEY) || "").trim();
+  } catch {
+    return "";
+  }
+}
+function setAdminConnection(base, token) {
+  const normalizedBase = normalizeAdminApiBase(base);
+  const cleanToken = String(token || "").trim();
+  if (!normalizedBase || !cleanToken) return "";
+  try {
+    window.localStorage.setItem(ADMIN_API_BASE_STORAGE_KEY, normalizedBase);
+    window.localStorage.setItem(ADMIN_TOKEN_STORAGE_KEY, cleanToken);
+  } catch {}
+  return normalizedBase;
+}
+function clearAdminConnection() {
+  try {
+    window.localStorage.removeItem(ADMIN_API_BASE_STORAGE_KEY);
+    window.localStorage.removeItem(ADMIN_TOKEN_STORAGE_KEY);
+  } catch {}
+}
+function hasRemoteAdminBackend() {
+  return Boolean(getAdminApiBase() && getAdminToken());
+}
 function canUseLocalBackend() {
   const host = String(window.location.hostname || "").toLowerCase();
-  return ["localhost", "127.0.0.1", "::1", "0.0.0.0"].includes(host) || host.endsWith(".localhost");
+  const loopback = ["localhost", "127.0.0.1", "::1", "0.0.0.0"].includes(host) || host.endsWith(".localhost");
+  return loopback || hasRemoteAdminBackend();
 }
 function localBackendUnavailableMessage() {
-  return "公网静态页不连接本地后台；请在本机用 scripts/local_server.py 打开采集控制台。";
+  return "公网静态页默认不连接后台；可在本机用 scripts/local_server.py 打开采集控制台，或在「设置 → 本地」里配置远程管理后台。";
+}
+function adminApiUrl(path) {
+  const base = getAdminApiBase();
+  const clean = String(path || "");
+  if (!base) return clean;
+  if (clean.startsWith("./")) return `${base}${clean.slice(1)}`;
+  if (clean.startsWith("/")) return `${base}${clean}`;
+  return `${base}/${clean}`;
+}
+async function apiFetch(path, options = {}) {
+  const headers = new Headers(options.headers || {});
+  const token = getAdminToken();
+  if (token) headers.set("X-Admin-Token", token);
+  return fetch(adminApiUrl(path), { ...options, headers });
 }
 function initDataSource() {
   state.dataBaseUrl = "";

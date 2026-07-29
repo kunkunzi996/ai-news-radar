@@ -225,6 +225,14 @@
               id="settingsTabLocal"
               aria-selected="false"
             >本机采集</button>
+            <button
+              class="settings-tab"
+              type="button"
+              role="tab"
+              data-settings-tab="remote"
+              id="settingsTabRemote"
+              aria-selected="false"
+            >远程后台</button>
           </div>
 
           <div class="settings-drawer-body">
@@ -338,9 +346,8 @@
 
             <section class="settings-pane" data-settings-pane="local" hidden>
               <p class="settings-pane-hint">
-                本机采集控制台，只在 <code>127.0.0.1:8080</code> 可用；这里的操作不会改变公网采集的信源。
-              </p>
-              <div class="source-config-head">
+                本机采集控制台，在 <code>127.0.0.1:8080</code> 或已配置的远程后台上可用；这里的操作不会改变公网采集的信源。
+              </p><div class="source-config-head">
           <div class="source-config-tools">
             <label class="source-collection-scope" for="sourceCollectionScopeSelect">
               <span>采集范围</span>
@@ -477,6 +484,39 @@
         </details>
         </details>
             </section>
+            <section class="settings-pane" data-settings-pane="remote" hidden>
+              <p class="settings-pane-hint">
+                在公网页面（或任何设备）连接 NUC 上的管理后台后，「信源」与本机采集面板就能直接增删改查。
+                API 地址与管理令牌只保存在当前浏览器，不会写入仓库或上传他处。
+              </p>
+              <section class="online-source-panel" aria-label="远程管理后台连接">
+                <div class="online-source-head">
+                  <div>
+                    <strong>远程管理后台</strong>
+                    <span id="remoteAdminStatus">未配置远程后台；当前为纯阅读模式。</span>
+                  </div>
+                </div>
+                <div class="online-source-body">
+                  <form id="remoteAdminForm" class="online-source-form">
+                    <label class="field source-config-wide">
+                      <span>API 地址</span>
+                      <input id="remoteAdminBaseInput" type="text" autocomplete="off" spellcheck="false" placeholder="例如：https://radar.example.com" />
+                    </label>
+                    <label class="field source-config-wide">
+                      <span>管理令牌</span>
+                      <input id="remoteAdminTokenInput" type="password" autocomplete="off" placeholder="NUC 上 RADAR_ADMIN_TOKEN 的值" />
+                    </label>
+                    <div class="online-source-actions-row">
+                      <button id="remoteAdminConnectBtn" class="mode-btn active" type="submit">保存并测试连接</button>
+                      <button id="remoteAdminDisconnectBtn" class="mode-btn" type="button">断开连接</button>
+                    </div>
+                  </form>
+                </div>
+              </section>
+              <p class="settings-pane-hint">
+                没有令牌的人打开这个页面只能阅读；令牌错误达到上限后后台会临时锁定来源 IP。
+              </p>
+            </section>
           </div>
         </div>
       </div>
@@ -499,16 +539,16 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous" defer></script>
     <script src="./assets/motion.js?v=ui-adjustment-0620a" defer></script>
     <script src="./assets/js/dom.js?v=github-stars-sync-0716a" defer></script>
-    <script src="./assets/js/utils.js?v=purge-deferred-note-0713a" defer></script>
+    <script src="./assets/js/utils.js?v=remote-admin-0729a" defer></script>
     <script src="./assets/js/workbench-bridge.js?v=workbench-bridge-0717a" defer></script>
     <script src="./assets/js/render-meta.js?v=github-stars-sync-0716a" defer></script>
     <script src="./assets/js/render-list.js?v=workbench-bridge-0717a" defer></script>
     <script src="./assets/js/render-panels.js?v=github-stars-sync-0716a" defer></script>
-    <script src="./assets/js/subscriptions.js?v=github-tab-0711a" defer></script>
-    <script src="./assets/js/source-config.js?v=purge-deferred-note-0713a" defer></script>
-    <script src="./assets/js/local-collect.js?v=github-stars-sync-0716a" defer></script>
-    <script src="./assets/js/online-source-config.js?v=online-source-merge-conflicts-0722a" defer></script>
-    <script src="./assets/js/settings-drawer.js?v=settings-drawer-0713b" defer></script>
+    <script src="./assets/js/subscriptions.js?v=remote-admin-0729a" defer></script>
+    <script src="./assets/js/source-config.js?v=remote-admin-0729a" defer></script>
+    <script src="./assets/js/local-collect.js?v=remote-admin-0729a" defer></script>
+    <script src="./assets/js/online-source-config.js?v=remote-admin-0729a" defer></script>
+    <script src="./assets/js/settings-drawer.js?v=remote-admin-0729a" defer></script>
     <script src="./assets/js/boot.js?v=we-mp-rss-btn-0715a" defer></script>
   </body>
 </html>

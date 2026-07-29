@@ -356,17 +356,21 @@ def process_is_running(pid: int) -> bool:
         return False
     if os.name == "nt":
         try:
+            # 必须按字节匹配：中文 Windows 的 tasklist 输出是 GBK，进程名含中文时
+            # text=True 的解码异常只发生在 subprocess 读取线程内部，run() 不会抛出，
+            # 只会返回 stdout=None（实测：陈旧 pid 被中文名进程复用时 /api/local-status 500）。
             result = subprocess.run(
                 ["tasklist", "/FI", f"PID eq {pid}", "/FO", "CSV", "/NH"],
                 stdout=subprocess.PIPE,
                 stderr=subprocess.DEVNULL,
-                text=True,
                 timeout=3,
                 check=False,
             )
         except Exception:
             return False
-        return f'"{pid}"' in result.stdout or f",{pid}," in result.stdout
+        output = result.stdout or b""
+        needle = str(pid).encode("ascii")
+        return b'"' + needle + b'"' in output or b"," + needle + b"," in output
     try:
         os.kill(pid, 0)
         return True

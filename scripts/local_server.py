@@ -5,13 +5,16 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import os
+import posixpath
 import sys
 import threading
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any
+from urllib.parse import unquote
 
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -39,14 +42,22 @@ from scripts.radar.server import subscriptions_store as _store_api  # noqa: E402
 BILIBILI_DEFAULT_COOKIE_FILE = _server_api.BILIBILI_DEFAULT_COOKIE_FILE
 BILIBILI_PROFILE_DIR = _server_api.BILIBILI_PROFILE_DIR
 PURGE_TRACKED_SITE_IDS = _store_api.PURGE_TRACKED_SITE_IDS
+ADMIN_TOKEN_HEADER = _refresh_api.ADMIN_TOKEN_HEADER
+admin_auth_block_remaining = _refresh_api.admin_auth_block_remaining
+admin_token_required = _refresh_api.admin_token_required
 alive_source_names_by_site = _store_api.alive_source_names_by_site
+check_admin_token_value = _refresh_api.check_admin_token_value
 deleted_source_names_by_site = _store_api.deleted_source_names_by_site
 flush_pending_purge = _store_api.flush_pending_purge
 bilibili_cookie_status = _common_api.bilibili_cookie_status
 collect_window_hours_for_scope = _refresh_api.collect_window_hours_for_scope
 is_item_orphaned = _store_api.is_item_orphaned
 is_local_origin = _refresh_api.is_local_origin
-json_response = _refresh_api.json_response
+is_trusted_origin = _refresh_api.is_trusted_origin
+record_admin_auth_failure = _refresh_api.record_admin_auth_failure
+reflected_cors_origin = _refresh_api.reflected_cors_origin
+reset_admin_auth_failures = _refresh_api.reset_admin_auth_failures
+trusted_origins = _refresh_api.trusted_origins
 last_collection_time = _refresh_api.last_collection_time
 launch_bilibili_dedicated_browser = _cdp_api.launch_bilibili_dedicated_browser
 local_config_maintenance_issues = _collectors_api.local_config_maintenance_issues
@@ -84,6 +95,29 @@ sync_bilibili_cookie = _cdp_api.sync_bilibili_cookie
 validate_source_config = _store_api.validate_source_config
 write_online_source_config = _online_api.write_online_source_config
 write_youtube_subscriptions = _store_api.write_youtube_subscriptions
+
+_base_json_response = _refresh_api.json_response
+
+
+def json_response(
+    handler: SimpleHTTPRequestHandler,
+    status: int,
+    payload: dict[str, Any],
+    *,
+    headers: dict[str, str] | None = None,
+) -> None:
+    """json_response wrapper that reflects CORS headers for trusted remote origins."""
+    merged = dict(headers or {})
+    try:
+        origin = handler.headers.get("Origin", "")
+    except AttributeError:
+        origin = ""
+    cors_origin = reflected_cors_origin(origin)
+    if cors_origin:
+        merged.setdefault("Access-Control-Allow-Origin", cors_origin)
+        merged.setdefault("Vary", "Origin")
+        merged.setdefault("Access-Control-Expose-Headers", "ETag")
+    _base_json_response(handler, status, payload, headers=merged)
 
 
 def purge_or_defer_source_config(
@@ -272,10 +306,85 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
     def reject_nonlocal_origin(self) -> bool:
         origin = self.headers.get("Origin", "")
         referer = self.headers.get("Referer", "")
-        if is_local_origin(origin) and is_local_origin(referer):
+        if is_trusted_origin(origin) and is_trusted_origin(referer):
             return False
         json_response(self, HTTPStatus.FORBIDDEN, {"ok": False, "error": "non_local_origin"})
         return True
+
+    def reject_unauthorized_admin(self) -> bool:
+        """Token-mode gate for every /api/* route. No-op when RADAR_ADMIN_TOKEN is unset."""
+        if not admin_token_required():
+            return False
+        client_ip = str(self.client_address[0]) if self.client_address else ""
+        remaining = admin_auth_block_remaining(client_ip)
+        if remaining > 0:
+            retry = max(1, int(math.ceil(remaining)))
+            json_response(
+                self,
+                HTTPStatus.TOO_MANY_REQUESTS,
+                {"ok": False, "error": "admin_auth_rate_limited", "retry_after_seconds": retry},
+                headers={"Retry-After": str(retry)},
+            )
+            return True
+        verdict = check_admin_token_value(self.headers.get(ADMIN_TOKEN_HEADER))
+        if verdict == "ok":
+            reset_admin_auth_failures(client_ip)
+            return False
+        record_admin_auth_failure(client_ip)
+        if verdict == "missing":
+            json_response(self, HTTPStatus.UNAUTHORIZED, {"ok": False, "error": "admin_token_required"})
+        else:
+            json_response(self, HTTPStatus.FORBIDDEN, {"ok": False, "error": "admin_token_invalid"})
+        return True
+
+    PUBLIC_STATIC_EXACT = frozenset(
+        {"/", "/index.html", "/site.webmanifest", "/favicon.ico", "/bilibili-account-preview.html"}
+    )
+    PUBLIC_STATIC_PREFIXES = ("/assets/", "/data/")
+    PUBLIC_STATIC_DENIED_EXACT = frozenset({"/data/pending-purge.json"})
+
+    def reject_private_static(self, route: str) -> bool:
+        """In token mode (publicly reachable), only serve an explicit static allowlist.
+
+        Private on-disk files (sources.config.json, feeds/follow.opml, local-secrets/,
+        .git/, logs, plans, venvs) must never leak through the tunnel. Decoding and
+        normalization mirror SimpleHTTPRequestHandler.translate_path so encoded
+        traversal like /assets/%2e%2e/sources.config.json is rejected too.
+        """
+        if not admin_token_required():
+            return False
+        decoded = unquote(route)
+        normalized = posixpath.normpath(decoded).replace("\\", "/")
+        if not normalized.startswith("/"):
+            normalized = "/" + normalized
+        allowed = normalized in self.PUBLIC_STATIC_EXACT or any(
+            normalized.startswith(prefix) for prefix in self.PUBLIC_STATIC_PREFIXES
+        )
+        if normalized in self.PUBLIC_STATIC_DENIED_EXACT:
+            allowed = False
+        if allowed:
+            return False
+        json_response(self, HTTPStatus.NOT_FOUND, {"ok": False, "error": "not_found"})
+        return True
+
+    def do_OPTIONS(self) -> None:
+        route = self.path.split("?", 1)[0]
+        cors_origin = reflected_cors_origin(self.headers.get("Origin", ""))
+        self.send_response(HTTPStatus.NO_CONTENT)
+        if route.startswith("/api/") and cors_origin:
+            self.send_header("Access-Control-Allow-Origin", cors_origin)
+            self.send_header("Vary", "Origin")
+            self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+            self.send_header("Access-Control-Allow-Headers", f"Content-Type, {ADMIN_TOKEN_HEADER}, If-Match")
+            self.send_header("Access-Control-Max-Age", "600")
+        self.send_header("Content-Length", "0")
+        self.end_headers()
+
+    def do_HEAD(self) -> None:
+        route = self.path.split("?", 1)[0]
+        if self.reject_private_static(route):
+            return
+        super().do_HEAD()
 
     def read_json_body(self, max_bytes: int) -> dict[str, Any] | None:
         try:
@@ -332,6 +441,8 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
 
     def do_GET(self) -> None:
         route = self.path.split("?", 1)[0]
+        if route.startswith("/api/") and self.reject_unauthorized_admin():
+            return
         if route == "/api/local-status":
             try:
                 json_response(self, HTTPStatus.OK, local_status_payload(self.root_dir))
@@ -388,6 +499,8 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
                 json_response(self, HTTPStatus.INTERNAL_SERVER_ERROR, {"ok": False, "error": str(exc)})
             return
         if route != "/api/source-config":
+            if self.reject_private_static(route):
+                return
             return super().do_GET()
         if self.config_path.parent != self.root_dir or self.config_path.name != CONFIG_FILENAME:
             json_response(self, HTTPStatus.FORBIDDEN, {"ok": False, "error": "invalid_config_path"})
@@ -405,6 +518,8 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
 
     def do_POST(self) -> None:
         route = self.path.split("?", 1)[0]
+        if route.startswith("/api/") and self.reject_unauthorized_admin():
+            return
         if route == "/api/maintenance-action":
             self.handle_maintenance_action()
             return
@@ -790,6 +905,14 @@ def main() -> int:
         print(f"Directory not found: {root_dir}", file=sys.stderr)
         return 2
 
+    host_is_loopback = args.host in {"127.0.0.1", "localhost", "::1"}
+    if not host_is_loopback and not admin_token_required():
+        print(
+            f"Refusing to bind {args.host}: set {_refresh_api.ADMIN_TOKEN_ENV} before exposing the admin API beyond loopback.",
+            file=sys.stderr,
+        )
+        return 2
+
     class Handler(LocalRadarHandler):
         def __init__(self, *handler_args: Any, **handler_kwargs: Any) -> None:
             super().__init__(*handler_args, directory=str(root_dir), **handler_kwargs)
@@ -799,6 +922,13 @@ def main() -> int:
     print(f"Serving {root_dir} at http://{args.host}:{args.port}/")
     print(f"Config endpoint: http://{args.host}:{args.port}/api/source-config")
     print(f"Refresh endpoint: http://{args.host}:{args.port}/api/refresh")
+    if admin_token_required():
+        print("Admin token mode: ON (all /api/* require X-Admin-Token; static files restricted to allowlist)")
+        extra_origins = trusted_origins()
+        if extra_origins:
+            print(f"Trusted remote origins: {', '.join(extra_origins)}")
+    else:
+        print("Admin token mode: OFF (loopback local console)")
     try:
         server.serve_forever()
     except KeyboardInterrupt:

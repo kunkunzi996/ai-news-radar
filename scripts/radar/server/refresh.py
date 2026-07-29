@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hmac
 import json
 import math
 import os
@@ -112,6 +113,107 @@ def is_local_origin(value: str) -> bool:
     if not value:
         return True
     return value.startswith("http://127.0.0.1:") or value.startswith("http://localhost:")
+
+
+ADMIN_TOKEN_ENV = "RADAR_ADMIN_TOKEN"
+TRUSTED_ORIGINS_ENV = "RADAR_TRUSTED_ORIGINS"
+ADMIN_TOKEN_HEADER = "X-Admin-Token"
+ADMIN_AUTH_MAX_FAILURES = 10
+ADMIN_AUTH_LOCKOUT_SECONDS = 60.0
+
+_admin_auth_lock = threading.Lock()
+_admin_auth_failures: dict[str, tuple[int, float]] = {}
+
+
+def admin_token_required() -> bool:
+    """Token mode is on when RADAR_ADMIN_TOKEN is set (server exposed beyond loopback)."""
+    return bool(os.environ.get(ADMIN_TOKEN_ENV, "").strip())
+
+
+def check_admin_token_value(value: str | None) -> str:
+    """Return "ok" | "missing" | "invalid" for a candidate admin token."""
+    expected = os.environ.get(ADMIN_TOKEN_ENV, "").strip()
+    if not expected:
+        return "ok"
+    if value is None or not str(value).strip():
+        return "missing"
+    candidate = str(value).strip()
+    if hmac.compare_digest(candidate.encode("utf-8"), expected.encode("utf-8")):
+        return "ok"
+    return "invalid"
+
+
+def admin_auth_block_remaining(client_ip: str) -> float:
+    """Seconds the client IP remains locked out after repeated auth failures."""
+    now = time.monotonic()
+    with _admin_auth_lock:
+        entry = _admin_auth_failures.get(client_ip)
+        if not entry:
+            return 0.0
+        _, locked_until = entry
+        return max(0.0, locked_until - now)
+
+
+def record_admin_auth_failure(client_ip: str) -> None:
+    now = time.monotonic()
+    with _admin_auth_lock:
+        count, locked_until = _admin_auth_failures.get(client_ip, (0, 0.0))
+        count += 1
+        if count >= ADMIN_AUTH_MAX_FAILURES:
+            locked_until = now + ADMIN_AUTH_LOCKOUT_SECONDS
+            count = 0
+        _admin_auth_failures[client_ip] = (count, locked_until)
+
+
+def reset_admin_auth_failures(client_ip: str) -> None:
+    with _admin_auth_lock:
+        _admin_auth_failures.pop(client_ip, None)
+
+
+def trusted_origins() -> tuple[str, ...]:
+    """Extra trusted origins (scheme://host[:port], no path) from RADAR_TRUSTED_ORIGINS."""
+    raw = os.environ.get(TRUSTED_ORIGINS_ENV, "")
+    origins: list[str] = []
+    for part in raw.split(","):
+        item = part.strip().rstrip("/").lower()
+        if item and item.startswith(("http://", "https://")):
+            origins.append(item)
+    return tuple(origins)
+
+
+def is_trusted_origin(value: str) -> bool:
+    """Local origins always pass; configured extra origins match by origin prefix.
+
+    Empty values pass (same semantics as is_local_origin): non-browser clients
+    without Origin/Referer are gated by the admin token instead.
+    """
+    if is_local_origin(value):
+        return True
+    stripped = str(value or "").strip().rstrip("/").lower()
+    if not stripped:
+        return True
+    for origin in trusted_origins():
+        if stripped == origin or stripped.startswith(origin + "/"):
+            return True
+    return False
+
+
+def reflected_cors_origin(origin: str) -> str:
+    """Return the Origin to reflect in CORS response headers, or "" when not allowed.
+
+    Only origins explicitly configured in RADAR_TRUSTED_ORIGINS are reflected
+    (exact origin match, no path). Same-origin pages never need CORS headers;
+    a local origin on a *different* port is cross-origin to the browser and
+    therefore must be configured explicitly to be reflected.
+    """
+    stripped = str(origin or "").strip()
+    if not stripped:
+        return ""
+    normalized = stripped.rstrip("/").lower()
+    for trusted in trusted_origins():
+        if normalized == trusted:
+            return stripped
+    return ""
 
 
 def last_collection_time(root_dir: Path) -> datetime | None:

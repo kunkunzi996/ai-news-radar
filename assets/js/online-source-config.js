@@ -386,7 +386,7 @@ async function loadOnlineSourceConfigFromServer(silent = false) {
   state.onlineSourceConfigLoaded = false;
   renderOnlineSourceConfig();
   try {
-    const res = await fetch(configUrl, {
+    const res = await apiFetch(configUrl, {
       headers: { Accept: "application/json" },
       cache: "no-store",
     });
@@ -424,7 +424,7 @@ async function saveOnlineSourceConfigToServer() {
   setOnlineSourceButton(onlineSourceSaveBtnEl, "保存中...", true);
   setOnlineSourceStatus("正在写入公开线上配置...", "warn");
   try {
-    const res = await fetch("./api/online-source-config", {
+    const res = await apiFetch("./api/online-source-config", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -481,7 +481,7 @@ async function syncOnlineSourceConfigToServer() {
   setOnlineSourceStatus("正在提交并推送线上信源配置...", "warn");
   renderOnlineSourceConflicts();
   try {
-    const res = await fetch("./api/sync-online-source-config", {
+    const res = await apiFetch("./api/sync-online-source-config", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -601,7 +601,7 @@ async function loadOrphanPurgePreview() {
   setOnlineSourceButton(orphanPurgeReloadBtnEl, "扫描中...", true);
   setOrphanPurgeStatus("正在扫描历史条目...", "warn");
   try {
-    const res = await fetch("./api/archive/orphans", {
+    const res = await apiFetch("./api/archive/orphans", {
       headers: { Accept: "application/json" },
       cache: "no-store",
     });
@@ -647,7 +647,7 @@ async function deleteSelectedOrphanHistory() {
   setOnlineSourceButton(orphanPurgeDeleteBtnEl, "删除中...", true);
   setOrphanPurgeStatus("正在删除并重写数据文件...", "warn");
   try {
-    const res = await fetch("./api/archive/purge-selected", {
+    const res = await apiFetch("./api/archive/purge-selected", {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({ pairs }),
@@ -746,7 +746,7 @@ function githubStarSetResponseState(payload, response = null) {
 }
 
 async function githubStarRequest(path, options = {}) {
-  const response = await fetch(path, {
+  const response = await apiFetch(path, {
     ...options,
     headers: {
       Accept: "application/json",

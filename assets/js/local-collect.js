@@ -364,7 +364,7 @@ function appendCollectionProgress(message, options = {}) {
   renderCollectionProgress(state.refreshProgress);
 }
 async function loadRefreshProgressFromServer() {
-  const res = await fetch("./api/refresh-progress", {
+  const res = await apiFetch("./api/refresh-progress", {
     headers: { Accept: "application/json" },
     cache: "no-store",
   });
@@ -487,7 +487,7 @@ async function runLocalOpsFixAction(action, button) {
     button.textContent = "打开中...";
   }
   try {
-    const res = await fetch("./api/maintenance-action", {
+    const res = await apiFetch("./api/maintenance-action", {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({ action_id: action.id, collection_scope: selectedCollectionScope() }),
@@ -655,7 +655,7 @@ async function loadLocalStatusFromServer(showErrors = false) {
     return null;
   }
   try {
-    const res = await fetch("./api/local-status", {
+    const res = await apiFetch("./api/local-status", {
       headers: { Accept: "application/json" },
       cache: "no-store",
     });
@@ -719,7 +719,7 @@ async function startPlatformCollection(actionId) {
     return { ok: false, error: localBackendUnavailableMessage() };
   }
   try {
-    const res = await fetch("./api/maintenance-action", {
+    const res = await apiFetch("./api/maintenance-action", {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({ action_id: actionId, collection_scope: selectedCollectionScope() }),
@@ -834,7 +834,7 @@ async function refreshNewsDataFromLocalServer() {
     setSourceConfigButton(sourceConfigRefreshBtnEl, "刷新中...", true);
     setSourceConfigStatus(`当前信源已同步，正在刷新${scopeLabel}看板数据；如刚新增抖音/小红书账号，请先点对应平台的“启动采集”。`, "warn");
     appendCollectionProgress(`开始刷新${scopeLabel}看板数据`, { percent: 3, currentStep: `刷新${scopeLabel}看板数据`, status: "running" });
-    const res = await fetch("./api/refresh", {
+    const res = await apiFetch("./api/refresh", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -881,7 +881,7 @@ async function waitForLocalServerRestart() {
   await wait(1200);
   for (let attempt = 0; attempt < 12; attempt += 1) {
     try {
-      const res = await fetch("./api/local-status", {
+      const res = await apiFetch("./api/local-status", {
         headers: { Accept: "application/json" },
         cache: "no-store",
       });
@@ -903,7 +903,7 @@ async function restartLocalServerFromPage() {
   setSourceConfigStatus("正在重启本地服务，稍等几秒后页面会自动刷新。", "warn");
   setLocalOpsStatus("本地服务重启中", "warn");
   try {
-    const res = await fetch("./api/restart-local-server", {
+    const res = await apiFetch("./api/restart-local-server", {
       method: "POST",
       headers: { Accept: "application/json" },
       cache: "no-store",
@@ -941,7 +941,7 @@ async function startWeMpRssSidecarFromPage() {
   setSourceConfigButton(weMpRssStartBtnEl, "启动中...", true);
   setLocalOpsStatus("正在启动微信采集 sidecar（8001）", "warn");
   try {
-    const res = await fetch("./api/maintenance-action", {
+    const res = await apiFetch("./api/maintenance-action", {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({ action_id: "start_we_mp_rss_sidecar" }),

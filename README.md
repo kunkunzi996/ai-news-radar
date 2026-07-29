@@ -325,6 +325,44 @@ https://kunkunzi996.github.io/ai-news-radar/data/source-status.json
 或任何私密文件。公网 GitHub Pages 是静态页，不能直接写 GitHub；要改线上信源，
 请用本机 `127.0.0.1:8080` 控制台。
 
+### 远程管理后台：在公网页面直接管订阅源
+
+日常浏览用的就是公网 Pages 页面。只要采集节点（本部署为 NUC）上运行着带令牌的
+local_server 并经 Cloudflare 隧道暴露，**同一个公网页面就能直接增删改查订阅源**，
+不用回本机开第二个端口：
+
+1. NUC 上照常只绑回环启动，令牌写在本地启动脚本里（不进仓库）：
+
+   ```powershell
+   $env:RADAR_ADMIN_TOKEN='<48位随机令牌>'
+   $env:RADAR_TRUSTED_ORIGINS='https://kunkunzi996.github.io'
+   .\.venv\Scripts\python.exe scripts/local_server.py --host 127.0.0.1 --port 8080
+   ```
+
+2. Cloudflare 命名隧道把 `radar.<你的域名>` 指到 `http://127.0.0.1:8080`
+   （`cloudflared tunnel ...`，详见 `计划/2026-07-29-订阅源管理合并入公网页面实施计划.md`）。
+3. 任意设备打开公网页面 → 右上角「⚙ 设置」→「远程后台」→ 填入 API 地址
+   （`https://radar.<你的域名>`）和管理令牌 → 「保存并测试连接」。地址和令牌只保存在
+   当前浏览器 localStorage，每台设备输一次即可。
+
+安全边界（公开模式 = 设置了 `RADAR_ADMIN_TOKEN`）：
+
+- 所有 `/api/*` 都要求 `X-Admin-Token` 头，恒定时间比较；连败 10 次的来源 IP 锁 60 秒。
+- 静态文件走白名单（`/`、`/index.html`、`/assets/*`、`/data/*`、`/site.webmanifest` 等），
+  `sources.config.json`、`feeds/follow.opml`、`local-secrets/`、`data/pending-purge.json`、
+  `.git/`、日志、`计划/` 等私密文件经隧道一律 404。
+- CORS 只精确反射 `RADAR_TRUSTED_ORIGINS` 里的 Origin；未设令牌时（默认本机模式）
+  一切行为与旧版本完全一致。
+- 绑定非回环地址而未设令牌时服务器拒绝启动。
+
+两点使用注意：
+
+- 阅读链路完全不依赖 NUC：NUC 或隧道掉线时公网页面照常阅读，只是管理面板连不上后台。
+- 远程模式下「刷新看板数据」刷的是 NUC 本机数据；订阅变更后线上内容更新由
+  「同步到线上」推送所触发的 Actions 完成。需要扫码/本机登录态的维护动作
+  （抖音、微信）仍需回到 NUC 本机操作。
+
+
 ### GitHub 星标安全同步（V3）
 
 本地控制台还提供 GitHub 星标同步入口。它只读取公开星标，不需要 Preview token、

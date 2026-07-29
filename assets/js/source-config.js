@@ -505,7 +505,7 @@ async function loadSourceConfigFromLocalServer() {
   }
   try {
     const draftConfig = loadSourceConfigDraft();
-    const res = await fetch("./api/source-config", {
+    const res = await apiFetch("./api/source-config", {
       headers: { Accept: "application/json" },
       cache: "no-store",
     });
@@ -548,7 +548,7 @@ async function writeSourceConfigToLocalServer(options = {}) {
   setSourceConfigButton(button, "保存中...", true);
   setSourceConfigStatus("正在同步当前高级信源配置...", "warn");
   try {
-    const res = await fetch("./api/source-config", {
+    const res = await apiFetch("./api/source-config", {
       method: "POST",
       headers: {
         Accept: "application/json",

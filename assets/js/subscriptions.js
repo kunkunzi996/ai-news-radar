@@ -383,7 +383,7 @@ async function loadYoutubeSubscriptions(options = {}) {
   const silent = Boolean(options.silent);
   if (!canUseLocalBackend()) return;
   try {
-    const res = await fetch("./api/subscriptions/youtube", { headers: { Accept: "application/json" }, cache: "no-store" });
+    const res = await apiFetch("./api/subscriptions/youtube", { headers: { Accept: "application/json" }, cache: "no-store" });
     const payload = await res.json().catch(() => ({}));
     if (!res.ok || payload.ok === false) throw new Error(payload.error || `HTTP ${res.status}`);
     state.youtubeSubscriptions = Array.isArray(payload.subscriptions) ? payload.subscriptions : [];
@@ -401,7 +401,7 @@ async function saveYoutubeSubscriptions() {
     xml_url: youtubeFeedUrl(member.locator),
     html_url: member.htmlUrl || "",
   }));
-  const res = await fetch("./api/subscriptions/youtube", {
+  const res = await apiFetch("./api/subscriptions/youtube", {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -424,7 +424,7 @@ async function syncWeweRssSubscriptions() {
   setSourceConfigButton(subscriptionMemberSyncBtnEl, "同步中...", true);
   setSubscriptionManagerStatus("正在读取 WeWe RSS 已订阅公众号...", "warn");
   try {
-    const res = await fetch("./api/wewe-rss/feeds", { headers: { Accept: "application/json" }, cache: "no-store" });
+    const res = await apiFetch("./api/wewe-rss/feeds", { headers: { Accept: "application/json" }, cache: "no-store" });
     const payload = await res.json().catch(() => ({}));
     if (!res.ok || payload.ok === false) throw new Error(payload.error || `HTTP ${res.status}`);
     const feeds = Array.isArray(payload.feeds) ? payload.feeds : [];

@@ -2,6 +2,89 @@ const settingsDrawerEl = document.getElementById("settingsDrawer");
 const settingsOpenBtnEl = document.getElementById("settingsOpenBtn");
 const settingsCloseBtnEl = document.getElementById("settingsCloseBtn");
 const settingsTabLocalEl = document.getElementById("settingsTabLocal");
+const remoteAdminFormEl = document.getElementById("remoteAdminForm");
+const remoteAdminBaseInputEl = document.getElementById("remoteAdminBaseInput");
+const remoteAdminTokenInputEl = document.getElementById("remoteAdminTokenInput");
+const remoteAdminConnectBtnEl = document.getElementById("remoteAdminConnectBtn");
+const remoteAdminDisconnectBtnEl = document.getElementById("remoteAdminDisconnectBtn");
+const remoteAdminStatusEl = document.getElementById("remoteAdminStatus");
+
+function setRemoteAdminStatus(message, tone = "") {
+  if (!remoteAdminStatusEl) return;
+  remoteAdminStatusEl.textContent = message || "";
+  remoteAdminStatusEl.className = tone || "";
+}
+
+function syncRemoteAdminForm() {
+  if (!remoteAdminFormEl) return;
+  const base = getAdminApiBase();
+  const token = getAdminToken();
+  if (remoteAdminBaseInputEl && document.activeElement !== remoteAdminBaseInputEl) {
+    remoteAdminBaseInputEl.value = base;
+  }
+  if (remoteAdminTokenInputEl && document.activeElement !== remoteAdminTokenInputEl) {
+    remoteAdminTokenInputEl.value = token;
+  }
+  if (base && token) {
+    setRemoteAdminStatus(`已连接：${base}（令牌已保存在本浏览器）`, "ok");
+  } else {
+    setRemoteAdminStatus("未配置远程后台；当前为纯阅读模式。", "");
+  }
+}
+
+async function connectRemoteAdmin(event) {
+  if (event) event.preventDefault();
+  if (!remoteAdminBaseInputEl || !remoteAdminTokenInputEl) return;
+  const base = normalizeAdminApiBase(remoteAdminBaseInputEl.value);
+  const token = String(remoteAdminTokenInputEl.value || "").trim();
+  if (!base) {
+    setRemoteAdminStatus("API 地址无效，需形如 https://radar.example.com", "bad");
+    return;
+  }
+  if (!token) {
+    setRemoteAdminStatus("请输入管理令牌。", "bad");
+    return;
+  }
+  if (remoteAdminConnectBtnEl) remoteAdminConnectBtnEl.disabled = true;
+  setRemoteAdminStatus("正在测试连接...", "warn");
+  try {
+    const res = await fetch(`${base}/api/local-status`, {
+      headers: { Accept: "application/json", "X-Admin-Token": token },
+      cache: "no-store",
+    });
+    const payload = await res.json().catch(() => ({}));
+    if (res.status === 401) {
+      setRemoteAdminStatus("后台要求管理令牌：请确认地址指向管理后台。", "bad");
+      return;
+    }
+    if (res.status === 403) {
+      setRemoteAdminStatus("令牌不正确，未保存。", "bad");
+      return;
+    }
+    if (res.status === 429) {
+      setRemoteAdminStatus("失败次数过多，后台已临时锁定，请稍后再试。", "bad");
+      return;
+    }
+    if (!res.ok || payload.ok === false) {
+      throw new Error(payload.error || `HTTP ${res.status}`);
+    }
+    setAdminConnection(base, token);
+    setRemoteAdminStatus("连接成功，正在刷新页面启用管理面板...", "ok");
+    window.setTimeout(() => window.location.reload(), 600);
+  } catch (err) {
+    setRemoteAdminStatus(`连接失败：${err && err.message ? err.message : err}`, "bad");
+  } finally {
+    if (remoteAdminConnectBtnEl) remoteAdminConnectBtnEl.disabled = false;
+  }
+}
+
+function disconnectRemoteAdmin() {
+  clearAdminConnection();
+  if (remoteAdminBaseInputEl) remoteAdminBaseInputEl.value = "";
+  if (remoteAdminTokenInputEl) remoteAdminTokenInputEl.value = "";
+  setRemoteAdminStatus("已断开，正在刷新页面回到纯阅读模式...", "warn");
+  window.setTimeout(() => window.location.reload(), 400);
+}
 
 function settingsTabButtons() {
   if (!settingsDrawerEl) return [];
@@ -97,6 +180,7 @@ function openSettingsDrawer() {
   if (!settingsDrawerEl) return;
   settingsLastFocusedEl = document.activeElement;
   syncSettingsTabAvailability();
+  syncRemoteAdminForm();
   settingsDrawerEl.hidden = false;
   document.body.classList.add("settings-drawer-open");
   setBackgroundInert(true);
@@ -117,6 +201,8 @@ function closeSettingsDrawer() {
 
 if (settingsOpenBtnEl) settingsOpenBtnEl.addEventListener("click", openSettingsDrawer);
 if (settingsCloseBtnEl) settingsCloseBtnEl.addEventListener("click", closeSettingsDrawer);
+if (remoteAdminFormEl) remoteAdminFormEl.addEventListener("submit", connectRemoteAdmin);
+if (remoteAdminDisconnectBtnEl) remoteAdminDisconnectBtnEl.addEventListener("click", disconnectRemoteAdmin);
 
 if (settingsDrawerEl) {
   // 点遮罩（抽屉容器本身，而非内部面板）关闭

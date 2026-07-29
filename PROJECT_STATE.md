@@ -1,5 +1,25 @@
 # PROJECT_STATE
 
+## 当前施工状态（2026-07-29）
+
+- **公网页面远程管理后台已完成施工，待合入主线**：功能分支 `feature/remote-admin-console`，
+  功能提交 `d67ba93`（基线 `2bbe272`）。实施后公网 Pages 页面配置「远程后台」
+  （API 地址 + 管理令牌）即可直接增删改查订阅源，NUC 上 local_server 只绑回环、
+  经 Cloudflare 命名隧道暴露。实施计划：`计划/2026-07-29-订阅源管理合并入公网页面实施计划.md`。
+  验收：新增 19 个 pytest 用例全过；全量测试 FAILED 清单与未改动 HEAD 基线**完全一致**
+  （84 个失败系本机 git 环境型——`refs/remotes` 引用写入不落盘，基线同挂，非本次引入）；
+  真实浏览器验收通过：跨域连接、令牌持久化、线上信源读取、失败安全（环境故障时
+  保存请求熔断且文件零污染）。**因本机 git 环境故障，「真实变更保存」的浏览器端到端
+  路径未能走通**（保存事务的 `master@{upstream}` 预检必挂）；该路径为既有生产代码、
+  本次未触碰，需到 NUC 真实环境补验。
+- **预埋 bug 修复**：`process_is_running` 改字节匹配，根治中文进程名导致 tasklist
+  GBK 解码异常只发生在读取线程、`stdout=None`、`/api/local-status` 500 的问题
+  （本机陈旧 pid 被中文名进程复用时必现；NUC 迟早会踩）。
+- **本机 git 环境告警**：本机 git 2.54.0.windows.1（vendored 与系统两份同版本）出现
+  `refs/remotes/*` 及部分 `refs/heads/*` 写入间歇性不落盘，导致线上同步事务预检
+  （`master@{upstream}`）与 84 个 git 事务测试全部失败；提交/分支操作需手工钉 ref。
+  NUC 部署前必须先确认 NUC 的 git 无此问题。
+
 ## 当前施工状态（2026-07-26）
 
 - **NUC 采集节点迁移已完成**：NUC 已成为唯一启用的采集节点。`DouyinCollectAndPush` 保持每日
