@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-07-29T14:53:27Z",
+  "updated_at": "2026-07-29T15:51:41Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -445,6 +445,21 @@
       "managed_by": "github_stars",
       "managed_account_id": 284580915,
       "managed_repo_id": 1278404368,
+      "managed_state": "active"
+    },
+    {
+      "id": "online_github_repo_1283907968",
+      "name": "oomol-lab/open-connector",
+      "type": "github_release",
+      "enabled": true,
+      "channel": "GitHub Release",
+      "target": "oomol-lab/open-connector",
+      "locator": "oomol-lab/open-connector",
+      "env": "",
+      "notes": "只追踪 release",
+      "managed_by": "github_stars",
+      "managed_account_id": 284580915,
+      "managed_repo_id": 1283907968,
       "managed_state": "active"
     },
     {
