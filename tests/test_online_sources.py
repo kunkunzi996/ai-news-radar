@@ -718,8 +718,23 @@ class OnlineSourceTransactionFoundationTests(unittest.TestCase):
             online_sources.require_online_config_match(f'"{digest}"', digest),
             digest,
         )
+        # Weak prefix is tolerated: CDN edges (e.g. Cloudflare) downgrade the
+        # strong ETag to W/"..." when compressing the response, and browsers
+        # echo that value back in If-Match. The digest must still match exactly.
+        self.assertEqual(
+            online_sources.require_online_config_match(f'W/"{digest}"', digest),
+            digest,
+        )
 
-        for value in [None, "", digest, f'W/"{digest}"', '"not-a-digest"', '"' + "b" * 64 + '"']:
+        for value in [
+            None,
+            "",
+            digest,
+            '"not-a-digest"',
+            '"' + "b" * 64 + '"',
+            'W/"' + "b" * 64 + '"',
+            f'X/"{digest}"',
+        ]:
             with self.subTest(value=value), self.assertRaises(
                 online_sources.OnlineSourcesError
             ) as raised:

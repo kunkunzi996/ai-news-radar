@@ -116,7 +116,15 @@ def online_sources_guard() -> Iterator[None]:
 
 
 def require_online_config_match(raw_if_match: Any, current_digest: str) -> str:
-    match = re.fullmatch(r'"([0-9a-f]{64})"', raw_if_match) if isinstance(raw_if_match, str) else None
+    # Accept an optional weak prefix: CDN/proxy edges (e.g. Cloudflare) downgrade
+    # strong ETags to W/"..." when they compress the response body, and browsers
+    # echo that value back in If-Match. The digest still has to match exactly,
+    # so this stays a strong comparison in practice.
+    match = (
+        re.fullmatch(r'(?:W/)?"([0-9a-f]{64})"', raw_if_match.strip())
+        if isinstance(raw_if_match, str)
+        else None
+    )
     if match is None or match.group(1) != current_digest:
         raise _online_error("online_sources_config_stale", 409)
     return current_digest
