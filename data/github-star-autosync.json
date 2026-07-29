@@ -2,14 +2,14 @@
   "version": 2,
   "ok": true,
   "outcome": "synced",
-  "finished_at": "2026-07-29T14:53:27Z",
+  "finished_at": "2026-07-29T15:51:41Z",
   "error_code": "",
-  "workflow_run_id": "30463104176",
+  "workflow_run_id": "30467910421",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "d20d7710e05aaf8aef48b9cf2feab395d3676e37",
+  "workflow_head_sha": "f3c374f273cb6a7b2423dc85bd6c98773fcc79c9",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-07-29T14:53:27Z",
-  "purge_state_sha256": "76827957e8459a5cb01cb0d83372fbaa0306f4412c8e1026cc8fd4f1eae61666",
+  "snapshot_completed_at": "2026-07-29T15:51:41Z",
+  "purge_state_sha256": "1c720f97c90110fcf99dcf668292ea645dec2b4aea03ad3a9996b96abec83263",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -17,14 +17,14 @@
   ],
   "account_id": 284580915,
   "account_login": "kunkunzi996",
-  "starred_count": 23,
+  "starred_count": 24,
   "private_skipped_count": 0,
   "summary": {
     "added": [
       {
-        "repo_id": 1278404368,
-        "repo": "LearnPrompt/partner-skill",
-        "source_id": "online_github_repo_1278404368"
+        "repo_id": 1283907968,
+        "repo": "oomol-lab/open-connector",
+        "source_id": "online_github_repo_1283907968"
       }
     ],
     "disabled": [],
