@@ -40,7 +40,7 @@ function onlineSourceTypeLabel(type) {
 }
 
 function onlineSourceFormActionLabel() {
-  return "保存配置";
+  return "保存并同步";
 }
 
 function canWriteOnlineSourceConfig() {
@@ -231,7 +231,7 @@ function saveOnlineSourceFormToState() {
   state.onlineSourceSelectedId = record.id;
   clearOnlineSourceForm();
   renderOnlineSourceConfig();
-  markOnlineSourceDirty("未保存：点“保存配置”只写公开配置，点“同步到线上”会提交并推送");
+  markOnlineSourceDirty("未保存：点“保存并同步”会写入公开配置并推送到 GitHub");
   return true;
 }
 
@@ -441,12 +441,19 @@ async function saveOnlineSourceConfigToServer() {
     state.onlineSourceDirty = false;
     renderOnlineSourceConfig();
     setOnlineSourceStatus(
-      `已写入本地线上配置：${fmtNumber(payload.source_count || 0)} 个信源${purgedItemsNote(payload.purged_items)}`,
-      "ok",
+      `已写入本地线上配置（${fmtNumber(payload.source_count || 0)} 个信源）${purgedItemsNote(payload.purged_items)}，正在同步到线上…`,
+      "warn",
     );
-    setOnlineSourceButton(onlineSourceSaveBtnEl, "已保存", true);
-    restoreOnlineSourceButton(onlineSourceSaveBtnEl, onlineSourceFormActionLabel());
-    return payload;
+    setOnlineSourceButton(onlineSourceSaveBtnEl, "同步中...", true);
+    // 保存成功后自动接力同步到线上：一个按钮完成写入 + 提交推送。
+    const syncPayload = await syncOnlineSourceConfigToServer();
+    if (syncPayload) {
+      setOnlineSourceButton(onlineSourceSaveBtnEl, "已同步", true);
+    } else {
+      setOnlineSourceButton(onlineSourceSaveBtnEl, "同步失败", true);
+    }
+    restoreOnlineSourceButton(onlineSourceSaveBtnEl, onlineSourceFormActionLabel(), 1800);
+    return syncPayload;
   } catch (err) {
     setOnlineSourceStatus(`保存失败：${err.message}`, "bad");
     setOnlineSourceButton(onlineSourceSaveBtnEl, "保存失败", true);

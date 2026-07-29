@@ -238,15 +238,14 @@
           <div class="settings-drawer-body">
             <section class="settings-pane" data-settings-pane="sources">
               <p class="settings-pane-hint settings-pane-hint-warn">
-                这里的改动点「同步到线上」后会推送到 GitHub，决定公网页面采集哪些信源。
+                这里的改动点「保存并同步」后会写入配置并推送到 GitHub，决定公网页面采集哪些信源。
               </p>
               <section class="online-source-panel" aria-label="线上信源管理">
                 <div class="online-source-head">
                   <div>
                     <strong>线上信源</strong>
-                    <span id="onlineSourceStatus">读取 config/online-sources.json 后，可同步到 GitHub。</span>
+                    <span id="onlineSourceStatus">读取 config/online-sources.json 后，点「保存并同步」推送到 GitHub。</span>
                   </div>
-                  <button id="onlineSourceSyncBtn" class="tool-btn" type="button">同步到线上</button>
                 </div>
                 <div class="online-source-body">
                   <div id="onlineSourceList" class="online-source-list"></div>
@@ -277,7 +276,7 @@
                       <span>启用</span>
                     </label>
                     <div class="online-source-actions-row">
-                      <button id="onlineSourceSaveBtn" class="mode-btn active" type="submit">保存配置</button>
+                      <button id="onlineSourceSaveBtn" class="mode-btn active" type="submit">保存并同步</button>
                       <button id="onlineSourceClearBtn" class="mode-btn" type="button">清空</button>
                     </div>
                   </form>
@@ -547,7 +546,7 @@
     <script src="./assets/js/subscriptions.js?v=remote-admin-0729a" defer></script>
     <script src="./assets/js/source-config.js?v=remote-admin-0729a" defer></script>
     <script src="./assets/js/local-collect.js?v=remote-admin-0729a" defer></script>
-    <script src="./assets/js/online-source-config.js?v=remote-admin-0729a" defer></script>
+    <script src="./assets/js/online-source-config.js?v=save-sync-0730a" defer></script>
     <script src="./assets/js/settings-drawer.js?v=remote-admin-0729a" defer></script>
     <script src="./assets/js/boot.js?v=we-mp-rss-btn-0715a" defer></script>
   </body>
