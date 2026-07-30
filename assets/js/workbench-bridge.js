@@ -9,7 +9,11 @@
 // 注意：NUC 私有部署上线后，若工作台地址变化，需同步扩充 PARENT_ORIGINS。
 // ============================================
 (function () {
-  const PARENT_ORIGINS = new Set(["http://127.0.0.1:8765", "http://localhost:8765"]);
+  const PARENT_ORIGINS = new Set([
+    "http://127.0.0.1:8765",
+    "http://localhost:8765",
+    "https://app.wanyouomnia.cn",
+  ]);
   const REQUEST_TIMEOUT_MS = 10000;
 
   let parentWin = null;
