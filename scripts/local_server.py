@@ -31,6 +31,7 @@ from scripts.radar.server import (
     RESTART_DELAY_SECONDS,
     normalize_collection_scope,
 )  # noqa: E402
+from scripts.radar.server import auto_collect as _auto_collect_api  # noqa: E402
 from scripts.radar.server import cdp as _cdp_api  # noqa: E402
 from scripts.radar.server import common as _common_api  # noqa: E402
 from scripts.radar.server import collectors as _collectors_api  # noqa: E402
@@ -199,6 +200,16 @@ def save_online_source_config(
             result["config"],
             previous_config if isinstance(previous_config, dict) else None,
         )
+        # 新增抖音/微信信源时立即派发一次本机采集（云端 Actions 抓不了这两类）。
+        # 派发是异步的，且任何失败都不得影响本次保存的结果。
+        try:
+            result["auto_collect"] = _auto_collect_api.handle_saved_config(
+                root_dir,
+                previous_config if isinstance(previous_config, dict) else None,
+                result["config"],
+            )
+        except Exception as exc:  # noqa: BLE001 - 保存结果优先于采集派发
+            result["auto_collect"] = {"triggered": False, "error": str(exc)}
         return result
 
 
