@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "synced",
-  "finished_at": "2026-07-31T19:46:48Z",
+  "outcome": "no_change",
+  "finished_at": "2026-07-31T21:13:59Z",
   "error_code": "",
-  "workflow_run_id": "30660376014",
+  "workflow_run_id": "30665813584",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "6e21c5f882bdb74a5459a3200fb6a09b05aa5a9d",
+  "workflow_head_sha": "030b95748aa8c2842d61412d007a5fa35b5ef934",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-07-31T19:46:48Z",
-  "purge_state_sha256": "6f8ea46dd8abf99203394ad98975aadd15ffcff88fb57aca72a958e12fcddace",
+  "snapshot_completed_at": "2026-07-31T21:13:59Z",
+  "purge_state_sha256": "bcdeafd041f86413af63b51c14936a8fd921ab06a72eaeae9345eebdad3db178",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -20,13 +20,7 @@
   "starred_count": 25,
   "private_skipped_count": 0,
   "summary": {
-    "added": [
-      {
-        "repo_id": 1309857238,
-        "repo": "oil-oil/vibe-hub-skill",
-        "source_id": "online_github_repo_1309857238"
-      }
-    ],
+    "added": [],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
