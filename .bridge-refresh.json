@@ -1,0 +1,26 @@
+{
+  "refreshed_at": "2026-08-01T07:13:49Z",
+  "reason": {
+    "douyin_sec_uids": [
+      "MS4wLjABAAAABQ86JBTzG2dt2HG0I28pyyGXpJoEuKhqG9k-ju6Iut65yxLoVS_dIJngYVJkIUFZ"
+    ],
+    "wechat_added": false,
+    "added_names": [
+      "芙芙家的洗碗君"
+    ]
+  },
+  "collect": {
+    "douyin": {
+      "state": "succeeded",
+      "stage": "completed_pushed",
+      "started_at": "2026-08-01T07:02:22.3899765Z",
+      "finished_at": "2026-08-01T07:12:34.4767578Z"
+    },
+    "wechat": {
+      "state": "warning",
+      "stage": "authority_unavailable",
+      "started_at": "2026-08-01T07:12:35.8747318Z",
+      "finished_at": "2026-08-01T07:13:39.6955761Z"
+    }
+  }
+}
