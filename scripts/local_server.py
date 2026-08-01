@@ -200,16 +200,17 @@ def save_online_source_config(
             result["config"],
             previous_config if isinstance(previous_config, dict) else None,
         )
-        # 新增抖音/微信信源时立即派发一次本机采集（云端 Actions 抓不了这两类）。
-        # 派发是异步的，且任何失败都不得影响本次保存的结果。
+        # 新增抖音/微信信源时登记一次本机采集（云端 Actions 抓不了这两类）。
+        # 只登记不触发：真正派发要等同步确认推送成功，否则采集会拖慢紧随其后的
+        # git push，导致前端「Failed to fetch」。任何失败都不得影响本次保存的结果。
         try:
             result["auto_collect"] = _auto_collect_api.handle_saved_config(
                 root_dir,
                 previous_config if isinstance(previous_config, dict) else None,
                 result["config"],
             )
-        except Exception as exc:  # noqa: BLE001 - 保存结果优先于采集派发
-            result["auto_collect"] = {"triggered": False, "error": str(exc)}
+        except Exception as exc:  # noqa: BLE001 - 保存结果优先于采集登记
+            result["auto_collect"] = {"pending": False, "error": str(exc)}
         return result
 
 
@@ -231,6 +232,11 @@ def save_and_sync_online_source_config(
             else sync_online_source_config(root_dir, None)
         )
         sync_result["purged_items"] = save_result.get("purged_items", {})
+        # 与 handle_sync_online_source_config 同理：推送完成后才派发采集。
+        try:
+            sync_result["auto_collect"] = _auto_collect_api.flush_pending_collect(root_dir)
+        except Exception as exc:  # noqa: BLE001 - 同步结果优先于采集派发
+            sync_result["auto_collect"] = {"triggered": False, "error": str(exc)}
         return sync_result
 
 
@@ -663,6 +669,12 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
         except Exception as exc:
             self.send_api_error(exc)
             return
+        # 推送已完成，此时派发采集才不会拖慢 git push。schtasks 是毫秒级返回，
+        # 真正吃资源的 MediaCrawler 要十几秒后才起来，那时响应早已发出。
+        try:
+            result["auto_collect"] = _auto_collect_api.flush_pending_collect(self.root_dir)
+        except Exception as exc:  # noqa: BLE001 - 同步结果优先于采集派发
+            result["auto_collect"] = {"triggered": False, "error": str(exc)}
         json_response(self, HTTPStatus.OK, result, headers={"ETag": result["etag"]})
 
     def handle_github_stars_preview(self) -> None:

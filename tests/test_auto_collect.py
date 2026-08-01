@@ -227,27 +227,67 @@ class DispatchTriggerTests(unittest.TestCase):
         self.assertEqual(len(payload["runs"]), auto_collect.STATUS_HISTORY_LIMIT)
 
 
-class HandleSavedConfigTests(unittest.TestCase):
+class PendingCollectTests(unittest.TestCase):
+    """保存只登记、同步才派发——防止采集拖慢紧随其后的 git push。"""
+
     def setUp(self):
         self._tmp = tempfile.TemporaryDirectory()
         self.root = Path(self._tmp.name)
+        auto_collect.take_pending_collect()  # 清空跨用例残留
+        self.addCleanup(auto_collect.take_pending_collect)
         self.addCleanup(self._tmp.cleanup)
 
-    def test_no_added_source_skips_dispatch(self):
-        previous = config_of(douyin_source())
+    def test_save_registers_without_dispatching(self):
+        previous = config_of()
         current = config_of(douyin_source())
         with patch.object(auto_collect, "dispatch_bridge_collect") as dispatch:
             result = auto_collect.handle_saved_config(self.root, previous, current)
         dispatch.assert_not_called()
+        self.assertTrue(result["pending"])
+
+    def test_no_added_source_registers_nothing(self):
+        previous = config_of(douyin_source())
+        current = config_of(douyin_source())
+        result = auto_collect.handle_saved_config(self.root, previous, current)
+        self.assertFalse(result["pending"])
+        self.assertIsNone(auto_collect.take_pending_collect())
+
+    def test_flush_dispatches_registered_work(self):
+        auto_collect.handle_saved_config(self.root, config_of(), config_of(douyin_source()))
+        with patch.object(auto_collect, "dispatch_bridge_collect", return_value={"triggered": True}) as dispatch:
+            result = auto_collect.flush_pending_collect(self.root)
+        dispatch.assert_called_once()
+        self.assertEqual(dispatch.call_args[0][1]["douyin_sec_uids"], [DOUYIN_SEC_UID])
+        self.assertTrue(result["triggered"])
+
+    def test_flush_without_registration_does_nothing(self):
+        with patch.object(auto_collect, "dispatch_bridge_collect") as dispatch:
+            result = auto_collect.flush_pending_collect(self.root)
+        dispatch.assert_not_called()
         self.assertFalse(result["triggered"])
 
-    def test_added_source_dispatches(self):
-        previous = config_of()
-        current = config_of(douyin_source())
+    def test_flush_clears_registration_so_next_sync_is_idle(self):
+        auto_collect.handle_saved_config(self.root, config_of(), config_of(douyin_source()))
+        with patch.object(auto_collect, "dispatch_bridge_collect", return_value={"triggered": True}):
+            auto_collect.flush_pending_collect(self.root)
+        with patch.object(auto_collect, "dispatch_bridge_collect") as dispatch:
+            auto_collect.flush_pending_collect(self.root)
+        dispatch.assert_not_called()
+
+    def test_multiple_saves_merge_into_one_dispatch(self):
+        # 连续加两个源再同步一次：合并成一轮采集，不重复触发。
+        auto_collect.handle_saved_config(self.root, config_of(), config_of(douyin_source()))
+        auto_collect.handle_saved_config(
+            self.root,
+            config_of(douyin_source()),
+            config_of(douyin_source(), wechat_source()),
+        )
         with patch.object(auto_collect, "dispatch_bridge_collect", return_value={"triggered": True}) as dispatch:
-            result = auto_collect.handle_saved_config(self.root, previous, current)
+            auto_collect.flush_pending_collect(self.root)
         dispatch.assert_called_once()
-        self.assertTrue(result["triggered"])
+        merged = dispatch.call_args[0][1]
+        self.assertEqual(merged["douyin_sec_uids"], [DOUYIN_SEC_UID])
+        self.assertTrue(merged["wechat_added"])
 
 
 class SaveHookIsolationTests(unittest.TestCase):
@@ -281,7 +321,7 @@ class SaveHookIsolationTests(unittest.TestCase):
 
         # 保存必须照常成功，异常只体现在 auto_collect 字段里。
         self.assertEqual(len(result["config"]["sources"]), 2)
-        self.assertFalse(result["auto_collect"]["triggered"])
+        self.assertFalse(result["auto_collect"]["pending"])
         self.assertIn("boom", result["auto_collect"]["error"])
 
     def test_hook_receives_previous_and_current_config(self):

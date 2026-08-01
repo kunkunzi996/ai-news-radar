@@ -296,20 +296,70 @@ def dispatch_bridge_collect(
     return result
 
 
+# 「保存」与「同步」是两个独立的 HTTP 请求，前端保存成功后紧接着发同步请求。
+# 采集一旦启动会拉起浏览器和 MediaCrawler 抢占资源，若在保存阶段就触发，紧随其后的
+# 同步（git push）会被拖慢到超过 Cloudflare 的 120 秒读超时，前端表现为
+# 「推送失败: Failed to fetch」——尽管后端其实已经推送成功（2026-08-01 真实踩过）。
+# 因此保存阶段只登记，等同步确认推送成功后再真正触发。
+_PENDING_LOCK = threading.Lock()
+_PENDING_COLLECT: dict[str, Any] | None = None
+
+
+def queue_pending_collect(detected: dict[str, Any]) -> dict[str, Any]:
+    """登记一次待触发的采集；同一批次内多次保存以最后一次为准并合并。"""
+    global _PENDING_COLLECT
+    with _PENDING_LOCK:
+        if _PENDING_COLLECT is None:
+            _PENDING_COLLECT = {"douyin_sec_uids": [], "wechat_added": False, "added_names": []}
+        for sec_uid in detected.get("douyin_sec_uids") or []:
+            if sec_uid not in _PENDING_COLLECT["douyin_sec_uids"]:
+                _PENDING_COLLECT["douyin_sec_uids"].append(sec_uid)
+        for name in detected.get("added_names") or []:
+            if name not in _PENDING_COLLECT["added_names"]:
+                _PENDING_COLLECT["added_names"].append(name)
+        _PENDING_COLLECT["wechat_added"] = bool(
+            _PENDING_COLLECT["wechat_added"] or detected.get("wechat_added")
+        )
+        return dict(_PENDING_COLLECT)
+
+
+def take_pending_collect() -> dict[str, Any] | None:
+    """取出并清空待触发的采集登记。"""
+    global _PENDING_COLLECT
+    with _PENDING_LOCK:
+        pending = _PENDING_COLLECT
+        _PENDING_COLLECT = None
+        return pending
+
+
 def handle_saved_config(
     root_dir: Path,
     previous_config: Any,
     current_config: Any,
-    *,
-    execute: bool = True,
-    watch: bool = True,
 ) -> dict[str, Any]:
-    """保存成功后的入口：检测新增桥接源并触发一次采集。
+    """保存成功后的入口：只检测并登记，**不触发采集**。
 
     调用方必须把本函数包在 try/except 里——它已尽量不抛异常，但任何意外都
     绝不允许影响信源配置的保存结果。
     """
     detected = detect_added_bridge_sources(previous_config, current_config)
     if not has_pending_work(detected):
+        return {"pending": False, "reason": None}
+    queue_pending_collect(detected)
+    return {"pending": True, "reason": detected}
+
+
+def flush_pending_collect(
+    root_dir: Path,
+    *,
+    execute: bool = True,
+    watch: bool = True,
+) -> dict[str, Any]:
+    """同步确认推送成功后调用：把登记的采集真正派发出去。
+
+    此时 git push 已经完成，采集抢占资源不会再拖慢任何请求。
+    """
+    pending = take_pending_collect()
+    if not pending or not has_pending_work(pending):
         return {"triggered": False, "reason": None}
-    return dispatch_bridge_collect(root_dir, detected, execute=execute, watch=watch)
+    return dispatch_bridge_collect(root_dir, pending, execute=execute, watch=watch)
