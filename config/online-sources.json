@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-07-31T19:46:48Z",
+  "updated_at": "2026-08-01T06:26:37Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -526,6 +526,17 @@
       "channel": "抖音订阅",
       "target": "Simon林",
       "locator": "https://www.douyin.com/user/MS4wLjABAAAACsVvwoWhwaNZkd4kOY7bu6UhcfCiYmd_k_wcUnN9bYo8jOANJ1iyts7MXQB8nsZ0",
+      "env": "",
+      "notes": "云电脑桥接采集"
+    },
+    {
+      "id": "online_douyin_5228408e16",
+      "name": "Game AI Lab",
+      "type": "mediacrawler_jsonl",
+      "enabled": true,
+      "channel": "抖音订阅",
+      "target": "Game AI Lab",
+      "locator": "https://www.douyin.com/user/MS4wLjABAAAAjg-p3MxHu35i5yRxFqOQqPTcwS425s7uycu7yT3qqi9wpxmv453dXpxab-xbRQyu",
       "env": "",
       "notes": "云电脑桥接采集"
     },
