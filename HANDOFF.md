@@ -11,12 +11,40 @@
     尤其：必须 `schtasks` 触发计划任务不能自起进程（身份/凭证/路径三条都不满足）、派发只能在
     同步推送成功之后（否则拖慢 `git push` 导致前端假报「Failed to fetch」）、微信只能全量重采。
   - 详细验收数据与时间线见 `PROJECT_STATE.md` 顶部。
-- **`git stash list` 现为空**：本文档与 `PROJECT_STATE.md` 历史条目中多处提到的
-  「stash@{0} 含 6 条 GitHub Release 历史备份、严禁 drop」已不存在。不要再据此假设本机有该备份。
-- **本机 git「吞 refs」故障仍在**（`fetch` 后 remote-tracking ref 不落盘，`git branch -r` 只见
-  2 个而远端实有 7 个）。影响：`--merged` / `--no-merged` 静默返回空，**不报错**，极易误判分支
-  是否已合并。绕过办法：用 `gh api repos/<owner>/<repo>/compare/master...<branch>` 看 `ahead_by`。
-  该问题已另开独立任务排查，未修复前本机所有依赖远端引用的判断都不可信。
+- **本机 git「吞 refs」故障已修复（2026-08-01），此前的归因是错的。** 真因不是
+  git 2.54.0.windows.1 的 bug，也与杀软、文件系统、packed-refs 无关，而是本机这份仓库是
+  **浅克隆**（`.git/shallow` 存在，隐含 `--single-branch`），`.git/config` 里的取货清单被写死成
+  `fetch = +refs/heads/master:refs/remotes/origin/master` —— 只认 master，其他分支 `fetch`
+  压根没去问，所以「无报错 + 只有 origin/master」是配置的必然结果。修复即一行：
+
+  ```
+  git config --replace-all remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+  git fetch origin --prune
+  ```
+
+  验收：`git branch -r`（排除 `HEAD ->`）= 7 = `git ls-remote --heads origin | wc -l`，二次
+  fetch 后仍在；`--merged` 已恢复可用，与逐分支 `git rev-list --count origin/master..<branch>`
+  交叉一致。**不再需要 `gh api ... /compare/` 绕路。**
+  - 仓库**仍是浅克隆**（本次按最小改动未 `--unshallow`）。当前分支点都在浅克隆边界内，
+    所以 `--merged` 判断可信；若将来对比很老的分支、结果可疑，再跑 `git fetch --unshallow`。
+  - 再遇到「fetch 不报错但 ref 不落盘」，**第一件事查 `git config --get-all remote.origin.fetch`**，
+    别先怀疑 git 版本 / 杀软 / 文件系统。
+- **`git stash list` 曾显示为空，但那是账本丢失、不是数据丢失**（2026-08-01 查清并已恢复显示）。
+  `git stash list` 读的是 reflog（`.git/logs/refs/stash`），不是 `refs/stash` 本身；当时该 reflog
+  文件丢失，而 `refs/stash` 本体仍在 `.git/packed-refs` 里指向 `0e94dbf`
+  「On master: 收尾前保护：本机旧数据与临时文件（2026-07-18）」。已手工重建 reflog，现可正常列出。
+  - **那 6 条 GitHub Release 历史（AlkaidLab/foundation-sunshine）没丢，且已提交进版本库** ——
+    工作区 / 本机 HEAD / `origin/master` 三处 `data/archive.json` 实测均为 6 条，无未提交改动。
+    所以「stash 是唯一备份」这个旧前提早已作废，现存 stash 里反而 **0 条**该记录。
+  - 被清理前的**完整 70 条**在提交 `d85b916^` 里（`d85b916` =「数据：清理已退订信源
+    AlkaidLab/foundation-sunshine 的 14 条历史条目」）。要找回用
+    `git show d85b916^:data/archive.json`，**别去翻 stash**。
+  - ⚠️ `d85b916` 是**不可达提交**，`git gc --prune=now` 会把那 70 条完整备份清掉 ——
+    **这仓库别随手 gc**。现存 stash 仍严禁 drop。
+  - 重建 stash reflog 的坑：`git update-ref --create-reflog` 和 `git stash store` **都会报成功却
+    什么也不写**（新旧 ref 值相同 → git 判定空操作，跳过整个 ref transaction）。只能手写
+    `.git/logs/refs/stash`，格式 `<old40> <new40> <name> <<email>> <ts> <tz>\t<message>`，
+    首条 old 填 40 个 0，message 前是 **tab**，行尾 **LF**。
 
 ## 历史状态（2026-07-29，已闭环）
 
@@ -32,7 +60,10 @@
   做公网带令牌/无令牌/私密文件 404 三项验证。(4) NUC 上先确认 git 无本机的
   `refs/remotes` 不落盘问题（`git fetch` 后 `git for-each-ref refs/remotes/` 非空即正常）。
 - 本机 84 个 git 事务测试失败为环境问题（未改动 HEAD 基线同挂，清单与功能分支完全一致），
-  不是本功能引入；如需恢复本地测试环境，排查 git 2.54.0.windows.1 的 ref 写入。
+  不是本功能引入。~~如需恢复本地测试环境，排查 git 2.54.0.windows.1 的 ref 写入。~~
+  **↑ 这个排查方向是错的**：2026-08-01 已查明真因是单分支 refspec（见顶部「当前状态」条目），
+  与 git 版本无关，且已修复。该批测试可以重跑了。本段及上一条里所有「git 环境间歇性吞 ref
+  写入」「手工钉 ref」的表述均按此作废，仅作历史记录保留。
 
 ## 当前状态（2026-07-26）
 
