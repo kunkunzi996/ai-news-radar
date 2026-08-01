@@ -173,3 +173,40 @@ GitHub 只能走独立的稳定 repo ID 契约，不能进入名称型订阅清�
    同源回环页面不需要 CORS 头，不同端口的回环跨源也必须显式配置才反射。
 5. **绑定非回环地址且无令牌必须拒绝启动**——origin 检查只是 CSRF 防线，挡不住局域网里的
    curl，公网/局域网暴露必须以令牌为前提。
+
+## 新增桥接类信源自动采集的禁区
+
+2026-08-01 起，新增抖音（`mediacrawler_jsonl`）或微信（`we_mp_rss_jsonl`）信源后，
+`scripts/radar/server/auto_collect.py` 会自动触发一次本机采集，采集结束后
+`scripts/radar/server/actions_refresh.py` 再触发一轮云端 Actions。改这块时：
+
+1. **必须触发计划任务，不能自己起采集进程。** 三条环境约束都实测确认过，缺一条就跑不通：
+   - **身份**：`RadarAdminServer` 是 `SYSTEM/ServiceAccount`，而 `DouyinCollectAndPush` 是
+     `beelink-pc/Interactive`。抖音采集要连用户会话里带登录态的专用 Chrome（CDP 9333），
+     SYSTEM 因会话隔离拿不到。
+   - **凭证**：推桥接仓库用用户自己的 git 凭证；SYSTEM 侧 PAT 仅对 `ai-news-radar` 有
+     Contents 权限，够不着 `douyin-bridge` / `wechat-bridge`。
+   - **路径**：脚本默认推导 `CrawlerRoot=<父目录>/MediaCrawler`，而 NUC 上实际是
+     `MediaCrawler-local-test`，该默认路径**根本不存在**。计划任务里已配好全部正确参数。
+
+2. **派发时机只能在「同步推送成功之后」，不能在「保存成功之后」。** 保存与同步是两个独立
+   HTTP 请求，前端保存完紧接着发同步请求。在保存阶段派发，采集拉起的浏览器与 MediaCrawler
+   会抢占资源，把紧随其后的 `git push` 拖过 Cloudflare 的 120 秒读超时，前端报
+   「推送失败: Failed to fetch」——而后端其实已经推送成功（2026-08-01 真实踩过）。
+   故保存只 `queue_pending_collect` 登记，同步确认推送成功后才 `flush_pending_collect`。
+
+3. **微信只能全量重采，禁止单号采集。** 桥接 JSONL 是**完整快照**，拿单个 feed 的结果去
+   覆盖会抹掉其它公众号的全部历史（见上文「清理历史条目的禁区」）。且线上配置里微信源的
+   `locator` 为空、没有稳定 `feed_id`，本就无法定位单号。抖音相反：`locator` 里存有
+   `sec_uid`，可以定向。
+
+4. **依赖：`DouyinCollectAndPush` 必须保留抖音、微信两条 action。** 本功能只触发一次任务
+   就覆盖两个渠道，靠的正是这个前提。谁把它改成一条 action，微信就会静默漏采。
+   运维侧的对应说明见 `docs/guides/douyin-cloud-pc-automation.md`。
+
+5. **只在「新增」时触发**：删除、停用、改名一律不触发，避免与历史清理逻辑产生任何交集。
+   停用后重新启用算新增（其历史可能已在停用时被清理）。本模块不触碰 `data/archive.json`。
+
+6. 云端刷新走 GitHub Contents API 在远端直接建提交（标记文件 `.bridge-refresh.json` 必须
+   放仓库根，`data/**` 会被 workflow 的 `paths-ignore` 忽略、触发不了）。**不要改用本地
+   git commit/push**——那会掉进上文 `sync_online_source_config` 的 git 编排禁区。

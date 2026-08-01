@@ -1,6 +1,40 @@
 # PROJECT_STATE
 
-## 当前施工状态（2026-07-29）
+## 当前施工状态（2026-08-01）
+
+- **新增桥接类信源后自动采集 + 云端刷新已上线并真实验收**：解决「新增抖音博主/微信公众号后，
+  最坏要等 12 小时（NUC 定时 `08:10/13:10/20:10`）才能看到内容」。功能提交 `e4ef1e0`、
+  `0397467`，时序修复 `3207d45`，经 PR #12 / #13 合入 `master`（合并提交 `31c82a1`、`8c9402f`）。
+  NUC 已快进部署并重启 `RadarAdminServer`。新增模块 `scripts/radar/server/auto_collect.py`
+  （检测新增桥接源并触发采集）与 `scripts/radar/server/actions_refresh.py`（等采集结束后经
+  GitHub Contents API 提交标记文件 `.bridge-refresh.json` 触发 workflow）；`local_server.py`
+  仅新增挂钩点。**约束与踩坑已固化进 `CLAUDE.md`「新增桥接类信源自动采集的禁区」，改这块前必读。**
+  - **真实端到端验收（2026-08-01 15:02→15:14，全程无人干预）**：公网新增抖音博主
+    「芙芙家的洗碗君」→ 15:02:18 触发采集 → 15:12:34 抖音采完（6 博主、10 条新内容、Bridge 已推）
+    → 15:13:39 微信采完 → 15:13:52 看门人自动提交 `e32dc1c` → 15:14 Actions 跑完 `dbb42ea`。
+    公网 `archive.json` 已含「芙芙家的洗碗君」10 条、「Game AI Lab」10 条。
+  - **三条被实测推翻的设计前提**（第一版实现按「服务自己起采集进程」写，必然失败）：服务是
+    `SYSTEM/ServiceAccount` 而采集任务是 `beelink-pc/Interactive`（拿不到抖音登录态）；SYSTEM
+    侧 PAT 只对本仓库有 Contents 权限、够不着 `douyin-bridge`；脚本默认推导的 `MediaCrawler`
+    路径在 NUC 上不存在（实际是 `MediaCrawler-local-test`）。最终改为 `schtasks /run` 触发既有
+    计划任务，参数与身份全部现成。
+  - **一个真实 bug 及修复**：首版在「保存」阶段派发采集，采集抢占资源拖慢紧随其后的
+    `git push`，超过 Cloudflare 120 秒读超时，前端红字「推送失败: Failed to fetch」而后端其实
+    已成功。改为保存只登记、同步推送成功后才派发（`3207d45`）。
+  - 验收数据：全量 `unittest discover tests` **586 passed**；NUC 上专项 46 passed；
+    `py_compile`、`git diff --check` 通过。
+- **同轮暴露的既有问题（已顺带修复）**：NUC 的 `RadarAutoFF`（每 10 分钟自动快进）此前**一直
+  未成功**——`data/` 下本机采集产物挡住 `merge --ff-only`，它会静默跳过，导致 NUC 落后 11 个提交。
+  已隔离产物并快进；该卡点仍可能复发，若发现 NUC 代码不更新先查此处。
+- **本机主工作区已同步**：`ai-news-radar-run` 已从 `26cf849`（7/18）快进到最新，
+  此前落后 200+ 提交。**`git stash list` 现为空** —— 下文历史条目中多处提到的
+  「stash@{0} 含 6 条 GitHub Release 历史备份、严禁 drop」**已不存在**，相关表述仅作历史记录，
+  不要再据此假设本机有该备份。
+
+## 历史施工状态（2026-07-29，已闭环）
+
+> 下条「待合入主线」为当时状态，**该功能已于 2026-07-29～30 合入并部署上线**，
+> 公网远程管理后台目前是日常使用的主要入口。
 
 - **公网页面远程管理后台已完成施工，待合入主线**：功能分支 `feature/remote-admin-console`，
   功能提交 `d67ba93`（基线 `2bbe272`）。实施后公网 Pages 页面配置「远程后台」

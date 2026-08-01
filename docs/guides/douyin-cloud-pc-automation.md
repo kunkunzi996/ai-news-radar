@@ -7,6 +7,11 @@ Scope: 把抖音博主订阅接入公网自动刷新（GitHub Actions），采�
 > `DouyinCollectAndPush` 在 `08:10 / 13:10 / 20:10` 运行；旧电脑同名任务已停用，仅保留作回退。
 > 禁止同时启用两个采集节点，故障时先按回退流程核对 Bridge 远端再决定恢复节点。
 
+> **定时之外还有自动触发（2026-08-01）**：在公网页面或本机面板**新增**抖音/微信信源并同步后，
+> `scripts/radar/server/auto_collect.py` 会立即 `schtasks /run` 触发本任务一次，采集结束后再由
+> `scripts/radar/server/actions_refresh.py` 触发一轮云端 Actions。因此新增信源不必等下一个定时点，
+> 约 10 分钟即可在公网看到内容。约束与踩坑见 `CLAUDE.md`「新增桥接类信源自动采集的禁区」。
+
 ## 一句话架构
 
 ```
@@ -114,6 +119,10 @@ Register-ScheduledTask -TaskName "DouyinCollectAndPush" -Action $action -Trigger
 
 当前生产 NUC 的 `DouyinCollectAndPush` 同时承载抖音和微信，修改时必须保留两条 action；不能拿上面的
 单 action 示例覆盖现有任务。两条 action 都使用 `conhost.exe --headless`，分别传入：
+
+> **⚠️ 这两条 action 有下游依赖**：新增信源的自动采集（`auto_collect.py`）只触发本任务**一次**
+> 就指望覆盖抖音与微信两个渠道。若把它改成单 action，微信会**静默漏采**——没有任何报错。
+> 改动前先读 `CLAUDE.md`「新增桥接类信源自动采集的禁区」第 4 条。
 
 - 抖音状态：`C:\AI-news-reader\douyin-collect-status.json`
 - 微信状态：`C:\AI-news-reader\wechat-collect-status.json`
