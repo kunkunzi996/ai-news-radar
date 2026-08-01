@@ -27,9 +27,18 @@
   未成功**——`data/` 下本机采集产物挡住 `merge --ff-only`，它会静默跳过，导致 NUC 落后 11 个提交。
   已隔离产物并快进；该卡点仍可能复发，若发现 NUC 代码不更新先查此处。
 - **本机主工作区已同步**：`ai-news-radar-run` 已从 `26cf849`（7/18）快进到最新，
-  此前落后 200+ 提交。**`git stash list` 现为空** —— 下文历史条目中多处提到的
-  「stash@{0} 含 6 条 GitHub Release 历史备份、严禁 drop」**已不存在**，相关表述仅作历史记录，
-  不要再据此假设本机有该备份。
+  此前落后 200+ 提交。
+- **`git stash list` 曾显示为空，2026-08-01 查清：是账本丢失，不是数据丢失**（已恢复显示）。
+  `stash list` 读的是 reflog（`.git/logs/refs/stash`）而非 `refs/stash` 本身；当时该 reflog 文件
+  丢失，而 `refs/stash` 本体一直在 `.git/packed-refs` 里指向 `0e94dbf`「On master: 收尾前保护：
+  本机旧数据与临时文件（2026-07-18）」。已手工重建 reflog。**当前实有 1 个 stash**（旧文档里
+  「两份/三份保护存档」的说法已作废，见下文「本机保护存档」订正）。
+  - 那 6 条 GitHub Release 历史（`github_foundation_sunshine_releases` / AlkaidLab）**没丢，
+    且已提交进版本库**：工作区 / 本机 HEAD / `origin/master` 三处 `data/archive.json` 实测均为
+    6 条，无未提交改动。「stash 是唯一备份」这个旧前提早已作废，现存 stash 里反而 **0 条**该记录。
+  - 清理前的**完整 70 条**在提交 `d85b916^`（`d85b916` =「数据：清理已退订信源
+    AlkaidLab/foundation-sunshine 的 14 条历史条目」）。找回用 `git show d85b916^:data/archive.json`。
+  - ⚠️ `d85b916` 是**不可达提交**，`git gc --prune=now` 会清掉那 70 条备份 —— 本仓库勿随手 gc。
 
 ## 历史施工状态（2026-07-29，已闭环）
 
@@ -41,7 +50,9 @@
   （API 地址 + 管理令牌）即可直接增删改查订阅源，NUC 上 local_server 只绑回环、
   经 Cloudflare 命名隧道暴露。实施计划：`计划/2026-07-29-订阅源管理合并入公网页面实施计划.md`。
   验收：新增 19 个 pytest 用例全过；全量测试 FAILED 清单与未改动 HEAD 基线**完全一致**
-  （84 个失败系本机 git 环境型——`refs/remotes` 引用写入不落盘，基线同挂，非本次引入）；
+  （84 个失败系本机 git 环境型——`refs/remotes` 引用写入不落盘，基线同挂，非本次引入；
+  ⚠️ 该「环境型」归因于 2026-08-01 查明为**单分支 refspec**所致、与 git 版本无关，且已修复，
+  见本文件 2026-08-01 段与 `HANDOFF.md`，该批测试可重跑）；
   真实浏览器验收通过：跨域连接、令牌持久化、线上信源读取、失败安全（环境故障时
   保存请求熔断且文件零污染）。**因本机 git 环境故障，「真实变更保存」的浏览器端到端
   路径未能走通**（保存事务的 `master@{upstream}` 预检必挂）；该路径为既有生产代码、
@@ -49,10 +60,17 @@
 - **预埋 bug 修复**：`process_is_running` 改字节匹配，根治中文进程名导致 tasklist
   GBK 解码异常只发生在读取线程、`stdout=None`、`/api/local-status` 500 的问题
   （本机陈旧 pid 被中文名进程复用时必现；NUC 迟早会踩）。
-- **本机 git 环境告警**：本机 git 2.54.0.windows.1（vendored 与系统两份同版本）出现
+- ~~**本机 git 环境告警**：本机 git 2.54.0.windows.1（vendored 与系统两份同版本）出现
   `refs/remotes/*` 及部分 `refs/heads/*` 写入间歇性不落盘，导致线上同步事务预检
   （`master@{upstream}`）与 84 个 git 事务测试全部失败；提交/分支操作需手工钉 ref。
-  NUC 部署前必须先确认 NUC 的 git 无此问题。
+  NUC 部署前必须先确认 NUC 的 git 无此问题。~~
+  **↑ 该告警已于 2026-08-01 撤销：归因是错的，问题已修复。** 真因与 git 版本、杀软、文件系统
+  均无关，而是本机这份仓库为浅克隆（`.git/shallow` 存在，隐含 `--single-branch`），`.git/config`
+  的取货清单被写死成 `fetch = +refs/heads/master:refs/remotes/origin/master` —— 只认 master，
+  其余分支 `fetch` 压根没去问。修复即一行 `git config --replace-all remote.origin.fetch
+  "+refs/heads/*:refs/remotes/origin/*"` 后重新 fetch；验收 `git branch -r`（排除 `HEAD ->`）
+  = `git ls-remote --heads origin | wc -l` = 7，且在「新增分支 / master 前进 / 删除分支」三种
+  场景下均正确同步。**「手工钉 ref」的绕行做法就此废止**，NUC 也不需要再做此项排查。
 
 ## 当前施工状态（2026-07-26）
 
@@ -121,6 +139,9 @@
   但整份存档仍不得自动丢弃。此前旧数据、临时截图和实测脚本当前为 `stash@{1}`，6 条 GitHub Release
   历史的唯一备份当前为 `stash@{2}`，同样严禁丢弃。stash 编号会随新存档变化，下一轮必须先用
   `git stash list` 按名称核对，再逐个恢复。
+  ⚠️ **以上三份 stash 的描述已于 2026-08-01 作废**：现在只剩 1 份（`0e94dbf`），且那 6 条
+  GitHub Release 已提交进版本库、不再依赖任何 stash。以本文件 2026-08-01 段和 `HANDOFF.md`
+  「本机保护存档」节为准，本段仅作历史记录。
 
 - **2026-07-18 工作台收藏桥（雷达侧）已合入并推送 `master`**：功能提交为
   `4badc1b 功能：接入工作台收藏桥`，隔离 worktree 为

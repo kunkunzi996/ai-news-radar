@@ -119,6 +119,28 @@ GitHub 只能走独立的稳定 repo ID 契约，不能进入名称型订阅清�
 6. 两个信源文件只能从 L 单向一步到 M；任何先退回 B、`git merge --ff-only` 或让用户短暂看到基线的中间态都是缺陷。
 7. 以 `git restore` 检出 C 中的路径前，未跟踪 `data/**` 碰撞预检是防止静默覆盖的必需门禁，必须在推送前和实际检出前各执行一次。
 
+## 本机 git 仓库维护禁区
+
+1. **本仓库禁止随手跑 `git gc --prune=now` / `git prune`。** 被误删的 70 条
+   `github_foundation_sunshine_releases` 历史唯一的完整副本挂在**不可达提交** `d85b916^` 上
+   （`d85b916` =「数据：清理已退订信源 AlkaidLab/foundation-sunshine 的 14 条历史条目」），
+   gc 会把它连同其它不可达对象一起清掉。要找回用
+   `git show d85b916^:data/archive.json`，不要去翻 stash（现存 stash 里 0 条）。
+2. **`git stash list` 显示为空 ≠ stash 丢了。** `stash list` 读的是 reflog
+   （`.git/logs/refs/stash`），不是 `refs/stash` 本身。先查
+   `grep -i stash .git/packed-refs` 确认本体在不在，再谈丢没丢（2026-08-01 真踩过：
+   reflog 文件丢失，list 空，但数据完好）。重建 reflog 时注意 `git update-ref --create-reflog`
+   与 `git stash store` 在新旧 ref 值相同时**会报成功却什么都不写**（被判定为空操作），
+   只能手写该文件，字段间单空格、message 前是 tab、行尾 LF。
+3. **遇到「`fetch` 不报错但 remote-tracking ref 不落盘」，第一件事查
+   `git config --get-all remote.origin.fetch`**，别先怀疑 git 版本、杀软或文件系统。
+   2026-08-01 查明真因是浅克隆隐含 `--single-branch` 留下的
+   `+refs/heads/master:refs/remotes/origin/master`（只认 master）。修复为改成
+   `+refs/heads/*:refs/remotes/origin/*` 后重新 fetch。**历史文档里「git 2.54.0.windows.1
+   吞 refs」「提交后手工钉 ref」的表述全部作废。**
+4. 本仓库仍是**浅克隆**（`.git/shallow` 存在）。当前分支点都在浅克隆边界内，`--merged`
+   判断可信；若将来对比很老的分支、结果可疑，再跑 `git fetch --unshallow`。
+
 ## 新增数据源必查清单
 
 新增一种数据源 `type` 时，除了 fetcher 本身，以下几处漏一个都会出问题（均已真实踩过）：
