@@ -48,3 +48,6 @@ test-results/
 bilibili-account-preview.html
 server.err.log
 server.out.log
+
+# Local runtime logs (含新增信源后自动采集的派发状态与日志)
+logs/
