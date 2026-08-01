@@ -38,10 +38,14 @@ from __future__ import annotations
 import json
 import os
 import subprocess
+import threading
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
+
+from scripts.radar.server import actions_refresh as _actions_refresh
 
 # 桥接类信源：这两种 type 的内容不由云端 Actions 采集，只能读本机推送的 JSONL。
 DOUYIN_SOURCE_TYPE = "mediacrawler_jsonl"
@@ -219,11 +223,28 @@ def append_status(root_dir: Path, entry: dict[str, Any]) -> None:
         return
 
 
+def start_refresh_watcher(root_dir: Path, reason: dict[str, Any]) -> threading.Thread:
+    """起守护线程：等采集真正结束后，触发一次云端 Actions 刷新。
+
+    必须是后台线程——采集要跑几分钟，而本函数处在 HTTP 保存请求的调用栈上。
+    守护线程随服务退出而消失；那种情况下放弃刷新即可，下一轮定时 Actions 兜底。
+    """
+    thread = threading.Thread(
+        target=_actions_refresh.wait_then_refresh,
+        args=(root_dir, datetime.now(timezone.utc), reason),
+        name="bridge-refresh-watcher",
+        daemon=True,
+    )
+    thread.start()
+    return thread
+
+
 def dispatch_bridge_collect(
     root_dir: Path,
     detected: dict[str, Any],
     *,
     execute: bool = True,
+    watch: bool = True,
 ) -> dict[str, Any]:
     """按检测结果触发一次本机采集计划任务。
 
@@ -263,6 +284,14 @@ def dispatch_bridge_collect(
     if completed.returncode != 0:
         # 常见于任务已在运行；保留原始输出便于排查，但不作为错误上抛。
         result["error"] = (completed.stderr or completed.stdout or "").strip()[:500]
+    if result["triggered"] and watch:
+        # 采集异步进行，结束后才有新数据可推；看门人负责那一刻的云端刷新。
+        try:
+            start_refresh_watcher(root_dir, result["reason"])
+            result["watching"] = True
+        except Exception as exc:  # noqa: BLE001 - 刷新是锦上添花，不能影响采集
+            result["watching"] = False
+            result["watch_error"] = str(exc)[:200]
     append_status(root_dir, {**result, "ok": result["triggered"]})
     return result
 
@@ -273,6 +302,7 @@ def handle_saved_config(
     current_config: Any,
     *,
     execute: bool = True,
+    watch: bool = True,
 ) -> dict[str, Any]:
     """保存成功后的入口：检测新增桥接源并触发一次采集。
 
@@ -282,4 +312,4 @@ def handle_saved_config(
     detected = detect_added_bridge_sources(previous_config, current_config)
     if not has_pending_work(detected):
         return {"triggered": False, "reason": None}
-    return dispatch_bridge_collect(root_dir, detected, execute=execute)
+    return dispatch_bridge_collect(root_dir, detected, execute=execute, watch=watch)

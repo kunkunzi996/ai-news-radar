@@ -140,7 +140,7 @@ class DispatchTriggerTests(unittest.TestCase):
         # 计划任务本身含抖音与微信两个动作，触发一次即可，不按渠道重复触发。
         detected = {"douyin_sec_uids": [DOUYIN_SEC_UID], "wechat_added": True, "added_names": ["A", "B"]}
         with patch.object(auto_collect, "_trigger", return_value=completed()) as trigger:
-            result = auto_collect.dispatch_bridge_collect(self.root, detected, execute=True)
+            result = auto_collect.dispatch_bridge_collect(self.root, detected, execute=True, watch=False)
         self.assertEqual(trigger.call_count, 1)
         self.assertTrue(result["triggered"])
 
@@ -155,7 +155,7 @@ class DispatchTriggerTests(unittest.TestCase):
     def test_no_work_does_not_trigger(self):
         detected = {"douyin_sec_uids": [], "wechat_added": False, "added_names": []}
         with patch.object(auto_collect, "_trigger") as trigger:
-            result = auto_collect.dispatch_bridge_collect(self.root, detected, execute=True)
+            result = auto_collect.dispatch_bridge_collect(self.root, detected, execute=True, watch=False)
         trigger.assert_not_called()
         self.assertFalse(result["triggered"])
 
@@ -163,7 +163,7 @@ class DispatchTriggerTests(unittest.TestCase):
         # 任务已在运行时 schtasks 返回非零：记录即可，不重试（那轮同样会采到新源）。
         detected = {"douyin_sec_uids": [DOUYIN_SEC_UID], "wechat_added": False, "added_names": []}
         with patch.object(auto_collect, "_trigger", return_value=completed(1, stderr="already running")) as trigger:
-            result = auto_collect.dispatch_bridge_collect(self.root, detected, execute=True)
+            result = auto_collect.dispatch_bridge_collect(self.root, detected, execute=True, watch=False)
         self.assertEqual(trigger.call_count, 1)
         self.assertFalse(result["triggered"])
         self.assertIn("already running", result["error"])
@@ -171,7 +171,7 @@ class DispatchTriggerTests(unittest.TestCase):
     def test_trigger_exception_is_swallowed(self):
         detected = {"douyin_sec_uids": [DOUYIN_SEC_UID], "wechat_added": False, "added_names": []}
         with patch.object(auto_collect, "_trigger", side_effect=OSError("schtasks missing")):
-            result = auto_collect.dispatch_bridge_collect(self.root, detected, execute=True)
+            result = auto_collect.dispatch_bridge_collect(self.root, detected, execute=True, watch=False)
         self.assertFalse(result["triggered"])
         self.assertIn("schtasks missing", result["error"])
 
@@ -182,7 +182,7 @@ class DispatchTriggerTests(unittest.TestCase):
             "added_names": ["新博主"],
         }
         with patch.object(auto_collect, "_trigger", return_value=completed()):
-            auto_collect.dispatch_bridge_collect(self.root, detected, execute=True)
+            auto_collect.dispatch_bridge_collect(self.root, detected, execute=True, watch=False)
         path = auto_collect.status_path(self.root)
         self.assertTrue(path.exists())
         self.assertEqual(path.parent.name, "logs")
@@ -191,11 +191,38 @@ class DispatchTriggerTests(unittest.TestCase):
         self.assertTrue(payload["runs"][0]["ok"])
         self.assertEqual(payload["runs"][0]["reason"]["added_names"], ["新博主"])
 
+    def test_watcher_started_only_when_trigger_succeeded(self):
+        detected = {"douyin_sec_uids": [DOUYIN_SEC_UID], "wechat_added": False, "added_names": ["新博主"]}
+        with patch.object(auto_collect, "_trigger", return_value=completed()), \
+                patch.object(auto_collect, "start_refresh_watcher") as watcher:
+            result = auto_collect.dispatch_bridge_collect(self.root, detected, execute=True, watch=True)
+        watcher.assert_called_once()
+        # 看门人拿到的必须是触发原因，后面要写进标记文件供追溯。
+        self.assertEqual(watcher.call_args[0][1]["added_names"], ["新博主"])
+        self.assertTrue(result["watching"])
+
+    def test_watcher_not_started_when_task_was_busy(self):
+        detected = {"douyin_sec_uids": [DOUYIN_SEC_UID], "wechat_added": False, "added_names": []}
+        with patch.object(auto_collect, "_trigger", return_value=completed(1, stderr="already running")), \
+                patch.object(auto_collect, "start_refresh_watcher") as watcher:
+            auto_collect.dispatch_bridge_collect(self.root, detected, execute=True, watch=True)
+        watcher.assert_not_called()
+
+    def test_watcher_failure_does_not_break_dispatch(self):
+        detected = {"douyin_sec_uids": [DOUYIN_SEC_UID], "wechat_added": False, "added_names": []}
+        with patch.object(auto_collect, "_trigger", return_value=completed()), \
+                patch.object(auto_collect, "start_refresh_watcher", side_effect=RuntimeError("no thread")):
+            result = auto_collect.dispatch_bridge_collect(self.root, detected, execute=True, watch=True)
+        # 采集已经触发成功，看门人起不来不能反过来判它失败。
+        self.assertTrue(result["triggered"])
+        self.assertFalse(result["watching"])
+        self.assertIn("no thread", result["watch_error"])
+
     def test_status_history_is_capped(self):
         detected = {"douyin_sec_uids": [DOUYIN_SEC_UID], "wechat_added": False, "added_names": []}
         with patch.object(auto_collect, "_trigger", return_value=completed()):
             for _ in range(auto_collect.STATUS_HISTORY_LIMIT + 5):
-                auto_collect.dispatch_bridge_collect(self.root, detected, execute=True)
+                auto_collect.dispatch_bridge_collect(self.root, detected, execute=True, watch=False)
         payload = json.loads(auto_collect.status_path(self.root).read_text(encoding="utf-8"))
         self.assertEqual(len(payload["runs"]), auto_collect.STATUS_HISTORY_LIMIT)
 
