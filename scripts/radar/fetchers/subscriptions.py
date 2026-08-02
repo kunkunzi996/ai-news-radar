@@ -55,6 +55,7 @@ from scripts.radar.common import (
     parse_date_any,
     parse_feed_entries_via_xml,
 )
+from scripts.radar.github_importance import score_github_commit, score_github_release
 
 try:
     import feedparser
@@ -210,7 +211,10 @@ def fetch_github_repo_subscription(
     source_id: str = "",
     managed_repo_id: int | str | None = None,
     deadline: float | None = None,
+    result_meta: dict[str, Any] | None = None,
 ) -> list[RawItem]:
+    if result_meta is not None:
+        result_meta["skip_reason"] = ""
     fetch_count = GITHUB_REPO_SUBSCRIPTION_BACKFILL_MAX_ITEMS if first_collect_backfill else int(max_items or 1)
     params = {"per_page": max(1, min(100, fetch_count))}
     headers = {
@@ -227,6 +231,7 @@ def fetch_github_repo_subscription(
 
     out: list[RawItem] = []
     seen: set[str] = set()
+    structurally_valid_releases = 0
     repo_identity = _github_repo_identity(
         managed_repo_id=managed_repo_id,
         source_id=source_id,
@@ -243,17 +248,25 @@ def fetch_github_repo_subscription(
             display_name=display_name,
             repo_identity=repo_identity,
         )
-        if item is None or item.url in seen:
+        if item is None:
+            if release.get("draft"):
+                structurally_valid_releases += 1
+            continue
+        structurally_valid_releases += 1
+        if not score_github_release(release).visible or item.url in seen:
             continue
         seen.add(item.url)
         out.append(item)
 
-    if payload and not out:
+    if payload and structurally_valid_releases == 0:
         raise ValueError("github_releases_invalid_response")
+    if payload and not out and result_meta is not None:
+        result_meta["skip_reason"] = "no_important_update"
     if not payload:
+        commits_url = _github_commits_url(api_url)
         commit_payload = _github_get_json(
             session,
-            _github_commits_url(api_url),
+            commits_url,
             params={"per_page": 1},
             headers=headers,
             deadline=deadline,
@@ -275,6 +288,27 @@ def fetch_github_repo_subscription(
             )
             if not sha or timestamp is None:
                 raise ValueError("github_commit_timestamp_invalid" if sha else "github_commit_invalid_response")
+            summary_decision = score_github_commit(commit)
+            if summary_decision.rejected_reason != "missing_product_code":
+                if result_meta is not None:
+                    result_meta["skip_reason"] = "no_important_update"
+                return []
+            commit_detail = _github_get_json(
+                session,
+                f"{commits_url}/{sha}",
+                params=None,
+                headers=headers,
+                deadline=deadline,
+            )
+            if not isinstance(commit_detail, dict):
+                raise ValueError("github_commit_detail_invalid_response")
+            detail_sha = str(commit_detail.get("sha") or "").strip()
+            if detail_sha and detail_sha != sha:
+                raise ValueError("github_commit_detail_identity_mismatch")
+            if not score_github_commit(commit_detail).visible:
+                if result_meta is not None:
+                    result_meta["skip_reason"] = "no_important_update"
+                return []
             url = str(commit.get("html_url") or "").strip() or f"https://github.com/{repo_label}/commit/{sha}"
             title = f"{repo_label} 提交: {message}"
             out.append(
@@ -295,6 +329,8 @@ def fetch_github_repo_subscription(
                     },
                 )
             )
+        elif result_meta is not None:
+            result_meta["skip_reason"] = "empty_repository"
     if first_collect_backfill:
         out = trim_first_collect_backfill_items(out, now, keep_latest=int(max_items or 1))
     return out

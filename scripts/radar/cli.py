@@ -99,6 +99,7 @@ from scripts.radar.fetchers.waytoagi import (
     fetch_waytoagi_recent_7d,
     waytoagi_updates_to_raw_items,
 )
+from scripts.radar.github_importance import github_archive_record_is_reader_visible
 from scripts.radar.pipeline import (
     add_bilingual_fields,
     add_source_tier_fields,
@@ -432,6 +433,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
                 # 首采的仓库回填更多历史 release，之后恢复常规上限。
                 github_source_key = (GITHUB_REPO_SUBSCRIPTION_SITE_ID, display_name or "GitHub版本订阅")
                 github_first_collect = github_source_key not in existing_source_keys
+                github_result_meta: dict[str, Any] = {}
                 items = fetch_github_repo_subscription(
                     github_session,
                     now,
@@ -443,6 +445,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
                     source_id=subscription.get("id") or "",
                     managed_repo_id=subscription.get("managed_repo_id"),
                     deadline=github_deadline,
+                    result_meta=github_result_meta,
                 )
                 github_repo_items.extend(items)
                 github_status_children.append(
@@ -452,7 +455,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
                         "ok": True,
                         "item_count": len(items),
                         "source_kind": (items[0].meta.get("github_source_kind") if items else "github_release_subscription"),
-                        "skip_reason": "empty_repository" if not items else "",
+                        "skip_reason": str(github_result_meta.get("skip_reason") or ""),
                         "error_code": "",
                         "duration_ms": int((time.perf_counter() - child_start) * 1000),
                         "first_collect_backfill": github_first_collect,
@@ -1249,6 +1252,11 @@ def enrich_stage(session: Any, ctx: RunContext, collected: CollectStageResult, m
     latest_items_all: list[dict[str, Any]] = []
     for record in archive.values():
         if active_source_ids is not None and str(record.get("site_id") or "") not in active_source_ids:
+            continue
+        if (
+            str(record.get("site_id") or "") == GITHUB_REPO_SUBSCRIPTION_SITE_ID
+            and not github_archive_record_is_reader_visible(record)
+        ):
             continue
         if not all_time and not parse_iso(record.get("published_at")):
             continue

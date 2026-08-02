@@ -371,7 +371,7 @@ TTL、cursor 或 GitHub 登录态；绑定记录保存数字 `account_id`，托�
 
 - 只支持单个 GitHub 账号，最多处理 50 个公开星标；出现第 51 个公开星标时整次中止。
 - 非公开仓库只计入跳过数量，不展示名称、URL 或 id。
-- Release 优先；没有 Release 时才读取公开 commit，并按稳定仓库身份每天 UTC 最多保留一个最新 commit 快照。
+- GitHub 更新使用独立的重大更新可信度门禁（满分 100，70 分展示）：预发布、纯文档/测试/CI/格式/依赖更新直接隐藏；正式主/次版本优先，补丁版本需由发布说明证明有重大功能。没有 Release 时，只在 commit 同时具备功能意图和实质产品代码证据时展示。
 - 取消星标先经过两个不同 Actions 运行的非空完整快照确认，才会自动停用托管源；默认不删历史。
   GitHub 历史清理默认 `off`，必须先 `audit` 审核候选，再以本轮一次性审批摘要进入 `on`；它只按稳定数字
   repo ID 精确处理，改名、空快照、旧状态或身份覆盖不全都会熔断。
@@ -582,8 +582,10 @@ $env:MEDIACRAWLER_XHS_SOURCE_NAME='陈抱一'
 默认 24 小时范围同样会在采集完成后写出 24h 命中统计，状态卡会显示
 “24h作品”和“原始写入”两个数字；需要补历史时先把页面采集范围切到“全量”。
 
-GitHub 版本订阅默认追踪 `AlkaidLab/foundation-sunshine` 最近 5 次公开 release，
-不再追踪普通 commit。它不需要 token，也不会调用 GitHub 登录态。刷新后它会进入
+GitHub 版本订阅默认以 `AlkaidLab/foundation-sunshine` 作为无配置时的兜底项目，并支持线上配置中的
+多个 GitHub 项目。它只展示 70 分以上的正式大版本或大功能更新；预发布和普通维护更新会被隐藏。
+仓库没有 Release 时，只有经 commit 详情证明同时具备功能意图和实质产品代码改动的大功能才会展示。
+它不需要用户登录 GitHub；线上 Actions 可使用自身 `GITHUB_TOKEN` 提高公开 API 限额。刷新后它会进入
 主页面“我的订阅”栏目，并在 `data/source-status.json` 里显示为
 `github_foundation_sunshine_releases`。
 

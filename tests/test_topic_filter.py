@@ -1303,7 +1303,7 @@ class TopicFilterTests(unittest.TestCase):
         self.assertEqual(items[1].title, "上限锁死了")
         self.assertEqual(session.calls[1][1]["params"]["limit"], 2)
 
-    def test_fetch_github_repo_subscription_parses_recent_releases(self):
+    def test_fetch_github_repo_subscription_keeps_major_release_and_drops_prerelease(self):
         class FakeResponse:
             def raise_for_status(self):
                 return None
@@ -1311,17 +1311,17 @@ class TopicFilterTests(unittest.TestCase):
             def json(self):
                 return [
                     {
-                        "tag_name": "v2026.630.112658.杂鱼",
-                        "name": "v2026.630.112658.杂鱼",
-                        "html_url": "https://github.com/AlkaidLab/foundation-sunshine/releases/tag/v2026.630.112658.%E6%9D%82%E9%B1%BC",
+                        "tag_name": "v2.0.0-rc.1",
+                        "name": "v2.0.0-rc.1",
+                        "html_url": "https://github.com/AlkaidLab/foundation-sunshine/releases/tag/v2.0.0-rc.1",
                         "published_at": "2026-06-30T11:48:06Z",
                         "draft": False,
                         "prerelease": True,
                     },
                     {
-                        "tag_name": "v2026.611.71453.杂鱼",
-                        "name": "v2026.611.71453.杂鱼",
-                        "html_url": "https://github.com/AlkaidLab/foundation-sunshine/releases/tag/v2026.611.71453.%E6%9D%82%E9%B1%BC",
+                        "tag_name": "v2.0.0",
+                        "name": "Partner 2.0.0",
+                        "html_url": "https://github.com/AlkaidLab/foundation-sunshine/releases/tag/v2.0.0",
                         "published_at": "2026-06-11T07:32:35Z",
                         "draft": False,
                         "prerelease": False,
@@ -1340,14 +1340,13 @@ class TopicFilterTests(unittest.TestCase):
         session = FakeSession()
         items = fetch_github_repo_subscription(session, now)
 
-        self.assertEqual(len(items), 2)
+        self.assertEqual(len(items), 1)
         self.assertEqual(items[0].site_id, "github_foundation_sunshine_releases")
         self.assertEqual(items[0].source, "GitHub版本订阅")
-        self.assertIn("预发布: v2026.630.112658.杂鱼", items[0].title)
-        self.assertEqual(items[0].meta["tag_name"], "v2026.630.112658.杂鱼")
-        self.assertTrue(items[0].meta["prerelease"])
-        self.assertEqual(items[1].published_at, datetime.fromisoformat("2026-06-11T07:32:35+00:00"))
-        self.assertFalse(items[1].meta["prerelease"])
+        self.assertIn("正式发布: Partner 2.0.0", items[0].title)
+        self.assertEqual(items[0].meta["tag_name"], "v2.0.0")
+        self.assertFalse(items[0].meta["prerelease"])
+        self.assertEqual(items[0].published_at, datetime.fromisoformat("2026-06-11T07:32:35+00:00"))
         self.assertEqual(session.calls[0][1]["params"]["per_page"], 5)
 
     def test_fetch_github_repo_subscription_uses_display_name_as_source(self):
@@ -1429,17 +1428,28 @@ class TopicFilterTests(unittest.TestCase):
                 self.calls.append((url, kwargs))
                 if url.endswith("/releases"):
                     return FakeResponse([])
-                return FakeResponse([
-                    {
-                        "sha": "a" * 40,
-                        "html_url": "https://github.com/example/repo/commit/" + "a" * 40,
-                        "commit": {
-                            "message": "最新提交\n\n详细说明",
-                            "committer": {"date": "2026-07-15T12:00:00Z"},
-                            "author": {"date": "2026-07-15T11:00:00Z"},
-                        },
-                    }
-                ])
+                payload = {
+                    "sha": "a" * 40,
+                    "html_url": "https://github.com/example/repo/commit/" + "a" * 40,
+                    "commit": {
+                        "message": "feat!: launch workspace automation\n\nAdd the first workspace runner.",
+                        "committer": {"date": "2026-07-15T12:00:00Z"},
+                        "author": {"date": "2026-07-15T11:00:00Z"},
+                    },
+                }
+                if url.endswith("/commits"):
+                    return FakeResponse([payload])
+                return FakeResponse({
+                    **payload,
+                    "stats": {"total": 40, "additions": 35, "deletions": 5},
+                    "files": [{
+                        "filename": "src/workspace_runner.py",
+                        "status": "added",
+                        "changes": 40,
+                        "additions": 35,
+                        "deletions": 5,
+                    }],
+                })
 
         session = FakeSession()
         items = fetch_github_repo_subscription(
@@ -1453,13 +1463,57 @@ class TopicFilterTests(unittest.TestCase):
         self.assertEqual([call[0] for call in session.calls], [
             "https://api.github.com/repos/example/repo/releases",
             "https://api.github.com/repos/example/repo/commits",
+            "https://api.github.com/repos/example/repo/commits/" + "a" * 40,
         ])
         self.assertEqual(len(items), 1)
-        self.assertEqual(items[0].title, "example/repo 提交: 最新提交")
+        self.assertEqual(items[0].title, "example/repo 提交: feat!: launch workspace automation")
         self.assertEqual(items[0].meta["github_source_kind"], "commit_fallback")
         self.assertEqual(items[0].meta["github_entry_identity"], "commit:" + "a" * 40)
         self.assertEqual(items[0].meta["github_repo_identity"], "online_github_manual_abc")
         self.assertEqual(items[0].meta["commit_sha"], "a" * 40)
+
+    def test_github_low_confidence_commit_is_hidden(self):
+        class FakeResponse:
+            def __init__(self, payload):
+                self.payload = payload
+
+            def raise_for_status(self):
+                return None
+
+            def json(self):
+                return self.payload
+
+        class FakeSession:
+            def get(self, url, **kwargs):
+                if url.endswith("/releases"):
+                    return FakeResponse([])
+                payload = {
+                    "sha": "b" * 40,
+                    "html_url": "https://github.com/example/repo/commit/" + "b" * 40,
+                    "commit": {
+                        "message": "update README",
+                        "committer": {"date": "2026-07-15T12:00:00Z"},
+                    },
+                }
+                if url.endswith("/commits"):
+                    return FakeResponse([payload])
+                return FakeResponse({
+                    **payload,
+                    "stats": {"total": 300, "additions": 300, "deletions": 0},
+                    "files": [{"filename": "README.md", "status": "modified", "changes": 300}],
+                })
+
+        result_meta = {}
+        items = fetch_github_repo_subscription(
+            FakeSession(),
+            datetime.fromisoformat("2026-07-16T00:00:00+00:00"),
+            api_url="https://api.github.com/repos/example/repo/releases",
+            repo_label="example/repo",
+            result_meta=result_meta,
+        )
+
+        self.assertEqual(items, [])
+        self.assertEqual(result_meta, {"skip_reason": "no_important_update"})
 
     def test_github_empty_commit_response_is_a_normal_empty_repository(self):
         class FakeResponse:
@@ -1473,13 +1527,16 @@ class TopicFilterTests(unittest.TestCase):
             def get(self, url, **kwargs):
                 return FakeResponse()
 
+        result_meta = {}
         items = fetch_github_repo_subscription(
             FakeSession(),
             datetime.fromisoformat("2026-07-16T00:00:00+00:00"),
             api_url="https://api.github.com/repos/example/repo/releases",
             repo_label="example/repo",
+            result_meta=result_meta,
         )
         self.assertEqual(items, [])
+        self.assertEqual(result_meta, {"skip_reason": "empty_repository"})
 
     def test_github_session_has_no_automatic_retries(self):
         session = create_github_session()

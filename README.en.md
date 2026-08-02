@@ -240,7 +240,7 @@ Preview and requires an explicit confirmation before Apply.
 
 - One GitHub account is supported, with at most 50 public stars; the 51st public star aborts the entire run.
 - Private repositories contribute only to a skipped count; their names, URLs, and ids are never shown.
-- Releases are preferred. Only when a repository has no Release does the fetcher read public commits, keeping at most one newest commit snapshot per stable repository identity per UTC day.
+- GitHub updates pass a dedicated 70/100 high-confidence gate. Pre-releases and docs/test/CI/format/dependency-only updates are hidden. Stable major/minor releases are preferred; patch releases need strong feature notes. Repositories without Releases show a commit only when its message states feature intent and its commit details prove substantive product-code changes.
 - Unstarring only disables the managed source. It does not delete the source or trigger pending purge; history ages out under `archive_days`.
 - The UI reports `no_change`, `pushed`, `saved_not_committed`, and `committed_not_pushed`, plus partial/deferred, stale, and Recovery states.
 - Apply pushes only an exact operation commit proven by its manifest, operation trailer, stable patch-id, and file hashes; it never uses a bare `git push` or whole-worktree restore.

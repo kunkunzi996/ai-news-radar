@@ -220,10 +220,14 @@ baseline, then let the aggregator layer add breadth.
   Generated public URLs strip `xsec_token` / `xsec_source` style session
   parameters. The parsed notes enter the same self-media lane as Bilibili,
   TikHub creator/search, and the MediaCrawler Douyin bridge.
-- **AlkaidLab/foundation-sunshine GitHub releases**: supported as a public repo
-  version subscription through the GitHub Releases API. It fetches only the
-  latest five public releases, needs no token, and appears in the same
-  `我的订阅` lane as the accepted creator sources.
+- **GitHub repository updates**: supported as public version subscriptions through
+  the GitHub Releases and Commits APIs. Reader-visible updates must pass a
+  deterministic 70/100 confidence gate: pre-releases and maintenance-only noise
+  are hidden; stable major/minor releases pass directly, while patch releases need
+  strong feature notes. Repositories without Releases expose a commit only when
+  feature intent and product-code scope independently confirm a major capability.
+  `AlkaidLab/foundation-sunshine` remains the no-config fallback, and accepted
+  updates appear in the `我的订阅` lane.
 - **Maobidao WeChat public-account backup**: supported as a public backup-site
   subscription through the Discourse category JSON at
   `https://wudaolu.com/c/dav/7.json`. It fetches only the latest two public

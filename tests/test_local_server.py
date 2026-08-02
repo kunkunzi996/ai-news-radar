@@ -2382,6 +2382,22 @@ class LocalServerTests(unittest.TestCase):
         )
         self.assertEqual(issues, [])
 
+    def test_github_no_important_update_does_not_create_zero_item_warning(self):
+        issues = maintenance_issues_from_status(
+            {
+                "sites": [
+                    {
+                        "site_id": "github_foundation_sunshine_releases",
+                        "site_name": "GitHub Release",
+                        "ok": True,
+                        "item_count": 0,
+                        "skip_reason": "no_important_update",
+                    }
+                ]
+            }
+        )
+        self.assertEqual(issues, [])
+
     def test_bilibili_cookie_status_uses_default_local_file(self):
         root = Path(self.create_temp_dir())
         cookie_file = root / BILIBILI_DEFAULT_COOKIE_FILE

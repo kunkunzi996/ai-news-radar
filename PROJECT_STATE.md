@@ -1,5 +1,22 @@
 # PROJECT_STATE
 
+## GitHub 重大更新筛选（2026-08-02，已完成施工与验收）
+
+- 任务等级：中型；流水线挡位：手动挡。
+- 施工分支：`feature/github-important-updates`；独立工作区：
+  `E:\AI-news-reader\ai-news-radar-important-updates`；基线：`origin/master@e59f366`。
+- 用户已确认采用保守的“GitHub 重大更新可信度分”：满分 100，70 分展示；commit 必须同时具备
+  功能意图和实质产品代码改动，预发布及纯文档/测试/CI/格式/依赖/自动同步噪音直接隐藏。
+- 用户已复核设计并授权开始施工。设计稿：`计划/2026-08-02-GitHub重大更新筛选设计.md`；
+  施工计划：`计划/2026-08-02-GitHub重大更新筛选施工计划.md`。
+- 已按失败用例优先完成最小实现；V1 Python 回归与 V2 本地浏览器检查均已通过。
+- 验收证据：相关回归 **275 passed**；`py_compile`、`git diff --check` 通过；真实归档只读预览为
+  GitHub `303 → 36` 条可见，历史归档未改写。Playwright 页面确认 `Partner 2.0.0`、`v8.5.0`
+  可见，补丁版、预发布和“反应测试”提交隐藏；B 站栏目仍为 405 条。
+- 约束：不删除历史归档、不安装依赖、不改前端交互、部署、GitHub 星标同步或取消订阅清理契约。
+- 当前流水线状态：`VERIFIED`；手动挡 feature worktree 已验收，等待用户确认后再精确暂存、使用中文
+  Commit Message 提交；未执行 commit、push、合并或清理。
+
 ## Harness 收尾验收（2026-08-02）
 
 - 本轮文档收尾已通过 PR #16 合并至 `master`（合并提交 `c8acfbd`）；部署不适用，feature 分支与远程分支暂保留。
