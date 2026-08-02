@@ -72,11 +72,10 @@ test("线上信源保存和同步遵守版本号与空请求契约", async ({ pa
   await configLoaded;
   await page.locator("#settingsOpenBtn").click();
   await page.locator("#onlineSourceSaveBtn").click();
-  await page.locator("#onlineSourceSyncBtn").click();
 
+  await expect(page.locator("#onlineSourceStatus")).toContainText("远端线上配置已变化");
   expect(saves).toEqual([{ body: { version: "1.0", sources: [] }, etag: baseConfig.etag }]);
   expect(syncs).toEqual([{ body: {}, etag: baseConfig.etag }]);
-  await expect(page.locator("#onlineSourceStatus")).toContainText("远端线上配置已变化");
   expect(errors.filter((message) => !message.includes("status of 409"))).toEqual([]);
 });
 
@@ -100,7 +99,7 @@ test("线上信源无改动时显示无需提交", async ({ page }) => {
   await page.goto("/");
   await configLoaded;
   await page.locator("#settingsOpenBtn").click();
-  await page.locator("#onlineSourceSyncBtn").click();
+  await page.locator("#onlineSourceSaveBtn").click();
 
   await expect(page.locator("#onlineSourceStatus")).toContainText("线上配置没有变化，不需要提交");
   expect(errors).toEqual([]);
