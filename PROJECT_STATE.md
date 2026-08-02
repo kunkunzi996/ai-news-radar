@@ -14,8 +14,9 @@
   GitHub `303 → 36` 条可见，历史归档未改写。Playwright 页面确认 `Partner 2.0.0`、`v8.5.0`
   可见，补丁版、预发布和“反应测试”提交隐藏；B 站栏目仍为 405 条。
 - 约束：不删除历史归档、不安装依赖、不改前端交互、部署、GitHub 星标同步或取消订阅清理契约。
-- 当前流水线状态：`VERIFIED`；手动挡 feature worktree 已验收，等待用户确认后再精确暂存、使用中文
-  Commit Message 提交；未执行 commit、push、合并或清理。
+- 当前流水线状态：`DONE`；功能提交 `e3d5983` 已通过 PR #18 合并，合并提交为 `2249cc7`，
+  `master` 已推送并同步到自动数据提交 `28d80c0`。Pages 部署和数据 Actions 均成功；feature 分支与
+  worktree 暂保留，未执行删除清理。
 
 ## Harness 收尾验收（2026-08-02）
 
