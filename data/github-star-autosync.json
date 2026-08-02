@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "synced",
-  "finished_at": "2026-08-02T07:33:21Z",
+  "outcome": "no_change",
+  "finished_at": "2026-08-02T09:14:39Z",
   "error_code": "",
-  "workflow_run_id": "30738030442",
+  "workflow_run_id": "30741365978",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "17d21cc3e91c4864d1ea0734ee126bf5936cefd8",
+  "workflow_head_sha": "19755f4e82a05988510a0259b692e05436d89b3d",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-08-02T07:33:21Z",
-  "purge_state_sha256": "0163ce2c08b7a47cc9c7ee7f01932ce740d0888c1908fddfd97e18c3d32c0029",
+  "snapshot_completed_at": "2026-08-02T09:14:39Z",
+  "purge_state_sha256": "de85b4f65aee1cb152ecc4673513d266c5e4c09566a5a63788a02f1744833f37",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -20,13 +20,7 @@
   "starred_count": 26,
   "private_skipped_count": 0,
   "summary": {
-    "added": [
-      {
-        "repo_id": 1183888342,
-        "repo": "stablyai/orca",
-        "source_id": "online_github_repo_1183888342"
-      }
-    ],
+    "added": [],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
