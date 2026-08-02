@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-08-01T07:02:01Z",
+  "updated_at": "2026-08-02T07:33:21Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -250,6 +250,21 @@
       "managed_by": "github_stars",
       "managed_account_id": 284580915,
       "managed_repo_id": 1176028663,
+      "managed_state": "active"
+    },
+    {
+      "id": "online_github_repo_1183888342",
+      "name": "stablyai/orca",
+      "type": "github_release",
+      "enabled": true,
+      "channel": "GitHub Release",
+      "target": "stablyai/orca",
+      "locator": "stablyai/orca",
+      "env": "",
+      "notes": "只追踪 release",
+      "managed_by": "github_stars",
+      "managed_account_id": 284580915,
+      "managed_repo_id": 1183888342,
       "managed_state": "active"
     },
     {
