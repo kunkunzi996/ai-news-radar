@@ -193,6 +193,10 @@ NUC 生产侧：采集脚本 `deploy/local/collect-wechat-and-push.ps1` 作为�
 旧电脑同名任务已停用，仅保留作回退；不得双节点并行采集。
 **微信 cookie / 授权态只留在本机 sidecar 的 `data/` 目录,绝不进仓库或日志;JSONL 只含公开字段。**
 
+桥接采集失败或登录态异常的可见记录统一写入
+`C:\AI-news-reader\logs\bridge-collection-failures.jsonl`（实际位置随 `RadarRoot` 变化）。每行是固定 10 个字段的 JSONL，
+按渠道与 `run_id` 去重，消息最多 512 字符且不包含原始输出、cookie 或凭证；这是本机运行日志，不提交到主仓库。
+
 ### 抖音桥接(同构,2026-07-10 上线)
 
 | 变量 | 位置 | 含义 |

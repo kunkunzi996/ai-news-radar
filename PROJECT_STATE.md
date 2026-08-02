@@ -1,5 +1,18 @@
 # PROJECT_STATE
 
+## 当前施工状态（2026-08-02）
+
+- **桥接采集失败留痕已完成并合入、推送 `master`**：提交 `6cfc99f 修复桥接采集失败留痕`，
+  当前本地与 `origin/master` 均指向该提交。`deploy/cloud-pc/collect-douyin-and-push.ps1` 和
+  `deploy/local/collect-wechat-and-push.ps1` 在 `Exit-Run` / 异常收尾时写入
+  `logs/bridge-collection-failures.jsonl`；记录固定 10 个字段，消息最多 512 字符，按渠道与
+  `run_id` 去重，不写入原始输出、cookie 或凭证。失败留痕写入失败只告警，不改变原状态和退出码。
+  `state` 非成功以及 `expired` / `login_required` / `invalid` 登录态都会留痕；成功且登录态正常不追加。
+  本轮未修改 UI、`data/**`、bridge 仓库或推送流程。
+  - 专项复核：`.\.venv\Scripts\python.exe -m pytest -q tests\test_bridge_collection_failure_log.py tests\test_wechat_health_probe.py tests\test_wechat_health_watchdog.py tests\test_we_mp_rss_jsonl_source.py`，**59 passed in 91.71s**。
+  - 另有 `py_compile` 与 `git diff --check` 通过；全量 `python -m unittest discover -s tests -q` 曾运行 319 秒后以退出码 `124` 超时，不能记为全量通过。
+- **变更分析已排除损坏虚拟环境**：`.gitignore` 已忽略 `.venv.broken-py311/`（提交 `8da5b77`）；目录本身保留，不删除。
+
 ## 当前施工状态（2026-08-01）
 
 - **新增桥接类信源后自动采集 + 云端刷新已上线并真实验收**：解决「新增抖音博主/微信公众号后，

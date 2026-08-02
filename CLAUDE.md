@@ -232,3 +232,8 @@ GitHub 只能走独立的稳定 repo ID 契约，不能进入名称型订阅清�
 6. 云端刷新走 GitHub Contents API 在远端直接建提交（标记文件 `.bridge-refresh.json` 必须
    放仓库根，`data/**` 会被 workflow 的 `paths-ignore` 忽略、触发不了）。**不要改用本地
    git commit/push**——那会掉进上文 `sync_online_source_config` 的 git 编排禁区。
+
+7. **失败留痕契约必须保持可见且无敏感信息**：抖音与微信桥接脚本都要在失败终态、登录态
+   `expired/login_required/invalid` 或异常收尾时写入 `RadarRoot\logs\bridge-collection-failures.jsonl`；
+   每行固定 10 个字段，`message` 最多 512 字符，按渠道与 `run_id` 去重，禁止写入原始输出、cookie、
+   token 或凭证。写日志失败只能告警，不能覆盖原状态或退出码；正常成功且登录态有效不追加记录。

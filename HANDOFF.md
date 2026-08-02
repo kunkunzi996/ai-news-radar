@@ -2,7 +2,14 @@
 
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，完整状态在 `PROJECT_STATE.md`。
 
-## 当前状态（2026-08-01）
+## 当前状态（2026-08-02）
+
+- **桥接采集失败留痕已合入并推送 `master`**：提交 `6cfc99f`。抖音、微信采集脚本在失败终态或登录态
+  异常时写入 `logs/bridge-collection-failures.jsonl`，固定 10 个字段、消息上限 512 字符、同渠道同
+  `run_id` 去重，不写原始输出或凭证；日志写失败只告警。专项复核为 **59 passed in 91.71s**。
+  全量 `python -m unittest discover -s tests -q` 曾超时（319 秒，退出码 `124`），所以只把专项结果视为本轮验收证据。
+- 下一轮若排查桥接采集，先查看 `RadarRoot\logs\bridge-collection-failures.jsonl` 与对应状态文件；不要把该运行时日志提交进仓库，
+  也不要据此改动 UI、`data/**` 或 bridge 仓库。
 
 - **新增桥接类信源后自动采集 + 云端刷新已上线，真实端到端验收通过。** 在公网页面新增抖音博主或
   微信公众号并同步后，NUC 会自动采集，采完自动触发一轮云端 Actions，约 10 分钟内容上公网
@@ -55,23 +62,13 @@ Operationalize 收敛为下面 3 条。完整报告在 `.claude/better-harness/r
 
 三条的共同约束：**只扩展既有路由，不引入新工具、新框架、新流程文件**。
 
-1. **让变更分析不再指向第三方包**（对应发现 `broken-venv-pollutes-change-baseline`）
-   - 改哪：仓库根 `.gitignore`，增加一行忽略 `.venv.broken-py311/`
-   - 为什么：当前变更基线 2214 个文件里 2211 个来自这个已损坏的虚拟环境，严重度被判 critical/100
-     而真实代码命中为 0；自动分析给出的头号动作与推荐阅读前 20 条全部指向 pytest/pip 源码，
-     **照单执行的代理会去改 site-packages**
-   - 怎么验：`git check-ignore -v .venv.broken-py311` 命中；`git status --porcelain | wc -l` 显著下降
-   - 边界：本次**不要删除该目录本身**，保留回退
+1. **已完成：让变更分析不再指向第三方包**（对应发现 `broken-venv-pollutes-change-baseline`）
+   - `.gitignore` 已增加 `.venv.broken-py311/`（提交 `8da5b77`）；`git check-ignore -v` 已命中。
+   - 边界保持不变：目录本身不删除，继续保留回退。
 
-2. **让采集失败留痕**（对应发现 `collection-degrade-no-alert`）
-   - 改哪：桥接采集链路的状态写出环节
-   - 做什么：当某渠道写出非成功终态（`state` 非 `succeeded`、或登录态无效）时，在项目内留下一条
-     可定位到具体渠道的显式记录。**先只做「看得见」，不接任何外部推送渠道、不引入新凭证**
-   - 为什么：2026-08-01 真实发生过——微信采集 `state=warning / stage=authority_unavailable`
-     静默降级，无任何提示；用户此前也自述「如果微信状态失效了，它不会提醒我」，
-     发现路径退化为人工比对公网页面
-   - 怎么验：用已有的失败状态文件构造一次，确认记录被写出且能定位到渠道；
-     `.venv\Scripts\python.exe -m unittest discover tests` 不回归
+2. **已完成：让采集失败留痕**（对应发现 `collection-degrade-no-alert`）
+   - 两条桥接脚本已写入 `logs/bridge-collection-failures.jsonl`，支持失败状态、登录态异常、去重和敏感信息保护。
+   - 提交：`6cfc99f`；专项复核：59 passed。全量 unittest 超时，不能写成全量通过。
 
 3. **让改动与检查绑定**（对应发现 `changes-not-bound-to-checks`）
    - 改哪：`CLAUDE.md`（补一条收口约定，不新建文件）
