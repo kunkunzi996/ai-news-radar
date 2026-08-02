@@ -447,7 +447,7 @@ a=p.parse_args(); root=Path(__file__).resolve().parents[2]; scenario=json.loads(
 time.sleep(float(scenario.get("sync_delay_seconds", 0)))
 payload=dict(scenario["authority"]); payload["generated_at"]=scenario["generated_at"]
 if a.snapshot_only: payload.update({"complete":False,"reason":"sync_skipped"})
-Path(a.subscriptions_out).write_text(json.dumps(payload,ensure_ascii=False),encoding="utf-8")
+if scenario.get("write_authority", True): Path(a.subscriptions_out).write_text(json.dumps(payload,ensure_ascii=False),encoding="utf-8")
 for line in scenario.get("sync_output", ["[sync] 完成：成功 1 个 / 失败 0 个 / 新增 0 条"]): print(line, flush=True)
 raise SystemExit(int(scenario.get("sync_exit", 0)))
 '''.strip() + "\n"
@@ -478,6 +478,7 @@ Path(a.snapshot_out).write_text(json.dumps(snapshot,ensure_ascii=False,indent=2)
         sync_output: list[str] | None = None,
         sync_exit: int = 0,
         sync_delay_seconds: float = 0,
+        write_authority: bool = True,
     ) -> None:
         payload = authority_payload(feeds=feeds)
         (radar_root / "scenario.json").write_text(
@@ -491,6 +492,7 @@ Path(a.snapshot_out).write_text(json.dumps(snapshot,ensure_ascii=False,indent=2)
                     else ["[sync] 完成：成功 1 个 / 失败 0 个 / 新增 0 条"],
                     "sync_exit": sync_exit,
                     "sync_delay_seconds": sync_delay_seconds,
+                    "write_authority": write_authority,
                 },
                 ensure_ascii=False,
             ),
@@ -526,6 +528,16 @@ Path(a.snapshot_out).write_text(json.dumps(snapshot,ensure_ascii=False,indent=2)
     thread.start()
     base_url = f"http://127.0.0.1:{server.server_address[1]}"
     script = repo_root / "deploy" / "local" / "collect-wechat-and-push.ps1"
+    failure_log_path = radar_root / "logs" / "bridge-collection-failures.jsonl"
+
+    def read_failure_records() -> list[dict]:
+        if not failure_log_path.is_file():
+            return []
+        return [
+            json.loads(line)
+            for line in failure_log_path.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
 
     def build_bridge_command(
         *extra: str,
@@ -585,7 +597,7 @@ Path(a.snapshot_out).write_text(json.dumps(snapshot,ensure_ascii=False,indent=2)
                 if precheck_status_path.is_file():
                     try:
                         candidate = json.loads(precheck_status_path.read_text(encoding="utf-8-sig"))
-                    except json.JSONDecodeError:
+                    except (json.JSONDecodeError, PermissionError):
                         candidate = None
                     if candidate and candidate.get("stage") == "fetching":
                         initial_status = candidate
@@ -600,6 +612,65 @@ Path(a.snapshot_out).write_text(json.dumps(snapshot,ensure_ascii=False,indent=2)
             if precheck.poll() is None:
                 precheck.kill()
                 precheck.communicate()
+
+        write_scenario("2026-07-16T00:45:00Z", [active], write_authority=False)
+        authority_status_path = tmp_path / "authority-status.json"
+        authority_failure = run_bridge("-StatusFile", str(authority_status_path))
+        assert authority_failure.returncode == 1, authority_failure.stdout + authority_failure.stderr
+        authority_status = json.loads(authority_status_path.read_text(encoding="utf-8-sig"))
+        assert authority_status["state"] == "warning"
+        assert authority_status["stage"] == "authority_unavailable"
+        authority_matches = [
+            record for record in read_failure_records() if record["run_id"] == authority_status["run_id"]
+        ]
+        assert len(authority_matches) == 1
+        assert authority_matches[0]["channel"] == "wechat"
+        assert authority_matches[0]["stage"] == "authority_unavailable"
+        print(
+            f"wechat failure returncode={authority_failure.returncode} "
+            f"channel={authority_matches[0]['channel']} run_id={authority_status['run_id']} "
+            f"stage={authority_matches[0]['stage']}"
+        )
+        assert set(authority_matches[0]) == {
+            "recorded_at", "channel", "run_id", "state", "stage", "message",
+            "exit_code", "login_state", "started_at", "finished_at",
+        }
+
+        # If a record for the same channel/run_id already exists, the script must not append a second line.
+        write_scenario("2026-07-16T00:50:00Z", [active], write_authority=False, sync_delay_seconds=2)
+        dedup_status_path = tmp_path / "dedup-status.json"
+        dedup_command, dedup_env = build_bridge_command("-StatusFile", str(dedup_status_path))
+        dedup_process = subprocess.Popen(
+            dedup_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+            text=True, encoding="utf-8", errors="replace", env=dedup_env,
+        )
+        dedup_run_id = None
+        try:
+            deadline = time.monotonic() + 10
+            while time.monotonic() < deadline:
+                if dedup_status_path.is_file():
+                    try:
+                        dedup_run_id = json.loads(dedup_status_path.read_text(encoding="utf-8-sig")).get("run_id")
+                    except (json.JSONDecodeError, PermissionError):
+                        pass
+                    if dedup_run_id:
+                        break
+                time.sleep(0.05)
+            assert dedup_run_id
+            with failure_log_path.open("a", encoding="utf-8") as handle:
+                handle.write(json.dumps({
+                    "recorded_at": "2026-07-16T00:50:00Z", "channel": "wechat", "run_id": dedup_run_id,
+                    "state": "warning", "stage": "authority_unavailable", "message": "pre-existing",
+                    "exit_code": 1, "login_state": "unknown", "started_at": "2026-07-16T00:50:00Z",
+                    "finished_at": "2026-07-16T00:50:00Z",
+                }) + "\n")
+            dedup_stdout, dedup_stderr = dedup_process.communicate(timeout=20)
+            assert dedup_process.returncode == 1, dedup_stdout + dedup_stderr
+        finally:
+            if dedup_process.poll() is None:
+                dedup_process.kill()
+                dedup_process.communicate()
+        assert len([record for record in read_failure_records() if record["run_id"] == dedup_run_id]) == 1
 
         write_scenario("2026-07-16T01:00:00Z", [active, paused])
         initial_head = git("rev-parse", "HEAD")
@@ -622,11 +693,14 @@ Path(a.snapshot_out).write_text(json.dumps(snapshot,ensure_ascii=False,indent=2)
         assert initial_hashes == {path: hashlib.sha256(path.read_bytes()).hexdigest() for path in initial_hashes}
 
         valid_status_path = tmp_path / "valid-status.json"
+        failure_count_before_success = len(read_failure_records())
         first = run_bridge("-StatusFile", str(valid_status_path))
         assert first.returncode == 0, first.stdout + first.stderr
         valid_status = json.loads(valid_status_path.read_text(encoding="utf-8-sig"))
         assert valid_status["login_state"] == "valid"
         assert valid_status["failed_creator_count"] == 0
+        assert len(read_failure_records()) == failure_count_before_success
+        print(f"wechat recovery returncode={first.returncode} failure_records={failure_count_before_success}")
         head_one = git("rev-parse", "HEAD")
 
         write_scenario("2026-07-16T02:00:00Z", [paused, active])
@@ -719,6 +793,7 @@ Path(a.snapshot_out).write_text(json.dumps(snapshot,ensure_ascii=False,indent=2)
         assert skipped.returncode == 1
         assert git("rev-parse", "HEAD") == head_before_skip
         assert formal_hashes == {path: hashlib.sha256(path.read_bytes()).hexdigest() for path in formal_hashes}
+        assert len(read_failure_records()) > failure_count_before_success
     finally:
         server.shutdown()
         server.server_close()

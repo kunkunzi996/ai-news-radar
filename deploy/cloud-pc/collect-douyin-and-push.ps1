@@ -114,6 +114,7 @@ $script:Status = [ordered]@{
     bridge_head_after = ""
     warnings = @()
 }
+$script:FailureLogPath = Join-Path $RadarRoot "logs\bridge-collection-failures.jsonl"
 
 function Write-AtomicJson([string]$Path, [object]$Value, [string]$RunId) {
     if (-not $Path) { return }
@@ -154,6 +155,61 @@ function Complete-RunStatus([string]$State, [string]$Stage, [string]$Message, [i
     Write-RunStatus
 }
 
+function Get-FailureLogMessage([string]$Message, [string]$Stage) {
+    $safeMessage = if ($Message) { [string]$Message } else { "Bridge collection failed at $Stage." }
+    $safeMessage = $safeMessage -replace '[\r\n\t]+', ' '
+    $safeMessage = $safeMessage -replace '(?i)(cookie|token|authorization|password|secret)\s*[:=]\s*\S+', '$1=[redacted]'
+    $safeMessage = $safeMessage.Trim()
+    if ($safeMessage.Length -gt 512) { $safeMessage = $safeMessage.Substring(0, 512) }
+    return $safeMessage
+}
+
+function Write-BridgeFailureRecord(
+    [string]$State,
+    [string]$Stage,
+    [string]$Message,
+    [int]$ExitCode,
+    [string]$LoginState,
+    [string]$FinishedAt
+) {
+    $normalizedLoginState = ([string]$LoginState).Trim().ToLowerInvariant()
+    $invalidLoginStates = @("expired", "login_required", "invalid")
+    if ($State -eq "succeeded" -and $invalidLoginStates -notcontains $normalizedLoginState) { return }
+
+    try {
+        $directory = Split-Path -Parent $script:FailureLogPath
+        if ($directory -and -not (Test-Path -LiteralPath $directory)) {
+            [IO.Directory]::CreateDirectory($directory) | Out-Null
+        }
+        if (Test-Path -LiteralPath $script:FailureLogPath) {
+            foreach ($line in @(Get-Content -LiteralPath $script:FailureLogPath -Encoding UTF8)) {
+                if ([string]::IsNullOrWhiteSpace([string]$line)) { continue }
+                try {
+                    $existing = [string]$line | ConvertFrom-Json
+                    if ([string]$existing.channel -eq "douyin" -and [string]$existing.run_id -eq $script:RunId) { return }
+                } catch { }
+            }
+        }
+
+        $record = [ordered]@{
+            recorded_at = (Get-Date).ToUniversalTime().ToString("o")
+            channel = "douyin"
+            run_id = $script:RunId
+            state = [string]$State
+            stage = [string]$Stage
+            message = Get-FailureLogMessage $Message $Stage
+            exit_code = $ExitCode
+            login_state = $normalizedLoginState
+            started_at = [string]$script:StartedAt
+            finished_at = if ($FinishedAt) { [string]$FinishedAt } else { (Get-Date).ToUniversalTime().ToString("o") }
+        }
+        $encoding = New-Object Text.UTF8Encoding($false)
+        [IO.File]::AppendAllText($script:FailureLogPath, (($record | ConvertTo-Json -Compress -Depth 4) + "`n"), $encoding)
+    } catch {
+        Write-Warning ("bridge failure log write failed: {0}" -f $_.Exception.Message)
+    }
+}
+
 function Release-PipelineLock {
     if ($script:OwnerFile -and (Test-Path -LiteralPath $script:OwnerFile)) {
         try {
@@ -174,7 +230,11 @@ function Remove-RunResult {
 }
 
 function Exit-Run([string]$State, [string]$Stage, [string]$Message, [int]$ExitCode) {
-    Complete-RunStatus $State $Stage $Message $ExitCode
+    try {
+        Complete-RunStatus $State $Stage $Message $ExitCode
+    } finally {
+        Write-BridgeFailureRecord $State $Stage $Message $ExitCode ([string]$script:Status.login_state) ([string]$script:Status.finished_at)
+    }
     Remove-RunResult
     Release-PipelineLock
     if ($LogFile) { try { Stop-Transcript | Out-Null } catch {} }
@@ -213,6 +273,7 @@ trap {
     if ($script:MayWriteStatus) {
         try { Complete-RunStatus "failed" $script:FailureStage $message 1; $statusWritten = $true } catch { [Console]::Error.WriteLine("status write failed: $_") }
     }
+    Write-BridgeFailureRecord "failed" $script:FailureStage ("Bridge collection failed at {0}." -f $script:FailureStage) 1 ([string]$script:Status.login_state) ([string]$script:Status.finished_at)
     if ($statusWritten) { Remove-RunResult }
     Release-PipelineLock
     if ($LogFile) { try { Stop-Transcript | Out-Null } catch {} }
