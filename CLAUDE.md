@@ -13,6 +13,7 @@ Project iron rules:
 
 - For every bug fix, start from first principles before changing code. Write down the bottom-level fact/root cause, whether an architecture/schema/API change is truly required, and the smallest reversible fix that solves the root cause.
 - For acceptance or testing of any browser-visible flow, local dashboard, or UI interaction, use a browser tool for real validation before reporting back. Do not stop at unit tests, static checks, or asking the user to click first. If browser-tool validation is impossible, state the blocker and what remains unverified.
+- 改动 `scripts/**` 后，同一轮必须运行项目已有的 Python 相关检查，并记录完整命令与结果；改动 `assets/js/**` 后，同一轮必须运行 `npm run test:e2e`，记录通过数、失败数及环境阻塞原因；同时改动两类目录时，两类检查都必须运行。不新增测试框架、CI 配置或流程工具。
 
 ## 产品方向（2026-07-11 调整）
 

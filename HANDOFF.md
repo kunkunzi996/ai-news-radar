@@ -2,6 +2,14 @@
 
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，完整状态在 `PROJECT_STATE.md`。
 
+## Harness 收尾验收（2026-08-02）
+
+- 本条 Harness 待办已完成；用户已确认纳入本次文档提交，分支为 `docs/changes-bound-to-checks`，未 push。
+- Python 专项实际结果：`59 passed in 89.79s`。
+- E2E 首次执行为 `19 passed、4 failed、3 did not run`；复验为 `20 passed、3 failed、3 did not run`。当前只剩两个 `#onlineSourceSyncBtn` 缺失和 8765 端口占用；此前 `layout-timeline` 的 `81 条`/`0 条`差异复验未复现，未修复 E2E。
+- `git diff --check` 通过（无输出）。
+- `计划/2026-07-26-AI看板采集节点迁移至NUC实施计划.md` 与 `计划/2026-07-29-远程管理后台部署-handoff.md` 仍保留在工作区、未忽略，用户已确认纳入本次提交。
+
 ## 当前状态（2026-08-02）
 
 - **桥接采集失败留痕已合入并推送 `master`**：提交 `6cfc99f`。抖音、微信采集脚本在失败终态或登录态
@@ -53,7 +61,7 @@
     `.git/logs/refs/stash`，格式 `<old40> <new40> <name> <<email>> <ts> <tz>\t<message>`，
     首条 old 填 40 个 0，message 前是 **tab**，行尾 **LF**。
 
-## 下一轮待办：Harness 体检的 3 条优先行动（2026-08-01 定，未开工）
+## Harness 体检的 3 条优先行动（2026-08-01 定，已收口）
 
 来源：`/better-harness` 全流程体检（三路独立取证 + 汇总定级），共 10 条发现，按支持路线
 Operationalize 收敛为下面 3 条。完整报告在 `.claude/better-harness/report.html`
@@ -70,7 +78,7 @@ Operationalize 收敛为下面 3 条。完整报告在 `.claude/better-harness/r
    - 两条桥接脚本已写入 `logs/bridge-collection-failures.jsonl`，支持失败状态、登录态异常、去重和敏感信息保护。
    - 提交：`6cfc99f`；专项复核：59 passed。全量 unittest 超时，不能写成全量通过。
 
-3. **让改动与检查绑定**（对应发现 `changes-not-bound-to-checks`）
+3. **已完成：让改动与检查绑定**（对应发现 `changes-not-bound-to-checks`）
    - 改哪：`CLAUDE.md`（补一条收口约定，不新建文件）
    - 做什么：约定改动 `scripts/` 或 `assets/js/` 后，须在同一轮运行并记录一次相关检查，
      Python 侧用既有 `unittest`、前端侧用既有 `npm run test:e2e`。**不新增测试框架或 CI 配置**

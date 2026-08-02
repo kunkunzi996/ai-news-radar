@@ -45,6 +45,11 @@ test-results/
 .idea/
 .vscode/
 
+# Local agent-generated artifacts
+.claude/better-harness/
+.qoder/repowiki/
+.workbuddy/memory/
+
 # Local preview artifacts
 bilibili-account-preview.html
 server.err.log
