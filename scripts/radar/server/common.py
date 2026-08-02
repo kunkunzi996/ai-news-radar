@@ -324,7 +324,11 @@ def maintenance_issues_from_status(payload: dict[str, Any], root_dir: Path | Non
             site.get("ok") is True
             and int(site.get("item_count") or 0) == 0
             and not is_no_new_in_collection_window(site)
-            and str(site.get("skip_reason") or "") not in {"empty_repository", "daily_coalesced"}
+            and str(site.get("skip_reason") or "") not in {
+                "empty_repository",
+                "no_important_update",
+                "daily_coalesced",
+            }
             and int(site.get("expected_skip_count") or 0) == 0
             and int(site.get("daily_coalesced") or 0) == 0
         ):
