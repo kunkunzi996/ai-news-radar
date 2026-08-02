@@ -6,7 +6,7 @@
 
 - 本条 Harness 待办已完成；用户已确认纳入本次文档提交，并已通过 PR #16 合并至 `master`（合并提交 `c8acfbd`）。主工作区已同步，feature 分支与远程分支暂保留，未清理。
 - Python 专项实际结果：`59 passed in 89.79s`。
-- E2E 首次执行为 `19 passed、4 failed、3 did not run`；复验为 `20 passed、3 failed、3 did not run`。当前只剩两个 `#onlineSourceSyncBtn` 缺失和 8765 端口占用；此前 `layout-timeline` 的 `81 条`/`0 条`差异复验未复现，未修复 E2E。
+- Harness 早期 E2E 红灯记录为 `19 passed、4 failed、3 did not run`，随后线上信源保存同步用例已在 `7be45ba` 更新并由 `5fc7cc4` 合入；专项 **5 passed**，完整 `npm run test:e2e` **26 passed、0 failed、0 skipped**。`#onlineSourceSyncBtn` 缺失与 `8765` 端口阻塞均已解除，`layout-timeline` 的历史差异未复现。
 - `git diff --check` 通过（无输出）。
 - `计划/2026-07-26-AI看板采集节点迁移至NUC实施计划.md` 与 `计划/2026-07-29-远程管理后台部署-handoff.md` 仍保留在工作区、未忽略，用户已确认纳入本次提交。
 
