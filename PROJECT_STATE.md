@@ -2,8 +2,9 @@
 
 ## 当前施工状态（2026-08-02）
 
-- **桥接采集失败留痕已完成并合入、推送 `master`**：提交 `6cfc99f 修复桥接采集失败留痕`，
-  当前本地与 `origin/master` 均指向该提交。`deploy/cloud-pc/collect-douyin-and-push.ps1` 和
+- **桥接采集失败留痕已完成并合入、推送 `master`**：功能提交 `6cfc99f 修复桥接采集失败留痕`，
+  洁癖门收口提交已 rebase 到期间产生的远端数据快照后推送；本轮收口完成时主线为 `9b14e3e`。
+  `deploy/cloud-pc/collect-douyin-and-push.ps1` 和
   `deploy/local/collect-wechat-and-push.ps1` 在 `Exit-Run` / 异常收尾时写入
   `logs/bridge-collection-failures.jsonl`；记录固定 10 个字段，消息最多 512 字符，按渠道与
   `run_id` 去重，不写入原始输出、cookie 或凭证。失败留痕写入失败只告警，不改变原状态和退出码。
