@@ -1,5 +1,14 @@
 # PROJECT_STATE
 
+## Harness 收尾验收（2026-08-02）
+
+- 本条 Harness 待办已完成：未跟踪文件已分类，三个本地生成物目录已精确加入 `.gitignore`；两份 `计划/` 文档保留、未忽略，用户已确认纳入本次提交。
+- `CLAUDE.md` 已绑定检查：改动 `scripts/**` 必跑并记录项目已有 Python 检查；改动 `assets/js/**` 必跑并记录 `npm run test:e2e`；两类同时改动时两类都跑。
+- Python 专项实际命令：`.\.venv\Scripts\python.exe -m pytest -q tests\test_bridge_collection_failure_log.py tests\test_wechat_health_probe.py tests\test_wechat_health_watchdog.py tests\test_we_mp_rss_jsonl_source.py`，结果 **59 passed in 89.79s**。
+- E2E 首次执行为 `19 passed、4 failed、3 did not run`；复验 `npm run test:e2e` 为 **20 passed、3 failed、3 did not run**，此前的 `layout-timeline` `81 条`/`0 条`差异未复现，详见 `BLOCKED.md`。
+- 当前 E2E 失败原因为：两个 `#onlineSourceSyncBtn` 缺失、工作台真实服务 `8765` 端口被占用；未修复 E2E，也不写成全绿。
+- `git diff --check`：通过（无输出）。
+
 ## 当前施工状态（2026-08-02）
 
 - **桥接采集失败留痕已完成并合入、推送 `master`**：功能提交 `6cfc99f 修复桥接采集失败留痕`，
