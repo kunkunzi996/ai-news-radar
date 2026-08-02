@@ -62,6 +62,7 @@ from scripts.radar.fetchers.public import (
     fetch_tophub,
     fetch_zeli,
 )
+from scripts.radar.github_importance import github_archive_record_is_reader_visible
 
 """Archive, dedupe, scoring, story merge, and payload builders."""
 
@@ -1520,6 +1521,12 @@ def build_creator_hot_items(
     items: list[dict[str, Any]] = []
     for record in archive.values():
         if not is_subscription_record(record):
+            continue
+        if (
+            str(record.get("site_id") or "") == GITHUB_REPO_SUBSCRIPTION_SITE_ID
+            and not github_archive_record_is_reader_visible(record)
+        ):
+            # 保留历史归档，但不让低置信度 GitHub 更新进入读者展示池。
             continue
         if window_hours is not None and not parse_iso(record.get("published_at")):
             continue

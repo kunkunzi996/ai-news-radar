@@ -2488,6 +2488,45 @@ class TopicFilterTests(unittest.TestCase):
         self.assertEqual([item["id"] for item in items], ["week-hot", "fresh-low"])
         self.assertGreater(items[0]["creator_hot_score"], items[1]["creator_hot_score"])
 
+    def test_build_creator_hot_items_hides_low_confidence_github_history(self):
+        import datetime as _dt
+
+        now = _dt.datetime.fromisoformat("2026-08-02T12:00:00+00:00")
+
+        def release(item_id, tag_name, *, prerelease=False):
+            return {
+                "id": item_id,
+                "site_id": "github_foundation_sunshine_releases",
+                "site_name": "GitHub Release Subscription",
+                "source": "GitHub版本订阅",
+                "title": item_id,
+                "url": f"https://github.com/example/repo/releases/tag/{tag_name}",
+                "published_at": (now - _dt.timedelta(hours=2)).isoformat(),
+                "github_source_kind": "release",
+                "tag_name": tag_name,
+                "release_name": tag_name,
+                "prerelease": prerelease,
+            }
+
+        archive = {
+            "major": release("major", "v2.0.0"),
+            "patch": release("patch", "v1.4.164"),
+            "prerelease": release("prerelease", "v1.4.164-rc.3", prerelease=True),
+            "commit": {
+                "id": "commit",
+                "site_id": "github_foundation_sunshine_releases",
+                "source": "GitHub版本订阅",
+                "title": "example/repo 提交: feat!: launch a provider",
+                "url": "https://github.com/example/repo/commit/abc123",
+                "published_at": (now - _dt.timedelta(hours=2)).isoformat(),
+                "github_source_kind": "commit_fallback",
+            },
+        }
+
+        items = build_creator_hot_items(archive, now, ai_only=False)
+
+        self.assertEqual([item["id"] for item in items], ["major"])
+
     def test_build_creator_hot_items_includes_bilibili_without_metrics(self):
         import datetime as _dt
 
