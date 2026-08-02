@@ -16,6 +16,7 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .venv/
+.venv.broken-py311/
 venv/
 
 # Private source inputs
