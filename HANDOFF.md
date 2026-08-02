@@ -4,7 +4,7 @@
 
 ## Harness 收尾验收（2026-08-02）
 
-- 本条 Harness 待办已完成；用户已确认纳入本次文档提交，分支为 `docs/changes-bound-to-checks`，未 push。
+- 本条 Harness 待办已完成；用户已确认纳入本次文档提交，并已通过 PR #16 合并至 `master`（合并提交 `c8acfbd`）。主工作区已同步，feature 分支与远程分支暂保留，未清理。
 - Python 专项实际结果：`59 passed in 89.79s`。
 - E2E 首次执行为 `19 passed、4 failed、3 did not run`；复验为 `20 passed、3 failed、3 did not run`。当前只剩两个 `#onlineSourceSyncBtn` 缺失和 8765 端口占用；此前 `layout-timeline` 的 `81 条`/`0 条`差异复验未复现，未修复 E2E。
 - `git diff --check` 通过（无输出）。

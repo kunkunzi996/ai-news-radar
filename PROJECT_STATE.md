@@ -2,6 +2,7 @@
 
 ## Harness 收尾验收（2026-08-02）
 
+- 本轮文档收尾已通过 PR #16 合并至 `master`（合并提交 `c8acfbd`）；部署不适用，feature 分支与远程分支暂保留。
 - 本条 Harness 待办已完成：未跟踪文件已分类，三个本地生成物目录已精确加入 `.gitignore`；两份 `计划/` 文档保留、未忽略，用户已确认纳入本次提交。
 - `CLAUDE.md` 已绑定检查：改动 `scripts/**` 必跑并记录项目已有 Python 检查；改动 `assets/js/**` 必跑并记录 `npm run test:e2e`；两类同时改动时两类都跑。
 - Python 专项实际命令：`.\.venv\Scripts\python.exe -m pytest -q tests\test_bridge_collection_failure_log.py tests\test_wechat_health_probe.py tests\test_wechat_health_watchdog.py tests\test_we_mp_rss_jsonl_source.py`，结果 **59 passed in 89.79s**。
