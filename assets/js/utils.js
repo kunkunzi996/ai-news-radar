@@ -41,6 +41,22 @@ function normalizeDataBaseUrl(raw) {
 }
 const ADMIN_API_BASE_STORAGE_KEY = "radarAdminApiBase";
 const ADMIN_TOKEN_STORAGE_KEY = "radarAdminToken";
+// 工作台 bridge 注入的内存配置，避免 iframe 第三方存储不可用时丢失令牌。
+let __bridgedAdminBase = "";
+let __bridgedAdminToken = "";
+function setBridgedAdminConfig(base, token) {
+  __bridgedAdminBase = normalizeAdminApiBase(base);
+  __bridgedAdminToken = String(token || "").trim();
+}
+
+// 工作台远程 iframe 会把配置放在 URL 中；启动时先读入内存，再由 API 请求使用。
+try {
+  const params = new URLSearchParams(window.location.search);
+  const urlBase = params.get("adminBase") || "";
+  const urlToken = params.get("adminToken") || "";
+  if (urlBase && urlToken) setBridgedAdminConfig(urlBase, urlToken);
+} catch {}
+
 function normalizeAdminApiBase(raw) {
   const text = String(raw || "").trim();
   if (!text) return "";
@@ -55,6 +71,7 @@ function normalizeAdminApiBase(raw) {
   }
 }
 function getAdminApiBase() {
+  if (__bridgedAdminBase) return __bridgedAdminBase;
   try {
     return normalizeAdminApiBase(window.localStorage.getItem(ADMIN_API_BASE_STORAGE_KEY));
   } catch {
@@ -62,6 +79,7 @@ function getAdminApiBase() {
   }
 }
 function getAdminToken() {
+  if (__bridgedAdminToken) return __bridgedAdminToken;
   try {
     return String(window.localStorage.getItem(ADMIN_TOKEN_STORAGE_KEY) || "").trim();
   } catch {

@@ -59,6 +59,7 @@ const SOURCE_STATUS = {
 let radarOrigin = "";
 let parentServer;
 let wrongOriginServer;
+let workbenchRadarConfig = null;
 
 function jsonResponse(body) {
   return { status: 200, contentType: "application/json", body: JSON.stringify(body) };
@@ -122,7 +123,8 @@ function sendHtml(response, html) {
   response.end(html);
 }
 
-function workbenchHtml(radarUrl) {
+function workbenchHtml(radarUrl, radarConfig = null) {
+  const injectedRadarConfig = JSON.stringify(radarConfig);
   return `<!doctype html>
 <html lang="zh-CN">
   <body>
@@ -130,6 +132,7 @@ function workbenchHtml(radarUrl) {
     <iframe id="spoof" title="同源伪造页" src="/spoof"></iframe>
     <script>
       const radarOrigin = ${JSON.stringify(new URL(radarUrl).origin)};
+      const workbenchRadarConfig = ${injectedRadarConfig};
       const radar = document.getElementById("radar");
       const events = [];
       const requests = new Map();
@@ -147,7 +150,10 @@ function workbenchHtml(radarUrl) {
 
       window.__workbench = {
         hello() {
-          radar.contentWindow.postMessage({ type: "workbench-hello" }, radarOrigin);
+          radar.contentWindow.postMessage({
+            type: "workbench-hello",
+            ...(workbenchRadarConfig ? { radarConfig: workbenchRadarConfig } : {}),
+          }, radarOrigin);
         },
         events() {
           return events.slice();
@@ -247,7 +253,7 @@ test.describe("工作台收藏桥", () => {
     radarOrigin = new URL(baseURL).origin;
     parentServer = await startServer(PARENT_PORT, (request, response) => {
       if (request.url === "/spoof") return sendHtml(response, spoofHtml());
-      return sendHtml(response, workbenchHtml(baseURL));
+      return sendHtml(response, workbenchHtml(baseURL, workbenchRadarConfig));
     }, "8765 端口（真实工作台）");
     wrongOriginServer = await startServer(WRONG_ORIGIN_PORT, (_request, response) => (
       sendHtml(response, wrongOriginHtml(baseURL))
@@ -366,5 +372,53 @@ test.describe("工作台收藏桥", () => {
     await expect(firstCollectButton).toHaveText("收藏");
     await expect(firstCollectButton).toHaveAttribute("title", COLLECT_IDLE_TITLE);
     expect(errors).toEqual([]);
+  });
+
+  test("工作台配置通过握手注入时，iframe 存储受限仍能读取线上信源", async ({ page }) => {
+    workbenchRadarConfig = { adminApiBase: radarOrigin, adminToken: "fixture-admin-token" };
+    const errors = collectErrors(page);
+    try {
+      await page.addInitScript(() => {
+        const originalGetItem = Storage.prototype.getItem;
+        Storage.prototype.getItem = function blockedAdminStorage(key) {
+          if (key === "radarAdminApiBase" || key === "radarAdminToken") {
+            throw new Error("iframe storage blocked");
+          }
+          return originalGetItem.call(this, key);
+        };
+      });
+      await installRadarFixture(page);
+      const authHeaders = [];
+      let staticFallbackRequests = 0;
+      await page.route("**/api/online-source-config", async (route) => {
+        authHeaders.push(route.request().headers()["x-admin-token"] || "");
+        await route.fulfill(jsonResponse({ ok: true, source_count: 0, sources: [] }));
+      });
+      await page.route("**/config/online-sources.json", async (route) => {
+        staticFallbackRequests += 1;
+        await route.fulfill({ status: 500, contentType: "application/json", body: "{}" });
+      });
+
+      await page.goto(PARENT_ORIGIN);
+      const radar = page.frameLocator("#radar");
+      await expect(radar.locator("#newsList .news-card")).toHaveCount(2);
+      await expect.poll(() => staticFallbackRequests).toBeGreaterThan(0);
+      await page.evaluate(() => window.__workbench.hello());
+      await expect.poll(() => radar.locator("body").evaluate(() => window.location.search)).toContain("adminToken");
+      const fallbackCountAfterInjection = staticFallbackRequests;
+      await page.evaluate(() => window.__workbench.hello());
+      await expect.poll(() => page.evaluate(() => window.__workbench.events().some((event) => event.type === "radar-ready"))).toBe(true);
+      await expect(radar.locator("#onlineSourceStatus")).toContainText("已读取");
+      expect(authHeaders).toContain("fixture-admin-token");
+      expect(staticFallbackRequests).toBe(fallbackCountAfterInjection);
+      expect(await radar.locator("body").evaluate(() => ({
+        base: getAdminApiBase(),
+        token: getAdminToken(),
+        loaded: state.onlineSourceConfigLoaded,
+      }))).toEqual({ base: radarOrigin, token: "fixture-admin-token", loaded: true });
+      expect(errors).toEqual([]);
+    } finally {
+      workbenchRadarConfig = null;
+    }
   });
 });

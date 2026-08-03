@@ -69,6 +69,9 @@ async function connectRemoteAdmin(event) {
       throw new Error(payload.error || `HTTP ${res.status}`);
     }
     setAdminConnection(base, token);
+    if (window.WorkbenchBridge && window.WorkbenchBridge.saveConfigToWorkbench) {
+      window.WorkbenchBridge.saveConfigToWorkbench({ adminApiBase: base, adminToken: token });
+    }
     setRemoteAdminStatus("连接成功，正在刷新页面启用管理面板...", "ok");
     window.setTimeout(() => window.location.reload(), 600);
   } catch (err) {
@@ -80,6 +83,9 @@ async function connectRemoteAdmin(event) {
 
 function disconnectRemoteAdmin() {
   clearAdminConnection();
+  if (window.WorkbenchBridge && window.WorkbenchBridge.saveConfigToWorkbench) {
+    window.WorkbenchBridge.saveConfigToWorkbench({ adminApiBase: "", adminToken: "" });
+  }
   if (remoteAdminBaseInputEl) remoteAdminBaseInputEl.value = "";
   if (remoteAdminTokenInputEl) remoteAdminTokenInputEl.value = "";
   setRemoteAdminStatus("已断开，正在刷新页面回到纯阅读模式...", "warn");
