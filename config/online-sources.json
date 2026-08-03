@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-08-03T08:34:56Z",
+  "updated_at": "2026-08-03T08:54:52Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -29,7 +29,7 @@
       "id": "online_bilibili_3546800797518640",
       "name": "夏鹏本鹏",
       "type": "bilibili_dynamic",
-      "enabled": true,
+      "enabled": false,
       "channel": "B站动态",
       "target": "夏鹏本鹏",
       "locator": "3546800797518640",
@@ -84,7 +84,7 @@
       "id": "online_bilibili_680677803",
       "name": "王小七Fire",
       "type": "bilibili_dynamic",
-      "enabled": true,
+      "enabled": false,
       "channel": "B站动态",
       "target": "王小七Fire",
       "locator": "680677803",
