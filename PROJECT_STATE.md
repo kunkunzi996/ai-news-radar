@@ -1,13 +1,19 @@
 # PROJECT_STATE
 
-## 微信采集后台跨设备访问修复（2026-08-03，已完成验收，未提交）
+## 微信采集后台跨设备访问修复（2026-08-03，已提交并部署）
 
-- 当前分支：`feature/wechat-admin-remote-access`；基线：`7ac934b`。
-- 方案 A：远程模式打开 `https://wechat.wanyouomnia.cn`，由 Cloudflare Tunnel 转发到 NUC 本机服务；本机模式优先打开本地地址。
-- 已完成：后端返回 `local_url`/`public_url`，启动 sidecar 等待就绪；前端按远程/本机模式选择地址；Python 与 Playwright 专项用例已补齐。工作台桥接测试的父页和错误来源页均使用 Node `server.listen(0)`，运行时动态生成 `PARENT_ORIGIN` 与 `WRONG_ORIGIN_PARENT`。
-- 测试进度：工作台桥接专项 `5 passed`；完整 `npm run test:e2e` `31 passed`；`tests/test_local_server.py` `165 passed`；py_compile、Node 语法和 diff 检查通过。完整 E2E 已在真实 `8765` 被 kun-partner 配置界面占用（PID `4584`）时通过，未停止该进程。
-- 施工约束：手动挡；禁止自动 commit、push、部署或修改 Cloudflare/NUC 配置。本轮未暂存、未提交、未推送。
-- 交付状态：施工与本轮验收完成；未暂存、未提交、未推送，未修改 Cloudflare/NUC 配置。
+- 代码提交 `6202058` 已推送到 `master`；本地与 `origin/master` 一致。方案 A：远程模式打开
+  `https://wechat.wanyouomnia.cn`，由 Cloudflare Tunnel 转发到 NUC 本机 `127.0.0.1:8001`；本机模式仍优先打开本地地址。
+- NUC `omnia-nuc` Tunnel（ID `e8ff31f8-1b01-408d-8b4e-4d2d1e92916a`）已在现有
+  `C:\OMNIA\staging-cloudflared\config.yml` 追加微信 ingress，并通过 Cloudflare CLI 创建
+  `wechat.wanyouomnia.cn` DNS 路由。原有 `app/radar/collect/calendar` 路由保持不变。
+- NUC `RadarAdminServer` 启动脚本已补 `WE_MP_RSS_PUBLIC_ADMIN_URL=https://wechat.wanyouomnia.cn`；
+  `OMNIA Staging Tunnel` 与 `RadarAdminServer` 计划任务均已重启，8001/8080 正常监听。
+- 验收证据：Tunnel 有 4 个活动连接；公网 `https://wechat.wanyouomnia.cn/` 与 `/docs` 均 HTTP 200；
+  真实浏览器打开到微信后台登录页；后台维护接口返回 `local_url=http://127.0.0.1:8001`、
+  `public_url=https://wechat.wanyouomnia.cn`。
+- 配置回退副本保留在 NUC：`config.yml.before-wechat-20260803.bak`、
+  `start-server.cmd.before-wechat-20260803.bak`。不删除运行时数据，不提交凭据。
 
 ## 工作台 AI 雷达配置页来源校验修复（2026-08-03，已部署并验收）
 

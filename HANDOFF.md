@@ -2,6 +2,17 @@
 
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，完整状态在 `PROJECT_STATE.md`。
 
+## 微信采集后台跨设备访问（2026-08-03，已部署）
+
+- 代码提交 `6202058` 已在 `master`，NUC 已同步运行。
+- Cloudflare `omnia-nuc` Tunnel 已追加 `wechat.wanyouomnia.cn -> 127.0.0.1:8001`，DNS 路由已创建；
+  原有 `app/radar/collect/calendar` 路由未改。
+- NUC `RadarAdminServer` 已加载 `WE_MP_RSS_PUBLIC_ADMIN_URL=https://wechat.wanyouomnia.cn`；
+  `OMNIA Staging Tunnel` 和 `RadarAdminServer` 计划任务均处于运行态。
+- 公网根页、`/docs` 和真实浏览器登录页均已通过；维护接口已返回正确的本地/公网地址。
+- 若再次打不开，先核对 `cloudflared tunnel info omnia-nuc`、`netstat :8001 :8080`、
+  `start-server.cmd` 的公开地址行和 `POST /api/maintenance-action` 的返回，不要先改代码。
+
 ## 工作台 AI 雷达配置页来源校验修复（2026-08-03）
 
 - 修复提交 `f7b2241` 已合入 `master`，当前主线与 NUC 部署点为 `fe1dcde`。
