@@ -3958,10 +3958,18 @@ class AdminTokenHelpersTests(unittest.TestCase):
         )
         self.assertTrue(is_trusted_origin("https://kunkunzi996.github.io"))
         self.assertTrue(is_trusted_origin("https://kunkunzi996.github.io/ai-news-radar/"))
+        self.assertTrue(
+            is_trusted_origin(
+                "https://kunkunzi996.github.io/ai-news-radar/?adminBase=https%3A%2F%2Fradar.example&adminToken=redacted"
+            )
+        )
+        self.assertTrue(is_trusted_origin("https://kunkunzi996.github.io/ai-news-radar/#settings"))
         self.assertTrue(is_trusted_origin("http://127.0.0.1:8080"))
         self.assertTrue(is_trusted_origin(""))
         self.assertFalse(is_trusted_origin("https://evil.example"))
         self.assertFalse(is_trusted_origin("https://kunkunzi996.github.io.evil.example"))
+        self.assertFalse(is_trusted_origin("https://kunkunzi996.github.io@evil.example/?x=1"))
+        self.assertFalse(is_trusted_origin("https://kunkunzi996.github.io:8443/?x=1"))
         self.assertEqual(
             reflected_cors_origin("https://kunkunzi996.github.io"),
             "https://kunkunzi996.github.io",
@@ -4072,6 +4080,7 @@ class AdminTokenModeServerTests(unittest.TestCase):
         if body is not None:
             request_headers["Content-Type"] = "application/json"
             request_headers["Content-Length"] = str(len(body))
+        request_headers.update(headers or {})
         connection = http.client.HTTPConnection(*self.server.server_address, timeout=5)
         try:
             connection.request(method, path, body=body, headers=request_headers)
@@ -4103,6 +4112,22 @@ class AdminTokenModeServerTests(unittest.TestCase):
         self.assertTrue(body.get("ok"))
         self.assertEqual(headers.get("Access-Control-Allow-Origin"), self.TRUSTED)
         self.assertEqual(headers.get("Vary"), "Origin")
+
+    def test_api_accepts_iframe_referer_with_bridge_query(self):
+        status, _headers, body = self.request(
+            "GET",
+            "/api/online-source-config",
+            token=self.TOKEN,
+            origin=self.TRUSTED,
+            headers={
+                "Referer": (
+                    f"{self.TRUSTED}/?adminBase=https%3A%2F%2Fradar.example"
+                    "&adminToken=redacted"
+                )
+            },
+        )
+        self.assertEqual(status, 200)
+        self.assertTrue(body.get("ok"))
 
     def test_cors_not_reflected_for_untrusted_origin(self):
         status, headers, _body = self.request(

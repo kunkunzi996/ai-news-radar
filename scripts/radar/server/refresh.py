@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 from http.server import SimpleHTTPRequestHandler
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlsplit
 
 from scripts.radar.server import (
     BILIBILI_DEFAULT_COOKIE_FILE,
@@ -182,7 +183,7 @@ def trusted_origins() -> tuple[str, ...]:
 
 
 def is_trusted_origin(value: str) -> bool:
-    """Local origins always pass; configured extra origins match by origin prefix.
+    """Local origins always pass; configured extra origins match by origin.
 
     Empty values pass (same semantics as is_local_origin): non-browser clients
     without Origin/Referer are gated by the admin token instead.
@@ -192,6 +193,12 @@ def is_trusted_origin(value: str) -> bool:
     stripped = str(value or "").strip().rstrip("/").lower()
     if not stripped:
         return True
+    parsed = urlsplit(stripped)
+    if parsed.scheme and parsed.netloc:
+        # Referer can contain the iframe's query string (including the bridge
+        # parameters). Trust only its scheme + host + port, never the path or
+        # query, while keeping the explicit trusted-origin allowlist below.
+        stripped = f"{parsed.scheme}://{parsed.netloc}"
     for origin in trusted_origins():
         if stripped == origin or stripped.startswith(origin + "/"):
             return True
