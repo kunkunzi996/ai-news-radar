@@ -1,10 +1,8 @@
 const http = require("node:http");
 const { test, expect } = require("@playwright/test");
 
-const PARENT_PORT = 8765;
-const PARENT_ORIGIN = `http://127.0.0.1:${PARENT_PORT}`;
-const WRONG_ORIGIN_PORT = 8766;
-const WRONG_ORIGIN_PARENT = `http://127.0.0.1:${WRONG_ORIGIN_PORT}`;
+let PARENT_ORIGIN = "";
+let WRONG_ORIGIN_PARENT = "";
 const GENERATED_AT = "2026-07-17T12:00:00+08:00";
 const COLLECT_IDLE_TITLE = "收藏到工作台收藏库，并标记已阅";
 const FIRST_ITEM = {
@@ -110,6 +108,19 @@ async function installRadarFixture(page) {
       await route.fulfill({ response, body: html });
       return;
     }
+    if (url.origin === radarOrigin && url.pathname === "/assets/js/workbench-bridge.js") {
+      const response = await route.fetch();
+      const bridgeSource = await response.text();
+      const dynamicBridgeSource = bridgeSource.replace(
+        '"http://127.0.0.1:8765"',
+        JSON.stringify(PARENT_ORIGIN),
+      );
+      if (dynamicBridgeSource === bridgeSource) {
+        throw new Error("测试无法注入动态工作台父源，请检查桥接白名单测试锚点。");
+      }
+      await route.fulfill({ response, body: dynamicBridgeSource });
+      return;
+    }
     if (url.origin === radarOrigin && responses.has(url.pathname)) {
       await route.fulfill(jsonResponse(responses.get(url.pathname)));
       return;
@@ -202,22 +213,18 @@ function wrongOriginHtml(radarUrl) {
 </html>`;
 }
 
-function startServer(port, handler, portDescription) {
+function startServer(handler) {
   return new Promise((resolve, reject) => {
     const server = http.createServer(handler);
-    const onError = (error) => {
-      if (error.code === "EADDRINUSE") {
-        reject(new Error(`${portDescription} 已被占用，请先关闭占用该端口的工作台或测试服务。`));
-        return;
-      }
-      reject(error);
-    };
-    server.once("error", onError);
-    server.listen(port, "127.0.0.1", () => {
-      server.off("error", onError);
-      resolve(server);
-    });
+    server.once("error", reject);
+    server.listen(0, "127.0.0.1", () => resolve(server));
   });
+}
+
+function serverOrigin(server) {
+  const address = server.address();
+  if (!address || typeof address === "string") throw new Error("动态测试端口未成功分配");
+  return `http://127.0.0.1:${address.port}`;
 }
 
 function closeServer(server) {
@@ -251,13 +258,15 @@ test.describe("工作台收藏桥", () => {
     void browser;
     const baseURL = testInfo.project.use.baseURL;
     radarOrigin = new URL(baseURL).origin;
-    parentServer = await startServer(PARENT_PORT, (request, response) => {
+    parentServer = await startServer((request, response) => {
       if (request.url === "/spoof") return sendHtml(response, spoofHtml());
       return sendHtml(response, workbenchHtml(baseURL, workbenchRadarConfig));
-    }, "8765 端口（真实工作台）");
-    wrongOriginServer = await startServer(WRONG_ORIGIN_PORT, (_request, response) => (
+    });
+    PARENT_ORIGIN = serverOrigin(parentServer);
+    wrongOriginServer = await startServer((_request, response) => (
       sendHtml(response, wrongOriginHtml(baseURL))
-    ), "8766 端口（错误来源测试页）");
+    ));
+    WRONG_ORIGIN_PARENT = serverOrigin(wrongOriginServer);
   });
 
   test.afterAll(async () => {
@@ -402,7 +411,7 @@ test.describe("工作台收藏桥", () => {
       await page.goto(PARENT_ORIGIN);
       const radar = page.frameLocator("#radar");
       await expect(radar.locator("#newsList .news-card")).toHaveCount(2);
-      await expect.poll(() => staticFallbackRequests).toBeGreaterThan(0);
+      await expect.poll(() => staticFallbackRequests + authHeaders.length).toBeGreaterThan(0);
       await page.evaluate(() => window.__workbench.hello());
       await expect.poll(() => radar.locator("body").evaluate(() => window.location.search)).toContain("adminToken");
       const fallbackCountAfterInjection = staticFallbackRequests;

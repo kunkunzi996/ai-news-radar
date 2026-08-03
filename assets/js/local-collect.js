@@ -938,6 +938,7 @@ async function startWeMpRssSidecarFromPage() {
   }
   const pendingWindow = window.open("about:blank", "_blank");
   if (pendingWindow) pendingWindow.opener = null;
+  const usesRemoteAdmin = Boolean(getAdminApiBase());
   setSourceConfigButton(weMpRssStartBtnEl, "启动中...", true);
   setLocalOpsStatus("正在启动微信采集 sidecar（8001）", "warn");
   try {
@@ -950,7 +951,14 @@ async function startWeMpRssSidecarFromPage() {
     if (!res.ok || payload.ok === false) {
       throw new Error(payload.error || `HTTP ${res.status}`);
     }
-    const target = payload.url || "http://127.0.0.1:8001";
+    const target = usesRemoteAdmin
+      ? String(payload.public_url || "").trim()
+      : String(payload.local_url || payload.url || "").trim();
+    if (!target) {
+      throw new Error(usesRemoteAdmin
+        ? "微信后台公网地址未配置，请先在 NUC 配置安全访问入口。"
+        : "微信后台本地地址未返回，请检查 sidecar 配置。");
+    }
     if (pendingWindow) pendingWindow.location.href = target;
     if (payload.already_running) {
       setSourceConfigStatus("微信 sidecar 已在运行，已打开后台页，可直接加公众号。", "ok");

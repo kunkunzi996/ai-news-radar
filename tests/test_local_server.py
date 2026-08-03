@@ -4,10 +4,11 @@ import os
 import subprocess
 import threading
 import unittest
+import urllib.error
 from datetime import datetime, timedelta, timezone
 from http.server import ThreadingHTTPServer
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 from scripts.local_server import (
     CONFIG_FILENAME,
@@ -54,7 +55,7 @@ from scripts.local_server import (
     write_youtube_subscriptions,
 )
 from scripts.radar.server.subscriptions_store import deleted_source_names_by_site
-from scripts.radar.server import github_stars, online_sources
+from scripts.radar.server import collectors, github_stars, online_sources
 
 
 class ApiErrorPayloadTests(unittest.TestCase):
@@ -3461,6 +3462,245 @@ class LocalServerTests(unittest.TestCase):
         self.assertEqual(Path(result["command"][0]), python_exe)
         self.assertEqual(Path(result["command"][1]), sidecar_root / "main.py")
 
+    def test_start_we_mp_rss_sidecar_returns_valid_public_and_local_urls(self):
+        root, sidecar_root, _python_exe = self.create_we_mp_rss_sidecar_fixture()
+        env = {
+            "WE_MP_RSS_SIDECAR_DIR": str(sidecar_root),
+            "WE_MP_RSS_BASE_URL": "http://127.0.0.1:8001",
+            "WE_MP_RSS_PUBLIC_ADMIN_URL": "https://wechat.wanyouomnia.cn/",
+        }
+
+        with patch.dict(os.environ, env, clear=False), patch(
+            "scripts.radar.server.collectors.we_mp_rss_service_running",
+            return_value=False,
+        ):
+            result = start_we_mp_rss_sidecar(root, execute=False)
+
+        self.assertTrue(result["ok"])
+        self.assertFalse(result["executed"])
+        self.assertEqual(result["url"], "http://127.0.0.1:8001")
+        self.assertEqual(result["local_url"], "http://127.0.0.1:8001")
+        self.assertEqual(result["public_url"], "https://wechat.wanyouomnia.cn")
+
+    def test_start_we_mp_rss_sidecar_allows_missing_public_url_for_local_mode(self):
+        root, sidecar_root, _python_exe = self.create_we_mp_rss_sidecar_fixture()
+        env = {
+            "WE_MP_RSS_SIDECAR_DIR": str(sidecar_root),
+            "WE_MP_RSS_BASE_URL": "http://127.0.0.1:8001",
+            "WE_MP_RSS_PUBLIC_ADMIN_URL": "",
+        }
+
+        with patch.dict(os.environ, env, clear=False), patch(
+            "scripts.radar.server.collectors.we_mp_rss_service_running",
+            return_value=False,
+        ):
+            result = start_we_mp_rss_sidecar(root, execute=False)
+
+        self.assertTrue(result["ok"])
+        self.assertEqual(result["local_url"], "http://127.0.0.1:8001")
+        self.assertEqual(result["public_url"], "")
+
+    def test_start_we_mp_rss_sidecar_rejects_invalid_public_urls_without_echoing_them(self):
+        root, sidecar_root, _python_exe = self.create_we_mp_rss_sidecar_fixture()
+        invalid_urls = (
+            "http://wechat.wanyouomnia.cn",
+            "https://localhost",
+            "https://admin.localhost",
+            "https://127.0.0.2",
+            "https://192.168.1.1",
+            "https://2130706433",
+            "https://0x7f000001",
+            "https://0x",
+            "https://08",
+            "https://017700000001",
+            "https://0177.0.0.1",
+            "https://[::1]",
+            "https://user:password@wechat.wanyouomnia.cn",
+            "https://wechat.wanyouomnia.cn/admin",
+            "https://wechat.wanyouomnia.cn?next=/admin",
+            "https://wechat.wanyouomnia.cn#login",
+        )
+
+        for invalid_url in invalid_urls:
+            with self.subTest(public_url=invalid_url), patch.dict(
+                os.environ,
+                {
+                    "WE_MP_RSS_SIDECAR_DIR": str(sidecar_root),
+                    "WE_MP_RSS_BASE_URL": "http://127.0.0.1:8001",
+                    "WE_MP_RSS_PUBLIC_ADMIN_URL": invalid_url,
+                },
+                clear=False,
+            ), patch(
+                "scripts.radar.server.collectors.we_mp_rss_service_running",
+                return_value=False,
+            ), patch("scripts.radar.server.collectors.subprocess.Popen") as popen:
+                result = start_we_mp_rss_sidecar(root, execute=False)
+
+            self.assertFalse(result["ok"])
+            self.assertEqual(result["error"], "we_mp_rss_public_admin_url_invalid")
+            self.assertNotIn(invalid_url, json.dumps(result))
+            popen.assert_not_called()
+
+    def test_we_mp_rss_service_running_accepts_4xx_but_rejects_5xx(self):
+        base_url = "http://127.0.0.1:8001"
+        for status, expected in ((404, True), (503, False)):
+            error = urllib.error.HTTPError(base_url + "/", status, "fixture", {}, None)
+            with self.subTest(status=status), patch(
+                "scripts.radar.server.collectors.urllib.request.urlopen",
+                side_effect=error,
+            ):
+                self.assertEqual(collectors.we_mp_rss_service_running(base_url), expected)
+
+    def test_start_we_mp_rss_sidecar_returns_both_urls_when_already_running(self):
+        root = Path(self.create_temp_dir())
+        env = {
+            "WE_MP_RSS_BASE_URL": "http://127.0.0.1:8001",
+            "WE_MP_RSS_PUBLIC_ADMIN_URL": "https://wechat.wanyouomnia.cn",
+        }
+
+        with patch.dict(os.environ, env, clear=False), patch(
+            "scripts.radar.server.collectors.we_mp_rss_service_running",
+            return_value=True,
+        ), patch("scripts.radar.server.collectors.subprocess.Popen") as popen:
+            result = start_we_mp_rss_sidecar(root)
+
+        self.assertTrue(result["ok"])
+        self.assertTrue(result["already_running"])
+        self.assertFalse(result["executed"])
+        self.assertEqual(result["action_id"], "start_we_mp_rss_sidecar")
+        self.assertEqual(result["local_url"], "http://127.0.0.1:8001")
+        self.assertEqual(result["public_url"], "https://wechat.wanyouomnia.cn")
+        popen.assert_not_called()
+
+    def test_start_we_mp_rss_sidecar_waits_until_service_is_ready(self):
+        root, sidecar_root, _python_exe = self.create_we_mp_rss_sidecar_fixture()
+        process = Mock(pid=4321)
+        process.poll.return_value = None
+        env = {
+            "WE_MP_RSS_SIDECAR_DIR": str(sidecar_root),
+            "WE_MP_RSS_BASE_URL": "http://127.0.0.1:8001",
+            "WE_MP_RSS_PUBLIC_ADMIN_URL": "https://wechat.wanyouomnia.cn",
+        }
+
+        with patch.dict(os.environ, env, clear=False), patch(
+            "scripts.radar.server.collectors.we_mp_rss_service_running",
+            side_effect=(False, False, True),
+        ) as service_running, patch(
+            "scripts.radar.server.collectors.subprocess.Popen",
+            return_value=process,
+        ), patch("scripts.radar.server.collectors.time.sleep") as sleep:
+            result = start_we_mp_rss_sidecar(root)
+
+        self.assertTrue(result["ok"])
+        self.assertTrue(result["executed"])
+        self.assertFalse(result["already_running"])
+        self.assertEqual(result["pid"], 4321)
+        self.assertEqual(result["public_url"], "https://wechat.wanyouomnia.cn")
+        self.assertEqual(service_running.call_count, 3)
+        sleep.assert_called_once()
+
+    def test_start_we_mp_rss_sidecar_reports_early_process_exit(self):
+        root, sidecar_root, _python_exe = self.create_we_mp_rss_sidecar_fixture()
+        process = Mock(pid=4321)
+        process.poll.return_value = 7
+        env = {
+            "WE_MP_RSS_SIDECAR_DIR": str(sidecar_root),
+            "WE_MP_RSS_BASE_URL": "http://127.0.0.1:8001",
+            "WE_MP_RSS_PUBLIC_ADMIN_URL": "https://wechat.wanyouomnia.cn",
+        }
+
+        with patch.dict(os.environ, env, clear=False), patch(
+            "scripts.radar.server.collectors.we_mp_rss_service_running",
+            return_value=False,
+        ), patch(
+            "scripts.radar.server.collectors.subprocess.Popen",
+            return_value=process,
+        ):
+            result = start_we_mp_rss_sidecar(root)
+
+        self.assertFalse(result["ok"])
+        self.assertEqual(result["error"], "we_mp_rss_start_failed")
+        self.assertEqual(result["exit_code"], 7)
+        self.assertEqual(result["pid"], 4321)
+
+    def test_start_we_mp_rss_sidecar_reports_start_failure(self):
+        root, sidecar_root, _python_exe = self.create_we_mp_rss_sidecar_fixture()
+        env = {
+            "WE_MP_RSS_SIDECAR_DIR": str(sidecar_root),
+            "WE_MP_RSS_BASE_URL": "http://127.0.0.1:8001",
+            "WE_MP_RSS_PUBLIC_ADMIN_URL": "https://wechat.wanyouomnia.cn",
+        }
+
+        with patch.dict(os.environ, env, clear=False), patch(
+            "scripts.radar.server.collectors.we_mp_rss_service_running",
+            return_value=False,
+        ), patch(
+            "scripts.radar.server.collectors.subprocess.Popen",
+            side_effect=OSError("fixture start failure"),
+        ):
+            result = start_we_mp_rss_sidecar(root)
+
+        self.assertFalse(result["ok"])
+        self.assertEqual(result["error"], "we_mp_rss_start_failed")
+        self.assertNotIn("fixture start failure", json.dumps(result))
+
+    def test_start_we_mp_rss_sidecar_times_out_without_stopping_process(self):
+        root, sidecar_root, _python_exe = self.create_we_mp_rss_sidecar_fixture()
+        process = Mock(pid=4321)
+        process.poll.return_value = None
+        env = {
+            "WE_MP_RSS_SIDECAR_DIR": str(sidecar_root),
+            "WE_MP_RSS_BASE_URL": "http://127.0.0.1:8001",
+            "WE_MP_RSS_PUBLIC_ADMIN_URL": "https://wechat.wanyouomnia.cn",
+        }
+
+        with patch.dict(os.environ, env, clear=False), patch(
+            "scripts.radar.server.collectors.we_mp_rss_service_running",
+            return_value=False,
+        ), patch(
+            "scripts.radar.server.collectors.subprocess.Popen",
+            return_value=process,
+        ), patch(
+            "scripts.radar.server.collectors.WE_MP_RSS_START_TIMEOUT_SECONDS",
+            0.0,
+        ):
+            result = start_we_mp_rss_sidecar(root)
+
+        self.assertFalse(result["ok"])
+        self.assertEqual(result["error"], "we_mp_rss_start_timeout")
+        self.assertEqual(result["pid"], 4321)
+        process.terminate.assert_not_called()
+        process.kill.assert_not_called()
+
+    def test_start_we_mp_rss_sidecar_caps_probe_timeout_to_remaining_budget(self):
+        root, sidecar_root, _python_exe = self.create_we_mp_rss_sidecar_fixture()
+        process = Mock(pid=4321)
+        process.poll.return_value = None
+        env = {
+            "WE_MP_RSS_SIDECAR_DIR": str(sidecar_root),
+            "WE_MP_RSS_BASE_URL": "http://127.0.0.1:8001",
+            "WE_MP_RSS_PUBLIC_ADMIN_URL": "https://wechat.wanyouomnia.cn",
+        }
+
+        with patch.dict(os.environ, env, clear=False), patch(
+            "scripts.radar.server.collectors.we_mp_rss_service_running",
+            return_value=False,
+        ) as service_running, patch(
+            "scripts.radar.server.collectors.subprocess.Popen",
+            return_value=process,
+        ), patch(
+            "scripts.radar.server.collectors.WE_MP_RSS_START_TIMEOUT_SECONDS",
+            1.0,
+        ), patch(
+            "scripts.radar.server.collectors.time.monotonic",
+            side_effect=(100.0, 100.9, 101.0),
+        ):
+            result = start_we_mp_rss_sidecar(root)
+
+        self.assertFalse(result["ok"])
+        self.assertEqual(result["error"], "we_mp_rss_start_timeout")
+        self.assertAlmostEqual(service_running.call_args_list[-1].kwargs["timeout"], 0.1, places=6)
+
     def test_perform_maintenance_action_start_wewe_rss_reaches_handler_without_issue(self):
         import os
 
@@ -3536,6 +3776,18 @@ class LocalServerTests(unittest.TestCase):
         tmp = tempfile.TemporaryDirectory(prefix="ai-news-radar-local-server-test-")
         self.addCleanup(tmp.cleanup)
         return tmp.name
+
+    def create_we_mp_rss_sidecar_fixture(self):
+        root = Path(self.create_temp_dir()) / "ai-news-radar-run"
+        root.mkdir(parents=True)
+        sidecar_root = root.parent / "we-mp-rss-sidecar-test"
+        sidecar_root.mkdir()
+        (sidecar_root / "main.py").write_text("print('fake')\n", encoding="utf-8")
+        python_dir = sidecar_root / ".venv" / "Scripts"
+        python_dir.mkdir(parents=True)
+        python_exe = python_dir / "python.exe"
+        python_exe.write_text("", encoding="utf-8")
+        return root, sidecar_root, python_exe
 
     def git(self, root, *args):
         return subprocess.run(

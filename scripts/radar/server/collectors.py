@@ -1,10 +1,13 @@
 from __future__ import annotations
 
+import ipaddress
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -50,6 +53,10 @@ from scripts.radar.server.common import (
 )
 
 """Local sidecar and MediaCrawler collector helpers."""
+
+WE_MP_RSS_START_TIMEOUT_SECONDS = 20.0
+WE_MP_RSS_START_POLL_INTERVAL_SECONDS = 0.25
+
 
 def add_mediacrawler_jsonl_issue(
     issues: list[dict[str, Any]],
@@ -271,16 +278,129 @@ def we_mp_rss_sidecar_root(root_dir: Path) -> Path:
     return (root_dir.parent / WE_MP_RSS_SIDECAR_DIR_NAME).resolve()
 
 
-def we_mp_rss_service_running() -> bool:
-    # 8001 sidecar（we-mp-rss，Python）的健康检查打根路径 /，不是 4000 的 /feeds。
-    base_url = (os.environ.get("WE_MP_RSS_BASE_URL") or WE_MP_RSS_BASE_URL_DEFAULT).strip().rstrip("/")
-    request = urllib.request.Request(base_url + "/", headers={"Accept": "*/*"})
+def normalize_we_mp_rss_public_admin_url(value: str | None = None) -> tuple[bool, str]:
+    raw = os.environ.get("WE_MP_RSS_PUBLIC_ADMIN_URL") if value is None else value
+    text = str(raw or "").strip()
+    if not text:
+        return True, ""
     try:
-        with urllib.request.urlopen(request, timeout=LOCAL_HTTP_TIMEOUT_SECONDS) as response:
-            return response.status < 500
-    except urllib.error.HTTPError:
-        # 有响应（哪怕 4xx）就说明服务在跑
+        parsed = urllib.parse.urlsplit(text)
+        hostname = parsed.hostname or ""
+        parsed.port  # Validate an explicitly configured port.
+    except (TypeError, ValueError):
+        return False, ""
+
+    clean_hostname = hostname.rstrip(".").lower()
+    if (
+        parsed.scheme.lower() != "https"
+        or not parsed.netloc
+        or not clean_hostname
+        or parsed.username is not None
+        or parsed.password is not None
+        or parsed.path not in {"", "/"}
+        or parsed.query
+        or parsed.fragment
+        or "?" in text
+        or "#" in text
+        or any(char.isspace() for char in text)
+        or "%" in hostname
+        or "\\" in hostname
+    ):
+        return False, ""
+
+    if _is_non_public_hostname(clean_hostname):
+        return False, ""
+
+    return True, urllib.parse.urlunsplit(("https", parsed.netloc, "", "", ""))
+
+
+def _browser_ipv4_address(hostname: str) -> ipaddress.IPv4Address | None:
+    """Parse the non-canonical IPv4 forms browsers accept in URL hosts."""
+    parts = hostname.split(".")
+    if not 1 <= len(parts) <= 4 or any(not part for part in parts):
+        return None
+    values: list[int] = []
+    for part in parts:
+        if part[:2].lower() == "0x":
+            digits = part[2:]
+            if not digits:
+                value = 0
+            elif not re.fullmatch(r"[0-9a-fA-F]+", digits):
+                return None
+            else:
+                value = int(digits, 16)
+        elif part.isdigit():
+            try:
+                value = int(part, 8 if len(part) > 1 and part.startswith("0") else 10)
+            except ValueError:
+                return None
+        else:
+            return None
+        values.append(value)
+
+    limits_by_part_count = {
+        1: (0xFFFFFFFF,),
+        2: (0xFF, 0xFFFFFF),
+        3: (0xFF, 0xFF, 0xFFFF),
+        4: (0xFF,) * 4,
+    }
+    limits = limits_by_part_count[len(values)]
+    if any(value > limit for value, limit in zip(values, limits)):
+        return None
+    number = values[0]
+    for value in values[1:]:
+        number = (number << 8) | value
+    return ipaddress.IPv4Address(number)
+
+
+def _is_non_public_hostname(hostname: str) -> bool:
+    if hostname == "localhost" or hostname.endswith(".localhost"):
         return True
+    try:
+        address = ipaddress.ip_address(hostname)
+    except ValueError:
+        address = _browser_ipv4_address(hostname)
+    if address is None:
+        parts = hostname.split(".")
+        return bool(parts) and all(
+            part.isdigit() or part[:2].lower() == "0x" for part in parts
+        )
+    mapped_address = getattr(address, "ipv4_mapped", None)
+    return not address.is_global or (
+        mapped_address is not None and not mapped_address.is_global
+    )
+
+
+def we_mp_rss_start_success_payload(
+    base_url: str,
+    public_url: str,
+    **details: Any,
+) -> dict[str, Any]:
+    return {
+        "ok": True,
+        "kind": "start_service",
+        "action_id": "start_we_mp_rss_sidecar",
+        "url": base_url,
+        "local_url": base_url,
+        "public_url": public_url,
+        **details,
+    }
+
+
+def we_mp_rss_service_running(
+    base_url: str | None = None,
+    *,
+    timeout: float = LOCAL_HTTP_TIMEOUT_SECONDS,
+) -> bool:
+    # 8001 sidecar（we-mp-rss，Python）的健康检查打根路径 /，不是 4000 的 /feeds。
+    resolved_base_url = (base_url or os.environ.get("WE_MP_RSS_BASE_URL") or WE_MP_RSS_BASE_URL_DEFAULT).strip().rstrip("/")
+    request = urllib.request.Request(resolved_base_url + "/", headers={"Accept": "*/*"})
+    try:
+        with urllib.request.urlopen(request, timeout=timeout) as response:
+            return response.status < 500
+    except urllib.error.HTTPError as exc:
+        # 4xx 表示 HTTP 服务已响应；5xx 仍未达到可打开后台的就绪状态。
+        return exc.code < 500
     except (urllib.error.URLError, TimeoutError, OSError):
         return False
 
@@ -290,8 +410,16 @@ def start_we_mp_rss_sidecar(root_dir: Path, *, execute: bool = True) -> dict[str
     base_url = (os.environ.get("WE_MP_RSS_BASE_URL") or WE_MP_RSS_BASE_URL_DEFAULT).strip().rstrip("/")
     if not is_local_http_url(base_url):
         return {"ok": False, "error": "we_mp_rss_base_url_not_local", "base_url": base_url}
-    if we_mp_rss_service_running():
-        return {"ok": True, "already_running": True, "url": base_url, "executed": False}
+    public_url_ok, public_url = normalize_we_mp_rss_public_admin_url()
+    if not public_url_ok:
+        return {"ok": False, "error": "we_mp_rss_public_admin_url_invalid"}
+    if we_mp_rss_service_running(base_url):
+        return we_mp_rss_start_success_payload(
+            base_url,
+            public_url,
+            already_running=True,
+            executed=False,
+        )
 
     sidecar_root = we_mp_rss_sidecar_root(root_dir)
     entry = sidecar_root / "main.py"
@@ -308,7 +436,14 @@ def start_we_mp_rss_sidecar(root_dir: Path, *, execute: bool = True) -> dict[str
 
     command = [python_exe, str(entry), "-job", "True", "-init", "True"]
     if not execute:
-        return {"ok": True, "command": command, "cwd": str(sidecar_root), "url": base_url, "executed": False}
+        return we_mp_rss_start_success_payload(
+            base_url,
+            public_url,
+            command=command,
+            cwd=str(sidecar_root),
+            already_running=False,
+            executed=False,
+        )
 
     # 微信是国内服务，走代理会被拒/超时——清掉代理环境变量，与 start-we-mp-rss.ps1 一致。
     env = os.environ.copy()
@@ -320,25 +455,56 @@ def start_we_mp_rss_sidecar(root_dir: Path, *, execute: bool = True) -> dict[str
     creationflags = 0
     if os.name == "nt":
         creationflags = subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS
-    with out_log.open("a", encoding="utf-8", errors="ignore") as stdout_file:
-        process = subprocess.Popen(
-            command,
-            cwd=sidecar_root,
-            env=env,
-            stdout=stdout_file,
-            stderr=subprocess.STDOUT,
-            stdin=subprocess.DEVNULL,
-            close_fds=True,
-            creationflags=creationflags,
-        )
-    return {
-        "ok": True,
-        "kind": "start_service",
-        "action_id": "start_we_mp_rss_sidecar",
-        "pid": process.pid,
-        "url": base_url,
-        "executed": True,
-    }
+    try:
+        with out_log.open("a", encoding="utf-8", errors="ignore") as stdout_file:
+            process = subprocess.Popen(
+                command,
+                cwd=sidecar_root,
+                env=env,
+                stdout=stdout_file,
+                stderr=subprocess.STDOUT,
+                stdin=subprocess.DEVNULL,
+                close_fds=True,
+                creationflags=creationflags,
+            )
+    except OSError:
+        return {"ok": False, "error": "we_mp_rss_start_failed"}
+
+    deadline = time.monotonic() + WE_MP_RSS_START_TIMEOUT_SECONDS
+    probe_timeout = min(LOCAL_HTTP_TIMEOUT_SECONDS, WE_MP_RSS_START_POLL_INTERVAL_SECONDS)
+    while True:
+        exit_code = process.poll()
+        if exit_code is not None:
+            return {
+                "ok": False,
+                "error": "we_mp_rss_start_failed",
+                "pid": process.pid,
+                "exit_code": exit_code,
+            }
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            return {
+                "ok": False,
+                "error": "we_mp_rss_start_timeout",
+                "pid": process.pid,
+            }
+        if we_mp_rss_service_running(base_url, timeout=min(probe_timeout, remaining)):
+            return we_mp_rss_start_success_payload(
+                base_url,
+                public_url,
+                pid=process.pid,
+                already_running=False,
+                executed=True,
+            )
+
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            return {
+                "ok": False,
+                "error": "we_mp_rss_start_timeout",
+                "pid": process.pid,
+            }
+        time.sleep(min(WE_MP_RSS_START_POLL_INTERVAL_SECONDS, remaining))
 
 
 def mediacrawler_python_exe(crawler_root: Path) -> str | None:

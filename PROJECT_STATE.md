@@ -1,5 +1,14 @@
 # PROJECT_STATE
 
+## 微信采集后台跨设备访问修复（2026-08-03，已完成验收，未提交）
+
+- 当前分支：`feature/wechat-admin-remote-access`；基线：`7ac934b`。
+- 方案 A：远程模式打开 `https://wechat.wanyouomnia.cn`，由 Cloudflare Tunnel 转发到 NUC 本机服务；本机模式优先打开本地地址。
+- 已完成：后端返回 `local_url`/`public_url`，启动 sidecar 等待就绪；前端按远程/本机模式选择地址；Python 与 Playwright 专项用例已补齐。工作台桥接测试的父页和错误来源页均使用 Node `server.listen(0)`，运行时动态生成 `PARENT_ORIGIN` 与 `WRONG_ORIGIN_PARENT`。
+- 测试进度：工作台桥接专项 `5 passed`；完整 `npm run test:e2e` `31 passed`；`tests/test_local_server.py` `165 passed`；py_compile、Node 语法和 diff 检查通过。完整 E2E 已在真实 `8765` 被 kun-partner 配置界面占用（PID `4584`）时通过，未停止该进程。
+- 施工约束：手动挡；禁止自动 commit、push、部署或修改 Cloudflare/NUC 配置。本轮未暂存、未提交、未推送。
+- 交付状态：施工与本轮验收完成；未暂存、未提交、未推送，未修改 Cloudflare/NUC 配置。
+
 ## 工作台 AI 雷达配置页来源校验修复（2026-08-03，已部署并验收）
 
 - 根因：工作台 iframe 的 `Origin/Referer` 可能来自 `radar.wanyouomnia.cn` 或
