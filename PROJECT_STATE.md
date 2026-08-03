@@ -1,6 +1,16 @@
 # PROJECT_STATE
 
-## GitHub 重大更新筛选（2026-08-02，已完成施工与验收）
+## 工作台 AI 雷达配置页来源校验修复（2026-08-03，已部署并验收）
+
+- 根因：工作台 iframe 的 `Origin/Referer` 可能来自 `radar.wanyouomnia.cn` 或
+  `app.wanyouomnia.cn`，NUC 启动脚本当时只信任 GitHub Pages，接口返回 `403 non_local_origin`；
+  服务端同时补充了带路径/query 的 iframe Referer 规范化匹配。
+- 修复提交 `f7b2241` 已合入 `master`，当前主线与 NUC 部署点为 `fe1dcde`；NUC 实际白名单为
+  `https://kunkunzi996.github.io`、`https://radar.wanyouomnia.cn`、`https://app.wanyouomnia.cn`。
+- 验收证据：`tests/test_local_server.py` **155 passed**；`py_compile`、`git diff --check` 通过；
+  公网 API 返回 200、线上信源 53 条；用户已实际打开工作台配置页并成功修改信源。
+
+## GitHub 重大更新筛选与 NUC 同步（2026-08-03，已完成施工与部署验收）
 
 - 任务等级：中型；流水线挡位：手动挡。
 - 施工分支：`feature/github-important-updates`；独立工作区：
@@ -13,10 +23,15 @@
 - 验收证据：相关回归 **275 passed**；`py_compile`、`git diff --check` 通过；真实归档只读预览为
   GitHub `303 → 36` 条可见，历史归档未改写。Playwright 页面确认 `Partner 2.0.0`、`v8.5.0`
   可见，补丁版、预发布和“反应测试”提交隐藏；B 站栏目仍为 405 条。
-- 约束：不删除历史归档、不安装依赖、不改前端交互、部署、GitHub 星标同步或取消订阅清理契约。
-- 当前流水线状态：`DONE`；功能提交 `e3d5983` 已通过 PR #18 合并，合并提交为 `2249cc7`，
-  `master` 已推送并同步到自动数据提交 `28d80c0`。Pages 部署和数据 Actions 均成功；feature 分支与
-  worktree 暂保留，未执行删除清理。
+- 施工约束：不删除历史归档、不安装依赖、不改前端交互、GitHub 星标同步或取消订阅清理契约；
+  部署同步沿用既有 Pages/NUC 机制，不改部署契约。
+- 当前流水线状态：`DONE`；功能提交 `e3d5983` 已通过 PR #18 合并（`2249cc7`），历史归档展示修复
+  `551362a` 已通过 PR #19 合并（`53378af`），随后数据快照合并提交为 `fe1dcde`，当前
+  `master` / `origin/master` 为 `fe1dcde`。
+- NUC `omnia-nuc`（`DESKTOP-H9RAKEH`）已部署到同一 `fe1dcde`；NUC 专项
+  `pytest -q tests/test_topic_filter.py` 为 **112 passed**。本机 `8080`、公网管理后台和 Pages
+  均返回 HTTP 200。NUC 未跟踪的 `scripts/windows/auto-ff.sh` 已保留且哈希未变化，禁止删除或覆盖。
+- Pages 部署和数据 Actions 均成功；feature 分支与 worktree 暂保留，未执行删除清理。
 
 ## Harness 收尾验收（2026-08-02）
 

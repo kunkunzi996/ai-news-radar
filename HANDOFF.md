@@ -2,6 +2,29 @@
 
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，完整状态在 `PROJECT_STATE.md`。
 
+## 工作台 AI 雷达配置页来源校验修复（2026-08-03）
+
+- 修复提交 `f7b2241` 已合入 `master`，当前主线与 NUC 部署点为 `fe1dcde`。
+- 根因是工作台 iframe 的 `Origin/Referer` 可能来自雷达域名或工作台域名，而 NUC 只信任
+  GitHub Pages；服务端现已规范化带路径/query 的 Referer。NUC 白名单为
+  `https://kunkunzi996.github.io`、`https://radar.wanyouomnia.cn`、`https://app.wanyouomnia.cn`。
+- `tests/test_local_server.py` **155 passed**，`py_compile`、`git diff --check` 通过；公网 API 返回
+  200、线上信源 53 条，用户已实际修改信源成功。
+- 下一轮入口：若再次出现配置页加载失败，先核对 NUC `start-server.cmd` 的三项白名单、
+  `RadarAdminServer` 日志和 `/api/online-source-config` 的 HTTP 状态，不要先改 iframe 传参。
+
+## GitHub 重大更新筛选与 NUC 同步（2026-08-03）
+
+- GitHub 重大更新过滤已合入 `master`：功能合并提交 `2249cc7`，历史归档展示修复合并提交
+  `53378af`；随后数据快照合并提交为 `fe1dcde`，当前 `master` / `origin/master` 为 `fe1dcde`。
+- NUC `omnia-nuc`（`DESKTOP-H9RAKEH`）已部署到 `fe1dcde`。NUC 专项
+  `pytest -q tests/test_topic_filter.py` 为 **112 passed**；本机管理服务 `8080`、公网管理后台和
+  GitHub Pages 均返回 HTTP 200。
+- NUC 工作树只保留一个未跟踪文件 `scripts/windows/auto-ff.sh`，本轮已核对哈希未变化；后续同步
+  不得删除、覆盖或批量清理该文件。采集任务每次启动时加载过滤代码，管理服务当前正常，无需为本次修复强制重启。
+- 下一轮入口：若发现 NUC 不再跟随主线，先在 NUC 核对 `git status --short`、
+  `git ls-remote origin refs/heads/master` 和 `RadarAutoFF` 日志，再执行可证明的 `ff-only` 同步。
+
 ## Harness 收尾验收（2026-08-02）
 
 - 本条 Harness 待办已完成；用户已确认纳入本次文档提交，并已通过 PR #16 合并至 `master`（合并提交 `c8acfbd`）。主工作区已同步，feature 分支与远程分支暂保留，未清理。

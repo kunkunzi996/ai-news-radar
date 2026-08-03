@@ -335,7 +335,7 @@ local_server 并经 Cloudflare 隧道暴露，**同一个公网页面就能直�
 
    ```powershell
    $env:RADAR_ADMIN_TOKEN='<48位随机令牌>'
-   $env:RADAR_TRUSTED_ORIGINS='https://kunkunzi996.github.io'
+   $env:RADAR_TRUSTED_ORIGINS='https://kunkunzi996.github.io,https://radar.wanyouomnia.cn,https://app.wanyouomnia.cn'
    .\.venv\Scripts\python.exe scripts/local_server.py --host 127.0.0.1 --port 8080
    ```
 
