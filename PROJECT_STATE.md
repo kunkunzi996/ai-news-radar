@@ -1,5 +1,12 @@
 # PROJECT_STATE
 
+## NUC 脏工作区护栏与旧脚本迁移（2026-08-04，已部署并验收）
+
+- 线上信源保存与同步已收敛为事务：保存阶段失败会回滚配置、OPML、待清理台账和自动采集登记；同步阶段失败会保留可识别的错误原因，不再把半完成状态当成成功。当前主线和 NUC HEAD 均为 `900c34b`；NUC 运行工作区干净，本地当前仅有本轮文档未提交改动。
+- NUC `RadarAutoFF` 已改为执行 Git 跟踪的 `scripts/windows/auto-ff.sh`。成功写入 `event=ff-ok`，失败写入退出码、旧/新 HEAD、stderr 摘要和分类 `reason`；遇到脏工作区只记录并退出，不覆盖本机采集产物。
+- 旧的未跟踪脚本已迁移完成。原脚本及 `previous-worktree` 副本保留在 NUC 的 `_deploy-backups\auto-ff-migration-20260804` 下，仅作回退依据，未删除运行时数据或凭据。
+- 验收证据：NUC `tests/test_auto_ff.py` **4 passed**；保存同步专项 **8 passed**；`py_compile`、`node --check`、本地前端 E2E **31 passed**；API 配置读取 HTTP 200、CORS 预检 204、非法保存 409、本地状态 200；用户人工验收通过。
+
 ## 微信采集后台跨设备访问修复（2026-08-03，已提交并部署）
 
 - 代码提交 `6202058` 已推送到 `master`；本地与 `origin/master` 一致。方案 A：远程模式打开
@@ -20,7 +27,7 @@
 - 根因：工作台 iframe 的 `Origin/Referer` 可能来自 `radar.wanyouomnia.cn` 或
   `app.wanyouomnia.cn`，NUC 启动脚本当时只信任 GitHub Pages，接口返回 `403 non_local_origin`；
   服务端同时补充了带路径/query 的 iframe Referer 规范化匹配。
-- 修复提交 `f7b2241` 已合入 `master`，当前主线与 NUC 部署点为 `fe1dcde`；NUC 实际白名单为
+- 修复提交 `f7b2241` 已合入 `master`；当前主线与 NUC 部署点为 `900c34b`；NUC 实际白名单为
   `https://kunkunzi996.github.io`、`https://radar.wanyouomnia.cn`、`https://app.wanyouomnia.cn`。
 - 验收证据：`tests/test_local_server.py` **155 passed**；`py_compile`、`git diff --check` 通过；
   公网 API 返回 200、线上信源 53 条；用户已实际打开工作台配置页并成功修改信源。
@@ -42,10 +49,10 @@
   部署同步沿用既有 Pages/NUC 机制，不改部署契约。
 - 当前流水线状态：`DONE`；功能提交 `e3d5983` 已通过 PR #18 合并（`2249cc7`），历史归档展示修复
   `551362a` 已通过 PR #19 合并（`53378af`），随后数据快照合并提交为 `fe1dcde`，当前
-  `master` / `origin/master` 为 `fe1dcde`。
-- NUC `omnia-nuc`（`DESKTOP-H9RAKEH`）已部署到同一 `fe1dcde`；NUC 专项
+  `master` / `origin/master` 已继续推进到 `900c34b`。
+- NUC `omnia-nuc`（`DESKTOP-H9RAKEH`）已部署并继续快进到 `900c34b`；NUC 专项
   `pytest -q tests/test_topic_filter.py` 为 **112 passed**。本机 `8080`、公网管理后台和 Pages
-  均返回 HTTP 200。NUC 未跟踪的 `scripts/windows/auto-ff.sh` 已保留且哈希未变化，禁止删除或覆盖。
+  均返回 HTTP 200。`scripts/windows/auto-ff.sh` 已纳入 Git 跟踪，旧脚本副本仅作为回退备份保留。
 - Pages 部署和数据 Actions 均成功；feature 分支与 worktree 暂保留，未执行删除清理。
 
 ## Harness 收尾验收（2026-08-02）
@@ -95,9 +102,10 @@
     已成功。改为保存只登记、同步推送成功后才派发（`3207d45`）。
   - 验收数据：全量 `unittest discover tests` **586 passed**；NUC 上专项 46 passed；
     `py_compile`、`git diff --check` 通过。
-- **同轮暴露的既有问题（已顺带修复）**：NUC 的 `RadarAutoFF`（每 10 分钟自动快进）此前**一直
-  未成功**——`data/` 下本机采集产物挡住 `merge --ff-only`，它会静默跳过，导致 NUC 落后 11 个提交。
-  已隔离产物并快进；该卡点仍可能复发，若发现 NUC 代码不更新先查此处。
+- **同轮暴露的既有问题（已修复并补上护栏）**：NUC 的 `RadarAutoFF`（每 10 分钟自动快进）此前
+  因 `data/` 下本机采集产物挡住 `merge --ff-only` 而静默跳过，导致 NUC 落后 11 个提交。
+  现已改为可观测失败日志并保留脏工作区；若发现 NUC 代码不更新，先查 `logs/auto-ff.log` 的
+  `reason` 和退出码，不要手工覆盖 `data/**`。
 - **本机主工作区已同步**：`ai-news-radar-run` 已从 `26cf849`（7/18）快进到最新，
   此前落后 200+ 提交。
 - **`git stash list` 曾显示为空，2026-08-01 查清：是账本丢失，不是数据丢失**（已恢复显示）。

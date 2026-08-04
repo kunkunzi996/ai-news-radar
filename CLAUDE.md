@@ -107,6 +107,9 @@ GitHub 只能走独立的稳定 repo ID 契约，不能进入名称型订阅清�
 2. 不可改用 `pull --rebase --autostash`：线上 Actions 每轮提交 `data/**`，autostash pop 必
    三方冲突，且此时 rebase 已完成、abort 无效。
 3. stash 不带 `-u`；函数只碰自己压入的 `stash@{0}`，用户已有的遗留 stash 会自动回位、不可误 drop。
+4. NUC 的 `RadarAutoFF` 只允许执行 Git 跟踪的 `scripts/windows/auto-ff.sh`；成功或失败必须以
+   `logs/auto-ff.log` 的结构化事件和 `reason` 为准。失败时保留当前工作区，禁止 reset、强推或手工覆盖
+   `data/**` 来“修复”同步。
 
 ### merge_sync 专属禁区
 

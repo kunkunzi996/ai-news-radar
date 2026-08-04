@@ -2,6 +2,14 @@
 
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，完整状态在 `PROJECT_STATE.md`。
 
+## NUC 脏工作区护栏与旧脚本迁移（2026-08-04，已部署并验收）
+
+- 当前主线、`origin/master` 与 NUC `omnia-nuc` 均为 `900c34b`；NUC 运行工作区干净，本地当前仅有本轮文档未提交改动。
+- 保存信源与同步线上已是事务流程；失败会回滚或留下可识别错误，不再把半完成状态留在 NUC 工作区。
+- `RadarAutoFF` 现在执行 Git 跟踪的 `scripts/windows/auto-ff.sh`：成功记 `event=ff-ok`，失败记退出码、旧/新 HEAD、stderr 摘要和 `reason`。遇到 `worktree_dirty` 只记录，不覆盖采集产物。
+- 旧未跟踪脚本已迁移，原件和 `previous-worktree` 副本保留在 NUC `_deploy-backups\auto-ff-migration-20260804` 下，仅作回退依据。
+- 验收：NUC auto-ff **4 passed**、保存同步专项 **8 passed**、本地 E2E **31 passed**；API 与人工验收均通过。
+
 ## 微信采集后台跨设备访问（2026-08-03，已部署）
 
 - 代码提交 `6202058` 已在 `master`，NUC 已同步运行。
@@ -15,7 +23,7 @@
 
 ## 工作台 AI 雷达配置页来源校验修复（2026-08-03）
 
-- 修复提交 `f7b2241` 已合入 `master`，当前主线与 NUC 部署点为 `fe1dcde`。
+- 修复提交 `f7b2241` 已合入 `master`；当前主线与 NUC 部署点为 `900c34b`。
 - 根因是工作台 iframe 的 `Origin/Referer` 可能来自雷达域名或工作台域名，而 NUC 只信任
   GitHub Pages；服务端现已规范化带路径/query 的 Referer。NUC 白名单为
   `https://kunkunzi996.github.io`、`https://radar.wanyouomnia.cn`、`https://app.wanyouomnia.cn`。
@@ -27,14 +35,15 @@
 ## GitHub 重大更新筛选与 NUC 同步（2026-08-03）
 
 - GitHub 重大更新过滤已合入 `master`：功能合并提交 `2249cc7`，历史归档展示修复合并提交
-  `53378af`；随后数据快照合并提交为 `fe1dcde`，当前 `master` / `origin/master` 为 `fe1dcde`。
-- NUC `omnia-nuc`（`DESKTOP-H9RAKEH`）已部署到 `fe1dcde`。NUC 专项
+  `53378af`；随后数据快照继续推进，当前 `master` / `origin/master` 为 `900c34b`。
+- NUC `omnia-nuc`（`DESKTOP-H9RAKEH`）已部署并继续快进到 `900c34b`。NUC 专项
   `pytest -q tests/test_topic_filter.py` 为 **112 passed**；本机管理服务 `8080`、公网管理后台和
   GitHub Pages 均返回 HTTP 200。
-- NUC 工作树只保留一个未跟踪文件 `scripts/windows/auto-ff.sh`，本轮已核对哈希未变化；后续同步
-  不得删除、覆盖或批量清理该文件。采集任务每次启动时加载过滤代码，管理服务当前正常，无需为本次修复强制重启。
+- `scripts/windows/auto-ff.sh` 已在 2026-08-04 纳入 Git 跟踪；旧脚本原件和 `previous-worktree` 副本
+  仅作为回退备份保留，不删除、不覆盖。采集任务每次启动时加载过滤代码，管理服务当前正常。
 - 下一轮入口：若发现 NUC 不再跟随主线，先在 NUC 核对 `git status --short`、
-  `git ls-remote origin refs/heads/master` 和 `RadarAutoFF` 日志，再执行可证明的 `ff-only` 同步。
+  `git ls-remote origin refs/heads/master` 和 `logs/auto-ff.log`，根据结构化 `reason` 定位；
+  不要用 reset、强推或手工覆盖 `data/**` 代替诊断。
 
 ## Harness 收尾验收（2026-08-02）
 

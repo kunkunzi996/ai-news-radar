@@ -16,7 +16,7 @@
 
 ## 3. 非目标与边界
 
-- 不修改 NUC 当前运行分支，不触碰其未跟踪的 `scripts/windows/auto-ff.sh`；本轮只修改仓库中的代码和测试，部署替换另行确认。
+- 设计阶段（部署前）不修改 NUC 当前运行分支，也不触碰其未跟踪的 `scripts/windows/auto-ff.sh`；本轮设计只修改仓库中的代码和测试。部署替换已另行确认并完成旧脚本迁移，当前事实见 `PROJECT_STATE.md`。
 - 不把运行时 `data/**`、日志、凭据或 Cookie 放入功能提交。
 - 不改变“删除信源时清理本地历史”的既有业务口径；本轮只保证失败时可恢复，成功后的历史清理仍由现有清理函数负责。
 - 不使用 `git reset --hard`、`git clean`、`pull --rebase --autostash` 或 `git checkout` 恢复文件；恢复继续使用现有 `git restore` 和台账 proof 机制。
