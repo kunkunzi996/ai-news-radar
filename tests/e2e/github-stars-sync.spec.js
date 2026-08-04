@@ -36,28 +36,19 @@ function previewPayload() {
   };
 }
 
-test("线上信源保存和同步遵守版本号与空请求契约", async ({ page }) => {
+test("线上信源保存和同步遵守版本号与一体化接口契约", async ({ page }) => {
   const errors = [];
-  const saves = [];
-  const syncs = [];
+  const saveAndSyncs = [];
   collectErrors(page, errors);
   await page.route("**/api/online-source-config", async (route) => {
     if (route.request().method() === "GET") {
       await route.fulfill({ status: 200, headers: { ETag: baseConfig.etag }, json: baseConfig });
       return;
     }
-    saves.push({
-      body: route.request().postDataJSON(),
-      etag: route.request().headers()["if-match"],
-    });
-    await route.fulfill({
-      status: 200,
-      headers: { ETag: baseConfig.etag },
-      json: { ...baseConfig, source_count: 0 },
-    });
+    throw new Error("保存按钮不应再调用旧的单独保存接口");
   });
-  await page.route("**/api/sync-online-source-config", async (route) => {
-    syncs.push({
+  await page.route("**/api/save-and-sync-online-source-config", async (route) => {
+    saveAndSyncs.push({
       body: route.request().postDataJSON(),
       etag: route.request().headers()["if-match"],
     });
@@ -74,19 +65,18 @@ test("线上信源保存和同步遵守版本号与空请求契约", async ({ pa
   await page.locator("#onlineSourceSaveBtn").click();
 
   await expect(page.locator("#onlineSourceStatus")).toContainText("远端线上配置已变化");
-  expect(saves).toEqual([{ body: { version: "1.0", sources: [] }, etag: baseConfig.etag }]);
-  expect(syncs).toEqual([{ body: {}, etag: baseConfig.etag }]);
+  expect(saveAndSyncs).toEqual([{ body: { version: "1.0", sources: [] }, etag: baseConfig.etag }]);
   expect(errors.filter((message) => !message.includes("status of 409"))).toEqual([]);
 });
 
-test("线上信源无改动时显示无需提交", async ({ page }) => {
+test("线上信源一体化保存无改动时显示无需提交", async ({ page }) => {
   const errors = [];
   collectErrors(page, errors);
   await page.route("**/api/online-source-config", async (route) => {
     await route.fulfill({ status: 200, headers: { ETag: baseConfig.etag }, json: baseConfig });
   });
-  await page.route("**/api/sync-online-source-config", async (route) => {
-    expect(route.request().postDataJSON()).toEqual({});
+  await page.route("**/api/save-and-sync-online-source-config", async (route) => {
+    expect(route.request().postDataJSON()).toEqual({ version: "1.0", sources: [] });
     expect(route.request().headers()["if-match"]).toBe(baseConfig.etag);
     await route.fulfill({
       status: 200,

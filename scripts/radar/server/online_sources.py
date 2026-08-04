@@ -2849,6 +2849,14 @@ def _manual_sync_git_preflight(root_dir: Path) -> dict[str, str]:
     return {**target, "fetched_oid": fetched_oid}
 
 
+def preflight_online_source_save(root_dir: Path) -> dict[str, str]:
+    """Run the remote and local Git checks required before a combined save."""
+    target = _manual_sync_git_preflight(root_dir)
+    if _online_paths_changed_from_head(root_dir):
+        raise _preflight_error("online_sources_config_dirty")
+    return target
+
+
 def _online_paths_changed_from_head(root_dir: Path) -> bool:
     head = _git_head(root_dir)
     for path in _allowed_online_paths():

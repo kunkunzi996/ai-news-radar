@@ -422,9 +422,9 @@ async function saveOnlineSourceConfigToServer() {
   if (!requireLoadedOnlineSourceConfig()) return null;
   if (!syncOnlineSourceFormIfFilled()) return null;
   setOnlineSourceButton(onlineSourceSaveBtnEl, "保存中...", true);
-  setOnlineSourceStatus("正在写入公开线上配置...", "warn");
+  setOnlineSourceStatus("正在保存并同步公开线上配置...", "warn");
   try {
-    const res = await apiFetch("./api/online-source-config", {
+    const res = await apiFetch("./api/save-and-sync-online-source-config", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -434,28 +434,33 @@ async function saveOnlineSourceConfigToServer() {
       body: JSON.stringify(onlineSourcePayload()),
     });
     const payload = await res.json().catch(() => ({}));
-    if (!res.ok || payload.ok === false) throw new Error(payload.error || `HTTP ${res.status}`);
+    if (!res.ok || payload.ok === false) throw onlineSourceRequestError(payload, res);
     state.onlineSourceConfig = normalizeOnlineSourceConfig(onlineConfigFromResponse(payload));
     state.githubStarEtag = String(res.headers.get("ETag") || payload.etag || state.githubStarEtag || "");
     state.githubStarConfigDigest = String(payload.base_config_digest || state.githubStarConfigDigest || "");
     state.onlineSourceDirty = false;
     renderOnlineSourceConfig();
-    setOnlineSourceStatus(
-      `已写入本地线上配置（${fmtNumber(payload.source_count || 0)} 个信源）${purgedItemsNote(payload.purged_items)}，正在同步到线上…`,
-      "warn",
-    );
-    setOnlineSourceButton(onlineSourceSaveBtnEl, "同步中...", true);
-    // 保存成功后自动接力同步到线上：一个按钮完成写入 + 提交推送。
-    const syncPayload = await syncOnlineSourceConfigToServer();
-    if (syncPayload) {
-      setOnlineSourceButton(onlineSourceSaveBtnEl, "已同步", true);
+    const purgedNote = purgedItemsNote(payload.purged_items);
+    if (payload.merged) {
+      setOnlineSourceStatus(`已自动合并云端 ${fmtNumber(mergedOnlineSourceChangeCount(payload.merged_summary))} 项变更${purgedNote}`, "ok");
+      setOnlineSourceButton(onlineSourceSaveBtnEl, payload.pushed ? "已推送" : "已合并", true);
+    } else if (payload.no_changes || payload.outcome === "no_change") {
+      setOnlineSourceStatus(`线上配置没有变化，不需要提交。${purgedNote}`, "ok");
+      setOnlineSourceButton(onlineSourceSaveBtnEl, "无变化", true);
+    } else if (payload.pushed) {
+      setOnlineSourceStatus(`已推送，等待 GitHub Actions 刷新（commit ${payload.commit || ""}）${purgedNote}`, "ok");
+      setOnlineSourceButton(onlineSourceSaveBtnEl, "已推送", true);
     } else {
-      setOnlineSourceButton(onlineSourceSaveBtnEl, "同步失败", true);
+      setOnlineSourceStatus(`已提交 ${payload.commit || ""}，但未推送。${purgedNote}`, "warn");
+      setOnlineSourceButton(onlineSourceSaveBtnEl, "已提交", true);
     }
     restoreOnlineSourceButton(onlineSourceSaveBtnEl, onlineSourceFormActionLabel(), 1800);
-    return syncPayload;
+    return payload;
   } catch (err) {
-    setOnlineSourceStatus(`保存失败：${err.message}`, "bad");
+    state.onlineSourceDirty = true;
+    await loadOnlineSourceConfigFromServer(true);
+    renderOnlineSourceConflicts(err.code === "online_sources_merge_conflict" ? err.payload?.details?.conflicts : []);
+    setOnlineSourceStatus(`保存并同步失败：${onlineSyncErrorMessage(err.code || err.message)}`, "bad");
     setOnlineSourceButton(onlineSourceSaveBtnEl, "保存失败", true);
     restoreOnlineSourceButton(onlineSourceSaveBtnEl, onlineSourceFormActionLabel());
     return null;

@@ -1086,19 +1086,205 @@ class LocalServerTests(unittest.TestCase):
 
         self.assertEqual(events, ["flush", "release"])
 
-    @patch("scripts.local_server.sync_online_source_config")
-    @patch("scripts.local_server.save_online_source_config")
-    def test_save_and_sync_online_source_config_preserves_purge_summary(self, save_mock, sync_mock):
-        save_mock.return_value = {"ok": True, "purged_items": {"archive.json": 2}}
-        sync_mock.return_value = {"ok": True, "synced": True}
+    def test_save_and_sync_online_source_config_preserves_purge_summary(self):
         root = Path(self.create_temp_dir())
         payload = {"sources": []}
+        save_result = {
+            "ok": True,
+            "purged_items": {"archive.json": 2},
+            "config": {"sources": []},
+            "etag": '"' + "1" * 64 + '"',
+        }
 
-        result = save_and_sync_online_source_config(root, payload)
+        with patch(
+            "scripts.local_server.preflight_online_source_save",
+            return_value={"pre_head": "0" * 40},
+        ) as preflight_mock, patch(
+            "scripts.local_server.save_online_source_config",
+            return_value=save_result,
+        ) as save_mock, patch(
+            "scripts.local_server.sync_saved_online_source_config",
+            return_value={"ok": True, "outcome": "no_change"},
+        ) as sync_mock, patch(
+            "scripts.local_server._auto_collect_api.handle_saved_config",
+            return_value={"pending": False},
+        ), patch(
+            "scripts.local_server._auto_collect_api.flush_pending_collect",
+            return_value={"triggered": False},
+        ):
+            result = save_and_sync_online_source_config(root, payload)
 
-        save_mock.assert_called_once_with(root, payload)
-        sync_mock.assert_called_once_with(root, None)
+        preflight_mock.assert_called_once_with(root)
+        save_mock.assert_called_once()
+        self.assertTrue(save_mock.call_args.kwargs["_defer_auto_collect"])
+        sync_mock.assert_called_once_with(root, if_match=save_result["etag"])
         self.assertEqual(result["purged_items"], {"archive.json": 2})
+
+    def test_save_and_sync_rejects_remote_non_data_commit_before_writing(self):
+        root, _origin, peer = self.create_sync_git_repositories(self.online_source_payload("initial"))
+        read_paths = (
+            "config/online-sources.json",
+            "feeds/online-sources.opml",
+            "data/latest-24h.json",
+            "data/archive.json",
+            "data/pending-purge.json",
+        )
+        before = {
+            path: ((root / path).exists(), (root / path).read_bytes() if (root / path).is_file() else b"")
+            for path in read_paths
+        }
+        head_before = self.git(root, "rev-parse", "HEAD").stdout.strip()
+        index_before = self.git(root, "write-tree").stdout.strip()
+        stash_before = self.git(root, "stash", "list", "--format=%H %s").stdout
+
+        (peer / "README.md").write_text("remote non-data change\n", encoding="utf-8")
+        self.git(peer, "add", "README.md")
+        self.git(peer, "commit", "-m", "remote non-data change")
+        self.git(peer, "push")
+
+        with self.assertRaises(online_sources.OnlineSourcesError) as raised:
+            save_and_sync_online_source_config(root, self.online_source_payload("should-not-write"))
+
+        self.assertEqual(raised.exception.code, "online_sources_preflight_failed")
+        self.assertEqual(self.git(root, "rev-parse", "HEAD").stdout.strip(), head_before)
+        self.assertEqual(self.git(root, "write-tree").stdout.strip(), index_before)
+        self.assertEqual(self.git(root, "stash", "list", "--format=%H %s").stdout, stash_before)
+        for path, (exists, content) in before.items():
+            current = root / path
+            self.assertEqual(current.exists(), exists, path)
+            if exists:
+                self.assertEqual(current.read_bytes(), content, path)
+
+    def test_save_and_sync_rejects_existing_local_online_config_dirty_before_writing(self):
+        root, _origin, _peer = self.create_sync_git_repositories(self.online_source_payload("initial"))
+        config_path = root / "config" / "online-sources.json"
+        dirty_config = json.loads(config_path.read_text(encoding="utf-8"))
+        dirty_config["sources"][0]["name"] = "本地未提交修改"
+        config_path.write_text(json.dumps(dirty_config, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        dirty_before = config_path.read_bytes()
+        head_before = self.git(root, "rev-parse", "HEAD").stdout.strip()
+
+        with self.assertRaises(online_sources.OnlineSourcesError) as raised:
+            save_and_sync_online_source_config(root, self.online_source_payload("should-not-write"))
+
+        self.assertEqual(raised.exception.code, "online_sources_preflight_failed")
+        self.assertEqual(raised.exception.details.get("reason"), "online_sources_config_dirty")
+        self.assertEqual(config_path.read_bytes(), dirty_before)
+        self.assertEqual(self.git(root, "rev-parse", "HEAD").stdout.strip(), head_before)
+
+    def test_save_and_sync_restores_config_data_and_pending_purge_after_sync_failure(self):
+        sources = self.merge_sync_initial_payload()["sources"]
+        root, _origin, _peer = self.create_sync_git_repositories({"sources": sources})
+        archive_path = root / "data" / "archive.json"
+        archive_path.write_text(
+            json.dumps(
+                {
+                    "items": [
+                        {"site_id": "bilibili_dynamic", "source": "Bili source", "title": "保留"}
+                    ],
+                    "total_items": 1,
+                },
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+        pending_path = root / "data" / "pending-purge.json"
+        pending_path.write_text('{"sources":{"rss":["已有台账"]}}\n', encoding="utf-8")
+        tracked_paths = (
+            "config/online-sources.json",
+            "feeds/online-sources.opml",
+            "data/archive.json",
+            "data/latest-24h.json",
+            "data/pending-purge.json",
+        )
+        before = {
+            path: ((root / path).exists(), (root / path).read_bytes() if (root / path).is_file() else b"")
+            for path in tracked_paths
+        }
+        head_before = self.git(root, "rev-parse", "HEAD").stdout.strip()
+
+        with patch(
+            "scripts.local_server.sync_saved_online_source_config",
+            side_effect=online_sources.OnlineSourcesError("injected_sync_failure", status_code=502),
+        ):
+            with self.assertRaises(online_sources.OnlineSourcesError) as raised:
+                save_and_sync_online_source_config(root, {"sources": []})
+
+        self.assertEqual(raised.exception.code, "injected_sync_failure")
+        self.assertEqual(self.git(root, "rev-parse", "HEAD").stdout.strip(), head_before)
+        self.assertFalse(online_sources.operation_manifest_path(root).exists())
+        for path, (exists, content) in before.items():
+            current = root / path
+            self.assertEqual(current.exists(), exists, path)
+            if exists:
+                self.assertEqual(current.read_bytes(), content, path)
+
+    def test_save_and_sync_restores_first_time_config_to_missing_files_after_failure(self):
+        root, _origin, _peer = self.create_sync_git_repositories()
+        config_path = root / "config" / "online-sources.json"
+        opml_path = root / "feeds" / "online-sources.opml"
+        self.assertFalse(config_path.exists())
+        self.assertFalse(opml_path.exists())
+
+        with patch(
+            "scripts.local_server.sync_saved_online_source_config",
+            side_effect=online_sources.OnlineSourcesError("injected_sync_failure", status_code=502),
+        ):
+            with self.assertRaises(online_sources.OnlineSourcesError) as raised:
+                save_and_sync_online_source_config(root, self.online_source_payload("first"))
+
+        self.assertEqual(raised.exception.code, "injected_sync_failure")
+        self.assertFalse(config_path.exists())
+        self.assertFalse(opml_path.exists())
+        self.assertFalse(online_sources.operation_manifest_path(root).exists())
+
+    def test_save_and_sync_second_attempt_does_not_inherit_failed_transaction(self):
+        root, origin, _peer = self.create_sync_git_repositories(self.online_source_payload("initial"))
+        with patch(
+            "scripts.local_server.sync_saved_online_source_config",
+            side_effect=online_sources.OnlineSourcesError("injected_sync_failure", status_code=502),
+        ):
+            with self.assertRaises(online_sources.OnlineSourcesError):
+                save_and_sync_online_source_config(root, self.online_source_payload("first"))
+
+        with patch(
+            "scripts.local_server._auto_collect_api.handle_saved_config",
+            return_value={"pending": False},
+        ), patch(
+            "scripts.local_server._auto_collect_api.flush_pending_collect",
+            return_value={"triggered": False},
+        ):
+            result = save_and_sync_online_source_config(root, self.online_source_payload("second"))
+
+        self.assertEqual(result["outcome"], "pushed", result)
+        self.assertFalse(online_sources.operation_manifest_path(root).exists())
+        remote_config = json.loads(
+            self.git(origin, "show", "master:config/online-sources.json").stdout
+        )
+        self.assertEqual(remote_config["sources"][0]["name"], "second")
+
+    def test_save_and_sync_dispatches_auto_collect_only_after_sync(self):
+        root, _origin, _peer = self.create_sync_git_repositories(self.online_source_payload("initial"))
+        events = []
+        original_sync = online_sources.sync_saved_online_source_config
+
+        def record_sync(root_dir, *, if_match):
+            events.append("sync_start")
+            result = original_sync(root_dir, if_match=if_match)
+            events.append("sync_done")
+            return result
+
+        with patch("scripts.local_server.sync_saved_online_source_config", side_effect=record_sync), patch(
+            "scripts.local_server._auto_collect_api.handle_saved_config",
+            side_effect=lambda *_args: events.append("handle") or {"pending": False},
+        ), patch(
+            "scripts.local_server._auto_collect_api.flush_pending_collect",
+            side_effect=lambda *_args: events.append("flush") or {"triggered": False},
+        ):
+            result = save_and_sync_online_source_config(root, self.online_source_payload("pushed"))
+
+        self.assertEqual(result["outcome"], "pushed", result)
+        self.assertEqual(events, ["sync_start", "sync_done", "handle", "flush"])
 
     def test_fresh_preflight_allows_remote_data_only_commits_without_mutating_local_state(self):
         root, origin, peer = self.create_sync_git_repositories(self.online_source_payload("initial"))
@@ -4081,6 +4267,33 @@ class LocalGitHubStarsApiTests(unittest.TestCase):
         self.assertEqual(status, 409)
         self.assertEqual(body["error"], "online_sources_config_stale")
         save_mock.assert_not_called()
+
+    @patch("scripts.local_server.save_and_sync_online_source_config")
+    def test_save_and_sync_route_passes_if_match_and_payload(self, save_sync_mock):
+        etag = '"' + "9" * 64 + '"'
+        save_sync_mock.return_value = {
+            "ok": True,
+            "outcome": "pushed",
+            "etag": etag,
+            "config": {"sources": []},
+            "sources": [],
+        }
+
+        status, headers, body = self.request(
+            "POST",
+            "/api/save-and-sync-online-source-config",
+            {"version": "1.0", "sources": []},
+            headers={"If-Match": etag},
+        )
+
+        self.assertEqual(status, 200)
+        self.assertEqual(headers["ETag"], etag)
+        self.assertEqual(body["outcome"], "pushed")
+        save_sync_mock.assert_called_once_with(
+            self.root,
+            {"version": "1.0", "sources": []},
+            if_match=etag,
+        )
 
     @patch("scripts.local_server.sync_saved_online_source_config")
     def test_sync_requires_empty_payload_and_passes_if_match(self, sync_mock):

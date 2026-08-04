@@ -95,9 +95,137 @@ sync_saved_online_source_config = _online_api.sync_saved_online_source_config
 sync_bilibili_cookie = _cdp_api.sync_bilibili_cookie
 validate_source_config = _store_api.validate_source_config
 write_online_source_config = _online_api.write_online_source_config
+preflight_online_source_save = _online_api.preflight_online_source_save
 write_youtube_subscriptions = _store_api.write_youtube_subscriptions
 
 _base_json_response = _refresh_api.json_response
+
+_SAVE_SYNC_FILE_PATHS = (
+    "config/online-sources.json",
+    "feeds/online-sources.opml",
+    "data/archive.json",
+    "data/latest-24h-all.json",
+    "data/latest-24h.json",
+    "data/stories-merged.json",
+    "data/daily-brief.json",
+    "data/pending-purge.json",
+)
+
+
+def _capture_save_sync_snapshot(root_dir: Path, pre_head: str) -> dict[str, Any]:
+    files: dict[str, dict[str, Any]] = {}
+    for relative in _SAVE_SYNC_FILE_PATHS:
+        path = root_dir / relative
+        files[relative] = {
+            "exists": path.is_file(),
+            "content": path.read_bytes() if path.is_file() else b"",
+        }
+    return {"pre_head": pre_head, "files": files}
+
+
+def _restore_save_sync_snapshot(root_dir: Path, snapshot: dict[str, Any]) -> None:
+    pre_head = str(snapshot.get("pre_head") or "")
+    if not pre_head:
+        raise _online_api.OnlineSourcesError(
+            "online_sources_recovery_pending",
+            status_code=409,
+            details={"reason": "missing_save_sync_head"},
+        )
+    if _online_api.git_checked(root_dir, ["rev-parse", "HEAD"]).stdout.strip() != pre_head:
+        raise _online_api.OnlineSourcesError(
+            "online_sources_recovery_pending",
+            status_code=409,
+            details={"reason": "head_changed_during_save_sync"},
+        )
+    if _online_api.operation_manifest_path(root_dir).exists():
+        raise _online_api.OnlineSourcesError(
+            "online_sources_recovery_pending",
+            status_code=409,
+            details={"reason": "git_operation_recovery_pending"},
+        )
+    staged = _online_api.git_name_list(root_dir, ["diff", "--cached", "--name-only"])
+    if staged:
+        raise _online_api.OnlineSourcesError(
+            "online_sources_recovery_pending",
+            status_code=409,
+            details={"reason": "index_changed_during_save_sync"},
+        )
+
+    files = snapshot.get("files")
+    if not isinstance(files, dict):
+        raise _online_api.OnlineSourcesError(
+            "online_sources_recovery_pending",
+            status_code=409,
+            details={"reason": "save_sync_snapshot_invalid"},
+        )
+    restore_paths: list[str] = []
+    for relative in ("config/online-sources.json", "feeds/online-sources.opml"):
+        proof = files.get(relative)
+        if not isinstance(proof, dict):
+            raise _online_api.OnlineSourcesError(
+                "online_sources_recovery_pending",
+                status_code=409,
+                details={"reason": "online_source_snapshot_invalid"},
+            )
+        tracked_at_head = _online_api._git_blob_oid(root_dir, pre_head, relative) is not None
+        if tracked_at_head != bool(proof.get("exists")):
+            raise _online_api.OnlineSourcesError(
+                "online_sources_recovery_pending",
+                status_code=409,
+                details={"reason": "online_source_snapshot_not_at_head"},
+            )
+        head_bytes = _online_api._git_blob_bytes(root_dir, pre_head, relative)
+        expected_bytes = proof.get("content", b"") if proof.get("exists") else b""
+        if head_bytes != expected_bytes:
+            raise _online_api.OnlineSourcesError(
+                "online_sources_recovery_pending",
+                status_code=409,
+                details={"reason": "online_source_snapshot_not_at_head"},
+            )
+        if tracked_at_head:
+            restore_paths.append(relative)
+
+    if restore_paths:
+        _online_api.git_checked(
+            root_dir,
+            [
+                "restore",
+                f"--source={pre_head}",
+                "--staged",
+                "--worktree",
+                "--",
+                *restore_paths,
+            ],
+            timeout=60,
+        )
+    for relative, proof in files.items():
+        path = root_dir / relative
+        exists = bool(proof.get("exists"))
+        content = proof.get("content", b"")
+        if exists:
+            if not isinstance(content, bytes):
+                raise _online_api.OnlineSourcesError(
+                    "online_sources_recovery_pending",
+                    status_code=409,
+                    details={"reason": "save_sync_snapshot_invalid"},
+                )
+            _online_api.atomic_replace_bytes(path, content)
+        elif path.exists():
+            path.unlink()
+    for relative, proof in files.items():
+        path = root_dir / relative
+        if bool(proof.get("exists")) != path.is_file():
+            raise _online_api.OnlineSourcesError(
+                "online_sources_recovery_pending",
+                status_code=409,
+                details={"reason": "save_sync_rollback_verification_failed"},
+            )
+        if path.is_file() and path.read_bytes() != proof.get("content", b""):
+            raise _online_api.OnlineSourcesError(
+                "online_sources_recovery_pending",
+                status_code=409,
+                details={"reason": "save_sync_rollback_verification_failed"},
+            )
 
 
 def json_response(
@@ -164,6 +292,7 @@ def save_online_source_config(
     payload: dict[str, Any],
     *,
     if_match: Any = None,
+    _defer_auto_collect: bool = False,
 ) -> dict[str, Any]:
     with _online_api.online_sources_guard():
         previous_config = read_online_source_config(root_dir).get("config")
@@ -203,14 +332,15 @@ def save_online_source_config(
         # 新增抖音/微信信源时登记一次本机采集（云端 Actions 抓不了这两类）。
         # 只登记不触发：真正派发要等同步确认推送成功，否则采集会拖慢紧随其后的
         # git push，导致前端「Failed to fetch」。任何失败都不得影响本次保存的结果。
-        try:
-            result["auto_collect"] = _auto_collect_api.handle_saved_config(
-                root_dir,
-                previous_config if isinstance(previous_config, dict) else None,
-                result["config"],
-            )
-        except Exception as exc:  # noqa: BLE001 - 保存结果优先于采集登记
-            result["auto_collect"] = {"pending": False, "error": str(exc)}
+        if not _defer_auto_collect:
+            try:
+                result["auto_collect"] = _auto_collect_api.handle_saved_config(
+                    root_dir,
+                    previous_config if isinstance(previous_config, dict) else None,
+                    result["config"],
+                )
+            except Exception as exc:  # noqa: BLE001 - 保存结果优先于采集登记
+                result["auto_collect"] = {"pending": False, "error": str(exc)}
         return result
 
 
@@ -221,23 +351,58 @@ def save_and_sync_online_source_config(
     if_match: Any = None,
 ) -> dict[str, Any]:
     with _online_api.online_sources_guard():
-        save_result = (
-            save_online_source_config(root_dir, payload)
-            if if_match is None
-            else save_online_source_config(root_dir, payload, if_match=if_match)
-        )
-        sync_result = (
-            sync_saved_online_source_config(root_dir, if_match=save_result["etag"])
-            if if_match is not None
-            else sync_online_source_config(root_dir, None)
-        )
-        sync_result["purged_items"] = save_result.get("purged_items", {})
-        # 与 handle_sync_online_source_config 同理：推送完成后才派发采集。
+        current = read_online_source_config(root_dir).get("config")
+        current_config = current if isinstance(current, dict) else {"sources": []}
+        effective_if_match = if_match
+        if effective_if_match is None:
+            effective_if_match = _online_api.online_config_etag(current_config)
+        target = preflight_online_source_save(root_dir)
+        snapshot = _capture_save_sync_snapshot(root_dir, target["pre_head"])
         try:
-            sync_result["auto_collect"] = _auto_collect_api.flush_pending_collect(root_dir)
-        except Exception as exc:  # noqa: BLE001 - 同步结果优先于采集派发
-            sync_result["auto_collect"] = {"triggered": False, "error": str(exc)}
-        return sync_result
+            save_result = save_online_source_config(
+                root_dir,
+                payload,
+                if_match=effective_if_match,
+                _defer_auto_collect=True,
+            )
+            purge_summary = save_result.get("purged_items", {})
+            if isinstance(purge_summary, dict) and purge_summary.get("error"):
+                raise _online_api.OnlineSourcesError(
+                    "online_sources_purge_failed",
+                    status_code=500,
+                    details={"reason": "purge_failed"},
+                )
+            sync_result = sync_saved_online_source_config(
+                root_dir,
+                if_match=save_result["etag"],
+            )
+            outcome = sync_result.get("outcome")
+            if sync_result.get("ok") is False or (
+                outcome is not None and outcome not in {"pushed", "no_change"}
+            ):
+                raise _online_api.OnlineSourcesError(
+                    "online_sources_sync_incomplete",
+                    status_code=409,
+                    details={"reason": str(outcome or "unknown")},
+                )
+            sync_result["purged_items"] = purge_summary
+            try:
+                sync_result["auto_collect"] = _auto_collect_api.handle_saved_config(
+                    root_dir,
+                    current_config,
+                    save_result["config"],
+                )
+                if sync_result.get("pushed") or outcome == "no_change":
+                    sync_result["auto_collect"] = _auto_collect_api.flush_pending_collect(root_dir)
+            except Exception as exc:  # noqa: BLE001 - 同步结果优先于采集派发
+                sync_result["auto_collect"] = {"triggered": False, "error": str(exc)}
+            return sync_result
+        except Exception:
+            try:
+                _restore_save_sync_snapshot(root_dir, snapshot)
+            except _online_api.OnlineSourcesError:
+                raise
+            raise
 
 
 def _safe_merge_conflicts(raw_conflicts: Any) -> list[dict[str, Any]]:
@@ -552,6 +717,9 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
         if route == "/api/online-source-config":
             self.handle_online_source_config()
             return
+        if route == "/api/save-and-sync-online-source-config":
+            self.handle_save_and_sync_online_source_config()
+            return
         if route == "/api/sync-online-source-config":
             self.handle_sync_online_source_config()
             return
@@ -641,6 +809,26 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
             return
         try:
             result = save_online_source_config(
+                self.root_dir,
+                payload,
+                if_match=if_match,
+            )
+        except Exception as exc:
+            self.send_api_error(exc)
+            return
+        json_response(self, HTTPStatus.OK, result, headers={"ETag": result["etag"]})
+
+    def handle_save_and_sync_online_source_config(self) -> None:
+        if self.reject_nonlocal_origin():
+            return
+        payload = self.read_json_body(MAX_CONFIG_BYTES)
+        if payload is None:
+            return
+        if_match = self.require_if_match()
+        if if_match is None:
+            return
+        try:
+            result = save_and_sync_online_source_config(
                 self.root_dir,
                 payload,
                 if_match=if_match,
