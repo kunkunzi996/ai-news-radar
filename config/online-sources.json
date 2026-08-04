@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-08-03T08:54:52Z",
+  "updated_at": "2026-08-03T12:23:35Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -669,7 +669,7 @@
       "id": "online_youtube_highlevelz",
       "name": "HighLevelz",
       "type": "rss",
-      "enabled": true,
+      "enabled": false,
       "channel": "RSS/YouTube",
       "target": "HighLevelz",
       "locator": "https://www.youtube.com/feeds/videos.xml?channel_id=UCzkPX3KCIVquUPa8oXjHn0g",
