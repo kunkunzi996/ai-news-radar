@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "synced",
-  "finished_at": "2026-08-05T04:16:26Z",
+  "outcome": "no_change",
+  "finished_at": "2026-08-05T07:17:18Z",
   "error_code": "",
-  "workflow_run_id": "30974648316",
+  "workflow_run_id": "30984421668",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "370c361549912d50d1818fb7c4c94a1a7dcd350b",
+  "workflow_head_sha": "8c10c4941588328463106a3feca2133e762d91c7",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-08-05T04:16:26Z",
-  "purge_state_sha256": "9bb31543ed7d4c25be98a2c74cfd3d86ff4f484d7f9392d48815ecc8a4019f78",
+  "snapshot_completed_at": "2026-08-05T07:17:18Z",
+  "purge_state_sha256": "33e78a1d8479e92e7cd16e2d81542cb224ca0d641ce94ee0efa964521e9018ba",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -20,13 +20,7 @@
   "starred_count": 27,
   "private_skipped_count": 0,
   "summary": {
-    "added": [
-      {
-        "repo_id": 1127110039,
-        "repo": "OthmanAdi/planning-with-files",
-        "source_id": "online_github_repo_1127110039"
-      }
-    ],
+    "added": [],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
