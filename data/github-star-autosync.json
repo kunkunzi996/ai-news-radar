@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "no_change",
-  "finished_at": "2026-08-05T00:58:09Z",
+  "outcome": "synced",
+  "finished_at": "2026-08-05T04:16:26Z",
   "error_code": "",
-  "workflow_run_id": "30964946772",
+  "workflow_run_id": "30974648316",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "c7cb66b855c31dc064fc78573da5e88685d127c0",
+  "workflow_head_sha": "370c361549912d50d1818fb7c4c94a1a7dcd350b",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-08-05T00:58:09Z",
-  "purge_state_sha256": "96d8f4daa796b1d225aa9e4d53d9b5222f897b888f77c7eeb8ddcb2037035c23",
+  "snapshot_completed_at": "2026-08-05T04:16:26Z",
+  "purge_state_sha256": "9bb31543ed7d4c25be98a2c74cfd3d86ff4f484d7f9392d48815ecc8a4019f78",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -17,10 +17,16 @@
   ],
   "account_id": 284580915,
   "account_login": "kunkunzi996",
-  "starred_count": 26,
+  "starred_count": 27,
   "private_skipped_count": 0,
   "summary": {
-    "added": [],
+    "added": [
+      {
+        "repo_id": 1127110039,
+        "repo": "OthmanAdi/planning-with-files",
+        "source_id": "online_github_repo_1127110039"
+      }
+    ],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
