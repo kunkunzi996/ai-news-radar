@@ -1,86 +1,8 @@
 {
-  "generated_at": "2026-08-05T16:46:33.362177Z",
+  "generated_at": "2026-08-05T18:27:21.926093Z",
   "window_hours": 24,
   "total_items": 3,
   "items": [
-    {
-      "story_id": "story_4395e81e84cb",
-      "title": "引用大卫·克劳肖的提示 / Quoting David Crawshaw's prompt",
-      "url": "https://simonwillison.net/2026/Aug/3/david-crawshaw",
-      "primary_url": "https://simonwillison.net/2026/Aug/3/david-crawshaw",
-      "source": "Simon Willison",
-      "source_name": "OPML RSS",
-      "sources": [
-        {
-          "id": "335d149f3a4f89b0094f9923c52dce5023e6c1c2",
-          "title": "引用大卫·克劳肖的话 / Quoting David Crawshaw",
-          "url": "https://simonwillison.net/2026/Aug/3/david-crawshaw",
-          "source": "Simon Willison",
-          "source_name": "OPML RSS",
-          "site_id": "opmlrss",
-          "published_at": "2026-08-03T16:15:27Z"
-        },
-        {
-          "id": "d8b7973c40f03a5e2c7be2ea239ca71a094e03ad",
-          "title": "引用大卫·克劳肖的提示 / Quoting David Crawshaw's prompt",
-          "url": "https://simonwillison.net/2026/Aug/3/david-crawshaw",
-          "source": "Simon Willison",
-          "source_name": "OPML RSS",
-          "site_id": "opmlrss",
-          "published_at": "2026-08-03T16:15:27Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "Simon Willison"
-      ],
-      "items": [
-        {
-          "id": "335d149f3a4f89b0094f9923c52dce5023e6c1c2",
-          "title": "引用大卫·克劳肖的话 / Quoting David Crawshaw",
-          "url": "https://simonwillison.net/2026/Aug/3/david-crawshaw",
-          "source": "Simon Willison",
-          "source_name": "OPML RSS",
-          "site_id": "opmlrss",
-          "published_at": "2026-08-03T16:15:27Z"
-        },
-        {
-          "id": "d8b7973c40f03a5e2c7be2ea239ca71a094e03ad",
-          "title": "引用大卫·克劳肖的提示 / Quoting David Crawshaw's prompt",
-          "url": "https://simonwillison.net/2026/Aug/3/david-crawshaw",
-          "source": "Simon Willison",
-          "source_name": "OPML RSS",
-          "site_id": "opmlrss",
-          "published_at": "2026-08-03T16:15:27Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.5197,
-      "importance": 0.5197,
-      "importance_score": 0.5197,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.5112,
-        "source_tier": 0.5,
-        "ai_relevance": 0.71,
-        "recency": 0.4963,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source"
-      ],
-      "earliest_at": "2026-08-03T16:15:27Z",
-      "latest_at": "2026-08-03T16:15:27Z",
-      "primary_item": {
-        "id": "d8b7973c40f03a5e2c7be2ea239ca71a094e03ad",
-        "title": "引用大卫·克劳肖的提示 / Quoting David Crawshaw's prompt",
-        "url": "https://simonwillison.net/2026/Aug/3/david-crawshaw",
-        "source": "Simon Willison",
-        "source_name": "OPML RSS"
-      }
-    },
     {
       "story_id": "story_774f7412d1a3",
       "title": "【小岛浪吹】DeepSeek适配华为最新昇腾芯片，韬定律横空出世打破极限，主观分析下中国AI到底处于什么水平",
@@ -428,6 +350,84 @@
         "title": "【小岛浪吹】DeepSeek适配华为最新昇腾芯片，韬定律横空出世打破极限，主观分析下中国AI到底处于什么水平",
         "url": "https://www.youtube.com/watch?v=d9-0yv1eIHw",
         "source": "小岛大浪吹-非正经政经频道",
+        "source_name": "OPML RSS"
+      }
+    },
+    {
+      "story_id": "story_4395e81e84cb",
+      "title": "引用大卫·克劳肖的提示 / Quoting David Crawshaw's prompt",
+      "url": "https://simonwillison.net/2026/Aug/3/david-crawshaw",
+      "primary_url": "https://simonwillison.net/2026/Aug/3/david-crawshaw",
+      "source": "Simon Willison",
+      "source_name": "OPML RSS",
+      "sources": [
+        {
+          "id": "335d149f3a4f89b0094f9923c52dce5023e6c1c2",
+          "title": "引用大卫·克劳肖的话 / Quoting David Crawshaw",
+          "url": "https://simonwillison.net/2026/Aug/3/david-crawshaw",
+          "source": "Simon Willison",
+          "source_name": "OPML RSS",
+          "site_id": "opmlrss",
+          "published_at": "2026-08-03T16:15:27Z"
+        },
+        {
+          "id": "d8b7973c40f03a5e2c7be2ea239ca71a094e03ad",
+          "title": "引用大卫·克劳肖的提示 / Quoting David Crawshaw's prompt",
+          "url": "https://simonwillison.net/2026/Aug/3/david-crawshaw",
+          "source": "Simon Willison",
+          "source_name": "OPML RSS",
+          "site_id": "opmlrss",
+          "published_at": "2026-08-03T16:15:27Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Simon Willison"
+      ],
+      "items": [
+        {
+          "id": "335d149f3a4f89b0094f9923c52dce5023e6c1c2",
+          "title": "引用大卫·克劳肖的话 / Quoting David Crawshaw",
+          "url": "https://simonwillison.net/2026/Aug/3/david-crawshaw",
+          "source": "Simon Willison",
+          "source_name": "OPML RSS",
+          "site_id": "opmlrss",
+          "published_at": "2026-08-03T16:15:27Z"
+        },
+        {
+          "id": "d8b7973c40f03a5e2c7be2ea239ca71a094e03ad",
+          "title": "引用大卫·克劳肖的提示 / Quoting David Crawshaw's prompt",
+          "url": "https://simonwillison.net/2026/Aug/3/david-crawshaw",
+          "source": "Simon Willison",
+          "source_name": "OPML RSS",
+          "site_id": "opmlrss",
+          "published_at": "2026-08-03T16:15:27Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.5175,
+      "importance": 0.5175,
+      "importance_score": 0.5175,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.5112,
+        "source_tier": 0.5,
+        "ai_relevance": 0.71,
+        "recency": 0.4844,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source"
+      ],
+      "earliest_at": "2026-08-03T16:15:27Z",
+      "latest_at": "2026-08-03T16:15:27Z",
+      "primary_item": {
+        "id": "d8b7973c40f03a5e2c7be2ea239ca71a094e03ad",
+        "title": "引用大卫·克劳肖的提示 / Quoting David Crawshaw's prompt",
+        "url": "https://simonwillison.net/2026/Aug/3/david-crawshaw",
+        "source": "Simon Willison",
         "source_name": "OPML RSS"
       }
     },
