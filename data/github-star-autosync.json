@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "synced",
-  "finished_at": "2026-08-06T07:18:46Z",
+  "outcome": "no_change",
+  "finished_at": "2026-08-06T10:11:52Z",
   "error_code": "",
-  "workflow_run_id": "31080417839",
+  "workflow_run_id": "31092245535",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "29cd16088890ba02ef7f4b4c7e4a762859065343",
+  "workflow_head_sha": "80f681ccad922aaaf73f287e206244b5c15d2fff",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-08-06T07:18:46Z",
-  "purge_state_sha256": "b0663691af9dd2d70dc341a772080c065ab3408e8d2486a194e9eb684fca87cf",
+  "snapshot_completed_at": "2026-08-06T10:11:52Z",
+  "purge_state_sha256": "27626df6ecec3a9ab1b3d93af2cb1d3ecb2ec0f5ecedce2a37f156712d85c8ae",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -22,13 +22,7 @@
   "private_skipped_count": 0,
   "summary": {
     "added": [],
-    "disabled": [
-      {
-        "repo_id": 1246386725,
-        "repo": "zhaoyue4810/pianke",
-        "source_id": "online_github_repo_1246386725"
-      }
-    ],
+    "disabled": [],
     "re_enabled": [],
     "adopted": [],
     "renamed": [],
