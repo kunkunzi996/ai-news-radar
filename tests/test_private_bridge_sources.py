@@ -1270,6 +1270,56 @@ class DouyinBridgeManifestHealthTests(unittest.TestCase):
         self.assertFalse(status["partial"])
         self.assertFalse(status["collection_manifest_available"])
 
+    def test_main_pipeline_status_entry_carries_health_fields(self):
+        """P8 真实验收 QA-02：主管线必须把健康字段透传到 source-status.json。
+
+        `scripts/radar/cli.py` 逐字段重新构造 statuses 条目。fetcher 填得再全，
+        主管线不透传，看板也拿不到——线上实测就是这样：抖音条目只有 `item_count`，
+        `partial` / `missing_rows` 这些键**根本不存在**（不是值为 False）。
+        """
+        from scripts.radar.cli import mediacrawler_douyin_status_entry
+
+        fetcher_status = {
+            "enabled": True,
+            "ok": True,
+            "item_count": 52,
+            "duration_ms": 12,
+            "error": None,
+            "source_kind": "mediacrawler_douyin",
+            "privacy": "local_jsonl_only_no_cookies",
+            "coverage_note": "reads_mediacrawler_douyin_creator_jsonl",
+            "jsonl_path_configured": True,
+            "jsonl_file": "creator_contents_2026-08-08.jsonl",
+            "max_items": 200,
+            "partial": True,
+            "missing_rows": 7,
+            "completed_creator_count": 4,
+            "partial_creator_count": 1,
+            "failed_creator_count": 1,
+            "collection_manifest_available": True,
+            "collection_generated_at": "2026-08-08T09:20:32Z",
+        }
+
+        entry = mediacrawler_douyin_status_entry(fetcher_status)
+
+        self.assertEqual(entry["item_count"], 52, "既有字段不能因为透传而丢失")
+        self.assertTrue(entry["partial"])
+        self.assertEqual(entry["missing_rows"], 7)
+        self.assertEqual(entry["completed_creator_count"], 4)
+        self.assertEqual(entry["partial_creator_count"], 1)
+        self.assertEqual(entry["failed_creator_count"], 1)
+        self.assertTrue(entry["collection_manifest_available"])
+
+    def test_main_pipeline_status_entry_defaults_are_safe(self):
+        """fetcher 没给健康字段时（旧 manifest / 读取失败），条目必须给出安全默认值。"""
+        from scripts.radar.cli import mediacrawler_douyin_status_entry
+
+        entry = mediacrawler_douyin_status_entry({"enabled": True, "ok": True, "item_count": 3})
+
+        self.assertFalse(entry["partial"], "拿不到健康信息时绝不能默认标成部分完成")
+        self.assertEqual(entry["missing_rows"], 0)
+        self.assertFalse(entry["collection_manifest_available"])
+
     def test_legacy_schema_1_manifest_is_treated_as_unavailable(self):
         manifest = json.dumps({"schema_version": 1, "output_rows": 104, "crawl_output_rows": 52})
 

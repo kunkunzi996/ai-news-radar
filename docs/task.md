@@ -477,6 +477,67 @@ E   KeyError: 'partial'
 
 ---
 
+---
+
+## TASK-08a · 写测试：主管线要把健康字段透传到看板（P8 验收补卡）
+
+状态：**red**
+前置：TASK-07b
+来源：**P8 真实验收 QA-02**。本轮第二次「自动化测试全绿但产品不能用」。
+
+**验收现场**：QA-01 修完后重新跑云端刷新，抖音条目**仍然**只有 `item_count: 52`，
+`partial` / `missing_rows` / `collection_manifest_available` 这些键**根本不存在**
+（不是值为 False——那意味着 fetcher 的返回值压根没被采纳）。
+
+**根因**：`scripts/radar/cli.py:636-652` **逐字段重新构造** statuses 条目，
+只挑 `site_id` / `ok` / `item_count` / `duration_ms` 等固定几项，
+fetcher 返回的健康字段在主管线被整体丢弃。
+
+**这条推翻了冻结计划的一个非目标**（原写「不改 `cli.py`，抖音状态由 fetcher 自己返回」），
+已按导航规范暂停并向用户报告，经用户 2026-08-08 授权后撤销该非目标、
+把 `cli.py` 加入白名单，改动范围严格限定为那一个字典。
+
+测什么（先把那个字典抽成可测的纯函数 `mediacrawler_douyin_status_entry`）：
+- fetcher 给全健康字段时，条目里 `partial` / `missing_rows` / 三态计数 /
+  `collection_manifest_available` 都在，且 `item_count` 等既有字段不丢。
+- fetcher 没给健康字段时（旧 manifest / 读取失败），条目给安全默认值：
+  `partial=False`、`missing_rows=0`、`collection_manifest_available=False`。
+  **拿不到健康信息时绝不能默认标成部分完成。**
+期望值出处：`docs/plan.md` 第 4 章「界面与流程」；P8 验收现场观测
+允许改：`tests/test_private_bridge_sources.py`
+禁止碰：`scripts/radar/cli.py`
+验收：`pytest -q tests/test_private_bridge_sources.py -k main_pipeline` 必须失败
+回滚：删掉新增的测试用例
+--- 施工后填 ---
+红证据：`pytest -q tests/test_private_bridge_sources.py -k main_pipeline` → **2 failed, 47 deselected**
+
+```
+E   ImportError: cannot import name 'mediacrawler_douyin_status_entry' from 'scripts.radar.cli'
+```
+
+红的原因是**生产函数尚不存在**（不是测试文件自身跑不起来），属于「功能不存在」，是合格的红。
+实际改动：`tests/test_private_bridge_sources.py` +50 行（只有测试；同轮另改 `docs/plan.md` 记录假设证伪）
+
+## TASK-08b · 写实现：主管线透传健康字段
+
+状态：pending
+前置：TASK-08a（必须已经是 red）
+目标：让 08a 转绿
+实现要点（`scripts/radar/cli.py`）：把 `:636-652` 的字典抽成模块级纯函数
+`mediacrawler_douyin_status_entry(status)`，在其中补透传 5 个健康字段并给安全默认值；
+原调用点改为调用该函数。**不碰其它源、不碰采集与清理逻辑。**
+允许改：`scripts/radar/cli.py`
+禁止碰：`tests/test_private_bridge_sources.py`
+自测：V2 + V3 + 全量 V5
+验收：08a 转绿，04a/07a 保持绿
+回滚：`git revert` 本卡提交
+--- 施工后填 ---
+实际改动：
+自测结果：
+未完成项：
+
+---
+
 ## 施工后的整体动作（不是任务卡，是过门条件）
 
 | 阶段 | 动作 | 过关标准 |

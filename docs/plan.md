@@ -26,7 +26,12 @@ P5 评审：`PLAN-01` ~ `PLAN-06` 全部关闭，详见第 2 章第 8~11 条与�
 - **不新增手机推送渠道**（Bark / 微信 / 邮件）。用户本轮选的是「看板上直接显示」；手机推送要引外部服务和密钥，属于新功能，另开一轮。
 - **不改前端 JS 与 `index.html`**。现状调查已证实前端「部分完成」展示能力已存在（见第 2 章第 5 条），因此不触发 CLAUDE.md 的「改 `assets/js/**` 必跑 E2E + bump `?v=`」条款。
 - **不碰小红书通道**（`fetch_mediacrawler_xhs_subscriptions` 及其 runner 分支）。
-- **不改 `scripts/radar/cli.py`**。抖音状态由 fetcher 自己返回，不需要动主管线。
+- ~~**不改 `scripts/radar/cli.py`**。抖音状态由 fetcher 自己返回，不需要动主管线。~~
+  **⚠️ 本条假设已在 P8 真实验收中被证伪（QA-02），经用户 2026-08-08 授权撤销。**
+  实际情况：`scripts/radar/cli.py:636-652` **逐字段重新构造** statuses 条目，
+  fetcher 返回的健康字段在主管线被整体丢弃。要让看板拿到 `partial`，
+  必须在该字典里显式透传。`scripts/radar/cli.py` 已加入第 5 章白名单，
+  改动范围严格限定为「该字典多透传 5 个字段」，不碰采集、清理或其它源。
 - **不解决抖音风控本身**。风控是抖音服务端行为，本轮只做容错，不做对抗。
 
 ---
@@ -200,7 +205,8 @@ P5 评审：`PLAN-01` ~ `PLAN-06` 全部关闭，详见第 2 章第 8~11 条与�
 |---|---|
 | `scripts/run_mediacrawler_douyin.py` | A1 隔离、A2 重试、A3 回执三态与缺失汇总 |
 | `deploy/cloud-pc/collect-douyin-and-push.ps1` | B1 放宽口径、B2 manifest schema 2、B3 缺失留痕 |
-| `scripts/radar/fetchers/mediacrawler.py` | C1 读桥接 manifest，填 `partial` / `missing_rows` |
+| `scripts/radar/fetchers/mediacrawler.py` | C1 读桥接 manifest，填 `partial` / `missing_rows`（**两条分支都要改**，见 QA-01） |
+| `scripts/radar/cli.py` | C2 主管线 statuses 条目透传健康字段（**P8 验收 QA-02 后经用户授权加入**，仅限 `:636-652` 那个字典） |
 | `tests/test_mediacrawler_runner.py` | TASK-01a / 02a / 03a 的红测试 |
 | `tests/test_private_bridge_sources.py` | TASK-04a 的红测试（fetcher 读 manifest） |
 | `tests/test_bridge_collection_failure_log.py` | TASK-05a 的红测试（扩展既有 PS 端到端夹具） |
