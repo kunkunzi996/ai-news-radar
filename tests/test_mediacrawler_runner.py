@@ -824,5 +824,161 @@ class DouyinDetailRetryTests(unittest.TestCase):
             self.assertEqual(slept, [], "成功时不得退避等待")
 
 
+class DouyinPartialReceiptTests(unittest.TestCase):
+    """TASK-03：回执三态 + 采到多少发多少 + 异常消息净化。
+
+    用户 2026-08-08 拍板：「不管采集了多少，都同步到 AI 看板上」。
+    保留的唯一 fail-safe 是「一个号都没采到」——那不是风控偶发，是登录态或网络挂了。
+    """
+
+    @staticmethod
+    def record_of(observer, creator_id, **fields):
+        record = observer.record(creator_id)
+        record.update(fields)
+        return record
+
+    def test_finalize_marks_three_distinct_states(self):
+        observer = DouyinRunObserver(["full", "short", "dead", "empty"])
+        self.record_of(observer, "full", profile_valid=True, api_pages_valid=True, listed_count=10, written_rows=10)
+        self.record_of(observer, "short", profile_valid=True, api_pages_valid=True, listed_count=10, written_rows=9)
+        self.record_of(observer, "dead", profile_valid=False, api_pages_valid=False, listed_count=0, written_rows=0)
+        self.record_of(observer, "empty", profile_valid=True, api_pages_valid=True, listed_count=0, written_rows=0)
+
+        observer.finalize()
+
+        self.assertEqual(observer.record("full")["state"], "completed")
+        self.assertEqual(observer.record("short")["state"], "partial")
+        self.assertEqual(observer.record("dead")["state"], "failed")
+        self.assertEqual(
+            observer.record("empty")["state"], "completed",
+            "合法空账号必须仍算完成，否则 PS 脚本的 allExplicitlyEmpty 分支会被破坏",
+        )
+        self.assertEqual(observer.record("short")["missing_rows"], 1)
+
+    def test_summary_reports_partial_counts_and_missing_rows(self):
+        observer = DouyinRunObserver(["full", "short", "dead"])
+        self.record_of(observer, "full", profile_valid=True, api_pages_valid=True, listed_count=10, written_rows=10)
+        self.record_of(observer, "short", profile_valid=True, api_pages_valid=True, listed_count=10, written_rows=7)
+        self.record_of(observer, "dead", profile_valid=False, api_pages_valid=False, listed_count=0, written_rows=0)
+
+        observer.finalize()
+        summary = observer.summary()
+
+        self.assertEqual(summary["completed_creator_count"], 1)
+        self.assertEqual(summary["partial_creator_count"], 1)
+        self.assertEqual(summary["failed_creator_count"], 1)
+        self.assertEqual(summary["missing_rows"], 3)
+        self.assertTrue(summary["partial"])
+
+    def test_summary_is_not_partial_when_everything_completed(self):
+        observer = DouyinRunObserver(["a", "b"])
+        self.record_of(observer, "a", profile_valid=True, api_pages_valid=True, listed_count=3, written_rows=3)
+        self.record_of(observer, "b", profile_valid=True, api_pages_valid=True, listed_count=4, written_rows=4)
+
+        observer.finalize()
+        summary = observer.summary()
+
+        self.assertFalse(summary["partial"])
+        self.assertEqual(summary["missing_rows"], 0)
+
+    def test_failure_message_never_leaks_the_raw_response_body(self):
+        observer = DouyinRunObserver(["creator"])
+        # MediaCrawler client.py:135 抛的是 DataFetchError(f"{e}, {response.text}")，
+        # 也就是把抖音的原始响应体拼进了异常消息。
+        observer.fail("creator", "Expecting value: line 1 column 1 (char 0), <html>SECRET_BODY</html>")
+
+        stored = observer.record("creator")["error"]
+
+        self.assertNotIn("SECRET_BODY", stored)
+        self.assertNotIn("<html>", stored)
+        self.assertLessEqual(len(stored), 200)
+        self.assertTrue(stored, "净化后仍须保留可诊断的分类，不能变成空字符串")
+
+    def test_risk_control_message_is_normalized_to_a_stable_category(self):
+        observer = DouyinRunObserver(["creator"])
+        observer.fail("creator", "Expecting value: line 1 column 1 (char 0), Blocked by ArgusSecurityPlugin Validate Error")
+
+        self.assertEqual(observer.record("creator")["error"], "douyin_risk_control")
+
+    def collect_args(self, crawler_root, **overrides):
+        defaults = dict(
+            crawler_root=str(crawler_root), platform="douyin", creator_id="c1,c2,c3", max_notes=10,
+            collect_window_hours=0, cdp_port=9333, chrome_path="", profile_dir="",
+            offscreen=False, browser_only=False, run_id="run-partial", result_file="",
+            parent_holds_collection_lock=False,
+        )
+        defaults.update(overrides)
+        return argparse.Namespace(**defaults)
+
+    @contextlib.contextmanager
+    def patched_main(self, args, collect):
+        with mock.patch.object(runner, "parse_args", return_value=args), \
+                mock.patch.object(runner, "collection_lock_context", return_value=contextlib.nullcontext()), \
+                mock.patch.object(runner, "ensure_dedicated_browser", return_value=9333), \
+                mock.patch.object(runner, "check_douyin_login_state", return_value="logged_in"), \
+                mock.patch.object(runner, "snapshot_cdp_page_ids", return_value=[]), \
+                mock.patch.object(runner, "close_leaked_pages", return_value=None), \
+                mock.patch.object(runner, "run_mediacrawler", side_effect=collect):
+            yield
+
+    @staticmethod
+    def make_crawler_root(tmp):
+        crawler = Path(tmp) / "crawler"
+        jsonl_dir = crawler / "output" / "douyin" / "jsonl"
+        jsonl_dir.mkdir(parents=True)
+        (crawler / "main.py").write_text("", encoding="utf-8")
+        jsonl = jsonl_dir / "creator_contents_2026-08-08.jsonl"
+        jsonl.write_text("", encoding="utf-8")
+        return crawler, jsonl
+
+    def test_main_publishes_when_some_creators_are_partial(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            crawler, jsonl = self.make_crawler_root(tmp)
+            result_file = Path(tmp) / "result.json"
+
+            def collect(_root, _port, _platform, _creator, _max_notes, observer=None):
+                self.record_of(observer, "c1", profile_valid=True, api_pages_valid=True, listed_count=2, written_rows=2)
+                self.record_of(observer, "c2", profile_valid=True, api_pages_valid=True, listed_count=3, written_rows=2)
+                self.record_of(observer, "c3", profile_valid=False, api_pages_valid=False)
+                with jsonl.open("a", encoding="utf-8") as handle:
+                    for index in range(4):
+                        handle.write(json.dumps({"aweme_id": f"row-{index}"}) + "\n")
+                return 0
+
+            args = self.collect_args(crawler, result_file=str(result_file))
+            with self.patched_main(args, collect):
+                self.assertEqual(runner.main(), 0, "有号采到内容时必须发布，不能整轮作废")
+
+            payload = json.loads(result_file.read_text(encoding="utf-8"))
+            self.assertTrue(payload["ok"])
+            self.assertTrue(payload["partial"])
+            self.assertEqual(payload["missing_rows"], 1)
+            self.assertEqual(payload["completed_creator_count"], 1)
+            self.assertEqual(payload["partial_creator_count"], 1)
+            self.assertEqual(payload["failed_creator_count"], 1)
+            self.assertEqual(payload["crawl_output_rows"], 4)
+
+    def test_main_still_fails_when_no_creator_produced_anything(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            crawler, _jsonl = self.make_crawler_root(tmp)
+            result_file = Path(tmp) / "result.json"
+
+            def collect(_root, _port, _platform, _creator, _max_notes, observer=None):
+                for creator_id in ("c1", "c2", "c3"):
+                    observer.fail(creator_id, "Blocked by ArgusSecurityPlugin Validate Error")
+                return 0
+
+            args = self.collect_args(crawler, result_file=str(result_file))
+            with self.patched_main(args, collect):
+                self.assertEqual(runner.main(), 1, "一个号都没采到时必须保持失败，不能发空快照")
+
+            payload = json.loads(result_file.read_text(encoding="utf-8"))
+            self.assertFalse(payload["ok"])
+            self.assertEqual(payload["completed_creator_count"], 0)
+            self.assertEqual(payload["partial_creator_count"], 0)
+            for text in [payload["error"], *payload["warnings"]]:
+                self.assertNotIn("SECRET_BODY", str(text))
+
+
 if __name__ == "__main__":
     unittest.main()
