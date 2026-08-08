@@ -230,6 +230,67 @@ def test_fully_completed_collection_leaves_no_failure_record(tmp_path: Path) -> 
         assert not [record for record in records if record["run_id"] == status["run_id"]]
 
 
+def test_manifest_health_refreshes_even_when_content_is_unchanged(tmp_path: Path) -> None:
+    """P7 代码评审 CODE-01：内容没变但健康恢复正常时，manifest 也必须刷新。
+
+    否则「部分完成」的黄标一旦挂上就再也下不去——manifest 只在
+    内容变化或 schema 迁移时才重写，而没有新视频的那一轮恰好两者都不满足。
+    """
+    radar_root, bridge_root, command = build_partial_fixture(tmp_path)
+    scenario_path = radar_root / "runner-scenario.json"
+    rows = 30
+
+    # 第一轮：被风控，写入 partial=true
+    scenario_path.write_text(
+        json.dumps(
+            {
+                "rows": rows,
+                "creator_results": [
+                    *[receipt("completed", 5, 5, f"creator-{index}") for index in range(1, 6)],
+                    receipt("partial", 10, 5, "creator-6"),
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    first_status = tmp_path / "round-1-status.json"
+    first = subprocess.run(
+        [*command, "-StatusFile", str(first_status)],
+        capture_output=True, text=True, encoding="utf-8", errors="replace", check=False,
+    )
+    assert first.returncode == 0, first.stdout + first.stderr
+    manifest_after_first = json.loads((bridge_root / "manifest.json").read_text(encoding="utf-8-sig"))
+    assert manifest_after_first["partial"] is True
+    assert manifest_after_first["missing_rows"] == 5
+
+    # 第二轮：完全相同的 JSONL 内容（source_sha256 不变 → contentChanged=false），但全部采全
+    scenario_path.write_text(
+        json.dumps(
+            {
+                "rows": rows,
+                "creator_results": [receipt("completed", 5, 5, f"creator-{index}") for index in range(1, 7)],
+            }
+        ),
+        encoding="utf-8",
+    )
+    second_status = tmp_path / "round-2-status.json"
+    second = subprocess.run(
+        [*command, "-StatusFile", str(second_status)],
+        capture_output=True, text=True, encoding="utf-8", errors="replace", check=False,
+    )
+    assert second.returncode == 0, second.stdout + second.stderr
+
+    manifest_after_second = json.loads((bridge_root / "manifest.json").read_text(encoding="utf-8-sig"))
+    assert manifest_after_second["partial"] is False, "健康恢复后 manifest 必须刷新，否则看板黄标下不去"
+    assert manifest_after_second["missing_rows"] == 0
+    assert manifest_after_second["completed_creator_count"] == 6
+    assert manifest_after_second["partial_creator_count"] == 0
+    print(
+        f"douyin manifest health refresh: round1_partial={manifest_after_first['partial']} "
+        f"round2_partial={manifest_after_second['partial']}"
+    )
+
+
 def test_all_creators_failed_does_not_publish(tmp_path: Path) -> None:
     """fail-safe：一个号都没采到时绝不发布，桥接 HEAD 必须原地不动。"""
     radar_root, bridge_root, command = build_partial_fixture(tmp_path)

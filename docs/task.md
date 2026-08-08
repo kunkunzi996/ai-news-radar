@@ -351,6 +351,63 @@ E   assert 1 == 2        ← manifest 仍是 schema 1，没有健康字段
 
 ---
 
+---
+
+## TASK-06a · 写测试：健康状态变化时 manifest 必须刷新（P7 代码评审补卡）
+
+状态：**red**
+前置：TASK-05b
+来源：**P7 代码评审 CODE-01**，不是原冻结计划里的功能点。
+
+**发现的缺陷**：`collect-douyin-and-push.ps1` 只在
+`$contentChanged -or $manifestNeedsMigration` 时重写 manifest。于是——
+
+1. 某轮被风控 → manifest 写入 `partial=true` 并推送；
+2. 下一轮全采全，但**没有新视频**（`source_sha256` 与桥接里相同）→ `contentChanged=false`；
+3. schema 已经是 2 → `manifestNeedsMigration=false`；
+4. **manifest 不被重写** → 桥接里 `partial` 永远停在 `true`
+   → 云端看板的黄色「部分完成」再也下不去，用户看到的是过期的健康状态。
+
+测什么：连跑两轮同一夹具——第一轮 partial（写入 `partial=true`），
+第二轮内容完全相同但六个号全 completed，断言第二轮后 `manifest.json` 的
+`partial` 变回 `false`、`missing_rows` 归 0。
+期望值出处：`docs/plan.md` 第 4 章「成功态：本轮 6 个号全采全 → 仍显示 `正常`」
+允许改：`tests/test_bridge_collection_failure_log.py`
+禁止碰：`deploy/cloud-pc/collect-douyin-and-push.ps1`
+验收：`pytest -q tests/test_bridge_collection_failure_log.py` 必须失败，
+      失败原因是「第二轮 manifest 仍是 partial=true」
+回滚：删掉新增的测试用例
+--- 施工后填 ---
+红证据：`pytest -q tests/test_bridge_collection_failure_log.py::test_manifest_health_refreshes_even_when_content_is_unchanged` → **1 failed**
+
+```
+E   AssertionError: 健康恢复后 manifest 必须刷新，否则看板黄标下不去
+E   assert True is False
+```
+
+第一轮写入 partial=true 正常；第二轮 JSONL 内容完全相同、六个号全 completed，
+manifest 却没被重写，partial 仍是 true —— CODE-01 稳定复现。
+实际改动：`tests/test_bridge_collection_failure_log.py` +57 行（只有测试）
+
+## TASK-06b · 写实现：健康字段变化也触发 manifest 重写
+
+状态：pending
+前置：TASK-06a（必须已经是 red）
+目标：让 06a 变绿
+实现要点：读旧 manifest 时额外算出 `$manifestHealthChanged`（比较 `partial` /
+`missing_rows` / 三态计数），并入 manifest 重写条件。
+允许改：`deploy/cloud-pc/collect-douyin-and-push.ps1`
+禁止碰：`tests/test_bridge_collection_failure_log.py`
+自测：`pytest -q tests/test_bridge_collection_failure_log.py` + V4 语法检查
+验收：06a 转绿，05a 的三条保持绿
+回滚：`git revert` 本卡提交
+--- 施工后填 ---
+实际改动：
+自测结果：
+未完成项：
+
+---
+
 ## 施工后的整体动作（不是任务卡，是过门条件）
 
 | 阶段 | 动作 | 过关标准 |
