@@ -2,6 +2,19 @@
 
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，完整状态在 `PROJECT_STATE.md`。
 
+## 采集结束后清理残留标签页（BUG-01，2026-08-08，已验收）
+
+- 主线与 NUC 均已部署本修复；修复提交 `f982675`、合并 `3896552`、验收文档 `e128885`。
+  NUC 靠 `RadarAutoFF` 每 10 分钟跟随 `origin/master`，本轮已确认同步成功。
+- 采集浏览器现在会在每轮结束时自动关掉**本轮新开的**标签页，日志行是
+  `[TabCleanup] closed N leaked tab(s), failed N`。排查内存先看这行在不在。
+- **改这块前必读 `CLAUDE.md`「采集浏览器收尾的禁区」**六条，尤其第 1 条：
+  不许改成关整个浏览器进程（会丢抖音登录态）。完整方案与放弃理由见 `docs/plan.md`。
+- 已知未处理：`partial_creator_failure` 让每轮采集判定 `state=failed`、桥接不更新。
+  修复前后行为一致，与本轮无关，**已另开独立会话处理**——本窗口不要重复动它。
+- NUC 远程取证要用 Windows 原生 `ssh.exe`（Git Bash 的 ssh 读不到 ssh-agent），
+  且 NUC 的 sshd 默认 shell 是 bash，传 PowerShell 命令要用 `-EncodedCommand`。
+
 ## NUC 脏工作区护栏与旧脚本迁移（2026-08-04，已部署并验收）
 
 - 当前主线、`origin/master` 与 NUC `omnia-nuc` 均为 `900c34b`；NUC 运行工作区干净，本地当前仅有本轮文档未提交改动。

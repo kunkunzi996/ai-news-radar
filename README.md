@@ -554,6 +554,13 @@ MediaCrawler 的 `chrome-profile`、cookie 或登录态文件。
 采集专用 Chrome profile `MediaCrawler-local-test\chrome-profile` 打开抖音；它不应
 复用你的日常浏览器窗口。扫码或登录状态只留在这个采集 profile 里，不会保存进
 AI News Radar 仓库，也不会执行前端传入的任意命令。
+
+这个采集浏览器**启动后常驻不退出**（端口 9333 开着就复用，省去每轮重启和重新登录）。
+每轮采集结束时，runner 会自动关掉**本轮新开的**标签页，只保留采集前就存在的那些，
+所以标签页数不会随采集轮次增长；关掉的条数记在采集日志的 `[TabCleanup]` 行里。
+清理按标签页 id 差集判断、只认 `type=page`，不会碰 service_worker 等其它 CDP 目标，
+也始终保留至少一个页面（关光会让 Chrome 退出，登录态有丢失风险）。
+`--browser-only` 模式不清理，因为那是留给人扫码用的。
 当页面“采集范围”是默认“过去24小时”时，这个按钮会给 runner 传入
 `--collect-window-hours 24`，并在 MediaCrawler 跑完后写出
 `mediacrawler-douyin-collection-window.json` 统计文件，用来显示 24 小时命中数；

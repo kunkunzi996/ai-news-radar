@@ -162,6 +162,22 @@ GitHub 只能走独立的稳定 repo ID 契约，不能进入名称型订阅清�
    把 `cd /d` 之类拆坏、双击瞬间闪退（2026-07-15 双击启动器真踩过）。**注意：bash 环境跑 .cmd
    不在乎换行符，会给出「通过」假象——验收 .cmd 必须用 cmd.exe 真实口径跑**，那才是双击的同一条路径。
 
+## 采集浏览器收尾的禁区
+
+`main()` 在 `finally` 里调 `close_leaked_pages`，只关**本轮新增**的标签页
+（`scripts/run_mediacrawler_douyin.py`，BUG-01，2026-08-08 验收）。改这块时：
+
+1. **不许改成关整个浏览器进程。** 已评估并放弃：强杀时 `chrome-profile` 可能来不及落盘，
+   抖音登录态丢了要人工扫码；且与 `ensure_dedicated_browser` 的复用设计相悖。
+2. **只能按标签页 id 差集判断，不能按 URL。** 实测多个标签页 URL 完全相同
+   （全是 `douyin.com/jingxuan`），按 URL 判断会误关采集前就存在的页面。
+3. **只关 `type == "page"`。** 同一浏览器还有 iframe / browser_ui / service_worker / worker
+   共 7 个 CDP target，误关会影响采集。
+4. **始终保留至少一个页面**（`min_keep`）——关光会让 Chrome 退出，等于绕回第 1 条。
+5. **`--browser-only` 模式不清理**，那是留给人扫码恢复登录的。
+6. 清理失败只告警，**绝不改变采集本身的成败与返回码**；快照与清理都必须在
+   `collection_lock_context` 之内，否则并发轮次会误关正在用的页面。
+
 ## 本机维护按钮的派发禁区
 
 `perform_maintenance_action`（`scripts/radar/server/refresh.py`）有两条派发路，加新按钮前先想清楚走哪条（2026-07-15 微信采集按钮真踩过）：

@@ -95,6 +95,10 @@ powershell -ExecutionPolicy Bypass -File deploy\cloud-pc\collect-douyin-and-push
 说明：
 
 - 登录态保存在 `<CrawlerRoot>\chrome-profile`，之后无人值守运行不再需要扫码。
+- 采集浏览器常驻不退出，但每轮结束会自动关掉本轮新开的标签页（日志里的
+  `[TabCleanup] closed N leaked tab(s)`），所以长期运行不会因为标签页堆积吃光内存。
+  排查内存时先看这行日志是否出现；没出现说明清理没跑到，见
+  `docs/bugs/BUG-01-采集后浏览器窗口不关闭.md`。
 - 博主列表自动读主仓库 `config/online-sources.json` 里 `type=mediacrawler_jsonl`
   且 `enabled=true` 的条目——如果还没启用（见第六步），可先用
   `-CreatorIds "<sec_uid1>,<sec_uid2>"` 手动指定验证链路。

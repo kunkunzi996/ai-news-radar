@@ -1,5 +1,26 @@
 # PROJECT_STATE
 
+## 采集结束后清理残留标签页（BUG-01，2026-08-08，已部署并验收）
+
+- 根因：从计划任务 → `deploy/cloud-pc/collect-douyin-and-push.ps1` → `scripts/run_mediacrawler_douyin.py`
+  整条采集链路**没有任何浏览器收尾环节**。专用 Chrome（端口 9333）启动后常驻复用，
+  MediaCrawler 每轮新开一个标签页且从不关闭，标签页与内存随轮次单调增长。
+  NUC 实测修复前 tabs `1→2→3`，采集结束后不回落，稳态 756 MB 且持续上涨。
+- 修复：`main()` 在采集前记录标签页 id 快照，`finally` 中只关闭本轮新增的那些
+  （按 id 差集、只认 `type=page`、保留至少一个页面、`--browser-only` 跳过、
+  清理失败只告警不改返回码、全程在 `collection_lock_context` 内）。
+  提交 `f982675`，合并 `3896552`，验收文档 `e128885`；当前主线与 NUC 均已部署。
+- 验收证据：全量 `python -m pytest -q` **743 passed**（改动前基线 729，新增 14 条，
+  基线 729 条无一失败）；NUC 真实采集两轮，tabs 由 `1→2→3` 变为 `1→2→1`，
+  稳态内存 756 MB → 341 MB，每轮产生一条 `[TabCleanup] closed 1 leaked tab(s), failed 0`；
+  失败轮次（`state=failed`）同样完成清理，异常路径一并验证；用户人工验收通过。
+- 过程文档：`docs/bugs/BUG-01-采集后浏览器窗口不关闭.md`（现象/根因/验收证据）、
+  `docs/plan.md`（七章，已 FROZEN）、`docs/task.md`（3 对 TDD 任务卡与红绿证据）。
+  施工约束已固化进 `CLAUDE.md`「采集浏览器收尾的禁区」。
+- **遗留的独立问题（未处理）**：`partial_creator_failure` —— 某创作者列出 10 条只写入 9 条，
+  导致每轮采集 `state=failed`、桥接不更新。经 `logs/bridge-collection-failures.jsonl` 核对，
+  修复前后行为完全一致，与本轮改动无关，已另开会话处理。
+
 ## NUC 脏工作区护栏与旧脚本迁移（2026-08-04，已部署并验收）
 
 - 线上信源保存与同步已收敛为事务：保存阶段失败会回滚配置、OPML、待清理台账和自动采集登记；同步阶段失败会保留可识别的错误原因，不再把半完成状态当成成功。当前主线和 NUC HEAD 均为 `900c34b`；NUC 运行工作区干净，本地当前仅有本轮文档未提交改动。
