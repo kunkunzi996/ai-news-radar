@@ -105,7 +105,7 @@ E   TypeError: install_douyin_observer() got an unexpected keyword argument 'sle
 
 ## TASK-02b · 写实现：详情重试
 
-状态：pending
+状态：**green**
 前置：TASK-02a（必须已经是 red）
 目标：让 02a 那几条变绿
 实现要点：在 `install_douyin_observer` 内新增 `DouYinClient.get_video_by_id` 包装，
@@ -117,9 +117,16 @@ E   TypeError: install_douyin_observer() got an unexpected keyword argument 'sle
 验收：同上
 回滚：`git revert` 本卡提交
 --- 施工后填 ---
-实际改动：
-自测结果：
-未完成项：
+实际改动：`scripts/run_mediacrawler_douyin.py` +40 −1
+- 新增常量 `DOUYIN_DETAIL_RETRY_ATTEMPTS = 2`、`DOUYIN_DETAIL_RETRY_BACKOFF_SECONDS = (2.0, 5.0)`
+  与 `douyin_detail_backoff_seconds()`（总尝试 3 次，退避 2s → 5s）
+- `install_douyin_observer` 增加可选关键字参数 `sleeper`（默认 `asyncio.sleep`，仅供测试注入）
+- 新增 `get_video_by_id` 包装并挂上 `DouYinClient`；耗尽后 `raise last_error` 抛回原对象
+- 重试日志只打 `aweme` 与 `attempt`，**不打异常消息**（它拼着抖音原始响应体，见 PLAN-06）
+
+自测结果：V1 → **44 passed**（41 + 新增 3），无回归；V3 `py_compile` OK。
+`git diff --stat` 确认只动实现文件，未改 02a 写的测试。
+未完成项：无。
 
 ---
 

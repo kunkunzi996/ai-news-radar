@@ -941,12 +941,32 @@ def validate_douyin_aweme_page(response: object, max_cursor: str = "") -> dict[s
     return response
 
 
-def install_douyin_observer(observer: DouyinRunObserver, max_notes: int) -> None:
+# BUG-02：抖音详情接口（/aweme/v1/web/aweme/detail/）带 ArgusSecurityPlugin 风控，
+# 会偶发返回非 JSON 的拦截页。实测每轮 52 条里被拦 0~5 条。多数是瞬时的，退避重试即可消化。
+DOUYIN_DETAIL_RETRY_ATTEMPTS = 2
+DOUYIN_DETAIL_RETRY_BACKOFF_SECONDS = (2.0, 5.0)
+
+
+def douyin_detail_backoff_seconds(attempt: int) -> float:
+    if not DOUYIN_DETAIL_RETRY_BACKOFF_SECONDS:
+        return 0.0
+    index = min(max(attempt, 0), len(DOUYIN_DETAIL_RETRY_BACKOFF_SECONDS) - 1)
+    return DOUYIN_DETAIL_RETRY_BACKOFF_SECONDS[index]
+
+
+def install_douyin_observer(
+    observer: DouyinRunObserver,
+    max_notes: int,
+    *,
+    sleeper: Callable[[float], Any] | None = None,
+) -> None:
     from media_platform.douyin.client import DouYinClient  # type: ignore
     import store.douyin as douyin_store  # type: ignore
 
+    wait = sleeper if sleeper is not None else asyncio.sleep
     original_get_user_info = DouYinClient.get_user_info
     original_get_user_aweme_posts = DouYinClient.get_user_aweme_posts
+    original_get_video_by_id = DouYinClient.get_video_by_id
     original_store_aweme = douyin_store.update_douyin_aweme
 
     async def get_user_info(self: object, sec_user_id: str) -> dict[str, Any]:
@@ -995,6 +1015,24 @@ def install_douyin_observer(observer: DouyinRunObserver, max_notes: int) -> None
             cursor = str(response.get("max_cursor") or "")
         return rows
 
+    async def get_video_by_id(self: object, aweme_id: str) -> Any:
+        # 耗尽重试后必须抛回**原异常对象**：MediaCrawler core.py:227 只 catch DataFetchError，
+        # 一旦在这里改写异常类型，那条 except 就接不住，整轮采集会直接崩。
+        last_error: BaseException | None = None
+        total = DOUYIN_DETAIL_RETRY_ATTEMPTS + 1
+        for attempt in range(total):
+            try:
+                return await original_get_video_by_id(self, aweme_id)
+            except Exception as exc:
+                last_error = exc
+                if attempt >= DOUYIN_DETAIL_RETRY_ATTEMPTS:
+                    break
+                # 只打 id 与次数：异常消息里拼着抖音原始响应体，不可外泄。
+                print(f"[DetailRetry] aweme={aweme_id} attempt={attempt + 2}/{total}", flush=True)
+                await wait(douyin_detail_backoff_seconds(attempt))
+        assert last_error is not None
+        raise last_error
+
     async def update_douyin_aweme(aweme_item: dict[str, Any]) -> None:
         await original_store_aweme(aweme_item)
         author = aweme_item.get("author")
@@ -1005,6 +1043,7 @@ def install_douyin_observer(observer: DouyinRunObserver, max_notes: int) -> None
     DouYinClient.get_user_info = get_user_info  # type: ignore[method-assign]
     DouYinClient.get_user_aweme_posts = get_user_aweme_posts  # type: ignore[method-assign]
     DouYinClient.get_all_user_aweme_posts = get_all_user_aweme_posts  # type: ignore[method-assign]
+    DouYinClient.get_video_by_id = get_video_by_id  # type: ignore[method-assign]
     douyin_store.update_douyin_aweme = update_douyin_aweme
 
 
