@@ -79,8 +79,13 @@ gh secret set DOUYIN_BRIDGE_SSH_KEY --repo <你的用户名>/<主仓库> < douyi
 
 ```
 output/douyin/jsonl/creator_contents_latest.jsonl   # 每次采集覆盖
-manifest.json                                        # 采集时间、行数等元信息
+manifest.json                                        # 采集时间、行数与本轮采集健康
 ```
+
+`manifest.json` 自 2026-08-08 起为 `schema_version: 2`，除时间/行数外还带本轮采集健康：
+`partial`、`missing_rows`、`completed_creator_count`、`partial_creator_count`、
+`failed_creator_count`。云端 fetcher 读它，看板据 `partial` 显示「部分完成」。
+健康字段变化时也会重写 manifest（即使 JSONL 内容没变），否则黄标下不去。
 
 ## 第四步：首次手动采集（扫码登录）
 
@@ -173,7 +178,9 @@ C:\AI-news-reader\MediaCrawler-local-test\venv\Scripts\python.exe `
 2. Actions 手动触发一次 `Update AI News Snapshot` → 日志里 `Fetch Douyin bridge JSONL`
    步骤显示 `bridge jsonl found`。
 3. 跑完后 `data/source-status.json` 的 `mediacrawler_douyin` 段：`ok=true`、
-   `item_count>0`、`subscriptions` 里每个博主 `ok=true`。
+   `item_count>0`、`subscriptions` 里每个博主 `ok=true`；
+   并确认 `collection_manifest_available=true` 与 `partial` / `missing_rows` 三个字段**存在**
+   （字段「不存在」说明主管线或 fetcher 断链，见 `CLAUDE.md`「给源状态加字段的必查清单」）。
 4. 公网页面出现抖音内容（"我的订阅"分类），来源名为博主昵称。
 5. 等一次计划任务自动运行，确认无人值守链路成立。
 

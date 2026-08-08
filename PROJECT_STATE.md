@@ -42,9 +42,8 @@
 - 过程文档：`docs/bugs/BUG-01-采集后浏览器窗口不关闭.md`（现象/根因/验收证据）、
   `docs/plan.md`（七章，已 FROZEN）、`docs/task.md`（3 对 TDD 任务卡与红绿证据）。
   施工约束已固化进 `CLAUDE.md`「采集浏览器收尾的禁区」。
-- **遗留的独立问题（未处理）**：`partial_creator_failure` —— 某创作者列出 10 条只写入 9 条，
-  导致每轮采集 `state=failed`、桥接不更新。经 `logs/bridge-collection-failures.jsonl` 核对，
-  修复前后行为完全一致，与本轮改动无关，已另开会话处理。
+- **遗留的独立问题 → 已闭环**：`partial_creator_failure` 已由 BUG-02 于 2026-08-08 修复并验收，
+  详见本文件顶部「抖音风控容错与部分成功发布」一节与 `docs/bugs/BUG-02-抖音采集回执不完整导致整轮作废.md`。
 
 ## NUC 脏工作区护栏与旧脚本迁移（2026-08-04，已部署并验收）
 
