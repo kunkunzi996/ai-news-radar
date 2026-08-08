@@ -1,5 +1,30 @@
 # PROJECT_STATE
 
+## 抖音风控容错与部分成功发布（2026-08-08，已部署并验收）
+
+- **背景**：抖音详情接口（`/aweme/v1/web/aweme/detail/`）带 `ArgusSecurityPlugin` 风控，
+  每轮 52 条里偶发拦 0~5 条。原回执口径要求「6 个号全部一条不少」，导致 2026-08-05 起
+  **连续 10 轮 `state=failed`**，桥接仓库从 08-06 13:14 停更两天——而本机 JSONL 一直是完好的，
+  纯粹是「采到了但不让发」。详见 `docs/bugs/BUG-02-抖音采集回执不完整导致整轮作废.md`。
+- **修法**（用户拍板「采到多少发多少 + 缺失要能看见」）：创作者互相隔离、详情退避重试
+  （3 次尝试 / 2s→5s）、回执改 `completed`/`partial`/`failed` 三态、发布门槛放宽为
+  「至少一个号有产出」、缺失经桥接 `manifest.json`（schema 2）上云并在看板显示「部分完成」。
+  保留 fail-safe：**六个号全失败仍不发布**。
+- **数据安全**：全程不写 `data/archive.json`，与所有清理逻辑零交集；回滚只需 `git revert`。
+- **验收证据**（NUC + 桥接 + 云端 + 浏览器四处实测）：
+  - NUC：`state=succeeded`、6/6 号 `completed`、`crawl_output_rows=52`；
+    `[DetailRetry]` 触发 2 次（均 `attempt=2/3`），**验收当轮就真的救回 2 条**。
+  - 桥接：`d0d1e5a`(08-06 13:14) → `c27f20e`(08-08 17:20)，`manifest.schema_version=2`。
+  - 云端：`source-status.json` 抖音条目含 `partial` / `missing_rows` /
+    `collection_manifest_available` / `collection_generated_at`。
+  - 浏览器：源状态表抖音行显示「正常」；注入 `partial=true` 后变黄色「部分完成」。
+  - 测试：全量 **769 passed, 0 failed**（743 基线 + 26 条新增，精确吻合）。
+- **遗留局限**：验收当轮 `Argus=0`，**未取得真实风控下的现场证据**；「一个号被拦 → 其余号
+  照采 → 看板标黄」这条完整链路目前只由自动化测试与浏览器注入模拟覆盖。
+- **过程教训**（已写入 `CLAUDE.md`「给源状态加字段的必查清单」）：真机验收抓出两个
+  「单测全绿但线上不可用」的缺陷——fetcher 有两条分支只改了一条；`cli.py` 逐字段重构
+  statuses 把新字段丢了。二者同源：验证了代码路径，没验证产品路径。
+
 ## 采集结束后清理残留标签页（BUG-01，2026-08-08，已部署并验收）
 
 - 根因：从计划任务 → `deploy/cloud-pc/collect-douyin-and-push.ps1` → `scripts/run_mediacrawler_douyin.py`

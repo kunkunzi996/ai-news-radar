@@ -116,6 +116,29 @@ fetchers only for stable, public, high-signal sources.
 4. 本仓库仍是**浅克隆**（`.git/shallow` 存在）。当前分支点都在浅克隆边界内，`--merged`
    判断可信；若将来对比很老的分支、结果可疑，再跑 `git fetch --unshallow`。
 
+## 给源状态加字段的必查清单（2026-08-08 BUG-02 真实踩过两次）
+
+想让某个源的新信息出现在看板上时，下面三处漏一处，线上就一个字段都看不到，
+而**单元测试会全绿**——这两个坑都是在真机验收阶段才暴露的：
+
+1. **抖音 fetcher 有两条路，必须都改。** `scripts/radar/fetchers/mediacrawler.py` 里
+   `maybe_fetch_mediacrawler_douyin`（环境变量 `MEDIACRAWLER_DOUYIN_JSONL` 驱动，
+   **线上 Actions 实际走的就是这条**）与 `fetch_mediacrawler_douyin_subscriptions`
+   （订阅驱动）各自构造 status。只改订阅分支，测试照样全绿，线上拿不到任何新字段。
+   判别线上走哪条：看 `data/source-status.json` 里该源有没有 `subscriptions` 字段。
+
+2. **`scripts/radar/cli.py` 逐字段重构 statuses 条目，fetcher 加的字段默认被丢弃。**
+   抖音的收敛点是 `mediacrawler_douyin_status_entry()`；其它源仍是内联字典。
+   fetcher 里 `status["x"] = ...` 之后，**必须在主管线对应位置显式透传**，否则
+   `source-status.json` 里那个键**根本不存在**（不是值为 False——这个区别是排查的关键线索）。
+
+3. **前端 `site.partial` 这套「部分完成」展示早就存在**（`assets/js/render-panels.js`、
+   `render-meta.js`、`subscriptions.js`），GitHub 源的 `partial` + 三态计数是既有范例。
+   加新的健康展示前先确认能否复用它，别新造字段语义，也别急着改前端。
+
+**排查口诀**：线上少了字段，先看「键不存在」还是「值为 False」。
+键不存在 = 上游根本没填或被主管线丢了；值为 False = 链路通了但数据本身如此。
+
 ## 新增数据源必查清单
 
 新增一种数据源 `type` 时，除了 fetcher 本身，以下几处漏一个都会出问题（均已真实踩过）：
