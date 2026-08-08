@@ -1,5 +1,50 @@
 # BUG-01: NUC 上每轮采集结束后残留标签页，累积多了会吃光内存
 
+状态：**已修复并由用户验收通过**（2026-08-08）
+修复提交：`f982675`（合并 `3896552`）｜计划：`docs/plan.md`｜任务：`docs/task.md`
+
+## 验收结论（2026-08-08，NUC 实测，用户本人拍板接受）
+
+| 验收项 | 出处 | 结果 |
+|---|---|---|
+| 采集后标签页不增长 | plan.md 6.2 第 4 步 | ✅ 1 → 2 → **1** |
+| 重复采集仍不增长 | plan.md 6.2 第 5 步 | ✅ 连续两轮，每轮都回到 1 |
+| 内存不再累积 | 本卡第 3 项 | ✅ 稳态 341 MB（修复前 756 MB 且逐轮上涨） |
+| 采集结果未受影响 | plan.md 6.2 第 6 步 | ✅ 5/6 创作者完成、写入 51 行 |
+| 登录态未受影响 | plan.md 非目标 | ✅ `login_state: logged_in` |
+| **失败轮次也清理** | plan.md 6.3 异常路径 | ✅ 两轮均为 `state=failed`，标签页照样被清理 |
+
+修复前后对比：
+
+```
+修复前：tabs 1 → 2 → 3   每轮 +1，采集结束后不回落，稳态 756MB 且持续增长
+修复后：tabs 1 → 2 → 1   每轮回到起点，稳态 341MB 不再增长
+```
+
+新代码自身的收尾日志（`C:\AI-news-reader\douyin-collect.log`，两轮各一条）：
+
+```
+line 19678: [TabCleanup] closed 1 leaked tab(s), failed 0
+line 19866: [TabCleanup] closed 1 leaked tab(s), failed 0
+```
+
+CDP target 类型分布佐证了「只关 type=page」这条约束的必要性——该浏览器同时存在
+`page=1, iframe=1, browser_ui=2, service_worker=1, worker=2` 共 7 个 target，
+不做类型过滤会误关 service_worker 等非标签页目标。
+
+**存量清理**：修复只保证「不再增长」，不清理修复前已堆积的标签页（它们在采集前快照里，
+按设计不会被碰）。2026-08-08 已手动清理存量，稳态回到 1 个。
+
+## 遗留的独立问题（不属于本卡范围）
+
+`partial_creator_failure: creator receipt is incomplete` —— 某个创作者列出 10 条只写入 9 条，
+导致整轮 `state=failed`、桥接不更新。经 `logs/bridge-collection-failures.jsonl` 核对，
+**修复前三轮、修复后两轮均如此，行为完全一致，与本次改动无关**，需另开卡处理。
+
+---
+
+（以下为修复前的调查记录，保留备查）
+
 状态：取证中（根因未定位，禁止改代码）
 分支：`fix/close-browser-after-collect`
 基线：`master` @ 6fc91bd（2026-08-08 已同步 origin/master）

@@ -205,7 +205,29 @@ FAILED ...::test_failed_collection_still_closes_leaked_pages
   （= 基线 23 + 本轮新增 14）
 - `.venv\Scripts\python.exe -m py_compile scripts/run_mediacrawler_douyin.py` → 退出码 0，无输出
 
-未完成项：P8 真实验收（NUC 上人工走一遍）尚未进行，需先部署到 NUC。
+未完成项：无。
+
+---
+
+## 施工后的整体验证结果
+
+**P7 全量回归（2026-08-08）**：`743 passed, 12 warnings in 673.54s`
+三条对照全部成立：
+
+| 对象 | 期望 | 实际 |
+|---|---|---|
+| 基线里通过的 729 条 | 还通过 | ✅ 743 − 14 = 729 |
+| 基线里失败的 | 还失败 | ✅ 基线本就 0 失败，无「顺手修」越界 |
+| 本轮新增 14 条 | 全绿 | ✅ |
+
+**P8 真实验收（2026-08-08，NUC 实测，用户本人接受）**：
+tabs 由修复前的 `1 → 2 → 3`（每轮 +1）变为 `1 → 2 → 1`（每轮回到起点）；
+稳态内存 756 MB → 341 MB；两轮各产生一条 `[TabCleanup] closed 1 leaked tab(s), failed 0`。
+异常路径（`state=failed` 轮次）同样完成清理。完整证据见
+`docs/bugs/BUG-01-采集后浏览器窗口不关闭.md` 的「验收结论」章。
+
+**六张卡最终状态**：TASK-01a/02a/03a = `verified`（红证据齐全，diff 无实现代码混入）；
+TASK-01b/02b/03b = `verified`（全绿，基线未劣化）。
 
 ---
 
