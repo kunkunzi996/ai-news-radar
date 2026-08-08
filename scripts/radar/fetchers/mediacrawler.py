@@ -239,66 +239,14 @@ def xiaohongshu_user_id_from_locator(locator: str) -> str:
     return ""
 
 
-def maybe_fetch_mediacrawler_douyin(now: datetime) -> tuple[list[RawItem], dict[str, Any]]:
-    raw_locator = str(os.environ.get("MEDIACRAWLER_DOUYIN_JSONL") or "").strip()
-    jsonl_path_raw = mediacrawler_jsonl_locator(raw_locator, MEDIACRAWLER_DOUYIN_SITE_ID)
-    max_items = max(1, min(env_int("MEDIACRAWLER_DOUYIN_MAX_ITEMS", 200), 1000))
-    status: dict[str, Any] = {
-        "enabled": env_flag("MEDIACRAWLER_DOUYIN_ENABLED"),
-        "ok": None,
-        "item_count": 0,
-        "source_kind": MEDIACRAWLER_DOUYIN_SITE_ID,
-        "privacy": "local_jsonl_only_no_cookies",
-        "coverage_note": "reads_mediacrawler_douyin_creator_jsonl",
-        "jsonl_path_configured": bool(raw_locator or jsonl_path_raw),
-        "locator": raw_locator,
-        "locator_kind": "homepage_url" if is_url_like(raw_locator) else "jsonl_path",
-        "jsonl_file_configured": Path(jsonl_path_raw).name if jsonl_path_raw else None,
-        "jsonl_file": Path(jsonl_path_raw).name if jsonl_path_raw else None,
-        "max_items": max_items,
-    }
-    if not status["enabled"]:
-        status["disabled_reason"] = "disabled_by_toggle"
-        return [], status
-    if not jsonl_path_raw:
-        status["ok"] = False
-        status["error"] = "missing_mediacrawler_douyin_jsonl"
-        return [], status
-
-    start = time.perf_counter()
-    try:
-        jsonl_path = resolve_latest_mediacrawler_jsonl(jsonl_path_raw)
-        status["jsonl_file"] = jsonl_path.name
-        if jsonl_path.name != status.get("jsonl_file_configured"):
-            status["jsonl_file_resolved_from"] = status.get("jsonl_file_configured")
-        if not jsonl_path.exists():
-            status["ok"] = False
-            status["error"] = "mediacrawler_douyin_jsonl_not_found"
-            return [], status
-        source_name = str(os.environ.get("MEDIACRAWLER_DOUYIN_SOURCE_NAME") or "").strip()
-        items = parse_mediacrawler_douyin_jsonl(
-            jsonl_path.read_text(encoding="utf-8", errors="ignore"),
-            now=now,
-            source_name=source_name,
-            max_items=max_items,
-        )
-        status["ok"] = bool(items)
-        status["item_count"] = len(items)
-        if source_name:
-            status["source_name"] = source_name
-        if not items:
-            status["error"] = "mediacrawler_douyin_no_items"
-        return items, status
-    except Exception as exc:
-        status["ok"] = False
-        status["error"] = str(exc)
-        return [], status
-    finally:
-        status["duration_ms"] = int((time.perf_counter() - start) * 1000)
-
 # BUG-02：云端只看得到桥接仓库的内容，看不到 NUC 采集时被风控拦了几条。
 # `manifest.json` 是 NUC 唯一会推送的元信息载体（与 JSONL 一起精确暂存），
 # 采集健康字段搭它的车上云，再由前端既有的 `site.partial` 渲染成「部分完成」。
+#
+# QA-01（P8 真实验收）：抖音 fetcher 有两条路——环境变量驱动的
+# `maybe_fetch_mediacrawler_douyin`（**云端 Actions 实际走的**）和订阅驱动的
+# `fetch_mediacrawler_douyin_subscriptions`。**两条都必须并入健康字段**，
+# 只改一条会让线上看板一个字段都拿不到（初版就是这么漏的）。
 DOUYIN_BRIDGE_MANIFEST_SCHEMA = 2
 
 
@@ -353,6 +301,65 @@ def douyin_bridge_collection_health(jsonl_path: Path | None) -> dict[str, Any]:
         }
     return health
 
+
+def maybe_fetch_mediacrawler_douyin(now: datetime) -> tuple[list[RawItem], dict[str, Any]]:
+    raw_locator = str(os.environ.get("MEDIACRAWLER_DOUYIN_JSONL") or "").strip()
+    jsonl_path_raw = mediacrawler_jsonl_locator(raw_locator, MEDIACRAWLER_DOUYIN_SITE_ID)
+    max_items = max(1, min(env_int("MEDIACRAWLER_DOUYIN_MAX_ITEMS", 200), 1000))
+    status: dict[str, Any] = {
+        "enabled": env_flag("MEDIACRAWLER_DOUYIN_ENABLED"),
+        "ok": None,
+        "item_count": 0,
+        "source_kind": MEDIACRAWLER_DOUYIN_SITE_ID,
+        "privacy": "local_jsonl_only_no_cookies",
+        "coverage_note": "reads_mediacrawler_douyin_creator_jsonl",
+        "jsonl_path_configured": bool(raw_locator or jsonl_path_raw),
+        "locator": raw_locator,
+        "locator_kind": "homepage_url" if is_url_like(raw_locator) else "jsonl_path",
+        "jsonl_file_configured": Path(jsonl_path_raw).name if jsonl_path_raw else None,
+        "jsonl_file": Path(jsonl_path_raw).name if jsonl_path_raw else None,
+        "max_items": max_items,
+    }
+    if not status["enabled"]:
+        status["disabled_reason"] = "disabled_by_toggle"
+        return [], status
+    if not jsonl_path_raw:
+        status["ok"] = False
+        status["error"] = "missing_mediacrawler_douyin_jsonl"
+        return [], status
+
+    start = time.perf_counter()
+    try:
+        jsonl_path = resolve_latest_mediacrawler_jsonl(jsonl_path_raw)
+        status["jsonl_file"] = jsonl_path.name
+        if jsonl_path.name != status.get("jsonl_file_configured"):
+            status["jsonl_file_resolved_from"] = status.get("jsonl_file_configured")
+        if not jsonl_path.exists():
+            status["ok"] = False
+            status["error"] = "mediacrawler_douyin_jsonl_not_found"
+            return [], status
+        source_name = str(os.environ.get("MEDIACRAWLER_DOUYIN_SOURCE_NAME") or "").strip()
+        items = parse_mediacrawler_douyin_jsonl(
+            jsonl_path.read_text(encoding="utf-8", errors="ignore"),
+            now=now,
+            source_name=source_name,
+            max_items=max_items,
+        )
+        status["ok"] = bool(items)
+        status["item_count"] = len(items)
+        if source_name:
+            status["source_name"] = source_name
+        if not items:
+            status["error"] = "mediacrawler_douyin_no_items"
+        # QA-01：这条分支才是云端 Actions 实际走的，健康字段必须在这里也并入。
+        status.update(douyin_bridge_collection_health(jsonl_path))
+        return items, status
+    except Exception as exc:
+        status["ok"] = False
+        status["error"] = str(exc)
+        return [], status
+    finally:
+        status["duration_ms"] = int((time.perf_counter() - start) * 1000)
 
 def fetch_mediacrawler_douyin_subscriptions(
     subscriptions: list[dict[str, str]],

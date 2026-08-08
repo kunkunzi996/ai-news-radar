@@ -456,7 +456,7 @@ E   KeyError: 'partial'
 
 ## TASK-07b · 写实现：默认分支并入健康字段
 
-状态：pending
+状态：**green**
 前置：TASK-07a（必须已经是 red）
 目标：让 07a 转绿
 实现要点：`maybe_fetch_mediacrawler_douyin` 的成功路径 `status.update(douyin_bridge_collection_health(jsonl_path))`；
@@ -467,9 +467,13 @@ E   KeyError: 'partial'
 验收：07a 转绿，04a 的 5 条保持绿
 回滚：`git revert` 本卡提交
 --- 施工后填 ---
-实际改动：
-自测结果：
-未完成项：
+实际改动：`scripts/radar/fetchers/mediacrawler.py` +64 −57（其中 57 行是纯位置移动）
+- 把 `DOUYIN_BRIDGE_MANIFEST_SCHEMA` 与 `douyin_bridge_collection_health` 上移到
+  两个 fetcher 之前，并在注释里写明**两条分支都必须并入**（初版就是漏了默认分支）
+- `maybe_fetch_mediacrawler_douyin` 成功路径加 `status.update(douyin_bridge_collection_health(jsonl_path))`
+
+自测结果：V2 → **47 passed**（45 + 新增 2），无回归；V3 `py_compile` OK。
+未完成项：无。
 
 ---
 
