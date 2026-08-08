@@ -191,61 +191,34 @@ fetchers only for stable, public, high-signal sources.
 
 ## 远程管理后台（token 公开模式）的禁区
 
-2026-07-29 起，local_server 支持「公开模式」：设置 `RADAR_ADMIN_TOKEN` 后经 Cloudflare 隧道
-暴露到公网，公网 Pages 页面配置「远程后台」即可直接管理订阅源（实施计划见
-`计划/2026-07-29-订阅源管理合并入公网页面实施计划.md`）。改动这块时：
+2026-07-29 起 local_server 支持「公开模式」：设 `RADAR_ADMIN_TOKEN` 后经 Cloudflare 隧道
+暴露到公网，公网页面即可管理订阅源。**两条安全底线**：
 
-1. **静态白名单只许收缩、不许扩张。** 公开模式下只服务 `/`、`/index.html`、`/assets/*`、
-   `/data/*`、`/site.webmanifest`、`/favicon.ico`、`/bilibili-account-preview.html` 和 `/api/*`；
-   `sources.config.json`、`feeds/follow.opml`、`local-secrets/`、`data/pending-purge.json`、
-   `.git/`、`node_modules/`、日志、`计划/`、`.venv*` **永远禁止进入白名单**。想新增可公开文件，
-   先确认它在公开仓库里本来就可见。白名单判定必须先 `unquote` 再 `normpath`，
-   防 `/assets/%2e%2e/...` 编码穿越（测试里有用例，别删）。
-2. **令牌校验必须恒定时间比较**（`hmac.compare_digest`）；禁止把令牌写进日志、响应体、
-   截图或错误消息；失败限速状态只允许在内存，不能落盘。
-3. **未设 `RADAR_ADMIN_TOKEN` 时一切行为必须与历史逐字一致**（回环本地控制台），由
-   `DefaultModeServerRegressionTests` 守住；改公开模式逻辑时不许顺手改默认路径。
-4. **CORS 只许精确反射 `RADAR_TRUSTED_ORIGINS` 里的 Origin**，禁止 `*` 或子串/后缀匹配；
-   同源回环页面不需要 CORS 头，不同端口的回环跨源也必须显式配置才反射。
-5. **绑定非回环地址且无令牌必须拒绝启动**——origin 检查只是 CSRF 防线，挡不住局域网里的
+1. **静态白名单只许收缩、不许扩张。** `sources.config.json`、`feeds/follow.opml`、
+   `local-secrets/`、`data/pending-purge.json`、`.git/`、日志、`计划/`、`.venv*`
+   **永远禁止进入白名单**；判定必须先 `unquote` 再 `normpath` 防编码穿越。
+2. **绑定非回环地址且无令牌必须拒绝启动**——origin 检查只是 CSRF 防线，挡不住局域网里的
    curl，公网/局域网暴露必须以令牌为前提。
+
+**改 `scripts/radar/server/` 的公开模式逻辑前必读
+`docs/rules/remote-admin-public-mode.md`** —— 完整白名单、令牌恒定时间比较、
+默认模式逐字兼容与 CORS 精确反射五条契约都在那里。
 
 ## 新增桥接类信源自动采集的禁区
 
-2026-08-01 起，新增抖音（`mediacrawler_jsonl`）或微信（`we_mp_rss_jsonl`）信源后，
-`scripts/radar/server/auto_collect.py` 会自动触发一次本机采集，采集结束后
-`scripts/radar/server/actions_refresh.py` 再触发一轮云端 Actions。改这块时：
+2026-08-01 起，新增抖音（`mediacrawler_jsonl`）或微信（`we_mp_rss_jsonl`）信源后会自动触发
+一次本机采集（`scripts/radar/server/auto_collect.py`），结束后再触发一轮云端 Actions
+（`actions_refresh.py`）。**三条核心红线**：
 
-1. **必须触发计划任务，不能自己起采集进程。** 三条环境约束缺一条就跑不通（均实测）：
-   **身份**——`RadarAdminServer` 是 `SYSTEM/ServiceAccount`，`DouyinCollectAndPush` 是
-   `beelink-pc/Interactive`，会话隔离让 SYSTEM 拿不到带登录态的专用 Chrome（CDP 9333）；
-   **凭证**——SYSTEM 侧 PAT 只对 `ai-news-radar` 有 Contents 权限，够不着
-   `douyin-bridge` / `wechat-bridge`；**路径**——脚本默认推导的
-   `CrawlerRoot=<父目录>/MediaCrawler` 在 NUC 上根本不存在（实际是 `MediaCrawler-local-test`）。
-   计划任务里已配好全部正确参数。
+1. **必须触发计划任务 `DouyinCollectAndPush`，不能自己起采集进程**——身份、凭证、路径三条
+   环境约束缺一条就跑不通；该任务必须保留抖音、微信两条 action，改成一条微信会静默漏采。
+2. **派发时机只能在「同步推送成功之后」**，不能在保存阶段——否则采集抢资源会把随后的
+   `git push` 拖过 Cloudflare 120 秒读超时，前端报推送失败而后端其实成功了（真踩过）。
+3. **微信只能全量重采，禁止单号采集**——桥接 JSONL 是完整快照，单号覆盖会抹掉其它公众号
+   的全部历史。抖音相反，`locator` 存有 `sec_uid` 可定向。
 
-2. **派发时机只能在「同步推送成功之后」，不能在「保存成功之后」。** 保存与同步是两个独立
-   HTTP 请求。在保存阶段派发，采集拉起的浏览器会抢资源，把紧随其后的 `git push` 拖过
-   Cloudflare 的 120 秒读超时，前端报「推送失败: Failed to fetch」而后端其实推成功了
-   （2026-08-01 真踩过）。故保存只 `queue_pending_collect` 登记，确认推送成功后才
-   `flush_pending_collect`。
+只在「新增」时触发；删除、停用、改名一律不触发。本模块不触碰 `data/archive.json`。
 
-3. **微信只能全量重采，禁止单号采集。** 桥接 JSONL 是**完整快照**，拿单个 feed 的结果覆盖
-   会抹掉其它公众号的全部历史；且微信源 `locator` 为空、无稳定 `feed_id`，本就无法定位单号。
-   抖音相反，`locator` 存有 `sec_uid`，可以定向。
-
-4. **`DouyinCollectAndPush` 必须保留抖音、微信两条 action。** 本功能只触发一次任务就覆盖两个
-   渠道，靠的正是这个前提；改成一条，微信会静默漏采。运维说明见
-   `docs/guides/douyin-cloud-pc-automation.md`。
-
-5. **只在「新增」时触发**：删除、停用、改名一律不触发，避免与历史清理逻辑产生交集。停用后
-   重新启用算新增（其历史可能已在停用时被清理）。本模块不触碰 `data/archive.json`。
-
-6. 云端刷新走 GitHub Contents API 在远端直接建提交，标记文件 `.bridge-refresh.json` 必须放
-   仓库根（`data/**` 会被 workflow 的 `paths-ignore` 忽略、触发不了）。**不要改用本地
-   git commit/push**——那会掉进上文的 git 编排禁区。
-
-7. **失败留痕必须可见且无敏感信息**：抖音与微信桥接脚本在失败终态、登录态
-   `expired/login_required/invalid` 或异常收尾时写 `RadarRoot\logs\bridge-collection-failures.jsonl`，
-   每行固定 10 个字段、`message` ≤512 字符、按渠道与 `run_id` 去重，禁止写入原始输出、cookie
-   或 token。写日志失败只告警，不覆盖原状态或退出码；成功且登录态有效时不追加记录。
+**改 `auto_collect.py` / `actions_refresh.py` 前必读
+`docs/rules/bridge-auto-collect-contract.md`** —— 七条逐条契约、实测依据、云端刷新的
+标记文件位置与失败留痕的 10 字段要求都在那里。
