@@ -302,7 +302,7 @@ E   assert 1 == 2        ← manifest 仍是 schema 1，没有健康字段
 
 ## TASK-05b · 写实现：采集脚本放宽口径、写 manifest、缺失留痕
 
-状态：pending
+状态：**green**
 前置：TASK-05a（必须已经是 red）
 目标：让 05a 那几条变绿
 
@@ -327,9 +327,27 @@ E   assert 1 == 2        ← manifest 仍是 schema 1，没有健康字段
 人工验收：`docs/plan.md` 第 6.2 节第一层第 3 步、第二层第 5~7 步
 回滚：`git revert` 本卡提交；NUC 侧回退到上一个 commit 重跑一轮
 --- 施工后填 ---
-实际改动：
+实际改动：`deploy/cloud-pc/collect-douyin-and-push.ps1` +41 −13
+- **B1**：receipt 校验从「6/6 全 completed」改为「至少 1 个 completed 或 partial，
+  且这些号的 profile/api 校验都通过」；全失败仍 `Exit-Run warning` 不发布
+- **B2**：`schema_version` 1 → 2，新增 `partial` / `missing_rows` /
+  `completed_creator_count` / `partial_creator_count` / `failed_creator_count`；
+  迁移判断同步改为 `-ne 2`，首轮即重写 manifest
+- **B3**：`$script:Status` 增 `partial` / `missing_rows` / `partial_creator_count`
+  三个字段并加入 runner result 拷贝列表；`Write-BridgeFailureRecord` 的
+  「succeeded 且登录态正常就 return」门槛加上 `-not $isPartialRun`，
+  部分完成轮次改记 `state=warning` / `stage=partial_collection`
+- **净化**：留痕 message 由脚本自己拼装（缺失行数 + 不完整号数），
+  **完全不引用 runner 的原始错误文本**
+
 自测结果：
-未完成项：
+- `pytest -q tests/test_bridge_collection_failure_log.py` → **4 passed**（05a 的 2 红转绿，
+  回归护栏与基线各 1 条保持绿），含 `SECRET_BODY` 不外泄的断言
+- V4 PS 语法检查 → **0 错误**
+- 文件编码复核：**BOM 保留 True**、CRLF 515 行（CLAUDE.md 对 `.ps1` 的硬要求）
+- `git diff --name-only` 确认只动 `.ps1`，未改 05a 写的测试
+
+未完成项：无。
 
 ---
 

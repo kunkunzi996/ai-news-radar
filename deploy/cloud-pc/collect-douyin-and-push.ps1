@@ -106,7 +106,10 @@ $script:Status = [ordered]@{
     new_unique_items = 0
     requested_creator_count = 0
     completed_creator_count = 0
+    partial_creator_count = 0
     failed_creator_count = 0
+    missing_rows = 0
+    partial = $false
     creator_results = @()
     content_changed = $false
     bridge_changed = $false
@@ -174,7 +177,23 @@ function Write-BridgeFailureRecord(
 ) {
     $normalizedLoginState = ([string]$LoginState).Trim().ToLowerInvariant()
     $invalidLoginStates = @("expired", "login_required", "invalid")
-    if ($State -eq "succeeded" -and $invalidLoginStates -notcontains $normalizedLoginState) { return }
+    # BUG-02：本轮采到了但不齐全（被抖音风控拦掉几条）时，state 是 succeeded、
+    # 登录态也正常，原门槛会直接 return，缺失就无人知晓。这类轮次必须留一条 warning。
+    $isPartialRun = [bool]$script:Status.partial
+    if ($State -eq "succeeded" -and -not $isPartialRun -and $invalidLoginStates -notcontains $normalizedLoginState) { return }
+
+    $recordState = [string]$State
+    $recordStage = [string]$Stage
+    $recordMessage = $Message
+    if ($State -eq "succeeded" -and $isPartialRun) {
+        $recordState = "warning"
+        $recordStage = "partial_collection"
+        # 消息由本脚本自己拼装，绝不引用 runner 的原始错误文本
+        # ——那里面拼着抖音的原始响应体（见 PLAN-06）。
+        $incompleteCreators = [int]$script:Status.partial_creator_count + [int]$script:Status.failed_creator_count
+        $recordMessage = "Douyin collection completed partially: {0} row(s) missing across {1} creator(s)." -f `
+            ([int]$script:Status.missing_rows), $incompleteCreators
+    }
 
     try {
         $directory = Split-Path -Parent $script:FailureLogPath
@@ -195,9 +214,9 @@ function Write-BridgeFailureRecord(
             recorded_at = (Get-Date).ToUniversalTime().ToString("o")
             channel = "douyin"
             run_id = $script:RunId
-            state = [string]$State
-            stage = [string]$Stage
-            message = Get-FailureLogMessage $Message $Stage
+            state = $recordState
+            stage = $recordStage
+            message = Get-FailureLogMessage $recordMessage $recordStage
             exit_code = $ExitCode
             login_state = $normalizedLoginState
             started_at = [string]$script:StartedAt
@@ -366,7 +385,7 @@ if (Test-Path -LiteralPath $script:CrawlResultFile) {
     try { $runnerResult = Get-Content -LiteralPath $script:CrawlResultFile -Raw -Encoding UTF8 | ConvertFrom-Json } catch { throw "Runner result JSON is invalid." }
 }
 if ($runnerResult) {
-    foreach ($field in @("login_state", "source_file", "source_last_write_time", "source_sha256", "output_rows", "crawl_output_rows", "new_unique_items", "requested_creator_count", "completed_creator_count", "failed_creator_count", "creator_results")) {
+    foreach ($field in @("login_state", "source_file", "source_last_write_time", "source_sha256", "output_rows", "crawl_output_rows", "new_unique_items", "requested_creator_count", "completed_creator_count", "partial_creator_count", "failed_creator_count", "missing_rows", "partial", "creator_results")) {
         if ($runnerResult.PSObject.Properties.Name -contains $field) { $script:Status[$field] = $runnerResult.$field }
     }
     $script:Status.warnings = @($runnerResult.warnings)
@@ -382,18 +401,20 @@ if ($runnerResult.ambiguous -eq $true) {
     Exit-Run "warning" "output_delta_ambiguous" "Crawler output delta is ambiguous; bridge was not changed." 1
 }
 $creatorReceipts = @($runnerResult.creator_results)
+# BUG-02：原口径要求 6/6 全部 completed，任意一条被抖音风控拦下就整轮作废，
+# 同轮已采到的 47~51 条被连坐丢弃、桥接连续停更两天。
+# 用户 2026-08-08 拍板改为「采到多少发多少」，只保留「一个号都没产出」这条 fail-safe。
+$productiveReceipts = @($creatorReceipts | Where-Object { $_.state -eq "completed" -or $_.state -eq "partial" })
 $receiptsValid = (
     [int]$runnerResult.requested_creator_count -eq $secUids.Count -and
-    [int]$runnerResult.completed_creator_count -eq $secUids.Count -and
-    [int]$runnerResult.failed_creator_count -eq 0 -and
     $creatorReceipts.Count -eq $secUids.Count -and
-    @($creatorReceipts | Where-Object {
-            $_.state -ne "completed" -or $_.profile_valid -ne $true -or $_.api_pages_valid -ne $true -or
-            [int]$_.written_rows -ne [int]$_.listed_count
+    $productiveReceipts.Count -gt 0 -and
+    @($productiveReceipts | Where-Object {
+            $_.profile_valid -ne $true -or $_.api_pages_valid -ne $true
         }).Count -eq 0
 )
 if (-not $receiptsValid) {
-    Exit-Run "warning" "partial_creator_failure" "One or more creator receipts are incomplete; bridge was not changed." 1
+    Exit-Run "warning" "partial_creator_failure" "No creator produced a usable receipt; bridge was not changed." 1
 }
 
 $manifestPath = Join-Path $BridgeRoot "manifest.json"
@@ -444,7 +465,7 @@ $manifestNeedsMigration = $true
 if (Test-Path -LiteralPath $manifestPath) {
     try {
         $existingManifest = Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
-        $manifestNeedsMigration = [int]$existingManifest.schema_version -ne 1
+        $manifestNeedsMigration = [int]$existingManifest.schema_version -ne 2
     } catch { $script:Status.warnings += "Existing manifest is invalid and will be replaced after valid crawler output." }
 }
 if ($contentChanged) {
@@ -455,8 +476,10 @@ if ($contentChanged) {
     }
 }
 if ($contentChanged -or $manifestNeedsMigration) {
+    # schema 2 起携带本轮采集健康：云端 fetcher 读它，前端据此把抖音显示成「部分完成」。
+    # 这几个字段全是计数与布尔，不含任何原始响应体或凭证。
     $manifest = [ordered]@{
-        schema_version = 1
+        schema_version = 2
         generated_at = (Get-Date).ToUniversalTime().ToString("o")
         source_file = [IO.Path]::GetFileName($sourceFile)
         source_sha256 = [string]$runnerResult.source_sha256
@@ -465,6 +488,11 @@ if ($contentChanged -or $manifestNeedsMigration) {
         new_unique_items = $runnerResult.new_unique_items
         creator_count = $secUids.Count
         max_notes = $MaxNotes
+        partial = [bool]$runnerResult.partial
+        missing_rows = [int]$runnerResult.missing_rows
+        completed_creator_count = [int]$runnerResult.completed_creator_count
+        partial_creator_count = [int]$runnerResult.partial_creator_count
+        failed_creator_count = [int]$runnerResult.failed_creator_count
     }
     Write-AtomicJson $manifestPath $manifest "$($script:RunId)-manifest"
 }
