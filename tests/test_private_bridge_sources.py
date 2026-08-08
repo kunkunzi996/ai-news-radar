@@ -1210,6 +1210,66 @@ class DouyinBridgeManifestHealthTests(unittest.TestCase):
         self.assertFalse(status["partial"])
         self.assertFalse(status["collection_manifest_available"])
 
+    def fetch_default_branch_with_manifest(self, manifest_text):
+        """走 `maybe_fetch_mediacrawler_douyin`——**云端 Actions 实际走的就是这条路**。
+
+        P8 真实验收 QA-01：线上 `source-status.json` 里抖音条目
+        `site_name` 是 `MediaCrawler Douyin`、且没有 `subscriptions` 字段，
+        证明云端用的是环境变量驱动的默认分支，不是订阅分支。
+        原实现只给订阅分支加了健康字段，于是看板上一个字段都没有。
+        """
+        from scripts.update_news import maybe_fetch_mediacrawler_douyin
+
+        with tempfile.TemporaryDirectory() as tmp:
+            bridge_root = Path(tmp)
+            jsonl_dir = bridge_root / "output" / "douyin" / "jsonl"
+            jsonl_dir.mkdir(parents=True)
+            (jsonl_dir / "creator_contents_2026-08-08.jsonl").write_text(
+                json.dumps(self.ROW, ensure_ascii=False) + "\n", encoding="utf-8"
+            )
+            if manifest_text is not None:
+                (bridge_root / "manifest.json").write_text(manifest_text, encoding="utf-8")
+            with patch.dict(
+                os.environ,
+                {
+                    "MEDIACRAWLER_DOUYIN_ENABLED": "1",
+                    "MEDIACRAWLER_DOUYIN_JSONL": str(jsonl_dir),
+                    "MEDIACRAWLER_LOCAL_DIR": tmp,
+                },
+                clear=True,
+            ):
+                return maybe_fetch_mediacrawler_douyin(datetime(2026, 8, 8, tzinfo=timezone.utc))
+
+    def test_default_branch_also_surfaces_partial_health(self):
+        manifest = json.dumps(
+            {
+                "schema_version": 2,
+                "partial": True,
+                "missing_rows": 4,
+                "completed_creator_count": 5,
+                "partial_creator_count": 1,
+                "failed_creator_count": 0,
+            }
+        )
+
+        items, status = self.fetch_default_branch_with_manifest(manifest)
+
+        self.assertEqual(len(items), 1)
+        self.assertTrue(status["ok"])
+        self.assertTrue(status["partial"], "云端实际走的默认分支必须同样带上健康字段")
+        self.assertEqual(status["missing_rows"], 4)
+        self.assertEqual(status["completed_creator_count"], 5)
+        self.assertEqual(status["partial_creator_count"], 1)
+        self.assertTrue(status["collection_manifest_available"])
+
+    def test_default_branch_degrades_silently_without_manifest(self):
+        items, status = self.fetch_default_branch_with_manifest(None)
+
+        self.assertEqual(len(items), 1, "manifest 缺失绝不能影响条目产出")
+        self.assertTrue(status["ok"])
+        self.assertFalse(status["partial"])
+        self.assertFalse(status["collection_manifest_available"])
+
     def test_legacy_schema_1_manifest_is_treated_as_unavailable(self):
         manifest = json.dumps({"schema_version": 1, "output_rows": 104, "crawl_output_rows": 52})
 

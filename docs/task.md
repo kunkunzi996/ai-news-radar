@@ -415,6 +415,64 @@ manifest 却没被重写，partial 仍是 true —— CODE-01 稳定复现。
 
 ---
 
+---
+
+## TASK-07a · 写测试：云端实际走的默认分支也要带健康字段（P8 验收补卡）
+
+状态：**red**
+前置：TASK-06b
+来源：**P8 真实验收 QA-01**。这是本轮唯一一条「自动化测试全绿但产品不能用」的失败。
+
+**验收现场**：NUC 采集成功、桥接更新成功、manifest 是 schema 2 且字段齐全，
+但云端 `data/source-status.json` 的抖音条目里**一个健康字段都没有**——
+只有 `item_count: 52`，没有 `partial` / `missing_rows` / `collection_manifest_available`。
+
+**根因**：抖音 fetcher 有两条路。TASK-04b 只改了订阅分支
+`fetch_mediacrawler_douyin_subscriptions`，而**云端实际走的是默认分支**
+`maybe_fetch_mediacrawler_douyin`（由 `MEDIACRAWLER_DOUYIN_JSONL` 环境变量驱动）。
+线上 status 的 `site_name` 是 `MediaCrawler Douyin` 且没有 `subscriptions` 字段，即为铁证。
+04a 写的 5 条测试全绿，是因为它们全都在测那条**云端根本不走的路**。
+
+测什么：
+- `maybe_fetch_mediacrawler_douyin` 在 schema 2 manifest 下，status 同样带
+  `partial` / `missing_rows` / `completed_creator_count` / `partial_creator_count` /
+  `collection_manifest_available`。
+- manifest 缺失时静默降级，条目产出不受影响。
+期望值出处：`docs/plan.md` 第 4 章「界面与流程」；P8 验收现场观测
+允许改：`tests/test_private_bridge_sources.py`
+禁止碰：`scripts/radar/fetchers/mediacrawler.py`
+验收：`pytest -q tests/test_private_bridge_sources.py -k default_branch` 必须失败
+回滚：删掉新增的测试用例
+--- 施工后填 ---
+红证据：`pytest -q tests/test_private_bridge_sources.py -k default_branch` → **2 failed, 45 deselected**
+
+```
+tests/test_private_bridge_sources.py:1270: KeyError
+E   KeyError: 'partial'
+```
+
+默认分支的 status 里根本没有健康字段，与线上观测完全一致。
+实际改动：`tests/test_private_bridge_sources.py` +60 行（只有测试）
+
+## TASK-07b · 写实现：默认分支并入健康字段
+
+状态：pending
+前置：TASK-07a（必须已经是 red）
+目标：让 07a 转绿
+实现要点：`maybe_fetch_mediacrawler_douyin` 的成功路径 `status.update(douyin_bridge_collection_health(jsonl_path))`；
+把 `DOUYIN_BRIDGE_MANIFEST_SCHEMA` 与 `douyin_bridge_collection_health` 上移到两个 fetcher 之前（纯移动，无逻辑变化）。
+允许改：`scripts/radar/fetchers/mediacrawler.py`
+禁止碰：`tests/test_private_bridge_sources.py`
+自测：V2 + V3 命令
+验收：07a 转绿，04a 的 5 条保持绿
+回滚：`git revert` 本卡提交
+--- 施工后填 ---
+实际改动：
+自测结果：
+未完成项：
+
+---
+
 ## 施工后的整体动作（不是任务卡，是过门条件）
 
 | 阶段 | 动作 | 过关标准 |
