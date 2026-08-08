@@ -462,10 +462,21 @@ $targetHashBefore = if (Test-Path -LiteralPath $bridgeJsonl) { (Get-FileHash -Al
 $contentChanged = (-not $targetHashBefore) -or $targetHashBefore.ToLowerInvariant() -ne ([string]$runnerResult.source_sha256).ToLowerInvariant()
 $script:Status.content_changed = $contentChanged
 $manifestNeedsMigration = $true
+# BUG-02 / CODE-01：健康状态必须每轮如实反映。只按「内容变了」或「schema 要迁移」重写
+# manifest 的话，「本轮全采全但没有新视频」那一轮两个条件都不满足，
+# 桥接里的 partial 会永远停在 true，看板的黄色「部分完成」再也下不去。
+$manifestHealthChanged = $true
 if (Test-Path -LiteralPath $manifestPath) {
     try {
         $existingManifest = Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
         $manifestNeedsMigration = [int]$existingManifest.schema_version -ne 2
+        $manifestHealthChanged = (
+            [bool]$existingManifest.partial -ne [bool]$runnerResult.partial -or
+            [int]$existingManifest.missing_rows -ne [int]$runnerResult.missing_rows -or
+            [int]$existingManifest.completed_creator_count -ne [int]$runnerResult.completed_creator_count -or
+            [int]$existingManifest.partial_creator_count -ne [int]$runnerResult.partial_creator_count -or
+            [int]$existingManifest.failed_creator_count -ne [int]$runnerResult.failed_creator_count
+        )
     } catch { $script:Status.warnings += "Existing manifest is invalid and will be replaced after valid crawler output." }
 }
 if ($contentChanged) {
@@ -475,7 +486,7 @@ if ($contentChanged) {
         throw "Bridge JSONL SHA256 does not match the runner candidate after copy."
     }
 }
-if ($contentChanged -or $manifestNeedsMigration) {
+if ($contentChanged -or $manifestNeedsMigration -or $manifestHealthChanged) {
     # schema 2 起携带本轮采集健康：云端 fetcher 读它，前端据此把抖音显示成「部分完成」。
     # 这几个字段全是计数与布尔，不含任何原始响应体或凭证。
     $manifest = [ordered]@{

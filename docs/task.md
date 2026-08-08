@@ -391,7 +391,7 @@ manifest 却没被重写，partial 仍是 true —— CODE-01 稳定复现。
 
 ## TASK-06b · 写实现：健康字段变化也触发 manifest 重写
 
-状态：pending
+状态：**green**
 前置：TASK-06a（必须已经是 red）
 目标：让 06a 变绿
 实现要点：读旧 manifest 时额外算出 `$manifestHealthChanged`（比较 `partial` /
@@ -402,9 +402,16 @@ manifest 却没被重写，partial 仍是 true —— CODE-01 稳定复现。
 验收：06a 转绿，05a 的三条保持绿
 回滚：`git revert` 本卡提交
 --- 施工后填 ---
-实际改动：
+实际改动：`deploy/cloud-pc/collect-douyin-and-push.ps1` +12 −2
+- 读旧 manifest 时新增 `$manifestHealthChanged`：逐一比较 `partial` / `missing_rows` /
+  `completed_creator_count` / `partial_creator_count` / `failed_creator_count`
+- 重写条件从 `$contentChanged -or $manifestNeedsMigration`
+  扩为 `... -or $manifestHealthChanged`
+
 自测结果：
-未完成项：
+- `pytest -q tests/test_bridge_collection_failure_log.py` → **5 passed**（06a 转绿，05a 三条保持绿）
+- V4 PS 语法检查 → **0 错误**；BOM 保留 True
+未完成项：无。
 
 ---
 
