@@ -869,6 +869,28 @@ def normalize_douyin_creator_ids(raw: str) -> list[str]:
     return values
 
 
+DOUYIN_ERROR_MESSAGE_MAX_CHARS = 200
+
+
+def sanitize_douyin_error(message: object) -> str:
+    """把错误消息净化成可安全外泄的短文本。
+
+    BUG-02 / PLAN-06：MediaCrawler 的 `media_platform/douyin/client.py:135` 抛的是
+    ``raise DataFetchError(f"{e}, {response.text}")`` —— 抖音的**原始响应体**被拼进了
+    异常消息。这段文本会流向 result JSON、留痕日志和 source-status.json，
+    所以必须先归一化：认得出的风控只留稳定分类，其余只取响应体之前的那一段。
+    """
+    text = " ".join(str(message or "").split())
+    if not text:
+        return ""
+    lowered = text.lower()
+    if "argussecurityplugin" in lowered or "blocked by" in lowered:
+        return "douyin_risk_control"
+    # client.py:135 的格式是 "<原始异常>, <响应体>"，逗号后面的一律丢弃。
+    head = text.split(", ", 1)[0]
+    return head[:DOUYIN_ERROR_MESSAGE_MAX_CHARS]
+
+
 class DouyinRunObserver:
     def __init__(self, requested_ids: list[str]):
         self.requested_ids = requested_ids
@@ -883,6 +905,7 @@ class DouyinRunObserver:
             "api_pages_valid": False,
             "listed_count": 0,
             "written_rows": 0,
+            "missing_rows": 0,
             "error": "",
         }
 
@@ -892,25 +915,39 @@ class DouyinRunObserver:
     def fail(self, creator_id: str, message: str) -> None:
         record = self.record(creator_id)
         record["state"] = "failed"
-        record["error"] = message
+        record["error"] = sanitize_douyin_error(message)
 
     def finalize(self) -> None:
+        # 三态而非两态：`completed` 的「一条不少」语义被下游依赖，不能悄悄放宽；
+        # 新增的 `partial` 是显式的、可被单独检查的「采到了但不全」。
         for creator_id in self.requested_ids:
             record = self.record(creator_id)
-            if record["error"]:
-                record["state"] = "failed"
-            elif record["profile_valid"] and record["api_pages_valid"] and record["written_rows"] == record["listed_count"]:
+            listed = int(record["listed_count"])
+            written = int(record["written_rows"])
+            record["missing_rows"] = max(0, listed - written)
+            healthy = bool(record["profile_valid"] and record["api_pages_valid"])
+            if healthy and not record["error"] and written == listed:
+                # listed == written == 0 的合法空账号也走这里，保持 PS 脚本
+                # allExplicitlyEmpty 分支的既有语义不变。
                 record["state"] = "completed"
+            elif written > 0:
+                record["state"] = "partial"
+                record["error"] = record["error"] or "detail_fetch_incomplete"
             else:
                 record["state"] = "failed"
                 record["error"] = record["error"] or "creator receipt is incomplete"
 
     def summary(self) -> dict[str, Any]:
         ordered = [self.record(creator_id).copy() for creator_id in self.requested_ids]
+        has_content = any(int(record["written_rows"]) > 0 for record in ordered)
+        not_all_completed = any(record["state"] != "completed" for record in ordered)
         return {
             "requested_creator_count": len(self.requested_ids),
             "completed_creator_count": sum(record["state"] == "completed" for record in ordered),
-            "failed_creator_count": sum(record["state"] != "completed" for record in ordered),
+            "partial_creator_count": sum(record["state"] == "partial" for record in ordered),
+            "failed_creator_count": sum(record["state"] == "failed" for record in ordered),
+            "missing_rows": sum(int(record.get("missing_rows") or 0) for record in ordered),
+            "partial": bool(has_content and not_all_completed),
             "creator_results": ordered,
         }
 
@@ -1124,7 +1161,10 @@ def runner_result_payload(
         "new_unique_items": 0,
         "requested_creator_count": 0,
         "completed_creator_count": 0,
+        "partial_creator_count": 0,
         "failed_creator_count": 0,
+        "missing_rows": 0,
+        "partial": False,
         "creator_results": [],
         "ambiguous": False,
         "warnings": [],
@@ -1201,8 +1241,14 @@ def main() -> int:
                     observer.finalize()
                 if args.platform == "douyin" and result_path:
                     delta = creator_output_delta(before_snapshot, snapshot_creator_jsonl(crawler_root, args.platform))
-                    if observer and observer.summary()["failed_creator_count"]:
-                        raise RuntimeError("partial_creator_failure: creator receipt is incomplete")
+                    # BUG-02：原本只要有一个号不完整就整轮作废，导致同轮已采到的 47~51 条
+                    # 被连坐丢弃、桥接连续停更。用户拍板改为「采到多少发多少」，
+                    # 只保留「一个号都没采到」这一条 fail-safe（那是登录态或网络挂了）。
+                    if observer:
+                        receipt = observer.summary()
+                        produced = receipt["completed_creator_count"] + receipt["partial_creator_count"]
+                        if not produced:
+                            raise RuntimeError("all_creators_failed: no creator produced any receipt")
                 if result_path:
                     payload = runner_result_payload(
                         run_id,
@@ -1227,9 +1273,11 @@ def main() -> int:
             finally:
                 close_leaked_pages(cdp_port, pages_before)
     except Exception as exc:
-        message = str(exc)
-        if "login_required" in message:
+        # 先按原文判定登录态，再净化——净化后的分类里可能不再含 login_required 字样。
+        raw_message = str(exc)
+        if "login_required" in raw_message:
             login_state = "login_required"
+        message = sanitize_douyin_error(raw_message)
         if observer:
             observer.finalize()
         if result_path:

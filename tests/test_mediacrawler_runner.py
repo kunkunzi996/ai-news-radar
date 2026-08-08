@@ -384,8 +384,13 @@ class MediaCrawlerRunnerTests(unittest.TestCase):
         observer.finalize()
         summary = observer.summary()
 
+        # BUG-02 三态改造后，「少写一条」从 failed 变为 partial（用户 2026-08-08 拍板）。
+        # 本条测试的保护意图不变：**不完整的回执绝不能被当成 completed**。
         self.assertEqual(summary["completed_creator_count"], 1)
-        self.assertEqual(summary["failed_creator_count"], 1)
+        self.assertEqual(summary["partial_creator_count"], 1)
+        self.assertEqual(observer.record("b")["state"], "partial")
+        self.assertNotEqual(observer.record("b")["state"], "completed")
+        self.assertTrue(summary["partial"])
 
     def test_browser_only_never_calls_mediacrawler(self):
         with tempfile.TemporaryDirectory() as tmp:

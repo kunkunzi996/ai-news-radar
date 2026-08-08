@@ -132,7 +132,7 @@ E   TypeError: install_douyin_observer() got an unexpected keyword argument 'sle
 
 ## TASK-03a · 写测试：回执三态与「采到多少发多少」
 
-状态：pending
+状态：**red**
 前置：TASK-02b
 测什么：
 - `finalize()` 三态判定：`written == listed` → `completed`；`0 < written < listed` → `partial`；
@@ -151,12 +151,19 @@ E   TypeError: install_douyin_observer() got an unexpected keyword argument 'sle
 验收：V1 命令必须失败，失败原因是「无 partial 态 / 仍然 raise partial_creator_failure」
 回滚：删掉新增的测试用例
 --- 施工后填 ---
-红证据：
-实际改动：
+红证据：`pytest -q tests/test_mediacrawler_runner.py -k DouyinPartialReceipt` → **7 failed, 43 deselected**
+
+```
+E   KeyError: 'partial_creator_count'
+tests/test_mediacrawler_runner.py:868: KeyError
+```
+
+7 条全红，原因是三态与新字段尚不存在（KeyError / 状态值不匹配），不是测试写坏。
+实际改动：`tests/test_mediacrawler_runner.py` +156 行（`git diff --stat` 确认无实现代码混入）
 
 ## TASK-03b · 写实现：回执三态与放宽退出条件
 
-状态：pending
+状态：**green**
 前置：TASK-03a（必须已经是 red）
 目标：让 03a 那几条变绿
 实现要点（`scripts/run_mediacrawler_douyin.py`）：
@@ -171,9 +178,25 @@ E   TypeError: install_douyin_observer() got an unexpected keyword argument 'sle
 验收：03a 全绿，01/02 保持绿
 回滚：`git revert` 本卡提交
 --- 施工后填 ---
-实际改动：
-自测结果：
-未完成项：
+实际改动：`scripts/run_mediacrawler_douyin.py` +59 −7
+- 新增 `sanitize_douyin_error()` 与 `DOUYIN_ERROR_MESSAGE_MAX_CHARS = 200`：
+  风控归一为 `douyin_risk_control`，其余丢弃 `", "` 之后的响应体并截断 200 字符
+- `_new_record` 增 `missing_rows`；`fail()` 改为存净化后的消息
+- `finalize()` 改三态（合法空账号仍判 `completed`）；`summary()` 增
+  `partial_creator_count` / `missing_rows` / `partial`
+- `runner_result_payload()` 默认字典补齐新字段
+- `main()` 的 `raise partial_creator_failure` 改为 `all_creators_failed`，
+  **仅在没有任何号产出回执时**才抛
+- `main()` 的 except 分支：先按原文判 `login_required`，再净化后才写日志与 payload
+
+**一处经用户授权的基线测试改动**（`tests/test_mediacrawler_runner.py` +7 −1）：
+`test_partial_creator_receipt_cannot_finalize_as_success` 原断言 `failed_creator_count == 1`，
+锁的是被本轮有意替换掉的旧口径。经用户 2026-08-08 拍板「保留意图、适配三态」，
+改为断言该号是 `partial`、显式 `assertNotEqual(..., "completed")`，并新增
+`partial_creator_count` 与 `summary["partial"]` 断言。测试名与保护意图未变。
+
+自测结果：V1 → **51 passed**（44 + 新增 7），无回归；V3 `py_compile` OK。
+未完成项：无。
 
 ---
 
