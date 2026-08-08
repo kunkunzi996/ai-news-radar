@@ -4,7 +4,9 @@ import argparse
 import contextlib
 import hashlib
 import os
+import sys
 import tempfile
+import types
 import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -593,6 +595,148 @@ class MediaCrawlerRunnerTests(unittest.TestCase):
                 self.assertEqual(runner.main(), 0)
 
             closed.assert_called_once_with(9333, ["B"])
+
+
+class DouyinCreatorIsolationTests(unittest.TestCase):
+    """TASK-01：一个创作者被风控，其余创作者必须照常采完。
+
+    复刻 MediaCrawler ``core.py:277-291`` 的创作者循环——那里对
+    ``get_user_info`` 与 ``get_all_user_aweme_posts`` 没有任何 try/except，
+    所以只要包装层向外抛异常，排在后面的号就一条都采不到。
+    """
+
+    @staticmethod
+    @contextlib.contextmanager
+    def fake_mediacrawler_modules():
+        """把 MediaCrawler 的两个模块假注入 sys.modules，用完原样恢复。"""
+
+        class FakeDouYinClient:
+            async def get_user_info(self, sec_user_id):  # pragma: no cover - 被 patch 覆盖
+                raise AssertionError("stub should be replaced")
+
+            async def get_user_aweme_posts(self, sec_user_id, max_cursor=""):  # pragma: no cover
+                raise AssertionError("stub should be replaced")
+
+            async def get_all_user_aweme_posts(self, sec_user_id, callback=None):  # pragma: no cover
+                raise AssertionError("stub should be replaced")
+
+            async def get_video_by_id(self, aweme_id):  # pragma: no cover
+                raise AssertionError("stub should be replaced")
+
+        stored = []
+
+        async def noop_store(aweme_item):
+            return None
+
+        media_platform = types.ModuleType("media_platform")
+        media_platform.__path__ = []
+        douyin_pkg = types.ModuleType("media_platform.douyin")
+        douyin_pkg.__path__ = []
+        client_mod = types.ModuleType("media_platform.douyin.client")
+        client_mod.DouYinClient = FakeDouYinClient
+        store_pkg = types.ModuleType("store")
+        store_pkg.__path__ = []
+        store_douyin = types.ModuleType("store.douyin")
+        store_douyin.update_douyin_aweme = noop_store
+
+        names = {
+            "media_platform": media_platform,
+            "media_platform.douyin": douyin_pkg,
+            "media_platform.douyin.client": client_mod,
+            "store": store_pkg,
+            "store.douyin": store_douyin,
+        }
+        saved = {name: sys.modules.get(name) for name in names}
+        sys.modules.update(names)
+        try:
+            yield FakeDouYinClient, store_douyin, stored
+        finally:
+            for name, module in saved.items():
+                if module is None:
+                    sys.modules.pop(name, None)
+                else:
+                    sys.modules[name] = module
+
+    @staticmethod
+    async def run_creator_loop(client, sec_uids):
+        """复刻 MediaCrawler 的创作者循环：没有 try/except，异常会中断全部剩余创作者。"""
+        visited = []
+        for sec_uid in sec_uids:
+            visited.append(sec_uid)
+            creator_info = await client.get_user_info(sec_uid)
+            if creator_info:
+                pass  # 对应 core.py 的 save_creator
+            await client.get_all_user_aweme_posts(sec_uid, callback=None)
+        return visited
+
+    def test_profile_failure_is_isolated_and_returns_empty(self):
+        with self.fake_mediacrawler_modules() as (client_cls, _store, _rows):
+            observer = DouyinRunObserver(["good", "blocked"])
+
+            async def failing_profile(self, sec_user_id):
+                if sec_user_id == "blocked":
+                    raise RuntimeError("Blocked by ArgusSecurityPlugin Validate Error")
+                return {"status_code": 0, "user": {"sec_uid": sec_user_id}}
+
+            client_cls.get_user_info = failing_profile
+            runner.install_douyin_observer(observer, 10)
+            client = client_cls()
+
+            result = asyncio.run(client.get_user_info("blocked"))
+
+            self.assertEqual(result, {})
+            self.assertEqual(observer.record("blocked")["state"], "failed")
+
+    def test_listing_failure_returns_collected_rows_without_raising(self):
+        with self.fake_mediacrawler_modules() as (client_cls, _store, _rows):
+            observer = DouyinRunObserver(["creator"])
+            calls = []
+
+            async def flaky_pages(self, sec_user_id, max_cursor=""):
+                calls.append(max_cursor)
+                if len(calls) == 1:
+                    return {
+                        "status_code": 0,
+                        "aweme_list": [{"aweme_id": "A"}, {"aweme_id": "B"}],
+                        "has_more": 1,
+                        "max_cursor": "cursor-2",
+                    }
+                raise RuntimeError("Blocked by ArgusSecurityPlugin Validate Error")
+
+            client_cls.get_user_aweme_posts = flaky_pages
+            runner.install_douyin_observer(observer, 10)
+            client = client_cls()
+
+            rows = asyncio.run(client.get_all_user_aweme_posts("creator", callback=None))
+
+            self.assertEqual([row["aweme_id"] for row in rows], ["A", "B"])
+            self.assertEqual(observer.record("creator")["state"], "failed")
+
+    def test_one_blocked_creator_does_not_stop_the_remaining_ones(self):
+        with self.fake_mediacrawler_modules() as (client_cls, _store, _rows):
+            sec_uids = [f"creator-{index}" for index in range(1, 7)]
+            observer = DouyinRunObserver(sec_uids)
+
+            async def profile(self, sec_user_id):
+                if sec_user_id == "creator-2":
+                    raise RuntimeError("Blocked by ArgusSecurityPlugin Validate Error")
+                return {"status_code": 0, "user": {"sec_uid": sec_user_id}}
+
+            async def pages(self, sec_user_id, max_cursor=""):
+                if sec_user_id == "creator-2":
+                    raise RuntimeError("Blocked by ArgusSecurityPlugin Validate Error")
+                return {"status_code": 0, "aweme_list": [{"aweme_id": f"{sec_user_id}-A"}], "has_more": 0, "max_cursor": ""}
+
+            client_cls.get_user_info = profile
+            client_cls.get_user_aweme_posts = pages
+            runner.install_douyin_observer(observer, 10)
+            client = client_cls()
+
+            visited = asyncio.run(self.run_creator_loop(client, sec_uids))
+
+            self.assertEqual(visited, sec_uids, "第 2 个号被风控后，第 3~6 个号必须照常被访问")
+            self.assertEqual(observer.record("creator-2")["state"], "failed")
+            self.assertEqual(observer.record("creator-6")["listed_count"], 1)
 
 
 if __name__ == "__main__":

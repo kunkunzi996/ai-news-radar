@@ -16,7 +16,7 @@
 
 ## TASK-01a · 写测试：一个号被风控，其余号照常采完
 
-状态：pending
+状态：**red**
 前置：无
 测什么：
 - `install_douyin_observer` 包装后的 `get_user_info` 抛错时，**不向外抛**，返回空 dict，
@@ -31,8 +31,20 @@
       且失败原因是「异常被抛出/后续号未被调用」，不是 SyntaxError 或 import 失败
 回滚：删掉新增的测试用例
 --- 施工后填 ---
-红证据：
-实际改动：
+红证据：`pytest -q tests/test_mediacrawler_runner.py -k DouyinCreatorIsolation` → **3 failed, 37 deselected**
+
+```
+scripts\run_mediacrawler_douyin.py:954: in get_user_info
+    response = await original_get_user_info(self, sec_user_id)
+E   RuntimeError: Blocked by ArgusSecurityPlugin Validate Error
+
+FAILED ... ::test_listing_failure_returns_collected_rows_without_raising
+FAILED ... ::test_one_blocked_creator_does_not_stop_the_remaining_ones
+FAILED ... ::test_profile_failure_is_isolated_and_returns_empty
+```
+
+失败原因是「包装层把异常原样抛出」，不是 SyntaxError / import 失败 —— 是合格的红。
+实际改动：`tests/test_mediacrawler_runner.py` +144 行（`git diff --stat` 确认无实现代码混入）
 
 ## TASK-01b · 写实现：创作者隔离
 
