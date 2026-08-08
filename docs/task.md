@@ -74,7 +74,7 @@ FAILED ... ::test_profile_failure_is_isolated_and_returns_empty
 
 ## TASK-02a · 写测试：详情被风控先重试再放行
 
-状态：pending
+状态：**red**
 前置：TASK-01b
 测什么：
 - 包装后的 `get_video_by_id` 首次抛错、第二次成功时，**对外表现为成功**，且底层被调用 2 次。
@@ -86,8 +86,22 @@ FAILED ... ::test_profile_failure_is_isolated_and_returns_empty
 验收：V1 命令必须失败，失败原因是「重试未发生 / 异常类型被改写」
 回滚：删掉新增的测试用例
 --- 施工后填 ---
-红证据：
-实际改动：
+红证据：`pytest -q tests/test_mediacrawler_runner.py -k DouyinDetailRetry` → **3 failed, 40 deselected**
+
+```
+tests/test_mediacrawler_runner.py:768: TypeError
+E   TypeError: install_douyin_observer() got an unexpected keyword argument 'sleeper'
+```
+
+**第一次红是假的，已修正并如实记录**：初版用
+`fake_mediacrawler_modules = DouyinCreatorIsolationTests.fake_mediacrawler_modules` 复用夹具，
+少了 `staticmethod()` 包装，红的原因是 `TypeError: takes 0 positional arguments`——
+那是测试自己写坏了，按导航规范 P6 第 ② 步不算合格的红，已修好重跑。
+
+**第三条一度直接变绿，已加强**：`test_detail_wrapper_does_not_retry_on_success`
+最初对「实现前」和「实现后」都成立（没有重试逻辑时自然也不重试），没有区分能力。
+补上 `assertEqual(slept, [])` 并改为经 `sleeper` 注入后，三条才一起变红。
+实际改动：`tests/test_mediacrawler_runner.py` +85 行（`git diff --stat` 确认无实现代码混入）
 
 ## TASK-02b · 写实现：详情重试
 

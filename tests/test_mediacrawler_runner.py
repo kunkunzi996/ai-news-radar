@@ -739,5 +739,90 @@ class DouyinCreatorIsolationTests(unittest.TestCase):
             self.assertEqual(observer.record("creator-6")["listed_count"], 1)
 
 
+class DouyinDetailRetryTests(unittest.TestCase):
+    """TASK-02：视频详情被风控拦下时先退避重试，耗尽后必须抛回原异常。
+
+    MediaCrawler ``core.py:227`` 只 catch ``DataFetchError``，靠它把失败的那条
+    转成 ``return None``。所以重试耗尽后抛回的必须是**原异常对象**，
+    类型一旦被改写，上游的 except 就接不住，整轮采集会直接崩。
+    """
+
+    fake_mediacrawler_modules = staticmethod(DouyinCreatorIsolationTests.fake_mediacrawler_modules)
+
+    def test_detail_retries_and_succeeds_without_surfacing_the_error(self):
+        with self.fake_mediacrawler_modules() as (client_cls, _store, _rows):
+            observer = DouyinRunObserver(["creator"])
+            attempts = []
+            slept = []
+
+            async def flaky_detail(self, aweme_id):
+                attempts.append(aweme_id)
+                if len(attempts) == 1:
+                    raise RuntimeError("Blocked by ArgusSecurityPlugin Validate Error")
+                return {"aweme_id": aweme_id, "desc": "ok"}
+
+            async def fake_sleep(seconds):
+                slept.append(seconds)
+
+            client_cls.get_video_by_id = flaky_detail
+            runner.install_douyin_observer(observer, 10, sleeper=fake_sleep)
+            client = client_cls()
+
+            detail = asyncio.run(client.get_video_by_id("aweme-1"))
+
+            self.assertEqual(detail, {"aweme_id": "aweme-1", "desc": "ok"})
+            self.assertEqual(len(attempts), 2, "首次被风控后必须重试一次")
+            self.assertEqual(len(slept), 1, "重试之间必须退避等待")
+            self.assertGreater(slept[0], 0)
+
+    def test_detail_raises_the_original_exception_after_retries_are_exhausted(self):
+        with self.fake_mediacrawler_modules() as (client_cls, _store, _rows):
+            observer = DouyinRunObserver(["creator"])
+            attempts = []
+            errors = []
+
+            async def always_blocked(self, aweme_id):
+                attempts.append(aweme_id)
+                error = RuntimeError("Blocked by ArgusSecurityPlugin Validate Error")
+                errors.append(error)
+                raise error
+
+            async def fake_sleep(seconds):
+                return None
+
+            client_cls.get_video_by_id = always_blocked
+            runner.install_douyin_observer(observer, 10, sleeper=fake_sleep)
+            client = client_cls()
+
+            with self.assertRaises(RuntimeError) as caught:
+                asyncio.run(client.get_video_by_id("aweme-2"))
+
+            self.assertIs(caught.exception, errors[-1], "必须抛回原异常对象，类型不可被改写")
+            self.assertGreaterEqual(len(attempts), 2, "耗尽前必须真的重试过")
+
+    def test_detail_wrapper_does_not_retry_on_success(self):
+        with self.fake_mediacrawler_modules() as (client_cls, _store, _rows):
+            observer = DouyinRunObserver(["creator"])
+            attempts = []
+            slept = []
+
+            async def healthy_detail(self, aweme_id):
+                attempts.append(aweme_id)
+                return {"aweme_id": aweme_id}
+
+            async def fake_sleep(seconds):
+                slept.append(seconds)
+
+            client_cls.get_video_by_id = healthy_detail
+            runner.install_douyin_observer(observer, 10, sleeper=fake_sleep)
+            client = client_cls()
+
+            detail = asyncio.run(client.get_video_by_id("aweme-3"))
+
+            self.assertEqual(detail, {"aweme_id": "aweme-3"})
+            self.assertEqual(len(attempts), 1, "成功时不得产生多余请求")
+            self.assertEqual(slept, [], "成功时不得退避等待")
+
+
 if __name__ == "__main__":
     unittest.main()
