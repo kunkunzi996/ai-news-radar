@@ -48,7 +48,7 @@ FAILED ... ::test_profile_failure_is_isolated_and_returns_empty
 
 ## TASK-01b · 写实现：创作者隔离
 
-状态：pending
+状态：**green**
 前置：TASK-01a（必须已经是 red）
 目标：让 01a 那几条变绿
 实现要点（`scripts/run_mediacrawler_douyin.py` `install_douyin_observer` 内）：
@@ -62,9 +62,13 @@ FAILED ... ::test_profile_failure_is_isolated_and_returns_empty
 验收：01a 全绿，且基线里原本通过的还通过
 回滚：`git revert` 本卡提交
 --- 施工后填 ---
-实际改动：
-自测结果：
-未完成项：
+实际改动：`scripts/run_mediacrawler_douyin.py` +10 −2（两处 `except` 分支）
+- `get_user_info` 的 `raise` → `return {}`
+- `get_all_user_aweme_posts` 的翻页调用包 try/except，失败时 `break` 保留已采行
+
+自测结果：V1 → **41 passed**（基线 38 + 新增 3），无回归。
+`git diff --name-only` 确认测试文件 0 处改动，未改 01a 写的测试。
+未完成项：无。异常消息的净化（PLAN-06）按计划留给 TASK-03b 统一处理。
 
 ---
 

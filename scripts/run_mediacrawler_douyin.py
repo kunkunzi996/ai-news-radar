@@ -950,6 +950,9 @@ def install_douyin_observer(observer: DouyinRunObserver, max_notes: int) -> None
     original_store_aweme = douyin_store.update_douyin_aweme
 
     async def get_user_info(self: object, sec_user_id: str) -> dict[str, Any]:
+        # BUG-02：MediaCrawler 的创作者循环（core.py:277-291）对本调用没有 try/except，
+        # 一旦向外抛异常，排在后面的创作者一条都采不到。这里记录失败后返回空 dict，
+        # 让 core.py:287 的 `if creator_info:` 自然跳过该号，循环得以继续。
         try:
             response = await original_get_user_info(self, sec_user_id)
             response = validate_douyin_profile_response(response, sec_user_id)
@@ -957,7 +960,7 @@ def install_douyin_observer(observer: DouyinRunObserver, max_notes: int) -> None
             return response
         except Exception as exc:
             observer.fail(sec_user_id, str(exc))
-            raise
+            return {}
 
     async def get_user_aweme_posts(self: object, sec_user_id: str, max_cursor: str = "") -> dict[str, Any]:
         try:
@@ -975,7 +978,12 @@ def install_douyin_observer(observer: DouyinRunObserver, max_notes: int) -> None
         rows: list[dict[str, Any]] = []
         limit = max_notes if max_notes > 0 else sys.maxsize
         while has_more == 1 and len(rows) < limit:
-            response = await self.get_user_aweme_posts(sec_user_id, cursor)  # type: ignore[attr-defined]
+            try:
+                response = await self.get_user_aweme_posts(sec_user_id, cursor)  # type: ignore[attr-defined]
+            except Exception:
+                # 失败已由 get_user_aweme_posts 包装记进 observer。此处只负责不让异常
+                # 冒泡终止 MediaCrawler 的创作者循环，把已经采到的行照常交出去。
+                break
             page_rows = response["aweme_list"]
             remaining = limit - len(rows)
             selected = page_rows[:remaining]
