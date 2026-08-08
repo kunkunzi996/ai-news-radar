@@ -1,233 +1,297 @@
-# 采集结束后清理残留标签页 PLAN
+# 抖音采集风控容错与部分成功发布 PLAN
 
 Status: **PLAN v1.0 — FROZEN**（2026-08-08 由用户确认冻结）
-上游：BUG-01（`docs/bugs/BUG-01-采集后浏览器窗口不关闭.md`，已稳定复现、根因已定位）
-分支：`fix/close-browser-after-collect`
-基线：`master` @ 6fc91bd + 本分支文档提交
+P5 评审：`PLAN-01` ~ `PLAN-06` 全部关闭，详见第 2 章第 8~11 条与第 3.2 节决策 6。
+上游：`docs/bugs/BUG-02-抖音采集回执不完整导致整轮作废.md`（已稳定复现、根因已定位）
+分支：`claude/inspiring-carson-299158`（独立 worktree）
+基线：`master` @ c30f695（已合入 origin/master）；全量 **743 passed, 0 failed**（9 分 02 秒）
+风险级别：**高风险**（导航规范第 5 节：跨仓库、跨机器、跨平台同步）
 
-> 文件位置说明：本项目原有 `计划/` 与 `docs/plans/` 两处历史计划目录。本轮按导航手册
-> 规范落到 `docs/plan.md` + `docs/task.md`，不改动历史目录。
+> 上一轮 BUG-01 的计划已归档到 `docs/plans/BUG-01-采集后清理残留标签页-{plan,task}.md`。
+
+---
 
 ## 1. 目标与非目标
 
-**目标**
+### 目标（3 条，全部来自用户 2026-08-08 的口头拍板）
 
-1. 一轮抖音采集结束后，自动关闭该轮在采集专用 Chrome 中新开的标签页，使标签页数
-   不随采集轮次增长。
-2. 清理动作不得影响采集结果，也不得掩盖采集本身的失败。
+1. **号与号隔离**：一个抖音号被风控，其余 5 个号照常采完，不再连坐。
+2. **详情先重试**：视频详情被风控拦下时先退避重试，把偶发拦截消化掉。
+3. **采到多少发多少 + 缺失可见**：重试仍失败的如实记下来，本轮**不管采到多少都发布到看板**，并在看板上以「部分完成」让用户看见缺了几条。
 
-**非目标（本轮明确不碰）**
+### 非目标（这次明确不碰）
 
-- 不关闭浏览器进程本身（用户已拍板选口径 A，见第 3 章）。
-- 不动抖音登录态、`chrome-profile` 目录、登录检查逻辑。
-- 不改 `deploy/cloud-pc/collect-douyin-and-push.ps1` 及任何 PowerShell 采集脚本。
-- 不改计划任务 `DouyinCollectAndPush` 的配置。
-- 不碰 `data/archive.json` 或任何历史数据（本功能与历史清理逻辑零交集）。
-- 不改 MediaCrawler 外部项目（`C:\AI-news-reader\MediaCrawler-local-test`）。
-- 不处理微信通道（`we_mp_rss_jsonl` 是 sidecar 抓取，不经过本 runner，与本问题无关）。
+- **不改 MediaCrawler**（`C:\AI-news-reader\MediaCrawler-local-test`）。它是外部项目，不在本仓库白名单内。
+- **不碰 `data/archive.json` 及任何清理逻辑**。本轮所有改动与 CLAUDE.md 的清理禁区零交集。
+- **不新增手机推送渠道**（Bark / 微信 / 邮件）。用户本轮选的是「看板上直接显示」；手机推送要引外部服务和密钥，属于新功能，另开一轮。
+- **不改前端 JS 与 `index.html`**。现状调查已证实前端「部分完成」展示能力已存在（见第 2 章第 5 条），因此不触发 CLAUDE.md 的「改 `assets/js/**` 必跑 E2E + bump `?v=`」条款。
+- **不碰小红书通道**（`fetch_mediacrawler_xhs_subscriptions` 及其 runner 分支）。
+- **不改 `scripts/radar/cli.py`**。抖音状态由 fetcher 自己返回，不需要动主管线。
+- **不解决抖音风控本身**。风控是抖音服务端行为，本轮只做容错，不做对抗。
 
-**关于小红书（PLAN-01 修正）**：`main()` 是抖音与小红书共用的入口，清理逻辑接在其中
-后会**天然对小红书同样生效**——这是正确的，两者共用同一套专用浏览器机制，泄漏成因相同。
-故不将其列为非目标。但本轮**只对抖音做人工验收**（小红书采集触发路径不同，另行观察），
-若小红书出现行为变化，触发第 7 章暂停条件 3。
+---
 
 ## 2. 现状调查
 
-每条结论均来自实际读取的文件或 2026-08-08 的 NUC 实测，出处随附。
+每条结论都附文件路径与行号，均为读代码/实测所得，无推测。
 
-1. **采集专用 Chrome 由 runner 启动，端口 9333，独立 profile。**
-   `scripts/run_mediacrawler_douyin.py:244` `launch_dedicated_browser()` 以
-   `subprocess.Popen` + `DETACHED_PROCESS` 启动，参数见 `:217` `dedicated_browser_args()`
-   （含 `--remote-debugging-port`、`--user-data-dir`、`--remote-debugging-address=127.0.0.1`）。
+1. **风控落点是「视频详情」接口**。MediaCrawler 采集流程是「先要列表 → 再逐条要详情 → 拿到详情才落盘」：
+   `media_platform/douyin/core.py:291` 取列表 → `:301` 对每条调 `get_aweme_detail` → `:305` 只有非 None 才落盘。
+   `:227-229` 的 `except DataFetchError` 把风控异常吞掉并 `return None`，于是该条静默丢失。
+   （NUC 路径：`C:\AI-news-reader\MediaCrawler-local-test\media_platform\douyin\core.py`）
 
-2. **浏览器是复用的，不是每轮新建。**
-   `scripts/run_mediacrawler_douyin.py:499` `ensure_dedicated_browser()`：
-   `is_port_open(start_port)` 为真则校验后直接 `return start_port`，只有端口未监听才
-   `launch_dedicated_browser()`（`:506`）。NUC 实测两轮全程只有一个浏览器，与此一致。
+2. **我们的回执判定要求「一条不少」**。`scripts/run_mediacrawler_douyin.py:902` 的 `finalize()`
+   要求 `written_rows == listed_count` 才判 `completed`；`:1157` 只要 `failed_creator_count` 非 0
+   就 `raise RuntimeError("partial_creator_failure: ...")`，runner 退出码 1。
 
-3. **整条链路没有任何浏览器/标签页收尾代码。**
-   - Python 侧：`main()`（`:1003-1099`）从头到尾无关闭动作。
-   - PowerShell 侧：`deploy/cloud-pc/collect-douyin-and-push.ps1` 全文涉及浏览器的
-     只有 `:33`（声明 `-BrowserOffscreen`）和 `:360`（据此追加 `--offscreen`）。
-   - 计划任务侧：`DouyinCollectAndPush` 的两个 Action 只调用上述 PowerShell 脚本。
+3. **外层脚本见非零退出即中止**。`deploy/cloud-pc/collect-douyin-and-push.ps1:377`
+   `if ($runnerExit -ne 0) { throw }`，桥接不提交、不推送。
+   其自身 `:384-397` 的 receipt 复核因为永远走不到，目前是死路径。
 
-4. **本仓库现有的两处 CDP 代码只读不写，且不是可复用的清理点。**
-   `set_dedicated_browser_window_mode()`（`:345`）读 `context.pages[0]` 调窗口位置；
-   `douyin_login_state()`（`:379`）遍历 `context.pages` 查登录态。两者结尾的
-   `await browser.close()`（`:372`、`:403`）在 `connect_over_cdp` 模式下**只断开
-   playwright 连接**，不关浏览器也不关标签页。
+4. **创作者之间没有隔离**。`core.py:277-291` 的创作者 for 循环只对 URL 解析做了 try/except，
+   对 `get_user_info` 与 `get_all_user_aweme_posts` 两个网络调用**没有任何保护**；
+   而我们在 `scripts/run_mediacrawler_douyin.py:958-970` 的包装里记录失败后**原样 `raise`**，
+   异常一路冒泡终止整个爬虫，排在后面的号一条不采。
 
-5. **新标签页由外部项目 MediaCrawler 产生。**
-   `run_mediacrawler()`（`:911`）以子进程方式启动 `<CrawlerRoot>/main.py`，后者通过
-   CDP 连上 9333 开页面采集。该项目不在本仓库，**清理只能由本仓库在采集结束后补做**。
+5. **前端「部分完成」展示已经存在，无需新建**：
+   - `assets/js/render-panels.js:208-209` 读 `site.partial`，显示黄色「部分完成」；
+   - `assets/js/render-meta.js:10,55,268`、`assets/js/subscriptions.js:51` 同样消费该字段；
+   - `scripts/radar/cli.py:508` 的 GitHub 源已经在用同一套语义
+     （`partial` + `succeeded_count` / `failed_count`），本轮照抄即可，不发明新字段语义。
 
-6. **CDP 请求沿用本文件既有的 urllib 模式，无需新增依赖。**（PLAN-02 修正，2026-08-08 施工时发现）
+6. **云端看板看不到 NUC 的采集健康**。`scripts/radar/fetchers/mediacrawler.py:299-374`
+   的抖音 fetcher **只读 JSONL 内容**，全文不读 `manifest.json`（grep 无匹配）。
+   桥接仓库的 `manifest.json` 是 NUC 唯一能把采集元信息送到云端的载体
+   （`collect-douyin-and-push.ps1:457-470` 写它，`:472` 与 JSONL 一起精确暂存并推送）。
+   NUC 实测现有内容：`schema_version=1`，含 `crawl_output_rows` / `creator_count` / `max_notes` 等 9 个字段。
 
-   原计划写「复用 `scripts/radar/server/cdp.py:36` 的 `cdp_json`」。实测
-   `scripts/run_mediacrawler_douyin.py` **完全不导入 `scripts.radar` 包**，
-   它自己用 `urllib.request` 直连 CDP —— 见 `:195` `cdp_ready()`。该脚本由计划任务以
-   `python scripts/run_mediacrawler_douyin.py` 直接运行，`sys.path` 未必包含仓库根，
-   强行引入包依赖有 ImportError 风险。
+7. **失败留痕契约已存在**：`collect-douyin-and-push.ps1:117` 指向
+   `logs\bridge-collection-failures.jsonl`；CLAUDE.md 规定每行固定 10 字段、
+   `message` ≤512 字符、按渠道与 `run_id` 去重、禁写原始输出/cookie/token。本轮复用，不新建通道。
 
-   **故改为沿用本文件既有写法**：新增内部 `cdp_request_text(port, path)`，
-   `list_cdp_page_targets` 在其上做 JSON 解析，`close_cdp_page_targets` 直接调用。
-   注意 `/json/close/<id>` 返回纯文本（实测 body 为 `Target is closing`），**不是 JSON**，
-   不能统一走 JSON 解析。
+8. **PowerShell 脚本有端到端自动化测试**（P5 评审 PLAN-02 更正了初稿的错误结论）。
+   `tests/test_bridge_collection_failure_log.py:28-130` 的夹具是
+   「假 runner（吐预设 result JSON 的 Python 脚本）+ 真 `.ps1` + 真 git 桥接仓库（bare + working）」，
+   已经在断言退出码、`status.json` 内容、桥接 HEAD 是否前进、留痕日志的字段集合。
+   本轮 TASK-05 直接扩展这套夹具，**不新增测试框架**。
 
-   方向、文件白名单、验收标准与「不新增第三方依赖」均不受影响，故不重新冻结计划。
+9. **抖音异常消息含原始响应体**（P5 评审 PLAN-06 新发现）。
+   MediaCrawler `media_platform/douyin/client.py:135` 抛的是
+   `raise DataFetchError(f"{e}, {response.text}")` —— 把抖音返回的**原始响应体拼进了异常消息**。
+   NUC 日志里 `Expecting value: line 1 column 1 (char 0), Blocked by ArgusSecurityPlugin Validate Error`
+   的后半段就是它。**因此异常字符串绝不可原样落进留痕日志或 result JSON**，必须先净化。
 
-7. **实测数据（2026-08-08，NUC `C:\AI-news-reader\ai-news-radar-run`）**
-   两轮采集 tabs 依次为 1→2→3，采集结束后不回落；稳态内存 0.6~0.8 GB，峰值约 2.1 GB。
-   完整采样见 BUG-01 第 1 项。
+10. **前端不会隐藏抖音**（P5 评审 PLAN-03 验证）。`assets/js/dom.js:229` 的
+    `HIDDEN_PLATFORM_IDS` 是空集合，`:230` 的 `HIDDEN_SOURCE_IDS` 只含 `wewe_rss` 与
+    `maobidao_wudaolu_backup`；抖音 site_id 为 `mediacrawler_douyin`（`scripts/radar/common.py:253`）。
+    当前 `data/source-status.json` 只有 5 个 site，远低于 `render-panels.js:197` 的 `.slice(0, 12)` 上限。
 
-8. **测试基线（改动前，本机 `E:\AI-news-reader\ai-news-radar-run`）**
-   - 全量：`729 passed, 0 failed`，耗时 714.95 秒。
-   - 本模块：`tests/test_mediacrawler_runner.py` `23 passed`，耗时 0.13 秒。
-   - 测试风格：`unittest` + `unittest.mock`，以导入纯函数直接断言为主。
+11. **云端桥接仓库路径已确认**（P5 评审 PLAN-05 验证）。
+    `.github/workflows` 中 `bridge_dir="$RUNNER_TEMP/douyin-bridge"`，
+    JSONL 落在 `$RUNNER_TEMP/douyin-bridge/output/douyin/jsonl/`，
+    故 `manifest.json` 恰好是 JSONL 目录**上溯 3 级**。
 
-9. **关键能力已做最小验证（2026-08-08 02:2x，NUC 实测，非推测）**
-   对采集浏览器真实执行了一次关标签页：
+### 已知限制
 
-   ```
-   BEFORE tabs = 3   （三个 id 各不相同，url 全部相同：https://www.douyin.com/jingxuan）
-   GET /json/close/9B0BBA02...  →  HTTP 200, body "Target is closing"
-   AFTER  tabs = 2
-   chrome.exe 进程数 = 11（浏览器未退出）
-   ```
+- **本仓库无法直接触发 NUC 采集**，真机验收需要用户授权后经 `ssh omnia-nuc` 触发计划任务。
+- **抖音风控本身无法预测**，真机验收时可能恰好一条都没被拦。此时「部分完成」路径拿不到
+  真实现场证据，只能靠自动化测试覆盖；验收记录里必须**如实写明这一点**，不得含糊成「已验证」。
 
-   证实三点：`/json/close/<targetId>` 端点可用且为 GET；关闭标签页**不会**导致
-   浏览器进程退出（不会滑向已放弃的口径 B）；**URL 相同而 id 不同**，坐实第 3.4 节
-   约束 4「必须按 id 差集判断」。
-
-**已知限制**：`--browser-only` 模式（`:1042`）用于人工扫码恢复登录，此时浏览器与页面
-必须保留给人操作，不能清理。
+---
 
 ## 3. 方案
 
-### 3.1 关键决策：收尾口径选 A（用户 2026-08-08 拍板）
-
-只关闭本轮新增的标签页，保留浏览器进程与原有页面。
-
-**放弃的选项及理由：**
-
-| 放弃项 | 内容 | 放弃理由 |
-|---|---|---|
-| B | 采集结束后关闭整个浏览器进程 | 内存虽归零，但强杀时 `chrome-profile` 可能来不及落盘，抖音登录态有丢失风险（丢了要人工扫码恢复）；且与 `ensure_dedicated_browser()` 的复用设计相悖，每轮多 20~30 秒重启开销 |
-| C | A + 把保留页面导航到空白页 | 内存更低，但 `douyin_login_state()`（`:379`）优先读 douyin 页面的 `localStorage`，无 douyin 页面时退化为 cookie 判断，登录态误判风险上升 |
-| D | 在 PowerShell 脚本里 `Stop-Process chrome` | 无法区分采集浏览器与用户自己的 Chrome，会误杀；且违反「按 profile 隔离」的现有设计 |
-| E | 改 MediaCrawler 让它自己关页面 | 外部项目，不在本仓库白名单内，升级即丢失改动 |
-
-### 3.2 模块划分
-
-在 `scripts/run_mediacrawler_douyin.py` 内新增三个函数，职责单一、便于单测：
-
-| 函数 | 职责 | 可测性 |
-|---|---|---|
-| `list_cdp_page_targets(port)` | 调 `/json/list`，过滤 `type == "page"`，返回 `[{"id":…, "url":…}]` | mock `cdp_json` |
-| `select_leaked_page_targets(before_ids, after_targets, min_keep=1)` | **纯函数**：算出该关哪些 id | 直接断言，无 I/O |
-| `close_cdp_page_targets(port, target_ids)` | 逐个调 `/json/close/<id>`，返回 `{"closed": n, "failed": n}` | mock `cdp_json` |
-
-核心判断收敛在纯函数 `select_leaked_page_targets` 里，与项目现有测试风格一致。
-
-### 3.3 数据流
+### 3.1 模块划分与数据流
 
 ```
-ensure_dedicated_browser()  →  拿到 cdp_port
-        ↓
-before_ids = list_cdp_page_targets(port) 的 id 集合      ← 采集前快照
-        ↓
-run_mediacrawler(...)  （MediaCrawler 子进程，期间新开标签页）
-        ↓
-after = list_cdp_page_targets(port)                      ← 采集后快照
-leaked = select_leaked_page_targets(before_ids, after)
-close_cdp_page_targets(port, leaked)                     ← 只关新增的
+【NUC 本机】
+ runner  scripts/run_mediacrawler_douyin.py
+   ├─ A1 创作者隔离   包装层吞掉异常 → MediaCrawler 循环得以跑完 6 个号
+   ├─ A2 详情重试     包装 get_video_by_id，退避重试后仍失败才放行给上游 except
+   └─ A3 回执汇总     算出 missing_rows / partial，写进 result JSON；有内容就退 0
+                                   │
+ 采集脚本 deploy/cloud-pc/collect-douyin-and-push.ps1
+   ├─ B1 放宽发布口径  至少 1 个号完成 + 有内容 → 允许发布（原本要求 6/6 完整）
+   ├─ B2 manifest 扩字段  schema_version 2，带上 partial / missing_rows / 完成数
+   └─ B3 缺失留痕      有缺失时往 bridge-collection-failures.jsonl 追加 warning 记录
+                                   │
+                          git push 桥接仓库
+                                   │
+【云端 Actions】
+ fetcher scripts/radar/fetchers/mediacrawler.py
+   └─ C1 读桥接 manifest.json → 把 partial / missing_rows 填进抖音 status
+                                   │
+                       data/source-status.json
+                                   │
+【前端】assets/js/render-panels.js:208  —— 零改动，已支持 partial → 显示黄色「部分完成」
 ```
 
-### 3.4 关键约束（实现必须满足）
+### 3.2 关键决策
 
-1. **至少保留一个标签页。** Chrome 关光全部标签页会退出进程，那就变成口径 B 了。
-   `select_leaked_page_targets` 的 `min_keep=1` 负责兜底：若关完不足 1 个，从待关清单
-   末尾回退保留。
-2. **`--browser-only` 模式不清理**（`:1042` 提前 `return 0`，清理逻辑必须在其之后接入，
-   或显式跳过）。该模式是给人扫码用的。
-3. **清理失败不得掩盖采集结果。** 整个清理块用 `try/except Exception` 包住，失败只往
-   stderr 打印告警，不改变 `main()` 的返回码，也不覆盖已有异常。
-4. **只按快照差集判断，不按 URL 猜。** 三个标签页 URL 完全相同（都是
-   `douyin.com/jingxuan`），按 URL 去重会误关采集前就存在的页面。
-5. **清理发生在采集之后**，无论成功或失败都执行（放在采集调用的 `finally` 语义位置），
-   失败轮次同样会留下泄漏标签页。
+**决策 1：重试放在 `DouYinClient.get_video_by_id`，不放在 `DouYinCrawler.get_aweme_detail`。**
+理由：`get_aweme_detail` 是 MediaCrawler 的爬虫方法，包装它等于替换业务逻辑；
+`get_video_by_id` 是纯网络调用，包装它只是在同一层加重试，语义最小。
+重试耗尽后必须**抛回原异常对象**（保持 `DataFetchError` 类型），
+让 `core.py:227` 的既有 except 照常接住并 `return None` —— 上游行为完全不变。
 
-6. **清理必须落在既有采集锁之内。** `main()` 用 `with collection_lock_context(args, run_id):`
-   （`scripts/run_mediacrawler_douyin.py:1029`）串行化整轮采集。快照与清理都必须在这个
-   `with` 块内，否则另一轮采集可能在两次快照之间开新标签页，导致误关正在使用的页面。
-   本改动不新增任何锁。
+**决策 2：隔离用「返回空结果」，不用「吞掉异常继续」。**
+`get_user_info` 失败返回 `{}` → `core.py:287` 的 `if creator_info:` 自然跳过 `save_creator`；
+`get_all_user_aweme_posts` 失败返回**已收集到的 rows**（可能是空列表）→ `core.py:293` 的
+`video_ids` 推导照常工作。两处都不改变 MediaCrawler 对返回值的既有假设。
+
+**决策 3：`state` 取值扩为 `completed` / `partial` / `failed` 三态，而不是放宽 `completed` 的定义。**
+理由：`completed` 现在的含义是「一条不少」，很多地方（含 PS 脚本 `:384-397`）依赖它。
+改它的含义会让所有下游静默变宽。新增 `partial` 态则是显式的、可被单独检查的。
+判定：`written == listed` → `completed`；`written < listed` 但 `written > 0` → `partial`；
+`written == 0` 或 profile/api 校验没过 → `failed`。
+
+**决策 4：`manifest.json` 的 `schema_version` 提到 2。**
+理由：加字段虽向后兼容，但云端需要能区分「这份 manifest 有没有健康信息」。
+配套把 `collect-douyin-and-push.ps1:447` 的 `-ne 1` 改成 `-ne 2`，
+让首次运行就重写 manifest 带上新字段。云端一律用 `.get()` 容错读取，**读不到不报错、不阻断主流程**。
+
+**决策 5：发布门槛设为「至少 1 个号完成或部分完成，且本轮有新内容」。**
+用户明确要求「不管采集了多少，都同步到 AI 看板上」，故不设百分比阈值。
+但保留一个 fail-safe：**6 个号全 `failed`（一条没采到）时仍判失败不发布**——
+那不是风控偶发，是登录态失效或网络全断，发布空快照没有意义。
+
+**决策 6（P5 评审 PLAN-06 新增）：异常消息一律净化后才允许外泄。**
+因第 2 章第 9 条，`DataFetchError` 的消息里拼着抖音原始响应体。任何写入
+`logs/bridge-collection-failures.jsonl`、result JSON、`manifest.json`、`source-status.json`
+的错误描述，都必须先经过净化：
+- 只保留**归一化后的错误分类**（如 `douyin_risk_control` / `detail_fetch_failed`），不透传原始字符串；
+- 需要保留细节时，只取异常消息的**前 200 字符**并去掉换行，且必须先剥掉响应体部分；
+- 绝不写入 cookie、token、Set-Cookie、Authorization 或任何请求头。
+
+这条同时约束 runner（Python）与采集脚本（PowerShell）两侧，且必须有测试断言
+「留痕记录里不出现响应体原文」。
+
+### 3.3 放弃的选项及理由
+
+| 放弃的选项 | 为什么放弃 |
+|---|---|
+| 用列表数据兜底填补详情失败的那条 | 列表与详情的字段完整度不同，落盘数据会出现两种形状，下游解析要分叉。BUG-02 卡第 5 节已评估：风险高于收益。**漏采可自愈**（实测 08-08 当天 6 个号里 5 个已回满 10 条），不值得为它改数据形状。 |
+| 设百分比阈值（如缺失 >10% 才判失败） | 用户明确要求「采到多少发多少」。设阈值等于替用户重新收紧口径。 |
+| 直接改 MediaCrawler 的 `core.py` 加 try/except | 外部项目，改了以后它升级就冲突，且不在本仓库白名单内。用 monkeypatch 在自己这边包装是既有做法（`install_douyin_observer` 本来就这么干）。 |
+| 新建一个独立的采集健康 JSON 文件推到桥接仓库 | `manifest.json` 已经在推送清单里（`:472` 精确暂存），复用它零新增文件、零新增推送路径。新建文件要同步改暂存清单和云端读取，多一处出错点。 |
+| 手机推送（Bark / 微信） | 见「非目标」。要引外部服务和密钥，跨出 BUG 修复范围。 |
+
+---
 
 ## 4. 界面与流程
 
-无。本功能全部发生在 NUC 后台采集进程内，无页面、无按钮、无用户交互入口。
-浏览器窗口在 `--offscreen` 模式下位于屏幕外，用户只在任务栏 / Alt+Tab 感知其存在。
+**无新增界面。** 唯一的用户可见变化在既有的「源状态详情」表格里：
+
+- 用户从哪进入：打开雷达网页 → 「源状态详情」区块（`index.html:162` 的 `sourceStatusTable`）
+- 看到什么：抖音那一行的「状态」列，从 `正常`（绿）变成 `部分完成`（黄）
+- 成功态：本轮 6 个号全采全 → 仍显示 `正常`
+- 部分态：有号被风控少采了几条 → 显示 `部分完成`
+- 失败态：6 个号全军覆没 → 显示 `异常`（并且本轮不发布，看板停在上一轮数据）
+- 多端差异：无。同一份 `source-status.json`，PC 与手机渲染一致。
+- 是否写真实数据：**否**。本轮改动不写 `data/archive.json`，只写 `data/source-status.json`（由云端 Actions 每轮重新生成）与桥接仓库的 `manifest.json`。
+
+---
 
 ## 5. 文件白名单
 
-**允许改（精确路径，仅此两个）**
+### 允许改（精确路径，无通配）
 
-- `scripts/run_mediacrawler_douyin.py`
-- `tests/test_mediacrawler_runner.py`
+| 路径 | 改什么 |
+|---|---|
+| `scripts/run_mediacrawler_douyin.py` | A1 隔离、A2 重试、A3 回执三态与缺失汇总 |
+| `deploy/cloud-pc/collect-douyin-and-push.ps1` | B1 放宽口径、B2 manifest schema 2、B3 缺失留痕 |
+| `scripts/radar/fetchers/mediacrawler.py` | C1 读桥接 manifest，填 `partial` / `missing_rows` |
+| `tests/test_mediacrawler_runner.py` | TASK-01a / 02a / 03a 的红测试 |
+| `tests/test_private_bridge_sources.py` | TASK-04a 的红测试（fetcher 读 manifest） |
+| `tests/test_bridge_collection_failure_log.py` | TASK-05a 的红测试（扩展既有 PS 端到端夹具） |
+| `docs/plan.md` | 本文件 |
+| `docs/task.md` | 任务清单与施工记录 |
+| `docs/bugs/BUG-02-抖音采集回执不完整导致整轮作废.md` | 验收结论回填 |
 
-**禁止碰**
+### 禁止碰
 
-- `scripts/radar/server/cdp.py`（复用其 `cdp_json`，不修改）
-- `deploy/cloud-pc/collect-douyin-and-push.ps1`
-- `deploy/local/collect-wechat-and-push.ps1`
-- `scripts/windows/douyin-collect-now.cmd`
-- `data/**`（尤其 `data/archive.json`）
-- `config/**`
-- `assets/js/**`、`index.html`
-- 计划任务 `DouyinCollectAndPush` 的配置
+- `data/**` —— 尤其 `data/archive.json`、`data/pending-purge.json`
+- `assets/js/**`、`index.html` —— 前端已支持 `partial`，本轮零改动
+- `scripts/radar/cli.py` —— 主管线不动
+- 任何清理相关模块（`filter_archive_by_subscriptions`、purge 系列、`orphan_*`）
+- `C:\AI-news-reader\MediaCrawler-local-test\**` —— 外部项目
+- `deploy/local/collect-wechat-and-push.ps1` —— 微信通道不动
+- `config/online-sources.json`、`sources.config.json`、`feeds/**`
+
+---
 
 ## 6. 验证方式
 
-### 6.1 自测命令（均已于 2026-08-08 当场跑通）
+### 6.1 每步自测命令（全部已当场跑通，附实测结果）
 
-| 命令 | 预期 |
-|---|---|
-| `.venv\Scripts\python.exe -m pytest tests/test_mediacrawler_runner.py -q` | 改动前 `23 passed`（0.13 秒）；a 卡后新增用例变红；b 卡后全绿 |
-| `.venv\Scripts\python.exe -m pytest -q` | 改动前 `729 passed`（约 12 分钟）；改动后 = 729 + 本轮新增，且原 729 条全部仍通过 |
-| `.venv\Scripts\python.exe -m py_compile scripts/run_mediacrawler_douyin.py` | 无输出即通过 |
+| # | 命令 | 实测结果（2026-08-08 改动前基线） |
+|---|---|---|
+| V1 | `.venv\Scripts\python.exe -m pytest -q tests/test_mediacrawler_runner.py tests/test_bridge_collection_failure_log.py` | **38 passed** in 6.56s |
+| V2 | `.venv\Scripts\python.exe -m pytest -q tests/test_private_bridge_sources.py` | **40 passed** in 0.68s |
+| V3 | `.venv\Scripts\python.exe -m py_compile scripts/run_mediacrawler_douyin.py scripts/radar/fetchers/mediacrawler.py` | **OK** |
+| V4 | PowerShell 语法检查（见下方原文命令） | **0 错误** |
+| V5 | `.venv\Scripts\python.exe -m pytest -q` 全量回归 | **743 passed, 0 failed**（9 分 02 秒） |
 
-本轮不改 `assets/js/**`，按项目规则**不需要**跑 `npm run test:e2e`。
+V4 的完整命令：
 
-### 6.2 人工验收（在 NUC 上做，不含任何命令）
+```powershell
+$errors = $null; $null = [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path "deploy\cloud-pc\collect-douyin-and-push.ps1").Path, [ref]$null, [ref]$errors); if ($errors.Count) { $errors } else { "PS 语法检查 OK（0 错误）" }
+```
 
-1. 打开 NUC 桌面，在任务栏找到采集专用 Chrome 的图标，点开它，数一下有几个标签页，记下这个数字。
-2. 双击 `C:\AI-news-reader\ai-news-radar-run\scripts\windows\douyin-collect-now.cmd`，
-   等窗口提示采集已触发。
-3. 等约 6 分钟（实测一轮约 5 分钟），期间任务栏的 Chrome 图标会短暂多出标签页。
-4. 再点开任务栏那个 Chrome，重新数标签页。
-   **应该看到：数字和第 1 步记下的一样，没有增加。**
-5. 重复第 2~4 步再做一轮。**应该看到：数字仍然不变。**
-6. 打开雷达页面，确认这两轮采集到的抖音内容正常出现（证明清理没有影响采集结果）。
+**不跑 `npm run test:e2e`**：本轮白名单不含 `assets/js/**`，未触发 CLAUDE.md 的 E2E 条款。
+若施工中发现必须改前端，**停下来重新评审**，不得顺手改完再补跑。
 
-### 6.3 异常路径验收
+### 6.2 人工验收步骤（打开什么 → 点什么 → 看到什么）
 
-7. 断开 NUC 网络或让采集失败一次，重复第 4 步。
-   **应该看到：标签页数同样没有增加**（失败轮次也要清理）。
+分三层，缺一层不算验收完成。
+
+**第一层 · NUC 真机采集（需用户授权触发）**
+
+1. 打开 NUC 上的采集日志文件 `C:\AI-news-reader\douyin-collect.log`，记下当前行数。
+2. 触发一轮采集：`schtasks /run /tn "DouyinCollectAndPush"`。
+3. 等采集结束（约 4~5 分钟），打开 `C:\AI-news-reader\douyin-collect-status.json`：
+   - 看到 `state` 是 `succeeded`（而不是 `failed`）
+   - 看到 6 个号的 `creator_results` **全部有回执**，不再出现「后 4 个号 `profile_valid=false`」
+   - 若本轮确实被风控，看到对应号的 `state` 是 `partial`，并带 `missing_rows` 数字
+4. 打开 `C:\AI-news-reader\douyin-collect.log` 新增部分，看到重试日志（形如 `[DetailRetry] ...`）。
+
+**第二层 · 桥接仓库真的更新了**
+
+5. 在 NUC 上看桥接仓库最后一次提交：`git -C C:\AI-news-reader\douyin-bridge log -1 --date=iso --format='%h %ad %s'`
+   —— 时间应该是**刚才那一轮**，不再停在 2026-08-06 13:14。
+6. 打开 `C:\AI-news-reader\douyin-bridge\manifest.json`，看到 `schema_version` 是 `2`，
+   并且带 `partial` / `missing_rows` / `completed_creator_count` 字段。
+7. 若本轮有缺失，打开 `C:\AI-news-reader\ai-news-radar-run\logs\bridge-collection-failures.jsonl`
+   最后一行，看到 `state=warning`、`stage` 指向部分完成，且**没有**任何 cookie / token / 原始输出。
+
+**第三层 · 看板上真的看得见（浏览器实测，CLAUDE.md 铁律要求）**
+
+8. 等云端 Actions 跑完一轮后，用浏览器打开雷达网页。
+9. 滚动到「源状态详情」区块，找到抖音那一行。
+10. 本轮有缺失时 → 状态列显示黄色 **「部分完成」**；本轮全采全 → 显示绿色 **「正常」**。
+11. 抖音的内容条目在时间流里出现了**本轮采到的新视频**（不再停在 08-06）。
+
+---
 
 ## 7. 回滚与暂停条件
 
-**回滚**
+### 回滚
 
-- 代码回滚：`git restore scripts/run_mediacrawler_douyin.py tests/test_mediacrawler_runner.py`
-  （未提交时）；已提交则 `git revert <commit>`。本轮改动只涉及两个文件，无数据迁移、
-  无配置变更、无外部副作用，回滚后行为与今日基线完全一致。
-- NUC 侧回滚：NUC 通过 `RadarAutoFF` 跟随 `origin/master`；主线 revert 后 NUC 自动跟随，
-  无需手工覆盖 `data/**`（见 CLAUDE.md「同步线上的 git 编排禁区」第 4 条）。
+| 层 | 回滚动作 | 影响 |
+|---|---|---|
+| 代码 | `git revert` 本分支的实现提交，或直接不合并本分支 | 恢复到「一条不少才发布」的旧口径，即回到当前停更状态 |
+| NUC 部署 | NUC 上 `git -C C:\AI-news-reader\ai-news-radar-run reset --hard <上一个 commit>` 后重跑一轮 | 同上 |
+| 桥接 manifest | 无需回滚。`schema_version=2` 的多余字段对旧云端代码无害（旧 fetcher 根本不读 manifest） | 无 |
+| 数据 | **无数据回滚需求**——本轮不写 `data/archive.json`，不删任何历史条目 | 无 |
 
-**暂停条件（出现任一必须停下来问人）**
+**回滚不需要碰任何数据文件**，这是本轮方案刻意保持的性质。
 
-1. 发现需要修改白名单之外的文件——尤其是 `deploy/**`、`data/**` 或 MediaCrawler 外部项目。
-2. 实现过程中发现必须改动登录态检查逻辑（`douyin_login_state` / `check_douyin_login_state`）。
-3. 小红书（xhs）通道因本改动出现行为变化。
-4. 全量测试出现基线之外的失败，且原因不能在 10 分钟内说清。
-5. 人工验收时发现采集结果缺失或登录态失效。
-6. 发现关闭标签页会导致浏览器进程退出（说明 `min_keep` 兜底失效，等于滑向口径 B）。
+### 必须暂停并问人的情况
+
+1. 施工中发现必须改 `assets/js/**` 或 `index.html` —— 触发 E2E 条款，范围变了。
+2. 施工中发现必须改 `data/**` 或任何清理逻辑 —— 触碰 CLAUDE.md 清理禁区，立即停。
+3. 施工中发现必须改 MediaCrawler 才能实现隔离 —— 方案前提不成立，回 P5 重新评审。
+4. 真机验收时发现放宽口径导致**桥接 JSONL 出现回退或截断**（`creator_output_delta` 报
+   `output file was truncated or rewritten`）—— 立即停，这意味着有数据覆盖风险。
+5. 真机验收时看板抖音条目**减少**而不是增加 —— 立即停，与预期相反。
+6. 需要在 NUC 上执行任何 `git reset` / 强推 / 覆盖 `data/**` —— 按 CLAUDE.md 一律先问。
