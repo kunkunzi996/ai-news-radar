@@ -296,6 +296,64 @@ def maybe_fetch_mediacrawler_douyin(now: datetime) -> tuple[list[RawItem], dict[
     finally:
         status["duration_ms"] = int((time.perf_counter() - start) * 1000)
 
+# BUG-02：云端只看得到桥接仓库的内容，看不到 NUC 采集时被风控拦了几条。
+# `manifest.json` 是 NUC 唯一会推送的元信息载体（与 JSONL 一起精确暂存），
+# 采集健康字段搭它的车上云，再由前端既有的 `site.partial` 渲染成「部分完成」。
+DOUYIN_BRIDGE_MANIFEST_SCHEMA = 2
+
+
+def douyin_bridge_collection_health(jsonl_path: Path | None) -> dict[str, Any]:
+    """从 JSONL 路径上溯到桥接仓库根，容错读取采集健康 manifest。
+
+    任何异常（缺文件、坏 JSON、旧 schema、路径异常）都必须降级为「不可用」，
+    **绝不能影响条目产出**——看板少一个黄标是小事，抖音内容整块消失是大事。
+    """
+    health: dict[str, Any] = {
+        "collection_manifest_available": False,
+        "partial": False,
+        "missing_rows": 0,
+        "completed_creator_count": 0,
+        "partial_creator_count": 0,
+        "failed_creator_count": 0,
+        "collection_generated_at": None,
+    }
+    if jsonl_path is None:
+        return health
+    try:
+        # <bridge_root>/output/douyin/jsonl/<file>.jsonl → parents[3] 就是桥接仓库根
+        manifest_path = jsonl_path.resolve().parents[3] / "manifest.json"
+        if not manifest_path.is_file():
+            return health
+        payload = json.loads(manifest_path.read_text(encoding="utf-8"))
+        if not isinstance(payload, dict):
+            return health
+        if mediacrawler_int(payload.get("schema_version")) < DOUYIN_BRIDGE_MANIFEST_SCHEMA:
+            # 旧 schema 没有健康字段，当作不可用，而不是当成「一切正常」。
+            return health
+        health.update(
+            {
+                "collection_manifest_available": True,
+                "partial": bool(payload.get("partial")),
+                "missing_rows": mediacrawler_int(payload.get("missing_rows")),
+                "completed_creator_count": mediacrawler_int(payload.get("completed_creator_count")),
+                "partial_creator_count": mediacrawler_int(payload.get("partial_creator_count")),
+                "failed_creator_count": mediacrawler_int(payload.get("failed_creator_count")),
+                "collection_generated_at": payload.get("generated_at") or None,
+            }
+        )
+    except Exception:
+        return {
+            "collection_manifest_available": False,
+            "partial": False,
+            "missing_rows": 0,
+            "completed_creator_count": 0,
+            "partial_creator_count": 0,
+            "failed_creator_count": 0,
+            "collection_generated_at": None,
+        }
+    return health
+
+
 def fetch_mediacrawler_douyin_subscriptions(
     subscriptions: list[dict[str, str]],
     now: datetime,
@@ -307,6 +365,7 @@ def fetch_mediacrawler_douyin_subscriptions(
     out: list[RawItem] = []
     children: list[dict[str, Any]] = []
     seen: set[str] = set()
+    manifest_source: Path | None = None
     max_items = max(1, min(env_int("MEDIACRAWLER_DOUYIN_MAX_ITEMS", 200), 1000))
     for subscription in subscriptions:
         raw_locator = str(subscription.get("locator") or "").strip()
@@ -330,6 +389,8 @@ def fetch_mediacrawler_douyin_subscriptions(
                 child["error"] = "mediacrawler_douyin_jsonl_not_found"
                 children.append(child)
                 continue
+            if manifest_source is None:
+                manifest_source = jsonl_path
             items = parse_mediacrawler_douyin_jsonl(
                 jsonl_path.read_text(encoding="utf-8", errors="ignore"),
                 now=now,
@@ -371,6 +432,7 @@ def fetch_mediacrawler_douyin_subscriptions(
         "subscription_count": len(children),
         "error": None if out else "mediacrawler_douyin_no_items",
         "duration_ms": int((time.perf_counter() - start) * 1000),
+        **douyin_bridge_collection_health(manifest_source),
     }
 
 

@@ -241,9 +241,17 @@ E   KeyError: 'partial'
 验收：04a 全绿，前面各卡保持绿
 回滚：`git revert` 本卡提交
 --- 施工后填 ---
-实际改动：
-自测结果：
-未完成项：
+实际改动：`scripts/radar/fetchers/mediacrawler.py` +62
+- 新增常量 `DOUYIN_BRIDGE_MANIFEST_SCHEMA = 2` 与 `douyin_bridge_collection_health()`
+- 上溯用 `jsonl_path.resolve().parents[3]` 定位桥接仓库根（已由 PLAN-05 实测确认：
+  云端 `bridge_dir="$RUNNER_TEMP/douyin-bridge"`，JSONL 在其 `output/douyin/jsonl/` 下）
+- 循环里记录首个可用 JSONL 作为 manifest 溯源点，返回 status 时以 `**health` 并入
+- 缺文件 / 坏 JSON / 旧 schema 1 / 任意异常一律降级为
+  `collection_manifest_available=False` 且 `partial=False`，条目产出完全不受影响
+
+自测结果：V2 → **45 passed**（40 + 新增 5），无回归；V3 `py_compile` OK。
+`git diff --stat` 确认只动实现文件，未改 04a 写的测试。
+未完成项：无。
 
 ---
 
