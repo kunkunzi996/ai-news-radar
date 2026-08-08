@@ -359,6 +359,43 @@ def prepare_run_context(args: argparse.Namespace) -> RunContext | int:
         paid_source_state=paid_source_state,
     )
 
+def mediacrawler_douyin_status_entry(status: dict[str, Any]) -> dict[str, Any]:
+    """把抖音 fetcher 的返回值收敛成 `source-status.json` 的一条记录。
+
+    BUG-02 / QA-02：本函数原先是 `collect_stage` 里的一段内联字典，逐字段挑选，
+    于是 fetcher 新加的采集健康字段在主管线被整体丢弃——线上看板只看得到
+    `item_count`，`partial` 这些键根本不存在。抽成函数是为了让它有测试落点。
+
+    **拿不到健康信息时一律给安全默认值**：`partial=False`。
+    宁可不标黄，也不能凭空把一轮正常采集标成「部分完成」。
+    """
+    return {
+        "site_id": MEDIACRAWLER_DOUYIN_SITE_ID,
+        "site_name": MEDIACRAWLER_DOUYIN_SITE_NAME,
+        "ok": bool(status.get("ok")) if status.get("ok") is not None else True,
+        "item_count": int(status.get("item_count") or 0),
+        "duration_ms": int(status.get("duration_ms") or 0),
+        "error": status.get("error"),
+        "source_name": status.get("source_name"),
+        "privacy": status.get("privacy"),
+        "coverage_note": status.get("coverage_note"),
+        "source_kind": status.get("source_kind"),
+        "jsonl_path_configured": bool(status.get("jsonl_path_configured")),
+        "jsonl_file": status.get("jsonl_file"),
+        "max_items": status.get("max_items"),
+        "subscriptions": status.get("subscriptions"),
+        "subscription_count": status.get("subscription_count"),
+        # 采集健康（来自桥接 manifest schema 2）；前端据 `partial` 显示「部分完成」。
+        "partial": bool(status.get("partial")),
+        "missing_rows": int(status.get("missing_rows") or 0),
+        "completed_creator_count": int(status.get("completed_creator_count") or 0),
+        "partial_creator_count": int(status.get("partial_creator_count") or 0),
+        "failed_creator_count": int(status.get("failed_creator_count") or 0),
+        "collection_manifest_available": bool(status.get("collection_manifest_available")),
+        "collection_generated_at": status.get("collection_generated_at"),
+    }
+
+
 def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
     args = ctx.args
     now = ctx.now
@@ -632,25 +669,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
         mediacrawler_douyin_items, mediacrawler_douyin_status = fetch_mediacrawler_douyin_subscriptions(douyin_subscriptions, now)
         if mediacrawler_douyin_status.get("enabled"):
             raw_items.extend(mediacrawler_douyin_items)
-            statuses.append(
-                {
-                    "site_id": MEDIACRAWLER_DOUYIN_SITE_ID,
-                    "site_name": MEDIACRAWLER_DOUYIN_SITE_NAME,
-                    "ok": bool(mediacrawler_douyin_status.get("ok")) if mediacrawler_douyin_status.get("ok") is not None else True,
-                    "item_count": int(mediacrawler_douyin_status.get("item_count") or 0),
-                    "duration_ms": int(mediacrawler_douyin_status.get("duration_ms") or 0),
-                    "error": mediacrawler_douyin_status.get("error"),
-                    "source_name": mediacrawler_douyin_status.get("source_name"),
-                    "privacy": mediacrawler_douyin_status.get("privacy"),
-                    "coverage_note": mediacrawler_douyin_status.get("coverage_note"),
-                    "source_kind": mediacrawler_douyin_status.get("source_kind"),
-                    "jsonl_path_configured": bool(mediacrawler_douyin_status.get("jsonl_path_configured")),
-                    "jsonl_file": mediacrawler_douyin_status.get("jsonl_file"),
-                    "max_items": mediacrawler_douyin_status.get("max_items"),
-                    "subscriptions": mediacrawler_douyin_status.get("subscriptions"),
-                    "subscription_count": mediacrawler_douyin_status.get("subscription_count"),
-                }
-            )
+            statuses.append(mediacrawler_douyin_status_entry(mediacrawler_douyin_status))
     mediacrawler_xhs_status = {
         "enabled": False,
         "ok": None,

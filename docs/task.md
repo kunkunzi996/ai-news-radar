@@ -520,7 +520,7 @@ E   ImportError: cannot import name 'mediacrawler_douyin_status_entry' from 'scr
 
 ## TASK-08b · 写实现：主管线透传健康字段
 
-状态：pending
+状态：**green**
 前置：TASK-08a（必须已经是 red）
 目标：让 08a 转绿
 实现要点（`scripts/radar/cli.py`）：把 `:636-652` 的字典抽成模块级纯函数
@@ -532,9 +532,15 @@ E   ImportError: cannot import name 'mediacrawler_douyin_status_entry' from 'scr
 验收：08a 转绿，04a/07a 保持绿
 回滚：`git revert` 本卡提交
 --- 施工后填 ---
-实际改动：
-自测结果：
-未完成项：
+实际改动：`scripts/radar/cli.py` +38 −19
+- 把 `collect_stage` 里那段内联字典抽成模块级纯函数 `mediacrawler_douyin_status_entry()`
+- 函数内补透传 5 个健康字段 + `collection_generated_at`，全部带安全默认值
+- 原调用点改为一行 `statuses.append(mediacrawler_douyin_status_entry(...))`
+- **未碰其它源、未碰采集与清理逻辑**
+
+自测结果：V2 → **49 passed**（47 + 新增 2）；V3 `py_compile` OK。
+本卡改的是主管线（影响所有源），故**先跑完全量回归再推送**，不与发布并行。
+未完成项：无。
 
 ---
 
