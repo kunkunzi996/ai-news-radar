@@ -57,45 +57,21 @@ fetchers only for stable, public, high-signal sources.
 5. 延后清理台账 `data/pending-purge.json`（已 gitignore）**补做前必须用当前配置复核**：
    源若被重新加回，只从台账划掉、拒绝清理。
 
-### 微信公众号 schema 2 清理窄例外
+### 两个窄例外（详细契约在 `docs/rules/archive-cleanup-exceptions.md`）
 
-`we_mp_rss_jsonl` 允许在采集管线内清理历史，但这不是通用通道规则，只能同时满足以下条件时启用：
+只有两条通道允许在上述路径之外删历史，各自有独立的逐条契约，**改到它们之前必读那份文档**：
 
-1. 清理身份只能使用稳定 `we_mp_feed_id`。禁止按来源名称、URL 前缀、本轮文章集合或 active 采集范围
-   猜测删除对象，也禁止把微信加入 `ENUMERABLE_SUBSCRIPTION_SITE_IDS` 或把本例外类推到其它通道。
-2. 只有 sidecar 数据库中的 Feed 被 **hard delete**，即其 ID 不再出现在 schema 2 快照 `known` 中，
-   才能成为候选；`status=0` 只是不在 `active` 中、仍在 `known` 中，必须停采但保留全部历史。
-3. manifest、JSONL、订阅快照必须属于同一 bridge commit，并通过 schema、路径边界、SHA256、条数、
-   `known/active` 集合和 `active ⊆ known` 校验；本轮微信通道还必须真实启用、读取成功且状态完整。
-4. archive 中所有微信记录必须 100% 具备合法 ID。任何无 ID、重复 ID、坏行、坏快照、哈希不符、
-   commit 不符、通道失败或门控缺失都必须 fail-safe：记录失败状态并且一条不删。非法 JSONL 行必须在
-   `RawItem` 构造前拒绝，不能进入 archive。
-5. `WE_MP_ORPHAN_CLEANUP_MODE` 只允许 `off/audit/on`，默认和非法值均按 `off`；`audit` 只报告候选，
-   `on` 才能按候选 ID 删除。没有完成 100% ID 迁移、真实 audit 人工确认和发布授权前，保持 `off`。
-6. 数据恢复只能用 `scripts/restore_we_mp_cleanup.py` 按 `item_id` 精确回插缺失记录；禁止用旧
-   `archive.json` 整文件覆盖当前归档，以免抹掉清理后新增的其它数据。
+- **微信 `we_mp_rss_jsonl`**：仅当 sidecar Feed 被 hard delete（ID 不再出现在 schema 2 快照
+  `known` 中）才可清理；`status=0` 必须停采但保留全部历史。身份只认稳定 `we_mp_feed_id`。
+  `WE_MP_ORPHAN_CLEANUP_MODE` 默认且非法值一律按 `off`。
+- **GitHub 星标托管**：仅 `managed_by=github_stars` 且 `managed_state=auto_disabled` 可成为候选；
+  身份只认规范十进制 `managed_repo_id`；须在两个不同 `GITHUB_RUN_ID` 的非空快照中连续缺失。
+  `STAR_SUBSCRIPTION_CLEANUP_MODE` 默认 `off`。
 
-改动这块时，光跑单测不算数——必须真在浏览器里走一遍「删除 / 停用 / 改名 / 原样保存」四种
-操作，逐一核对 `data/archive.json` 的条数与 site_id 分布。
-
-### GitHub 星标托管清理窄例外
-
-GitHub 只能走独立的稳定 repo ID 契约，不能进入名称型订阅清理或复用 generic force：
-
-1. 仅 `managed_by=github_stars` 且 `managed_state=auto_disabled` 的受管源可成为候选；手动 GitHub
-   `enabled:false` 只表示暂停，绝不自动删历史。
-2. 清理身份只能是规范十进制 `managed_repo_id` / `github_repo_identity`，禁止按 owner/repo、来源名称、
-   URL、本轮采集范围或 target 推断。
-3. 同一 repo 必须在两个不同 `GITHUB_RUN_ID` 的非空完整公开星标快照中连续缺失；空快照、分页/账户失败、
-   重复 repo ID 和同一 run 重试都必须熔断，不能推进确认或停用。
-4. audit/on 只接受与当前 `GITHUB_RUN_ID`、`GITHUB_RUN_ATTEMPT`、`GITHUB_SHA` 完全配对的 autosync
-   状态，并重算 `github-star-purge-state.json` 的 SHA256；任一状态、账号、哈希或 100% 归档身份覆盖不成立，
-   一条不删。
-5. `STAR_SUBSCRIPTION_CLEANUP_MODE` 仅允许 `off/audit/on`，默认 `off`；`audit` 只写候选和摘要，
-   `on` 还必须精确匹配本轮 `STAR_SUBSCRIPTION_CLEANUP_APPROVAL_DIGEST`。摘要失配必须回 audit 重审，
-   不能复用或放宽。
-6. 回滚只允许 `scripts/restore_github_subscription_cleanup.py --item-id <record.id>` 精确回插 GitHub
-   条目；禁止拿旧 `archive.json` 整体覆盖当前归档。
+两者共同的硬要求：任何校验不成立都必须 fail-safe 一条不删；回滚只能用各自的
+`scripts/restore_*.py` 按 ID 精确回插，**禁止用旧 `archive.json` 整文件覆盖当前归档**。
+改微信这块还必须真在浏览器里走一遍「删除 / 停用 / 改名 / 原样保存」四种操作，
+逐一核对 `data/archive.json` 的条数与 site_id 分布——光跑单测不算数。
 
 ## 同步线上（sync_online_source_config）的 git 编排禁区
 
@@ -111,17 +87,12 @@ GitHub 只能走独立的稳定 repo ID 契约，不能进入名称型订阅清�
    `logs/auto-ff.log` 的结构化事件和 `reason` 为准。失败时保留当前工作区，禁止 reset、强推或手工覆盖
    `data/**` 来“修复”同步。
 
-### merge_sync 专属禁区
+### merge_sync（详细契约在 `docs/rules/sync-online-merge-contract.md`）
 
-当云端信源文件也已变更时，`operation_kind=merge_sync` 是与上述普通同步并列的事务，必须同时满足：
-
-1. 合并结果 M 的 GitHub 星标受管投影必须与云端 R 完全相等；本机不能覆盖云端受管状态。
-2. 必须先推送合并提交 C，成功后才能以 CAS 移动本机 `master`；推送失败时本机 HEAD、信源文件和 stash 均不得前进。
-3. 合并同步路径永远不得调用 purge 或改写 `data/archive.json` 历史。
-4. 台账中 `files.before_sha256` 永远描述本机候选 L，不能改写成云端基线 B 或 R。
-5. 每个恢复点在写盘、移动 ref 或删台账前都必须先核对台账摘要、文件 SHA256、HEAD 与 stash 归属；无法证明时保持 pending。
-6. 两个信源文件只能从 L 单向一步到 M；任何先退回 B、`git merge --ff-only` 或让用户短暂看到基线的中间态都是缺陷。
-7. 以 `git restore` 检出 C 中的路径前，未跟踪 `data/**` 碰撞预检是防止静默覆盖的必需门禁，必须在推送前和实际检出前各执行一次。
+云端信源文件也变更时走 `operation_kind=merge_sync`，是与上述普通同步并列的另一个事务，
+有 7 条独立契约，**改到它之前必读那份文档**。三条最容易踩的：合并结果的 GitHub 星标受管投影
+必须与云端完全相等；必须先推送合并提交、成功后才能以 CAS 移动本机 `master`；
+该路径**永远不得调用 purge 或改写 `data/archive.json` 历史**。
 
 ## 本机 git 仓库维护禁区
 
@@ -222,38 +193,36 @@ GitHub 只能走独立的稳定 repo ID 契约，不能进入名称型订阅清�
 `scripts/radar/server/auto_collect.py` 会自动触发一次本机采集，采集结束后
 `scripts/radar/server/actions_refresh.py` 再触发一轮云端 Actions。改这块时：
 
-1. **必须触发计划任务，不能自己起采集进程。** 三条环境约束都实测确认过，缺一条就跑不通：
-   - **身份**：`RadarAdminServer` 是 `SYSTEM/ServiceAccount`，而 `DouyinCollectAndPush` 是
-     `beelink-pc/Interactive`。抖音采集要连用户会话里带登录态的专用 Chrome（CDP 9333），
-     SYSTEM 因会话隔离拿不到。
-   - **凭证**：推桥接仓库用用户自己的 git 凭证；SYSTEM 侧 PAT 仅对 `ai-news-radar` 有
-     Contents 权限，够不着 `douyin-bridge` / `wechat-bridge`。
-   - **路径**：脚本默认推导 `CrawlerRoot=<父目录>/MediaCrawler`，而 NUC 上实际是
-     `MediaCrawler-local-test`，该默认路径**根本不存在**。计划任务里已配好全部正确参数。
+1. **必须触发计划任务，不能自己起采集进程。** 三条环境约束缺一条就跑不通（均实测）：
+   **身份**——`RadarAdminServer` 是 `SYSTEM/ServiceAccount`，`DouyinCollectAndPush` 是
+   `beelink-pc/Interactive`，会话隔离让 SYSTEM 拿不到带登录态的专用 Chrome（CDP 9333）；
+   **凭证**——SYSTEM 侧 PAT 只对 `ai-news-radar` 有 Contents 权限，够不着
+   `douyin-bridge` / `wechat-bridge`；**路径**——脚本默认推导的
+   `CrawlerRoot=<父目录>/MediaCrawler` 在 NUC 上根本不存在（实际是 `MediaCrawler-local-test`）。
+   计划任务里已配好全部正确参数。
 
 2. **派发时机只能在「同步推送成功之后」，不能在「保存成功之后」。** 保存与同步是两个独立
-   HTTP 请求，前端保存完紧接着发同步请求。在保存阶段派发，采集拉起的浏览器与 MediaCrawler
-   会抢占资源，把紧随其后的 `git push` 拖过 Cloudflare 的 120 秒读超时，前端报
-   「推送失败: Failed to fetch」——而后端其实已经推送成功（2026-08-01 真实踩过）。
-   故保存只 `queue_pending_collect` 登记，同步确认推送成功后才 `flush_pending_collect`。
+   HTTP 请求。在保存阶段派发，采集拉起的浏览器会抢资源，把紧随其后的 `git push` 拖过
+   Cloudflare 的 120 秒读超时，前端报「推送失败: Failed to fetch」而后端其实推成功了
+   （2026-08-01 真踩过）。故保存只 `queue_pending_collect` 登记，确认推送成功后才
+   `flush_pending_collect`。
 
-3. **微信只能全量重采，禁止单号采集。** 桥接 JSONL 是**完整快照**，拿单个 feed 的结果去
-   覆盖会抹掉其它公众号的全部历史（见上文「清理历史条目的禁区」）。且线上配置里微信源的
-   `locator` 为空、没有稳定 `feed_id`，本就无法定位单号。抖音相反：`locator` 里存有
-   `sec_uid`，可以定向。
+3. **微信只能全量重采，禁止单号采集。** 桥接 JSONL 是**完整快照**，拿单个 feed 的结果覆盖
+   会抹掉其它公众号的全部历史；且微信源 `locator` 为空、无稳定 `feed_id`，本就无法定位单号。
+   抖音相反，`locator` 存有 `sec_uid`，可以定向。
 
-4. **依赖：`DouyinCollectAndPush` 必须保留抖音、微信两条 action。** 本功能只触发一次任务
-   就覆盖两个渠道，靠的正是这个前提。谁把它改成一条 action，微信就会静默漏采。
-   运维侧的对应说明见 `docs/guides/douyin-cloud-pc-automation.md`。
+4. **`DouyinCollectAndPush` 必须保留抖音、微信两条 action。** 本功能只触发一次任务就覆盖两个
+   渠道，靠的正是这个前提；改成一条，微信会静默漏采。运维说明见
+   `docs/guides/douyin-cloud-pc-automation.md`。
 
-5. **只在「新增」时触发**：删除、停用、改名一律不触发，避免与历史清理逻辑产生任何交集。
-   停用后重新启用算新增（其历史可能已在停用时被清理）。本模块不触碰 `data/archive.json`。
+5. **只在「新增」时触发**：删除、停用、改名一律不触发，避免与历史清理逻辑产生交集。停用后
+   重新启用算新增（其历史可能已在停用时被清理）。本模块不触碰 `data/archive.json`。
 
-6. 云端刷新走 GitHub Contents API 在远端直接建提交（标记文件 `.bridge-refresh.json` 必须
-   放仓库根，`data/**` 会被 workflow 的 `paths-ignore` 忽略、触发不了）。**不要改用本地
-   git commit/push**——那会掉进上文 `sync_online_source_config` 的 git 编排禁区。
+6. 云端刷新走 GitHub Contents API 在远端直接建提交，标记文件 `.bridge-refresh.json` 必须放
+   仓库根（`data/**` 会被 workflow 的 `paths-ignore` 忽略、触发不了）。**不要改用本地
+   git commit/push**——那会掉进上文的 git 编排禁区。
 
-7. **失败留痕契约必须保持可见且无敏感信息**：抖音与微信桥接脚本都要在失败终态、登录态
-   `expired/login_required/invalid` 或异常收尾时写入 `RadarRoot\logs\bridge-collection-failures.jsonl`；
-   每行固定 10 个字段，`message` 最多 512 字符，按渠道与 `run_id` 去重，禁止写入原始输出、cookie、
-   token 或凭证。写日志失败只能告警，不能覆盖原状态或退出码；正常成功且登录态有效不追加记录。
+7. **失败留痕必须可见且无敏感信息**：抖音与微信桥接脚本在失败终态、登录态
+   `expired/login_required/invalid` 或异常收尾时写 `RadarRoot\logs\bridge-collection-failures.jsonl`，
+   每行固定 10 个字段、`message` ≤512 字符、按渠道与 `run_id` 去重，禁止写入原始输出、cookie
+   或 token。写日志失败只告警，不覆盖原状态或退出码；成功且登录态有效时不追加记录。
