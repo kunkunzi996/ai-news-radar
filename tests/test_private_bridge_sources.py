@@ -1116,5 +1116,112 @@ class PrivateBridgeSourceTests(unittest.TestCase):
         self.assertEqual(session.dynamic_params[1]["offset"], "next-page")
 
 
+class DouyinBridgeManifestHealthTests(unittest.TestCase):
+    """TASK-04：把 NUC 的采集健康经桥接 manifest 送到云端看板。
+
+    云端 Actions 只看得到桥接仓库的内容，看不到 NUC 上被风控拦了几条。
+    `manifest.json` 是 NUC 唯一会推送的元信息载体（与 JSONL 一起精确暂存），
+    所以健康字段搭它的车上云，再由前端既有的 `site.partial` 显示成「部分完成」。
+    """
+
+    ROW = {
+        "aweme_id": "row-1",
+        "desc": "抖音作品",
+        "aweme_url": "https://www.douyin.com/video/row-1",
+        "nickname": "测试号",
+        "sec_user_id": "MS4wLjABAAAA_TEST",
+    }
+    SUBSCRIPTION = {
+        "name": "测试号",
+        "target": "测试号",
+        "locator": "https://www.douyin.com/user/MS4wLjABAAAA_TEST",
+    }
+
+    def fetch_with_manifest(self, manifest_text):
+        from scripts.update_news import fetch_mediacrawler_douyin_subscriptions
+
+        with tempfile.TemporaryDirectory() as tmp:
+            bridge_root = Path(tmp)
+            jsonl_dir = bridge_root / "output" / "douyin" / "jsonl"
+            jsonl_dir.mkdir(parents=True)
+            (jsonl_dir / "creator_contents_2026-08-08.jsonl").write_text(
+                json.dumps(self.ROW, ensure_ascii=False) + "\n", encoding="utf-8"
+            )
+            if manifest_text is not None:
+                (bridge_root / "manifest.json").write_text(manifest_text, encoding="utf-8")
+            with patch.dict(os.environ, {"MEDIACRAWLER_LOCAL_DIR": tmp}, clear=True):
+                return fetch_mediacrawler_douyin_subscriptions(
+                    [dict(self.SUBSCRIPTION)], datetime(2026, 8, 8, tzinfo=timezone.utc)
+                )
+
+    def test_schema_2_manifest_surfaces_partial_health_on_the_status(self):
+        manifest = json.dumps(
+            {
+                "schema_version": 2,
+                "generated_at": "2026-08-08T05:14:35.000Z",
+                "partial": True,
+                "missing_rows": 3,
+                "creator_count": 6,
+                "completed_creator_count": 4,
+                "partial_creator_count": 1,
+                "failed_creator_count": 1,
+            }
+        )
+
+        items, status = self.fetch_with_manifest(manifest)
+
+        self.assertEqual(len(items), 1, "健康字段不得影响条目产出")
+        self.assertTrue(status["partial"])
+        self.assertEqual(status["missing_rows"], 3)
+        self.assertEqual(status["completed_creator_count"], 4)
+        self.assertEqual(status["partial_creator_count"], 1)
+        self.assertEqual(status["failed_creator_count"], 1)
+
+    def test_healthy_manifest_does_not_mark_the_site_partial(self):
+        manifest = json.dumps(
+            {
+                "schema_version": 2,
+                "partial": False,
+                "missing_rows": 0,
+                "completed_creator_count": 6,
+                "partial_creator_count": 0,
+                "failed_creator_count": 0,
+            }
+        )
+
+        _items, status = self.fetch_with_manifest(manifest)
+
+        self.assertFalse(status["partial"])
+        self.assertEqual(status["missing_rows"], 0)
+
+    def test_missing_manifest_degrades_silently(self):
+        items, status = self.fetch_with_manifest(None)
+
+        self.assertEqual(len(items), 1, "manifest 缺失绝不能影响条目解析")
+        self.assertTrue(status["ok"])
+        self.assertFalse(status["partial"])
+        self.assertFalse(status["collection_manifest_available"])
+
+    def test_broken_manifest_degrades_silently(self):
+        items, status = self.fetch_with_manifest("{ this is not json")
+
+        self.assertEqual(len(items), 1)
+        self.assertTrue(status["ok"])
+        self.assertFalse(status["partial"])
+        self.assertFalse(status["collection_manifest_available"])
+
+    def test_legacy_schema_1_manifest_is_treated_as_unavailable(self):
+        manifest = json.dumps({"schema_version": 1, "output_rows": 104, "crawl_output_rows": 52})
+
+        items, status = self.fetch_with_manifest(manifest)
+
+        self.assertEqual(len(items), 1)
+        self.assertFalse(status["partial"])
+        self.assertFalse(
+            status["collection_manifest_available"],
+            "旧 schema 没有健康字段，必须当作不可用而不是当成健康",
+        )
+
+
 if __name__ == "__main__":
     unittest.main()

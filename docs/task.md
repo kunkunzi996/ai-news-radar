@@ -202,7 +202,7 @@ tests/test_mediacrawler_runner.py:868: KeyError
 
 ## TASK-04a · 写测试：云端从桥接 manifest 读出采集健康
 
-状态：pending
+状态：**red**
 前置：TASK-03b
 测什么：
 - `fetch_mediacrawler_douyin_subscriptions` 返回的 status 里带
@@ -216,12 +216,19 @@ tests/test_mediacrawler_runner.py:868: KeyError
 验收：`.venv\Scripts\python.exe -m pytest -q tests/test_private_bridge_sources.py` **必须失败**
 回滚：删掉新增的测试用例
 --- 施工后填 ---
-红证据：
-实际改动：
+红证据：`pytest -q tests/test_private_bridge_sources.py -k DouyinBridgeManifestHealth` → **5 failed, 40 deselected**
+
+```
+tests/test_private_bridge_sources.py:1174: KeyError
+E   KeyError: 'partial'
+```
+
+5 条全红，原因是 status 里还没有健康字段，不是测试写坏。
+实际改动：`tests/test_private_bridge_sources.py` +107 行（`git diff --stat` 确认无实现代码混入）
 
 ## TASK-04b · 写实现：fetcher 读 manifest 填 partial
 
-状态：pending
+状态：**green**
 前置：TASK-04a（必须已经是 red）
 目标：让 04a 那几条变绿
 实现要点（`scripts/radar/fetchers/mediacrawler.py`）：
