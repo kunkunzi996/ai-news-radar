@@ -257,7 +257,7 @@ E   KeyError: 'partial'
 
 ## TASK-05a · 写测试：采集脚本在「部分完成」时照样发布
 
-状态：pending
+状态：**red**
 前置：TASK-03b
 
 > P5 评审 PLAN-02 更正：初稿误判「PS 脚本无法自动化测试」。
@@ -282,8 +282,23 @@ E   KeyError: 'partial'
       **必须失败**，且失败原因是「HEAD 未前进 / manifest 仍是 schema 1 / 无 warning 记录」
 回滚：删掉新增的测试用例
 --- 施工后填 ---
-红证据：
-实际改动：
+红证据：`pytest -q tests/test_bridge_collection_failure_log.py` → **2 failed, 2 passed**
+
+```
+test_partial_collection_still_publishes_and_is_recorded
+E   assert 1 == 0        ← PS 脚本退出码 1，部分完成时拒绝发布（正是 BUG-02 的现象）
+
+test_fully_completed_collection_leaves_no_failure_record
+E   assert manifest["schema_version"] == 2
+E   assert 1 == 2        ← manifest 仍是 schema 1，没有健康字段
+```
+
+**一条新测试直接为绿，已查明原因并保留**：`test_all_creators_failed_does_not_publish`
+验证的 fail-safe（一个号都没采到时不发布）在改动前后都应成立，它是**防止本轮放宽口径时
+把保险丝一起拆掉**的回归护栏，不是本卡的红证据。按导航规范「测试一开始就绿必须停下来查」，
+已查明并如实记录，不当作已验证的新功能。
+实际改动：`tests/test_bridge_collection_failure_log.py` +215 行
+（`git diff --stat` 确认无 `.ps1` 改动混入）
 
 ## TASK-05b · 写实现：采集脚本放宽口径、写 manifest、缺失留痕
 
