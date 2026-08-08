@@ -17,12 +17,15 @@ from scripts.run_mediacrawler_douyin import (
     assert_dedicated_browser_process,
     assert_window_mode_result,
     browser_window_commands,
+    close_cdp_page_targets,
     creator_output_delta,
     dedicated_browser_args,
     ensure_dedicated_browser,
+    list_cdp_page_targets,
     limited_douyin_creator_posts,
     parse_args,
     row_publish_time,
+    select_leaked_page_targets,
     set_window_bounds_with_retry,
     summarize_creator_jsonl_by_window,
     validate_douyin_aweme_page,
@@ -423,6 +426,173 @@ class MediaCrawlerRunnerTests(unittest.TestCase):
             self.assertEqual(payload["run_id"], "run-login")
             self.assertEqual(payload["login_state"], "login_required")
             self.assertFalse(payload["ok"])
+
+    # --- BUG-01 / TASK-01a: 采集结束后只关闭本轮新增的标签页 ---
+
+    DOUYIN_PAGE_URL = "https://www.douyin.com/jingxuan"
+
+    def page_target(self, target_id, url=None):
+        return {"id": target_id, "url": url if url is not None else self.DOUYIN_PAGE_URL}
+
+    def test_select_leaked_page_targets_returns_only_new_ids(self):
+        before = {"A"}
+        after = [self.page_target("A"), self.page_target("B"), self.page_target("C")]
+
+        self.assertEqual(select_leaked_page_targets(before, after), ["B", "C"])
+
+    def test_select_leaked_page_targets_returns_empty_without_new_pages(self):
+        self.assertEqual(select_leaked_page_targets({"A"}, [self.page_target("A")]), [])
+        self.assertEqual(select_leaked_page_targets(set(), []), [])
+
+    def test_select_leaked_page_targets_keeps_at_least_one_page(self):
+        # 关光全部标签页会让 Chrome 退出，等于滑向已放弃的口径 B；保留最早的那个。
+        after = [self.page_target("A"), self.page_target("B")]
+
+        self.assertEqual(select_leaked_page_targets(set(), after), ["B"])
+
+    def test_select_leaked_page_targets_distinguishes_identical_urls(self):
+        # NUC 实测：三个标签页 URL 完全相同，只有 id 不同，必须按 id 差集判断。
+        after = [self.page_target("A"), self.page_target("B")]
+
+        self.assertEqual(select_leaked_page_targets({"A"}, after), ["B"])
+
+    def test_select_leaked_page_targets_tolerates_disappeared_pages(self):
+        # 采集前存在的 A 中途被关掉：不报错，也不出现在待关清单里。
+        after = [self.page_target("B"), self.page_target("C")]
+
+        self.assertEqual(select_leaked_page_targets({"A", "B"}, after), ["C"])
+
+    # --- BUG-01 / TASK-02a: 列出与关闭 CDP 标签页 ---
+
+    def test_list_cdp_page_targets_keeps_only_page_type(self):
+        payload = json.dumps([
+            {"id": "A", "type": "page", "url": self.DOUYIN_PAGE_URL},
+            {"id": "W", "type": "service_worker", "url": "https://www.douyin.com/sw.js"},
+            {"id": "F", "type": "iframe", "url": "https://www.douyin.com/frame"},
+            {"id": "B", "type": "page", "url": self.DOUYIN_PAGE_URL},
+        ])
+        with mock.patch.object(runner, "cdp_request_text", return_value=payload) as request:
+            targets = list_cdp_page_targets(9333)
+
+        request.assert_called_once_with(9333, "/json/list")
+        self.assertEqual([target["id"] for target in targets], ["A", "B"])
+        self.assertEqual(targets[0]["url"], self.DOUYIN_PAGE_URL)
+
+    def test_list_cdp_page_targets_tolerates_missing_fields(self):
+        payload = json.dumps([
+            {"id": "A", "type": "page"},
+            {"type": "page", "url": self.DOUYIN_PAGE_URL},
+            "not-a-dict",
+        ])
+        with mock.patch.object(runner, "cdp_request_text", return_value=payload):
+            targets = list_cdp_page_targets(9333)
+
+        self.assertEqual([target["id"] for target in targets], ["A"])
+        self.assertEqual(targets[0]["url"], "")
+
+    def test_close_cdp_page_targets_closes_each_id_in_order(self):
+        with mock.patch.object(runner, "cdp_request_text", return_value="Target is closing") as request:
+            result = close_cdp_page_targets(9333, ["B", "C"])
+
+        self.assertEqual([call.args[1] for call in request.call_args_list], ["/json/close/B", "/json/close/C"])
+        self.assertEqual(result, {"closed": 2, "failed": 0})
+
+    def test_close_cdp_page_targets_continues_after_failure(self):
+        with mock.patch.object(
+            runner, "cdp_request_text", side_effect=[OSError("boom"), "Target is closing"]
+        ) as request:
+            result = close_cdp_page_targets(9333, ["B", "C"])
+
+        self.assertEqual(request.call_count, 2)
+        self.assertEqual(result, {"closed": 1, "failed": 1})
+
+    def test_close_cdp_page_targets_skips_request_for_empty_list(self):
+        with mock.patch.object(runner, "cdp_request_text") as request:
+            result = close_cdp_page_targets(9333, [])
+
+        request.assert_not_called()
+        self.assertEqual(result, {"closed": 0, "failed": 0})
+
+    # --- BUG-01 / TASK-03a: 把清理接进采集主流程 ---
+
+    def collect_args(self, crawler_root, **overrides):
+        defaults = dict(
+            crawler_root=str(crawler_root), platform="douyin", creator_id="", max_notes=10,
+            collect_window_hours=0, cdp_port=9333, chrome_path="", profile_dir="",
+            offscreen=False, browser_only=False, run_id="run-cleanup", result_file="",
+            parent_holds_collection_lock=False,
+        )
+        defaults.update(overrides)
+        return argparse.Namespace(**defaults)
+
+    @contextlib.contextmanager
+    def patched_collect_run(self, args, *, snapshots, collect_result=0, close_side_effect=None):
+        with mock.patch.object(runner, "parse_args", return_value=args), \
+                mock.patch.object(runner, "collection_lock_context", return_value=contextlib.nullcontext()), \
+                mock.patch.object(runner, "ensure_dedicated_browser", return_value=9333), \
+                mock.patch.object(runner, "check_douyin_login_state", return_value="logged_in"), \
+                mock.patch.object(runner, "list_cdp_page_targets", side_effect=snapshots) as listed, \
+                mock.patch.object(
+                    runner, "close_cdp_page_targets",
+                    return_value={"closed": 1, "failed": 0}, side_effect=close_side_effect,
+                ) as closed, \
+                mock.patch.object(runner, "run_mediacrawler", return_value=collect_result):
+            yield listed, closed
+
+    def test_collect_closes_only_pages_opened_during_run(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            crawler = Path(tmp)
+            (crawler / "main.py").write_text("", encoding="utf-8")
+            snapshots = [
+                [self.page_target("A")],
+                [self.page_target("A"), self.page_target("B")],
+            ]
+            with self.patched_collect_run(self.collect_args(crawler), snapshots=snapshots) as (listed, closed):
+                self.assertEqual(runner.main(), 0)
+
+            self.assertEqual(listed.call_count, 2)
+            closed.assert_called_once_with(9333, ["B"])
+
+    def test_browser_only_keeps_every_page_open(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            crawler = Path(tmp)
+            (crawler / "main.py").write_text("", encoding="utf-8")
+            args = self.collect_args(crawler, browser_only=True)
+            snapshots = [[self.page_target("A")], [self.page_target("A")]]
+            with self.patched_collect_run(args, snapshots=snapshots) as (_listed, closed):
+                self.assertEqual(runner.main(), 0)
+
+            closed.assert_not_called()
+
+    def test_failed_collection_still_closes_leaked_pages(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            crawler = Path(tmp)
+            (crawler / "main.py").write_text("", encoding="utf-8")
+            snapshots = [
+                [self.page_target("A")],
+                [self.page_target("A"), self.page_target("B")],
+            ]
+            with self.patched_collect_run(
+                self.collect_args(crawler), snapshots=snapshots, collect_result=1
+            ) as (_listed, closed):
+                self.assertEqual(runner.main(), 1)
+
+            closed.assert_called_once_with(9333, ["B"])
+
+    def test_cleanup_failure_does_not_change_exit_code(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            crawler = Path(tmp)
+            (crawler / "main.py").write_text("", encoding="utf-8")
+            snapshots = [
+                [self.page_target("A")],
+                [self.page_target("A"), self.page_target("B")],
+            ]
+            with self.patched_collect_run(
+                self.collect_args(crawler), snapshots=snapshots, close_side_effect=OSError("cdp down")
+            ) as (_listed, closed):
+                self.assertEqual(runner.main(), 0)
+
+            closed.assert_called_once_with(9333, ["B"])
 
 
 if __name__ == "__main__":

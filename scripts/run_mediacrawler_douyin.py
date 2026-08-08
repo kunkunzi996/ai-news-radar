@@ -514,6 +514,98 @@ def ensure_dedicated_browser(
     raise RuntimeError(f"dedicated Chrome did not expose CDP on port {start_port}")
 
 
+def cdp_request_text(port: int, path: str, timeout: float = 3.0) -> str:
+    """向本机 CDP HTTP 端点发一次请求并返回原始响应文本。
+
+    沿用本文件既有做法（见 cdp_ready），不引入 scripts.radar 包依赖——本脚本由计划任务
+    直接以文件路径运行，sys.path 未必包含仓库根。
+    注意 /json/close/<id> 返回的是纯文本（实测 `Target is closing`）而非 JSON，
+    故此处只取文本，由调用方决定是否解析。
+    """
+    with urllib.request.urlopen(f"http://127.0.0.1:{port}{path}", timeout=timeout) as response:
+        return response.read().decode("utf-8", errors="replace")
+
+
+def list_cdp_page_targets(port: int) -> list[dict[str, Any]]:
+    """列出采集浏览器当前的标签页，只保留 type == "page"。
+
+    service_worker / iframe / background_page 不是标签页，误关会影响采集。
+    """
+    payload = json.loads(cdp_request_text(port, "/json/list"))
+    targets: list[dict[str, Any]] = []
+    for entry in payload if isinstance(payload, list) else []:
+        if not isinstance(entry, dict) or entry.get("type") != "page":
+            continue
+        target_id = str(entry.get("id") or "")
+        if not target_id:
+            continue
+        targets.append({"id": target_id, "url": str(entry.get("url") or "")})
+    return targets
+
+
+def close_cdp_page_targets(port: int, target_ids: list[str]) -> dict[str, int]:
+    """逐个关闭标签页；单个失败不中断其余，计数如实返回给调用方。"""
+    closed = 0
+    failed = 0
+    for target_id in target_ids:
+        try:
+            cdp_request_text(port, f"/json/close/{target_id}")
+            closed += 1
+        except Exception:
+            failed += 1
+    return {"closed": closed, "failed": failed}
+
+
+def select_leaked_page_targets(
+    before_ids: set[str],
+    after_targets: list[dict[str, Any]],
+    min_keep: int = 1,
+) -> list[str]:
+    """算出采集期间新增、应当关闭的标签页 id（BUG-01）。
+
+    只按 id 差集判断：采集浏览器里多个标签页的 URL 往往完全相同（实测均为
+    douyin.com/jingxuan），按 URL 判断会误关采集前就存在的页面。
+    关光全部标签页会让 Chrome 退出，因此始终保留最早的 min_keep 个页面。
+    """
+    known = set(before_ids or ())
+    ordered_ids = [str(target.get("id") or "") for target in after_targets]
+    ordered_ids = [target_id for target_id in ordered_ids if target_id]
+    leaked = [target_id for target_id in ordered_ids if target_id not in known]
+    survivors = len(ordered_ids) - len(leaked)
+    if survivors < min_keep:
+        leaked = leaked[min_keep - survivors:]
+    return leaked
+
+
+def snapshot_cdp_page_ids(port: int) -> set[str] | None:
+    """采集前记录标签页 id 快照。
+
+    失败返回 None 表示放弃本轮清理——不知道采集前有哪些页面时，宁可不关也不误关。
+    """
+    try:
+        return {target["id"] for target in list_cdp_page_targets(port)}
+    except Exception as exc:
+        print(f"[TabCleanup] snapshot skipped: {exc}", file=sys.stderr)
+        return None
+
+
+def close_leaked_pages(port: int, before_ids: set[str] | None) -> None:
+    """关闭采集期间新增的标签页（BUG-01）。
+
+    任何失败都只告警，绝不改变采集本身的成败与返回码。
+    """
+    if before_ids is None:
+        return
+    try:
+        leaked = select_leaked_page_targets(before_ids, list_cdp_page_targets(port))
+        if not leaked:
+            return
+        result = close_cdp_page_targets(port, leaked)
+        print(f"[TabCleanup] closed {result['closed']} leaked tab(s), failed {result['failed']}")
+    except Exception as exc:
+        print(f"[TabCleanup] cleanup skipped: {exc}", file=sys.stderr)
+
+
 class PipelineFileLock:
     def __init__(self, path: Path = COLLECTION_LOCK_PATH):
         self.path = path
@@ -1042,45 +1134,51 @@ def main() -> int:
             if args.browser_only:
                 print(f"browser_port={cdp_port} mode={'offscreen' if args.offscreen else 'visible'} login_state={login_state}")
                 return 0
-            if args.platform == "douyin" and result_path:
-                before_snapshot = snapshot_creator_jsonl(crawler_root, args.platform)
-            exit_code = run_mediacrawler(
-                crawler_root,
-                cdp_port,
-                args.platform,
-                args.creator_id,
-                max_notes,
-                observer,
-            )
-            if exit_code != 0:
-                raise RuntimeError(f"MediaCrawler exited with {exit_code}")
-            if observer:
-                observer.finalize()
-            if args.platform == "douyin" and result_path:
-                delta = creator_output_delta(before_snapshot, snapshot_creator_jsonl(crawler_root, args.platform))
-                if observer and observer.summary()["failed_creator_count"]:
-                    raise RuntimeError("partial_creator_failure: creator receipt is incomplete")
-            if result_path:
-                payload = runner_result_payload(
-                    run_id,
-                    login_state,
-                    delta,
+            # BUG-01：采集期间 MediaCrawler 会新开标签页且从不关闭，逐轮累积吃内存。
+            # 采集前记下快照，无论成败都在 finally 里只关掉本轮新增的那些。
+            pages_before = snapshot_cdp_page_ids(cdp_port)
+            try:
+                if args.platform == "douyin" and result_path:
+                    before_snapshot = snapshot_creator_jsonl(crawler_root, args.platform)
+                exit_code = run_mediacrawler(
+                    crawler_root,
+                    cdp_port,
+                    args.platform,
+                    args.creator_id,
+                    max_notes,
                     observer,
-                    ok=not bool(delta and delta.get("ambiguous")),
                 )
-                atomic_write_json(result_path, payload, run_id)
-            if args.collect_window_hours > 0:
-                result = summarize_creator_jsonl_by_window(crawler_root, args.platform, args.collect_window_hours)
-                if result.get("ok"):
-                    print(
-                        "[MediaCrawlerWindow] "
-                        f"found {result.get('kept', 0)}/{result.get('total', 0)} rows "
-                        f"within {args.collect_window_hours}h in {result.get('path')}; "
-                        "raw JSONL preserved"
+                if exit_code != 0:
+                    raise RuntimeError(f"MediaCrawler exited with {exit_code}")
+                if observer:
+                    observer.finalize()
+                if args.platform == "douyin" and result_path:
+                    delta = creator_output_delta(before_snapshot, snapshot_creator_jsonl(crawler_root, args.platform))
+                    if observer and observer.summary()["failed_creator_count"]:
+                        raise RuntimeError("partial_creator_failure: creator receipt is incomplete")
+                if result_path:
+                    payload = runner_result_payload(
+                        run_id,
+                        login_state,
+                        delta,
+                        observer,
+                        ok=not bool(delta and delta.get("ambiguous")),
                     )
-                else:
-                    print(f"[MediaCrawlerWindow] skipped window summary: {result.get('error')}", file=sys.stderr)
-            return 0
+                    atomic_write_json(result_path, payload, run_id)
+                if args.collect_window_hours > 0:
+                    result = summarize_creator_jsonl_by_window(crawler_root, args.platform, args.collect_window_hours)
+                    if result.get("ok"):
+                        print(
+                            "[MediaCrawlerWindow] "
+                            f"found {result.get('kept', 0)}/{result.get('total', 0)} rows "
+                            f"within {args.collect_window_hours}h in {result.get('path')}; "
+                            "raw JSONL preserved"
+                        )
+                    else:
+                        print(f"[MediaCrawlerWindow] skipped window summary: {result.get('error')}", file=sys.stderr)
+                return 0
+            finally:
+                close_leaked_pages(cdp_port, pages_before)
     except Exception as exc:
         message = str(exc)
         if "login_required" in message:
