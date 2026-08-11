@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "synced",
-  "finished_at": "2026-08-11T15:05:03Z",
+  "outcome": "no_change",
+  "finished_at": "2026-08-11T16:07:28Z",
   "error_code": "",
-  "workflow_run_id": "31505078326",
+  "workflow_run_id": "31510717486",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "054c142d39cb0a4a3942c749b0e9db9b9a626b48",
+  "workflow_head_sha": "595be12bba7c00188a2a68bfee3637c0feff2042",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-08-11T15:05:03Z",
-  "purge_state_sha256": "b1a4d47db34768c6f6ad3fbd1489e0e16e1133658c7a0ce305deb9f0263b40df",
+  "snapshot_completed_at": "2026-08-11T16:07:28Z",
+  "purge_state_sha256": "6835ab103d3a4f4c96858e5f30af764825c71492737fa4c263a55e2938dbace7",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -21,13 +21,7 @@
   "starred_count": 27,
   "private_skipped_count": 0,
   "summary": {
-    "added": [
-      {
-        "repo_id": 1298164130,
-        "repo": "LiamGvchi/gc-minimal-zine-poster",
-        "source_id": "online_github_repo_1298164130"
-      }
-    ],
+    "added": [],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
