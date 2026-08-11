@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-08-06T07:18:46Z",
+  "updated_at": "2026-08-11T15:05:03Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -490,6 +490,21 @@
       "managed_by": "github_stars",
       "managed_account_id": 284580915,
       "managed_repo_id": 1283907968,
+      "managed_state": "active"
+    },
+    {
+      "id": "online_github_repo_1298164130",
+      "name": "LiamGvchi/gc-minimal-zine-poster",
+      "type": "github_release",
+      "enabled": true,
+      "channel": "GitHub Release",
+      "target": "LiamGvchi/gc-minimal-zine-poster",
+      "locator": "LiamGvchi/gc-minimal-zine-poster",
+      "env": "",
+      "notes": "只追踪 release",
+      "managed_by": "github_stars",
+      "managed_account_id": 284580915,
+      "managed_repo_id": 1298164130,
       "managed_state": "active"
     },
     {
