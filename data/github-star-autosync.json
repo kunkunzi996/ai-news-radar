@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "no_change",
-  "finished_at": "2026-08-15T07:55:00Z",
+  "outcome": "synced",
+  "finished_at": "2026-08-15T08:36:41Z",
   "error_code": "",
-  "workflow_run_id": "31873156879",
+  "workflow_run_id": "31874899925",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "fa11d6c1d39807416f375243ca40008cbb337495",
+  "workflow_head_sha": "89d072fb33b362ed4593d29c832c3c57f797eaa0",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-08-15T07:55:00Z",
-  "purge_state_sha256": "dcee001191c36cdddc83ab8aa7581e67bcbf5e7083b6fb635d2fe61d838cb451",
+  "snapshot_completed_at": "2026-08-15T08:36:41Z",
+  "purge_state_sha256": "b13b15d1ac8fbeaafc74c867dd50720d93ad1e38961f3993f10e7589c2482d74",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -18,10 +18,16 @@
   ],
   "account_id": 284580915,
   "account_login": "kunkunzi996",
-  "starred_count": 27,
+  "starred_count": 28,
   "private_skipped_count": 0,
   "summary": {
-    "added": [],
+    "added": [
+      {
+        "repo_id": 1261650101,
+        "repo": "JimLiu/baoyu-design",
+        "source_id": "online_github_repo_1261650101"
+      }
+    ],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
