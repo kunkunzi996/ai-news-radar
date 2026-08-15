@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "synced",
-  "finished_at": "2026-08-15T08:58:52Z",
+  "outcome": "no_change",
+  "finished_at": "2026-08-15T09:31:46Z",
   "error_code": "",
-  "workflow_run_id": "31875812524",
+  "workflow_run_id": "31877216629",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "2467f214387a90808185749b1a0b1a1f86e63ac0",
+  "workflow_head_sha": "552dfee28d9c4918ed4ec8cf2222fcef4974ddd6",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-08-15T08:58:52Z",
-  "purge_state_sha256": "fd4e20e922f2420aba5a66a6caf7a178087383d7a81df86f254416e4e0e27f00",
+  "snapshot_completed_at": "2026-08-15T09:31:46Z",
+  "purge_state_sha256": "98b396cf85aef03136f1abc57f0d4aa61cf03c0b57eaa2e9d2bad8d0b733093f",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -21,13 +21,7 @@
   "starred_count": 29,
   "private_skipped_count": 0,
   "summary": {
-    "added": [
-      {
-        "repo_id": 953521037,
-        "repo": "DayuanJiang/next-ai-draw-io",
-        "source_id": "online_github_repo_953521037"
-      }
-    ],
+    "added": [],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
