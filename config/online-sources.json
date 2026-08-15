@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-08-15T08:36:41Z",
+  "updated_at": "2026-08-15T08:58:52Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -565,6 +565,21 @@
       "managed_by": "github_stars",
       "managed_account_id": 284580915,
       "managed_repo_id": 872119017,
+      "managed_state": "active"
+    },
+    {
+      "id": "online_github_repo_953521037",
+      "name": "DayuanJiang/next-ai-draw-io",
+      "type": "github_release",
+      "enabled": true,
+      "channel": "GitHub Release",
+      "target": "DayuanJiang/next-ai-draw-io",
+      "locator": "DayuanJiang/next-ai-draw-io",
+      "env": "",
+      "notes": "只追踪 release",
+      "managed_by": "github_stars",
+      "managed_account_id": 284580915,
+      "managed_repo_id": 953521037,
       "managed_state": "active"
     },
     {
