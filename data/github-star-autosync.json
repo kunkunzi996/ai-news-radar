@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "synced",
-  "finished_at": "2026-08-16T12:52:06Z",
+  "outcome": "no_change",
+  "finished_at": "2026-08-16T13:36:25Z",
   "error_code": "",
-  "workflow_run_id": "31948211007",
+  "workflow_run_id": "31950282618",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "1f5ba2d2f84302da7b8d88f36ece3d6ab909a4a4",
+  "workflow_head_sha": "8471ae67e2750b01bcc3edeaf10c0a05d7ccf388",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-08-16T12:52:06Z",
-  "purge_state_sha256": "a105a8bb6b5a5f78e7f4fb6ab751b4bb571b07e354accb338e2cee55ba695dd9",
+  "snapshot_completed_at": "2026-08-16T13:36:25Z",
+  "purge_state_sha256": "adea17dcb129d126882ca7307deb76c85c6f6f7fdbcd84f1043943addc400fba",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -21,13 +21,7 @@
   "starred_count": 32,
   "private_skipped_count": 0,
   "summary": {
-    "added": [
-      {
-        "repo_id": 15634981,
-        "repo": "godotengine/godot",
-        "source_id": "online_github_repo_15634981"
-      }
-    ],
+    "added": [],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
