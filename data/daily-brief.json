@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-08-15T23:47:46.894552Z",
+  "generated_at": "2026-08-16T01:47:00.976476Z",
   "window_hours": 24,
-  "total_items": 5,
+  "total_items": 6,
   "items": [
     {
       "story_id": "story_774f7412d1a3",
@@ -406,15 +406,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.4329,
-      "importance": 0.4329,
-      "importance_score": 0.4329,
+      "score": 0.4328,
+      "importance": 0.4328,
+      "importance_score": 0.4328,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.5112,
         "source_tier": 0.5,
         "ai_relevance": 0.71,
-        "recency": 0.014,
+        "recency": 0.0136,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -429,6 +429,84 @@
         "url": "https://simonwillison.net/2026/Aug/3/david-crawshaw",
         "source": "Simon Willison",
         "source_name": "OPML RSS"
+      }
+    },
+    {
+      "story_id": "story_f2c834b04802",
+      "title": "从卖课程到交付能跑的个人系统，知识付费形式被彻底颠覆了! 这期聊聊我们认为在AI时代，知识付费该有的形态。 在交付完自己的线下课以后，我总结了我们的一些思路， 分享给大家！...",
+      "url": "https://www.douyin.com/video/7672773259263315254",
+      "primary_url": "https://www.douyin.com/video/7672773259263315254",
+      "source": "珍妮丁丁说AI",
+      "source_name": "MediaCrawler Douyin",
+      "sources": [
+        {
+          "id": "db52634f4b8d1e18bbc6c3d1fb34a22dc2663cf1",
+          "title": "从卖课程到交付能跑的个人系统，知识付费形式被彻底颠覆了! 这期聊聊我们认为在AI时代，知识付费该有的形态。 在交付完自己的线下课以后，我总结了我们的一些思路， 分享给大家！...",
+          "url": "https://www.douyin.com/video/7672773259263315254",
+          "source": "珍妮丁丁说AI",
+          "source_name": "MediaCrawler Douyin",
+          "site_id": "mediacrawler_douyin",
+          "published_at": "2026-08-11T13:59:05Z"
+        },
+        {
+          "id": "6687755a98cea7c2451112f54e5975361ee7af1d",
+          "title": "小白怎么用AI赚到第一桶知识付费的金！ 这期聊聊我们认为在AI时代，知识付费该有的形态。 在交付完自己的线下课以后，我总结了我们的一些思路， 分享给大家！ 如果你也在做知识付...",
+          "url": "https://www.douyin.com/video/7672773259263315254",
+          "source": "珍妮丁丁说AI",
+          "source_name": "MediaCrawler Douyin",
+          "site_id": "mediacrawler_douyin",
+          "published_at": "2026-08-11T13:59:05Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "珍妮丁丁说AI"
+      ],
+      "items": [
+        {
+          "id": "db52634f4b8d1e18bbc6c3d1fb34a22dc2663cf1",
+          "title": "从卖课程到交付能跑的个人系统，知识付费形式被彻底颠覆了! 这期聊聊我们认为在AI时代，知识付费该有的形态。 在交付完自己的线下课以后，我总结了我们的一些思路， 分享给大家！...",
+          "url": "https://www.douyin.com/video/7672773259263315254",
+          "source": "珍妮丁丁说AI",
+          "source_name": "MediaCrawler Douyin",
+          "site_id": "mediacrawler_douyin",
+          "published_at": "2026-08-11T13:59:05Z"
+        },
+        {
+          "id": "6687755a98cea7c2451112f54e5975361ee7af1d",
+          "title": "小白怎么用AI赚到第一桶知识付费的金！ 这期聊聊我们认为在AI时代，知识付费该有的形态。 在交付完自己的线下课以后，我总结了我们的一些思路， 分享给大家！ 如果你也在做知识付...",
+          "url": "https://www.douyin.com/video/7672773259263315254",
+          "source": "珍妮丁丁说AI",
+          "source_name": "MediaCrawler Douyin",
+          "site_id": "mediacrawler_douyin",
+          "published_at": "2026-08-11T13:59:05Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.4076,
+      "importance": 0.4076,
+      "importance_score": 0.4076,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.45,
+        "source_tier": 0.48,
+        "ai_relevance": 0.52,
+        "recency": 0.2108,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source"
+      ],
+      "earliest_at": "2026-08-11T13:59:05Z",
+      "latest_at": "2026-08-11T13:59:05Z",
+      "primary_item": {
+        "id": "db52634f4b8d1e18bbc6c3d1fb34a22dc2663cf1",
+        "title": "从卖课程到交付能跑的个人系统，知识付费形式被彻底颠覆了! 这期聊聊我们认为在AI时代，知识付费该有的形态。 在交付完自己的线下课以后，我总结了我们的一些思路， 分享给大家！...",
+        "url": "https://www.douyin.com/video/7672773259263315254",
+        "source": "珍妮丁丁说AI",
+        "source_name": "MediaCrawler Douyin"
       }
     },
     {
@@ -484,15 +562,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.3821,
-      "importance": 0.3821,
-      "importance_score": 0.3821,
+      "score": 0.3819,
+      "importance": 0.3819,
+      "importance_score": 0.3819,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.45,
         "source_tier": 0.48,
         "ai_relevance": 0.55,
-        "recency": 0.0362,
+        "recency": 0.0351,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -562,15 +640,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.3233,
-      "importance": 0.3233,
-      "importance_score": 0.3233,
+      "score": 0.3226,
+      "importance": 0.3226,
+      "importance_score": 0.3226,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.45,
         "source_tier": 0.5,
         "ai_relevance": 0.15,
-        "recency": 0.1292,
+        "recency": 0.1256,
         "story_heat": 0.25
       },
       "category": "watch",
