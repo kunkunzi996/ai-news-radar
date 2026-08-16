@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "synced",
-  "finished_at": "2026-08-16T06:51:06Z",
+  "outcome": "no_change",
+  "finished_at": "2026-08-16T07:36:50Z",
   "error_code": "",
-  "workflow_run_id": "31932405549",
+  "workflow_run_id": "31934312893",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "80663b90e251eb9bca342640d3c2a6a5387e69bf",
+  "workflow_head_sha": "4bdc3091b39fb2c7785df274f8e8360f93e7c156",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-08-16T06:51:06Z",
-  "purge_state_sha256": "eb877cd46b3d1831a18e1c2f6867ca35648b18f9f76199263af1031936591cfe",
+  "snapshot_completed_at": "2026-08-16T07:36:50Z",
+  "purge_state_sha256": "520a5a9262d7e597f000307439280a86a1282502668948db518b3825a05cc8cb",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -21,13 +21,7 @@
   "starred_count": 30,
   "private_skipped_count": 0,
   "summary": {
-    "added": [
-      {
-        "repo_id": 1166102148,
-        "repo": "DeusData/codebase-memory-mcp",
-        "source_id": "online_github_repo_1166102148"
-      }
-    ],
+    "added": [],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
