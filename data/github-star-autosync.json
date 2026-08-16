@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "synced",
-  "finished_at": "2026-08-16T09:33:36Z",
+  "outcome": "no_change",
+  "finished_at": "2026-08-16T09:53:15Z",
   "error_code": "",
-  "workflow_run_id": "31939355676",
+  "workflow_run_id": "31940211403",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "5538bf0f5d4739e2fde0c626cc95a46dec378e27",
+  "workflow_head_sha": "8023ddfbb6c361965e37653389eadf579208a370",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-08-16T09:33:36Z",
-  "purge_state_sha256": "f753e91275fd6cc8c8729940fe49b7623e6cfd62a6a80abf97dc8d5b5b949f0a",
+  "snapshot_completed_at": "2026-08-16T09:53:15Z",
+  "purge_state_sha256": "cf6e281de1f220b30f64876cf161849ca1c0e35933bbd2f6d8b62407a5b944bf",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -21,13 +21,7 @@
   "starred_count": 31,
   "private_skipped_count": 0,
   "summary": {
-    "added": [
-      {
-        "repo_id": 1183325896,
-        "repo": "emilkowalski/skills",
-        "source_id": "online_github_repo_1183325896"
-      }
-    ],
+    "added": [],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
