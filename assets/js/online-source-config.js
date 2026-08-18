@@ -150,6 +150,22 @@ function normalizeOnlineSourceConfig(payload = {}) {
   };
 }
 
+function applyBridgedOnlineSourceConfig(config) {
+  if (typeof isReaderOnlyMode !== "function" || !isReaderOnlyMode()) return false;
+  if (!config || typeof config !== "object" || !Array.isArray(config.sources)) return false;
+  state.onlineSourceConfig = normalizeOnlineSourceConfig(config);
+  state.onlineSourceConfigLoaded = true;
+  state.onlineSourceDirty = false;
+  renderOnlineSourceConfig();
+  setOnlineSourceStatus(
+    `已读取宿主脱敏配置，共 ${fmtNumber(state.onlineSourceConfig.sources.length)} 个线上信源`,
+    "ok",
+  );
+  return true;
+}
+
+window.applyBridgedOnlineSourceConfig = applyBridgedOnlineSourceConfig;
+
 function onlineSourcePayload() {
   return {
     version: "1.0",

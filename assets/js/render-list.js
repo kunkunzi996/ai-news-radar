@@ -1050,8 +1050,12 @@ function buildReadToggleButton(item) {
   btn.type = "button";
   const read = isItemRead(item);
   btn.className = `read-toggle-btn${read ? " is-read" : ""}`;
-  btn.textContent = read ? "恢复" : "已阅";
-  btn.title = read ? "恢复到我的订阅" : "标记已阅，从看板中移出";
+  const monotonic = Boolean(window.RadarSync && window.RadarSync.monotonicReads());
+  btn.textContent = read && !monotonic ? "恢复" : "已阅";
+  btn.title = read
+    ? (monotonic ? "已阅状态已同步，不能恢复为未阅" : "恢复到我的订阅")
+    : "标记已阅，从看板中移出";
+  btn.disabled = read && monotonic;
   btn.addEventListener("click", () => toggleItemRead(item));
   return btn;
 }
@@ -1063,8 +1067,26 @@ function buildCollectButton(item) {
   btn.className = `collect-btn${collected ? " is-collected" : ""}`;
   btn.textContent = collected ? "已收藏" : "收藏";
   btn.title = collected ? "已收藏到工作台收藏库" : idleTitle;
-  btn.disabled = collected;
+  btn.disabled = false;
+  if (!collected && window.RadarSync && !window.RadarSync.canWriteCollections()) {
+    btn.textContent = "同步暂停";
+    btn.title = "同步暂不可用，当前仍可阅读和打开原文";
+    btn.disabled = true;
+    return btn;
+  }
   btn.addEventListener("click", async () => {
+    if (window.WorkbenchBridge.isCollected(item.url)) {
+      btn.textContent = "已在收藏库";
+      btn.title = "该内容已在工作台收藏库，不会重复收藏";
+      btn.classList.add("is-collected");
+      return;
+    }
+    if (window.RadarSync && !window.RadarSync.canWriteCollections()) {
+      btn.textContent = "同步暂停";
+      btn.title = "同步暂不可用，当前仍可阅读和打开原文";
+      btn.disabled = true;
+      return;
+    }
     btn.disabled = true;
     btn.textContent = "收藏中…";
     try {
@@ -1077,7 +1099,9 @@ function buildCollectButton(item) {
       });
       window.WorkbenchBridge.markCollected(item.url);
       btn.textContent = "已收藏";
+      btn.title = "已收藏到工作台收藏库";
       btn.classList.add("is-collected");
+      btn.disabled = false;
       // 收藏成功顺手标已阅；toggleItemRead 触发重渲染后，按钮状态由 isCollected 记住
       if (!isItemRead(item) && readTrackingKeys(item).size) toggleItemRead(item);
     } catch (err) {
@@ -1471,6 +1495,8 @@ function rerenderCurrentView() {
   renderSectionTabs();
   renderTimeRangeControl();
   renderModeSwitch();
+  renderReadFilterTools();
+  renderListSortTools();
   renderSiteFilters();
   renderBolePicks();
   if (state.waytoagiData) renderWaytoagi(state.waytoagiData);

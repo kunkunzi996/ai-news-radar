@@ -1,6 +1,7 @@
 state.readItemIds = loadReadItemIds();
 initDataSource();
 renderDataSourcePill();
+renderReadFilterTools();
 
 async function loadNewsData() {
   return fetchDataJson("latest-24h.json", "latest-24h.json");
@@ -151,12 +152,14 @@ async function init() {
 
 searchInputEl.addEventListener("input", (e) => {
   state.query = e.target.value;
+  if (window.RadarSync) window.RadarSync.saveViewField("query", state.query);
   renderBolePicks();
   renderList();
 });
 
 siteSelectEl.addEventListener("change", (e) => {
   state.siteFilter = e.target.value;
+  if (window.RadarSync) window.RadarSync.saveViewField("siteFilter", state.siteFilter);
   if (state.siteFilter !== "socialdata_x") state.authorFilter = "";
   state.siteGroupsExpanded = false;
   renderSiteFilters();
@@ -167,11 +170,13 @@ siteSelectEl.addEventListener("change", (e) => {
 if (timeRangeSelectEl) {
   timeRangeSelectEl.addEventListener("change", async (e) => {
     state.timeRangeFilter = e.target.value === "all" ? "all" : "24h";
+    if (window.RadarSync) window.RadarSync.saveViewField("timeRangeFilter", state.timeRangeFilter);
     if (state.timeRangeFilter === "all") {
       try {
         await loadAllModeData();
       } catch (err) {
         state.timeRangeFilter = "24h";
+        if (window.RadarSync) window.RadarSync.saveViewField("timeRangeFilter", state.timeRangeFilter);
         renderTimeRangeControl();
         newsListEl.innerHTML = "";
         const failed = document.createElement("div");
@@ -188,6 +193,7 @@ if (timeRangeSelectEl) {
 if (sectionSelectEl) {
   sectionSelectEl.addEventListener("change", (e) => {
     setActiveSection(e.target.value || "hot");
+    if (window.RadarSync) window.RadarSync.saveViewField("activeSection", state.activeSection);
     rerenderCurrentView();
   });
 }
@@ -197,6 +203,12 @@ if (sourceTypeSelectEl) {
     state.sourceTypeFilter = e.target.value;
     state.siteFilter = "";
     state.authorFilter = "";
+    if (window.RadarSync) {
+      window.RadarSync.saveViewPatch({
+        sourceTypeFilter: state.sourceTypeFilter,
+        siteFilter: state.siteFilter,
+      });
+    }
     rerenderCurrentView();
   });
 }
@@ -204,17 +216,20 @@ if (sourceTypeSelectEl) {
 if (signalLevelSelectEl) {
   signalLevelSelectEl.addEventListener("change", (e) => {
     state.signalLevelFilter = e.target.value;
+    if (window.RadarSync) window.RadarSync.saveViewField("signalLevelFilter", state.signalLevelFilter);
     rerenderCurrentView();
   });
 }
 
 modeAiBtnEl.addEventListener("click", () => {
   state.mode = "ai";
+  if (window.RadarSync) window.RadarSync.saveViewField("mode", state.mode);
   rerenderCurrentView();
 });
 
 modeAllBtnEl.addEventListener("click", async () => {
   state.mode = "all";
+  if (window.RadarSync) window.RadarSync.saveViewField("mode", state.mode);
   renderModeSwitch();
   newsListEl.innerHTML = "";
   const loading = document.createElement("div");
@@ -236,6 +251,7 @@ modeAllBtnEl.addEventListener("click", async () => {
 if (allDedupeToggleEl) {
   allDedupeToggleEl.addEventListener("change", (e) => {
     state.allDedup = Boolean(e.target.checked);
+    if (window.RadarSync) window.RadarSync.saveViewField("allDedup", state.allDedup);
     rerenderCurrentView();
   });
 }
@@ -248,10 +264,33 @@ if (listSortToolsEl) {
     const nextSort = button.dataset.sort;
     if (!LIST_SORT_DEFS.some((item) => item.id === nextSort) || nextSort === state.listSort) return;
     state.listSort = nextSort;
+    if (window.RadarSync) window.RadarSync.saveViewField("listSort", state.listSort);
     renderListSortTools();
     renderList();
   });
 }
+
+if (readFilterToolsEl) {
+  readFilterToolsEl.addEventListener("click", (event) => {
+    const target = event.target;
+    const button = target instanceof Element ? target.closest("[data-read-filter]") : null;
+    if (!button || !readFilterToolsEl.contains(button)) return;
+    const nextFilter = button.dataset.readFilter;
+    if (!["all", "unread", "read"].includes(nextFilter) || nextFilter === state.readFilter) return;
+    state.readFilter = nextFilter;
+    if (window.RadarSync) window.RadarSync.saveViewField("readFilter", state.readFilter);
+    renderReadFilterTools();
+    renderList();
+  });
+}
+
+document.addEventListener("click", (event) => {
+  const target = event.target;
+  const anchor = target instanceof Element ? target.closest(".app-main a[href][target=\"_blank\"]") : null;
+  if (!anchor) return;
+  if (document.body.classList.contains("omnia-app-mode")) event.preventDefault();
+  if (window.WorkbenchBridge) window.WorkbenchBridge.openExternal(anchor.href);
+}, true);
 
 if (waytoagiTodayBtnEl) {
   waytoagiTodayBtnEl.addEventListener("click", () => {

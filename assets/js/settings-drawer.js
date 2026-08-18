@@ -16,6 +16,7 @@ function setRemoteAdminStatus(message, tone = "") {
 }
 
 function syncRemoteAdminForm() {
+  if (isReaderOnlyMode()) return;
   if (!remoteAdminFormEl) return;
   const base = getAdminApiBase();
   const token = getAdminToken();
@@ -34,6 +35,7 @@ function syncRemoteAdminForm() {
 
 async function connectRemoteAdmin(event) {
   if (event) event.preventDefault();
+  if (isReaderOnlyMode()) return;
   if (!remoteAdminBaseInputEl || !remoteAdminTokenInputEl) return;
   const base = normalizeAdminApiBase(remoteAdminBaseInputEl.value);
   const token = String(remoteAdminTokenInputEl.value || "").trim();
@@ -51,6 +53,7 @@ async function connectRemoteAdmin(event) {
     const res = await fetch(`${base}/api/local-status`, {
       headers: { Accept: "application/json", "X-Admin-Token": token },
       cache: "no-store",
+      redirect: "manual",
     });
     const payload = await res.json().catch(() => ({}));
     if (res.status === 401) {
@@ -82,6 +85,7 @@ async function connectRemoteAdmin(event) {
 }
 
 function disconnectRemoteAdmin() {
+  if (isReaderOnlyMode()) return;
   clearAdminConnection();
   if (window.WorkbenchBridge && window.WorkbenchBridge.saveConfigToWorkbench) {
     window.WorkbenchBridge.saveConfigToWorkbench({ adminApiBase: "", adminToken: "" });
@@ -183,6 +187,7 @@ function trapSettingsTab(event) {
 let settingsLastFocusedEl = null;
 
 function openSettingsDrawer() {
+  if (isReaderOnlyMode()) return;
   if (!settingsDrawerEl) return;
   settingsLastFocusedEl = document.activeElement;
   syncSettingsTabAvailability();

@@ -257,6 +257,62 @@ summary:focus-visible {
   white-space: nowrap;
 }
 
+.radar-sync-status {
+  display: inline-flex;
+  width: max-content;
+  max-width: 100%;
+  align-items: center;
+  border: 1px solid rgba(31, 122, 77, 0.2);
+  border-radius: 999px;
+  padding: 4px 8px;
+  color: var(--good);
+  background: rgba(31, 122, 77, 0.07);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.radar-sync-status.warn {
+  color: var(--warn);
+  border-color: rgba(154, 103, 0, 0.22);
+  background: rgba(154, 103, 0, 0.08);
+}
+
+.read-filter-tools {
+  display: inline-flex;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface-soft);
+}
+
+.read-filter-btn {
+  min-height: 40px;
+  min-width: 52px;
+  border: 0;
+  border-left: 1px solid var(--line);
+  padding: 0 12px;
+  color: var(--muted);
+  background: transparent;
+  font-size: 13px;
+}
+
+.read-filter-btn:first-child {
+  border-left: 0;
+}
+
+.read-filter-btn.active {
+  color: #fff;
+  background: var(--accent);
+  font-weight: 700;
+}
+
+body.omnia-app-mode .hero-links,
+body.radar-reader-only-mode .settings-open-btn,
+body.radar-reader-only-mode #settingsDrawer {
+  display: none !important;
+}
+
 .advanced-panel {
   margin-top: 12px;
   border: 1px solid rgba(23, 23, 23, 0.08);
@@ -3131,6 +3187,10 @@ summary:focus-visible {
   background: var(--surface-soft);
 }
 
+.read-toggle-btn:disabled {
+  cursor: default;
+}
+
 .collect-btn {
   min-height: 26px;
   padding: 0 10px;
@@ -3538,6 +3598,13 @@ summary:focus-visible {
 }
 
 @media (max-width: 460px) {
+  .read-filter-tools {
+    width: 100%;
+  }
+
+  .read-filter-btn {
+    flex: 1 1 0;
+  }
   .health-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 6px;
