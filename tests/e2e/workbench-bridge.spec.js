@@ -83,6 +83,7 @@ let workbenchReadStatusFailure = false;
 let workbenchMigrationConflict = null;
 let workbenchWriteFailure = null;
 let workbenchRequestTimeoutMs = 0;
+let workbenchNoReferrer = false;
 
 function jsonResponse(body) {
   return { status: 200, contentType: "application/json", body: JSON.stringify(body) };
@@ -185,6 +186,7 @@ function workbenchHtml(radarUrl, radarConfig = null, radarState = null) {
   const injectedRadarState = JSON.stringify(radarState);
   return `<!doctype html>
 <html lang="zh-CN">
+  <head>${workbenchNoReferrer ? '<meta name="referrer" content="no-referrer">' : ""}</head>
   <body>
     <iframe id="radar" title="真实雷达"></iframe>
     <iframe id="spoof" title="同源伪造页" src="/spoof"></iframe>
@@ -454,6 +456,23 @@ test.describe("工作台收藏桥", () => {
   test.afterAll(async () => {
     await closeServer(wrongOriginServer);
     await closeServer(parentServer);
+  });
+
+  test("父页禁止 referrer 时仍能向白名单父源发起握手并应用已阅", async ({ page }) => {
+    workbenchNoReferrer = true;
+    workbenchRadarState = SYNC_STATE;
+    const errors = collectErrors(page);
+    await installRadarFixture(page);
+    await page.goto(PARENT_ORIGIN);
+    const radar = page.frameLocator("#radar");
+    await expect(radar.locator("#newsList .news-card")).toHaveCount(2);
+    await expect.poll(() => page.evaluate(() => window.__workbench.events().some((event) => event.type === "radar-ready"))).toBe(true);
+    await page.evaluate(() => window.__workbench.hello());
+    await expect.poll(() => radar.locator("body").evaluate(() => window.WorkbenchBridge.connected())).toBe(true);
+    await expect(radar.locator(".section-tab.active")).toContainText("B站");
+    expect(errors).toEqual([]);
+    workbenchNoReferrer = false;
+    workbenchRadarState = null;
   });
 
   test("独立打开时没有收藏痕迹和控制台错误", async ({ page }) => {

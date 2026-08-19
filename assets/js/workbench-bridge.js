@@ -205,17 +205,24 @@
     lastExternalOpenFailure = { url, error: String(error || "原生宿主不可用") };
   }
 
-  function resolveIframeParent() {
-    if (window === window.parent || transport === "native") return false;
+  function iframeParentOrigins() {
+    const origins = [];
+    const add = (value) => {
+      if (PARENT_ORIGINS.has(value) && !origins.includes(value)) origins.push(value);
+    };
     try {
-      const origin = new URL(document.referrer).origin;
-      if (!PARENT_ORIGINS.has(origin)) return false;
-      parentWin = window.parent;
-      parentOrigin = origin;
-      return true;
-    } catch {
-      return false;
-    }
+      if (document.referrer) add(new URL(document.referrer).origin);
+    } catch {}
+    try {
+      const ancestors = window.location.ancestorOrigins;
+      if (ancestors) {
+        for (let i = 0; i < ancestors.length; i += 1) add(ancestors[i]);
+      }
+    } catch {}
+    if (origins.length || window === window.parent) return origins;
+    // 工作台 HTML 使用 Referrer-Policy: no-referrer 时，iframe 读不到 referrer。
+    // 只向白名单 origin 发送；真正的父页才会收到。
+    return Array.from(PARENT_ORIGINS);
   }
 
   function attemptIframeHandshake() {
@@ -223,9 +230,15 @@
       stopIframeHandshake();
       return;
     }
-    if (!resolveIframeParent()) return;
+    if (window === window.parent) return;
+    parentWin = window.parent;
     const message = createPageEnvelope("radar-ready", iframeHandshakeRequestId);
-    if (message) parentWin.postMessage(message, parentOrigin);
+    if (!message) return;
+    const origins = iframeParentOrigins();
+    if (!origins.length) return;
+    origins.forEach((origin) => {
+      parentWin.postMessage(message, origin);
+    });
   }
 
   function startIframeHandshake() {
