@@ -99,12 +99,10 @@
 
   function replaceServerReads(keys) {
     serverReadKeys = new Set((Array.isArray(keys) ? keys : []).map(String).filter(Boolean));
+    state.readItemIds = new Set();
     allLoadedItems().forEach((item) => {
-      const trackingKeys = readTrackingKeys(item);
-      trackingKeys.forEach((key) => state.readItemIds.delete(key));
-      if (serverReadKeys.has(stableReadKey(item))) {
-        trackingKeys.forEach((key) => state.readItemIds.add(key));
-      }
+      if (!serverReadKeys.has(stableReadKey(item))) return;
+      readTrackingKeys(item).forEach((key) => state.readItemIds.add(key));
     });
     persistReadItemIds();
   }
