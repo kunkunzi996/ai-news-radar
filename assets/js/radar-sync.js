@@ -158,7 +158,7 @@
   }
 
   async function migrateLegacyReads(keys) {
-    if (window.WorkbenchBridge.appRequested() || !window.WorkbenchBridge.connected()) return false;
+    if (!window.WorkbenchBridge.connected()) return false;
     if (!["open", "claimed"].includes(legacyReadMigration.status)) return false;
     const candidates = Array.isArray(keys) ? keys.filter(Boolean) : [];
     if (!candidates.length) return false;
