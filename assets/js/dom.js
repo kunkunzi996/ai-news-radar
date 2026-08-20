@@ -60,6 +60,7 @@ const state = {
   collectionProgressActive: false,
   oneClickActive: false,
   readItemIds: new Set(),
+  readFilter: "unread",
 };
 
 const statsEl = document.getElementById("stats");
@@ -88,6 +89,8 @@ const sourceStatusTableEl = document.getElementById("sourceStatusTable");
 const sectionSelectEl = document.getElementById("sectionSelect");
 const sourceTypeSelectEl = document.getElementById("sourceTypeSelect");
 const signalLevelSelectEl = document.getElementById("signalLevelSelect");
+const readFilterToolsEl = document.getElementById("readFilterTools");
+const radarSyncStatusEl = document.getElementById("radarSyncStatus");
 
 const waytoagiWrapEl = document.querySelector(".waytoagi-wrap");
 const waytoagiUpdatedAtEl = document.getElementById("waytoagiUpdatedAt");

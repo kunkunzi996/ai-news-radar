@@ -33,7 +33,7 @@
     <link rel="icon" href="./assets/icons/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png" sizes="180x180" />
     <link rel="manifest" href="./site.webmanifest" />
-    <link rel="stylesheet" href="./assets/styles.css?v=workbench-bridge-0717a" />
+    <link rel="stylesheet" href="./assets/styles.css?v=ai-radar-app-0814a" />
     <link rel="stylesheet" href="./assets/reader-layout.css?v=aihot-reader-0715b" />
   </head>
   <body>
@@ -86,7 +86,13 @@
             <section class="primary-controls">
               <input id="searchInput" type="search" placeholder="搜索 AI 信号 / 来源" />
               <div class="mode-hint" id="modeHint">全量</div>
+              <span class="radar-sync-status" id="radarSyncStatus" role="status" aria-live="polite" hidden></span>
             </section>
+            <div class="read-filter-tools" id="readFilterTools" role="group" aria-label="阅读状态筛选">
+              <button class="read-filter-btn" type="button" data-read-filter="all" aria-pressed="false">全部</button>
+              <button class="read-filter-btn active" type="button" data-read-filter="unread" aria-pressed="true">未阅</button>
+              <button class="read-filter-btn" type="button" data-read-filter="read" aria-pressed="false">已阅</button>
+            </div>
             <div class="list-sort-tools" id="listSortTools" role="group" aria-label="全量列表排序">
               <button class="list-sort-btn" type="button" data-sort="priority" title="综合来源权重、AI相关度、新鲜度与信号强度">综合</button>
               <button class="list-sort-btn active" type="button" data-sort="time" title="按发布时间或发现时间倒序">时间</button>
@@ -537,17 +543,18 @@
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous" defer></script>
     <script src="./assets/motion.js?v=ui-adjustment-0620a" defer></script>
-    <script src="./assets/js/dom.js?v=github-stars-sync-0716a" defer></script>
-    <script src="./assets/js/utils.js?v=config-bridge-0731b" defer></script>
-    <script src="./assets/js/workbench-bridge.js?v=config-bridge-0731b" defer></script>
-    <script src="./assets/js/render-meta.js?v=github-stars-sync-0716a" defer></script>
-    <script src="./assets/js/render-list.js?v=workbench-bridge-0717a" defer></script>
+    <script src="./assets/js/dom.js?v=ai-radar-app-0810a" defer></script>
+    <script src="./assets/js/utils.js?v=task-09b-0817a" defer></script>
+    <script src="./assets/js/workbench-bridge.js?v=iframe-referrer-0818d" defer></script>
+    <script src="./assets/js/render-meta.js?v=ai-radar-app-0816a" defer></script>
+    <script src="./assets/js/render-list.js?v=workbench-bridge-0717a-ai-radar-app-0816a" defer></script>
     <script src="./assets/js/render-panels.js?v=github-stars-sync-0716a" defer></script>
-    <script src="./assets/js/subscriptions.js?v=remote-admin-0729a" defer></script>
+    <script src="./assets/js/subscriptions.js?v=ai-radar-app-0810a" defer></script>
+    <script src="./assets/js/radar-sync.js?v=read-sync-0818c" defer></script>
     <script src="./assets/js/source-config.js?v=remote-admin-0729a" defer></script>
     <script src="./assets/js/local-collect.js?v=wechat-admin-remote-0803a" defer></script>
-    <script src="./assets/js/online-source-config.js?v=save-sync-0804a" defer></script>
-    <script src="./assets/js/settings-drawer.js?v=config-sync-0731a" defer></script>
-    <script src="./assets/js/boot.js?v=we-mp-rss-btn-0715a" defer></script>
+    <script src="./assets/js/online-source-config.js?v=bridge-security-0813a" defer></script>
+    <script src="./assets/js/settings-drawer.js?v=task-09b-0817a" defer></script>
+    <script src="./assets/js/boot.js?v=task-08b-0816a" defer></script>
   </body>
 </html>

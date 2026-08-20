@@ -741,9 +741,11 @@ function toggleItemRead(item) {
   const keys = readTrackingKeys(item);
   if (!keys.size) return;
   if (isItemRead(item)) {
+    if (window.RadarSync && window.RadarSync.monotonicReads()) return;
     keys.forEach((key) => state.readItemIds.delete(key));
   } else {
     keys.forEach((key) => state.readItemIds.add(key));
+    if (window.RadarSync) window.RadarSync.markRead(item);
   }
   persistReadItemIds();
   rerenderCurrentView();

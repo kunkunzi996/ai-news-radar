@@ -335,6 +335,7 @@ function renderSectionTabs() {
     btn.innerHTML = `<span>${section.label}</span><strong>${fmtNumber(stats.count)}</strong>`;
     btn.addEventListener("click", () => {
       setActiveSection(section.id);
+      if (window.RadarSync) window.RadarSync.saveViewField("activeSection", state.activeSection);
       renderSectionTabs();
       renderModeSwitch();
       renderSiteFilters();
@@ -405,6 +406,7 @@ function renderSiteFilters() {
   allPill.textContent = "全部";
   allPill.onclick = () => {
     state.siteFilter = "";
+    if (window.RadarSync) window.RadarSync.saveViewField("siteFilter", state.siteFilter);
     renderSiteFilters();
     renderBolePicks();
     renderList();
@@ -420,6 +422,7 @@ function renderSiteFilters() {
     authorPill.onclick = () => {
       state.authorFilter = "";
       state.siteFilter = "";
+      if (window.RadarSync) window.RadarSync.saveViewField("siteFilter", state.siteFilter);
       state.siteGroupsExpanded = false;
       renderSiteFilters();
       renderBolePicks();
@@ -434,6 +437,7 @@ function renderSiteFilters() {
     btn.textContent = `${s.site_name} ${siteRatioText(s)}`;
     btn.onclick = () => {
       state.siteFilter = s.site_id;
+      if (window.RadarSync) window.RadarSync.saveViewField("siteFilter", state.siteFilter);
       if (s.site_id !== "socialdata_x") state.authorFilter = "";
       renderSiteFilters();
       renderBolePicks();
@@ -483,6 +487,14 @@ function renderListSortTools() {
     button.setAttribute("aria-pressed", active ? "true" : "false");
   });
 }
+function renderReadFilterTools() {
+  if (!readFilterToolsEl) return;
+  readFilterToolsEl.querySelectorAll("[data-read-filter]").forEach((button) => {
+    const active = button.dataset.readFilter === state.readFilter;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", active ? "true" : "false");
+  });
+}
 function itemSourceSortKey(item) {
   return [
     sourceSignal(item),
@@ -524,7 +536,27 @@ function modeItems() {
 }
 function getFilteredItems() {
   const q = state.query.trim().toLowerCase();
-  const preliminary = sectionItems().filter((item) => {
+  const sectionId = state.activeSection;
+  let sectionPool;
+  if (sectionId === "read") {
+    sectionPool = applyTimeRange(subscriptionModeItems()).filter((item) => isItemRead(item));
+  } else if (sectionId === "creator") {
+    sectionPool = applyTimeRange(subscriptionModeItems());
+    if (state.readFilter === "all" && window.RadarSync && window.RadarSync.monotonicReads()) {
+      sectionPool = sectionPool.filter((item) => !isItemRead(item));
+    }
+  } else if (isSubscriptionSection(sectionId)) {
+    sectionPool = applyTimeRange(subscriptionModeItems())
+      .filter((item) => itemPlatformSection(item) === sectionId);
+  } else {
+    sectionPool = visibleItemList(applyTimeRange(modeItems()))
+      .filter((item) => itemMatchesSection(item, sectionId));
+  }
+  if (sectionId !== "read") {
+    if (state.readFilter === "read") sectionPool = sectionPool.filter((item) => isItemRead(item));
+    if (state.readFilter === "unread") sectionPool = sectionPool.filter((item) => !isItemRead(item));
+  }
+  const preliminary = sectionPool.filter((item) => {
     if (state.siteFilter && item.site_id !== state.siteFilter) return false;
     if (state.authorFilter && (item.site_id !== "socialdata_x" || item.source !== state.authorFilter)) return false;
     if (state.sourceTypeFilter && itemSourceType(item) !== state.sourceTypeFilter) return false;
