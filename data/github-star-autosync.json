@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "no_change",
-  "finished_at": "2026-08-21T16:41:27Z",
+  "outcome": "synced",
+  "finished_at": "2026-08-21T17:35:12Z",
   "error_code": "",
-  "workflow_run_id": "32504208281",
+  "workflow_run_id": "32508908885",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "9a7b7c1b4d8d32f11044c338e8cf8b0362aa8918",
+  "workflow_head_sha": "47d78d86b7b6f08e6364c05b0ec90e6a711c25d7",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-08-21T16:41:27Z",
-  "purge_state_sha256": "9155b0469c35afa952729737cb19b2ffb5b3b86407c2816342fb231b99a9ac91",
+  "snapshot_completed_at": "2026-08-21T17:35:12Z",
+  "purge_state_sha256": "d22c779991edf32885148e29bcd78781b3be8682809807ca9aee7ef79853d20c",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -18,10 +18,16 @@
   ],
   "account_id": 284580915,
   "account_login": "kunkunzi996",
-  "starred_count": 32,
+  "starred_count": 33,
   "private_skipped_count": 0,
   "summary": {
-    "added": [],
+    "added": [
+      {
+        "repo_id": 79779269,
+        "repo": "youzan/vant-weapp",
+        "source_id": "online_github_repo_79779269"
+      }
+    ],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
