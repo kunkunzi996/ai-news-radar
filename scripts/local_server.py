@@ -474,6 +474,35 @@ def api_error_payload(exc: Exception) -> tuple[int, dict[str, Any]]:
         return HTTPStatus.BAD_REQUEST, {"ok": False, "error": "invalid_request"}
     return HTTPStatus.INTERNAL_SERVER_ERROR, {"ok": False, "error": "internal_error"}
 
+
+ASSETS_CACHE_CONTROL = "public, max-age=31536000, immutable"
+HTML_CACHE_CONTROL = "public, max-age=0, s-maxage=600, stale-while-revalidate=86400"
+DATA_JSON_CACHE_CONTROL = "public, max-age=0, s-maxage=300, stale-while-revalidate=1800"
+
+
+def origin_cache_control(path: str) -> str | None:
+    """Return the origin Cache-Control for a request path, ignoring the query string.
+
+    /api/* returns None so json_response keeps its existing no-store header
+    and this layer does not add a caching directive.
+    """
+    route = unquote(path.split("?", 1)[0])
+    normalized = posixpath.normpath(route).replace("\\", "/")
+    if not normalized.startswith("/"):
+        normalized = "/" + normalized
+    if normalized.startswith("/assets/"):
+        return ASSETS_CACHE_CONTROL
+    if normalized in {"/", "/index.html"}:
+        return HTML_CACHE_CONTROL
+    if (
+        normalized.startswith("/data/")
+        and normalized.endswith(".json")
+        and "/" not in normalized[len("/data/") :]
+    ):
+        return DATA_JSON_CACHE_CONTROL
+    return None
+
+
 class LocalRadarHandler(SimpleHTTPRequestHandler):
     server_version = "AIReadRadarLocal/0.1"
 
@@ -524,6 +553,28 @@ class LocalRadarHandler(SimpleHTTPRequestHandler):
     )
     PUBLIC_STATIC_PREFIXES = ("/assets/", "/data/")
     PUBLIC_STATIC_DENIED_EXACT = frozenset({"/data/pending-purge.json"})
+
+    def send_response(self, code: int, message: str | None = None) -> None:
+        self._response_status = int(code)
+        super().send_response(code, message)
+
+    def _header_already_set(self, name: str) -> bool:
+        prefix = f"{name.lower()}:"
+        for line in getattr(self, "_headers_buffer", []) or []:
+            if line.lower().startswith(prefix.encode("latin-1")):
+                return True
+        return False
+
+    def end_headers(self) -> None:
+        if (
+            getattr(self, "command", "") in {"GET", "HEAD"}
+            and getattr(self, "_response_status", None) == int(HTTPStatus.OK)
+            and not self._header_already_set("Cache-Control")
+        ):
+            value = origin_cache_control(self.path)
+            if value is not None:
+                self.send_header("Cache-Control", value)
+        super().end_headers()
 
     def reject_private_static(self, route: str) -> bool:
         """In token mode (publicly reachable), only serve an explicit static allowlist.
