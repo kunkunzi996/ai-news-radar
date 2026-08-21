@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-08-16T12:52:06Z",
+  "updated_at": "2026-08-21T17:35:12Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -595,6 +595,21 @@
       "managed_by": "github_stars",
       "managed_account_id": 284580915,
       "managed_repo_id": 15634981,
+      "managed_state": "active"
+    },
+    {
+      "id": "online_github_repo_79779269",
+      "name": "youzan/vant-weapp",
+      "type": "github_release",
+      "enabled": true,
+      "channel": "GitHub Release",
+      "target": "youzan/vant-weapp",
+      "locator": "youzan/vant-weapp",
+      "env": "",
+      "notes": "只追踪 release",
+      "managed_by": "github_stars",
+      "managed_account_id": 284580915,
+      "managed_repo_id": 79779269,
       "managed_state": "active"
     },
     {
