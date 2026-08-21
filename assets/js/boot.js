@@ -13,7 +13,9 @@ async function loadAllModeData() {
       .then((payload) => {
         state.itemsAllRaw = payload.items_all_raw || payload.items_all || state.itemsAi;
         state.itemsAll = payload.items_all || state.itemsAi;
-        state.creatorItemsAll = payload.creator_items_all || state.creatorItemsAll;
+        if (Array.isArray(payload.creator_items_all) && payload.creator_items_all.length) {
+          state.creatorItemsAll = payload.creator_items_all;
+        }
         state.creatorWindowDays = Number(payload.creator_window_days || state.creatorWindowDays || 7);
         state.creatorTimeScope = payload.creator_time_scope || state.creatorTimeScope;
         state.totalRaw = payload.total_items_raw || state.itemsAllRaw.length;
@@ -28,6 +30,27 @@ async function loadAllModeData() {
       });
   }
   return state.allDataPromise;
+}
+function currentViewUsesCreatorPool() {
+  const sectionId = state.activeSection;
+  return sectionId === "creator" || sectionId === "read" || isSubscriptionSection(sectionId);
+}
+function afterAllModeDataArrived() {
+  renderSectionTabs();
+  renderTimeRangeControl();
+  renderModeSwitch();
+  renderCoverageStrip();
+  renderSiteFilters();
+  if (resultCountEl) {
+    resultCountEl.textContent = `${fmtNumber(getFilteredItems().length)} 条`;
+  }
+  const needsListRebuild = Boolean(state.query)
+    || !newsListEl.querySelector(".news-card")
+    || !currentViewUsesCreatorPool();
+  if (needsListRebuild) {
+    renderBolePicks();
+    renderList();
+  }
 }
 async function loadWaytoagiData() {
   return fetchDataJson("waytoagi-7d.json", "waytoagi-7d.json");
@@ -80,14 +103,10 @@ async function init() {
     state.sourceScope = payload.source_scope || "all_sources";
     state.allDataUrl = payload.all_mode_data_url || state.allDataUrl;
     state.storiesDataUrl = payload.stories_data_url || state.storiesDataUrl;
-    if (state.mode === "all" || state.timeRangeFilter === "all" || state.sourceScope === "bilibili_only" || state.sourceScope === "tested_creator_sources") {
+    const wantsAllModeData = state.mode === "all" || state.timeRangeFilter === "all" || state.sourceScope === "bilibili_only" || state.sourceScope === "tested_creator_sources";
+    if (wantsAllModeData) {
       state.mode = "all";
       state.activeSection = "creator";
-      try {
-        await loadAllModeData();
-      } catch {
-        state.mode = "ai";
-      }
     }
     if (state.storiesDataUrl !== loadedStoriesDataUrl) {
       try {
@@ -109,6 +128,10 @@ async function init() {
     renderBolePicks();
     renderList();
     updatedAtEl.textContent = fmtTime(state.generatedAt);
+
+    if (wantsAllModeData && !state.allDataLoaded) {
+      loadAllModeData().then(afterAllModeDataArrived).catch(() => {});
+    }
   } else {
     updatedAtEl.textContent = "新闻数据加载失败";
     newsListEl.innerHTML = `<div class="empty">${newsResult.reason.message}</div>`;

@@ -994,8 +994,12 @@ def atomic_replace_bytes(path: Path, content: bytes) -> None:
             tmp_path.unlink()
 
 
-def write_json_atomic(path: Path, payload: Any) -> None:
-    atomic_replace_bytes(path, render_json_bytes(payload))
+def write_json_atomic(path: Path, payload: Any, *, compact: bool = False) -> None:
+    if compact:
+        content = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+    else:
+        content = render_json_bytes(payload)
+    atomic_replace_bytes(path, content)
 
 
 def sha256_bytes(content: bytes) -> str:

@@ -1400,7 +1400,6 @@ def enrich_stage(session: Any, ctx: RunContext, collected: CollectStageResult, m
         "creator_items_ai": creator_items_ai,
         "creator_items_all": creator_items_all,
         "items": latest_items_ai_dedup,
-        "items_ai": latest_items_ai_dedup,
         "items_all_raw": latest_items_all,
         "items_all": latest_items_all_dedup,
     }
@@ -1539,8 +1538,8 @@ def write_outputs_stage(ctx: RunContext, collected: CollectStageResult, merged: 
     merge_events = enriched.merge_events
     title_cache = enriched.title_cache
 
-    latest_path.write_text(json.dumps(sanitize_public_payload(latest_payload), ensure_ascii=False, indent=2), encoding="utf-8")
-    latest_all_path.write_text(json.dumps(sanitize_public_payload(latest_all_payload), ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    _online_sources.write_json_atomic(latest_path, sanitize_public_payload(latest_payload), compact=True)
+    _online_sources.write_json_atomic(latest_all_path, sanitize_public_payload(latest_all_payload), compact=True)
     daily_brief_path.write_text(
         json.dumps(sanitize_public_payload(daily_brief_payload), ensure_ascii=False, indent=2),
         encoding="utf-8",

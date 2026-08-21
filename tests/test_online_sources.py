@@ -3479,5 +3479,27 @@ class OnlineSourceSchemaWriteProtectionTests(unittest.TestCase):
             self.assertEqual(path.read_bytes(), before)
 
 
+class CompactJsonAtomicWriteTests(unittest.TestCase):
+    def test_write_json_atomic_compact_omits_indent(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            path = Path(temp_dir) / "latest-24h.json"
+            online_sources.write_json_atomic(
+                path,
+                {"items": [{"title": "compact"}]},
+                compact=True,
+            )
+            text = path.read_text(encoding="utf-8")
+            self.assertNotIn("\n  ", text)
+            self.assertEqual(json.loads(text)["items"][0]["title"], "compact")
+
+    def test_write_json_atomic_default_keeps_pretty_indent(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            path = Path(temp_dir) / "config.json"
+            online_sources.write_json_atomic(path, {"ok": True})
+            text = path.read_text(encoding="utf-8")
+            self.assertIn("\n  ", text)
+            self.assertTrue(text.endswith("\n"))
+
+
 if __name__ == "__main__":
     unittest.main()
