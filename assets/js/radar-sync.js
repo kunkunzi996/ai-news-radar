@@ -32,6 +32,8 @@
   let queuedViewPatch = null;
   let viewSaveInFlight = false;
   let sourceConfigLoadStarted = false;
+  let expireFlushInFlight = false;
+  const sentExpireKeys = new Set();
 
   function setStatus(text, tone = "") {
     if (!radarSyncStatusEl) return;
@@ -263,6 +265,37 @@
     }
     if (render) rerenderCurrentView();
     if (!hasInlineReadKeys) await loadReadStatus({ render });
+    await flushExpiredReadKeys();
+  }
+
+  function expiredReadKeysFromState() {
+    const keys = state.retention && Array.isArray(state.retention.expired_read_keys)
+      ? state.retention.expired_read_keys
+      : [];
+    return keys.map((value) => String(value || "").trim()).filter(Boolean);
+  }
+
+  async function flushExpiredReadKeys() {
+    if (!canSync() || expireFlushInFlight) return;
+    const pending = expiredReadKeysFromState().filter((key) => !sentExpireKeys.has(key));
+    if (!pending.length) return;
+    expireFlushInFlight = true;
+    try {
+      for (let offset = 0; offset < pending.length; offset += 100) {
+        const batch = pending.slice(offset, offset + 100);
+        const result = await window.WorkbenchBridge.request("radar-read-expire", { keys: batch });
+        batch.forEach((key) => sentExpireKeys.add(key));
+        const nextKeys = result && result.state && Array.isArray(result.state.readKeys)
+          ? result.state.readKeys
+          : null;
+        if (nextKeys) replaceServerReads(nextKeys);
+      }
+      if (typeof rerenderCurrentView === "function") rerenderCurrentView();
+    } catch {
+      enterSyncUnavailable();
+    } finally {
+      expireFlushInFlight = false;
+    }
   }
 
   function canSync() {

@@ -171,7 +171,7 @@ jobs:
           STAR_SUBSCRIPTION_CLEANUP_APPROVAL_DIGEST: ${{ vars.STAR_SUBSCRIPTION_CLEANUP_APPROVAL_DIGEST || '' }}
           GITHUB_TOKEN: ${{ github.token }}
         run: |
-          python scripts/update_news.py --source-config config/online-sources.json --output-dir data --window-hours 24 --archive-days ${{ vars.ARCHIVE_DAYS || '180' }} --all-time
+          python scripts/update_news.py --source-config config/online-sources.json --output-dir data --window-hours 24 --archive-days ${{ vars.ARCHIVE_DAYS || '14' }} --all-time
 
       - name: Commit and push changes
         if: ${{ always() && !cancelled() && steps.github_star_guard.outcome == 'success' }}

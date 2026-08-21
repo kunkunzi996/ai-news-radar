@@ -122,8 +122,13 @@ from scripts.radar.pipeline import (
     load_title_zh_cache,
     merge_story_items,
     normalize_source_for_display,
-    prune_archive_records,
     suppress_near_duplicate_items,
+)
+from scripts.radar.retention import (
+    apply_retention,
+    load_or_init_effective_at,
+    load_tombstones,
+    save_tombstones,
 )
 from scripts.radar.server import online_sources as _online_sources
 
@@ -190,6 +195,7 @@ class MergeStageResult:
     raw_items_before_collect_window: int
     skipped_collect_window_items: int
     github_cleanup: dict[str, Any]
+    retention: dict[str, Any]
 
 @dataclass
 class EnrichStageResult:
@@ -1132,6 +1138,9 @@ def merge_archive_stage(session: Any, ctx: RunContext, collected: CollectStageRe
     active_source_ids = ctx.active_source_ids
     all_time = ctx.all_time
     collect_window_hours = ctx.collect_window_hours
+    output_dir = ctx.archive_path.parent
+    tombstones = load_tombstones(output_dir)
+    effective_at = load_or_init_effective_at(output_dir, now)
     archive = ctx.archive
     raw_items = collected.raw_items
     statuses = collected.statuses
@@ -1200,6 +1209,8 @@ def merge_archive_stage(session: Any, ctx: RunContext, collected: CollectStageRe
         internal_archive_id = str((raw.meta or {}).get("__github_archive_item_id") or "").strip()
         item_id = internal_archive_id or make_item_id(raw.site_id, raw.source, title, url)
         seen_this_run.add(item_id)
+        if item_id in tombstones:
+            continue
 
         existing = archive.get(item_id)
         if existing is None:
@@ -1230,9 +1241,29 @@ def merge_archive_stage(session: Any, ctx: RunContext, collected: CollectStageRe
 
     backfill_bilibili_archive_publish_times(session, archive)
 
-    # 归档修剪始终执行；--all-time 只决定发布视图窗口，不再豁免修剪，
-    # 否则线上全量发布会让归档无界增长。
-    archive = prune_archive_records(archive, now, int(args.archive_days))
+    # 归档修剪始终执行；--all-time 只决定发布视图窗口，不再豁免修剪。
+    # 宽限与 14×24 小时时钟由保留模块负责，不再使用 --archive-days 当天数真源。
+    retained = apply_retention(
+        archive,
+        now,
+        effective_at=effective_at,
+        tombstones=tombstones,
+        output_dir=output_dir,
+        archive_path=ctx.archive_path,
+    )
+    if retained["retention"].get("last_prune_status") == "failed":
+        save_tombstones(output_dir, tombstones)
+        return MergeStageResult(
+            archive=archive,
+            raw_items=raw_items,
+            statuses=statuses,
+            raw_items_before_collect_window=raw_items_before_collect_window,
+            skipped_collect_window_items=skipped_collect_window_items,
+            github_cleanup=github_cleanup,
+            retention=retained["retention"],
+        )
+    archive = retained["archive"]
+    save_tombstones(output_dir, tombstones)
     return MergeStageResult(
         archive=archive,
         raw_items=raw_items,
@@ -1240,6 +1271,7 @@ def merge_archive_stage(session: Any, ctx: RunContext, collected: CollectStageRe
         raw_items_before_collect_window=raw_items_before_collect_window,
         skipped_collect_window_items=skipped_collect_window_items,
         github_cleanup=github_cleanup,
+        retention=retained["retention"],
     )
 
 def enrich_stage(session: Any, ctx: RunContext, collected: CollectStageResult, merged: MergeStageResult) -> EnrichStageResult:
@@ -1497,6 +1529,9 @@ def enrich_stage(session: Any, ctx: RunContext, collected: CollectStageResult, m
         "github_star_subscription_cleanup": merged.github_cleanup,
     }
     latest_payload, latest_all_payload = build_latest_payloads(latest_payload)
+    retention = merged.retention if merged.retention else {}
+    latest_payload["retention"] = retention
+    latest_all_payload["retention"] = retention
     return EnrichStageResult(
         latest_payload=latest_payload,
         latest_all_payload=latest_all_payload,

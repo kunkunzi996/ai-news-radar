@@ -15,6 +15,29 @@ function setRemoteAdminStatus(message, tone = "") {
   remoteAdminStatusEl.className = tone || "";
 }
 
+function pruneStatusLabel(status) {
+  if (status === "completed") return "已按保留期裁过";
+  if (status === "failed") return "裁剪失败，列表应仍是裁前";
+  if (status === "skipped_grace") return "宽限中，尚未按 14 天裁";
+  return "尚未裁";
+}
+
+function renderRetentionCheckLine() {
+  const lineEl = document.getElementById("retentionCheckLine");
+  if (!lineEl) return;
+  const retention = state.retention && typeof state.retention === "object" ? state.retention : null;
+  const generated = state.generatedAt ? fmtTime(state.generatedAt) : "未知";
+  if (!retention) {
+    lineEl.textContent = `保留规则：这份数据还没有保留字段（更新 ${generated}）`;
+    return;
+  }
+  const phase = isRetentionGraceActive() ? "宽限中" : "宽限已结束";
+  const cut = pruneStatusLabel(retention.last_prune_status);
+  const when = retention.grace_ends_at || retention.effective_at || "";
+  const whenBit = when ? ` · ${when}` : "";
+  lineEl.textContent = `保留规则已生效 · ${phase} · ${cut} · 本页数据 ${generated}${whenBit}`;
+}
+
 function syncRemoteAdminForm() {
   if (isReaderOnlyMode()) return;
   if (!remoteAdminFormEl) return;
@@ -192,6 +215,7 @@ function openSettingsDrawer() {
   settingsLastFocusedEl = document.activeElement;
   syncSettingsTabAvailability();
   syncRemoteAdminForm();
+  renderRetentionCheckLine();
   settingsDrawerEl.hidden = false;
   document.body.classList.add("settings-drawer-open");
   setBackgroundInert(true);
