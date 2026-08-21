@@ -563,22 +563,18 @@ def prune_archive_records(
     now: datetime,
     archive_days: int,
 ) -> dict[str, dict[str, Any]]:
-    """按保留天数修剪归档；记录时间取 last_seen_at / published_at / first_seen_at 兜底。
+    """按首次入库时间修剪归档；不再用 last_seen 续命。
 
     修剪始终执行（包括 --all-time 全量发布模式），否则线上归档会无界增长。
+    archive_days<=0 时不裁，保持原对象。
     """
+    from scripts.radar.retention import is_within_retain_window
+
     if archive_days <= 0:
         return archive
-    keep_after = now - timedelta(days=archive_days)
     pruned: dict[str, dict[str, Any]] = {}
     for item_id, record in archive.items():
-        ts = (
-            parse_iso(record.get("last_seen_at"))
-            or parse_iso(record.get("published_at"))
-            or parse_iso(record.get("first_seen_at"))
-            or now
-        )
-        if ts >= keep_after:
+        if is_within_retain_window(record, now):
             pruned[item_id] = record
     return pruned
 

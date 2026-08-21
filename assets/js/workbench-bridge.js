@@ -22,6 +22,7 @@
   const PAGE_MESSAGE_TYPES = new Set([
     "radar-ready",
     "radar-read",
+    "radar-read-expire",
     "radar-read-status",
     "radar-read-migration",
     "radar-view-patch",
@@ -41,11 +42,12 @@
     ["radar-collect", "radar-collect-result"],
     ["radar-source-config-read", "radar-source-config-result"],
     ["radar-read", "radar-state-result"],
+    ["radar-read-expire", "radar-state-result"],
     ["radar-view-patch", "radar-state-result"],
     ["radar-read-status", "radar-read-status-result"],
     ["radar-read-migration", "radar-read-migration-result"],
   ]);
-  const SYNC_WRITE_TYPES = new Set(["radar-collect", "radar-read", "radar-view-patch"]);
+  const SYNC_WRITE_TYPES = new Set(["radar-collect", "radar-read", "radar-read-expire", "radar-view-patch"]);
   const HOST_MESSAGE_FIELDS = new Map([
     ["workbench-hello", new Set(["version", "type", "requestId", "state", "syncAvailable", "readOnly"])],
     ["radar-collect-result", new Set(["version", "type", "requestId", "ok", "alreadyExists", "error"])],

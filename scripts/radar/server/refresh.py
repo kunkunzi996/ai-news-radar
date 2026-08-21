@@ -283,7 +283,7 @@ def refresh_command(
         "--window-hours",
         "24",
         "--archive-days",
-        "3650",
+        "14",
         "--all-time",
     ]
     window_hours = collect_window_hours_for_scope(root_dir, scope, now=now)

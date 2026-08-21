@@ -244,13 +244,26 @@ async function fetchDataJson(path, label, options = {}) {
     throw remoteErr;
   }
 }
+function retentionPayload() {
+  const value = state.retention;
+  return value && typeof value === "object" ? value : null;
+}
+function isRetentionGraceActive() {
+  const retention = retentionPayload();
+  if (!retention) return true;
+  if (typeof retention.grace_active === "boolean") return retention.grace_active;
+  return retention.last_prune_status === "skipped_grace";
+}
+function timeRangeAllLabel() {
+  return isRetentionGraceActive() ? "不限" : "近两周";
+}
 function windowLabel() {
-  if (state.timeRangeFilter === "all") return "不限";
+  if (state.timeRangeFilter === "all") return timeRangeAllLabel();
   return state.timeScope === "all_time" ? "全部时间" : "过去 24 小时";
 }
 function creatorWindowLabel() {
   if (state.timeRangeFilter === "24h") return "过去 24 小时";
-  if (state.timeRangeFilter === "all") return "不限";
+  if (state.timeRangeFilter === "all") return timeRangeAllLabel();
   return state.creatorTimeScope === "all_time" ? "全部时间" : `过去 ${fmtNumber(state.creatorWindowDays)} 天`;
 }
 function multiSourceEventKeys(items) {

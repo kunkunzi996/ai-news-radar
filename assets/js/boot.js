@@ -20,7 +20,12 @@ async function loadAllModeData() {
         state.totalAllMode = payload.total_items_all_mode || state.itemsAll.length;
         state.timeScope = payload.time_scope || state.timeScope;
         state.sourceScope = payload.source_scope || state.sourceScope;
+        if (payload.retention && typeof payload.retention === "object") {
+          state.retention = payload.retention;
+        }
         state.allDataLoaded = true;
+        if (typeof renderTimeRangeControl === "function") renderTimeRangeControl();
+        if (typeof renderRetentionCheckLine === "function") renderRetentionCheckLine();
       })
       .catch((err) => {
         state.allDataPromise = null;
@@ -98,10 +103,14 @@ async function init() {
     }
     state.allDataLoaded = Boolean(payload.items_all || payload.items_all_raw);
     state.generatedAt = payload.generated_at;
+    if (payload.retention && typeof payload.retention === "object") {
+      state.retention = payload.retention;
+    }
 
     setStats();
     renderSectionTabs();
     renderTimeRangeControl();
+    if (typeof renderRetentionCheckLine === "function") renderRetentionCheckLine();
     renderModeSwitch();
     renderListSortTools();
     renderCoverageStrip();

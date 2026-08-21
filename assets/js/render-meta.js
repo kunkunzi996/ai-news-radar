@@ -468,6 +468,8 @@ function renderModeSwitch() {
 }
 function renderTimeRangeControl() {
   if (!timeRangeSelectEl) return;
+  const allOption = timeRangeSelectEl.querySelector('option[value="all"]');
+  if (allOption) allOption.textContent = timeRangeAllLabel();
   timeRangeSelectEl.value = state.timeRangeFilter;
 }
 function listTitleText() {
