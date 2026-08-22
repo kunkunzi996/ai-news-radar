@@ -1851,8 +1851,10 @@ test.describe("工作台收藏桥", () => {
 
       await expect(radar.getByText("探索信号")).toHaveCount(3);
       await expect(radar.locator("#newsList .news-card")).toHaveCount(6);
-      const rowFlags = await radar.locator("#newsList > *").evaluateAll((nodes) => (
-        nodes.map((node) => /探索信号/.test(node.textContent || ""))
+      await expect(radar.locator("#newsList .timeline-day")).not.toHaveCount(0);
+      await expect(radar.locator("#newsList .timeline-time").first()).toBeVisible();
+      const rowFlags = await radar.locator("#newsList .news-card, #newsList .explore-signal").evaluateAll((nodes) => (
+        nodes.map((node) => node.classList.contains("explore-signal"))
       ));
       const exploreIndexes = rowFlags
         .map((isExplore, index) => (isExplore ? index : -1))

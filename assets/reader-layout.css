@@ -370,6 +370,10 @@
   padding-top: 10px;
 }
 
+.timeline-day-items > .explore-signal {
+  margin-left: calc(var(--timeline-time-width) + var(--timeline-column-gap) + var(--timeline-rail-width));
+}
+
 .timeline-day-items::before {
   content: "";
   position: absolute;
