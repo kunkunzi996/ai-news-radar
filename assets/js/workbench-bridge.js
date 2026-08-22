@@ -68,7 +68,7 @@
     ])],
     ["radar-source-config-result", new Set(["version", "type", "requestId", "ok", "config", "error"])],
     ["radar-exploration-state", new Set(["version", "type", "requestId", "items", "date", "generated"])],
-    ["radar-exploration-ask-result", new Set(["version", "type", "requestId", "ok", "error"])],
+    ["radar-exploration-ask-result", new Set(["version", "type", "requestId", "ok", "error", "text"])],
   ]);
 
   let parentWin = null;
@@ -86,6 +86,7 @@
   const collectedUrls = new Set(); // 本次会话内已收藏的链接，防重复点击
   const queuedHostMessages = [];
   const queuedNativeExternalMessages = [];
+  const extraHostListeners = [];
   let hostMessageHandler = null;
   let writeFailureHandler = null;
   let lastExternalOpenFailure = null;
@@ -181,6 +182,7 @@
     if (value.statusCode !== undefined && typeof value.statusCode !== "number") return null;
     if (value.code !== undefined && typeof value.code !== "string") return null;
     if (value.error !== undefined && typeof value.error !== "string") return null;
+    if (value.text !== undefined && typeof value.text !== "string") return null;
     return value;
   }
 
@@ -329,17 +331,20 @@
   }
 
   function emitHostMessage(data) {
-    if (hostMessageHandler) {
-      hostMessageHandler(data);
-      return;
-    }
-    queuedHostMessages.push(data);
+    if (hostMessageHandler) hostMessageHandler(data);
+    else queuedHostMessages.push(data);
+    for (const listener of extraHostListeners) listener(data);
   }
 
   function setMessageHandler(handler) {
     hostMessageHandler = typeof handler === "function" ? handler : null;
     if (!hostMessageHandler) return;
     while (queuedHostMessages.length) hostMessageHandler(queuedHostMessages.shift());
+  }
+
+  function addHostMessageListener(handler) {
+    if (typeof handler !== "function" || extraHostListeners.includes(handler)) return;
+    extraHostListeners.push(handler);
   }
 
   function setWriteFailureHandler(handler) {
@@ -478,6 +483,7 @@
     },
     receiveHostMessage,
     setMessageHandler,
+    addHostMessageListener,
     setWriteFailureHandler,
     appRequested() {
       return appRequested;

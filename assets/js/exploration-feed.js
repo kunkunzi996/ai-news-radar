@@ -164,7 +164,8 @@
           setAskStatus((result && result.error) || "问 AI 失败");
           return;
         }
-        if (result.error) setAskStatus(result.error);
+        const answer = typeof result.text === "string" ? result.text.trim() : "";
+        setAskStatus(answer || result.error || "");
       } else if (typeof window.WorkbenchBridge.notify === "function") {
         window.WorkbenchBridge.notify("radar-exploration-ask", payload);
       }
@@ -218,8 +219,7 @@
     }));
   }
 
-  window.addEventListener("message", (event) => {
-    const data = event.data;
+  function handleHostExploration(data) {
     if (!data || typeof data !== "object") return;
     if (data.type === "radar-exploration-state") {
       if (!window.WorkbenchBridge || !window.WorkbenchBridge.connected()) return;
@@ -227,10 +227,21 @@
       applyExplorationFeed();
       return;
     }
-    if (data.type === "radar-exploration-ask-result" && data.ok === false) {
+    if (data.type !== "radar-exploration-ask-result") return;
+    if (data.ok === false) {
       setAskStatus(data.error || "问 AI 失败");
+      return;
     }
+    const answer = typeof data.text === "string" ? data.text.trim() : "";
+    if (answer) setAskStatus(answer);
+  }
+
+  window.addEventListener("message", (event) => {
+    handleHostExploration(event.data);
   });
+  if (window.WorkbenchBridge && typeof window.WorkbenchBridge.addHostMessageListener === "function") {
+    window.WorkbenchBridge.addHostMessageListener(handleHostExploration);
+  }
 
   document.addEventListener("aiRadar:listRendered", () => {
     applyExplorationFeed();
