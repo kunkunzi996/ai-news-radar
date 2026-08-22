@@ -1453,22 +1453,56 @@ function renderSiteGroups(items) {
 function usesFlatTimelineLayout(sectionId) {
   return Boolean(SECTION_BY_ID[sectionId]);
 }
-function consumeListStayRestore() {
+function ensureListStaySpacer(slotTop) {
+  if (!newsListEl) return;
+  let spacer = newsListEl.querySelector("[data-list-stay-spacer='1']");
+  if (!spacer) {
+    spacer = document.createElement("div");
+    spacer.dataset.listStaySpacer = "1";
+    spacer.setAttribute("aria-hidden", "true");
+    newsListEl.appendChild(spacer);
+  }
+  const scrolling = document.scrollingElement || document.documentElement;
+  const viewport = scrolling.clientHeight || window.innerHeight || 0;
+  const safeSlot = Number.isFinite(slotTop) ? Math.max(0, slotTop) : 0;
+  spacer.style.height = `${Math.max(0, viewport - safeSlot)}px`;
+}
+
+function consumeListStayRestore(followUp) {
   const stay = state.pendingListStay;
   if (!stay) return;
+  const slotTop = Number(stay.slotTop);
+  const anchorId = stay.anchorId ? String(stay.anchorId) : "";
+  if (!anchorId || !Number.isFinite(slotTop) || !newsListEl) {
+    state.pendingListStay = null;
+    return;
+  }
+  if (anchorId.includes("\"") || anchorId.includes("\\")) {
+    state.pendingListStay = null;
+    return;
+  }
+  const anchor = newsListEl.querySelector(`.news-card[data-item-id="${anchorId}"]`);
+  if (!anchor) return;
   state.pendingListStay = null;
-  const y = Number(stay.scrollY);
   const scrolling = document.scrollingElement || document.documentElement;
-  if (Number.isFinite(y)) window.scrollTo(0, y);
-  if (scrolling && Number.isFinite(Number(stay.scrollingTop))) {
-    scrolling.scrollTop = Number(stay.scrollingTop);
-  }
-  if (document.body && Number.isFinite(Number(stay.bodyTop))) {
-    document.body.scrollTop = Number(stay.bodyTop);
-  }
+  newsListEl.style.overflowAnchor = "none";
+  if (scrolling) scrolling.style.overflowAnchor = "none";
+  if (document.body) document.body.style.overflowAnchor = "none";
+  ensureListStaySpacer(slotTop);
+  const delta = anchor.getBoundingClientRect().top - slotTop;
+  if (Math.abs(delta) >= 1) window.scrollBy(0, delta);
+  if (followUp || !state.lastListStay) return;
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      if (!state.lastListStay) return;
+      state.pendingListStay = { ...state.lastListStay };
+      consumeListStayRestore(true);
+    });
+  });
 }
 
 function renderList() {
+  newsListEl.style.overflowAnchor = "none";
   const filtered = getFilteredItems();
   renderListSortTools();
   newsListEl.classList.remove("timeline-mode", "flat-mode", "group-mode");

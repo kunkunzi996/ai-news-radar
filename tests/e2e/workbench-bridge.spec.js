@@ -2362,4 +2362,124 @@ test.describe("工作台收藏桥", () => {
     }
   });
 
+  test("TEST-021：中段连点多条已阅后下一条仍在原位且不贴底", async ({ page }) => {
+    const fixtureItems = Array.from({ length: 20 }, (_, index) => ({
+      ...FIRST_ITEM,
+      id: `stay-021-${index}`,
+      title: `连点贴底夹具 ${index}`,
+      url: `https://www.bilibili.com/video/stay-021-${index}`,
+      source: `连点作者 ${index}`,
+      published_at: `2026-07-17T09:${String(59 - index).padStart(2, "0")}:00+08:00`,
+      first_seen_at: `2026-07-17T09:${String(59 - index).padStart(2, "0")}:00+08:00`,
+    }));
+    workbenchRadarState = {
+      version: 1,
+      view: {
+        ...SYNC_STATE.view,
+        activeSection: "creator",
+        query: "",
+        listSort: "time",
+        readFilter: "unread",
+        timeRangeFilter: "all",
+        sourceTypeFilter: "",
+        signalLevelFilter: "",
+        siteFilter: "",
+        mode: "all",
+      },
+      viewRevision: SYNC_STATE.viewRevision,
+      updatedAt: SYNC_STATE.updatedAt,
+    };
+    workbenchReadKeys = [];
+    const errors = collectErrors(page);
+
+    async function waitListSettled(radar) {
+      await radar.locator("body").evaluate(() => new Promise((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      }));
+      await expect.poll(() => radar.locator("#newsList").evaluate((list) => ({
+        loading: Boolean(list.querySelector(".list-loading")),
+        settled: Boolean(list.querySelector(".news-card, .empty")),
+      }))).toEqual({ loading: false, settled: true });
+    }
+
+    async function cardViewport(radar, itemId) {
+      return radar.locator(`#newsList .news-card[data-item-id="${itemId}"]`).evaluate((node) => ({
+        id: node.getAttribute("data-item-id"),
+        top: node.getBoundingClientRect().top,
+        scrollY: window.scrollY || document.documentElement.scrollTop || 0,
+      }));
+    }
+
+    async function scrollMetrics(radar) {
+      return radar.locator("body").evaluate(() => {
+        const scrolling = document.scrollingElement || document.documentElement;
+        const scrollY = window.scrollY || scrolling.scrollTop || 0;
+        const scrollHeight = scrolling.scrollHeight || 0;
+        const clientHeight = scrolling.clientHeight || 0;
+        const maxScroll = Math.max(0, scrollHeight - clientHeight);
+        return {
+          scrollY,
+          scrollHeight,
+          clientHeight,
+          maxScroll,
+          distanceToBottom: maxScroll - scrollY,
+        };
+      });
+    }
+
+    try {
+      await installRadarFixture(page, fixtureItems);
+      await page.goto(PARENT_ORIGIN);
+      await page.locator("#radar").evaluate((frame) => {
+        frame.style.width = "390px";
+        frame.style.height = "640px";
+        frame.style.border = "0";
+      });
+      const radar = page.frameLocator("#radar");
+      await expect(radar.locator("#newsList .news-card")).toHaveCount(20);
+      await radar.locator("body").evaluate(() => {
+        const style = document.createElement("style");
+        style.dataset.stay021 = "1";
+        style.textContent = ".news-card{min-height:160px;}";
+        document.head.appendChild(style);
+      });
+      await page.evaluate(() => window.__workbench.hello());
+      await expect.poll(() => radar.locator("body").evaluate(() => window.WorkbenchBridge.connected())).toBe(true);
+      await expect.poll(() => radar.locator("body").evaluate(() => state.readFilter)).toBe("unread");
+      await waitListSettled(radar);
+
+      const start = fixtureItems[10];
+      const endAfterBurst = fixtureItems[18];
+      const startCard = radar.locator(`#newsList .news-card[data-item-id="${start.id}"]`);
+      await startCard.evaluate((node) => {
+        window.scrollBy(0, node.getBoundingClientRect().top - 180);
+      });
+      const beforeRead = await cardViewport(radar, start.id);
+      const beforeMetrics = await scrollMetrics(radar);
+      expect(beforeRead.scrollY).toBeGreaterThan(80);
+      expect(Math.abs(beforeRead.top - 180)).toBeLessThanOrEqual(8);
+      expect(beforeMetrics.distanceToBottom).toBeGreaterThan(80);
+
+      for (let index = 10; index <= 17; index += 1) {
+        const card = radar.locator(`#newsList .news-card[data-item-id="${fixtureItems[index].id}"]`);
+        await card.locator(".read-toggle-btn").click();
+        await waitListSettled(radar);
+        await expect(card).toHaveCount(0);
+      }
+
+      await expect.poll(async () => {
+        const after = await cardViewport(radar, endAfterBurst.id);
+        return Math.abs(after.top - beforeRead.top);
+      }).toBeLessThanOrEqual(64);
+      const afterRead = await cardViewport(radar, endAfterBurst.id);
+      const afterMetrics = await scrollMetrics(radar);
+      expect(afterRead.scrollY).toBeGreaterThan(80);
+      expect(afterMetrics.distanceToBottom).toBeGreaterThan(24);
+      expect(errors).toEqual([]);
+    } finally {
+      workbenchRadarState = null;
+      workbenchReadKeys = [];
+    }
+  });
+
 });
