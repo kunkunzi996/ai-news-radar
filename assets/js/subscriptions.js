@@ -745,8 +745,11 @@ function rememberJustMarkedReadKeys(item) {
 }
 
 function requestListStayRestore() {
+  const scrolling = document.scrollingElement || document.documentElement;
   state.pendingListStay = {
-    scrollY: window.scrollY || document.documentElement.scrollTop || 0,
+    scrollY: window.scrollY || scrolling?.scrollTop || document.body?.scrollTop || 0,
+    scrollingTop: scrolling ? scrolling.scrollTop : 0,
+    bodyTop: document.body ? document.body.scrollTop : 0,
   };
 }
 

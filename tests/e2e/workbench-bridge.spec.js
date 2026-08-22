@@ -244,6 +244,11 @@ function workbenchHtml(radarUrl, radarConfig = null, radarState = null) {
         if (data.type === "radar-view-patch" || data.type === "radar-read") {
           if (handleWriteFailure(event, data)) return;
         }
+        if (data.type === "radar-read") {
+          for (const key of Array.isArray(data.payload?.keys) ? data.payload.keys : []) {
+            knownReadKeys.add(key);
+          }
+        }
         if (data.type === "radar-source-config-read") {
           event.source.postMessage({
             version: 1,
@@ -2228,6 +2233,113 @@ test.describe("工作台收藏桥", () => {
           },
         });
       }, { requestId: readRequestId, viewSnapshot: echoView, readKey: mid.url });
+      await waitListSettled(radar);
+      await expect(midCard).toHaveCount(0);
+      const afterEcho = await cardViewport(radar, nextAfterMid.id);
+      expect(afterEcho.scrollY).toBeGreaterThan(80);
+      expect(Math.abs(afterEcho.top - afterRead.top)).toBeLessThanOrEqual(64);
+      expect(errors).toEqual([]);
+    } finally {
+      workbenchRadarState = null;
+      workbenchReadKeys = [];
+    }
+  });
+
+  test("TEST-020：生产回声不带完整已阅键再画仍留在原位", async ({ page }) => {
+    const fixtureItems = Array.from({ length: 16 }, (_, index) => ({
+      ...FIRST_ITEM,
+      id: `stay-020-${index}`,
+      title: `生产回声夹具 ${index}`,
+      url: `https://www.bilibili.com/video/stay-020-${index}`,
+      source: `生产回声作者 ${index}`,
+      published_at: `2026-07-17T09:${String(59 - index).padStart(2, "0")}:00+08:00`,
+      first_seen_at: `2026-07-17T09:${String(59 - index).padStart(2, "0")}:00+08:00`,
+    }));
+    const echoView = {
+      ...SYNC_STATE.view,
+      activeSection: "creator",
+      query: "",
+      listSort: "time",
+      readFilter: "unread",
+      timeRangeFilter: "all",
+      sourceTypeFilter: "",
+      signalLevelFilter: "",
+      siteFilter: "",
+      mode: "all",
+    };
+    workbenchRadarState = {
+      version: 1,
+      view: echoView,
+      viewRevision: SYNC_STATE.viewRevision,
+      updatedAt: SYNC_STATE.updatedAt,
+    };
+    workbenchReadKeys = [];
+    const errors = collectErrors(page);
+
+    async function waitListSettled(radar) {
+      await radar.locator("body").evaluate(() => new Promise((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(resolve));
+      }));
+      await expect.poll(() => radar.locator("#newsList").evaluate((list) => ({
+        loading: Boolean(list.querySelector(".list-loading")),
+        settled: Boolean(list.querySelector(".news-card, .empty")),
+      }))).toEqual({ loading: false, settled: true });
+    }
+
+    async function cardViewport(radar, itemId) {
+      return radar.locator(`#newsList .news-card[data-item-id="${itemId}"]`).evaluate((node) => ({
+        id: node.getAttribute("data-item-id"),
+        top: node.getBoundingClientRect().top,
+        scrollY: window.scrollY || document.documentElement.scrollTop || 0,
+      }));
+    }
+
+    try {
+      await installRadarFixture(page, fixtureItems);
+      await page.goto(PARENT_ORIGIN);
+      await page.locator("#radar").evaluate((frame) => {
+        frame.style.width = "390px";
+        frame.style.height = "640px";
+        frame.style.border = "0";
+      });
+      const radar = page.frameLocator("#radar");
+      await expect(radar.locator("#newsList .news-card")).toHaveCount(16);
+      await page.evaluate(() => window.__workbench.hello());
+      await expect.poll(() => radar.locator("body").evaluate(() => window.WorkbenchBridge.connected())).toBe(true);
+      await expect.poll(() => radar.locator("body").evaluate(() => state.readFilter)).toBe("unread");
+      await waitListSettled(radar);
+
+      const mid = fixtureItems[8];
+      const nextAfterMid = fixtureItems[9];
+      const midCard = radar.locator(`#newsList .news-card[data-item-id="${mid.id}"]`);
+      await midCard.scrollIntoViewIfNeeded();
+      const beforeRead = await cardViewport(radar, mid.id);
+      expect(beforeRead.scrollY).toBeGreaterThan(80);
+      await midCard.locator(".read-toggle-btn").click();
+      await waitListSettled(radar);
+      await expect(midCard).toHaveCount(0);
+      const afterRead = await cardViewport(radar, nextAfterMid.id);
+      expect(afterRead.scrollY).toBeGreaterThan(80);
+      expect(Math.abs(afterRead.top - beforeRead.top)).toBeLessThanOrEqual(64);
+
+      const readRequestId = await page.evaluate(() => (
+        window.__workbench.latestMessage("radar-read")?.requestId || "echo-stay-020"
+      ));
+      await page.evaluate(({ requestId, viewSnapshot }) => {
+        window.__workbench.sendToRadar({
+          version: 1,
+          type: "radar-state-result",
+          requestId,
+          ok: true,
+          status: 200,
+          state: {
+            version: 1,
+            view: viewSnapshot,
+            viewRevision: 8,
+            updatedAt: "2026-07-17T12:31:00+08:00",
+          },
+        });
+      }, { requestId: readRequestId, viewSnapshot: echoView });
       await waitListSettled(radar);
       await expect(midCard).toHaveCount(0);
       const afterEcho = await cardViewport(radar, nextAfterMid.id);
