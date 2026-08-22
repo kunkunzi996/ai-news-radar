@@ -1458,8 +1458,14 @@ function consumeListStayRestore() {
   if (!stay) return;
   state.pendingListStay = null;
   const y = Number(stay.scrollY);
-  if (!Number.isFinite(y)) return;
-  window.scrollTo(0, y);
+  const scrolling = document.scrollingElement || document.documentElement;
+  if (Number.isFinite(y)) window.scrollTo(0, y);
+  if (scrolling && Number.isFinite(Number(stay.scrollingTop))) {
+    scrolling.scrollTop = Number(stay.scrollingTop);
+  }
+  if (document.body && Number.isFinite(Number(stay.bodyTop))) {
+    document.body.scrollTop = Number(stay.bodyTop);
+  }
 }
 
 function renderList() {
