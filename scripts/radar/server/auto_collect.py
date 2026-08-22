@@ -148,8 +148,7 @@ def detect_added_bridge_sources(
                 sec_uids.append(sec_uid)
                 added_names.append(name)
         elif source_type == WECHAT_SOURCE_TYPE:
-            wechat_added = True
-            added_names.append(name)
+            continue
 
     return {
         "douyin_sec_uids": sec_uids,

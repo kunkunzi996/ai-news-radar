@@ -897,8 +897,7 @@ class TopicFilterTests(unittest.TestCase):
 
             self.assertEqual(os.environ["BILIBILI_DYNAMIC_ENABLED"], "1")
             self.assertEqual(os.environ["BILIBILI_DYNAMIC_UIDS"], "505301413,316183842")
-            self.assertEqual(os.environ["WEWE_RSS_ENABLED"], "1")
-            self.assertEqual(os.environ["WEWE_RSS_FEEDS"], "猫笔刀:MP_WXS_3198966508")
+            self.assertNotIn("WEWE_RSS_ENABLED", os.environ)
             self.assertEqual(os.environ["MEDIACRAWLER_DOUYIN_ENABLED"], "1")
             self.assertEqual(os.environ["MEDIACRAWLER_DOUYIN_SOURCE_NAME"], "Simon林")
             self.assertEqual(

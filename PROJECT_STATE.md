@@ -39,8 +39,7 @@
   基线 729 条无一失败）；NUC 真实采集两轮，tabs 由 `1→2→3` 变为 `1→2→1`，
   稳态内存 756 MB → 341 MB，每轮产生一条 `[TabCleanup] closed 1 leaked tab(s), failed 0`；
   失败轮次（`state=failed`）同样完成清理，异常路径一并验证；用户人工验收通过。
-- 过程文档：`docs/bugs/BUG-01-采集后浏览器窗口不关闭.md`（现象/根因/验收证据）、
-  `docs/plan.md`（七章，已 FROZEN）、`docs/task.md`（3 对 TDD 任务卡与红绿证据）。
+- 过程文档：`docs/bugs/BUG-01-采集后浏览器窗口不关闭.md`（现象/根因/验收证据）。
   施工约束已固化进 `CLAUDE.md`「采集浏览器收尾的禁区」。
 - **遗留的独立问题 → 已闭环**：`partial_creator_failure` 已由 BUG-02 于 2026-08-08 修复并验收，
   详见本文件顶部「抖音风控容错与部分成功发布」一节与 `docs/bugs/BUG-02-抖音采集回执不完整导致整轮作废.md`。
@@ -84,8 +83,7 @@
   `E:\AI-news-reader\ai-news-radar-important-updates`；基线：`origin/master@e59f366`。
 - 用户已确认采用保守的“GitHub 重大更新可信度分”：满分 100，70 分展示；commit 必须同时具备
   功能意图和实质产品代码改动，预发布及纯文档/测试/CI/格式/依赖/自动同步噪音直接隐藏。
-- 用户已复核设计并授权开始施工。设计稿：`计划/2026-08-02-GitHub重大更新筛选设计.md`；
-  施工计划：`计划/2026-08-02-GitHub重大更新筛选施工计划.md`。
+- 用户已复核设计并授权开始施工。该功能已合入主线，过期施工稿已从工作区移除。
 - 已按失败用例优先完成最小实现；V1 Python 回归与 V2 本地浏览器检查均已通过。
 - 验收证据：相关回归 **275 passed**；`py_compile`、`git diff --check` 通过；真实归档只读预览为
   GitHub `303 → 36` 条可见，历史归档未改写。Playwright 页面确认 `Partner 2.0.0`、`v8.5.0`
@@ -102,11 +100,9 @@
 
 ## 更早历史
 
-2026-08-02 及以前的施工状态、下一轮入口与历史闭环记录已归档到
-`docs/PROJECT_STATE_ARCHIVE.md`（2026-08-08 洁癖门归档，内容逐行搬迁，未删减）。
+2026-08-02 及以前的施工状态、下一轮入口与历史闭环记录已不在工作区保留，需要时从 Git 历史查看。
 
 ## 维护规则
 
 - `PROJECT_STATE.md` 只记录当前状态与最近一周的关键交接。
-- 旧状态条目移入 `docs/PROJECT_STATE_ARCHIVE.md`。
 - 刷新、采集等操作手册放入 `docs/guides/refresh-playbooks.md`。

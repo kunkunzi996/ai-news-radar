@@ -265,23 +265,7 @@ def apply_source_config_runtime(config: dict[str, Any] | None) -> dict[str, Any]
         os.environ["BILIBILI_DYNAMIC_UIDS"] = ",".join(bilibili_uids)
         os.environ["BILIBILI_DYNAMIC_SOURCE_NAMES"] = ",".join(bilibili_names)
         applied_env.extend(["BILIBILI_DYNAMIC_ENABLED", "BILIBILI_DYNAMIC_UIDS", "BILIBILI_DYNAMIC_SOURCE_NAMES"])
-    if WEWE_RSS_SITE_ID in enabled_site_ids:
-        os.environ["WEWE_RSS_ENABLED"] = "1"
-        applied_env.append("WEWE_RSS_ENABLED")
-        if wewe_feeds:
-            os.environ["WEWE_RSS_FEEDS"] = ";".join(wewe_feeds)
-            applied_env.append("WEWE_RSS_FEEDS")
-    if WE_MP_RSS_SITE_ID in enabled_site_ids:
-        os.environ["WE_MP_RSS_ENABLED"] = "1"
-        applied_env.append("WE_MP_RSS_ENABLED")
-        if we_mp_feeds:
-            os.environ["WE_MP_RSS_FEEDS"] = ";".join(we_mp_feeds)
-            applied_env.append("WE_MP_RSS_FEEDS")
-    if WE_MP_RSS_JSONL_SITE_ID in enabled_site_ids:
-        os.environ["WE_MP_RSS_JSONL_ENABLED"] = "1"
-        applied_env.append("WE_MP_RSS_JSONL_ENABLED")
-        if we_mp_jsonl_dirs and set_env_from_source_config("WE_MP_RSS_JSONL_DIR", we_mp_jsonl_dirs[0]):
-            applied_env.append("WE_MP_RSS_JSONL_DIR")
+    # 微信采集已下线：即使配置里还有公众号源，也不再打开采集开关。
     if douyin_jsonls:
         os.environ["MEDIACRAWLER_DOUYIN_JSONLS"] = ";".join(douyin_jsonls)
         applied_env.append("MEDIACRAWLER_DOUYIN_JSONLS")

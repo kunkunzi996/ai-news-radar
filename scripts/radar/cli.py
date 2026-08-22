@@ -265,21 +265,10 @@ def prepare_run_context(args: argparse.Namespace) -> RunContext | int:
     scoped_by_config = source_scope == SOURCE_SCOPE_CONFIGURED
     all_time = bool(args.all_time or env_flag("RADAR_ALL_TIME"))
     collect_window_hours = max(0, int(args.collect_window_hours or 0))
-    wewe_rss_enabled = env_flag("WEWE_RSS_ENABLED") and (
-        active_source_ids is None or WEWE_RSS_SITE_ID in active_source_ids
-    )
-    if wewe_rss_enabled and active_source_ids is not None:
-        active_source_ids = frozenset(site_id for site_id in active_source_ids if site_id != MAOBIDAO_WECHAT_SITE_ID)
-    we_mp_rss_enabled = env_flag("WE_MP_RSS_ENABLED") and (
-        active_source_ids is None or WE_MP_RSS_SITE_ID in active_source_ids
-    )
-    if we_mp_rss_enabled and active_source_ids is not None:
-        active_source_ids = frozenset(site_id for site_id in active_source_ids if site_id != MAOBIDAO_WECHAT_SITE_ID)
-    we_mp_rss_jsonl_enabled = env_flag("WE_MP_RSS_JSONL_ENABLED") and (
-        active_source_ids is None or WE_MP_RSS_JSONL_SITE_ID in active_source_ids
-    )
-    if we_mp_rss_jsonl_enabled and active_source_ids is not None:
-        active_source_ids = frozenset(site_id for site_id in active_source_ids if site_id != MAOBIDAO_WECHAT_SITE_ID)
+    # 微信采集通道已下线：不再抓新，历史条目仍走归档身份与展示。
+    wewe_rss_enabled = False
+    we_mp_rss_enabled = False
+    we_mp_rss_jsonl_enabled = False
     configured_cleanup_mode = str(os.environ.get("WE_MP_RSS_SUBSCRIPTION_CLEANUP_MODE") or "off").strip().lower()
     we_mp_cleanup_mode = configured_cleanup_mode if configured_cleanup_mode in {"off", "audit", "on"} else "off"
     configured_github_cleanup_mode = str(

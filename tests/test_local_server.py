@@ -3646,11 +3646,9 @@ class LocalServerTests(unittest.TestCase):
                 else:
                     os.environ[key] = value
 
-        # 关键：维护项列表为空（健康状态）下仍可派发，不再是 maintenance_action_not_found。
-        self.assertTrue(result["ok"])
-        self.assertFalse(result["executed"])
-        self.assertEqual(Path(result["command"][0]), python_exe)
-        self.assertEqual(Path(result["command"][1]), sidecar_root / "main.py")
+        self.assertFalse(result["ok"])
+        self.assertEqual(result["error"], "wechat_collection_retired")
+        self.assertEqual(result["action_id"], "start_we_mp_rss_sidecar")
 
     def test_start_we_mp_rss_sidecar_returns_valid_public_and_local_urls(self):
         root, sidecar_root, _python_exe = self.create_we_mp_rss_sidecar_fixture()
@@ -3908,8 +3906,8 @@ class LocalServerTests(unittest.TestCase):
             else:
                 os.environ["WEWE_RSS_BASE_URL"] = saved
 
-        # 无维护项时路由仍到达 handler：不应再是 maintenance_action_not_found。
-        self.assertNotEqual(result.get("error"), "maintenance_action_not_found")
+        self.assertEqual(result.get("error"), "wechat_collection_retired")
+        self.assertEqual(result.get("action_id"), "start_wewe_rss_sidecar")
 
     def test_perform_maintenance_action_can_start_mediacrawler_all_scope(self):
         import os

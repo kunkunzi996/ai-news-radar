@@ -97,7 +97,7 @@ The workflow may run every 30 minutes, but the X API adapter only runs inside th
 
 ## Cost guardrail
 
-Using the current conservative pricing assumption from `docs/research/advanced-source-free-tier-budget-2026-05-10.md`:
+Using the current conservative pricing assumption:
 
 ```text
 10 returned posts × $0.005 per post read = up to $0.05 per demo run
