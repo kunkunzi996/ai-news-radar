@@ -109,6 +109,21 @@
     persistReadItemIds();
   }
 
+  function reapplyJustMarkedReads() {
+    const justMarked = state.justMarkedReadKeys;
+    if (!(justMarked instanceof Set) || !justMarked.size) return;
+    allLoadedItems().forEach((item) => {
+      const hostKey = stableReadKey(item);
+      const keys = typeof readTrackingKeys === "function" ? readTrackingKeys(item) : new Set();
+      const hit = (hostKey && justMarked.has(hostKey))
+        || Array.from(keys).some((key) => justMarked.has(key));
+      if (!hit) return;
+      if (hostKey) serverReadKeys.add(hostKey);
+      keys.forEach((key) => state.readItemIds.add(key));
+    });
+    persistReadItemIds();
+  }
+
   function snapshotViewFields() {
     const snapshot = {};
     VIEW_FIELDS.forEach((field) => {
@@ -247,8 +262,12 @@
       if (Array.isArray(result.readKeys)) matched.push(...result.readKeys);
     }
     replaceServerReads(matched);
+    reapplyJustMarkedReads();
     authoritativeReadState = true;
-    if (render) rerenderCurrentView();
+    if (render) {
+      if (typeof requestListStayRestore === "function") requestListStayRestore();
+      rerenderCurrentView();
+    }
     if (await migrateLegacyReads(legacyCandidates)) {
       const refreshed = [];
       for (const batch of readStatusBatches(keys)) {
@@ -256,7 +275,11 @@
         if (Array.isArray(result.readKeys)) refreshed.push(...result.readKeys);
       }
       replaceServerReads(refreshed);
-      if (render) rerenderCurrentView();
+      reapplyJustMarkedReads();
+      if (render) {
+        if (typeof requestListStayRestore === "function") requestListStayRestore();
+        rerenderCurrentView();
+      }
     }
   }
 
@@ -275,6 +298,7 @@
     const hasInlineReadKeys = Array.isArray(snapshot.readKeys);
     if (hasInlineReadKeys) {
       replaceServerReads(snapshot.readKeys);
+      reapplyJustMarkedReads();
       authoritativeReadState = true;
     }
     searchInputEl.value = state.query;
@@ -289,8 +313,11 @@
     }
     if (
       render
-      && hasInlineReadKeys
-      && shouldRestoreListStay(previousView, view, snapshot.readKeys, previousHostReadKeys)
+      && viewFieldsUnchanged(previousView, view)
+      && (
+        !hasInlineReadKeys
+        || shouldRestoreListStay(previousView, view, snapshot.readKeys, previousHostReadKeys)
+      )
       && typeof requestListStayRestore === "function"
     ) {
       requestListStayRestore();
@@ -320,9 +347,15 @@
         const nextKeys = result && result.state && Array.isArray(result.state.readKeys)
           ? result.state.readKeys
           : null;
-        if (nextKeys) replaceServerReads(nextKeys);
+        if (nextKeys) {
+          replaceServerReads(nextKeys);
+          reapplyJustMarkedReads();
+        }
       }
-      if (typeof rerenderCurrentView === "function") rerenderCurrentView();
+      if (typeof rerenderCurrentView === "function") {
+        if (typeof requestListStayRestore === "function") requestListStayRestore();
+        rerenderCurrentView();
+      }
     } catch {
       enterSyncUnavailable();
     } finally {
