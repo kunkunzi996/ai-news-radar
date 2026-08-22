@@ -653,7 +653,8 @@ class TopicFilterTests(unittest.TestCase):
             "total_items": 1,
             "total_items_raw": 3,
             "total_items_all_mode": 2,
-            "items_ai": [{"title": "AI post", "url": "https://example.com/a"}],
+            "items": [{"title": "AI post", "url": "https://example.com/a"}],
+            "items_ai": [{"title": "AI post duplicate", "url": "https://example.com/a-dup"}],
             "creator_items_ai": [{"title": "Hot creator post", "url": "https://example.com/hot"}],
             "creator_items_all": [{"title": "All creator post", "url": "https://example.com/creator"}],
             "creator_window_days": 7,
@@ -663,20 +664,35 @@ class TopicFilterTests(unittest.TestCase):
             "items_all_raw": [{"title": "Raw post", "url": "https://example.com/c"}],
         }
         slim, all_payload = build_latest_payloads(latest_payload)
-        self.assertIn("items_ai", slim)
+        self.assertNotIn("items_ai", slim)
+        self.assertIn("items", slim)
+        self.assertEqual(slim["items"][0]["title"], "AI post")
         self.assertIn("creator_items_ai", slim)
+        self.assertIn("creator_items_all", slim)
+        self.assertEqual(slim["creator_items_all"][0]["title"], "All creator post")
         self.assertNotIn("items_all", slim)
         self.assertNotIn("items_all_raw", slim)
+        self.assertNotIn("creator_items_all", all_payload)
         self.assertEqual(slim["all_mode_data_url"], "data/latest-24h-all.json")
         self.assertEqual(slim["stories_data_url"], "data/stories-merged.json")
         self.assertEqual(all_payload["time_scope"], "all_time")
         self.assertEqual(all_payload["source_scope"], "bilibili_only")
-        self.assertEqual(all_payload["creator_items_all"][0]["title"], "All creator post")
         self.assertEqual(all_payload["creator_window_days"], 7)
         self.assertEqual(all_payload["creator_window_hours"], 24)
         self.assertEqual(all_payload["creator_ranking"], "engagement_85_fresh_24h_bonus_15_v1")
         self.assertEqual(all_payload["items_all"][0]["title"], "All post")
         self.assertEqual(all_payload["items_all_raw"][0]["title"], "Raw post")
+
+    def test_build_latest_payloads_promotes_items_ai_when_items_missing(self):
+        slim, all_payload = build_latest_payloads({
+            "items_ai": [{"title": "Legacy AI post", "url": "https://example.com/legacy"}],
+            "creator_items_all": [{"title": "Creator", "url": "https://example.com/c"}],
+            "items_all": [],
+            "items_all_raw": [],
+        })
+        self.assertNotIn("items_ai", slim)
+        self.assertEqual(slim["items"][0]["title"], "Legacy AI post")
+        self.assertNotIn("creator_items_all", all_payload)
 
     def test_collection_scope_does_not_remove_archived_sources(self):
         scope = normalize_source_scope("")

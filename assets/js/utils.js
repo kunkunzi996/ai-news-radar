@@ -22,8 +22,7 @@ function fmtDate(iso) {
   }).format(d);
 }
 function cacheBustedUrl(url) {
-  const separator = String(url).includes("?") ? "&" : "?";
-  return `${url}${separator}t=${Date.now()}`;
+  return String(url || "");
 }
 function normalizeDataBaseUrl(raw) {
   const text = String(raw || "").trim();

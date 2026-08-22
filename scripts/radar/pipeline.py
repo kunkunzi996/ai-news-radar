@@ -1578,12 +1578,14 @@ def build_latest_payloads(latest_payload: dict[str, Any]) -> tuple[dict[str, Any
         "creator_window_hours": latest_payload.get("creator_window_hours"),
         "creator_time_scope": latest_payload.get("creator_time_scope"),
         "creator_ranking": latest_payload.get("creator_ranking"),
-        "creator_items_all": latest_payload.get("creator_items_all", []),
         "items_all": latest_payload.get("items_all", []),
         "items_all_raw": latest_payload.get("items_all_raw", []),
     }
     slim_payload.pop("items_all", None)
     slim_payload.pop("items_all_raw", None)
+    slim_payload.pop("items_ai", None)
+    if not slim_payload.get("items") and latest_payload.get("items_ai"):
+        slim_payload["items"] = latest_payload["items_ai"]
     slim_payload["all_mode_data_url"] = "data/latest-24h-all.json"
     slim_payload["stories_data_url"] = "data/stories-merged.json"
     return slim_payload, all_payload

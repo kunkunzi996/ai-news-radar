@@ -585,7 +585,7 @@ def purge_matching_source_data(
             "creator_items_ai",
             "creator_items_all",
         ),
-        compact=False,
+        compact=True,
     )
     rewrite_stories("stories-merged.json", "stories", "total_stories", compact=True)
     rewrite_stories("daily-brief.json", "items", "total_items", compact=False)

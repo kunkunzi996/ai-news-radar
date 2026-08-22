@@ -75,7 +75,7 @@ curl -s "https://learnprompt.github.io/ai-news-radar/data/latest-24h.json" -o /t
 python3 - <<'EOF'
 import json
 d = json.load(open('/tmp/radar-24h.json'))
-items = d['items_ai']
+items = d.get('items') or d.get('items_ai') or []
 # 官方一手源优先，同层按AI相关性分数降序
 top = sorted(items, key=lambda i: (i['source_tier_rank'], -i['ai_score']))[:30]
 print(f"数据时间: {d['generated_at']} | 24h AI条目: {d['total_items']} | 信源: {d['source_count']}个")
@@ -90,7 +90,7 @@ EOF
 python3 - <<'EOF'
 import json
 d = json.load(open('/tmp/radar-24h.json'))
-hits = [i for i in d['items_ai'] if i['ai_label'] == 'model_release']
+hits = [i for i in (d.get('items') or d.get('items_ai') or []) if i['ai_label'] == 'model_release']
 hits.sort(key=lambda i: (i['source_tier_rank'], -i['ai_score']))
 for i in hits[:20]:
     print(f"[{i['source_tier_label']}] {i['title']} — {i['source']} — {i['url']}")
@@ -107,7 +107,7 @@ d = json.load(open('/tmp/radar-24h.json'))
 def hit(i):
     blob = ' '.join([i.get('title',''), i.get('title_en') or '', ' '.join(i.get('ai_signals') or [])]).lower()
     return KW in blob
-hits = sorted(filter(hit, d['items_ai']), key=lambda i: (i['source_tier_rank'], -i['ai_score']))
+hits = sorted(filter(hit, d.get('items') or d.get('items_ai') or []), key=lambda i: (i['source_tier_rank'], -i['ai_score']))
 for i in hits[:20]:
     print(f"{i['title']} — {i['source']} — {i['published_at'][:10]} — {i['url']}")
 EOF
