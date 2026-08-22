@@ -29,6 +29,8 @@
     "radar-collect",
     "radar-open-external",
     "radar-source-config-read",
+    "radar-exploration-seen",
+    "radar-exploration-ask",
   ]);
   const HOST_MESSAGE_TYPES = new Set([
     "workbench-hello",
@@ -37,6 +39,8 @@
     "radar-read-status-result",
     "radar-read-migration-result",
     "radar-source-config-result",
+    "radar-exploration-state",
+    "radar-exploration-ask-result",
   ]);
   const EXPECTED_RESULT_TYPES = new Map([
     ["radar-collect", "radar-collect-result"],
@@ -46,6 +50,7 @@
     ["radar-view-patch", "radar-state-result"],
     ["radar-read-status", "radar-read-status-result"],
     ["radar-read-migration", "radar-read-migration-result"],
+    ["radar-exploration-ask", "radar-exploration-ask-result"],
   ]);
   const SYNC_WRITE_TYPES = new Set(["radar-collect", "radar-read", "radar-read-expire", "radar-view-patch"]);
   const HOST_MESSAGE_FIELDS = new Map([
@@ -62,6 +67,8 @@
       "version", "type", "requestId", "ok", "state", "legacyReadMigration", "status", "code", "error",
     ])],
     ["radar-source-config-result", new Set(["version", "type", "requestId", "ok", "config", "error"])],
+    ["radar-exploration-state", new Set(["version", "type", "requestId", "items", "date", "generated"])],
+    ["radar-exploration-ask-result", new Set(["version", "type", "requestId", "ok", "error"])],
   ]);
 
   let parentWin = null;
@@ -153,6 +160,13 @@
       if (typeof value.syncAvailable !== "boolean" || typeof value.readOnly !== "boolean") return null;
       if (value.state !== undefined && value.state !== null && !isPlainObject(value.state)) return null;
       return value;
+    }
+    if (value.type === "radar-exploration-state") {
+      return Array.isArray(value.items)
+        && typeof value.date === "string"
+        && typeof value.generated === "boolean"
+        ? value
+        : null;
     }
     if (typeof value.ok !== "boolean") return null;
     if (value.state !== undefined && value.state !== null && !isPlainObject(value.state)) return null;
@@ -380,6 +394,10 @@
       return true;
     }
     if (!connected()) return false;
+    if (data.type === "radar-exploration-state") {
+      emitHostMessage(data);
+      return true;
+    }
     const entry = pending.get(data.requestId);
     if (!entry || data.type !== entry.expectedResultType) return false;
     const settled = settleRequest(data);

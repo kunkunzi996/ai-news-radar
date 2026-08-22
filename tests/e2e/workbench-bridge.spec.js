@@ -1766,4 +1766,253 @@ test.describe("工作台收藏桥", () => {
     const second = await page.evaluate(() => window.__nativeHost.viewPatches()[1]);
     expect(second.payload).toEqual({ baseRevision: 8, patch: { query: "最后一个值" } });
   });
+
+  test("探索信号穿插：默认订阅有间隔细条，搜索和已阅里消失", async ({ page }) => {
+    const subscriptionItems = Array.from({ length: 6 }, (_, index) => ({
+      ...FIRST_ITEM,
+      id: `explore-feed-${index + 1}`,
+      title: `订阅资讯 ${index + 1}`,
+      url: `https://www.bilibili.com/video/explore-feed-${index + 1}`,
+      published_at: `2026-07-17T0${9 - index}:00:00+08:00`,
+      first_seen_at: `2026-07-17T0${9 - index}:00:00+08:00`,
+    }));
+    const exploreItems = [
+      {
+        id: "item-1",
+        title: "机器人失败恢复主课",
+        url: "https://example.test/robot-1",
+        domain: "机器人",
+        why: "和失败恢复有关",
+        seen: false,
+      },
+      {
+        id: "item-2",
+        title: "可穿戴连续监测",
+        url: "https://example.test/bio-1",
+        domain: "生物医药",
+        why: "和身体数据有关",
+        seen: false,
+      },
+      {
+        id: "item-3",
+        title: "深空地面接管",
+        url: "https://example.test/space-1",
+        domain: "航天",
+        why: "和续跑有关",
+        seen: false,
+      },
+    ];
+    workbenchRadarState = {
+      ...SYNC_STATE,
+      readKeys: [],
+      view: {
+        ...SYNC_STATE.view,
+        activeSection: "creator",
+        query: "",
+        listSort: "time",
+        timeRangeFilter: "all",
+        sourceTypeFilter: "",
+        signalLevelFilter: "",
+        siteFilter: "",
+        mode: "all",
+        allDedup: true,
+        readFilter: "unread",
+      },
+    };
+    try {
+      const errors = collectErrors(page);
+      await installRadarFixture(page, subscriptionItems);
+      await page.goto(PARENT_ORIGIN);
+      const radar = page.frameLocator("#radar");
+      await expect(radar.locator("#newsList .news-card")).toHaveCount(6);
+      await expect.poll(() => page.evaluate(() => (
+        window.__workbench.events().some((event) => event.type === "radar-ready")
+      ))).toBe(true);
+      await page.evaluate(() => window.__workbench.hello());
+      await expect.poll(() => radar.locator("body").evaluate(() => window.WorkbenchBridge.connected())).toBe(true);
+      await expect(radar.getByText("探索信号")).toHaveCount(0);
+
+      const requestId = await page.evaluate(() => window.__workbench.currentReadyId());
+      await page.evaluate(({ requestId: helloId, items }) => {
+        window.__workbench.sendToRadar({
+          version: 1,
+          type: "radar-exploration-state",
+          requestId: helloId,
+          items,
+          date: "2026-08-23",
+          generated: true,
+        });
+      }, { requestId, items: exploreItems });
+
+      await expect(radar.getByText("探索信号")).toHaveCount(3);
+      await expect(radar.locator("#newsList .news-card")).toHaveCount(6);
+      const rowFlags = await radar.locator("#newsList > *").evaluateAll((nodes) => (
+        nodes.map((node) => /探索信号/.test(node.textContent || ""))
+      ));
+      const exploreIndexes = rowFlags
+        .map((isExplore, index) => (isExplore ? index : -1))
+        .filter((index) => index >= 0);
+      expect(exploreIndexes).toHaveLength(3);
+      expect(exploreIndexes[1] - exploreIndexes[0]).toBeGreaterThan(1);
+      expect(exploreIndexes[2] - exploreIndexes[1]).toBeGreaterThan(1);
+
+      await radar.locator("#searchInput").fill("订阅资讯 1");
+      await expect(radar.getByText("探索信号")).toHaveCount(0);
+
+      await radar.locator("#searchInput").fill("");
+      await expect(radar.getByText("探索信号")).toHaveCount(3);
+      await radar.locator('#sectionTabs [data-section="read"]').click();
+      await expect(radar.getByText("探索信号")).toHaveCount(0);
+      expect(errors).toEqual([]);
+    } finally {
+      workbenchRadarState = null;
+    }
+  });
+
+  test("探索信号穿插：独立打开没有细条", async ({ page }) => {
+    const errors = collectErrors(page);
+    await installRadarFixture(page);
+    await page.goto("/");
+    await expect(page.locator("#newsList .news-card")).toHaveCount(2);
+    await expect(page.getByText("探索信号")).toHaveCount(0);
+    expect(errors).toEqual([]);
+  });
+
+  async function openExplorationFeed(page) {
+    const subscriptionItems = Array.from({ length: 6 }, (_, index) => ({
+      ...FIRST_ITEM,
+      id: `explore-detail-${index + 1}`,
+      title: `订阅资讯 ${index + 1}`,
+      url: `https://www.bilibili.com/video/explore-detail-${index + 1}`,
+      published_at: `2026-07-17T0${9 - index}:00:00+08:00`,
+      first_seen_at: `2026-07-17T0${9 - index}:00:00+08:00`,
+    }));
+    const exploreItems = [
+      {
+        id: "item-1",
+        title: "机器人失败恢复主课",
+        url: "https://example.test/robot-1",
+        domain: "机器人",
+        why: "和失败恢复有关",
+        what: "研究把失败恢复当成主课",
+        evidence: "多源公开稿",
+        next: "盯它怎么定义失败",
+        seen: false,
+      },
+    ];
+    workbenchRadarState = {
+      ...SYNC_STATE,
+      readKeys: [],
+      view: {
+        ...SYNC_STATE.view,
+        activeSection: "creator",
+        query: "",
+        listSort: "time",
+        timeRangeFilter: "all",
+        sourceTypeFilter: "",
+        signalLevelFilter: "",
+        siteFilter: "",
+        mode: "all",
+        allDedup: true,
+        readFilter: "unread",
+      },
+    };
+    const errors = collectErrors(page);
+    await installRadarFixture(page, subscriptionItems);
+    await page.goto(PARENT_ORIGIN);
+    const radar = page.frameLocator("#radar");
+    await expect(radar.locator("#newsList .news-card")).toHaveCount(6);
+    await expect.poll(() => page.evaluate(() => (
+      window.__workbench.events().some((event) => event.type === "radar-ready")
+    ))).toBe(true);
+    await page.evaluate(() => window.__workbench.hello());
+    await expect.poll(() => radar.locator("body").evaluate(() => window.WorkbenchBridge.connected())).toBe(true);
+    const requestId = await page.evaluate(() => window.__workbench.currentReadyId());
+    await page.evaluate(({ requestId: helloId, items }) => {
+      window.__workbench.sendToRadar({
+        version: 1,
+        type: "radar-exploration-state",
+        requestId: helloId,
+        items,
+        date: "2026-08-23",
+        generated: true,
+      });
+    }, { requestId, items: exploreItems });
+    await expect(radar.getByRole("button", { name: "值得深挖" })).toHaveCount(1);
+    return { errors, radar, exploreItems };
+  }
+
+  test("探索信号详情：值得深挖打开四块并淡化留在订阅", async ({ page }) => {
+    try {
+      const { errors, radar } = await openExplorationFeed(page);
+      await radar.getByRole("button", { name: "值得深挖" }).click();
+      const drawer = radar.getByRole("dialog", { name: "探索信号详情" });
+      await expect(drawer).toBeVisible();
+      await expect(drawer.getByText("发生了什么")).toBeVisible();
+      await expect(drawer.getByText("证据靠不靠谱")).toBeVisible();
+      await expect(drawer.getByText("为什么与你有关")).toBeVisible();
+      await expect(drawer.getByText("接下来盯什么")).toBeVisible();
+      await expect.poll(() => page.evaluate(() => (
+        window.__workbench.latestMessage("radar-exploration-seen")?.payload?.id || ""
+      ))).toBe("item-1");
+      await expect(radar.locator(".explore-signal.is-seen")).toHaveCount(1);
+      await expect(radar.locator("#newsList .explore-signal")).toHaveCount(1);
+      await expect(radar.locator("#newsList .news-card")).toHaveCount(6);
+      expect(errors).toEqual([]);
+    } finally {
+      workbenchRadarState = null;
+    }
+  });
+
+  test("探索信号详情：收藏失败不显示已收藏", async ({ page }) => {
+    workbenchWriteFailure = { type: "radar-collect" };
+    try {
+      const { errors, radar } = await openExplorationFeed(page);
+      await radar.getByRole("button", { name: "值得深挖" }).click();
+      const drawer = radar.getByRole("dialog", { name: "探索信号详情" });
+      await expect(drawer).toBeVisible();
+      await drawer.getByRole("button", { name: "存进收藏库" }).click();
+      await expect.poll(() => page.evaluate(() => (
+        window.__workbench.events().some((event) => event.type === "radar-collect")
+      ))).toBe(true);
+      await expect(drawer.getByText("已在收藏库")).toHaveCount(0);
+      await expect(drawer.getByText("已收藏")).toHaveCount(0);
+      await expect(drawer).toBeVisible();
+      expect(errors).toEqual([]);
+    } finally {
+      workbenchWriteFailure = null;
+      workbenchRadarState = null;
+    }
+  });
+
+  test("探索信号详情：问 AI 失败留在抽屉且不跳助手", async ({ page }) => {
+    try {
+      const { errors, radar } = await openExplorationFeed(page);
+      await radar.getByRole("button", { name: "值得深挖" }).click();
+      const drawer = radar.getByRole("dialog", { name: "探索信号详情" });
+      await expect(drawer).toBeVisible();
+      await drawer.getByRole("button", { name: "问 AI" }).click();
+      await expect.poll(() => page.evaluate(() => (
+        window.__workbench.latestMessage("radar-exploration-ask")?.payload?.id || ""
+      ))).toBe("item-1");
+      const askId = await page.evaluate(() => window.__workbench.latestMessage("radar-exploration-ask").requestId);
+      await page.evaluate((requestId) => {
+        window.__workbench.sendToRadar({
+          version: 1,
+          type: "radar-exploration-ask-result",
+          requestId,
+          ok: false,
+          error: "问 AI 失败",
+        });
+      }, askId);
+      await expect(drawer.getByText("问 AI 失败")).toBeVisible();
+      await expect(drawer.getByText("发生了什么")).toBeVisible();
+      await expect(drawer.getByRole("button", { name: "存进收藏库" })).toBeVisible();
+      await expect(page.locator("#radar")).toBeVisible();
+      await expect(page).not.toHaveURL(/助手|agent/i);
+      expect(errors).toEqual([]);
+    } finally {
+      workbenchRadarState = null;
+    }
+  });
 });
