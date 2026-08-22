@@ -4020,8 +4020,29 @@ body.settings-drawer-open {
   color: var(--ink-soft);
 }
 
+.explore-ask-thread {
+  border: 1px solid rgba(181, 82, 49, 0.28);
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #fff8f4;
+}
+
+.explore-ask-thread h4 {
+  margin: 0 0 6px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--accent-warm);
+}
+
 .explore-ask-status {
-  margin: 0 0 8px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+.explore-ask-thread.is-error .explore-ask-status,
+.explore-ask-thread.is-hint .explore-ask-status {
   color: var(--bad);
   font-size: 13px;
 }
