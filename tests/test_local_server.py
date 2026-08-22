@@ -12,9 +12,13 @@ from unittest.mock import Mock, patch
 
 from scripts.local_server import (
     CONFIG_FILENAME,
+    ASSETS_CACHE_CONTROL,
     BILIBILI_DEFAULT_COOKIE_FILE,
     BILIBILI_PROFILE_DIR,
+    DATA_JSON_CACHE_CONTROL,
+    HTML_CACHE_CONTROL,
     LocalRadarHandler,
+    origin_cache_control,
     PURGE_TRACKED_SITE_IDS,
     alive_source_names_by_site,
     bilibili_cookie_status,
@@ -4728,6 +4732,104 @@ class DefaultModeServerRegressionTests(unittest.TestCase):
             self.assertEqual(response.status, 200)
         finally:
             connection.close()
+
+
+class OriginCacheControlPathTests(unittest.TestCase):
+    def test_path_classes_ignore_query_string(self):
+        self.assertEqual(
+            origin_cache_control("/assets/js/boot.js?v=20260822"),
+            ASSETS_CACHE_CONTROL,
+        )
+        self.assertEqual(origin_cache_control("/?v=1"), HTML_CACHE_CONTROL)
+        self.assertEqual(origin_cache_control("/index.html?x=1"), HTML_CACHE_CONTROL)
+        self.assertEqual(
+            origin_cache_control("/data/latest-24h.json?t=1"),
+            DATA_JSON_CACHE_CONTROL,
+        )
+        self.assertIsNone(origin_cache_control("/api/refresh-progress?foo=1"))
+        self.assertIsNone(origin_cache_control("/site.webmanifest"))
+        self.assertIsNone(origin_cache_control("/data/nested/x.json"))
+        self.assertIsNone(origin_cache_control("/data/notes.txt"))
+
+
+class OriginCacheControlHeaderTests(unittest.TestCase):
+    class QuietHandler(LocalRadarHandler):
+        def log_message(self, _format, *args):
+            return
+
+    def setUp(self):
+        import tempfile
+
+        self.temp_dir = self.enterContext(tempfile.TemporaryDirectory(prefix="origin-cache-headers-"))
+        self.root = Path(self.temp_dir)
+        (self.root / "index.html").write_text("<html>ok</html>", encoding="utf-8")
+        (self.root / "site.webmanifest").write_text("{}", encoding="utf-8")
+        (self.root / "assets").mkdir()
+        (self.root / "assets" / "js").mkdir()
+        (self.root / "assets" / "js" / "boot.js").write_text("console.log(1)", encoding="utf-8")
+        (self.root / "data").mkdir()
+        (self.root / "data" / "nested").mkdir()
+        (self.root / "data" / "latest-24h.json").write_text("{}", encoding="utf-8")
+        (self.root / "data" / "nested" / "x.json").write_text("{}", encoding="utf-8")
+
+        self._env_patch = patch.dict(os.environ, {}, clear=False)
+        self._env_patch.start()
+        for key in ("RADAR_ADMIN_TOKEN", "RADAR_TRUSTED_ORIGINS"):
+            os.environ.pop(key, None)
+        self.addCleanup(self._env_patch.stop)
+
+        root_dir = str(self.root)
+        quiet_handler = self.QuietHandler
+
+        class BoundHandler(quiet_handler):
+            def __init__(self, *args, **kwargs):
+                super().__init__(*args, directory=root_dir, **kwargs)
+
+        self.server = ThreadingHTTPServer(("127.0.0.1", 0), BoundHandler)
+        self.server.root_dir = str(self.root)
+        self.thread = threading.Thread(target=self.server.serve_forever, daemon=True)
+        self.thread.start()
+        self.addCleanup(self.stop_server)
+
+    def stop_server(self):
+        self.server.shutdown()
+        self.server.server_close()
+        self.thread.join(2)
+
+    def request(self, method, path):
+        connection = http.client.HTTPConnection(*self.server.server_address, timeout=5)
+        try:
+            connection.request(method, path)
+            response = connection.getresponse()
+            body = response.read()
+            headers = list(response.getheaders())
+            return response.status, headers, body
+        finally:
+            connection.close()
+
+    @staticmethod
+    def cache_control_values(headers):
+        return [value for name, value in headers if name.lower() == "cache-control"]
+
+    def test_assets_html_data_and_api_headers(self):
+        cases = (
+            ("GET", "/assets/js/boot.js?v=20260822", 200, [ASSETS_CACHE_CONTROL]),
+            ("HEAD", "/assets/js/boot.js", 200, [ASSETS_CACHE_CONTROL]),
+            ("GET", "/", 200, [HTML_CACHE_CONTROL]),
+            ("GET", "/index.html?x=1", 200, [HTML_CACHE_CONTROL]),
+            ("HEAD", "/index.html", 200, [HTML_CACHE_CONTROL]),
+            ("GET", "/data/latest-24h.json?t=1", 200, [DATA_JSON_CACHE_CONTROL]),
+            ("HEAD", "/data/latest-24h.json", 200, [DATA_JSON_CACHE_CONTROL]),
+            ("GET", "/api/refresh-progress?foo=1", 200, ["no-store"]),
+            ("GET", "/site.webmanifest", 200, []),
+            ("GET", "/data/nested/x.json", 200, []),
+            ("GET", "/assets/missing.js", 404, []),
+        )
+        for method, path, status, expected in cases:
+            with self.subTest(method=method, path=path):
+                got_status, headers, _body = self.request(method, path)
+                self.assertEqual(got_status, status)
+                self.assertEqual(self.cache_control_values(headers), expected)
 
 
 class ProcessIsRunningTests(unittest.TestCase):
