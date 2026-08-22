@@ -727,12 +727,12 @@
       "id": "online_we_mp_rss_maobidao",
       "name": "猫笔刀 (WeRSS)",
       "type": "we_mp_rss_jsonl",
-      "enabled": true,
+      "enabled": false,
       "channel": "微信公众号",
       "target": "猫笔刀",
       "locator": "",
       "env": "",
-      "notes": "本机 sidecar 采集 → wechat-bridge 桥接。locator 留空=读 WE_MP_RSS_JSONL_DIR 下 latest JSONL。"
+      "notes": "微信采集已下线。配置保留以免误清历史文章，不再抓新。"
     },
     {
       "id": "online_feed_google_ai_blog",

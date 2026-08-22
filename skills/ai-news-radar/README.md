@@ -406,9 +406,7 @@ ai-news-radar/
 ├── scripts/
 │   └── update_news.py
 ├── docs/
-│   ├── SOURCE_COVERAGE.md
-│   ├── GPT_HANDOFF.md
-│   └── V2_PRODUCT_BRIEF.md
+│   └── SOURCE_COVERAGE.md
 └── skills/
     └── ai-news-radar/
         ├── SKILL.md
@@ -443,7 +441,7 @@ https://github.com/LearnPrompt/ai-news-radar
 ```text
 Use Scout Skill to help me build my own AI daily radar.
 
-First read README.md, docs/SOURCE_COVERAGE.md, docs/GPT_HANDOFF.md, and skills/ai-news-radar/SKILL.md.
+First read README.md, docs/SOURCE_COVERAGE.md, and skills/ai-news-radar/SKILL.md.
 
 Then ask me for my source list: websites, RSS feeds, OPML files, X accounts, newsletters, GitHub projects, or private knowledge bases.
 

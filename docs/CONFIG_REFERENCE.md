@@ -188,10 +188,8 @@ SocialData 同时跑两路:① 中英关键词搜索发现新声音;② 一个�
 | `WECHAT_BRIDGE_SSH_KEY` | Actions **Secrets** | **只读**部署密钥私钥,仅授权该单仓库 |
 | `WE_MP_RSS_JSONL_DIR` | workflow 内部注入 | Actions 克隆桥接仓库后的 JSONL 目录,由 `Fetch WeChat bridge JSONL` 步骤产出;桥接缺失时静默跳过,不会让 Actions 失败 |
 
-NUC 生产侧：采集脚本 `deploy/local/collect-wechat-and-push.ps1` 作为第二个动作挂在 NUC 计划任务
-`DouyinCollectAndPush` 上（`08:10 / 13:10 / 20:10`），日志为 `C:\AI-news-reader\wechat-collect.log`。
-旧电脑同名任务已停用，仅保留作回退；不得双节点并行采集。
-**微信 cookie / 授权态只留在本机 sidecar 的 `data/` 目录,绝不进仓库或日志;JSONL 只含公开字段。**
+微信采集已下线：不再抓新公众号，历史文章仍保留在 `data/archive.json`。
+NUC 计划任务若仍挂着旧微信动作，应停掉该动作，避免空跑。
 
 NUC 管理后台入口：`WE_MP_RSS_PUBLIC_ADMIN_URL` 配置在
 `C:\OMNIA\radar-admin\start-server.cmd`，当前值为 `https://wechat.wanyouomnia.cn`。
