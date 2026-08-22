@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "synced",
-  "finished_at": "2026-08-22T05:33:20Z",
+  "outcome": "no_change",
+  "finished_at": "2026-08-22T05:55:56Z",
   "error_code": "",
-  "workflow_run_id": "32554642866",
+  "workflow_run_id": "32555613444",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "7cbbdc0634033cbbc7b9ea313801852f755f5d58",
+  "workflow_head_sha": "ac8febee4c83248f740d37f7c2b93fc02f490e38",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-08-22T05:33:20Z",
-  "purge_state_sha256": "b14b3e68084faf93f02e3e575fd43e5dc6114c3bf1e2ebaeb4352941db9725fd",
+  "snapshot_completed_at": "2026-08-22T05:55:56Z",
+  "purge_state_sha256": "1b16115388b9ee1173fc07bdd39b7a5a5db2dd6ae09c750885962c5d220fa398",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -21,13 +21,7 @@
   "starred_count": 34,
   "private_skipped_count": 0,
   "summary": {
-    "added": [
-      {
-        "repo_id": 1331707935,
-        "repo": "biuworks/bilibili-digest",
-        "source_id": "online_github_repo_1331707935"
-      }
-    ],
+    "added": [],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
