@@ -77,11 +77,18 @@
       '    <section><h4>证据靠不靠谱</h4><p data-block="evidence"></p></section>',
       '    <section><h4>为什么与你有关</h4><p data-block="why"></p></section>',
       '    <section><h4>接下来盯什么</h4><p data-block="next"></p></section>',
-      '    <p class="explore-ask-status" hidden></p>',
       '  </div>',
       '  <footer class="explore-drawer-foot">',
-      '    <button type="button" class="explore-collect-btn">存进收藏库</button>',
-      '    <button type="button" class="explore-ask-btn">问 AI</button>',
+      '    <div class="explore-ask-thread" hidden>',
+      '      <h4>AI 回答</h4>',
+      '      <p class="explore-ask-status"></p>',
+      '    </div>',
+      '    <label class="explore-ask-label" for="explore-ask-input">问一句</label>',
+      '    <textarea id="explore-ask-input" class="explore-ask-input" rows="2" maxlength="200" placeholder="例如：接下来该盯什么？"></textarea>',
+      '    <div class="explore-drawer-actions">',
+      '      <button type="button" class="explore-collect-btn">存进收藏库</button>',
+      '      <button type="button" class="explore-ask-btn">问 AI</button>',
+      '    </div>',
       '  </footer>',
       '</div>',
     ].join("");
@@ -92,14 +99,22 @@
     return drawerEl;
   }
 
-  function setAskStatus(text) {
-    const status = ensureDrawer().querySelector(".explore-ask-status");
+  function setAskStatus(text, kind) {
+    const root = ensureDrawer();
+    const thread = root.querySelector(".explore-ask-thread");
+    const status = root.querySelector(".explore-ask-status");
+    const heading = thread.querySelector("h4");
     if (!text) {
-      status.hidden = true;
+      thread.hidden = true;
       status.textContent = "";
+      thread.classList.remove("is-error", "is-hint", "is-answer");
       return;
     }
-    status.hidden = false;
+    thread.hidden = false;
+    thread.classList.remove("is-error", "is-hint", "is-answer");
+    thread.classList.add(kind === "error" || kind === "hint" ? `is-${kind}` : "is-answer");
+    heading.hidden = kind !== "answer";
+    heading.textContent = "AI 回答";
     status.textContent = text;
   }
 
@@ -116,6 +131,8 @@
     collectBtn.textContent = "存进收藏库";
     collectBtn.disabled = false;
     collectPending = false;
+    const askInput = root.querySelector(".explore-ask-input");
+    if (askInput) askInput.value = "";
     setAskStatus("");
     markItemSeen(item.id);
     applyExplorationFeed();
@@ -153,22 +170,30 @@
   async function askCurrent() {
     const item = currentDrawerItem();
     if (!item || !window.WorkbenchBridge) return;
+    const askInput = ensureDrawer().querySelector(".explore-ask-input");
+    const question = askInput && typeof askInput.value === "string" ? askInput.value.trim() : "";
+    if (!question) {
+      setAskStatus("先写一句要问的话", "hint");
+      if (askInput) askInput.focus();
+      return;
+    }
     setAskStatus("");
-    const payload = { id: item.id, message: "这篇接下来该盯什么？" };
+    const payload = { id: item.id, message: question };
     try {
       if (typeof window.WorkbenchBridge.request === "function") {
         const result = await window.WorkbenchBridge.request("radar-exploration-ask", payload);
         if (!result || result.ok === false) {
-          setAskStatus((result && result.error) || "问 AI 失败");
+          setAskStatus((result && result.error) || "问 AI 失败", "error");
           return;
         }
         const answer = typeof result.text === "string" ? result.text.trim() : "";
-        setAskStatus(answer || result.error || "");
+        setAskStatus(answer || result.error || "", answer ? "answer" : "error");
+        if (answer && askInput) askInput.value = "";
       } else if (typeof window.WorkbenchBridge.notify === "function") {
         window.WorkbenchBridge.notify("radar-exploration-ask", payload);
       }
     } catch (error) {
-      setAskStatus((error && error.message) || "问 AI 失败");
+      setAskStatus((error && error.message) || "问 AI 失败", "error");
     }
   }
 
@@ -219,21 +244,25 @@
   function handleHostExploration(data) {
     if (!data || typeof data !== "object") return;
     if (data.type === "radar-exploration-state") {
-      if (!window.WorkbenchBridge || !window.WorkbenchBridge.connected()) return;
       storeBatch(data);
       applyExplorationFeed();
       return;
     }
     if (data.type !== "radar-exploration-ask-result") return;
     if (data.ok === false) {
-      setAskStatus(data.error || "问 AI 失败");
+      setAskStatus(data.error || "问 AI 失败", "error");
       return;
     }
     const answer = typeof data.text === "string" ? data.text.trim() : "";
-    if (answer) setAskStatus(answer);
+    if (answer) {
+      setAskStatus(answer, "answer");
+      const askInput = ensureDrawer().querySelector(".explore-ask-input");
+      if (askInput) askInput.value = "";
+    }
   }
 
   window.addEventListener("message", (event) => {
+    if (event.source !== window.parent) return;
     handleHostExploration(event.data);
   });
   if (window.WorkbenchBridge && typeof window.WorkbenchBridge.addHostMessageListener === "function") {
