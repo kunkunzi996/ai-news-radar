@@ -109,6 +109,28 @@
     persistReadItemIds();
   }
 
+  function snapshotViewFields() {
+    const snapshot = {};
+    VIEW_FIELDS.forEach((field) => {
+      snapshot[field] = state[field];
+    });
+    return snapshot;
+  }
+
+  function viewFieldsUnchanged(previousView, nextView) {
+    return Array.from(VIEW_FIELDS).every((field) => previousView[field] === nextView[field]);
+  }
+
+  function shouldRestoreListStay(previousView, nextView, incomingKeys, previousHostReadKeys) {
+    if (!viewFieldsUnchanged(previousView, nextView)) return false;
+    const justMarked = state.justMarkedReadKeys instanceof Set ? state.justMarkedReadKeys : new Set();
+    const previous = previousHostReadKeys instanceof Set ? previousHostReadKeys : new Set();
+    return (Array.isArray(incomingKeys) ? incomingKeys : []).every((raw) => {
+      const key = String(raw || "").trim();
+      return !key || previous.has(key) || justMarked.has(key);
+    });
+  }
+
   function normalizeLegacyReadMigration(value) {
     if (!value || typeof value !== "object" || Number(value.version) !== 1) {
       return { version: 1, status: "complete", migrationId: "" };
@@ -244,6 +266,8 @@
       queuedState = snapshot;
       return;
     }
+    const previousView = snapshotViewFields();
+    const previousHostReadKeys = new Set(serverReadKeys);
     const view = normalizeView(snapshot.view);
     legacyReadMigration = normalizeLegacyReadMigration(snapshot.legacyReadMigration);
     viewRevision = Number.isInteger(snapshot.viewRevision) ? snapshot.viewRevision : 0;
@@ -262,6 +286,14 @@
       } catch {
         setStatus("同步暂停", "warn");
       }
+    }
+    if (
+      render
+      && hasInlineReadKeys
+      && shouldRestoreListStay(previousView, view, snapshot.readKeys, previousHostReadKeys)
+      && typeof requestListStayRestore === "function"
+    ) {
+      requestListStayRestore();
     }
     if (render) rerenderCurrentView();
     if (!hasInlineReadKeys) await loadReadStatus({ render });

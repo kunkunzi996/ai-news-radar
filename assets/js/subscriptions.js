@@ -737,6 +737,19 @@ function isItemRead(item) {
   }
   return false;
 }
+function rememberJustMarkedReadKeys(item) {
+  if (!(state.justMarkedReadKeys instanceof Set)) state.justMarkedReadKeys = new Set();
+  const hostKey = item?.url || item?.primary_url;
+  if (hostKey) state.justMarkedReadKeys.add(String(hostKey));
+  readTrackingKeys(item).forEach((key) => state.justMarkedReadKeys.add(key));
+}
+
+function requestListStayRestore() {
+  state.pendingListStay = {
+    scrollY: window.scrollY || document.documentElement.scrollTop || 0,
+  };
+}
+
 function toggleItemRead(item) {
   const keys = readTrackingKeys(item);
   if (!keys.size) return;
@@ -745,9 +758,11 @@ function toggleItemRead(item) {
     keys.forEach((key) => state.readItemIds.delete(key));
   } else {
     keys.forEach((key) => state.readItemIds.add(key));
+    rememberJustMarkedReadKeys(item);
     if (window.RadarSync) window.RadarSync.markRead(item);
   }
   persistReadItemIds();
+  requestListStayRestore();
   rerenderCurrentView();
 }
 function isSubscriptionItem(item) {
