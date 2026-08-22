@@ -1453,6 +1453,15 @@ function renderSiteGroups(items) {
 function usesFlatTimelineLayout(sectionId) {
   return Boolean(SECTION_BY_ID[sectionId]);
 }
+function consumeListStayRestore() {
+  const stay = state.pendingListStay;
+  if (!stay) return;
+  state.pendingListStay = null;
+  const y = Number(stay.scrollY);
+  if (!Number.isFinite(y)) return;
+  window.scrollTo(0, y);
+}
+
 function renderList() {
   const filtered = getFilteredItems();
   renderListSortTools();
@@ -1474,6 +1483,7 @@ function renderList() {
     empty.className = "empty";
     empty.textContent = "当前筛选条件下没有结果。";
     newsListEl.appendChild(empty);
+    consumeListStayRestore();
     return;
   }
 
@@ -1487,6 +1497,7 @@ function renderList() {
     } else {
       renderSiteGroups(sorted);
     }
+    consumeListStayRestore();
   });
 }
 function rerenderCurrentView() {

@@ -1766,4 +1766,227 @@ test.describe("工作台收藏桥", () => {
     const second = await page.evaluate(() => window.__nativeHost.viewPatches()[1]);
     expect(second.payload).toEqual({ baseRevision: 8, patch: { query: "最后一个值" } });
   });
+
+  test("TEST-018：自己点已阅或收藏后下一条顶到原位", async ({ page }) => {
+    const fixtureItems = Array.from({ length: 16 }, (_, index) => ({
+      ...FIRST_ITEM,
+      id: `stay-018-${index}`,
+      title: `停留位置夹具 ${index}`,
+      url: `https://www.bilibili.com/video/stay-018-${index}`,
+      source: `停留作者 ${index}`,
+      published_at: `2026-07-17T09:${String(59 - index).padStart(2, "0")}:00+08:00`,
+      first_seen_at: `2026-07-17T09:${String(59 - index).padStart(2, "0")}:00+08:00`,
+    }));
+    workbenchRadarState = {
+      version: 1,
+      view: {
+        ...SYNC_STATE.view,
+        activeSection: "creator",
+        query: "",
+        listSort: "time",
+        readFilter: "unread",
+        timeRangeFilter: "all",
+        sourceTypeFilter: "",
+        signalLevelFilter: "",
+        siteFilter: "",
+        mode: "all",
+      },
+      viewRevision: SYNC_STATE.viewRevision,
+      updatedAt: SYNC_STATE.updatedAt,
+    };
+    workbenchReadKeys = [];
+    const errors = collectErrors(page);
+
+    async function waitListSettled(radar) {
+      await radar.locator("body").evaluate(() => new Promise((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(resolve));
+      }));
+      await expect.poll(() => radar.locator("#newsList").evaluate((list) => ({
+        loading: Boolean(list.querySelector(".list-loading")),
+        settled: Boolean(list.querySelector(".news-card, .empty")),
+      }))).toEqual({ loading: false, settled: true });
+    }
+
+    async function cardViewport(radar, itemId) {
+      return radar.locator(`#newsList .news-card[data-item-id="${itemId}"]`).evaluate((node) => ({
+        id: node.getAttribute("data-item-id"),
+        top: node.getBoundingClientRect().top,
+        scrollY: window.scrollY || document.documentElement.scrollTop || 0,
+      }));
+    }
+
+    try {
+      await installRadarFixture(page, fixtureItems);
+      await page.goto(PARENT_ORIGIN);
+      await page.locator("#radar").evaluate((frame) => {
+        frame.style.width = "390px";
+        frame.style.height = "640px";
+        frame.style.border = "0";
+      });
+      const radar = page.frameLocator("#radar");
+      await expect(radar.locator("#newsList .news-card")).toHaveCount(16);
+      await page.evaluate(() => window.__workbench.hello());
+      await expect.poll(() => radar.locator("body").evaluate(() => window.WorkbenchBridge.connected())).toBe(true);
+      await expect.poll(() => radar.locator("body").evaluate(() => state.readFilter)).toBe("unread");
+      await waitListSettled(radar);
+
+      const mid = fixtureItems[8];
+      const nextAfterMid = fixtureItems[9];
+      const midCard = radar.locator(`#newsList .news-card[data-item-id="${mid.id}"]`);
+      await midCard.scrollIntoViewIfNeeded();
+      const beforeRead = await cardViewport(radar, mid.id);
+      expect(beforeRead.scrollY).toBeGreaterThan(80);
+      await midCard.locator(".read-toggle-btn").click();
+      await waitListSettled(radar);
+      await expect(midCard).toHaveCount(0);
+      const afterRead = await cardViewport(radar, nextAfterMid.id);
+      expect(afterRead.scrollY).toBeGreaterThan(80);
+      expect(Math.abs(afterRead.top - beforeRead.top)).toBeLessThanOrEqual(64);
+
+      const collectTarget = fixtureItems[6];
+      const nextAfterCollect = fixtureItems[7];
+      const collectCard = radar.locator(`#newsList .news-card[data-item-id="${collectTarget.id}"]`);
+      await collectCard.scrollIntoViewIfNeeded();
+      const beforeCollect = await cardViewport(radar, collectTarget.id);
+      expect(beforeCollect.scrollY).toBeGreaterThan(80);
+      await collectCard.locator(".collect-btn").click();
+      const collectRequest = await latestRequest(page);
+      await page.evaluate(({ requestId }) => window.__workbench.reply(requestId, { ok: true }), {
+        requestId: collectRequest.requestId,
+      });
+      await expect.poll(() => radar.locator("body").evaluate((_, url) => (
+        window.WorkbenchBridge.isCollected(url)
+      ), collectTarget.url)).toBe(true);
+      await waitListSettled(radar);
+      await expect(collectCard).toHaveCount(0);
+      const afterCollect = await cardViewport(radar, nextAfterCollect.id);
+      expect(afterCollect.scrollY).toBeGreaterThan(80);
+      expect(Math.abs(afterCollect.top - beforeCollect.top)).toBeLessThanOrEqual(64);
+
+      const last = fixtureItems[15];
+      const lastCard = radar.locator(`#newsList .news-card[data-item-id="${last.id}"]`);
+      await lastCard.scrollIntoViewIfNeeded();
+      const beforeLast = await cardViewport(radar, last.id);
+      expect(beforeLast.scrollY).toBeGreaterThan(80);
+      await lastCard.locator(".read-toggle-btn").click();
+      await waitListSettled(radar);
+      await expect(lastCard).toHaveCount(0);
+      const afterLastScrollY = await radar.locator("body").evaluate(() => (
+        window.scrollY || document.documentElement.scrollTop || 0
+      ));
+      expect(afterLastScrollY).toBeGreaterThan(80);
+      expect(errors).toEqual([]);
+    } finally {
+      workbenchRadarState = null;
+      workbenchReadKeys = [];
+    }
+  });
+
+  test("TEST-019：自己点出去的已阅回声再画仍留在原位", async ({ page }) => {
+    const fixtureItems = Array.from({ length: 16 }, (_, index) => ({
+      ...FIRST_ITEM,
+      id: `stay-019-${index}`,
+      title: `回声停留夹具 ${index}`,
+      url: `https://www.bilibili.com/video/stay-019-${index}`,
+      source: `回声作者 ${index}`,
+      published_at: `2026-07-17T09:${String(59 - index).padStart(2, "0")}:00+08:00`,
+      first_seen_at: `2026-07-17T09:${String(59 - index).padStart(2, "0")}:00+08:00`,
+    }));
+    const echoView = {
+      ...SYNC_STATE.view,
+      activeSection: "creator",
+      query: "",
+      listSort: "time",
+      readFilter: "unread",
+      timeRangeFilter: "all",
+      sourceTypeFilter: "",
+      signalLevelFilter: "",
+      siteFilter: "",
+      mode: "all",
+    };
+    workbenchRadarState = {
+      version: 1,
+      view: echoView,
+      viewRevision: SYNC_STATE.viewRevision,
+      updatedAt: SYNC_STATE.updatedAt,
+    };
+    workbenchReadKeys = [];
+    const errors = collectErrors(page);
+
+    async function waitListSettled(radar) {
+      await radar.locator("body").evaluate(() => new Promise((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(resolve));
+      }));
+      await expect.poll(() => radar.locator("#newsList").evaluate((list) => ({
+        loading: Boolean(list.querySelector(".list-loading")),
+        settled: Boolean(list.querySelector(".news-card, .empty")),
+      }))).toEqual({ loading: false, settled: true });
+    }
+
+    async function cardViewport(radar, itemId) {
+      return radar.locator(`#newsList .news-card[data-item-id="${itemId}"]`).evaluate((node) => ({
+        id: node.getAttribute("data-item-id"),
+        top: node.getBoundingClientRect().top,
+        scrollY: window.scrollY || document.documentElement.scrollTop || 0,
+      }));
+    }
+
+    try {
+      await installRadarFixture(page, fixtureItems);
+      await page.goto(PARENT_ORIGIN);
+      await page.locator("#radar").evaluate((frame) => {
+        frame.style.width = "390px";
+        frame.style.height = "640px";
+        frame.style.border = "0";
+      });
+      const radar = page.frameLocator("#radar");
+      await expect(radar.locator("#newsList .news-card")).toHaveCount(16);
+      await page.evaluate(() => window.__workbench.hello());
+      await expect.poll(() => radar.locator("body").evaluate(() => window.WorkbenchBridge.connected())).toBe(true);
+      await expect.poll(() => radar.locator("body").evaluate(() => state.readFilter)).toBe("unread");
+      await waitListSettled(radar);
+
+      const mid = fixtureItems[8];
+      const nextAfterMid = fixtureItems[9];
+      const midCard = radar.locator(`#newsList .news-card[data-item-id="${mid.id}"]`);
+      await midCard.scrollIntoViewIfNeeded();
+      const beforeRead = await cardViewport(radar, mid.id);
+      expect(beforeRead.scrollY).toBeGreaterThan(80);
+      await midCard.locator(".read-toggle-btn").click();
+      await waitListSettled(radar);
+      await expect(midCard).toHaveCount(0);
+      const afterRead = await cardViewport(radar, nextAfterMid.id);
+      expect(afterRead.scrollY).toBeGreaterThan(80);
+      expect(Math.abs(afterRead.top - beforeRead.top)).toBeLessThanOrEqual(64);
+
+      const readRequestId = await page.evaluate(() => (
+        window.__workbench.latestMessage("radar-read")?.requestId || "echo-stay-019"
+      ));
+      await page.evaluate(({ requestId, viewSnapshot, readKey }) => {
+        window.__workbench.sendToRadar({
+          version: 1,
+          type: "radar-state-result",
+          requestId,
+          ok: true,
+          status: 200,
+          state: {
+            version: 1,
+            view: viewSnapshot,
+            viewRevision: 8,
+            readKeys: [readKey],
+            updatedAt: "2026-07-17T12:31:00+08:00",
+          },
+        });
+      }, { requestId: readRequestId, viewSnapshot: echoView, readKey: mid.url });
+      await waitListSettled(radar);
+      await expect(midCard).toHaveCount(0);
+      const afterEcho = await cardViewport(radar, nextAfterMid.id);
+      expect(afterEcho.scrollY).toBeGreaterThan(80);
+      expect(Math.abs(afterEcho.top - afterRead.top)).toBeLessThanOrEqual(64);
+      expect(errors).toEqual([]);
+    } finally {
+      workbenchRadarState = null;
+      workbenchReadKeys = [];
+    }
+  });
 });
