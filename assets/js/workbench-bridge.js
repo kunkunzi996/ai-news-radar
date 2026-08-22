@@ -398,11 +398,11 @@
       }
       return true;
     }
-    if (!connected()) return false;
     if (data.type === "radar-exploration-state") {
       emitHostMessage(data);
       return true;
     }
+    if (!connected()) return false;
     const entry = pending.get(data.requestId);
     if (!entry || data.type !== entry.expectedResultType) return false;
     const settled = settleRequest(data);

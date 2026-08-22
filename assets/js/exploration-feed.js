@@ -219,7 +219,6 @@
   function handleHostExploration(data) {
     if (!data || typeof data !== "object") return;
     if (data.type === "radar-exploration-state") {
-      if (!window.WorkbenchBridge || !window.WorkbenchBridge.connected()) return;
       storeBatch(data);
       applyExplorationFeed();
       return;
@@ -234,6 +233,7 @@
   }
 
   window.addEventListener("message", (event) => {
+    if (event.source !== window.parent) return;
     handleHostExploration(event.data);
   });
   if (window.WorkbenchBridge && typeof window.WorkbenchBridge.addHostMessageListener === "function") {
