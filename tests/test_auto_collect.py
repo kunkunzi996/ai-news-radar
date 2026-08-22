@@ -60,8 +60,9 @@ class DetectAddedBridgeSourcesTests(unittest.TestCase):
         previous = config_of(bilibili_source())
         current = config_of(bilibili_source(), wechat_source())
         detected = auto_collect.detect_added_bridge_sources(previous, current)
-        self.assertTrue(detected["wechat_added"])
+        self.assertFalse(detected["wechat_added"])
         self.assertEqual(detected["douyin_sec_uids"], [])
+        self.assertFalse(auto_collect.has_pending_work(detected))
 
     def test_removed_source_does_not_trigger(self):
         previous = config_of(bilibili_source(), douyin_source())
@@ -287,7 +288,7 @@ class PendingCollectTests(unittest.TestCase):
         dispatch.assert_called_once()
         merged = dispatch.call_args[0][1]
         self.assertEqual(merged["douyin_sec_uids"], [DOUYIN_SEC_UID])
-        self.assertTrue(merged["wechat_added"])
+        self.assertFalse(merged["wechat_added"])
 
 
 class SaveHookIsolationTests(unittest.TestCase):

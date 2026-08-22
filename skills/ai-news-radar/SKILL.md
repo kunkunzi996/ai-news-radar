@@ -15,9 +15,6 @@ When this skill triggers inside the repo, read these files first:
 - `HANDOFF.md` before release-readiness checks or handing the project
   to another agent.
 - `docs/SOURCE_COVERAGE.md` before changing source strategy.
-- `docs/ROADMAP.md` before changing Source Overlap Check, story merge, or version
-  planning.
-- `docs/V2_PRODUCT_BRIEF.md` before changing product positioning or first-screen UX.
 - `scripts/update_news.py` before changing data generation.
 - `assets/app.js`, `assets/styles.css`, and `index.html` before changing the UI.
 - `references/source-intake.md` when the user provides a new site, GitHub repo,

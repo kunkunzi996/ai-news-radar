@@ -189,7 +189,7 @@ class WeMpRssSourceTests(unittest.TestCase):
         with patch.dict(os.environ, {}, clear=True):
             runtime = apply_source_config_runtime(config)
 
-            self.assertEqual(os.environ["WE_MP_RSS_ENABLED"], "1")
+            self.assertNotIn("WE_MP_RSS_ENABLED", os.environ)
             self.assertNotIn("WE_MP_RSS_FEEDS", os.environ)
             self.assertIn("we_mp_rss", runtime["enabled_site_ids"])
 

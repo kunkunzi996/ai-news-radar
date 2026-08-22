@@ -406,8 +406,7 @@ ai-news-radar/
 ├── scripts/
 │   └── update_news.py
 ├── docs/
-│   ├── SOURCE_COVERAGE.md
-│   └── V2_PRODUCT_BRIEF.md
+│   └── SOURCE_COVERAGE.md
 └── skills/
     └── ai-news-radar/
         ├── SKILL.md

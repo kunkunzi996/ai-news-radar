@@ -421,12 +421,6 @@ if (subscriptionMemberClearBtnEl) {
   subscriptionMemberClearBtnEl.addEventListener("click", clearSubscriptionMemberForm);
 }
 
-if (subscriptionMemberSyncBtnEl) {
-  subscriptionMemberSyncBtnEl.addEventListener("click", () => {
-    syncWeweRssSubscriptions().catch(() => {});
-  });
-}
-
 if (sourceConfigAddBtnEl) {
   sourceConfigAddBtnEl.addEventListener("click", addSourceConfigRecord);
 }
@@ -466,10 +460,6 @@ if (sourceConfigCheckBtnEl) {
 
 if (localServerRestartBtnEl) {
   localServerRestartBtnEl.addEventListener("click", restartLocalServerFromPage);
-}
-
-if (weMpRssStartBtnEl) {
-  weMpRssStartBtnEl.addEventListener("click", startWeMpRssSidecarFromPage);
 }
 
 init();

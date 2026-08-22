@@ -235,7 +235,6 @@ python scripts/update_news.py --output-dir data --window-hours 24 --rss-opml fee
 - `README.md`
 - `README.en.md`
 - `docs/SOURCE_COVERAGE.md`
-- `docs/V2_PRODUCT_BRIEF.md`
 
 ## GitHub 自动更新
 

@@ -215,7 +215,6 @@ When a new agent takes over validation, read these first:
 - `README.md`
 - `README.en.md`
 - `docs/SOURCE_COVERAGE.md`
-- `docs/V2_PRODUCT_BRIEF.md`
 
 ## GitHub Actions updates
 
