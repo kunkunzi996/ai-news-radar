@@ -214,7 +214,6 @@ When a new agent takes over validation, read these first:
 
 - `README.md`
 - `README.en.md`
-- `docs/GPT_HANDOFF.md`
 - `docs/SOURCE_COVERAGE.md`
 - `docs/V2_PRODUCT_BRIEF.md`
 
@@ -259,8 +258,6 @@ the status heartbeat still refreshes.
 By default, the core pipeline requires no API keys.
 
 Advanced source templates live in `examples/advanced-sources.env.example`.
-
-Budget notes are in `docs/research/advanced-source-free-tier-budget-2026-05-10.md`.
 
 The X API demo config is in `docs/guides/x-api-demo-config.md`.
 

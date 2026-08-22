@@ -12,7 +12,7 @@ When this skill triggers inside the repo, read these files first:
 - `skills/ai-news-radar/README.md` for the public-facing 伯乐Skill / Scout Skill positioning,
   source-intake prompt, and install-after-first-message guidance.
 - `README.md` for project usage and current commands.
-- `docs/GPT_HANDOFF.md` before release-readiness checks or handing the project
+- `HANDOFF.md` before release-readiness checks or handing the project
   to another agent.
 - `docs/SOURCE_COVERAGE.md` before changing source strategy.
 - `docs/ROADMAP.md` before changing Source Overlap Check, story merge, or version

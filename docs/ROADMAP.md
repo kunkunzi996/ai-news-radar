@@ -74,7 +74,7 @@ python scripts/update_news.py \
 
 python scripts/audit_ai_relevance.py \
   --data-dir /tmp/ai-news-radar-v0.4-preview \
-  --output reports/ai-relevance-audit/v0.4.0-YYYY-MM-DD.md
+  --output /tmp/ai-relevance-audit-v0.4.0-YYYY-MM-DD.md
 ```
 
 ### Non-goals for v0.4.0

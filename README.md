@@ -234,7 +234,6 @@ python scripts/update_news.py --output-dir data --window-hours 24 --rss-opml fee
 
 - `README.md`
 - `README.en.md`
-- `docs/GPT_HANDOFF.md`
 - `docs/SOURCE_COVERAGE.md`
 - `docs/V2_PRODUCT_BRIEF.md`
 
@@ -340,7 +339,7 @@ local_server 并经 Cloudflare 隧道暴露，**同一个公网页面就能直�
    ```
 
 2. Cloudflare 命名隧道把 `radar.<你的域名>` 指到 `http://127.0.0.1:8080`
-   （`cloudflared tunnel ...`，详见 `计划/2026-07-29-订阅源管理合并入公网页面实施计划.md`）。
+   （`cloudflared tunnel ...`，详见 `docs/rules/remote-admin-public-mode.md`）。
 3. 任意设备打开公网页面 → 右上角「⚙ 设置」→「远程后台」→ 填入 API 地址
    （`https://radar.<你的域名>`）和管理令牌 → 「保存并测试连接」。地址和令牌只保存在
    当前浏览器 localStorage，每台设备输一次即可。
@@ -440,9 +439,7 @@ STAR_SUBSCRIPTION_CLEANUP_APPROVAL_DIGEST=<本轮 audit 输出的摘要>
 没有 `sources.config.json` 时，刷新脚本仍沿用原来的默认范围
 `tested_creator_sources`。
 
-高级源配置模板见 `examples/advanced-sources.env.example`，
-
-预算说明见 `docs/research/advanced-source-free-tier-budget-2026-05-10.md`，
+高级源配置模板见 `examples/advanced-sources.env.example`。
 
 旧版全源模式仍保留 TikHub 抓取能力；本地测试 TikHub 抓取时可以先小流量强制跑一次：
 

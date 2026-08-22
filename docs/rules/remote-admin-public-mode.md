@@ -5,8 +5,7 @@
 > 本文装五条逐条契约——只有改 `scripts/radar/server/` 下的公开模式逻辑时才需要逐条对照。
 
 2026-07-29 起，local_server 支持「公开模式」：设置 `RADAR_ADMIN_TOKEN` 后经 Cloudflare 隧道
-暴露到公网，公网 Pages 页面配置「远程后台」即可直接管理订阅源（实施计划见
-`计划/2026-07-29-订阅源管理合并入公网页面实施计划.md`）。改动这块时：
+暴露到公网，公网 Pages 页面配置「远程后台」即可直接管理订阅源。改动这块时：
 
 1. **静态白名单只许收缩、不许扩张。** 公开模式下只服务 `/`、`/index.html`、`/assets/*`、
    `/data/*`、`/site.webmanifest`、`/favicon.ico`、`/bilibili-account-preview.html` 和 `/api/*`；

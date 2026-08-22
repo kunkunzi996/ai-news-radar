@@ -243,8 +243,7 @@ baseline, then let the aggregator layer add breadth.
   `AGENTMAIL_ALLOWED_SENDER_DOMAINS=alphasignal.ai` to keep shared-inbox output
   scoped to AlphaSignal metadata.
 
-See `docs/research/advanced-source-free-tier-budget-2026-05-10.md` for the X API
-and AgentMail budget notes.
+X API demo cost notes live in `docs/guides/x-api-demo-config.md`.
 
 ## Example OPML Seeds
 
