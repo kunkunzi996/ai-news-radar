@@ -744,19 +744,72 @@ function rememberJustMarkedReadKeys(item) {
   readTrackingKeys(item).forEach((key) => state.justMarkedReadKeys.add(key));
 }
 
-function requestListStayRestore() {
-  const scrolling = document.scrollingElement || document.documentElement;
-  state.pendingListStay = {
-    scrollY: window.scrollY || scrolling?.scrollTop || document.body?.scrollTop || 0,
-    scrollingTop: scrolling ? scrolling.scrollTop : 0,
-    bodyTop: document.body ? document.body.scrollTop : 0,
-  };
+function listStayCardNode(itemId) {
+  if (!newsListEl || itemId == null || itemId === "") return null;
+  const safeId = String(itemId);
+  if (!safeId || safeId.includes("\"") || safeId.includes("\\")) return null;
+  return newsListEl.querySelector(`.news-card[data-item-id="${safeId}"]`);
+}
+
+function normalizeListStay(stay) {
+  if (!stay || typeof stay !== "object") return null;
+  const slotTop = Number(stay.slotTop);
+  const anchorId = stay.anchorId ? String(stay.anchorId) : "";
+  if (!anchorId || !Number.isFinite(slotTop)) return null;
+  return { anchorId, slotTop };
+}
+
+function captureListStayAnchor(item) {
+  const items = typeof getFilteredItems === "function" ? getFilteredItems() : [];
+  const sorted = typeof sortItemsForList === "function" ? sortItemsForList(items) : items;
+  const index = sorted.findIndex((entry) => entry && item && entry.id === item.id);
+  const next = index >= 0 ? sorted[index + 1] : null;
+  const card = listStayCardNode(item && item.id);
+  return normalizeListStay({
+    anchorId: next && next.id ? String(next.id) : "",
+    slotTop: card ? card.getBoundingClientRect().top : Number.NaN,
+  });
+}
+
+function captureVisibleListStay() {
+  if (!newsListEl) return null;
+  const cards = newsListEl.querySelectorAll(".news-card[data-item-id]");
+  let best = null;
+  let bestTop = Infinity;
+  cards.forEach((card) => {
+    const top = card.getBoundingClientRect().top;
+    if (top < 0 || top >= bestTop) return;
+    best = card;
+    bestTop = top;
+  });
+  if (!best) return null;
+  return normalizeListStay({
+    anchorId: best.getAttribute("data-item-id"),
+    slotTop: best.getBoundingClientRect().top,
+  });
+}
+
+function requestListStayRestore(stay) {
+  const nextStay = normalizeListStay(stay);
+  if (nextStay) {
+    state.lastListStay = nextStay;
+    state.pendingListStay = { ...nextStay };
+    return;
+  }
+  if (state.lastListStay) {
+    state.pendingListStay = { ...state.lastListStay };
+    return;
+  }
+  const visibleStay = captureVisibleListStay();
+  if (visibleStay) state.pendingListStay = visibleStay;
 }
 
 function toggleItemRead(item) {
   const keys = readTrackingKeys(item);
   if (!keys.size) return;
-  if (isItemRead(item)) {
+  const wasRead = isItemRead(item);
+  const stay = wasRead ? null : captureListStayAnchor(item);
+  if (wasRead) {
     if (window.RadarSync && window.RadarSync.monotonicReads()) return;
     keys.forEach((key) => state.readItemIds.delete(key));
   } else {
@@ -765,7 +818,7 @@ function toggleItemRead(item) {
     if (window.RadarSync) window.RadarSync.markRead(item);
   }
   persistReadItemIds();
-  requestListStayRestore();
+  requestListStayRestore(stay);
   rerenderCurrentView();
 }
 function isSubscriptionItem(item) {

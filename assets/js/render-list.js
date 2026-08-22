@@ -1453,19 +1453,34 @@ function renderSiteGroups(items) {
 function usesFlatTimelineLayout(sectionId) {
   return Boolean(SECTION_BY_ID[sectionId]);
 }
+function ensureListStaySpacer(slotTop) {
+  if (!newsListEl) return;
+  let spacer = newsListEl.querySelector("[data-list-stay-spacer='1']");
+  if (!spacer) {
+    spacer = document.createElement("div");
+    spacer.dataset.listStaySpacer = "1";
+    spacer.setAttribute("aria-hidden", "true");
+    newsListEl.appendChild(spacer);
+  }
+  const scrolling = document.scrollingElement || document.documentElement;
+  const viewport = scrolling.clientHeight || window.innerHeight || 0;
+  const safeSlot = Number.isFinite(slotTop) ? Math.max(0, slotTop) : 0;
+  spacer.style.height = `${Math.max(0, viewport - safeSlot)}px`;
+}
+
 function consumeListStayRestore() {
   const stay = state.pendingListStay;
   if (!stay) return;
   state.pendingListStay = null;
-  const y = Number(stay.scrollY);
-  const scrolling = document.scrollingElement || document.documentElement;
-  if (Number.isFinite(y)) window.scrollTo(0, y);
-  if (scrolling && Number.isFinite(Number(stay.scrollingTop))) {
-    scrolling.scrollTop = Number(stay.scrollingTop);
-  }
-  if (document.body && Number.isFinite(Number(stay.bodyTop))) {
-    document.body.scrollTop = Number(stay.bodyTop);
-  }
+  const slotTop = Number(stay.slotTop);
+  const anchorId = stay.anchorId ? String(stay.anchorId) : "";
+  if (!anchorId || !Number.isFinite(slotTop) || !newsListEl) return;
+  if (anchorId.includes("\"") || anchorId.includes("\\")) return;
+  const anchor = newsListEl.querySelector(`.news-card[data-item-id="${anchorId}"]`);
+  if (!anchor) return;
+  ensureListStaySpacer(slotTop);
+  const delta = anchor.getBoundingClientRect().top - slotTop;
+  if (Math.abs(delta) >= 1) window.scrollBy(0, delta);
 }
 
 function renderList() {
