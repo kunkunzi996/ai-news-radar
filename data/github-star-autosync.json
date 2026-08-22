@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "no_change",
-  "finished_at": "2026-08-22T04:40:47Z",
+  "outcome": "synced",
+  "finished_at": "2026-08-22T05:33:20Z",
   "error_code": "",
-  "workflow_run_id": "32552321753",
+  "workflow_run_id": "32554642866",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "40bfe416e29c019968fbcab3336829a623ecec5f",
+  "workflow_head_sha": "7cbbdc0634033cbbc7b9ea313801852f755f5d58",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-08-22T04:40:47Z",
-  "purge_state_sha256": "0c16febaf57fc2102f0f7f90f4dce2b8a958be652977d14973ea318ef1e8a18b",
+  "snapshot_completed_at": "2026-08-22T05:33:20Z",
+  "purge_state_sha256": "b14b3e68084faf93f02e3e575fd43e5dc6114c3bf1e2ebaeb4352941db9725fd",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -18,10 +18,16 @@
   ],
   "account_id": 284580915,
   "account_login": "kunkunzi996",
-  "starred_count": 33,
+  "starred_count": 34,
   "private_skipped_count": 0,
   "summary": {
-    "added": [],
+    "added": [
+      {
+        "repo_id": 1331707935,
+        "repo": "biuworks/bilibili-digest",
+        "source_id": "online_github_repo_1331707935"
+      }
+    ],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
