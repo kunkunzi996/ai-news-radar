@@ -2394,7 +2394,7 @@ test.describe("工作台收藏桥", () => {
 
     async function waitListSettled(radar) {
       await radar.locator("body").evaluate(() => new Promise((resolve) => {
-        requestAnimationFrame(() => requestAnimationFrame(resolve));
+        requestAnimationFrame(() => requestAnimationFrame(() => requestAnimationFrame(resolve)));
       }));
       await expect.poll(() => radar.locator("#newsList").evaluate((list) => ({
         loading: Boolean(list.querySelector(".list-loading")),
@@ -2467,10 +2467,13 @@ test.describe("工作台收藏桥", () => {
         await expect(card).toHaveCount(0);
       }
 
+      await expect.poll(async () => {
+        const after = await cardViewport(radar, endAfterBurst.id);
+        return Math.abs(after.top - beforeRead.top);
+      }).toBeLessThanOrEqual(64);
       const afterRead = await cardViewport(radar, endAfterBurst.id);
       const afterMetrics = await scrollMetrics(radar);
       expect(afterRead.scrollY).toBeGreaterThan(80);
-      expect(Math.abs(afterRead.top - beforeRead.top)).toBeLessThanOrEqual(64);
       expect(afterMetrics.distanceToBottom).toBeGreaterThan(24);
       expect(errors).toEqual([]);
     } finally {

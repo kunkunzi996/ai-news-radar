@@ -765,9 +765,17 @@ function captureListStayAnchor(item) {
   const index = sorted.findIndex((entry) => entry && item && entry.id === item.id);
   const next = index >= 0 ? sorted[index + 1] : null;
   const card = listStayCardNode(item && item.id);
+  const liveTop = card ? card.getBoundingClientRect().top : Number.NaN;
+  const continueSlot = Boolean(
+    state.lastListStay
+    && item
+    && String(item.id) === String(state.lastListStay.anchorId)
+    && Number.isFinite(Number(state.lastListStay.slotTop)),
+  );
+  const slotTop = continueSlot ? Number(state.lastListStay.slotTop) : liveTop;
   return normalizeListStay({
     anchorId: next && next.id ? String(next.id) : "",
-    slotTop: card ? card.getBoundingClientRect().top : Number.NaN,
+    slotTop,
   });
 }
 
@@ -800,6 +808,7 @@ function requestListStayRestore(stay) {
     state.pendingListStay = { ...state.lastListStay };
     return;
   }
+  if (state.justMarkedReadKeys instanceof Set && state.justMarkedReadKeys.size) return;
   const visibleStay = captureVisibleListStay();
   if (visibleStay) state.pendingListStay = visibleStay;
 }
