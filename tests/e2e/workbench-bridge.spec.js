@@ -1954,6 +1954,7 @@ test.describe("工作台收藏桥", () => {
       await expect(drawer.getByText("证据靠不靠谱")).toBeVisible();
       await expect(drawer.getByText("为什么与你有关")).toBeVisible();
       await expect(drawer.getByText("接下来盯什么")).toBeVisible();
+      await expect(drawer.getByText("盯它怎么定义失败")).toBeVisible();
       await expect.poll(() => page.evaluate(() => (
         window.__workbench.latestMessage("radar-exploration-seen")?.payload?.id || ""
       ))).toBe("item-1");
@@ -1973,7 +1974,7 @@ test.describe("工作台收藏桥", () => {
       await radar.getByRole("button", { name: "值得深挖" }).click();
       const drawer = radar.getByRole("dialog", { name: "探索信号详情" });
       await expect(drawer).toBeVisible();
-      await drawer.getByRole("button", { name: "存进收藏库" }).click();
+      await drawer.getByRole("button", { name: "存进收藏库" }).evaluate((button) => button.click());
       await expect.poll(() => page.evaluate(() => (
         window.__workbench.events().some((event) => event.type === "radar-collect")
       ))).toBe(true);
@@ -1993,10 +1994,19 @@ test.describe("工作台收藏桥", () => {
       await radar.getByRole("button", { name: "值得深挖" }).click();
       const drawer = radar.getByRole("dialog", { name: "探索信号详情" });
       await expect(drawer).toBeVisible();
-      await drawer.getByRole("button", { name: "问 AI" }).click();
+      await drawer.getByRole("button", { name: "问 AI" }).evaluate((button) => button.click());
+      await expect(drawer.getByText("先写一句要问的话")).toBeVisible();
+      await expect.poll(() => page.evaluate(() => (
+        window.__workbench.latestMessage("radar-exploration-ask")?.payload?.id || ""
+      ))).toBe("");
+      await drawer.locator(".explore-ask-input").fill("接下来该盯什么？");
+      await drawer.getByRole("button", { name: "问 AI" }).evaluate((button) => button.click());
       await expect.poll(() => page.evaluate(() => (
         window.__workbench.latestMessage("radar-exploration-ask")?.payload?.id || ""
       ))).toBe("item-1");
+      await expect.poll(() => page.evaluate(() => (
+        window.__workbench.latestMessage("radar-exploration-ask")?.payload?.message || ""
+      ))).toBe("接下来该盯什么？");
       const askId = await page.evaluate(() => window.__workbench.latestMessage("radar-exploration-ask").requestId);
       await page.evaluate((requestId) => {
         window.__workbench.sendToRadar({

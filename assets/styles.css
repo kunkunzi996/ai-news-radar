@@ -3949,11 +3949,14 @@ body.settings-drawer-open {
   position: fixed;
   inset: 0;
   z-index: 40;
+  pointer-events: none;
 }
 
 .explore-drawer-mask {
   position: absolute;
   inset: 0;
+  z-index: 0;
+  pointer-events: auto;
   background: rgba(23, 23, 23, 0.28);
 }
 
@@ -3961,6 +3964,8 @@ body.settings-drawer-open {
   position: absolute;
   top: 0;
   right: 0;
+  z-index: 1;
+  pointer-events: auto;
   width: min(440px, 100%);
   height: 100%;
   display: flex;
@@ -4023,10 +4028,40 @@ body.settings-drawer-open {
 
 .explore-drawer-foot {
   display: flex;
+  flex-direction: column;
   gap: 8px;
   padding: 12px 18px 16px;
   border-top: 1px solid var(--line-soft);
   background: #fbfaf7;
+}
+
+.explore-ask-label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--accent-warm);
+}
+
+.explore-ask-input {
+  width: 100%;
+  min-height: 56px;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  background: #fff;
+}
+
+.explore-ask-input:focus {
+  outline: 2px solid rgba(181, 82, 49, 0.35);
+  outline-offset: 1px;
+}
+
+.explore-drawer-actions {
+  display: flex;
+  gap: 8px;
 }
 
 .explore-drawer-foot button {

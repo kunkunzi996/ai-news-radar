@@ -80,8 +80,12 @@
       '    <p class="explore-ask-status" hidden></p>',
       '  </div>',
       '  <footer class="explore-drawer-foot">',
-      '    <button type="button" class="explore-collect-btn">存进收藏库</button>',
-      '    <button type="button" class="explore-ask-btn">问 AI</button>',
+      '    <label class="explore-ask-label" for="explore-ask-input">问一句</label>',
+      '    <textarea id="explore-ask-input" class="explore-ask-input" rows="2" maxlength="200" placeholder="例如：接下来该盯什么？"></textarea>',
+      '    <div class="explore-drawer-actions">',
+      '      <button type="button" class="explore-collect-btn">存进收藏库</button>',
+      '      <button type="button" class="explore-ask-btn">问 AI</button>',
+      '    </div>',
       '  </footer>',
       '</div>',
     ].join("");
@@ -116,6 +120,8 @@
     collectBtn.textContent = "存进收藏库";
     collectBtn.disabled = false;
     collectPending = false;
+    const askInput = root.querySelector(".explore-ask-input");
+    if (askInput) askInput.value = "";
     setAskStatus("");
     markItemSeen(item.id);
     applyExplorationFeed();
@@ -153,8 +159,15 @@
   async function askCurrent() {
     const item = currentDrawerItem();
     if (!item || !window.WorkbenchBridge) return;
+    const askInput = ensureDrawer().querySelector(".explore-ask-input");
+    const question = askInput && typeof askInput.value === "string" ? askInput.value.trim() : "";
+    if (!question) {
+      setAskStatus("先写一句要问的话");
+      if (askInput) askInput.focus();
+      return;
+    }
     setAskStatus("");
-    const payload = { id: item.id, message: "这篇接下来该盯什么？" };
+    const payload = { id: item.id, message: question };
     try {
       if (typeof window.WorkbenchBridge.request === "function") {
         const result = await window.WorkbenchBridge.request("radar-exploration-ask", payload);
