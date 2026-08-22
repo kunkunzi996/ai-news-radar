@@ -18,9 +18,7 @@
     if (!maxK) return [];
     const slots = [];
     for (let i = 0; i < maxK; i += 1) {
-      let pos = Math.round((i + 1) * ordinaryCount / (maxK + 1));
-      pos = Math.max(1, Math.min(ordinaryCount, pos));
-      while (slots.includes(pos) && pos < ordinaryCount) pos += 1;
+      const pos = Math.min(ordinaryCount, i * 2 + 1);
       if (!slots.includes(pos)) slots.push(pos);
     }
     return slots;
@@ -191,23 +189,22 @@
 
   function applyExplorationFeed() {
     if (!newsListEl) return;
-    if (!canShowExploration()) {
-      clearStrips();
-      return;
-    }
+    clearStrips();
+    if (!canShowExploration()) return;
     const cards = Array.from(newsListEl.querySelectorAll(".news-card"));
-    if (!cards.length) {
-      clearStrips();
-      return;
-    }
+    if (!cards.length) return;
     const slots = placeAfter(cards.length, batchItems.length);
-    newsListEl.innerHTML = "";
-    cards.forEach((card, index) => {
-      newsListEl.appendChild(card);
-      const slot = slots.indexOf(index + 1);
-      if (slot >= 0 && batchItems[slot]) {
-        newsListEl.appendChild(buildStrip(batchItems[slot]));
-      }
+    const planned = [];
+    slots.forEach((pos, index) => {
+      if (batchItems[index] && cards[pos - 1]) planned.push({ pos, item: batchItems[index] });
+    });
+    planned.sort((left, right) => right.pos - left.pos);
+    planned.forEach(({ pos, item }) => {
+      const card = cards[pos - 1];
+      const anchor = card.closest(".timeline-row") || card;
+      const parent = anchor.parentNode;
+      if (!parent) return;
+      parent.insertBefore(buildStrip(item), anchor.nextSibling);
     });
   }
 
