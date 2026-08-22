@@ -1868,6 +1868,10 @@ test.describe("工作台收藏桥", () => {
 
       await radar.locator("#searchInput").fill("");
       await expect(radar.getByText("探索信号")).toHaveCount(3);
+      await radar.locator('[data-read-filter="read"]').click();
+      await expect(radar.getByText("探索信号")).toHaveCount(0);
+      await radar.locator('[data-read-filter="all"]').click();
+      await expect(radar.getByText("探索信号")).toHaveCount(3);
       await radar.locator('#sectionTabs [data-section="read"]').click();
       await expect(radar.getByText("探索信号")).toHaveCount(0);
       expect(errors).toEqual([]);

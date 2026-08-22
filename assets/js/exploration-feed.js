@@ -10,6 +10,7 @@
     if (String(state.query || "").trim()) return false;
     if (state.sourceTypeFilter) return false;
     if (state.siteFilter) return false;
+    if (state.readFilter === "read") return false;
     return Array.isArray(batchItems) && batchItems.length > 0;
   }
 
