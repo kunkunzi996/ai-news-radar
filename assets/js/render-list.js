@@ -1056,7 +1056,7 @@ function buildReadToggleButton(item) {
     ? (monotonic ? "已阅状态已同步，不能恢复为未阅" : "恢复到我的订阅")
     : "标记已阅，从看板中移出";
   btn.disabled = read && monotonic;
-  btn.addEventListener("click", () => toggleItemRead(item));
+  btn.addEventListener("click", () => toggleItemRead(item, { node: btn.closest(".news-card") }));
   return btn;
 }
 function buildCollectButton(item) {
@@ -1102,8 +1102,10 @@ function buildCollectButton(item) {
       btn.title = "已收藏到工作台收藏库";
       btn.classList.add("is-collected");
       btn.disabled = false;
-      // 收藏成功顺手标已阅；toggleItemRead 触发重渲染后，按钮状态由 isCollected 记住
-      if (!isItemRead(item) && readTrackingKeys(item).size) toggleItemRead(item);
+      // 收藏做成才顺手标已阅；只动这一张卡，按钮状态由 isCollected 记住
+      if (!isItemRead(item) && readTrackingKeys(item).size) {
+        toggleItemRead(item, { node: btn.closest(".news-card") });
+      }
     } catch (err) {
       btn.textContent = "收藏失败";
       btn.title = String((err && err.message) || err);

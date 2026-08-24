@@ -813,11 +813,69 @@ function requestListStayRestore(stay) {
   if (visibleStay) state.pendingListStay = visibleStay;
 }
 
-function toggleItemRead(item) {
+// 标记已阅后，这一条会不会被当前筛选挡在列表外。
+// 对应 render-meta.js getFilteredItems() 里与已阅有关的三段：已阅栏目、readFilter，
+// 以及 creator 栏目在阅读状态「全部」下对已阅的额外过滤。其余筛选条件不随已阅状态改变，
+// 所以原本就在列表里的这一条，只需判断这三段。
+function readHidesItemFromCurrentView() {
+  if (state.activeSection === "read") return false;
+  if (state.readFilter === "unread") return true;
+  if (state.readFilter === "read") return false;
+  return state.activeSection === "creator"
+    && Boolean(window.RadarSync && window.RadarSync.monotonicReads());
+}
+
+function decrementResultCount() {
+  if (!resultCountEl) return;
+  const digits = String(resultCountEl.textContent || "").replace(/[^\d]/g, "");
+  const current = Number(digits);
+  if (!digits || !Number.isFinite(current) || current <= 0) return;
+  resultCountEl.textContent = `${fmtNumber(current - 1)} 条`;
+}
+
+// 只动这一张卡：不重建列表，视口因此无从跳动，停留位置天然成立。
+// 返回 false 表示无法就地处理，调用方回退到整页重画。
+function applyLocalReadUpdate(item, node) {
+  if (!newsListEl || !node || !node.isConnected || !newsListEl.contains(node)) return false;
+  if (readHidesItemFromCurrentView()) {
+    // 移除前先定下这一格：下一张卡是新的锚点，卡槽在连点同一格时沿用最初那个，
+    // 否则每次按当前位置重记——与整页重画路径的 captureListStayAnchor 同一口径。
+    const cards = Array.from(newsListEl.querySelectorAll(".news-card[data-item-id]"));
+    const next = cards[cards.indexOf(node) + 1] || null;
+    const nextId = next ? String(next.getAttribute("data-item-id") || "") : "";
+    const lastStay = state.lastListStay;
+    const continueSlot = Boolean(
+      lastStay
+      && String(node.getAttribute("data-item-id") || "") === String(lastStay.anchorId)
+      && Number.isFinite(Number(lastStay.slotTop)),
+    );
+    const slotTop = continueSlot ? Number(lastStay.slotTop) : node.getBoundingClientRect().top;
+    node.remove();
+    decrementResultCount();
+    // 复用整页重画那套恢复逻辑：它负责撑住底部间距、精确对位并在两帧后再校正一次。
+    if (nextId && typeof consumeListStayRestore === "function") {
+      state.lastListStay = { anchorId: nextId, slotTop };
+      state.pendingListStay = { anchorId: nextId, slotTop };
+      consumeListStayRestore(false);
+    }
+    return true;
+  }
+  if (typeof buildItemActions !== "function") return false;
+  const previous = node.querySelector(".item-actions");
+  if (!previous) return false;
+  const actions = buildItemActions(item, { readToggleEligible: true });
+  if (!actions) return false;
+  previous.replaceWith(actions);
+  return true;
+}
+
+function toggleItemRead(item, options) {
   const keys = readTrackingKeys(item);
   if (!keys.size) return;
   const wasRead = isItemRead(item);
-  const stay = wasRead ? null : captureListStayAnchor(item);
+  // 调用方给出本卡节点时走局部路径；取消已阅仍走原来的整页重画。
+  const localCandidate = !wasRead && Boolean(options && options.node);
+  const stay = (wasRead || localCandidate) ? null : captureListStayAnchor(item);
   if (wasRead) {
     if (window.RadarSync && window.RadarSync.monotonicReads()) return;
     keys.forEach((key) => state.readItemIds.delete(key));
@@ -827,6 +885,7 @@ function toggleItemRead(item) {
     if (window.RadarSync) window.RadarSync.markRead(item);
   }
   persistReadItemIds();
+  if (localCandidate && applyLocalReadUpdate(item, options.node)) return;
   requestListStayRestore(stay);
   rerenderCurrentView();
 }
