@@ -833,6 +833,17 @@ function decrementResultCount() {
   resultCountEl.textContent = `${fmtNumber(current - 1)} 条`;
 }
 
+// 把这一条从列表里整个摘掉。时间排序（默认视图）下卡片外面还包着一层 .timeline-row，
+// 里面除了卡片还有时间戳与轨道圆点；只删卡片会留下一条占位空行，下一条也就没有真的
+// 顶到原卡槽。承载单元的取法沿用仓库既有写法（exploration-feed.js 的 closest(".timeline-row")）。
+// 当天分组被清空时一并移除，避免留下只有表头的空壳。
+function removeListEntryNode(node) {
+  const row = node.closest(".timeline-row") || node;
+  const day = row.closest(".timeline-day");
+  row.remove();
+  if (day && !day.querySelector(".news-card")) day.remove();
+}
+
 // 只动这一张卡：不重建列表，视口因此无从跳动，停留位置天然成立。
 // 返回 false 表示无法就地处理，调用方回退到整页重画。
 function applyLocalReadUpdate(item, node) {
@@ -849,8 +860,10 @@ function applyLocalReadUpdate(item, node) {
       && String(node.getAttribute("data-item-id") || "") === String(lastStay.anchorId)
       && Number.isFinite(Number(lastStay.slotTop)),
     );
+    // 卡槽仍按卡片本身的 top 记，与整页重画路径的 captureListStayAnchor 同一口径；
+    // 真正摘除的是承载单元，否则空行占位会让下一条对不上这个卡槽。
     const slotTop = continueSlot ? Number(lastStay.slotTop) : node.getBoundingClientRect().top;
-    node.remove();
+    removeListEntryNode(node);
     decrementResultCount();
     // 复用整页重画那套恢复逻辑：它负责撑住底部间距、精确对位并在两帧后再校正一次。
     if (nextId && typeof consumeListStayRestore === "function") {
