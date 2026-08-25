@@ -2556,12 +2556,17 @@ test.describe("工作台收藏桥", () => {
       return radar.locator("body").evaluate(() => {
         const list = document.getElementById("newsList");
         const cards = Array.from(list.querySelectorAll(".news-card[data-item-id]"));
+        // 时间排序（默认视图）下每张卡片外面还有一层 .timeline-row 承载时间戳与轨道。
+        // 只删卡片会留下一条空行，占位、显示时间戳，且让下一条并没有真的顶到原卡槽。
+        const rows = Array.from(list.querySelectorAll(".timeline-row"));
         const countEl = document.getElementById("resultCount");
         return {
           loadingSeen: Boolean(window.__instantProbe && window.__instantProbe.loadingSeen),
           cardCount: cards.length,
           keptCount: cards.filter((node) => node.getAttribute("data-instant-probe") === "1").length,
           resultCount: ((countEl && countEl.textContent) || "").trim(),
+          rowCount: rows.length,
+          emptyRowCount: rows.filter((row) => !row.querySelector(".news-card")).length,
         };
       });
     }
@@ -2596,6 +2601,8 @@ test.describe("工作台收藏桥", () => {
       expect(afterRead.keptCount).toBe(afterRead.cardCount);
       expect(afterRead.cardCount).toBe(beforeRead.cardCount - 1);
       expect(afterRead.resultCount).toBe(`${beforeRead.cardCount - 1} 条`);
+      expect(afterRead.rowCount).toBe(beforeRead.rowCount - 1);
+      expect(afterRead.emptyRowCount).toBe(0);
 
       // 2) 收藏做成：同样只动那一张卡。
       const collectTarget = fixtureItems[6];
@@ -2614,6 +2621,8 @@ test.describe("工作台收藏桥", () => {
       expect(afterCollect.loadingSeen).toBe(false);
       expect(afterCollect.keptCount).toBe(afterCollect.cardCount);
       expect(afterCollect.cardCount).toBe(beforeCollect.cardCount - 1);
+      expect(afterCollect.rowCount).toBe(beforeCollect.rowCount - 1);
+      expect(afterCollect.emptyRowCount).toBe(0);
 
       // 3) 收藏没做成：该条必须留在未阅里，不许既不在未阅也不在收藏库。
       const failTarget = fixtureItems[4];
@@ -2647,6 +2656,8 @@ test.describe("工作台收藏桥", () => {
       expect(afterPaused.loadingSeen).toBe(false);
       expect(afterPaused.keptCount).toBe(afterPaused.cardCount);
       expect(afterPaused.cardCount).toBe(beforePaused.cardCount - 1);
+      expect(afterPaused.rowCount).toBe(beforePaused.rowCount - 1);
+      expect(afterPaused.emptyRowCount).toBe(0);
       await expect(radar.locator("#radarSyncStatus")).toHaveText("同步暂停");
 
       expect(errors).toEqual([]);
