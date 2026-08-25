@@ -311,8 +311,14 @@
         setStatus("同步暂停", "warn");
       }
     }
+    // 自己刚点出去那条的回声：本地已经就地更新过，再整页重画一次纯属多余。
+    // 判定沿用 shouldRestoreListStay——视图字段未变，且回传的每个已阅键本地都已知；
+    // 一旦出现本页没标过的新键（另一端先标），就不算回声，仍走原来的重画与位置恢复。
+    const isOwnReadEcho = hasInlineReadKeys
+      && shouldRestoreListStay(previousView, view, snapshot.readKeys, previousHostReadKeys);
+    const shouldRender = render && !isOwnReadEcho;
     if (
-      render
+      shouldRender
       && viewFieldsUnchanged(previousView, view)
       && (
         !hasInlineReadKeys
@@ -322,7 +328,7 @@
     ) {
       requestListStayRestore();
     }
-    if (render) rerenderCurrentView();
+    if (shouldRender) rerenderCurrentView();
     if (!hasInlineReadKeys) await loadReadStatus({ render });
     await flushExpiredReadKeys();
   }

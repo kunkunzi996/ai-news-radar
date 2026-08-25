@@ -2486,4 +2486,344 @@ test.describe("工作台收藏桥", () => {
     }
   });
 
+  test("TEST-022：点已阅或收藏后只动那一张卡", async ({ page }) => {
+    const fixtureItems = Array.from({ length: 16 }, (_, index) => ({
+      ...FIRST_ITEM,
+      id: `instant-022-${index}`,
+      title: `秒响应夹具 ${index}`,
+      url: `https://www.bilibili.com/video/instant-022-${index}`,
+      source: `秒响应作者 ${index}`,
+      published_at: `2026-07-17T09:${String(59 - index).padStart(2, "0")}:00+08:00`,
+      first_seen_at: `2026-07-17T09:${String(59 - index).padStart(2, "0")}:00+08:00`,
+    }));
+    workbenchRadarState = {
+      version: 1,
+      view: {
+        ...SYNC_STATE.view,
+        activeSection: "creator",
+        query: "",
+        listSort: "time",
+        readFilter: "unread",
+        timeRangeFilter: "all",
+        sourceTypeFilter: "",
+        signalLevelFilter: "",
+        siteFilter: "",
+        mode: "all",
+      },
+      viewRevision: SYNC_STATE.viewRevision,
+      updatedAt: SYNC_STATE.updatedAt,
+    };
+    workbenchReadKeys = [];
+    const errors = collectErrors(page);
+
+    async function waitListSettled(radar) {
+      await radar.locator("body").evaluate(() => new Promise((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(resolve));
+      }));
+      await expect.poll(() => radar.locator("#newsList").evaluate((list) => ({
+        loading: Boolean(list.querySelector(".list-loading")),
+        settled: Boolean(list.querySelector(".news-card, .empty")),
+      }))).toEqual({ loading: false, settled: true });
+    }
+
+    // 只观察公开 DOM：给现存卡片打标记，并记录列表里是否出现过「正在整理」节点。
+    // 整页重画会重建卡片（标记消失）并插入 .list-loading；只动一张卡则两者都不发生。
+    async function armProbe(radar) {
+      await radar.locator("body").evaluate(() => {
+        const list = document.getElementById("newsList");
+        if (window.__instantProbe && window.__instantProbe.observer) {
+          window.__instantProbe.observer.disconnect();
+        }
+        list.querySelectorAll(".news-card[data-item-id]").forEach((node) => {
+          node.setAttribute("data-instant-probe", "1");
+        });
+        const probe = { loadingSeen: false, observer: null };
+        probe.observer = new MutationObserver((records) => {
+          records.forEach((record) => {
+            record.addedNodes.forEach((node) => {
+              if (node.nodeType === 1 && node.classList.contains("list-loading")) {
+                probe.loadingSeen = true;
+              }
+            });
+          });
+        });
+        probe.observer.observe(list, { childList: true, subtree: true });
+        window.__instantProbe = probe;
+      });
+    }
+
+    async function readProbe(radar) {
+      return radar.locator("body").evaluate(() => {
+        const list = document.getElementById("newsList");
+        const cards = Array.from(list.querySelectorAll(".news-card[data-item-id]"));
+        const countEl = document.getElementById("resultCount");
+        return {
+          loadingSeen: Boolean(window.__instantProbe && window.__instantProbe.loadingSeen),
+          cardCount: cards.length,
+          keptCount: cards.filter((node) => node.getAttribute("data-instant-probe") === "1").length,
+          resultCount: ((countEl && countEl.textContent) || "").trim(),
+        };
+      });
+    }
+
+    try {
+      await installRadarFixture(page, fixtureItems);
+      await page.goto(PARENT_ORIGIN);
+      await page.locator("#radar").evaluate((frame) => {
+        frame.style.width = "390px";
+        frame.style.height = "640px";
+        frame.style.border = "0";
+      });
+      const radar = page.frameLocator("#radar");
+      await expect(radar.locator("#newsList .news-card")).toHaveCount(16);
+      await page.evaluate(() => window.__workbench.hello());
+      await expect.poll(() => radar.locator("body").evaluate(() => window.WorkbenchBridge.connected())).toBe(true);
+      await expect.poll(() => radar.locator("body").evaluate(() => state.readFilter)).toBe("unread");
+      await waitListSettled(radar);
+
+      // 1) 点「已阅」：该卡消失，其余卡片仍是同一批节点，全程没有「正在整理」。
+      const readTarget = fixtureItems[8];
+      const readCard = radar.locator(`#newsList .news-card[data-item-id="${readTarget.id}"]`);
+      await readCard.scrollIntoViewIfNeeded();
+      await armProbe(radar);
+      const beforeRead = await readProbe(radar);
+      expect(beforeRead.keptCount).toBe(beforeRead.cardCount);
+      await readCard.locator(".read-toggle-btn").click();
+      await waitListSettled(radar);
+      await expect(readCard).toHaveCount(0);
+      const afterRead = await readProbe(radar);
+      expect(afterRead.loadingSeen).toBe(false);
+      expect(afterRead.keptCount).toBe(afterRead.cardCount);
+      expect(afterRead.cardCount).toBe(beforeRead.cardCount - 1);
+      expect(afterRead.resultCount).toBe(`${beforeRead.cardCount - 1} 条`);
+
+      // 2) 收藏做成：同样只动那一张卡。
+      const collectTarget = fixtureItems[6];
+      const collectCard = radar.locator(`#newsList .news-card[data-item-id="${collectTarget.id}"]`);
+      await collectCard.scrollIntoViewIfNeeded();
+      await armProbe(radar);
+      const beforeCollect = await readProbe(radar);
+      await collectCard.locator(".collect-btn").click();
+      const collectRequest = await latestRequest(page);
+      await page.evaluate(({ requestId }) => window.__workbench.reply(requestId, { ok: true }), {
+        requestId: collectRequest.requestId,
+      });
+      await expect(collectCard).toHaveCount(0);
+      await waitListSettled(radar);
+      const afterCollect = await readProbe(radar);
+      expect(afterCollect.loadingSeen).toBe(false);
+      expect(afterCollect.keptCount).toBe(afterCollect.cardCount);
+      expect(afterCollect.cardCount).toBe(beforeCollect.cardCount - 1);
+
+      // 3) 收藏没做成：该条必须留在未阅里，不许既不在未阅也不在收藏库。
+      const failTarget = fixtureItems[4];
+      const failCard = radar.locator(`#newsList .news-card[data-item-id="${failTarget.id}"]`);
+      await failCard.scrollIntoViewIfNeeded();
+      await failCard.locator(".collect-btn").click();
+      // 宿主侧 requests 只增不删，latestRequest 只判断「有请求」；这里必须等到本次点击
+      // 产生的新 requestId，否则会把上一段已经 settle 的收藏请求当成本次的。
+      await expect.poll(() => page.evaluate(() => {
+        const latest = window.__workbench.latestRequest();
+        return latest ? latest.requestId : "";
+      })).not.toBe(collectRequest.requestId);
+      const failRequest = await latestRequest(page);
+      await page.evaluate(({ requestId }) => window.__workbench.reply(requestId, {
+        ok: false,
+        error: "工作台拒绝收藏",
+      }), { requestId: failRequest.requestId });
+      await expect(radar.locator("#radarSyncStatus")).toHaveText("同步暂停");
+      await expect(failCard).toHaveCount(1);
+
+      // 4) 同步暂停时点「已阅」：仍然立刻消失，顶部照实显示没同步上。
+      const pausedTarget = fixtureItems[2];
+      const pausedCard = radar.locator(`#newsList .news-card[data-item-id="${pausedTarget.id}"]`);
+      await pausedCard.scrollIntoViewIfNeeded();
+      await armProbe(radar);
+      const beforePaused = await readProbe(radar);
+      await pausedCard.locator(".read-toggle-btn").click();
+      await waitListSettled(radar);
+      await expect(pausedCard).toHaveCount(0);
+      const afterPaused = await readProbe(radar);
+      expect(afterPaused.loadingSeen).toBe(false);
+      expect(afterPaused.keptCount).toBe(afterPaused.cardCount);
+      expect(afterPaused.cardCount).toBe(beforePaused.cardCount - 1);
+      await expect(radar.locator("#radarSyncStatus")).toHaveText("同步暂停");
+
+      expect(errors).toEqual([]);
+    } finally {
+      workbenchRadarState = null;
+      workbenchReadKeys = [];
+    }
+  });
+
+  test("TEST-023：自己点出去的回声不再重画", async ({ page }) => {
+    const fixtureItems = Array.from({ length: 16 }, (_, index) => ({
+      ...FIRST_ITEM,
+      id: `echo-023-${index}`,
+      title: `回声秒响应夹具 ${index}`,
+      url: `https://www.bilibili.com/video/echo-023-${index}`,
+      source: `回声秒响应作者 ${index}`,
+      published_at: `2026-07-17T09:${String(59 - index).padStart(2, "0")}:00+08:00`,
+      first_seen_at: `2026-07-17T09:${String(59 - index).padStart(2, "0")}:00+08:00`,
+    }));
+    const echoView = {
+      ...SYNC_STATE.view,
+      activeSection: "creator",
+      query: "",
+      listSort: "time",
+      readFilter: "unread",
+      timeRangeFilter: "all",
+      sourceTypeFilter: "",
+      signalLevelFilter: "",
+      siteFilter: "",
+      mode: "all",
+    };
+    workbenchRadarState = {
+      version: 1,
+      view: echoView,
+      viewRevision: SYNC_STATE.viewRevision,
+      updatedAt: SYNC_STATE.updatedAt,
+    };
+    workbenchReadKeys = [];
+    const errors = collectErrors(page);
+
+    async function waitListSettled(radar) {
+      await radar.locator("body").evaluate(() => new Promise((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(resolve));
+      }));
+      await expect.poll(() => radar.locator("#newsList").evaluate((list) => ({
+        loading: Boolean(list.querySelector(".list-loading")),
+        settled: Boolean(list.querySelector(".news-card, .empty")),
+      }))).toEqual({ loading: false, settled: true });
+    }
+
+    // 与 TEST-022 同一套公开 DOM 探针：整页重画会重建卡片（标记消失）并插入 .list-loading。
+    async function armProbe(radar) {
+      await radar.locator("body").evaluate(() => {
+        const list = document.getElementById("newsList");
+        if (window.__echoProbe && window.__echoProbe.observer) {
+          window.__echoProbe.observer.disconnect();
+        }
+        list.querySelectorAll(".news-card[data-item-id]").forEach((node) => {
+          node.setAttribute("data-echo-probe", "1");
+        });
+        const probe = { loadingSeen: false, observer: null };
+        probe.observer = new MutationObserver((records) => {
+          records.forEach((record) => {
+            record.addedNodes.forEach((node) => {
+              if (node.nodeType === 1 && node.classList.contains("list-loading")) {
+                probe.loadingSeen = true;
+              }
+            });
+          });
+        });
+        probe.observer.observe(list, { childList: true, subtree: true });
+        window.__echoProbe = probe;
+      });
+    }
+
+    async function readProbe(radar) {
+      return radar.locator("body").evaluate(() => {
+        const list = document.getElementById("newsList");
+        const cards = Array.from(list.querySelectorAll(".news-card[data-item-id]"));
+        return {
+          loadingSeen: Boolean(window.__echoProbe && window.__echoProbe.loadingSeen),
+          cardCount: cards.length,
+          keptCount: cards.filter((node) => node.getAttribute("data-echo-probe") === "1").length,
+        };
+      });
+    }
+
+    // radar-state-result 只有匹配到一个尚未 settle 的 radar-read 请求才会被页面分发
+    // （assets/js/workbench-bridge.js 第 406-407 行），所以每次投递都要用本次点击刚产生的新 requestId。
+    function latestReadRequestId() {
+      return page.evaluate(() => {
+        const latest = window.__workbench.latestMessage("radar-read");
+        return (latest && latest.requestId) || "";
+      });
+    }
+
+    async function waitNewReadRequestId(previousRequestId) {
+      await expect.poll(latestReadRequestId).not.toBe(previousRequestId);
+      return latestReadRequestId();
+    }
+
+    async function sendEcho(readRequestId, readKeys) {
+      await page.evaluate(({ requestId, viewSnapshot, keys }) => {
+        window.__workbench.sendToRadar({
+          version: 1,
+          type: "radar-state-result",
+          requestId,
+          ok: true,
+          status: 200,
+          state: {
+            version: 1,
+            view: viewSnapshot,
+            viewRevision: 8,
+            readKeys: keys,
+            updatedAt: "2026-07-17T12:31:00+08:00",
+          },
+        });
+      }, { requestId: readRequestId, viewSnapshot: echoView, keys: readKeys });
+    }
+
+    try {
+      await installRadarFixture(page, fixtureItems);
+      await page.goto(PARENT_ORIGIN);
+      await page.locator("#radar").evaluate((frame) => {
+        frame.style.width = "390px";
+        frame.style.height = "640px";
+        frame.style.border = "0";
+      });
+      const radar = page.frameLocator("#radar");
+      await expect(radar.locator("#newsList .news-card")).toHaveCount(16);
+      await page.evaluate(() => window.__workbench.hello());
+      await expect.poll(() => radar.locator("body").evaluate(() => window.WorkbenchBridge.connected())).toBe(true);
+      await expect.poll(() => radar.locator("body").evaluate(() => state.readFilter)).toBe("unread");
+      await waitListSettled(radar);
+
+      // 先本地点掉一条，这一步由 TEST-022 负责，本用例只把它当前置条件。
+      const mid = fixtureItems[8];
+      const midCard = radar.locator(`#newsList .news-card[data-item-id="${mid.id}"]`);
+      await midCard.scrollIntoViewIfNeeded();
+      await midCard.locator(".read-toggle-btn").click();
+      const midRequestId = await waitNewReadRequestId("");
+      await waitListSettled(radar);
+      await expect(midCard).toHaveCount(0);
+
+      // 1) 自己点出去那条的回声到达：页面不该再动一下。
+      await armProbe(radar);
+      const beforeEcho = await readProbe(radar);
+      expect(beforeEcho.keptCount).toBe(beforeEcho.cardCount);
+      await sendEcho(midRequestId, [mid.url]);
+      await waitListSettled(radar);
+      const afterEcho = await readProbe(radar);
+      expect(afterEcho.loadingSeen).toBe(false);
+      expect(afterEcho.keptCount).toBe(afterEcho.cardCount);
+      expect(afterEcho.cardCount).toBe(beforeEcho.cardCount);
+      await expect(radar.locator("#radarSyncStatus")).toHaveText("已同步");
+
+      // 2) 对照：另一端标的新已阅键必须照常应用，不能被当成自己的回声吞掉。
+      const foreign = fixtureItems[3];
+      const foreignCard = radar.locator(`#newsList .news-card[data-item-id="${foreign.id}"]`);
+      await expect(foreignCard).toHaveCount(1);
+      // 第 1 段的回执已经把那次 radar-read 消费掉了，必须再产生一个新的待回执请求才投得进去。
+      // 这里本地再点掉一条与对照卡无关的条目，只为拿到新的 requestId。
+      const extra = fixtureItems[12];
+      const extraCard = radar.locator(`#newsList .news-card[data-item-id="${extra.id}"]`);
+      await extraCard.scrollIntoViewIfNeeded();
+      await extraCard.locator(".read-toggle-btn").click();
+      const extraRequestId = await waitNewReadRequestId(midRequestId);
+      await waitListSettled(radar);
+      await sendEcho(extraRequestId, [mid.url, extra.url, foreign.url]);
+      await waitListSettled(radar);
+      await expect(foreignCard).toHaveCount(0);
+
+      expect(errors).toEqual([]);
+    } finally {
+      workbenchRadarState = null;
+      workbenchReadKeys = [];
+    }
+  });
+
 });
