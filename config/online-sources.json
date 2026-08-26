@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-08-22T05:33:20Z",
+  "updated_at": "2026-08-26T01:05:42Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -280,6 +280,21 @@
       "managed_by": "github_stars",
       "managed_account_id": 284580915,
       "managed_repo_id": 1176028663,
+      "managed_state": "active"
+    },
+    {
+      "id": "online_github_repo_1180444721",
+      "name": "zarazhangrui/youtube-digest",
+      "type": "github_release",
+      "enabled": true,
+      "channel": "GitHub Release",
+      "target": "zarazhangrui/youtube-digest",
+      "locator": "zarazhangrui/youtube-digest",
+      "env": "",
+      "notes": "只追踪 release",
+      "managed_by": "github_stars",
+      "managed_account_id": 284580915,
+      "managed_repo_id": 1180444721,
       "managed_state": "active"
     },
     {
@@ -610,6 +625,21 @@
       "managed_by": "github_stars",
       "managed_account_id": 284580915,
       "managed_repo_id": 15634981,
+      "managed_state": "active"
+    },
+    {
+      "id": "online_github_repo_585146387",
+      "name": "shadcn-ui/ui",
+      "type": "github_release",
+      "enabled": true,
+      "channel": "GitHub Release",
+      "target": "shadcn-ui/ui",
+      "locator": "shadcn-ui/ui",
+      "env": "",
+      "notes": "只追踪 release",
+      "managed_by": "github_stars",
+      "managed_account_id": 284580915,
+      "managed_repo_id": 585146387,
       "managed_state": "active"
     },
     {
