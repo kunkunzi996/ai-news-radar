@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "no_change",
-  "finished_at": "2026-08-22T19:27:37Z",
+  "outcome": "synced",
+  "finished_at": "2026-08-26T01:05:42Z",
   "error_code": "",
-  "workflow_run_id": "32593756134",
+  "workflow_run_id": "32917647783",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "091ad28c25636f0d610e626b2c76924fcf0262fd",
+  "workflow_head_sha": "05a39f3061db1bbf1d3a5e60d7c31457137500f7",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-08-22T19:27:37Z",
-  "purge_state_sha256": "58eb988d7c79dcdec3f8b9401b45a492b3533395b1ffe67ad71588dad3c5d13d",
+  "snapshot_completed_at": "2026-08-26T01:05:42Z",
+  "purge_state_sha256": "9420acaf4028ab4f6829e3bf3783077182c1c85e9259d5a7bc8addcf12181cab",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -18,10 +18,21 @@
   ],
   "account_id": 284580915,
   "account_login": "kunkunzi996",
-  "starred_count": 34,
+  "starred_count": 36,
   "private_skipped_count": 0,
   "summary": {
-    "added": [],
+    "added": [
+      {
+        "repo_id": 585146387,
+        "repo": "shadcn-ui/ui",
+        "source_id": "online_github_repo_585146387"
+      },
+      {
+        "repo_id": 1180444721,
+        "repo": "zarazhangrui/youtube-digest",
+        "source_id": "online_github_repo_1180444721"
+      }
+    ],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
