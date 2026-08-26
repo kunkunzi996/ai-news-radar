@@ -126,15 +126,13 @@ Register-ScheduledTask -TaskName "DouyinCollectAndPush" -Action $action -Trigger
   -Settings (New-ScheduledTaskSettingsSet -StartWhenAvailable -ExecutionTimeLimit (New-TimeSpan -Hours 1))
 ```
 
-当前生产 NUC 的 `DouyinCollectAndPush` 同时承载抖音和微信，修改时必须保留两条 action；不能拿上面的
-单 action 示例覆盖现有任务。两条 action 都使用 `conhost.exe --headless`，分别传入：
+当前生产 NUC 的 `DouyinCollectAndPush` **只保留抖音一条 action**（2026-08-22 微信采集已下线）。
+上面的单 action 示例就是现网形状；不要再加微信第二条 action。
 
-> **⚠️ 这两条 action 有下游依赖**：新增信源的自动采集（`auto_collect.py`）只触发本任务**一次**
-> 就指望覆盖抖音与微信两个渠道。若把它改成单 action，微信会**静默漏采**——没有任何报错。
-> 改动前先读 `CLAUDE.md`「新增桥接类信源自动采集的禁区」第 4 条。
+> 新增信源的自动采集（`auto_collect.py`）仍只 `schtasks /run` 本任务一次，现在只会跑抖音。
+> 改动前先读 `CLAUDE.md`「新增桥接类信源自动采集的禁区」。
 
 - 抖音状态：`C:\AI-news-reader\douyin-collect-status.json`
-- 微信状态：`C:\AI-news-reader\wechat-collect-status.json`
 
 PowerShell 的 `-Argument` 外层使用单引号时，路径两侧直接写普通双引号，例如 `"E:\路径\脚本.ps1"`；
 不要写成反斜杠引号 `\"E:\路径\脚本.ps1\"`。

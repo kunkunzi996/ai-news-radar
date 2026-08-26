@@ -138,7 +138,7 @@ class DispatchTriggerTests(unittest.TestCase):
             self.assertEqual(auto_collect.collect_task_name(), "OtherTask")
 
     def test_single_trigger_covers_both_channels(self):
-        # 计划任务本身含抖音与微信两个动作，触发一次即可，不按渠道重复触发。
+        # 计划任务只跑抖音；即使同时检测到微信新增，也只触发这一次任务。
         detected = {"douyin_sec_uids": [DOUYIN_SEC_UID], "wechat_added": True, "added_names": ["A", "B"]}
         with patch.object(auto_collect, "_trigger", return_value=completed()) as trigger:
             result = auto_collect.dispatch_bridge_collect(self.root, detected, execute=True, watch=False)
