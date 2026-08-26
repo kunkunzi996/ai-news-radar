@@ -55,7 +55,7 @@
   const SYNC_WRITE_TYPES = new Set(["radar-collect", "radar-read", "radar-read-expire", "radar-view-patch"]);
   const HOST_MESSAGE_FIELDS = new Map([
     ["workbench-hello", new Set(["version", "type", "requestId", "state", "syncAvailable", "readOnly"])],
-    ["radar-collect-result", new Set(["version", "type", "requestId", "ok", "alreadyExists", "error"])],
+    ["radar-collect-result", new Set(["version", "type", "requestId", "ok", "alreadyExists", "error", "declined"])],
     ["radar-state-result", new Set([
       "version", "type", "requestId", "ok", "state", "syncAvailable", "readOnly",
       "status", "statusCode", "code", "error",
@@ -178,6 +178,8 @@
     if (value.syncAvailable !== undefined && typeof value.syncAvailable !== "boolean") return null;
     if (value.readOnly !== undefined && typeof value.readOnly !== "boolean") return null;
     if (value.alreadyExists !== undefined && typeof value.alreadyExists !== "boolean") return null;
+    if (value.declined !== undefined && typeof value.declined !== "boolean") return null;
+    if (value.type === "radar-collect-result" && value.ok && value.declined === true) return null;
     if (value.status !== undefined && typeof value.status !== "number") return null;
     if (value.statusCode !== undefined && typeof value.statusCode !== "number") return null;
     if (value.code !== undefined && typeof value.code !== "string") return null;
@@ -365,6 +367,8 @@
     clearTimeout(entry.timer);
     if (data.ok) entry.resolve(data);
     else {
+      const declined = data.declined === true
+        || (data.type === "radar-collect-result" && data.error === "用户未确认");
       const error = new Error(data.error || (data.type === "radar-collect-result" ? "收藏失败" : "工作台操作失败"));
       Object.assign(error, {
         status: data.status,
@@ -372,8 +376,9 @@
         code: data.code,
         state: data.state,
         legacyReadMigration: data.legacyReadMigration,
+        declined,
       });
-      reportWriteFailure(entry.requestType, error);
+      if (!declined) reportWriteFailure(entry.requestType, error);
       entry.reject(error);
     }
     return true;
