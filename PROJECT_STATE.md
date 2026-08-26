@@ -1,5 +1,14 @@
 # PROJECT_STATE
 
+## 整理收口、微信采集下线、对外身份独立（2026-08-23～2026-08-26，已部署并验收）
+
+- **做了什么**：清外围施工残骸；Git 里过期 `计划/` 与旧 docs 已删；微信采集下线（停抓新、留历史）；NUC 停 sidecar/看门狗并去掉计划任务里的微信 action；页面与 README 改为「我的订阅」/个人订阅聚合器。
+- **Git**：`90b470c` 下线微信采集；`1af46f2` 对外身份。均已快进进 `master`。
+- **验收**：Python 相关 `437 passed`；E2E 50 条中 49 过、1 条端口抢占失败后重跑通过；用户确认合并部署；NUC `auto-ff.sh` `ff-ok`，`DouyinCollectAndPush` 只剩抖音，`8001` 已关闭。
+- **GitHub 仍显示 fork**：`LearnPrompt/ai-news-radar`。仓库 GitHub `diskUsage` 显示约 7GB（与本地 pack ~63MB 不符），脱离 fork 网络未做成。clone 地址未改。
+- **未做**：四文件正式轮次（本轮无 `docs/spec.md` 等）；未拆当前整理 worktree；未迁 `E:\Ai-coding`。
+- **当前无活跃 SPEC/PLAN/TASK/TEST。**
+
 ## GitHub Actions 采集卡满 15 分钟整轮停更（BUG-03，2026-08-26，已部署并验收）
 
 - **现象**：公开快照停在 `2026-08-22T19:27:39Z`（北京时间 8 月 23 日凌晨）。定时任务 `Update AI News Snapshot` 从 19:36 UTC 起每次在 Update data 卡满 15 分钟被杀，数据提交不出去。采集脚本那之后没有改过。
@@ -61,20 +70,13 @@
 - 旧的未跟踪脚本已迁移完成。原脚本及 `previous-worktree` 副本保留在 NUC 的 `_deploy-backups\auto-ff-migration-20260804` 下，仅作回退依据，未删除运行时数据或凭据。
 - 验收证据：NUC `tests/test_auto_ff.py` **4 passed**；保存同步专项 **8 passed**；`py_compile`、`node --check`、本地前端 E2E **31 passed**；API 配置读取 HTTP 200、CORS 预检 204、非法保存 409、本地状态 200；用户人工验收通过。
 
-## 微信采集后台跨设备访问修复（2026-08-03，已提交并部署）
+## 微信采集已下线（2026-08-23 NUC 停机，代码 2026-08-22 合入）
 
-- 代码提交 `6202058` 已推送到 `master`；本地与 `origin/master` 一致。方案 A：远程模式打开
-  `https://wechat.wanyouomnia.cn`，由 Cloudflare Tunnel 转发到 NUC 本机 `127.0.0.1:8001`；本机模式仍优先打开本地地址。
-- NUC `omnia-nuc` Tunnel（ID `e8ff31f8-1b01-408d-8b4e-4d2d1e92916a`）已在现有
-  `C:\OMNIA\staging-cloudflared\config.yml` 追加微信 ingress，并通过 Cloudflare CLI 创建
-  `wechat.wanyouomnia.cn` DNS 路由。原有 `app/radar/collect/calendar` 路由保持不变。
-- NUC `RadarAdminServer` 启动脚本已补 `WE_MP_RSS_PUBLIC_ADMIN_URL=https://wechat.wanyouomnia.cn`；
-  `OMNIA Staging Tunnel` 与 `RadarAdminServer` 计划任务均已重启，8001/8080 正常监听。
-- 验收证据：Tunnel 有 4 个活动连接；公网 `https://wechat.wanyouomnia.cn/` 与 `/docs` 均 HTTP 200；
-  真实浏览器打开到微信后台登录页；后台维护接口返回 `local_url=http://127.0.0.1:8001`、
-  `public_url=https://wechat.wanyouomnia.cn`。
-- 配置回退副本保留在 NUC：`config.yml.before-wechat-20260803.bak`、
-  `start-server.cmd.before-wechat-20260803.bak`。不删除运行时数据，不提交凭据。
+- 产品：公众号历史仍可看，不再抓新。`online_we_mp_rss_maobidao` 为 `enabled: false`，配置条目保留以免误清历史。
+- 管线不再打开 `WE_MP_*` / `WEWE_*` 采集开关；维护接口 `start_we_mp_rss_sidecar` / `start_wewe_rss_sidecar` 返回 `wechat_collection_retired`。
+- NUC：`WechatHealthWatchdog` 已禁用；we-mp 进程已停，`8001` 关闭；`DouyinCollectAndPush` 只留抖音；`start-server.cmd` 里微信公网地址已注释（备份 `start-server.cmd.bak-wechat-retire-20260823`）。sidecar 目录和数据库未删。
+- Cloudflare `wechat.wanyouomnia.cn` 路由可能仍在，后端已无监听。不要把它当采集还活着。
+- 归档清理窄例外与 `restore_we_mp_cleanup.py` 仍有效，禁止用「源已停用」去扫 `archive.json`。
 
 ## 工作台 AI 雷达配置页来源校验修复（2026-08-03，已部署并验收）
 

@@ -7,8 +7,8 @@
 - 网站停在 8 月 23 日，是云端 `Update AI News Snapshot` 卡满 15 分钟，不是 NUC 关机。
 - 已合入 `master`：`3a5ae6c` → PR #26 → `05a39f3`。生产 run `32917647783` 成功 **1 分 29 秒**；快照 `2026-08-26T01:05:45Z`；用户已看见最新。
 - 改采集会话重试、B 站预算、`[collect]` 日志前必读 `CLAUDE.md`「GitHub Actions 采集超时的禁区」。详情 `docs/bugs/BUG-03-GitHub采集卡满15分钟整轮停更.md`。
-- **NUC SSH**：本机别名 `omnia-nuc` 现为 `192.168.1.3`（WiFi「多乐之家-5G」，主机 `DESKTOP-H9RAKEH` / `beelink-pc`）。开发机在网线 `192.168.3.47`。UU 能连 ≠ 局域网 SSH 能连；换 WiFi 后要改 HostName。远程取证用 Windows 原生 `ssh.exe`；NUC sshd 默认 Git bash，`cmd.exe /c` 会被 MSYS 把 `/c` 吃掉，PowerShell 用 `-EncodedCommand`。
-- 抖音计划任务 `DouyinCollectAndPush` 仍是 08:10 / 13:10 / 20:10，**只保留抖音 action**（2026-08-26 规则已改，旧「必须留微信两条」作废）。上次成功 2026-08-25 20:39。NUC `RadarAutoFF` 跟随 `origin/master`。
+- **NUC SSH**：别名 `omnia-nuc`，主机 `DESKTOP-H9RAKEH` / `beelink-pc`。IP 会随 WiFi/网线变（2026-08-23 用过 `192.168.3.66`；2026-08-26 记载为 `192.168.1.3`）。连不上先核对当前 IP，不要沿用旧 HostName。UU 能连 ≠ 局域网 SSH 能连。用 Windows 原生 `ssh.exe`；NUC sshd 默认 Git bash，PowerShell 用 `-EncodedCommand`。
+- 抖音计划任务 `DouyinCollectAndPush` 仍是 08:10 / 13:10 / 20:10，**只保留抖音 action**。微信采集已下线。NUC `RadarAutoFF` 跟随 `origin/master`。
 
 ## 抖音风控容错与部分成功发布（BUG-02，2026-08-08，已验收）
 
@@ -44,16 +44,12 @@
 - 旧未跟踪脚本已迁移，原件和 `previous-worktree` 副本保留在 NUC `_deploy-backups\auto-ff-migration-20260804` 下，仅作回退依据。
 - 验收：NUC auto-ff **4 passed**、保存同步专项 **8 passed**、本地 E2E **31 passed**；API 与人工验收均通过。
 
-## 微信采集后台跨设备访问（2026-08-03，已部署）
+## 微信采集已下线（2026-08-23）
 
-- 代码提交 `6202058` 已在 `master`，NUC 已同步运行。
-- Cloudflare `omnia-nuc` Tunnel 已追加 `wechat.wanyouomnia.cn -> 127.0.0.1:8001`，DNS 路由已创建；
-  原有 `app/radar/collect/calendar` 路由未改。
-- NUC `RadarAdminServer` 已加载 `WE_MP_RSS_PUBLIC_ADMIN_URL=https://wechat.wanyouomnia.cn`；
-  `OMNIA Staging Tunnel` 和 `RadarAdminServer` 计划任务均处于运行态。
-- 公网根页、`/docs` 和真实浏览器登录页均已通过；维护接口已返回正确的本地/公网地址。
-- 若再次打不开，先核对 `cloudflared tunnel info omnia-nuc`、`netstat :8001 :8080`、
-  `start-server.cmd` 的公开地址行和 `POST /api/maintenance-action` 的返回，不要先改代码。
+- 不再抓新公众号；历史仍可看。不要再启 `we-mp-rss`、不要把微信 action 加回 `DouyinCollectAndPush`。
+- NUC 上 sidecar 已停、`8001` 已关、看门狗已禁用。目录和数据库还在，未删登录数据。
+- 维护接口对微信启动返回 `wechat_collection_retired`。页面上已无「启动微信采集」。
+- `wechat.wanyouomnia.cn` 若还能解析，只是旧隧道，不是采集还在跑。
 
 ## 工作台 AI 雷达配置页来源校验修复（2026-08-03）
 
@@ -102,8 +98,9 @@
 
 ## 下一轮入口
 
-1. 网站若再停更：先看 `data/source-status.json` 的 `generated_at`，再 `gh run list` 看 Update AI News Snapshot 是 success 还是 cancelled≈15m。卡在 Update data 时读 `[collect]` 最后一条，不要先当人手取消。
-2. NUC SSH 连不上时，先核对当前 IP / WiFi，不要沿用旧地址 `192.168.3.66` 或 `192.168.1.8`。UU 能进只说明机器开着。
-3. 改采集会话重试或源预算前，读 `CLAUDE.md`「GitHub Actions 采集超时的禁区」。
-4. 改历史清理逻辑前，读 `CLAUDE.md`「清理历史条目的禁区」。改线上同步前，恢复工作区只用 `git restore`，不能用 `git checkout`。
-5. 本仓库禁止随手 `git gc --prune=now`。`stash list` 为空时先查 `refs/stash` 本体，别当数据没了。
+1. 整理/微信下线/对外身份已合 `master`。进行中的功能窗口：`探索信号`、`雷达列表停留位置`。整理 worktree 可拆。
+2. 网站若再停更：先看 `data/source-status.json` 的 `generated_at`，再 `gh run list` 看 Update AI News Snapshot。
+3. NUC SSH 连不上时，先核对当前 IP / WiFi，不要沿用旧 HostName。
+4. 改采集会话重试或源预算前，读 `CLAUDE.md`「GitHub Actions 采集超时的禁区」。
+5. 改历史清理逻辑前，读 `CLAUDE.md`「清理历史条目的禁区」。改线上同步前，恢复工作区只用 `git restore`。
+6. 本仓库禁止随手 `git gc --prune=now`。`stash list` 为空时先查 `refs/stash` 本体。

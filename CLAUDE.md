@@ -186,16 +186,15 @@ fetchers only for stable, public, high-signal sources.
 
 `perform_maintenance_action`（`scripts/radar/server/refresh.py`）有两条派发路，加新按钮前先想清楚走哪条（2026-07-15 微信采集按钮真踩过）：
 
-1. **常驻可见的按钮**（`source-config-tools` 工具条那排，如「启动微信采集」「重启本地服务」）
+1. **常驻可见的按钮**（`source-config-tools` 工具条那排，现如「重启本地服务」；「启动微信采集」已下线）
    **必须**走函数开头的无条件字典派发（`fixed_start_actions` / `scope_free_start_actions`），
    **不能**依赖 `find_maintenance_action`。后者只在动态生成的「维护项列表」里查，而那个列表
    只装「检测到出问题的渠道」——系统健康时列表为空，请求会在 `find_maintenance_action`
    返回 None 后直接 `maintenance_action_not_found`，`kind == "start_service"` 里那些分支
    **永远到不了**（曾是死代码：微信按钮健康态恒定失败，WeWe RSS 按钮同病但被「只在挂掉时显示」掩盖）。
 2. **签名要对齐入口**：`fixed_start_actions` 的调用**无条件传 `collection_scope`**，只有收这个
-   参数的 handler（mediacrawler douyin/xhs）能进；不收 scope 的 sidecar handler
-   （`start_we_mp_rss_sidecar` / `start_wewe_rss_sidecar`）必须走 `scope_free_start_actions`，
-   误并进前者会 `unexpected keyword argument 'collection_scope'` 崩。
+   参数的 handler（mediacrawler douyin/xhs）能进。微信 sidecar 启动已退役，请求返回
+   `wechat_collection_retired`，不要再把 `start_we_mp_rss_sidecar` 接回可点按钮。
 3. 前端新增按钮别忘了在 `boot.js` **绑定点击事件**——函数写好但没 `addEventListener`，
    表现为「点了完全没反应」（同一次事故的另一半）。
 

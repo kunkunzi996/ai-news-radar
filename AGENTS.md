@@ -1,10 +1,11 @@
-# AI News Radar Agent Notes
+# 个人订阅聚合器 Agent Notes
 
 ## Scope
 
-This repo powers the public AI News Radar static site and Scout Skill source workflow.
-Use it for high-signal AI/tech news aggregation, OPML-based custom feeds,
-GitHub Actions refresh jobs, and GitHub Pages publishing.
+This repo powers the owner's personal subscription aggregator static site
+（页面标题「我的订阅」）and Scout Skill source workflow.
+Use it for OPML/custom feeds, GitHub Actions refresh jobs, and GitHub Pages publishing.
+It is independently maintained; it started from LearnPrompt/ai-news-radar.
 
 ## Working Rules
 
