@@ -2,6 +2,14 @@
 
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，完整状态在 `PROJECT_STATE.md`。
 
+## GitHub Actions 采集卡满 15 分钟（BUG-03，2026-08-26，已验收）
+
+- 网站停在 8 月 23 日，是云端 `Update AI News Snapshot` 卡满 15 分钟，不是 NUC 关机。
+- 已合入 `master`：`3a5ae6c` → PR #26 → `05a39f3`。生产 run `32917647783` 成功 **1 分 29 秒**；快照 `2026-08-26T01:05:45Z`；用户已看见最新。
+- 改采集会话重试、B 站预算、`[collect]` 日志前必读 `CLAUDE.md`「GitHub Actions 采集超时的禁区」。详情 `docs/bugs/BUG-03-GitHub采集卡满15分钟整轮停更.md`。
+- **NUC SSH**：本机别名 `omnia-nuc` 现为 `192.168.1.3`（WiFi「多乐之家-5G」，主机 `DESKTOP-H9RAKEH` / `beelink-pc`）。开发机在网线 `192.168.3.47`。UU 能连 ≠ 局域网 SSH 能连；换 WiFi 后要改 HostName。远程取证用 Windows 原生 `ssh.exe`；NUC sshd 默认 Git bash，`cmd.exe /c` 会被 MSYS 把 `/c` 吃掉，PowerShell 用 `-EncodedCommand`。
+- 抖音计划任务 `DouyinCollectAndPush` 仍是 08:10 / 13:10 / 20:10，**只保留抖音 action**（2026-08-26 规则已改，旧「必须留微信两条」作废）。上次成功 2026-08-25 20:39。NUC `RadarAutoFF` 跟随 `origin/master`。
+
 ## 抖音风控容错与部分成功发布（BUG-02，2026-08-08，已验收）
 
 - 抖音详情接口偶发风控，原口径「6 个号一条不少才发布」导致 2026-08-05 起**连续 10 轮 failed**、
@@ -94,19 +102,8 @@
 
 ## 下一轮入口
 
-1. 先运行 `git status --short --branch` 和 `git stash list`，确认主线和**那 1 份**保护存档在
-   （见上节订正；`stash list` 若又显示为空，先查 `.git/logs/refs/stash` 是否丢失，别当数据没了）。
-2. 改历史清理逻辑前，先读 `CLAUDE.md` 的“清理历史条目的禁区”；任何无法证明名单、身份与文件同源的情况都不能删除数据。
-3. 改线上同步逻辑前，先读 `CLAUDE.md` 的 Git 编排禁区；恢复工作区只允许 `git restore`，不能用 `git checkout`。
-4. 新增本机维护按钮前，先读 `CLAUDE.md` 的派发禁区；常驻按钮不能依赖“故障时才出现”的维护项。
-5. 已清理 `agent/online-source-sync-20260720` 在内的 12 个已合并本地分支；
-   `E:\AI-news-reader\ai-news-radar-online-source-sync` 的 Git worktree 登记也已移除。该路径目前只剩被
-   `pwsh.exe` 占用的空目录，不能强删；关闭占用它的终端后再手动移除即可。
-6. `backup/local-opml-trigger-20260709-80fe98f` 与 `fix/online-sync-directed-stash-restore` 未合入主线，
-   必须保留。`E:\AI-news-reader\ai-news-radar-github-stars-integration` 仍有未提交改动，严禁删除；已合并的
-   `feature/local-trigger-console` 与 `fix/wechat-unsubscribe-cleanup` 远端分支已于 2026-07-20 删除。
-7. 本轮状态与交接文档已经完成收口；无需重复执行微信看门狗、GitHub 星标自动同步施工或线上面板修复。
-8. 2026-07-22 洁癖门已完成状态同步；未执行终态删除。根目录的 `AGENTS.md`、`.agent_context/`、
-   `.multica/` 是 Multica 运行时生成状态，不能手工编辑或提交。根目录的同名 WS-3 计划书与 `计划/`
-   正文逐行一致，哈希差异仅来自换行符；仍须由用户确认后才可按单一路径删除。已合并 feature worktree、分支、patch 和旧虚拟环境仅是
-   终态清理候选，须由用户逐路径确认后才能处理。
+1. 网站若再停更：先看 `data/source-status.json` 的 `generated_at`，再 `gh run list` 看 Update AI News Snapshot 是 success 还是 cancelled≈15m。卡在 Update data 时读 `[collect]` 最后一条，不要先当人手取消。
+2. NUC SSH 连不上时，先核对当前 IP / WiFi，不要沿用旧地址 `192.168.3.66` 或 `192.168.1.8`。UU 能进只说明机器开着。
+3. 改采集会话重试或源预算前，读 `CLAUDE.md`「GitHub Actions 采集超时的禁区」。
+4. 改历史清理逻辑前，读 `CLAUDE.md`「清理历史条目的禁区」。改线上同步前，恢复工作区只用 `git restore`，不能用 `git checkout`。
+5. 本仓库禁止随手 `git gc --prune=now`。`stash list` 为空时先查 `refs/stash` 本体，别当数据没了。

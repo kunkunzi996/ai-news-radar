@@ -20,8 +20,8 @@ ai-news-radar 仓库有 Contents 权限，够不着 douyin-bridge。
 `MediaCrawler-local-test`，并非脚本默认推导的 `MediaCrawler`），因此触发它是唯一
 既不需要改采集脚本、也不需要额外部署的可行路径。
 
-该计划任务包含**两个动作**（抖音 + 微信），触发一次即可覆盖两类信源，所以本模块
-不区分派发目标，只在状态里记录本次是因为哪些新增源触发的。
+该计划任务 **只保留抖音一条 action**（2026-08-22 微信采集已下线）。本模块仍只触发这一次
+任务，并在状态里记录是哪些新增源触发的；新增微信源不会再采到微信。
 
 ## 设计边界（改动前必读 CLAUDE.md 对应禁区）
 
@@ -51,7 +51,7 @@ from scripts.radar.server import actions_refresh as _actions_refresh
 DOUYIN_SOURCE_TYPE = "mediacrawler_jsonl"
 WECHAT_SOURCE_TYPE = "we_mp_rss_jsonl"
 
-# 本机采集计划任务（含抖音、微信两个动作），可用环境变量覆盖以便迁移或改名。
+# 本机采集计划任务（只跑抖音），可用环境变量覆盖以便迁移或改名。
 COLLECT_TASK_ENV = "RADAR_AUTO_COLLECT_TASK"
 DEFAULT_COLLECT_TASK = "DouyinCollectAndPush"
 

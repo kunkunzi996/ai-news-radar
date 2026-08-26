@@ -105,8 +105,8 @@ def wait_for_collect_finish(
 ) -> dict[str, Any]:
     """轮询采集状态文件，等本轮采集结束。
 
-    计划任务顺序执行抖音、微信两个动作，因此只要有任一渠道在本轮跑过并结束，
-    且没有渠道仍处于「本轮已开始但未结束」的状态，就认为整轮结束。
+    计划任务现在只跑抖音。仍会读抖音/微信两份状态文件：本轮没启动的渠道忽略；
+    已启动的都结束后才认为整轮结束。
     """
     deadline = time.monotonic() + timeout_seconds
     threshold = since.timestamp() - START_TOLERANCE_SECONDS

@@ -139,6 +139,16 @@ fetchers only for stable, public, high-signal sources.
 **排查口诀**：线上少了字段，先看「键不存在」还是「值为 False」。
 键不存在 = 上游根本没填或被主管线丢了；值为 False = 链路通了但数据本身如此。
 
+## GitHub Actions 采集超时的禁区（2026-08-26 BUG-03）
+
+`update-news.yml` 的 job 上限是 **15 分钟**。采集会话禁止 429/5xx 自动重试（与 `create_github_session` 同一原则）；B 站有总预算 `BILIBILI_DYNAMIC_BUDGET_SECONDS`（默认 90 秒），超时跳过剩余号，已采到的照常发布。
+
+1. **不要把自动重试加回去。** 一次 20 秒超时 × 3 次重试 × 多号多页会超过 15 分钟，整轮快照提交不出去（2026-08-22 起连续三天 `cancelled`）。
+2. **给会打外部 HTTP 的通道留墙钟预算**，不要只给单次 `timeout=`。GitHub 源 180 秒、B 站 90 秒是现成范例。
+3. **排查先看是不是 timeout。** `gh run list` 里 `cancelled` 且时长约 15m20s、卡在 Update data，不是人手取消。现场日志看 `[collect]` 最后一条停在哪。
+
+过程与验收见 `docs/bugs/BUG-03-GitHub采集卡满15分钟整轮停更.md`。
+
 ## 新增数据源必查清单
 
 新增一种数据源 `type` 时，除了 fetcher 本身，以下几处漏一个都会出问题（均已真实踩过）：
@@ -211,11 +221,12 @@ fetchers only for stable, public, high-signal sources.
 （`actions_refresh.py`）。**三条核心红线**：
 
 1. **必须触发计划任务 `DouyinCollectAndPush`，不能自己起采集进程**——身份、凭证、路径三条
-   环境约束缺一条就跑不通；该任务必须保留抖音、微信两条 action，改成一条微信会静默漏采。
+   环境约束缺一条就跑不通。2026-08-22 微信采集已下线，**该任务只保留抖音 action**；不要把微信
+   加回去（加回去会重新跑已停用的采集链）。旧规则「必须保留抖音、微信两条 action」作废。
 2. **派发时机只能在「同步推送成功之后」**，不能在保存阶段——否则采集抢资源会把随后的
    `git push` 拖过 Cloudflare 120 秒读超时，前端报推送失败而后端其实成功了（真踩过）。
-3. **微信只能全量重采，禁止单号采集**——桥接 JSONL 是完整快照，单号覆盖会抹掉其它公众号
-   的全部历史。抖音相反，`locator` 存有 `sec_uid` 可定向。
+3. **若将来恢复微信采集：只能全量重采，禁止单号采集**——桥接 JSONL 是完整快照，单号覆盖会抹掉
+   其它公众号的全部历史。当前任务不跑微信。抖音 `locator` 存有 `sec_uid`，可以定向。
 
 只在「新增」时触发；删除、停用、改名一律不触发。本模块不触碰 `data/archive.json`。
 
