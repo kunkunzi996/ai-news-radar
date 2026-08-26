@@ -1,10 +1,10 @@
 <div align="center">
 
-# AI News Radar
+# 我的订阅
 
-## 个人订阅聚合器｜把你自己的订阅源汇成一条信息流
+## 昆昆子的个人订阅聚合器｜自己的源，一条时间流
 
-**B站、抖音、小红书、微信公众号、YouTube、RSS、GitHub Release —— 你订阅的人发了什么，全在一个页面上，按时间流看。**
+**B站、抖音、小红书、YouTube、RSS、GitHub Release —— 我订阅的人发了什么，全在一个页面上，按时间流看。**
 
 [![GitHub stars](https://img.shields.io/github/stars/kunkunzi996/ai-news-radar?style=flat-square&color=f5c542)](https://github.com/kunkunzi996/ai-news-radar/stargazers)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-green?style=flat-square)](https://kunkunzi996.github.io/ai-news-radar/)
@@ -32,23 +32,21 @@ npx skills add LearnPrompt/ai-news-radar -s ai-radar -g
 
 ![ai-radar demo](skills/radar/assets/demo.gif)
 
-**③ 想要一个完全属于自己的雷达** → fork本仓库，让内置的[伯乐Skill](skills/ai-news-radar/README.md)帮你录入信源、部署GitHub Pages。信源你选，数据归你。
-
-三层是一条路：看报 → 让Agent读报 → 自己办报。
+本仓库由 [昆昆子](https://github.com/kunkunzi996) 独立维护，不再作为 [LearnPrompt/ai-news-radar](https://github.com/LearnPrompt/ai-news-radar) 的功能分支。早期代码从那里起步，当前产品、采集链路和部署都是自己的。
 
 ---
 
 ## 这是什么
 
-AI News Radar 是一个**自动更新的个人订阅聚合器**。
+这是一个**自动更新的个人订阅聚合器**。
 
-你在各个平台上关注的人——B站 UP 主、抖音博主、小红书博主、微信公众号、YouTube 频道、RSS 博客、GitHub 项目——发了新内容，它每小时自动抓一遍，去重、合并、按时间流汇总到一个静态页面上。
+你在各个平台上关注的人——B站 UP 主、抖音博主、小红书博主、YouTube 频道、RSS 博客、GitHub 项目——发了新内容，它自动抓一遍，去重、合并、按时间流汇总到一个静态页面上。微信公众号历史仍可看，但不再采集。
 
 > **关于「AI」这个名字**：本项目最初是「24 小时 AI 更新雷达」，靠 AI 相关性打分从海量信源里精选 AI 新闻。**2026-07-11 起定位调整为个人订阅聚合器：AI 相关性不再是筛选标准**，你订阅的人发什么就显示什么，跟 AI 有没有关系都一样进来。
 >
 > AI 打分算法（`scripts/ai_relevance.py`）**保留但默认关闭**：阈值由环境变量 `AI_RELEVANCE_THRESHOLD` 控制（缺省 `0.65`），本部署的 GitHub Actions 变量设为 `0`，即不过滤。想恢复「AI 精选」模式，删掉这个变量即可——所有能力都还在。
 
-不用装任何东西：打开网页看订阅流。想要一个完全属于自己的，fork 本仓库，配上你自己的信源，数据归你。Codex / Claude Code 这类 Agent 可以用项目内置的 **伯乐Skill** 帮你评估和录入新信源、维护抓取逻辑、部署 GitHub Pages。
+不用装任何东西：打开网页看订阅流。Agent 可以用项目内置的 **伯乐Skill** 帮你评估和录入新信源、维护抓取逻辑、部署 GitHub Pages。
 
 它不是「又一个新闻网页」，而是一条轻量的 pipeline：**信源评估 → 抓取 → 去重 → 合并 → 源健康监控 → 静态页面发布**，上线后不消耗模型额度。
 

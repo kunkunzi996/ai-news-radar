@@ -1,10 +1,10 @@
 <div align="center">
 
-# AI News Radar
+# My Feed
 
-## Personal Subscription Aggregator｜One timeline for everyone you follow
+## kunkunzi's personal subscription aggregator
 
-**Bilibili, Douyin, Xiaohongshu, WeChat public accounts, YouTube, RSS, GitHub Releases — whatever the people you follow just posted, all on one page, in one timeline.**
+**Bilibili, Douyin, Xiaohongshu, YouTube, RSS, GitHub Releases — whatever the people you follow just posted, all on one page, in one timeline.**
 
 [![GitHub stars](https://img.shields.io/github/stars/kunkunzi996/ai-news-radar?style=flat-square&color=f5c542)](https://github.com/kunkunzi996/ai-news-radar/stargazers)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-green?style=flat-square)](https://kunkunzi996.github.io/ai-news-radar/)
@@ -32,23 +32,21 @@ Then just ask your agent: `What happened in AI today?`
 
 ![ai-radar demo](skills/radar/assets/demo.gif)
 
-**③ Want one that is fully yours** → fork this repo and let the in-repo [Scout Skill](skills/ai-news-radar/README.md) classify your sources and deploy GitHub Pages. Your sources, your data.
-
-The three lanes are one road: read the feed → let your agent read it → run your own.
+This repository is independently maintained by [kunkunzi996](https://github.com/kunkunzi996). It started from [LearnPrompt/ai-news-radar](https://github.com/LearnPrompt/ai-news-radar); the current product, fetch pipeline, and deploy setup are our own.
 
 ---
 
 ## What is this?
 
-AI News Radar is an **auto-updating personal subscription aggregator**.
+This is an **auto-updating personal subscription aggregator**.
 
-The people you follow — Bilibili creators, Douyin and Xiaohongshu creators, WeChat public accounts, YouTube channels, RSS blogs, GitHub projects — post something new, and this thing fetches it every hour, deduplicates it, and merges it into a single static page as one timeline.
+The people you follow — Bilibili creators, Douyin and Xiaohongshu creators, YouTube channels, RSS blogs, GitHub projects — post something new, and this thing fetches it, deduplicates it, and merges it into a single static page as one timeline. WeChat history remains readable; new WeChat collection is retired.
 
 > **About the "AI" in the name**: this project started as a "24h AI Updates Radar" that used AI-relevance scoring to pick AI news out of a large source pool. **Since 2026-07-11 it is a personal subscription aggregator: AI relevance is no longer a filter.** Whatever the people you subscribe to post shows up, AI-related or not.
 >
 > The AI scoring engine (`scripts/ai_relevance.py`) is **kept but off by default**: the threshold is read from `AI_RELEVANCE_THRESHOLD` (default `0.65`), and this deployment sets the GitHub Actions variable to `0`, i.e. no filtering. Delete that variable to get the "AI picks" mode back — every capability is still there.
 
-No install required: open the page and read your feed. Want one that is entirely yours? Fork the repo, plug in your own sources, and the data is yours. Agents like Codex / Claude Code can use the in-repo **Scout Skill** to evaluate and onboard new sources, maintain fetch logic, and deploy GitHub Pages.
+No install required: open the page and read your feed. Agents like Codex / Claude Code can use the in-repo **Scout Skill** to evaluate and onboard new sources, maintain fetch logic, and deploy GitHub Pages.
 
 It is not "one more news page" — it is a lightweight pipeline: **source evaluation → fetch → dedupe → timeline merge → source health → static publishing**, and it burns no model tokens once deployed.
 
