@@ -1220,6 +1220,43 @@ test.describe("工作台收藏桥", () => {
     }
   });
 
+  test("P5-COLLECT：放弃收藏回执不进入同步暂停", async ({ page }) => {
+    test.setTimeout(20_000);
+    const errors = collectErrors(page);
+    workbenchRadarState = {
+      ...SYNC_STATE,
+      readKeys: [],
+      view: { ...SYNC_STATE.view, query: "", readFilter: "all" },
+    };
+    try {
+      await installRadarFixture(page);
+      await page.goto(PARENT_ORIGIN);
+      const radar = page.frameLocator("#radar");
+      await expect.poll(() => page.evaluate(() => window.__workbench.events()
+        .some((event) => event.type === "radar-ready"))).toBe(true);
+      await page.evaluate(() => window.__workbench.hello());
+      await expect(radar.locator("#radarSyncStatus")).toHaveText("已同步");
+      await expect(radar.locator(".collect-btn")).toHaveCount(2);
+      await expect(radar.locator(".collect-btn").first()).toBeEnabled();
+
+      await radar.locator(".collect-btn").first().click();
+      const request = await latestRequest(page);
+      await page.evaluate(({ requestId }) => window.__workbench.reply(requestId, {
+        ok: false,
+        declined: true,
+        error: "用户未确认",
+      }), { requestId: request.requestId });
+
+      await page.waitForTimeout(11_000);
+      await expect(radar.locator("#radarSyncStatus")).toHaveText("已同步");
+      await expect(radar.locator(".collect-btn").first()).toBeEnabled();
+      await expect(radar.locator(`#newsList .news-card[data-item-id="${FIRST_ITEM.id}"]`)).toHaveCount(1);
+      expect(errors).toEqual([]);
+    } finally {
+      workbenchRadarState = null;
+    }
+  });
+
   test("协议 v1 通过网页 postMessage 恢复完整视图并上报视图与已阅变化", async ({ page }) => {
     workbenchRadarState = SYNC_STATE;
     const errors = collectErrors(page);
