@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-26T02:31:45.232666Z",
+  "generated_at": "2026-08-26T02:52:31.688705Z",
   "sites": [
     {
       "site_id": "github_foundation_sunshine_releases",
       "site_name": "GitHub Foundation Sunshine",
       "ok": true,
       "item_count": 29,
-      "duration_ms": 13685,
+      "duration_ms": 10659,
       "error": null,
       "source_kind": "github_release_subscription",
       "repo": "openai/codex-plugin-cc, 1c7/chinese-independent-developer, obra/superpowers, SeemSeam/claude_codex_bridge, OthmanAdi/planning-with-files, multica-ai/multica, mml-book/mml-book.github.io, LearnPrompt/ai-news-radar, Panniantong/Agent-Reach, DeusData/codebase-memory-mcp, xingkongliang/skills-manager, liliBestCoder/ghost-proxifier, zarazhangrui/youtube-digest, emilkowalski/skills, stablyai/orca, Wechat-ggGitHub/wechat-claude-code, VoltAgent/awesome-design-md, lewislulu/llm-wiki-skill, KKKKhazix/khazix-skills, lewislulu/html-ppt-skill, WenyuChiou/awesome-agentic-ai-zh, BigPizzaV3/CodexPlusPlus, plustar35/echo-reading, JimLiu/baoyu-design, joeseesun/qiaomu-goal-meta-skill, LearnPrompt/partner-skill, oomol-lab/open-connector, LiamGvchi/gc-minimal-zine-poster, oil-oil/vibe-hub-skill, joeseesun/qiaomu-bento-ppt, biuworks/bilibili-digest, godotengine/godot, shadcn-ui/ui, youzan/vant-weapp, D4Vinci/Scrapling, DayuanJiang/next-ai-draw-io",
@@ -19,7 +19,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 408,
+          "duration_ms": 252,
           "first_collect_backfill": false
         },
         {
@@ -30,7 +30,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 625,
+          "duration_ms": 530,
           "first_collect_backfill": false
         },
         {
@@ -41,7 +41,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 306,
+          "duration_ms": 243,
           "first_collect_backfill": false
         },
         {
@@ -52,7 +52,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 308,
+          "duration_ms": 265,
           "first_collect_backfill": false
         },
         {
@@ -63,7 +63,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 294,
+          "duration_ms": 242,
           "first_collect_backfill": false
         },
         {
@@ -74,7 +74,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 428,
+          "duration_ms": 306,
           "first_collect_backfill": false
         },
         {
@@ -85,7 +85,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 469,
+          "duration_ms": 359,
           "first_collect_backfill": false
         },
         {
@@ -96,7 +96,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 244,
+          "duration_ms": 225,
           "first_collect_backfill": false
         },
         {
@@ -107,7 +107,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 274,
+          "duration_ms": 233,
           "first_collect_backfill": false
         },
         {
@@ -118,7 +118,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 413,
+          "duration_ms": 341,
           "first_collect_backfill": false
         },
         {
@@ -129,7 +129,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 368,
+          "duration_ms": 277,
           "first_collect_backfill": false
         },
         {
@@ -140,7 +140,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 283,
+          "duration_ms": 189,
           "first_collect_backfill": false
         },
         {
@@ -151,7 +151,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 274,
+          "duration_ms": 211,
           "first_collect_backfill": false
         },
         {
@@ -162,7 +162,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 494,
+          "duration_ms": 327,
           "first_collect_backfill": true
         },
         {
@@ -173,7 +173,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 347,
+          "duration_ms": 290,
           "first_collect_backfill": false
         },
         {
@@ -184,7 +184,7 @@
           "source_kind": "commit_fallback",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 709,
+          "duration_ms": 462,
           "first_collect_backfill": false
         },
         {
@@ -195,7 +195,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 432,
+          "duration_ms": 319,
           "first_collect_backfill": false
         },
         {
@@ -206,7 +206,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 437,
+          "duration_ms": 423,
           "first_collect_backfill": false
         },
         {
@@ -217,7 +217,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 461,
+          "duration_ms": 317,
           "first_collect_backfill": false
         },
         {
@@ -228,7 +228,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 445,
+          "duration_ms": 344,
           "first_collect_backfill": false
         },
         {
@@ -239,7 +239,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 252,
+          "duration_ms": 256,
           "first_collect_backfill": false
         },
         {
@@ -250,7 +250,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 298,
+          "duration_ms": 207,
           "first_collect_backfill": false
         },
         {
@@ -261,7 +261,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 380,
+          "duration_ms": 296,
           "first_collect_backfill": false
         },
         {
@@ -272,7 +272,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 265,
+          "duration_ms": 226,
           "first_collect_backfill": false
         },
         {
@@ -283,7 +283,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 393,
+          "duration_ms": 344,
           "first_collect_backfill": false
         },
         {
@@ -294,7 +294,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 320,
+          "duration_ms": 173,
           "first_collect_backfill": false
         },
         {
@@ -305,7 +305,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 289,
+          "duration_ms": 244,
           "first_collect_backfill": false
         },
         {
@@ -316,7 +316,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 244,
+          "duration_ms": 217,
           "first_collect_backfill": false
         },
         {
@@ -327,7 +327,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 680,
+          "duration_ms": 420,
           "first_collect_backfill": false
         },
         {
@@ -338,7 +338,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 451,
+          "duration_ms": 360,
           "first_collect_backfill": false
         },
         {
@@ -349,7 +349,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 470,
+          "duration_ms": 316,
           "first_collect_backfill": false
         },
         {
@@ -360,7 +360,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 507,
+          "duration_ms": 458,
           "first_collect_backfill": true
         },
         {
@@ -382,7 +382,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 248,
+          "duration_ms": 197,
           "first_collect_backfill": false
         },
         {
@@ -393,7 +393,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 248,
+          "duration_ms": 191,
           "first_collect_backfill": false
         },
         {
@@ -404,7 +404,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 328,
+          "duration_ms": 301,
           "first_collect_backfill": false
         }
       ],
@@ -417,7 +417,7 @@
       "deferred_count": 0,
       "partial": false,
       "budget_ms": 180000,
-      "elapsed_ms": 13685,
+      "elapsed_ms": 10659,
       "overrun_ms": 0,
       "seen_only": 1,
       "daily_coalesced": 0,
@@ -430,8 +430,8 @@
       "site_id": "bilibili_dynamic",
       "site_name": "Bilibili Dynamic",
       "ok": true,
-      "item_count": 60,
-      "duration_ms": 6818,
+      "item_count": 46,
+      "duration_ms": 12462,
       "error": null,
       "uid": "28756625,316183842,3546884870244925,385670211,50247550,505301413",
       "uids": [
@@ -448,7 +448,7 @@
       "coverage_note": "tries_cookie_full_dynamic_then_public_opus_fallback",
       "cookie_present": true,
       "fetch_mode": "mixed",
-      "fallback_reason": "28756625:cookie_full_dynamic_failed:ValueError",
+      "fallback_reason": "28756625:cookie_full_dynamic_failed:ValueError; 50247550:cookie_full_dynamic_failed:ValueError; 505301413:cookie_full_dynamic_failed:ValueError",
       "partial_failure_count": 0,
       "max_items": 10,
       "max_items_per_account": 10,
@@ -487,22 +487,24 @@
           "uid": "50247550",
           "source_name": "清华姜学长",
           "ok": true,
-          "item_count": 10,
-          "fetch_mode": "cookie_full_dynamic"
+          "item_count": 1,
+          "fetch_mode": "public_opus_fallback",
+          "fallback_reason": "cookie_full_dynamic_failed:ValueError"
         },
         {
           "uid": "505301413",
           "source_name": "Koji杨远骋at十字路口",
           "ok": true,
-          "item_count": 10,
-          "fetch_mode": "cookie_full_dynamic"
+          "item_count": 5,
+          "fetch_mode": "public_opus_fallback",
+          "fallback_reason": "cookie_full_dynamic_failed:ValueError"
         }
       ],
       "budget_ms": 90000,
       "deferred_count": 0,
       "partial": false,
-      "raw_item_count": 60,
-      "window_item_count": 60,
+      "raw_item_count": 46,
+      "window_item_count": 46,
       "collection_window_hours": 0
     },
     {
@@ -597,19 +599,19 @@
       "site_id": "opmlrss",
       "site_name": "OPML RSS",
       "ok": true,
-      "partial_failures": 0,
-      "item_count": 40,
-      "duration_ms": 4469,
-      "error": null,
+      "partial_failures": 2,
+      "item_count": 30,
+      "duration_ms": 2371,
+      "error": "2 feeds failed",
       "feed_count": 8,
       "effective_feed_count": 8,
-      "ok_feed_count": 8,
-      "failed_feed_count": 0,
+      "ok_feed_count": 6,
+      "failed_feed_count": 2,
       "skipped_feed_count": 0,
       "replaced_feed_count": 0,
       "max_items_per_feed": 5,
-      "raw_item_count": 40,
-      "window_item_count": 40,
+      "raw_item_count": 30,
+      "window_item_count": 30,
       "collection_window_hours": 0
     },
     {
@@ -656,8 +658,8 @@
   ],
   "zero_item_sites": [],
   "empty_advanced_sources": [],
-  "fetched_raw_items": 181,
-  "raw_items_before_collection_window": 181,
+  "fetched_raw_items": 157,
+  "raw_items_before_collection_window": 157,
   "skipped_collection_window_items": 0,
   "items_before_topic_filter": 943,
   "items_in_24h": 935,
@@ -667,8 +669,11 @@
     "disabled_reason": null,
     "feed_total": 8,
     "effective_feed_total": 8,
-    "ok_feeds": 8,
-    "failed_feeds": [],
+    "ok_feeds": 6,
+    "failed_feeds": [
+      "https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw",
+      "https://www.youtube.com/feeds/videos.xml?channel_id=UC26hLZoe-haxcuLYxzWAiNg"
+    ],
     "zero_item_feeds": [],
     "skipped_feeds": [],
     "replaced_feeds": [],
@@ -681,7 +686,7 @@
         "effective_feed_url": "https://blog.google/technology/ai/rss",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 522,
+        "duration_ms": 265,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -698,7 +703,7 @@
         "effective_feed_url": "https://deepmind.google/blog/rss.xml",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 674,
+        "duration_ms": 392,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -715,7 +720,7 @@
         "effective_feed_url": "https://huggingface.co/blog/feed.xml",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 460,
+        "duration_ms": 309,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -749,7 +754,7 @@
         "effective_feed_url": "https://openai.com/news/rss.xml",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 984,
+        "duration_ms": 724,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -766,7 +771,7 @@
         "effective_feed_url": "https://simonwillison.net/atom/everything",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 496,
+        "duration_ms": 356,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -781,10 +786,10 @@
         "feed_title": "小岛大浪吹-非正经政经频道",
         "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw",
         "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw",
-        "ok": true,
-        "item_count": 5,
-        "duration_ms": 585,
-        "error": null,
+        "ok": false,
+        "item_count": 0,
+        "duration_ms": 65,
+        "error": "404 Client Error: Not Found for url: https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw",
         "skipped": false,
         "skip_reason": null,
         "replaced": false,
@@ -798,10 +803,10 @@
         "feed_title": "脑总MrBrain",
         "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC26hLZoe-haxcuLYxzWAiNg",
         "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC26hLZoe-haxcuLYxzWAiNg",
-        "ok": true,
-        "item_count": 5,
-        "duration_ms": 550,
-        "error": null,
+        "ok": false,
+        "item_count": 0,
+        "duration_ms": 62,
+        "error": "404 Client Error: Not Found for url: https://www.youtube.com/feeds/videos.xml?channel_id=UC26hLZoe-haxcuLYxzWAiNg",
         "skipped": false,
         "skip_reason": null,
         "replaced": false,
@@ -965,8 +970,8 @@
     "candidate_item_ids": [],
     "candidate_counts": {},
     "approval_digest": "",
-    "archive_sha256_before": "ae726cfad3cc78168e05f7cf5d7b84dd7d929dedfaddc84b9226c3a21a414750",
-    "purge_state_sha256": "58b03c71beaffc7cedb42070e76ce78ded7a3aa736c71377ecf0136fe0a7fe73",
+    "archive_sha256_before": "55608f9e06b574b9c44cb614ae78d78f855fa4be8e6a08f1e45237829504386d",
+    "purge_state_sha256": "a07c2190968368b0f79df17c6a27cc8d8f7400839d12378bb4386ac33061e042",
     "workflow_run_id": "",
     "workflow_run_attempt": "",
     "workflow_head_sha": "",
