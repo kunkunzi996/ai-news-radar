@@ -3,8 +3,11 @@ import json
 import os
 from pathlib import Path
 import tempfile
+import time
 import unittest
 from unittest.mock import patch
+
+import requests
 
 from scripts.update_news import (
     BROWSER_UA,
@@ -13,6 +16,7 @@ from scripts.update_news import (
     bilibili_dynamic_status_base,
     bilibili_dynamic_item_title,
     bilibili_cookie_header_from_file_text,
+    maybe_fetch_bilibili_dynamic,
     fetch_bilibili_dynamic,
     fetch_bilibili_opus_published_at,
     fetch_bilibili_full_dynamic,
@@ -1331,6 +1335,43 @@ class DouyinBridgeManifestHealthTests(unittest.TestCase):
             status["collection_manifest_available"],
             "旧 schema 没有健康字段，必须当作不可用而不是当成健康",
         )
+
+
+class BilibiliCollectBudgetTests(unittest.TestCase):
+    def test_budget_skips_remaining_accounts_when_requests_hang(self):
+        calls = {"n": 0}
+
+        class HangSession:
+            def get(self, *args, **kwargs):
+                calls["n"] += 1
+                time.sleep(0.35)
+                raise requests.Timeout("simulated hang")
+
+        env = {
+            "BILIBILI_DYNAMIC_ENABLED": "1",
+            "BILIBILI_DYNAMIC_UIDS": "11,22,33,44,55,66",
+            "BILIBILI_DYNAMIC_SOURCE_NAMES": "a,b,c,d,e,f",
+            "BILIBILI_DYNAMIC_BUDGET_SECONDS": "1",
+            "BILIBILI_DYNAMIC_MAX_PAGES": "8",
+            "BILIBILI_COOKIE": "",
+            "BILIBILI_DYNAMIC_COOKIE": "",
+            "BILIBILI_COOKIE_FILE": "",
+            "BILIBILI_DYNAMIC_COOKIE_FILE": "",
+        }
+        now = datetime(2026, 8, 26, tzinfo=timezone.utc)
+        with patch.dict(os.environ, env, clear=True):
+            items, status = maybe_fetch_bilibili_dynamic(HangSession(), now, existing_source_keys=set())
+
+        skipped = [
+            account
+            for account in status.get("accounts") or []
+            if account.get("skip_reason") == "skipped_due_to_budget"
+        ]
+        self.assertEqual(items, [])
+        self.assertGreaterEqual(len(skipped), 1)
+        self.assertLess(calls["n"], 6)
+        self.assertLessEqual(int(status.get("duration_ms") or 0), 2500)
+        self.assertGreaterEqual(int(status.get("deferred_count") or 0), 1)
 
 
 if __name__ == "__main__":

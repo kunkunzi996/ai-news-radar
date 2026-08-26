@@ -24,6 +24,7 @@ from scripts.radar.fetchers import waytoagi as _waytoagi  # noqa: E402
 BROWSER_UA = _common.BROWSER_UA
 RawItem = _common.RawItem
 create_github_session = _common.create_github_session
+create_session = _common.create_session
 SH_TZ = _common.SH_TZ
 decode_escaped_json = _common.decode_escaped_json
 event_time = _common.event_time
@@ -78,6 +79,7 @@ bilibili_cookie_header_from_file_text = _bilibili.bilibili_cookie_header_from_fi
 bilibili_dynamic_accounts_from_env = _bilibili.bilibili_dynamic_accounts_from_env
 bilibili_dynamic_item_title = _bilibili.bilibili_dynamic_item_title
 bilibili_dynamic_status_base = _bilibili.bilibili_dynamic_status_base
+maybe_fetch_bilibili_dynamic = _bilibili.maybe_fetch_bilibili_dynamic
 bilibili_wbi_keys = _bilibili.bilibili_wbi_keys
 fetch_bilibili_dynamic = _bilibili.fetch_bilibili_dynamic
 fetch_bilibili_full_dynamic = _bilibili.fetch_bilibili_full_dynamic

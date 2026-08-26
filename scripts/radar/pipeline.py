@@ -32,9 +32,11 @@ from scripts.radar.common import (
     RawItem,
     SUBSCRIPTION_TEXT_MARKERS,
     SUBSCRIPTION_URL_MARKERS,
+    TRANSLATE_BUDGET_SECONDS,
     UTC,
     WEWE_RSS_SITE_ID,
     creator_metric_count,
+    deadline_timeout,
     event_time,
     has_cjk,
     has_mojibake_noise,
@@ -854,7 +856,12 @@ def load_title_zh_cache(path: Path) -> dict[str, str]:
     return {}
 
 
-def translate_to_zh_cn(session: requests.Session, text: str) -> str | None:
+def translate_to_zh_cn(
+    session: requests.Session,
+    text: str,
+    *,
+    deadline: float | None = None,
+) -> str | None:
     s = (text or "").strip()
     if not s:
         return None
@@ -868,7 +875,7 @@ def translate_to_zh_cn(session: requests.Session, text: str) -> str | None:
                 "dt": "t",
                 "q": s,
             },
-            timeout=12,
+            timeout=deadline_timeout(deadline, 12),
         )
         r.raise_for_status()
         payload = r.json()
@@ -901,6 +908,7 @@ def add_bilingual_fields(
             zh_by_url[url] = title
 
     translated_now = 0
+    translate_deadline = time.monotonic() + TRANSLATE_BUDGET_SECONDS
 
     def enrich(item: dict[str, Any], allow_translate: bool) -> dict[str, Any]:
         nonlocal translated_now
@@ -926,7 +934,9 @@ def add_bilingual_fields(
         if not zh_title:
             zh_title = cache.get(title)
         if not zh_title and allow_translate and translated_now < max_new_translations:
-            tr = translate_to_zh_cn(session, title)
+            if time.monotonic() >= translate_deadline:
+                return out
+            tr = translate_to_zh_cn(session, title, deadline=translate_deadline)
             if tr and has_cjk(tr):
                 zh_title = tr
                 cache[title] = tr

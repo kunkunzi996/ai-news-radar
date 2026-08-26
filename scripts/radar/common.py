@@ -4,6 +4,7 @@ import hashlib
 import json
 import os
 import re
+import time
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
@@ -250,6 +251,8 @@ BILIBILI_DYNAMIC_DEFAULT_MAX_ITEMS = 5
 BILIBILI_DYNAMIC_DEFAULT_MAX_PAGES = 5
 BILIBILI_DYNAMIC_BACKFILL_MAX_ITEMS = 80
 BILIBILI_DYNAMIC_BACKFILL_MAX_PAGES = 8
+BILIBILI_DYNAMIC_BUDGET_SECONDS = 90
+TRANSLATE_BUDGET_SECONDS = 45
 MEDIACRAWLER_DOUYIN_SITE_ID = "mediacrawler_douyin"
 MEDIACRAWLER_DOUYIN_SITE_NAME = "MediaCrawler Douyin"
 MEDIACRAWLER_XHS_SITE_ID = "mediacrawler_xhs"
@@ -893,16 +896,24 @@ def decode_escaped_json(raw: str) -> dict[str, Any] | None:
 
 
 
+def deadline_timeout(deadline: float | None, cap: float) -> float:
+    """把单次 HTTP timeout 限制在剩余预算内；预算用尽则立刻失败。"""
+    if deadline is None:
+        return float(cap)
+    remaining = float(deadline) - time.monotonic()
+    if remaining <= 0:
+        raise TimeoutError("collect_budget_exceeded")
+    return max(0.05, min(float(cap), remaining))
+
+
 def create_session() -> requests.Session:
+    """采集会话：禁止 429/5xx 自动重试。
+
+    自动重试会把一次 20s 超时放大到 80s+。B 站 6 个号 × 8 页在 Actions
+    上卡住时，会超过 job 的 15 分钟上限，整轮快照无法提交。
+    """
     session = requests.Session()
-    retry = Retry(
-        total=3,
-        connect=3,
-        read=3,
-        backoff_factor=0.8,
-        status_forcelist=[429, 500, 502, 503, 504],
-        allowed_methods=frozenset(["GET", "POST"]),
-    )
+    retry = Retry(total=0, connect=0, read=0, redirect=0, status=0)
     adapter = HTTPAdapter(max_retries=retry)
     session.mount("http://", adapter)
     session.mount("https://", adapter)
