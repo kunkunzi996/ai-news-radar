@@ -391,6 +391,10 @@ def mediacrawler_douyin_status_entry(status: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _collect_log(message: str) -> None:
+    print(f"[collect] {message}", flush=True)
+
+
 def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
     args = ctx.args
     now = ctx.now
@@ -408,6 +412,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
         (str(record.get("site_id") or ""), str(record.get("source") or ""))
         for record in ctx.archive.values()
     )
+    _collect_log("start")
     if scoped_to_tested_creators:
         raw_items, statuses = [], []
     elif scoped_by_config:
@@ -420,6 +425,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
     github_repo_items: list[RawItem] = []
     github_repo_enabled = active_source_ids is None or GITHUB_REPO_SUBSCRIPTION_SITE_ID in active_source_ids
     if github_repo_enabled:
+        _collect_log("github start")
         github_subscriptions = source_config_subscriptions_for_site(source_config, GITHUB_REPO_SUBSCRIPTION_SITE_ID) if scoped_by_config else []
         if not github_subscriptions:
             github_subscriptions = [
@@ -543,6 +549,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
                 "overrun_ms": max(0, elapsed_ms - budget_ms),
             }
         )
+        _collect_log(f"github done elapsed_ms={elapsed_ms}")
     if wewe_rss_enabled:
         wewe_rss_items, wewe_rss_status = fetch_wewe_rss_subscription(session, now)
         raw_items.extend(wewe_rss_items)
@@ -606,6 +613,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
             }
         )
     if we_mp_rss_jsonl_enabled:
+        _collect_log("wechat jsonl start")
         we_mp_rss_jsonl_items, we_mp_rss_jsonl_status = fetch_we_mp_rss_jsonl_subscription(
             session,
             now,
@@ -622,6 +630,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
         )
     bilibili_dynamic_status = bilibili_dynamic_status_base()
     if active_source_ids is None or "bilibili_dynamic" in active_source_ids:
+        _collect_log("bilibili start")
         bilibili_dynamic_items, bilibili_dynamic_status = maybe_fetch_bilibili_dynamic(
             session,
             now,
@@ -651,7 +660,17 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
                     "max_items_per_account": bilibili_dynamic_status.get("max_items_per_account"),
                     "max_pages": bilibili_dynamic_status.get("max_pages"),
                     "accounts": bilibili_dynamic_status.get("accounts"),
+                    "budget_ms": bilibili_dynamic_status.get("budget_ms"),
+                    "deferred_count": bilibili_dynamic_status.get("deferred_count"),
+                    "partial": bool(bilibili_dynamic_status.get("partial")),
                 }
+            )
+            _collect_log(
+                "bilibili done "
+                f"ok={bilibili_dynamic_status.get('ok')} "
+                f"items={bilibili_dynamic_status.get('item_count')} "
+                f"deferred={bilibili_dynamic_status.get('deferred_count')} "
+                f"ms={bilibili_dynamic_status.get('duration_ms')}"
             )
     mediacrawler_douyin_status = {
         "enabled": False,
@@ -890,6 +909,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
     if rss_opml_enabled:
         opml_path = Path(rss_opml_path).expanduser()
         if opml_path.exists():
+            _collect_log("opmlrss start")
             rss_items, rss_summary_status, rss_feed_statuses = fetch_opml_rss(
                 now,
                 opml_path,
@@ -898,6 +918,12 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
             )
             raw_items.extend(rss_items)
             statuses.append(rss_summary_status)
+            _collect_log(
+                "opmlrss done "
+                f"ok={rss_summary_status.get('ok')} "
+                f"items={rss_summary_status.get('item_count')} "
+                f"ms={rss_summary_status.get('duration_ms')}"
+            )
         else:
             statuses.append(
                 {
@@ -913,6 +939,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
                 }
             )
 
+    _collect_log("done")
     return CollectStageResult(
         raw_items=raw_items,
         statuses=statuses,

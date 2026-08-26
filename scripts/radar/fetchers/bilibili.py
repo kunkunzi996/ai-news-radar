@@ -16,6 +16,7 @@ from scripts.radar.common import (
     BILIBILI_DYNAMIC_API_URL,
     BILIBILI_DYNAMIC_BACKFILL_MAX_ITEMS,
     BILIBILI_DYNAMIC_BACKFILL_MAX_PAGES,
+    BILIBILI_DYNAMIC_BUDGET_SECONDS,
     BILIBILI_DYNAMIC_DEFAULT_ACCOUNTS,
     BILIBILI_DYNAMIC_DEFAULT_MAX_ITEMS,
     BILIBILI_DYNAMIC_DEFAULT_MAX_PAGES,
@@ -26,6 +27,7 @@ from scripts.radar.common import (
     BILIBILI_WBI_MIXIN_KEY_ENC_TAB,
     BROWSER_UA,
     RawItem,
+    deadline_timeout,
     env_flag,
     env_int,
     iso,
@@ -194,14 +196,22 @@ def bilibili_mixin_key(img_key: str, sub_key: str) -> str:
     return "".join(raw[i] for i in BILIBILI_WBI_MIXIN_KEY_ENC_TAB if i < len(raw))[:32]
 
 
-def bilibili_wbi_keys(session: requests.Session) -> tuple[str, str]:
+def bilibili_wbi_keys(
+    session: requests.Session,
+    *,
+    deadline: float | None = None,
+) -> tuple[str, str]:
     headers = {
         "User-Agent": BROWSER_UA,
         "Accept": "application/json, text/plain, */*",
         "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
         "Referer": "https://www.bilibili.com/",
     }
-    resp = session.get(BILIBILI_NAV_API_URL, headers=headers, timeout=20)
+    resp = session.get(
+        BILIBILI_NAV_API_URL,
+        headers=headers,
+        timeout=deadline_timeout(deadline, 20),
+    )
     resp.raise_for_status()
     payload = resp.json()
     data = payload.get("data")
@@ -278,6 +288,7 @@ def fetch_bilibili_opus_published_at(
     opus_id: str,
     *,
     api_url: str = BILIBILI_DYNAMIC_DETAIL_API_URL,
+    deadline: float | None = None,
 ) -> datetime | None:
     oid = str(opus_id or "").strip()
     if not oid:
@@ -295,7 +306,12 @@ def fetch_bilibili_opus_published_at(
     last_error: Exception | None = None
     for candidate_url in api_urls:
         try:
-            resp = session.get(candidate_url, params={"id": oid}, headers=headers, timeout=20)
+            resp = session.get(
+                candidate_url,
+                params={"id": oid},
+                headers=headers,
+                timeout=deadline_timeout(deadline, 20),
+            )
             resp.raise_for_status()
             payload = resp.json()
             if int(payload.get("code") or 0) != 0:
@@ -313,11 +329,14 @@ def bilibili_dynamic_publish_times_from_detail(
     raw_items: list[Any],
     *,
     max_items: int,
+    deadline: float | None = None,
 ) -> dict[str, datetime]:
     out: dict[str, datetime] = {}
     checked = 0
     for item in raw_items:
         if checked >= max_items:
+            break
+        if deadline is not None and time.monotonic() >= deadline:
             break
         if not isinstance(item, dict):
             continue
@@ -326,7 +345,9 @@ def bilibili_dynamic_publish_times_from_detail(
             continue
         checked += 1
         try:
-            published = fetch_bilibili_opus_published_at(session, opus_id)
+            published = fetch_bilibili_opus_published_at(session, opus_id, deadline=deadline)
+        except TimeoutError:
+            break
         except Exception:
             continue
         if published:
@@ -514,6 +535,7 @@ def fetch_bilibili_dynamic(
     source_name: str,
     max_items: int,
     api_url: str = BILIBILI_DYNAMIC_API_URL,
+    deadline: float | None = None,
 ) -> list[RawItem]:
     headers = {
         "User-Agent": BROWSER_UA,
@@ -531,7 +553,7 @@ def fetch_bilibili_dynamic(
             "web_location": "333.1387",
         },
         headers=headers,
-        timeout=20,
+        timeout=deadline_timeout(deadline, 20),
     )
     resp.raise_for_status()
     payload = resp.json()
@@ -543,6 +565,7 @@ def fetch_bilibili_dynamic(
         session,
         raw_items,
         max_items=max_items,
+        deadline=deadline,
     )
     items = parse_bilibili_dynamic_items(
         payload,
@@ -566,8 +589,9 @@ def fetch_bilibili_full_dynamic(
     max_items: int,
     max_pages: int = 1,
     api_url: str = BILIBILI_DYNAMIC_FULL_API_URL,
+    deadline: float | None = None,
 ) -> list[RawItem]:
-    img_key, sub_key = bilibili_wbi_keys(session)
+    img_key, sub_key = bilibili_wbi_keys(session, deadline=deadline)
     headers = {
         "User-Agent": BROWSER_UA,
         "Accept": "application/json, text/plain, */*",
@@ -579,6 +603,8 @@ def fetch_bilibili_full_dynamic(
     seen: set[str] = set()
     offset = ""
     for page_index in range(max(1, max_pages)):
+        if deadline is not None and time.monotonic() >= deadline:
+            break
         raw_params: dict[str, Any] = {
             "host_mid": uid,
             "timezone_offset": -480,
@@ -588,7 +614,17 @@ def fetch_bilibili_full_dynamic(
         if offset:
             raw_params["offset"] = offset
         params = sign_bilibili_wbi_params(raw_params, img_key, sub_key)
-        resp = session.get(api_url, params=params, headers=headers, timeout=20)
+        try:
+            resp = session.get(
+                api_url,
+                params=params,
+                headers=headers,
+                timeout=deadline_timeout(deadline, 20),
+            )
+        except (TimeoutError, requests.Timeout):
+            if page_index == 0 and not out:
+                raise
+            break
         resp.raise_for_status()
         payload = resp.json()
         if int(payload.get("code") or 0) != 0:
@@ -650,6 +686,9 @@ def maybe_fetch_bilibili_dynamic(
     cookie = bilibili_cookie_header_from_env()
     status["source_name"] = ", ".join(str(account.get("source_name") or account["uid"]) for account in accounts)
     status["attempted"] = True
+    budget_seconds = max(1, env_int("BILIBILI_DYNAMIC_BUDGET_SECONDS", BILIBILI_DYNAMIC_BUDGET_SECONDS))
+    deadline = time.monotonic() + budget_seconds
+    status["budget_ms"] = int(budget_seconds * 1000)
     start = time.perf_counter()
     try:
         if cookie:
@@ -657,6 +696,7 @@ def maybe_fetch_bilibili_dynamic(
 
         all_items: list[RawItem] = []
         account_statuses: list[dict[str, Any]] = []
+        deferred_count = 0
         for account in accounts:
             uid = str(account.get("uid") or "").strip()
             source_name = str(account.get("source_name") or f"Bilibili {uid}").strip()
@@ -666,6 +706,12 @@ def maybe_fetch_bilibili_dynamic(
                 "ok": False,
                 "item_count": 0,
             }
+            if time.monotonic() >= deadline:
+                account_status["skip_reason"] = "skipped_due_to_budget"
+                account_status["error_code"] = "bilibili_budget_exceeded"
+                deferred_count += 1
+                account_statuses.append(account_status)
+                continue
             # 归档里从未出现过的 UP 主：首采回填，放宽单账号条数和翻页上限。
             first_collect_backfill = (
                 existing_source_keys is not None
@@ -689,6 +735,7 @@ def maybe_fetch_bilibili_dynamic(
                             max_items=account_max_items,
                             max_pages=account_max_pages,
                             api_url=full_api_url,
+                            deadline=deadline,
                         )
                         if first_collect_backfill:
                             items = trim_first_collect_backfill_items(
@@ -702,6 +749,12 @@ def maybe_fetch_bilibili_dynamic(
                         all_items.extend(items)
                         account_statuses.append(account_status)
                         continue
+                    except TimeoutError:
+                        account_status["skip_reason"] = "skipped_due_to_budget"
+                        account_status["error_code"] = "bilibili_budget_exceeded"
+                        deferred_count += 1
+                        account_statuses.append(account_status)
+                        continue
                     except Exception as exc:
                         errors.append(f"cookie_full_dynamic_failed:{type(exc).__name__}")
 
@@ -712,6 +765,7 @@ def maybe_fetch_bilibili_dynamic(
                     source_name=source_name,
                     max_items=account_max_items,
                     api_url=api_url,
+                    deadline=deadline,
                 )
                 if first_collect_backfill:
                     items = trim_first_collect_backfill_items(
@@ -725,6 +779,10 @@ def maybe_fetch_bilibili_dynamic(
                 account_status["ok"] = True
                 account_status["item_count"] = len(items)
                 all_items.extend(items)
+            except TimeoutError:
+                account_status["skip_reason"] = "skipped_due_to_budget"
+                account_status["error_code"] = "bilibili_budget_exceeded"
+                deferred_count += 1
             except Exception as exc:
                 account_status["error"] = str(exc)
             account_statuses.append(account_status)
@@ -735,6 +793,8 @@ def maybe_fetch_bilibili_dynamic(
         failed_accounts = [account for account in account_statuses if not account.get("ok")]
         status["ok"] = bool(successful_accounts)
         status["partial_failure_count"] = len(failed_accounts) if successful_accounts else 0
+        status["deferred_count"] = deferred_count
+        status["partial"] = bool((failed_accounts or deferred_count) and successful_accounts)
 
         fetch_modes = sorted(
             {

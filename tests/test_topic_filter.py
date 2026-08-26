@@ -19,6 +19,7 @@ from scripts.update_news import (
     fetch_ai_hubtoday,
     fetch_github_repo_subscription,
     create_github_session,
+    create_session,
     fetch_maobidao_wechat_subscription,
     fetch_wewe_rss_subscription,
     fetch_hacker_news_algolia,
@@ -1560,6 +1561,11 @@ class TopicFilterTests(unittest.TestCase):
     def test_github_session_has_no_automatic_retries(self):
         session = create_github_session()
         adapter = session.get_adapter("https://api.github.com")
+        self.assertEqual(adapter.max_retries.total, 0)
+
+    def test_collect_session_has_no_automatic_retries(self):
+        session = create_session()
+        adapter = session.get_adapter("https://www.bilibili.com")
         self.assertEqual(adapter.max_retries.total, 0)
 
     def test_github_source_projection_keeps_source_and_repo_identity(self):
