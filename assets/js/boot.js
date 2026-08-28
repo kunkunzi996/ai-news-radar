@@ -4,12 +4,12 @@ renderDataSourcePill();
 renderReadFilterTools();
 
 async function loadNewsData() {
-  return fetchDataJson("latest-24h.json", "latest-24h.json");
+  return fetchDataJson("latest-24h.json", "latest-24h.json", { cache: "reload" });
 }
 async function loadAllModeData() {
   if (state.allDataLoaded) return;
   if (!state.allDataPromise) {
-    state.allDataPromise = fetchDataJson(state.allDataUrl, "latest-24h-all.json")
+    state.allDataPromise = fetchDataJson(state.allDataUrl, "latest-24h-all.json", { cache: "reload" })
       .then((payload) => {
         state.itemsAllRaw = payload.items_all_raw || payload.items_all || state.itemsAi;
         state.itemsAll = payload.items_all || state.itemsAi;
@@ -40,7 +40,32 @@ function currentViewUsesCreatorPool() {
   const sectionId = state.activeSection;
   return sectionId === "creator" || sectionId === "read" || isSubscriptionSection(sectionId);
 }
+function applyAllModeUnavailable() {
+  state.allDataLoaded = false;
+  if (state.timeRangeFilter === "all" || state.mode === "all") {
+    if (!Array.isArray(state.creatorItemsHour) || !state.creatorItemsHour.length) {
+      state.creatorItemsHour = Array.isArray(state.creatorItemsAi) ? state.creatorItemsAi.slice() : [];
+    }
+    state.creatorItemsAll = [];
+    state.creatorItemsAi = [];
+  }
+  if (typeof renderList === "function" && newsListEl) renderList();
+}
+
+function restoreHourPoolIfNeeded() {
+  if (state.timeRangeFilter === "all" || state.mode === "all") return;
+  if (Array.isArray(state.creatorItemsHour) && state.creatorItemsHour.length) {
+    state.creatorItemsAi = state.creatorItemsHour.slice();
+  }
+}
+
 function afterAllModeDataArrived() {
+  if (Array.isArray(state.creatorItemsHour) && state.creatorItemsHour.length) {
+    state.creatorItemsAi = state.creatorItemsHour.slice();
+  }
+  if (window.RadarSync && typeof window.RadarSync.markArchiveListFresh === "function") {
+    window.RadarSync.markArchiveListFresh();
+  }
   renderSectionTabs();
   renderTimeRangeControl();
   renderModeSwitch();
@@ -96,8 +121,14 @@ async function init() {
     state.itemsAi = payload.items_ai || payload.items || [];
     state.itemsAllRaw = payload.items_all_raw || payload.items_all || [];
     state.itemsAll = payload.items_all || [];
+    state.creatorItemsHour = payload.creator_items_ai || [];
     state.creatorItemsAi = payload.creator_items_ai || [];
-    state.creatorItemsAll = payload.creator_items_all || state.creatorItemsAi;
+    const hasAllModePayload = Boolean(payload.items_all || payload.items_all_raw);
+    if (hasAllModePayload) {
+      state.creatorItemsAll = payload.creator_items_all || state.creatorItemsAi;
+    } else {
+      state.creatorItemsAll = [];
+    }
     state.creatorWindowDays = Number(payload.creator_window_days || 7);
     state.creatorTimeScope = payload.creator_time_scope || "rolling_window";
     state.statsAi = payload.site_stats || [];
@@ -126,6 +157,10 @@ async function init() {
       state.retention = payload.retention;
     }
 
+    if (wantsAllModeData && !Boolean(payload.items_all || payload.items_all_raw)) {
+      applyAllModeUnavailable();
+    }
+
     setStats();
     renderSectionTabs();
     renderTimeRangeControl();
@@ -139,12 +174,20 @@ async function init() {
     updatedAtEl.textContent = fmtTime(state.generatedAt);
 
     if (wantsAllModeData && !state.allDataLoaded) {
-      loadAllModeData().then(afterAllModeDataArrived).catch(() => {});
+      loadAllModeData().then(afterAllModeDataArrived).catch(() => {
+        applyAllModeUnavailable();
+        if (window.RadarSync && typeof window.RadarSync.markArchiveListStale === "function") {
+          window.RadarSync.markArchiveListStale();
+        }
+      });
     }
   } else {
     updatedAtEl.textContent = "新闻数据加载失败";
     newsListEl.innerHTML = `<div class="empty">${newsResult.reason.message}</div>`;
     renderCoverageStrip(newsResult.reason.message);
+    if (window.RadarSync && typeof window.RadarSync.markArchiveListStale === "function") {
+      window.RadarSync.markArchiveListStale();
+    }
   }
 
   if (statusResult.status === "fulfilled") {
@@ -206,17 +249,17 @@ if (timeRangeSelectEl) {
     if (state.timeRangeFilter === "all") {
       try {
         await loadAllModeData();
-      } catch (err) {
-        state.timeRangeFilter = "24h";
-        if (window.RadarSync) window.RadarSync.saveViewField("timeRangeFilter", state.timeRangeFilter);
-        renderTimeRangeControl();
-        newsListEl.innerHTML = "";
-        const failed = document.createElement("div");
-        failed.className = "empty";
-        failed.textContent = err.message;
-        newsListEl.appendChild(failed);
+      } catch (_err) {
+        applyAllModeUnavailable();
+        if (window.RadarSync && typeof window.RadarSync.markArchiveListStale === "function") {
+          window.RadarSync.markArchiveListStale();
+        }
+        if (typeof renderTimeRangeControl === "function") renderTimeRangeControl();
+        rerenderCurrentView();
         return;
       }
+    } else {
+      restoreHourPoolIfNeeded();
     }
     rerenderCurrentView();
   });

@@ -33,13 +33,35 @@
   let viewSaveInFlight = false;
   let sourceConfigLoadStarted = false;
   let expireFlushInFlight = false;
+  let archiveListStale = false;
   const sentExpireKeys = new Set();
 
   function setStatus(text, tone = "") {
+    if (archiveListStale && text === "已同步") {
+      text = "列表未更新";
+      tone = "warn";
+    }
     if (!radarSyncStatusEl) return;
     radarSyncStatusEl.hidden = !text;
     radarSyncStatusEl.textContent = text;
     radarSyncStatusEl.classList.toggle("warn", tone === "warn");
+  }
+
+  function notifyArchiveStatus() {
+    if (!window.WorkbenchBridge || typeof window.WorkbenchBridge.notify !== "function") return;
+    window.WorkbenchBridge.notify("radar-archive-status", { stale: archiveListStale });
+  }
+
+  function markArchiveListStale() {
+    archiveListStale = true;
+    setStatus("列表未更新", "warn");
+    notifyArchiveStatus();
+  }
+
+  function markArchiveListFresh() {
+    archiveListStale = false;
+    if (canSync()) setStatus("已同步");
+    notifyArchiveStatus();
   }
 
   function enterSyncUnavailable() {
@@ -307,9 +329,13 @@
     if ((state.mode === "all" || state.timeRangeFilter === "all") && typeof loadAllModeData === "function") {
       try {
         await loadAllModeData();
+        markArchiveListFresh();
       } catch {
-        setStatus("同步暂停", "warn");
+        markArchiveListStale();
+        if (typeof applyAllModeUnavailable === "function") applyAllModeUnavailable();
       }
+    } else if (typeof restoreHourPoolIfNeeded === "function") {
+      restoreHourPoolIfNeeded();
     }
     // 自己刚点出去那条的回声：本地已经就地更新过，再整页重画一次纯属多余。
     // 判定沿用 shouldRestoreListStay——视图字段未变，且回传的每个已阅键本地都已知；
@@ -499,6 +525,8 @@
       return protocolV1 && authoritativeReadState && window.WorkbenchBridge.connected();
     },
     canWriteCollections,
+    markArchiveListStale,
+    markArchiveListFresh,
   };
 
   window.WorkbenchBridge.setMessageHandler(handleHostMessage);

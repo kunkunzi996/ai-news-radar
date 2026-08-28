@@ -31,6 +31,7 @@
     "radar-source-config-read",
     "radar-exploration-seen",
     "radar-exploration-ask",
+    "radar-archive-status",
   ]);
   const HOST_MESSAGE_TYPES = new Set([
     "workbench-hello",
