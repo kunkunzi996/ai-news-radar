@@ -221,18 +221,24 @@ function dataFileUrl(path, options = {}) {
   }
   return cacheBustedUrl(`./${localDataPathFor(path)}`);
 }
-async function fetchJson(url, label) {
-  const res = await fetch(url);
+async function fetchJson(url, label, options = {}) {
+  const init = typeof options.cache === "string" && options.cache
+    ? { cache: options.cache }
+    : undefined;
+  const res = await fetch(url, init);
   if (!res.ok) throw new Error(`加载 ${label} 失败: ${res.status}`);
   return res.json();
 }
 async function fetchDataJson(path, label, options = {}) {
+  const fetchOptions = typeof options.cache === "string" && options.cache
+    ? { cache: options.cache }
+    : {};
   try {
-    return await fetchJson(dataFileUrl(path), label);
+    return await fetchJson(dataFileUrl(path), label, fetchOptions);
   } catch (remoteErr) {
     if (state.dataSourceMode === "remote" && options.fallbackLocal !== false) {
       try {
-        const payload = await fetchJson(dataFileUrl(path, { forceLocal: true }), label);
+        const payload = await fetchJson(dataFileUrl(path, { forceLocal: true }), label, fetchOptions);
         state.dataSourceFallback = true;
         state.dataSourceError = `${label} 远程读取失败，已回退本地数据`;
         return payload;
