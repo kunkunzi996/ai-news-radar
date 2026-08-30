@@ -7,6 +7,10 @@ const testServerCode = [
   "import re",
   "from pathlib import Path",
   "import scripts.local_server as m",
+  // Seven Playwright workers burst-load the page assets together. Python's
+  // default listen backlog is only 5, which intermittently rejects healthy
+  // route.fetch() connections before the threaded server can accept them.
+  "m.ThreadingHTTPServer.request_queue_size = 128",
   "original_get = m.LocalRadarHandler.do_GET",
   "source_fixture = {'ok': True, 'path': 'sources.config.json', 'config': {'version': '1.0', 'updated_at': '', 'deleted_source_ids': [], 'sources': []}}",
   "html = Path('index.html').read_text(encoding='utf-8')",
