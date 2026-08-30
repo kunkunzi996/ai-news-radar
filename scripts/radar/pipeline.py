@@ -1162,17 +1162,30 @@ def add_creator_ranking_fields(record: dict[str, Any], now: datetime) -> dict[st
     return out
 
 
+YOUTUBE_SUBSCRIPTION_SOURCES = frozenset(
+    {
+        "小岛大浪吹-非正经政经频道",
+        "脑总MrBrain",
+    }
+)
+
+
 def is_subscription_record(record: dict[str, Any]) -> bool:
     site_id = str(record.get("site_id") or "").strip().lower()
     if site_id in CREATOR_SITE_IDS:
         return True
+    source = str(record.get("source") or "").strip()
     url = str(record.get("url") or "").strip().lower()
+    if "youtube.com" in url or "youtu.be" in url:
+        return source in YOUTUBE_SUBSCRIPTION_SOURCES
     if any(marker in url for marker in SUBSCRIPTION_URL_MARKERS):
         return True
     hay = " ".join(
         str(record.get(key) or "")
         for key in ("site_name", "source", "source_kind", "search_surface", "platform")
     ).lower()
+    if "youtube" in hay or "youtu.be" in hay or "油管" in hay:
+        return source in YOUTUBE_SUBSCRIPTION_SOURCES
     return any(marker in hay for marker in SUBSCRIPTION_TEXT_MARKERS)
 
 

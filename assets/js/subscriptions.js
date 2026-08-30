@@ -584,7 +584,7 @@ function subscriptionModeItems() {
     seen.add(key);
     out.push(item);
   };
-  (Array.isArray(seeded) ? seeded : []).forEach(add);
+  (Array.isArray(seeded) ? seeded : []).filter(isSubscriptionItem).forEach(add);
   (Array.isArray(candidates) ? candidates : []).filter(isSubscriptionItem).forEach(add);
   return out;
 }
@@ -902,22 +902,25 @@ function toggleItemRead(item, options) {
   requestListStayRestore(stay);
   rerenderCurrentView();
 }
+const YOUTUBE_SUBSCRIPTION_SOURCES = new Set(["小岛大浪吹-非正经政经频道", "脑总MrBrain"]);
+
 function isSubscriptionItem(item) {
   if (isHiddenItem(item)) return false;
   const siteId = String(item?.site_id || "").toLowerCase();
+  const source = String(item?.source || "").trim();
   const hay = `${item?.site_name || ""} ${item?.source || ""} ${item?.url || ""}`.toLowerCase();
   const isPersonalRss = siteId === "opmlrss" || siteId.startsWith("opmlrss:");
+  const isYoutubeUrl =
+    hay.includes("youtube") || hay.includes("youtu.be") || hay.includes("油管");
+  if (isPersonalRss && isYoutubeUrl) return YOUTUBE_SUBSCRIPTION_SOURCES.has(source);
   const isTrackedPlatformUrl =
     hay.includes("bilibili") ||
-    hay.includes("youtube") ||
-    hay.includes("youtu.be") ||
     hay.includes("douyin") ||
     hay.includes("xiaohongshu") ||
     hay.includes("maobidao") ||
     hay.includes("mp.weixin.qq.com") ||
     hay.includes("wewe") ||
     hay.includes("b站") ||
-    hay.includes("油管") ||
     hay.includes("抖音") ||
     hay.includes("小红书") ||
     hay.includes("公众号") ||
