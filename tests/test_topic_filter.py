@@ -2656,7 +2656,7 @@ class TopicFilterTests(unittest.TestCase):
             "id": "youtube-post",
             "site_id": "opmlrss:youtube-ai",
             "site_name": "OPML RSS",
-            "source": "YouTube · AI Channel",
+            "source": "小岛大浪吹-非正经政经频道",
             "title": "Claude Code 新功能演示",
             "url": "https://www.youtube.com/watch?v=abc",
             "published_at": (now - _dt.timedelta(hours=2)).isoformat(),
