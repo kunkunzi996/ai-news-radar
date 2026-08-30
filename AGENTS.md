@@ -19,6 +19,9 @@ It is independently maintained; it started from LearnPrompt/ai-news-radar.
   (`AI_RELEVANCE_THRESHOLD` is set to `0` in production). Do not optimize for "filling the AI
   feed" and do not suggest adding AI news sources to raise AI content share unless asked.
   See the "产品方向" section in `CLAUDE.md`.
+- YouTube 订阅成员当前只有「小岛大浪吹-非正经政经频道」和「脑总MrBrain」。OpenAI / Hugging Face / Simon Willison / Google AI / DeepMind / Microsoft AI Blog 等公开博客 RSS 以及 HighLevelz 默认停用，不要当订阅成员重新打开，除非用户明确要求。
+- 「已阅」只按工作台链接键计数，不要用标题或 ID 把已阅扩散到其它条目。
+- 改 `assets/js/**` 后必须同步提高 `index.html` 里对应脚本的 `?v=`；工作台嵌套页的 `wb=` 也要换，否则浏览器或 iframe 会继续用旧脚本。
 
 ## Iron Rules
 

@@ -1,5 +1,13 @@
 # PROJECT_STATE
 
+## App 我的订阅对齐并停采公开博客（2026-08-30，已部署并验收）
+
+- **做了什么**：公开博客 RSS（OpenAI / Hugging Face / Simon Willison / Google AI / DeepMind / Microsoft AI Blog）`enabled: false`，`feeds/online-sources.opml` 只留小岛大浪吹与脑总MrBrain。网页「我的订阅 / 油管」不再把 HighLevelz 当订阅；已阅只按工作台链接键计数。脚本 `?v=` 与工作台 iframe `wb=` 已换戳。
+- **Git**：PR #30～#34 已合 `master`（含停采、油管口径、缓存戳、已阅链接键）。NUC `C:\AI-news-reader\ai-news-radar-run` 已 `git pull --ff-only`。
+- **验收**：工作台侧 P5 `test:core` 173、P6 模拟器+Mate X6 通过。用户确认订阅内容对齐；已阅网页 145 / App 142 可接受。
+- **当前无活跃 SPEC/PLAN/TASK/TEST**（本仓本轮无独立四文件；规格在工作台 `docs/archive/2026-08-30-App我的订阅对齐网页并停采公开博客/`）。
+- **未做**：不要用采集范围清归档里这些博客的历史。
+
 ## 整理收口、微信采集下线、对外身份独立（2026-08-23～2026-08-26，已部署并验收）
 
 - **做了什么**：清外围施工残骸；Git 里过期 `计划/` 与旧 docs 已删；微信采集下线（停抓新、留历史）；NUC 停 sidecar/看门狗并去掉计划任务里的微信 action；页面与 README 改为「我的订阅」/个人订阅聚合器。

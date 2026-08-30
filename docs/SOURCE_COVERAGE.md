@@ -33,10 +33,9 @@ for AI news collection:
 
 It does not promise reliable public-default coverage for private inboxes, cookies,
 WeChat accounts, or raw social timelines. Those belong in the advanced layer or
-private forks because they need credentials, bridges, or ongoing maintenance. The
-owner currently enables one private `we_mp_rss_jsonl` source through the NUC
-WeChat Bridge; it is not a public default source and must not expose cookies,
-logged-in state, or credentials.
+private forks because they need credentials, bridges, or ongoing maintenance.
+WeChat collection is retired (2026-08-23). History may still appear; no new
+WeChat items are fetched. Do not expose cookies, logged-in state, or credentials.
 
 ## Current Deployment Scope
 
@@ -61,7 +60,7 @@ default deployed output.
 | Source type | Current support | Recommended path | Notes |
 | --- | --- | --- | --- |
 | Official RSS / Atom | Supported through OPML | Add to `feeds/follow.opml` locally, or `FOLLOW_OPML_B64` in GitHub Actions | Best default for personal customization. |
-| Official AI vendor updates | Built in for selected high-signal sources | Keep OpenAI, Anthropic, Google DeepMind/AI, Hugging Face, and GitHub AI/Changelog as first-class sources | These should not depend only on aggregator coverage. |
+| Official AI vendor updates | Present in `config/online-sources.json` but **disabled** (2026-08-30) | Do not treat OpenAI News, Hugging Face Blog, Simon Willison, Google AI/DeepMind, or Microsoft AI Blog as subscription members unless the owner turns them on | History may remain until retention; collection scope must not purge `archive.json`. |
 | Curated AI media RSS | Built in for selected high-signal public feeds | Keep source-specific caps and AI/research filters so media breadth does not drown the default view | Useful for product, industry, model, and research coverage. |
 | OPML collections | Supported | Export from RSS reader, copy from `feeds/follow.example.opml`, keep private file out of git | Good for cross-device and multi-agent workflows. |
 | Public JSON APIs | Supported by custom Python fetchers | Add a `fetch_*` function in `scripts/update_news.py` and register it in the task list | Use only stable APIs with timestamps. |
@@ -71,7 +70,7 @@ default deployed output.
 | GitHub starred repositories | V3 accepted with local binding plus cloud auto-sync | Use the local console's Preview -> confirmation -> Apply flow for first binding, manual-source adoption, and unbinding | A bound account synchronizes before each Actions collection run (about every 30 minutes): new stars become managed and unstars auto-disable without deleting history. Empty snapshots and sharp count drops require manual handling. Status is published at `data/github-star-autosync.json`; unchanged configuration keeps both config files and `updated_at` stable. One numeric account id is supported, with up to 50 public stars; the 51st aborts. Private repositories are skipped without exposing identity. Releases are preferred; commit fallback keeps one newest snapshot per stable repository identity per UTC day. |
 | Newsletters | Partially supported | Prefer public archive RSS or stable archive pages | Do not scrape private inboxes. |
 | X / Twitter | Supported only through curated central feeds or opt-in API adapters | Prefer public generated feeds that already use official X API; keep direct X API optional and secret-backed | Following a person often imports noise; public bridge routes can be unstable. |
-| WeChat public accounts | One owner-only private NUC Bridge is enabled; it is not a public default source | Keep the sidecar and Bridge on the owner's NUC only | Never commit cookies, logged-in state, credentials, or private JSONL; public defaults must not depend on this bridge. |
+| WeChat public accounts | Collection retired 2026-08-23; history may remain | Do not restart sidecar or add WeChat actions back | Never commit cookies, logged-in state, credentials, or private JSONL. |
 | Telegram / Bilibili / Zhihu / podcasts | Skipped by default when feeds are unreliable | Add only as opt-in OPML entries | These can be noisy or bridge-dependent. |
 
 ## Source Selection Rules
