@@ -125,8 +125,11 @@
     serverReadKeys = new Set((Array.isArray(keys) ? keys : []).map(String).filter(Boolean));
     state.readItemIds = new Set();
     allLoadedItems().forEach((item) => {
-      if (!serverReadKeys.has(stableReadKey(item))) return;
-      readTrackingKeys(item).forEach((key) => state.readItemIds.add(key));
+      const host = stableReadKey(item);
+      if (!host || !serverReadKeys.has(host)) return;
+      state.readItemIds.add(host);
+      const url = item.url || item.primary_url;
+      if (url) state.readItemIds.add(`url:${url}`);
     });
     persistReadItemIds();
   }
