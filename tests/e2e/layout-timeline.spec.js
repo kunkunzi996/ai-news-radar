@@ -84,8 +84,8 @@ const PLATFORM_FIXTURES = [
   [69, { id: "douyin-beta", site_id: "mediacrawler_douyin", site_name: "抖音", source: "抖音乙", url: "https://www.douyin.com/video/fixture-beta" }],
   [70, { id: "xhs-alpha", site_id: "mediacrawler_xhs", site_name: "小红书", source: "小红书甲", url: "https://www.xiaohongshu.com/explore/fixture-alpha" }],
   [71, { id: "xhs-beta", site_id: "mediacrawler_xhs", site_name: "小红书", source: "小红书乙", url: "https://www.xiaohongshu.com/explore/fixture-beta" }],
-  [72, { id: "youtube-alpha", site_id: "opmlrss", site_name: "YouTube", source: "YouTube 甲", url: "https://www.youtube.com/watch?v=fixture-alpha" }],
-  [73, { id: "youtube-beta", site_id: "opmlrss", site_name: "YouTube", source: "YouTube 乙", url: "https://www.youtube.com/watch?v=fixture-beta" }],
+  [72, { id: "youtube-alpha", site_id: "opmlrss", site_name: "YouTube", source: "小岛大浪吹-非正经政经频道", url: "https://www.youtube.com/watch?v=fixture-alpha" }],
+  [73, { id: "youtube-beta", site_id: "opmlrss", site_name: "YouTube", source: "脑总MrBrain", url: "https://www.youtube.com/watch?v=fixture-beta" }],
   [74, { id: "github-alpha", site_id: "github_foundation_sunshine_releases", site_name: "GitHub Release", source: "项目甲", url: "https://github.com/example/alpha/releases/tag/v1" }],
   [75, { id: "github-beta", site_id: "github_foundation_sunshine_releases", site_name: "GitHub Release", source: "项目乙", url: "https://github.com/example/beta/releases/tag/v1" }],
 ];
@@ -350,6 +350,66 @@ test("统一时间口径、真实日期分组和 80 条分页", async ({ page })
   await expect(page.locator(".timeline-day").last().locator(".timeline-date")).toHaveText("日期未知");
   await page.getByRole("button", { name: "收起，仅看前 80 条" }).click();
   await expect(page.locator("#newsList .news-card")).toHaveCount(80);
+  expect(errors).toEqual([]);
+});
+
+test("继续看剩余条目时不整表重画、不跳回顶部", async ({ page }) => {
+  const errors = collectErrors(page);
+  await page.setViewportSize({ width: 1280, height: 720 });
+  await openFixture(page);
+
+  const lastKept = page.locator("#newsList .news-card").nth(79);
+  await lastKept.scrollIntoViewIfNeeded();
+  const before = await page.evaluate(() => {
+    const cards = Array.from(document.querySelectorAll("#newsList .news-card"));
+    cards.forEach((card) => {
+      card.dataset.stayProbe = "1";
+    });
+    const last = cards[cards.length - 1];
+    return {
+      count: cards.length,
+      lastId: last?.dataset.itemId || "",
+      lastTop: last ? last.getBoundingClientRect().top : 0,
+      scrollY: window.scrollY,
+    };
+  });
+  expect(before.count).toBe(80);
+  expect(before.scrollY).toBeGreaterThan(200);
+
+  await page.getByRole("button", { name: "继续看剩余 1 条" }).click();
+  await expect(page.locator("#newsList .news-card")).toHaveCount(81);
+  await expect(page.locator("#newsList .list-loading")).toHaveCount(0);
+
+  const afterExpand = await page.evaluate((lastId) => {
+    const cards = Array.from(document.querySelectorAll("#newsList .news-card"));
+    const lastKeptCard = cards.find((card) => card.dataset.itemId === lastId);
+    return {
+      probed: cards.filter((card) => card.dataset.stayProbe === "1").length,
+      firstId: cards[0]?.dataset.itemId || "",
+      lastKeptId: lastKeptCard?.dataset.itemId || "",
+      lastKeptTop: lastKeptCard ? lastKeptCard.getBoundingClientRect().top : 0,
+      newId: cards[cards.length - 1]?.dataset.itemId || "",
+      scrollY: window.scrollY,
+    };
+  }, before.lastId);
+  expect(afterExpand.probed).toBe(80);
+  expect(afterExpand.firstId).toBe("sort-time");
+  expect(afterExpand.lastKeptId).toBe(before.lastId);
+  expect(Math.abs(afterExpand.lastKeptTop - before.lastTop)).toBeLessThan(2);
+  expect(afterExpand.newId).toBe("double-bad");
+  expect(afterExpand.scrollY).toBeGreaterThan(200);
+  expect(Math.abs(afterExpand.scrollY - before.scrollY)).toBeLessThan(2);
+
+  await page.getByRole("button", { name: "收起，仅看前 80 条" }).click();
+  await expect(page.locator("#newsList .news-card")).toHaveCount(80);
+  const afterCollapse = await page.evaluate(() => ({
+    probed: document.querySelectorAll('#newsList .news-card[data-stay-probe="1"]').length,
+    hasNew: Boolean(document.querySelector('.news-card[data-item-id="double-bad"]')),
+    scrollY: window.scrollY,
+  }));
+  expect(afterCollapse.probed).toBe(80);
+  expect(afterCollapse.hasNew).toBe(false);
+  expect(afterCollapse.scrollY).toBeGreaterThan(200);
   expect(errors).toEqual([]);
 });
 

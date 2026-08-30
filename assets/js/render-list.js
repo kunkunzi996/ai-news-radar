@@ -1392,8 +1392,73 @@ function buildTimelineDaySection(key, items) {
   section.append(header, rows);
   return section;
 }
+function listMoreButton() {
+  return newsListEl.querySelector(":scope > .list-more-btn");
+}
+function flatTimelinePagerLabel(total, pageSize) {
+  return state.siteGroupsExpanded
+    ? `收起，仅看前 ${fmtNumber(pageSize)} 条`
+    : `继续看剩余 ${fmtNumber(total - pageSize)} 条`;
+}
+function findTimelineDaySection(key) {
+  const heading = newsListEl.querySelector(`#${CSS.escape(`timeline-day-${key}`)}`);
+  return heading ? heading.closest(".timeline-day") : null;
+}
+function updateTimelineDayMeta(section) {
+  const meta = section.querySelector(".timeline-day-meta");
+  if (!meta) return;
+  const count = section.querySelectorAll(".timeline-row").length;
+  const prefix = String(meta.textContent || "").split(" · ")[0] || "";
+  meta.textContent = `${prefix} · ${fmtNumber(count)} 条`;
+}
+function insertBeforeListPager(node) {
+  const moreBtn = listMoreButton();
+  if (moreBtn) newsListEl.insertBefore(node, moreBtn);
+  else newsListEl.appendChild(node);
+}
+function appendFlatTimelineRemainder(items, pageSize) {
+  const remainder = items.slice(pageSize);
+  if (!remainder.length) return;
+  if (state.listSort === "time") {
+    const groups = new Map();
+    remainder.forEach((item) => {
+      const key = timelineDayKey(item);
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(item);
+    });
+    groups.forEach((groupItems, key) => {
+      const existing = findTimelineDaySection(key);
+      if (existing) {
+        const rows = existing.querySelector(".timeline-day-items");
+        groupItems.forEach((item) => rows.appendChild(buildTimelineRow(item)));
+        updateTimelineDayMeta(existing);
+        return;
+      }
+      insertBeforeListPager(buildTimelineDaySection(key, groupItems));
+    });
+    return;
+  }
+  const frag = document.createDocumentFragment();
+  remainder.forEach((item) => {
+    frag.appendChild(renderItemNode(item, { readToggleEligible: true }));
+  });
+  insertBeforeListPager(frag);
+}
+function collapseFlatTimeline(pageSize) {
+  if (state.listSort === "time") {
+    const rows = Array.from(newsListEl.querySelectorAll(".timeline-row"));
+    rows.slice(pageSize).forEach((row) => row.remove());
+    newsListEl.querySelectorAll(".timeline-day").forEach((day) => {
+      if (!day.querySelector(".timeline-row")) day.remove();
+      else updateTimelineDayMeta(day);
+    });
+    return;
+  }
+  const cards = Array.from(newsListEl.querySelectorAll(":scope > .news-card"));
+  cards.slice(pageSize).forEach((card) => card.remove());
+}
 function renderFlatTimeline(items) {
-  const pageSize = 80;
+  const pageSize = TIMELINE_PAGE_SIZE;
   const shown = state.siteGroupsExpanded ? items.length : Math.min(pageSize, items.length);
   const visibleItems = items.slice(0, shown);
   const frag = document.createDocumentFragment();
@@ -1415,14 +1480,18 @@ function renderFlatTimeline(items) {
   newsListEl.appendChild(frag);
 
   if (items.length > pageSize) {
-    addLoadMoreButton(
+    const moreBtn = addLoadMoreButton(
       newsListEl,
-      state.siteGroupsExpanded
-        ? `收起，仅看前 ${fmtNumber(pageSize)} 条`
-        : `继续看剩余 ${fmtNumber(items.length - pageSize)} 条`,
+      flatTimelinePagerLabel(items.length, pageSize),
       () => {
-        state.siteGroupsExpanded = !state.siteGroupsExpanded;
-        renderList();
+        if (state.siteGroupsExpanded) {
+          collapseFlatTimeline(pageSize);
+          state.siteGroupsExpanded = false;
+        } else {
+          appendFlatTimelineRemainder(items, pageSize);
+          state.siteGroupsExpanded = true;
+        }
+        moreBtn.textContent = flatTimelinePagerLabel(items.length, pageSize);
       },
     );
   }
