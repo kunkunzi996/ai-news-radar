@@ -2,6 +2,13 @@
 
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，完整状态在 `PROJECT_STATE.md`。
 
+## 已阅后立刻下滚不再被二次校正拽回（2026-08-30，已验收）
+
+- 点「已阅」后如果人已经开始滚，停留二次校正不得再 `scrollBy` 拽回。
+- PR #36 已合 `master` 并在 NUC 生产仓。工作台嵌页须换 `wb=`（工作台 PR #47，`stay-noscroll-0830a`）。
+- 改 JS 仍必须 bump `index.html` 的 `?v=`；嵌页 HTML 靠工作台 `wb=` 破缓存。
+- 本仓无活跃四文件。
+
 ## App 我的订阅对齐并停采公开博客（2026-08-30，已验收）
 
 - 油管订阅只认小岛大浪吹、脑总MrBrain。HighLevelz 与六路公开博客不是订阅成员。
@@ -15,7 +22,7 @@
 - 网站停在 8 月 23 日，是云端 `Update AI News Snapshot` 卡满 15 分钟，不是 NUC 关机。
 - 已合入 `master`：`3a5ae6c` → PR #26 → `05a39f3`。生产 run `32917647783` 成功 **1 分 29 秒**；快照 `2026-08-26T01:05:45Z`；用户已看见最新。
 - 改采集会话重试、B 站预算、`[collect]` 日志前必读 `CLAUDE.md`「GitHub Actions 采集超时的禁区」。详情 `docs/bugs/BUG-03-GitHub采集卡满15分钟整轮停更.md`。
-- **NUC SSH**：别名 `omnia-nuc`，主机 `DESKTOP-H9RAKEH` / `beelink-pc`。IP 会随 WiFi/网线变（2026-08-23 用过 `192.168.3.66`；2026-08-26 记载为 `192.168.1.3`）。连不上先核对当前 IP，不要沿用旧 HostName。UU 能连 ≠ 局域网 SSH 能连。用 Windows 原生 `ssh.exe`；NUC sshd 默认 Git bash，PowerShell 用 `-EncodedCommand`。
+- **NUC SSH**：别名 `omnia-nuc`，主机 `DESKTOP-H9RAKEH` / `beelink-pc`。IP 会随 WiFi/网线变（2026-08-23 与 2026-08-30 部署实测 `192.168.3.66` 通；`omnia-nuc` 配置的 `192.168.1.3` 在 2026-08-30 对 22 端口超时）。连不上先核对当前 IP，不要沿用旧 HostName。UU 能连 ≠ 局域网 SSH 能连。用 Windows 原生 `ssh.exe`；NUC sshd 默认 Git bash，PowerShell 用 `-EncodedCommand`。生产 `C:\OMNIA\app` 拉 `main` 时，不要用会带上已删分支的裸 `git fetch origin`（曾因 `codex/nuc-web-migration` 整次失败）；应 `git fetch origin refs/heads/main:refs/remotes/origin/main`。
 - 抖音计划任务 `DouyinCollectAndPush` 仍是 08:10 / 13:10 / 20:10，**只保留抖音 action**。微信采集已下线。NUC `RadarAutoFF` 跟随 `origin/master`。
 
 ## 抖音风控容错与部分成功发布（BUG-02，2026-08-08，已验收）

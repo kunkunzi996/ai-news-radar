@@ -1,5 +1,13 @@
 # PROJECT_STATE
 
+## 已阅后立刻下滚不再被二次校正拽回（2026-08-30，已部署并验收）
+
+- **做了什么**：`consumeListStayRestore` 两帧后再校正时，若滚动位置已变，视为人已经开始滚，不再 `scrollBy` 拽回。新增 TEST-024。当时脚本戳 `stay-noscroll-0830a`；随后 continue-watch 把 `render-list.js?v=` 换成 `continue-watch-0830a`，守卫仍在。
+- **Git**：PR #36 `131c4ec` 已合 `master`。工作台嵌页戳另仓 PR #47。
+- **验收**：P5 `TEST-024` 与 TEST-018/019/021/022 通过。全量 e2e 15 红为油管订阅过滤 vs 旧夹具 81 条，本轮未改那些期望。P6 用户口头通过。NUC 生产仓已含 #36。
+- **当前无活跃 SPEC/PLAN/TASK/TEST**。轻量修复，无四文件。
+- **未做**：未改 `layout-timeline` 的 81 条断言。
+
 ## App 我的订阅对齐并停采公开博客（2026-08-30，已部署并验收）
 
 - **做了什么**：公开博客 RSS（OpenAI / Hugging Face / Simon Willison / Google AI / DeepMind / Microsoft AI Blog）`enabled: false`，`feeds/online-sources.opml` 只留小岛大浪吹与脑总MrBrain。网页「我的订阅 / 油管」不再把 HighLevelz 当订阅；已阅只按工作台链接键计数。脚本 `?v=` 与工作台 iframe `wb=` 已换戳。
