@@ -2874,4 +2874,114 @@ test.describe("工作台收藏桥", () => {
     }
   });
 
+  test("TEST-024：已阅后立刻下滚，停留二次校正不得把页面往回拉", async ({ page }) => {
+    const fixtureItems = Array.from({ length: 16 }, (_, index) => ({
+      ...FIRST_ITEM,
+      id: `bounce-024-${index}`,
+      title: `滚动反弹夹具 ${index}`,
+      url: `https://www.bilibili.com/video/bounce-024-${index}`,
+      source: `滚动反弹作者 ${index}`,
+      published_at: `2026-07-17T09:${String(59 - index).padStart(2, "0")}:00+08:00`,
+      first_seen_at: `2026-07-17T09:${String(59 - index).padStart(2, "0")}:00+08:00`,
+    }));
+    workbenchRadarState = {
+      version: 1,
+      view: {
+        ...SYNC_STATE.view,
+        activeSection: "creator",
+        query: "",
+        listSort: "time",
+        readFilter: "unread",
+        timeRangeFilter: "all",
+        sourceTypeFilter: "",
+        signalLevelFilter: "",
+        siteFilter: "",
+        mode: "all",
+      },
+      viewRevision: SYNC_STATE.viewRevision,
+      updatedAt: SYNC_STATE.updatedAt,
+    };
+    workbenchReadKeys = [];
+    const errors = collectErrors(page);
+
+    async function waitListSettled(radar) {
+      await radar.locator("body").evaluate(() => new Promise((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(resolve));
+      }));
+      await expect.poll(() => radar.locator("#newsList").evaluate((list) => ({
+        loading: Boolean(list.querySelector(".list-loading")),
+        settled: Boolean(list.querySelector(".news-card, .empty")),
+      }))).toEqual({ loading: false, settled: true });
+    }
+
+    try {
+      await installRadarFixture(page, fixtureItems);
+      await page.goto(PARENT_ORIGIN);
+      await page.locator("#radar").evaluate((frame) => {
+        frame.style.width = "390px";
+        frame.style.height = "640px";
+        frame.style.border = "0";
+      });
+      const radar = page.frameLocator("#radar");
+      await expect(radar.locator("#newsList .news-card")).toHaveCount(16);
+      await page.evaluate(() => window.__workbench.hello());
+      await expect.poll(() => radar.locator("body").evaluate(() => window.WorkbenchBridge.connected())).toBe(true);
+      await expect.poll(() => radar.locator("body").evaluate(() => state.readFilter)).toBe("unread");
+      await waitListSettled(radar);
+
+      const mid = fixtureItems[8];
+      const midCard = radar.locator(`#newsList .news-card[data-item-id="${mid.id}"]`);
+      await midCard.scrollIntoViewIfNeeded();
+
+      const result = await radar.locator("body").evaluate(async (_body, itemId) => {
+        const origScrollBy = window.scrollBy.bind(window);
+        const log = [];
+        window.scrollBy = function patchedScrollBy(x, y) {
+          const deltaY = typeof x === "object" && x ? Number(x.top || 0) : Number(y || 0);
+          log.push({
+            deltaY,
+            scrollY: window.scrollY || document.documentElement.scrollTop || 0,
+            stack: String(new Error().stack || ""),
+          });
+          return origScrollBy(x, y);
+        };
+        const btn = document.querySelector(`.news-card[data-item-id="${itemId}"] .read-toggle-btn`);
+        if (!btn) return { missingButton: true, itemId };
+        btn.click();
+        const afterClick = window.scrollY || document.documentElement.scrollTop || 0;
+        const scrolling = document.scrollingElement || document.documentElement;
+        scrolling.scrollTop = afterClick + 80;
+        const afterUser = window.scrollY || document.documentElement.scrollTop || 0;
+        await new Promise((resolve) => {
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              requestAnimationFrame(resolve);
+            });
+          });
+        });
+        window.scrollBy = origScrollBy;
+        const later = window.scrollY || document.documentElement.scrollTop || 0;
+        return {
+          afterClick,
+          afterUser,
+          later,
+          bounceUp: later < afterUser - 1,
+          followUpPull: log.some((entry) => (
+            entry.deltaY <= -2 && String(entry.stack).includes("consumeListStayRestore")
+          )),
+        };
+      }, mid.id);
+
+      expect(result.missingButton).toBeFalsy();
+      expect(result.afterUser).toBeGreaterThan(result.afterClick + 40);
+      expect(result.bounceUp).toBe(false);
+      expect(result.followUpPull).toBe(false);
+      expect(result.later).toBeGreaterThanOrEqual(result.afterUser - 1);
+      expect(errors).toEqual([]);
+    } finally {
+      workbenchRadarState = null;
+      workbenchReadKeys = [];
+    }
+  });
+
 });

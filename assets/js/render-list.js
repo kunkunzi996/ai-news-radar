@@ -1470,6 +1470,11 @@ function ensureListStaySpacer(slotTop) {
   spacer.style.height = `${Math.max(0, viewport - safeSlot)}px`;
 }
 
+function currentListStayScrollY() {
+  const scrolling = document.scrollingElement || document.documentElement;
+  return Number((scrolling && scrolling.scrollTop) || window.scrollY || 0);
+}
+
 function consumeListStayRestore(followUp) {
   const stay = state.pendingListStay;
   if (!stay) return;
@@ -1486,6 +1491,11 @@ function consumeListStayRestore(followUp) {
   const anchor = newsListEl.querySelector(`.news-card[data-item-id="${anchorId}"]`);
   if (!anchor) return;
   state.pendingListStay = null;
+  // 两帧后再校正是为了排版落稳。人已经开始滚了，位移就不是排版偏移，不能再拽回去。
+  if (followUp) {
+    const expected = Number(state.listStayRestoreScrollY);
+    if (Number.isFinite(expected) && Math.abs(currentListStayScrollY() - expected) >= 1) return;
+  }
   const scrolling = document.scrollingElement || document.documentElement;
   newsListEl.style.overflowAnchor = "none";
   if (scrolling) scrolling.style.overflowAnchor = "none";
@@ -1493,6 +1503,7 @@ function consumeListStayRestore(followUp) {
   ensureListStaySpacer(slotTop);
   const delta = anchor.getBoundingClientRect().top - slotTop;
   if (Math.abs(delta) >= 1) window.scrollBy(0, delta);
+  if (!followUp) state.listStayRestoreScrollY = currentListStayScrollY();
   if (followUp || !state.lastListStay) return;
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
