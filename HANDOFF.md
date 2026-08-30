@@ -2,10 +2,17 @@
 
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，完整状态在 `PROJECT_STATE.md`。
 
+## 继续看剩余条目保持当前位置（2026-08-30，已验收）
+
+- 点「继续看剩余 N 条」必须就地补条，禁止 `renderList()` 整表清空把人打回顶部。
+- PR #37 已合 `master`。工作台嵌页 `wb=continue-watch-0830a`（工作台 PR #48）。
+- 改 JS 仍必须 bump `index.html` 的 `?v=`；嵌页 HTML 靠工作台 `wb=` 破缓存。
+- 本仓无活跃四文件。
+
 ## 已阅后立刻下滚不再被二次校正拽回（2026-08-30，已验收）
 
 - 点「已阅」后如果人已经开始滚，停留二次校正不得再 `scrollBy` 拽回。
-- PR #36 已合 `master` 并在 NUC 生产仓。工作台嵌页须换 `wb=`（工作台 PR #47，`stay-noscroll-0830a`）。
+- PR #36 已合 `master` 并在 NUC 生产仓。工作台嵌页当前戳是 `continue-watch-0830a`（PR #48），二次校正守卫仍在。
 - 改 JS 仍必须 bump `index.html` 的 `?v=`；嵌页 HTML 靠工作台 `wb=` 破缓存。
 - 本仓无活跃四文件。
 
