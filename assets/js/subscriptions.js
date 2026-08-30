@@ -732,9 +732,10 @@ function persistReadItemIds() {
   }
 }
 function isItemRead(item) {
-  for (const key of readTrackingKeys(item)) {
-    if (state.readItemIds.has(key)) return true;
-  }
+  const url = item?.url || item?.primary_url;
+  if (!url) return false;
+  if (state.readItemIds.has(`url:${url}`)) return true;
+  if (state.readItemIds.has(String(url))) return true;
   return false;
 }
 function rememberJustMarkedReadKeys(item) {
