@@ -567,7 +567,7 @@ function itemPlatformSection(item) {
     hay.includes("猫笔刀") ||
     hay.includes("maobidao")
   ) return "wechat";
-  if (hay.includes("youtube") || hay.includes("youtu.be") || hay.includes("油管")) return "youtube";
+  if (urlHay.includes("youtube.com") || urlHay.includes("youtu.be") || hay.includes("油管")) return "youtube";
   if (siteId.includes("github") || urlHay.includes("github.com")) return "github";
   return "";
 }
