@@ -205,13 +205,14 @@ test("H3 产品重画尾路径应尽量保住当前视口，而不是弹回顶�
   expect(after.scrollY, JSON.stringify(after)).toBeGreaterThan(before.scrollY - 80);
 });
 
-test("H4 过期停留锚点会把人从底部拽回第一条附近", async ({ page }) => {
+test("H4 无参恢复必须忽略过期 lastListStay，保住底部", async ({ page }) => {
   await openShortBilibili(page);
   const before = await scrollToEnd(page);
   expect(before.scrollY).toBeGreaterThan(200);
 
   const after = await page.evaluate(async () => {
     const first = document.querySelector("#newsList .news-card");
+    const cards = () => Array.from(document.querySelectorAll("#newsList .news-card"));
     state.lastListStay = { anchorId: first.dataset.itemId, slotTop: 180 };
     state.pendingListStay = null;
     requestListStayRestore();
@@ -220,17 +221,19 @@ test("H4 过期停留锚点会把人从底部拽回第一条附近", async ({ pa
       requestAnimationFrame(() => requestAnimationFrame(() => requestAnimationFrame(resolve)));
     });
     const scrolling = document.scrollingElement || document.documentElement;
-    const cards = Array.from(document.querySelectorAll("#newsList .news-card"));
-    const last = cards[cards.length - 1];
+    const list = cards();
+    const last = list[list.length - 1];
     return {
       scrollY: scrolling.scrollTop,
-      firstTop: cards[0]?.getBoundingClientRect().top || 0,
+      firstTop: list[0]?.getBoundingClientRect().top || 0,
+      lastId: last?.dataset.itemId || "",
       lastTop: last ? last.getBoundingClientRect().top : 0,
     };
   });
 
-  expect(after.scrollY).toBeLessThan(before.scrollY - 400);
-  expect(after.firstTop).toBeLessThan(240);
+  expect(after.lastId).toBe("short-8");
+  expect(after.scrollY).toBeGreaterThan(before.scrollY - 80);
+  expect(after.lastTop).toBeLessThan(900);
 });
 
 test("H5 先点已阅再拉到底：不额外重画时不应自己弹回", async ({ page }) => {
@@ -251,7 +254,7 @@ test("H5 先点已阅再拉到底：不额外重画时不应自己弹回", async
   expect(later.lastListStay && later.lastListStay.anchorId).toBeTruthy();
 });
 
-test("H6 已阅留下锚点后走产品重画尾路径，会从底部弹回锚点", async ({ page }) => {
+test("H6 已阅留下锚点后整表重画仍保住当前底部", async ({ page }) => {
   await openShortBilibili(page);
   await page.locator("#newsList .news-card .read-toggle-btn").nth(0).click();
   await page.locator("#newsList .news-card .read-toggle-btn").nth(0).click();
@@ -260,24 +263,26 @@ test("H6 已阅留下锚点后走产品重画尾路径，会从底部弹回锚�
   expect(before.scrollY).toBeGreaterThan(80);
 
   const after = await page.evaluate(async () => {
-    const stay = state.lastListStay;
+    const stay = state.lastListStay ? { ...state.lastListStay } : null;
     requestListStayRestore();
     rerenderCurrentView();
     await new Promise((resolve) => {
       requestAnimationFrame(() => requestAnimationFrame(() => requestAnimationFrame(resolve)));
     });
     const scrolling = document.scrollingElement || document.documentElement;
+    const cards = Array.from(document.querySelectorAll("#newsList .news-card"));
+    const last = cards[cards.length - 1];
     return {
       stay,
       scrollY: scrolling.scrollTop,
-      firstId: document.querySelector("#newsList .news-card")?.dataset.itemId || "",
-      firstTop: document.querySelector("#newsList .news-card")?.getBoundingClientRect().top || 0,
+      lastId: last?.dataset.itemId || "",
+      lastTop: last ? last.getBoundingClientRect().top : 0,
     };
   });
 
   expect(after.stay && after.stay.anchorId).toBeTruthy();
-  expect(after.scrollY).toBeLessThan(before.scrollY - 80);
-  expect(after.firstId).toBe(after.stay.anchorId);
+  expect(after.scrollY).toBeGreaterThan(before.scrollY - 80);
+  expect(after.lastTop).toBeLessThan(900);
 });
 
 test("H7 工作台 iframe 里只滚到底，不重画也不应弹回", async ({ page, baseURL }) => {
