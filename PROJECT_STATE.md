@@ -1,5 +1,13 @@
 # PROJECT_STATE
 
+## 短列表滚到底按当前视口停留（2026-08-31，已部署并验收）
+
+- **做了什么**：无参 `requestListStayRestore()` 只记当前视口（滚过最后一张时记最后一张）；`consumeListStayRestore` 二次校正跟这次还原的格子，并取消未完成的旧校正。连点已阅卡槽未改。脚本戳 `stay-current-viewport-0831a`。
+- **Git**：PR #41 `a501193` 已合 `master`。工作台嵌页戳另仓 PR #51，`wb=stay-current-viewport-0831a`。
+- **验收**：P5 短列表 7 条 + TEST-018～024 通过。P6 用户口头通过。NUC `C:\AI-news-reader\ai-news-radar-run` 已快进；`radar.wanyouomnia.cn` 已带新戳。
+- **当前无活跃 SPEC/PLAN/TASK/TEST**。轻量修复，无四文件。
+- **未做**：无。
+
 ## 继续看剩余条目保持当前位置（2026-08-30，已部署并验收）
 
 - **做了什么**：点「继续看剩余 N 条」不再调用 `renderList()` 整表清空。剩余条目接到当前日期后面，视口不动；「收起」只删多出来的节点。时间线分页常量 `TIMELINE_PAGE_SIZE = 80`。油管夹具改成小岛大浪吹 / 脑总MrBrain，使 81 条期望重新成立。

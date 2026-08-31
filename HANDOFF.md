@@ -2,17 +2,25 @@
 
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，完整状态在 `PROJECT_STATE.md`。
 
+## 短列表滚到底按当前视口停留（2026-08-31，已验收）
+
+- 整表重画必须按用户现在看见的格子还原，禁止拿上一次已阅的 `lastListStay` 顶替。
+- 二次校正必须跟这次还原的格子，并取消还没跑完的旧校正。
+- PR #41 已合 `master`。工作台嵌页 `wb=stay-current-viewport-0831a`（工作台 PR #51）。
+- 改 JS 仍必须 bump `index.html` 的 `?v=`；嵌页 HTML 靠工作台 `wb=` 破缓存。
+- 本仓无活跃四文件。
+
 ## 继续看剩余条目保持当前位置（2026-08-30，已验收）
 
 - 点「继续看剩余 N 条」必须就地补条，禁止 `renderList()` 整表清空把人打回顶部。
-- PR #37 已合 `master`。工作台嵌页 `wb=continue-watch-0830a`（工作台 PR #48）。
+- PR #37 已合 `master`。随后工作台嵌页已换成 `wb=stay-current-viewport-0831a`（PR #51）。
 - 改 JS 仍必须 bump `index.html` 的 `?v=`；嵌页 HTML 靠工作台 `wb=` 破缓存。
 - 本仓无活跃四文件。
 
 ## 已阅后立刻下滚不再被二次校正拽回（2026-08-30，已验收）
 
 - 点「已阅」后如果人已经开始滚，停留二次校正不得再 `scrollBy` 拽回。
-- PR #36 已合 `master` 并在 NUC 生产仓。工作台嵌页当前戳是 `continue-watch-0830a`（PR #48），二次校正守卫仍在。
+- PR #36 已合 `master` 并在 NUC 生产仓。工作台嵌页当前戳是 `stay-current-viewport-0831a`（PR #51），二次校正守卫仍在。
 - 改 JS 仍必须 bump `index.html` 的 `?v=`；嵌页 HTML 靠工作台 `wb=` 破缓存。
 - 本仓无活跃四文件。
 
