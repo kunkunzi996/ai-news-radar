@@ -785,16 +785,22 @@ function captureVisibleListStay() {
   const cards = newsListEl.querySelectorAll(".news-card[data-item-id]");
   let best = null;
   let bestTop = Infinity;
+  let lastAbove = null;
   cards.forEach((card) => {
     const top = card.getBoundingClientRect().top;
-    if (top < 0 || top >= bestTop) return;
+    if (top < 0) {
+      lastAbove = card;
+      return;
+    }
+    if (top >= bestTop) return;
     best = card;
     bestTop = top;
   });
-  if (!best) return null;
+  const node = best || lastAbove;
+  if (!node) return null;
   return normalizeListStay({
-    anchorId: best.getAttribute("data-item-id"),
-    slotTop: best.getBoundingClientRect().top,
+    anchorId: node.getAttribute("data-item-id"),
+    slotTop: node.getBoundingClientRect().top,
   });
 }
 
@@ -805,11 +811,8 @@ function requestListStayRestore(stay) {
     state.pendingListStay = { ...nextStay };
     return;
   }
-  if (state.lastListStay) {
-    state.pendingListStay = { ...state.lastListStay };
-    return;
-  }
-  if (state.justMarkedReadKeys instanceof Set && state.justMarkedReadKeys.size) return;
+  // 无参调用发生在整表重画前：记住现在看见的格子。
+  // lastListStay 只服务连点已阅的同一卡槽，不能拿来顶替当前视口。
   const visibleStay = captureVisibleListStay();
   if (visibleStay) state.pendingListStay = visibleStay;
 }
