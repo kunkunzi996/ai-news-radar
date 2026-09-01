@@ -1238,6 +1238,8 @@ function sourceGroupEntries(items) {
 // We chunk site-groups and yield between each chunk so the browser can paint
 // and respond to touch events while the list is being built.
 let _renderListToken = 0;
+let _listStayFollowOuter = 0;
+let _listStayFollowInner = 0;
 
 function buildSiteGroupNode(site) {
   const siteSection = document.createElement("section");
@@ -1572,12 +1574,18 @@ function consumeListStayRestore(followUp) {
   ensureListStaySpacer(slotTop);
   const delta = anchor.getBoundingClientRect().top - slotTop;
   if (Math.abs(delta) >= 1) window.scrollBy(0, delta);
-  if (!followUp) state.listStayRestoreScrollY = currentListStayScrollY();
-  if (followUp || !state.lastListStay) return;
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      if (!state.lastListStay) return;
-      state.pendingListStay = { ...state.lastListStay };
+  if (followUp) return;
+  if (_listStayFollowOuter) cancelAnimationFrame(_listStayFollowOuter);
+  if (_listStayFollowInner) cancelAnimationFrame(_listStayFollowInner);
+  const expectedY = currentListStayScrollY();
+  state.listStayRestoreScrollY = expectedY;
+  const followStay = { anchorId, slotTop };
+  _listStayFollowOuter = requestAnimationFrame(() => {
+    _listStayFollowOuter = 0;
+    _listStayFollowInner = requestAnimationFrame(() => {
+      _listStayFollowInner = 0;
+      if (Math.abs(currentListStayScrollY() - expectedY) >= 1) return;
+      state.pendingListStay = followStay;
       consumeListStayRestore(true);
     });
   });
