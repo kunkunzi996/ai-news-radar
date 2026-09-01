@@ -34,6 +34,7 @@
   let sourceConfigLoadStarted = false;
   let expireFlushInFlight = false;
   let archiveListStale = false;
+  let archiveListUsable = false;
   const sentExpireKeys = new Set();
 
   function setStatus(text, tone = "") {
@@ -49,7 +50,15 @@
 
   function notifyArchiveStatus() {
     if (!window.WorkbenchBridge || typeof window.WorkbenchBridge.notify !== "function") return;
-    window.WorkbenchBridge.notify("radar-archive-status", { stale: archiveListStale });
+    const payload = { stale: archiveListStale };
+    if (window.WorkbenchBridge.appRequested()) {
+      payload.hasUsableList = archiveListUsable;
+    }
+    window.WorkbenchBridge.notify("radar-archive-status", payload);
+  }
+
+  function markArchiveListUsable() {
+    archiveListUsable = true;
   }
 
   function markArchiveListStale() {
@@ -60,6 +69,7 @@
 
   function markArchiveListFresh() {
     archiveListStale = false;
+    markArchiveListUsable();
     if (canSync()) setStatus("已同步");
     notifyArchiveStatus();
   }
@@ -528,6 +538,7 @@
       return protocolV1 && authoritativeReadState && window.WorkbenchBridge.connected();
     },
     canWriteCollections,
+    markArchiveListUsable,
     markArchiveListStale,
     markArchiveListFresh,
   };

@@ -117,6 +117,9 @@ async function init() {
 
   if (newsResult.status === "fulfilled") {
     const payload = newsResult.value;
+    if (window.RadarSync && typeof window.RadarSync.markArchiveListUsable === "function") {
+      window.RadarSync.markArchiveListUsable();
+    }
     const loadedStoriesDataUrl = state.storiesDataUrl;
     state.itemsAi = payload.items_ai || payload.items || [];
     state.itemsAllRaw = payload.items_all_raw || payload.items_all || [];
