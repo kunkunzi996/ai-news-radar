@@ -242,7 +242,7 @@ class MediaCrawlerRunnerTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, "different browser profile"):
                 assert_dedicated_browser_process(9333, profile, wrong_lookup)
 
-    def test_window_mode_failure_propagates_before_collection(self):
+    def test_window_mode_failure_does_not_block_collection(self):
         with tempfile.TemporaryDirectory() as tmp:
             crawler = Path(tmp)
             profile = (crawler / "chrome-profile").resolve()
@@ -251,16 +251,46 @@ class MediaCrawlerRunnerTests(unittest.TestCase):
                 "command_line": f'chrome.exe --remote-debugging-port={port} "--user-data-dir={profile}"',
             }]
             with mock.patch.object(runner, "is_port_open", return_value=True), mock.patch.object(runner, "cdp_ready", return_value=True):
-                with self.assertRaisesRegex(RuntimeError, "mode failed"):
-                    ensure_dedicated_browser(
-                        crawler,
-                        9333,
-                        "",
-                        "",
-                        "https://www.douyin.com/",
-                        process_lookup=lookup,
-                        window_mode_applier=lambda *_: (_ for _ in ()).throw(RuntimeError("mode failed")),
-                    )
+                port = ensure_dedicated_browser(
+                    crawler,
+                    9333,
+                    "",
+                    "",
+                    "https://www.douyin.com/",
+                    True,
+                    process_lookup=lookup,
+                    window_mode_applier=lambda *_: (_ for _ in ()).throw(
+                        RuntimeError("browser_window_bounds_not_applied:requested={'left': -1700}")
+                    ),
+                )
+            self.assertEqual(port, 9333)
+
+    def test_new_cdp_window_mode_failure_does_not_block_collection(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            crawler = Path(tmp)
+            profile = (crawler / "chrome-profile").resolve()
+            lookup = lambda port: [{
+                "pid": 42,
+                "command_line": f'chrome.exe --remote-debugging-port={port} "--user-data-dir={profile}"',
+            }]
+            with mock.patch.object(runner, "is_port_open", return_value=False), \
+                    mock.patch.object(runner, "cdp_ready", return_value=True), \
+                    mock.patch.object(runner, "find_chrome", return_value="chrome.exe"), \
+                    mock.patch.object(runner, "launch_dedicated_browser") as launch:
+                port = ensure_dedicated_browser(
+                    crawler,
+                    9333,
+                    "",
+                    "",
+                    "https://www.douyin.com/",
+                    True,
+                    process_lookup=lookup,
+                    window_mode_applier=lambda *_: (_ for _ in ()).throw(
+                        RuntimeError("offscreen_window_still_intersects_virtual_screen")
+                    ),
+                )
+            self.assertEqual(port, 9333)
+            launch.assert_called_once()
 
     def test_offscreen_default_ignores_environment_strings(self):
         argv = ["runner", "--crawler-root", "C:/crawler", "--platform", "douyin"]

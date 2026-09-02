@@ -484,6 +484,22 @@ async def limited_douyin_creator_posts(client: object, sec_user_id: str, max_not
     return result
 
 
+def apply_window_mode_best_effort(
+    window_mode_applier: Callable[[int, bool], None],
+    port: int,
+    offscreen: bool,
+) -> None:
+    """Move the dedicated window if the OS allows it. Do not block collection.
+
+    Windows on a 1024x768 / RDP session often refuses exact offscreen pixels
+    (`left=-1700`). That is cosmetic; CDP already proved the browser is ours.
+    """
+    try:
+        window_mode_applier(port, offscreen)
+    except Exception as exc:
+        print(f"browser_window_mode_skipped:{exc}", file=sys.stderr)
+
+
 def ensure_dedicated_browser(
     crawler_root: Path,
     start_port: int,
@@ -500,7 +516,7 @@ def ensure_dedicated_browser(
         if not cdp_ready(start_port):
             raise RuntimeError(f"cdp_port_conflict: port {start_port} is not a CDP endpoint")
         assert_dedicated_browser_process(start_port, profile_dir, process_lookup)
-        window_mode_applier(start_port, offscreen)
+        apply_window_mode_best_effort(window_mode_applier, start_port, offscreen)
         return start_port
 
     launch_dedicated_browser(find_chrome(chrome_path), start_port, profile_dir, start_url, offscreen)
@@ -508,7 +524,7 @@ def ensure_dedicated_browser(
     while time.time() < deadline:
         if cdp_ready(start_port):
             assert_dedicated_browser_process(start_port, profile_dir, process_lookup)
-            window_mode_applier(start_port, offscreen)
+            apply_window_mode_best_effort(window_mode_applier, start_port, offscreen)
             return start_port
         time.sleep(0.5)
     raise RuntimeError(f"dedicated Chrome did not expose CDP on port {start_port}")
