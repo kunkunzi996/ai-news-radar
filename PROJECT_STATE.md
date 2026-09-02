@@ -1,5 +1,13 @@
 # PROJECT_STATE
 
+## 搜索框打字不被工作台旧回执覆盖（2026-09-02，已部署并验收）
+
+- **做了什么**：搜索框每键立刻同步并整表重画，工作台回执会把输入框写回更早的字。打字中保留本地搜索词、焦点上不改输入框；停 250ms 再保存和筛列表；中文输入法拼写过程不中途刷新。脚本戳 `search-query-echo-0902a`。曾试整表重画先留旧卡，TEST-022 节点脱落，已收回。
+- **Git**：雷达 PR #44 `1b5c472` 已合 `master`。工作台嵌页戳另仓 PR #55，`wb=search-query-echo-0902a`。
+- **验收**：P5 雷达 e2e 79 passed（含打 `abc` 不被写回 `a`）。P6 用户口头通过（生产工作台远程版打字不再反复刷新、字不再被写回）。NUC `C:\AI-news-reader\ai-news-radar-run` 与 `C:\OMNIA\app` 已快进；`radar.wanyouomnia.cn` 已带新戳。
+- **当前无活跃 SPEC/PLAN/TASK/TEST**。轻量修复，无四文件。
+- **未做**：无。
+
 ## 短列表滚到底按当前视口停留（2026-08-31，已部署并验收）
 
 - **做了什么**：无参 `requestListStayRestore()` 只记当前视口（滚过最后一张时记最后一张）；`consumeListStayRestore` 二次校正跟这次还原的格子，并取消未完成的旧校正。连点已阅卡槽未改。脚本戳 `stay-current-viewport-0831a`。
