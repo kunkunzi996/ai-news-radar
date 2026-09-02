@@ -1809,6 +1809,72 @@ test.describe("工作台收藏桥", () => {
     expect(second.payload).toEqual({ baseRevision: 8, patch: { query: "最后一个值" } });
   });
 
+  test("search input must keep newer local query over in-flight view echo", async ({ page }) => {
+    const initialState = {
+      ...SYNC_STATE,
+      readKeys: [],
+      view: { ...SYNC_STATE.view, query: "", readFilter: "all" },
+    };
+    await page.addInitScript(({ stateSnapshot }) => {
+      const messages = [];
+      const hello = {
+        version: 1,
+        type: "workbench-hello",
+        requestId: "native-hello-search-echo",
+        state: stateSnapshot,
+        syncAvailable: true,
+        readOnly: false,
+      };
+      window.__nativeHost = {
+        messages,
+        viewPatches() {
+          return messages.filter((message) => message.type === "radar-view-patch");
+        },
+        reply(message) {
+          window.WorkbenchBridge.receiveHostMessage(JSON.stringify(message));
+        },
+      };
+      window.OmniaRadarHost = {
+        postMessage(json) {
+          const message = JSON.parse(json);
+          messages.push(message);
+          if (message.type === "radar-ready") {
+            hello.requestId = message.requestId;
+            setTimeout(() => window.WorkbenchBridge.receiveHostMessage(JSON.stringify(hello)), 0);
+          }
+        },
+      };
+    }, { stateSnapshot: initialState });
+
+    await installRadarFixture(page);
+    await page.goto("/?omniaApp=1");
+    const search = page.locator("#searchInput");
+    await expect(search).toHaveValue("");
+    await search.click();
+    await search.pressSequentially("a");
+    await expect.poll(() => page.evaluate(() => window.__nativeHost.viewPatches().length)).toBe(1);
+    const first = await page.evaluate(() => window.__nativeHost.viewPatches()[0]);
+    expect(first.payload.patch.query).toBe("a");
+
+    await search.pressSequentially("bc", { delay: 40 });
+    await expect(search).toHaveValue("abc");
+
+    await page.evaluate(({ requestId, stateSnapshot }) => window.__nativeHost.reply({
+      version: 1,
+      type: "radar-state-result",
+      requestId,
+      ok: true,
+      status: 200,
+      state: {
+        ...stateSnapshot,
+        viewRevision: 8,
+        view: { ...stateSnapshot.view, query: "a" },
+      },
+    }), { requestId: first.requestId, stateSnapshot: initialState });
+
+    await expect(search).toHaveValue("abc");
+  });
+
   test("探索信号穿插：默认订阅有间隔细条，搜索和已阅里消失", async ({ page }) => {
     const subscriptionItems = Array.from({ length: 6 }, (_, index) => ({
       ...FIRST_ITEM,

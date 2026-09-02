@@ -228,11 +228,51 @@ async function init() {
   document.dispatchEvent(new CustomEvent("aiRadar:ready"));
 }
 
-searchInputEl.addEventListener("input", (e) => {
-  state.query = e.target.value;
+let queryApplyTimer = null;
+let queryComposing = false;
+const QUERY_APPLY_DELAY_MS = 250;
+
+function applyQueryView() {
+  queryApplyTimer = null;
   if (window.RadarSync) window.RadarSync.saveViewField("query", state.query);
   renderBolePicks();
   renderList();
+}
+
+function scheduleQueryApply() {
+  if (queryApplyTimer) clearTimeout(queryApplyTimer);
+  queryApplyTimer = setTimeout(applyQueryView, QUERY_APPLY_DELAY_MS);
+}
+
+function onSearchQueryInput(value) {
+  state.query = value;
+  if (window.RadarSync && typeof window.RadarSync.noteQueryEdit === "function") {
+    window.RadarSync.noteQueryEdit();
+  }
+  scheduleQueryApply();
+}
+
+searchInputEl.addEventListener("compositionstart", () => {
+  queryComposing = true;
+});
+searchInputEl.addEventListener("compositionend", (e) => {
+  queryComposing = false;
+  onSearchQueryInput(e.target.value);
+});
+searchInputEl.addEventListener("input", (e) => {
+  if (queryComposing) {
+    state.query = e.target.value;
+    if (window.RadarSync && typeof window.RadarSync.noteQueryEdit === "function") {
+      window.RadarSync.noteQueryEdit();
+    }
+    return;
+  }
+  onSearchQueryInput(e.target.value);
+});
+searchInputEl.addEventListener("blur", () => {
+  if (!queryApplyTimer) return;
+  clearTimeout(queryApplyTimer);
+  applyQueryView();
 });
 
 siteSelectEl.addEventListener("change", (e) => {

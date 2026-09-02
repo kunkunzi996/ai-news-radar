@@ -35,6 +35,7 @@
   let expireFlushInFlight = false;
   let archiveListStale = false;
   let archiveListUsable = false;
+  let queryDirty = false;
   const sentExpireKeys = new Set();
 
   function setStatus(text, tone = "") {
@@ -318,6 +319,18 @@
     }
   }
 
+  function noteQueryEdit() {
+    queryDirty = true;
+  }
+
+  function localSearchQuery() {
+    return searchInputEl ? String(searchInputEl.value) : String(state.query || "");
+  }
+
+  function shouldKeepLocalQuery(incomingQuery) {
+    return queryDirty && localSearchQuery() !== incomingQuery;
+  }
+
   async function applyState(snapshot, { render = true } = {}) {
     if (!snapshot || typeof snapshot !== "object") return;
     if (!dataReady) {
@@ -327,6 +340,9 @@
     const previousView = snapshotViewFields();
     const previousHostReadKeys = new Set(serverReadKeys);
     const view = normalizeView(snapshot.view);
+    const incomingQuery = view.query;
+    const keptLocalQuery = shouldKeepLocalQuery(incomingQuery);
+    if (keptLocalQuery) view.query = localSearchQuery();
     legacyReadMigration = normalizeLegacyReadMigration(snapshot.legacyReadMigration);
     viewRevision = Number.isInteger(snapshot.viewRevision) ? snapshot.viewRevision : 0;
     Object.assign(state, view);
@@ -336,7 +352,10 @@
       reapplyJustMarkedReads();
       authoritativeReadState = true;
     }
-    searchInputEl.value = state.query;
+    if (document.activeElement !== searchInputEl) {
+      searchInputEl.value = state.query;
+    }
+    if (incomingQuery === localSearchQuery()) queryDirty = false;
     sourceTypeSelectEl.value = state.sourceTypeFilter;
     signalLevelSelectEl.value = state.signalLevelFilter;
     if ((state.mode === "all" || state.timeRangeFilter === "all") && typeof loadAllModeData === "function") {
@@ -355,7 +374,8 @@
     // 一旦出现本页没标过的新键（另一端先标），就不算回声，仍走原来的重画与位置恢复。
     const isOwnReadEcho = hasInlineReadKeys
       && shouldRestoreListStay(previousView, view, snapshot.readKeys, previousHostReadKeys);
-    const shouldRender = render && !isOwnReadEcho;
+    const isOwnQueryEcho = keptLocalQuery && viewFieldsUnchanged(previousView, view);
+    const shouldRender = render && !isOwnReadEcho && !isOwnQueryEcho;
     if (
       shouldRender
       && viewFieldsUnchanged(previousView, view)
@@ -531,6 +551,7 @@
   });
 
   window.RadarSync = {
+    noteQueryEdit,
     saveViewField,
     saveViewPatch,
     markRead,
