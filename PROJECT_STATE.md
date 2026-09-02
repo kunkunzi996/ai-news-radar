@@ -1,5 +1,15 @@
 # PROJECT_STATE
 
+## 抖音采集窗挪不到屏幕外不再整轮作废（2026-09-02，已部署）
+
+- **现象**：公网看板更新时间仍在刷新，抖音内容停在 8 月 29 日。计划任务 `DouyinCollectAndPush` 每天 08:10 / 13:10 / 20:10 都在跑，`LastTaskResult=0`，回执却是 `state=failed`。
+- **根因**：NUC 虚拟屏幕当时是 1024×768，专用 Chrome 无法精确放到 `left=-1700`。`ensure_dedicated_browser` 把挪窗失败当致命错误，约 10 秒退出，桥接不推。登录态仍在。
+- **修法**：CDP 健康且确认是本采集浏览器后，挪窗改为尽力而为，失败只打 `browser_window_mode_skipped`，继续采集。
+- **Git**：PR #46 `6270a3e` 已合 `master`。NUC `C:\AI-news-reader\ai-news-radar-run` 已含该提交（随后数据快照继续快进）。
+- **验收**：`tests/test_mediacrawler_runner.py` **51 passed**。全量 `pytest -q` **728 passed**；3 条 `Get-FileHash` 失败为本机 PowerShell 环境问题，与本 diff 无关。NUC 手工触发一轮：`state=succeeded`、`login_state=logged_in`、`bridge_changed=true`、manifest `2026-09-02T09:14:47Z`。Actions `33613106068` 成功。
+- **未做**：本轮珍妮丁丁被抖音风控（`listed=0`），视频 `7680138787892022537` 仍未入库。不要为补这一条连续重跑采集。
+- **当前无活跃 SPEC/PLAN/TASK/TEST**。轻量热修，无四文件。
+
 ## 搜索框打字不被工作台旧回执覆盖（2026-09-02，已部署并验收）
 
 - **做了什么**：搜索框每键立刻同步并整表重画，工作台回执会把输入框写回更早的字。打字中保留本地搜索词、焦点上不改输入框；停 250ms 再保存和筛列表；中文输入法拼写过程不中途刷新。脚本戳 `search-query-echo-0902a`。曾试整表重画先留旧卡，TEST-022 节点脱落，已收回。

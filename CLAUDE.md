@@ -84,6 +84,14 @@ job 上限 15 分钟。见 `docs/bugs/BUG-03-GitHub采集卡满15分钟整轮停
 4. 改 `assets/js/**` 必须 bump `index.html` 的 `?v=`。
 5. 新建 `.ps1` 用 UTF-8 带 BOM；新建 `.cmd`/`.bat` 用 CRLF，含中文时用 GBK，且必须用 cmd.exe 验收。
 
+### 采集窗挪位的禁区
+
+专用 Chrome 挪到屏幕外是尽力而为。见 PR #46。
+
+1. 不许把精确像素失败（`browser_window_bounds_not_applied` / 窗口仍在屏幕内）重新改成整轮 `failed`。
+2. CDP 端口健康且确认是本采集 profile 后，必须继续采集。
+3. 计划任务 `LastTaskResult=0` 不等于采集成功；以 `C:\AI-news-reader\douyin-collect-status.json` 的 `state` 为准。
+
 ### 采集浏览器收尾的禁区
 
 只关本轮新增标签页。见 `docs/bugs/BUG-01-采集后浏览器窗口不关闭.md`。

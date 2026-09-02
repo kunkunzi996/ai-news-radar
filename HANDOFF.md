@@ -2,6 +2,14 @@
 
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，完整状态在 `PROJECT_STATE.md`。
 
+## 抖音采集窗挪不到屏幕外不再整轮作废（2026-09-02，已部署）
+
+- 看板「更新时间」新，只说明快照在刷新，不说明抖音 JSONL 在更新。对 `collection_generated_at` 和 NUC `C:\AI-news-reader\douyin-collect-status.json` 的 `state`。
+- 计划任务包在 `conhost` 里，`LastTaskResult=0` 不等于成功。
+- PR #46 已合 `master`：挪窗失败不再整轮作废。NUC 已拉到该提交。
+- 本轮采集已通（`succeeded` / 已登录 / 桥接已推），珍妮丁丁仍被风控，Grok Bot 那条还没进库。不要连跑补采。
+- 本仓无活跃四文件。
+
 ## 搜索框打字不被工作台旧回执覆盖（2026-09-02，已验收）
 
 - 正在输入时，工作台视图回执不得覆盖搜索框；停 250ms 再同步、再筛列表。
@@ -136,7 +144,7 @@
 ## 下一轮入口
 
 1. 整理/微信下线/对外身份已合 `master`。进行中的功能窗口：`探索信号`、`雷达列表停留位置`。整理 worktree 可拆。
-2. 网站若再停更：先看 `data/source-status.json` 的 `generated_at`，再 `gh run list` 看 Update AI News Snapshot。
+2. 网站若再停更：先看 `data/source-status.json` 的 `generated_at`；抖音单独停更时再看 `mediacrawler_douyin.collection_generated_at` 和 NUC `douyin-collect-status.json`，不要只看看板更新时间或计划任务 `LastTaskResult`。再 `gh run list` 看 Update AI News Snapshot。
 3. NUC SSH 连不上时，先核对当前 IP / WiFi，不要沿用旧 HostName。
 4. 改采集会话重试或源预算前，读 `CLAUDE.md`「GitHub Actions 采集超时的禁区」。
 5. 改历史清理逻辑前，读 `CLAUDE.md`「清理历史条目的禁区」。改线上同步前，恢复工作区只用 `git restore`。
