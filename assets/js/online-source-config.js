@@ -40,7 +40,26 @@ function onlineSourceTypeLabel(type) {
 }
 
 function onlineSourceFormActionLabel() {
-  return "保存并同步";
+  return "加入";
+}
+
+function onlineSourceFilterKey(source) {
+  const type = String(source?.type || "");
+  if (type === "bilibili_dynamic") return "bilibili";
+  if (type === "github_release") return "github";
+  if (type === "mediacrawler_jsonl") return "douyin";
+  const locator = String(source?.locator || "").toLowerCase();
+  if (type === "rss" && (locator.includes("youtube") || locator.includes("youtu.be") || locator.includes("channel_id="))) {
+    return "youtube";
+  }
+  return "other";
+}
+
+function restoreOnlineSourcePendingFlags(pendingIds) {
+  const ids = pendingIds instanceof Set ? pendingIds : new Set();
+  (state.onlineSourceConfig?.sources || []).forEach((source) => {
+    if (ids.has(source.id)) source.pending = true;
+  });
 }
 
 function canWriteOnlineSourceConfig() {
@@ -136,6 +155,7 @@ function normalizeOnlineSourceRecord(source, index = 0) {
     locator,
     env: "",
     notes: String(source?.notes || "").trim(),
+    pending: source?.pending === true,
   };
 }
 
@@ -243,11 +263,11 @@ function saveOnlineSourceFormToState() {
   } else {
     sources.push(record);
   }
+  if (index < 0) record.pending = true;
   state.onlineSourceConfig.sources = sources;
   state.onlineSourceSelectedId = record.id;
   clearOnlineSourceForm();
   renderOnlineSourceConfig();
-  markOnlineSourceDirty("未保存：点“保存并同步”会写入公开配置并推送到 GitHub");
   return true;
 }
 
@@ -281,7 +301,7 @@ function removeOnlineSourceRecord(recordId) {
   state.onlineSourceConfig.sources = sources.filter((source) => source.id !== recordId);
   clearOnlineSourceForm();
   renderOnlineSourceConfig();
-  markOnlineSourceDirty("未保存：已从线上信源草稿删除");
+  saveOnlineSourceConfigToServer().catch(() => {});
 }
 
 function toggleOnlineSourceRecord(recordId, enabled) {
@@ -300,7 +320,7 @@ function toggleOnlineSourceRecord(recordId, enabled) {
   }
   source.enabled = nextEnabled;
   renderOnlineSourceConfig();
-  markOnlineSourceDirty("未保存：启用状态已变更");
+  saveOnlineSourceConfigToServer().catch(() => {});
 }
 
 function renderOnlineSourceList() {
@@ -308,12 +328,16 @@ function renderOnlineSourceList() {
   onlineSourceListEl.innerHTML = "";
   const isLocal = canUseLocalBackend();
   const canEdit = canWriteOnlineSourceConfig();
+  const filter = String(state.onlineSourceFilter || "all");
   const sources = state.onlineSourceConfig?.sources || [];
-  const visibleSources = isLocal ? sources : sources.filter((source) => source.enabled !== false);
+  const scoped = isLocal ? sources : sources.filter((source) => source.enabled !== false);
+  const visibleSources = filter === "all"
+    ? scoped
+    : scoped.filter((source) => onlineSourceFilterKey(source) === filter);
   if (!visibleSources.length) {
     const empty = document.createElement("div");
     empty.className = "online-source-empty";
-    empty.textContent = isLocal ? "当前还没有线上公开信源。" : "当前线上没有启用的公开信源。";
+    empty.textContent = "还没有人";
     onlineSourceListEl.appendChild(empty);
     return;
   }
@@ -324,7 +348,9 @@ function renderOnlineSourceList() {
     const title = document.createElement("strong");
     title.textContent = source.name;
     const meta = document.createElement("span");
-    meta.textContent = `${onlineSourceTypeLabel(source.type)} · ${source.locator}`;
+    meta.textContent = source.pending
+      ? `${onlineSourceTypeLabel(source.type)} · ${source.locator} · 待采集`
+      : `${onlineSourceTypeLabel(source.type)} · ${source.locator}`;
     main.append(title, meta);
 
     card.appendChild(main);
@@ -365,6 +391,11 @@ function renderOnlineSourceConfig() {
   if (!state.onlineSourceConfig) state.onlineSourceConfig = { sources: [] };
   const isLocal = canUseLocalBackend();
   const canWrite = canWriteOnlineSourceConfig();
+  if (onlineSourceFiltersEl) {
+    onlineSourceFiltersEl.querySelectorAll("[data-source-filter]").forEach((button) => {
+      button.classList.toggle("on", button.getAttribute("data-source-filter") === String(state.onlineSourceFilter || "all"));
+    });
+  }
   [
     onlineSourceTypeEl,
     onlineSourceNameEl,
@@ -437,8 +468,11 @@ async function saveOnlineSourceConfigToServer() {
   }
   if (!requireLoadedOnlineSourceConfig()) return null;
   if (!syncOnlineSourceFormIfFilled()) return null;
+  const pendingIds = new Set(
+    (state.onlineSourceConfig?.sources || []).filter((source) => source.pending).map((source) => source.id),
+  );
   setOnlineSourceButton(onlineSourceSaveBtnEl, "保存中...", true);
-  setOnlineSourceStatus("正在保存并同步公开线上配置...", "warn");
+  setOnlineSourceStatus("正在写入订阅名单...", "warn");
   try {
     const res = await apiFetch("./api/save-and-sync-online-source-config", {
       method: "POST",
@@ -452,6 +486,7 @@ async function saveOnlineSourceConfigToServer() {
     const payload = await res.json().catch(() => ({}));
     if (!res.ok || payload.ok === false) throw onlineSourceRequestError(payload, res);
     state.onlineSourceConfig = normalizeOnlineSourceConfig(onlineConfigFromResponse(payload));
+    restoreOnlineSourcePendingFlags(pendingIds);
     state.githubStarEtag = String(res.headers.get("ETag") || payload.etag || state.githubStarEtag || "");
     state.githubStarConfigDigest = String(payload.base_config_digest || state.githubStarConfigDigest || "");
     state.onlineSourceDirty = false;
@@ -476,7 +511,7 @@ async function saveOnlineSourceConfigToServer() {
     state.onlineSourceDirty = true;
     await loadOnlineSourceConfigFromServer(true);
     renderOnlineSourceConflicts(err.code === "online_sources_merge_conflict" ? err.payload?.details?.conflicts : []);
-    setOnlineSourceStatus(`保存并同步失败：${onlineSyncErrorMessage(err.code || err.message)}`, "bad");
+    setOnlineSourceStatus(`保存失败：${onlineSyncErrorMessage(err.code || err.message)}`, "bad");
     setOnlineSourceButton(onlineSourceSaveBtnEl, "保存失败", true);
     restoreOnlineSourceButton(onlineSourceSaveBtnEl, onlineSourceFormActionLabel());
     return null;
@@ -930,6 +965,7 @@ async function applyGithubStarSync() {
     state.githubStarPreview = null;
     githubStarSetOutcome(payload.outcome, payload);
     setGithubStarStatus(payload.partial ? "同步未完全结束，请按恢复提示处理。" : "同步完成。", payload.partial ? "warn" : "ok");
+    renderOnlineSourceConfig();
     renderGithubStarPanel();
   } catch (err) {
     githubStarSetOutcome("", {});

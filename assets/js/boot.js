@@ -452,7 +452,17 @@ if (sourceConfigFormEl) {
 if (onlineSourceFormEl) {
   onlineSourceFormEl.addEventListener("submit", (event) => {
     event.preventDefault();
+    if (!saveOnlineSourceFormToState()) return;
     saveOnlineSourceConfigToServer().catch(() => {});
+  });
+}
+
+if (onlineSourceFiltersEl) {
+  onlineSourceFiltersEl.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-source-filter]");
+    if (!button) return;
+    state.onlineSourceFilter = button.getAttribute("data-source-filter") || "all";
+    renderOnlineSourceConfig();
   });
 }
 

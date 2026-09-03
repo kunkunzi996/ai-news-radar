@@ -46,6 +46,7 @@ const state = {
   onlineSourceConfig: { sources: [] },
   onlineSourceSelectedId: "",
   onlineSourceDirty: false,
+  onlineSourceFilter: "all",
   githubStarPreview: null,
   githubStarRecovery: null,
   githubStarEtag: "",
@@ -148,6 +149,7 @@ const onlineSourceNameEl = document.getElementById("onlineSourceName");
 const onlineSourceLocatorEl = document.getElementById("onlineSourceLocator");
 const onlineSourceNotesEl = document.getElementById("onlineSourceNotes");
 const onlineSourceEnabledEl = document.getElementById("onlineSourceEnabled");
+const onlineSourceFiltersEl = document.getElementById("onlineSourceFilters");
 const onlineSourceSaveBtnEl = document.getElementById("onlineSourceSaveBtn");
 const onlineSourceClearBtnEl = document.getElementById("onlineSourceClearBtn");
 const onlineSourceSyncBtnEl = document.getElementById("onlineSourceSyncBtn");

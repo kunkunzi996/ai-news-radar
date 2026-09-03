@@ -1074,9 +1074,42 @@ body.radar-reader-only-mode #settingsDrawer {
   color: var(--bad);
 }
 
+.online-source-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin: 0 12px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  width: max-content;
+  max-width: 100%;
+  background: var(--surface-soft);
+}
+
+.online-source-filter {
+  min-height: 32px;
+  border: 0;
+  border-left: 1px solid var(--line);
+  padding: 0 12px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 720;
+}
+
+.online-source-filter:first-child {
+  border-left: 0;
+}
+
+.online-source-filter.on {
+  background: var(--accent);
+  color: #fff;
+}
+
 .online-source-body {
   display: grid;
-  grid-template-columns: minmax(240px, 0.95fr) minmax(0, 1.15fr);
+  grid-template-columns: 1fr;
   gap: 12px;
 }
 
