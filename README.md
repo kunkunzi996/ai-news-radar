@@ -275,9 +275,8 @@ https://kunkunzi996.github.io/ai-news-radar/data/source-status.json
 
 如果你明确想部署到自己的服务器自动跑，推荐使用 `systemd timer` 定时刷新数据，再用 Nginx 只对外提供静态页面和 `data/*.json`。完整步骤见 [服务器部署手册](docs/guides/server-deployment.md)，不要把本地管理后台 `scripts/local_server.py` 直接暴露到公网。
 
-主页面内置一个本地采集控制台、“订阅成员”和“高级信源配置”面板。
-日常新增/删除订阅对象优先用“订阅成员”；“高级信源配置”用于编辑类型、地址、
-环境变量、备注和启用状态等底层字段。
+主页面设置里只有一张订阅名单（信源页）。加入、删除和启用当场写入公开配置。
+“高级信源配置”仍用于编辑本机类型、地址、环境变量、备注等底层字段。
 如果使用 `scripts/local_server.py` 启动本地页面，“保存高级配置”按钮会把
 本机私有参数保存到项目根目录的 `sources.config.json`；订阅名单统一由
 `config/online-sources.json` 管理。“刷新看板数据”按钮会按页面选择的“采集范围”
@@ -304,9 +303,8 @@ https://kunkunzi996.github.io/ai-news-radar/data/source-status.json
 - `config/online-sources.json`
 - `feeds/online-sources.opml`
 
-两块配置的职责很简单：**线上网页实际采集什么，以“线上信源”为准；“订阅成员”
-只管理这台电脑上的本地私有采集。** 想让新订阅出现在 GitHub Pages 和云端定时采集里，
-请在本机的“线上信源”面板新增后点击“同步到线上”。只改“订阅成员”不会改变线上订阅。
+公开采集以这一张订阅名单为准（`config/online-sources.json`）。
+在本机设置的信源页加入或删除后会当场写入并推送，不用再按第二下。
 
 本地打开 `http://127.0.0.1:8080/` 后，在“信源配置”区域可以看到
 “线上信源”面板。第一版只支持添加、启用/停用和删除三类公开安全源：
@@ -402,9 +400,8 @@ STAR_SUBSCRIPTION_CLEANUP_APPROVAL_DIGEST=<本轮 audit 输出的摘要>
    .\.venv\Scripts\python.exe scripts/local_server.py --host 127.0.0.1 --port 8080
    ```
 
-2. 打开 `http://127.0.0.1:8080/`。要修改 GitHub Pages 的云端订阅，用“线上信源”；
-   只在本机采集的私有订阅，用“订阅成员”。需要改本地类型、地址、环境变量、备注或
-   启用状态时，再展开“高级信源配置”。
+2. 打开 `http://127.0.0.1:8080/`。要修改 GitHub Pages 的云端订阅，用设置里的订阅名单。
+   需要改本机类型、地址、环境变量、备注或启用状态时，再展开“高级信源配置”。
 3. 在“高级信源配置”里点“保存高级配置”，生成或覆盖根目录 `sources.config.json`
    （该文件已加入 `.gitignore`，默认不提交）。按钮会显示“保存中... / 已保存 / 保存失败”。
 4. 点“检查状态”查看哪些渠道需要维护；维护提示里的“打开后台/扫码”“打开B站登录”“打开JSONL文件夹”等按钮会直达维护入口，“定位信源”会跳回对应配置项。

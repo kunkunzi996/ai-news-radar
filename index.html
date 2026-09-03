@@ -33,7 +33,7 @@
     <link rel="icon" href="./assets/icons/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png" sizes="180x180" />
     <link rel="manifest" href="./site.webmanifest" />
-    <link rel="stylesheet" href="./assets/styles.css?v=explore-ask-0823f" />
+    <link rel="stylesheet" href="./assets/styles.css?v=subscription-unify-0903a" />
     <link rel="stylesheet" href="./assets/reader-layout.css?v=explore-feed-0823c" />
   </head>
   <body>
@@ -244,18 +244,24 @@
 
           <div class="settings-drawer-body">
             <section class="settings-pane" data-settings-pane="sources">
-              <p class="settings-pane-hint settings-pane-hint-warn">
-                这里的改动点「保存并同步」后会写入配置并推送到 GitHub，决定公网页面采集哪些信源。
+              <p class="settings-pane-hint">
+                加入、删除和启用当场写入这一张订阅名单。新内容仍等下一轮采集。
               </p>
-              <section class="online-source-panel" aria-label="线上信源管理">
+              <section class="online-source-panel" aria-label="订阅名单">
                 <div class="online-source-head">
                   <div>
-                    <strong>线上信源</strong>
-                    <span id="onlineSourceStatus">读取 config/online-sources.json 后，点「保存并同步」推送到 GitHub。</span>
+                    <strong>订阅名单</strong>
+                    <span id="onlineSourceStatus">读取后即可加入或删除。</span>
                   </div>
                 </div>
+                <div class="online-source-filters" id="onlineSourceFilters" role="tablist" aria-label="订阅渠道">
+                  <button type="button" class="online-source-filter on" data-source-filter="all">全部</button>
+                  <button type="button" class="online-source-filter" data-source-filter="bilibili">B站</button>
+                  <button type="button" class="online-source-filter" data-source-filter="youtube">油管</button>
+                  <button type="button" class="online-source-filter" data-source-filter="douyin">抖音</button>
+                  <button type="button" class="online-source-filter" data-source-filter="github">GitHub</button>
+                </div>
                 <div class="online-source-body">
-                  <div id="onlineSourceList" class="online-source-list"></div>
                   <form id="onlineSourceForm" class="online-source-form">
                     <label class="field">
                       <span>新增入口</span>
@@ -283,10 +289,11 @@
                       <span>启用</span>
                     </label>
                     <div class="online-source-actions-row">
-                      <button id="onlineSourceSaveBtn" class="mode-btn active" type="submit">保存并同步</button>
+                      <button id="onlineSourceSaveBtn" class="mode-btn active" type="submit">加入</button>
                       <button id="onlineSourceClearBtn" class="mode-btn" type="button">清空</button>
                     </div>
                   </form>
+                  <div id="onlineSourceList" class="online-source-list"></div>
                 </div>
                 <div id="onlineSourceConflictList" class="online-source-list" aria-live="polite" hidden></div>
               </section>
@@ -389,36 +396,6 @@
             <span>本机私有配置</span>
             <small>写入 sources.config.json，只影响本机采集，不影响公网</small>
           </summary>
-        <section class="subscription-manager" aria-label="订阅成员管理">
-          <div class="subscription-manager-head">
-            <div>
-              <strong>订阅成员</strong>
-              <span id="subscriptionManagerStatus">选择渠道后，可直接新增或删除订阅对象。</span>
-            </div>
-            <div class="subscription-platform-tabs" id="subscriptionPlatformTabs" role="tablist" aria-label="订阅渠道"></div>
-          </div>
-          <div class="subscription-manager-body">
-            <div class="subscription-members" id="subscriptionMembers"></div>
-            <form id="subscriptionMemberForm" class="subscription-member-form">
-              <label class="field">
-                <span id="subscriptionNameLabel">显示名称</span>
-                <input id="subscriptionMemberName" type="text" autocomplete="off" placeholder="例如：某某UP主" />
-              </label>
-              <label class="field">
-                <span id="subscriptionLocatorLabel">账号 ID</span>
-                <input id="subscriptionMemberLocator" type="text" autocomplete="off" placeholder="例如：B站 UID 或 YouTube channel_id" />
-              </label>
-              <label class="field source-config-wide" id="subscriptionHomeUrlWrap">
-                <span>主页链接</span>
-                <input id="subscriptionMemberHomeUrl" type="url" autocomplete="off" placeholder="可选，例如 https://www.youtube.com/@handle" />
-              </label>
-              <div class="subscription-member-actions">
-                <button id="subscriptionMemberSubmitBtn" class="mode-btn active" type="submit">新增成员</button>
-                <button id="subscriptionMemberClearBtn" class="mode-btn" type="button">清空</button>
-              </div>
-            </form>
-          </div>
-        </section>
         <details class="advanced-source-config-wrap">
           <summary>
             <span>高级信源配置</span>
@@ -541,7 +518,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous" defer></script>
     <script src="./assets/motion.js?v=ui-adjustment-0620a" defer></script>
-    <script src="./assets/js/dom.js?v=continue-watch-0830a" defer></script>
+    <script src="./assets/js/dom.js?v=subscription-unify-0903a" defer></script>
     <script src="./assets/js/utils.js?v=archive-refresh-0828a" defer></script>
     <script src="./assets/js/workbench-bridge.js?v=archive-refresh-0828a" defer></script>
     <script src="./assets/js/render-meta.js?v=task-03-0821a" defer></script>
@@ -551,9 +528,9 @@
     <script src="./assets/js/radar-sync.js?v=search-query-echo-0902a" defer></script>
     <script src="./assets/js/source-config.js?v=remote-admin-0729a" defer></script>
     <script src="./assets/js/local-collect.js?v=wechat-retire-0823a" defer></script>
-    <script src="./assets/js/online-source-config.js?v=bridge-security-0813a" defer></script>
+    <script src="./assets/js/online-source-config.js?v=subscription-unify-0903a" defer></script>
     <script src="./assets/js/settings-drawer.js?v=task-03-0821a" defer></script>
-    <script src="./assets/js/boot.js?v=search-query-echo-0902a" defer></script>
+    <script src="./assets/js/boot.js?v=subscription-unify-0903a" defer></script>
     <script src="./assets/js/exploration-feed.js?v=explore-feed-0823g" defer></script>
   </body>
 </html>

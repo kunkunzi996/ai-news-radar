@@ -36,52 +36,44 @@ function previewPayload() {
   };
 }
 
-test("线上信源保存和同步遵守版本号与一体化接口契约", async ({ page }) => {
+const starredSource = {
+  id: "online_github_repo_987654321",
+  name: "owner/public-repo",
+  type: "github_release",
+  enabled: true,
+  locator: "owner/public-repo",
+};
+
+test("TEST-044：星标面板仍在且 Apply 后 GitHub 筛选可见仓库", async ({ page }) => {
   const errors = [];
-  const saveAndSyncs = [];
   collectErrors(page, errors);
   await page.route("**/api/online-source-config", async (route) => {
     if (route.request().method() === "GET") {
       await route.fulfill({ status: 200, headers: { ETag: baseConfig.etag }, json: baseConfig });
       return;
     }
-    throw new Error("保存按钮不应再调用旧的单独保存接口");
+    throw new Error("星标同步不应再调用旧的单独保存接口");
   });
-  await page.route("**/api/save-and-sync-online-source-config", async (route) => {
-    saveAndSyncs.push({
-      body: route.request().postDataJSON(),
-      etag: route.request().headers()["if-match"],
-    });
-    await route.fulfill({
-      status: 409,
-      json: { ok: false, error: "online_sources_preflight_failed" },
-    });
+  await page.route("**/api/github-stars/preview", async (route) => {
+    await route.fulfill({ status: 200, json: previewPayload() });
   });
-
-  const configLoaded = page.waitForResponse("**/api/online-source-config");
-  await page.goto("/");
-  await configLoaded;
-  await page.locator("#settingsOpenBtn").click();
-  await page.locator("#onlineSourceSaveBtn").click();
-
-  await expect(page.locator("#onlineSourceStatus")).toContainText("远端线上配置已变化");
-  expect(saveAndSyncs).toEqual([{ body: { version: "1.0", sources: [] }, etag: baseConfig.etag }]);
-  expect(errors.filter((message) => !message.includes("status of 409"))).toEqual([]);
-});
-
-test("线上信源一体化保存无改动时显示无需提交", async ({ page }) => {
-  const errors = [];
-  collectErrors(page, errors);
-  await page.route("**/api/online-source-config", async (route) => {
-    await route.fulfill({ status: 200, headers: { ETag: baseConfig.etag }, json: baseConfig });
-  });
-  await page.route("**/api/save-and-sync-online-source-config", async (route) => {
-    expect(route.request().postDataJSON()).toEqual({ version: "1.0", sources: [] });
-    expect(route.request().headers()["if-match"]).toBe(baseConfig.etag);
+  await page.route("**/api/github-stars/apply", async (route) => {
     await route.fulfill({
       status: 200,
       headers: { ETag: baseConfig.etag },
-      json: { ...baseConfig, outcome: "no_change", config_changed: false, pushed: false },
+      json: {
+        ok: true,
+        outcome: "pushed",
+        config: { version: "1.0", sources: [starredSource] },
+        base_config_digest: baseConfig.base_config_digest,
+        etag: baseConfig.etag,
+        config_changed: true,
+        commit: "star-commit",
+        pushed: true,
+        partial: false,
+        recovery_pending: false,
+        summary: previewPayload().summary,
+      },
     });
   });
 
@@ -89,9 +81,61 @@ test("线上信源一体化保存无改动时显示无需提交", async ({ page 
   await page.goto("/");
   await configLoaded;
   await page.locator("#settingsOpenBtn").click();
-  await page.locator("#onlineSourceSaveBtn").click();
+  await expect(page.locator("#githubStarSyncPanel")).toBeVisible();
+  await expect(page.getByRole("button", { name: "保存并同步" })).toHaveCount(0);
+  await page.locator("#githubStarUsername").fill("example-user");
+  await page.locator("#githubStarPreviewBtn").click();
+  await page.locator("#githubStarConfirm").check();
+  await page.locator("#githubStarApplyBtn").click();
+  await expect(page.locator("#onlineSourceList")).toContainText("owner/public-repo");
+  await page.locator('[data-source-filter="github"]').click();
+  await expect(page.locator("#onlineSourceList")).toContainText("owner/public-repo");
+  expect(errors).toEqual([]);
+});
 
-  await expect(page.locator("#onlineSourceStatus")).toContainText("线上配置没有变化，不需要提交");
+test("TEST-044：星标写入不走旧的单独保存接口", async ({ page }) => {
+  const errors = [];
+  collectErrors(page, errors);
+  await page.route("**/api/online-source-config", async (route) => {
+    if (route.request().method() === "GET") {
+      await route.fulfill({ status: 200, headers: { ETag: baseConfig.etag }, json: baseConfig });
+      return;
+    }
+    throw new Error("星标同步不应再调用旧的单独保存接口");
+  });
+  await page.route("**/api/github-stars/preview", async (route) => {
+    await route.fulfill({ status: 200, json: previewPayload() });
+  });
+  await page.route("**/api/github-stars/apply", async (route) => {
+    await route.fulfill({
+      status: 200,
+      headers: { ETag: baseConfig.etag },
+      json: {
+        ok: true,
+        outcome: "pushed",
+        config: { version: "1.0", sources: [starredSource] },
+        base_config_digest: baseConfig.base_config_digest,
+        etag: baseConfig.etag,
+        config_changed: true,
+        commit: "star-commit",
+        pushed: true,
+        partial: false,
+        recovery_pending: false,
+        summary: previewPayload().summary,
+      },
+    });
+  });
+
+  const configLoaded = page.waitForResponse("**/api/online-source-config");
+  await page.goto("/");
+  await configLoaded;
+  await page.locator("#settingsOpenBtn").click();
+  await page.locator("#githubStarUsername").fill("example-user");
+  await page.locator("#githubStarPreviewBtn").click();
+  await page.locator("#githubStarConfirm").check();
+  await page.locator("#githubStarApplyBtn").click();
+  await expect(page.locator("#githubStarOutcome")).toContainText("已推送");
+  await expect(page.locator("#onlineSourceList")).toContainText("owner/public-repo");
   expect(errors).toEqual([]);
 });
 
