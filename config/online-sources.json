@@ -1,13 +1,13 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-09-04T06:57:19Z",
+  "updated_at": "2026-09-04T08:30:08Z",
   "sources": [
     {
       "id": "online_bilibili_25637408",
       "name": "全嘻嘻",
       "type": "bilibili_dynamic",
-      "enabled": true,
+      "enabled": false,
       "channel": "B站动态",
       "target": "全嘻嘻",
       "locator": "25637408",
