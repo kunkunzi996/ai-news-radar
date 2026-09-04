@@ -1,8 +1,19 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-08-26T01:05:42Z",
+  "updated_at": "2026-09-04T06:57:19Z",
   "sources": [
+    {
+      "id": "online_bilibili_25637408",
+      "name": "全嘻嘻",
+      "type": "bilibili_dynamic",
+      "enabled": true,
+      "channel": "B站动态",
+      "target": "全嘻嘻",
+      "locator": "25637408",
+      "env": "",
+      "notes": "公开 UID"
+    },
     {
       "id": "online_bilibili_28756625",
       "name": "中二的大暄哥",
