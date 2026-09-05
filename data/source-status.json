@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-09-05T04:51:53.306047Z",
+  "generated_at": "2026-09-05T08:54:58.107197Z",
   "sites": [
     {
       "site_id": "github_foundation_sunshine_releases",
       "site_name": "GitHub Foundation Sunshine",
       "ok": true,
-      "item_count": 33,
-      "duration_ms": 14789,
+      "item_count": 47,
+      "duration_ms": 15655,
       "error": null,
       "source_kind": "github_release_subscription",
       "repo": "openai/codex-plugin-cc, 1c7/chinese-independent-developer, obra/superpowers, SeemSeam/claude_codex_bridge, OthmanAdi/planning-with-files, multica-ai/multica, mml-book/mml-book.github.io, LearnPrompt/ai-news-radar, Panniantong/Agent-Reach, DeusData/codebase-memory-mcp, xingkongliang/skills-manager, liliBestCoder/ghost-proxifier, zarazhangrui/youtube-digest, emilkowalski/skills, stablyai/orca, Wechat-ggGitHub/wechat-claude-code, VoltAgent/awesome-design-md, lewislulu/llm-wiki-skill, KKKKhazix/khazix-skills, lewislulu/html-ppt-skill, WenyuChiou/awesome-agentic-ai-zh, BigPizzaV3/CodexPlusPlus, plustar35/echo-reading, JimLiu/baoyu-design, joeseesun/qiaomu-goal-meta-skill, LearnPrompt/partner-skill, oomol-lab/open-connector, LiamGvchi/gc-minimal-zine-poster, oil-oil/vibe-hub-skill, joeseesun/qiaomu-bento-ppt, biuworks/bilibili-digest, godotengine/godot, shadcn-ui/ui, youzan/vant-weapp, D4Vinci/Scrapling, DayuanJiang/next-ai-draw-io",
@@ -15,12 +15,12 @@
           "repo": "openai/codex-plugin-cc",
           "api_url": "https://api.github.com/repos/openai/codex-plugin-cc/releases",
           "ok": true,
-          "item_count": 0,
-          "source_kind": "github_release_subscription",
-          "skip_reason": "no_important_update",
+          "item_count": 1,
+          "source_kind": "release",
+          "skip_reason": "",
           "error_code": "",
-          "duration_ms": 391,
-          "first_collect_backfill": false
+          "duration_ms": 416,
+          "first_collect_backfill": true
         },
         {
           "repo": "1c7/chinese-independent-developer",
@@ -30,19 +30,19 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 604,
-          "first_collect_backfill": false
+          "duration_ms": 606,
+          "first_collect_backfill": true
         },
         {
           "repo": "obra/superpowers",
           "api_url": "https://api.github.com/repos/obra/superpowers/releases",
           "ok": true,
-          "item_count": 3,
+          "item_count": 5,
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 245,
-          "first_collect_backfill": false
+          "duration_ms": 336,
+          "first_collect_backfill": true
         },
         {
           "repo": "SeemSeam/claude_codex_bridge",
@@ -52,7 +52,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 364,
+          "duration_ms": 300,
           "first_collect_backfill": false
         },
         {
@@ -63,7 +63,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 269,
+          "duration_ms": 257,
           "first_collect_backfill": false
         },
         {
@@ -74,8 +74,8 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 327,
-          "first_collect_backfill": false
+          "duration_ms": 953,
+          "first_collect_backfill": true
         },
         {
           "repo": "mml-book/mml-book.github.io",
@@ -85,41 +85,41 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 433,
-          "first_collect_backfill": false
+          "duration_ms": 484,
+          "first_collect_backfill": true
         },
         {
           "repo": "LearnPrompt/ai-news-radar",
           "api_url": "https://api.github.com/repos/LearnPrompt/ai-news-radar/releases",
           "ok": true,
-          "item_count": 4,
+          "item_count": 5,
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 287,
-          "first_collect_backfill": false
+          "duration_ms": 264,
+          "first_collect_backfill": true
         },
         {
           "repo": "Panniantong/Agent-Reach",
           "api_url": "https://api.github.com/repos/Panniantong/Agent-Reach/releases",
           "ok": true,
-          "item_count": 3,
+          "item_count": 5,
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 274,
-          "first_collect_backfill": false
+          "duration_ms": 291,
+          "first_collect_backfill": true
         },
         {
           "repo": "DeusData/codebase-memory-mcp",
           "api_url": "https://api.github.com/repos/DeusData/codebase-memory-mcp/releases",
           "ok": true,
-          "item_count": 1,
+          "item_count": 5,
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 344,
-          "first_collect_backfill": false
+          "duration_ms": 680,
+          "first_collect_backfill": true
         },
         {
           "repo": "xingkongliang/skills-manager",
@@ -129,7 +129,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 341,
+          "duration_ms": 361,
           "first_collect_backfill": false
         },
         {
@@ -140,8 +140,8 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 259,
-          "first_collect_backfill": false
+          "duration_ms": 250,
+          "first_collect_backfill": true
         },
         {
           "repo": "zarazhangrui/youtube-digest",
@@ -151,7 +151,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 219,
+          "duration_ms": 283,
           "first_collect_backfill": false
         },
         {
@@ -162,7 +162,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 420,
+          "duration_ms": 432,
           "first_collect_backfill": true
         },
         {
@@ -173,7 +173,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 339,
+          "duration_ms": 308,
           "first_collect_backfill": false
         },
         {
@@ -184,8 +184,8 @@
           "source_kind": "commit_fallback",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 705,
-          "first_collect_backfill": false
+          "duration_ms": 714,
+          "first_collect_backfill": true
         },
         {
           "repo": "VoltAgent/awesome-design-md",
@@ -195,8 +195,8 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 481,
-          "first_collect_backfill": false
+          "duration_ms": 473,
+          "first_collect_backfill": true
         },
         {
           "repo": "lewislulu/llm-wiki-skill",
@@ -206,8 +206,8 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 416,
-          "first_collect_backfill": false
+          "duration_ms": 442,
+          "first_collect_backfill": true
         },
         {
           "repo": "KKKKhazix/khazix-skills",
@@ -217,8 +217,8 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 417,
-          "first_collect_backfill": false
+          "duration_ms": 459,
+          "first_collect_backfill": true
         },
         {
           "repo": "lewislulu/html-ppt-skill",
@@ -228,8 +228,8 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 440,
-          "first_collect_backfill": false
+          "duration_ms": 369,
+          "first_collect_backfill": true
         },
         {
           "repo": "WenyuChiou/awesome-agentic-ai-zh",
@@ -239,8 +239,8 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 284,
-          "first_collect_backfill": false
+          "duration_ms": 383,
+          "first_collect_backfill": true
         },
         {
           "repo": "BigPizzaV3/CodexPlusPlus",
@@ -250,7 +250,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 1353,
+          "duration_ms": 319,
           "first_collect_backfill": false
         },
         {
@@ -261,8 +261,8 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 497,
-          "first_collect_backfill": false
+          "duration_ms": 489,
+          "first_collect_backfill": true
         },
         {
           "repo": "JimLiu/baoyu-design",
@@ -272,8 +272,8 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 302,
-          "first_collect_backfill": false
+          "duration_ms": 244,
+          "first_collect_backfill": true
         },
         {
           "repo": "joeseesun/qiaomu-goal-meta-skill",
@@ -283,8 +283,8 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 469,
-          "first_collect_backfill": false
+          "duration_ms": 425,
+          "first_collect_backfill": true
         },
         {
           "repo": "LearnPrompt/partner-skill",
@@ -294,8 +294,8 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 282,
-          "first_collect_backfill": false
+          "duration_ms": 251,
+          "first_collect_backfill": true
         },
         {
           "repo": "oomol-lab/open-connector",
@@ -305,7 +305,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 313,
+          "duration_ms": 266,
           "first_collect_backfill": false
         },
         {
@@ -316,8 +316,8 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 239,
-          "first_collect_backfill": false
+          "duration_ms": 319,
+          "first_collect_backfill": true
         },
         {
           "repo": "oil-oil/vibe-hub-skill",
@@ -327,8 +327,8 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 713,
-          "first_collect_backfill": false
+          "duration_ms": 772,
+          "first_collect_backfill": true
         },
         {
           "repo": "joeseesun/qiaomu-bento-ppt",
@@ -338,8 +338,8 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 491,
-          "first_collect_backfill": false
+          "duration_ms": 455,
+          "first_collect_backfill": true
         },
         {
           "repo": "biuworks/bilibili-digest",
@@ -349,7 +349,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 493,
+          "duration_ms": 517,
           "first_collect_backfill": false
         },
         {
@@ -360,7 +360,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 608,
+          "duration_ms": 574,
           "first_collect_backfill": true
         },
         {
@@ -371,19 +371,19 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 283,
+          "duration_ms": 329,
           "first_collect_backfill": true
         },
         {
           "repo": "youzan/vant-weapp",
           "api_url": "https://api.github.com/repos/youzan/vant-weapp/releases",
           "ok": true,
-          "item_count": 0,
-          "source_kind": "github_release_subscription",
-          "skip_reason": "no_important_update",
+          "item_count": 1,
+          "source_kind": "release",
+          "skip_reason": "",
           "error_code": "",
-          "duration_ms": 288,
-          "first_collect_backfill": false
+          "duration_ms": 313,
+          "first_collect_backfill": true
         },
         {
           "repo": "D4Vinci/Scrapling",
@@ -393,45 +393,45 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 244,
+          "duration_ms": 272,
           "first_collect_backfill": false
         },
         {
           "repo": "DayuanJiang/next-ai-draw-io",
           "api_url": "https://api.github.com/repos/DayuanJiang/next-ai-draw-io/releases",
           "ok": true,
-          "item_count": 2,
+          "item_count": 5,
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 334,
-          "first_collect_backfill": false
+          "duration_ms": 1032,
+          "first_collect_backfill": true
         }
       ],
       "max_items": 5,
       "eligible_count": 36,
       "attempted_count": 36,
       "succeeded_count": 36,
-      "expected_skip_count": 19,
+      "expected_skip_count": 17,
       "failed_count": 0,
       "deferred_count": 0,
       "partial": false,
       "budget_ms": 180000,
-      "elapsed_ms": 14789,
+      "elapsed_ms": 15655,
       "overrun_ms": 0,
-      "seen_only": 1,
+      "seen_only": 0,
       "daily_coalesced": 0,
       "window_bypassed": 0,
-      "raw_item_count": 33,
-      "window_item_count": 33,
+      "raw_item_count": 47,
+      "window_item_count": 47,
       "collection_window_hours": 0
     },
     {
       "site_id": "bilibili_dynamic",
       "site_name": "Bilibili Dynamic",
       "ok": true,
-      "item_count": 60,
-      "duration_ms": 14554,
+      "item_count": 50,
+      "duration_ms": 9267,
       "error": null,
       "uid": "28756625,316183842,3546884870244925,385670211,50247550,505301413",
       "uids": [
@@ -448,8 +448,8 @@
       "coverage_note": "tries_cookie_full_dynamic_then_public_opus_fallback",
       "cookie_present": true,
       "fetch_mode": "mixed",
-      "fallback_reason": "28756625:cookie_full_dynamic_failed:ValueError; 385670211:cookie_full_dynamic_failed:ValueError",
-      "partial_failure_count": 0,
+      "fallback_reason": "28756625:cookie_full_dynamic_failed:ValueError",
+      "partial_failure_count": 1,
       "max_items": 10,
       "max_items_per_account": 10,
       "max_pages": 8,
@@ -472,17 +472,17 @@
         {
           "uid": "3546884870244925",
           "source_name": "杰森的效率工坊",
-          "ok": true,
-          "item_count": 10,
-          "fetch_mode": "cookie_full_dynamic"
+          "ok": false,
+          "item_count": 0,
+          "error": "bilibili_dynamic_no_items"
         },
         {
           "uid": "385670211",
           "source_name": "秋芝2046",
           "ok": true,
           "item_count": 10,
-          "fetch_mode": "public_opus_fallback",
-          "fallback_reason": "cookie_full_dynamic_failed:ValueError"
+          "first_collect_backfill": true,
+          "fetch_mode": "cookie_full_dynamic"
         },
         {
           "uid": "50247550",
@@ -501,17 +501,17 @@
       ],
       "budget_ms": 90000,
       "deferred_count": 0,
-      "partial": false,
-      "raw_item_count": 60,
-      "window_item_count": 60,
+      "partial": true,
+      "raw_item_count": 50,
+      "window_item_count": 50,
       "collection_window_hours": 0
     },
     {
       "site_id": "mediacrawler_douyin",
       "site_name": "MediaCrawler Douyin",
       "ok": true,
-      "item_count": 22,
-      "duration_ms": 6,
+      "item_count": 50,
+      "duration_ms": 10,
       "error": null,
       "source_name": "珍妮丁丁说AI, Simon林, Game AI Lab, FredTalk, 匿名用户996, 芙芙家的洗碗君",
       "privacy": "local_jsonl_only_no_cookies",
@@ -526,22 +526,20 @@
           "locator": "https://www.douyin.com/user/MS4wLjABAAAAOzTvIhQXaHWi6jT_P5rG5xEWpWPjufiKQHL4_uaFRZzOMFYOxxQPu3AtUmTd_P09",
           "locator_kind": "homepage_url",
           "jsonl_file_configured": "jsonl",
-          "item_count": 0,
-          "ok": false,
+          "item_count": 10,
+          "ok": true,
           "jsonl_file": "creator_contents_latest.jsonl",
-          "jsonl_file_resolved_from": "jsonl",
-          "error": "mediacrawler_douyin_no_items"
+          "jsonl_file_resolved_from": "jsonl"
         },
         {
           "name": "Simon林",
           "locator": "https://www.douyin.com/user/MS4wLjABAAAACsVvwoWhwaNZkd4kOY7bu6UhcfCiYmd_k_wcUnN9bYo8jOANJ1iyts7MXQB8nsZ0",
           "locator_kind": "homepage_url",
           "jsonl_file_configured": "jsonl",
-          "item_count": 0,
-          "ok": false,
+          "item_count": 9,
+          "ok": true,
           "jsonl_file": "creator_contents_latest.jsonl",
-          "jsonl_file_resolved_from": "jsonl",
-          "error": "mediacrawler_douyin_no_items"
+          "jsonl_file_resolved_from": "jsonl"
         },
         {
           "name": "Game AI Lab",
@@ -558,11 +556,10 @@
           "locator": "https://www.douyin.com/user/MS4wLjABAAAAbsEkiVbKt7yhYoBK8_PkNTQoPAgRiLzOyrBc-sYHSdo",
           "locator_kind": "homepage_url",
           "jsonl_file_configured": "jsonl",
-          "item_count": 0,
-          "ok": false,
+          "item_count": 9,
+          "ok": true,
           "jsonl_file": "creator_contents_latest.jsonl",
-          "jsonl_file_resolved_from": "jsonl",
-          "error": "mediacrawler_douyin_no_items"
+          "jsonl_file_resolved_from": "jsonl"
         },
         {
           "name": "匿名用户996",
@@ -587,33 +584,33 @@
       ],
       "subscription_count": 6,
       "partial": true,
-      "missing_rows": 0,
-      "completed_creator_count": 3,
-      "partial_creator_count": 0,
-      "failed_creator_count": 3,
+      "missing_rows": 4,
+      "completed_creator_count": 1,
+      "partial_creator_count": 4,
+      "failed_creator_count": 1,
       "collection_manifest_available": true,
-      "collection_generated_at": "2026-09-05T00:13:09.1636080Z",
-      "raw_item_count": 22,
-      "window_item_count": 22,
+      "collection_generated_at": "2026-09-05T05:16:08.9338992Z",
+      "raw_item_count": 50,
+      "window_item_count": 50,
       "collection_window_hours": 0
     },
     {
       "site_id": "opmlrss",
       "site_name": "OPML RSS",
-      "ok": false,
-      "partial_failures": 2,
-      "item_count": 0,
-      "duration_ms": 243,
-      "error": "2 feeds failed",
+      "ok": true,
+      "partial_failures": 0,
+      "item_count": 10,
+      "duration_ms": 865,
+      "error": null,
       "feed_count": 2,
       "effective_feed_count": 2,
-      "ok_feed_count": 0,
-      "failed_feed_count": 2,
+      "ok_feed_count": 2,
+      "failed_feed_count": 0,
       "skipped_feed_count": 0,
       "replaced_feed_count": 0,
       "max_items_per_feed": 5,
-      "raw_item_count": 0,
-      "window_item_count": 0,
+      "raw_item_count": 10,
+      "window_item_count": 10,
       "collection_window_hours": 0
     },
     {
@@ -654,29 +651,25 @@
   "time_scope": "all_time",
   "source_scope": "configured_sources",
   "collection_window_hours": 0,
-  "successful_sites": 3,
+  "successful_sites": 4,
   "failed_sites": [
-    "opmlrss",
     "we_mp_rss_jsonl"
   ],
   "zero_item_sites": [],
   "empty_advanced_sources": [],
-  "fetched_raw_items": 115,
-  "raw_items_before_collection_window": 115,
+  "fetched_raw_items": 157,
+  "raw_items_before_collection_window": 157,
   "skipped_collection_window_items": 0,
-  "items_before_topic_filter": 88,
-  "items_in_24h": 88,
+  "items_before_topic_filter": 93,
+  "items_in_24h": 93,
   "rss_opml": {
     "enabled": true,
     "path": "configured",
     "disabled_reason": null,
     "feed_total": 2,
     "effective_feed_total": 2,
-    "ok_feeds": 0,
-    "failed_feeds": [
-      "https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw",
-      "https://www.youtube.com/feeds/videos.xml?channel_id=UC26hLZoe-haxcuLYxzWAiNg"
-    ],
+    "ok_feeds": 2,
+    "failed_feeds": [],
     "zero_item_feeds": [],
     "skipped_feeds": [],
     "replaced_feeds": [],
@@ -687,16 +680,16 @@
         "feed_title": "小岛大浪吹-非正经政经频道",
         "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw",
         "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw",
-        "ok": false,
-        "item_count": 0,
-        "duration_ms": 88,
-        "error": "404 Client Error: Not Found for url: https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw",
+        "ok": true,
+        "item_count": 5,
+        "duration_ms": 459,
+        "error": null,
         "skipped": false,
         "skip_reason": null,
         "replaced": false,
         "bridge_type": null,
         "max_items": 5,
-        "first_collect_backfill": false
+        "first_collect_backfill": true
       },
       {
         "site_id": "opmlrss:24775d9794",
@@ -704,16 +697,16 @@
         "feed_title": "脑总MrBrain",
         "feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC26hLZoe-haxcuLYxzWAiNg",
         "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC26hLZoe-haxcuLYxzWAiNg",
-        "ok": false,
-        "item_count": 0,
-        "duration_ms": 155,
-        "error": "404 Client Error: Not Found for url: https://www.youtube.com/feeds/videos.xml?channel_id=UC26hLZoe-haxcuLYxzWAiNg",
+        "ok": true,
+        "item_count": 5,
+        "duration_ms": 406,
+        "error": null,
         "skipped": false,
         "skip_reason": null,
         "replaced": false,
         "bridge_type": null,
         "max_items": 5,
-        "first_collect_backfill": false
+        "first_collect_backfill": true
       }
     ]
   },
@@ -746,7 +739,7 @@
   "mediacrawler_douyin": {
     "enabled": true,
     "ok": true,
-    "item_count": 22,
+    "item_count": 50,
     "source_kind": "mediacrawler_douyin",
     "privacy": "local_jsonl_only_no_cookies",
     "coverage_note": "reads_mediacrawler_douyin_creator_jsonl",
@@ -760,22 +753,20 @@
         "locator": "https://www.douyin.com/user/MS4wLjABAAAAOzTvIhQXaHWi6jT_P5rG5xEWpWPjufiKQHL4_uaFRZzOMFYOxxQPu3AtUmTd_P09",
         "locator_kind": "homepage_url",
         "jsonl_file_configured": "jsonl",
-        "item_count": 0,
-        "ok": false,
+        "item_count": 10,
+        "ok": true,
         "jsonl_file": "creator_contents_latest.jsonl",
-        "jsonl_file_resolved_from": "jsonl",
-        "error": "mediacrawler_douyin_no_items"
+        "jsonl_file_resolved_from": "jsonl"
       },
       {
         "name": "Simon林",
         "locator": "https://www.douyin.com/user/MS4wLjABAAAACsVvwoWhwaNZkd4kOY7bu6UhcfCiYmd_k_wcUnN9bYo8jOANJ1iyts7MXQB8nsZ0",
         "locator_kind": "homepage_url",
         "jsonl_file_configured": "jsonl",
-        "item_count": 0,
-        "ok": false,
+        "item_count": 9,
+        "ok": true,
         "jsonl_file": "creator_contents_latest.jsonl",
-        "jsonl_file_resolved_from": "jsonl",
-        "error": "mediacrawler_douyin_no_items"
+        "jsonl_file_resolved_from": "jsonl"
       },
       {
         "name": "Game AI Lab",
@@ -792,11 +783,10 @@
         "locator": "https://www.douyin.com/user/MS4wLjABAAAAbsEkiVbKt7yhYoBK8_PkNTQoPAgRiLzOyrBc-sYHSdo",
         "locator_kind": "homepage_url",
         "jsonl_file_configured": "jsonl",
-        "item_count": 0,
-        "ok": false,
+        "item_count": 9,
+        "ok": true,
         "jsonl_file": "creator_contents_latest.jsonl",
-        "jsonl_file_resolved_from": "jsonl",
-        "error": "mediacrawler_douyin_no_items"
+        "jsonl_file_resolved_from": "jsonl"
       },
       {
         "name": "匿名用户996",
@@ -821,14 +811,14 @@
     ],
     "subscription_count": 6,
     "error": null,
-    "duration_ms": 6,
+    "duration_ms": 10,
     "collection_manifest_available": true,
     "partial": true,
-    "missing_rows": 0,
-    "completed_creator_count": 3,
-    "partial_creator_count": 0,
-    "failed_creator_count": 3,
-    "collection_generated_at": "2026-09-05T00:13:09.1636080Z"
+    "missing_rows": 4,
+    "completed_creator_count": 1,
+    "partial_creator_count": 4,
+    "failed_creator_count": 1,
+    "collection_generated_at": "2026-09-05T05:16:08.9338992Z"
   },
   "mediacrawler_xhs": {
     "enabled": false,
@@ -874,8 +864,8 @@
     "candidate_item_ids": [],
     "candidate_counts": {},
     "approval_digest": "",
-    "archive_sha256_before": "1fcae18105ec0c2cf527ee6539e7360c47e6854decd934d5013d3f03eb88d186",
-    "purge_state_sha256": "017e80ece6f30101fae678a93d210e662252c1de650cecafbb4334c3282f2cce",
+    "archive_sha256_before": "27c44ae8bf38a1b2a4993b456b4ce9fc3ed7c9ed33791dc2feb1c126c8e8c4f2",
+    "purge_state_sha256": "97ed0a81c04f4905b6d0bf3701ea0885125efb03a171cf129d2875ecd6f5054e",
     "workflow_run_id": "",
     "workflow_run_attempt": "",
     "workflow_head_sha": "",
