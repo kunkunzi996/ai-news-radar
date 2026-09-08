@@ -84,6 +84,14 @@ job 上限 15 分钟。见 `docs/bugs/BUG-03-GitHub采集卡满15分钟整轮停
 4. 改 `assets/js/**` 必须 bump `index.html` 的 `?v=`。
 5. 新建 `.ps1` 用 UTF-8 带 BOM；新建 `.cmd`/`.bat` 用 CRLF，含中文时用 GBK，且必须用 cmd.exe 验收。
 
+### 抖音空号与 B 站动态空的禁区
+
+列表空不等于号没了。见 `master` `a49ac49`。
+
+1. 单个号 `listed=0` / `douyin_risk_control` 时，不要当成号消失或整轮失败。发布前把上一轮好行补回；空号只允许隔 3 秒再试一次。
+2. 不要为补一条连续重跑 `DouyinCollectAndPush`，不要拆 Argus，不要加账号池，除非用户另开一轮。
+3. B 站 cookie 动态和公开 opus 都空时，走空间投稿 `/x/space/wbi/arc/search`，`fetch_mode=space_video_fallback`。不要把动态空当成账号失败。
+
 ### 采集窗挪位的禁区
 
 专用 Chrome 挪到屏幕外是尽力而为。见 PR #46。

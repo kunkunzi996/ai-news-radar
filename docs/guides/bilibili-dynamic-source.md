@@ -5,12 +5,13 @@ Scope: AI News Radar 中 `bilibili_dynamic` 信源的抓取、cookie 登录态�
 
 ## 一句话结论
 
-当前实现是“双通道”：
+当前实现是“三通道”：
 
-1. 没有 cookie 时，走 B站公开 opus 动态接口，只能拿到较浅的一批动态，发布时间不够可靠。
-2. 有 cookie 时，优先走登录态完整动态接口，通过 WBI 签名和 `offset` 翻页，可以拿到更完整、更早的账号动态。
+1. 有 cookie 时，优先走登录态完整动态接口，通过 WBI 签名和 `offset` 翻页，可以拿到更完整、更早的账号动态。
+2. 没有 cookie，或登录态失败时，走 B站公开 opus 动态接口，只能拿到较浅的一批动态，发布时间不够可靠。
+3. 公开 opus 也失败或 0 条时，再走空间投稿列表 `/x/space/wbi/arc/search`（`fetch_mode=space_video_fallback`）。动态墙空不等于没投稿。
 
-如果登录态接口失败，程序不会直接整次失败，而是回退到公开接口，并在 `data/source-status.json` 里写清楚 `fetch_mode` 和 `fallback_reason`。
+如果登录态接口失败，程序不会直接整次失败，而是按上面顺序回退，并在 `data/source-status.json` 里写清楚 `fetch_mode` 和 `fallback_reason`。
 
 ## 当前默认抓取对象
 
@@ -34,10 +35,11 @@ BILIBILI_DYNAMIC_SOURCE_NAMES=Koji杨远骋at十字路口,技术爬爬虾
 
 | 文件 | 作用 |
 | --- | --- |
-| `scripts/update_news.py` | B站抓取主实现，包括 cookie 解析、WBI 签名、公开接口、登录态接口、翻页、数据映射、状态输出 |
+| `scripts/radar/fetchers/bilibili.py` | B站抓取主实现，包括 cookie 解析、WBI 签名、公开 opus、登录态动态、空间投稿备用、翻页、数据映射、状态输出 |
+| `scripts/update_news.py` | 采集主管线，调用上面的 fetcher |
 | `.github/workflows/update-news.yml` | GitHub Actions 定时跑数时注入 B站环境变量和 `BILIBILI_COOKIE` Secret |
 | `README.md` | 面向使用者的简短配置说明 |
-| `tests/test_private_bridge_sources.py` | B站相关单元测试，包括 cookie 格式、WBI 签名、完整动态解析、翻页 |
+| `tests/test_private_bridge_sources.py` | B站相关单元测试，包括 cookie 格式、WBI 签名、完整动态解析、翻页、投稿备用 |
 | `data/source-status.json` | 每次运行后的信源状态，能看 B站是否成功、用了哪种模式、抓到几条 |
 | `bilibili-account-preview.html` | 当前本地调试用的账号预览页，不属于主抓取链路的核心代码 |
 
@@ -191,7 +193,10 @@ buvid4
   |                    成功则该账号 fetch_mode=cookie_full_dynamic
   |
   +-- 无 cookie 或某个账号登录态失败 --> 对该账号调公开 opus 接口
-                                      成功则 fetch_mode=public_opus 或 public_opus_fallback
+  |                                    成功则 fetch_mode=public_opus 或 public_opus_fallback
+  |
+  +-- 公开 opus 也失败或 0 条 --> 对该账号调空间投稿列表
+                                  成功则 fetch_mode=space_video_fallback
   |
   v
 转成 RawItem
@@ -433,6 +438,7 @@ meta.timestamp_source=bilibili_pub_ts / fetch_time / first_seen_at
 cookie_full_dynamic    有 cookie，完整动态接口成功
 public_opus            没有 cookie，公开接口成功
 public_opus_fallback   有 cookie，但登录态接口失败，回退公开接口成功
+space_video_fallback   动态接口都空或失败，回退空间投稿列表成功
 mixed                  多账号模式下，不同账号用了不同 fetch_mode
 ```
 
@@ -639,6 +645,10 @@ Test-Path 'C:\Users\Administrator\Pictures\cookies.txt'
 
 继续看 `fallback_reason`。
 
+### `fetch_mode=space_video_fallback`
+
+说明动态墙（登录态或公开 opus）没拿到条目，改走空间投稿列表成功。这不是账号失败。生产里「杰森的效率工坊」在 2026-09-08 用过这条备用。继续看 `fallback_reason`（常见 `public_opus_failed:ValueError`）。
+
 常见原因：
 
 - cookie 过期。
@@ -709,7 +719,7 @@ cookie 等同于账号登录凭证，要按密码处理。
 1. B站 Web API 不是稳定公开协议，接口路径、参数、WBI 签名规则都可能变化。
 2. cookie 会过期，过期后需要重新从浏览器导出。
 3. 请求太频繁可能触发风控，所以翻页和定时频率要保守。
-4. 公开 opus 接口不提供可靠发布时间，只适合作为兜底。
+4. 公开 opus 接口不提供可靠发布时间，只适合作为动态兜底；opus 空了还要再试空间投稿，不要当成号没了。
 5. 当前 B站账号预览页还是本地调试产物，尚未整理成正式产品页。
 6. GitHub Actions 上的真实效果取决于 Secret 是否配置正确，以及云端 IP 是否被 B站风控。
 

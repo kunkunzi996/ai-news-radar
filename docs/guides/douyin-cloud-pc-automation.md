@@ -189,10 +189,11 @@ C:\AI-news-reader\MediaCrawler-local-test\venv\Scripts\python.exe `
 | source-status 里 `mediacrawler_douyin_jsonl_not_found` | 桥接仓库没有 JSONL 或 Actions 未配置 bridge 变量；查 NUC 计划任务 `DouyinCollectAndPush` 是否正常跑 |
 | 看板更新时间是新的，抖音内容停在几天前 | 快照在刷新，抖音 JSONL 没在更新。看 `mediacrawler_douyin.collection_generated_at` 和 NUC `C:\AI-news-reader\douyin-collect-status.json` 的 `state`，不要看计划任务 `LastTaskResult=0`（外层 `conhost` 不透传失败） |
 | 日志出现 `browser_window_mode_skipped` | 1024×768 / 远程桌面常无法把窗口精确挪到屏幕外。PR #46 后这只记日志，采集继续；若又变成整轮 `failed`，先核对是不是把精确像素失败重新当致命错误了 |
-| 采集到 0 条 / MediaCrawler 报登录失效 | 抖音 session 过期，在 NUC 用可见 `--browser-only` 入口重新扫码，不要为补一条视频连续重跑采集 |
+| 采集到 0 条 / MediaCrawler 报登录失效 | 先分清是整轮登录失效，还是单个号 `listed=0` + `douyin_risk_control`。后者号往往还在：发布前会补上一轮好行，空号只隔 3 秒再试一次。确认 session 过期后，才在 NUC 用可见 `--browser-only` 重新扫码。不要为补一条视频连续重跑采集 |
 | 桥接仓库 push 失败 | 采集机 git 凭证过期，Git Credential Manager 重新登录一次 |
 | 新增/删除抖音博主 | 本地控制台线上信源面板改 → 同步到线上；NUC 下次运行自动 `git pull` 拿到新列表 |
 | 采集频繁被风控 | 降低计划任务频率、调小 `-MaxNotes`；不要在多平台同时高频采集；单个号 `douyin_risk_control` 时等下一班，不要连跑 |
+| 某个号本轮 0 行但主页还在 | 看回执 `keep_last_restored` 和是否出现 3 秒重试。2026-09-08 验收轮 `keep_last_restored=0`，因为当轮没有 0 行号；这条路径还没有真风控现场 |
 
 ## 安全边界
 

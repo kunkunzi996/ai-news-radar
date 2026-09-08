@@ -2,6 +2,14 @@
 
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，完整状态在 `PROJECT_STATE.md`。
 
+## B站投稿备用与抖音风控留旧行（2026-09-08，已验收）
+
+- 列表空不等于号没了。抖音 `listed=0` + `douyin_risk_control` 时留上一轮好行，空号只隔 3 秒再试一次；不要连跑 `DouyinCollectAndPush`，不要拆 Argus。
+- B站 cookie 动态和公开 opus 都空时走空间投稿，`fetch_mode=space_video_fallback`。杰森已在生产用这条备用。
+- `master` `a49ac49`。NUC 生产仓已快进。本仓无活跃四文件。
+- 留旧行和空号重试还没有真风控现场：下次某个号 `listed=0` 时看 `keep_last_restored` 和是否隔 3 秒重试。
+- 工作台胶囊 `3/4 · 部分 1` 且探出「采集正常」= 抖音少采详情，不是通道失败。
+
 ## 抖音采集窗挪不到屏幕外不再整轮作废（2026-09-02，已部署）
 
 - 看板「更新时间」新，只说明快照在刷新，不说明抖音 JSONL 在更新。对 `collection_generated_at` 和 NUC `C:\AI-news-reader\douyin-collect-status.json` 的 `state`。
@@ -143,9 +151,10 @@
 
 ## 下一轮入口
 
-1. 整理/微信下线/对外身份已合 `master`。进行中的功能窗口：`探索信号`、`雷达列表停留位置`。整理 worktree 可拆。
+1. 当前无活跃四文件，无进行中功能窗口。新需求另开一轮。
 2. 网站若再停更：先看 `data/source-status.json` 的 `generated_at`；抖音单独停更时再看 `mediacrawler_douyin.collection_generated_at` 和 NUC `douyin-collect-status.json`，不要只看看板更新时间或计划任务 `LastTaskResult`。再 `gh run list` 看 Update AI News Snapshot。
-3. NUC SSH 连不上时，先核对当前 IP / WiFi，不要沿用旧 HostName。
-4. 改采集会话重试或源预算前，读 `CLAUDE.md`「GitHub Actions 采集超时的禁区」。
-5. 改历史清理逻辑前，读 `CLAUDE.md`「清理历史条目的禁区」。改线上同步前，恢复工作区只用 `git restore`。
-6. 本仓库禁止随手 `git gc --prune=now`。`stash list` 为空时先查 `refs/stash` 本体。
+3. 下次抖音某个号 `listed=0`：核对 `keep_last_restored` 和 3 秒重试，不要连跑补采。
+4. NUC SSH 连不上时，先核对当前 IP / WiFi，不要沿用旧 HostName。
+5. 改采集会话重试或源预算前，读 `CLAUDE.md`「GitHub Actions 采集超时的禁区」。改抖音空号/B站备用前，读「抖音空号与 B 站动态空的禁区」。
+6. 改历史清理逻辑前，读 `CLAUDE.md`「清理历史条目的禁区」。改线上同步前，恢复工作区只用 `git restore`。
+7. 本仓库禁止随手 `git gc --prune=now`。`stash list` 为空时先查 `refs/stash` 本体。

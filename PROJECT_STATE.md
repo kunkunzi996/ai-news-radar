@@ -1,5 +1,15 @@
 # PROJECT_STATE
 
+## B站投稿备用与抖音风控留旧行（2026-09-08，已部署并验收）
+
+- **现象**：工作台原生列表 12:12 胶囊 `1/4 正常 · 部分 2 · 失败 1`。抖音「芙芙家的洗碗君」、B站「杰森的效率工坊」显示「没采到内容」；油管「小岛大浪吹」失败。本轮不修油管。
+- **根因**：芙芙家主页仍在，当轮 `listed_count=0` + `douyin_risk_control`，空列表被当成号没了。杰森有投稿，cookie 完整动态和公开 opus 都空，`bilibili_dynamic_no_items`。
+- **修法**：抖音空号隔 3 秒再试一次；桥接发布前把上一轮好行补回（只补本轮 0 行且报风控的号）。B站 opus 失败后走空间投稿 `/x/space/wbi/arc/search`，`fetch_mode=space_video_fallback`。不拆 Argus，不加账号池。
+- **Git**：`master` `a49ac49`。NUC `C:\AI-news-reader\ai-news-radar-run` 已 `git pull --ff-only`。计划任务 `DouyinCollectAndPush`。
+- **验收**：定向测试 107 绿。全量 `pytest -q` 733 passed / 4 failed（3 条本机 `Get-FileHash` 环境问题，1 条公开博客配置 vs 测试，均非本 diff）。生产抖音一轮 `failed_creator_count=0`，芙芙家 listed 10 / written 9；`keep_last_restored=0`（当轮没有 0 行号，留旧行和重试路径未现场证明）。公开快照杰森 `ok=true`、`fetch_mode=space_video_fallback`。用户 2026-09-08 确认本轮通过。17:02 胶囊 `3/4 正常 · 部分 1` 且说明「采集正常」是抖音少采详情，不是通道失败。
+- **当前无活跃 SPEC/PLAN/TASK/TEST**。轻量热修，无四文件。
+- **未做**：油管；账号池；Argus；留旧行/空号重试的真风控现场。不要为补一条连跑采集。
+
 ## 抖音采集窗挪不到屏幕外不再整轮作废（2026-09-02，已部署）
 
 - **现象**：公网看板更新时间仍在刷新，抖音内容停在 8 月 29 日。计划任务 `DouyinCollectAndPush` 每天 08:10 / 13:10 / 20:10 都在跑，`LastTaskResult=0`，回执却是 `state=failed`。

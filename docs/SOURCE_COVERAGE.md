@@ -208,7 +208,10 @@ baseline, then let the aggregator layer add breadth.
   still does not read Chrome profiles, cookies, or login-state files. Dated
   `creator_contents_*.jsonl` outputs are resolved to the newest sibling file, so
   a config that points to an older dated output can keep working after a fresh
-  MediaCrawler export. This keeps Douyin login state and crawler output outside
+  MediaCrawler export. If a creator returns `listed=0` with `douyin_risk_control`,
+  the collector retries that id once after 3 seconds and, on publish, restores
+  that creator's previous good JSONL rows; an empty list is not treated as the
+  account disappearing. This keeps Douyin login state and crawler output outside
   the public repo while letting selected creator works enter the same self-media
   lane as Bilibili dynamic and TikHub creator/search signals.
 - **MediaCrawler Xiaohongshu creator JSONL**: supported as a local private bridge

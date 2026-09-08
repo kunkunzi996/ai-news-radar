@@ -472,8 +472,7 @@ gh workflow run update-news.yml --ref master -f force_tikhub=true
 和分享数。榜单分数由 85% 互动热度和 15% 的 24 小时新鲜度加分组成；因此
 真正的周内爆款优先，但刚开始起量的新内容仍有机会进入 Top 3。
 
-B站动态源默认追踪 `Koji杨远骋at十字路口` 和 `技术爬爬虾` 两个账号，并使用
-公开 opus 接口。可以用 `BILIBILI_DYNAMIC_UIDS` 和
+B站动态源默认追踪 `Koji杨远骋at十字路口` 和 `技术爬爬虾` 两个账号。有 cookie 时优先走登录态完整动态；失败则公开 opus；opus 也空时再走空间投稿列表（`fetch_mode=space_video_fallback`）。可以用 `BILIBILI_DYNAMIC_UIDS` 和
 `BILIBILI_DYNAMIC_SOURCE_NAMES` 覆盖账号列表；旧的 `BILIBILI_DYNAMIC_UID` /
 `BILIBILI_DYNAMIC_SOURCE_NAME` 仍可用于单账号兼容。需要验证登录态完整动态时，
 可以只在本地或 GitHub Secrets 里提供 cookie，不要提交到仓库。`BILIBILI_COOKIE`
@@ -490,7 +489,7 @@ $env:BILIBILI_COOKIE_FILE='C:\path\to\cookies.txt'
 
 成功走登录态时，`data/source-status.json` 中 `bilibili_dynamic.fetch_mode` 会是
 `cookie_full_dynamic`；多账号混合结果会在 `bilibili_dynamic.accounts` 里逐个记录。
-如果某个账号的 cookie 完整动态失败，会单账号回退到 `public_opus_fallback`。
+如果某个账号的 cookie 完整动态失败，会单账号回退到 `public_opus_fallback`；opus 也失败再回退到 `space_video_fallback`。
 本地控制台的 B站维护卡片支持小号专用流程：点“打开B站小号登录”会启动
 `local-secrets/bilibili-profile` 这个独立 Chrome/Edge profile，不会复用你的日常
 浏览器主号。登录小号后点“同步cookie”，本地服务会通过本机 CDP 读取这个专用
