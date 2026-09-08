@@ -84,6 +84,14 @@ job 上限 15 分钟。见 `docs/bugs/BUG-03-GitHub采集卡满15分钟整轮停
 4. 改 `assets/js/**` 必须 bump `index.html` 的 `?v=`。
 5. 新建 `.ps1` 用 UTF-8 带 BOM；新建 `.cmd`/`.bat` 用 CRLF，含中文时用 GBK，且必须用 cmd.exe 验收。
 
+### 油管 RSS 抽风的禁区
+
+官方 `youtube.com/feeds/videos.xml?channel_id=` 会集体间歇 404/500，不是频道被掐。
+
+1. 404/429/5xx 只允许隔 2 秒再试，总共 3 次；不要连跑整轮快照。
+2. 仍失败时，沿用归档里该频道上一轮油管条目，`fetch_mode=keep_last_rss`，不要把成员标成没采到。
+3. 不要先换成公共 RSSHub / Piped / OpenRSS。连续 1～2 天还不恢复再另开一轮谈备用。
+
 ### 抖音空号与 B 站动态空的禁区
 
 列表空不等于号没了。见 `master` `a49ac49`。

@@ -54,6 +54,7 @@ from scripts.radar.common import (
     normalize_url,
     parse_date_any,
     parse_feed_entries_via_xml,
+    parse_iso,
 )
 from scripts.radar.github_importance import score_github_commit, score_github_release
 
@@ -66,6 +67,9 @@ except ModuleNotFoundError:
 
 GITHUB_RESPONSE_MAX_BYTES = 4 * 1024 * 1024
 GITHUB_READ_TIMEOUT_SECONDS = 10.0
+YOUTUBE_RSS_RETRY_ATTEMPTS = 3
+YOUTUBE_RSS_RETRY_SLEEP_SECONDS = 2.0
+YOUTUBE_RSS_TRANSIENT_STATUS = frozenset({404, 429, 500, 502, 503})
 
 
 def _github_deadline_timeout(deadline: float | None) -> float:
@@ -1216,11 +1220,108 @@ def parse_jike_public_items(
     return out
 
 
+def is_youtube_channel_rss_url(url: str) -> bool:
+    raw = str(url or "").strip().lower()
+    if "youtube.com/feeds/videos.xml" not in raw:
+        return False
+    host = urlparse(raw).netloc.split(":")[0]
+    return host == "youtube.com" or host.endswith(".youtube.com")
+
+
+def youtube_rss_transient_status(status_code: int | None) -> bool:
+    return int(status_code or 0) in YOUTUBE_RSS_TRANSIENT_STATUS
+
+
+def youtube_rss_transient_error(exc: BaseException) -> bool:
+    response = getattr(exc, "response", None)
+    return youtube_rss_transient_status(getattr(response, "status_code", None))
+
+
+def keep_last_youtube_items(
+    archive: dict[str, dict[str, Any]] | None,
+    *,
+    source_name: str,
+    feed_url: str,
+    limit: int,
+) -> list[RawItem]:
+    if not archive or limit <= 0:
+        return []
+    wanted = str(source_name or "").strip()
+    rows: list[RawItem] = []
+    for record in archive.values():
+        if not isinstance(record, dict):
+            continue
+        if str(record.get("site_id") or "") != "opmlrss":
+            continue
+        if str(record.get("source") or "").strip() != wanted:
+            continue
+        url = str(record.get("url") or "").strip()
+        title = str(record.get("title") or "").strip()
+        lowered = url.lower()
+        if not title or not url:
+            continue
+        if "youtube.com/" not in lowered and "youtu.be/" not in lowered:
+            continue
+        rows.append(
+            RawItem(
+                site_id="opmlrss",
+                site_name="OPML RSS",
+                source=wanted,
+                title=title,
+                url=url,
+                published_at=parse_iso(str(record.get("published_at") or "") or None),
+                meta={"feed_url": feed_url, "keep_last": True},
+            )
+        )
+    rows.sort(key=lambda item: item.published_at or datetime.min.replace(tzinfo=UTC), reverse=True)
+    return rows[:limit]
+
+
+def fetch_feed_response(
+    feed_url: str,
+    *,
+    youtube: bool,
+    sleeper: Any,
+    attempts: int,
+    sleep_seconds: float,
+) -> Any:
+    last_error: BaseException | None = None
+    tries = max(1, attempts if youtube else 1)
+    wait = sleeper if sleeper is not None else time.sleep
+    for attempt in range(tries):
+        try:
+            resp = requests.get(
+                feed_url,
+                timeout=12,
+                headers={
+                    "User-Agent": BROWSER_UA,
+                    "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
+                },
+            )
+            status_code = getattr(resp, "status_code", 200)
+            if youtube and youtube_rss_transient_status(status_code) and attempt < tries - 1:
+                wait(sleep_seconds)
+                continue
+            resp.raise_for_status()
+            return resp
+        except Exception as exc:
+            last_error = exc
+            if youtube and youtube_rss_transient_error(exc) and attempt < tries - 1:
+                wait(sleep_seconds)
+                continue
+            raise
+    if last_error is not None:
+        raise last_error
+    raise RuntimeError("youtube_rss_retry_exhausted")
+
+
 def fetch_opml_rss(
     now: datetime,
     opml_path: Path,
     max_feeds: int = 0,
     existing_source_keys: frozenset[tuple[str, str]] | set[tuple[str, str]] | None = None,
+    archive: dict[str, dict[str, Any]] | None = None,
+    sleeper: Any | None = None,
 ) -> tuple[list[RawItem], dict[str, Any], list[dict[str, Any]]]:
     feeds = parse_opml_subscriptions(opml_path)
     if max_feeds > 0:
@@ -1277,16 +1378,17 @@ def fetch_opml_rss(
         error = None
         local_items: list[RawItem] = []
 
+        youtube_feed = is_youtube_channel_rss_url(feed_url) or is_youtube_channel_rss_url(original_feed_url)
+        keep_last_restored = 0
+        fetch_mode = "live_rss"
         try:
-            resp = requests.get(
+            resp = fetch_feed_response(
                 feed_url,
-                timeout=12,
-                headers={
-                    "User-Agent": BROWSER_UA,
-                    "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
-                },
+                youtube=youtube_feed,
+                sleeper=sleeper,
+                attempts=YOUTUBE_RSS_RETRY_ATTEMPTS,
+                sleep_seconds=YOUTUBE_RSS_RETRY_SLEEP_SECONDS,
             )
-            resp.raise_for_status()
 
             bridge_type = str(feed.get("bridge_type") or "")
             if bridge_type == "telegram":
@@ -1361,6 +1463,18 @@ def fetch_opml_rss(
         except Exception as exc:
             error = str(exc)
 
+        if error and youtube_feed and not local_items:
+            restored = keep_last_youtube_items(
+                archive,
+                source_name=feed_title,
+                feed_url=original_feed_url,
+                limit=OPML_RSS_DEFAULT_MAX_ITEMS_PER_FEED,
+            )
+            if restored:
+                local_items = restored
+                keep_last_restored = len(restored)
+                fetch_mode = "keep_last_rss"
+
         first_collect_backfill = False
         if local_items:
             local_items.sort(key=lambda item: item.published_at or datetime.min.replace(tzinfo=UTC), reverse=True)
@@ -1388,16 +1502,19 @@ def fetch_opml_rss(
             "feed_title": feed_title,
             "feed_url": original_feed_url,
             "effective_feed_url": feed_url,
-            "ok": error is None,
+            "ok": error is None or keep_last_restored > 0,
             "item_count": len(local_items),
             "duration_ms": duration_ms,
-            "error": error,
+            "error": None if keep_last_restored else error,
             "skipped": False,
             "skip_reason": None,
             "replaced": bool(original_feed_url != feed_url),
             "bridge_type": feed.get("bridge_type"),
             "max_items": OPML_RSS_DEFAULT_MAX_ITEMS_PER_FEED,
             "first_collect_backfill": first_collect_backfill,
+            "fetch_mode": fetch_mode if youtube_feed or keep_last_restored else None,
+            "keep_last_restored": keep_last_restored,
+            "fallback_reason": error if keep_last_restored else None,
         }
         return local_items, status
 
@@ -1432,6 +1549,7 @@ def fetch_opml_rss(
         "skipped_feed_count": skipped_feeds,
         "replaced_feed_count": replaced_feeds,
         "max_items_per_feed": OPML_RSS_DEFAULT_MAX_ITEMS_PER_FEED,
+        "keep_last_restored": sum(int(status.get("keep_last_restored") or 0) for status in feed_statuses),
     }
     return out, summary_status, feed_statuses
 

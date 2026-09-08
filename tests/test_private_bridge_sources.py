@@ -142,6 +142,203 @@ class PrivateBridgeSourceTests(unittest.TestCase):
         self.assertEqual(len(new_items), 8)
         self.assertTrue(new_statuses[0]["first_collect_backfill"])
 
+    def test_youtube_rss_retries_transient_404_then_succeeds(self):
+        class FakeResp:
+            def __init__(self, status_code: int, content: bytes = b""):
+                self.status_code = status_code
+                self.content = content
+                self.text = content.decode("utf-8")
+
+            def raise_for_status(self) -> None:
+                if self.status_code >= 400:
+                    error = requests.HTTPError(f"{self.status_code} Client Error")
+                    error.response = self
+                    raise error
+
+        now = datetime(2026, 9, 8, tzinfo=timezone.utc)
+        rss = """<rss><channel><title>小岛大浪吹-非正经政经频道</title>
+            <item><title>新一期</title><link>https://www.youtube.com/watch?v=live1</link>
+            <pubDate>Mon, 08 Sep 2026 00:00:00 GMT</pubDate></item></channel></rss>"""
+        calls = {"n": 0}
+        sleeps: list[float] = []
+
+        def fake_get(url, timeout=None, headers=None):
+            calls["n"] += 1
+            if calls["n"] < 3:
+                return FakeResp(404)
+            return FakeResp(200, rss.encode("utf-8"))
+
+        with tempfile.TemporaryDirectory() as tmp:
+            opml = Path(tmp) / "follow.opml"
+            opml.write_text(
+                """<?xml version="1.0" encoding="UTF-8"?>
+                <opml version="1.0"><body>
+                  <outline text="小岛大浪吹-非正经政经频道" title="小岛大浪吹-非正经政经频道" type="rss"
+                    xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw" />
+                </body></opml>
+                """,
+                encoding="utf-8",
+            )
+            with patch("scripts.radar.fetchers.subscriptions.requests.get", side_effect=fake_get):
+                items, summary, feed_statuses = fetch_opml_rss(
+                    now,
+                    opml,
+                    sleeper=sleeps.append,
+                )
+
+        self.assertEqual(calls["n"], 3)
+        self.assertEqual(sleeps, [2.0, 2.0])
+        self.assertEqual([item.title for item in items], ["新一期"])
+        self.assertTrue(summary["ok"])
+        self.assertEqual(feed_statuses[0]["ok"], True)
+        self.assertEqual(feed_statuses[0]["fetch_mode"], "live_rss")
+        self.assertEqual(feed_statuses[0]["keep_last_restored"], 0)
+        self.assertIsNone(feed_statuses[0]["error"])
+
+    def test_youtube_rss_keep_last_after_persistent_404(self):
+        class FakeResp:
+            def __init__(self, status_code: int):
+                self.status_code = status_code
+                self.content = b""
+                self.text = ""
+
+            def raise_for_status(self) -> None:
+                error = requests.HTTPError(f"{self.status_code} Client Error")
+                error.response = self
+                raise error
+
+        now = datetime(2026, 9, 8, tzinfo=timezone.utc)
+        archive = {
+            "old": {
+                "id": "old",
+                "site_id": "opmlrss",
+                "source": "小岛大浪吹-非正经政经频道",
+                "title": "上一轮还在的视频",
+                "url": "https://www.youtube.com/watch?v=keep1",
+                "published_at": "2026-09-07T01:00:00Z",
+            },
+            "blog": {
+                "id": "blog",
+                "site_id": "opmlrss",
+                "source": "小岛大浪吹-非正经政经频道",
+                "title": "不该留下的博客",
+                "url": "https://example.com/not-youtube",
+                "published_at": "2026-09-07T02:00:00Z",
+            },
+        }
+        calls = {"n": 0}
+
+        def fake_get(url, timeout=None, headers=None):
+            calls["n"] += 1
+            return FakeResp(404)
+
+        with tempfile.TemporaryDirectory() as tmp:
+            opml = Path(tmp) / "follow.opml"
+            opml.write_text(
+                """<?xml version="1.0" encoding="UTF-8"?>
+                <opml version="1.0"><body>
+                  <outline text="小岛大浪吹-非正经政经频道" title="小岛大浪吹-非正经政经频道" type="rss"
+                    xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw" />
+                </body></opml>
+                """,
+                encoding="utf-8",
+            )
+            with patch("scripts.radar.fetchers.subscriptions.requests.get", side_effect=fake_get):
+                items, summary, feed_statuses = fetch_opml_rss(
+                    now,
+                    opml,
+                    archive=archive,
+                    sleeper=lambda _seconds: None,
+                )
+
+        self.assertEqual(calls["n"], 3)
+        self.assertEqual([item.title for item in items], ["上一轮还在的视频"])
+        self.assertTrue(summary["ok"])
+        self.assertEqual(summary["failed_feed_count"], 0)
+        self.assertEqual(summary["keep_last_restored"], 1)
+        self.assertEqual(feed_statuses[0]["ok"], True)
+        self.assertEqual(feed_statuses[0]["fetch_mode"], "keep_last_rss")
+        self.assertEqual(feed_statuses[0]["keep_last_restored"], 1)
+        self.assertIsNone(feed_statuses[0]["error"])
+        self.assertIn("404", str(feed_statuses[0]["fallback_reason"]))
+
+    def test_youtube_rss_404_without_archive_still_fails(self):
+        class FakeResp:
+            def __init__(self, status_code: int):
+                self.status_code = status_code
+                self.content = b""
+                self.text = ""
+
+            def raise_for_status(self) -> None:
+                error = requests.HTTPError(f"{self.status_code} Client Error")
+                error.response = self
+                raise error
+
+        now = datetime(2026, 9, 8, tzinfo=timezone.utc)
+        with tempfile.TemporaryDirectory() as tmp:
+            opml = Path(tmp) / "follow.opml"
+            opml.write_text(
+                """<?xml version="1.0" encoding="UTF-8"?>
+                <opml version="1.0"><body>
+                  <outline text="小岛大浪吹-非正经政经频道" title="小岛大浪吹-非正经政经频道" type="rss"
+                    xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw" />
+                </body></opml>
+                """,
+                encoding="utf-8",
+            )
+            with patch("scripts.radar.fetchers.subscriptions.requests.get", return_value=FakeResp(404)):
+                items, summary, feed_statuses = fetch_opml_rss(
+                    now,
+                    opml,
+                    sleeper=lambda _seconds: None,
+                )
+
+        self.assertEqual(items, [])
+        self.assertFalse(feed_statuses[0]["ok"])
+        self.assertEqual(summary["failed_feed_count"], 1)
+        self.assertEqual(feed_statuses[0]["keep_last_restored"], 0)
+
+    def test_non_youtube_rss_404_does_not_retry(self):
+        class FakeResp:
+            def __init__(self, status_code: int):
+                self.status_code = status_code
+                self.content = b""
+                self.text = ""
+
+            def raise_for_status(self) -> None:
+                error = requests.HTTPError(f"{self.status_code} Client Error")
+                error.response = self
+                raise error
+
+        now = datetime(2026, 9, 8, tzinfo=timezone.utc)
+        calls = {"n": 0}
+
+        def fake_get(url, timeout=None, headers=None):
+            calls["n"] += 1
+            return FakeResp(404)
+
+        with tempfile.TemporaryDirectory() as tmp:
+            opml = Path(tmp) / "follow.opml"
+            opml.write_text(
+                """<?xml version="1.0" encoding="UTF-8"?>
+                <opml version="1.0"><body>
+                  <outline text="Some Blog" title="Some Blog" type="rss"
+                    xmlUrl="https://example.com/feed.xml" />
+                </body></opml>
+                """,
+                encoding="utf-8",
+            )
+            with patch("scripts.radar.fetchers.subscriptions.requests.get", side_effect=fake_get):
+                items, summary, feed_statuses = fetch_opml_rss(
+                    now,
+                    opml,
+                    sleeper=lambda _seconds: None,
+                )
+
+        self.assertEqual(calls["n"], 1)
+        self.assertEqual(items, [])
+        self.assertFalse(feed_statuses[0]["ok"])
+
     def test_trim_first_collect_backfill_keeps_latest_and_window_only(self):
         from datetime import timedelta
 

@@ -915,6 +915,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
                 opml_path,
                 max_feeds=max(0, int(args.rss_max_feeds)),
                 existing_source_keys=existing_source_keys,
+                archive=ctx.archive,
             )
             raw_items.extend(rss_items)
             statuses.append(rss_summary_status)
@@ -922,6 +923,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
                 "opmlrss done "
                 f"ok={rss_summary_status.get('ok')} "
                 f"items={rss_summary_status.get('item_count')} "
+                f"keep_last={rss_summary_status.get('keep_last_restored') or 0} "
                 f"ms={rss_summary_status.get('duration_ms')}"
             )
         else:
