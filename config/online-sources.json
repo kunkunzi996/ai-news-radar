@@ -1,13 +1,13 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-09-08T03:02:20Z",
+  "updated_at": "2026-09-08T03:33:02Z",
   "sources": [
     {
       "id": "online_bilibili_13030183",
       "name": "oil欧呦",
       "type": "bilibili_dynamic",
-      "enabled": true,
+      "enabled": false,
       "channel": "B站动态",
       "target": "oil欧呦",
       "locator": "13030183",
