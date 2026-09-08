@@ -45,6 +45,10 @@ class PrivateBridgeSourceTests(unittest.TestCase):
 
         self.assertEqual(status["max_items"], 5)
         self.assertEqual(status["max_items_per_account"], 5)
+        self.assertEqual(
+            status["coverage_note"],
+            "tries_cookie_full_dynamic_then_public_opus_then_space_video_fallback",
+        )
 
     def test_opml_rss_keeps_latest_five_items_per_feed(self):
         class Response:

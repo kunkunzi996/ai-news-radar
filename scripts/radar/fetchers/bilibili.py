@@ -93,7 +93,7 @@ def bilibili_dynamic_status_base() -> dict[str, Any]:
         "source_kind": "bilibili_dynamic",
         "cookie_present": cookie_present,
         "privacy": "cookie_env_only_not_logged",
-        "coverage_note": "tries_cookie_full_dynamic_then_public_opus_fallback",
+        "coverage_note": "tries_cookie_full_dynamic_then_public_opus_then_space_video_fallback",
     }
 
 

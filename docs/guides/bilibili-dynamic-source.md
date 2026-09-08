@@ -430,7 +430,7 @@ meta.timestamp_source=bilibili_pub_ts / fetch_time / first_seen_at
 | `max_pages` | 本次配置的最大页数 |
 | `accounts` | 每个账号自己的 `uid`、`source_name`、`ok`、`item_count`、`fetch_mode` |
 | `privacy` | 固定提示 cookie 只来自环境变量或本地文件，不写入日志 |
-| `coverage_note` | 当前策略说明 |
+| `coverage_note` | 当前策略说明。固定写三通道备用：登录动态 → 公开 opus → 空间投稿 |
 
 常见 `fetch_mode`：
 
