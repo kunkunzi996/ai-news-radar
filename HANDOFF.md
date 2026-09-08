@@ -2,6 +2,14 @@
 
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，完整状态在 `PROJECT_STATE.md`。
 
+## 油管 RSS 抽风时重试并沿用上一轮条目（2026-09-08，已部署）
+
+- 两个油管号一起 404 是官方 RSS 抽风，不是频道被掐。先看 `source-status.json` 历史，不要改 channel_id。
+- 现已 3 次重试；仍失败则 `fetch_mode=keep_last_rss`，沿用归档旧条目，不要标没采到。
+- `a3b93ec` 已合 `master`。NUC 生产仓已快进。本仓无活跃四文件。
+- 生产当轮是 `live_rss`，`keep_last_restored=0`。下次集体 404 再核对留旧行。
+- 不要先换成公共 RSSHub。改这块前读 `CLAUDE.md`「油管 RSS 抽风的禁区」。
+
 ## B站投稿备用与抖音风控留旧行（2026-09-08，已验收）
 
 - 列表空不等于号没了。抖音 `listed=0` + `douyin_risk_control` 时留上一轮好行，空号只隔 3 秒再试一次；不要连跑 `DouyinCollectAndPush`，不要拆 Argus。
@@ -153,8 +161,8 @@
 
 1. 当前无活跃四文件，无进行中功能窗口。新需求另开一轮。
 2. 网站若再停更：先看 `data/source-status.json` 的 `generated_at`；抖音单独停更时再看 `mediacrawler_douyin.collection_generated_at` 和 NUC `douyin-collect-status.json`，不要只看看板更新时间或计划任务 `LastTaskResult`。再 `gh run list` 看 Update AI News Snapshot。
-3. 下次抖音某个号 `listed=0`：核对 `keep_last_restored` 和 3 秒重试，不要连跑补采。
+3. 下次油管两个号一起 404：看 `fetch_mode` / `keep_last_restored`，不要改频道地址、不要连跑快照。下次抖音某个号 `listed=0`：核对 `keep_last_restored` 和 3 秒重试，不要连跑补采。
 4. NUC SSH 连不上时，先核对当前 IP / WiFi，不要沿用旧 HostName。
-5. 改采集会话重试或源预算前，读 `CLAUDE.md`「GitHub Actions 采集超时的禁区」。改抖音空号/B站备用前，读「抖音空号与 B 站动态空的禁区」。
+5. 改采集会话重试或源预算前，读 `CLAUDE.md`「GitHub Actions 采集超时的禁区」。改油管 RSS 前读「油管 RSS 抽风的禁区」。改抖音空号/B站备用前，读「抖音空号与 B 站动态空的禁区」。
 6. 改历史清理逻辑前，读 `CLAUDE.md`「清理历史条目的禁区」。改线上同步前，恢复工作区只用 `git restore`。
 7. 本仓库禁止随手 `git gc --prune=now`。`stash list` 为空时先查 `refs/stash` 本体。
