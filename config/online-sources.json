@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-09-08T07:42:46Z",
+  "updated_at": "2026-09-08T07:43:37Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -741,17 +741,6 @@
       "locator": "",
       "env": "",
       "notes": "微信采集已下线。配置保留以免误清历史文章，不再抓新。"
-    },
-    {
-      "id": "online_feed_google_ai_blog",
-      "name": "Google AI Blog",
-      "type": "rss",
-      "enabled": false,
-      "channel": "RSS/YouTube",
-      "target": "Google AI Blog",
-      "locator": "https://blog.google/technology/ai/rss/",
-      "env": "",
-      "notes": "公开 feed"
     },
     {
       "id": "online_feed_google_deepmind_blog",
