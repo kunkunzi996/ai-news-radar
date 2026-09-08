@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-09-04T08:32:27Z",
+  "updated_at": "2026-09-08T02:43:18Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -759,7 +759,7 @@
       "type": "we_mp_rss_jsonl",
       "enabled": false,
       "channel": "微信公众号",
-      "target": "猫笔刀",
+      "target": "猫笔刀 (WeRSS)",
       "locator": "",
       "env": "",
       "notes": "微信采集已下线。配置保留以免误清历史文章，不再抓新。"
