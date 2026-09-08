@@ -18,6 +18,7 @@ from urllib.parse import urlparse, urlunparse
 
 ONLINE_CONFIG_FILENAME = Path("config") / "online-sources.json"
 ONLINE_OPML_FILENAME = Path("feeds") / "online-sources.opml"
+PUBLIC_SUBSCRIPTION_MEMBERS_FILENAME = Path("data") / "subscription-members.json"
 ONLINE_OPML_SOURCE_ID = "online_opmlrss"
 ONLINE_ALLOWED_TYPES = frozenset(
     {"bilibili_dynamic", "github_release", "mediacrawler_jsonl", "rss", "we_mp_rss_jsonl"}
@@ -140,6 +141,40 @@ def online_config_path(root_dir: Path) -> Path:
 
 def online_opml_path(root_dir: Path) -> Path:
     return (root_dir / ONLINE_OPML_FILENAME).resolve()
+
+
+def public_subscription_members_path(root_dir: Path) -> Path:
+    return (root_dir / PUBLIC_SUBSCRIPTION_MEMBERS_FILENAME).resolve()
+
+
+def build_public_subscription_members(sources: list[dict[str, Any]]) -> dict[str, Any]:
+    members: list[dict[str, str]] = []
+    for source in sources:
+        if source.get("enabled") is False:
+            continue
+        if str(source.get("type") or "") == "opmlrss":
+            continue
+        name = str(source.get("name") or "").strip()
+        if not name:
+            continue
+        members.append(
+            {
+                "name": name,
+                "type": str(source.get("type") or "").strip(),
+                "locator": str(source.get("locator") or "").strip(),
+                "target": str(source.get("target") or "").strip(),
+                "channel": str(source.get("channel") or "").strip(),
+            }
+        )
+    return {"generated_at": utc_timestamp(), "members": members}
+
+
+def write_public_subscription_members(root_dir: Path, sources: list[dict[str, Any]]) -> None:
+    path = public_subscription_members_path(root_dir)
+    if path != (root_dir / PUBLIC_SUBSCRIPTION_MEMBERS_FILENAME).resolve():
+        raise ValueError("invalid_public_subscription_members_path")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    write_json_atomic(path, build_public_subscription_members(sources))
 
 
 def ensure_public_online_paths(root_dir: Path) -> tuple[Path, Path]:
@@ -1241,6 +1276,7 @@ def write_online_source_config(root_dir: Path, payload: Any) -> dict[str, Any]:
             for source in sources
             if source["type"] == "rss" and source.get("enabled") is not False
         ]
+    write_public_subscription_members(root_dir, sources)
     return _online_write_result(
         config,
         sources,
@@ -1957,6 +1993,7 @@ def save_online_source_config_transaction(
             if sha256_file(config_path) != before_hashes[path_keys[config_path]]:
                 raise _online_error("online_sources_config_stale", 409)
             atomic_replace_bytes(config_path, config_content)
+            write_public_subscription_members(root_dir, sources)
             manifest, manifest_digest = update_operation_manifest(
                 root_dir,
                 manifest,
