@@ -24,6 +24,7 @@ from scripts.radar.common import (
     BILIBILI_DYNAMIC_FULL_API_URL,
     BILIBILI_DYNAMIC_OPUS_DETAIL_API_URL,
     BILIBILI_NAV_API_URL,
+    BILIBILI_SPACE_VIDEO_API_URL,
     BILIBILI_WBI_MIXIN_KEY_ENC_TAB,
     BROWSER_UA,
     RawItem,
@@ -662,6 +663,110 @@ def fetch_bilibili_full_dynamic(
     return out
 
 
+def parse_bilibili_space_video_items(
+    payload: dict[str, Any],
+    *,
+    now: datetime,
+    uid: str,
+    source_name: str,
+    max_items: int,
+) -> list[RawItem]:
+    data = payload.get("data") if isinstance(payload.get("data"), dict) else {}
+    listing = data.get("list") if isinstance(data.get("list"), dict) else {}
+    raw_items = listing.get("vlist") if isinstance(listing.get("vlist"), list) else []
+    out: list[RawItem] = []
+    seen: set[str] = set()
+    expected_mid = str(uid or "").strip()
+    for item in raw_items:
+        if not isinstance(item, dict):
+            continue
+        mid = str(item.get("mid") or "").strip()
+        if expected_mid and mid and mid != expected_mid:
+            continue
+        bvid = str(item.get("bvid") or "").strip()
+        title = str(item.get("title") or "").strip()
+        if not bvid or not title:
+            continue
+        key = bvid
+        if key in seen:
+            continue
+        seen.add(key)
+        published = parse_unix_timestamp(item.get("created"))
+        out.append(
+            RawItem(
+                site_id="bilibili_dynamic",
+                site_name="Bilibili Dynamic",
+                source=source_name,
+                title=bilibili_dynamic_item_title(title, bvid),
+                url=f"https://www.bilibili.com/video/{bvid}",
+                published_at=published or now,
+                meta={
+                    "summary": title,
+                    "bilibili_uid": uid,
+                    "bilibili_bvid": bvid,
+                    "timestamp_source": "bilibili_archive_created" if published else "fetch_time",
+                },
+            )
+        )
+        if len(out) >= max_items:
+            break
+    return out
+
+
+def fetch_bilibili_space_videos(
+    session: requests.Session,
+    now: datetime,
+    *,
+    uid: str,
+    source_name: str,
+    max_items: int,
+    deadline: float | None = None,
+) -> list[RawItem]:
+    img_key, sub_key = bilibili_wbi_keys(session, deadline=deadline)
+    headers = {
+        "User-Agent": BROWSER_UA,
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
+        "Origin": "https://space.bilibili.com",
+        "Referer": f"https://space.bilibili.com/{uid}/video",
+    }
+    params = sign_bilibili_wbi_params(
+        {
+            "mid": uid,
+            "ps": max(1, min(int(max_items), 30)),
+            "tid": 0,
+            "pn": 1,
+            "keyword": "",
+            "order": "pubdate",
+            "platform": "web",
+            "web_location": "1550101",
+            "order_avoided": "true",
+        },
+        img_key,
+        sub_key,
+    )
+    resp = session.get(
+        BILIBILI_SPACE_VIDEO_API_URL,
+        params=params,
+        headers=headers,
+        timeout=deadline_timeout(deadline, 20),
+    )
+    resp.raise_for_status()
+    payload = resp.json()
+    if int(payload.get("code") or 0) != 0:
+        raise ValueError(f"bilibili_space_video_api_code_{payload.get('code')}")
+    items = parse_bilibili_space_video_items(
+        payload,
+        now=now,
+        uid=uid,
+        source_name=source_name,
+        max_items=max_items,
+    )
+    if not items:
+        raise ValueError("bilibili_space_video_no_items")
+    return items
+
+
 def maybe_fetch_bilibili_dynamic(
     session: requests.Session,
     now: datetime,
@@ -758,22 +863,36 @@ def maybe_fetch_bilibili_dynamic(
                     except Exception as exc:
                         errors.append(f"cookie_full_dynamic_failed:{type(exc).__name__}")
 
-                items = fetch_bilibili_dynamic(
-                    session,
-                    now,
-                    uid=uid,
-                    source_name=source_name,
-                    max_items=account_max_items,
-                    api_url=api_url,
-                    deadline=deadline,
-                )
+                try:
+                    items = fetch_bilibili_dynamic(
+                        session,
+                        now,
+                        uid=uid,
+                        source_name=source_name,
+                        max_items=account_max_items,
+                        api_url=api_url,
+                        deadline=deadline,
+                    )
+                    account_status["fetch_mode"] = "public_opus_fallback" if errors else "public_opus"
+                except TimeoutError:
+                    raise
+                except Exception as opus_exc:
+                    errors.append(f"public_opus_failed:{type(opus_exc).__name__}")
+                    items = fetch_bilibili_space_videos(
+                        session,
+                        now,
+                        uid=uid,
+                        source_name=source_name,
+                        max_items=account_max_items,
+                        deadline=deadline,
+                    )
+                    account_status["fetch_mode"] = "space_video_fallback"
                 if first_collect_backfill:
                     items = trim_first_collect_backfill_items(
                         items,
                         now,
                         keep_latest=int(status["max_items_per_account"]),
                     )
-                account_status["fetch_mode"] = "public_opus_fallback" if errors else "public_opus"
                 if errors:
                     account_status["fallback_reason"] = errors[-1]
                 account_status["ok"] = True

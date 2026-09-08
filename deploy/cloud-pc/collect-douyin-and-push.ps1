@@ -458,8 +458,24 @@ if (-not $sourceFile -or -not (Test-Path -LiteralPath $sourceFile)) {
 if ((Get-FileHash -Algorithm SHA256 -LiteralPath $sourceFile).Hash.ToLowerInvariant() -ne ([string]$runnerResult.source_sha256).ToLowerInvariant()) {
     Exit-Run "warning" "output_delta_ambiguous" "Runner candidate SHA256 changed before copy; bridge was not changed." 1
 }
+$mergedFile = Join-Path $env:TEMP ("douyin-keep-last-{0}.jsonl" -f $script:RunId)
+$mergeArgs = @(
+    $runner,
+    "--merge-keep-last",
+    "--keep-last-current", $sourceFile,
+    "--keep-last-receipts", $script:CrawlResultFile,
+    "--keep-last-output", $mergedFile
+)
+if (Test-Path -LiteralPath $bridgeJsonl) { $mergeArgs += @("--keep-last-previous", $bridgeJsonl) }
+Write-Step "合并被风控号的上次成功行"
+& $PythonExe @mergeArgs
+if ($LASTEXITCODE -ne 0) { throw "Keep-last merge failed." }
+if (-not (Test-Path -LiteralPath $mergedFile)) { throw "Keep-last output is missing." }
+$publishFile = $mergedFile
+$publishHash = (Get-FileHash -Algorithm SHA256 -LiteralPath $publishFile).Hash
+$publishRows = @((Get-Content -LiteralPath $publishFile -Encoding UTF8) | Where-Object { $_.Trim() }).Count
 $targetHashBefore = if (Test-Path -LiteralPath $bridgeJsonl) { (Get-FileHash -Algorithm SHA256 -LiteralPath $bridgeJsonl).Hash } else { "" }
-$contentChanged = (-not $targetHashBefore) -or $targetHashBefore.ToLowerInvariant() -ne ([string]$runnerResult.source_sha256).ToLowerInvariant()
+$contentChanged = (-not $targetHashBefore) -or $targetHashBefore.ToLowerInvariant() -ne $publishHash.ToLowerInvariant()
 $script:Status.content_changed = $contentChanged
 $manifestNeedsMigration = $true
 # BUG-02 / CODE-01：健康状态必须每轮如实反映。只按「内容变了」或「schema 要迁移」重写
@@ -481,9 +497,9 @@ if (Test-Path -LiteralPath $manifestPath) {
 }
 if ($contentChanged) {
     [IO.Directory]::CreateDirectory($bridgeJsonlDir) | Out-Null
-    Copy-Item -LiteralPath $sourceFile -Destination $bridgeJsonl -Force
-    if ((Get-FileHash -Algorithm SHA256 -LiteralPath $bridgeJsonl).Hash.ToLowerInvariant() -ne ([string]$runnerResult.source_sha256).ToLowerInvariant()) {
-        throw "Bridge JSONL SHA256 does not match the runner candidate after copy."
+    Copy-Item -LiteralPath $publishFile -Destination $bridgeJsonl -Force
+    if ((Get-FileHash -Algorithm SHA256 -LiteralPath $bridgeJsonl).Hash.ToLowerInvariant() -ne $publishHash.ToLowerInvariant()) {
+        throw "Bridge JSONL SHA256 does not match the keep-last output after copy."
     }
 }
 if ($contentChanged -or $manifestNeedsMigration -or $manifestHealthChanged) {
@@ -493,8 +509,8 @@ if ($contentChanged -or $manifestNeedsMigration -or $manifestHealthChanged) {
         schema_version = 2
         generated_at = (Get-Date).ToUniversalTime().ToString("o")
         source_file = [IO.Path]::GetFileName($sourceFile)
-        source_sha256 = [string]$runnerResult.source_sha256
-        output_rows = $runnerResult.output_rows
+        source_sha256 = $publishHash.ToLowerInvariant()
+        output_rows = $publishRows
         crawl_output_rows = $runnerResult.crawl_output_rows
         new_unique_items = $runnerResult.new_unique_items
         creator_count = $secUids.Count

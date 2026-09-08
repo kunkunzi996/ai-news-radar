@@ -63,7 +63,7 @@ def collection_window_summary_path(crawler_root: Path, platform: str) -> Path:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Start MediaCrawler creator mode with a dedicated CDP browser.")
-    parser.add_argument("--crawler-root", required=True)
+    parser.add_argument("--crawler-root", default="")
     parser.add_argument("--platform", choices=("douyin", "xhs"), default=os.environ.get("MEDIACRAWLER_PLATFORM") or "douyin")
     parser.add_argument("--creator-id", default=os.environ.get("MEDIACRAWLER_CREATOR_ID") or "")
     parser.add_argument("--max-notes", type=int, default=0)
@@ -76,7 +76,18 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--run-id", default="", help=argparse.SUPPRESS)
     parser.add_argument("--result-file", default="", help=argparse.SUPPRESS)
     parser.add_argument("--parent-holds-collection-lock", action="store_true", help=argparse.SUPPRESS)
-    return parser.parse_args()
+    parser.add_argument("--merge-keep-last", action="store_true", help=argparse.SUPPRESS)
+    parser.add_argument("--keep-last-current", default="", help=argparse.SUPPRESS)
+    parser.add_argument("--keep-last-previous", default="", help=argparse.SUPPRESS)
+    parser.add_argument("--keep-last-receipts", default="", help=argparse.SUPPRESS)
+    parser.add_argument("--keep-last-output", default="", help=argparse.SUPPRESS)
+    args = parser.parse_args()
+    if args.merge_keep_last:
+        if not args.keep_last_current or not args.keep_last_receipts or not args.keep_last_output:
+            parser.error("merge-keep-last requires --keep-last-current, --keep-last-receipts and --keep-last-output")
+    elif not args.crawler_root:
+        parser.error("--crawler-root is required")
+    return args
 
 
 def parse_jsonl_publish_time(value: object) -> datetime | None:
@@ -797,6 +808,91 @@ def parse_jsonl_bytes(data: bytes, label: str) -> tuple[list[dict[str, Any]], se
     return rows, ids
 
 
+def jsonl_row_sec_uid(row: dict[str, Any]) -> str:
+    author = row.get("author")
+    if isinstance(author, dict):
+        nested = str(author.get("sec_uid") or author.get("sec_user_id") or "").strip()
+        if nested:
+            return nested
+    return str(row.get("sec_uid") or row.get("sec_user_id") or row.get("user_id") or "").strip()
+
+
+def keep_last_creator_ids(creator_results: list[Any]) -> list[str]:
+    ids: list[str] = []
+    for record in creator_results:
+        if not isinstance(record, dict):
+            continue
+        if record.get("error") != "douyin_risk_control":
+            continue
+        if int(record.get("written_rows") or 0) > 0:
+            continue
+        sec_uid = str(record.get("sec_uid") or "").strip()
+        if sec_uid and sec_uid not in ids:
+            ids.append(sec_uid)
+    return ids
+
+
+def merge_keep_last_good_jsonl(
+    current: bytes,
+    previous: bytes,
+    creator_results: list[Any],
+) -> tuple[bytes, int]:
+    """把被风控、本轮 0 行的号，从上一份 JSONL 里补回来。不改写本轮已写出的行。"""
+    current_data = current or b""
+    current_rows, current_ids = parse_jsonl_bytes(current_data, "current") if current_data.strip() else ([], set())
+    previous_rows, _previous_ids = parse_jsonl_bytes(previous, "previous") if (previous or b"").strip() else ([], set())
+    keep_ids = keep_last_creator_ids(creator_results)
+    if not keep_ids or not previous_rows:
+        return current_data, 0
+    present = {jsonl_row_sec_uid(row) for row in current_rows}
+    have_ids = set(current_ids)
+    extra: list[dict[str, Any]] = []
+    for sec_uid in keep_ids:
+        if sec_uid in present:
+            continue
+        for row in previous_rows:
+            if jsonl_row_sec_uid(row) != sec_uid:
+                continue
+            aweme_id = valid_aweme_id(row.get("aweme_id"))
+            if aweme_id is None or aweme_id in have_ids:
+                continue
+            extra.append(row)
+            have_ids.add(aweme_id)
+    if not extra:
+        return current_data, 0
+    parts = current_data
+    if parts and not parts.endswith((b"\n", b"\r")):
+        parts += b"\n"
+    for row in extra:
+        parts += (json.dumps(row, ensure_ascii=False) + "\n").encode("utf-8")
+    return parts, len(extra)
+
+
+def merge_keep_last_main(args: argparse.Namespace) -> int:
+    current_path = Path(args.keep_last_current)
+    output_path = Path(args.keep_last_output)
+    receipts_path = Path(args.keep_last_receipts)
+    if not current_path.is_file():
+        raise RuntimeError(f"keep-last current JSONL is missing: {current_path}")
+    if not receipts_path.is_file():
+        raise RuntimeError(f"keep-last receipts JSON is missing: {receipts_path}")
+    current = current_path.read_bytes()
+    previous = b""
+    if args.keep_last_previous:
+        previous_path = Path(args.keep_last_previous)
+        if previous_path.is_file():
+            previous = previous_path.read_bytes()
+    payload = json.loads(receipts_path.read_text(encoding="utf-8-sig"))
+    creator_results = payload.get("creator_results") if isinstance(payload, dict) else []
+    if not isinstance(creator_results, list):
+        creator_results = []
+    merged, restored = merge_keep_last_good_jsonl(current, previous, creator_results)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_bytes(merged)
+    print(f"keep_last_restored={restored}", flush=True)
+    return 0
+
+
 def creator_output_delta(before: dict[str, bytes], after: dict[str, bytes]) -> dict[str, Any]:
     result: dict[str, Any] = {
         "source_file": "",
@@ -933,6 +1029,9 @@ class DouyinRunObserver:
         record["state"] = "failed"
         record["error"] = sanitize_douyin_error(message)
 
+    def reset_for_retry(self, creator_id: str) -> None:
+        self.records[creator_id] = self._new_record(creator_id)
+
     def finalize(self) -> None:
         # 三态而非两态：`completed` 的「一条不少」语义被下游依赖，不能悄悄放宽；
         # 新增的 `partial` 是显式的、可被单独检查的「采到了但不全」。
@@ -998,6 +1097,19 @@ def validate_douyin_aweme_page(response: object, max_cursor: str = "") -> dict[s
 # 会偶发返回非 JSON 的拦截页。实测每轮 52 条里被拦 0~5 条。多数是瞬时的，退避重试即可消化。
 DOUYIN_DETAIL_RETRY_ATTEMPTS = 2
 DOUYIN_DETAIL_RETRY_BACKOFF_SECONDS = (2.0, 5.0)
+DOUYIN_RISK_RETRY_SLEEP_SECONDS = 3.0
+
+
+def risk_controlled_retry_ids(observer: DouyinRunObserver) -> list[str]:
+    ids: list[str] = []
+    for creator_id in observer.requested_ids:
+        record = observer.record(creator_id)
+        if record.get("error") != "douyin_risk_control":
+            continue
+        if int(record.get("written_rows") or 0) > 0:
+            continue
+        ids.append(creator_id)
+    return ids
 
 
 def douyin_detail_backoff_seconds(attempt: int) -> float:
@@ -1198,6 +1310,12 @@ def runner_result_payload(
 def main() -> int:
     protect_local_cdp_from_proxy()
     args = parse_args()
+    if getattr(args, "merge_keep_last", False):
+        try:
+            return merge_keep_last_main(args)
+        except Exception as exc:
+            print(sanitize_douyin_error(str(exc)), file=sys.stderr)
+            return 1
     run_id = args.run_id.strip() or uuid.uuid4().hex
     result_path = Path(args.result_file).expanduser().resolve() if args.result_file else None
     crawler_root = Path(args.crawler_root).expanduser().resolve()
@@ -1255,6 +1373,23 @@ def main() -> int:
                     raise RuntimeError(f"MediaCrawler exited with {exit_code}")
                 if observer:
                     observer.finalize()
+                    retry_ids = risk_controlled_retry_ids(observer)
+                    if retry_ids:
+                        print(f"[CreatorRetry] risk_control n={len(retry_ids)}", flush=True)
+                        time.sleep(DOUYIN_RISK_RETRY_SLEEP_SECONDS)
+                        for creator_id in retry_ids:
+                            observer.reset_for_retry(creator_id)
+                        retry_exit = run_mediacrawler(
+                            crawler_root,
+                            cdp_port,
+                            args.platform,
+                            ",".join(retry_ids),
+                            max_notes,
+                            observer,
+                        )
+                        if retry_exit != 0:
+                            raise RuntimeError(f"MediaCrawler retry exited with {retry_exit}")
+                        observer.finalize()
                 if args.platform == "douyin" and result_path:
                     delta = creator_output_delta(before_snapshot, snapshot_creator_jsonl(crawler_root, args.platform))
                     # BUG-02：原本只要有一个号不完整就整轮作废，导致同轮已采到的 47~51 条

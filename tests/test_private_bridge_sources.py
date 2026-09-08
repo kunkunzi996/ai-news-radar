@@ -20,6 +20,7 @@ from scripts.update_news import (
     fetch_bilibili_dynamic,
     fetch_bilibili_opus_published_at,
     fetch_bilibili_full_dynamic,
+    fetch_bilibili_space_videos,
     bilibili_wbi_keys,
     sign_bilibili_wbi_params,
     parse_bilibili_detail_published_at,
@@ -1335,6 +1336,135 @@ class DouyinBridgeManifestHealthTests(unittest.TestCase):
             status["collection_manifest_available"],
             "旧 schema 没有健康字段，必须当作不可用而不是当成健康",
         )
+
+
+class BilibiliSpaceVideoFallbackTests(unittest.TestCase):
+    def test_space_video_fallback_when_public_opus_is_empty(self):
+        class FakeResponse:
+            def __init__(self, payload, status=200):
+                self._payload = payload
+                self.status_code = status
+
+            def json(self):
+                return self._payload
+
+            def raise_for_status(self):
+                if self.status_code >= 400:
+                    raise requests.HTTPError(f"{self.status_code}")
+
+        class FakeSession:
+            def __init__(self):
+                self.urls = []
+
+            def get(self, url, params=None, headers=None, timeout=None):
+                self.urls.append(url)
+                if "x/web-interface/nav" in url:
+                    return FakeResponse(
+                        {
+                            "code": 0,
+                            "data": {
+                                "wbi_img": {
+                                    "img_url": "https://i0.hdslb.com/bfs/wbi/" + "a" * 32 + ".png",
+                                    "sub_url": "https://i0.hdslb.com/bfs/wbi/" + "b" * 32 + ".png",
+                                }
+                            },
+                        }
+                    )
+                if "opus/feed/space" in url:
+                    return FakeResponse({"code": 0, "data": {"items": []}})
+                if "space/wbi/arc/search" in url:
+                    return FakeResponse(
+                        {
+                            "code": 0,
+                            "data": {
+                                "list": {
+                                    "vlist": [
+                                        {
+                                            "mid": 3546884870244925,
+                                            "bvid": "BV1FLtR6fEEc",
+                                            "title": "Obsidian 智能体插件完整教程",
+                                            "created": 1788425694,
+                                        }
+                                    ]
+                                }
+                            },
+                        }
+                    )
+                raise AssertionError(f"unexpected url {url}")
+
+        env = {
+            "BILIBILI_DYNAMIC_ENABLED": "1",
+            "BILIBILI_DYNAMIC_UIDS": "3546884870244925",
+            "BILIBILI_DYNAMIC_SOURCE_NAMES": "杰森的效率工坊",
+            "BILIBILI_COOKIE": "",
+            "BILIBILI_DYNAMIC_COOKIE": "",
+            "BILIBILI_COOKIE_FILE": "",
+            "BILIBILI_DYNAMIC_COOKIE_FILE": "",
+        }
+        now = datetime(2026, 9, 8, tzinfo=timezone.utc)
+        session = FakeSession()
+        with patch.dict(os.environ, env, clear=True):
+            items, status = maybe_fetch_bilibili_dynamic(session, now, existing_source_keys=set())
+
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0].title, "Obsidian 智能体插件完整教程")
+        self.assertEqual(items[0].url, "https://www.bilibili.com/video/BV1FLtR6fEEc")
+        self.assertEqual(status["accounts"][0]["fetch_mode"], "space_video_fallback")
+        self.assertEqual(status["accounts"][0]["ok"], True)
+        self.assertTrue(any("opus/feed/space" in url for url in session.urls))
+        self.assertTrue(any("space/wbi/arc/search" in url for url in session.urls))
+
+    def test_fetch_bilibili_space_videos_rejects_other_mids(self):
+        class FakeResponse:
+            def __init__(self, payload):
+                self._payload = payload
+
+            def json(self):
+                return self._payload
+
+            def raise_for_status(self):
+                return None
+
+        class FakeSession:
+            def get(self, url, params=None, headers=None, timeout=None):
+                if "x/web-interface/nav" in url:
+                    return FakeResponse(
+                        {
+                            "code": 0,
+                            "data": {
+                                "wbi_img": {
+                                    "img_url": "https://i0.hdslb.com/bfs/wbi/" + "a" * 32 + ".png",
+                                    "sub_url": "https://i0.hdslb.com/bfs/wbi/" + "b" * 32 + ".png",
+                                }
+                            },
+                        }
+                    )
+                return FakeResponse(
+                    {
+                        "code": 0,
+                        "data": {
+                            "list": {
+                                "vlist": [
+                                    {
+                                        "mid": 1,
+                                        "bvid": "BVOTHER",
+                                        "title": "别人的视频",
+                                        "created": 1788425694,
+                                    }
+                                ]
+                            }
+                        },
+                    }
+                )
+
+        with self.assertRaisesRegex(ValueError, "bilibili_space_video_no_items"):
+            fetch_bilibili_space_videos(
+                FakeSession(),
+                datetime(2026, 9, 8, tzinfo=timezone.utc),
+                uid="3546884870244925",
+                source_name="杰森的效率工坊",
+                max_items=5,
+            )
 
 
 class BilibiliCollectBudgetTests(unittest.TestCase):

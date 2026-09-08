@@ -25,7 +25,9 @@ from scripts.run_mediacrawler_douyin import (
     ensure_dedicated_browser,
     list_cdp_page_targets,
     limited_douyin_creator_posts,
+    merge_keep_last_good_jsonl,
     parse_args,
+    risk_controlled_retry_ids,
     row_publish_time,
     select_leaked_page_targets,
     set_window_bounds_with_retry,
@@ -940,7 +942,7 @@ class DouyinPartialReceiptTests(unittest.TestCase):
             crawler_root=str(crawler_root), platform="douyin", creator_id="c1,c2,c3", max_notes=10,
             collect_window_hours=0, cdp_port=9333, chrome_path="", profile_dir="",
             offscreen=False, browser_only=False, run_id="run-partial", result_file="",
-            parent_holds_collection_lock=False,
+            parent_holds_collection_lock=False, merge_keep_last=False,
         )
         defaults.update(overrides)
         return argparse.Namespace(**defaults)
@@ -953,6 +955,7 @@ class DouyinPartialReceiptTests(unittest.TestCase):
                 mock.patch.object(runner, "check_douyin_login_state", return_value="logged_in"), \
                 mock.patch.object(runner, "snapshot_cdp_page_ids", return_value=[]), \
                 mock.patch.object(runner, "close_leaked_pages", return_value=None), \
+                mock.patch.object(runner.time, "sleep", return_value=None), \
                 mock.patch.object(runner, "run_mediacrawler", side_effect=collect):
             yield
 
@@ -1013,6 +1016,76 @@ class DouyinPartialReceiptTests(unittest.TestCase):
             self.assertEqual(payload["partial_creator_count"], 0)
             for text in [payload["error"], *payload["warnings"]]:
                 self.assertNotIn("SECRET_BODY", str(text))
+
+    def test_risk_controlled_retry_ids_only_include_empty_risk_failures(self):
+        observer = DouyinRunObserver(["ok", "risk", "partial-risk"])
+        self.record_of(observer, "ok", profile_valid=True, api_pages_valid=True, listed_count=2, written_rows=2)
+        observer.fail("risk", "Blocked by ArgusSecurityPlugin Validate Error")
+        observer.fail("partial-risk", "Blocked by ArgusSecurityPlugin Validate Error")
+        observer.record("partial-risk")["written_rows"] = 3
+        observer.finalize()
+        self.assertEqual(risk_controlled_retry_ids(observer), ["risk"])
+
+    def test_keep_last_restores_risk_controlled_creator_rows(self):
+        current = (json.dumps({"aweme_id": "a1", "sec_uid": "ok"}) + "\n").encode("utf-8")
+        previous = "\n".join(
+            [
+                json.dumps({"aweme_id": "a1", "sec_uid": "ok"}),
+                json.dumps({"aweme_id": "f1", "sec_uid": "fufu", "desc": "旧视频"}),
+                json.dumps({"aweme_id": "f2", "author": {"sec_uid": "fufu"}, "desc": "也是旧的"}),
+            ]
+        ).encode("utf-8")
+        receipts = [
+            {"sec_uid": "ok", "error": "", "written_rows": 1},
+            {"sec_uid": "fufu", "error": "douyin_risk_control", "written_rows": 0},
+        ]
+        merged, restored = merge_keep_last_good_jsonl(current, previous, receipts)
+        text = merged.decode("utf-8")
+        self.assertEqual(restored, 2)
+        self.assertIn("f1", text)
+        self.assertIn("f2", text)
+        self.assertIn("旧视频", text)
+
+    def test_keep_last_does_not_restore_when_current_already_has_the_creator(self):
+        current = (json.dumps({"aweme_id": "f-new", "sec_uid": "fufu"}) + "\n").encode("utf-8")
+        previous = (json.dumps({"aweme_id": "f-old", "sec_uid": "fufu"}) + "\n").encode("utf-8")
+        receipts = [{"sec_uid": "fufu", "error": "douyin_risk_control", "written_rows": 0}]
+        merged, restored = merge_keep_last_good_jsonl(current, previous, receipts)
+        self.assertEqual(restored, 0)
+        self.assertNotIn("f-old", merged.decode("utf-8"))
+
+    def test_main_retries_risk_controlled_creators_once(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            crawler, jsonl = self.make_crawler_root(tmp)
+            result_file = Path(tmp) / "result.json"
+            calls = []
+
+            def collect(_root, _port, _platform, creator_id, _max_notes, observer=None):
+                calls.append(creator_id)
+                if len(calls) == 1:
+                    self.record_of(observer, "c1", profile_valid=True, api_pages_valid=True, listed_count=2, written_rows=2)
+                    observer.fail("c2", "Blocked by ArgusSecurityPlugin Validate Error")
+                    self.record_of(observer, "c3", profile_valid=True, api_pages_valid=True, listed_count=1, written_rows=1)
+                    with jsonl.open("a", encoding="utf-8") as handle:
+                        handle.write(json.dumps({"aweme_id": "ok-1"}) + "\n")
+                        handle.write(json.dumps({"aweme_id": "ok-2"}) + "\n")
+                        handle.write(json.dumps({"aweme_id": "ok-3"}) + "\n")
+                else:
+                    self.record_of(observer, "c2", profile_valid=True, api_pages_valid=True, listed_count=2, written_rows=2)
+                    with jsonl.open("a", encoding="utf-8") as handle:
+                        handle.write(json.dumps({"aweme_id": "retry-1"}) + "\n")
+                        handle.write(json.dumps({"aweme_id": "retry-2"}) + "\n")
+                return 0
+
+            args = self.collect_args(crawler, result_file=str(result_file))
+            with self.patched_main(args, collect):
+                self.assertEqual(runner.main(), 0)
+
+            self.assertEqual(calls, ["c1,c2,c3", "c2"])
+            payload = json.loads(result_file.read_text(encoding="utf-8"))
+            self.assertEqual(payload["failed_creator_count"], 0)
+            self.assertEqual(payload["completed_creator_count"], 3)
+            self.assertEqual(payload["crawl_output_rows"], 5)
 
 
 if __name__ == "__main__":

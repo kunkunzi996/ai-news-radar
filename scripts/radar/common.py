@@ -241,6 +241,7 @@ BILIBILI_DYNAMIC_FULL_API_URL = "https://api.bilibili.com/x/polymer/web-dynamic/
 BILIBILI_DYNAMIC_DETAIL_API_URL = "https://api.bilibili.com/x/polymer/web-dynamic/v1/detail"
 BILIBILI_DYNAMIC_OPUS_DETAIL_API_URL = "https://api.bilibili.com/x/polymer/web-dynamic/v1/opus/detail"
 BILIBILI_NAV_API_URL = "https://api.bilibili.com/x/web-interface/nav"
+BILIBILI_SPACE_VIDEO_API_URL = "https://api.bilibili.com/x/space/wbi/arc/search"
 BILIBILI_DYNAMIC_DEFAULT_UID = "505301413"
 BILIBILI_DYNAMIC_DEFAULT_SOURCE_NAME = "Koji杨远骋at十字路口"
 BILIBILI_DYNAMIC_DEFAULT_ACCOUNTS = (
