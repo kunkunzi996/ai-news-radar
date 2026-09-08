@@ -1,19 +1,8 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-09-08T03:33:02Z",
+  "updated_at": "2026-09-08T03:35:21Z",
   "sources": [
-    {
-      "id": "online_bilibili_13030183",
-      "name": "oil欧呦",
-      "type": "bilibili_dynamic",
-      "enabled": false,
-      "channel": "B站动态",
-      "target": "oil欧呦",
-      "locator": "13030183",
-      "env": "",
-      "notes": "公开 UID"
-    },
     {
       "id": "online_bilibili_28756625",
       "name": "中二的大暄哥",
