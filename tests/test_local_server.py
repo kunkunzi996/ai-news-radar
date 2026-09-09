@@ -940,7 +940,7 @@ class LocalServerTests(unittest.TestCase):
                 raise OSError("injected config failure")
             return original_replace(path, content)
 
-        with patch("scripts.local_server.queue_pending_purge", side_effect=record_queue), patch.object(
+        with patch("scripts.radar.server.subscriptions_store.queue_pending_purge", side_effect=record_queue), patch.object(
             online_sources,
             "atomic_replace_bytes",
             side_effect=fail_config_once,
@@ -1107,19 +1107,19 @@ class LocalServerTests(unittest.TestCase):
         }
 
         with patch(
-            "scripts.local_server.preflight_online_source_save",
+            "scripts.radar.server.online_sources.preflight_online_source_save",
             return_value={"pre_head": "0" * 40},
         ) as preflight_mock, patch(
-            "scripts.local_server.save_online_source_config",
+            "scripts.radar.server.online_sources.save_online_source_config",
             return_value=save_result,
         ) as save_mock, patch(
-            "scripts.local_server.sync_saved_online_source_config",
+            "scripts.radar.server.online_sources.sync_saved_online_source_config",
             return_value={"ok": True, "outcome": "no_change"},
         ) as sync_mock, patch(
-            "scripts.local_server._auto_collect_api.handle_saved_config",
+            "scripts.radar.server.auto_collect.handle_saved_config",
             return_value={"pending": False},
         ), patch(
-            "scripts.local_server._auto_collect_api.flush_pending_collect",
+            "scripts.radar.server.auto_collect.flush_pending_collect",
             return_value={"triggered": False},
         ):
             result = save_and_sync_online_source_config(root, payload)
@@ -1213,14 +1213,22 @@ class LocalServerTests(unittest.TestCase):
         }
         head_before = self.git(root, "rev-parse", "HEAD").stdout.strip()
 
+        collect_calls = []
         with patch(
-            "scripts.local_server.sync_saved_online_source_config",
+            "scripts.radar.server.online_sources.sync_saved_online_source_config",
             side_effect=online_sources.OnlineSourcesError("injected_sync_failure", status_code=502),
+        ), patch(
+            "scripts.radar.server.auto_collect.handle_saved_config",
+            side_effect=lambda *_args, **_kwargs: collect_calls.append("handle") or {"pending": False},
+        ), patch(
+            "scripts.radar.server.auto_collect.flush_pending_collect",
+            side_effect=lambda *_args, **_kwargs: collect_calls.append("flush") or {"triggered": False},
         ):
             with self.assertRaises(online_sources.OnlineSourcesError) as raised:
                 save_and_sync_online_source_config(root, {"sources": []})
 
         self.assertEqual(raised.exception.code, "injected_sync_failure")
+        self.assertEqual(collect_calls, [])
         self.assertEqual(self.git(root, "rev-parse", "HEAD").stdout.strip(), head_before)
         self.assertFalse(online_sources.operation_manifest_path(root).exists())
         for path, (exists, content) in before.items():
@@ -1237,7 +1245,7 @@ class LocalServerTests(unittest.TestCase):
         self.assertFalse(opml_path.exists())
 
         with patch(
-            "scripts.local_server.sync_saved_online_source_config",
+            "scripts.radar.server.online_sources.sync_saved_online_source_config",
             side_effect=online_sources.OnlineSourcesError("injected_sync_failure", status_code=502),
         ):
             with self.assertRaises(online_sources.OnlineSourcesError) as raised:
@@ -1251,17 +1259,17 @@ class LocalServerTests(unittest.TestCase):
     def test_save_and_sync_second_attempt_does_not_inherit_failed_transaction(self):
         root, origin, _peer = self.create_sync_git_repositories(self.online_source_payload("initial"))
         with patch(
-            "scripts.local_server.sync_saved_online_source_config",
+            "scripts.radar.server.online_sources.sync_saved_online_source_config",
             side_effect=online_sources.OnlineSourcesError("injected_sync_failure", status_code=502),
         ):
             with self.assertRaises(online_sources.OnlineSourcesError):
                 save_and_sync_online_source_config(root, self.online_source_payload("first"))
 
         with patch(
-            "scripts.local_server._auto_collect_api.handle_saved_config",
+            "scripts.radar.server.auto_collect.handle_saved_config",
             return_value={"pending": False},
         ), patch(
-            "scripts.local_server._auto_collect_api.flush_pending_collect",
+            "scripts.radar.server.auto_collect.flush_pending_collect",
             return_value={"triggered": False},
         ):
             result = save_and_sync_online_source_config(root, self.online_source_payload("second"))
@@ -1284,11 +1292,14 @@ class LocalServerTests(unittest.TestCase):
             events.append("sync_done")
             return result
 
-        with patch("scripts.local_server.sync_saved_online_source_config", side_effect=record_sync), patch(
-            "scripts.local_server._auto_collect_api.handle_saved_config",
+        with patch(
+            "scripts.radar.server.online_sources.sync_saved_online_source_config",
+            side_effect=record_sync,
+        ), patch(
+            "scripts.radar.server.auto_collect.handle_saved_config",
             side_effect=lambda *_args: events.append("handle") or {"pending": False},
         ), patch(
-            "scripts.local_server._auto_collect_api.flush_pending_collect",
+            "scripts.radar.server.auto_collect.flush_pending_collect",
             side_effect=lambda *_args: events.append("flush") or {"triggered": False},
         ):
             result = save_and_sync_online_source_config(root, self.online_source_payload("pushed"))

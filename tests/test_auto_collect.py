@@ -315,7 +315,7 @@ class SaveHookIsolationTests(unittest.TestCase):
         ]
 
         with patch(
-            "scripts.local_server._auto_collect_api.handle_saved_config",
+            "scripts.radar.server.auto_collect.handle_saved_config",
             side_effect=RuntimeError("boom"),
         ):
             result = save_online_source_config(self.root, {"sources": new_sources})
@@ -340,7 +340,7 @@ class SaveHookIsolationTests(unittest.TestCase):
         ]
 
         with patch(
-            "scripts.local_server._auto_collect_api.handle_saved_config",
+            "scripts.radar.server.auto_collect.handle_saved_config",
             return_value={"triggered": True, "jobs": []},
         ) as hook:
             save_online_source_config(self.root, {"sources": new_sources})
