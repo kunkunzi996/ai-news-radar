@@ -31,11 +31,7 @@ function isHiddenItem(item) {
   return isHiddenSourceId(item?.site_id) || isHiddenPlatformId(itemPlatformSection(item));
 }
 function visibleSections() {
-  return SECTION_DEFS.filter((section) => {
-    if (isHiddenPlatformId(section.id)) return false;
-    if (section.id === "xiaohongshu") return sectionItems(undefined, section.id).length > 0;
-    return true;
-  });
+  return SECTION_DEFS.filter((section) => !isHiddenPlatformId(section.id));
 }
 function visibleSourceConfigFilters() {
   return SOURCE_CONFIG_FILTERS.filter((filter) => !isHiddenPlatformId(filter.id));
