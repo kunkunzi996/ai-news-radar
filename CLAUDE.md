@@ -53,6 +53,8 @@ YouTube 订阅成员、已阅计数键、脚本 `?v=` / 工作台 `wb=` 见 `AGE
 
 `merge_sync` 必须先推送合并提交再 CAS 移动本机 `master`；永远不得 purge 或改写归档历史。
 
+5. 「保存并同步」失败时，还原走事务内部；禁止在 `local_server` 再拍一套快照，禁止再戳 git 私货。
+
 ### 本机 git 仓库维护禁区
 
 1. 禁止随手 `git gc --prune=now` / `git prune`。误删的 GitHub Release 历史完整副本挂在不可达提交 `d85b916^`；找回用 `git show d85b916^:data/archive.json`。
