@@ -75,7 +75,7 @@ B站有几个 UP 主，抖音关注了几个博主，微信里躺着一堆没读
 - 用站点、关键词、时间和来源筛选快速定位信息
 - 看到每条消息的来源平台、作者和发布时间；已读的可标记进「已阅」
 - 通过源健康看哪些信源在正常更新、哪些出了问题
-- 如果开启 AI 筛选（`AI_RELEVANCE_THRESHOLD` 非 0），还能看到「伯乐精选」故事线、AI 标签与 AI 相关性分数——本部署默认关闭
+- 数据里仍可带 AI 相关度字段；**首页不再展示伯乐精选故事线或 AI 分数标签**。本部署 `AI_RELEVANCE_THRESHOLD=0`，列表不过滤
 
 ### 给内容创作者
 
@@ -110,7 +110,7 @@ B站有几个 UP 主，抖音关注了几个博主，微信里躺着一堆没读
 
 - **AI 相关性打分**（`scripts/ai_relevance.py`）：阈值由环境变量 `AI_RELEVANCE_THRESHOLD` 控制（缺省 `0.65`）。本部署的 Actions 变量设为 `0`，即不过滤。**删掉这个变量就回到「AI 精选」模式**。
 - **故事线合并 / 多源证据聚合**：把同一事件的多个来源合并（`stories-merged.json`、`merge-log.json`），开着不影响订阅流。
-- **伯乐精选与热点视图**：多源聚簇 × 时间衰减排序，几个独立信源同时在说的事才算热点；数据不够时自动隐藏，不留空壳。
+- **故事线数据仍会生成**（`daily-brief.json` / `stories-merged.json`），供调试和旧工具使用；**读者页已不再渲染伯乐精选 / Top 3**。
 - **评分回测工具**（`scripts/backtest_scoring.py`）：在历史归档上重放对比两个版本的评分逻辑。规矩没变——动评分必须附带 ≥14 天回测报告。
 - **ai-radar 消费Skill**：装上后对 Agent 说「今天AI圈有什么」，它直接读本站公开 JSON 出中文简报，零 API、零 Key。
 
@@ -146,7 +146,6 @@ flowchart LR
 
     latest --> pages["GitHub Pages网页"]
     sourceData --> pages
-    brief -.-> pages
 
     pages --> agent["伯乐Skill：Agent 继续维护信源"]
     pages --> radar["ai-radar Skill：Agent 读报出简报"]
@@ -168,10 +167,9 @@ flowchart LR
 - `data/archive.json`：归档全集，保留天数由 Actions 变量 `ARCHIVE_DAYS` 控制（默认 180 天）
 - `data/source-status.json`：每个订阅源的抓取状态、条目数和源健康
 - `data/latest-24h.json`：经 AI 相关性筛选后的消息（`AI_RELEVANCE_THRESHOLD=0` 时等于全量）
-- `data/daily-brief.json`：伯乐精选故事线，AI 精选模式下供首页 Top 3 使用
-- `data/stories-merged.json` / `data/merge-log.json`：故事合并后的事件集合与合并记录，方便调试与审计
+- `data/daily-brief.json` / `data/stories-merged.json` / `data/merge-log.json`：故事合并产物，仍由采集管线写出，**首页已不再读取**
 
-后三个属于 AI 精选路径的产物；默认（不过滤）模式下页面主要读前三个。
+后三个属于 AI 精选路径的产物；默认页面只读前三个。
 
 ## 快速开始
 
