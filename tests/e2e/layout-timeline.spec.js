@@ -579,6 +579,35 @@ test("搜索、已阅和恢复流程保持可用", async ({ page }) => {
   expect(errors).toEqual([]);
 });
 
+test("已阅只认链接：同标题不同链接不串，没链接不记", async ({ page }) => {
+  const errors = collectErrors(page);
+  await openFixture(page);
+  const result = await page.evaluate(() => {
+    const a = { title: "同一标题", url: "https://example.com/a#frag" };
+    const b = { title: "同一标题", url: "https://example.com/b" };
+    const noUrl = { title: "同一标题", id: "shared-id" };
+    toggleItemRead(a);
+    toggleItemRead(noUrl);
+    state.readItemIds.add("url:https://example.com/legacy");
+    return {
+      aRead: isItemRead(a),
+      aReadNoHash: isItemRead({ url: "https://example.com/a" }),
+      bRead: isItemRead(b),
+      noUrlRead: isItemRead(noUrl),
+      legacyRead: isItemRead({ url: "https://example.com/legacy#x" }),
+      stored: Array.from(state.readItemIds),
+    };
+  });
+  expect(result.aRead).toBe(true);
+  expect(result.aReadNoHash).toBe(true);
+  expect(result.bRead).toBe(false);
+  expect(result.noUrlRead).toBe(false);
+  expect(result.legacyRead).toBe(true);
+  expect(result.stored.some((key) => String(key).includes("shared-id") || String(key).startsWith("title:"))).toBe(false);
+  expect(result.stored).toContain("https://example.com/a");
+  expect(errors).toEqual([]);
+});
+
 test("设置抽屉完整焦点循环、Esc 关闭和焦点恢复", async ({ page }) => {
   const errors = collectErrors(page);
   await openFixture(page);

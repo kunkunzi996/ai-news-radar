@@ -263,31 +263,38 @@ function itemMatchesSection(item, sectionId) {
 function sectionBadgeLabel(sectionId) {
   return SECTION_BY_ID[sectionId]?.short || "栏目";
 }
+function workbenchReadUrl(value) {
+  try {
+    const url = new URL(String(value || ""));
+    if (!/^https?:$/.test(url.protocol)) return "";
+    url.hash = "";
+    return url.toString();
+  } catch {
+    return "";
+  }
+}
+function workbenchReadKey(item) {
+  return workbenchReadUrl(item?.url || item?.primary_url);
+}
+function isSameWorkbenchReadKey(stored, canonical) {
+  if (!canonical) return false;
+  const raw = String(stored || "");
+  if (raw === canonical) return true;
+  if (raw.startsWith("url:") && workbenchReadUrl(raw.slice(4)) === canonical) return true;
+  return false;
+}
+function forgetWorkbenchReadKeys(canonical) {
+  Array.from(state.readItemIds).forEach((stored) => {
+    if (isSameWorkbenchReadKey(stored, canonical)) state.readItemIds.delete(stored);
+  });
+}
 function readTrackingKey(item) {
-  const keys = strongReadIdentityKeys(item);
-  return keys.size ? Array.from(keys)[0] : readTitleFallbackKey(item);
-}
-function strongReadIdentityKeys(item) {
-  const keys = new Set();
-  if (!item) return keys;
-  const url = item.url || item.primary_url;
-  if (url) keys.add(`url:${url}`);
-  if (item.id) keys.add(`id:${item.id}`);
-  if (item.bilibili_dynamic_id) keys.add(`bilibili_dynamic:${item.bilibili_dynamic_id}`);
-  if (item.bilibili_opus_id) keys.add(`bilibili_opus:${item.bilibili_opus_id}`);
-  return keys;
-}
-function readTitleFallbackKey(item) {
-  const title = item?.title_zh || item?.title || item?.title_en || item?.title_original;
-  const normalized = normalizedEventText(title);
-  if (!normalized || normalized.length < 8) return "";
-  if (["分享动态", "转发动态", "动态", "直播回放"].includes(normalized)) return "";
-  return `title:${normalized.slice(0, 34)}`;
+  return workbenchReadKey(item);
 }
 function readTrackingKeys(item) {
-  const keys = strongReadIdentityKeys(item);
-  const primary = readTrackingKey(item);
-  if (primary) keys.add(primary);
+  const keys = new Set();
+  const key = workbenchReadKey(item);
+  if (key) keys.add(key);
   return keys;
 }
 function loadReadItemIds() {
@@ -307,17 +314,17 @@ function persistReadItemIds() {
   }
 }
 function isItemRead(item) {
-  const url = item?.url || item?.primary_url;
-  if (!url) return false;
-  if (state.readItemIds.has(`url:${url}`)) return true;
-  if (state.readItemIds.has(String(url))) return true;
+  const key = workbenchReadKey(item);
+  if (!key) return false;
+  for (const stored of state.readItemIds) {
+    if (isSameWorkbenchReadKey(stored, key)) return true;
+  }
   return false;
 }
 function rememberJustMarkedReadKeys(item) {
   if (!(state.justMarkedReadKeys instanceof Set)) state.justMarkedReadKeys = new Set();
-  const hostKey = item?.url || item?.primary_url;
-  if (hostKey) state.justMarkedReadKeys.add(String(hostKey));
-  readTrackingKeys(item).forEach((key) => state.justMarkedReadKeys.add(key));
+  const key = workbenchReadKey(item);
+  if (key) state.justMarkedReadKeys.add(key);
 }
 
 function listStayCardNode(itemId) {
@@ -462,17 +469,17 @@ function applyLocalReadUpdate(item, node) {
 }
 
 function toggleItemRead(item, options) {
-  const keys = readTrackingKeys(item);
-  if (!keys.size) return;
+  const key = workbenchReadKey(item);
+  if (!key) return;
   const wasRead = isItemRead(item);
   // 调用方给出本卡节点时走局部路径；取消已阅仍走原来的整页重画。
   const localCandidate = !wasRead && Boolean(options && options.node);
   const stay = (wasRead || localCandidate) ? null : captureListStayAnchor(item);
   if (wasRead) {
     if (window.RadarSync && window.RadarSync.monotonicReads()) return;
-    keys.forEach((key) => state.readItemIds.delete(key));
+    forgetWorkbenchReadKeys(key);
   } else {
-    keys.forEach((key) => state.readItemIds.add(key));
+    state.readItemIds.add(key);
     rememberJustMarkedReadKeys(item);
     if (window.RadarSync) window.RadarSync.markRead(item);
   }
