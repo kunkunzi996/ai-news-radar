@@ -662,7 +662,7 @@ test("item 文本字段不会被 innerHTML 解析", async ({ page }) => {
     const snapshot = {
       imageCount: host.querySelectorAll('img[alt="fixture-field-injection"]').length,
       siteText: host.querySelector(".site")?.textContent || "",
-      sourceText: host.querySelector(".source")?.textContent || "",
+      categoryText: host.querySelector(".category")?.textContent || "",
     };
     host.remove();
     return snapshot;
@@ -670,7 +670,7 @@ test("item 文本字段不会被 innerHTML 解析", async ({ page }) => {
 
   expect(result.imageCount).toBe(0);
   expect(result.siteText).toContain('<img alt="fixture-field-injection">');
-  expect(result.sourceText).toContain('<img alt="fixture-field-injection">');
+  expect(result.categoryText).toBe("B站");
   expect(errors).toEqual([]);
 });
 

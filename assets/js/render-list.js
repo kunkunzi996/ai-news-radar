@@ -1,17 +1,3 @@
-function itemTagLabels(item) {
-  const tags = [];
-  const sections = itemSections(item);
-  tags.push(sectionBadgeLabel(state.activeSection));
-  if (item.site_id === "official_ai") tags.push("官方");
-  if (item.site_id === "aihot") tags.push("AI HOT");
-  if (sections.has("models")) tags.push("模型发布");
-  if (sections.has("devtools")) tags.push("开发者");
-  if (sections.has("hn")) tags.push("社区热议");
-  if (sections.has("research")) tags.push("研究");
-  if (sections.has("creator")) tags.push("我的订阅");
-  if (sections.has("community")) tags.push("社区");
-  return Array.from(new Set(tags)).slice(0, 3);
-}
 function feedSummaryText(item) {
   const signals = Array.isArray(item.ai_signals) ? item.ai_signals.filter(Boolean).slice(0, 2) : [];
   if (signals.length) return `相关线索：${signals.join(" / ")}。`;
@@ -55,7 +41,6 @@ function renderItemNode(item, context = {}) {
   const avatarText = String(item.source || item.site_name || sourceDisplayName(item) || "源").trim();
   if (avatarEl) avatarEl.textContent = Array.from(avatarText)[0] || "源";
 
-  const metaRow = node.querySelector(".meta-row");
   const siteEl = node.querySelector(".site");
   siteEl.textContent = item.source || item.site_name;
   if (context.source && context.source === item.source) {
@@ -65,28 +50,9 @@ function renderItemNode(item, context = {}) {
   const categoryEl = node.querySelector(".category");
   categoryEl.textContent = kind.label;
   categoryEl.classList.add(`kind-${kind.tone}`);
-  const creatorScore = creatorHotScore(item);
-  if (creatorScore && itemSections(item).has("creator")) {
-    const tagEl = document.createElement("span");
-    tagEl.className = `ai-tag tone-${itemLabelTone(item)}`;
-    tagEl.textContent = `订阅热度 · ${creatorScore}分`;
-    categoryEl.insertAdjacentElement("afterend", tagEl);
-  }
 
   const sourceEl = node.querySelector(".source");
-  const sourceLabel = sourceSignal(item);
-  setSourceBadge(sourceEl, sourceLabel, sourceSignalTone(sourceLabel), item.source ? `分区: ${item.source}` : "");
-  if (context.source && context.source === item.source) {
-    sourceEl.hidden = true;
-  }
-
-  const primaryLabel = labelText(item);
-  itemTagLabels(item)
-    .filter((label) => label !== primaryLabel)
-    .slice(0, 3)
-    .forEach((label) => {
-      metaRow.insertBefore(itemTagChip(label), sourceEl);
-    });
+  if (sourceEl) sourceEl.hidden = true;
 
   const timeEl = node.querySelector(".time");
   const timeline = timelineIso(item);
