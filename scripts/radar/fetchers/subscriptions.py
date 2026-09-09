@@ -56,6 +56,7 @@ from scripts.radar.common import (
     parse_feed_entries_via_xml,
     parse_iso,
 )
+from scripts.radar.config_runtime import youtube_channel_id_from_locator
 from scripts.radar.github_importance import score_github_commit, score_github_release
 
 try:
@@ -1262,6 +1263,10 @@ def keep_last_youtube_items(
             continue
         if "youtube.com/" not in lowered and "youtu.be/" not in lowered:
             continue
+        channel_id = str(record.get("youtube_channel_id") or "").strip() or youtube_channel_id_from_locator(feed_url)
+        meta = {"feed_url": feed_url, "keep_last": True}
+        if channel_id:
+            meta["youtube_channel_id"] = channel_id
         rows.append(
             RawItem(
                 site_id="opmlrss",
@@ -1270,7 +1275,7 @@ def keep_last_youtube_items(
                 title=title,
                 url=url,
                 published_at=parse_iso(str(record.get("published_at") or "") or None),
-                meta={"feed_url": feed_url, "keep_last": True},
+                meta=meta,
             )
         )
     rows.sort(key=lambda item: item.published_at or datetime.min.replace(tzinfo=UTC), reverse=True)
@@ -1320,6 +1325,7 @@ def fetch_opml_rss(
     opml_path: Path,
     max_feeds: int = 0,
     existing_source_keys: frozenset[tuple[str, str]] | set[tuple[str, str]] | None = None,
+    existing_member_ids: frozenset[tuple[str, str]] | set[tuple[str, str]] | None = None,
     archive: dict[str, dict[str, Any]] | None = None,
     sleeper: Any | None = None,
 ) -> tuple[list[RawItem], dict[str, Any], list[dict[str, Any]]]:
@@ -1425,6 +1431,15 @@ def fetch_opml_rss(
                     )
                     if not published:
                         continue
+                    youtube_id = youtube_channel_id_from_locator(original_feed_url) or youtube_channel_id_from_locator(
+                        feed_url
+                    )
+                    meta = {
+                        "feed_url": feed_url,
+                        "feed_home": feed.get("html_url") or "",
+                    }
+                    if youtube_id:
+                        meta["youtube_channel_id"] = youtube_id
                     local_items.append(
                         RawItem(
                             site_id="opmlrss",
@@ -1433,10 +1448,7 @@ def fetch_opml_rss(
                             title=title,
                             url=link,
                             published_at=published,
-                            meta={
-                                "feed_url": feed_url,
-                                "feed_home": feed.get("html_url") or "",
-                            },
+                            meta=meta,
                         )
                     )
             else:
@@ -1446,6 +1458,15 @@ def fetch_opml_rss(
                     published = parse_date_any(entry.get("published"), now)
                     if not published:
                         continue
+                    youtube_id = youtube_channel_id_from_locator(original_feed_url) or youtube_channel_id_from_locator(
+                        feed_url
+                    )
+                    meta = {
+                        "feed_url": feed_url,
+                        "feed_home": feed.get("html_url") or "",
+                    }
+                    if youtube_id:
+                        meta["youtube_channel_id"] = youtube_id
                     local_items.append(
                         RawItem(
                             site_id="opmlrss",
@@ -1454,10 +1475,7 @@ def fetch_opml_rss(
                             title=entry.get("title", ""),
                             url=entry.get("link", ""),
                             published_at=published,
-                            meta={
-                                "feed_url": feed_url,
-                                "feed_home": feed.get("html_url") or "",
-                            },
+                            meta=meta,
                         )
                     )
         except Exception as exc:
@@ -1479,12 +1497,20 @@ def fetch_opml_rss(
         if local_items:
             local_items.sort(key=lambda item: item.published_at or datetime.min.replace(tzinfo=UTC), reverse=True)
             backfill_days = first_collect_backfill_days()
-            # 归档里从未出现过的 feed：首采回填，保留窗口内全部条目而非只截最近 5 条。
-            first_collect_backfill = (
-                existing_source_keys is not None
-                and backfill_days > 0
-                and all(("opmlrss", item.source) not in existing_source_keys for item in local_items)
-            )
+            youtube_id = youtube_channel_id_from_locator(original_feed_url) or youtube_channel_id_from_locator(feed_url)
+            if youtube_feed:
+                first_collect_backfill = bool(
+                    youtube_id
+                    and existing_member_ids is not None
+                    and backfill_days > 0
+                    and ("opmlrss", youtube_id) not in existing_member_ids
+                )
+            else:
+                first_collect_backfill = (
+                    existing_source_keys is not None
+                    and backfill_days > 0
+                    and all(("opmlrss", item.source) not in existing_source_keys for item in local_items)
+                )
             if first_collect_backfill:
                 local_items = trim_first_collect_backfill_items(
                     local_items,

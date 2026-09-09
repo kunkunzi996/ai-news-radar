@@ -771,6 +771,7 @@ def maybe_fetch_bilibili_dynamic(
     session: requests.Session,
     now: datetime,
     existing_source_keys: frozenset[tuple[str, str]] | set[tuple[str, str]] | None = None,
+    existing_member_ids: frozenset[tuple[str, str]] | set[tuple[str, str]] | None = None,
 ) -> tuple[list[RawItem], dict[str, Any]]:
     status = bilibili_dynamic_status_base()
     if not status["enabled"]:
@@ -817,10 +818,11 @@ def maybe_fetch_bilibili_dynamic(
                 deferred_count += 1
                 account_statuses.append(account_status)
                 continue
-            # 归档里从未出现过的 UP 主：首采回填，放宽单账号条数和翻页上限。
-            first_collect_backfill = (
-                existing_source_keys is not None
-                and ("bilibili_dynamic", source_name) not in existing_source_keys
+            # 归档里从未出现过的 UP 主：按 uid 认人。没有 uid 不扒历史。
+            first_collect_backfill = bool(
+                uid
+                and existing_member_ids is not None
+                and ("bilibili_dynamic", uid) not in existing_member_ids
             )
             account_max_items = int(status["max_items_per_account"])
             account_max_pages = int(status["max_pages"])

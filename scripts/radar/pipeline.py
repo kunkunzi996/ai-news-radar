@@ -17,9 +17,12 @@ import requests
 
 from scripts.ai_relevance import add_ai_relevance_fields, score_ai_relevance
 from scripts.radar.config_runtime import (
+    MEMBER_ID_SITE_IDS,
     SubscriptionAllowlist,
+    item_collect_key,
     managed_github_repo_sources,
     normalize_repo_identity,
+    subscription_member_id,
 )
 from scripts.radar.common import (
     CREATOR_FRESHNESS_BONUS_HOURS,
@@ -28,7 +31,6 @@ from scripts.radar.common import (
     CREATOR_SITE_IDS,
     GITHUB_REPO_SUBSCRIPTION_SITE_ID,
     MAOBIDAO_WECHAT_SITE_ID,
-    MEDIACRAWLER_DOUYIN_SITE_ID,
     RawItem,
     SUBSCRIPTION_TEXT_MARKERS,
     SUBSCRIPTION_URL_MARKERS,
@@ -165,17 +167,17 @@ def filter_archive_by_subscriptions(
     for item_id, record in archive.items():
         site_id = str(record.get("site_id") or "")
         allowed = allowed_by_site.get(site_id)
-        if not allowed or not (allowed.names or allowed.sec_uids):
+        if not allowed or not (allowed.names or allowed.ids):
             continue
 
-        if site_id == MEDIACRAWLER_DOUYIN_SITE_ID:
-            # 抖音昵称会变化，也可能和面板备注不同；没有精确 ID 时宁可不删。
-            if not allowed.sec_uids:
+        if site_id in MEMBER_ID_SITE_IDS:
+            # 名称型通道按稳定 ID 认人；没有 ID 时宁可不删。
+            if not allowed.ids:
                 continue
-            sec_uid = str(record.get("douyin_sec_user_id") or "").strip()
-            if not sec_uid:
+            member_id = subscription_member_id(record)
+            if not member_id:
                 continue
-            if sec_uid in allowed.sec_uids:
+            if member_id in allowed.ids:
                 matched_by_site[site_id] += 1
                 continue
         elif str(record.get("source") or "") in allowed.names:
@@ -455,9 +457,9 @@ def filter_raw_items_by_collect_window(
     first_collect_source_keys: set[tuple[str, str]] = set()
     if backfill_start is not None:
         first_collect_source_keys = {
-            (item.site_id, item.source)
+            item_collect_key(item)
             for item in raw_items
-            if not existing_source_counts.get((item.site_id, item.source))
+            if not existing_source_counts.get(item_collect_key(item))
         }
     filtered: list[RawItem] = []
     skipped = 0
@@ -467,7 +469,7 @@ def filter_raw_items_by_collect_window(
         ):
             filtered.append(item)
             continue
-        source_key = (item.site_id, item.source)
+        source_key = item_collect_key(item)
         existing_count = int((existing_source_counts or {}).get(source_key, 0))
         if existing_source_counts is not None and existing_count < seed_min_items_per_source:
             filtered.append(item)
@@ -553,7 +555,12 @@ def prepare_github_items_for_collection_window(
 def archive_source_counts(archive: dict[str, dict[str, Any]]) -> dict[tuple[str, str], int]:
     counts: dict[tuple[str, str], int] = {}
     for record in archive.values():
-        key = (str(record.get("site_id") or ""), str(record.get("source") or ""))
+        member_id = subscription_member_id(record)
+        site_id = str(record.get("site_id") or "")
+        if member_id and site_id:
+            key = (site_id, member_id)
+        else:
+            key = (site_id, str(record.get("source") or ""))
         if not key[0] and not key[1]:
             continue
         counts[key] = counts.get(key, 0) + 1

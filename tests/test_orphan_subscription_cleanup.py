@@ -18,8 +18,8 @@ import scripts.radar.pipeline as pipeline_module
 from scripts.radar.cli import apply_we_mp_subscription_cleanup, ensure_we_mp_cleanup_audit_status
 
 
-def allowlist(*names: str, sec_uids: tuple[str, ...] = ()) -> SubscriptionAllowlist:
-    return SubscriptionAllowlist(frozenset(names), frozenset(sec_uids))
+def allowlist(*names: str, sec_uids: tuple[str, ...] = (), ids: tuple[str, ...] = ()) -> SubscriptionAllowlist:
+    return SubscriptionAllowlist(frozenset(names), frozenset(ids or sec_uids))
 
 
 class OrphanSubscriptionCleanupTests(unittest.TestCase):
@@ -46,14 +46,15 @@ class OrphanSubscriptionCleanupTests(unittest.TestCase):
 
     def test_bilibili_removes_only_unsubscribed_author(self):
         archive = {
-            "kept": {"site_id": "bilibili_dynamic", "source": "保留UP"},
-            "removed": {"site_id": "bilibili_dynamic", "source": "已取消UP"},
+            "kept": {"site_id": "bilibili_dynamic", "source": "保留UP", "bilibili_uid": "uid-kept"},
+            "removed": {"site_id": "bilibili_dynamic", "source": "已取消UP", "bilibili_uid": "uid-removed"},
+            "legacy": {"site_id": "bilibili_dynamic", "source": "没有ID的老条目"},
             "other": {"site_id": "opmlrss", "source": "Wired AI"},
         }
         kept, removed, fused = filter_archive_by_subscriptions(
-            archive, {"bilibili_dynamic": allowlist("保留UP", "另一UP")}
+            archive, {"bilibili_dynamic": allowlist("保留UP", "另一UP", ids=("uid-kept",))}
         )
-        self.assertEqual(set(kept), {"kept", "other"})
+        self.assertEqual(set(kept), {"kept", "legacy", "other"})
         self.assertEqual(removed, {("bilibili_dynamic", "已取消UP"): 1})
         self.assertEqual(fused, [])
 
@@ -89,11 +90,15 @@ class OrphanSubscriptionCleanupTests(unittest.TestCase):
 
     def test_large_normal_removal_is_not_fused_when_some_items_match(self):
         archive = {
-            str(index): {"site_id": "bilibili_dynamic", "source": "保留UP" if index < 2 else f"取消{index}"}
+            str(index): {
+                "site_id": "bilibili_dynamic",
+                "source": "保留UP" if index < 2 else f"取消{index}",
+                "bilibili_uid": "uid-kept" if index < 2 else f"uid-{index}",
+            }
             for index in range(10)
         }
         kept, removed, fused = filter_archive_by_subscriptions(
-            archive, {"bilibili_dynamic": allowlist("保留UP")}
+            archive, {"bilibili_dynamic": allowlist("保留UP", ids=("uid-kept",))}
         )
         self.assertEqual(len(kept), 2)
         self.assertEqual(sum(removed.values()), 8)
@@ -101,11 +106,15 @@ class OrphanSubscriptionCleanupTests(unittest.TestCase):
 
     def test_zero_match_fuses_mismatched_channel(self):
         archive = {
-            str(index): {"site_id": "bilibili_dynamic", "source": "作者A" if index < 5 else "作者B"}
+            str(index): {
+                "site_id": "bilibili_dynamic",
+                "source": "作者A" if index < 5 else "作者B",
+                "bilibili_uid": "uid-a" if index < 5 else "uid-b",
+            }
             for index in range(10)
         }
         kept, removed, fused = filter_archive_by_subscriptions(
-            archive, {"bilibili_dynamic": allowlist("作者A,作者B")}
+            archive, {"bilibili_dynamic": allowlist("作者A,作者B", ids=("uid-c",))}
         )
         self.assertIs(kept, archive)
         self.assertEqual(removed, {})
@@ -113,11 +122,15 @@ class OrphanSubscriptionCleanupTests(unittest.TestCase):
 
     def test_force_bypasses_zero_match_fuse(self):
         archive = {
-            str(index): {"site_id": "bilibili_dynamic", "source": "作者A" if index < 5 else "作者B"}
+            str(index): {
+                "site_id": "bilibili_dynamic",
+                "source": "作者A" if index < 5 else "作者B",
+                "bilibili_uid": "uid-a" if index < 5 else "uid-b",
+            }
             for index in range(10)
         }
         kept, removed, fused = filter_archive_by_subscriptions(
-            archive, {"bilibili_dynamic": allowlist("作者A,作者B")}, force=True
+            archive, {"bilibili_dynamic": allowlist("作者A,作者B", ids=("uid-c",))}, force=True
         )
         self.assertEqual(kept, {})
         self.assertEqual(sum(removed.values()), 10)
@@ -152,7 +165,7 @@ class OrphanSubscriptionCleanupTests(unittest.TestCase):
         config = {
             "mode": "online-public-source-config",
             "sources": [
-                {"type": "bilibili_dynamic", "target": "启用UP", "enabled": True},
+                {"type": "bilibili_dynamic", "target": "启用UP", "locator": "uid-1", "enabled": True},
                 {"type": "bilibili_dynamic", "target": "禁用UP", "enabled": False},
                 {
                     "type": "mediacrawler_jsonl",
@@ -167,9 +180,68 @@ class OrphanSubscriptionCleanupTests(unittest.TestCase):
         self.assertEqual(
             source_config_enabled_subscription_names(config),
             {
-                "bilibili_dynamic": allowlist("启用UP"),
+                "bilibili_dynamic": allowlist("启用UP", ids=("uid-1",)),
                 "mediacrawler_douyin": allowlist("备注名", sec_uids=("sec-123",)),
             },
+        )
+
+    def test_renamed_bilibili_member_is_not_first_collect(self):
+        from scripts.radar.config_runtime import archive_member_ids
+
+        archive = {
+            "old": {
+                "site_id": "bilibili_dynamic",
+                "source": "旧昵称",
+                "bilibili_uid": "uid-1",
+            }
+        }
+        self.assertEqual(archive_member_ids(archive), frozenset({("bilibili_dynamic", "uid-1")}))
+
+    def test_github_collect_key_stays_display_name(self):
+        from datetime import datetime, timezone
+        from scripts.radar.common import GITHUB_REPO_SUBSCRIPTION_SITE_ID, RawItem
+        from scripts.radar.config_runtime import item_collect_key
+
+        item = RawItem(
+            site_id=GITHUB_REPO_SUBSCRIPTION_SITE_ID,
+            site_name="GitHub",
+            source="owner/repo",
+            title="v1",
+            url="https://github.com/owner/repo/releases/tag/v1",
+            published_at=datetime(2026, 1, 1, tzinfo=timezone.utc),
+            meta={"github_repo_identity": "123"},
+        )
+        self.assertEqual(item_collect_key(item), (GITHUB_REPO_SUBSCRIPTION_SITE_ID, "owner/repo"))
+
+    def test_save_cleanup_uses_bilibili_uid_not_display_name(self):
+        from scripts.radar.server.subscriptions_store import is_item_orphaned, alive_source_names_by_site
+
+        config = {
+            "sources": [
+                {
+                    "id": "b1",
+                    "type": "bilibili_dynamic",
+                    "target": "新昵称",
+                    "locator": "uid-1",
+                    "enabled": True,
+                }
+            ]
+        }
+        alive = alive_source_names_by_site(config)
+        self.assertFalse(
+            is_item_orphaned(
+                {"site_id": "bilibili_dynamic", "source": "旧昵称", "bilibili_uid": "uid-1"},
+                alive,
+            )
+        )
+        self.assertTrue(
+            is_item_orphaned(
+                {"site_id": "bilibili_dynamic", "source": "新昵称", "bilibili_uid": "uid-gone"},
+                alive,
+            )
+        )
+        self.assertFalse(
+            is_item_orphaned({"site_id": "bilibili_dynamic", "source": "旧昵称"}, alive)
         )
 
     def test_wechat_hard_delete_is_id_only_and_status_zero_is_retained(self):
