@@ -262,10 +262,6 @@
     }
   }
 
-  window.addEventListener("message", (event) => {
-    if (event.source !== window.parent) return;
-    handleHostExploration(event.data);
-  });
   if (window.WorkbenchBridge && typeof window.WorkbenchBridge.addHostMessageListener === "function") {
     window.WorkbenchBridge.addHostMessageListener(handleHostExploration);
   }

@@ -490,6 +490,69 @@ test.describe("工作台收藏桥", () => {
     expect(errors).toEqual([]);
   });
 
+  test("握手不依赖 renderList", async ({ page }) => {
+    const errors = collectErrors(page);
+    await installRadarFixture(page);
+    await page.goto(PARENT_ORIGIN);
+    const radar = page.frameLocator("#radar");
+    await expect.poll(() => page.evaluate(() => window.__workbench.events().some((event) => event.type === "radar-ready"))).toBe(true);
+    await radar.locator("body").evaluate(() => {
+      window.renderList = function () {};
+    });
+    await page.evaluate(() => window.__workbench.hello());
+    await expect.poll(() => radar.locator("body").evaluate(() => window.WorkbenchBridge.connected())).toBe(true);
+    expect(errors).toEqual([]);
+  });
+
+  test("探索细条不接受未过桥的裸 message", async ({ page }) => {
+    const subscriptionItems = Array.from({ length: 6 }, (_, index) => ({
+      ...FIRST_ITEM,
+      id: `explore-bare-${index + 1}`,
+      title: `订阅资讯 ${index + 1}`,
+      url: `https://www.bilibili.com/video/explore-bare-${index + 1}`,
+      published_at: `2026-07-17T0${9 - index}:00:00+08:00`,
+      first_seen_at: `2026-07-17T0${9 - index}:00:00+08:00`,
+    }));
+    workbenchRadarState = {
+      ...SYNC_STATE,
+      readKeys: [],
+      view: {
+        ...SYNC_STATE.view,
+        activeSection: "creator",
+        query: "",
+        listSort: "time",
+        timeRangeFilter: "all",
+        sourceTypeFilter: "",
+        signalLevelFilter: "",
+        siteFilter: "",
+        mode: "all",
+        allDedup: true,
+        readFilter: "unread",
+      },
+    };
+    try {
+      const errors = collectErrors(page);
+      await installRadarFixture(page, subscriptionItems);
+      await page.goto(PARENT_ORIGIN);
+      const radar = page.frameLocator("#radar");
+      await expect(radar.locator("#newsList .news-card")).toHaveCount(6);
+      await page.evaluate(() => window.__workbench.hello());
+      await expect.poll(() => radar.locator("body").evaluate(() => window.WorkbenchBridge.connected())).toBe(true);
+      await page.evaluate(() => {
+        const frame = document.getElementById("radar");
+        frame.contentWindow.postMessage({
+          type: "radar-exploration-state",
+          items: [{ id: "bare-1", title: "裸消息探索信号", url: "https://example.test/bare" }],
+        }, "*");
+      });
+      await expect(radar.getByText("探索信号")).toHaveCount(0);
+      await expect(radar.getByText("裸消息探索信号")).toHaveCount(0);
+      expect(errors).toEqual([]);
+    } finally {
+      workbenchRadarState = null;
+    }
+  });
+
   test("握手分别拒绝错误来源和错误窗口，仅接受真实父窗口", async ({ page }) => {
     const errors = collectErrors(page);
     await installRadarFixture(page);

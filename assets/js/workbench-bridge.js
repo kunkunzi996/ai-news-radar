@@ -397,11 +397,6 @@
       if (sourceTransport === "native") flushQueuedNativeExternalMessages();
       else queuedNativeExternalMessages.length = 0;
       emitHostMessage(data);
-      try {
-        if (typeof rerenderCurrentView === "function") rerenderCurrentView();
-      } catch {
-        // 数据尚未加载完成时接到握手，等 boot 正常渲染即可。
-      }
       return true;
     }
     if (data.type === "radar-exploration-state") {

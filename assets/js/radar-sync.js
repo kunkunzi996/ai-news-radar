@@ -446,7 +446,11 @@
       readOnly = message.readOnly === true;
       authoritativeReadState = false;
       setStatus(canSync() ? "已同步" : "同步暂停", canSync() ? "" : "warn");
-      applyState(message.state).catch(enterSyncUnavailable);
+      if (message.state) {
+        applyState(message.state).catch(enterSyncUnavailable);
+      } else if (dataReady && typeof rerenderCurrentView === "function") {
+        rerenderCurrentView();
+      }
       loadSourceConfigFromHost();
       return;
     }
