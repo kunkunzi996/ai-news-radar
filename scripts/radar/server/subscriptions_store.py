@@ -12,6 +12,13 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
 
+from scripts.radar.common import MEDIACRAWLER_DOUYIN_SITE_ID
+from scripts.radar.config_runtime import (
+    record_is_youtube_member,
+    subscription_member_id,
+    youtube_channel_id_from_locator,
+)
+from scripts.radar.fetchers.mediacrawler import douyin_sec_uid_from_locator
 from scripts.radar.server import OPML_FILENAME
 from scripts.radar.server.common import (
     enabled_source_config_records as enabled_source_config_records,
@@ -239,13 +246,33 @@ def source_identity_names(
             if site_id == "bilibili_dynamic":
                 continue
             record_id = str(source.get("id") or "").strip()
+            locator = str(source.get("locator") or "").strip()
             if site_id == "opmlrss" and source_type == "rss":
                 display = str(source.get("name") or "").strip()
+                identity_key = youtube_channel_id_from_locator(locator) or record_id
+            elif site_id == MEDIACRAWLER_DOUYIN_SITE_ID:
+                display = str(source.get("target") or source.get("name") or "").strip()
+                identity_key = douyin_sec_uid_from_locator(locator) or record_id
             else:
                 display = str(source.get("target") or source.get("name") or "").strip()
-            if record_id and display:
-                identities[site_id][record_id] = display
+                identity_key = record_id
+            if identity_key and display:
+                identities[site_id][identity_key] = display
     return identities
+
+
+def _purge_tokens(site_id: str, mapping: dict[str, str]) -> set[str]:
+    if site_id in {"bilibili_dynamic", MEDIACRAWLER_DOUYIN_SITE_ID}:
+        return set(mapping)
+    if site_id == "opmlrss":
+        tokens: set[str] = set()
+        for key, name in mapping.items():
+            if str(key).startswith("UC"):
+                tokens.add(key)
+            else:
+                tokens.add(name)
+        return tokens
+    return set(mapping.values())
 
 
 def alive_source_names_by_site(
@@ -256,11 +283,17 @@ def alive_source_names_by_site(
     previous = source_identity_names(previous_config) if previous_config else {}
     alive: dict[str, set[str]] = {}
     for site_id in PURGE_TRACKED_SITE_IDS:
-        names = set(current.get(site_id, {}).values())
+        tokens = _purge_tokens(site_id, current.get(site_id, {}))
         for identity_key, old_name in previous.get(site_id, {}).items():
-            if identity_key in current.get(site_id, {}):
-                names.add(old_name)
-        alive[site_id] = names
+            if identity_key not in current.get(site_id, {}):
+                continue
+            if site_id in {"bilibili_dynamic", MEDIACRAWLER_DOUYIN_SITE_ID} or (
+                site_id == "opmlrss" and str(identity_key).startswith("UC")
+            ):
+                tokens.add(identity_key)
+            else:
+                tokens.add(old_name)
+        alive[site_id] = tokens
     return alive
 
 
@@ -273,13 +306,18 @@ def deleted_source_names_by_site(
     deleted: dict[str, set[str]] = {}
     for site_id in PURGE_TRACKED_SITE_IDS:
         current_identities = current.get(site_id, {})
-        removed_names = {
-            old_name
-            for identity_key, old_name in previous.get(site_id, {}).items()
-            if identity_key not in current_identities
-        }
-        if removed_names:
-            deleted[site_id] = removed_names
+        removed: set[str] = set()
+        for identity_key, old_name in previous.get(site_id, {}).items():
+            if identity_key in current_identities:
+                continue
+            if site_id in {"bilibili_dynamic", MEDIACRAWLER_DOUYIN_SITE_ID} or (
+                site_id == "opmlrss" and str(identity_key).startswith("UC")
+            ):
+                removed.add(identity_key)
+            else:
+                removed.add(old_name)
+        if removed:
+            deleted[site_id] = removed
     return deleted
 
 
@@ -287,8 +325,25 @@ def is_item_orphaned(record: dict[str, Any], alive_names: dict[str, set[str]]) -
     site_id = str(record.get("site_id") or "").strip()
     if site_id not in alive_names:
         return False
+    member_id = subscription_member_id(record)
+    if member_id:
+        return member_id not in alive_names[site_id]
+    if site_id in {"bilibili_dynamic", MEDIACRAWLER_DOUYIN_SITE_ID} or record_is_youtube_member(record):
+        return False
     source_name = str(record.get("source") or "").strip()
     return source_name not in alive_names[site_id]
+
+
+def _record_matches_tokens(record: dict[str, Any], tokens_by_site: dict[str, set[str]]) -> bool:
+    site_id = str(record.get("site_id") or "").strip()
+    tokens = tokens_by_site.get(site_id, set())
+    member_id = subscription_member_id(record)
+    if member_id:
+        return member_id in tokens
+    if site_id in {"bilibili_dynamic", MEDIACRAWLER_DOUYIN_SITE_ID} or record_is_youtube_member(record):
+        return False
+    source_name = str(record.get("source") or "").strip()
+    return bool(source_name) and source_name in tokens
 
 
 def purge_orphaned_from_flat_list(
@@ -602,9 +657,7 @@ def purge_deleted_source_data(
         deleted_names = deleted_source_names_by_site(config, previous_config)
 
         def should_purge(record: dict[str, Any]) -> bool:
-            site_id = str(record.get("site_id") or "").strip()
-            source_name = str(record.get("source") or "").strip()
-            return source_name in deleted_names.get(site_id, set())
+            return _record_matches_tokens(record, deleted_names)
 
     else:
         alive_names = alive_source_names_by_site(config)
@@ -631,7 +684,7 @@ def orphan_history_preview(root_dir: Path, config: dict[str, Any]) -> list[dict[
     """
     identities = source_identity_names(config, include_disabled=True)
     alive_by_site = {
-        site_id: set(names.values())
+        site_id: _purge_tokens(site_id, names)
         for site_id, names in identities.items()
         if site_id in PREVIEW_ELIGIBLE_SITE_IDS
     }
@@ -656,8 +709,13 @@ def orphan_history_preview(root_dir: Path, config: dict[str, Any]) -> list[dict[
         # 通道不可逐对象识别，或存活名单为空 → 跳过（安全豁免）
         if not alive:
             continue
-        source_name = str(record.get("source") or "").strip()
-        if source_name in alive:
+        if _record_matches_tokens(record, {site_id: alive}):
+            continue
+        if site_id in {"bilibili_dynamic", MEDIACRAWLER_DOUYIN_SITE_ID} or record_is_youtube_member(record):
+            if not subscription_member_id(record):
+                continue
+        source_name = str(record.get("source") or subscription_member_id(record) or "").strip()
+        if not source_name:
             continue
         key = (site_id, source_name)
         entry = grouped.get(key)
@@ -728,9 +786,7 @@ def flush_pending_purge(root_dir: Path) -> dict[str, int]:
             return {}
 
         def should_purge(record: dict[str, Any]) -> bool:
-            site_id = str(record.get("site_id") or "").strip()
-            source_name = str(record.get("source") or "").strip()
-            return source_name in confirmed.get(site_id, set())
+            return _record_matches_tokens(record, confirmed)
 
         summary = purge_matching_source_data(root_dir, should_purge)
         write_pending_purge(root_dir, {})

@@ -59,6 +59,7 @@ from scripts.radar.common import (
 )
 from scripts.radar.config_runtime import (
     apply_source_config_runtime,
+    archive_member_ids,
     github_release_api_url_from_config,
     github_release_repo_label_from_config,
     is_online_panel_config,
@@ -380,6 +381,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
         (str(record.get("site_id") or ""), str(record.get("source") or ""))
         for record in ctx.archive.values()
     )
+    existing_member_ids = archive_member_ids(ctx.archive)
     _collect_log("start")
     if scoped_to_tested_creators:
         raw_items, statuses = [], []
@@ -569,6 +571,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
             session,
             now,
             existing_source_keys=existing_source_keys,
+            existing_member_ids=existing_member_ids,
         )
         if bilibili_dynamic_status.get("enabled"):
             raw_items.extend(bilibili_dynamic_items)
@@ -795,6 +798,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
                 opml_path,
                 max_feeds=max(0, int(args.rss_max_feeds)),
                 existing_source_keys=existing_source_keys,
+                existing_member_ids=existing_member_ids,
                 archive=ctx.archive,
             )
             raw_items.extend(rss_items)

@@ -320,7 +320,7 @@ class LocalServerTests(unittest.TestCase):
             {"sources": [enabled]},
         )
 
-        self.assertEqual(deleted, {"bilibili_dynamic": {"张三"}})
+        self.assertEqual(deleted, {"bilibili_dynamic": {"111"}})
 
     def test_rss_source_uses_name_as_opmlrss_identity(self):
         config = {
@@ -388,7 +388,7 @@ class LocalServerTests(unittest.TestCase):
 
         alive = alive_source_names_by_site(new_config, old_config)
 
-        self.assertEqual(alive["bilibili_dynamic"], {"张三", "李四", "李四改名"})
+        self.assertEqual(alive["bilibili_dynamic"], {"111", "222"})
 
     def test_alive_source_names_by_site_does_not_protect_removed_bilibili_member(self):
         old_config = {
@@ -414,13 +414,18 @@ class LocalServerTests(unittest.TestCase):
 
         alive = alive_source_names_by_site(new_config, old_config)
 
-        self.assertEqual(alive["bilibili_dynamic"], {"张三"})
+        self.assertEqual(alive["bilibili_dynamic"], {"111"})
 
     def test_is_item_orphaned_only_applies_to_tracked_site_ids(self):
-        alive = {"bilibili_dynamic": {"张三"}}
+        alive = {"bilibili_dynamic": {"111"}}
 
-        self.assertTrue(is_item_orphaned({"site_id": "bilibili_dynamic", "source": "李四"}, alive))
-        self.assertFalse(is_item_orphaned({"site_id": "bilibili_dynamic", "source": "张三"}, alive))
+        self.assertTrue(
+            is_item_orphaned({"site_id": "bilibili_dynamic", "source": "李四", "bilibili_uid": "222"}, alive)
+        )
+        self.assertFalse(
+            is_item_orphaned({"site_id": "bilibili_dynamic", "source": "张三", "bilibili_uid": "111"}, alive)
+        )
+        self.assertFalse(is_item_orphaned({"site_id": "bilibili_dynamic", "source": "李四"}, alive))
         self.assertFalse(is_item_orphaned({"site_id": "hackernews", "source": "李四"}, alive))
         self.assertFalse(is_item_orphaned({"site_id": "opmlrss", "source": "李四"}, alive))
 
@@ -428,8 +433,8 @@ class LocalServerTests(unittest.TestCase):
         root = Path(self.create_temp_dir())
         data_dir = root / "data"
         data_dir.mkdir()
-        kept = {"site_id": "bilibili_dynamic", "source": "张三", "title": "保留"}
-        deleted = {"site_id": "bilibili_dynamic", "source": "李四", "title": "删除"}
+        kept = {"site_id": "bilibili_dynamic", "source": "张三", "title": "保留", "bilibili_uid": "111"}
+        deleted = {"site_id": "bilibili_dynamic", "source": "李四", "title": "删除", "bilibili_uid": "222"}
         unrelated = {"site_id": "hackernews", "source": "李四", "title": "无关"}
         config = {
             "sources": [
@@ -438,6 +443,7 @@ class LocalServerTests(unittest.TestCase):
                     "name": "B站动态",
                     "type": "bilibili_dynamic",
                     "target": "张三",
+                    "locator": "111",
                 }
             ]
         }
@@ -851,14 +857,14 @@ class LocalServerTests(unittest.TestCase):
         ]
         write_online_source_config(root, {"sources": sources})
         data_dir = root / "data"
-        data_dir.mkdir()
+        data_dir.mkdir(exist_ok=True)
         archive_path = data_dir / "archive.json"
         archive_path.write_text(
             json.dumps(
                 {
                     "items": [
-                        {"site_id": "bilibili_dynamic", "source": "张三", "title": "保留"},
-                        {"site_id": "bilibili_dynamic", "source": "李四", "title": "删除"},
+                        {"site_id": "bilibili_dynamic", "source": "张三", "title": "保留", "bilibili_uid": "111"},
+                        {"site_id": "bilibili_dynamic", "source": "李四", "title": "删除", "bilibili_uid": "222"},
                         {"site_id": "mediacrawler_xhs", "source": "未在线上配置管理", "title": "不误伤"},
                     ],
                     "total_items": 3,
@@ -892,8 +898,8 @@ class LocalServerTests(unittest.TestCase):
             REFRESH_LOCK.release()
 
         pending = json.loads((root / "data" / "pending-purge.json").read_text(encoding="utf-8"))
-        self.assertEqual(result["purged_items"]["deferred"], {"bilibili_dynamic": ["李四"]})
-        self.assertEqual(pending["sources"], {"bilibili_dynamic": ["李四"]})
+        self.assertEqual(result["purged_items"]["deferred"], {"bilibili_dynamic": ["222"]})
+        self.assertEqual(pending["sources"], {"bilibili_dynamic": ["222"]})
 
     def test_transactional_save_queues_purge_before_write_and_cancels_it_on_failure(self):
         sources = [
@@ -906,7 +912,7 @@ class LocalServerTests(unittest.TestCase):
             json.dumps(
                 {
                     "items": [
-                        {"site_id": "bilibili_dynamic", "source": "李四", "title": "必须保留"}
+                        {"site_id": "bilibili_dynamic", "source": "李四", "bilibili_uid": "222", "title": "必须保留"}
                     ],
                     "total_items": 1,
                 },
@@ -1004,11 +1010,11 @@ class LocalServerTests(unittest.TestCase):
             "sources": [{"id": "b", "type": "bilibili_dynamic", "target": "乙", "locator": "2"}]
         }
 
-        queue_pending_purge(root, {"bilibili_dynamic": {"甲"}}, config_b)
-        queue_pending_purge(root, {"bilibili_dynamic": {"乙"}}, {"sources": []})
+        queue_pending_purge(root, {"bilibili_dynamic": {"1"}}, config_b)
+        queue_pending_purge(root, {"bilibili_dynamic": {"2"}}, {"sources": []})
 
         pending = json.loads((root / "data" / "pending-purge.json").read_text(encoding="utf-8"))
-        self.assertEqual(pending["sources"], {"bilibili_dynamic": ["乙", "甲"]})
+        self.assertEqual(pending["sources"], {"bilibili_dynamic": ["1", "2"]})
 
     def test_flush_pending_purge_removes_history_and_clears_ledger(self):
         root = Path(self.create_temp_dir())
@@ -1021,14 +1027,14 @@ class LocalServerTests(unittest.TestCase):
         (data_dir / "archive.json").write_text(
             json.dumps(
                 {
-                    "items": [{"site_id": "bilibili_dynamic", "source": "甲", "title": "待清理"}],
+                    "items": [{"site_id": "bilibili_dynamic", "source": "甲", "bilibili_uid": "1", "title": "待清理"}],
                     "total_items": 1,
                 },
                 ensure_ascii=False,
             ),
             encoding="utf-8",
         )
-        queue_pending_purge(root, {"bilibili_dynamic": {"甲"}}, {"sources": []})
+        queue_pending_purge(root, {"bilibili_dynamic": {"1"}}, {"sources": []})
 
         summary = flush_pending_purge(root)
 
@@ -1054,14 +1060,14 @@ class LocalServerTests(unittest.TestCase):
         (data_dir / "archive.json").write_text(
             json.dumps(
                 {
-                    "items": [{"site_id": "bilibili_dynamic", "source": "甲", "title": "必须保留"}],
+                    "items": [{"site_id": "bilibili_dynamic", "source": "甲", "bilibili_uid": "1", "title": "必须保留"}],
                     "total_items": 1,
                 },
                 ensure_ascii=False,
             ),
             encoding="utf-8",
         )
-        queue_pending_purge(root, {"bilibili_dynamic": {"甲"}}, {"sources": []})
+        queue_pending_purge(root, {"bilibili_dynamic": {"1"}}, {"sources": []})
 
         summary = flush_pending_purge(root)
 

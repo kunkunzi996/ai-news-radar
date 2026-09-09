@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
-from urllib.parse import urlparse
+from urllib.parse import parse_qs, urlparse
 
 from scripts.radar.common import (
     DEPLOYED_SOURCE_SCOPE_DEFAULT,
@@ -28,6 +28,7 @@ from scripts.radar.common import (
     WE_MP_RSS_JSONL_SITE_ID,
     WE_MP_RSS_SITE_ID,
     WEWE_RSS_SITE_ID,
+    RawItem,
     env_flag,
     env_int,
     iso,
@@ -363,12 +364,99 @@ def is_online_panel_config(config: dict[str, Any] | None) -> bool:
     return str(config.get("mode") or "").strip() == ONLINE_PANEL_CONFIG_MODE
 
 
+MEMBER_ID_SITE_IDS = frozenset({"bilibili_dynamic", MEDIACRAWLER_DOUYIN_SITE_ID})
+
+
+def youtube_channel_id_from_locator(locator: str) -> str:
+    parsed = urlparse(str(locator or "").strip())
+    host = parsed.netloc.lower().split(":")[0]
+    if host != "youtube.com" and not host.endswith(".youtube.com"):
+        return ""
+    if "/feeds/videos.xml" not in parsed.path.lower():
+        return ""
+    values = parse_qs(parsed.query).get("channel_id") or []
+    return str(values[0] or "").strip() if values else ""
+
+
+def subscription_member_id(record: Any) -> str:
+    """归档条目或 RawItem 上的订阅成员稳定 ID。没有就空串。"""
+    if isinstance(record, RawItem):
+        site_id = str(record.site_id or "").strip()
+        meta = record.meta if isinstance(record.meta, dict) else {}
+        douyin_id = str(meta.get("douyin_sec_user_id") or "").strip()
+        bili_id = str(meta.get("bilibili_uid") or "").strip()
+        youtube_id = str(meta.get("youtube_channel_id") or "").strip()
+        feed_url = str(meta.get("feed_url") or "").strip()
+    elif isinstance(record, dict):
+        site_id = str(record.get("site_id") or "").strip()
+        meta = record.get("meta") if isinstance(record.get("meta"), dict) else {}
+        douyin_id = str(record.get("douyin_sec_user_id") or meta.get("douyin_sec_user_id") or "").strip()
+        bili_id = str(record.get("bilibili_uid") or meta.get("bilibili_uid") or "").strip()
+        youtube_id = str(record.get("youtube_channel_id") or meta.get("youtube_channel_id") or "").strip()
+        feed_url = str(record.get("feed_url") or meta.get("feed_url") or "").strip()
+    else:
+        return ""
+    if site_id == MEDIACRAWLER_DOUYIN_SITE_ID:
+        return douyin_id
+    if site_id == "bilibili_dynamic":
+        return bili_id
+    if site_id == "opmlrss":
+        return youtube_id or youtube_channel_id_from_locator(feed_url)
+    return ""
+
+
+def archive_member_ids(archive: dict[str, dict[str, Any]] | None) -> frozenset[tuple[str, str]]:
+    keys: set[tuple[str, str]] = set()
+    for record in (archive or {}).values():
+        if not isinstance(record, dict):
+            continue
+        member_id = subscription_member_id(record)
+        site_id = str(record.get("site_id") or "").strip()
+        if member_id and site_id:
+            keys.add((site_id, member_id))
+    return frozenset(keys)
+
+
+def item_collect_key(item: RawItem) -> tuple[str, str]:
+    member_id = subscription_member_id(item)
+    if member_id:
+        return (item.site_id, member_id)
+    return (item.site_id, item.source)
+
+
+def record_is_youtube_member(record: Any) -> bool:
+    if subscription_member_id(record):
+        site_id = record.site_id if isinstance(record, RawItem) else str(record.get("site_id") or "")
+        if str(site_id) == "opmlrss":
+            return True
+    if isinstance(record, RawItem):
+        url = str(record.url or "")
+        meta = record.meta if isinstance(record.meta, dict) else {}
+        feed_url = str(meta.get("feed_url") or "")
+        site_id = str(record.site_id or "")
+    elif isinstance(record, dict):
+        url = str(record.get("url") or "")
+        meta = record.get("meta") if isinstance(record.get("meta"), dict) else {}
+        feed_url = str(record.get("feed_url") or meta.get("feed_url") or "")
+        site_id = str(record.get("site_id") or "")
+    else:
+        return False
+    if site_id != "opmlrss":
+        return False
+    lowered = f"{url} {feed_url}".lower()
+    return "youtube.com/" in lowered or "youtu.be/" in lowered
+
+
 @dataclass(frozen=True)
 class SubscriptionAllowlist:
-    """某通道仍在订阅的显示名和抖音 sec_uid。"""
+    """某通道仍在订阅的成员：显示名，以及名称型通道的稳定 ID。"""
 
     names: frozenset[str]
-    sec_uids: frozenset[str]
+    ids: frozenset[str] = frozenset()
+
+    @property
+    def sec_uids(self) -> frozenset[str]:
+        return self.ids
 
 
 def source_config_enabled_subscription_names(
@@ -379,25 +467,28 @@ def source_config_enabled_subscription_names(
         return {}
 
     names_by_site: dict[str, set[str]] = {}
-    sec_uids_by_site: dict[str, set[str]] = {}
+    ids_by_site: dict[str, set[str]] = {}
     for source in source_config_enabled_sources(config):
         for site_id in source_config_record_site_ids(source):
             if site_id not in ENUMERABLE_SUBSCRIPTION_SITE_IDS:
                 continue
             name = str(source.get("target") or source.get("name") or "").strip()
+            locator = str(source.get("locator") or "").strip()
             if name:
                 names_by_site.setdefault(site_id, set()).add(name)
             if site_id == MEDIACRAWLER_DOUYIN_SITE_ID:
-                sec_uid = douyin_sec_uid_from_locator(str(source.get("locator") or ""))
+                sec_uid = douyin_sec_uid_from_locator(locator)
                 if sec_uid:
-                    sec_uids_by_site.setdefault(site_id, set()).add(sec_uid)
+                    ids_by_site.setdefault(site_id, set()).add(sec_uid)
+            elif site_id == "bilibili_dynamic" and locator:
+                ids_by_site.setdefault(site_id, set()).add(locator)
 
     return {
         site_id: SubscriptionAllowlist(
             names=frozenset(names_by_site.get(site_id) or ()),
-            sec_uids=frozenset(sec_uids_by_site.get(site_id) or ()),
+            ids=frozenset(ids_by_site.get(site_id) or ()),
         )
-        for site_id in set(names_by_site) | set(sec_uids_by_site)
+        for site_id in set(names_by_site) | set(ids_by_site)
     }
 
 

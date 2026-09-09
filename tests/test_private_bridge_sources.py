@@ -129,18 +129,57 @@ class PrivateBridgeSourceTests(unittest.TestCase):
                     now,
                     opml,
                     existing_source_keys=frozenset({("opmlrss", "Test YouTube")}),
+                    existing_member_ids=frozenset({("opmlrss", "test")}),
                 )
                 # 归档中从未出现过：首采回填保留 60 天内全部 8 条。
                 new_items, _, new_statuses = fetch_opml_rss(
                     now,
                     opml,
                     existing_source_keys=frozenset(),
+                    existing_member_ids=frozenset(),
                 )
 
         self.assertEqual(len(known_items), 5)
         self.assertFalse(known_statuses[0]["first_collect_backfill"])
         self.assertEqual(len(new_items), 8)
         self.assertTrue(new_statuses[0]["first_collect_backfill"])
+        self.assertEqual(new_items[0].meta.get("youtube_channel_id"), "test")
+
+    def test_youtube_rename_same_channel_id_is_not_first_collect(self):
+        class Response:
+            def __init__(self, text: str):
+                self.text = text
+                self.content = text.encode("utf-8")
+
+            def raise_for_status(self) -> None:
+                return None
+
+        now = datetime(2026, 7, 6, tzinfo=timezone.utc)
+        rss = """<rss><channel><title>Renamed YouTube</title>
+            <item><title>Video 1</title><link>https://www.youtube.com/watch?v=1</link>
+            <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate></item></channel></rss>"""
+        with tempfile.TemporaryDirectory() as tmp:
+            opml = Path(tmp) / "follow.opml"
+            opml.write_text(
+                """<?xml version="1.0" encoding="UTF-8"?>
+                <opml version="1.0"><body>
+                  <outline text="Renamed YouTube" title="Renamed YouTube" type="rss"
+                    xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=test" />
+                </body></opml>
+                """,
+                encoding="utf-8",
+            )
+            with patch("scripts.radar.fetchers.subscriptions.requests.get", return_value=Response(rss)):
+                items, _, statuses = fetch_opml_rss(
+                    now,
+                    opml,
+                    existing_source_keys=frozenset(),
+                    existing_member_ids=frozenset({("opmlrss", "test")}),
+                )
+
+        self.assertEqual(len(items), 1)
+        self.assertFalse(statuses[0]["first_collect_backfill"])
+        self.assertEqual(items[0].meta.get("youtube_channel_id"), "test")
 
     def test_youtube_rss_retries_transient_404_then_succeeds(self):
         class FakeResp:
@@ -1657,7 +1696,9 @@ class BilibiliSpaceVideoFallbackTests(unittest.TestCase):
         now = datetime(2026, 9, 8, tzinfo=timezone.utc)
         session = FakeSession()
         with patch.dict(os.environ, env, clear=True):
-            items, status = maybe_fetch_bilibili_dynamic(session, now, existing_source_keys=set())
+            items, status = maybe_fetch_bilibili_dynamic(
+                session, now, existing_source_keys=set(), existing_member_ids=set()
+            )
 
         self.assertEqual(len(items), 1)
         self.assertEqual(items[0].title, "Obsidian 智能体插件完整教程")
@@ -1743,7 +1784,9 @@ class BilibiliCollectBudgetTests(unittest.TestCase):
         }
         now = datetime(2026, 8, 26, tzinfo=timezone.utc)
         with patch.dict(os.environ, env, clear=True):
-            items, status = maybe_fetch_bilibili_dynamic(HangSession(), now, existing_source_keys=set())
+            items, status = maybe_fetch_bilibili_dynamic(
+                HangSession(), now, existing_source_keys=set(), existing_member_ids=set()
+            )
 
         skipped = [
             account

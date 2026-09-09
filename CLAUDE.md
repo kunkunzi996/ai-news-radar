@@ -37,6 +37,7 @@ YouTube 订阅成员、已阅计数键、脚本 `?v=` / 工作台 `wb=` 见 `AGE
 3. 往 `PURGE_TRACKED_SITE_IDS` 加 site_id 前，该 type 必须先能被 `source_identity_names()` 认出。
 4. 容器型记录（`type: opmlrss` 订阅包、逗号串 B 站 target）不是订阅对象。
 5. `data/pending-purge.json` 补做前必须用当前配置复核；源已加回则划掉、拒绝清理。
+6. 抖音 / B 站 / 油管的首采和清理必须问稳定 ID（sec_uid / uid / channel_id），禁止用昵称认人。没有 ID 的旧条目宁可不删、不扒历史。微信、GitHub 仍走各自窄例外。
 
 回滚只用各自 `scripts/restore_*.py` 按 ID 回插，禁止用旧 `archive.json` 整文件覆盖。
 

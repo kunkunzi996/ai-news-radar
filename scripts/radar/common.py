@@ -501,7 +501,9 @@ PUBLIC_RAW_META_FIELDS: tuple[str, ...] = (
     "bilibili_dynamic_id",
     "bilibili_opus_id",
     "creator_metrics",
+    "bilibili_uid",
     "douyin_sec_user_id",
+    "youtube_channel_id",
     "search_surface",
     "summary",
     # GitHub 订阅只保留可验证的最小身份字段，不把原始 API 对象落盘。
