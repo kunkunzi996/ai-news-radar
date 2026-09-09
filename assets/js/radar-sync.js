@@ -96,11 +96,7 @@
   }
 
   function stableReadKey(item) {
-    const url = normalizedUrl(item?.url || item?.primary_url);
-    if (url) return url;
-    const siteId = String(item?.site_id || "").trim();
-    const itemId = String(item?.id || item?.bilibili_dynamic_id || item?.bilibili_opus_id || "").trim();
-    return siteId && itemId ? `source:${siteId}:${itemId}` : "";
+    return typeof workbenchReadKey === "function" ? workbenchReadKey(item) : normalizedUrl(item?.url || item?.primary_url);
   }
 
   function allLoadedItems() {
@@ -139,8 +135,6 @@
       const host = stableReadKey(item);
       if (!host || !serverReadKeys.has(host)) return;
       state.readItemIds.add(host);
-      const url = item.url || item.primary_url;
-      if (url) state.readItemIds.add(`url:${url}`);
     });
     persistReadItemIds();
   }
@@ -150,12 +144,9 @@
     if (!(justMarked instanceof Set) || !justMarked.size) return;
     allLoadedItems().forEach((item) => {
       const hostKey = stableReadKey(item);
-      const keys = typeof readTrackingKeys === "function" ? readTrackingKeys(item) : new Set();
-      const hit = (hostKey && justMarked.has(hostKey))
-        || Array.from(keys).some((key) => justMarked.has(key));
-      if (!hit) return;
-      if (hostKey) serverReadKeys.add(hostKey);
-      keys.forEach((key) => state.readItemIds.add(key));
+      if (!hostKey || !justMarked.has(hostKey)) return;
+      serverReadKeys.add(hostKey);
+      state.readItemIds.add(hostKey);
     });
     persistReadItemIds();
   }

@@ -21,7 +21,7 @@ Project iron rules:
 微信公众号历史仍可看，不再采集。`AI_RELEVANCE_THRESHOLD` 缺省 `0.65`，生产为 `0`。
 不要为了「填满 AI 主榜」加公开新闻源。加源优先官方 RSS/Atom/OPML。
 
-YouTube 订阅成员、已阅计数键、脚本 `?v=` / 工作台 `wb=` 见 `AGENTS.md`。
+YouTube 订阅成员、脚本 `?v=` / 工作台 `wb=` 见 `AGENTS.md`。已阅的判定、写入、计数都问工作台链接键，见 `docs/adr/0004-read-status-link-key.md`。
 
 ## 禁区索引
 

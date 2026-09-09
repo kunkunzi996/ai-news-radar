@@ -148,7 +148,7 @@ function buildCollectButton(item) {
       btn.classList.add("is-collected");
       btn.disabled = false;
       // 收藏做成才顺手标已阅；只动这一张卡，按钮状态由 isCollected 记住
-      if (!isItemRead(item) && readTrackingKeys(item).size) {
+      if (!isItemRead(item) && workbenchReadKey(item)) {
         toggleItemRead(item, { node: btn.closest(".news-card") });
       }
     } catch (err) {

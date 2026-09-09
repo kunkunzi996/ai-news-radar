@@ -541,7 +541,7 @@ test.describe("工作台收藏桥", () => {
     await page.evaluate(({ requestId }) => window.__workbench.reply(requestId, { ok: true }), { requestId: request.requestId });
     await expect.poll(() => radar.locator("body").evaluate((_, url) => window.WorkbenchBridge.isCollected(url), FIRST_ITEM.url)).toBe(true);
     await expect.poll(() => radar.locator("body").evaluate((_, url) => (
-      JSON.parse(window.localStorage.getItem("ai-news-radar-read-items-v1") || "[]").includes(`url:${url}`)
+      JSON.parse(window.localStorage.getItem("ai-news-radar-read-items-v1") || "[]").includes(url)
     ), FIRST_ITEM.url)).toBe(true);
     await expect(card).toHaveCount(0);
     expect(errors).toEqual([]);
