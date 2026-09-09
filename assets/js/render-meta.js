@@ -1,23 +1,22 @@
 function setStats() {
   statsEl.innerHTML = "";
-  const items = visibleItemList(state.itemsAi || []);
-  const highCount = items.filter((item) => isHighPriorityItem(item)).length;
-  const curatedCount = briefStories().length || Math.min(20, mergedStories().filter((story) => storyScore(story) >= 75).length);
+  const pool = applyTimeRange(subscriptionModeItems());
+  const unreadCount = pool.filter((item) => !isItemRead(item)).length;
+  const sourceCount = new Set(pool.map((item) => item.source || item.site_name || item.site_id).filter(Boolean)).size;
   const status = state.sourceStatus;
   const visibleSites = visibleSourceStatusSites(status);
   const totalSites = visibleSites.length;
   const okSites = visibleSites.filter((site) => site.ok).length;
-  const partialSites = visibleSites.filter((site) => site.partial).length;
   const health = totalSites ? `${fmtNumber(okSites)}/${fmtNumber(totalSites)}正常` : "加载中";
   const cards = [
-    ["AI", `${fmtNumber(items.length)}条`],
-    ["高优", `${fmtNumber(highCount)}条`],
-    ["精选", `${fmtNumber(curatedCount)}条`],
+    ["条目", `${fmtNumber(pool.length)}条`],
+    ["未阅", `${fmtNumber(unreadCount)}条`],
+    ["来源", `${fmtNumber(sourceCount)}个`],
     ["源", health],
   ];
   statsEl.setAttribute(
     "aria-label",
-    `${windowLabel()}：AI 信号 ${fmtNumber(items.length)} 条，高优先级 ${fmtNumber(highCount)} 条，精选 ${fmtNumber(curatedCount)} 条，源状态 ${totalSites ? `${fmtNumber(okSites)}/${fmtNumber(totalSites)} 源正常` : "加载中"}`,
+    `${windowLabel()}：${fmtNumber(pool.length)} 条订阅，未阅 ${fmtNumber(unreadCount)} 条，${fmtNumber(sourceCount)} 个来源，源状态 ${totalSites ? `${fmtNumber(okSites)}/${fmtNumber(totalSites)} 源正常` : "加载中"}`,
   );
 
   const prefix = document.createElement("div");
@@ -93,8 +92,8 @@ function renderStickySummary() {
     state.signalLevelFilter ? signalLevel : "",
     query ? `搜索“${query}”` : "",
   ].filter(Boolean);
-  const mode = state.mode === "all" ? "全量" : "AI强相关";
-  stickySummaryTextEl.textContent = `${fmtNumber(filteredCount)} 条 · ${mode}${filters.length ? ` · ${filters.join(" · ")}` : ""}`;
+  const mode = state.mode === "all" ? "" : "AI强相关";
+  stickySummaryTextEl.textContent = `${fmtNumber(filteredCount)} 条${mode ? ` · ${mode}` : ""}${filters.length ? ` · ${filters.join(" · ")}` : ""}`;
 }
 function sourceKind(siteId) {
   return SOURCE_KINDS[siteId] || { label: "来源", tone: "default" };
@@ -160,25 +159,6 @@ function aiSiteStat(siteId) {
 function siteAiPoolCount(siteId) {
   return Number(aiSiteStat(siteId)?.count || 0);
 }
-function siteRawPoolCount(siteId) {
-  const stat = aiSiteStat(siteId);
-  return Number(stat?.raw_count ?? stat?.count ?? 0);
-}
-function sourcePoolMeta(aiCount, rawCount, fallback) {
-  if (rawCount && rawCount !== aiCount) return `AI强相关 · 原始 ${fmtNumber(rawCount)} 条`;
-  return fallback;
-}
-function paidSourceLabel(status, poolCount, activeLabel, idleLabel) {
-  const connected = Boolean(status?.enabled);
-  const liveCount = Number(status?.item_count || 0);
-  const displayCount = liveCount || Number(poolCount || 0);
-  if (connected) {
-    if (displayCount) return `${activeLabel} ${fmtNumber(displayCount)}条`;
-    return `${activeLabel} ${status?.skipped ? "待窗口" : "已连接暂无匹配"}`;
-  }
-  if (displayCount) return `${activeLabel} ${fmtNumber(displayCount)}条`;
-  return idleLabel;
-}
 function renderCoverageCard(label, value, meta, tone = "") {
   const node = document.createElement("div");
   node.className = `coverage-card ${tone}`.trim();
@@ -200,54 +180,22 @@ function renderCoverageStrip(errorMessage = "") {
   const rows = siteRows();
   const failedSites = visibleFailedSites(state.sourceStatus);
   const rss = state.sourceStatus?.rss_opml || {};
-  const agentmail = state.sourceStatus?.agentmail || {};
-  const xApi = state.sourceStatus?.x_api || {};
-  const socialdata = state.sourceStatus?.socialdata || {};
-  const allCount = Number(state.sourceStatus?.items_before_topic_filter || state.totalAllMode || state.itemsAll.length || 0);
-  const coverageCount = Number(state.sourceStatus?.fetched_raw_items || state.totalRaw || allCount || 0);
-  const officialCount = Number(siteRow("official_ai")?.item_count || 0);
-  const newsletterCount = Number(siteRow("aibreakfast")?.item_count || 0);
-  const curatedMediaCount = Number(siteRow("curated_media")?.item_count || 0);
-  const buildersCount = Number(siteRow("followbuilders")?.item_count || 0);
-  const creatorCount = visibleItemList(state.creatorItemsAi).length || (siteAiPoolCount("tikhub_douyin") + siteAiPoolCount("tikhub_xiaohongshu") + siteAiPoolCount("mediacrawler_douyin") + siteAiPoolCount("mediacrawler_xhs") + siteAiPoolCount("github_foundation_sunshine_releases"));
-  const creatorRawCount = visibleItemList(state.creatorItemsAll).length || (siteRawPoolCount("tikhub_douyin") + siteRawPoolCount("tikhub_xiaohongshu") + siteRawPoolCount("mediacrawler_douyin") + siteRawPoolCount("mediacrawler_xhs") + siteRawPoolCount("github_foundation_sunshine_releases"));
-  const socialdataPoolCount = siteAiPoolCount("socialdata_x");
-  const xApiPoolCount = siteAiPoolCount("xapi");
-  const xPoolCount = socialdataPoolCount + xApiPoolCount;
-  const mailCount = Number(agentmail.item_count || 0);
+  const creatorCount = visibleItemList(state.creatorItemsAi).length || (
+    siteAiPoolCount("tikhub_douyin")
+    + siteAiPoolCount("tikhub_xiaohongshu")
+    + siteAiPoolCount("mediacrawler_douyin")
+    + siteAiPoolCount("mediacrawler_xhs")
+    + siteAiPoolCount("github_foundation_sunshine_releases")
+  );
   const totalSites = rows.length;
   const okSites = rows.filter((site) => site.ok).length;
   const opmlValue = rss.enabled ? `${fmtNumber(rss.ok_feeds || 0)}/${fmtNumber(rss.effective_feed_total || 0)}` : "OPML";
-  const opmlMeta = rss.enabled ? "RSS示例/自定义订阅已接入" : "可用OPML批量接入RSS";
-  const socialdataLabel = paidSourceLabel(socialdata, socialdataPoolCount, "SocialData", "");
-  const xApiLabel = paidSourceLabel(xApi, xApiPoolCount, "X API", "");
-  const xSourceLabel = socialdataLabel || xApiLabel || "X待配置";
-  const mailLabel = agentmail.enabled ? `Mail ${fmtNumber(mailCount)}` : "Mail待配置";
-  const advancedValue = xPoolCount || mailCount
-    ? `${xPoolCount ? `X ${fmtNumber(xPoolCount)}` : "X"} / ${mailCount ? `Mail ${fmtNumber(mailCount)}` : "Mail"}`
-    : "X / Mail";
-  const advancedMeta = socialdata.enabled || xApi.enabled || agentmail.enabled || xPoolCount
-    ? `额度保护 · ${xSourceLabel} / ${mailLabel}`
-    : "X API 与 AgentMail 默认关闭";
-
-  const creatorOnly = state.sourceScope === "tested_creator_sources" || state.sourceScope === "bilibili_only";
-  const coverageMeta = creatorOnly
-    ? `B站 / 抖音 / 小红书原始信号 · ${fmtNumber(allCount)} 条入池`
-    : (allCount ? `全网抓取原始信号 · ${fmtNumber(allCount)} 条入池` : "全网抓取原始信号");
-  const creatorMeta = creatorOnly
-    ? sourcePoolMeta(creatorCount, creatorRawCount, "B站 / YouTube / 抖音 / 小红书 / GitHub")
-    : sourcePoolMeta(creatorCount, creatorRawCount, "TikHub / MediaCrawler / YouTube / B站 / GitHub");
+  const opmlMeta = rss.enabled ? "RSS / YouTube 订阅已接入" : "可用 OPML 批量接入 RSS";
 
   const cards = [
-    ["源健康", totalSites ? `${fmtNumber(okSites)}/${fmtNumber(totalSites)}` : "加载中", failedSites.length ? `${fmtNumber(failedSites.length)} 个失败源` : (errorMessage || "内置源正常"), failedSites.length ? "warn" : "ok"],
-    ["今日覆盖池", `${fmtNumber(coverageCount)} 条`, coverageMeta, "signal"],
-    ["AI强相关", `${fmtNumber(visibleItemList(state.itemsAi).length)} 条`, "24小时强相关信号", "signal"],
-    ["官方/日报源池", `${fmtNumber(officialCount + newsletterCount)} 条`, "官方节点 + AI Breakfast", "official"],
-    ["精选媒体源池", `${fmtNumber(curatedMediaCount)} 条`, "The Decoder / TC / Verge / MTP 等", "signal"],
-    ["Builders/X源池", `${fmtNumber(buildersCount)} 条`, "Follow Builders公开feed", "builders"],
-    ["我的订阅", `${fmtNumber(creatorCount)} 条`, creatorMeta, "creator"],
-    ["RSS/OPML扩展", opmlValue, opmlMeta, "private"],
-    ["高级源", advancedValue, advancedMeta, "private"],
+    ["源健康", totalSites ? `${fmtNumber(okSites)}/${fmtNumber(totalSites)}` : "加载中", failedSites.length ? `${fmtNumber(failedSites.length)} 个失败源` : (errorMessage || "订阅源正常"), failedSites.length ? "warn" : "ok"],
+    ["我的订阅", `${fmtNumber(creatorCount)} 条`, "B站 / 油管 / 抖音 / GitHub", "creator"],
+    ["RSS/OPML", opmlValue, opmlMeta, "private"],
   ];
 
   cards.forEach(([label, value, meta, tone]) => {
@@ -320,12 +268,15 @@ function sectionStats(sectionId) {
 }
 function setActiveSection(sectionId) {
   state.activeSection = SECTION_BY_ID[sectionId] ? sectionId : "creator";
-  state.boleExpanded = false;
 }
 function renderSectionTabs() {
   if (!sectionTabsEl) return;
+  const sections = visibleSections();
+  if (!sections.some((section) => section.id === state.activeSection)) {
+    setActiveSection("creator");
+  }
   sectionTabsEl.innerHTML = "";
-  visibleSections().forEach((section) => {
+  sections.forEach((section) => {
     const stats = sectionStats(section.id);
     const btn = document.createElement("button");
     btn.type = "button";
@@ -339,8 +290,6 @@ function renderSectionTabs() {
       renderSectionTabs();
       renderModeSwitch();
       renderSiteFilters();
-      renderBolePicks();
-      if (state.waytoagiData) renderWaytoagi(state.waytoagiData);
       renderList();
     });
     sectionTabsEl.appendChild(btn);
@@ -349,23 +298,20 @@ function renderSectionTabs() {
 }
 function renderSectionFilterSelect() {
   if (!sectionSelectEl) return;
-  if (!sectionSelectEl.options.length) {
-    visibleSections().forEach((section) => {
-      const option = document.createElement("option");
-      option.value = section.id;
-      option.textContent = section.label;
-      sectionSelectEl.appendChild(option);
-    });
-  }
+  sectionSelectEl.innerHTML = "";
+  visibleSections().forEach((section) => {
+    const option = document.createElement("option");
+    option.value = section.id;
+    option.textContent = section.label;
+    sectionSelectEl.appendChild(option);
+  });
   sectionSelectEl.value = state.activeSection;
 }
 function renderSectionSummary(filteredItems = null) {
   if (!sectionSummaryEl) return;
   const section = SECTION_BY_ID[state.activeSection] || SECTION_BY_ID.creator;
   const items = filteredItems || getFilteredItems();
-  const highCount = items.filter((item) => isHighPriorityItem(item)).length;
   const sources = new Set(items.map((item) => item.source || item.site_name || item.site_id).filter(Boolean));
-  const modeText = state.mode === "all" ? (state.allDedup ? "全量去重" : "全量原始") : "AI强相关";
   const sortText = {
     time: "时间优先",
     priority: "综合优先",
@@ -373,7 +319,7 @@ function renderSectionSummary(filteredItems = null) {
     source: "来源优先",
   }[state.listSort] || "时间优先";
   const windowText = isSubscriptionSection(state.activeSection) ? `${creatorWindowLabel()} · ${sortText}` : windowLabel();
-  sectionSummaryEl.textContent = `${windowText} · ${fmtNumber(items.length)} 条 ${section.label} 信号 · ${fmtNumber(highCount)} 条高优先级 · ${fmtNumber(sources.size)} 个来源 · ${modeText}`;
+  sectionSummaryEl.textContent = `${windowText} · ${fmtNumber(items.length)} 条 ${section.label} · ${fmtNumber(sources.size)} 个来源`;
   renderStickySummary();
 }
 function siteRatioText(siteStats) {
@@ -386,7 +332,7 @@ function siteRatioText(siteStats) {
     return `${fmtNumber(count)} 条`;
   }
   if (raw === count) return `${fmtNumber(count)} 条`;
-  return `${fmtNumber(count)}/${fmtNumber(raw)} · ${Math.round((count / raw) * 100)}%AI`;
+  return `${fmtNumber(count)}/${fmtNumber(raw)}`;
 }
 function renderSiteFilters() {
   const stats = currentSiteStats();
@@ -408,7 +354,6 @@ function renderSiteFilters() {
     state.siteFilter = "";
     if (window.RadarSync) window.RadarSync.saveViewField("siteFilter", state.siteFilter);
     renderSiteFilters();
-    renderBolePicks();
     renderList();
   };
   sitePillsEl.appendChild(allPill);
@@ -425,7 +370,6 @@ function renderSiteFilters() {
       if (window.RadarSync) window.RadarSync.saveViewField("siteFilter", state.siteFilter);
       state.siteGroupsExpanded = false;
       renderSiteFilters();
-      renderBolePicks();
       renderList();
     };
     sitePillsEl.appendChild(authorPill);
@@ -440,7 +384,6 @@ function renderSiteFilters() {
       if (window.RadarSync) window.RadarSync.saveViewField("siteFilter", state.siteFilter);
       if (s.site_id !== "socialdata_x") state.authorFilter = "";
       renderSiteFilters();
-      renderBolePicks();
       renderList();
     };
     sitePillsEl.appendChild(btn);
@@ -474,10 +417,7 @@ function renderTimeRangeControl() {
 }
 function listTitleText() {
   const section = SECTION_BY_ID[state.activeSection] || SECTION_BY_ID.creator;
-  const pool = state.mode === "all"
-    ? (state.allDedup ? "情报流 · 全量去重" : "情报流 · 全量原始")
-    : "情报流";
-  return `${section.label} · ${pool}`;
+  return section.label;
 }
 function renderListSortTools() {
   if (!listSortToolsEl) return;

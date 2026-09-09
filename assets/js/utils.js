@@ -326,42 +326,6 @@ function sectionItems(items = modeItems(), sectionId = state.activeSection) {
   const source = visibleItemList(applyTimeRange(items));
   return source.filter((item) => itemMatchesSection(item, sectionId) && !isItemRead(item));
 }
-function formatStoryTime(story) {
-  const earliest = story.earliest_at;
-  const latest = story.latest_at;
-  if (latest && earliest && latest !== earliest) {
-    return { latest, rangeLabel: storyDurationLabel(earliest, latest) };
-  }
-  return { latest: latest || earliest, rangeLabel: "" };
-}
-function hotStories(stories) {
-  return stories
-    .filter((story) => storyHotness(story) > 0)
-    .sort((a, b) => {
-      const byHotScore = storyHotScore(b) - storyHotScore(a);
-      if (byHotScore !== 0) return byHotScore;
-      const byHotRaw = storyHotness(b) - storyHotness(a);
-      if (byHotRaw !== 0) return byHotRaw;
-      const byEditorial = storyScore(b) - storyScore(a);
-      if (byEditorial !== 0) return byEditorial;
-      return storyTimeMs(b, "latest_at") - storyTimeMs(a, "latest_at");
-    });
-}
-function latestStories(stories) {
-  return [...(Array.isArray(stories) ? stories : [])].sort((a, b) => {
-    const aLatest = storyTimeMs(a, "latest_at") || storyTimeMs(a, "earliest_at");
-    const bLatest = storyTimeMs(b, "latest_at") || storyTimeMs(b, "earliest_at");
-    if (aLatest !== bLatest) return bLatest - aLatest;
-    return storyScore(b) - storyScore(a);
-  });
-}
-function pickTopHeadlineClusters(clusters, limit = 3) {
-  return [...clusters]
-    .sort((a, b) => headlineClusterScore(b) - headlineClusterScore(a) || timelineMs(b.item) - timelineMs(a.item) || a.index - b.index)
-    .slice(0, limit)
-    .map((cluster) => ({ ...cluster, score: headlineClusterScore(cluster) }));
-}
-
 // 后端 purged_items 有三种形态：已清理（{文件名: 删除条数}）、延后（采集占着锁，
 // 已记进待清理台账）、失败。三个保存入口共用这段解读，别各写一遍。
 // 延后必须说出来——否则用户删了信源却看到"没清理任何东西"，会以为清理丢了。

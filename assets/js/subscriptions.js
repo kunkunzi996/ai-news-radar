@@ -33,9 +33,6 @@ function isHiddenItem(item) {
 function visibleSections() {
   return SECTION_DEFS.filter((section) => !isHiddenPlatformId(section.id));
 }
-function visibleSubscriptionPlatforms() {
-  return SUBSCRIPTION_PLATFORMS.filter((platform) => !isHiddenPlatformId(platform.id));
-}
 function visibleSourceConfigFilters() {
   return SOURCE_CONFIG_FILTERS.filter((filter) => !isHiddenPlatformId(filter.id));
 }
@@ -74,15 +71,16 @@ function visibleItemList(items = []) {
 function visibleSiteStats(stats = []) {
   return (Array.isArray(stats) ? stats : []).filter((site) => !isHiddenStatusSite(site));
 }
-function setSubscriptionManagerStatus(message, tone = "") {
-  if (!subscriptionManagerStatusEl) return;
-  subscriptionManagerStatusEl.textContent = message || "";
-  subscriptionManagerStatusEl.className = tone || "";
+function normalizeSourceConfigToken(value) {
+  const base = String(value || "subscription")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9\u4e00-\u9fa5]+/g, "_")
+    .replace(/^_+|_+$/g, "")
+    .slice(0, 48);
+  return base || "subscription";
 }
-function subscriptionPlatformDef(platformId = state.subscriptionPlatform) {
-  const platforms = visibleSubscriptionPlatforms();
-  return platforms.find((item) => item.id === platformId) || platforms[0] || SUBSCRIPTION_PLATFORMS[0];
-}
+
 function youtubeFeedUrl(channelId) {
   const clean = String(channelId || "").trim();
   return clean ? `https://www.youtube.com/feeds/videos.xml?channel_id=${clean}` : "";
@@ -95,114 +93,6 @@ function youtubeChannelIdFromFeedUrl(url) {
     return "";
   }
 }
-function normalizeSourceConfigToken(value) {
-  const base = String(value || "subscription")
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9\u4e00-\u9fa5]+/g, "_")
-    .replace(/^_+|_+$/g, "")
-    .slice(0, 48);
-  return base || "subscription";
-}
-function sourceRecordMatchesPlatform(source, platform) {
-  if (!source || !platform) return false;
-  const runtimeIds = sourceConfigRuntimeIds(source);
-  if (platform.runtimeId && !runtimeIds.has(platform.runtimeId)) return false;
-  if (platform.type && String(source.type || "") !== platform.type) return false;
-  if (platform.channel) {
-    const hay = `${source.id || ""} ${source.channel || ""} ${source.target || ""} ${source.locator || ""}`.toLowerCase();
-    const channel = platform.channel.toLowerCase();
-    if (channel.includes("抖音") && !(hay.includes("douyin") || hay.includes("抖音"))) return false;
-    if (channel.includes("小红书") && !(hay.includes("xhs") || hay.includes("xiaohongshu") || hay.includes("小红书"))) return false;
-    if (channel.includes("公众号") && !(hay.includes("wewe") || hay.includes("wechat") || hay.includes("公众号"))) return false;
-    if (channel.includes("github") && !(hay.includes("github") || hay.includes("release"))) return false;
-  }
-  return true;
-}
-function subscriptionSourceRecordId(platform, locator, name) {
-  const key = normalizeSourceConfigToken(
-    platform.id === "github"
-      ? githubRepoSlug(locator) || name
-      : locator || name
-  );
-  const raw = `${platform.idPrefix || platform.id}_${key}`;
-  return raw.slice(0, 72);
-}
-function githubRepoSlug(value) {
-  const raw = String(value || "").trim();
-  if (!raw) return "";
-  const apiMatch = raw.match(/github\.com\/repos\/([^/]+\/[^/]+)\/releases/i);
-  if (apiMatch) return apiMatch[1];
-  const webMatch = raw.match(/github\.com\/([^/]+\/[^/#?]+)/i);
-  if (webMatch) return webMatch[1];
-  const repoMatch = raw.match(/^([^/\s]+\/[^/\s]+)$/);
-  return repoMatch ? repoMatch[1] : "";
-}
-function githubReleaseApiUrl(value) {
-  const raw = String(value || "").trim();
-  if (!raw) return "";
-  if (/^https:\/\/api\.github\.com\/repos\/[^/]+\/[^/]+\/releases/i.test(raw)) return raw;
-  const slug = githubRepoSlug(raw);
-  return slug ? `https://api.github.com/repos/${slug}/releases` : raw;
-}
-function ensureSourceConfigForSubscriptions() {
-  if (!state.sourceConfig) state.sourceConfig = loadSourceConfigDraft();
-  if (!Array.isArray(state.sourceConfig.sources)) state.sourceConfig.sources = [];
-  return state.sourceConfig.sources;
-}
-function bilibiliSourceRecord() {
-  let sources = ensureSourceConfigForSubscriptions();
-  let record = sources.find((source) => source.id === "bilibili_dynamic_sources" || source.type === "bilibili_dynamic");
-  if (!record) {
-    record = {
-      id: "bilibili_dynamic_sources",
-      name: "B站动态",
-      type: "bilibili_dynamic",
-      enabled: true,
-      channel: "B站动态",
-      target: "",
-      locator: "",
-      env: "BILIBILI_DYNAMIC_UIDS / BILIBILI_DYNAMIC_SOURCE_NAMES",
-      notes: "同一渠道统一维护；UID 和名称用英文逗号分隔，可继续追加 UP 主。",
-    };
-    sources = [...sources, record];
-    state.sourceConfig.sources = sources;
-  }
-  return record;
-}
-function bilibiliSubscriptionMembers() {
-  const record = bilibiliSourceRecord();
-  const names = splitSourceConfigList(record.target);
-  const locators = splitSourceConfigList(record.locator);
-  return locators.map((locator, index) => ({
-    id: locator,
-    name: names[index] || `Bilibili ${locator}`,
-    locator,
-  }));
-}
-function setBilibiliSubscriptionMembers(members) {
-  const clean = [];
-  const seen = new Set();
-  members.forEach((member) => {
-    const locator = String(member.locator || "").trim();
-    const name = String(member.name || "").trim();
-    if (!locator || seen.has(locator)) return;
-    seen.add(locator);
-    clean.push({ name: name || `Bilibili ${locator}`, locator });
-  });
-  const record = bilibiliSourceRecord();
-  record.target = clean.map((member) => member.name).join(",");
-  record.locator = clean.map((member) => member.locator).join(",");
-  record.enabled = true;
-  record.name = "B站动态";
-  record.type = "bilibili_dynamic";
-  record.channel = "B站动态";
-  record.env = "BILIBILI_DYNAMIC_UIDS / BILIBILI_DYNAMIC_SOURCE_NAMES";
-  record.notes = "同一渠道统一维护；可在订阅成员面板里新增或删除 UP 主。";
-  state.sourceConfigSelectedId = record.id;
-  saveSourceConfigDraft("B站订阅成员已更新，点“保存订阅”后写入采集配置");
-  renderSourceConfig();
-}
 function youtubeSubscriptionMembers() {
   return (state.youtubeSubscriptions || []).map((item) => ({
     id: item.channel_id || youtubeChannelIdFromFeedUrl(item.xml_url),
@@ -212,332 +102,17 @@ function youtubeSubscriptionMembers() {
     xmlUrl: item.xml_url || youtubeFeedUrl(item.channel_id),
   })).filter((item) => item.locator);
 }
-function sourceRecordSubscriptionMembers(platform) {
-  const sources = ensureSourceConfigForSubscriptions();
-  return sources
-    .filter((source) => sourceRecordMatchesPlatform(source, platform))
-    .map((source) => ({
-      id: source.locator || source.id,
-      sourceId: source.id,
-      name: source.target || source.name || source.id,
-      locator: source.locator || "",
-      type: source.type || platform.type || "rss",
-      channel: source.channel || platform.channel || "",
-    }))
-    .filter((item) => item.locator);
-}
-function sourceRecordForSubscriptionMember(platform, member) {
-  const locator = platform.id === "github"
-    ? githubReleaseApiUrl(member.locator)
-    : String(member.locator || "").trim();
-  const name = String(member.name || "").trim();
-  return {
-    id: member.sourceId || subscriptionSourceRecordId(platform, locator, name),
-    name,
-    type: platform.type || "rss",
-    enabled: true,
-    channel: platform.channel || platform.label,
-    target: name,
-    locator,
-    env: platform.env || "",
-    notes: platform.notes || "",
-  };
-}
-function setSourceRecordSubscriptionMembers(platform, members) {
-  const sources = ensureSourceConfigForSubscriptions();
-  const matched = sources.filter((source) => sourceRecordMatchesPlatform(source, platform));
-  const keep = sources.filter((source) => !sourceRecordMatchesPlatform(source, platform));
-  const seen = new Set();
-  const next = [];
-  members.forEach((member) => {
-    const locator = String(member.locator || "").trim();
-    const name = String(member.name || "").trim();
-    if (!locator || !name || seen.has(locator)) return;
-    seen.add(locator);
-    next.push(sourceRecordForSubscriptionMember(platform, { ...member, name, locator }));
-  });
-  const seedIds = new Set(sourceConfigSeedSources().map((source) => source.id));
-  const nextSeedIds = new Set(next.filter((source) => seedIds.has(source.id)).map((source) => source.id));
-  const deleted = new Set(state.sourceConfig.deleted_source_ids || []);
-  matched.forEach((source) => {
-    if (!seedIds.has(source.id)) return;
-    if (nextSeedIds.has(source.id)) {
-      deleted.delete(source.id);
-    } else {
-      deleted.add(source.id);
-    }
-  });
-  state.sourceConfig.deleted_source_ids = Array.from(deleted);
-  state.sourceConfig.sources = [...keep, ...next];
-  if (next.length) state.sourceConfigSelectedId = next[next.length - 1].id;
-  saveSourceConfigDraft(`${platform.label}订阅成员已更新，点“保存成员”后写入采集配置`);
-  renderSourceConfig();
-}
-function currentSubscriptionMembers() {
-  const platform = subscriptionPlatformDef();
-  if (platform.storage === "youtube") return youtubeSubscriptionMembers();
-  if (platform.storage === "bilibili") return bilibiliSubscriptionMembers();
-  return sourceRecordSubscriptionMembers(platform);
-}
-function renderSubscriptionPlatformTabs() {
-  if (!subscriptionPlatformTabsEl) return;
-  subscriptionPlatformTabsEl.innerHTML = "";
-  if (isHiddenPlatformId(state.subscriptionPlatform)) {
-    state.subscriptionPlatform = subscriptionPlatformDef()?.id || "bilibili";
-  }
-  visibleSubscriptionPlatforms().forEach((platform) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "subscription-platform-tab";
-    button.dataset.platform = platform.id;
-    if (state.subscriptionPlatform === platform.id) button.classList.add("active");
-    button.textContent = platform.label;
-    button.addEventListener("click", () => {
-      state.subscriptionPlatform = platform.id;
-      clearSubscriptionMemberForm();
-      renderSubscriptionManager();
-      if (platform.id === "youtube") {
-        loadYoutubeSubscriptions().catch(() => {});
-      }
-    });
-    subscriptionPlatformTabsEl.appendChild(button);
-  });
-}
-function renderSubscriptionMembers() {
-  if (!subscriptionMembersEl) return;
-  subscriptionMembersEl.innerHTML = "";
-  const members = currentSubscriptionMembers();
-  if (!members.length) {
-    const empty = document.createElement("div");
-    empty.className = "subscription-empty";
-    empty.textContent = "当前渠道还没有订阅成员。";
-    subscriptionMembersEl.appendChild(empty);
-    return;
-  }
-  members.forEach((member) => {
-    const card = document.createElement("article");
-    card.className = "subscription-member";
-    const main = document.createElement("div");
-    const title = document.createElement("strong");
-    title.textContent = member.name;
-    const meta = document.createElement("span");
-    meta.textContent = member.locator;
-    main.append(title, meta);
-    const actions = document.createElement("div");
-    actions.className = "subscription-member-card-actions";
-    const editBtn = document.createElement("button");
-    editBtn.type = "button";
-    editBtn.className = "tool-btn";
-    editBtn.textContent = "编辑";
-    editBtn.addEventListener("click", () => {
-      subscriptionMemberNameEl.value = member.name || "";
-      subscriptionMemberLocatorEl.value = member.locator || "";
-      if (subscriptionMemberHomeUrlEl) subscriptionMemberHomeUrlEl.value = member.htmlUrl || "";
-      if (member.sourceId && subscriptionMemberFormEl) subscriptionMemberFormEl.dataset.sourceId = member.sourceId;
-      subscriptionMemberSubmitBtnEl.textContent = "保存成员";
-    });
-    const removeBtn = document.createElement("button");
-    removeBtn.type = "button";
-    removeBtn.className = "tool-btn danger";
-    removeBtn.textContent = "删除";
-    removeBtn.addEventListener("click", () => {
-      removeSubscriptionMember(member.locator).catch((err) => {
-        setSubscriptionManagerStatus(`删除失败：${err.message}`, "bad");
-      });
-    });
-    actions.append(editBtn, removeBtn);
-    card.append(main, actions);
-    subscriptionMembersEl.appendChild(card);
-  });
-}
-function renderSubscriptionMemberFormHints() {
-  const platform = subscriptionPlatformDef();
-  if (subscriptionNameLabelEl) subscriptionNameLabelEl.textContent = platform.nameLabel;
-  if (subscriptionLocatorLabelEl) subscriptionLocatorLabelEl.textContent = platform.locatorLabel;
-  if (subscriptionMemberLocatorEl) subscriptionMemberLocatorEl.placeholder = platform.locatorPlaceholder;
-  if (subscriptionMemberSyncBtnEl) {
-    const showSync = platform.id === "wechat";
-    subscriptionMemberSyncBtnEl.hidden = !showSync;
-    subscriptionMemberSyncBtnEl.style.display = showSync ? "" : "none";
-  }
-  if (subscriptionHomeUrlWrapEl) {
-    const showHomeUrl = Boolean(platform.homeUrl);
-    subscriptionHomeUrlWrapEl.hidden = !showHomeUrl;
-    subscriptionHomeUrlWrapEl.style.display = showHomeUrl ? "" : "none";
-  }
-}
-function renderSubscriptionManager() {
-  if (!subscriptionMemberFormEl) return;
-  renderSubscriptionPlatformTabs();
-  renderSubscriptionMemberFormHints();
-  renderSubscriptionMembers();
-}
-function clearSubscriptionMemberForm() {
-  if (subscriptionMemberNameEl) subscriptionMemberNameEl.value = "";
-  if (subscriptionMemberLocatorEl) subscriptionMemberLocatorEl.value = "";
-  if (subscriptionMemberHomeUrlEl) subscriptionMemberHomeUrlEl.value = "";
-  if (subscriptionMemberFormEl) delete subscriptionMemberFormEl.dataset.sourceId;
-  if (subscriptionMemberSubmitBtnEl) subscriptionMemberSubmitBtnEl.textContent = "新增成员";
-}
 async function loadYoutubeSubscriptions(options = {}) {
-  const silent = Boolean(options.silent);
   if (!canUseLocalBackend()) return;
   try {
     const res = await apiFetch("./api/subscriptions/youtube", { headers: { Accept: "application/json" }, cache: "no-store" });
     const payload = await res.json().catch(() => ({}));
     if (!res.ok || payload.ok === false) throw new Error(payload.error || `HTTP ${res.status}`);
     state.youtubeSubscriptions = Array.isArray(payload.subscriptions) ? payload.subscriptions : [];
-    if (!silent) renderSubscriptionManager();
     renderLocalOpsStatus(state.localOpsStatus);
   } catch (err) {
-    if (!silent) setSubscriptionManagerStatus(`油管订阅读取失败：${err.message}`, "bad");
+    if (!options.silent) setLocalOpsStatus(`油管订阅读取失败：${err.message}`, "bad");
   }
-}
-async function saveYoutubeSubscriptions() {
-  if (!canUseLocalBackend()) throw new Error(localBackendUnavailableMessage());
-  const subscriptions = youtubeSubscriptionMembers().map((member) => ({
-    title: member.name,
-    channel_id: member.locator,
-    xml_url: youtubeFeedUrl(member.locator),
-    html_url: member.htmlUrl || "",
-  }));
-  const res = await apiFetch("./api/subscriptions/youtube", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ subscriptions }),
-  });
-  const payload = await res.json().catch(() => ({}));
-  if (!res.ok || payload.ok === false) throw new Error(payload.error || `HTTP ${res.status}`);
-  state.youtubeSubscriptions = Array.isArray(payload.subscriptions) ? payload.subscriptions : subscriptions;
-  return payload;
-}
-async function syncWeweRssSubscriptions() {
-  const platform = subscriptionPlatformDef();
-  if (platform.id !== "wechat") return;
-  if (!canUseLocalBackend()) {
-    setSubscriptionManagerStatus(localBackendUnavailableMessage(), "warn");
-    return;
-  }
-  setSourceConfigButton(subscriptionMemberSyncBtnEl, "同步中...", true);
-  setSubscriptionManagerStatus("正在读取 WeWe RSS 已订阅公众号...", "warn");
-  try {
-    const res = await apiFetch("./api/wewe-rss/feeds", { headers: { Accept: "application/json" }, cache: "no-store" });
-    const payload = await res.json().catch(() => ({}));
-    if (!res.ok || payload.ok === false) throw new Error(payload.error || `HTTP ${res.status}`);
-    const feeds = Array.isArray(payload.feeds) ? payload.feeds : [];
-    if (!feeds.length) {
-      setSubscriptionManagerStatus("WeWe RSS 里还没有公众号；先去后台添加公众号，再回来同步。", "warn");
-      return;
-    }
-    const existingByLocator = new Map(sourceRecordSubscriptionMembers(platform).map((member) => [member.locator, member]));
-    const members = feeds.map((feed) => {
-      const locator = String(feed.id || "").trim();
-      const existing = existingByLocator.get(locator);
-      return {
-        name: String(feed.name || locator).trim(),
-        locator,
-        sourceId: existing?.sourceId || "",
-      };
-    }).filter((member) => member.name && member.locator);
-    setSourceRecordSubscriptionMembers(platform, members);
-    clearSubscriptionMemberForm();
-    renderSubscriptionManager();
-    setSubscriptionManagerStatus(`已从 WeWe RSS 同步 ${fmtNumber(members.length)} 个公众号，正在写入本地配置...`, "warn");
-    await writeSourceConfigToLocalServer({
-      button: subscriptionMemberSyncBtnEl,
-      successLabel: "已同步",
-      idleLabel: "同步 WeWe RSS",
-      syncForm: false,
-    });
-    setSubscriptionManagerStatus(`已同步并保存 ${fmtNumber(members.length)} 个公众号，点“读取结果”后出现在看板。`, "ok");
-  } catch (err) {
-    setSubscriptionManagerStatus(`同步 WeWe RSS 失败：${err.message}`, "bad");
-  } finally {
-    restoreSourceConfigButton(subscriptionMemberSyncBtnEl, "同步 WeWe RSS");
-  }
-}
-async function saveSubscriptionMembers() {
-  const platform = subscriptionPlatformDef();
-  if (platform.storage === "youtube") {
-    await saveYoutubeSubscriptions();
-    setSubscriptionManagerStatus("油管订阅已写入 feeds/follow.opml，点“读取结果”后生效", "ok");
-    renderSubscriptionManager();
-    return;
-  }
-  await writeSourceConfigToLocalServer({
-    button: subscriptionMemberSubmitBtnEl,
-    successLabel: "已保存",
-    idleLabel: "新增成员",
-    syncForm: false,
-  });
-  setSubscriptionManagerStatus(`${platform.label}订阅已写入 sources.config.json；抖音/小红书先点启动采集，再点读取结果`, "ok");
-}
-function upsertSubscriptionMember(member) {
-  const platform = subscriptionPlatformDef();
-  const locator = String(member.locator || "").trim();
-  const name = String(member.name || "").trim();
-  if (!locator || !name) {
-    setSubscriptionManagerStatus("名称和账号 ID 都要填写", "bad");
-    return false;
-  }
-  const sourceId = subscriptionMemberFormEl?.dataset?.sourceId || "";
-  if (platform.storage === "youtube") {
-    const existing = youtubeSubscriptionMembers().filter((item) => item.locator !== locator);
-    state.youtubeSubscriptions = [
-      ...existing.map((item) => ({
-        title: item.name,
-        channel_id: item.locator,
-        xml_url: youtubeFeedUrl(item.locator),
-        html_url: item.htmlUrl || "",
-      })),
-      {
-        title: name,
-        channel_id: locator,
-        xml_url: youtubeFeedUrl(locator),
-        html_url: String(member.htmlUrl || "").trim(),
-      },
-    ];
-  } else if (platform.storage === "bilibili") {
-    const existing = bilibiliSubscriptionMembers().filter((item) => item.locator !== locator);
-    setBilibiliSubscriptionMembers([...existing, { name, locator }]);
-  } else {
-    const existing = sourceRecordSubscriptionMembers(platform)
-      .filter((item) => item.locator !== locator && item.sourceId !== sourceId);
-    setSourceRecordSubscriptionMembers(platform, [...existing, { name, locator, sourceId }]);
-  }
-  clearSubscriptionMemberForm();
-  renderSubscriptionManager();
-  setSubscriptionManagerStatus("成员已更新，点“保存成员”写入本地配置", "warn");
-  return true;
-}
-async function removeSubscriptionMember(locator) {
-  const platform = subscriptionPlatformDef();
-  const cleanLocator = String(locator || "").trim();
-  if (!cleanLocator) return;
-  if (platform.storage === "youtube") {
-    state.youtubeSubscriptions = youtubeSubscriptionMembers()
-      .filter((item) => item.locator !== cleanLocator)
-      .map((item) => ({
-        title: item.name,
-        channel_id: item.locator,
-        xml_url: youtubeFeedUrl(item.locator),
-        html_url: item.htmlUrl || "",
-      }));
-  } else if (platform.storage === "bilibili") {
-    setBilibiliSubscriptionMembers(bilibiliSubscriptionMembers().filter((item) => item.locator !== cleanLocator));
-  } else {
-    setSourceRecordSubscriptionMembers(
-      platform,
-      sourceRecordSubscriptionMembers(platform).filter((item) => item.locator !== cleanLocator),
-    );
-  }
-  clearSubscriptionMemberForm();
-  renderSubscriptionManager();
-  await saveSubscriptionMembers();
-  setSubscriptionManagerStatus("成员已删除并保存，点“读取结果”后生效", "ok");
 }
 function isSubscriptionSection(sectionId) {
   if (isHiddenPlatformId(sectionId)) return false;

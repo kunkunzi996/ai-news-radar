@@ -692,7 +692,6 @@ function renderSourceConfig() {
   renderSourceConfigList();
   fillSourceConfigForm(selectedSourceConfig());
   syncSourceConfigJson();
-  renderSubscriptionManager();
 }
 function sourceConfigIdFromName(name) {
   const base = String(name || "source")
@@ -724,9 +723,6 @@ function formSourceConfigRecord() {
     env: sourceConfigEnvEl.value.trim(),
     notes: sourceConfigNotesEl.value.trim(),
   };
-}
-function upsertSourceConfigRecord(record) {
-  saveSourceConfigRecordToState(record, "高级配置草稿已保存", true);
 }
 function saveSourceConfigFormToState(message = "高级配置草稿已保存", shouldRender = true) {
   if (!sourceConfigFormEl) return true;

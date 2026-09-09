@@ -6,7 +6,7 @@
   mm.add("(prefers-reduced-motion: no-preference)", function () {
     gsap.defaults({ duration: 0.55, ease: "power3.out" });
 
-    // Stats and section tabs are data-driven. Wait until app.js has rendered
+    // Stats and section tabs are data-driven. Wait until boot.js has rendered
     // them so GSAP never tries to animate missing targets on first load.
     document.addEventListener("aiRadar:ready", function () {
       const tl = gsap.timeline();
@@ -23,18 +23,9 @@
       addFrom(".advanced-panel", { autoAlpha: 0, y: 8, duration: 0.4 }, "-=0.3");
     }, { once: true });
 
-    // Legacy story rows may still render in older data views.
-    document.addEventListener("aiRadar:briefRendered", function () {
-      const cards = Array.from(document.querySelectorAll(".top-story-card, .story-row, .bole-row")).slice(0, 24);
-      if (!cards.length) return;
-      gsap.killTweensOf(cards);
-      gsap.set(cards, { clearProps: "transform" });
-      gsap.from(cards, { autoAlpha: 0, stagger: 0.035, duration: 0.28, clearProps: "opacity,visibility" });
-    });
-
     // List: animate first 30 visible cards on render/mode switch
     document.addEventListener("aiRadar:listRendered", function () {
-      const cards = Array.from(document.querySelectorAll(".intel-card, .news-card")).slice(0, 30);
+      const cards = Array.from(document.querySelectorAll(".news-card")).slice(0, 30);
       if (!cards.length) return;
       gsap.from(cards, { autoAlpha: 0, y: 12, stagger: 0.03, duration: 0.4, clearProps: "transform,opacity,visibility" });
     });
@@ -42,7 +33,7 @@
     // Section scroll reveal via IntersectionObserver. Keep sections visible:
     // hiding whole content blocks can leave blank viewports after responsive
     // reflow or rapid mobile scrolling.
-    const revealEls = document.querySelectorAll(".waytoagi-wrap, .list-wrap");
+    const revealEls = document.querySelectorAll(".list-wrap");
     if (revealEls.length && window.IntersectionObserver) {
       gsap.set(revealEls, { y: 14 });
       const observer = new IntersectionObserver(function (entries) {

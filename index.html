@@ -6,13 +6,13 @@
     <title>我的订阅｜个人订阅聚合器</title>
     <meta
       name="description"
-      content="把 B站、抖音、小红书、YouTube、RSS、GitHub 收成一条时间流。"
+      content="把 B站、抖音、YouTube、RSS、GitHub 收成一条时间流。"
     />
     <link rel="canonical" href="https://kunkunzi996.github.io/ai-news-radar/" />
     <meta property="og:title" content="我的订阅｜个人订阅聚合器" />
     <meta
       property="og:description"
-      content="把 B站、抖音、小红书、YouTube、RSS、GitHub 收成一条时间流。"
+      content="把 B站、抖音、YouTube、RSS、GitHub 收成一条时间流。"
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://kunkunzi996.github.io/ai-news-radar/" />
@@ -27,13 +27,13 @@
     <meta name="twitter:title" content="我的订阅｜个人订阅聚合器" />
     <meta
       name="twitter:description"
-      content="把 B站、抖音、小红书、YouTube、RSS、GitHub 收成一条时间流。"
+      content="把 B站、抖音、YouTube、RSS、GitHub 收成一条时间流。"
     />
     <link rel="icon" href="./assets/logo.svg" type="image/svg+xml" />
     <link rel="icon" href="./assets/icons/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png" sizes="180x180" />
     <link rel="manifest" href="./site.webmanifest" />
-    <link rel="stylesheet" href="./assets/styles.css?v=subscription-unify-0903a" />
+    <link rel="stylesheet" href="./assets/styles.css?v=dead-ui-0909a" />
     <link rel="stylesheet" href="./assets/reader-layout.css?v=explore-feed-0823c" />
   </head>
   <body>
@@ -84,7 +84,7 @@
 
           <div class="main-toolbar">
             <section class="primary-controls">
-              <input id="searchInput" type="search" placeholder="搜索 AI 信号 / 来源" />
+              <input id="searchInput" type="search" placeholder="搜索标题 / 来源" />
               <div class="mode-hint" id="modeHint">全量</div>
               <span class="radar-sync-status" id="radarSyncStatus" role="status" aria-live="polite" hidden></span>
             </section>
@@ -179,24 +179,9 @@
           <span id="stickySummaryText">正在整理订阅流...</span>
         </div>
 
-        <section class="waytoagi-wrap">
-          <div class="waytoagi-head">
-            <h2>社区更新 · WaytoAGI</h2>
-            <div class="waytoagi-tools">
-              <div class="waytoagi-switch">
-                <button id="waytoagiTodayBtn" class="waytoagi-btn active" type="button">最近更新日</button>
-                <button id="waytoagi7dBtn" class="waytoagi-btn" type="button">近7日</button>
-              </div>
-              <span id="waytoagiUpdatedAt">加载中...</span>
-            </div>
-          </div>
-          <div id="waytoagiMeta" class="waytoagi-meta"></div>
-          <div id="waytoagiList" class="waytoagi-list"></div>
-        </section>
-
         <section class="list-wrap">
           <div class="list-head">
-            <h2 id="listTitle">全量 AI 情报源</h2>
+            <h2 id="listTitle">我的订阅</h2>
             <div class="list-head-tools">
               <span id="resultCount">0 条</span>
             </div>
@@ -517,20 +502,20 @@
     </template>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous" defer></script>
-    <script src="./assets/motion.js?v=ui-adjustment-0620a" defer></script>
-    <script src="./assets/js/dom.js?v=subscription-unify-0903a" defer></script>
-    <script src="./assets/js/utils.js?v=archive-refresh-0828a" defer></script>
+    <script src="./assets/motion.js?v=dead-ui-0909a" defer></script>
+    <script src="./assets/js/dom.js?v=dead-ui-0909c" defer></script>
+    <script src="./assets/js/utils.js?v=dead-ui-0909a" defer></script>
     <script src="./assets/js/workbench-bridge.js?v=archive-refresh-0828a" defer></script>
-    <script src="./assets/js/render-meta.js?v=task-03-0821a" defer></script>
-    <script src="./assets/js/render-list.js?v=stay-current-viewport-0831a" defer></script>
-    <script src="./assets/js/render-panels.js?v=github-stars-sync-0716a" defer></script>
-    <script src="./assets/js/subscriptions.js?v=stay-current-viewport-0831a" defer></script>
+    <script src="./assets/js/render-meta.js?v=dead-ui-0909c" defer></script>
+    <script src="./assets/js/render-list.js?v=dead-ui-0909e" defer></script>
+    <script src="./assets/js/render-panels.js?v=dead-ui-0909a" defer></script>
+    <script src="./assets/js/subscriptions.js?v=dead-ui-0909d" defer></script>
     <script src="./assets/js/radar-sync.js?v=search-query-echo-0902a" defer></script>
-    <script src="./assets/js/source-config.js?v=remote-admin-0729a" defer></script>
-    <script src="./assets/js/local-collect.js?v=wechat-retire-0823a" defer></script>
-    <script src="./assets/js/online-source-config.js?v=subscription-unify-0903a" defer></script>
+    <script src="./assets/js/source-config.js?v=dead-ui-0909a" defer></script>
+    <script src="./assets/js/local-collect.js?v=dead-ui-0909a" defer></script>
+    <script src="./assets/js/online-source-config.js?v=dead-ui-0909a" defer></script>
     <script src="./assets/js/settings-drawer.js?v=task-03-0821a" defer></script>
-    <script src="./assets/js/boot.js?v=subscription-unify-0903a" defer></script>
+    <script src="./assets/js/boot.js?v=dead-ui-0909c" defer></script>
     <script src="./assets/js/exploration-feed.js?v=explore-feed-0823g" defer></script>
   </body>
 </html>
