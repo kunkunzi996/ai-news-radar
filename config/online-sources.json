@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-09-08T14:33:05Z",
+  "updated_at": "2026-09-08T15:29:59Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -735,7 +735,7 @@
       "id": "online_feed_microsoft_ai_blog",
       "name": "Microsoft AI Blog",
       "type": "rss",
-      "enabled": false,
+      "enabled": true,
       "channel": "RSS/YouTube",
       "target": "Microsoft AI Blog",
       "locator": "https://news.microsoft.com/source/topics/ai/feed/",
