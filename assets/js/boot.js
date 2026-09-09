@@ -66,6 +66,7 @@ function afterAllModeDataArrived() {
   if (window.RadarSync && typeof window.RadarSync.markArchiveListFresh === "function") {
     window.RadarSync.markArchiveListFresh();
   }
+  setStats();
   renderSectionTabs();
   renderTimeRangeControl();
   renderModeSwitch();
@@ -84,38 +85,17 @@ function afterAllModeDataArrived() {
 async function loadSourceStatusData() {
   return fetchDataJson("source-status.json", "source-status.json");
 }
-async function loadDailyBriefData() {
-  return fetchDataJson("daily-brief.json", "daily-brief.json");
-}
-async function loadStoriesData() {
-  return fetchDataJson(state.storiesDataUrl, "stories-merged.json");
-}
 async function init() {
-  const [newsResult, statusResult, briefResult, storiesResult] = await Promise.allSettled([
+  const [newsResult, statusResult] = await Promise.allSettled([
     loadNewsData(),
     loadSourceStatusData(),
-    loadDailyBriefData(),
-    loadStoriesData(),
   ]);
-
-  if (briefResult.status === "fulfilled") {
-    state.dailyBrief = briefResult.value;
-  } else {
-    state.dailyBrief = null;
-  }
-
-  if (storiesResult.status === "fulfilled") {
-    state.storiesMerged = storiesResult.value;
-  } else {
-    state.storiesMerged = null;
-  }
 
   if (newsResult.status === "fulfilled") {
     const payload = newsResult.value;
     if (window.RadarSync && typeof window.RadarSync.markArchiveListUsable === "function") {
       window.RadarSync.markArchiveListUsable();
     }
-    const loadedStoriesDataUrl = state.storiesDataUrl;
     state.itemsAi = payload.items_ai || payload.items || [];
     state.itemsAllRaw = payload.items_all_raw || payload.items_all || [];
     state.itemsAll = payload.items_all || [];
@@ -136,18 +116,10 @@ async function init() {
     state.timeScope = payload.time_scope || "rolling_window";
     state.sourceScope = payload.source_scope || "all_sources";
     state.allDataUrl = payload.all_mode_data_url || state.allDataUrl;
-    state.storiesDataUrl = payload.stories_data_url || state.storiesDataUrl;
     const wantsAllModeData = state.mode === "all" || state.timeRangeFilter === "all" || state.sourceScope === "bilibili_only" || state.sourceScope === "tested_creator_sources";
     if (wantsAllModeData) {
       state.mode = "all";
       state.activeSection = "creator";
-    }
-    if (state.storiesDataUrl !== loadedStoriesDataUrl) {
-      try {
-        state.storiesMerged = await loadStoriesData();
-      } catch {
-        state.storiesMerged = null;
-      }
     }
     state.allDataLoaded = Boolean(payload.items_all || payload.items_all_raw);
     state.generatedAt = payload.generated_at;

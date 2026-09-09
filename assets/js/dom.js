@@ -27,9 +27,6 @@ const state = {
   dataSourceMode: "local",
   dataSourceFallback: false,
   dataSourceError: "",
-  dailyBrief: null,
-  storiesMerged: null,
-  storiesDataUrl: "data/stories-merged.json",
   activeSection: "creator",
   listSort: "time",
   sourceTypeFilter: "",
@@ -203,7 +200,7 @@ const HIDDEN_PLATFORM_IDS = new Set();
 const HIDDEN_SOURCE_IDS = new Set(["wewe_rss", "maobidao_wudaolu_backup"]);
 
 const SECTION_DEFS = [
-  { id: "creator", label: "我的订阅", short: "订阅", description: "B站、小红书、YouTube、抖音和 GitHub 项目的更新" },
+  { id: "creator", label: "我的订阅", short: "订阅", description: "B站、YouTube、抖音和 GitHub 项目的更新" },
   { id: "douyin", label: "抖音", short: "抖音", description: "抖音创作者与短视频信号" },
   { id: "xiaohongshu", label: "小红书", short: "小红书", description: "小红书博主、笔记和搜索信号" },
   { id: "wechat", label: "微信公众号", short: "公众号", description: "微信公众号订阅和 WeWe RSS 信号" },

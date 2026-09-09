@@ -1,15 +1,3 @@
-function storyScore(story) {
-  const raw = (story && (story.importance_score ?? story.score ?? story.importance)) || 0;
-  const score = Number(raw);
-  if (!Number.isFinite(score) || score <= 0) return 0;
-  return Math.round(score <= 1 ? score * 100 : score);
-}
-function briefStories() {
-  return Array.isArray(state.dailyBrief?.items) ? state.dailyBrief.items : [];
-}
-function mergedStories() {
-  return Array.isArray(state.storiesMerged?.stories) ? state.storiesMerged.stories : [];
-}
 function itemTagLabels(item) {
   const tags = [];
   const sections = itemSections(item);
@@ -28,8 +16,9 @@ function feedSummaryText(item) {
   const signals = Array.isArray(item.ai_signals) ? item.ai_signals.filter(Boolean).slice(0, 2) : [];
   if (signals.length) return `相关线索：${signals.join(" / ")}。`;
   const reason = reasonText(item);
-  if (reason && !reason.startsWith("来源与标题")) return reason.replace(/^命中方向：/, "相关线索：");
-  return `${labelText(item)} · AI 相关度 ${scorePercent(item) || "待评估"}。`;
+  if (reason.startsWith("订阅互动")) return reason;
+  const source = item.source || item.site_name || sourceDisplayName(item);
+  return source ? `${source} 的更新` : "";
 }
 function timelineItemDate(item) {
   const date = new Date(timelineIso(item));
@@ -76,14 +65,13 @@ function renderItemNode(item, context = {}) {
   const categoryEl = node.querySelector(".category");
   categoryEl.textContent = kind.label;
   categoryEl.classList.add(`kind-${kind.tone}`);
-  const score = scorePercent(item);
   const creatorScore = creatorHotScore(item);
-  const tagEl = document.createElement("span");
-  tagEl.className = `ai-tag tone-${itemLabelTone(item)}`;
-  tagEl.textContent = creatorScore && itemSections(item).has("creator")
-    ? `订阅热度 · ${creatorScore}分`
-    : `${labelText(item)} · ${score || "?"}分`;
-  categoryEl.insertAdjacentElement("afterend", tagEl);
+  if (creatorScore && itemSections(item).has("creator")) {
+    const tagEl = document.createElement("span");
+    tagEl.className = `ai-tag tone-${itemLabelTone(item)}`;
+    tagEl.textContent = `订阅热度 · ${creatorScore}分`;
+    categoryEl.insertAdjacentElement("afterend", tagEl);
+  }
 
   const sourceEl = node.querySelector(".source");
   const sourceLabel = sourceSignal(item);
