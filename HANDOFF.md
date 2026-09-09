@@ -2,6 +2,14 @@
 
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，完整状态在 `PROJECT_STATE.md`。
 
+## 死前端与雷达页面文案清理（2026-09-09，已验收）
+
+- 读者页已无伯乐精选 / WaytoAGI 空壳；统计条是条目/未阅/来源；卡片只留作者和平台。
+- 小红书、微信栏目常驻，空着显示 0。采集器不要当死代码删。
+- PR #49 已合 `master`（`8fd21d2f`）。脚本戳 `dead-ui-0909e`。Pages 已带新戳。
+- 删前端前先搜活脚本引用：页面没按钮 ≠ JS 常量可删（`onlineSourceSyncBtnEl`、`normalizeSourceConfigToken`）。
+- 本仓无活跃四文件。
+
 ## 油管 RSS 抽风时重试并沿用上一轮条目（2026-09-08，已部署）
 
 - 两个油管号一起 404 是官方 RSS 抽风，不是频道被掐。先看 `source-status.json` 历史，不要改 channel_id。
@@ -159,7 +167,7 @@
 
 ## 下一轮入口
 
-1. 当前无活跃四文件，无进行中功能窗口。新需求另开一轮。
+1. 当前无活跃四文件，无进行中功能窗口。新需求另开一轮。前端清理已上生产。
 2. 网站若再停更：先看 `data/source-status.json` 的 `generated_at`；抖音单独停更时再看 `mediacrawler_douyin.collection_generated_at` 和 NUC `douyin-collect-status.json`，不要只看看板更新时间或计划任务 `LastTaskResult`。再 `gh run list` 看 Update AI News Snapshot。
 3. 下次油管两个号一起 404：看 `fetch_mode` / `keep_last_restored`，不要改频道地址、不要连跑快照。下次抖音某个号 `listed=0`：核对 `keep_last_restored` 和 3 秒重试，不要连跑补采。
 4. NUC SSH 连不上时，先核对当前 IP / WiFi，不要沿用旧 HostName。
