@@ -354,41 +354,9 @@ def prepare_run_context(args: argparse.Namespace) -> RunContext | int:
         paid_source_state=paid_source_state,
     )
 
-def mediacrawler_douyin_status_entry(status: dict[str, Any]) -> dict[str, Any]:
-    """把抖音 fetcher 的返回值收敛成 `source-status.json` 的一条记录。
-
-    BUG-02 / QA-02：本函数原先是 `collect_stage` 里的一段内联字典，逐字段挑选，
-    于是 fetcher 新加的采集健康字段在主管线被整体丢弃——线上看板只看得到
-    `item_count`，`partial` 这些键根本不存在。抽成函数是为了让它有测试落点。
-
-    **拿不到健康信息时一律给安全默认值**：`partial=False`。
-    宁可不标黄，也不能凭空把一轮正常采集标成「部分完成」。
-    """
-    return {
-        "site_id": MEDIACRAWLER_DOUYIN_SITE_ID,
-        "site_name": MEDIACRAWLER_DOUYIN_SITE_NAME,
-        "ok": bool(status.get("ok")) if status.get("ok") is not None else True,
-        "item_count": int(status.get("item_count") or 0),
-        "duration_ms": int(status.get("duration_ms") or 0),
-        "error": status.get("error"),
-        "source_name": status.get("source_name"),
-        "privacy": status.get("privacy"),
-        "coverage_note": status.get("coverage_note"),
-        "source_kind": status.get("source_kind"),
-        "jsonl_path_configured": bool(status.get("jsonl_path_configured")),
-        "jsonl_file": status.get("jsonl_file"),
-        "max_items": status.get("max_items"),
-        "subscriptions": status.get("subscriptions"),
-        "subscription_count": status.get("subscription_count"),
-        # 采集健康（来自桥接 manifest schema 2）；前端据 `partial` 显示「部分完成」。
-        "partial": bool(status.get("partial")),
-        "missing_rows": int(status.get("missing_rows") or 0),
-        "completed_creator_count": int(status.get("completed_creator_count") or 0),
-        "partial_creator_count": int(status.get("partial_creator_count") or 0),
-        "failed_creator_count": int(status.get("failed_creator_count") or 0),
-        "collection_manifest_available": bool(status.get("collection_manifest_available")),
-        "collection_generated_at": status.get("collection_generated_at"),
-    }
+def source_status_entry(site_id: str, site_name: str, receipt: dict[str, Any]) -> dict[str, Any]:
+    """盖上采集通道名，成为一条源状态。其余键原样保留，不挑字段、不发明默认值。"""
+    return {**receipt, "site_id": site_id, "site_name": site_name}
 
 
 def _collect_log(message: str) -> None:
@@ -553,22 +521,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
     if wewe_rss_enabled:
         wewe_rss_items, wewe_rss_status = fetch_wewe_rss_subscription(session, now)
         raw_items.extend(wewe_rss_items)
-        statuses.append(
-            {
-                "site_id": WEWE_RSS_SITE_ID,
-                "site_name": WEWE_RSS_SITE_NAME,
-                "ok": bool(wewe_rss_status.get("ok")),
-                "item_count": int(wewe_rss_status.get("item_count") or 0),
-                "duration_ms": int(wewe_rss_status.get("duration_ms") or 0),
-                "error": wewe_rss_status.get("error"),
-                "source_kind": wewe_rss_status.get("source_kind"),
-                "base_url": wewe_rss_status.get("base_url"),
-                "max_items_per_feed": wewe_rss_status.get("max_items_per_feed"),
-                "feeds": wewe_rss_status.get("feeds"),
-                "coverage_note": wewe_rss_status.get("coverage_note"),
-                "privacy": wewe_rss_status.get("privacy"),
-            }
-        )
+        statuses.append(source_status_entry(WEWE_RSS_SITE_ID, WEWE_RSS_SITE_NAME, wewe_rss_status))
     elif scoped_by_config and active_source_ids is not None and MAOBIDAO_WECHAT_SITE_ID in active_source_ids:
         maobidao_error = None
         maobidao_start = time.perf_counter()
@@ -596,22 +549,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
     if we_mp_rss_enabled:
         we_mp_rss_items, we_mp_rss_status = fetch_we_mp_rss_subscription(session, now)
         raw_items.extend(we_mp_rss_items)
-        statuses.append(
-            {
-                "site_id": WE_MP_RSS_SITE_ID,
-                "site_name": WE_MP_RSS_SITE_NAME,
-                "ok": bool(we_mp_rss_status.get("ok")),
-                "item_count": int(we_mp_rss_status.get("item_count") or 0),
-                "duration_ms": int(we_mp_rss_status.get("duration_ms") or 0),
-                "error": we_mp_rss_status.get("error"),
-                "source_kind": we_mp_rss_status.get("source_kind"),
-                "base_url": we_mp_rss_status.get("base_url"),
-                "max_items_per_feed": we_mp_rss_status.get("max_items_per_feed"),
-                "feeds": we_mp_rss_status.get("feeds"),
-                "coverage_note": we_mp_rss_status.get("coverage_note"),
-                "privacy": we_mp_rss_status.get("privacy"),
-            }
-        )
+        statuses.append(source_status_entry(WE_MP_RSS_SITE_ID, WE_MP_RSS_SITE_NAME, we_mp_rss_status))
     if we_mp_rss_jsonl_enabled:
         _collect_log("wechat jsonl start")
         we_mp_rss_jsonl_items, we_mp_rss_jsonl_status = fetch_we_mp_rss_jsonl_subscription(
@@ -622,11 +560,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
         )
         raw_items.extend(we_mp_rss_jsonl_items)
         statuses.append(
-            {
-                "site_id": WE_MP_RSS_JSONL_SITE_ID,
-                "site_name": WE_MP_RSS_JSONL_SITE_NAME,
-                **we_mp_rss_jsonl_status,
-            }
+            source_status_entry(WE_MP_RSS_JSONL_SITE_ID, WE_MP_RSS_JSONL_SITE_NAME, we_mp_rss_jsonl_status)
         )
     bilibili_dynamic_status = bilibili_dynamic_status_base()
     if active_source_ids is None or "bilibili_dynamic" in active_source_ids:
@@ -638,33 +572,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
         )
         if bilibili_dynamic_status.get("enabled"):
             raw_items.extend(bilibili_dynamic_items)
-            statuses.append(
-                {
-                    "site_id": "bilibili_dynamic",
-                    "site_name": "Bilibili Dynamic",
-                    "ok": bool(bilibili_dynamic_status.get("ok")) if bilibili_dynamic_status.get("ok") is not None else True,
-                    "item_count": int(bilibili_dynamic_status.get("item_count") or 0),
-                    "duration_ms": int(bilibili_dynamic_status.get("duration_ms") or 0),
-                    "error": bilibili_dynamic_status.get("error"),
-                    "uid": bilibili_dynamic_status.get("uid"),
-                    "uids": bilibili_dynamic_status.get("uids"),
-                    "uid_count": bilibili_dynamic_status.get("uid_count"),
-                    "source_name": bilibili_dynamic_status.get("source_name"),
-                    "privacy": bilibili_dynamic_status.get("privacy"),
-                    "coverage_note": bilibili_dynamic_status.get("coverage_note"),
-                    "cookie_present": bool(bilibili_dynamic_status.get("cookie_present")),
-                    "fetch_mode": bilibili_dynamic_status.get("fetch_mode"),
-                    "fallback_reason": bilibili_dynamic_status.get("fallback_reason"),
-                    "partial_failure_count": bilibili_dynamic_status.get("partial_failure_count"),
-                    "max_items": bilibili_dynamic_status.get("max_items"),
-                    "max_items_per_account": bilibili_dynamic_status.get("max_items_per_account"),
-                    "max_pages": bilibili_dynamic_status.get("max_pages"),
-                    "accounts": bilibili_dynamic_status.get("accounts"),
-                    "budget_ms": bilibili_dynamic_status.get("budget_ms"),
-                    "deferred_count": bilibili_dynamic_status.get("deferred_count"),
-                    "partial": bool(bilibili_dynamic_status.get("partial")),
-                }
-            )
+            statuses.append(source_status_entry("bilibili_dynamic", "Bilibili Dynamic", bilibili_dynamic_status))
             _collect_log(
                 "bilibili done "
                 f"ok={bilibili_dynamic_status.get('ok')} "
@@ -683,7 +591,13 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
         mediacrawler_douyin_items, mediacrawler_douyin_status = fetch_mediacrawler_douyin_subscriptions(douyin_subscriptions, now)
         if mediacrawler_douyin_status.get("enabled"):
             raw_items.extend(mediacrawler_douyin_items)
-            statuses.append(mediacrawler_douyin_status_entry(mediacrawler_douyin_status))
+            statuses.append(
+                source_status_entry(
+                    MEDIACRAWLER_DOUYIN_SITE_ID,
+                    MEDIACRAWLER_DOUYIN_SITE_NAME,
+                    mediacrawler_douyin_status,
+                )
+            )
     mediacrawler_xhs_status = {
         "enabled": False,
         "ok": None,
@@ -696,23 +610,11 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
         if mediacrawler_xhs_status.get("enabled"):
             raw_items.extend(mediacrawler_xhs_items)
             statuses.append(
-                {
-                    "site_id": MEDIACRAWLER_XHS_SITE_ID,
-                    "site_name": MEDIACRAWLER_XHS_SITE_NAME,
-                    "ok": bool(mediacrawler_xhs_status.get("ok")) if mediacrawler_xhs_status.get("ok") is not None else True,
-                    "item_count": int(mediacrawler_xhs_status.get("item_count") or 0),
-                    "duration_ms": int(mediacrawler_xhs_status.get("duration_ms") or 0),
-                    "error": mediacrawler_xhs_status.get("error"),
-                    "source_name": mediacrawler_xhs_status.get("source_name"),
-                    "privacy": mediacrawler_xhs_status.get("privacy"),
-                    "coverage_note": mediacrawler_xhs_status.get("coverage_note"),
-                    "source_kind": mediacrawler_xhs_status.get("source_kind"),
-                    "jsonl_path_configured": bool(mediacrawler_xhs_status.get("jsonl_path_configured")),
-                    "jsonl_file": mediacrawler_xhs_status.get("jsonl_file"),
-                    "max_items": mediacrawler_xhs_status.get("max_items"),
-                    "subscriptions": mediacrawler_xhs_status.get("subscriptions"),
-                    "subscription_count": mediacrawler_xhs_status.get("subscription_count"),
-                }
+                source_status_entry(
+                    MEDIACRAWLER_XHS_SITE_ID,
+                    MEDIACRAWLER_XHS_SITE_NAME,
+                    mediacrawler_xhs_status,
+                )
             )
     advanced_source_ids = frozenset({
         "agentmail",
@@ -787,18 +689,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
             x_api_items, x_api_status = [], {"enabled": False, "ok": None, "item_count": 0, "disabled_reason": "disabled_by_source_config"}
         if x_api_status.get("enabled"):
             raw_items.extend(x_api_items)
-            statuses.append(
-                {
-                    "site_id": "xapi",
-                    "site_name": "X API",
-                    "ok": bool(x_api_status.get("ok")) if x_api_status.get("ok") is not None else True,
-                    "item_count": int(x_api_status.get("item_count") or 0),
-                    "duration_ms": 0,
-                    "error": x_api_status.get("error"),
-                    "skipped": bool(x_api_status.get("skipped")),
-                    "skip_reason": x_api_status.get("skip_reason"),
-                }
-            )
+            statuses.append(source_status_entry("xapi", "X API", x_api_status))
         if active_source_ids is None or "socialdata_x" in active_source_ids:
             socialdata_items, socialdata_status = maybe_fetch_socialdata_updates(session, now, paid_source_state)
             update_paid_source_state(paid_source_state, "socialdata", socialdata_status, now)
@@ -807,18 +698,7 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
             socialdata_items, socialdata_status = [], {"enabled": False, "ok": None, "item_count": 0, "disabled_reason": "disabled_by_source_config"}
         if socialdata_status.get("enabled"):
             raw_items.extend(socialdata_items)
-            statuses.append(
-                {
-                    "site_id": "socialdata_x",
-                    "site_name": "SocialData X",
-                    "ok": bool(socialdata_status.get("ok")) if socialdata_status.get("ok") is not None else True,
-                    "item_count": int(socialdata_status.get("item_count") or 0),
-                    "duration_ms": 0,
-                    "error": socialdata_status.get("error"),
-                    "skipped": bool(socialdata_status.get("skipped")),
-                    "skip_reason": socialdata_status.get("skip_reason"),
-                }
-            )
+            statuses.append(source_status_entry("socialdata_x", "SocialData X", socialdata_status))
         if active_source_ids is None or active_source_ids.intersection({"tikhub_douyin", "tikhub_xiaohongshu"}):
             tikhub_items, tikhub_status = maybe_fetch_tikhub_updates(session, now, paid_source_state)
             update_paid_source_state(paid_source_state, "tikhub", tikhub_status, now)

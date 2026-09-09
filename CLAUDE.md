@@ -64,7 +64,7 @@ YouTube 订阅成员、已阅计数键、脚本 `?v=` / 工作台 `wb=` 见 `AGE
 线上少字段而单测全绿，见 `docs/bugs/BUG-02-抖音采集回执不完整导致整轮作废.md`。
 
 1. 抖音 fetcher 两条路都要改：`maybe_fetch_mediacrawler_douyin`（环境变量 JSONL，线上 Actions 走这条）与 `fetch_mediacrawler_douyin_subscriptions`（订阅驱动）。
-2. `cli.py` 会逐字段重构 statuses，新键必须在主管线显式透传（抖音收敛点 `mediacrawler_douyin_status_entry()`）。
+2. 主管线不得挑源状态字段。fetcher 回执只经 `source_status_entry` 盖上 `site_id` / `site_name`。新键写在回执上，并用 `collect_stage`（或写出的 `sites[]`）确认还在；禁止再加字段白名单。
 3. 先复用已有 `site.partial`「部分完成」，别新造语义。
 4. 排查先分清「键不存在」还是「值为 False」。
 

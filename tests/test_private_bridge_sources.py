@@ -1476,14 +1476,36 @@ class DouyinBridgeManifestHealthTests(unittest.TestCase):
         self.assertFalse(status["partial"])
         self.assertFalse(status["collection_manifest_available"])
 
-    def test_main_pipeline_status_entry_carries_health_fields(self):
-        """P8 真实验收 QA-02：主管线必须把健康字段透传到 source-status.json。
+    def test_source_status_entry_keeps_unknown_keys_and_does_not_invent_partial(self):
+        from scripts.radar.cli import source_status_entry
 
-        `scripts/radar/cli.py` 逐字段重新构造 statuses 条目。fetcher 填得再全，
-        主管线不透传，看板也拿不到——线上实测就是这样：抖音条目只有 `item_count`，
-        `partial` / `missing_rows` 这些键**根本不存在**（不是值为 False）。
-        """
-        from scripts.radar.cli import mediacrawler_douyin_status_entry
+        entry = source_status_entry(
+            "mediacrawler_douyin",
+            "Douyin",
+            {"ok": True, "item_count": 3, "qa02_extra_field": "must-survive"},
+        )
+
+        self.assertEqual(entry["qa02_extra_field"], "must-survive")
+        self.assertEqual(entry["site_id"], "mediacrawler_douyin")
+        self.assertEqual(entry["site_name"], "Douyin")
+        self.assertNotIn("partial", entry)
+
+    def test_source_status_entry_channel_id_wins(self):
+        from scripts.radar.cli import source_status_entry
+
+        entry = source_status_entry(
+            "bilibili_dynamic",
+            "Bilibili Dynamic",
+            {"site_id": "nope", "site_name": "wrong", "ok": True},
+        )
+
+        self.assertEqual(entry["site_id"], "bilibili_dynamic")
+        self.assertEqual(entry["site_name"], "Bilibili Dynamic")
+
+    def test_collect_stage_keeps_fetcher_status_keys(self):
+        """QA-02：fetcher 多出来的键必须还在 collect_stage 写出的源状态里。"""
+        from scripts.radar.cli import RunContext, collect_stage, parse_cli_args
+        from scripts.radar.common import MEDIACRAWLER_DOUYIN_SITE_ID, MEDIACRAWLER_DOUYIN_SITE_NAME
 
         fetcher_status = {
             "enabled": True,
@@ -1491,12 +1513,6 @@ class DouyinBridgeManifestHealthTests(unittest.TestCase):
             "item_count": 52,
             "duration_ms": 12,
             "error": None,
-            "source_kind": "mediacrawler_douyin",
-            "privacy": "local_jsonl_only_no_cookies",
-            "coverage_note": "reads_mediacrawler_douyin_creator_jsonl",
-            "jsonl_path_configured": True,
-            "jsonl_file": "creator_contents_2026-08-08.jsonl",
-            "max_items": 200,
             "partial": True,
             "missing_rows": 7,
             "completed_creator_count": 4,
@@ -1504,27 +1520,63 @@ class DouyinBridgeManifestHealthTests(unittest.TestCase):
             "failed_creator_count": 1,
             "collection_manifest_available": True,
             "collection_generated_at": "2026-08-08T09:20:32Z",
+            "qa02_extra_field": "must-survive",
+            "site_id": "wrong-channel",
         }
+        now = datetime(2026, 8, 8, tzinfo=timezone.utc)
 
-        entry = mediacrawler_douyin_status_entry(fetcher_status)
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            args = parse_cli_args(["--output-dir", str(tmp_path)])
+            ctx = RunContext(
+                args=args,
+                output_dir=tmp_path,
+                source_config={"sources": []},
+                source_config_status={"ok": True, "enabled": True},
+                source_config_runtime={"rss_opml": ""},
+                source_config_active=True,
+                source_scope="tested_creator_sources",
+                active_source_ids=frozenset({MEDIACRAWLER_DOUYIN_SITE_ID}),
+                scoped_to_tested_creators=True,
+                scoped_by_config=False,
+                all_time=False,
+                collect_window_hours=0,
+                wewe_rss_enabled=False,
+                we_mp_rss_enabled=False,
+                we_mp_rss_jsonl_enabled=False,
+                we_mp_cleanup_mode="off",
+                github_cleanup_mode="off",
+                now=now,
+                archive_path=tmp_path / "archive.json",
+                latest_path=tmp_path / "latest-24h.json",
+                latest_all_path=tmp_path / "latest-24h-all.json",
+                status_path=tmp_path / "source-status.json",
+                daily_brief_path=tmp_path / "daily-brief.json",
+                stories_merged_path=tmp_path / "stories-merged.json",
+                merge_log_path=tmp_path / "merge-log.json",
+                waytoagi_path=tmp_path / "waytoagi-7d.json",
+                title_cache_path=tmp_path / "title-zh-cache.json",
+                email_digest_path=tmp_path / "email-digest.json",
+                paid_source_state_path=tmp_path / "paid-source-state.json",
+                github_autosync_status_path=tmp_path / "github-star-autosync.json",
+                github_purge_state_path=tmp_path / "github-star-purge-state.json",
+                github_cleanup_audit_path=tmp_path / "github-star-subscription-cleanup.json",
+                archive={},
+                paid_source_state={},
+            )
+            with patch(
+                "scripts.radar.cli.fetch_mediacrawler_douyin_subscriptions",
+                return_value=([], fetcher_status),
+            ):
+                collected = collect_stage(object(), ctx)
 
-        self.assertEqual(entry["item_count"], 52, "既有字段不能因为透传而丢失")
+        entry = next(site for site in collected.statuses if site.get("site_id") == MEDIACRAWLER_DOUYIN_SITE_ID)
+        self.assertEqual(entry["item_count"], 52)
         self.assertTrue(entry["partial"])
         self.assertEqual(entry["missing_rows"], 7)
-        self.assertEqual(entry["completed_creator_count"], 4)
-        self.assertEqual(entry["partial_creator_count"], 1)
-        self.assertEqual(entry["failed_creator_count"], 1)
-        self.assertTrue(entry["collection_manifest_available"])
-
-    def test_main_pipeline_status_entry_defaults_are_safe(self):
-        """fetcher 没给健康字段时（旧 manifest / 读取失败），条目必须给出安全默认值。"""
-        from scripts.radar.cli import mediacrawler_douyin_status_entry
-
-        entry = mediacrawler_douyin_status_entry({"enabled": True, "ok": True, "item_count": 3})
-
-        self.assertFalse(entry["partial"], "拿不到健康信息时绝不能默认标成部分完成")
-        self.assertEqual(entry["missing_rows"], 0)
-        self.assertFalse(entry["collection_manifest_available"])
+        self.assertEqual(entry["qa02_extra_field"], "must-survive")
+        self.assertEqual(entry["site_name"], MEDIACRAWLER_DOUYIN_SITE_NAME)
+        self.assertEqual(entry["site_id"], MEDIACRAWLER_DOUYIN_SITE_ID)
 
     def test_legacy_schema_1_manifest_is_treated_as_unavailable(self):
         manifest = json.dumps({"schema_version": 1, "output_rows": 104, "crawl_output_rows": 52})
