@@ -657,23 +657,20 @@ test("item 文本字段不会被 innerHTML 解析", async ({ page }) => {
       ai_signals: [],
     };
     const host = document.createElement("div");
-    host.append(
-      buildBoleLead({ item, score: 42 }),
-      buildBoleTimelineRow({ item, score: 42, sourceSignals: [] }, 1),
-    );
+    host.append(renderItemNode(item));
     document.body.appendChild(host);
     const snapshot = {
       imageCount: host.querySelectorAll('img[alt="fixture-field-injection"]').length,
-      footText: host.querySelector(".bole-lead-foot")?.textContent || "",
-      metaText: host.querySelector(".bole-row-meta")?.textContent || "",
+      siteText: host.querySelector(".site")?.textContent || "",
+      sourceText: host.querySelector(".source")?.textContent || "",
     };
     host.remove();
     return snapshot;
   });
 
   expect(result.imageCount).toBe(0);
-  expect(result.footText).toContain('<img alt="fixture-field-injection">');
-  expect(result.metaText).toContain('<img alt="fixture-field-injection">');
+  expect(result.siteText).toContain('<img alt="fixture-field-injection">');
+  expect(result.sourceText).toContain('<img alt="fixture-field-injection">');
   expect(errors).toEqual([]);
 });
 

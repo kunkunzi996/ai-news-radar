@@ -21,8 +21,6 @@ const state = {
   authorFilter: "",
   query: "",
   mode: "all",
-  waytoagiMode: "today",
-  waytoagiData: null,
   sourceStatus: null,
   generatedAt: null,
   dataBaseUrl: "",
@@ -33,8 +31,6 @@ const state = {
   storiesMerged: null,
   storiesDataUrl: "data/stories-merged.json",
   activeSection: "creator",
-  boleView: "timeline",
-  boleExpanded: false,
   listSort: "time",
   sourceTypeFilter: "",
   signalLevelFilter: "",
@@ -52,7 +48,6 @@ const state = {
   githubStarEtag: "",
   githubStarConfigDigest: "",
   githubStarStatus: null,
-  subscriptionPlatform: "bilibili",
   youtubeSubscriptions: [],
   localOpsStatus: null,
   localOpsPollTimer: null,
@@ -93,22 +88,9 @@ const signalLevelSelectEl = document.getElementById("signalLevelSelect");
 const readFilterToolsEl = document.getElementById("readFilterTools");
 const radarSyncStatusEl = document.getElementById("radarSyncStatus");
 
-const waytoagiWrapEl = document.querySelector(".waytoagi-wrap");
-const waytoagiUpdatedAtEl = document.getElementById("waytoagiUpdatedAt");
-const waytoagiMetaEl = document.getElementById("waytoagiMeta");
-const waytoagiListEl = document.getElementById("waytoagiList");
-const waytoagiTodayBtnEl = document.getElementById("waytoagiTodayBtn");
-const waytoagi7dBtnEl = document.getElementById("waytoagi7dBtn");
 const coverageStripEl = document.getElementById("coverageStrip");
-const bolePicksListEl = document.getElementById("bolePicksList");
-const bolePicksMetaEl = document.getElementById("bolePicksMeta");
-const bolePicksWrapEl = document.getElementById("bolePicksWrap");
-const boleViewToggleEl = document.getElementById("boleViewToggle");
-const boleHotBtnEl = document.getElementById("boleHotBtn");
-const boleTimelineBtnEl = document.getElementById("boleTimelineBtn");
 const sectionTabsEl = document.getElementById("sectionTabs");
 const sectionSummaryEl = document.getElementById("sectionSummary");
-const topStoriesTitleEl = document.getElementById("topStoriesTitle");
 const listSortToolsEl = document.getElementById("listSortTools");
 const sourceConfigSummaryEl = document.getElementById("sourceConfigSummary");
 const sourceConfigFiltersEl = document.getElementById("sourceConfigFilters");
@@ -131,7 +113,6 @@ const oneClickCollectBtnEl = document.getElementById("oneClickCollectBtn");
 const sourceConfigRefreshBtnEl = document.getElementById("sourceConfigRefreshBtn");
 const sourceConfigCheckBtnEl = document.getElementById("sourceConfigCheckBtn");
 const localServerRestartBtnEl = document.getElementById("localServerRestartBtn");
-const weMpRssStartBtnEl = document.getElementById("weMpRssStartBtn");
 const sourceCollectionScopeSelectEl = document.getElementById("sourceCollectionScopeSelect");
 const sourceConfigStatusEl = document.getElementById("sourceConfigStatus");
 const localOpsStatusEl = document.getElementById("localOpsStatus");
@@ -177,19 +158,6 @@ const orphanPurgeControlsEl = document.querySelector(".orphan-purge-controls");
 const orphanPurgeSelectAllEl = document.getElementById("orphanPurgeSelectAll");
 const orphanPurgeDeleteBtnEl = document.getElementById("orphanPurgeDeleteBtn");
 const orphanPurgeListEl = document.getElementById("orphanPurgeList");
-const subscriptionManagerStatusEl = document.getElementById("subscriptionManagerStatus");
-const subscriptionPlatformTabsEl = document.getElementById("subscriptionPlatformTabs");
-const subscriptionMembersEl = document.getElementById("subscriptionMembers");
-const subscriptionMemberFormEl = document.getElementById("subscriptionMemberForm");
-const subscriptionMemberNameEl = document.getElementById("subscriptionMemberName");
-const subscriptionMemberLocatorEl = document.getElementById("subscriptionMemberLocator");
-const subscriptionMemberHomeUrlEl = document.getElementById("subscriptionMemberHomeUrl");
-const subscriptionHomeUrlWrapEl = document.getElementById("subscriptionHomeUrlWrap");
-const subscriptionNameLabelEl = document.getElementById("subscriptionNameLabel");
-const subscriptionLocatorLabelEl = document.getElementById("subscriptionLocatorLabel");
-const subscriptionMemberSubmitBtnEl = document.getElementById("subscriptionMemberSubmitBtn");
-const subscriptionMemberClearBtnEl = document.getElementById("subscriptionMemberClearBtn");
-const subscriptionMemberSyncBtnEl = document.getElementById("subscriptionMemberSyncBtn");
 
 const SOURCE_KINDS = {
   official_ai: { label: "官方", tone: "official" },
@@ -275,75 +243,6 @@ const SOURCE_CONFIG_FILTERS = [
   { id: "github", label: "GitHub" },
 ];
 
-const SUBSCRIPTION_PLATFORMS = [
-  {
-    id: "bilibili",
-    label: "B站",
-    nameLabel: "UP主名称",
-    locatorLabel: "B站 UID",
-    locatorPlaceholder: "例如：316183842",
-    homeUrl: false,
-    storage: "bilibili",
-    runtimeId: "bilibili_dynamic",
-  },
-  {
-    id: "youtube",
-    label: "油管",
-    nameLabel: "频道名称",
-    locatorLabel: "YouTube channel_id",
-    locatorPlaceholder: "例如：UCxxxxxxxxxxxxxxxxxxxxxx",
-    homeUrl: true,
-    storage: "youtube",
-    runtimeId: "opmlrss",
-  },
-  {
-    id: "douyin",
-    label: "抖音",
-    nameLabel: "创作者名称",
-    locatorLabel: "抖音主页链接",
-    locatorPlaceholder: "例如：https://www.douyin.com/user/MS4wLjABAAAA...",
-    homeUrl: false,
-    storage: "source-records",
-    runtimeId: "mediacrawler_douyin",
-    type: "mediacrawler_jsonl",
-    channel: "抖音",
-    idPrefix: "mediacrawler_douyin",
-    env: "MEDIACRAWLER_DOUYIN_ENABLED / MEDIACRAWLER_DOUYIN_JSONLS / MEDIACRAWLER_DOUYIN_SOURCE_NAMES",
-    notes: "填创作者主页链接即可；Radar 会自动读取本地 MediaCrawler 最新 JSONL，不读取 cookie 或浏览器 profile。",
-  },
-  {
-    id: "xiaohongshu",
-    label: "小红书",
-    nameLabel: "博主名称",
-    locatorLabel: "小红书主页链接",
-    locatorPlaceholder: "例如：https://www.xiaohongshu.com/user/profile/5e4027000000000001005eb8",
-    homeUrl: false,
-    storage: "source-records",
-    runtimeId: "mediacrawler_xhs",
-    type: "mediacrawler_jsonl",
-    channel: "小红书",
-    idPrefix: "mediacrawler_xhs",
-    env: "MEDIACRAWLER_XHS_ENABLED / MEDIACRAWLER_XHS_JSONLS / MEDIACRAWLER_XHS_SOURCE_NAMES",
-    notes: "填博主主页链接即可；Radar 会自动读取本地 MediaCrawler 最新 JSONL，不保存登录态。",
-  },
-  {
-    id: "github",
-    label: "GitHub",
-    nameLabel: "仓库名称",
-    locatorLabel: "仓库或 Releases API",
-    locatorPlaceholder: "例如：AlkaidLab/foundation-sunshine",
-    homeUrl: false,
-    storage: "source-records",
-    runtimeId: "github_foundation_sunshine_releases",
-    type: "github_release",
-    channel: "GitHub Release",
-    idPrefix: "github_release",
-    env: "",
-    notes: "只追踪 GitHub Releases，不追踪普通 commit。",
-  },
-];
-
-
 // 渲染限额常量（原 app.js 4182-4184、4976-4984 行，拆分时曾遗漏，验收补回）
 const HOT_DECAY_HOURS = 12;
 const HOT_SCORE_SCALE = 60;
@@ -355,5 +254,3 @@ const SITE_SOURCE_GROUP_INITIAL_LIMIT = 4;
 const SITE_SOURCE_GROUP_LOAD_STEP = 4;
 const SOURCE_GROUP_INITIAL_LIMIT = 8;
 const SOURCE_GROUP_LOAD_STEP = 8;
-const BOLE_HOT_LIMIT = 10;
-const BOLE_TIMELINE_LIMIT = 20;

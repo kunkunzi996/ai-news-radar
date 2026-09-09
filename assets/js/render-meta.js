@@ -320,7 +320,6 @@ function sectionStats(sectionId) {
 }
 function setActiveSection(sectionId) {
   state.activeSection = SECTION_BY_ID[sectionId] ? sectionId : "creator";
-  state.boleExpanded = false;
 }
 function renderSectionTabs() {
   if (!sectionTabsEl) return;
@@ -339,8 +338,6 @@ function renderSectionTabs() {
       renderSectionTabs();
       renderModeSwitch();
       renderSiteFilters();
-      renderBolePicks();
-      if (state.waytoagiData) renderWaytoagi(state.waytoagiData);
       renderList();
     });
     sectionTabsEl.appendChild(btn);
@@ -408,7 +405,6 @@ function renderSiteFilters() {
     state.siteFilter = "";
     if (window.RadarSync) window.RadarSync.saveViewField("siteFilter", state.siteFilter);
     renderSiteFilters();
-    renderBolePicks();
     renderList();
   };
   sitePillsEl.appendChild(allPill);
@@ -425,7 +421,6 @@ function renderSiteFilters() {
       if (window.RadarSync) window.RadarSync.saveViewField("siteFilter", state.siteFilter);
       state.siteGroupsExpanded = false;
       renderSiteFilters();
-      renderBolePicks();
       renderList();
     };
     sitePillsEl.appendChild(authorPill);
@@ -440,7 +435,6 @@ function renderSiteFilters() {
       if (window.RadarSync) window.RadarSync.saveViewField("siteFilter", state.siteFilter);
       if (s.site_id !== "socialdata_x") state.authorFilter = "";
       renderSiteFilters();
-      renderBolePicks();
       renderList();
     };
     sitePillsEl.appendChild(btn);

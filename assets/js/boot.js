@@ -78,12 +78,8 @@ function afterAllModeDataArrived() {
     || !newsListEl.querySelector(".news-card")
     || !currentViewUsesCreatorPool();
   if (needsListRebuild) {
-    renderBolePicks();
     renderList();
   }
-}
-async function loadWaytoagiData() {
-  return fetchDataJson("waytoagi-7d.json", "waytoagi-7d.json");
 }
 async function loadSourceStatusData() {
   return fetchDataJson("source-status.json", "source-status.json");
@@ -95,9 +91,8 @@ async function loadStoriesData() {
   return fetchDataJson(state.storiesDataUrl, "stories-merged.json");
 }
 async function init() {
-  const [newsResult, waytoagiResult, statusResult, briefResult, storiesResult] = await Promise.allSettled([
+  const [newsResult, statusResult, briefResult, storiesResult] = await Promise.allSettled([
     loadNewsData(),
-    loadWaytoagiData(),
     loadSourceStatusData(),
     loadDailyBriefData(),
     loadStoriesData(),
@@ -172,7 +167,6 @@ async function init() {
     renderListSortTools();
     renderCoverageStrip();
     renderSiteFilters();
-    renderBolePicks();
     renderList();
     updatedAtEl.textContent = fmtTime(state.generatedAt);
 
@@ -202,15 +196,6 @@ async function init() {
     renderCoverageStrip(statusResult.reason.message);
   }
 
-  if (waytoagiResult.status === "fulfilled") {
-    state.waytoagiData = waytoagiResult.value;
-    renderWaytoagi(state.waytoagiData);
-  } else {
-    if (waytoagiWrapEl) waytoagiWrapEl.hidden = true;
-    waytoagiUpdatedAtEl.textContent = "加载失败";
-    waytoagiListEl.innerHTML = `<div class="waytoagi-error">${waytoagiResult.reason.message}</div>`;
-  }
-
   renderDataSourcePill();
   renderSourceConfig();
   renderOnlineSourceConfig();
@@ -235,7 +220,6 @@ const QUERY_APPLY_DELAY_MS = 250;
 function applyQueryView() {
   queryApplyTimer = null;
   if (window.RadarSync) window.RadarSync.saveViewField("query", state.query);
-  renderBolePicks();
   renderList();
 }
 
@@ -281,7 +265,6 @@ siteSelectEl.addEventListener("change", (e) => {
   if (state.siteFilter !== "socialdata_x") state.authorFilter = "";
   state.siteGroupsExpanded = false;
   renderSiteFilters();
-  renderBolePicks();
   renderList();
 });
 
@@ -410,36 +393,6 @@ document.addEventListener("click", (event) => {
   if (window.WorkbenchBridge) window.WorkbenchBridge.openExternal(anchor.href);
 }, true);
 
-if (waytoagiTodayBtnEl) {
-  waytoagiTodayBtnEl.addEventListener("click", () => {
-    state.waytoagiMode = "today";
-    if (state.waytoagiData) renderWaytoagi(state.waytoagiData);
-  });
-}
-
-if (waytoagi7dBtnEl) {
-  waytoagi7dBtnEl.addEventListener("click", () => {
-    state.waytoagiMode = "7d";
-    if (state.waytoagiData) renderWaytoagi(state.waytoagiData);
-  });
-}
-
-if (boleHotBtnEl) {
-  boleHotBtnEl.addEventListener("click", () => {
-    state.boleView = "hot";
-    state.boleExpanded = false;
-    renderBolePicks();
-  });
-}
-
-if (boleTimelineBtnEl) {
-  boleTimelineBtnEl.addEventListener("click", () => {
-    state.boleView = "timeline";
-    state.boleExpanded = false;
-    renderBolePicks();
-  });
-}
-
 if (sourceConfigFormEl) {
   sourceConfigFormEl.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -474,12 +427,6 @@ if (onlineSourceClearBtnEl) {
   onlineSourceClearBtnEl.addEventListener("click", clearOnlineSourceForm);
 }
 
-if (onlineSourceSyncBtnEl) {
-  onlineSourceSyncBtnEl.addEventListener("click", () => {
-    syncOnlineSourceConfigToServer().catch(() => {});
-  });
-}
-
 if (orphanPurgeReloadBtnEl) {
   orphanPurgeReloadBtnEl.addEventListener("click", () => {
     loadOrphanPurgePreview().catch(() => {});
@@ -494,27 +441,6 @@ if (orphanPurgeDeleteBtnEl) {
 
 if (orphanPurgeSelectAllEl) {
   orphanPurgeSelectAllEl.addEventListener("change", toggleOrphanPurgeSelectAll);
-}
-
-if (subscriptionMemberFormEl) {
-  subscriptionMemberFormEl.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const ok = upsertSubscriptionMember({
-      name: subscriptionMemberNameEl.value,
-      locator: subscriptionMemberLocatorEl.value,
-      htmlUrl: subscriptionMemberHomeUrlEl?.value || "",
-    });
-    if (!ok) return;
-    try {
-      await saveSubscriptionMembers();
-    } catch (err) {
-      setSubscriptionManagerStatus(`保存订阅失败：${err.message}`, "bad");
-    }
-  });
-}
-
-if (subscriptionMemberClearBtnEl) {
-  subscriptionMemberClearBtnEl.addEventListener("click", clearSubscriptionMemberForm);
 }
 
 if (sourceConfigAddBtnEl) {
