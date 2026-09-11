@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-09-11T15:41:27Z",
+  "updated_at": "2026-09-11T15:50:41Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -741,17 +741,6 @@
       "locator": "https://simonwillison.net/atom/everything/",
       "env": "",
       "notes": "公开 feed"
-    },
-    {
-      "id": "online_youtube_highlevelz",
-      "name": "HighLevelz",
-      "type": "rss",
-      "enabled": false,
-      "channel": "RSS/YouTube",
-      "target": "HighLevelz",
-      "locator": "https://www.youtube.com/feeds/videos.xml?channel_id=UCzkPX3KCIVquUPa8oXjHn0g",
-      "env": "",
-      "notes": "YouTube 公开频道 feed"
     },
     {
       "id": "online_youtube_mrbrain",
