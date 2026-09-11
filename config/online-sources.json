@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-09-11T17:38:33Z",
+  "updated_at": "2026-09-11T17:39:23Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -673,17 +673,6 @@
       "channel": "抖音订阅",
       "target": "珍妮丁丁说AI",
       "locator": "https://www.douyin.com/user/MS4wLjABAAAAOzTvIhQXaHWi6jT_P5rG5xEWpWPjufiKQHL4_uaFRZzOMFYOxxQPu3AtUmTd_P09",
-      "env": "",
-      "notes": "云电脑桥接采集"
-    },
-    {
-      "id": "online_douyin_4ba018c629",
-      "name": "Simon林",
-      "type": "mediacrawler_jsonl",
-      "enabled": true,
-      "channel": "抖音订阅",
-      "target": "Simon林",
-      "locator": "https://www.douyin.com/user/MS4wLjABAAAACsVvwoWhwaNZkd4kOY7bu6UhcfCiYmd_k_wcUnN9bYo8jOANJ1iyts7MXQB8nsZ0",
       "env": "",
       "notes": "云电脑桥接采集"
     },
