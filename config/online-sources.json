@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-09-11T16:17:33Z",
+  "updated_at": "2026-09-11T17:38:33Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -706,17 +706,6 @@
       "channel": "抖音订阅",
       "target": "FredTalk",
       "locator": "https://www.douyin.com/user/MS4wLjABAAAAbsEkiVbKt7yhYoBK8_PkNTQoPAgRiLzOyrBc-sYHSdo",
-      "env": "",
-      "notes": "云电脑桥接采集"
-    },
-    {
-      "id": "online_douyin_c3b497265b",
-      "name": "芙芙家的洗碗君",
-      "type": "mediacrawler_jsonl",
-      "enabled": true,
-      "channel": "抖音订阅",
-      "target": "芙芙家的洗碗君",
-      "locator": "https://www.douyin.com/user/MS4wLjABAAAABQ86JBTzG2dt2HG0I28pyyGXpJoEuKhqG9k-ju6Iut65yxLoVS_dIJngYVJkIUFZ",
       "env": "",
       "notes": "云电脑桥接采集"
     },
