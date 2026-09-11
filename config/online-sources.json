@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-09-11T09:28:02Z",
+  "updated_at": "2026-09-11T15:41:27Z",
   "sources": [
     {
       "id": "online_bilibili_28756625",
@@ -730,17 +730,6 @@
       "locator": "",
       "env": "",
       "notes": "微信采集已下线。配置保留以免误清历史文章，不再抓新。"
-    },
-    {
-      "id": "online_feed_openai_news",
-      "name": "OpenAI News",
-      "type": "rss",
-      "enabled": false,
-      "channel": "RSS/YouTube",
-      "target": "OpenAI News",
-      "locator": "https://openai.com/news/rss.xml",
-      "env": "",
-      "notes": "公开 feed"
     },
     {
       "id": "online_feed_simon_willison",
