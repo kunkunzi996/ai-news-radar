@@ -29,14 +29,18 @@ YouTube 订阅成员、脚本 `?v=` / 工作台 `wb=` 见 `AGENTS.md`。已阅�
 
 ### 清理历史条目的禁区
 
-能删 `data/archive.json` 的默认只有「保存/同步信源配置」。窄例外见
-`docs/rules/archive-cleanup-exceptions.md`。
+能删 `data/archive.json` 历史的默认只有一条链路：「保存/同步信源配置」把删掉的源登记进
+`config/online-sources.json` 顶层 `deleted_sources` 台账并随配置提交，**Actions 管线**在写出
+`data/**` 之前按台账剔除（`scripts/radar/deleted_sources.py`）。**NUC 本机绝不改写 `data/**`**——
+2026-09-11 本机就地清洗把工作区弄脏、挡住 `RadarAutoFF` 又在 `merge_sync` 收尾被 stash 盖回，
+`radar.wanyouomnia.cn` 停更 13 小时（见 `docs/bugs/BUG-04-删源本地清洗挡住NUC快进.md`）。
+窄例外见 `docs/rules/archive-cleanup-exceptions.md`。
 
 1. 采集范围 `active_source_ids` 绝不可用来过滤归档。
 2. 判断「源被删了」必须 previous 与 current 都排除 `enabled: false`。
 3. 往 `PURGE_TRACKED_SITE_IDS` 加 site_id 前，该 type 必须先能被 `source_identity_names()` 认出。
 4. 容器型记录（`type: opmlrss` 订阅包、逗号串 B 站 target）不是订阅对象。
-5. `data/pending-purge.json` 补做前必须用当前配置复核；源已加回则划掉、拒绝清理。
+5. `deleted_sources` 台账每次保存都用当前配置复核：源已加回则划掉；老过 30 天（归档保留 14 天的两倍余量）也划掉。`data/pending-purge.json` 已废弃，不再读写。
 6. 抖音 / B 站 / 油管的首采和清理必须问稳定 ID（sec_uid / uid / channel_id），禁止用昵称认人。没有 ID 的旧条目宁可不删、不扒历史。微信、GitHub 仍走各自窄例外。
 
 回滚只用各自 `scripts/restore_*.py` 按 ID 回插，禁止用旧 `archive.json` 整文件覆盖。
@@ -49,7 +53,7 @@ YouTube 订阅成员、脚本 `?v=` / 工作台 `wb=` 见 `AGENTS.md`。已阅�
 1. 恢复只能 `git restore --source=stash@{0} -- .`，不要 `git checkout stash@{0} -- .`。
 2. 不可改用 `pull --rebase --autostash`。
 3. stash 不带 `-u`；只碰本次压入的 `stash@{0}`。
-4. NUC `RadarAutoFF` 只跑 Git 跟踪的 `scripts/windows/auto-ff.sh`；成败以 `logs/auto-ff.log` 的结构化 `reason` 为准。失败保留工作区，禁止 reset/强推/覆盖 `data/**`。
+4. NUC `RadarAutoFF` 只跑 Git 跟踪的 `scripts/windows/auto-ff.sh`；成败以 `logs/auto-ff.log` 的结构化 `reason` 为准。失败保留工作区，禁止 reset/强推/覆盖 `data/**`。连续 3 次失败会写 `event=alert`；`data/**` 出现 `worktree_dirty` 本身就是缺陷（本机不该写它），先查是谁写的，再手工 `git restore --worktree -- data/`。
 
 `merge_sync` 必须先推送合并提交再 CAS 移动本机 `master`；永远不得 purge 或改写归档历史。
 

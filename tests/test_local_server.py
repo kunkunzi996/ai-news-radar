@@ -23,7 +23,6 @@ from scripts.local_server import (
     alive_source_names_by_site,
     bilibili_cookie_status,
     collect_window_hours_for_scope,
-    flush_pending_purge,
     is_item_orphaned,
     launch_bilibili_dedicated_browser,
     last_collection_time,
@@ -34,8 +33,6 @@ from scripts.local_server import (
     mediacrawler_xhs_collector_status,
     normalize_collection_scope,
     perform_maintenance_action,
-    purge_deleted_source_data,
-    queue_pending_purge,
     read_online_source_config,
     read_wewe_rss_feeds,
     refresh_command,
@@ -57,6 +54,11 @@ from scripts.local_server import (
     validate_source_config,
     write_online_source_config,
     write_youtube_subscriptions,
+)
+from scripts.radar.deleted_sources import (
+    filter_archive_by_deleted_sources,
+    prune_deleted_sources,
+    record_deleted_sources,
 )
 from scripts.radar.server.subscriptions_store import deleted_source_names_by_site
 from scripts.radar.server import collectors, github_stars, online_sources
@@ -429,129 +431,20 @@ class LocalServerTests(unittest.TestCase):
         self.assertFalse(is_item_orphaned({"site_id": "hackernews", "source": "李四"}, alive))
         self.assertFalse(is_item_orphaned({"site_id": "opmlrss", "source": "李四"}, alive))
 
-    def test_purge_deleted_source_data_rewrites_display_payloads(self):
-        root = Path(self.create_temp_dir())
-        data_dir = root / "data"
-        data_dir.mkdir()
+    def test_filter_archive_by_deleted_sources_drops_only_ledgered_members(self):
         kept = {"site_id": "bilibili_dynamic", "source": "张三", "title": "保留", "bilibili_uid": "111"}
         deleted = {"site_id": "bilibili_dynamic", "source": "李四", "title": "删除", "bilibili_uid": "222"}
+        no_id = {"site_id": "bilibili_dynamic", "source": "李四", "title": "没有 ID 宁可不删"}
         unrelated = {"site_id": "hackernews", "source": "李四", "title": "无关"}
-        config = {
-            "sources": [
-                {
-                    "id": "bilibili_dynamic_sources",
-                    "name": "B站动态",
-                    "type": "bilibili_dynamic",
-                    "target": "张三",
-                    "locator": "111",
-                }
-            ]
-        }
-        (data_dir / "archive.json").write_text(
-            json.dumps({"items": [kept, deleted, unrelated], "total_items": 3}, ensure_ascii=False),
-            encoding="utf-8",
-        )
-        (data_dir / "latest-24h.json").write_text(
-            json.dumps(
-                {
-                    "items": [kept, deleted, unrelated],
-                    "items_ai": [deleted],
-                    "creator_items_ai": [kept, deleted],
-                    "creator_items_all": [unrelated],
-                    "items_all": [kept, deleted, unrelated],
-                    "items_all_raw": [kept, deleted, unrelated],
-                    "archive_total": 3,
-                    "ai_relevance_threshold": 0,
-                    "total_items": 3,
-                    "total_items_ai_raw": 3,
-                    "total_items_raw": 3,
-                    "total_items_all_mode": 3,
-                    "source_count": 3,
-                    "site_count": 2,
-                    "site_stats": [
-                        {"site_id": "bilibili_dynamic", "count": 2, "raw_count": 2},
-                        {"site_id": "hackernews", "count": 1, "raw_count": 1},
-                    ],
-                },
-                ensure_ascii=False,
-            ),
-            encoding="utf-8",
-        )
-        (data_dir / "latest-24h-all.json").write_text(
-            json.dumps(
-                {
-                    "items_all": [kept, deleted, unrelated],
-                    "items_all_raw": [kept, deleted, unrelated],
-                    "creator_items_all": [unrelated],
-                    "total_items_raw": 3,
-                    "total_items_all_mode": 3,
-                },
-                ensure_ascii=False,
-            ),
-            encoding="utf-8",
-        )
-        (data_dir / "stories-merged.json").write_text(
-            json.dumps(
-                {
-                    "stories": [
-                        {"title": "保留故事", "items": [kept]},
-                        {"title": "删除故事", "items": [deleted]},
-                        {"title": "无关故事", "items": [unrelated]},
-                    ],
-                    "total_stories": 3,
-                },
-                ensure_ascii=False,
-            ),
-            encoding="utf-8",
-        )
+        archive = {"a": kept, "b": deleted, "c": no_id, "d": unrelated}
+        ledger = record_deleted_sources({}, {"bilibili_dynamic": {"222"}})
 
-        summary = purge_deleted_source_data(root, config)
+        filtered, removed = filter_archive_by_deleted_sources(archive, ledger)
 
-        archive = json.loads((data_dir / "archive.json").read_text(encoding="utf-8"))
-        latest = json.loads((data_dir / "latest-24h.json").read_text(encoding="utf-8"))
-        all_mode = json.loads((data_dir / "latest-24h-all.json").read_text(encoding="utf-8"))
-        stories = json.loads((data_dir / "stories-merged.json").read_text(encoding="utf-8"))
-        self.assertEqual(summary["archive.json"], 1)
-        self.assertEqual(summary["latest-24h-all.json"], 2)
-        self.assertEqual(summary["latest-24h.json"], 5)
-        self.assertEqual(summary["stories-merged.json"], 1)
-        self.assertEqual(archive["total_items"], 2)
-        self.assertEqual([item["title"] for item in archive["items"]], ["保留", "无关"])
-        self.assertEqual([item["title"] for item in latest["items"]], ["保留", "无关"])
-        self.assertEqual(latest["archive_total"], 2)
-        self.assertEqual(latest["total_items"], 2)
-        self.assertEqual(latest["total_items_ai_raw"], 2)
-        self.assertEqual(latest["total_items_raw"], 2)
-        self.assertEqual(latest["total_items_all_mode"], 2)
-        self.assertEqual(latest["source_count"], 2)
-        self.assertEqual(latest["site_count"], 2)
-        self.assertEqual(
-            latest["site_stats"],
-            [
-                {"site_id": "bilibili_dynamic", "count": 1, "raw_count": 1},
-                {"site_id": "hackernews", "count": 1, "raw_count": 1},
-            ],
-        )
-        self.assertEqual(all_mode["total_items_raw"], 2)
-        self.assertEqual(all_mode["total_items_all_mode"], 2)
-        self.assertEqual([story["title"] for story in stories["stories"]], ["保留故事", "无关故事"])
-        self.assertEqual(stories["total_stories"], 2)
+        self.assertEqual([item["title"] for item in filtered.values()], ["保留", "没有 ID 宁可不删", "无关"])
+        self.assertEqual(removed, {("bilibili_dynamic", "李四"): 1})
 
-    def test_purge_deleted_source_data_keeps_renamed_source_history(self):
-        root = Path(self.create_temp_dir())
-        data_dir = root / "data"
-        data_dir.mkdir()
-        path = data_dir / "archive.json"
-        path.write_text(
-            json.dumps(
-                {
-                    "items": [{"site_id": "wewe_rss", "source": "猫笔刀", "title": "旧名历史"}],
-                    "total_items": 1,
-                },
-                ensure_ascii=False,
-            ),
-            encoding="utf-8",
-        )
+    def test_deleted_sources_ledger_keeps_renamed_source_history(self):
         old_config = {
             "sources": [
                 {"id": "wewe_rss_maobidao", "type": "wewe_rss", "name": "猫笔刀", "target": "猫笔刀"}
@@ -562,33 +455,21 @@ class LocalServerTests(unittest.TestCase):
                 {"id": "wewe_rss_maobidao", "type": "wewe_rss", "name": "猫笔刀公众号", "target": "猫笔刀公众号"}
             ]
         }
+        archive = {"a": {"site_id": "wewe_rss", "source": "猫笔刀", "title": "旧名历史"}}
 
-        summary = purge_deleted_source_data(root, new_config, previous_config=old_config)
+        ledger = record_deleted_sources({}, deleted_source_names_by_site(new_config, old_config))
+        filtered, removed = filter_archive_by_deleted_sources(archive, ledger)
 
-        archive = json.loads(path.read_text(encoding="utf-8"))
-        self.assertEqual(summary["archive.json"], 0)
-        self.assertEqual(archive["items"][0]["title"], "旧名历史")
-        self.assertEqual(archive["total_items"], 1)
+        self.assertEqual(ledger, {})
+        self.assertIs(filtered, archive)
+        self.assertEqual(removed, {})
 
-    def test_purge_deleted_source_data_removes_only_deleted_rss_source(self):
-        root = Path(self.create_temp_dir())
-        data_dir = root / "data"
-        data_dir.mkdir()
-        path = data_dir / "archive.json"
-        path.write_text(
-            json.dumps(
-                {
-                    "items": [
-                        {"site_id": "opmlrss", "source": "Wired AI", "title": "删除"},
-                        {"site_id": "opmlrss", "source": "OpenAI News", "title": "保留 RSS"},
-                        {"site_id": "we_mp_rss_jsonl", "source": "数字生命卡兹克", "title": "保留公众号"},
-                    ],
-                    "total_items": 3,
-                },
-                ensure_ascii=False,
-            ),
-            encoding="utf-8",
-        )
+    def test_filter_archive_by_deleted_sources_removes_only_deleted_rss_source(self):
+        archive = {
+            "a": {"site_id": "opmlrss", "source": "Wired AI", "title": "删除"},
+            "b": {"site_id": "opmlrss", "source": "OpenAI News", "title": "保留 RSS"},
+            "c": {"site_id": "we_mp_rss_jsonl", "source": "数字生命卡兹克", "title": "保留公众号"},
+        }
         old_config = {
             "sources": [
                 {"id": "rss_wired", "type": "rss", "name": "Wired AI", "enabled": True},
@@ -601,47 +482,39 @@ class LocalServerTests(unittest.TestCase):
             ]
         }
 
-        summary = purge_deleted_source_data(root, new_config, previous_config=old_config)
+        ledger = record_deleted_sources({}, deleted_source_names_by_site(new_config, old_config))
+        filtered, removed = filter_archive_by_deleted_sources(archive, ledger)
 
-        archive = json.loads(path.read_text(encoding="utf-8"))
-        self.assertEqual(summary["archive.json"], 1)
-        self.assertEqual([item["title"] for item in archive["items"]], ["保留 RSS", "保留公众号"])
-        self.assertEqual(archive["total_items"], 2)
+        self.assertEqual(list(ledger), ["opmlrss"])
+        self.assertEqual(list(ledger["opmlrss"]), ["Wired AI"])
+        self.assertEqual([item["title"] for item in filtered.values()], ["保留 RSS", "保留公众号"])
+        self.assertEqual(removed, {("opmlrss", "Wired AI"): 1})
 
-    def test_purge_deleted_source_data_skips_missing_data_dir(self):
-        root = Path(self.create_temp_dir())
+    def test_filter_archive_by_deleted_sources_returns_same_object_when_nothing_removed(self):
+        archive = {"a": {"site_id": "bilibili_dynamic", "source": "张三", "bilibili_uid": "111"}}
 
-        summary = purge_deleted_source_data(root, {"sources": []})
+        filtered, removed = filter_archive_by_deleted_sources(archive, {})
+        self.assertIs(filtered, archive)
+        self.assertEqual(removed, {})
 
-        self.assertEqual(summary, {})
-
-    def test_purge_deleted_source_data_does_not_rewrite_when_nothing_removed(self):
-        root = Path(self.create_temp_dir())
-        data_dir = root / "data"
-        data_dir.mkdir()
-        path = data_dir / "archive.json"
-        original = json.dumps(
-            {"items": [{"site_id": "bilibili_dynamic", "source": "张三"}], "total_items": 1},
-            ensure_ascii=False,
+        filtered, removed = filter_archive_by_deleted_sources(
+            archive, record_deleted_sources({}, {"bilibili_dynamic": {"999"}})
         )
-        path.write_text(original, encoding="utf-8")
+        self.assertIs(filtered, archive)
+        self.assertEqual(removed, {})
 
-        summary = purge_deleted_source_data(
-            root,
-            {
-                "sources": [
-                    {
-                        "id": "bilibili_dynamic_sources",
-                        "name": "B站动态",
-                        "type": "bilibili_dynamic",
-                        "target": "张三",
-                    }
-                ]
-            },
+    def test_prune_deleted_sources_drops_readded_and_expired_tokens(self):
+        now = datetime(2026, 9, 12, tzinfo=timezone.utc)
+        ledger = record_deleted_sources({}, {"bilibili_dynamic": {"111", "222"}}, now=now)
+        ledger = record_deleted_sources(
+            ledger,
+            {"opmlrss": {"Simon Willison"}},
+            now=now - timedelta(days=45),
         )
 
-        self.assertEqual(summary["archive.json"], 0)
-        self.assertEqual(path.read_text(encoding="utf-8"), original)
+        pruned = prune_deleted_sources(ledger, {"bilibili_dynamic": {"111"}}, now=now)
+
+        self.assertEqual(pruned, {"bilibili_dynamic": {"222": "2026-09-12T00:00:00Z"}})
 
     def test_write_youtube_subscriptions_roundtrips_follow_opml(self):
         root = Path(self.create_temp_dir())
@@ -874,14 +747,19 @@ class LocalServerTests(unittest.TestCase):
             encoding="utf-8",
         )
 
+        archive_before = archive_path.read_bytes()
+
         result = save_online_source_config(root, {"sources": sources[:1]})
 
-        archive = json.loads(archive_path.read_text(encoding="utf-8"))
-        self.assertEqual(result["purged_items"]["archive.json"], 1)
-        self.assertEqual([item["title"] for item in archive["items"]], ["保留", "不误伤"])
-        self.assertEqual(archive["total_items"], 2)
+        # 本机不再改写 data/**：历史清理交给云端管线按 deleted_sources 台账执行。
+        self.assertEqual(archive_path.read_bytes(), archive_before)
+        self.assertEqual(result["purged_items"], {"deferred": {"bilibili_dynamic": ["222"]}})
+        saved = json.loads((root / "config" / "online-sources.json").read_text(encoding="utf-8"))
+        self.assertEqual(list(saved["deleted_sources"]["bilibili_dynamic"]), ["222"])
+        self.assertEqual(result["config"]["deleted_sources"], saved["deleted_sources"])
+        self.assertFalse((root / "data" / "pending-purge.json").exists())
 
-    def test_save_online_source_config_defers_purge_while_refresh_is_running(self):
+    def test_save_online_source_config_records_ledger_even_while_refresh_is_running(self):
         from scripts.local_server import REFRESH_LOCK
 
         root = Path(self.create_temp_dir())
@@ -897,11 +775,36 @@ class LocalServerTests(unittest.TestCase):
         finally:
             REFRESH_LOCK.release()
 
-        pending = json.loads((root / "data" / "pending-purge.json").read_text(encoding="utf-8"))
-        self.assertEqual(result["purged_items"]["deferred"], {"bilibili_dynamic": ["222"]})
-        self.assertEqual(pending["sources"], {"bilibili_dynamic": ["222"]})
+        self.assertEqual(result["purged_items"], {"deferred": {"bilibili_dynamic": ["222"]}})
+        saved = json.loads((root / "config" / "online-sources.json").read_text(encoding="utf-8"))
+        self.assertEqual(list(saved["deleted_sources"]["bilibili_dynamic"]), ["222"])
 
-    def test_transactional_save_queues_purge_before_write_and_cancels_it_on_failure(self):
+    def test_deleted_sources_ledger_accumulates_across_saves_and_forgets_readded_source(self):
+        root = Path(self.create_temp_dir())
+        sources = [
+            {"name": "甲", "type": "bilibili_dynamic", "locator": "111"},
+            {"name": "乙", "type": "bilibili_dynamic", "locator": "222"},
+            {"name": "Wired AI", "type": "rss", "locator": "https://example.com/wired.xml"},
+        ]
+        write_online_source_config(root, {"sources": sources})
+
+        save_online_source_config(root, {"sources": sources[1:]})
+        second = save_online_source_config(root, {"sources": sources[2:]})
+        saved = json.loads((root / "config" / "online-sources.json").read_text(encoding="utf-8"))
+        self.assertEqual(sorted(saved["deleted_sources"]["bilibili_dynamic"]), ["111", "222"])
+        self.assertEqual(second["purged_items"], {"deferred": {"bilibili_dynamic": ["222"]}})
+
+        readded = save_online_source_config(root, {"sources": [sources[0], sources[2]]})
+        saved = json.loads((root / "config" / "online-sources.json").read_text(encoding="utf-8"))
+        self.assertEqual(list(saved["deleted_sources"]["bilibili_dynamic"]), ["222"])
+        self.assertEqual(readded["purged_items"], {})
+
+        wired_gone = save_online_source_config(root, {"sources": [sources[0]]})
+        saved = json.loads((root / "config" / "online-sources.json").read_text(encoding="utf-8"))
+        self.assertEqual(list(saved["deleted_sources"]["opmlrss"]), ["Wired AI"])
+        self.assertEqual(wired_gone["purged_items"], {"deferred": {"opmlrss": ["Wired AI"]}})
+
+    def test_transactional_save_failure_leaves_data_config_and_ledger_untouched(self):
         sources = [
             {"name": "张三", "type": "bilibili_dynamic", "locator": "111"},
             {"name": "李四", "type": "bilibili_dynamic", "locator": "222"},
@@ -923,14 +826,10 @@ class LocalServerTests(unittest.TestCase):
         archive_before = archive_path.read_bytes()
         current = read_online_source_config(root)
         events = []
-        original_queue = queue_pending_purge
         original_replace = online_sources.atomic_replace_bytes
         config_path = root / "config" / "online-sources.json"
+        config_before = config_path.read_bytes()
         failed = False
-
-        def record_queue(*args, **kwargs):
-            events.append("queue")
-            return original_queue(*args, **kwargs)
 
         def fail_config_once(path, content):
             nonlocal failed
@@ -940,7 +839,7 @@ class LocalServerTests(unittest.TestCase):
                 raise OSError("injected config failure")
             return original_replace(path, content)
 
-        with patch("scripts.radar.server.subscriptions_store.queue_pending_purge", side_effect=record_queue), patch.object(
+        with patch.object(
             online_sources,
             "atomic_replace_bytes",
             side_effect=fail_config_once,
@@ -953,10 +852,11 @@ class LocalServerTests(unittest.TestCase):
                 )
 
         self.assertEqual(raised.exception.code, "online_sources_write_failed")
-        self.assertEqual(events[:2], ["queue", "config_replace"])
+        self.assertEqual(events, ["config_replace"])
         self.assertEqual(archive_path.read_bytes(), archive_before)
-        pending = json.loads((root / "data" / "pending-purge.json").read_text(encoding="utf-8"))
-        self.assertEqual(pending["sources"], {})
+        self.assertEqual(config_path.read_bytes(), config_before)
+        self.assertNotIn("deleted_sources", json.loads(config_before.decode("utf-8")))
+        self.assertFalse((root / "data" / "pending-purge.json").exists())
 
     def test_managed_source_tampering_is_rejected_before_purge(self):
         root = Path(self.create_temp_dir())
@@ -1001,100 +901,25 @@ class LocalServerTests(unittest.TestCase):
         self.assertEqual(config_path.read_bytes(), before)
         self.assertFalse((root / "data" / "pending-purge.json").exists())
 
-    def test_pending_purge_merges_multiple_saves(self):
-        root = Path(self.create_temp_dir())
-        config_a = {
-            "sources": [{"id": "a", "type": "bilibili_dynamic", "target": "甲", "locator": "1"}]
-        }
-        config_b = {
-            "sources": [{"id": "b", "type": "bilibili_dynamic", "target": "乙", "locator": "2"}]
-        }
-
-        queue_pending_purge(root, {"bilibili_dynamic": {"1"}}, config_b)
-        queue_pending_purge(root, {"bilibili_dynamic": {"2"}}, {"sources": []})
-
-        pending = json.loads((root / "data" / "pending-purge.json").read_text(encoding="utf-8"))
-        self.assertEqual(pending["sources"], {"bilibili_dynamic": ["1", "2"]})
-
-    def test_flush_pending_purge_removes_history_and_clears_ledger(self):
-        root = Path(self.create_temp_dir())
-        data_dir = root / "data"
-        data_dir.mkdir()
-        (root / "config").mkdir()
-        (root / "config" / "online-sources.json").write_text(
-            json.dumps({"sources": []}), encoding="utf-8"
-        )
-        (data_dir / "archive.json").write_text(
-            json.dumps(
-                {
-                    "items": [{"site_id": "bilibili_dynamic", "source": "甲", "bilibili_uid": "1", "title": "待清理"}],
-                    "total_items": 1,
-                },
-                ensure_ascii=False,
-            ),
-            encoding="utf-8",
-        )
-        queue_pending_purge(root, {"bilibili_dynamic": {"1"}}, {"sources": []})
-
-        summary = flush_pending_purge(root)
-
-        archive = json.loads((data_dir / "archive.json").read_text(encoding="utf-8"))
-        pending = json.loads((data_dir / "pending-purge.json").read_text(encoding="utf-8"))
-        self.assertEqual(summary["archive.json"], 1)
-        self.assertEqual(archive["items"], [])
-        self.assertEqual(pending["sources"], {})
-
-    def test_flush_pending_purge_keeps_source_that_was_added_back(self):
-        root = Path(self.create_temp_dir())
-        data_dir = root / "data"
-        data_dir.mkdir()
-        (root / "config").mkdir()
-        current_config = {
-            "sources": [
-                {"id": "a", "type": "bilibili_dynamic", "target": "甲", "locator": "1"}
-            ]
-        }
-        (root / "config" / "online-sources.json").write_text(
-            json.dumps(current_config, ensure_ascii=False), encoding="utf-8"
-        )
-        (data_dir / "archive.json").write_text(
-            json.dumps(
-                {
-                    "items": [{"site_id": "bilibili_dynamic", "source": "甲", "bilibili_uid": "1", "title": "必须保留"}],
-                    "total_items": 1,
-                },
-                ensure_ascii=False,
-            ),
-            encoding="utf-8",
-        )
-        queue_pending_purge(root, {"bilibili_dynamic": {"1"}}, {"sources": []})
-
-        summary = flush_pending_purge(root)
-
-        archive = json.loads((data_dir / "archive.json").read_text(encoding="utf-8"))
-        pending = json.loads((data_dir / "pending-purge.json").read_text(encoding="utf-8"))
-        self.assertEqual(summary, {})
-        self.assertEqual(archive["items"][0]["title"], "必须保留")
-        self.assertEqual(pending["sources"], {})
-
     @patch("scripts.radar.server.refresh.time.sleep", return_value=None)
     @patch("scripts.radar.server.refresh.subprocess.Popen")
-    def test_refresh_flushes_pending_purge_before_releasing_lock(self, popen_mock, _sleep_mock):
+    def test_refresh_releases_lock_without_touching_data_ledgers(self, popen_mock, _sleep_mock):
         events = []
         process = popen_mock.return_value
         process.poll.return_value = 0
         process.communicate.return_value = ("", "")
         process.returncode = 0
+        root = Path(self.create_temp_dir())
 
         class RecordingLock:
             def release(self):
                 events.append("release")
 
-        with patch("scripts.radar.server.refresh.flush_pending_purge", side_effect=lambda root: events.append("flush")):
-            with patch("scripts.radar.server.refresh.REFRESH_LOCK", RecordingLock()):
-                run_refresh_background(Path(self.create_temp_dir()), "24h", ["fake"], ["刷新"])
+        with patch("scripts.radar.server.refresh.REFRESH_LOCK", RecordingLock()):
+            run_refresh_background(root, "24h", ["fake"], ["刷新"])
 
-        self.assertEqual(events, ["flush", "release"])
+        self.assertEqual(events, ["release"])
+        self.assertFalse((root / "data" / "pending-purge.json").exists())
 
     def test_save_and_sync_online_source_config_preserves_purge_summary(self):
         root = Path(self.create_temp_dir())
@@ -1182,7 +1007,7 @@ class LocalServerTests(unittest.TestCase):
         self.assertEqual(config_path.read_bytes(), dirty_before)
         self.assertEqual(self.git(root, "rev-parse", "HEAD").stdout.strip(), head_before)
 
-    def test_save_and_sync_restores_config_data_and_pending_purge_after_sync_failure(self):
+    def test_save_and_sync_restores_config_after_sync_failure_without_touching_data(self):
         sources = self.merge_sync_initial_payload()["sources"]
         root, _origin, _peer = self.create_sync_git_repositories({"sources": sources})
         archive_path = root / "data" / "archive.json"
@@ -1255,6 +1080,69 @@ class LocalServerTests(unittest.TestCase):
         self.assertFalse(config_path.exists())
         self.assertFalse(opml_path.exists())
         self.assertFalse(online_sources.operation_manifest_path(root).exists())
+
+    def test_save_and_sync_deletion_leaves_data_clean_and_keeps_fast_forward_possible(self):
+        # 2026-09-11 事故的反向用例：删源之后 data/** 不能有未提交改动，云端下一版数据必须还能 --ff-only 进来。
+        sources = [
+            {"name": "张三", "type": "bilibili_dynamic", "locator": "111"},
+            {"name": "Wired AI", "type": "rss", "locator": "https://example.com/wired.xml"},
+        ]
+        root, origin, peer = self.create_sync_git_repositories({"sources": sources})
+        archive_path = root / "data" / "archive.json"
+        archive_path.write_text(
+            json.dumps(
+                {
+                    "items": [
+                        {"site_id": "bilibili_dynamic", "source": "张三", "bilibili_uid": "111", "title": "云端会剔"},
+                        {"site_id": "opmlrss", "source": "Wired AI", "title": "云端会剔"},
+                    ],
+                    "total_items": 2,
+                },
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+        self.git(root, "add", "data/archive.json")
+        self.git(root, "commit", "-m", "data: archive")
+        self.git(root, "push")
+        archive_before = archive_path.read_bytes()
+
+        with patch(
+            "scripts.radar.server.auto_collect.handle_saved_config",
+            return_value={"pending": False},
+        ), patch(
+            "scripts.radar.server.auto_collect.flush_pending_collect",
+            return_value={"triggered": False},
+        ):
+            result = save_and_sync_online_source_config(root, {"sources": []}, if_match=None)
+
+        self.assertEqual(result["outcome"], "pushed", result)
+        self.assertEqual(result["purged_items"], {"deferred": {"bilibili_dynamic": ["111"], "opmlrss": ["Wired AI"]}})
+        self.assertEqual(archive_path.read_bytes(), archive_before)
+        self.assertEqual(self.git(root, "status", "--porcelain", "--untracked-files=no").stdout.strip(), "")
+        remote_config = json.loads(self.git(origin, "show", "master:config/online-sources.json").stdout)
+        self.assertEqual(list(remote_config["deleted_sources"]["bilibili_dynamic"]), ["111"])
+        self.assertEqual(list(remote_config["deleted_sources"]["opmlrss"]), ["Wired AI"])
+
+        # 云端（peer）按台账写出新数据并提交；NUC 只能快进，不许有冲突。
+        self.git(peer, "pull", "--ff-only")
+        (peer / "data" / "archive.json").write_text('{"items":[],"total_items":0}\n', encoding="utf-8")
+        (peer / "data" / "latest-24h.json").write_text('{"version":"cloud-after-delete"}\n', encoding="utf-8")
+        self.git(peer, "add", "data/archive.json", "data/latest-24h.json")
+        self.git(peer, "commit", "-m", "数据：更新 AI 新闻快照")
+        self.git(peer, "push")
+
+        self.git(root, "fetch", "origin")
+        merge = self.git(root, "merge", "--ff-only", "origin/master")
+        self.assertEqual(merge.returncode, 0, merge.stderr)
+        self.assertEqual(
+            (root / "data" / "latest-24h.json").read_text(encoding="utf-8"),
+            '{"version":"cloud-after-delete"}\n',
+        )
+        self.assertEqual(
+            self.git(root, "rev-parse", "HEAD").stdout.strip(),
+            self.git(origin, "rev-parse", "master").stdout.strip(),
+        )
 
     def test_save_and_sync_second_attempt_does_not_inherit_failed_transaction(self):
         root, origin, _peer = self.create_sync_git_repositories(self.online_source_payload("initial"))
@@ -1833,6 +1721,42 @@ class LocalServerTests(unittest.TestCase):
         self.assertFalse(online_sources.operation_manifest_path(root).exists())
 
     def test_merge_sync_fast_forwards_when_merged_config_matches_remote(self):
+        # 两边改的是同一条备注：合并结果与云端逐字节相同，只需快进、不必推送。
+        # （停用会进 deleted_sources 台账，那是本机独有信息，必须推送，见下一条用例。）
+        root, origin, peer = self.create_sync_git_repositories(self.merge_sync_initial_payload())
+        current = read_online_source_config(peer)
+        remote_sources = [
+            {**source, "notes": "same note"}
+            if source["type"] == "bilibili_dynamic"
+            else dict(source)
+            for source in current["sources"]
+            if source["id"] != online_sources.ONLINE_OPML_SOURCE_ID
+        ]
+        self.commit_peer_online_config(
+            peer,
+            online_sources.build_online_config(remote_sources),
+            "remote note",
+        )
+        self.save_local_merge_sync_change(root, notes="same note")
+
+        result = sync_online_source_config(root, None, push=True)
+
+        self.assertEqual(result["outcome"], "no_change", result)
+        self.assertTrue(result["merged"])
+        self.assertFalse(result["pushed"])
+        self.assertEqual(
+            self.git(root, "rev-parse", "HEAD").stdout.strip(),
+            self.git(origin, "rev-parse", "master").stdout.strip(),
+        )
+        self.assertEqual(
+            (root / "config" / "online-sources.json").read_bytes(),
+            self.git(origin, "show", "master:config/online-sources.json").stdout.encode("utf-8"),
+        )
+        self.assertEqual(self.git(root, "diff", "--cached", "--name-only").stdout.strip(), "")
+        self.assertFalse(online_sources.operation_manifest_path(root).exists())
+
+
+    def test_merge_sync_pushes_local_deleted_sources_ledger_even_when_sources_match_remote(self):
         root, origin, peer = self.create_sync_git_repositories(self.merge_sync_initial_payload())
         current = read_online_source_config(peer)
         remote_sources = [
@@ -1851,20 +1775,12 @@ class LocalServerTests(unittest.TestCase):
 
         result = sync_online_source_config(root, None, push=True)
 
-        self.assertEqual(result["outcome"], "no_change", result)
-        self.assertTrue(result["merged"])
-        self.assertFalse(result["pushed"])
-        self.assertEqual(
-            self.git(root, "rev-parse", "HEAD").stdout.strip(),
-            self.git(origin, "rev-parse", "master").stdout.strip(),
-        )
-        self.assertEqual(
-            (root / "config" / "online-sources.json").read_bytes(),
-            self.git(origin, "show", "master:config/online-sources.json").stdout.encode("utf-8"),
-        )
-        self.assertEqual(self.git(root, "diff", "--cached", "--name-only").stdout.strip(), "")
-        self.assertFalse(online_sources.operation_manifest_path(root).exists())
-
+        self.assertEqual(result["outcome"], "pushed", result)
+        self.assertEqual(list(result["config"]["deleted_sources"]["bilibili_dynamic"]), ["398886600"])
+        remote_config = json.loads(self.git(origin, "show", "master:config/online-sources.json").stdout)
+        self.assertEqual(list(remote_config["deleted_sources"]["bilibili_dynamic"]), ["398886600"])
+        self.assertEqual(self.git(root, "diff", "--name-only").stdout.strip(), "")
+        self.assertEqual(self.git(root, "status", "--porcelain", "--untracked-files=no").stdout.strip(), "")
     def test_merge_sync_restores_dirty_tracked_data_after_push(self):
         root, _origin, peer = self.create_sync_git_repositories(self.merge_sync_initial_payload())
         self.commit_peer_online_config(peer, self.merge_sync_remote_config(peer), "remote managed source")
@@ -1992,8 +1908,7 @@ class LocalServerTests(unittest.TestCase):
         self.git(peer, "commit", "-m", "remote data deletion")
         self.git(peer, "push")
         self.save_local_merge_sync_change(root, enabled=False)
-        pending_purge_path = root / "data" / "pending-purge.json"
-        pending_purge_before = pending_purge_path.read_bytes()
+        self.assertFalse((root / "data" / "pending-purge.json").exists())
 
         result = sync_online_source_config(root, None, push=True)
 
@@ -2005,7 +1920,6 @@ class LocalServerTests(unittest.TestCase):
         )
         self.assertEqual(self.git(root, "diff", "--cached", "--name-only").stdout.strip(), "")
         self.assertEqual(self.git(root, "diff", "--name-only").stdout.strip(), "")
-        self.assertEqual(pending_purge_path.read_bytes(), pending_purge_before)
         self.assertFalse(online_sources.operation_manifest_path(root).exists())
 
     def test_merge_sync_recovery_repairs_prepared_manifest_from_local_config(self):

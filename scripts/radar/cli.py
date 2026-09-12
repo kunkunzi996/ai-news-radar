@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import argparse
 from collections import Counter
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import hashlib
 import json
 import os
@@ -100,6 +100,11 @@ from scripts.radar.fetchers.waytoagi import (
     fetch_waytoagi_recent_7d,
     waytoagi_updates_to_raw_items,
 )
+from scripts.radar.deleted_sources import (
+    deleted_source_cleanup_status,
+    filter_archive_by_deleted_sources,
+    normalize_deleted_sources,
+)
 from scripts.radar.github_importance import github_archive_record_is_reader_visible
 from scripts.radar.pipeline import (
     add_bilingual_fields,
@@ -171,6 +176,7 @@ class RunContext:
     github_cleanup_audit_path: Path
     archive: dict[str, dict[str, Any]]
     paid_source_state: dict[str, Any]
+    deleted_source_cleanup: dict[str, Any] = field(default_factory=dict)
 
 @dataclass
 class CollectStageResult:
@@ -317,6 +323,21 @@ def prepare_run_context(args: argparse.Namespace) -> RunContext | int:
             )
         for (site_id, source), count in sorted(removed_by_subscription.items(), key=lambda kv: -kv[1]):
             print(f"Unsubscribed cleanup: removed {count} archived items for {site_id}/{source}")
+    # 第三层清理：面板上明确删掉的源随配置一起进仓库（deleted_sources 台账），
+    # 由这里在写出 data/** 之前剔除其历史；NUC 本地不再改写 data/**。
+    deleted_source_cleanup: dict[str, Any] = {}
+    if source_config_active and is_online_panel_config(source_config):
+        try:
+            deleted_ledger = normalize_deleted_sources(source_config.get("deleted_sources"))
+        except ValueError as exc:
+            print(f"Deleted-source cleanup SKIPPED: {exc}", file=sys.stderr)
+            deleted_ledger = {}
+            deleted_source_cleanup = {"enabled": False, "error": str(exc)}
+        archive, removed_by_ledger = filter_archive_by_deleted_sources(archive, deleted_ledger)
+        for (site_id, source), count in sorted(removed_by_ledger.items(), key=lambda kv: -kv[1]):
+            print(f"Deleted-source cleanup: removed {count} archived items for {site_id}/{source}")
+        if not deleted_source_cleanup:
+            deleted_source_cleanup = deleted_source_cleanup_status(deleted_ledger, removed_by_ledger)
     paid_source_state = load_paid_source_state(paid_source_state_path)
     return RunContext(
         args=args,
@@ -353,6 +374,7 @@ def prepare_run_context(args: argparse.Namespace) -> RunContext | int:
         github_cleanup_audit_path=github_cleanup_audit_path,
         archive=archive,
         paid_source_state=paid_source_state,
+        deleted_source_cleanup=deleted_source_cleanup,
     )
 
 def source_status_entry(site_id: str, site_name: str, receipt: dict[str, Any]) -> dict[str, Any]:
@@ -1428,6 +1450,7 @@ def enrich_stage(session: Any, ctx: RunContext, collected: CollectStageResult, m
             "active": source_config_active,
         },
         "github_star_subscription_cleanup": merged.github_cleanup,
+        "deleted_source_cleanup": ctx.deleted_source_cleanup,
     }
     latest_payload, latest_all_payload = build_latest_payloads(latest_payload)
     retention = merged.retention if merged.retention else {}

@@ -703,7 +703,7 @@ async function deleteSelectedOrphanHistory() {
   const total = selected.reduce((sum, entry) => sum + (Number(entry.count) || 0), 0);
   const names = selected.map((entry) => `· ${entry.source}（${fmtNumber(entry.count)} 条）`).join("\n");
   const confirmed = window.confirm(
-    `将永久删除以下 ${selected.length} 个已退订信源、共 ${total} 条历史：\n\n${names}\n\n删除前会自动备份 archive.json。确定删除吗？`,
+    `将把以下 ${selected.length} 个已退订信源、共 ${total} 条历史登记为待清理：\n\n${names}\n\n登记会随信源配置推到云端，下一轮采集后这些历史从所有页面消失；本机不再直接改数据文件。确定吗？`,
   );
   if (!confirmed) return;
   const pairs = selected.map((entry) => [entry.site_id, entry.source]);
@@ -717,13 +717,21 @@ async function deleteSelectedOrphanHistory() {
     });
     const payload = await res.json().catch(() => ({}));
     if (!res.ok || payload.ok === false) throw new Error(payload.error || `HTTP ${res.status}`);
-    const removed = payload.removed && typeof payload.removed === "object" ? payload.removed : {};
-    const removedNote = Object.entries(removed)
-      .filter(([, count]) => Number(count) > 0)
-      .map(([file, count]) => `${file}: ${fmtNumber(count)}`)
-      .join("，") || "无改动";
-    setOrphanPurgeStatus(`已删除。${removedNote}。备份：${payload.backup || "无"}。点“读取结果”刷新页面。`, "ok");
-    setOnlineSourceButton(orphanPurgeDeleteBtnEl, "已删除", true);
+    // 2026-09-12 起后端不再就地改 data/**，而是把删除登记进 deleted_sources 台账推到云端，
+    // 由采集管线在下一轮写出数据前剔除；这里如实说「已登记」，不说「已删除」。
+    const recorded = payload.recorded && typeof payload.recorded === "object" ? payload.recorded : {};
+    const recordedCount = Object.values(recorded).reduce(
+      (sum, tokens) => sum + (Array.isArray(tokens) ? tokens.length : 0),
+      0,
+    );
+    const sync = payload.sync && typeof payload.sync === "object" ? payload.sync : {};
+    const syncNote = sync.pushed ? "已推到云端" : sync.outcome === "no_change" ? "云端已是最新" : "同步结果未知";
+    if (recordedCount > 0) {
+      setOrphanPurgeStatus(`已登记 ${fmtNumber(recordedCount)} 个待清理信源，${syncNote}；云端下一轮采集（约 2 分钟）后历史消失，之后点“读取结果”刷新页面。`, "ok");
+    } else {
+      setOrphanPurgeStatus("没有可登记的信源：这些条目没有稳定 ID，按规则宁可不删。", "warn");
+    }
+    setOnlineSourceButton(orphanPurgeDeleteBtnEl, "已登记", true);
     restoreOnlineSourceButton(orphanPurgeDeleteBtnEl, "删除选中的历史");
     await loadOrphanPurgePreview();
   } catch (err) {

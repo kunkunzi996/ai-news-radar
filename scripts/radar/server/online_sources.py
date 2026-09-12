@@ -14,6 +14,14 @@ from pathlib import Path
 from typing import Any, Iterator
 from urllib.parse import urlparse, urlunparse
 
+from scripts.radar.deleted_sources import (
+    DELETED_SOURCES_KEY,
+    merge_deleted_sources,
+    normalize_deleted_sources,
+    prune_deleted_sources,
+    record_deleted_sources,
+)
+
 """Public online source-config persistence and git sync helpers."""
 
 ONLINE_CONFIG_FILENAME = Path("config") / "online-sources.json"
@@ -596,6 +604,7 @@ def validate_online_config_schema(config: Any, *, existing: bool = True) -> dict
 
     sources = normalize_online_sources(raw_sources, existing=existing)
     binding = normalize_github_star_sync(config.get("github_star_sync"))
+    deleted_sources = normalize_deleted_sources(config.get(DELETED_SOURCES_KEY))
     seen_repo_ids: set[int] = set()
     for index, source in enumerate(sources):
         if source.get("managed_by") != "github_stars":
@@ -621,6 +630,8 @@ def validate_online_config_schema(config: Any, *, existing: bool = True) -> dict
     }
     if binding is not None:
         normalized["github_star_sync"] = binding
+    if deleted_sources:
+        normalized[DELETED_SOURCES_KEY] = deleted_sources
     return normalized
 
 
@@ -696,6 +707,7 @@ def build_online_config(
     sources: list[dict[str, Any]],
     updated_at: str | None = None,
     github_star_sync: dict[str, Any] | None = None,
+    deleted_sources: dict[str, dict[str, str]] | None = None,
 ) -> dict[str, Any]:
     rss_sources = [source for source in sources if source["type"] == "rss"]
     config_sources = [dict(source) for source in sources]
@@ -709,6 +721,9 @@ def build_online_config(
     }
     if github_star_sync is not None:
         config["github_star_sync"] = dict(github_star_sync)
+    ledger = normalize_deleted_sources(deleted_sources)
+    if ledger:
+        config[DELETED_SOURCES_KEY] = ledger
     return config
 
 
@@ -962,7 +977,11 @@ def merge_online_source_configs(
     if conflicts:
         return None, conflicts
 
-    merged = build_online_config(merged_sources, github_star_sync=merged_binding)
+    merged = build_online_config(
+        merged_sources,
+        github_star_sync=merged_binding,
+        deleted_sources=_merged_deleted_sources(local_normalized, remote_normalized, merged_sources),
+    )
     try:
         merged = validate_online_config_schema(merged, existing=True)
         if protected_online_config_projection(merged) != protected_online_config_projection(remote_normalized):
@@ -983,21 +1002,75 @@ def merge_online_source_configs(
     return merged, []
 
 
+def _alive_tokens_for_sources(sources: list[dict[str, Any]]) -> dict[str, set[str]]:
+    from scripts.radar.server.subscriptions_store import alive_source_names_by_site
+
+    return alive_source_names_by_site({"sources": list(sources)})
+
+
+def _merged_deleted_sources(
+    local_config: dict[str, Any],
+    remote_config: dict[str, Any],
+    merged_sources: list[dict[str, Any]],
+) -> dict[str, dict[str, str]]:
+    """本机与云端台账取并集，再按合并后的源名单划掉已加回的。"""
+    merged = merge_deleted_sources(
+        local_config.get(DELETED_SOURCES_KEY),
+        remote_config.get(DELETED_SOURCES_KEY),
+    )
+    return prune_deleted_sources(merged, _alive_tokens_for_sources(merged_sources))
+
+
+def _candidate_deleted_sources(
+    current_config: dict[str, Any],
+    candidate_sources: list[dict[str, Any]],
+    requested: Any = None,
+) -> dict[str, dict[str, str]]:
+    """保存时的台账 = 上一版台账 + 这次删掉的源 + 请求里明确登记的 token，再划掉仍在名单里的。"""
+    from scripts.radar.server.subscriptions_store import deleted_source_names_by_site
+
+    deleted_names: dict[str, set[str]] = {
+        site_id: set(tokens)
+        for site_id, tokens in deleted_source_names_by_site(
+            {"sources": list(candidate_sources)},
+            current_config,
+        ).items()
+    }
+    if requested is not None:
+        if not isinstance(requested, dict):
+            raise ValueError("deleted_sources_invalid: payload.deleted_sources must be an object")
+        for site_id, tokens in requested.items():
+            if not isinstance(tokens, (list, dict)):
+                raise ValueError(f"deleted_sources_invalid: payload.deleted_sources.{site_id} must be a list")
+            deleted_names.setdefault(str(site_id), set()).update(
+                str(token).strip() for token in tokens if str(token).strip()
+            )
+    ledger = record_deleted_sources(current_config.get(DELETED_SOURCES_KEY) or {}, deleted_names)
+    return prune_deleted_sources(ledger, _alive_tokens_for_sources(candidate_sources))
+
+
 def read_online_source_config(root_dir: Path) -> dict[str, Any]:
     config_path, opml_path = ensure_public_online_paths(root_dir)
     config: dict[str, Any]
     binding: dict[str, Any] | None = None
+    deleted_sources: dict[str, dict[str, str]] | None = None
     if config_path.exists():
         raw_config = json.loads(config_path.read_text(encoding="utf-8"))
         normalized_config = validate_online_config_schema(raw_config, existing=True)
         sources = normalized_config["sources"]
         binding = normalized_config.get("github_star_sync")
+        deleted_sources = normalized_config.get(DELETED_SOURCES_KEY)
         updated_at = normalized_config.get("updated_at") or None
     else:
         sources = read_online_opml(root_dir)
         updated_at = None
     sources = normalize_online_sources(sources, existing=True)
-    config = build_online_config(sources, updated_at=updated_at, github_star_sync=binding)
+    config = build_online_config(
+        sources,
+        updated_at=updated_at,
+        github_star_sync=binding,
+        deleted_sources=deleted_sources,
+    )
     digest = online_config_digest(config)
     return {
         "ok": True,
@@ -1208,10 +1281,18 @@ def prepare_manual_online_config(
 
     raw_sources = payload.get("sources")
     sources = normalize_online_sources_for_manual_save(raw_sources, current_sources)
+    # 台账由服务端维护：这次删掉的源自动登记；payload.deleted_sources 只允许「再多登记这些 token」
+    # （清理已退订历史入口用），不能拿来抹掉已有条目。
+    deleted_sources = _candidate_deleted_sources(
+        current_config,
+        sources,
+        requested=payload.get(DELETED_SOURCES_KEY),
+    )
     candidate_with_old_timestamp = build_online_config(
         sources,
         updated_at=current_config.get("updated_at") or utc_timestamp(),
         github_star_sync=current_binding,
+        deleted_sources=deleted_sources,
     )
     validate_online_config_schema(candidate_with_old_timestamp, existing=True)
     if protected_online_config_projection(candidate_with_old_timestamp) != protected_online_config_projection(
@@ -1234,7 +1315,7 @@ def prepare_manual_online_config(
         current_config
     )
     config = (
-        build_online_config(sources, github_star_sync=current_binding)
+        build_online_config(sources, github_star_sync=current_binding, deleted_sources=deleted_sources)
         if config_changed
         else current_config
     )
@@ -4104,6 +4185,7 @@ def apply_online_source_config_operation(
             user_sources,
             updated_at=current_config.get("updated_at") or utc_timestamp(),
             github_star_sync=normalized_candidate.get("github_star_sync"),
+            deleted_sources=normalized_candidate.get(DELETED_SOURCES_KEY),
         )
         changed = online_config_digest(candidate) != current_digest
         if not changed:
@@ -4117,6 +4199,7 @@ def apply_online_source_config_operation(
         candidate = build_online_config(
             user_sources,
             github_star_sync=normalized_candidate.get("github_star_sync"),
+            deleted_sources=normalized_candidate.get(DELETED_SOURCES_KEY),
         )
 
         target = fresh_git_preflight(root_dir)
@@ -4749,15 +4832,10 @@ def sync_online_source_config(root_dir: Path, payload: Any | None = None, *, pus
     }
 
 
+# 事务只碰这两个文件：删源的历史清理已随 deleted_sources 台账交给云端管线，本机不再改写 data/**。
 SAVE_SYNC_FILE_PATHS = (
     "config/online-sources.json",
     "feeds/online-sources.opml",
-    "data/archive.json",
-    "data/latest-24h-all.json",
-    "data/latest-24h.json",
-    "data/stories-merged.json",
-    "data/daily-brief.json",
-    "data/pending-purge.json",
 )
 
 
@@ -4846,37 +4924,31 @@ def purge_or_defer_source_config(
     config: dict[str, Any],
     previous_config: dict[str, Any] | None,
 ) -> dict[str, Any]:
-    from scripts.radar.server import REFRESH_LOCK
-    from scripts.radar.server.subscriptions_store import (
-        deleted_source_names_by_site,
-        flush_pending_purge,
-        purge_deleted_source_data,
-        queue_pending_purge,
-    )
+    """报告这次保存登记进台账的删除；历史清理由云端管线在下一轮采集完成。
 
-    deleted_names = (
-        deleted_source_names_by_site(config, previous_config)
+    2026-09-12 起本机不再改写 ``data/**``：那样做会让 NUC 工作区变脏、挡住 RadarAutoFF，
+    还会在 merge_sync 收尾时把旧数据盖回去。返回值沿用前端已认识的 ``deferred`` 形态。
+    """
+    del root_dir
+    ledger = normalize_deleted_sources(config.get(DELETED_SOURCES_KEY)) if isinstance(config, dict) else {}
+    previous_ledger = (
+        normalize_deleted_sources(previous_config.get(DELETED_SOURCES_KEY))
         if isinstance(previous_config, dict)
         else {}
     )
-    deferred = queue_pending_purge(root_dir, deleted_names, config)
-    if not REFRESH_LOCK.acquire(blocking=False):
-        return {"deferred": deferred}
-
-    try:
-        summary = purge_deleted_source_data(
-            root_dir,
-            config,
-            previous_config=previous_config if isinstance(previous_config, dict) else None,
+    deferred: dict[str, list[str]] = {}
+    for site_id, entries in ledger.items():
+        # 新登记或重新登记的 token 才算这次的删除；时刻没变的是之前几轮留下的。
+        fresh = sorted(
+            token
+            for token, deleted_at in entries.items()
+            if deleted_at != previous_ledger.get(site_id, {}).get(token)
         )
-        pending_summary = flush_pending_purge(root_dir)
-        for filename, removed in pending_summary.items():
-            summary[filename] = summary.get(filename, 0) + removed
-        return summary
-    except Exception as exc:
-        return {"error": str(exc)}
-    finally:
-        REFRESH_LOCK.release()
+        if fresh:
+            deferred[site_id] = fresh
+    if not deferred:
+        return {}
+    return {"deferred": deferred}
 
 
 def save_online_source_config(
@@ -4887,10 +4959,6 @@ def save_online_source_config(
     _defer_auto_collect: bool = False,
 ) -> dict[str, Any]:
     from scripts.radar.server import auto_collect as auto_collect_api
-    from scripts.radar.server.subscriptions_store import (
-        deleted_source_names_by_site,
-        queue_pending_purge,
-    )
 
     with online_sources_guard():
         previous_config = read_online_source_config(root_dir).get("config")
@@ -4901,24 +4969,11 @@ def save_online_source_config(
                 raise _online_error("online_sources_config_stale", 409)
             current_digest = online_config_digest(previous_config)
             require_online_config_match(if_match, current_digest)
-            _current, candidate, _sources, _changed = prepare_manual_online_config(
+            result = save_online_source_config_transaction(
                 root_dir,
                 payload,
-                current_config=previous_config,
+                if_match=if_match,
             )
-            deleted_names = deleted_source_names_by_site(candidate, previous_config)
-            if deleted_names:
-                queue_pending_purge(root_dir, deleted_names, candidate)
-            try:
-                result = save_online_source_config_transaction(
-                    root_dir,
-                    payload,
-                    if_match=if_match,
-                )
-            except Exception:
-                if deleted_names:
-                    queue_pending_purge(root_dir, {}, previous_config)
-                raise
         result["purged_items"] = purge_or_defer_source_config(
             root_dir,
             result["config"],

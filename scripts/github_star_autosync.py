@@ -397,6 +397,7 @@ def run_autosync(
         candidate = _online_sources.build_online_config(
             user_sources,
             github_star_sync=normalized_candidate.get("github_star_sync"),
+            deleted_sources=normalized_candidate.get(_online_sources.DELETED_SOURCES_KEY),
         )
         config_content = _online_sources.render_json_bytes(candidate)
         opml_content, _ = _online_sources.render_online_opml_bytes(user_sources)

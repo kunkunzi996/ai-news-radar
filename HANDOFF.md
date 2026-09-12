@@ -168,7 +168,7 @@
 ## 下一轮入口
 
 1. 当前无活跃四文件，无进行中功能窗口。新需求另开一轮。前端清理已上生产。
-2. 网站若再停更：先看 `data/source-status.json` 的 `generated_at`；抖音单独停更时再看 `mediacrawler_douyin.collection_generated_at` 和 NUC `douyin-collect-status.json`，不要只看看板更新时间或计划任务 `LastTaskResult`。再 `gh run list` 看 Update AI News Snapshot。
+2. 网站若再停更：先看 NUC `logs/auto-ff.log` 最后一行的 `reason`（`worktree_dirty` = 本机有人写了 `data/**`，`fetch_failed` = 网络），再比本地 `data/latest-24h-all.json` 与 `git show origin/master:data/latest-24h-all.json` 的 `generated_at`——**不要只看 `source-status.json`**，2026-09-11 它是新的而列表是旧的。云端是否在出数据看 `gh run list`（Update AI News Snapshot）。抖音单独停更时再看 `mediacrawler_douyin.collection_generated_at` 和 NUC `douyin-collect-status.json`，不要只看看板更新时间或计划任务 `LastTaskResult`。
 3. 下次油管两个号一起 404：看 `fetch_mode` / `keep_last_restored`，不要改频道地址、不要连跑快照。下次抖音某个号 `listed=0`：核对 `keep_last_restored` 和 3 秒重试，不要连跑补采。
 4. NUC SSH 连不上时，先核对当前 IP / WiFi，不要沿用旧 HostName。
 5. 改采集会话重试或源预算前，读 `CLAUDE.md`「GitHub Actions 采集超时的禁区」。改油管 RSS 前读「油管 RSS 抽风的禁区」。改抖音空号/B站备用前，读「抖音空号与 B 站动态空的禁区」。

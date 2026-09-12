@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 
 
-class AutoFastForwardScriptTests(unittest.TestCase):
+class GitScriptFixtureMixin:
     @staticmethod
     def git(root: Path, *args: str, check: bool = True) -> subprocess.CompletedProcess[str]:
         return subprocess.run(
@@ -65,6 +65,9 @@ class AutoFastForwardScriptTests(unittest.TestCase):
         self.git(peer, "config", "user.email", "test@example.com")
         return root, origin, peer
 
+
+
+class AutoFastForwardScriptTests(GitScriptFixtureMixin, unittest.TestCase):
     def run_script(self) -> str:
         log_path = self.base / "logs" / "auto-ff.log"
         env = os.environ.copy()
@@ -134,6 +137,113 @@ class AutoFastForwardScriptTests(unittest.TestCase):
 
         self.assertIn("event=failed command=fetch_origin reason=fetch_failed", log)
         self.assertRegex(log, r"exit=[1-9][0-9]*")
+
+    def test_three_consecutive_failures_raise_alert_and_run_alert_command(self):
+        (self.peer / "state.txt").write_text("remote\n", encoding="utf-8")
+        self.git(self.peer, "add", "state.txt")
+        self.git(self.peer, "commit", "-m", "remote update")
+        self.git(self.peer, "push")
+        (self.root / "state.txt").write_text("local dirty\n", encoding="utf-8")
+        marker = self.base / "alert-fired.txt"
+        os.environ["RADAR_AUTO_FF_ALERT_COMMAND"] = (
+            f'printf "%s %s" "$RADAR_AUTO_FF_ALERT_REASON" "$RADAR_AUTO_FF_ALERT_STREAK" > "{marker.as_posix()}"'
+        )
+        self.addCleanup(os.environ.pop, "RADAR_AUTO_FF_ALERT_COMMAND", None)
+
+        self.run_script()
+        self.run_script()
+        self.assertFalse(marker.exists(), "两次失败还不该报警")
+        log = self.run_script()
+
+        self.assertEqual(log.count("event=alert"), 1)
+        self.assertIn("event=alert command=auto_ff reason=worktree_dirty", log)
+        self.assertIn("detail=consecutive_failures=3", log)
+        self.assertEqual(marker.read_text(encoding="utf-8"), "worktree_dirty 3")
+        self.assertEqual((self.root / "state.txt").read_text(encoding="utf-8"), "local dirty\n")
+
+    def test_success_after_failures_does_not_alert(self):
+        (self.peer / "state.txt").write_text("remote\n", encoding="utf-8")
+        self.git(self.peer, "add", "state.txt")
+        self.git(self.peer, "commit", "-m", "remote update")
+        self.git(self.peer, "push")
+        (self.root / "state.txt").write_text("local dirty\n", encoding="utf-8")
+        self.run_script()
+        self.run_script()
+        (self.root / "state.txt").write_text("initial\n", encoding="utf-8")
+
+        log = self.run_script()
+
+        self.assertIn("event=ff-ok", log)
+        self.assertNotIn("event=alert", log)
+
+
+class FreshnessCheckScriptTests(GitScriptFixtureMixin, unittest.TestCase):
+    def setUp(self):
+        super().setUp()
+        self.script = Path(__file__).resolve().parents[1] / "scripts" / "windows" / "check-radar-freshness.sh"
+
+    def write_data(self, root: Path, generated_at: str) -> None:
+        path = root / "data" / "latest-24h-all.json"
+        path.parent.mkdir(exist_ok=True)
+        path.write_text('{"generated_at":"%s","items_all":[]}' % generated_at, encoding="utf-8")
+
+    def run_freshness(self) -> str:
+        log_path = self.base / "logs" / "freshness.log"
+        env = os.environ.copy()
+        env["RADAR_ROOT"] = self.root.as_posix()
+        env["RADAR_FRESHNESS_LOG"] = log_path.as_posix()
+        result = subprocess.run(
+            [self.bash, self.script.as_posix()],
+            cwd=self.root,
+            env=env,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        return log_path.read_text(encoding="utf-8")
+
+    def test_fresh_snapshot_logs_fresh(self):
+        from datetime import datetime, timedelta, timezone
+
+        recent = (datetime.now(timezone.utc) - timedelta(minutes=20)).strftime("%Y-%m-%dT%H:%M:%SZ")
+        self.write_data(self.root, recent)
+        self.git(self.root, "add", "data/latest-24h-all.json")
+        self.git(self.root, "commit", "-m", "data")
+        self.git(self.root, "push")
+
+        log = self.run_freshness()
+
+        self.assertIn("event=fresh", log)
+        self.assertIn(f"local={recent}", log)
+        self.assertIn("behind_remote_minutes=0", log)
+
+    def test_nuc_behind_cloud_logs_stale_with_reason(self):
+        from datetime import datetime, timedelta, timezone
+
+        old = (datetime.now(timezone.utc) - timedelta(hours=13)).strftime("%Y-%m-%dT%H:%M:%SZ")
+        new = (datetime.now(timezone.utc) - timedelta(minutes=10)).strftime("%Y-%m-%dT%H:%M:%SZ")
+        self.write_data(self.root, old)
+        self.git(self.root, "add", "data/latest-24h-all.json")
+        self.git(self.root, "commit", "-m", "old data")
+        self.git(self.root, "push")
+        self.git(self.peer, "pull", "--ff-only")
+        self.write_data(self.peer, new)
+        self.git(self.peer, "add", "data/latest-24h-all.json")
+        self.git(self.peer, "commit", "-m", "cloud data")
+        self.git(self.peer, "push")
+        marker = self.base / "stale-fired.txt"
+        os.environ["RADAR_FRESHNESS_ALERT_COMMAND"] = f'printf "%s" "$RADAR_FRESHNESS_DETAIL" > "{marker.as_posix()}"'
+        self.addCleanup(os.environ.pop, "RADAR_FRESHNESS_ALERT_COMMAND", None)
+
+        log = self.run_freshness()
+
+        self.assertIn("event=stale", log)
+        self.assertIn("detail=nuc_behind_cloud", log)
+        self.assertRegex(log, r"lag_minutes=7[0-9]{2}")
+        self.assertEqual(marker.read_text(encoding="utf-8"), "nuc_behind_cloud")
 
 
 if __name__ == "__main__":
