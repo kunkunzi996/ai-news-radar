@@ -3195,26 +3195,64 @@ class OrphanHistoryPurgeTests(unittest.TestCase):
             # 存活名单为空 → 整通道跳过，绝不把历史全判成孤儿
             self.assertFalse(any(e["site_id"] == "github_foundation_sunshine_releases" for e in preview))
 
-    def test_purge_selected_backs_up_and_removes(self):
+    def test_purge_selected_records_ledger_and_syncs_without_touching_archive(self):
+        """2026-09-12 起「删除选中的历史」不再就地改写 data/**（那会让 NUC 工作区变脏、挡住快进），
+        而是把稳定 ID / 显示名登记进 deleted_sources 台账并同步到云端，由管线剔除。"""
+        from unittest.mock import patch
+
         from scripts.radar.server.subscriptions_store import purge_selected_sources
 
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             self._write_archive(root, self._sample_archive_items())
-            result = purge_selected_sources(
-                root, [["github_foundation_sunshine_releases", "AlkaidLab/foundation-sunshine"]]
-            )
+            archive_before = (root / "data" / "archive.json").read_bytes()
+            calls = []
+
+            def fake_sync(root_dir, payload, *, if_match=None):
+                calls.append((root_dir, payload, if_match))
+                return {"ok": True, "outcome": "pushed", "pushed": True, "etag": '"x"'}
+
+            with patch("scripts.radar.server.online_sources.save_and_sync_online_source_config", side_effect=fake_sync):
+                result = purge_selected_sources(
+                    root, [["github_foundation_sunshine_releases", "AlkaidLab/foundation-sunshine"]]
+                )
+
             self.assertEqual(result["selected"], 1)
-            # 备份文件已生成
-            self.assertTrue(result["backup"])
-            self.assertTrue(Path(result["backup"]).exists())
-            # archive 里 AlkaidLab 被删，codex 与 opmlrss 保留
-            payload = json.loads((root / "data" / "archive.json").read_text(encoding="utf-8"))
-            sources = {item["source"] for item in payload["items"]}
-            self.assertNotIn("AlkaidLab/foundation-sunshine", sources)
-            self.assertIn("openai/codex-plugin-cc", sources)
-            self.assertIn("某 RSS 源", sources)
-            self.assertEqual(payload["total_items"], 2)
+            self.assertIsNone(result["backup"])
+            self.assertEqual(result["removed"], {})
+            self.assertEqual(
+                result["recorded"],
+                {"github_foundation_sunshine_releases": ["AlkaidLab/foundation-sunshine"]},
+            )
+            self.assertEqual(result["sync"]["outcome"], "pushed")
+            self.assertEqual(len(calls), 1)
+            self.assertEqual(calls[0][1]["deleted_sources"], result["recorded"])
+            self.assertIn("sources", calls[0][1])
+            # archive 原样：清理由云端完成
+            self.assertEqual((root / "data" / "archive.json").read_bytes(), archive_before)
+
+    def test_purge_selected_uses_stable_ids_for_named_channels(self):
+        from unittest.mock import patch
+
+        from scripts.radar.server.subscriptions_store import purge_selected_sources
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._write_archive(
+                root,
+                [
+                    {"id": "b1", "site_id": "bilibili_dynamic", "source": "李四", "bilibili_uid": "222", "title": "x", "url": "https://b/1"},
+                    {"id": "b2", "site_id": "bilibili_dynamic", "source": "李四", "title": "没有 ID", "url": "https://b/2"},
+                    {"id": "b3", "site_id": "bilibili_dynamic", "source": "张三", "bilibili_uid": "111", "title": "y", "url": "https://b/3"},
+                ],
+            )
+            with patch(
+                "scripts.radar.server.online_sources.save_and_sync_online_source_config",
+                return_value={"ok": True, "outcome": "pushed", "pushed": True, "etag": '"x"'},
+            ):
+                result = purge_selected_sources(root, [["bilibili_dynamic", "李四"]])
+
+            self.assertEqual(result["recorded"], {"bilibili_dynamic": ["222"]})
 
     def test_purge_selected_noop_on_empty(self):
         from scripts.radar.server.subscriptions_store import purge_selected_sources
@@ -3225,6 +3263,7 @@ class OrphanHistoryPurgeTests(unittest.TestCase):
             result = purge_selected_sources(root, [])
             self.assertEqual(result["selected"], 0)
             self.assertIsNone(result["backup"])
+            self.assertEqual(result["recorded"], {})
             payload = json.loads((root / "data" / "archive.json").read_text(encoding="utf-8"))
             self.assertEqual(len(payload["items"]), 3)
 

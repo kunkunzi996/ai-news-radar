@@ -970,6 +970,7 @@ def unbind_github_star_sync(
         candidate = _online_sources.build_online_config(
             sources,
             updated_at=current_config.get("updated_at"),
+            deleted_sources=current_config.get(_online_sources.DELETED_SOURCES_KEY),
         )
         return _online_sources.apply_online_source_config_operation(
             root_dir,

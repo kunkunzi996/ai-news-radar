@@ -2,17 +2,18 @@ from __future__ import annotations
 
 import json
 import os
-import shutil
-import threading
 import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
-from collections import Counter
-from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any
 
 from scripts.radar.common import MEDIACRAWLER_DOUYIN_SITE_ID
+from scripts.radar.deleted_sources import (
+    DELETED_SOURCE_SITE_IDS,
+    DELETED_SOURCES_KEY,
+    record_matches_deleted_sources,
+)
 from scripts.radar.config_runtime import (
     record_is_youtube_member,
     subscription_member_id,
@@ -34,13 +35,11 @@ __all__ = [
     "PURGE_TRACKED_SITE_IDS",
     "alive_source_names_by_site",
     "enabled_source_config_records",
-    "flush_pending_purge",
+    "deleted_source_names_by_site",
     "is_item_orphaned",
     "opml_path",
     "orphan_history_preview",
-    "purge_deleted_source_data",
     "purge_selected_sources",
-    "queue_pending_purge",
     "read_source_config",
     "read_youtube_subscriptions",
     "resolve_config_path",
@@ -48,10 +47,6 @@ __all__ = [
     "validate_source_config",
     "write_youtube_subscriptions",
 ]
-
-PENDING_PURGE_FILENAME = "pending-purge.json"
-PENDING_PURGE_LOCK = threading.Lock()
-
 
 def youtube_channel_id_from_feed_url(url: str) -> str:
     parsed = urllib.parse.urlparse(str(url or "").strip())
@@ -172,18 +167,8 @@ def write_youtube_subscriptions(root_dir: Path, raw_subscriptions: Any) -> list[
     return subscriptions
 
 
-PURGE_TRACKED_SITE_IDS = frozenset(
-    {
-        "wewe_rss",
-        "we_mp_rss",
-        "we_mp_rss_jsonl",
-        "bilibili_dynamic",
-        "mediacrawler_douyin",
-        "mediacrawler_xhs",
-        "github_foundation_sunshine_releases",
-        "opmlrss",
-    }
-)
+# 与 deleted_sources 台账认同一批通道；台账口径见 scripts/radar/deleted_sources.py。
+PURGE_TRACKED_SITE_IDS = DELETED_SOURCE_SITE_IDS
 
 # 「清理已退订信源」预览只能覆盖「配置声明即权威」的通道——手填 UID/repo，
 # 配置里的存活名单与 archive 实际 source 一一对应，「不在配置里」才等于「已退订」。
@@ -335,43 +320,7 @@ def is_item_orphaned(record: dict[str, Any], alive_names: dict[str, set[str]]) -
 
 
 def _record_matches_tokens(record: dict[str, Any], tokens_by_site: dict[str, set[str]]) -> bool:
-    site_id = str(record.get("site_id") or "").strip()
-    tokens = tokens_by_site.get(site_id, set())
-    member_id = subscription_member_id(record)
-    if member_id:
-        return member_id in tokens
-    if site_id in {"bilibili_dynamic", MEDIACRAWLER_DOUYIN_SITE_ID} or record_is_youtube_member(record):
-        return False
-    source_name = str(record.get("source") or "").strip()
-    return bool(source_name) and source_name in tokens
-
-
-def purge_orphaned_from_flat_list(
-    items: list[Any],
-    alive_names: dict[str, set[str]],
-) -> tuple[list[Any], int]:
-    kept = [item for item in items if not (isinstance(item, dict) and is_item_orphaned(item, alive_names))]
-    return kept, len(items) - len(kept)
-
-
-def purge_orphaned_from_story_list(
-    stories: list[Any],
-    alive_names: dict[str, set[str]],
-) -> tuple[list[Any], int]:
-    kept = []
-    removed = 0
-    for story in stories:
-        if not isinstance(story, dict):
-            kept.append(story)
-            continue
-        members = story.get("items")
-        if not isinstance(members, list):
-            members = story.get("sources") if isinstance(story.get("sources"), list) else []
-        if any(isinstance(member, dict) and is_item_orphaned(member, alive_names) for member in members):
-            removed += 1
-            continue
-        kept.append(story)
-    return kept, removed
+    return record_matches_deleted_sources(record, tokens_by_site)
 
 
 def write_json_atomic(path: Path, payload: Any, *, compact: bool) -> None:
@@ -383,289 +332,6 @@ def write_json_atomic(path: Path, payload: Any, *, compact: bool) -> None:
     tmp_path = path.with_suffix(".json.tmp")
     tmp_path.write_text(text, encoding="utf-8")
     os.replace(tmp_path, path)
-
-
-def pending_purge_path(root_dir: Path) -> Path:
-    return root_dir / "data" / PENDING_PURGE_FILENAME
-
-
-def read_pending_purge(root_dir: Path) -> dict[str, set[str]]:
-    path = pending_purge_path(root_dir)
-    if not path.exists():
-        return {}
-    payload = json.loads(path.read_text(encoding="utf-8"))
-    raw_sources = payload.get("sources") if isinstance(payload, dict) else None
-    if not isinstance(raw_sources, dict):
-        raise ValueError("pending purge ledger must contain a sources object")
-    return {
-        str(site_id): {str(name).strip() for name in names if str(name).strip()}
-        for site_id, names in raw_sources.items()
-        if site_id in PURGE_TRACKED_SITE_IDS and isinstance(names, list)
-    }
-
-
-def write_pending_purge(root_dir: Path, pending: dict[str, set[str]]) -> None:
-    path = pending_purge_path(root_dir)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    payload = {
-        "updated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-        "sources": {
-            site_id: sorted(names)
-            for site_id, names in sorted(pending.items())
-            if names
-        },
-    }
-    write_json_atomic(path, payload, compact=False)
-
-
-def queue_pending_purge(
-    root_dir: Path,
-    deleted_names: dict[str, set[str]],
-    current_config: dict[str, Any],
-) -> dict[str, list[str]]:
-    with PENDING_PURGE_LOCK:
-        path_exists = pending_purge_path(root_dir).exists()
-        pending = read_pending_purge(root_dir)
-        for site_id, names in deleted_names.items():
-            if site_id in PURGE_TRACKED_SITE_IDS:
-                pending.setdefault(site_id, set()).update(names)
-
-        alive_names = alive_source_names_by_site(current_config)
-        for site_id in list(pending):
-            pending[site_id].difference_update(alive_names.get(site_id, set()))
-            if not pending[site_id]:
-                del pending[site_id]
-
-        if pending or path_exists:
-            write_pending_purge(root_dir, pending)
-        return {site_id: sorted(names) for site_id, names in sorted(pending.items())}
-
-
-def current_online_source_config(root_dir: Path) -> dict[str, Any]:
-    path = root_dir / "config" / "online-sources.json"
-    if not path.exists():
-        return {"sources": []}
-    payload = json.loads(path.read_text(encoding="utf-8"))
-    if not isinstance(payload, dict) or not isinstance(payload.get("sources"), list):
-        raise ValueError("online source config must contain a sources array")
-    return payload
-
-
-def purge_matching_source_data(
-    root_dir: Path,
-    should_purge: Callable[[dict[str, Any]], bool],
-) -> dict[str, int]:
-    data_dir = root_dir / "data"
-    summary: dict[str, int] = {}
-    archive_total_after_purge: int | None = None
-    all_mode_total_after_purge: int | None = None
-    all_mode_raw_total_after_purge: int | None = None
-    raw_count_by_site_after_purge: Counter[str] | None = None
-
-    def rewrite_flat(filename: str, list_keys: tuple[str, ...], *, compact: bool) -> None:
-        nonlocal archive_total_after_purge
-        nonlocal all_mode_total_after_purge
-        nonlocal all_mode_raw_total_after_purge
-        nonlocal raw_count_by_site_after_purge
-        path = data_dir / filename
-        if not path.exists():
-            return
-        try:
-            payload = json.loads(path.read_text(encoding="utf-8"))
-        except Exception:
-            return
-        if not isinstance(payload, dict):
-            return
-        removed_total = 0
-        for key in list_keys:
-            items = payload.get(key)
-            if not isinstance(items, list):
-                continue
-            kept = [item for item in items if not (isinstance(item, dict) and should_purge(item))]
-            removed = len(items) - len(kept)
-            payload[key] = kept
-            removed_total += removed
-
-        metadata_changed = False
-
-        def update_count(key: str, value: int) -> None:
-            nonlocal metadata_changed
-            if key in payload and payload.get(key) != value:
-                payload[key] = value
-                metadata_changed = True
-
-        if "total_items" in payload and "items" in list_keys:
-            total_items = len(payload.get("items") or [])
-            update_count("total_items", total_items)
-        if filename == "archive.json" and isinstance(payload.get("items"), list):
-            archive_total_after_purge = len(payload["items"])
-
-        if filename == "latest-24h.json":
-            items = payload.get("items") if isinstance(payload.get("items"), list) else []
-            has_items_all = isinstance(payload.get("items_all"), list)
-            has_items_all_raw = isinstance(payload.get("items_all_raw"), list)
-            items_all = payload.get("items_all") if has_items_all else []
-            items_all_raw = payload.get("items_all_raw") if has_items_all_raw else []
-
-            if archive_total_after_purge is not None:
-                update_count("archive_total", archive_total_after_purge)
-            if has_items_all:
-                update_count("total_items_all_mode", len(items_all))
-            elif all_mode_total_after_purge is not None:
-                update_count("total_items_all_mode", all_mode_total_after_purge)
-            if has_items_all_raw:
-                update_count("total_items_raw", len(items_all_raw))
-            elif all_mode_raw_total_after_purge is not None:
-                update_count("total_items_raw", all_mode_raw_total_after_purge)
-            if (
-                "total_items_ai_raw" in payload
-                and payload.get("ai_relevance_threshold") == 0
-                and all_mode_raw_total_after_purge is not None
-            ):
-                update_count("total_items_ai_raw", all_mode_raw_total_after_purge)
-            update_count(
-                "source_count",
-                len(
-                    {
-                        f"{item.get('site_id')}::{item.get('source')}"
-                        for item in items
-                        if isinstance(item, dict) and item.get("site_id") and item.get("source")
-                    }
-                ),
-            )
-
-            site_stats = payload.get("site_stats")
-            if isinstance(site_stats, list):
-                item_count_by_site = Counter(
-                    str(item.get("site_id") or "")
-                    for item in items
-                    if isinstance(item, dict) and item.get("site_id")
-                )
-                raw_count_by_site = (
-                    Counter(
-                        str(item.get("site_id") or "")
-                        for item in items_all_raw
-                        if isinstance(item, dict) and item.get("site_id")
-                    )
-                    if has_items_all_raw
-                    else raw_count_by_site_after_purge
-                )
-                refreshed_stats = []
-                for site in site_stats:
-                    if not isinstance(site, dict):
-                        refreshed_stats.append(site)
-                        continue
-                    site_id = str(site.get("site_id") or "")
-                    if not site_id:
-                        refreshed_stats.append(site)
-                        continue
-                    refreshed = dict(site)
-                    refreshed["count"] = item_count_by_site.get(site_id, 0)
-                    if raw_count_by_site is not None:
-                        refreshed["raw_count"] = raw_count_by_site.get(site_id, 0)
-                    refreshed_stats.append(refreshed)
-                if refreshed_stats != site_stats:
-                    payload["site_stats"] = refreshed_stats
-                    metadata_changed = True
-                update_count(
-                    "site_count",
-                    sum(
-                        1
-                        for site in refreshed_stats
-                        if isinstance(site, dict) and str(site.get("site_id") or "")
-                    ),
-                )
-        elif filename == "latest-24h-all.json":
-            items_all = payload.get("items_all")
-            items_all_raw = payload.get("items_all_raw")
-            if isinstance(items_all, list):
-                all_mode_total_after_purge = len(items_all)
-                update_count("total_items_all_mode", all_mode_total_after_purge)
-            if isinstance(items_all_raw, list):
-                all_mode_raw_total_after_purge = len(items_all_raw)
-                raw_count_by_site_after_purge = Counter(
-                    str(item.get("site_id") or "")
-                    for item in items_all_raw
-                    if isinstance(item, dict) and item.get("site_id")
-                )
-                update_count("total_items_raw", all_mode_raw_total_after_purge)
-
-        if removed_total or metadata_changed:
-            write_json_atomic(path, payload, compact=compact)
-        summary[filename] = removed_total
-
-    def rewrite_stories(filename: str, list_key: str, total_key: str, *, compact: bool) -> None:
-        path = data_dir / filename
-        if not path.exists():
-            return
-        try:
-            payload = json.loads(path.read_text(encoding="utf-8"))
-        except Exception:
-            return
-        if not isinstance(payload, dict) or not isinstance(payload.get(list_key), list):
-            return
-        kept = []
-        removed = 0
-        for story in payload[list_key]:
-            if not isinstance(story, dict):
-                kept.append(story)
-                continue
-            members = story.get("items")
-            if not isinstance(members, list):
-                members = story.get("sources") if isinstance(story.get("sources"), list) else []
-            if any(isinstance(member, dict) and should_purge(member) for member in members):
-                removed += 1
-                continue
-            kept.append(story)
-        payload[list_key] = kept
-        if total_key in payload:
-            payload[total_key] = len(kept)
-        if removed:
-            write_json_atomic(path, payload, compact=compact)
-        summary[filename] = removed
-
-    rewrite_flat("archive.json", ("items",), compact=True)
-    rewrite_flat(
-        "latest-24h-all.json",
-        ("items_all", "items_all_raw", "creator_items_all"),
-        compact=True,
-    )
-    rewrite_flat(
-        "latest-24h.json",
-        (
-            "items",
-            "items_ai",
-            "items_all",
-            "items_all_raw",
-            "creator_items_ai",
-            "creator_items_all",
-        ),
-        compact=True,
-    )
-    rewrite_stories("stories-merged.json", "stories", "total_stories", compact=True)
-    rewrite_stories("daily-brief.json", "items", "total_items", compact=False)
-    return summary
-
-
-def purge_deleted_source_data(
-    root_dir: Path,
-    config: dict[str, Any],
-    *,
-    previous_config: dict[str, Any] | None = None,
-) -> dict[str, int]:
-    if previous_config is not None:
-        deleted_names = deleted_source_names_by_site(config, previous_config)
-
-        def should_purge(record: dict[str, Any]) -> bool:
-            return _record_matches_tokens(record, deleted_names)
-
-    else:
-        alive_names = alive_source_names_by_site(config)
-
-        def should_purge(record: dict[str, Any]) -> bool:
-            return is_item_orphaned(record, alive_names)
-
-    return purge_matching_source_data(root_dir, should_purge)
 
 
 def orphan_history_preview(root_dir: Path, config: dict[str, Any]) -> list[dict[str, Any]]:
@@ -735,61 +401,75 @@ def purge_selected_sources(
     root_dir: Path,
     pairs: list[Any],
 ) -> dict[str, Any]:
-    """按用户勾选的 (site_id, source) 对清理全部数据文件。清理前先备份 archive.json。"""
+    """把用户勾选的 (site_id, source) 登记进 deleted_sources 台账并同步到云端。
+
+    2026-09-12 起不再就地改写本机 ``data/**``（那会让 NUC 工作区变脏、挡住 RadarAutoFF），
+    改为：从归档里找出这些条目的稳定 ID（没有 ID 的通道用显示名）作为 token，随配置一起
+    提交；云端管线下一轮写出 data/** 前剔除。返回值保留 ``removed`` / ``backup`` 两个旧键，
+    ``recorded`` 是这次登记的 token，``sync`` 是同步结果。
+    """
+    from scripts.radar.server.online_sources import (
+        read_online_source_config,
+        save_and_sync_online_source_config,
+    )
+
     wanted: set[tuple[str, str]] = set()
     for pair in pairs if isinstance(pairs, list) else []:
         if not isinstance(pair, (list, tuple)) or len(pair) < 2:
             continue
         site_id = str(pair[0] or "").strip()
         source_name = str(pair[1] or "").strip()
-        if site_id and source_name:
+        if site_id and source_name and site_id in PURGE_TRACKED_SITE_IDS:
             wanted.add((site_id, source_name))
     if not wanted:
-        return {"removed": {}, "backup": None, "selected": 0}
+        return {"removed": {}, "backup": None, "selected": 0, "recorded": {}, "sync": None}
 
+    tokens_by_site: dict[str, set[str]] = {}
     archive_path = root_dir / "data" / "archive.json"
-    backup_path: Path | None = None
     if archive_path.exists():
-        plan_dir = root_dir / "计划"
-        plan_dir.mkdir(parents=True, exist_ok=True)
-        stamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
-        backup_path = plan_dir / f"archive.backup-{stamp}.json"
-        shutil.copy2(archive_path, backup_path)
+        try:
+            payload = json.loads(archive_path.read_text(encoding="utf-8"))
+        except Exception:
+            payload = None
+        items = payload.get("items") if isinstance(payload, dict) else None
+        for record in items if isinstance(items, list) else []:
+            if not isinstance(record, dict):
+                continue
+            site_id = str(record.get("site_id") or "").strip()
+            source_name = str(record.get("source") or "").strip()
+            member_id = subscription_member_id(record)
+            if (site_id, source_name) not in wanted and (site_id, member_id) not in wanted:
+                continue
+            if site_id in {"bilibili_dynamic", MEDIACRAWLER_DOUYIN_SITE_ID} or record_is_youtube_member(record):
+                # 名称型通道只认稳定 ID；条目没有 ID 就不登记，宁可不删。
+                if member_id:
+                    tokens_by_site.setdefault(site_id, set()).add(member_id)
+                continue
+            tokens_by_site.setdefault(site_id, set()).add(source_name)
+    for site_id, source_name in wanted:
+        if site_id in {"bilibili_dynamic", MEDIACRAWLER_DOUYIN_SITE_ID}:
+            continue
+        tokens_by_site.setdefault(site_id, set()).add(source_name)
 
-    def should_purge(record: dict[str, Any]) -> bool:
-        site_id = str(record.get("site_id") or "").strip()
-        source_name = str(record.get("source") or "").strip()
-        return (site_id, source_name) in wanted
+    recorded = {site_id: sorted(tokens) for site_id, tokens in sorted(tokens_by_site.items()) if tokens}
+    if not recorded:
+        return {"removed": {}, "backup": None, "selected": len(wanted), "recorded": {}, "sync": None}
 
-    summary = purge_matching_source_data(root_dir, should_purge)
-    return {
-        "removed": summary,
-        "backup": str(backup_path) if backup_path else None,
-        "selected": len(wanted),
+    current = read_online_source_config(root_dir)
+    payload = {
+        "sources": [dict(source) for source in current["config"].get("sources", []) if isinstance(source, dict)],
+        DELETED_SOURCES_KEY: recorded,
     }
-
-
-def flush_pending_purge(root_dir: Path) -> dict[str, int]:
-    with PENDING_PURGE_LOCK:
-        pending = read_pending_purge(root_dir)
-        if not pending:
-            return {}
-
-        alive_names = alive_source_names_by_site(current_online_source_config(root_dir))
-        confirmed = {
-            site_id: names - alive_names.get(site_id, set())
-            for site_id, names in pending.items()
-        }
-        confirmed = {site_id: names for site_id, names in confirmed.items() if names}
-        if not confirmed:
-            write_pending_purge(root_dir, {})
-            return {}
-
-        def should_purge(record: dict[str, Any]) -> bool:
-            return _record_matches_tokens(record, confirmed)
-
-        summary = purge_matching_source_data(root_dir, should_purge)
-        write_pending_purge(root_dir, {})
-        return summary
-
-
+    sync = save_and_sync_online_source_config(root_dir, payload, if_match=current["etag"])
+    return {
+        "removed": {},
+        "backup": None,
+        "selected": len(wanted),
+        "recorded": recorded,
+        "sync": {
+            "ok": sync.get("ok"),
+            "outcome": sync.get("outcome"),
+            "pushed": sync.get("pushed"),
+            "etag": sync.get("etag"),
+        },
+    }
