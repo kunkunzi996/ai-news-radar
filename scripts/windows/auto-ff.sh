@@ -25,6 +25,29 @@ write_log() {
     finished_at_ms=$(date +%s%3N)
     printf '%s event=%s command=%s reason=%s exit=%s duration_ms=%s old_head=%s new_head=%s detail=%s\n' \
         "$(timestamp)" "$1" "$2" "$3" "$4" "$((finished_at_ms - STARTED_AT_MS))" "$5" "$6" "$(clean_detail "$7")" >> "$LOG_FILE"
+    if [ "$1" = "failed" ]; then
+        raise_alert_if_stuck "$3"
+    fi
+}
+
+# 连续 ALERT_AFTER 次 failed 就写一行 event=alert，并（可选）交给 RADAR_AUTO_FF_ALERT_COMMAND 通知。
+# 2026-09-11 快进被脏 data/** 挡了 13 小时才被人眼发现；日志里早有 26 行 worktree_dirty。
+ALERT_AFTER="${RADAR_AUTO_FF_ALERT_AFTER:-3}"
+
+raise_alert_if_stuck() {
+    local reason="$1"
+    local recent streak
+    recent=$(tail -n "$ALERT_AFTER" "$LOG_FILE" 2>/dev/null | grep -c ' event=failed ')
+    if [ "$recent" -lt "$ALERT_AFTER" ]; then
+        return 0
+    fi
+    streak=$(tac "$LOG_FILE" 2>/dev/null | awk '/ event=failed /{n++; next} {exit} END{print n+0}')
+    printf '%s event=alert command=auto_ff reason=%s exit=0 duration_ms=0 old_head= new_head= detail=%s\n' \
+        "$(timestamp)" "$reason" "consecutive_failures=$streak" >> "$LOG_FILE"
+    if [ -n "${RADAR_AUTO_FF_ALERT_COMMAND:-}" ]; then
+        RADAR_AUTO_FF_ALERT_REASON="$reason" RADAR_AUTO_FF_ALERT_STREAK="$streak" \
+            bash -c "$RADAR_AUTO_FF_ALERT_COMMAND" >/dev/null 2>&1 || true
+    fi
 }
 
 old_head=$(git -C "$REPO_ROOT" rev-parse HEAD 2>&1)
