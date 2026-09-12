@@ -21,6 +21,8 @@ from scripts.update_news import (
     fetch_bilibili_opus_published_at,
     fetch_bilibili_full_dynamic,
     fetch_bilibili_space_videos,
+    bilibili_space_video_query_params,
+    bilibili_space_video_risk_params,
     bilibili_wbi_keys,
     sign_bilibili_wbi_params,
     parse_bilibili_detail_published_at,
@@ -1752,6 +1754,116 @@ class BilibiliSpaceVideoFallbackTests(unittest.TestCase):
                 )
 
         with self.assertRaisesRegex(ValueError, "bilibili_space_video_no_items"):
+            fetch_bilibili_space_videos(
+                FakeSession(),
+                datetime(2026, 9, 8, tzinfo=timezone.utc),
+                uid="3546884870244925",
+                source_name="杰森的效率工坊",
+                max_items=5,
+            )
+
+    def test_space_video_query_includes_dm_img_risk_params(self):
+        params = bilibili_space_video_query_params("3546884870244925", 10)
+        risk = bilibili_space_video_risk_params()
+        self.assertEqual(params["mid"], "3546884870244925")
+        self.assertEqual(params["order"], "pubdate")
+        self.assertEqual(params["web_location"], "1550101")
+        self.assertEqual(params["dm_img_list"], risk["dm_img_list"])
+        self.assertEqual(params["dm_img_str"], risk["dm_img_str"])
+        self.assertEqual(params["dm_cover_img_str"], risk["dm_cover_img_str"])
+        self.assertEqual(params["dm_img_inter"], risk["dm_img_inter"])
+
+    def test_fetch_bilibili_space_videos_signs_dm_img_params(self):
+        class FakeResponse:
+            def __init__(self, payload):
+                self._payload = payload
+
+            def json(self):
+                return self._payload
+
+            def raise_for_status(self):
+                return None
+
+        class FakeSession:
+            def __init__(self):
+                self.params = None
+
+            def get(self, url, params=None, headers=None, timeout=None):
+                if "x/web-interface/nav" in url:
+                    return FakeResponse(
+                        {
+                            "code": 0,
+                            "data": {
+                                "wbi_img": {
+                                    "img_url": "https://i0.hdslb.com/bfs/wbi/" + "a" * 32 + ".png",
+                                    "sub_url": "https://i0.hdslb.com/bfs/wbi/" + "b" * 32 + ".png",
+                                }
+                            },
+                        }
+                    )
+                self.params = params
+                return FakeResponse(
+                    {
+                        "code": 0,
+                        "data": {
+                            "list": {
+                                "vlist": [
+                                    {
+                                        "mid": 3546884870244925,
+                                        "bvid": "BV1FLtR6fEEc",
+                                        "title": "Obsidian 智能体插件完整教程",
+                                        "created": 1788425694,
+                                    }
+                                ]
+                            }
+                        },
+                    }
+                )
+
+        session = FakeSession()
+        items = fetch_bilibili_space_videos(
+            session,
+            datetime(2026, 9, 8, tzinfo=timezone.utc),
+            uid="3546884870244925",
+            source_name="杰森的效率工坊",
+            max_items=5,
+        )
+        self.assertEqual(len(items), 1)
+        self.assertEqual(session.params["dm_img_list"], "[]")
+        self.assertEqual(session.params["dm_img_str"], "V2ViR0wgMS4wIChPcGVuR0wgRVNOKQ")
+        self.assertIn("dm_cover_img_str", session.params)
+        self.assertIn("dm_img_inter", session.params)
+        self.assertRegex(session.params["w_rid"], r"^[0-9a-f]{32}$")
+        self.assertTrue(session.params["wts"])
+
+    def test_fetch_bilibili_space_videos_still_raises_on_352(self):
+        class FakeResponse:
+            def __init__(self, payload):
+                self._payload = payload
+
+            def json(self):
+                return self._payload
+
+            def raise_for_status(self):
+                return None
+
+        class FakeSession:
+            def get(self, url, params=None, headers=None, timeout=None):
+                if "x/web-interface/nav" in url:
+                    return FakeResponse(
+                        {
+                            "code": 0,
+                            "data": {
+                                "wbi_img": {
+                                    "img_url": "https://i0.hdslb.com/bfs/wbi/" + "a" * 32 + ".png",
+                                    "sub_url": "https://i0.hdslb.com/bfs/wbi/" + "b" * 32 + ".png",
+                                }
+                            },
+                        }
+                    )
+                return FakeResponse({"code": -352, "message": "风控校验失败"})
+
+        with self.assertRaisesRegex(ValueError, "bilibili_space_video_api_code_-352"):
             fetch_bilibili_space_videos(
                 FakeSession(),
                 datetime(2026, 9, 8, tzinfo=timezone.utc),

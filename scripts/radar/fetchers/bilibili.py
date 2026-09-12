@@ -713,6 +713,32 @@ def parse_bilibili_space_video_items(
     return out
 
 
+def bilibili_space_video_risk_params() -> dict[str, str]:
+    # Official space video page sends these dm_img_* fields with WBI.
+    # Missing them is what /x/space/wbi/arc/search returns as code -352.
+    return {
+        "dm_img_list": "[]",
+        "dm_img_str": "V2ViR0wgMS4wIChPcGVuR0wgRVNOKQ",
+        "dm_cover_img_str": "QU5HTEUgKEludGVsLCBJbnRlbChSKSBIRCBHcmFwaGljcyBEaXJlY3QzRDExIHZzXzVfMCBwc181XzAsIEQzRDExKQ",
+        "dm_img_inter": '{"ds":[],"wh":[0,0,0],"of":[0,0,0]}',
+    }
+
+
+def bilibili_space_video_query_params(uid: str, max_items: int) -> dict[str, Any]:
+    return {
+        "mid": uid,
+        "ps": max(1, min(int(max_items), 30)),
+        "tid": 0,
+        "pn": 1,
+        "keyword": "",
+        "order": "pubdate",
+        "platform": "web",
+        "web_location": "1550101",
+        "order_avoided": "true",
+        **bilibili_space_video_risk_params(),
+    }
+
+
 def fetch_bilibili_space_videos(
     session: requests.Session,
     now: datetime,
@@ -731,17 +757,7 @@ def fetch_bilibili_space_videos(
         "Referer": f"https://space.bilibili.com/{uid}/video",
     }
     params = sign_bilibili_wbi_params(
-        {
-            "mid": uid,
-            "ps": max(1, min(int(max_items), 30)),
-            "tid": 0,
-            "pn": 1,
-            "keyword": "",
-            "order": "pubdate",
-            "platform": "web",
-            "web_location": "1550101",
-            "order_avoided": "true",
-        },
+        bilibili_space_video_query_params(uid, max_items),
         img_key,
         sub_key,
     )
