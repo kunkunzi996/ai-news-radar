@@ -1,26 +1,20 @@
 {
-  "refreshed_at": "2026-08-01T07:13:49Z",
+  "refreshed_at": "2026-09-13T15:34:30Z",
   "reason": {
     "douyin_sec_uids": [
-      "MS4wLjABAAAABQ86JBTzG2dt2HG0I28pyyGXpJoEuKhqG9k-ju6Iut65yxLoVS_dIJngYVJkIUFZ"
+      "MS4wLjABAAAAlWnGlCIMXYajNuyZ0WWAtT5SeDxBaBGoQWJhOcrinboWkpUHqzCz2duFAgP6pHvk"
     ],
     "wechat_added": false,
     "added_names": [
-      "芙芙家的洗碗君"
+      "玩游戏做游戏的老刘"
     ]
   },
   "collect": {
     "douyin": {
       "state": "succeeded",
       "stage": "completed_pushed",
-      "started_at": "2026-08-01T07:02:22.3899765Z",
-      "finished_at": "2026-08-01T07:12:34.4767578Z"
-    },
-    "wechat": {
-      "state": "warning",
-      "stage": "authority_unavailable",
-      "started_at": "2026-08-01T07:12:35.8747318Z",
-      "finished_at": "2026-08-01T07:13:39.6955761Z"
+      "started_at": "2026-09-13T15:30:51.2181508Z",
+      "finished_at": "2026-09-13T15:34:24.6924024Z"
     }
   }
 }
