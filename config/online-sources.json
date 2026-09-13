@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-09-13T15:10:32Z",
+  "updated_at": "2026-09-13T15:30:23Z",
   "sources": [
     {
       "id": "online_bilibili_13030183",
@@ -706,6 +706,17 @@
       "channel": "抖音订阅",
       "target": "FredTalk",
       "locator": "https://www.douyin.com/user/MS4wLjABAAAAbsEkiVbKt7yhYoBK8_PkNTQoPAgRiLzOyrBc-sYHSdo",
+      "env": "",
+      "notes": "云电脑桥接采集"
+    },
+    {
+      "id": "online_douyin_deb8370d9f",
+      "name": "玩游戏做游戏的老刘",
+      "type": "mediacrawler_jsonl",
+      "enabled": true,
+      "channel": "抖音订阅",
+      "target": "玩游戏做游戏的老刘",
+      "locator": "https://www.douyin.com/user/MS4wLjABAAAAlWnGlCIMXYajNuyZ0WWAtT5SeDxBaBGoQWJhOcrinboWkpUHqzCz2duFAgP6pHvk",
       "env": "",
       "notes": "云电脑桥接采集"
     },
