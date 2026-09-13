@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-09-13T15:30:23Z",
+  "updated_at": "2026-09-13T15:52:24Z",
   "sources": [
     {
       "id": "online_bilibili_13030183",
@@ -717,6 +717,17 @@
       "channel": "抖音订阅",
       "target": "玩游戏做游戏的老刘",
       "locator": "https://www.douyin.com/user/MS4wLjABAAAAlWnGlCIMXYajNuyZ0WWAtT5SeDxBaBGoQWJhOcrinboWkpUHqzCz2duFAgP6pHvk",
+      "env": "",
+      "notes": "云电脑桥接采集"
+    },
+    {
+      "id": "online_douyin_e1da65a4cb",
+      "name": "AI美术笔记",
+      "type": "mediacrawler_jsonl",
+      "enabled": true,
+      "channel": "抖音订阅",
+      "target": "AI美术笔记",
+      "locator": "https://www.douyin.com/user/MS4wLjABAAAAHdDchhFnf_wV4v98ahGwUs00SYrPX8g4wdsqQCNZ2SQILRdvblH614LbcazqEjd9",
       "env": "",
       "notes": "云电脑桥接采集"
     },
