@@ -244,16 +244,16 @@ function highPriorityScore(item) {
   return scorePercent(item);
 }
 function isHighPriorityItem(item) {
-  return highPriorityScore(item) >= 75 || itemPriorityScore(item) >= 82 || item.site_id === "official_ai" || item.site_id === "aihot";
+  return highPriorityScore(item) >= 75 || itemPriorityScore(item) >= 82 || item.site_id === "official_ai";
 }
 function isCuratedItem(item) {
-  return item.site_id === "official_ai" || item.site_id === "aihot" || item.source_tier === "official" || item.source_tier === "curated";
+  return item.site_id === "official_ai" || item.aihot_selected === true || item.source_tier === "official" || item.source_tier === "curated";
 }
 function itemSourceType(item) {
   const siteId = item.site_id || "";
   const tier = item.source_tier || "";
   if (siteId === "official_ai" || tier === "official") return "official";
-  if (siteId === "curated_media" || siteId === "aibreakfast" || siteId === "aihot") return "media";
+  if (siteId === "curated_media" || siteId === "aibreakfast") return "media";
   if (isSubscriptionItem(item)) return "creator";
   if (siteId === "opmlrss" || tier === "user_opml") return "rss";
   if (siteId === "waytoagi" || siteId === "followbuilders" || siteId === "hackernews" || siteId === "zeli" || siteId === "aibase") return "community";
@@ -575,7 +575,6 @@ function setSourceBadge(el, label, tone = "default", title = "") {
 }
 function sourceTierPercent(item) {
   if (item.site_id === "official_ai") return 100;
-  if (item.site_id === "aihot") return 90;
   const rank = Number(item.source_tier_rank);
   if (!Number.isFinite(rank)) return 38;
   return Math.max(28, Math.min(86, 86 - rank * 9));

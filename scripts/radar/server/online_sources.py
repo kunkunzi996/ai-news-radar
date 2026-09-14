@@ -29,7 +29,7 @@ ONLINE_OPML_FILENAME = Path("feeds") / "online-sources.opml"
 PUBLIC_SUBSCRIPTION_MEMBERS_FILENAME = Path("data") / "subscription-members.json"
 ONLINE_OPML_SOURCE_ID = "online_opmlrss"
 ONLINE_ALLOWED_TYPES = frozenset(
-    {"bilibili_dynamic", "github_release", "mediacrawler_jsonl", "rss", "we_mp_rss_jsonl"}
+    {"aihot", "bilibili_dynamic", "github_release", "mediacrawler_jsonl", "rss", "we_mp_rss_jsonl"}
 )
 ONLINE_COMMIT_MESSAGE = "配置：同步线上信源"
 ONLINE_SYNC_STASH_MESSAGE = "ai-news-radar:online-source-sync"
@@ -89,6 +89,7 @@ TYPE_ORDER = {
     "mediacrawler_jsonl": 2,
     "we_mp_rss_jsonl": 3,
     "rss": 4,
+    "aihot": 5,
 }
 
 
@@ -484,6 +485,21 @@ def normalize_online_source_record(
             "locator": locator,
             "env": "",
             "notes": notes[:240] or "云电脑桥接采集",
+        }
+        record.update(managed_fields)
+        return record
+
+    if source_type == "aihot":
+        record = {
+            "id": record_id("online_aihot"),
+            "name": (name or "AI HOT 全部动态")[:120],
+            "type": source_type,
+            "enabled": enabled,
+            "channel": "AI HOT",
+            "target": "AI HOT",
+            "locator": "https://aihot.news/api/v1/items",
+            "env": "",
+            "notes": notes[:240] or "公开池全部动态，已阅手筛",
         }
         record.update(managed_fields)
         return record

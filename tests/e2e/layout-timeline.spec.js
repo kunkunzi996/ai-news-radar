@@ -80,6 +80,7 @@ REGULAR_ITEMS[10] = makeItem(10, {
 });
 
 const PLATFORM_FIXTURES = [
+  [67, { id: "aihot-alpha", site_id: "aihot", site_name: "AI HOT", source: "X：Andrej Karpathy", url: "https://x.com/karpathy/status/fixture-alpha", aihot_score: 37, aihot_selected: false }],
   [68, { id: "douyin-alpha", site_id: "mediacrawler_douyin", site_name: "抖音", source: "抖音甲", url: "https://www.douyin.com/video/fixture-alpha" }],
   [69, { id: "douyin-beta", site_id: "mediacrawler_douyin", site_name: "抖音", source: "抖音乙", url: "https://www.douyin.com/video/fixture-beta" }],
   [70, { id: "xhs-alpha", site_id: "mediacrawler_xhs", site_name: "小红书", source: "小红书甲", url: "https://www.xiaohongshu.com/explore/fixture-alpha" }],
@@ -504,6 +505,7 @@ test("所有平台 tab 都完成真实时间流渲染", async ({ page }) => {
     "bilibili",
     "youtube",
     "github",
+    "aihot",
     "read",
   ];
   expect(sectionIds).toEqual(expectedSectionIds);
@@ -523,6 +525,31 @@ test("所有平台 tab 都完成真实时间流渲染", async ({ page }) => {
       `tab ${sectionId} 的卡片必须按时间非递增排列`,
     ).toBe(true);
   }
+  expect(errors).toEqual([]);
+});
+
+test("AI HOT 原文链接进入已阅，恢复后回到收件箱", async ({ page }) => {
+  const errors = collectErrors(page);
+  await openFixture(page);
+  await openSection(page, "aihot");
+
+  const inbox = page.locator('#newsList .news-card[data-item-id="aihot-alpha"]');
+  await expect(inbox).toHaveCount(1);
+  await expect(inbox.locator("a.title")).toHaveAttribute("href", "https://x.com/karpathy/status/fixture-alpha");
+  await inbox.locator(".read-toggle-btn").click();
+  await expect(page.locator("#newsList .list-loading")).toHaveCount(0);
+  await expect(page.locator('#newsList .news-card[data-item-id="aihot-alpha"]')).toHaveCount(0);
+
+  await openSection(page, "read");
+  const readItem = page.locator('#newsList .news-card[data-item-id="aihot-alpha"]');
+  await expect(readItem).toHaveCount(1);
+  await expect(readItem.locator("a.title")).toHaveAttribute("href", "https://x.com/karpathy/status/fixture-alpha");
+  await expect(readItem.locator(".read-toggle-btn")).toHaveText("恢复");
+  await readItem.locator(".read-toggle-btn").click();
+  await expect(page.locator("#newsList > .empty")).toHaveCount(1);
+
+  await openSection(page, "aihot");
+  await expect(page.locator('#newsList .news-card[data-item-id="aihot-alpha"]')).toHaveCount(1);
   expect(errors).toEqual([]);
 });
 

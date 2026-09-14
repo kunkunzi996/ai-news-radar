@@ -116,7 +116,7 @@ async function loadYoutubeSubscriptions(options = {}) {
 }
 function isSubscriptionSection(sectionId) {
   if (isHiddenPlatformId(sectionId)) return false;
-  return sectionId === "creator" || sectionId === "read" || ["douyin", "xiaohongshu", "bilibili", "youtube", "github"].includes(sectionId);
+  return sectionId === "creator" || sectionId === "read" || ["douyin", "xiaohongshu", "bilibili", "youtube", "github", "aihot"].includes(sectionId);
 }
 function itemPlatformSection(item) {
   const siteId = String(item?.site_id || "").toLowerCase();
@@ -130,6 +130,7 @@ function itemPlatformSection(item) {
     item?.title_zh,
     item?.title_en,
   ].filter(Boolean).join(" ").toLowerCase();
+  if (siteId === "aihot") return "aihot";
   if (siteId === "bilibili_dynamic" || hay.includes("bilibili") || hay.includes("b站")) return "bilibili";
   if (siteId === "mediacrawler_douyin" || siteId === "tikhub_douyin" || hay.includes("douyin") || hay.includes("抖音")) return "douyin";
   if (siteId === "mediacrawler_xhs" || siteId === "tikhub_xiaohongshu" || hay.includes("xiaohongshu") || hay.includes("小红书")) return "xiaohongshu";

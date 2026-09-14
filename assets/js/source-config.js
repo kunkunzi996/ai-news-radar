@@ -24,14 +24,14 @@ function sourceConfigSeedSources() {
     },
     {
       id: "aihot",
-      name: "AI HOT",
+      name: "AI HOT 全部动态",
       type: "aihot",
       enabled: false,
-      channel: "AI站点",
+      channel: "AI HOT",
       target: "AI HOT",
-      locator: "https://ai-bot.cn/daily-ai-news/",
+      locator: "https://aihot.news/api/v1/items",
       env: "",
-      notes: "内置中文 AI 资讯站点源；默认停用，可作为全源模式补充。",
+      notes: "线上采集走 config/online-sources.json 的 aihot 源；公开池全部动态，已阅手筛。",
     },
     {
       id: "aibreakfast",
@@ -444,7 +444,7 @@ function sourceConfigRuntimeIds(source) {
   const locator = String(source?.locator || "").toLowerCase();
   const hay = `${rawId} ${type} ${channel} ${target} ${locator}`;
   const ids = new Set();
-  if (rawId === "aihot" || type === "aihot") ids.add("aihot");
+  if (rawId === "aihot" || rawId === "online_aihot" || type === "aihot") ids.add("aihot");
   if (rawId.includes("github_foundation_sunshine") || type === "github_release") ids.add("github_foundation_sunshine_releases");
   if (rawId.includes("maobidao_wudaolu")) ids.add("maobidao_wudaolu_backup");
   if (type === "wewe_rss" || rawId.startsWith("wewe_rss") || hay.includes("wewe_rss") || hay.includes("wewe rss")) ids.add("wewe_rss");

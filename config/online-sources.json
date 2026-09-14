@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-09-13T15:52:24Z",
+  "updated_at": "2026-09-14T02:30:00Z",
   "sources": [
     {
       "id": "online_bilibili_13030183",
@@ -763,6 +763,17 @@
       "locator": "https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw",
       "env": "",
       "notes": "YouTube 公开频道 feed"
+    },
+    {
+      "id": "online_aihot",
+      "name": "AI HOT 全部动态",
+      "type": "aihot",
+      "enabled": true,
+      "channel": "AI HOT",
+      "target": "AI HOT",
+      "locator": "https://aihot.news/api/v1/items",
+      "env": "",
+      "notes": "公开池全部动态，已阅手筛"
     },
     {
       "id": "online_opmlrss",

@@ -212,7 +212,7 @@ def source_identity_names(
         if not include_disabled and source.get("enabled") is False:
             continue
         source_type = str(source.get("type") or "").strip().lower()
-        if source_type == "opmlrss":
+        if source_type in {"opmlrss", "aihot"}:
             continue
         site_ids = purge_tracked_site_ids(source)
         if not site_ids:

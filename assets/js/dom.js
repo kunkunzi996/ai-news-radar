@@ -194,19 +194,21 @@ const SUBSCRIPTION_SITE_IDS = new Set([
   "mediacrawler_xhs",
   "we_mp_rss_jsonl",
   "github_foundation_sunshine_releases",
+  "aihot",
 ]);
 
 const HIDDEN_PLATFORM_IDS = new Set();
 const HIDDEN_SOURCE_IDS = new Set(["wewe_rss", "maobidao_wudaolu_backup"]);
 
 const SECTION_DEFS = [
-  { id: "creator", label: "我的订阅", short: "订阅", description: "B站、YouTube、抖音和 GitHub 项目的更新" },
+  { id: "creator", label: "我的订阅", short: "订阅", description: "B站、YouTube、抖音、GitHub 和 AI HOT 的更新" },
   { id: "douyin", label: "抖音", short: "抖音", description: "抖音创作者与短视频信号" },
   { id: "xiaohongshu", label: "小红书", short: "小红书", description: "小红书博主、笔记和搜索信号" },
   { id: "wechat", label: "微信公众号", short: "公众号", description: "微信公众号订阅和 WeWe RSS 信号" },
   { id: "bilibili", label: "B站", short: "B站", description: "B站动态、视频和账号订阅" },
   { id: "youtube", label: "油管", short: "油管", description: "YouTube 频道订阅和视频更新" },
   { id: "github", label: "GitHub", short: "GitHub", description: "GitHub 项目的 Release 与更新" },
+  { id: "aihot", label: "AI HOT", short: "AIHOT", description: "AI HOT 公开池全部动态，未阅当收件箱" },
   { id: "read", label: "已阅", short: "已阅", description: "已标记已阅的订阅内容，可随时恢复" },
 ];
 

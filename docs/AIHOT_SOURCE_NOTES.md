@@ -1,17 +1,23 @@
 # AI HOT Source Notes
 
-Date: 2026-06-16
+Date: 2026-06-16 (ingest updated 2026-09-14)
 
-This note records public clues about the sources used by
-`https://aihot.virxact.com`. It is a research note for future source planning,
-not a confirmed backend source inventory. AI HOT does not appear to publish its
-complete private source configuration, so these entries come from public pages:
+Radar now reads the public v1 API, not the old selected-mode feed:
 
-- `https://aihot.virxact.com`
-- `https://aihot.virxact.com/all`
-- `https://aihot.virxact.com/submit`
-- `https://aihot.virxact.com/agent`
-- `https://aihot.virxact.com/about`
+- `GET https://aihot.news/api/v1/items?mode=all&window=24h&limit=100`
+- Keep the whole public pool. Do not drop low scores.
+- Store `links.original` as the item URL so 已阅 matches the tweet/article.
+- Same product also lives at `https://aihot.virxact.com`; the old
+  `/api/public/items` path shuts down 2026-12-31.
+
+The rest of this note is older public-page research about what AI HOT appears
+to ingest. It is not a confirmed backend inventory.
+
+Public pages:
+
+- `https://aihot.news` / `https://aihot.virxact.com`
+- `https://aihot.news/all` / `https://aihot.virxact.com/all`
+- `https://aihot.news/agent` / `https://aihot.virxact.com/agent`
 
 ## What AI HOT Appears To Do
 

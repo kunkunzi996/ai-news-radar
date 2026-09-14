@@ -113,6 +113,37 @@ class OnlineDouyinSourceTests(unittest.TestCase):
         self.assertEqual(sources[0]["locator"], DOUYIN_HOMEPAGE)
 
 
+class OnlineAihotSourceTests(unittest.TestCase):
+    def test_normalize_aihot_record_uses_fixed_locator(self):
+        record = normalize_online_source_record(
+            {
+                "name": "AI HOT 全部动态",
+                "type": "aihot",
+                "locator": "https://example.com/wrong",
+            },
+            0,
+        )
+        self.assertEqual(record["id"], "online_aihot")
+        self.assertEqual(record["type"], "aihot")
+        self.assertEqual(record["channel"], "AI HOT")
+        self.assertEqual(record["locator"], "https://aihot.news/api/v1/items")
+        self.assertTrue(record["enabled"])
+        self.assertEqual(record["notes"], "公开池全部动态，已阅手筛")
+
+    def test_normalize_aihot_preserves_existing_id(self):
+        record = normalize_online_source_record(
+            {
+                "id": "legacy_aihot_id",
+                "name": "AI HOT",
+                "type": "aihot",
+            },
+            0,
+            existing=True,
+        )
+        self.assertEqual(record["id"], "legacy_aihot_id")
+        self.assertEqual(record["locator"], "https://aihot.news/api/v1/items")
+
+
 class OnlineSourceSchemaTests(unittest.TestCase):
     def test_existing_valid_source_ids_are_preserved(self):
         sources = normalize_online_sources(

@@ -12,11 +12,12 @@ from bs4 import BeautifulSoup
 from scripts.radar.common import (
     AIBREAKFAST_JINA_URL,
     AIHOT_API_MAX_PAGES,
+    AIHOT_API_MODE,
     AIHOT_API_TAKE,
     AIHOT_API_UA,
+    AIHOT_API_WINDOW,
     AIHOT_FEED_URL,
     AIHOT_ITEMS_API_URL,
-    AIHOT_MIN_SCORE,
     BROWSER_UA,
     CURATED_AI_MEDIA_FEEDS,
     CURATED_AI_MEDIA_MAX_AGE_DAYS,
@@ -1120,6 +1121,42 @@ def parse_aihot_feed_items(feed_content: bytes, now: datetime, feed_url: str = A
     return out
 
 
+def aihot_entry_source_name(entry: dict[str, Any], fallback: str) -> str:
+    raw = entry.get("source")
+    if isinstance(raw, dict):
+        return maybe_fix_mojibake(first_non_empty(raw.get("name"), fallback))
+    return maybe_fix_mojibake(first_non_empty(raw, fallback))
+
+
+def aihot_entry_link(entry: dict[str, Any]) -> str:
+    links = entry.get("links") if isinstance(entry.get("links"), dict) else {}
+    return first_non_empty(links.get("original"), entry.get("url"), links.get("aihot"))
+
+
+def aihot_entry_score(raw: Any) -> int | float | None:
+    if raw is None or isinstance(raw, bool):
+        return None
+    try:
+        score = float(raw)
+    except (TypeError, ValueError):
+        return None
+    if score != score:  # NaN
+        return None
+    return int(score) if score.is_integer() else score
+
+
+def aihot_api_page_cursor(payload: dict[str, Any]) -> tuple[str, bool]:
+    page = payload.get("page") if isinstance(payload.get("page"), dict) else {}
+    cursor = str(page.get("nextCursor") or payload.get("nextCursor") or "").strip()
+    if "hasMore" in page:
+        has_more = bool(page.get("hasMore"))
+    elif "hasNext" in payload:
+        has_more = bool(payload.get("hasNext"))
+    else:
+        has_more = bool(cursor)
+    return cursor, has_more and bool(cursor)
+
+
 def parse_aihot_api_items(payload: dict[str, Any], now: datetime | None = None) -> list[RawItem]:
     site_id = "aihot"
     site_name = "AI HOT"
@@ -1133,19 +1170,18 @@ def parse_aihot_api_items(payload: dict[str, Any], now: datetime | None = None) 
     for entry in raw_items:
         if not isinstance(entry, dict):
             continue
-        raw_score = entry.get("score")
-        if isinstance(raw_score, bool):
-            continue
-        try:
-            score = float(raw_score)
-        except (TypeError, ValueError):
-            continue
-        if score < AIHOT_MIN_SCORE:
-            continue
-
-        title = maybe_fix_mojibake(str(first_non_empty(entry.get("title"), entry.get("title_en")) or "").strip())
-        link = str(entry.get("url") or "").strip()
-        if not title or not link:
+        title = maybe_fix_mojibake(
+            str(
+                first_non_empty(
+                    entry.get("title"),
+                    entry.get("originalTitle"),
+                    entry.get("title_en"),
+                )
+                or ""
+            ).strip()
+        )
+        link = aihot_entry_link(entry)
+        if not title or not link.startswith(("http://", "https://")):
             continue
         normalized_url = normalize_url(link)
         if normalized_url in seen_urls:
@@ -1153,8 +1189,17 @@ def parse_aihot_api_items(payload: dict[str, Any], now: datetime | None = None) 
         seen_urls.add(normalized_url)
 
         published = parse_iso(str(entry.get("publishedAt") or "")) or parse_date_any(entry.get("publishedAt"), now)
-        source = maybe_fix_mojibake(str(first_non_empty(entry.get("source"), site_name)))
-        score_value: int | float = int(score) if score.is_integer() else score
+        source = aihot_entry_source_name(entry, site_name)
+        score_value = aihot_entry_score(entry.get("score"))
+        meta: dict[str, Any] = {
+            "api_url": AIHOT_ITEMS_API_URL,
+            "aihot_id": entry.get("id"),
+            "aihot_category": entry.get("category"),
+            "aihot_selected": bool(entry.get("selected")),
+            "summary": entry.get("summary"),
+        }
+        if score_value is not None:
+            meta["aihot_score"] = score_value
         out.append(
             RawItem(
                 site_id=site_id,
@@ -1163,14 +1208,7 @@ def parse_aihot_api_items(payload: dict[str, Any], now: datetime | None = None) 
                 title=title,
                 url=link,
                 published_at=published,
-                meta={
-                    "api_url": AIHOT_ITEMS_API_URL,
-                    "aihot_id": entry.get("id"),
-                    "aihot_score": score_value,
-                    "aihot_category": entry.get("category"),
-                    "aihot_selected": bool(entry.get("selected")),
-                    "summary": entry.get("summary"),
-                },
+                meta=meta,
             )
         )
 
@@ -1179,9 +1217,14 @@ def parse_aihot_api_items(payload: dict[str, Any], now: datetime | None = None) 
 
 def fetch_aihot(session: requests.Session, now: datetime) -> list[RawItem]:
     out: list[RawItem] = []
+    seen_urls: set[str] = set()
     cursor = ""
     for _ in range(AIHOT_API_MAX_PAGES):
-        params: dict[str, Any] = {"mode": "selected", "take": AIHOT_API_TAKE}
+        params: dict[str, Any] = {
+            "mode": AIHOT_API_MODE,
+            "window": AIHOT_API_WINDOW,
+            "limit": AIHOT_API_TAKE,
+        }
         if cursor:
             params["cursor"] = cursor
         r = session.get(
@@ -1196,9 +1239,14 @@ def fetch_aihot(session: requests.Session, now: datetime) -> list[RawItem]:
         )
         r.raise_for_status()
         payload = r.json()
-        out.extend(parse_aihot_api_items(payload, now))
-        cursor = str(payload.get("nextCursor") or "")
-        if not payload.get("hasNext") or not cursor:
+        for item in parse_aihot_api_items(payload, now):
+            key = normalize_url(item.url)
+            if key in seen_urls:
+                continue
+            seen_urls.add(key)
+            out.append(item)
+        cursor, has_more = aihot_api_page_cursor(payload if isinstance(payload, dict) else {})
+        if not has_more:
             break
     return out
 

@@ -175,8 +175,9 @@ CURATED_AI_MEDIA_FEEDS: tuple[dict[str, Any], ...] = (
     },
 )
 AIBREAKFAST_JINA_URL = "https://r.jina.ai/https://aibreakfast.beehiiv.com/"
-AIHOT_ITEMS_API_URL = "https://aihot.virxact.com/api/public/items"
-AIHOT_MIN_SCORE = 60
+AIHOT_ITEMS_API_URL = "https://aihot.news/api/v1/items"
+AIHOT_API_MODE = "all"
+AIHOT_API_WINDOW = "24h"
 AIHOT_API_TAKE = 100
 AIHOT_API_MAX_PAGES = 5
 AIHOT_API_UA = f"{BROWSER_UA} aihot-skill/0.2.0 AI-News-Radar/0.7"
@@ -350,6 +351,7 @@ CREATOR_SITE_IDS = frozenset({
     GITHUB_REPO_SUBSCRIPTION_SITE_ID,
     MAOBIDAO_WECHAT_SITE_ID,
     WEWE_RSS_SITE_ID,
+    "aihot",
 })
 SUBSCRIPTION_URL_MARKERS = (
     "bilibili.com",
@@ -417,6 +419,7 @@ SOURCE_CONFIG_ID_SITE_IDS: dict[str, tuple[str, ...]] = {
     "we_mp_rss_maobidao": (WE_MP_RSS_SITE_ID,),
     "online_we_mp_rss_maobidao": (WE_MP_RSS_JSONL_SITE_ID,),
     "maobidao_wudaolu_backup": (MAOBIDAO_WECHAT_SITE_ID,),
+    "online_aihot": ("aihot",),
 }
 SOURCE_CONFIG_TYPE_SITE_IDS: dict[str, tuple[str, ...]] = {
     "official_ai": ("official_ai",),

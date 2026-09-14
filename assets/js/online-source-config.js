@@ -27,6 +27,13 @@ const ONLINE_SOURCE_TYPE_DEFS = {
     locatorPlaceholder: "例如：https://www.youtube.com/feeds/videos.xml?channel_id=UC...",
     channel: "RSS/YouTube",
   },
+  aihot: {
+    label: "AI HOT",
+    nameLabel: "显示名称",
+    locatorLabel: "公开 API",
+    locatorPlaceholder: "https://aihot.news/api/v1/items",
+    channel: "AI HOT",
+  },
 };
 
 const onlineSourceConflictListEl = document.getElementById("onlineSourceConflictList");
@@ -214,6 +221,14 @@ function renderOnlineSourceFormHints() {
   if (onlineSourceNameLabelEl) onlineSourceNameLabelEl.textContent = def.nameLabel;
   if (onlineSourceLocatorLabelEl) onlineSourceLocatorLabelEl.textContent = def.locatorLabel;
   if (onlineSourceLocatorEl) onlineSourceLocatorEl.placeholder = def.locatorPlaceholder;
+  if (
+    onlineSourceTypeEl.value === "aihot" &&
+    onlineSourceLocatorEl &&
+    !onlineSourceFormEl?.dataset?.sourceId &&
+    !String(onlineSourceLocatorEl.value || "").trim()
+  ) {
+    onlineSourceLocatorEl.value = "https://aihot.news/api/v1/items";
+  }
   if (onlineSourceSaveBtnEl) {
     onlineSourceSaveBtnEl.textContent = onlineSourceFormActionLabel();
   }

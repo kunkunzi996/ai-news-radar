@@ -412,14 +412,18 @@ class TopicFilterTests(unittest.TestCase):
         self.assertEqual(items[0].title, "OpenAI ships a new Codex feature")
         self.assertEqual(items[0].url, "https://example.com/codex")
 
-    def test_parse_aihot_api_items_keeps_only_score_60_plus(self):
+    def test_parse_aihot_api_items_keeps_all_pool_and_original_links(self):
         payload = {
             "items": [
                 {
                     "id": "high",
-                    "title": "High score item",
-                    "url": "https://example.com/high",
-                    "source": "OpenAI Blog",
+                    "title": "高分条目",
+                    "originalTitle": "High score item",
+                    "source": {"name": "X：OpenAI"},
+                    "links": {
+                        "aihot": "https://aihot.news/items/high",
+                        "original": "https://x.com/openai/status/1",
+                    },
                     "publishedAt": "2026-06-16T19:35:22.252Z",
                     "summary": "Worth reading",
                     "category": "ai-models",
@@ -428,40 +432,65 @@ class TopicFilterTests(unittest.TestCase):
                 },
                 {
                     "id": "low",
-                    "title": "Low score item",
-                    "url": "https://example.com/low",
-                    "source": "Blog",
+                    "title": "低分条目",
+                    "source": {"name": "X：Haider"},
+                    "links": {
+                        "aihot": "https://aihot.news/items/low",
+                        "original": "https://x.com/haider1/status/2",
+                    },
                     "publishedAt": "2026-06-16T18:00:00.000Z",
-                    "score": 59,
-                    "selected": True,
+                    "score": 16,
+                    "selected": False,
                 },
                 {
                     "id": "missing",
-                    "title": "Missing score item",
+                    "title": "无分条目",
                     "url": "https://example.com/missing",
                     "source": "Blog",
                     "publishedAt": "2026-06-16T18:00:00.000Z",
                     "score": None,
-                    "selected": True,
+                    "selected": False,
+                },
+                {
+                    "id": "bool-score",
+                    "title": "布尔分应丢弃分数字段但仍保留",
+                    "url": "https://example.com/bool",
+                    "source": "Blog",
+                    "publishedAt": "2026-06-16T18:00:00.000Z",
+                    "score": True,
+                    "selected": False,
                 },
             ]
         }
 
         items = parse_aihot_api_items(payload, now=datetime(2026, 6, 16, tzinfo=timezone.utc))
-        self.assertEqual(len(items), 1)
-        self.assertEqual(items[0].title, "High score item")
-        self.assertEqual(items[0].source, "OpenAI Blog")
+        self.assertEqual(
+            [item.title for item in items],
+            ["高分条目", "低分条目", "无分条目", "布尔分应丢弃分数字段但仍保留"],
+        )
+        self.assertEqual(items[0].url, "https://x.com/openai/status/1")
+        self.assertEqual(items[0].source, "X：OpenAI")
         self.assertEqual(items[0].meta["aihot_score"], 60)
         self.assertEqual(items[0].meta["aihot_category"], "ai-models")
+        self.assertTrue(items[0].meta["aihot_selected"])
+        self.assertEqual(items[1].url, "https://x.com/haider1/status/2")
+        self.assertEqual(items[1].meta["aihot_score"], 16)
+        self.assertFalse(items[1].meta["aihot_selected"])
+        self.assertNotIn("aihot_score", items[2].meta)
+        self.assertEqual(items[2].source, "Blog")
+        self.assertNotIn("aihot_score", items[3].meta)
 
-    def test_fetch_aihot_uses_public_items_api_with_score_filter(self):
+    def test_fetch_aihot_uses_v1_all_pool_without_score_gate(self):
         page_1 = {
             "items": [
                 {
                     "id": "page1",
                     "title": "Page one strong item",
-                    "url": "https://example.com/page-1",
-                    "source": "AI HOT Source",
+                    "source": {"name": "AI HOT Source"},
+                    "links": {
+                        "aihot": "https://aihot.news/items/page-1",
+                        "original": "https://example.com/page-1",
+                    },
                     "publishedAt": "2026-06-16T19:35:22.252Z",
                     "score": 88,
                     "selected": True,
@@ -469,30 +498,34 @@ class TopicFilterTests(unittest.TestCase):
                 {
                     "id": "page1-low",
                     "title": "Page one low item",
-                    "url": "https://example.com/page-1-low",
-                    "source": "AI HOT Source",
+                    "source": {"name": "AI HOT Source"},
+                    "links": {
+                        "aihot": "https://aihot.news/items/page-1-low",
+                        "original": "https://example.com/page-1-low",
+                    },
                     "publishedAt": "2026-06-16T19:35:22.252Z",
-                    "score": 40,
-                    "selected": True,
+                    "score": 16,
+                    "selected": False,
                 },
             ],
-            "hasNext": True,
-            "nextCursor": "cursor-2",
+            "page": {"count": 2, "hasMore": True, "nextCursor": "cursor-2"},
         }
         page_2 = {
             "items": [
                 {
                     "id": "page2",
                     "title": "Page two boundary item",
-                    "url": "https://example.com/page-2",
-                    "source": "AI HOT Source",
+                    "source": {"name": "AI HOT Source"},
+                    "links": {
+                        "aihot": "https://aihot.news/items/page-2",
+                        "original": "https://example.com/page-2",
+                    },
                     "publishedAt": "2026-06-16T19:36:22.252Z",
-                    "score": 60,
-                    "selected": True,
+                    "score": 40,
+                    "selected": False,
                 }
             ],
-            "hasNext": False,
-            "nextCursor": None,
+            "page": {"count": 1, "hasMore": False, "nextCursor": None},
         }
 
         class FakeResponse:
@@ -515,10 +548,21 @@ class TopicFilterTests(unittest.TestCase):
 
         session = FakeSession()
         items = fetch_aihot(session, now=datetime(2026, 6, 16, tzinfo=timezone.utc))
-        self.assertEqual([item.title for item in items], ["Page one strong item", "Page two boundary item"])
-        self.assertEqual(session.calls[0][0], "https://aihot.virxact.com/api/public/items")
-        self.assertEqual(session.calls[0][1]["params"], {"mode": "selected", "take": 100})
-        self.assertEqual(session.calls[1][1]["params"], {"mode": "selected", "take": 100, "cursor": "cursor-2"})
+        self.assertEqual(
+            [item.title for item in items],
+            ["Page one strong item", "Page one low item", "Page two boundary item"],
+        )
+        self.assertEqual([item.url for item in items], [
+            "https://example.com/page-1",
+            "https://example.com/page-1-low",
+            "https://example.com/page-2",
+        ])
+        self.assertEqual(session.calls[0][0], "https://aihot.news/api/v1/items")
+        self.assertEqual(session.calls[0][1]["params"], {"mode": "all", "window": "24h", "limit": 100})
+        self.assertEqual(
+            session.calls[1][1]["params"],
+            {"mode": "all", "window": "24h", "limit": 100, "cursor": "cursor-2"},
+        )
         self.assertIn("aihot-skill/0.2.0", session.calls[0][1]["headers"]["User-Agent"])
 
     def test_parse_curated_media_feed_applies_strict_title_filter_and_cap(self):
@@ -824,6 +868,7 @@ class TopicFilterTests(unittest.TestCase):
             "sources": [
                 {"id": "official_ai_sources", "type": "official_ai", "enabled": True},
                 {"id": "aihot", "type": "rss", "enabled": True},
+                {"id": "online_aihot", "type": "aihot", "enabled": True},
                 {"id": "bilibili_505301413", "type": "bilibili_dynamic", "enabled": True, "locator": "505301413"},
                 {"id": "mediacrawler_xhs_chenbaoyi", "type": "mediacrawler_jsonl", "enabled": True, "channel": "小红书"},
                 {"id": "wewe_rss_maobidao", "type": "wewe_rss", "enabled": True, "locator": "MP_WXS_3198966508"},
@@ -2670,6 +2715,31 @@ class TopicFilterTests(unittest.TestCase):
         self.assertEqual(len(items), 1)
         self.assertEqual(items[0]["source_tier_label"], "我的订阅")
         self.assertEqual(items[0]["creator_metrics"]["likes"], 0)
+
+    def test_is_subscription_record_includes_aihot(self):
+        import datetime as _dt
+
+        now = _dt.datetime.fromisoformat("2026-09-14T02:00:00+00:00")
+        record = {
+            "id": "aihot-post",
+            "site_id": "aihot",
+            "site_name": "AI HOT",
+            "source": "X：Andrej Karpathy",
+            "title": "低分也进收件箱",
+            "url": "https://x.com/karpathy/status/1",
+            "published_at": (now - _dt.timedelta(hours=2)).isoformat(),
+            "first_seen_at": now.isoformat(),
+            "last_seen_at": now.isoformat(),
+            "aihot_score": 16,
+            "aihot_selected": False,
+        }
+        self.assertTrue(is_subscription_record(record))
+
+        items = build_creator_hot_items({"aihot-post": record}, now, ai_only=False)
+
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["source_tier_label"], "我的订阅")
+        self.assertEqual(items[0]["url"], "https://x.com/karpathy/status/1")
 
     def test_parse_tikhub_xiaohongshu_accepts_millisecond_api_time(self):
         import datetime as _dt
