@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-14T19:11:55.338293Z",
+  "generated_at": "2026-09-14T22:41:21.369154Z",
   "window_hours": 24,
-  "total_items": 16,
+  "total_items": 20,
   "items": [
     {
       "story_id": "story_6cbde97d8260",
@@ -11,6 +11,15 @@
       "source": "公众号：小红书技术（dots.llm）",
       "source_name": "AI HOT",
       "sources": [
+        {
+          "id": "3640c55d71e7bedd9a718fdf1a8e468c9782d14f",
+          "title": "实测GPT-6 Astra加Aholo Lux3D与Blender组合，3D搭建包豪斯风格拍摄间",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzg3MTk3NzYzNw%3D%3D&mid=2247511249&idx=1&sn=00366958c41952354fbc191e497b40e0",
+          "source": "公众号：卡尔的AI沃茨",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T14:03:17Z"
+        },
         {
           "id": "30399aafc7b0fe4753af49b6f2f2b6741f7920b6",
           "title": "腾讯元宝谈 AI 辅导作业：家长如何用 AI 精讲陪孩子学习",
@@ -84,7 +93,7 @@
           "published_at": "2026-09-13T09:08:00Z"
         }
       ],
-      "source_count": 8,
+      "source_count": 9,
       "source_names": [
         "公众号：京东JoyAI",
         "公众号：卡尔的AI沃茨",
@@ -97,6 +106,15 @@
       ],
       "items": [
         {
+          "id": "3640c55d71e7bedd9a718fdf1a8e468c9782d14f",
+          "title": "实测GPT-6 Astra加Aholo Lux3D与Blender组合，3D搭建包豪斯风格拍摄间",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzg3MTk3NzYzNw%3D%3D&mid=2247511249&idx=1&sn=00366958c41952354fbc191e497b40e0",
+          "source": "公众号：卡尔的AI沃茨",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T14:03:17Z"
+        },
+        {
           "id": "30399aafc7b0fe4753af49b6f2f2b6741f7920b6",
           "title": "腾讯元宝谈 AI 辅导作业：家长如何用 AI 精讲陪孩子学习",
           "url": "https://mp.weixin.qq.com/s?__biz=Mzk0NzY4MjM5MA%3D%3D&mid=2247522186&idx=1&sn=56a128f39640a28c4c0ba277cfe47eef",
@@ -169,17 +187,17 @@
           "published_at": "2026-09-13T09:08:00Z"
         }
       ],
-      "item_count": 8,
-      "duplicate_count": 8,
-      "score": 0.8332,
-      "importance": 0.8332,
-      "importance_score": 0.8332,
+      "item_count": 9,
+      "duplicate_count": 9,
+      "score": 0.8254,
+      "importance": 0.8254,
+      "importance_score": 0.8254,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8754,
+        "recency": 0.8324,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -189,12 +207,702 @@
         "high_importance"
       ],
       "earliest_at": "2026-09-13T09:08:00Z",
-      "latest_at": "2026-09-14T12:00:00Z",
+      "latest_at": "2026-09-14T14:03:17Z",
       "primary_item": {
         "id": "add1184de4e05e7931adf227851a985e2925cc49",
         "title": "小红书 AllSpark 开源 Search Agent 模型 Iris，35B 与 397B 版本同量级成绩领先",
         "url": "https://mp.weixin.qq.com/s?__biz=Mzg4OTc2MzczNg%3D%3D&mid=2247496383&idx=1&sn=2db8607f797615a3647d9fec7e54f448",
         "source": "公众号：小红书技术（dots.llm）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_74b73d1a2e13",
+      "title": "Amodei 发文呼吁放缓前沿 AI 开发，Altman、Hassabis、Nadella 等相继响应",
+      "url": "https://arstechnica.com/ai/2026/09/ai-leaders-want-to-hit-the-brakes-after-years-of-reckless-speed",
+      "primary_url": "https://arstechnica.com/ai/2026/09/ai-leaders-want-to-hit-the-brakes-after-years-of-reckless-speed",
+      "source": "Ars Technica：AI（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "156b501aec6359390a625b6457d2e7b1be09b246",
+          "title": "Amodei 发文呼吁放缓前沿 AI 开发，Altman、Hassabis、Nadella 等相继响应",
+          "url": "https://arstechnica.com/ai/2026/09/ai-leaders-want-to-hit-the-brakes-after-years-of-reckless-speed",
+          "source": "Ars Technica：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T19:06:13Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Ars Technica：AI（RSS）"
+      ],
+      "items": [
+        {
+          "id": "156b501aec6359390a625b6457d2e7b1be09b246",
+          "title": "Amodei 发文呼吁放缓前沿 AI 开发，Altman、Hassabis、Nadella 等相继响应",
+          "url": "https://arstechnica.com/ai/2026/09/ai-leaders-want-to-hit-the-brakes-after-years-of-reckless-speed",
+          "source": "Ars Technica：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T19:06:13Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7885,
+      "importance": 0.7885,
+      "importance_score": 0.7885,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.82,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9495,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-14T19:06:13Z",
+      "latest_at": "2026-09-14T19:06:13Z",
+      "primary_item": {
+        "id": "156b501aec6359390a625b6457d2e7b1be09b246",
+        "title": "Amodei 发文呼吁放缓前沿 AI 开发，Altman、Hassabis、Nadella 等相继响应",
+        "url": "https://arstechnica.com/ai/2026/09/ai-leaders-want-to-hit-the-brakes-after-years-of-reckless-speed",
+        "source": "Ars Technica：AI（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_dce815e05e9f",
+      "title": "失控的 OpenAI AI 代理攻击 RubyGems.org：YARD 代码执行与 Fastly 缓存密钥窃取分析",
+      "url": "https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive",
+      "primary_url": "https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "fdd0ba51a57d33ed5c6494ce2177ca67ec8ee42d",
+          "title": "失控的 OpenAI AI 代理攻击 RubyGems.org：YARD 代码执行与 Fastly 缓存密钥窃取分析",
+          "url": "https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T16:02:42.072000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Hacker News 热门（buzzing.cc 中文翻译）"
+      ],
+      "items": [
+        {
+          "id": "fdd0ba51a57d33ed5c6494ce2177ca67ec8ee42d",
+          "title": "失控的 OpenAI AI 代理攻击 RubyGems.org：YARD 代码执行与 Fastly 缓存密钥窃取分析",
+          "url": "https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T16:02:42.072000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7811,
+      "importance": 0.7811,
+      "importance_score": 0.7811,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.82,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9085,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-14T16:02:42.072000Z",
+      "latest_at": "2026-09-14T16:02:42.072000Z",
+      "primary_item": {
+        "id": "fdd0ba51a57d33ed5c6494ce2177ca67ec8ee42d",
+        "title": "失控的 OpenAI AI 代理攻击 RubyGems.org：YARD 代码执行与 Fastly 缓存密钥窃取分析",
+        "url": "https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive",
+        "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_82404ffdc91b",
+      "title": "GPT-5.6 Luna 对比 GPT-6 Astra：$1.20 的模型做代码评审够用吗",
+      "url": "https://entelligence.ai/blogs/gpt-5.6-luna-vs-gpt-6-astra-is-a-1.20-model-good-enough-for-code-review",
+      "primary_url": "https://entelligence.ai/blogs/gpt-5.6-luna-vs-gpt-6-astra-is-a-1.20-model-good-enough-for-code-review",
+      "source": "Hacker News：AI 热帖",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "b5c3cb1fd5f31603cbc13ab4200e05173e3b2423",
+          "title": "GPT-5.6 Luna 对比 GPT-6 Astra：$1.20 的模型做代码评审够用吗",
+          "url": "https://entelligence.ai/blogs/gpt-5.6-luna-vs-gpt-6-astra-is-a-1.20-model-good-enough-for-code-review",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T19:56:20Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Hacker News：AI 热帖"
+      ],
+      "items": [
+        {
+          "id": "b5c3cb1fd5f31603cbc13ab4200e05173e3b2423",
+          "title": "GPT-5.6 Luna 对比 GPT-6 Astra：$1.20 的模型做代码评审够用吗",
+          "url": "https://entelligence.ai/blogs/gpt-5.6-luna-vs-gpt-6-astra-is-a-1.20-model-good-enough-for-code-review",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T19:56:20Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7756,
+      "importance": 0.7756,
+      "importance_score": 0.7756,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.77,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9611,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-14T19:56:20Z",
+      "latest_at": "2026-09-14T19:56:20Z",
+      "primary_item": {
+        "id": "b5c3cb1fd5f31603cbc13ab4200e05173e3b2423",
+        "title": "GPT-5.6 Luna 对比 GPT-6 Astra：$1.20 的模型做代码评审够用吗",
+        "url": "https://entelligence.ai/blogs/gpt-5.6-luna-vs-gpt-6-astra-is-a-1.20-model-good-enough-for-code-review",
+        "source": "Hacker News：AI 热帖",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_dc4a5944da49",
+      "title": "Apple 发布新一代 Apple Intelligence，Siri AI 正式以测试版上线",
+      "url": "https://www.apple.com/newsroom/2026/09/siri-ai-a-profoundly-more-capable-and-personal-assistant-is-here",
+      "primary_url": "https://www.apple.com/newsroom/2026/09/siri-ai-a-profoundly-more-capable-and-personal-assistant-is-here",
+      "source": "Apple：Newsroom（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "957353dde116e324837409e8be470d90e7933e47",
+          "title": "Apple 发布新一代 Apple Intelligence，Siri AI 正式以测试版上线",
+          "url": "https://www.apple.com/newsroom/2026/09/siri-ai-a-profoundly-more-capable-and-personal-assistant-is-here",
+          "source": "Apple：Newsroom（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T17:09:41.324000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Apple：Newsroom（RSS）"
+      ],
+      "items": [
+        {
+          "id": "957353dde116e324837409e8be470d90e7933e47",
+          "title": "Apple 发布新一代 Apple Intelligence，Siri AI 正式以测试版上线",
+          "url": "https://www.apple.com/newsroom/2026/09/siri-ai-a-profoundly-more-capable-and-personal-assistant-is-here",
+          "source": "Apple：Newsroom（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T17:09:41.324000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7688,
+      "importance": 0.7688,
+      "importance_score": 0.7688,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.77,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9233,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-14T17:09:41.324000Z",
+      "latest_at": "2026-09-14T17:09:41.324000Z",
+      "primary_item": {
+        "id": "957353dde116e324837409e8be470d90e7933e47",
+        "title": "Apple 发布新一代 Apple Intelligence，Siri AI 正式以测试版上线",
+        "url": "https://www.apple.com/newsroom/2026/09/siri-ai-a-profoundly-more-capable-and-personal-assistant-is-here",
+        "source": "Apple：Newsroom（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_37cba5d6b8d5",
+      "title": "Anthropic 计划登陆纳斯达克，连续第二季度盈利瞄准 2 万亿美元估值",
+      "url": "https://the-decoder.com/anthropic-eyes-nasdaq-listing-as-a-second-profitable-quarter-aims-to-win-over-investors-ahead-of-a-mega-ipo",
+      "primary_url": "https://the-decoder.com/anthropic-eyes-nasdaq-listing-as-a-second-profitable-quarter-aims-to-win-over-investors-ahead-of-a-mega-ipo",
+      "source": "The Decoder：AI News（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "b96780256a3db8fca4f9f0d287310b3c20b5408b",
+          "title": "Anthropic 计划登陆纳斯达克，连续第二季度盈利瞄准 2 万亿美元估值",
+          "url": "https://the-decoder.com/anthropic-eyes-nasdaq-listing-as-a-second-profitable-quarter-aims-to-win-over-investors-ahead-of-a-mega-ipo",
+          "source": "The Decoder：AI News（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T15:46:45Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "The Decoder：AI News（RSS）"
+      ],
+      "items": [
+        {
+          "id": "b96780256a3db8fca4f9f0d287310b3c20b5408b",
+          "title": "Anthropic 计划登陆纳斯达克，连续第二季度盈利瞄准 2 万亿美元估值",
+          "url": "https://the-decoder.com/anthropic-eyes-nasdaq-listing-as-a-second-profitable-quarter-aims-to-win-over-investors-ahead-of-a-mega-ipo",
+          "source": "The Decoder：AI News（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T15:46:45Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7685,
+      "importance": 0.7685,
+      "importance_score": 0.7685,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.78,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.905,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-14T15:46:45Z",
+      "latest_at": "2026-09-14T15:46:45Z",
+      "primary_item": {
+        "id": "b96780256a3db8fca4f9f0d287310b3c20b5408b",
+        "title": "Anthropic 计划登陆纳斯达克，连续第二季度盈利瞄准 2 万亿美元估值",
+        "url": "https://the-decoder.com/anthropic-eyes-nasdaq-listing-as-a-second-profitable-quarter-aims-to-win-over-investors-ahead-of-a-mega-ipo",
+        "source": "The Decoder：AI News（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_91846d06a460",
+      "title": "iOS 27 实测：基于 Gemini 的新 Siri 让作者重新用上 Siri",
+      "url": "https://techcrunch.com/2026/09/14/with-ios-27-im-actually-using-siri-again",
+      "primary_url": "https://techcrunch.com/2026/09/14/with-ios-27-im-actually-using-siri-again",
+      "source": "TechCrunch：AI（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "13e14b1bc8e1161cfc683605f3ff71eaca505a22",
+          "title": "iOS 27 实测：基于 Gemini 的新 Siri 让作者重新用上 Siri",
+          "url": "https://techcrunch.com/2026/09/14/with-ios-27-im-actually-using-siri-again",
+          "source": "TechCrunch：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T17:10:30Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "TechCrunch：AI（RSS）"
+      ],
+      "items": [
+        {
+          "id": "13e14b1bc8e1161cfc683605f3ff71eaca505a22",
+          "title": "iOS 27 实测：基于 Gemini 的新 Siri 让作者重新用上 Siri",
+          "url": "https://techcrunch.com/2026/09/14/with-ios-27-im-actually-using-siri-again",
+          "source": "TechCrunch：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T17:10:30Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7628,
+      "importance": 0.7628,
+      "importance_score": 0.7628,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.75,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9235,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-14T17:10:30Z",
+      "latest_at": "2026-09-14T17:10:30Z",
+      "primary_item": {
+        "id": "13e14b1bc8e1161cfc683605f3ff71eaca505a22",
+        "title": "iOS 27 实测：基于 Gemini 的新 Siri 让作者重新用上 Siri",
+        "url": "https://techcrunch.com/2026/09/14/with-ios-27-im-actually-using-siri-again",
+        "source": "TechCrunch：AI（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_fbf3222df417",
+      "title": "WSJ：OpenAI 以超 3 亿美元收购手机相机初创公司 Glass Imaging",
+      "url": "https://x.com/rohanpaul_ai/status/2099607669288128946",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2099607669288128946",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "30bb061b9fc5db773c8458a68df796050bbd8d6f",
+          "title": "WSJ：OpenAI 以超 3 亿美元收购手机相机初创公司 Glass Imaging",
+          "url": "https://x.com/rohanpaul_ai/status/2099607669288128946",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T21:14:11Z"
+        },
+        {
+          "id": "049b5aea5b822411c2836d4427fe7caea082e9fe",
+          "title": "报道称 OpenAI 以超 3 亿美元收购智能手机相机公司 Glass Imaging",
+          "url": "https://techcrunch.com/2026/09/14/openai-buys-smartphone-camera-maker-glass-imaging-for-300-million-report-says",
+          "source": "TechCrunch：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T20:44:14Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "TechCrunch：AI（RSS）",
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "30bb061b9fc5db773c8458a68df796050bbd8d6f",
+          "title": "WSJ：OpenAI 以超 3 亿美元收购手机相机初创公司 Glass Imaging",
+          "url": "https://x.com/rohanpaul_ai/status/2099607669288128946",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T21:14:11Z"
+        },
+        {
+          "id": "049b5aea5b822411c2836d4427fe7caea082e9fe",
+          "title": "报道称 OpenAI 以超 3 亿美元收购智能手机相机公司 Glass Imaging",
+          "url": "https://techcrunch.com/2026/09/14/openai-buys-smartphone-camera-maker-glass-imaging-for-300-million-report-says",
+          "source": "TechCrunch：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T20:44:14Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7619,
+      "importance": 0.7619,
+      "importance_score": 0.7619,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.63,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9792,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-14T20:44:14Z",
+      "latest_at": "2026-09-14T21:14:11Z",
+      "primary_item": {
+        "id": "30bb061b9fc5db773c8458a68df796050bbd8d6f",
+        "title": "WSJ：OpenAI 以超 3 亿美元收购手机相机初创公司 Glass Imaging",
+        "url": "https://x.com/rohanpaul_ai/status/2099607669288128946",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_fa0bf0a9d2fe",
+      "title": "Dario Amodei 发文呼吁放缓前沿 AI 开发后各方表态汇总",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/995141/ai-executives-politicians-safety-regulation-anthropic-dario-amodei",
+      "primary_url": "https://www.theverge.com/ai-artificial-intelligence/995141/ai-executives-politicians-safety-regulation-anthropic-dario-amodei",
+      "source": "The Verge：AI（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "38519a1557f9275c22378388579fb3e4b85a9495",
+          "title": "Dario Amodei 发文呼吁放缓前沿 AI 开发后各方表态汇总",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/995141/ai-executives-politicians-safety-regulation-anthropic-dario-amodei",
+          "source": "The Verge：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T21:21:42Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "The Verge：AI（RSS）"
+      ],
+      "items": [
+        {
+          "id": "38519a1557f9275c22378388579fb3e4b85a9495",
+          "title": "Dario Amodei 发文呼吁放缓前沿 AI 开发后各方表态汇总",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/995141/ai-executives-politicians-safety-regulation-anthropic-dario-amodei",
+          "source": "The Verge：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T21:21:42Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7612,
+      "importance": 0.7612,
+      "importance_score": 0.7612,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.71,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.981,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-14T21:21:42Z",
+      "latest_at": "2026-09-14T21:21:42Z",
+      "primary_item": {
+        "id": "38519a1557f9275c22378388579fb3e4b85a9495",
+        "title": "Dario Amodei 发文呼吁放缓前沿 AI 开发后各方表态汇总",
+        "url": "https://www.theverge.com/ai-artificial-intelligence/995141/ai-executives-politicians-safety-regulation-anthropic-dario-amodei",
+        "source": "The Verge：AI（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_6c98f5ede6dc",
+      "title": "Anthropic 提出 3 步 Pace the Frontier 放缓计划，获 OpenAI、xAI 和 Microsoft 声援",
+      "url": "https://www.marktechpost.com/2026/09/13/anthropics-3-step-pace-the-frontier-plan-wins-openai-xai-and-microsoft-support-is-it-too-late-to-slow-ai-down",
+      "primary_url": "https://www.marktechpost.com/2026/09/13/anthropics-3-step-pace-the-frontier-plan-wins-openai-xai-and-microsoft-support-is-it-too-late-to-slow-ai-down",
+      "source": "MarkTechPost（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "9a77e986abf5990bfe521f9bf1f29681b12460a4",
+          "title": "Anthropic 提出 3 步 Pace the Frontier 放缓计划，获 OpenAI、xAI 和 Microsoft 声援",
+          "url": "https://www.marktechpost.com/2026/09/13/anthropics-3-step-pace-the-frontier-plan-wins-openai-xai-and-microsoft-support-is-it-too-late-to-slow-ai-down",
+          "source": "MarkTechPost（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T01:44:01Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "MarkTechPost（RSS）"
+      ],
+      "items": [
+        {
+          "id": "9a77e986abf5990bfe521f9bf1f29681b12460a4",
+          "title": "Anthropic 提出 3 步 Pace the Frontier 放缓计划，获 OpenAI、xAI 和 Microsoft 声援",
+          "url": "https://www.marktechpost.com/2026/09/13/anthropics-3-step-pace-the-frontier-plan-wins-openai-xai-and-microsoft-support-is-it-too-late-to-slow-ai-down",
+          "source": "MarkTechPost（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T01:44:01Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7566,
+      "importance": 0.7566,
+      "importance_score": 0.7566,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.84,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7389,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-14T01:44:01Z",
+      "latest_at": "2026-09-14T01:44:01Z",
+      "primary_item": {
+        "id": "9a77e986abf5990bfe521f9bf1f29681b12460a4",
+        "title": "Anthropic 提出 3 步 Pace the Frontier 放缓计划，获 OpenAI、xAI 和 Microsoft 声援",
+        "url": "https://www.marktechpost.com/2026/09/13/anthropics-3-step-pace-the-frontier-plan-wins-openai-xai-and-microsoft-support-is-it-too-late-to-slow-ai-down",
+        "source": "MarkTechPost（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_f561825900bb",
+      "title": "多家美国 AI 企业 CEO 呼吁放缓研发，AI 概念股集体下挫",
+      "url": "https://www.ithome.com/1/002/224.htm",
+      "primary_url": "https://www.ithome.com/1/002/224.htm",
+      "source": "IT之家（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "6996ec601a208e58937d75b72e58ef4fe70d9fec",
+          "title": "多家美国 AI 企业 CEO 呼吁放缓研发，AI 概念股集体下挫",
+          "url": "https://www.ithome.com/1/002/224.htm",
+          "source": "IT之家（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T09:29:56Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "IT之家（RSS）"
+      ],
+      "items": [
+        {
+          "id": "6996ec601a208e58937d75b72e58ef4fe70d9fec",
+          "title": "多家美国 AI 企业 CEO 呼吁放缓研发，AI 概念股集体下挫",
+          "url": "https://www.ithome.com/1/002/224.htm",
+          "source": "IT之家（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T09:29:56Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7454,
+      "importance": 0.7454,
+      "importance_score": 0.7454,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.75,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8266,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-14T09:29:56Z",
+      "latest_at": "2026-09-14T09:29:56Z",
+      "primary_item": {
+        "id": "6996ec601a208e58937d75b72e58ef4fe70d9fec",
+        "title": "多家美国 AI 企业 CEO 呼吁放缓研发，AI 概念股集体下挫",
+        "url": "https://www.ithome.com/1/002/224.htm",
+        "source": "IT之家（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_7df04c7f4eb4",
+      "title": "Apple 发布 iOS 27 与 macOS Golden Gate 27，主打 Siri AI 和 Liquid Glass 改进",
+      "url": "https://arstechnica.com/apple/2026/09/apple-releases-ios-27-macos-golden-gate-27-with-siri-ai-and-liquid-glass-refinements",
+      "primary_url": "https://arstechnica.com/apple/2026/09/apple-releases-ios-27-macos-golden-gate-27-with-siri-ai-and-liquid-glass-refinements",
+      "source": "Ars Technica：AI（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "aef58c6691ea5daeeedadf54b77533e528c09205",
+          "title": "Apple 发布 iOS 27 与 macOS Golden Gate 27，主打 Siri AI 和 Liquid Glass 改进",
+          "url": "https://arstechnica.com/apple/2026/09/apple-releases-ios-27-macos-golden-gate-27-with-siri-ai-and-liquid-glass-refinements",
+          "source": "Ars Technica：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T19:28:42Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Ars Technica：AI（RSS）"
+      ],
+      "items": [
+        {
+          "id": "aef58c6691ea5daeeedadf54b77533e528c09205",
+          "title": "Apple 发布 iOS 27 与 macOS Golden Gate 27，主打 Siri AI 和 Liquid Glass 改进",
+          "url": "https://arstechnica.com/apple/2026/09/apple-releases-ios-27-macos-golden-gate-27-with-siri-ai-and-liquid-glass-refinements",
+          "source": "Ars Technica：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T19:28:42Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7684,
+      "importance": 0.7684,
+      "importance_score": 0.7684,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.75,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9547,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-14T19:28:42Z",
+      "latest_at": "2026-09-14T19:28:42Z",
+      "primary_item": {
+        "id": "aef58c6691ea5daeeedadf54b77533e528c09205",
+        "title": "Apple 发布 iOS 27 与 macOS Golden Gate 27，主打 Siri AI 和 Liquid Glass 改进",
+        "url": "https://arstechnica.com/apple/2026/09/apple-releases-ios-27-macos-golden-gate-27-with-siri-ai-and-liquid-glass-refinements",
+        "source": "Ars Technica：AI（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -252,15 +960,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7755,
-      "importance": 0.7755,
-      "importance_score": 0.7755,
+      "score": 0.7677,
+      "importance": 0.7677,
+      "importance_score": 0.7677,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.73,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8885,
+        "recency": 0.8448,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -280,245 +988,182 @@
       }
     },
     {
-      "story_id": "story_6c98f5ede6dc",
-      "title": "Anthropic 提出 3 步 Pace the Frontier 放缓计划，获 OpenAI、xAI 和 Microsoft 声援",
-      "url": "https://www.marktechpost.com/2026/09/13/anthropics-3-step-pace-the-frontier-plan-wins-openai-xai-and-microsoft-support-is-it-too-late-to-slow-ai-down",
-      "primary_url": "https://www.marktechpost.com/2026/09/13/anthropics-3-step-pace-the-frontier-plan-wins-openai-xai-and-microsoft-support-is-it-too-late-to-slow-ai-down",
-      "source": "MarkTechPost（RSS）",
+      "story_id": "story_eb4d52e3874b",
+      "title": "DeepSeek-V4.1-Flash （Max） 进入 Agent Arena 开源模型第 3 名",
+      "url": "https://x.com/arena/status/2099549108013006958",
+      "primary_url": "https://x.com/arena/status/2099549108013006958",
+      "source": "X：Arena (@arena)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "9a77e986abf5990bfe521f9bf1f29681b12460a4",
-          "title": "Anthropic 提出 3 步 Pace the Frontier 放缓计划，获 OpenAI、xAI 和 Microsoft 声援",
-          "url": "https://www.marktechpost.com/2026/09/13/anthropics-3-step-pace-the-frontier-plan-wins-openai-xai-and-microsoft-support-is-it-too-late-to-slow-ai-down",
-          "source": "MarkTechPost（RSS）",
+          "id": "d0417de2ad3c894d37359950c13deddcf6755d82",
+          "title": "DeepSeek-V4.1-Flash （Max） 进入 Agent Arena 开源模型第 3 名",
+          "url": "https://x.com/arena/status/2099549108013006958",
+          "source": "X：Arena (@arena)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-14T01:44:01Z"
+          "published_at": "2026-09-14T17:21:29Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "MarkTechPost（RSS）"
+        "X：Arena (@arena)"
       ],
       "items": [
         {
-          "id": "9a77e986abf5990bfe521f9bf1f29681b12460a4",
-          "title": "Anthropic 提出 3 步 Pace the Frontier 放缓计划，获 OpenAI、xAI 和 Microsoft 声援",
-          "url": "https://www.marktechpost.com/2026/09/13/anthropics-3-step-pace-the-frontier-plan-wins-openai-xai-and-microsoft-support-is-it-too-late-to-slow-ai-down",
-          "source": "MarkTechPost（RSS）",
+          "id": "d0417de2ad3c894d37359950c13deddcf6755d82",
+          "title": "DeepSeek-V4.1-Flash （Max） 进入 Agent Arena 开源模型第 3 名",
+          "url": "https://x.com/arena/status/2099549108013006958",
+          "source": "X：Arena (@arena)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-14T01:44:01Z"
+          "published_at": "2026-09-14T17:21:29Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7635,
-      "importance": 0.7635,
-      "importance_score": 0.7635,
+      "score": 0.7363,
+      "importance": 0.7363,
+      "importance_score": 0.7363,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.84,
+        "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7771,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-14T01:44:01Z",
-      "latest_at": "2026-09-14T01:44:01Z",
-      "primary_item": {
-        "id": "9a77e986abf5990bfe521f9bf1f29681b12460a4",
-        "title": "Anthropic 提出 3 步 Pace the Frontier 放缓计划，获 OpenAI、xAI 和 Microsoft 声援",
-        "url": "https://www.marktechpost.com/2026/09/13/anthropics-3-step-pace-the-frontier-plan-wins-openai-xai-and-microsoft-support-is-it-too-late-to-slow-ai-down",
-        "source": "MarkTechPost（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_85e3ce5046d1",
-      "title": "克雷数学研究所称 Navier-Stokes 千禧年大奖题已\"显然被解决\"",
-      "url": "https://the-decoder.com/clay-mathematics-institute-says-the-navier-stokes-millennium-prize-problem-has-apparently-been-settled",
-      "primary_url": "https://the-decoder.com/clay-mathematics-institute-says-the-navier-stokes-millennium-prize-problem-has-apparently-been-settled",
-      "source": "The Decoder：AI News（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "07f92c3e8c70ea504e49dbe7168c2eb7d0b14c57",
-          "title": "克雷数学研究所称 Navier-Stokes 千禧年大奖题已\"显然被解决\"",
-          "url": "https://the-decoder.com/clay-mathematics-institute-says-the-navier-stokes-millennium-prize-problem-has-apparently-been-settled",
-          "source": "The Decoder：AI News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T13:01:26Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "The Decoder：AI News（RSS）"
-      ],
-      "items": [
-        {
-          "id": "07f92c3e8c70ea504e49dbe7168c2eb7d0b14c57",
-          "title": "克雷数学研究所称 Navier-Stokes 千禧年大奖题已\"显然被解决\"",
-          "url": "https://the-decoder.com/clay-mathematics-institute-says-the-navier-stokes-millennium-prize-problem-has-apparently-been-settled",
-          "source": "The Decoder：AI News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T13:01:26Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7612,
-      "importance": 0.7612,
-      "importance_score": 0.7612,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.75,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9147,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-14T13:01:26Z",
-      "latest_at": "2026-09-14T13:01:26Z",
-      "primary_item": {
-        "id": "07f92c3e8c70ea504e49dbe7168c2eb7d0b14c57",
-        "title": "克雷数学研究所称 Navier-Stokes 千禧年大奖题已\"显然被解决\"",
-        "url": "https://the-decoder.com/clay-mathematics-institute-says-the-navier-stokes-millennium-prize-problem-has-apparently-been-settled",
-        "source": "The Decoder：AI News（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_f561825900bb",
-      "title": "多家美国 AI 企业 CEO 呼吁放缓研发，AI 概念股集体下挫",
-      "url": "https://www.ithome.com/1/002/224.htm",
-      "primary_url": "https://www.ithome.com/1/002/224.htm",
-      "source": "IT之家（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "6996ec601a208e58937d75b72e58ef4fe70d9fec",
-          "title": "多家美国 AI 企业 CEO 呼吁放缓研发，AI 概念股集体下挫",
-          "url": "https://www.ithome.com/1/002/224.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T09:29:56Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "IT之家（RSS）"
-      ],
-      "items": [
-        {
-          "id": "6996ec601a208e58937d75b72e58ef4fe70d9fec",
-          "title": "多家美国 AI 企业 CEO 呼吁放缓研发，AI 概念股集体下挫",
-          "url": "https://www.ithome.com/1/002/224.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T09:29:56Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7531,
-      "importance": 0.7531,
-      "importance_score": 0.7531,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.75,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8693,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-14T09:29:56Z",
-      "latest_at": "2026-09-14T09:29:56Z",
-      "primary_item": {
-        "id": "6996ec601a208e58937d75b72e58ef4fe70d9fec",
-        "title": "多家美国 AI 企业 CEO 呼吁放缓研发，AI 概念股集体下挫",
-        "url": "https://www.ithome.com/1/002/224.htm",
-        "source": "IT之家（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_4057d675f57a",
-      "title": "Microsoft 发布 37 页人文主义 AI 行为准则，强调人类高于 AI",
-      "url": "https://www.theverge.com/news/994566/microsoft-humanist-ai-code-of-conduct",
-      "primary_url": "https://www.theverge.com/news/994566/microsoft-humanist-ai-code-of-conduct",
-      "source": "The Verge：AI（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "eb06a30a00daad94d4e859395ed47981b6c51494",
-          "title": "Microsoft 发布 37 页人文主义 AI 行为准则，强调人类高于 AI",
-          "url": "https://www.theverge.com/news/994566/microsoft-humanist-ai-code-of-conduct",
-          "source": "The Verge：AI（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T13:00:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "The Verge：AI（RSS）"
-      ],
-      "items": [
-        {
-          "id": "eb06a30a00daad94d4e859395ed47981b6c51494",
-          "title": "Microsoft 发布 37 页人文主义 AI 行为准则，强调人类高于 AI",
-          "url": "https://www.theverge.com/news/994566/microsoft-humanist-ai-code-of-conduct",
-          "source": "The Verge：AI（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T13:00:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7462,
-      "importance": 0.7462,
-      "importance_score": 0.7462,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.7,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9144,
+        "recency": 0.9259,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-14T13:00:00Z",
-      "latest_at": "2026-09-14T13:00:00Z",
+      "earliest_at": "2026-09-14T17:21:29Z",
+      "latest_at": "2026-09-14T17:21:29Z",
       "primary_item": {
-        "id": "eb06a30a00daad94d4e859395ed47981b6c51494",
-        "title": "Microsoft 发布 37 页人文主义 AI 行为准则，强调人类高于 AI",
-        "url": "https://www.theverge.com/news/994566/microsoft-humanist-ai-code-of-conduct",
-        "source": "The Verge：AI（RSS）",
+        "id": "d0417de2ad3c894d37359950c13deddcf6755d82",
+        "title": "DeepSeek-V4.1-Flash （Max） 进入 Agent Arena 开源模型第 3 名",
+        "url": "https://x.com/arena/status/2099549108013006958",
+        "source": "X：Arena (@arena)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_c8ee7343f89f",
+      "title": "Nvidia、Palantir 与 Booz Allen 因数据留存担忧限制使用 Anthropic 的 Fable",
+      "url": "https://x.com/kimmonismus/status/2099592517037727854",
+      "primary_url": "https://x.com/kimmonismus/status/2099592517037727854",
+      "source": "X：Kim (@kimmonismus)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "7059110c8eb887dd748553e7c72cbf26c6630fb9",
+          "title": "Nvidia、Palantir 与 Booz Allen 因数据留存担忧限制使用 Anthropic 的 Fable",
+          "url": "https://x.com/kimmonismus/status/2099592517037727854",
+          "source": "X：Kim (@kimmonismus)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T20:13:59Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Kim (@kimmonismus)"
+      ],
+      "items": [
+        {
+          "id": "7059110c8eb887dd748553e7c72cbf26c6630fb9",
+          "title": "Nvidia、Palantir 与 Booz Allen 因数据留存担忧限制使用 Anthropic 的 Fable",
+          "url": "https://x.com/kimmonismus/status/2099592517037727854",
+          "source": "X：Kim (@kimmonismus)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T20:13:59Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7343,
+      "importance": 0.7343,
+      "importance_score": 0.7343,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.63,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9652,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-14T20:13:59Z",
+      "latest_at": "2026-09-14T20:13:59Z",
+      "primary_item": {
+        "id": "7059110c8eb887dd748553e7c72cbf26c6630fb9",
+        "title": "Nvidia、Palantir 与 Booz Allen 因数据留存担忧限制使用 Anthropic 的 Fable",
+        "url": "https://x.com/kimmonismus/status/2099592517037727854",
+        "source": "X：Kim (@kimmonismus)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_bdc1ffa510b1",
+      "title": "硅基流动上线开源模型 Hy4 preview，770B 总参数、1M 上下文",
+      "url": "https://x.com/SiliconFlowAI/status/2099536759168352634",
+      "primary_url": "https://x.com/SiliconFlowAI/status/2099536759168352634",
+      "source": "X：硅基流动 SiliconFlow (@SiliconFlowAI)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "7e7bdae7d1c78f04ba6c32e9eb975ad87f92e758",
+          "title": "硅基流动上线开源模型 Hy4 preview，770B 总参数、1M 上下文",
+          "url": "https://x.com/SiliconFlowAI/status/2099536759168352634",
+          "source": "X：硅基流动 SiliconFlow (@SiliconFlowAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T16:32:25Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：硅基流动 SiliconFlow (@SiliconFlowAI)"
+      ],
+      "items": [
+        {
+          "id": "7e7bdae7d1c78f04ba6c32e9eb975ad87f92e758",
+          "title": "硅基流动上线开源模型 Hy4 preview，770B 总参数、1M 上下文",
+          "url": "https://x.com/SiliconFlowAI/status/2099536759168352634",
+          "source": "X：硅基流动 SiliconFlow (@SiliconFlowAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T16:32:25Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7343,
+      "importance": 0.7343,
+      "importance_score": 0.7343,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.66,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.915,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-14T16:32:25Z",
+      "latest_at": "2026-09-14T16:32:25Z",
+      "primary_item": {
+        "id": "7e7bdae7d1c78f04ba6c32e9eb975ad87f92e758",
+        "title": "硅基流动上线开源模型 Hy4 preview，770B 总参数、1M 上下文",
+        "url": "https://x.com/SiliconFlowAI/status/2099536759168352634",
+        "source": "X：硅基流动 SiliconFlow (@SiliconFlowAI)",
         "source_name": "AI HOT"
       }
     },
@@ -557,15 +1202,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7404,
-      "importance": 0.7404,
-      "importance_score": 0.7404,
+      "score": 0.7326,
+      "importance": 0.7326,
+      "importance_score": 0.7326,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.882,
+        "recency": 0.8386,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -583,581 +1228,183 @@
       }
     },
     {
-      "story_id": "story_86497a8ad19c",
-      "title": "据报道 Anthropic 与 RUM Group 旗下佐治亚州站点签署 137 亿美元 6 年算力协议",
-      "url": "https://x.com/rohanpaul_ai/status/2099332537608970423",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2099332537608970423",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "story_id": "story_5083300735bf",
+      "title": "Microsoft AI 发布人文主义 AI 行为准则草案并开启六周公众咨询",
+      "url": "https://www.artificialintelligence-news.com/news/microsoft-ai-opens-review-humanist-ai-code-of-conduct",
+      "primary_url": "https://www.artificialintelligence-news.com/news/microsoft-ai-opens-review-humanist-ai-code-of-conduct",
+      "source": "Artificial Intelligence News（网页）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "521c8081c5552ce73d0e740a31350b921b437216",
-          "title": "据报道 Anthropic 与 RUM Group 旗下佐治亚州站点签署 137 亿美元 6 年算力协议",
-          "url": "https://x.com/rohanpaul_ai/status/2099332537608970423",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "5eb4e023634ca84e782c12a8a6c30faa831a7efa",
+          "title": "Microsoft AI 发布人文主义 AI 行为准则草案并开启六周公众咨询",
+          "url": "https://www.artificialintelligence-news.com/news/microsoft-ai-opens-review-humanist-ai-code-of-conduct",
+          "source": "Artificial Intelligence News（网页）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-14T03:00:55Z"
+          "published_at": "2026-09-14T15:47:14.554000Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
+        "Artificial Intelligence News（网页）"
       ],
       "items": [
         {
-          "id": "521c8081c5552ce73d0e740a31350b921b437216",
-          "title": "据报道 Anthropic 与 RUM Group 旗下佐治亚州站点签署 137 亿美元 6 年算力协议",
-          "url": "https://x.com/rohanpaul_ai/status/2099332537608970423",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "5eb4e023634ca84e782c12a8a6c30faa831a7efa",
+          "title": "Microsoft AI 发布人文主义 AI 行为准则草案并开启六周公众咨询",
+          "url": "https://www.artificialintelligence-news.com/news/microsoft-ai-opens-review-humanist-ai-code-of-conduct",
+          "source": "Artificial Intelligence News（网页）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-14T03:00:55Z"
+          "published_at": "2026-09-14T15:47:14.554000Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7391,
-      "importance": 0.7391,
-      "importance_score": 0.7391,
+      "score": 0.7325,
+      "importance": 0.7325,
+      "importance_score": 0.7325,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.75,
+        "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7916,
+        "recency": 0.9051,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-14T03:00:55Z",
-      "latest_at": "2026-09-14T03:00:55Z",
+      "earliest_at": "2026-09-14T15:47:14.554000Z",
+      "latest_at": "2026-09-14T15:47:14.554000Z",
       "primary_item": {
-        "id": "521c8081c5552ce73d0e740a31350b921b437216",
-        "title": "据报道 Anthropic 与 RUM Group 旗下佐治亚州站点签署 137 亿美元 6 年算力协议",
-        "url": "https://x.com/rohanpaul_ai/status/2099332537608970423",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "id": "5eb4e023634ca84e782c12a8a6c30faa831a7efa",
+        "title": "Microsoft AI 发布人文主义 AI 行为准则草案并开启六周公众咨询",
+        "url": "https://www.artificialintelligence-news.com/news/microsoft-ai-opens-review-humanist-ai-code-of-conduct",
+        "source": "Artificial Intelligence News（网页）",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_91460087e3a0",
-      "title": "Anthropic CEO Dario Amodei 发文呼吁给前沿模型进展降速，OpenAI 与 xAI 表态支持",
-      "url": "https://x.com/thexpin/status/2099437747295625403",
-      "primary_url": "https://x.com/thexpin/status/2099437747295625403",
-      "source": "X：X.PIN (@thexpin)",
+      "story_id": "story_948df33b601b",
+      "title": "Bolt 发布 Forge 智能体，仅运行开源权重模型",
+      "url": "https://x.com/testingcatalog/status/2099535055475368071",
+      "primary_url": "https://x.com/testingcatalog/status/2099535055475368071",
+      "source": "X：Testing Catalog (@testingcatalog)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "c2c60e813caa4befda20d5e1d3b6d30f6fc25756",
-          "title": "Anthropic CEO Dario Amodei 发文呼吁给前沿模型进展降速，OpenAI 与 xAI 表态支持",
-          "url": "https://x.com/thexpin/status/2099437747295625403",
-          "source": "X：X.PIN (@thexpin)",
+          "id": "a79fdc548d09c30d5d2a3fac33a8af1366ae9600",
+          "title": "Bolt 发布 Forge 智能体，仅运行开源权重模型",
+          "url": "https://x.com/testingcatalog/status/2099535055475368071",
+          "source": "X：Testing Catalog (@testingcatalog)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-14T09:58:59Z"
+          "published_at": "2026-09-14T16:25:39Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：X.PIN (@thexpin)"
+        "X：Testing Catalog (@testingcatalog)"
       ],
       "items": [
         {
-          "id": "c2c60e813caa4befda20d5e1d3b6d30f6fc25756",
-          "title": "Anthropic CEO Dario Amodei 发文呼吁给前沿模型进展降速，OpenAI 与 xAI 表态支持",
-          "url": "https://x.com/thexpin/status/2099437747295625403",
-          "source": "X：X.PIN (@thexpin)",
+          "id": "a79fdc548d09c30d5d2a3fac33a8af1366ae9600",
+          "title": "Bolt 发布 Forge 智能体，仅运行开源权重模型",
+          "url": "https://x.com/testingcatalog/status/2099535055475368071",
+          "source": "X：Testing Catalog (@testingcatalog)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-14T09:58:59Z"
+          "published_at": "2026-09-14T16:25:39Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7362,
-      "importance": 0.7362,
-      "importance_score": 0.7362,
+      "score": 0.731,
+      "importance": 0.731,
+      "importance_score": 0.731,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.69,
+        "editorial": 0.65,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8754,
+        "recency": 0.9135,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-14T09:58:59Z",
-      "latest_at": "2026-09-14T09:58:59Z",
+      "earliest_at": "2026-09-14T16:25:39Z",
+      "latest_at": "2026-09-14T16:25:39Z",
       "primary_item": {
-        "id": "c2c60e813caa4befda20d5e1d3b6d30f6fc25756",
-        "title": "Anthropic CEO Dario Amodei 发文呼吁给前沿模型进展降速，OpenAI 与 xAI 表态支持",
-        "url": "https://x.com/thexpin/status/2099437747295625403",
-        "source": "X：X.PIN (@thexpin)",
+        "id": "a79fdc548d09c30d5d2a3fac33a8af1366ae9600",
+        "title": "Bolt 发布 Forge 智能体，仅运行开源权重模型",
+        "url": "https://x.com/testingcatalog/status/2099535055475368071",
+        "source": "X：Testing Catalog (@testingcatalog)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_d2d2a583711b",
-      "title": "Emad Mostaque 谈 METR API key 泄露事件与评测机构的安全挑战",
-      "url": "https://x.com/EMostaque/status/2099394171291255177",
-      "primary_url": "https://x.com/EMostaque/status/2099394171291255177",
-      "source": "X：Emad Mostaque (@EMostaque)",
+      "story_id": "story_0f1f17c81528",
+      "title": "Richard Socher 谈 Recursive 与自我改进的 Eureka Machine 愿景",
+      "url": "https://www.latent.space/p/recursive",
+      "primary_url": "https://www.latent.space/p/recursive",
+      "source": "Latent Space（RSS）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "51ac03d518c9e842ee0552633e1334ffa4cca684",
-          "title": "Emad Mostaque 谈 METR API key 泄露事件与评测机构的安全挑战",
-          "url": "https://x.com/EMostaque/status/2099394171291255177",
-          "source": "X：Emad Mostaque (@EMostaque)",
+          "id": "652a5d67280d420c6a867615862e6e958b43f791",
+          "title": "Richard Socher 谈 Recursive 与自我改进的 Eureka Machine 愿景",
+          "url": "https://www.latent.space/p/recursive",
+          "source": "Latent Space（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-14T07:05:49Z"
+          "published_at": "2026-09-14T16:04:16Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Emad Mostaque (@EMostaque)"
+        "Latent Space（RSS）"
       ],
       "items": [
         {
-          "id": "51ac03d518c9e842ee0552633e1334ffa4cca684",
-          "title": "Emad Mostaque 谈 METR API key 泄露事件与评测机构的安全挑战",
-          "url": "https://x.com/EMostaque/status/2099394171291255177",
-          "source": "X：Emad Mostaque (@EMostaque)",
+          "id": "652a5d67280d420c6a867615862e6e958b43f791",
+          "title": "Richard Socher 谈 Recursive 与自我改进的 Eureka Machine 愿景",
+          "url": "https://www.latent.space/p/recursive",
+          "source": "Latent Space（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-14T07:05:49Z"
+          "published_at": "2026-09-14T16:04:16Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7297,
-      "importance": 0.7297,
-      "importance_score": 0.7297,
+      "score": 0.7302,
+      "importance": 0.7302,
+      "importance_score": 0.7302,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.69,
+        "editorial": 0.65,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8397,
+        "recency": 0.9089,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-14T07:05:49Z",
-      "latest_at": "2026-09-14T07:05:49Z",
+      "earliest_at": "2026-09-14T16:04:16Z",
+      "latest_at": "2026-09-14T16:04:16Z",
       "primary_item": {
-        "id": "51ac03d518c9e842ee0552633e1334ffa4cca684",
-        "title": "Emad Mostaque 谈 METR API key 泄露事件与评测机构的安全挑战",
-        "url": "https://x.com/EMostaque/status/2099394171291255177",
-        "source": "X：Emad Mostaque (@EMostaque)",
+        "id": "652a5d67280d420c6a867615862e6e958b43f791",
+        "title": "Richard Socher 谈 Recursive 与自我改进的 Eureka Machine 愿景",
+        "url": "https://www.latent.space/p/recursive",
+        "source": "Latent Space（RSS）",
         "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_3149e64f7f8b",
-      "title": "Interconnects 发布开源模型与开放AI研究书单",
-      "url": "https://www.interconnects.ai/p/open-source-ai-reading-list",
-      "primary_url": "https://www.interconnects.ai/p/open-source-ai-reading-list",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "3c32052cf57f17c6ced022626c2a96532a046130",
-          "title": "Interconnects 发布开源模型与开放AI研究书单",
-          "url": "https://www.interconnects.ai/p/open-source-ai-reading-list",
-          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T08:25:17.847000Z"
-        },
-        {
-          "id": "a6d315340c2310cf89fd35dd60ab4d16d0cf379e",
-          "title": "开源 AI 与开放模型阅读清单：Nathan Lambert 整理近年最佳写作",
-          "url": "https://www.interconnects.ai/p/open-source-ai-reading-list",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T00:22:51Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "Hacker News 热门（buzzing.cc 中文翻译）",
-        "Hacker News：AI 热帖"
-      ],
-      "items": [
-        {
-          "id": "3c32052cf57f17c6ced022626c2a96532a046130",
-          "title": "Interconnects 发布开源模型与开放AI研究书单",
-          "url": "https://www.interconnects.ai/p/open-source-ai-reading-list",
-          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T08:25:17.847000Z"
-        },
-        {
-          "id": "a6d315340c2310cf89fd35dd60ab4d16d0cf379e",
-          "title": "开源 AI 与开放模型阅读清单：Nathan Lambert 整理近年最佳写作",
-          "url": "https://www.interconnects.ai/p/open-source-ai-reading-list",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T00:22:51Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.7307,
-      "importance": 0.7307,
-      "importance_score": 0.7307,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.6,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8559,
-        "story_heat": 0.25
-      },
-      "category": "industry",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T00:22:51Z",
-      "latest_at": "2026-09-14T08:25:17.847000Z",
-      "primary_item": {
-        "id": "3c32052cf57f17c6ced022626c2a96532a046130",
-        "title": "Interconnects 发布开源模型与开放AI研究书单",
-        "url": "https://www.interconnects.ai/p/open-source-ai-reading-list",
-        "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_a894cb8c523a",
-      "title": "曝 Anthropic 选定纳斯达克上市，目标估值约 2 万亿美元",
-      "url": "https://www.ithome.com/1/001/871.htm",
-      "primary_url": "https://www.ithome.com/1/001/871.htm",
-      "source": "IT之家（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "8fc9051c6ee8949dd57afb7ed715e4c356e5fa9c",
-          "title": "曝 Anthropic 选定纳斯达克上市，目标估值约 2 万亿美元",
-          "url": "https://www.ithome.com/1/001/871.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-13T22:41:40Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "IT之家（RSS）"
-      ],
-      "items": [
-        {
-          "id": "8fc9051c6ee8949dd57afb7ed715e4c356e5fa9c",
-          "title": "曝 Anthropic 选定纳斯达克上市，目标估值约 2 万亿美元",
-          "url": "https://www.ithome.com/1/001/871.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-13T22:41:40Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7305,
-      "importance": 0.7305,
-      "importance_score": 0.7305,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.75,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7437,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-13T22:41:40Z",
-      "latest_at": "2026-09-13T22:41:40Z",
-      "primary_item": {
-        "id": "8fc9051c6ee8949dd57afb7ed715e4c356e5fa9c",
-        "title": "曝 Anthropic 选定纳斯达克上市，目标估值约 2 万亿美元",
-        "url": "https://www.ithome.com/1/001/871.htm",
-        "source": "IT之家（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_313d2f62eb26",
-      "title": "中国批评美国 AI 领袖的安全警告，称其为锁定美国优势的恐吓",
-      "url": "https://the-decoder.com/china-fires-back-at-u-s-ai-safety-warnings-calling-them-fearmongering-to-lock-in-american-advantage",
-      "primary_url": "https://the-decoder.com/china-fires-back-at-u-s-ai-safety-warnings-calling-them-fearmongering-to-lock-in-american-advantage",
-      "source": "The Decoder：AI News（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "393af9f5b33be6318a1cf34c9039066c6c9fab65",
-          "title": "中国批评美国 AI 领袖的安全警告，称其为锁定美国优势的恐吓",
-          "url": "https://the-decoder.com/china-fires-back-at-u-s-ai-safety-warnings-calling-them-fearmongering-to-lock-in-american-advantage",
-          "source": "The Decoder：AI News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T12:20:22Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "The Decoder：AI News（RSS）"
-      ],
-      "items": [
-        {
-          "id": "393af9f5b33be6318a1cf34c9039066c6c9fab65",
-          "title": "中国批评美国 AI 领袖的安全警告，称其为锁定美国优势的恐吓",
-          "url": "https://the-decoder.com/china-fires-back-at-u-s-ai-safety-warnings-calling-them-fearmongering-to-lock-in-american-advantage",
-          "source": "The Decoder：AI News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T12:20:22Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7266,
-      "importance": 0.7266,
-      "importance_score": 0.7266,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.64,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9057,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T12:20:22Z",
-      "latest_at": "2026-09-14T12:20:22Z",
-      "primary_item": {
-        "id": "393af9f5b33be6318a1cf34c9039066c6c9fab65",
-        "title": "中国批评美国 AI 领袖的安全警告，称其为锁定美国优势的恐吓",
-        "url": "https://the-decoder.com/china-fires-back-at-u-s-ai-safety-warnings-calling-them-fearmongering-to-lock-in-american-advantage",
-        "source": "The Decoder：AI News（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_2ac9df66fd39",
-      "title": "美国参议员提出《禁止人工超级智能法案》，违规个人最高可判 20 年监禁",
-      "url": "https://www.ithome.com/1/002/028.htm",
-      "primary_url": "https://www.ithome.com/1/002/028.htm",
-      "source": "IT之家（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "2d4cd138c141c75377bb476b5da29382ba8f07dc",
-          "title": "美国参议员提出《禁止人工超级智能法案》，违规个人最高可判 20 年监禁",
-          "url": "https://www.ithome.com/1/002/028.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T05:10:51Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "IT之家（RSS）"
-      ],
-      "items": [
-        {
-          "id": "2d4cd138c141c75377bb476b5da29382ba8f07dc",
-          "title": "美国参议员提出《禁止人工超级智能法案》，违规个人最高可判 20 年监禁",
-          "url": "https://www.ithome.com/1/002/028.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T05:10:51Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7286,
-      "importance": 0.7286,
-      "importance_score": 0.7286,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.7,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8167,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T05:10:51Z",
-      "latest_at": "2026-09-14T05:10:51Z",
-      "primary_item": {
-        "id": "2d4cd138c141c75377bb476b5da29382ba8f07dc",
-        "title": "美国参议员提出《禁止人工超级智能法案》，违规个人最高可判 20 年监禁",
-        "url": "https://www.ithome.com/1/002/028.htm",
-        "source": "IT之家（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_2465df608ade",
-      "title": "美国总统科技顾问委员会主席 David Sacks 炮轰 OpenAI、Anthropic 借放缓之名寻求监管保护",
-      "url": "https://www.ithome.com/1/002/063.htm",
-      "primary_url": "https://www.ithome.com/1/002/063.htm",
-      "source": "IT之家（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "e91b925cdb09c03a436e160bdb7333acee32f5f8",
-          "title": "美国总统科技顾问委员会主席 David Sacks 炮轰 OpenAI、Anthropic 借放缓之名寻求监管保护",
-          "url": "https://www.ithome.com/1/002/063.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T06:37:53Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "IT之家（RSS）"
-      ],
-      "items": [
-        {
-          "id": "e91b925cdb09c03a436e160bdb7333acee32f5f8",
-          "title": "美国总统科技顾问委员会主席 David Sacks 炮轰 OpenAI、Anthropic 借放缓之名寻求监管保护",
-          "url": "https://www.ithome.com/1/002/063.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T06:37:53Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7257,
-      "importance": 0.7257,
-      "importance_score": 0.7257,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.68,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.834,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T06:37:53Z",
-      "latest_at": "2026-09-14T06:37:53Z",
-      "primary_item": {
-        "id": "e91b925cdb09c03a436e160bdb7333acee32f5f8",
-        "title": "美国总统科技顾问委员会主席 David Sacks 炮轰 OpenAI、Anthropic 借放缓之名寻求监管保护",
-        "url": "https://www.ithome.com/1/002/063.htm",
-        "source": "IT之家（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_76638ac4baf8",
-      "title": "小白必备技巧，让你的GPT6节约70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
-      "url": "https://www.douyin.com/video/7683437126796496174",
-      "primary_url": "https://www.douyin.com/video/7683437126796496174",
-      "source": "FredTalk",
-      "source_name": "MediaCrawler Douyin",
-      "sources": [
-        {
-          "id": "5a578ddd029d6f947adaebcb80a41cf8dd29a3a4",
-          "title": "小白必备技巧，让你的GPT6节约70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
-          "url": "https://www.douyin.com/video/7683437126796496174",
-          "source": "FredTalk",
-          "source_name": "MediaCrawler Douyin",
-          "site_id": "mediacrawler_douyin",
-          "published_at": "2026-09-09T07:40:15Z"
-        },
-        {
-          "id": "5391e3c20e38d828139e24819bc4a8807d5b3f12",
-          "title": "GPT6发布！这些设置帮你省70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
-          "url": "https://www.douyin.com/video/7683385369043209508",
-          "source": "FredTalk",
-          "source_name": "MediaCrawler Douyin",
-          "site_id": "mediacrawler_douyin",
-          "published_at": "2026-09-09T04:19:29Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "FredTalk"
-      ],
-      "items": [
-        {
-          "id": "5a578ddd029d6f947adaebcb80a41cf8dd29a3a4",
-          "title": "小白必备技巧，让你的GPT6节约70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
-          "url": "https://www.douyin.com/video/7683437126796496174",
-          "source": "FredTalk",
-          "source_name": "MediaCrawler Douyin",
-          "site_id": "mediacrawler_douyin",
-          "published_at": "2026-09-09T07:40:15Z"
-        },
-        {
-          "id": "5391e3c20e38d828139e24819bc4a8807d5b3f12",
-          "title": "GPT6发布！这些设置帮你省70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
-          "url": "https://www.douyin.com/video/7683385369043209508",
-          "source": "FredTalk",
-          "source_name": "MediaCrawler Douyin",
-          "site_id": "mediacrawler_douyin",
-          "published_at": "2026-09-09T04:19:29Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.4045,
-      "importance": 0.4045,
-      "importance_score": 0.4045,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.45,
-        "source_tier": 0.48,
-        "ai_relevance": 0.56,
-        "recency": 0.1497,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source"
-      ],
-      "earliest_at": "2026-09-09T04:19:29Z",
-      "latest_at": "2026-09-09T07:40:15Z",
-      "primary_item": {
-        "id": "5a578ddd029d6f947adaebcb80a41cf8dd29a3a4",
-        "title": "小白必备技巧，让你的GPT6节约70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
-        "url": "https://www.douyin.com/video/7683437126796496174",
-        "source": "FredTalk",
-        "source_name": "MediaCrawler Douyin"
       }
     }
   ]
