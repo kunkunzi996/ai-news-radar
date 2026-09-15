@@ -2,13 +2,14 @@
 
 Date: 2026-06-16 (ingest updated 2026-09-15)
 
-Radar now reads the public v1 API, not the old selected-mode feed:
+Radar now reads the public v1 API twice:
 
+- `GET https://aihot.news/api/v1/items?mode=selected&window=24h&limit=100`
 - `GET https://aihot.news/api/v1/items?mode=all&window=24h&limit=100`
-- Keep the public pool without a score gate, but only X originals
-  (`x.com` / `twitter.com`). Drop RSS, WeChat, GitHub, and media links.
-- Do not trust a source name that starts with `X：`.
-- Store `links.original` as the item URL so 已阅 matches the tweet.
+- Keep X originals for the 推特 tab, and keep selected items for the AI HOT tab.
+- Drop unselected non-X public-pool noise. Do not trust a source name that
+  starts with `X：`.
+- Store `links.original` as the item URL so 已阅 matches the original page.
 - Same product also lives at `https://aihot.virxact.com`; the old
   `/api/public/items` path shuts down 2026-12-31.
 

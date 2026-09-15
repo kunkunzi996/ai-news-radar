@@ -176,7 +176,9 @@ CURATED_AI_MEDIA_FEEDS: tuple[dict[str, Any], ...] = (
 )
 AIBREAKFAST_JINA_URL = "https://r.jina.ai/https://aibreakfast.beehiiv.com/"
 AIHOT_ITEMS_API_URL = "https://aihot.news/api/v1/items"
-AIHOT_API_MODE = "all"
+AIHOT_API_ALL_MODE = "all"
+AIHOT_API_SELECTED_MODE = "selected"
+AIHOT_API_MODE = AIHOT_API_ALL_MODE
 AIHOT_API_WINDOW = "24h"
 AIHOT_API_TAKE = 100
 AIHOT_API_MAX_PAGES = 5
@@ -687,12 +689,21 @@ def is_x_original_url(raw_url: str) -> bool:
     return host in X_ORIGINAL_HOSTS
 
 
+def aihot_record_is_selected(record: Any) -> bool:
+    if not isinstance(record, dict):
+        return False
+    value = record.get("aihot_selected")
+    if value is None:
+        value = record.get("selected")
+    return bool(value)
+
+
 def aihot_archive_record_is_reader_visible(record: Any) -> bool:
     if not isinstance(record, dict):
         return False
     if str(record.get("site_id") or "") != "aihot":
         return True
-    return is_x_original_url(str(record.get("url") or ""))
+    return is_x_original_url(str(record.get("url") or "")) or aihot_record_is_selected(record)
 
 
 def first_non_empty(*values: Any) -> str:

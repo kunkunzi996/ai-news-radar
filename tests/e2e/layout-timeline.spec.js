@@ -81,6 +81,7 @@ REGULAR_ITEMS[10] = makeItem(10, {
 
 const PLATFORM_FIXTURES = [
   [67, { id: "aihot-alpha", site_id: "aihot", site_name: "AI HOT", source: "X：Andrej Karpathy", url: "https://x.com/karpathy/status/fixture-alpha", aihot_score: 37, aihot_selected: false }],
+  [66, { id: "aihot-selected", site_id: "aihot", site_name: "AI HOT", source: "X：IT之家", url: "https://www.ithome.com/0/fixture.htm", aihot_score: 80, aihot_selected: true }],
   [68, { id: "douyin-alpha", site_id: "mediacrawler_douyin", site_name: "抖音", source: "抖音甲", url: "https://www.douyin.com/video/fixture-alpha" }],
   [69, { id: "douyin-beta", site_id: "mediacrawler_douyin", site_name: "抖音", source: "抖音乙", url: "https://www.douyin.com/video/fixture-beta" }],
   [70, { id: "xhs-alpha", site_id: "mediacrawler_xhs", site_name: "小红书", source: "小红书甲", url: "https://www.xiaohongshu.com/explore/fixture-alpha" }],
@@ -505,6 +506,7 @@ test("所有平台 tab 都完成真实时间流渲染", async ({ page }) => {
     "bilibili",
     "youtube",
     "github",
+    "twitter",
     "aihot",
     "read",
   ];
@@ -528,10 +530,24 @@ test("所有平台 tab 都完成真实时间流渲染", async ({ page }) => {
   expect(errors).toEqual([]);
 });
 
-test("AI HOT 原文链接进入已阅，恢复后回到收件箱", async ({ page }) => {
+test("推特栏只显示 X 原文，AI HOT 栏只显示精选", async ({ page }) => {
   const errors = collectErrors(page);
   await openFixture(page);
+
+  await openSection(page, "twitter");
+  await expect(page.locator('#newsList .news-card[data-item-id="aihot-alpha"]')).toHaveCount(1);
+  await expect(page.locator('#newsList .news-card[data-item-id="aihot-selected"]')).toHaveCount(0);
+
   await openSection(page, "aihot");
+  await expect(page.locator('#newsList .news-card[data-item-id="aihot-selected"]')).toHaveCount(1);
+  await expect(page.locator('#newsList .news-card[data-item-id="aihot-alpha"]')).toHaveCount(0);
+  expect(errors).toEqual([]);
+});
+
+test("推特原文链接进入已阅，恢复后回到收件箱", async ({ page }) => {
+  const errors = collectErrors(page);
+  await openFixture(page);
+  await openSection(page, "twitter");
 
   const inbox = page.locator('#newsList .news-card[data-item-id="aihot-alpha"]');
   await expect(inbox).toHaveCount(1);
@@ -548,7 +564,7 @@ test("AI HOT 原文链接进入已阅，恢复后回到收件箱", async ({ page
   await readItem.locator(".read-toggle-btn").click();
   await expect(page.locator("#newsList > .empty")).toHaveCount(1);
 
-  await openSection(page, "aihot");
+  await openSection(page, "twitter");
   await expect(page.locator('#newsList .news-card[data-item-id="aihot-alpha"]')).toHaveCount(1);
   expect(errors).toEqual([]);
 });

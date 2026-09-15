@@ -2,12 +2,12 @@
 
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，完整状态在 `PROJECT_STATE.md`。
 
-## AI HOT 只留 X 原文（2026-09-15，部署中）
+## 推特栏 + AI HOT 精选拆栏（2026-09-15，待合入验收）
 
-- 仍采公开池 `mode=all`，不走精选/分数门。只按原文主机 `x.com` / `twitter.com`（含 `www.` / `mobile.`）留条目，不要用源名 `X：` 认推特。
-- 采集解析丢掉非 X。读者列表走 `cli.py` 归档发布循环，必须在那里按主机过滤；只改 `build_creator_hot_items` 不够。不要在本机改 `data/**`。
-- 工作台不用改：它只认 `siteId=aihot`。已阅仍用推特链接。
-- 本提交上 `master`。推送后由 Actions 重采发布。本仓无活跃四文件。
+- 同一 `siteId=aihot`。推特栏 = X 原文；AI HOT 栏 = `aihot_selected`。采集 `mode=selected` 再 `mode=all`。
+- 发布只藏「既不是 X、也不是精选」的旧噪音。不要在本机改 `data/**`。
+- 工作台网页和鸿蒙必须同步拆栏，否则原生列表又会混在一起。工作台仓分支同名 `feat/twitter-aihot-split`。
+- 本仓无活跃四文件。当前在工作树 `ai-news-radar-twitter-aihot` / 分支 `feat/twitter-aihot-split`。
 
 ## AI HOT 全部动态作未读收件箱（2026-09-14，已验收）
 

@@ -31,7 +31,7 @@ function sourceConfigSeedSources() {
       target: "AI HOT",
       locator: "https://aihot.news/api/v1/items",
       env: "",
-      notes: "线上采集走 config/online-sources.json 的 aihot 源；公开池全部动态里只留 X 原文，已阅手筛。",
+      notes: "线上采集走 config/online-sources.json 的 aihot 源；公开池 X 原文进推特栏，精选进 AI HOT 栏。",
     },
     {
       id: "aibreakfast",

@@ -6,7 +6,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import patch
 
-from scripts.radar.common import aihot_archive_record_is_reader_visible, is_x_original_url
+from scripts.radar.common import (
+    aihot_archive_record_is_reader_visible,
+    aihot_record_is_selected,
+    is_x_original_url,
+)
 from scripts.radar.pipeline import load_archive_for_collection, prune_archive_records
 from scripts.update_news import (
     add_creator_ranking_fields,
@@ -413,7 +417,7 @@ class TopicFilterTests(unittest.TestCase):
         self.assertEqual(items[0].title, "OpenAI ships a new Codex feature")
         self.assertEqual(items[0].url, "https://x.com/builder/status/1")
 
-    def test_parse_aihot_feed_items_drops_non_x_originals(self):
+    def test_parse_aihot_feed_items_keeps_rss_as_selected(self):
         xml = """<?xml version='1.0' encoding='UTF-8'?>
 <rss><channel><title>AI HOT — 精选</title>
 <item>
@@ -423,7 +427,10 @@ class TopicFilterTests(unittest.TestCase):
 <author>noreply@aihot.virxact.com (X：IT之家)</author>
 </item>
 </channel></rss>""".encode("utf-8")
-        self.assertEqual(parse_aihot_feed_items(xml, now=None), [])
+        items = parse_aihot_feed_items(xml, now=None)
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0].url, "https://www.ithome.com/0/1.htm")
+        self.assertTrue(items[0].meta["aihot_selected"])
 
     def test_is_x_original_url_accepts_x_hosts_only(self):
         self.assertTrue(is_x_original_url("https://x.com/a/status/1"))
@@ -449,6 +456,17 @@ class TopicFilterTests(unittest.TestCase):
                 {"site_id": "aihot", "url": "https://www.ithome.com/0/1.htm"}
             )
         )
+        self.assertTrue(
+            aihot_archive_record_is_reader_visible(
+                {
+                    "site_id": "aihot",
+                    "url": "https://www.ithome.com/0/1.htm",
+                    "aihot_selected": True,
+                }
+            )
+        )
+        self.assertTrue(aihot_record_is_selected({"aihot_selected": True}))
+        self.assertFalse(aihot_record_is_selected({"aihot_selected": False}))
         self.assertTrue(
             aihot_archive_record_is_reader_visible(
                 {"site_id": "bilibili_dynamic", "url": "https://t.bilibili.com/1"}
@@ -515,13 +533,25 @@ class TopicFilterTests(unittest.TestCase):
                     "score": 90,
                     "selected": True,
                 },
+                {
+                    "id": "noise",
+                    "title": "未精选的媒体噪音",
+                    "source": {"name": "TechCrunch"},
+                    "links": {
+                        "aihot": "https://aihot.news/items/noise",
+                        "original": "https://techcrunch.com/example",
+                    },
+                    "publishedAt": "2026-06-16T16:00:00.000Z",
+                    "score": 12,
+                    "selected": False,
+                },
             ]
         }
 
         items = parse_aihot_api_items(payload, now=datetime(2026, 6, 16, tzinfo=timezone.utc))
         self.assertEqual(
             [item.title for item in items],
-            ["高分条目", "低分条目", "无分条目", "布尔分应丢弃分数字段但仍保留"],
+            ["高分条目", "低分条目", "无分条目", "布尔分应丢弃分数字段但仍保留", "源名带 X 但原文不是推特"],
         )
         self.assertEqual(items[0].url, "https://x.com/openai/status/1")
         self.assertEqual(items[0].source, "X：OpenAI")
@@ -536,6 +566,8 @@ class TopicFilterTests(unittest.TestCase):
         self.assertEqual(items[2].url, "https://twitter.com/blog/status/3")
         self.assertNotIn("aihot_score", items[3].meta)
         self.assertEqual(items[3].url, "https://mobile.twitter.com/blog/status/4")
+        self.assertEqual(items[4].url, "https://www.ithome.com/0/1.htm")
+        self.assertTrue(items[4].meta["aihot_selected"])
 
     def test_fetch_aihot_uses_v1_all_pool_without_score_gate(self):
         page_1 = {
@@ -584,6 +616,23 @@ class TopicFilterTests(unittest.TestCase):
             ],
             "page": {"count": 1, "hasMore": False, "nextCursor": None},
         }
+        selected_page = {
+            "items": [
+                {
+                    "id": "selected-media",
+                    "title": "精选媒体",
+                    "source": {"name": "X：IT之家"},
+                    "links": {
+                        "aihot": "https://aihot.news/items/selected",
+                        "original": "https://www.ithome.com/0/1.htm",
+                    },
+                    "publishedAt": "2026-06-16T19:00:00.000Z",
+                    "score": 70,
+                    "selected": True,
+                }
+            ],
+            "page": {"count": 1, "hasMore": False, "nextCursor": None},
+        }
 
         class FakeResponse:
             def __init__(self, payload):
@@ -601,23 +650,29 @@ class TopicFilterTests(unittest.TestCase):
 
             def get(self, url, **kwargs):
                 self.calls.append((url, kwargs))
-                return FakeResponse(page_1 if len(self.calls) == 1 else page_2)
+                mode = (kwargs.get("params") or {}).get("mode")
+                if mode == "selected":
+                    return FakeResponse(selected_page)
+                all_calls = [call for call in self.calls if (call[1].get("params") or {}).get("mode") == "all"]
+                return FakeResponse(page_1 if len(all_calls) == 1 else page_2)
 
         session = FakeSession()
         items = fetch_aihot(session, now=datetime(2026, 6, 16, tzinfo=timezone.utc))
         self.assertEqual(
             [item.title for item in items],
-            ["Page one strong item", "Page one low item", "Page two boundary item"],
+            ["精选媒体", "Page one strong item", "Page one low item", "Page two boundary item"],
         )
         self.assertEqual([item.url for item in items], [
+            "https://www.ithome.com/0/1.htm",
             "https://x.com/one/status/1",
             "https://x.com/one/status/2",
             "https://x.com/two/status/3",
         ])
         self.assertEqual(session.calls[0][0], "https://aihot.news/api/v1/items")
-        self.assertEqual(session.calls[0][1]["params"], {"mode": "all", "window": "24h", "limit": 100})
+        self.assertEqual(session.calls[0][1]["params"], {"mode": "selected", "window": "24h", "limit": 100})
+        self.assertEqual(session.calls[1][1]["params"], {"mode": "all", "window": "24h", "limit": 100})
         self.assertEqual(
-            session.calls[1][1]["params"],
+            session.calls[2][1]["params"],
             {"mode": "all", "window": "24h", "limit": 100, "cursor": "cursor-2"},
         )
         self.assertIn("aihot-skill/0.2.0", session.calls[0][1]["headers"]["User-Agent"])
@@ -2807,6 +2862,12 @@ class TopicFilterTests(unittest.TestCase):
             build_creator_hot_items({"aihot-media": media}, now, ai_only=False),
             [],
         )
+        selected_media = dict(media)
+        selected_media["id"] = "aihot-selected-media"
+        selected_media["aihot_selected"] = True
+        selected_items = build_creator_hot_items({"aihot-selected-media": selected_media}, now, ai_only=False)
+        self.assertEqual(len(selected_items), 1)
+        self.assertEqual(selected_items[0]["url"], "https://www.ithome.com/0/1.htm")
 
     def test_parse_tikhub_xiaohongshu_accepts_millisecond_api_time(self):
         import datetime as _dt

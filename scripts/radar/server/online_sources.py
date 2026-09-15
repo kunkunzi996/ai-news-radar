@@ -499,7 +499,7 @@ def normalize_online_source_record(
             "target": "AI HOT",
             "locator": "https://aihot.news/api/v1/items",
             "env": "",
-            "notes": notes[:240] or "公开池全部动态里只留 X 原文，已阅手筛",
+            "notes": notes[:240] or "公开池 X 原文进推特栏，精选进 AI HOT 栏，已阅手筛",
         }
         record.update(managed_fields)
         return record

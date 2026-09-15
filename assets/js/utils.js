@@ -320,7 +320,7 @@ function sectionItems(items = modeItems(), sectionId = state.activeSection) {
   }
   if (isSubscriptionSection(sectionId)) {
     return applyTimeRange(subscriptionModeItems())
-      .filter((item) => itemPlatformSection(item) === sectionId && !isItemRead(item))
+      .filter((item) => itemMatchesSubscriptionSection(item, sectionId) && !isItemRead(item))
       .sort((a, b) => timelineMs(b) - timelineMs(a) || creatorHotScore(b) - creatorHotScore(a));
   }
   const source = visibleItemList(applyTimeRange(items));

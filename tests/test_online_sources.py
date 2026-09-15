@@ -128,7 +128,7 @@ class OnlineAihotSourceTests(unittest.TestCase):
         self.assertEqual(record["channel"], "AI HOT")
         self.assertEqual(record["locator"], "https://aihot.news/api/v1/items")
         self.assertTrue(record["enabled"])
-        self.assertEqual(record["notes"], "公开池全部动态里只留 X 原文，已阅手筛")
+        self.assertEqual(record["notes"], "公开池 X 原文进推特栏，精选进 AI HOT 栏，已阅手筛")
 
     def test_normalize_aihot_preserves_existing_id(self):
         record = normalize_online_source_record(
