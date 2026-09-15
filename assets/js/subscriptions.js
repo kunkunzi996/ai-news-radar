@@ -116,7 +116,26 @@ async function loadYoutubeSubscriptions(options = {}) {
 }
 function isSubscriptionSection(sectionId) {
   if (isHiddenPlatformId(sectionId)) return false;
-  return sectionId === "creator" || sectionId === "read" || ["douyin", "xiaohongshu", "bilibili", "youtube", "github", "aihot"].includes(sectionId);
+  return sectionId === "creator" || sectionId === "read" || ["douyin", "xiaohongshu", "bilibili", "youtube", "github", "twitter", "aihot"].includes(sectionId);
+}
+function isXOriginalUrl(rawUrl) {
+  try {
+    const host = new URL(String(rawUrl || "")).hostname.toLowerCase().replace(/^www\./, "").replace(/^mobile\./, "");
+    return host === "x.com" || host === "twitter.com";
+  } catch {
+    return false;
+  }
+}
+function isAihotSelectedItem(item) {
+  return String(item?.site_id || "").toLowerCase() === "aihot" && Boolean(item?.aihot_selected);
+}
+function isTwitterInboxItem(item) {
+  return String(item?.site_id || "").toLowerCase() === "aihot" && isXOriginalUrl(item?.url || item?.primary_url);
+}
+function itemMatchesSubscriptionSection(item, sectionId) {
+  if (sectionId === "twitter") return isTwitterInboxItem(item);
+  if (sectionId === "aihot") return isAihotSelectedItem(item);
+  return itemPlatformSection(item) === sectionId;
 }
 function itemPlatformSection(item) {
   const siteId = String(item?.site_id || "").toLowerCase();
@@ -130,7 +149,11 @@ function itemPlatformSection(item) {
     item?.title_zh,
     item?.title_en,
   ].filter(Boolean).join(" ").toLowerCase();
-  if (siteId === "aihot") return "aihot";
+  if (siteId === "aihot") {
+    if (isTwitterInboxItem(item)) return "twitter";
+    if (isAihotSelectedItem(item)) return "aihot";
+    return "";
+  }
   if (siteId === "bilibili_dynamic" || hay.includes("bilibili") || hay.includes("b站")) return "bilibili";
   if (siteId === "mediacrawler_douyin" || siteId === "tikhub_douyin" || hay.includes("douyin") || hay.includes("抖音")) return "douyin";
   if (siteId === "mediacrawler_xhs" || siteId === "tikhub_xiaohongshu" || hay.includes("xiaohongshu") || hay.includes("小红书")) return "xiaohongshu";
@@ -233,8 +256,13 @@ function itemSections(item) {
 
   if (isSubscriptionItem(item)) {
     sections.add("creator");
-    const platformSection = itemPlatformSection(item);
-    if (platformSection) sections.add(platformSection);
+    if (String(item?.site_id || "").toLowerCase() === "aihot") {
+      if (isTwitterInboxItem(item)) sections.add("twitter");
+      if (isAihotSelectedItem(item)) sections.add("aihot");
+    } else {
+      const platformSection = itemPlatformSection(item);
+      if (platformSection) sections.add(platformSection);
+    }
   }
 
   if (

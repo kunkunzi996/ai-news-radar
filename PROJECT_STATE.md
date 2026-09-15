@@ -1,11 +1,11 @@
 # PROJECT_STATE
 
-## AI HOT 只留 X 原文（2026-09-15，部署中）
+## 推特栏 + AI HOT 精选拆栏（2026-09-15，待合入验收）
 
-- **做了什么**：公开池仍走 `mode=all`，但解析和发布只留原文主机是 `x.com` / `twitter.com` 的条目（含 `www.` / `mobile.`）。不按分数、不按源名 `X：`。归档旧噪音靠 `cli.py` 发布循环过滤，本机不改 `data/**`。第一轮只挡了 `build_creator_hot_items`，线上列表仍有媒体噪音，已补发布门。
-- **Git**：本提交上 `master`。页面脚本戳 `aihot-x-0915a`。
+- **做了什么**：同一 `siteId=aihot` 拆成推特（X 原文）和 AI HOT（每日精选）。采集 `mode=selected` + `mode=all`；发布留下 X 或精选。
+- **Git**：工作树 `E:\Ai-coding\AI-news-reader\ai-news-radar-twitter-aihot`，分支 `feat/twitter-aihot-split`。页面脚本戳 `aihot-split-0915a`。工作台仓同名分支必须同一轮上。
 - **当前无本轮四文件**。
-- **未做**：等 Actions 重采后，列表才会从约 498 条收到约 309 条 X。工作台不用改。
+- **未做**：合入后等下一轮采集，非 X 精选才会进 AI HOT 栏。不要在本机改 `data/**`。
 
 ## AI HOT 全部动态作未读收件箱（2026-09-14，已部署并验收）
 

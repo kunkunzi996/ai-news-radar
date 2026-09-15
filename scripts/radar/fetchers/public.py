@@ -11,8 +11,9 @@ from bs4 import BeautifulSoup
 
 from scripts.radar.common import (
     AIBREAKFAST_JINA_URL,
+    AIHOT_API_ALL_MODE,
     AIHOT_API_MAX_PAGES,
-    AIHOT_API_MODE,
+    AIHOT_API_SELECTED_MODE,
     AIHOT_API_TAKE,
     AIHOT_API_UA,
     AIHOT_API_WINDOW,
@@ -1090,8 +1091,6 @@ def parse_aihot_feed_items(feed_content: bytes, now: datetime, feed_url: str = A
         link = str(entry.get("link") or "").strip()
         if not title or not link:
             continue
-        if not is_x_original_url(link):
-            continue
         normalized_url = normalize_url(link)
         if normalized_url in seen_urls:
             continue
@@ -1117,7 +1116,7 @@ def parse_aihot_feed_items(feed_content: bytes, now: datetime, feed_url: str = A
                 title=title,
                 url=link,
                 published_at=published,
-                meta={"feed_url": feed_url},
+                meta={"feed_url": feed_url, "aihot_selected": True},
             )
         )
 
@@ -1160,7 +1159,11 @@ def aihot_api_page_cursor(payload: dict[str, Any]) -> tuple[str, bool]:
     return cursor, has_more and bool(cursor)
 
 
-def parse_aihot_api_items(payload: dict[str, Any], now: datetime | None = None) -> list[RawItem]:
+def parse_aihot_api_items(
+    payload: dict[str, Any],
+    now: datetime | None = None,
+    selected_mode: bool = False,
+) -> list[RawItem]:
     site_id = "aihot"
     site_name = "AI HOT"
     out: list[RawItem] = []
@@ -1186,7 +1189,8 @@ def parse_aihot_api_items(payload: dict[str, Any], now: datetime | None = None) 
         link = aihot_entry_link(entry)
         if not title or not link.startswith(("http://", "https://")):
             continue
-        if not is_x_original_url(link):
+        selected = bool(entry.get("selected")) or selected_mode
+        if not is_x_original_url(link) and not selected:
             continue
         normalized_url = normalize_url(link)
         if normalized_url in seen_urls:
@@ -1200,7 +1204,7 @@ def parse_aihot_api_items(payload: dict[str, Any], now: datetime | None = None) 
             "api_url": AIHOT_ITEMS_API_URL,
             "aihot_id": entry.get("id"),
             "aihot_category": entry.get("category"),
-            "aihot_selected": bool(entry.get("selected")),
+            "aihot_selected": selected,
             "summary": entry.get("summary"),
         }
         if score_value is not None:
@@ -1220,13 +1224,14 @@ def parse_aihot_api_items(payload: dict[str, Any], now: datetime | None = None) 
     return out
 
 
-def fetch_aihot(session: requests.Session, now: datetime) -> list[RawItem]:
+def fetch_aihot_mode(session: requests.Session, now: datetime, mode: str) -> list[RawItem]:
     out: list[RawItem] = []
     seen_urls: set[str] = set()
     cursor = ""
+    selected_mode = mode == AIHOT_API_SELECTED_MODE
     for _ in range(AIHOT_API_MAX_PAGES):
         params: dict[str, Any] = {
-            "mode": AIHOT_API_MODE,
+            "mode": mode,
             "window": AIHOT_API_WINDOW,
             "limit": AIHOT_API_TAKE,
         }
@@ -1244,7 +1249,7 @@ def fetch_aihot(session: requests.Session, now: datetime) -> list[RawItem]:
         )
         r.raise_for_status()
         payload = r.json()
-        for item in parse_aihot_api_items(payload, now):
+        for item in parse_aihot_api_items(payload, now, selected_mode=selected_mode):
             key = normalize_url(item.url)
             if key in seen_urls:
                 continue
@@ -1253,6 +1258,19 @@ def fetch_aihot(session: requests.Session, now: datetime) -> list[RawItem]:
         cursor, has_more = aihot_api_page_cursor(payload if isinstance(payload, dict) else {})
         if not has_more:
             break
+    return out
+
+
+def fetch_aihot(session: requests.Session, now: datetime) -> list[RawItem]:
+    out: list[RawItem] = []
+    seen_urls: set[str] = set()
+    for mode in (AIHOT_API_SELECTED_MODE, AIHOT_API_ALL_MODE):
+        for item in fetch_aihot_mode(session, now, mode):
+            key = normalize_url(item.url)
+            if key in seen_urls:
+                continue
+            seen_urls.add(key)
+            out.append(item)
     return out
 
 

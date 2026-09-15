@@ -489,7 +489,7 @@ function getFilteredItems() {
     }
   } else if (isSubscriptionSection(sectionId)) {
     sectionPool = applyTimeRange(subscriptionModeItems())
-      .filter((item) => itemPlatformSection(item) === sectionId);
+      .filter((item) => itemMatchesSubscriptionSection(item, sectionId));
   } else {
     sectionPool = visibleItemList(applyTimeRange(modeItems()))
       .filter((item) => itemMatchesSection(item, sectionId));
