@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-15T16:48:57.221853Z",
+  "generated_at": "2026-09-15T20:06:21.645828Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -76,15 +76,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.7937,
-      "importance": 0.7937,
-      "importance_score": 0.7937,
+      "score": 0.7856,
+      "importance": 0.7856,
+      "importance_score": 0.7856,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9673,
+        "recency": 0.9225,
         "story_heat": 0.5
       },
       "category": "multi_source",
@@ -138,15 +138,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7857,
-      "importance": 0.7857,
-      "importance_score": 0.7857,
+      "score": 0.7775,
+      "importance": 0.7775,
+      "importance_score": 0.7775,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9839,
+        "recency": 0.9382,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -161,6 +161,67 @@
         "title": "Gergely Orosz 探访 OpenAI：Codex 驱动的智能体软件工厂",
         "url": "https://newsletter.pragmaticengineer.com/p/openai-software-factory",
         "source": "Pragmatic Engineer（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_7a6f32dda4e6",
+      "title": "Google 发布 Gemini 3.8 Live 与 Gemini 3.8 Live Extended Thinking，登顶语音对语音榜",
+      "url": "https://x.com/rohanpaul_ai/status/2099942230379401250",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2099942230379401250",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "a57aa58ecc522c531c3a02b153b492d886ebf7ed",
+          "title": "Google 发布 Gemini 3.8 Live 与 Gemini 3.8 Live Extended Thinking，登顶语音对语音榜",
+          "url": "https://x.com/rohanpaul_ai/status/2099942230379401250",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T19:23:37Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "a57aa58ecc522c531c3a02b153b492d886ebf7ed",
+          "title": "Google 发布 Gemini 3.8 Live 与 Gemini 3.8 Live Extended Thinking，登顶语音对语音榜",
+          "url": "https://x.com/rohanpaul_ai/status/2099942230379401250",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T19:23:37Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7688,
+      "importance": 0.7688,
+      "importance_score": 0.7688,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.73,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9898,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-15T19:23:37Z",
+      "latest_at": "2026-09-15T19:23:37Z",
+      "primary_item": {
+        "id": "a57aa58ecc522c531c3a02b153b492d886ebf7ed",
+        "title": "Google 发布 Gemini 3.8 Live 与 Gemini 3.8 Live Extended Thinking，登顶语音对语音榜",
+        "url": "https://x.com/rohanpaul_ai/status/2099942230379401250",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -199,15 +260,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.767,
-      "importance": 0.767,
-      "importance_score": 0.767,
+      "score": 0.7593,
+      "importance": 0.7593,
+      "importance_score": 0.7593,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9302,
+        "recency": 0.887,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -222,6 +283,87 @@
         "title": "404 Media 曝光 OpenAI 莉莉计划：人工审核 ChatGPT 聊天记录以优化模型",
         "url": "https://www.ithome.com/1/002/750.htm",
         "source": "IT之家（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_5202467a63d8",
+      "title": "Google 发布 Gemini 3.8 Live 与 3.8 Live Extended Thinking 音频模型",
+      "url": "https://x.com/GoogleAI/status/2099908000924193124",
+      "primary_url": "https://x.com/GoogleAI/status/2099908000924193124",
+      "source": "X：Google AI (@GoogleAI)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "bab22a283fb034c02ee568c228251621d3f14a30",
+          "title": "Google 发布 Gemini 3.8 Live 与 3.8 Live Extended Thinking 音频模型",
+          "url": "https://x.com/GoogleAI/status/2099908000924193124",
+          "source": "X：Google AI (@GoogleAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T17:07:36Z"
+        },
+        {
+          "id": "b252a41d5ab933b499a2bd139558ba8ed48e3d20",
+          "title": "Google DeepMind 发布 Gemini 3.8 Live 与 3.8 Live Extended Thinking",
+          "url": "https://x.com/GoogleDeepMind/status/2099907440422830269",
+          "source": "X：Google DeepMind (@GoogleDeepMind)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T17:05:22Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Google AI (@GoogleAI)",
+        "X：Google DeepMind (@GoogleDeepMind)"
+      ],
+      "items": [
+        {
+          "id": "bab22a283fb034c02ee568c228251621d3f14a30",
+          "title": "Google 发布 Gemini 3.8 Live 与 3.8 Live Extended Thinking 音频模型",
+          "url": "https://x.com/GoogleAI/status/2099908000924193124",
+          "source": "X：Google AI (@GoogleAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T17:07:36Z"
+        },
+        {
+          "id": "b252a41d5ab933b499a2bd139558ba8ed48e3d20",
+          "title": "Google DeepMind 发布 Gemini 3.8 Live 与 3.8 Live Extended Thinking",
+          "url": "https://x.com/GoogleDeepMind/status/2099907440422830269",
+          "source": "X：Google DeepMind (@GoogleDeepMind)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T17:05:22Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.758,
+      "importance": 0.758,
+      "importance_score": 0.758,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.63,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9579,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-15T17:05:22Z",
+      "latest_at": "2026-09-15T17:07:36Z",
+      "primary_item": {
+        "id": "bab22a283fb034c02ee568c228251621d3f14a30",
+        "title": "Google 发布 Gemini 3.8 Live 与 3.8 Live Extended Thinking 音频模型",
+        "url": "https://x.com/GoogleAI/status/2099908000924193124",
+        "source": "X：Google AI (@GoogleAI)",
         "source_name": "AI HOT"
       }
     },
@@ -260,15 +402,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7636,
-      "importance": 0.7636,
-      "importance_score": 0.7636,
+      "score": 0.7561,
+      "importance": 0.7561,
+      "importance_score": 0.7561,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8943,
+        "recency": 0.8528,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -339,15 +481,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.761,
-      "importance": 0.761,
-      "importance_score": 0.761,
+      "score": 0.7544,
+      "importance": 0.7544,
+      "importance_score": 0.7544,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7913,
+        "recency": 0.7546,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -401,15 +543,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7598,
-      "importance": 0.7598,
-      "importance_score": 0.7598,
+      "score": 0.7533,
+      "importance": 0.7533,
+      "importance_score": 0.7533,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7731,
+        "recency": 0.7372,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -462,21 +604,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7515,
-      "importance": 0.7515,
-      "importance_score": 0.7515,
+      "score": 0.7439,
+      "importance": 0.7439,
+      "importance_score": 0.7439,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9104,
+        "recency": 0.8682,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-15T10:19:08Z",
       "latest_at": "2026-09-15T10:19:08Z",
@@ -523,21 +664,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7501,
-      "importance": 0.7501,
-      "importance_score": 0.7501,
+      "score": 0.742,
+      "importance": 0.742,
+      "importance_score": 0.742,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9697,
+        "recency": 0.9247,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-15T14:41:00Z",
       "latest_at": "2026-09-15T14:41:00Z",
@@ -546,6 +686,66 @@
         "title": "Noam Brown 谈 OpenAI 优先级：递归自我改进居首，并表达安全担忧",
         "url": "https://x.com/kimmonismus/status/2099871107226669391",
         "source": "X：Kim (@kimmonismus)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_1848840a58d5",
+      "title": "阶跃星辰发布 StepAudio 3 系列共 5 款音频模型",
+      "url": "https://x.com/StepFun_ai/status/2099916376274313630",
+      "primary_url": "https://x.com/StepFun_ai/status/2099916376274313630",
+      "source": "X：阶跃星辰 StepFun (@StepFun_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "1c3292cbf9a62a662a11b2720d1b8228c30ee79e",
+          "title": "阶跃星辰发布 StepAudio 3 系列共 5 款音频模型",
+          "url": "https://x.com/StepFun_ai/status/2099916376274313630",
+          "source": "X：阶跃星辰 StepFun (@StepFun_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T17:40:53Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：阶跃星辰 StepFun (@StepFun_ai)"
+      ],
+      "items": [
+        {
+          "id": "1c3292cbf9a62a662a11b2720d1b8228c30ee79e",
+          "title": "阶跃星辰发布 StepAudio 3 系列共 5 款音频模型",
+          "url": "https://x.com/StepFun_ai/status/2099916376274313630",
+          "source": "X：阶跃星辰 StepFun (@StepFun_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T17:40:53Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7374,
+      "importance": 0.7374,
+      "importance_score": 0.7374,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.64,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9656,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-15T17:40:53Z",
+      "latest_at": "2026-09-15T17:40:53Z",
+      "primary_item": {
+        "id": "1c3292cbf9a62a662a11b2720d1b8228c30ee79e",
+        "title": "阶跃星辰发布 StepAudio 3 系列共 5 款音频模型",
+        "url": "https://x.com/StepFun_ai/status/2099916376274313630",
+        "source": "X：阶跃星辰 StepFun (@StepFun_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -584,15 +784,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7405,
-      "importance": 0.7405,
-      "importance_score": 0.7405,
+      "score": 0.7349,
+      "importance": 0.7349,
+      "importance_score": 0.7349,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6661,
+        "recency": 0.6352,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -606,6 +806,66 @@
         "title": "恶意 AI 智能体攻击 RubyGems.org：YARD 执行任意代码与 Fastly 缓存密钥利用分析",
         "url": "https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive",
         "source": "Hacker News：AI 热帖",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_edacca3ec6d0",
+      "title": "微软论文：Bash 在企业 Agent 任务上超越类型化工具接口",
+      "url": "https://x.com/dair_ai/status/2099925472629150164",
+      "primary_url": "https://x.com/dair_ai/status/2099925472629150164",
+      "source": "X：DAIR.AI (@dair_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "b67ddd420dd58ee3439a15334074137afdae6f79",
+          "title": "微软论文：Bash 在企业 Agent 任务上超越类型化工具接口",
+          "url": "https://x.com/dair_ai/status/2099925472629150164",
+          "source": "X：DAIR.AI (@dair_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T18:17:02Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：DAIR.AI (@dair_ai)"
+      ],
+      "items": [
+        {
+          "id": "b67ddd420dd58ee3439a15334074137afdae6f79",
+          "title": "微软论文：Bash 在企业 Agent 任务上超越类型化工具接口",
+          "url": "https://x.com/dair_ai/status/2099925472629150164",
+          "source": "X：DAIR.AI (@dair_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T18:17:02Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7299,
+      "importance": 0.7299,
+      "importance_score": 0.7299,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.61,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.974,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-15T18:17:02Z",
+      "latest_at": "2026-09-15T18:17:02Z",
+      "primary_item": {
+        "id": "b67ddd420dd58ee3439a15334074137afdae6f79",
+        "title": "微软论文：Bash 在企业 Agent 任务上超越类型化工具接口",
+        "url": "https://x.com/dair_ai/status/2099925472629150164",
+        "source": "X：DAIR.AI (@dair_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -644,15 +904,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7355,
-      "importance": 0.7355,
-      "importance_score": 0.7355,
+      "score": 0.7272,
+      "importance": 0.7272,
+      "importance_score": 0.7272,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9883,
+        "recency": 0.9424,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -666,6 +926,126 @@
         "title": "Google 发布 TranslateGemma 等多语言 AI 成果，语言技术覆盖 300 多种语言",
         "url": "https://blog.google/innovation-and-ai/technology/ai/ai-for-every-language",
         "source": "Google Blog：AI（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_e4347070a078",
+      "title": "Google Research 发布 Stellar Colosseum 多智能体框架，攻克长程数学研究任务",
+      "url": "https://x.com/omarsar0/status/2099924717704732699",
+      "primary_url": "https://x.com/omarsar0/status/2099924717704732699",
+      "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "8b57a0f7e6fefd552678f0b559329ee450d02748",
+          "title": "Google Research 发布 Stellar Colosseum 多智能体框架，攻克长程数学研究任务",
+          "url": "https://x.com/omarsar0/status/2099924717704732699",
+          "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T18:14:02Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Elvis Saravia (@omarsar0, DAIR.AI)"
+      ],
+      "items": [
+        {
+          "id": "8b57a0f7e6fefd552678f0b559329ee450d02748",
+          "title": "Google Research 发布 Stellar Colosseum 多智能体框架，攻克长程数学研究任务",
+          "url": "https://x.com/omarsar0/status/2099924717704732699",
+          "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T18:14:02Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7268,
+      "importance": 0.7268,
+      "importance_score": 0.7268,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.6,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9733,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-15T18:14:02Z",
+      "latest_at": "2026-09-15T18:14:02Z",
+      "primary_item": {
+        "id": "8b57a0f7e6fefd552678f0b559329ee450d02748",
+        "title": "Google Research 发布 Stellar Colosseum 多智能体框架，攻克长程数学研究任务",
+        "url": "https://x.com/omarsar0/status/2099924717704732699",
+        "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_1c92d8f97571",
+      "title": "ChatGPT Work 推出 Data agent，可将公司数据转为答案、仪表盘和行动",
+      "url": "https://x.com/gdb/status/2099919674544898298",
+      "primary_url": "https://x.com/gdb/status/2099919674544898298",
+      "source": "X：Greg Brockman (@gdb)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "5ace5681c0f2d7827d1663330f912da9e583aa11",
+          "title": "ChatGPT Work 推出 Data agent，可将公司数据转为答案、仪表盘和行动",
+          "url": "https://x.com/gdb/status/2099919674544898298",
+          "source": "X：Greg Brockman (@gdb)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T17:53:59Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Greg Brockman (@gdb)"
+      ],
+      "items": [
+        {
+          "id": "5ace5681c0f2d7827d1663330f912da9e583aa11",
+          "title": "ChatGPT Work 推出 Data agent，可将公司数据转为答案、仪表盘和行动",
+          "url": "https://x.com/gdb/status/2099919674544898298",
+          "source": "X：Greg Brockman (@gdb)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T17:53:59Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.726,
+      "importance": 0.726,
+      "importance_score": 0.726,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.6,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9686,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-15T17:53:59Z",
+      "latest_at": "2026-09-15T17:53:59Z",
+      "primary_item": {
+        "id": "5ace5681c0f2d7827d1663330f912da9e583aa11",
+        "title": "ChatGPT Work 推出 Data agent，可将公司数据转为答案、仪表盘和行动",
+        "url": "https://x.com/gdb/status/2099919674544898298",
+        "source": "X：Greg Brockman (@gdb)",
         "source_name": "AI HOT"
       }
     },
@@ -704,15 +1084,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7305,
-      "importance": 0.7305,
-      "importance_score": 0.7305,
+      "score": 0.7246,
+      "importance": 0.7246,
+      "importance_score": 0.7246,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7106,
+        "recency": 0.6777,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -726,6 +1106,66 @@
         "title": "Apple 发布新一代 Apple Intelligence，Siri AI 正式以测试版上线",
         "url": "https://www.apple.com/newsroom/2026/09/siri-ai-a-profoundly-more-capable-and-personal-assistant-is-here",
         "source": "Apple：Newsroom（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_b5fd1928c34b",
+      "title": "Claude for Small Business 新增 43 个工作流和 27 个集成，并推出免费培训计划",
+      "url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
+      "primary_url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
+      "source": "Claude：Blog（网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "4b3e2f673c6f63bf19e76aeb6e8dc792e8309517",
+          "title": "Claude for Small Business 新增 43 个工作流和 27 个集成，并推出免费培训计划",
+          "url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
+          "source": "Claude：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T17:21:21.489000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Claude：Blog（网页）"
+      ],
+      "items": [
+        {
+          "id": "4b3e2f673c6f63bf19e76aeb6e8dc792e8309517",
+          "title": "Claude for Small Business 新增 43 个工作流和 27 个集成，并推出免费培训计划",
+          "url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
+          "source": "Claude：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T17:21:21.489000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7246,
+      "importance": 0.7246,
+      "importance_score": 0.7246,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.6,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9611,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-15T17:21:21.489000Z",
+      "latest_at": "2026-09-15T17:21:21.489000Z",
+      "primary_item": {
+        "id": "4b3e2f673c6f63bf19e76aeb6e8dc792e8309517",
+        "title": "Claude for Small Business 新增 43 个工作流和 27 个集成，并推出免费培训计划",
+        "url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
+        "source": "Claude：Blog（网页）",
         "source_name": "AI HOT"
       }
     },
@@ -764,15 +1204,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7301,
-      "importance": 0.7301,
-      "importance_score": 0.7301,
+      "score": 0.7224,
+      "importance": 0.7224,
+      "importance_score": 0.7224,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.64,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9251,
+        "recency": 0.8821,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -786,66 +1226,6 @@
         "title": "Anthropic 自述 Coding Agent 让代码量增 8 倍后 CI 扛不住的改造经历",
         "url": "https://x.com/frxiaobei/status/2099821868232614001",
         "source": "X：小北 (@frxiaobei)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_75bd7ff5dbc9",
-      "title": "Plasma 发布 Radio，用共享频道让多个编码智能体实时协作",
-      "url": "https://x.com/omarsar0/status/2099880259210412282",
-      "primary_url": "https://x.com/omarsar0/status/2099880259210412282",
-      "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "c80ad518b56418a66e421edb6093a40d77e9568d",
-          "title": "Plasma 发布 Radio，用共享频道让多个编码智能体实时协作",
-          "url": "https://x.com/omarsar0/status/2099880259210412282",
-          "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T15:17:22Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Elvis Saravia (@omarsar0, DAIR.AI)"
-      ],
-      "items": [
-        {
-          "id": "c80ad518b56418a66e421edb6093a40d77e9568d",
-          "title": "Plasma 发布 Radio，用共享频道让多个编码智能体实时协作",
-          "url": "https://x.com/omarsar0/status/2099880259210412282",
-          "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T15:17:22Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7217,
-      "importance": 0.7217,
-      "importance_score": 0.7217,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.58,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9782,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-15T15:17:22Z",
-      "latest_at": "2026-09-15T15:17:22Z",
-      "primary_item": {
-        "id": "c80ad518b56418a66e421edb6093a40d77e9568d",
-        "title": "Plasma 发布 Radio，用共享频道让多个编码智能体实时协作",
-        "url": "https://x.com/omarsar0/status/2099880259210412282",
-        "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
         "source_name": "AI HOT"
       }
     },
@@ -884,15 +1264,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.748,
-      "importance": 0.748,
-      "importance_score": 0.748,
+      "score": 0.74,
+      "importance": 0.74,
+      "importance_score": 0.74,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9579,
+        "recency": 0.9135,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -905,385 +1285,6 @@
         "id": "0d8158f8c8b359256cc0e6a98c5b77ec4a2369d9",
         "title": "微信团队开源 WeKnora 知识框架，GitHub 星标破 2.3 万",
         "url": "https://x.com/AYi_AInotes/status/2099858387928244547",
-        "source": "X：阿易 AI Notes (@AYi_AInotes)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_8f1dbbf70c25",
-      "title": "Anthropic 如何重构测试影响分析服务以应对智能体编码带来的 CI 压力",
-      "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
-      "primary_url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
-      "source": "Claude：Blog（网页）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "1f05f3a786cfee3052bbfcdfed2d4f3e8d2f356e",
-          "title": "Anthropic 如何重构测试影响分析服务以应对智能体编码带来的 CI 压力",
-          "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
-          "source": "Claude：Blog（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T19:15:56.861000Z"
-        },
-        {
-          "id": "4a543799b121983530328f84fd0c31b500d489d3",
-          "title": "Anthropic 工程师复盘：智能体编程压力下如何扩展测试影响分析服务",
-          "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
-          "source": "Claude：Blog（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-13T16:00:00Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "Claude：Blog（网页）"
-      ],
-      "items": [
-        {
-          "id": "1f05f3a786cfee3052bbfcdfed2d4f3e8d2f356e",
-          "title": "Anthropic 如何重构测试影响分析服务以应对智能体编码带来的 CI 压力",
-          "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
-          "source": "Claude：Blog（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T19:15:56.861000Z"
-        },
-        {
-          "id": "4a543799b121983530328f84fd0c31b500d489d3",
-          "title": "Anthropic 工程师复盘：智能体编程压力下如何扩展测试影响分析服务",
-          "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
-          "source": "Claude：Blog（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-13T16:00:00Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.7145,
-      "importance": 0.7145,
-      "importance_score": 0.7145,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.62,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7326,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-13T16:00:00Z",
-      "latest_at": "2026-09-14T19:15:56.861000Z",
-      "primary_item": {
-        "id": "1f05f3a786cfee3052bbfcdfed2d4f3e8d2f356e",
-        "title": "Anthropic 如何重构测试影响分析服务以应对智能体编码带来的 CI 压力",
-        "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
-        "source": "Claude：Blog（网页）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_82404ffdc91b",
-      "title": "GPT-5.6 Luna 对比 GPT-6 Astra：$1.20 的模型做代码评审够用吗",
-      "url": "https://entelligence.ai/blogs/gpt-5.6-luna-vs-gpt-6-astra-is-a-1.20-model-good-enough-for-code-review",
-      "primary_url": "https://entelligence.ai/blogs/gpt-5.6-luna-vs-gpt-6-astra-is-a-1.20-model-good-enough-for-code-review",
-      "source": "Hacker News：AI 热帖",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "b5c3cb1fd5f31603cbc13ab4200e05173e3b2423",
-          "title": "GPT-5.6 Luna 对比 GPT-6 Astra：$1.20 的模型做代码评审够用吗",
-          "url": "https://entelligence.ai/blogs/gpt-5.6-luna-vs-gpt-6-astra-is-a-1.20-model-good-enough-for-code-review",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T19:56:20Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Hacker News：AI 热帖"
-      ],
-      "items": [
-        {
-          "id": "b5c3cb1fd5f31603cbc13ab4200e05173e3b2423",
-          "title": "GPT-5.6 Luna 对比 GPT-6 Astra：$1.20 的模型做代码评审够用吗",
-          "url": "https://entelligence.ai/blogs/gpt-5.6-luna-vs-gpt-6-astra-is-a-1.20-model-good-enough-for-code-review",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T19:56:20Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7358,
-      "importance": 0.7358,
-      "importance_score": 0.7358,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.77,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7397,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T19:56:20Z",
-      "latest_at": "2026-09-14T19:56:20Z",
-      "primary_item": {
-        "id": "b5c3cb1fd5f31603cbc13ab4200e05173e3b2423",
-        "title": "GPT-5.6 Luna 对比 GPT-6 Astra：$1.20 的模型做代码评审够用吗",
-        "url": "https://entelligence.ai/blogs/gpt-5.6-luna-vs-gpt-6-astra-is-a-1.20-model-good-enough-for-code-review",
-        "source": "Hacker News：AI 热帖",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_37cba5d6b8d5",
-      "title": "Anthropic 计划登陆纳斯达克，连续第二季度盈利瞄准 2 万亿美元估值",
-      "url": "https://the-decoder.com/anthropic-eyes-nasdaq-listing-as-a-second-profitable-quarter-aims-to-win-over-investors-ahead-of-a-mega-ipo",
-      "primary_url": "https://the-decoder.com/anthropic-eyes-nasdaq-listing-as-a-second-profitable-quarter-aims-to-win-over-investors-ahead-of-a-mega-ipo",
-      "source": "The Decoder：AI News（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "b96780256a3db8fca4f9f0d287310b3c20b5408b",
-          "title": "Anthropic 计划登陆纳斯达克，连续第二季度盈利瞄准 2 万亿美元估值",
-          "url": "https://the-decoder.com/anthropic-eyes-nasdaq-listing-as-a-second-profitable-quarter-aims-to-win-over-investors-ahead-of-a-mega-ipo",
-          "source": "The Decoder：AI News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T15:46:45Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "The Decoder：AI News（RSS）"
-      ],
-      "items": [
-        {
-          "id": "b96780256a3db8fca4f9f0d287310b3c20b5408b",
-          "title": "Anthropic 计划登陆纳斯达克，连续第二季度盈利瞄准 2 万亿美元估值",
-          "url": "https://the-decoder.com/anthropic-eyes-nasdaq-listing-as-a-second-profitable-quarter-aims-to-win-over-investors-ahead-of-a-mega-ipo",
-          "source": "The Decoder：AI News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T15:46:45Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.731,
-      "importance": 0.731,
-      "importance_score": 0.731,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.78,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6966,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T15:46:45Z",
-      "latest_at": "2026-09-14T15:46:45Z",
-      "primary_item": {
-        "id": "b96780256a3db8fca4f9f0d287310b3c20b5408b",
-        "title": "Anthropic 计划登陆纳斯达克，连续第二季度盈利瞄准 2 万亿美元估值",
-        "url": "https://the-decoder.com/anthropic-eyes-nasdaq-listing-as-a-second-profitable-quarter-aims-to-win-over-investors-ahead-of-a-mega-ipo",
-        "source": "The Decoder：AI News（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_0bfea3bcbe96",
-      "title": "Google 向全公司工程师开放 Anthropic Claude 用于内部编码",
-      "url": "https://x.com/frxiaobei/status/2099870352511762865",
-      "primary_url": "https://x.com/frxiaobei/status/2099870352511762865",
-      "source": "X：小北 (@frxiaobei)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "d4873c09ac745908868126f7f48f6afb5d6dd91c",
-          "title": "Google 向全公司工程师开放 Anthropic Claude 用于内部编码",
-          "url": "https://x.com/frxiaobei/status/2099870352511762865",
-          "source": "X：小北 (@frxiaobei)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T14:38:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：小北 (@frxiaobei)"
-      ],
-      "items": [
-        {
-          "id": "d4873c09ac745908868126f7f48f6afb5d6dd91c",
-          "title": "Google 向全公司工程师开放 Anthropic Claude 用于内部编码",
-          "url": "https://x.com/frxiaobei/status/2099870352511762865",
-          "source": "X：小北 (@frxiaobei)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T14:38:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.729,
-      "importance": 0.729,
-      "importance_score": 0.729,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.61,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.969,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-15T14:38:00Z",
-      "latest_at": "2026-09-15T14:38:00Z",
-      "primary_item": {
-        "id": "d4873c09ac745908868126f7f48f6afb5d6dd91c",
-        "title": "Google 向全公司工程师开放 Anthropic Claude 用于内部编码",
-        "url": "https://x.com/frxiaobei/status/2099870352511762865",
-        "source": "X：小北 (@frxiaobei)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_8ff9e3ca9e2c",
-      "title": "前 Cursor 工程师复盘用 27 个 AI 智能体运营公司，月成本 340 美元、连续盈利 11 个月",
-      "url": "https://x.com/AYi_AInotes/status/2099900209367056510",
-      "primary_url": "https://x.com/AYi_AInotes/status/2099900209367056510",
-      "source": "X：阿易 AI Notes (@AYi_AInotes)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "29efa784c57a9d4984ce54640600bc9ad2f900d7",
-          "title": "前 Cursor 工程师复盘用 27 个 AI 智能体运营公司，月成本 340 美元、连续盈利 11 个月",
-          "url": "https://x.com/AYi_AInotes/status/2099900209367056510",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T16:36:38Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：阿易 AI Notes (@AYi_AInotes)"
-      ],
-      "items": [
-        {
-          "id": "29efa784c57a9d4984ce54640600bc9ad2f900d7",
-          "title": "前 Cursor 工程师复盘用 27 个 AI 智能体运营公司，月成本 340 美元、连续盈利 11 个月",
-          "url": "https://x.com/AYi_AInotes/status/2099900209367056510",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T16:36:38Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7341,
-      "importance": 0.7341,
-      "importance_score": 0.7341,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.61,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.997,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-15T16:36:38Z",
-      "latest_at": "2026-09-15T16:36:38Z",
-      "primary_item": {
-        "id": "29efa784c57a9d4984ce54640600bc9ad2f900d7",
-        "title": "前 Cursor 工程师复盘用 27 个 AI 智能体运营公司，月成本 340 美元、连续盈利 11 个月",
-        "url": "https://x.com/AYi_AInotes/status/2099900209367056510",
-        "source": "X：阿易 AI Notes (@AYi_AInotes)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_dc3d094a77c5",
-      "title": "Agent Memory Architecture 白皮书拆解 5 层智能体记忆架构，Token 消耗最高降 90%",
-      "url": "https://x.com/AYi_AInotes/status/2099833846350942385",
-      "primary_url": "https://x.com/AYi_AInotes/status/2099833846350942385",
-      "source": "X：阿易 AI Notes (@AYi_AInotes)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "23f0dce6c3c5df3aac616fac151c7b722c36debe",
-          "title": "Agent Memory Architecture 白皮书拆解 5 层智能体记忆架构，Token 消耗最高降 90%",
-          "url": "https://x.com/AYi_AInotes/status/2099833846350942385",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T12:12:56Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：阿易 AI Notes (@AYi_AInotes)"
-      ],
-      "items": [
-        {
-          "id": "23f0dce6c3c5df3aac616fac151c7b722c36debe",
-          "title": "Agent Memory Architecture 白皮书拆解 5 层智能体记忆架构，Token 消耗最高降 90%",
-          "url": "https://x.com/AYi_AInotes/status/2099833846350942385",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T12:12:56Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.729,
-      "importance": 0.729,
-      "importance_score": 0.729,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.63,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9357,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-15T12:12:56Z",
-      "latest_at": "2026-09-15T12:12:56Z",
-      "primary_item": {
-        "id": "23f0dce6c3c5df3aac616fac151c7b722c36debe",
-        "title": "Agent Memory Architecture 白皮书拆解 5 层智能体记忆架构，Token 消耗最高降 90%",
-        "url": "https://x.com/AYi_AInotes/status/2099833846350942385",
         "source": "X：阿易 AI Notes (@AYi_AInotes)",
         "source_name": "AI HOT"
       }
