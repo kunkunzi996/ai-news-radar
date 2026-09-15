@@ -112,7 +112,7 @@ SocialData 同时跑两路:① 中英关键词搜索发现新声音;② 一个�
 
 | 参数 | 当前值 | 改哪里 |
 |---|---|---|
-| 运行频率 | 每 30 分钟 | `.github/workflows/update-news.yml` → `cron: "*/30 * * * *"`(第 6 行) |
+| 运行频率 | 每小时 07 / 37 分（约 30 分钟） | `.github/workflows/update-news.yml` → `cron: "7,37 * * * *"` |
 | 付费源运行间隔 | 24 小时一次 | `PAID_SOURCE_DEFAULT_INTERVAL_HOURS`(约 188 行) |
 | 主时间窗 | 24 小时 | workflow 里 `--window-hours 24`(命令行参数) |
 | 归档保留 | 21 天 | workflow 里 `--archive-days 21` |

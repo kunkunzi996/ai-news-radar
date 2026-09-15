@@ -1,11 +1,13 @@
 # PROJECT_STATE
 
-## 推特栏 + AI HOT 精选拆栏（2026-09-15，待合入验收）
+## 推特栏 + AI HOT 精选拆栏（2026-09-15，已部署并验收）
 
-- **做了什么**：同一 `siteId=aihot` 拆成推特（X 原文）和 AI HOT（每日精选）。采集 `mode=selected` + `mode=all`；发布留下 X 或精选。
-- **Git**：工作树 `E:\Ai-coding\AI-news-reader\ai-news-radar-twitter-aihot`，分支 `feat/twitter-aihot-split`。页面脚本戳 `aihot-split-0915a`。工作台仓同名分支必须同一轮上。
-- **当前无本轮四文件**。
-- **未做**：合入后等下一轮采集，非 X 精选才会进 AI HOT 栏。不要在本机改 `data/**`。
+- **做了什么**：同一 `siteId=aihot` 拆成推特（X 原文）和 AI HOT（`mode=selected` 每日精选）。采集先 `selected` 再 `all`；发布留下 X 或精选。不要用 `/dailies`，不要按源名 `X：` 认推特。
+- **Git**：PR #61 合 `master` `e3fa3200`（功能 tip `74d21612`）。页面脚本戳 `aihot-split-0915a`。随后数据快照继续快进。不要在本机改 `data/**`。
+- **工作台同轮**：拆栏 PR #121 合 `main` `951a688`；网页 `parseItem` 丢精选标记后 PR #123 合 `main` `cbb7496`。NUC `C:\OMNIA\app` 已快进到 `cbb7496`，未重启 8765。细节在工作台仓。
+- **验收**：实现时相关 pytest 与 `npm run test:e2e` 已跑。生产快照约 516 条：推特 388、精选 14。用户先在独立雷达站看见拆栏，后在正式工作台确认「ok正常了」。
+- **当前无本轮四文件**。轻量拆栏，无四文件归档。
+- **未做**：本轮未再给 Mate X6 装新包。采集频率仍是整轮 Actions `7,37 * * * *`，不是这两个栏单独的日更。
 
 ## AI HOT 全部动态作未读收件箱（2026-09-14，已部署并验收）
 
