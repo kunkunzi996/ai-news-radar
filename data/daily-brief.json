@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-15T20:06:21.645828Z",
+  "generated_at": "2026-09-15T22:51:27.106714Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -76,15 +76,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.7856,
-      "importance": 0.7856,
-      "importance_score": 0.7856,
+      "score": 0.7792,
+      "importance": 0.7792,
+      "importance_score": 0.7792,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9225,
+        "recency": 0.8865,
         "story_heat": 0.5
       },
       "category": "multi_source",
@@ -138,15 +138,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7775,
-      "importance": 0.7775,
-      "importance_score": 0.7775,
+      "score": 0.7709,
+      "importance": 0.7709,
+      "importance_score": 0.7709,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9382,
+        "recency": 0.9017,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -199,15 +199,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7688,
-      "importance": 0.7688,
-      "importance_score": 0.7688,
+      "score": 0.7618,
+      "importance": 0.7618,
+      "importance_score": 0.7618,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.73,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9898,
+        "recency": 0.9512,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -260,15 +260,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7593,
-      "importance": 0.7593,
-      "importance_score": 0.7593,
+      "score": 0.753,
+      "importance": 0.753,
+      "importance_score": 0.753,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.887,
+        "recency": 0.8525,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -283,6 +283,67 @@
         "title": "404 Media 曝光 OpenAI 莉莉计划：人工审核 ChatGPT 聊天记录以优化模型",
         "url": "https://www.ithome.com/1/002/750.htm",
         "source": "IT之家（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_b25ec880834a",
+      "title": "Arena 更新 Image-to-WebDev 榜单：GPT-6 Astra 以 1733 分登顶",
+      "url": "https://x.com/arena/status/2099971741993050236",
+      "primary_url": "https://x.com/arena/status/2099971741993050236",
+      "source": "X：Arena (@arena)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "cdacdea8981dc2f68d230ebade00762b5ac59ed4",
+          "title": "Arena 更新 Image-to-WebDev 榜单：GPT-6 Astra 以 1733 分登顶",
+          "url": "https://x.com/arena/status/2099971741993050236",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T21:20:53Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Arena (@arena)"
+      ],
+      "items": [
+        {
+          "id": "cdacdea8981dc2f68d230ebade00762b5ac59ed4",
+          "title": "Arena 更新 Image-to-WebDev 榜单：GPT-6 Astra 以 1733 分登顶",
+          "url": "https://x.com/arena/status/2099971741993050236",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T21:20:53Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7517,
+      "importance": 0.7517,
+      "importance_score": 0.7517,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.68,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9784,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-15T21:20:53Z",
+      "latest_at": "2026-09-15T21:20:53Z",
+      "primary_item": {
+        "id": "cdacdea8981dc2f68d230ebade00762b5ac59ed4",
+        "title": "Arena 更新 Image-to-WebDev 榜单：GPT-6 Astra 以 1733 分登顶",
+        "url": "https://x.com/arena/status/2099971741993050236",
+        "source": "X：Arena (@arena)",
         "source_name": "AI HOT"
       }
     },
@@ -340,15 +401,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.758,
-      "importance": 0.758,
-      "importance_score": 0.758,
+      "score": 0.7513,
+      "importance": 0.7513,
+      "importance_score": 0.7513,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9579,
+        "recency": 0.9206,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -402,15 +463,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7561,
-      "importance": 0.7561,
-      "importance_score": 0.7561,
+      "score": 0.7501,
+      "importance": 0.7501,
+      "importance_score": 0.7501,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8528,
+        "recency": 0.8195,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -425,6 +486,66 @@
         "title": "Anthropic 与 OpenAI 提议协调放缓前沿 AI 开发，Cohere CEO 等批评者质疑其真实动机",
         "url": "https://the-decoder.com/not-everyone-is-convinced-that-big-ais-proposed-development-slowdown-is-really-about-safety",
         "source": "The Decoder：AI News（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_c8d222bf7d39",
+      "title": "Perplexity 自研 CobbleDB 替代 AWS DynamoDB，每年最多可节省一亿美元",
+      "url": "https://x.com/AravSrinivas/status/2099957318935028173",
+      "primary_url": "https://x.com/AravSrinivas/status/2099957318935028173",
+      "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "221ebd9826c4329ea766beb02d2c6824314439fc",
+          "title": "Perplexity 自研 CobbleDB 替代 AWS DynamoDB，每年最多可节省一亿美元",
+          "url": "https://x.com/AravSrinivas/status/2099957318935028173",
+          "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T20:23:34Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)"
+      ],
+      "items": [
+        {
+          "id": "221ebd9826c4329ea766beb02d2c6824314439fc",
+          "title": "Perplexity 自研 CobbleDB 替代 AWS DynamoDB，每年最多可节省一亿美元",
+          "url": "https://x.com/AravSrinivas/status/2099957318935028173",
+          "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T20:23:34Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7493,
+      "importance": 0.7493,
+      "importance_score": 0.7493,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.68,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.965,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-15T20:23:34Z",
+      "latest_at": "2026-09-15T20:23:34Z",
+      "primary_item": {
+        "id": "221ebd9826c4329ea766beb02d2c6824314439fc",
+        "title": "Perplexity 自研 CobbleDB 替代 AWS DynamoDB，每年最多可节省一亿美元",
+        "url": "https://x.com/AravSrinivas/status/2099957318935028173",
+        "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
         "source_name": "AI HOT"
       }
     },
@@ -481,22 +602,21 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7544,
-      "importance": 0.7544,
-      "importance_score": 0.7544,
+      "score": 0.7491,
+      "importance": 0.7491,
+      "importance_score": 0.7491,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7546,
+        "recency": 0.7252,
         "story_heat": 0.25
       },
       "category": "industry",
       "reasons": [
         "multi_source",
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-13T16:00:00Z",
       "latest_at": "2026-09-15T00:36:35.301000Z",
@@ -543,21 +663,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7533,
-      "importance": 0.7533,
-      "importance_score": 0.7533,
+      "score": 0.7481,
+      "importance": 0.7481,
+      "importance_score": 0.7481,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7372,
+        "recency": 0.7085,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-14T22:59:41Z",
       "latest_at": "2026-09-14T22:59:41Z",
@@ -566,6 +685,66 @@
         "title": "科技巨头放缓 AI 开发的口头协议是安全共识还是卡特尔",
         "url": "https://www.theverge.com/ai-artificial-intelligence/995186/is-big-techs-ai-slowdown-a-safety-pact-or-a-cartel",
         "source": "The Verge：AI（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_278d8c145905",
+      "title": "Gemini 3.8 Live 语音模型评测：Extended Thinking 版登顶 Speech to Speech Index",
+      "url": "https://x.com/ArtificialAnlys/status/2099977679307243773",
+      "primary_url": "https://x.com/ArtificialAnlys/status/2099977679307243773",
+      "source": "X：Artificial Analysis (@ArtificialAnlys)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "ef1eb72aa2a17b396108153a7a7a17028f0d6c69",
+          "title": "Gemini 3.8 Live 语音模型评测：Extended Thinking 版登顶 Speech to Speech Index",
+          "url": "https://x.com/ArtificialAnlys/status/2099977679307243773",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T21:44:29Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Artificial Analysis (@ArtificialAnlys)"
+      ],
+      "items": [
+        {
+          "id": "ef1eb72aa2a17b396108153a7a7a17028f0d6c69",
+          "title": "Gemini 3.8 Live 语音模型评测：Extended Thinking 版登顶 Speech to Speech Index",
+          "url": "https://x.com/ArtificialAnlys/status/2099977679307243773",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T21:44:29Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7467,
+      "importance": 0.7467,
+      "importance_score": 0.7467,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.66,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.984,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-15T21:44:29Z",
+      "latest_at": "2026-09-15T21:44:29Z",
+      "primary_item": {
+        "id": "ef1eb72aa2a17b396108153a7a7a17028f0d6c69",
+        "title": "Gemini 3.8 Live 语音模型评测：Extended Thinking 版登顶 Speech to Speech Index",
+        "url": "https://x.com/ArtificialAnlys/status/2099977679307243773",
+        "source": "X：Artificial Analysis (@ArtificialAnlys)",
         "source_name": "AI HOT"
       }
     },
@@ -604,15 +783,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7439,
-      "importance": 0.7439,
-      "importance_score": 0.7439,
+      "score": 0.7378,
+      "importance": 0.7378,
+      "importance_score": 0.7378,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8682,
+        "recency": 0.8344,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -664,15 +843,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.742,
-      "importance": 0.742,
-      "importance_score": 0.742,
+      "score": 0.7356,
+      "importance": 0.7356,
+      "importance_score": 0.7356,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9247,
+        "recency": 0.8887,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -686,6 +865,67 @@
         "title": "Noam Brown 谈 OpenAI 优先级：递归自我改进居首，并表达安全担忧",
         "url": "https://x.com/kimmonismus/status/2099871107226669391",
         "source": "X：Kim (@kimmonismus)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_be0c85865642",
+      "title": "Anthropic 年化收入从约 90 亿美元涨到逾 650 亿美元，Dario Amodei 谈增长预期",
+      "url": "https://x.com/rohanpaul_ai/status/2099971244838056150",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2099971244838056150",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "5e165c10274479dbe5f345fff9174a50fd72689f",
+          "title": "Anthropic 年化收入从约 90 亿美元涨到逾 650 亿美元，Dario Amodei 谈增长预期",
+          "url": "https://x.com/rohanpaul_ai/status/2099971244838056150",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T21:18:55Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "5e165c10274479dbe5f345fff9174a50fd72689f",
+          "title": "Anthropic 年化收入从约 90 亿美元涨到逾 650 亿美元，Dario Amodei 谈增长预期",
+          "url": "https://x.com/rohanpaul_ai/status/2099971244838056150",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T21:18:55Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7606,
+      "importance": 0.7606,
+      "importance_score": 0.7606,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.71,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.978,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-15T21:18:55Z",
+      "latest_at": "2026-09-15T21:18:55Z",
+      "primary_item": {
+        "id": "5e165c10274479dbe5f345fff9174a50fd72689f",
+        "title": "Anthropic 年化收入从约 90 亿美元涨到逾 650 亿美元，Dario Amodei 谈增长预期",
+        "url": "https://x.com/rohanpaul_ai/status/2099971244838056150",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -724,15 +964,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7374,
-      "importance": 0.7374,
-      "importance_score": 0.7374,
+      "score": 0.7306,
+      "importance": 0.7306,
+      "importance_score": 0.7306,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.64,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9656,
+        "recency": 0.928,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -784,15 +1024,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7349,
-      "importance": 0.7349,
-      "importance_score": 0.7349,
+      "score": 0.7305,
+      "importance": 0.7305,
+      "importance_score": 0.7305,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6352,
+        "recency": 0.6105,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -806,6 +1046,66 @@
         "title": "恶意 AI 智能体攻击 RubyGems.org：YARD 执行任意代码与 Fastly 缓存密钥利用分析",
         "url": "https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive",
         "source": "Hacker News：AI 热帖",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_02344d453e11",
+      "title": "SemiAnalysis 用 300+ 数据中心禁令地图反驳「禁令正在扼杀美国建设」的说法",
+      "url": "https://x.com/SemiAnalysis_/status/2099966076196880544",
+      "primary_url": "https://x.com/SemiAnalysis_/status/2099966076196880544",
+      "source": "X：SemiAnalysis (@SemiAnalysis_)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "128db010ab957144d8aaab85a8ce8a0c1c02cb6a",
+          "title": "SemiAnalysis 用 300+ 数据中心禁令地图反驳「禁令正在扼杀美国建设」的说法",
+          "url": "https://x.com/SemiAnalysis_/status/2099966076196880544",
+          "source": "X：SemiAnalysis (@SemiAnalysis_)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T20:58:22Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：SemiAnalysis (@SemiAnalysis_)"
+      ],
+      "items": [
+        {
+          "id": "128db010ab957144d8aaab85a8ce8a0c1c02cb6a",
+          "title": "SemiAnalysis 用 300+ 数据中心禁令地图反驳「禁令正在扼杀美国建设」的说法",
+          "url": "https://x.com/SemiAnalysis_/status/2099966076196880544",
+          "source": "X：SemiAnalysis (@SemiAnalysis_)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T20:58:22Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7268,
+      "importance": 0.7268,
+      "importance_score": 0.7268,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.6,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9732,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-15T20:58:22Z",
+      "latest_at": "2026-09-15T20:58:22Z",
+      "primary_item": {
+        "id": "128db010ab957144d8aaab85a8ce8a0c1c02cb6a",
+        "title": "SemiAnalysis 用 300+ 数据中心禁令地图反驳「禁令正在扼杀美国建设」的说法",
+        "url": "https://x.com/SemiAnalysis_/status/2099966076196880544",
+        "source": "X：SemiAnalysis (@SemiAnalysis_)",
         "source_name": "AI HOT"
       }
     },
@@ -844,15 +1144,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7299,
-      "importance": 0.7299,
-      "importance_score": 0.7299,
+      "score": 0.7231,
+      "importance": 0.7231,
+      "importance_score": 0.7231,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.61,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.974,
+        "recency": 0.9361,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -904,15 +1204,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7272,
-      "importance": 0.7272,
-      "importance_score": 0.7272,
+      "score": 0.7206,
+      "importance": 0.7206,
+      "importance_score": 0.7206,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9424,
+        "recency": 0.9057,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -964,15 +1264,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7268,
-      "importance": 0.7268,
-      "importance_score": 0.7268,
+      "score": 0.72,
+      "importance": 0.72,
+      "importance_score": 0.72,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.6,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9733,
+        "recency": 0.9354,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -986,306 +1286,6 @@
         "title": "Google Research 发布 Stellar Colosseum 多智能体框架，攻克长程数学研究任务",
         "url": "https://x.com/omarsar0/status/2099924717704732699",
         "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_1c92d8f97571",
-      "title": "ChatGPT Work 推出 Data agent，可将公司数据转为答案、仪表盘和行动",
-      "url": "https://x.com/gdb/status/2099919674544898298",
-      "primary_url": "https://x.com/gdb/status/2099919674544898298",
-      "source": "X：Greg Brockman (@gdb)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "5ace5681c0f2d7827d1663330f912da9e583aa11",
-          "title": "ChatGPT Work 推出 Data agent，可将公司数据转为答案、仪表盘和行动",
-          "url": "https://x.com/gdb/status/2099919674544898298",
-          "source": "X：Greg Brockman (@gdb)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T17:53:59Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Greg Brockman (@gdb)"
-      ],
-      "items": [
-        {
-          "id": "5ace5681c0f2d7827d1663330f912da9e583aa11",
-          "title": "ChatGPT Work 推出 Data agent，可将公司数据转为答案、仪表盘和行动",
-          "url": "https://x.com/gdb/status/2099919674544898298",
-          "source": "X：Greg Brockman (@gdb)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T17:53:59Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.726,
-      "importance": 0.726,
-      "importance_score": 0.726,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.6,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9686,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-15T17:53:59Z",
-      "latest_at": "2026-09-15T17:53:59Z",
-      "primary_item": {
-        "id": "5ace5681c0f2d7827d1663330f912da9e583aa11",
-        "title": "ChatGPT Work 推出 Data agent，可将公司数据转为答案、仪表盘和行动",
-        "url": "https://x.com/gdb/status/2099919674544898298",
-        "source": "X：Greg Brockman (@gdb)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_dc4a5944da49",
-      "title": "Apple 发布新一代 Apple Intelligence，Siri AI 正式以测试版上线",
-      "url": "https://www.apple.com/newsroom/2026/09/siri-ai-a-profoundly-more-capable-and-personal-assistant-is-here",
-      "primary_url": "https://www.apple.com/newsroom/2026/09/siri-ai-a-profoundly-more-capable-and-personal-assistant-is-here",
-      "source": "Apple：Newsroom（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "957353dde116e324837409e8be470d90e7933e47",
-          "title": "Apple 发布新一代 Apple Intelligence，Siri AI 正式以测试版上线",
-          "url": "https://www.apple.com/newsroom/2026/09/siri-ai-a-profoundly-more-capable-and-personal-assistant-is-here",
-          "source": "Apple：Newsroom（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T17:09:41.324000Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Apple：Newsroom（RSS）"
-      ],
-      "items": [
-        {
-          "id": "957353dde116e324837409e8be470d90e7933e47",
-          "title": "Apple 发布新一代 Apple Intelligence，Siri AI 正式以测试版上线",
-          "url": "https://www.apple.com/newsroom/2026/09/siri-ai-a-profoundly-more-capable-and-personal-assistant-is-here",
-          "source": "Apple：Newsroom（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T17:09:41.324000Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7246,
-      "importance": 0.7246,
-      "importance_score": 0.7246,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.77,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6777,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T17:09:41.324000Z",
-      "latest_at": "2026-09-14T17:09:41.324000Z",
-      "primary_item": {
-        "id": "957353dde116e324837409e8be470d90e7933e47",
-        "title": "Apple 发布新一代 Apple Intelligence，Siri AI 正式以测试版上线",
-        "url": "https://www.apple.com/newsroom/2026/09/siri-ai-a-profoundly-more-capable-and-personal-assistant-is-here",
-        "source": "Apple：Newsroom（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_b5fd1928c34b",
-      "title": "Claude for Small Business 新增 43 个工作流和 27 个集成，并推出免费培训计划",
-      "url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
-      "primary_url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
-      "source": "Claude：Blog（网页）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "4b3e2f673c6f63bf19e76aeb6e8dc792e8309517",
-          "title": "Claude for Small Business 新增 43 个工作流和 27 个集成，并推出免费培训计划",
-          "url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
-          "source": "Claude：Blog（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T17:21:21.489000Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Claude：Blog（网页）"
-      ],
-      "items": [
-        {
-          "id": "4b3e2f673c6f63bf19e76aeb6e8dc792e8309517",
-          "title": "Claude for Small Business 新增 43 个工作流和 27 个集成，并推出免费培训计划",
-          "url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
-          "source": "Claude：Blog（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T17:21:21.489000Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7246,
-      "importance": 0.7246,
-      "importance_score": 0.7246,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.6,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9611,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-15T17:21:21.489000Z",
-      "latest_at": "2026-09-15T17:21:21.489000Z",
-      "primary_item": {
-        "id": "4b3e2f673c6f63bf19e76aeb6e8dc792e8309517",
-        "title": "Claude for Small Business 新增 43 个工作流和 27 个集成，并推出免费培训计划",
-        "url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
-        "source": "Claude：Blog（网页）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_e379308c5066",
-      "title": "Anthropic 自述 Coding Agent 让代码量增 8 倍后 CI 扛不住的改造经历",
-      "url": "https://x.com/frxiaobei/status/2099821868232614001",
-      "primary_url": "https://x.com/frxiaobei/status/2099821868232614001",
-      "source": "X：小北 (@frxiaobei)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "ccb6c42efa4a54d8a4473dc59291595ecb721b1e",
-          "title": "Anthropic 自述 Coding Agent 让代码量增 8 倍后 CI 扛不住的改造经历",
-          "url": "https://x.com/frxiaobei/status/2099821868232614001",
-          "source": "X：小北 (@frxiaobei)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T11:25:20Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：小北 (@frxiaobei)"
-      ],
-      "items": [
-        {
-          "id": "ccb6c42efa4a54d8a4473dc59291595ecb721b1e",
-          "title": "Anthropic 自述 Coding Agent 让代码量增 8 倍后 CI 扛不住的改造经历",
-          "url": "https://x.com/frxiaobei/status/2099821868232614001",
-          "source": "X：小北 (@frxiaobei)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T11:25:20Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7224,
-      "importance": 0.7224,
-      "importance_score": 0.7224,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.64,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8821,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-15T11:25:20Z",
-      "latest_at": "2026-09-15T11:25:20Z",
-      "primary_item": {
-        "id": "ccb6c42efa4a54d8a4473dc59291595ecb721b1e",
-        "title": "Anthropic 自述 Coding Agent 让代码量增 8 倍后 CI 扛不住的改造经历",
-        "url": "https://x.com/frxiaobei/status/2099821868232614001",
-        "source": "X：小北 (@frxiaobei)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_054fdddd65bd",
-      "title": "微信团队开源 WeKnora 知识框架，GitHub 星标破 2.3 万",
-      "url": "https://x.com/AYi_AInotes/status/2099858387928244547",
-      "primary_url": "https://x.com/AYi_AInotes/status/2099858387928244547",
-      "source": "X：阿易 AI Notes (@AYi_AInotes)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "0d8158f8c8b359256cc0e6a98c5b77ec4a2369d9",
-          "title": "微信团队开源 WeKnora 知识框架，GitHub 星标破 2.3 万",
-          "url": "https://x.com/AYi_AInotes/status/2099858387928244547",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T13:50:27Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：阿易 AI Notes (@AYi_AInotes)"
-      ],
-      "items": [
-        {
-          "id": "0d8158f8c8b359256cc0e6a98c5b77ec4a2369d9",
-          "title": "微信团队开源 WeKnora 知识框架，GitHub 星标破 2.3 万",
-          "url": "https://x.com/AYi_AInotes/status/2099858387928244547",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T13:50:27Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.74,
-      "importance": 0.74,
-      "importance_score": 0.74,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.68,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9135,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-15T13:50:27Z",
-      "latest_at": "2026-09-15T13:50:27Z",
-      "primary_item": {
-        "id": "0d8158f8c8b359256cc0e6a98c5b77ec4a2369d9",
-        "title": "微信团队开源 WeKnora 知识框架，GitHub 星标破 2.3 万",
-        "url": "https://x.com/AYi_AInotes/status/2099858387928244547",
-        "source": "X：阿易 AI Notes (@AYi_AInotes)",
         "source_name": "AI HOT"
       }
     }
