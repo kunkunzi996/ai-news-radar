@@ -44,6 +44,7 @@ from scripts.radar.common import (
     WE_MP_RSS_SITE_NAME,
     WEWE_RSS_SITE_ID,
     WEWE_RSS_SITE_NAME,
+    aihot_archive_record_is_reader_visible,
     apply_public_raw_meta,
     create_session,
     create_github_session,
@@ -1232,6 +1233,8 @@ def enrich_stage(session: Any, ctx: RunContext, collected: CollectStageResult, m
             str(record.get("site_id") or "") == GITHUB_REPO_SUBSCRIPTION_SITE_ID
             and not github_archive_record_is_reader_visible(record)
         ):
+            continue
+        if not aihot_archive_record_is_reader_visible(record):
             continue
         if not all_time and not parse_iso(record.get("published_at")):
             continue

@@ -45,7 +45,7 @@ from scripts.radar.common import (
     host_of_url,
     iso,
     is_mostly_english,
-    is_x_original_url,
+    aihot_archive_record_is_reader_visible,
     maybe_fix_mojibake,
     normalize_url,
     parse_iso,
@@ -1555,7 +1555,7 @@ def build_creator_hot_items(
         ):
             # 保留历史归档，但不让低置信度 GitHub 更新进入读者展示池。
             continue
-        if str(record.get("site_id") or "") == "aihot" and not is_x_original_url(str(record.get("url") or "")):
+        if not aihot_archive_record_is_reader_visible(record):
             continue
         if window_hours is not None and not parse_iso(record.get("published_at")):
             continue

@@ -687,6 +687,14 @@ def is_x_original_url(raw_url: str) -> bool:
     return host in X_ORIGINAL_HOSTS
 
 
+def aihot_archive_record_is_reader_visible(record: Any) -> bool:
+    if not isinstance(record, dict):
+        return False
+    if str(record.get("site_id") or "") != "aihot":
+        return True
+    return is_x_original_url(str(record.get("url") or ""))
+
+
 def first_non_empty(*values: Any) -> str:
     for value in values:
         if value is None:

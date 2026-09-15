@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import patch
 
-from scripts.radar.common import is_x_original_url
+from scripts.radar.common import aihot_archive_record_is_reader_visible, is_x_original_url
 from scripts.radar.pipeline import load_archive_for_collection, prune_archive_records
 from scripts.update_news import (
     add_creator_ranking_fields,
@@ -437,6 +437,23 @@ class TopicFilterTests(unittest.TestCase):
         self.assertFalse(is_x_original_url("https://nitter.net/a/status/1"))
         self.assertFalse(is_x_original_url("https://vxtwitter.com/a/status/1"))
         self.assertFalse(is_x_original_url(""))
+
+    def test_aihot_archive_record_is_reader_visible_hides_non_x(self):
+        self.assertTrue(
+            aihot_archive_record_is_reader_visible(
+                {"site_id": "aihot", "url": "https://x.com/a/status/1"}
+            )
+        )
+        self.assertFalse(
+            aihot_archive_record_is_reader_visible(
+                {"site_id": "aihot", "url": "https://www.ithome.com/0/1.htm"}
+            )
+        )
+        self.assertTrue(
+            aihot_archive_record_is_reader_visible(
+                {"site_id": "bilibili_dynamic", "url": "https://t.bilibili.com/1"}
+            )
+        )
 
     def test_parse_aihot_api_items_keeps_all_x_pool_and_original_links(self):
         payload = {

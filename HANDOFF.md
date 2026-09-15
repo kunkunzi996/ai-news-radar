@@ -5,7 +5,7 @@
 ## AI HOT 只留 X 原文（2026-09-15，部署中）
 
 - 仍采公开池 `mode=all`，不走精选/分数门。只按原文主机 `x.com` / `twitter.com`（含 `www.` / `mobile.`）留条目，不要用源名 `X：` 认推特。
-- 采集解析丢掉非 X；`build_creator_hot_items` 也丢掉归档里已有的非 X，这样下一轮发布就能从列表里消失。不要在本机改 `data/**`。
+- 采集解析丢掉非 X。读者列表走 `cli.py` 归档发布循环，必须在那里按主机过滤；只改 `build_creator_hot_items` 不够。不要在本机改 `data/**`。
 - 工作台不用改：它只认 `siteId=aihot`。已阅仍用推特链接。
 - 本提交上 `master`。推送后由 Actions 重采发布。本仓无活跃四文件。
 
