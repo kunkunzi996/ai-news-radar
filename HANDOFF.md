@@ -2,12 +2,12 @@
 
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，完整状态在 `PROJECT_STATE.md`。
 
-## 推特栏 + AI HOT 精选拆栏（2026-09-15，待合入验收）
+## 推特栏 + AI HOT 精选拆栏（2026-09-15，已验收）
 
-- 同一 `siteId=aihot`。推特栏 = X 原文；AI HOT 栏 = `aihot_selected`。采集 `mode=selected` 再 `mode=all`。
-- 发布只藏「既不是 X、也不是精选」的旧噪音。不要在本机改 `data/**`。
-- 工作台网页和鸿蒙必须同步拆栏，否则原生列表又会混在一起。工作台仓分支同名 `feat/twitter-aihot-split`。
-- 本仓无活跃四文件。当前在工作树 `ai-news-radar-twitter-aihot` / 分支 `feat/twitter-aihot-split`。
+- 同一 `siteId=aihot`。推特栏 = X 原文；AI HOT 栏 = `aihot_selected`。采集 `mode=selected` 再 `mode=all`。发布只藏「既不是 X、也不是精选」的旧噪音。
+- PR #61 已合 `master`（`e3fa3200`）。脚本戳 `aihot-split-0915a`。不要在本机改 `data/**`。
+- 工作台网页必须留下精选标记，单靠拆栏过滤不够：PR #123 修了 `parseItem`。NUC 工作台已快进。鸿蒙解析本来就留字段；本轮未再装 App 包。
+- 本仓无活跃四文件。下一需求先读 PROJECT_STATE.md、CONTEXT.md、`docs/SOURCE_COVERAGE.md`。
 
 ## AI HOT 全部动态作未读收件箱（2026-09-14，已验收）
 
