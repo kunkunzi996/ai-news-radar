@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-15T03:13:40.816630Z",
+  "generated_at": "2026-09-15T06:35:55.024796Z",
   "window_hours": 24,
-  "total_items": 17,
+  "total_items": 11,
   "items": [
     {
       "story_id": "story_8b0ededf044a",
@@ -38,21 +38,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7502,
-      "importance": 0.7502,
-      "importance_score": 0.7502,
+      "score": 0.7417,
+      "importance": 0.7417,
+      "importance_score": 0.7417,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9865,
+        "recency": 0.9397,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-15T02:17:24Z",
       "latest_at": "2026-09-15T02:17:24Z",
@@ -61,6 +60,186 @@
         "title": "All-In 峰会特朗普当众否决 AI 减速论：数据中心类比石油",
         "url": "https://x.com/AYi_AInotes/status/2099683976382214217",
         "source": "X：阿易 AI Notes (@AYi_AInotes)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_1f582ddc083f",
+      "title": "Artificial Analysis 评测：GPT-Live-1 以 81.5 分登顶 Speech to Speech Index",
+      "url": "https://x.com/ArtificialAnlys/status/2099698254414029207",
+      "primary_url": "https://x.com/ArtificialAnlys/status/2099698254414029207",
+      "source": "X：Artificial Analysis (@ArtificialAnlys)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "6b1923544a77677e55f0ac65b1ffa522007a8768",
+          "title": "Artificial Analysis 评测：GPT-Live-1 以 81.5 分登顶 Speech to Speech Index",
+          "url": "https://x.com/ArtificialAnlys/status/2099698254414029207",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T03:14:09Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Artificial Analysis (@ArtificialAnlys)"
+      ],
+      "items": [
+        {
+          "id": "6b1923544a77677e55f0ac65b1ffa522007a8768",
+          "title": "Artificial Analysis 评测：GPT-Live-1 以 81.5 分登顶 Speech to Speech Index",
+          "url": "https://x.com/ArtificialAnlys/status/2099698254414029207",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T03:14:09Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7411,
+      "importance": 0.7411,
+      "importance_score": 0.7411,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.66,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9526,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-15T03:14:09Z",
+      "latest_at": "2026-09-15T03:14:09Z",
+      "primary_item": {
+        "id": "6b1923544a77677e55f0ac65b1ffa522007a8768",
+        "title": "Artificial Analysis 评测：GPT-Live-1 以 81.5 分登顶 Speech to Speech Index",
+        "url": "https://x.com/ArtificialAnlys/status/2099698254414029207",
+        "source": "X：Artificial Analysis (@ArtificialAnlys)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_5d6cade5e3d2",
+      "title": "OpenAI 研究员发文解释实验室员工突然感到恐惧的原因",
+      "url": "https://x.com/AISafetyMemes/status/2099697763349155919",
+      "primary_url": "https://x.com/AISafetyMemes/status/2099697763349155919",
+      "source": "X：AI Safety Memes (@AISafetyMemes)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "1ef3022e7715412ae78dd4694a43b5e9416a65f3",
+          "title": "OpenAI 研究员发文解释实验室员工突然感到恐惧的原因",
+          "url": "https://x.com/AISafetyMemes/status/2099697763349155919",
+          "source": "X：AI Safety Memes (@AISafetyMemes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T03:12:11Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：AI Safety Memes (@AISafetyMemes)"
+      ],
+      "items": [
+        {
+          "id": "1ef3022e7715412ae78dd4694a43b5e9416a65f3",
+          "title": "OpenAI 研究员发文解释实验室员工突然感到恐惧的原因",
+          "url": "https://x.com/AISafetyMemes/status/2099697763349155919",
+          "source": "X：AI Safety Memes (@AISafetyMemes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T03:12:11Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.732,
+      "importance": 0.732,
+      "importance_score": 0.732,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.63,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9521,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-15T03:12:11Z",
+      "latest_at": "2026-09-15T03:12:11Z",
+      "primary_item": {
+        "id": "1ef3022e7715412ae78dd4694a43b5e9416a65f3",
+        "title": "OpenAI 研究员发文解释实验室员工突然感到恐惧的原因",
+        "url": "https://x.com/AISafetyMemes/status/2099697763349155919",
+        "source": "X：AI Safety Memes (@AISafetyMemes)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_4a7be725d6af",
+      "title": "Prefill 与 Decode 讲解：为什么 AI 读完长文档才回话，写长文却越写越慢",
+      "url": "https://x.com/dongxi_nlp/status/2099713825402425623",
+      "primary_url": "https://x.com/dongxi_nlp/status/2099713825402425623",
+      "source": "X：马东锡 NLP (@dongxi_nlp)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "5be9fa2dbf9274c3c32eb22209d11a14b93e79ac",
+          "title": "Prefill 与 Decode 讲解：为什么 AI 读完长文档才回话，写长文却越写越慢",
+          "url": "https://x.com/dongxi_nlp/status/2099713825402425623",
+          "source": "X：马东锡 NLP (@dongxi_nlp)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T04:16:01Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：马东锡 NLP (@dongxi_nlp)"
+      ],
+      "items": [
+        {
+          "id": "5be9fa2dbf9274c3c32eb22209d11a14b93e79ac",
+          "title": "Prefill 与 Decode 讲解：为什么 AI 读完长文档才回话，写长文却越写越慢",
+          "url": "https://x.com/dongxi_nlp/status/2099713825402425623",
+          "source": "X：马东锡 NLP (@dongxi_nlp)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T04:16:01Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7316,
+      "importance": 0.7316,
+      "importance_score": 0.7316,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.62,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9669,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-15T04:16:01Z",
+      "latest_at": "2026-09-15T04:16:01Z",
+      "primary_item": {
+        "id": "5be9fa2dbf9274c3c32eb22209d11a14b93e79ac",
+        "title": "Prefill 与 Decode 讲解：为什么 AI 读完长文档才回话，写长文却越写越慢",
+        "url": "https://x.com/dongxi_nlp/status/2099713825402425623",
+        "source": "X：马东锡 NLP (@dongxi_nlp)",
         "source_name": "AI HOT"
       }
     },
@@ -99,15 +278,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7388,
-      "importance": 0.7388,
-      "importance_score": 0.7388,
+      "score": 0.7308,
+      "importance": 0.7308,
+      "importance_score": 0.7308,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9402,
+        "recency": 0.8956,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -159,15 +338,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7373,
-      "importance": 0.7373,
-      "importance_score": 0.7373,
+      "score": 0.729,
+      "importance": 0.729,
+      "importance_score": 0.729,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.64,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9649,
+        "recency": 0.919,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -219,15 +398,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7314,
-      "importance": 0.7314,
-      "importance_score": 0.7314,
+      "score": 0.7231,
+      "importance": 0.7231,
+      "importance_score": 0.7231,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9654,
+        "recency": 0.9196,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -241,6 +420,66 @@
         "title": "Reuters：Bernie Sanders 与 Steve Bannon 将共同呼吁限制 AI",
         "url": "https://x.com/rohanpaul_ai/status/2099661363534860598",
         "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_e329e221a576",
+      "title": "上海人工智能实验室发布 Atria Dawn Preview，744B 纯文本模型主打可验证交付",
+      "url": "https://x.com/AYi_AInotes/status/2099705084590293304",
+      "primary_url": "https://x.com/AYi_AInotes/status/2099705084590293304",
+      "source": "X：阿易 AI Notes (@AYi_AInotes)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "4f0406f416c5010d65a13f1edec2f505a36646b7",
+          "title": "上海人工智能实验室发布 Atria Dawn Preview，744B 纯文本模型主打可验证交付",
+          "url": "https://x.com/AYi_AInotes/status/2099705084590293304",
+          "source": "X：阿易 AI Notes (@AYi_AInotes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T03:41:17Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：阿易 AI Notes (@AYi_AInotes)"
+      ],
+      "items": [
+        {
+          "id": "4f0406f416c5010d65a13f1edec2f505a36646b7",
+          "title": "上海人工智能实验室发布 Atria Dawn Preview，744B 纯文本模型主打可验证交付",
+          "url": "https://x.com/AYi_AInotes/status/2099705084590293304",
+          "source": "X：阿易 AI Notes (@AYi_AInotes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T03:41:17Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7362,
+      "importance": 0.7362,
+      "importance_score": 0.7362,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.64,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9588,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-15T03:41:17Z",
+      "latest_at": "2026-09-15T03:41:17Z",
+      "primary_item": {
+        "id": "4f0406f416c5010d65a13f1edec2f505a36646b7",
+        "title": "上海人工智能实验室发布 Atria Dawn Preview，744B 纯文本模型主打可验证交付",
+        "url": "https://x.com/AYi_AInotes/status/2099705084590293304",
+        "source": "X：阿易 AI Notes (@AYi_AInotes)",
         "source_name": "AI HOT"
       }
     },
@@ -279,15 +518,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.731,
-      "importance": 0.731,
-      "importance_score": 0.731,
+      "score": 0.7228,
+      "importance": 0.7228,
+      "importance_score": 0.7228,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9635,
+        "recency": 0.9178,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -301,306 +540,6 @@
         "title": "奥巴马表态支持放慢 AI 开发并呼吁美国主导国际 AI 安全标准",
         "url": "https://x.com/AISafetyMemes/status/2099659297005433002",
         "source": "X：AI Safety Memes (@AISafetyMemes)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_eb4d52e3874b",
-      "title": "DeepSeek-V4.1-Flash （Max） 进入 Agent Arena 开源模型第 3 名",
-      "url": "https://x.com/arena/status/2099549108013006958",
-      "primary_url": "https://x.com/arena/status/2099549108013006958",
-      "source": "X：Arena (@arena)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "d0417de2ad3c894d37359950c13deddcf6755d82",
-          "title": "DeepSeek-V4.1-Flash （Max） 进入 Agent Arena 开源模型第 3 名",
-          "url": "https://x.com/arena/status/2099549108013006958",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T17:21:29Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Arena (@arena)"
-      ],
-      "items": [
-        {
-          "id": "d0417de2ad3c894d37359950c13deddcf6755d82",
-          "title": "DeepSeek-V4.1-Flash （Max） 进入 Agent Arena 开源模型第 3 名",
-          "url": "https://x.com/arena/status/2099549108013006958",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T17:21:29Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7257,
-      "importance": 0.7257,
-      "importance_score": 0.7257,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8672,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T17:21:29Z",
-      "latest_at": "2026-09-14T17:21:29Z",
-      "primary_item": {
-        "id": "d0417de2ad3c894d37359950c13deddcf6755d82",
-        "title": "DeepSeek-V4.1-Flash （Max） 进入 Agent Arena 开源模型第 3 名",
-        "url": "https://x.com/arena/status/2099549108013006958",
-        "source": "X：Arena (@arena)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_f526f45947e3",
-      "title": "Trump 与黄仁勋在 All In Summit 回应 Dario Amodei 的放缓提议",
-      "url": "https://x.com/kimmonismus/status/2099644362720162044",
-      "primary_url": "https://x.com/kimmonismus/status/2099644362720162044",
-      "source": "X：Kim (@kimmonismus)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "bfd1fd7e2c9342563417ae272efb3fb28f15b7e8",
-          "title": "Trump 与黄仁勋在 All In Summit 回应 Dario Amodei 的放缓提议",
-          "url": "https://x.com/kimmonismus/status/2099644362720162044",
-          "source": "X：Kim (@kimmonismus)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T23:40:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Kim (@kimmonismus)"
-      ],
-      "items": [
-        {
-          "id": "bfd1fd7e2c9342563417ae272efb3fb28f15b7e8",
-          "title": "Trump 与黄仁勋在 All In Summit 回应 Dario Amodei 的放缓提议",
-          "url": "https://x.com/kimmonismus/status/2099644362720162044",
-          "source": "X：Kim (@kimmonismus)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T23:40:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7256,
-      "importance": 0.7256,
-      "importance_score": 0.7256,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.61,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9499,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T23:40:00Z",
-      "latest_at": "2026-09-14T23:40:00Z",
-      "primary_item": {
-        "id": "bfd1fd7e2c9342563417ae272efb3fb28f15b7e8",
-        "title": "Trump 与黄仁勋在 All In Summit 回应 Dario Amodei 的放缓提议",
-        "url": "https://x.com/kimmonismus/status/2099644362720162044",
-        "source": "X：Kim (@kimmonismus)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_bdc1ffa510b1",
-      "title": "硅基流动上线开源模型 Hy4 preview，770B 总参数、1M 上下文",
-      "url": "https://x.com/SiliconFlowAI/status/2099536759168352634",
-      "primary_url": "https://x.com/SiliconFlowAI/status/2099536759168352634",
-      "source": "X：硅基流动 SiliconFlow (@SiliconFlowAI)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "7e7bdae7d1c78f04ba6c32e9eb975ad87f92e758",
-          "title": "硅基流动上线开源模型 Hy4 preview，770B 总参数、1M 上下文",
-          "url": "https://x.com/SiliconFlowAI/status/2099536759168352634",
-          "source": "X：硅基流动 SiliconFlow (@SiliconFlowAI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T16:32:25Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：硅基流动 SiliconFlow (@SiliconFlowAI)"
-      ],
-      "items": [
-        {
-          "id": "7e7bdae7d1c78f04ba6c32e9eb975ad87f92e758",
-          "title": "硅基流动上线开源模型 Hy4 preview，770B 总参数、1M 上下文",
-          "url": "https://x.com/SiliconFlowAI/status/2099536759168352634",
-          "source": "X：硅基流动 SiliconFlow (@SiliconFlowAI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T16:32:25Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7239,
-      "importance": 0.7239,
-      "importance_score": 0.7239,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.857,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T16:32:25Z",
-      "latest_at": "2026-09-14T16:32:25Z",
-      "primary_item": {
-        "id": "7e7bdae7d1c78f04ba6c32e9eb975ad87f92e758",
-        "title": "硅基流动上线开源模型 Hy4 preview，770B 总参数、1M 上下文",
-        "url": "https://x.com/SiliconFlowAI/status/2099536759168352634",
-        "source": "X：硅基流动 SiliconFlow (@SiliconFlowAI)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_4172ebf0cb99",
-      "title": "karminski 实测浏览器内全端运行的 MiniCPM5-2B Coding Agent",
-      "url": "https://x.com/karminski3/status/2099633181934907654",
-      "primary_url": "https://x.com/karminski3/status/2099633181934907654",
-      "source": "X：karminski (@karminski3)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "fe8d7d1252d448d0e0d7da14599d8c5de40dd11f",
-          "title": "karminski 实测浏览器内全端运行的 MiniCPM5-2B Coding Agent",
-          "url": "https://x.com/karminski3/status/2099633181934907654",
-          "source": "X：karminski (@karminski3)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T22:55:34Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：karminski (@karminski3)"
-      ],
-      "items": [
-        {
-          "id": "fe8d7d1252d448d0e0d7da14599d8c5de40dd11f",
-          "title": "karminski 实测浏览器内全端运行的 MiniCPM5-2B Coding Agent",
-          "url": "https://x.com/karminski3/status/2099633181934907654",
-          "source": "X：karminski (@karminski3)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T22:55:34Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7238,
-      "importance": 0.7238,
-      "importance_score": 0.7238,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.61,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9398,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T22:55:34Z",
-      "latest_at": "2026-09-14T22:55:34Z",
-      "primary_item": {
-        "id": "fe8d7d1252d448d0e0d7da14599d8c5de40dd11f",
-        "title": "karminski 实测浏览器内全端运行的 MiniCPM5-2B Coding Agent",
-        "url": "https://x.com/karminski3/status/2099633181934907654",
-        "source": "X：karminski (@karminski3)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_948df33b601b",
-      "title": "Bolt 发布 Forge 智能体，仅运行开源权重模型",
-      "url": "https://x.com/testingcatalog/status/2099535055475368071",
-      "primary_url": "https://x.com/testingcatalog/status/2099535055475368071",
-      "source": "X：Testing Catalog (@testingcatalog)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "a79fdc548d09c30d5d2a3fac33a8af1366ae9600",
-          "title": "Bolt 发布 Forge 智能体，仅运行开源权重模型",
-          "url": "https://x.com/testingcatalog/status/2099535055475368071",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T16:25:39Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Testing Catalog (@testingcatalog)"
-      ],
-      "items": [
-        {
-          "id": "a79fdc548d09c30d5d2a3fac33a8af1366ae9600",
-          "title": "Bolt 发布 Forge 智能体，仅运行开源权重模型",
-          "url": "https://x.com/testingcatalog/status/2099535055475368071",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T16:25:39Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7206,
-      "importance": 0.7206,
-      "importance_score": 0.7206,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.65,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8556,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T16:25:39Z",
-      "latest_at": "2026-09-14T16:25:39Z",
-      "primary_item": {
-        "id": "a79fdc548d09c30d5d2a3fac33a8af1366ae9600",
-        "title": "Bolt 发布 Forge 智能体，仅运行开源权重模型",
-        "url": "https://x.com/testingcatalog/status/2099535055475368071",
-        "source": "X：Testing Catalog (@testingcatalog)",
         "source_name": "AI HOT"
       }
     },
@@ -639,15 +578,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7376,
-      "importance": 0.7376,
-      "importance_score": 0.7376,
+      "score": 0.7292,
+      "importance": 0.7292,
+      "importance_score": 0.7292,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9832,
+        "recency": 0.9365,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -661,306 +600,6 @@
         "title": "Atria Dawn Preview 发布：基于 GLM-5.2 的 744B MoE 开源 Agent 基础模型",
         "url": "https://x.com/AYi_AInotes/status/2099680466248892487",
         "source": "X：阿易 AI Notes (@AYi_AInotes)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_25ba683393e5",
-      "title": "WSJ：OpenAI 以超 3 亿美元收购手机相机初创公司 Glass Imaging",
-      "url": "https://x.com/rohanpaul_ai/status/2099607669288128946",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2099607669288128946",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "30bb061b9fc5db773c8458a68df796050bbd8d6f",
-          "title": "WSJ：OpenAI 以超 3 亿美元收购手机相机初创公司 Glass Imaging",
-          "url": "https://x.com/rohanpaul_ai/status/2099607669288128946",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T21:14:11Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "30bb061b9fc5db773c8458a68df796050bbd8d6f",
-          "title": "WSJ：OpenAI 以超 3 亿美元收购手机相机初创公司 Glass Imaging",
-          "url": "https://x.com/rohanpaul_ai/status/2099607669288128946",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T21:14:11Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7257,
-      "importance": 0.7257,
-      "importance_score": 0.7257,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.63,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9171,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T21:14:11Z",
-      "latest_at": "2026-09-14T21:14:11Z",
-      "primary_item": {
-        "id": "30bb061b9fc5db773c8458a68df796050bbd8d6f",
-        "title": "WSJ：OpenAI 以超 3 亿美元收购手机相机初创公司 Glass Imaging",
-        "url": "https://x.com/rohanpaul_ai/status/2099607669288128946",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_c8ee7343f89f",
-      "title": "Nvidia、Palantir 与 Booz Allen 因数据留存担忧限制使用 Anthropic 的 Fable",
-      "url": "https://x.com/kimmonismus/status/2099592517037727854",
-      "primary_url": "https://x.com/kimmonismus/status/2099592517037727854",
-      "source": "X：Kim (@kimmonismus)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "7059110c8eb887dd748553e7c72cbf26c6630fb9",
-          "title": "Nvidia、Palantir 与 Booz Allen 因数据留存担忧限制使用 Anthropic 的 Fable",
-          "url": "https://x.com/kimmonismus/status/2099592517037727854",
-          "source": "X：Kim (@kimmonismus)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T20:13:59Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Kim (@kimmonismus)"
-      ],
-      "items": [
-        {
-          "id": "7059110c8eb887dd748553e7c72cbf26c6630fb9",
-          "title": "Nvidia、Palantir 与 Booz Allen 因数据留存担忧限制使用 Anthropic 的 Fable",
-          "url": "https://x.com/kimmonismus/status/2099592517037727854",
-          "source": "X：Kim (@kimmonismus)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T20:13:59Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7233,
-      "importance": 0.7233,
-      "importance_score": 0.7233,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.63,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9039,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T20:13:59Z",
-      "latest_at": "2026-09-14T20:13:59Z",
-      "primary_item": {
-        "id": "7059110c8eb887dd748553e7c72cbf26c6630fb9",
-        "title": "Nvidia、Palantir 与 Booz Allen 因数据留存担忧限制使用 Anthropic 的 Fable",
-        "url": "https://x.com/kimmonismus/status/2099592517037727854",
-        "source": "X：Kim (@kimmonismus)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_86497a8ad19c",
-      "title": "据报道 Anthropic 与 RUM Group 旗下佐治亚州站点签署 137 亿美元 6 年算力协议",
-      "url": "https://x.com/rohanpaul_ai/status/2099332537608970423",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2099332537608970423",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "521c8081c5552ce73d0e740a31350b921b437216",
-          "title": "据报道 Anthropic 与 RUM Group 旗下佐治亚州站点签署 137 亿美元 6 年算力协议",
-          "url": "https://x.com/rohanpaul_ai/status/2099332537608970423",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T03:00:55Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "521c8081c5552ce73d0e740a31350b921b437216",
-          "title": "据报道 Anthropic 与 RUM Group 旗下佐治亚州站点签署 137 亿美元 6 年算力协议",
-          "url": "https://x.com/rohanpaul_ai/status/2099332537608970423",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T03:00:55Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7235,
-      "importance": 0.7235,
-      "importance_score": 0.7235,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.75,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7049,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T03:00:55Z",
-      "latest_at": "2026-09-14T03:00:55Z",
-      "primary_item": {
-        "id": "521c8081c5552ce73d0e740a31350b921b437216",
-        "title": "据报道 Anthropic 与 RUM Group 旗下佐治亚州站点签署 137 亿美元 6 年算力协议",
-        "url": "https://x.com/rohanpaul_ai/status/2099332537608970423",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_a2a557bdda00",
-      "title": "特朗普在 Truth Social 发文抨击 AI 放慢声音，称存在针对 AI 与数据中心的阴谋",
-      "url": "https://x.com/rohanpaul_ai/status/2099518506085859401",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2099518506085859401",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "368860cc4ed1100945547a816d94765993627474",
-          "title": "特朗普在 Truth Social 发文抨击 AI 放慢声音，称存在针对 AI 与数据中心的阴谋",
-          "url": "https://x.com/rohanpaul_ai/status/2099518506085859401",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T15:19:53Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "368860cc4ed1100945547a816d94765993627474",
-          "title": "特朗普在 Truth Social 发文抨击 AI 放慢声音，称存在针对 AI 与数据中心的阴谋",
-          "url": "https://x.com/rohanpaul_ai/status/2099518506085859401",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T15:19:53Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7212,
-      "importance": 0.7212,
-      "importance_score": 0.7212,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8422,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T15:19:53Z",
-      "latest_at": "2026-09-14T15:19:53Z",
-      "primary_item": {
-        "id": "368860cc4ed1100945547a816d94765993627474",
-        "title": "特朗普在 Truth Social 发文抨击 AI 放慢声音，称存在针对 AI 与数据中心的阴谋",
-        "url": "https://x.com/rohanpaul_ai/status/2099518506085859401",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_cba03aa17552",
-      "title": "特朗普在 All In Summit 现场连线 Jensen 称放慢 AI 只会利好中国",
-      "url": "https://x.com/rohanpaul_ai/status/2099597016624202013",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2099597016624202013",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "e6cc391e0ae605a00ef7f0d9bb78ba1666bd5516",
-          "title": "特朗普在 All In Summit 现场连线 Jensen 称放慢 AI 只会利好中国",
-          "url": "https://x.com/rohanpaul_ai/status/2099597016624202013",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T20:31:52Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "e6cc391e0ae605a00ef7f0d9bb78ba1666bd5516",
-          "title": "特朗普在 All In Summit 现场连线 Jensen 称放慢 AI 只会利好中国",
-          "url": "https://x.com/rohanpaul_ai/status/2099597016624202013",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T20:31:52Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.721,
-      "importance": 0.721,
-      "importance_score": 0.721,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.62,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9078,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T20:31:52Z",
-      "latest_at": "2026-09-14T20:31:52Z",
-      "primary_item": {
-        "id": "e6cc391e0ae605a00ef7f0d9bb78ba1666bd5516",
-        "title": "特朗普在 All In Summit 现场连线 Jensen 称放慢 AI 只会利好中国",
-        "url": "https://x.com/rohanpaul_ai/status/2099597016624202013",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -1017,15 +656,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.4016,
-      "importance": 0.4016,
-      "importance_score": 0.4016,
+      "score": 0.4005,
+      "importance": 0.4005,
+      "importance_score": 0.4005,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.45,
         "source_tier": 0.48,
         "ai_relevance": 0.56,
-        "recency": 0.1333,
+        "recency": 0.127,
         "story_heat": 0.25
       },
       "category": "watch",
