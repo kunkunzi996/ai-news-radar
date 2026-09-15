@@ -1,8 +1,230 @@
 {
-  "generated_at": "2026-09-15T12:02:34.439454Z",
+  "generated_at": "2026-09-15T16:48:57.221853Z",
   "window_hours": 24,
-  "total_items": 15,
+  "total_items": 20,
   "items": [
+    {
+      "story_id": "story_6cbde97d8260",
+      "title": "生数科技发布 Vidu S2：含 Avatar 与 Editing 双模型，探索空间视频",
+      "url": "https://mp.weixin.qq.com/s?__biz=MzkzMDQ5NTQwMQ%3D%3D&mid=2247489246&idx=2&sn=b23b39da69f6c75594eccac11854111f",
+      "primary_url": "https://mp.weixin.qq.com/s?__biz=MzkzMDQ5NTQwMQ%3D%3D&mid=2247489246&idx=2&sn=b23b39da69f6c75594eccac11854111f",
+      "source": "公众号：生数科技（Vidu·视频）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "3b100d82b102c8649fc96cee21fef0c21fe60dc9",
+          "title": "生数科技发布 Vidu S2：含 Avatar 与 Editing 双模型，探索空间视频",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkzMDQ5NTQwMQ%3D%3D&mid=2247489246&idx=2&sn=b23b39da69f6c75594eccac11854111f",
+          "source": "公众号：生数科技（Vidu·视频）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T14:30:59Z"
+        },
+        {
+          "id": "b69041dae5191a7a0dc28f029074ec6d089dda22",
+          "title": "阶跃星辰发布 StepAudio 3 系列语音大模型，多款在 Artificial Analysis 榜单全球第一",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkyNTYxNzg5Mg%3D%3D&mid=2247488074&idx=1&sn=7d92ce0f0098ec0c53b243df4709b522",
+          "source": "公众号：阶跃星辰（Step）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T07:29:56Z"
+        },
+        {
+          "id": "add1184de4e05e7931adf227851a985e2925cc49",
+          "title": "小红书 AllSpark 开源 Search Agent 模型 Iris，35B 与 397B 版本同量级成绩领先",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzg4OTc2MzczNg%3D%3D&mid=2247496383&idx=1&sn=2db8607f797615a3647d9fec7e54f448",
+          "source": "公众号：小红书技术（dots.llm）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T09:59:00Z"
+        }
+      ],
+      "source_count": 3,
+      "source_names": [
+        "公众号：小红书技术（dots.llm）",
+        "公众号：生数科技（Vidu·视频）",
+        "公众号：阶跃星辰（Step）"
+      ],
+      "items": [
+        {
+          "id": "3b100d82b102c8649fc96cee21fef0c21fe60dc9",
+          "title": "生数科技发布 Vidu S2：含 Avatar 与 Editing 双模型，探索空间视频",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkzMDQ5NTQwMQ%3D%3D&mid=2247489246&idx=2&sn=b23b39da69f6c75594eccac11854111f",
+          "source": "公众号：生数科技（Vidu·视频）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T14:30:59Z"
+        },
+        {
+          "id": "b69041dae5191a7a0dc28f029074ec6d089dda22",
+          "title": "阶跃星辰发布 StepAudio 3 系列语音大模型，多款在 Artificial Analysis 榜单全球第一",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkyNTYxNzg5Mg%3D%3D&mid=2247488074&idx=1&sn=7d92ce0f0098ec0c53b243df4709b522",
+          "source": "公众号：阶跃星辰（Step）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T07:29:56Z"
+        },
+        {
+          "id": "add1184de4e05e7931adf227851a985e2925cc49",
+          "title": "小红书 AllSpark 开源 Search Agent 模型 Iris，35B 与 397B 版本同量级成绩领先",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzg4OTc2MzczNg%3D%3D&mid=2247496383&idx=1&sn=2db8607f797615a3647d9fec7e54f448",
+          "source": "公众号：小红书技术（dots.llm）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T09:59:00Z"
+        }
+      ],
+      "item_count": 3,
+      "duplicate_count": 3,
+      "score": 0.7937,
+      "importance": 0.7937,
+      "importance_score": 0.7937,
+      "importance_label": "多源热议",
+      "importance_breakdown": {
+        "editorial": 0.66,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9673,
+        "story_heat": 0.5
+      },
+      "category": "multi_source",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-14T09:59:00Z",
+      "latest_at": "2026-09-15T14:30:59Z",
+      "primary_item": {
+        "id": "3b100d82b102c8649fc96cee21fef0c21fe60dc9",
+        "title": "生数科技发布 Vidu S2：含 Avatar 与 Editing 双模型，探索空间视频",
+        "url": "https://mp.weixin.qq.com/s?__biz=MzkzMDQ5NTQwMQ%3D%3D&mid=2247489246&idx=2&sn=b23b39da69f6c75594eccac11854111f",
+        "source": "公众号：生数科技（Vidu·视频）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_557dcb769a02",
+      "title": "Gergely Orosz 探访 OpenAI：Codex 驱动的智能体软件工厂",
+      "url": "https://newsletter.pragmaticengineer.com/p/openai-software-factory",
+      "primary_url": "https://newsletter.pragmaticengineer.com/p/openai-software-factory",
+      "source": "Pragmatic Engineer（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "bb2dfd35f811088f61cab4cc13781e1d9d916f4c",
+          "title": "Gergely Orosz 探访 OpenAI：Codex 驱动的智能体软件工厂",
+          "url": "https://newsletter.pragmaticengineer.com/p/openai-software-factory",
+          "source": "Pragmatic Engineer（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T15:41:25Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Pragmatic Engineer（RSS）"
+      ],
+      "items": [
+        {
+          "id": "bb2dfd35f811088f61cab4cc13781e1d9d916f4c",
+          "title": "Gergely Orosz 探访 OpenAI：Codex 驱动的智能体软件工厂",
+          "url": "https://newsletter.pragmaticengineer.com/p/openai-software-factory",
+          "source": "Pragmatic Engineer（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T15:41:25Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7857,
+      "importance": 0.7857,
+      "importance_score": 0.7857,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.79,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9839,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-15T15:41:25Z",
+      "latest_at": "2026-09-15T15:41:25Z",
+      "primary_item": {
+        "id": "bb2dfd35f811088f61cab4cc13781e1d9d916f4c",
+        "title": "Gergely Orosz 探访 OpenAI：Codex 驱动的智能体软件工厂",
+        "url": "https://newsletter.pragmaticengineer.com/p/openai-software-factory",
+        "source": "Pragmatic Engineer（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_28a1d8edd2b6",
+      "title": "404 Media 曝光 OpenAI 莉莉计划：人工审核 ChatGPT 聊天记录以优化模型",
+      "url": "https://www.ithome.com/1/002/750.htm",
+      "primary_url": "https://www.ithome.com/1/002/750.htm",
+      "source": "IT之家（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "b3624dd22f5980553430ff5659a1f82487a46b32",
+          "title": "404 Media 曝光 OpenAI 莉莉计划：人工审核 ChatGPT 聊天记录以优化模型",
+          "url": "https://www.ithome.com/1/002/750.htm",
+          "source": "IT之家（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T11:48:13Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "IT之家（RSS）"
+      ],
+      "items": [
+        {
+          "id": "b3624dd22f5980553430ff5659a1f82487a46b32",
+          "title": "404 Media 曝光 OpenAI 莉莉计划：人工审核 ChatGPT 聊天记录以优化模型",
+          "url": "https://www.ithome.com/1/002/750.htm",
+          "source": "IT之家（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T11:48:13Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.767,
+      "importance": 0.767,
+      "importance_score": 0.767,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.76,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9302,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-15T11:48:13Z",
+      "latest_at": "2026-09-15T11:48:13Z",
+      "primary_item": {
+        "id": "b3624dd22f5980553430ff5659a1f82487a46b32",
+        "title": "404 Media 曝光 OpenAI 莉莉计划：人工审核 ChatGPT 聊天记录以优化模型",
+        "url": "https://www.ithome.com/1/002/750.htm",
+        "source": "IT之家（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
     {
       "story_id": "story_df8f3eb027ba",
       "title": "Anthropic 与 OpenAI 提议协调放缓前沿 AI 开发，Cohere CEO 等批评者质疑其真实动机",
@@ -38,15 +260,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7751,
-      "importance": 0.7751,
-      "importance_score": 0.7751,
+      "score": 0.7636,
+      "importance": 0.7636,
+      "importance_score": 0.7636,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9581,
+        "recency": 0.8943,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -61,6 +283,86 @@
         "title": "Anthropic 与 OpenAI 提议协调放缓前沿 AI 开发，Cohere CEO 等批评者质疑其真实动机",
         "url": "https://the-decoder.com/not-everyone-is-convinced-that-big-ais-proposed-development-slowdown-is-really-about-safety",
         "source": "The Decoder：AI News（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_a4e7f95319e4",
+      "title": "Fireworks 评测 DeepSeek-V4.1-Flash：DeepSWE 达 GPT-6 Astra 水准、成本仅 1/15",
+      "url": "https://fireworks.ai/blog/DeepSeek-V4.1-Flash-Astra",
+      "primary_url": "https://fireworks.ai/blog/DeepSeek-V4.1-Flash-Astra",
+      "source": "Fireworks AI（网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "77dfca4bd63b8550aeaefa4f5609a1cf82b44415",
+          "title": "Fireworks 评测 DeepSeek-V4.1-Flash：DeepSWE 达 GPT-6 Astra 水准、成本仅 1/15",
+          "url": "https://fireworks.ai/blog/DeepSeek-V4.1-Flash-Astra",
+          "source": "Fireworks AI（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T00:36:35.301000Z"
+        },
+        {
+          "id": "b1ec68599ccbd979c785abd8be775f5e398add10",
+          "title": "Fireworks 上线 DeepSeek-V4.1-Flash，DeepSWE 达 GPT-6 Astra 水准、成本仅 1/15",
+          "url": "https://fireworks.ai/blog/DeepSeek-V4.1-Flash-Astra",
+          "source": "Fireworks AI（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-13T16:00:00Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Fireworks AI（网页）"
+      ],
+      "items": [
+        {
+          "id": "77dfca4bd63b8550aeaefa4f5609a1cf82b44415",
+          "title": "Fireworks 评测 DeepSeek-V4.1-Flash：DeepSWE 达 GPT-6 Astra 水准、成本仅 1/15",
+          "url": "https://fireworks.ai/blog/DeepSeek-V4.1-Flash-Astra",
+          "source": "Fireworks AI（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T00:36:35.301000Z"
+        },
+        {
+          "id": "b1ec68599ccbd979c785abd8be775f5e398add10",
+          "title": "Fireworks 上线 DeepSeek-V4.1-Flash，DeepSWE 达 GPT-6 Astra 水准、成本仅 1/15",
+          "url": "https://fireworks.ai/blog/DeepSeek-V4.1-Flash-Astra",
+          "source": "Fireworks AI（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-13T16:00:00Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.761,
+      "importance": 0.761,
+      "importance_score": 0.761,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.74,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7913,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-13T16:00:00Z",
+      "latest_at": "2026-09-15T00:36:35.301000Z",
+      "primary_item": {
+        "id": "77dfca4bd63b8550aeaefa4f5609a1cf82b44415",
+        "title": "Fireworks 评测 DeepSeek-V4.1-Flash：DeepSWE 达 GPT-6 Astra 水准、成本仅 1/15",
+        "url": "https://fireworks.ai/blog/DeepSeek-V4.1-Flash-Astra",
+        "source": "Fireworks AI（网页）",
         "source_name": "AI HOT"
       }
     },
@@ -99,15 +401,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7697,
-      "importance": 0.7697,
-      "importance_score": 0.7697,
+      "score": 0.7598,
+      "importance": 0.7598,
+      "importance_score": 0.7598,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8283,
+        "recency": 0.7731,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -160,15 +462,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7632,
-      "importance": 0.7632,
-      "importance_score": 0.7632,
+      "score": 0.7515,
+      "importance": 0.7515,
+      "importance_score": 0.7515,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9754,
+        "recency": 0.9104,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -187,83 +489,63 @@
       }
     },
     {
-      "story_id": "story_6cbde97d8260",
-      "title": "阶跃星辰发布 StepAudio 3 系列语音大模型，多款在 Artificial Analysis 榜单全球第一",
-      "url": "https://mp.weixin.qq.com/s?__biz=MzkyNTYxNzg5Mg%3D%3D&mid=2247488074&idx=1&sn=7d92ce0f0098ec0c53b243df4709b522",
-      "primary_url": "https://mp.weixin.qq.com/s?__biz=MzkyNTYxNzg5Mg%3D%3D&mid=2247488074&idx=1&sn=7d92ce0f0098ec0c53b243df4709b522",
-      "source": "公众号：阶跃星辰（Step）",
+      "story_id": "story_8404dde5a0a2",
+      "title": "Noam Brown 谈 OpenAI 优先级：递归自我改进居首，并表达安全担忧",
+      "url": "https://x.com/kimmonismus/status/2099871107226669391",
+      "primary_url": "https://x.com/kimmonismus/status/2099871107226669391",
+      "source": "X：Kim (@kimmonismus)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "b69041dae5191a7a0dc28f029074ec6d089dda22",
-          "title": "阶跃星辰发布 StepAudio 3 系列语音大模型，多款在 Artificial Analysis 榜单全球第一",
-          "url": "https://mp.weixin.qq.com/s?__biz=MzkyNTYxNzg5Mg%3D%3D&mid=2247488074&idx=1&sn=7d92ce0f0098ec0c53b243df4709b522",
-          "source": "公众号：阶跃星辰（Step）",
+          "id": "c3ab6af7644e3e539b812452a12b2c90cc148b22",
+          "title": "Noam Brown 谈 OpenAI 优先级：递归自我改进居首，并表达安全担忧",
+          "url": "https://x.com/kimmonismus/status/2099871107226669391",
+          "source": "X：Kim (@kimmonismus)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-15T07:29:56Z"
-        },
-        {
-          "id": "add1184de4e05e7931adf227851a985e2925cc49",
-          "title": "小红书 AllSpark 开源 Search Agent 模型 Iris，35B 与 397B 版本同量级成绩领先",
-          "url": "https://mp.weixin.qq.com/s?__biz=Mzg4OTc2MzczNg%3D%3D&mid=2247496383&idx=1&sn=2db8607f797615a3647d9fec7e54f448",
-          "source": "公众号：小红书技术（dots.llm）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T09:59:00Z"
+          "published_at": "2026-09-15T14:41:00Z"
         }
       ],
-      "source_count": 2,
+      "source_count": 1,
       "source_names": [
-        "公众号：小红书技术（dots.llm）",
-        "公众号：阶跃星辰（Step）"
+        "X：Kim (@kimmonismus)"
       ],
       "items": [
         {
-          "id": "b69041dae5191a7a0dc28f029074ec6d089dda22",
-          "title": "阶跃星辰发布 StepAudio 3 系列语音大模型，多款在 Artificial Analysis 榜单全球第一",
-          "url": "https://mp.weixin.qq.com/s?__biz=MzkyNTYxNzg5Mg%3D%3D&mid=2247488074&idx=1&sn=7d92ce0f0098ec0c53b243df4709b522",
-          "source": "公众号：阶跃星辰（Step）",
+          "id": "c3ab6af7644e3e539b812452a12b2c90cc148b22",
+          "title": "Noam Brown 谈 OpenAI 优先级：递归自我改进居首，并表达安全担忧",
+          "url": "https://x.com/kimmonismus/status/2099871107226669391",
+          "source": "X：Kim (@kimmonismus)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-15T07:29:56Z"
-        },
-        {
-          "id": "add1184de4e05e7931adf227851a985e2925cc49",
-          "title": "小红书 AllSpark 开源 Search Agent 模型 Iris，35B 与 397B 版本同量级成绩领先",
-          "url": "https://mp.weixin.qq.com/s?__biz=Mzg4OTc2MzczNg%3D%3D&mid=2247496383&idx=1&sn=2db8607f797615a3647d9fec7e54f448",
-          "source": "公众号：小红书技术（dots.llm）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T09:59:00Z"
+          "published_at": "2026-09-15T14:41:00Z"
         }
       ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.7602,
-      "importance": 0.7602,
-      "importance_score": 0.7602,
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7501,
+      "importance": 0.7501,
+      "importance_score": 0.7501,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.65,
+        "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9365,
-        "story_heat": 0.25
+        "recency": 0.9697,
+        "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "multi_source",
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-09-14T09:59:00Z",
-      "latest_at": "2026-09-15T07:29:56Z",
+      "earliest_at": "2026-09-15T14:41:00Z",
+      "latest_at": "2026-09-15T14:41:00Z",
       "primary_item": {
-        "id": "b69041dae5191a7a0dc28f029074ec6d089dda22",
-        "title": "阶跃星辰发布 StepAudio 3 系列语音大模型，多款在 Artificial Analysis 榜单全球第一",
-        "url": "https://mp.weixin.qq.com/s?__biz=MzkyNTYxNzg5Mg%3D%3D&mid=2247488074&idx=1&sn=7d92ce0f0098ec0c53b243df4709b522",
-        "source": "公众号：阶跃星辰（Step）",
+        "id": "c3ab6af7644e3e539b812452a12b2c90cc148b22",
+        "title": "Noam Brown 谈 OpenAI 优先级：递归自我改进居首，并表达安全担忧",
+        "url": "https://x.com/kimmonismus/status/2099871107226669391",
+        "source": "X：Kim (@kimmonismus)",
         "source_name": "AI HOT"
       }
     },
@@ -302,15 +584,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7491,
-      "importance": 0.7491,
-      "importance_score": 0.7491,
+      "score": 0.7405,
+      "importance": 0.7405,
+      "importance_score": 0.7405,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7137,
+        "recency": 0.6661,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -328,122 +610,62 @@
       }
     },
     {
-      "story_id": "story_a4e7f95319e4",
-      "title": "Fireworks 评测 DeepSeek-V4.1-Flash：DeepSWE 达 GPT-6 Astra 水准、成本仅 1/15",
-      "url": "https://fireworks.ai/blog/DeepSeek-V4.1-Flash-Astra",
-      "primary_url": "https://fireworks.ai/blog/DeepSeek-V4.1-Flash-Astra",
-      "source": "Fireworks AI（网页）",
+      "story_id": "story_98c36a850624",
+      "title": "Google 发布 TranslateGemma 等多语言 AI 成果，语言技术覆盖 300 多种语言",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/ai-for-every-language",
+      "primary_url": "https://blog.google/innovation-and-ai/technology/ai/ai-for-every-language",
+      "source": "Google Blog：AI（RSS）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "77dfca4bd63b8550aeaefa4f5609a1cf82b44415",
-          "title": "Fireworks 评测 DeepSeek-V4.1-Flash：DeepSWE 达 GPT-6 Astra 水准、成本仅 1/15",
-          "url": "https://fireworks.ai/blog/DeepSeek-V4.1-Flash-Astra",
-          "source": "Fireworks AI（网页）",
+          "id": "cb25acf576fbb99883abea0569b755d3b8ae5fc8",
+          "title": "Google 发布 TranslateGemma 等多语言 AI 成果，语言技术覆盖 300 多种语言",
+          "url": "https://blog.google/innovation-and-ai/technology/ai/ai-for-every-language",
+          "source": "Google Blog：AI（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-15T00:36:35.301000Z"
+          "published_at": "2026-09-15T16:00:00Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "Fireworks AI（网页）"
+        "Google Blog：AI（RSS）"
       ],
       "items": [
         {
-          "id": "77dfca4bd63b8550aeaefa4f5609a1cf82b44415",
-          "title": "Fireworks 评测 DeepSeek-V4.1-Flash：DeepSWE 达 GPT-6 Astra 水准、成本仅 1/15",
-          "url": "https://fireworks.ai/blog/DeepSeek-V4.1-Flash-Astra",
-          "source": "Fireworks AI（网页）",
+          "id": "cb25acf576fbb99883abea0569b755d3b8ae5fc8",
+          "title": "Google 发布 TranslateGemma 等多语言 AI 成果，语言技术覆盖 300 多种语言",
+          "url": "https://blog.google/innovation-and-ai/technology/ai/ai-for-every-language",
+          "source": "Google Blog：AI（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-15T00:36:35.301000Z"
+          "published_at": "2026-09-15T16:00:00Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7462,
-      "importance": 0.7462,
-      "importance_score": 0.7462,
+      "score": 0.7355,
+      "importance": 0.7355,
+      "importance_score": 0.7355,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.74,
+        "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8478,
+        "recency": 0.9883,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-15T00:36:35.301000Z",
-      "latest_at": "2026-09-15T00:36:35.301000Z",
+      "earliest_at": "2026-09-15T16:00:00Z",
+      "latest_at": "2026-09-15T16:00:00Z",
       "primary_item": {
-        "id": "77dfca4bd63b8550aeaefa4f5609a1cf82b44415",
-        "title": "Fireworks 评测 DeepSeek-V4.1-Flash：DeepSWE 达 GPT-6 Astra 水准、成本仅 1/15",
-        "url": "https://fireworks.ai/blog/DeepSeek-V4.1-Flash-Astra",
-        "source": "Fireworks AI（网页）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_e379308c5066",
-      "title": "Anthropic 自述 Coding Agent 让代码量增 8 倍后 CI 扛不住的改造经历",
-      "url": "https://x.com/frxiaobei/status/2099821868232614001",
-      "primary_url": "https://x.com/frxiaobei/status/2099821868232614001",
-      "source": "X：小北 (@frxiaobei)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "ccb6c42efa4a54d8a4473dc59291595ecb721b1e",
-          "title": "Anthropic 自述 Coding Agent 让代码量增 8 倍后 CI 扛不住的改造经历",
-          "url": "https://x.com/frxiaobei/status/2099821868232614001",
-          "source": "X：小北 (@frxiaobei)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T11:25:20Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：小北 (@frxiaobei)"
-      ],
-      "items": [
-        {
-          "id": "ccb6c42efa4a54d8a4473dc59291595ecb721b1e",
-          "title": "Anthropic 自述 Coding Agent 让代码量增 8 倍后 CI 扛不住的改造经历",
-          "url": "https://x.com/frxiaobei/status/2099821868232614001",
-          "source": "X：小北 (@frxiaobei)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T11:25:20Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.742,
-      "importance": 0.742,
-      "importance_score": 0.742,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.64,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9911,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-15T11:25:20Z",
-      "latest_at": "2026-09-15T11:25:20Z",
-      "primary_item": {
-        "id": "ccb6c42efa4a54d8a4473dc59291595ecb721b1e",
-        "title": "Anthropic 自述 Coding Agent 让代码量增 8 倍后 CI 扛不住的改造经历",
-        "url": "https://x.com/frxiaobei/status/2099821868232614001",
-        "source": "X：小北 (@frxiaobei)",
+        "id": "cb25acf576fbb99883abea0569b755d3b8ae5fc8",
+        "title": "Google 发布 TranslateGemma 等多语言 AI 成果，语言技术覆盖 300 多种语言",
+        "url": "https://blog.google/innovation-and-ai/technology/ai/ai-for-every-language",
+        "source": "Google Blog：AI（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -482,15 +704,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7396,
-      "importance": 0.7396,
-      "importance_score": 0.7396,
+      "score": 0.7305,
+      "importance": 0.7305,
+      "importance_score": 0.7305,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7614,
+        "recency": 0.7106,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -508,122 +730,261 @@
       }
     },
     {
-      "story_id": "story_b934de795cb2",
-      "title": "Trail of Bits 批评 1Password 的 AI 补丁基准存在误导，并发布两个补丁验证 Agent 技能",
-      "url": "https://blog.trailofbits.com/2026/09/15/1passwords-ai-patching-benchmark-is-misleading",
-      "primary_url": "https://blog.trailofbits.com/2026/09/15/1passwords-ai-patching-benchmark-is-misleading",
-      "source": "Trail of Bits：AI安全研究",
+      "story_id": "story_e379308c5066",
+      "title": "Anthropic 自述 Coding Agent 让代码量增 8 倍后 CI 扛不住的改造经历",
+      "url": "https://x.com/frxiaobei/status/2099821868232614001",
+      "primary_url": "https://x.com/frxiaobei/status/2099821868232614001",
+      "source": "X：小北 (@frxiaobei)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "c2eca0fc661e7a16f7621f8b68754054535ce914",
-          "title": "Trail of Bits 批评 1Password 的 AI 补丁基准存在误导，并发布两个补丁验证 Agent 技能",
-          "url": "https://blog.trailofbits.com/2026/09/15/1passwords-ai-patching-benchmark-is-misleading",
-          "source": "Trail of Bits：AI安全研究",
+          "id": "ccb6c42efa4a54d8a4473dc59291595ecb721b1e",
+          "title": "Anthropic 自述 Coding Agent 让代码量增 8 倍后 CI 扛不住的改造经历",
+          "url": "https://x.com/frxiaobei/status/2099821868232614001",
+          "source": "X：小北 (@frxiaobei)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-15T11:00:00Z"
+          "published_at": "2026-09-15T11:25:20Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "Trail of Bits：AI安全研究"
+        "X：小北 (@frxiaobei)"
       ],
       "items": [
         {
-          "id": "c2eca0fc661e7a16f7621f8b68754054535ce914",
-          "title": "Trail of Bits 批评 1Password 的 AI 补丁基准存在误导，并发布两个补丁验证 Agent 技能",
-          "url": "https://blog.trailofbits.com/2026/09/15/1passwords-ai-patching-benchmark-is-misleading",
-          "source": "Trail of Bits：AI安全研究",
+          "id": "ccb6c42efa4a54d8a4473dc59291595ecb721b1e",
+          "title": "Anthropic 自述 Coding Agent 让代码量增 8 倍后 CI 扛不住的改造经历",
+          "url": "https://x.com/frxiaobei/status/2099821868232614001",
+          "source": "X：小北 (@frxiaobei)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-15T11:00:00Z"
+          "published_at": "2026-09-15T11:25:20Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7289,
-      "importance": 0.7289,
-      "importance_score": 0.7289,
+      "score": 0.7301,
+      "importance": 0.7301,
+      "importance_score": 0.7301,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.6,
+        "editorial": 0.64,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9851,
+        "recency": 0.9251,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-15T11:00:00Z",
-      "latest_at": "2026-09-15T11:00:00Z",
+      "earliest_at": "2026-09-15T11:25:20Z",
+      "latest_at": "2026-09-15T11:25:20Z",
       "primary_item": {
-        "id": "c2eca0fc661e7a16f7621f8b68754054535ce914",
-        "title": "Trail of Bits 批评 1Password 的 AI 补丁基准存在误导，并发布两个补丁验证 Agent 技能",
-        "url": "https://blog.trailofbits.com/2026/09/15/1passwords-ai-patching-benchmark-is-misleading",
-        "source": "Trail of Bits：AI安全研究",
+        "id": "ccb6c42efa4a54d8a4473dc59291595ecb721b1e",
+        "title": "Anthropic 自述 Coding Agent 让代码量增 8 倍后 CI 扛不住的改造经历",
+        "url": "https://x.com/frxiaobei/status/2099821868232614001",
+        "source": "X：小北 (@frxiaobei)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_1f582ddc083f",
-      "title": "Artificial Analysis 评测：GPT-Live-1 以 81.5 分登顶 Speech to Speech Index",
-      "url": "https://x.com/ArtificialAnlys/status/2099698254414029207",
-      "primary_url": "https://x.com/ArtificialAnlys/status/2099698254414029207",
-      "source": "X：Artificial Analysis (@ArtificialAnlys)",
+      "story_id": "story_75bd7ff5dbc9",
+      "title": "Plasma 发布 Radio，用共享频道让多个编码智能体实时协作",
+      "url": "https://x.com/omarsar0/status/2099880259210412282",
+      "primary_url": "https://x.com/omarsar0/status/2099880259210412282",
+      "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "6b1923544a77677e55f0ac65b1ffa522007a8768",
-          "title": "Artificial Analysis 评测：GPT-Live-1 以 81.5 分登顶 Speech to Speech Index",
-          "url": "https://x.com/ArtificialAnlys/status/2099698254414029207",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "id": "c80ad518b56418a66e421edb6093a40d77e9568d",
+          "title": "Plasma 发布 Radio，用共享频道让多个编码智能体实时协作",
+          "url": "https://x.com/omarsar0/status/2099880259210412282",
+          "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-15T03:14:09Z"
+          "published_at": "2026-09-15T15:17:22Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Artificial Analysis (@ArtificialAnlys)"
+        "X：Elvis Saravia (@omarsar0, DAIR.AI)"
       ],
       "items": [
         {
-          "id": "6b1923544a77677e55f0ac65b1ffa522007a8768",
-          "title": "Artificial Analysis 评测：GPT-Live-1 以 81.5 分登顶 Speech to Speech Index",
-          "url": "https://x.com/ArtificialAnlys/status/2099698254414029207",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "id": "c80ad518b56418a66e421edb6093a40d77e9568d",
+          "title": "Plasma 发布 Radio，用共享频道让多个编码智能体实时协作",
+          "url": "https://x.com/omarsar0/status/2099880259210412282",
+          "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-15T03:14:09Z"
+          "published_at": "2026-09-15T15:17:22Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7281,
-      "importance": 0.7281,
-      "importance_score": 0.7281,
+      "score": 0.7217,
+      "importance": 0.7217,
+      "importance_score": 0.7217,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.66,
+        "editorial": 0.58,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8806,
+        "recency": 0.9782,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-15T03:14:09Z",
-      "latest_at": "2026-09-15T03:14:09Z",
+      "earliest_at": "2026-09-15T15:17:22Z",
+      "latest_at": "2026-09-15T15:17:22Z",
       "primary_item": {
-        "id": "6b1923544a77677e55f0ac65b1ffa522007a8768",
-        "title": "Artificial Analysis 评测：GPT-Live-1 以 81.5 分登顶 Speech to Speech Index",
-        "url": "https://x.com/ArtificialAnlys/status/2099698254414029207",
-        "source": "X：Artificial Analysis (@ArtificialAnlys)",
+        "id": "c80ad518b56418a66e421edb6093a40d77e9568d",
+        "title": "Plasma 发布 Radio，用共享频道让多个编码智能体实时协作",
+        "url": "https://x.com/omarsar0/status/2099880259210412282",
+        "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_054fdddd65bd",
+      "title": "微信团队开源 WeKnora 知识框架，GitHub 星标破 2.3 万",
+      "url": "https://x.com/AYi_AInotes/status/2099858387928244547",
+      "primary_url": "https://x.com/AYi_AInotes/status/2099858387928244547",
+      "source": "X：阿易 AI Notes (@AYi_AInotes)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "0d8158f8c8b359256cc0e6a98c5b77ec4a2369d9",
+          "title": "微信团队开源 WeKnora 知识框架，GitHub 星标破 2.3 万",
+          "url": "https://x.com/AYi_AInotes/status/2099858387928244547",
+          "source": "X：阿易 AI Notes (@AYi_AInotes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T13:50:27Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：阿易 AI Notes (@AYi_AInotes)"
+      ],
+      "items": [
+        {
+          "id": "0d8158f8c8b359256cc0e6a98c5b77ec4a2369d9",
+          "title": "微信团队开源 WeKnora 知识框架，GitHub 星标破 2.3 万",
+          "url": "https://x.com/AYi_AInotes/status/2099858387928244547",
+          "source": "X：阿易 AI Notes (@AYi_AInotes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T13:50:27Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.748,
+      "importance": 0.748,
+      "importance_score": 0.748,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.68,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9579,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-15T13:50:27Z",
+      "latest_at": "2026-09-15T13:50:27Z",
+      "primary_item": {
+        "id": "0d8158f8c8b359256cc0e6a98c5b77ec4a2369d9",
+        "title": "微信团队开源 WeKnora 知识框架，GitHub 星标破 2.3 万",
+        "url": "https://x.com/AYi_AInotes/status/2099858387928244547",
+        "source": "X：阿易 AI Notes (@AYi_AInotes)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_8f1dbbf70c25",
+      "title": "Anthropic 如何重构测试影响分析服务以应对智能体编码带来的 CI 压力",
+      "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
+      "primary_url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
+      "source": "Claude：Blog（网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "1f05f3a786cfee3052bbfcdfed2d4f3e8d2f356e",
+          "title": "Anthropic 如何重构测试影响分析服务以应对智能体编码带来的 CI 压力",
+          "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
+          "source": "Claude：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T19:15:56.861000Z"
+        },
+        {
+          "id": "4a543799b121983530328f84fd0c31b500d489d3",
+          "title": "Anthropic 工程师复盘：智能体编程压力下如何扩展测试影响分析服务",
+          "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
+          "source": "Claude：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-13T16:00:00Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Claude：Blog（网页）"
+      ],
+      "items": [
+        {
+          "id": "1f05f3a786cfee3052bbfcdfed2d4f3e8d2f356e",
+          "title": "Anthropic 如何重构测试影响分析服务以应对智能体编码带来的 CI 压力",
+          "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
+          "source": "Claude：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T19:15:56.861000Z"
+        },
+        {
+          "id": "4a543799b121983530328f84fd0c31b500d489d3",
+          "title": "Anthropic 工程师复盘：智能体编程压力下如何扩展测试影响分析服务",
+          "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
+          "source": "Claude：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-13T16:00:00Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7145,
+      "importance": 0.7145,
+      "importance_score": 0.7145,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.62,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7326,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-13T16:00:00Z",
+      "latest_at": "2026-09-14T19:15:56.861000Z",
+      "primary_item": {
+        "id": "1f05f3a786cfee3052bbfcdfed2d4f3e8d2f356e",
+        "title": "Anthropic 如何重构测试影响分析服务以应对智能体编码带来的 CI 压力",
+        "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
+        "source": "Claude：Blog（网页）",
         "source_name": "AI HOT"
       }
     },
@@ -662,15 +1023,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7453,
-      "importance": 0.7453,
-      "importance_score": 0.7453,
+      "score": 0.7358,
+      "importance": 0.7358,
+      "importance_score": 0.7358,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7925,
+        "recency": 0.7397,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -722,15 +1083,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7399,
-      "importance": 0.7399,
-      "importance_score": 0.7399,
+      "score": 0.731,
+      "importance": 0.731,
+      "importance_score": 0.731,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7463,
+        "recency": 0.6966,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -748,36 +1109,36 @@
       }
     },
     {
-      "story_id": "story_8b0ededf044a",
-      "title": "All-In 峰会特朗普当众否决 AI 减速论：数据中心类比石油",
-      "url": "https://x.com/AYi_AInotes/status/2099683976382214217",
-      "primary_url": "https://x.com/AYi_AInotes/status/2099683976382214217",
-      "source": "X：阿易 AI Notes (@AYi_AInotes)",
+      "story_id": "story_0bfea3bcbe96",
+      "title": "Google 向全公司工程师开放 Anthropic Claude 用于内部编码",
+      "url": "https://x.com/frxiaobei/status/2099870352511762865",
+      "primary_url": "https://x.com/frxiaobei/status/2099870352511762865",
+      "source": "X：小北 (@frxiaobei)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "352acc88ba62d22380287594660fe9b110cc4dd4",
-          "title": "All-In 峰会特朗普当众否决 AI 减速论：数据中心类比石油",
-          "url": "https://x.com/AYi_AInotes/status/2099683976382214217",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
+          "id": "d4873c09ac745908868126f7f48f6afb5d6dd91c",
+          "title": "Google 向全公司工程师开放 Anthropic Claude 用于内部编码",
+          "url": "https://x.com/frxiaobei/status/2099870352511762865",
+          "source": "X：小北 (@frxiaobei)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-15T02:17:24Z"
+          "published_at": "2026-09-15T14:38:00Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：阿易 AI Notes (@AYi_AInotes)"
+        "X：小北 (@frxiaobei)"
       ],
       "items": [
         {
-          "id": "352acc88ba62d22380287594660fe9b110cc4dd4",
-          "title": "All-In 峰会特朗普当众否决 AI 减速论：数据中心类比石油",
-          "url": "https://x.com/AYi_AInotes/status/2099683976382214217",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
+          "id": "d4873c09ac745908868126f7f48f6afb5d6dd91c",
+          "title": "Google 向全公司工程师开放 Anthropic Claude 用于内部编码",
+          "url": "https://x.com/frxiaobei/status/2099870352511762865",
+          "source": "X：小北 (@frxiaobei)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-15T02:17:24Z"
+          "published_at": "2026-09-15T14:38:00Z"
         }
       ],
       "item_count": 1,
@@ -787,42 +1148,42 @@
       "importance_score": 0.729,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.67,
+        "editorial": 0.61,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8686,
+        "recency": 0.969,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-15T02:17:24Z",
-      "latest_at": "2026-09-15T02:17:24Z",
+      "earliest_at": "2026-09-15T14:38:00Z",
+      "latest_at": "2026-09-15T14:38:00Z",
       "primary_item": {
-        "id": "352acc88ba62d22380287594660fe9b110cc4dd4",
-        "title": "All-In 峰会特朗普当众否决 AI 减速论：数据中心类比石油",
-        "url": "https://x.com/AYi_AInotes/status/2099683976382214217",
-        "source": "X：阿易 AI Notes (@AYi_AInotes)",
+        "id": "d4873c09ac745908868126f7f48f6afb5d6dd91c",
+        "title": "Google 向全公司工程师开放 Anthropic Claude 用于内部编码",
+        "url": "https://x.com/frxiaobei/status/2099870352511762865",
+        "source": "X：小北 (@frxiaobei)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_e329e221a576",
-      "title": "上海人工智能实验室发布 Atria Dawn Preview，744B 纯文本模型主打可验证交付",
-      "url": "https://x.com/AYi_AInotes/status/2099705084590293304",
-      "primary_url": "https://x.com/AYi_AInotes/status/2099705084590293304",
+      "story_id": "story_8ff9e3ca9e2c",
+      "title": "前 Cursor 工程师复盘用 27 个 AI 智能体运营公司，月成本 340 美元、连续盈利 11 个月",
+      "url": "https://x.com/AYi_AInotes/status/2099900209367056510",
+      "primary_url": "https://x.com/AYi_AInotes/status/2099900209367056510",
       "source": "X：阿易 AI Notes (@AYi_AInotes)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "4f0406f416c5010d65a13f1edec2f505a36646b7",
-          "title": "上海人工智能实验室发布 Atria Dawn Preview，744B 纯文本模型主打可验证交付",
-          "url": "https://x.com/AYi_AInotes/status/2099705084590293304",
+          "id": "29efa784c57a9d4984ce54640600bc9ad2f900d7",
+          "title": "前 Cursor 工程师复盘用 27 个 AI 智能体运营公司，月成本 340 美元、连续盈利 11 个月",
+          "url": "https://x.com/AYi_AInotes/status/2099900209367056510",
           "source": "X：阿易 AI Notes (@AYi_AInotes)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-15T03:41:17Z"
+          "published_at": "2026-09-15T16:36:38Z"
         }
       ],
       "source_count": 1,
@@ -831,118 +1192,100 @@
       ],
       "items": [
         {
-          "id": "4f0406f416c5010d65a13f1edec2f505a36646b7",
-          "title": "上海人工智能实验室发布 Atria Dawn Preview，744B 纯文本模型主打可验证交付",
-          "url": "https://x.com/AYi_AInotes/status/2099705084590293304",
+          "id": "29efa784c57a9d4984ce54640600bc9ad2f900d7",
+          "title": "前 Cursor 工程师复盘用 27 个 AI 智能体运营公司，月成本 340 美元、连续盈利 11 个月",
+          "url": "https://x.com/AYi_AInotes/status/2099900209367056510",
           "source": "X：阿易 AI Notes (@AYi_AInotes)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-15T03:41:17Z"
+          "published_at": "2026-09-15T16:36:38Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7231,
-      "importance": 0.7231,
-      "importance_score": 0.7231,
+      "score": 0.7341,
+      "importance": 0.7341,
+      "importance_score": 0.7341,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.64,
+        "editorial": 0.61,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8863,
+        "recency": 0.997,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-15T03:41:17Z",
-      "latest_at": "2026-09-15T03:41:17Z",
+      "earliest_at": "2026-09-15T16:36:38Z",
+      "latest_at": "2026-09-15T16:36:38Z",
       "primary_item": {
-        "id": "4f0406f416c5010d65a13f1edec2f505a36646b7",
-        "title": "上海人工智能实验室发布 Atria Dawn Preview，744B 纯文本模型主打可验证交付",
-        "url": "https://x.com/AYi_AInotes/status/2099705084590293304",
+        "id": "29efa784c57a9d4984ce54640600bc9ad2f900d7",
+        "title": "前 Cursor 工程师复盘用 27 个 AI 智能体运营公司，月成本 340 美元、连续盈利 11 个月",
+        "url": "https://x.com/AYi_AInotes/status/2099900209367056510",
         "source": "X：阿易 AI Notes (@AYi_AInotes)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_76638ac4baf8",
-      "title": "小白必备技巧，让你的GPT6节约70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
-      "url": "https://www.douyin.com/video/7683437126796496174",
-      "primary_url": "https://www.douyin.com/video/7683437126796496174",
-      "source": "FredTalk",
-      "source_name": "MediaCrawler Douyin",
+      "story_id": "story_dc3d094a77c5",
+      "title": "Agent Memory Architecture 白皮书拆解 5 层智能体记忆架构，Token 消耗最高降 90%",
+      "url": "https://x.com/AYi_AInotes/status/2099833846350942385",
+      "primary_url": "https://x.com/AYi_AInotes/status/2099833846350942385",
+      "source": "X：阿易 AI Notes (@AYi_AInotes)",
+      "source_name": "AI HOT",
       "sources": [
         {
-          "id": "5a578ddd029d6f947adaebcb80a41cf8dd29a3a4",
-          "title": "小白必备技巧，让你的GPT6节约70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
-          "url": "https://www.douyin.com/video/7683437126796496174",
-          "source": "FredTalk",
-          "source_name": "MediaCrawler Douyin",
-          "site_id": "mediacrawler_douyin",
-          "published_at": "2026-09-09T07:40:15Z"
-        },
-        {
-          "id": "5391e3c20e38d828139e24819bc4a8807d5b3f12",
-          "title": "GPT6发布！这些设置帮你省70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
-          "url": "https://www.douyin.com/video/7683385369043209508",
-          "source": "FredTalk",
-          "source_name": "MediaCrawler Douyin",
-          "site_id": "mediacrawler_douyin",
-          "published_at": "2026-09-09T04:19:29Z"
+          "id": "23f0dce6c3c5df3aac616fac151c7b722c36debe",
+          "title": "Agent Memory Architecture 白皮书拆解 5 层智能体记忆架构，Token 消耗最高降 90%",
+          "url": "https://x.com/AYi_AInotes/status/2099833846350942385",
+          "source": "X：阿易 AI Notes (@AYi_AInotes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T12:12:56Z"
         }
       ],
-      "source_count": 2,
+      "source_count": 1,
       "source_names": [
-        "FredTalk"
+        "X：阿易 AI Notes (@AYi_AInotes)"
       ],
       "items": [
         {
-          "id": "5a578ddd029d6f947adaebcb80a41cf8dd29a3a4",
-          "title": "小白必备技巧，让你的GPT6节约70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
-          "url": "https://www.douyin.com/video/7683437126796496174",
-          "source": "FredTalk",
-          "source_name": "MediaCrawler Douyin",
-          "site_id": "mediacrawler_douyin",
-          "published_at": "2026-09-09T07:40:15Z"
-        },
-        {
-          "id": "5391e3c20e38d828139e24819bc4a8807d5b3f12",
-          "title": "GPT6发布！这些设置帮你省70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
-          "url": "https://www.douyin.com/video/7683385369043209508",
-          "source": "FredTalk",
-          "source_name": "MediaCrawler Douyin",
-          "site_id": "mediacrawler_douyin",
-          "published_at": "2026-09-09T04:19:29Z"
+          "id": "23f0dce6c3c5df3aac616fac151c7b722c36debe",
+          "title": "Agent Memory Architecture 白皮书拆解 5 层智能体记忆架构，Token 消耗最高降 90%",
+          "url": "https://x.com/AYi_AInotes/status/2099833846350942385",
+          "source": "X：阿易 AI Notes (@AYi_AInotes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T12:12:56Z"
         }
       ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.3987,
-      "importance": 0.3987,
-      "importance_score": 0.3987,
-      "importance_label": "值得关注",
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.729,
+      "importance": 0.729,
+      "importance_score": 0.729,
+      "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.45,
-        "source_tier": 0.48,
-        "ai_relevance": 0.56,
-        "recency": 0.1174,
-        "story_heat": 0.25
+        "editorial": 0.63,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9357,
+        "story_heat": 0.0
       },
-      "category": "watch",
+      "category": "industry",
       "reasons": [
-        "multi_source"
+        "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-09T04:19:29Z",
-      "latest_at": "2026-09-09T07:40:15Z",
+      "earliest_at": "2026-09-15T12:12:56Z",
+      "latest_at": "2026-09-15T12:12:56Z",
       "primary_item": {
-        "id": "5a578ddd029d6f947adaebcb80a41cf8dd29a3a4",
-        "title": "小白必备技巧，让你的GPT6节约70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
-        "url": "https://www.douyin.com/video/7683437126796496174",
-        "source": "FredTalk",
-        "source_name": "MediaCrawler Douyin"
+        "id": "23f0dce6c3c5df3aac616fac151c7b722c36debe",
+        "title": "Agent Memory Architecture 白皮书拆解 5 层智能体记忆架构，Token 消耗最高降 90%",
+        "url": "https://x.com/AYi_AInotes/status/2099833846350942385",
+        "source": "X：阿易 AI Notes (@AYi_AInotes)",
+        "source_name": "AI HOT"
       }
     }
   ]
