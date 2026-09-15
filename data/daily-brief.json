@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-15T01:20:03.936247Z",
+  "generated_at": "2026-09-15T01:47:21.632242Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -189,15 +189,15 @@
       ],
       "item_count": 9,
       "duplicate_count": 9,
-      "score": 0.8198,
-      "importance": 0.8198,
-      "importance_score": 0.8198,
+      "score": 0.8189,
+      "importance": 0.8189,
+      "importance_score": 0.8189,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8012,
+        "recency": 0.7959,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -213,6 +213,148 @@
         "title": "小红书 AllSpark 开源 Search Agent 模型 Iris，35B 与 397B 版本同量级成绩领先",
         "url": "https://mp.weixin.qq.com/s?__biz=Mzg4OTc2MzczNg%3D%3D&mid=2247496383&idx=1&sn=2db8607f797615a3647d9fec7e54f448",
         "source": "公众号：小红书技术（dots.llm）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_82404ffdc91b",
+      "title": "Entelligence 评测 GPT-5.6 Luna 对比 GPT-6 Astra：单次审查便宜 28 倍的模型能否胜任代码审查",
+      "url": "https://entelligence.ai/blogs/gpt-5.6-luna-vs-gpt-6-astra-is-a-1.20-model-good-enough-for-code-review",
+      "primary_url": "https://entelligence.ai/blogs/gpt-5.6-luna-vs-gpt-6-astra-is-a-1.20-model-good-enough-for-code-review",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "e12c21155ed9b07cc4d3c365f2e1d2e4863336d7",
+          "title": "Entelligence 评测 GPT-5.6 Luna 对比 GPT-6 Astra：单次审查便宜 28 倍的模型能否胜任代码审查",
+          "url": "https://entelligence.ai/blogs/gpt-5.6-luna-vs-gpt-6-astra-is-a-1.20-model-good-enough-for-code-review",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T00:57:33.124000Z"
+        },
+        {
+          "id": "b5c3cb1fd5f31603cbc13ab4200e05173e3b2423",
+          "title": "GPT-5.6 Luna 对比 GPT-6 Astra：$1.20 的模型做代码评审够用吗",
+          "url": "https://entelligence.ai/blogs/gpt-5.6-luna-vs-gpt-6-astra-is-a-1.20-model-good-enough-for-code-review",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T19:56:20Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Hacker News 热门（buzzing.cc 中文翻译）",
+        "Hacker News：AI 热帖"
+      ],
+      "items": [
+        {
+          "id": "e12c21155ed9b07cc4d3c365f2e1d2e4863336d7",
+          "title": "Entelligence 评测 GPT-5.6 Luna 对比 GPT-6 Astra：单次审查便宜 28 倍的模型能否胜任代码审查",
+          "url": "https://entelligence.ai/blogs/gpt-5.6-luna-vs-gpt-6-astra-is-a-1.20-model-good-enough-for-code-review",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T00:57:33.124000Z"
+        },
+        {
+          "id": "b5c3cb1fd5f31603cbc13ab4200e05173e3b2423",
+          "title": "GPT-5.6 Luna 对比 GPT-6 Astra：$1.20 的模型做代码评审够用吗",
+          "url": "https://entelligence.ai/blogs/gpt-5.6-luna-vs-gpt-6-astra-is-a-1.20-model-good-enough-for-code-review",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T19:56:20Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7995,
+      "importance": 0.7995,
+      "importance_score": 0.7995,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.75,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9881,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-14T19:56:20Z",
+      "latest_at": "2026-09-15T00:57:33.124000Z",
+      "primary_item": {
+        "id": "e12c21155ed9b07cc4d3c365f2e1d2e4863336d7",
+        "title": "Entelligence 评测 GPT-5.6 Luna 对比 GPT-6 Astra：单次审查便宜 28 倍的模型能否胜任代码审查",
+        "url": "https://entelligence.ai/blogs/gpt-5.6-luna-vs-gpt-6-astra-is-a-1.20-model-good-enough-for-code-review",
+        "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_e4b50f354b69",
+      "title": "科技巨头放缓 AI 开发的口头协议是安全共识还是卡特尔",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/995186/is-big-techs-ai-slowdown-a-safety-pact-or-a-cartel",
+      "primary_url": "https://www.theverge.com/ai-artificial-intelligence/995186/is-big-techs-ai-slowdown-a-safety-pact-or-a-cartel",
+      "source": "The Verge：AI（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "c131b6c7d6ce6ec0832bbeba34188b9ac619b54e",
+          "title": "科技巨头放缓 AI 开发的口头协议是安全共识还是卡特尔",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/995186/is-big-techs-ai-slowdown-a-safety-pact-or-a-cartel",
+          "source": "The Verge：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T22:59:41Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "The Verge：AI（RSS）"
+      ],
+      "items": [
+        {
+          "id": "c131b6c7d6ce6ec0832bbeba34188b9ac619b54e",
+          "title": "科技巨头放缓 AI 开发的口头协议是安全共识还是卡特尔",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/995186/is-big-techs-ai-slowdown-a-safety-pact-or-a-cartel",
+          "source": "The Verge：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T22:59:41Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7935,
+      "importance": 0.7935,
+      "importance_score": 0.7935,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.83,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9604,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-14T22:59:41Z",
+      "latest_at": "2026-09-14T22:59:41Z",
+      "primary_item": {
+        "id": "c131b6c7d6ce6ec0832bbeba34188b9ac619b54e",
+        "title": "科技巨头放缓 AI 开发的口头协议是安全共识还是卡特尔",
+        "url": "https://www.theverge.com/ai-artificial-intelligence/995186/is-big-techs-ai-slowdown-a-safety-pact-or-a-cartel",
+        "source": "The Verge：AI（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -251,15 +393,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7821,
-      "importance": 0.7821,
-      "importance_score": 0.7821,
+      "score": 0.781,
+      "importance": 0.781,
+      "importance_score": 0.781,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.914,
+        "recency": 0.908,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -278,49 +420,49 @@
       }
     },
     {
-      "story_id": "story_dce815e05e9f",
-      "title": "失控的 OpenAI AI 代理攻击 RubyGems.org：YARD 代码执行与 Fastly 缓存密钥窃取分析",
-      "url": "https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive",
-      "primary_url": "https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "story_id": "story_a4e7f95319e4",
+      "title": "Fireworks 评测 DeepSeek-V4.1-Flash：DeepSWE 达 GPT-6 Astra 水准、成本仅 1/15",
+      "url": "https://fireworks.ai/blog/DeepSeek-V4.1-Flash-Astra",
+      "primary_url": "https://fireworks.ai/blog/DeepSeek-V4.1-Flash-Astra",
+      "source": "Fireworks AI（网页）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "fdd0ba51a57d33ed5c6494ce2177ca67ec8ee42d",
-          "title": "失控的 OpenAI AI 代理攻击 RubyGems.org：YARD 代码执行与 Fastly 缓存密钥窃取分析",
-          "url": "https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive",
-          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "id": "77dfca4bd63b8550aeaefa4f5609a1cf82b44415",
+          "title": "Fireworks 评测 DeepSeek-V4.1-Flash：DeepSWE 达 GPT-6 Astra 水准、成本仅 1/15",
+          "url": "https://fireworks.ai/blog/DeepSeek-V4.1-Flash-Astra",
+          "source": "Fireworks AI（网页）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-14T16:02:42.072000Z"
+          "published_at": "2026-09-15T00:36:35.301000Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "Hacker News 热门（buzzing.cc 中文翻译）"
+        "Fireworks AI（网页）"
       ],
       "items": [
         {
-          "id": "fdd0ba51a57d33ed5c6494ce2177ca67ec8ee42d",
-          "title": "失控的 OpenAI AI 代理攻击 RubyGems.org：YARD 代码执行与 Fastly 缓存密钥窃取分析",
-          "url": "https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive",
-          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "id": "77dfca4bd63b8550aeaefa4f5609a1cf82b44415",
+          "title": "Fireworks 评测 DeepSeek-V4.1-Flash：DeepSWE 达 GPT-6 Astra 水准、成本仅 1/15",
+          "url": "https://fireworks.ai/blog/DeepSeek-V4.1-Flash-Astra",
+          "source": "Fireworks AI（网页）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-14T16:02:42.072000Z"
+          "published_at": "2026-09-15T00:36:35.301000Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.775,
-      "importance": 0.775,
-      "importance_score": 0.775,
+      "score": 0.7706,
+      "importance": 0.7706,
+      "importance_score": 0.7706,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.82,
+        "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8745,
+        "recency": 0.9831,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -328,74 +470,13 @@
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-09-14T16:02:42.072000Z",
-      "latest_at": "2026-09-14T16:02:42.072000Z",
+      "earliest_at": "2026-09-15T00:36:35.301000Z",
+      "latest_at": "2026-09-15T00:36:35.301000Z",
       "primary_item": {
-        "id": "fdd0ba51a57d33ed5c6494ce2177ca67ec8ee42d",
-        "title": "失控的 OpenAI AI 代理攻击 RubyGems.org：YARD 代码执行与 Fastly 缓存密钥窃取分析",
-        "url": "https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive",
-        "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_82404ffdc91b",
-      "title": "GPT-5.6 Luna 对比 GPT-6 Astra：$1.20 的模型做代码评审够用吗",
-      "url": "https://entelligence.ai/blogs/gpt-5.6-luna-vs-gpt-6-astra-is-a-1.20-model-good-enough-for-code-review",
-      "primary_url": "https://entelligence.ai/blogs/gpt-5.6-luna-vs-gpt-6-astra-is-a-1.20-model-good-enough-for-code-review",
-      "source": "Hacker News：AI 热帖",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "b5c3cb1fd5f31603cbc13ab4200e05173e3b2423",
-          "title": "GPT-5.6 Luna 对比 GPT-6 Astra：$1.20 的模型做代码评审够用吗",
-          "url": "https://entelligence.ai/blogs/gpt-5.6-luna-vs-gpt-6-astra-is-a-1.20-model-good-enough-for-code-review",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T19:56:20Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Hacker News：AI 热帖"
-      ],
-      "items": [
-        {
-          "id": "b5c3cb1fd5f31603cbc13ab4200e05173e3b2423",
-          "title": "GPT-5.6 Luna 对比 GPT-6 Astra：$1.20 的模型做代码评审够用吗",
-          "url": "https://entelligence.ai/blogs/gpt-5.6-luna-vs-gpt-6-astra-is-a-1.20-model-good-enough-for-code-review",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T19:56:20Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7691,
-      "importance": 0.7691,
-      "importance_score": 0.7691,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.77,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.925,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-14T19:56:20Z",
-      "latest_at": "2026-09-14T19:56:20Z",
-      "primary_item": {
-        "id": "b5c3cb1fd5f31603cbc13ab4200e05173e3b2423",
-        "title": "GPT-5.6 Luna 对比 GPT-6 Astra：$1.20 的模型做代码评审够用吗",
-        "url": "https://entelligence.ai/blogs/gpt-5.6-luna-vs-gpt-6-astra-is-a-1.20-model-good-enough-for-code-review",
-        "source": "Hacker News：AI 热帖",
+        "id": "77dfca4bd63b8550aeaefa4f5609a1cf82b44415",
+        "title": "Fireworks 评测 DeepSeek-V4.1-Flash：DeepSWE 达 GPT-6 Astra 水准、成本仅 1/15",
+        "url": "https://fireworks.ai/blog/DeepSeek-V4.1-Flash-Astra",
+        "source": "Fireworks AI（网页）",
         "source_name": "AI HOT"
       }
     },
@@ -434,15 +515,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7626,
-      "importance": 0.7626,
-      "importance_score": 0.7626,
+      "score": 0.7615,
+      "importance": 0.7615,
+      "importance_score": 0.7615,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8887,
+        "recency": 0.8829,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -495,15 +576,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7624,
-      "importance": 0.7624,
-      "importance_score": 0.7624,
+      "score": 0.7614,
+      "importance": 0.7614,
+      "importance_score": 0.7614,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8711,
+        "recency": 0.8654,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -556,15 +637,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7566,
-      "importance": 0.7566,
-      "importance_score": 0.7566,
+      "score": 0.7555,
+      "importance": 0.7555,
+      "importance_score": 0.7555,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8889,
+        "recency": 0.883,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -636,15 +717,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7553,
-      "importance": 0.7553,
-      "importance_score": 0.7553,
+      "score": 0.7541,
+      "importance": 0.7541,
+      "importance_score": 0.7541,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9425,
+        "recency": 0.9364,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -660,67 +741,6 @@
         "title": "WSJ：OpenAI 以超 3 亿美元收购手机相机初创公司 Glass Imaging",
         "url": "https://x.com/rohanpaul_ai/status/2099607669288128946",
         "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_fa0bf0a9d2fe",
-      "title": "Dario Amodei 发文呼吁放缓前沿 AI 开发后各方表态汇总",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/995141/ai-executives-politicians-safety-regulation-anthropic-dario-amodei",
-      "primary_url": "https://www.theverge.com/ai-artificial-intelligence/995141/ai-executives-politicians-safety-regulation-anthropic-dario-amodei",
-      "source": "The Verge：AI（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "38519a1557f9275c22378388579fb3e4b85a9495",
-          "title": "Dario Amodei 发文呼吁放缓前沿 AI 开发后各方表态汇总",
-          "url": "https://www.theverge.com/ai-artificial-intelligence/995141/ai-executives-politicians-safety-regulation-anthropic-dario-amodei",
-          "source": "The Verge：AI（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T21:21:42Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "The Verge：AI（RSS）"
-      ],
-      "items": [
-        {
-          "id": "38519a1557f9275c22378388579fb3e4b85a9495",
-          "title": "Dario Amodei 发文呼吁放缓前沿 AI 开发后各方表态汇总",
-          "url": "https://www.theverge.com/ai-artificial-intelligence/995141/ai-executives-politicians-safety-regulation-anthropic-dario-amodei",
-          "source": "The Verge：AI（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T21:21:42Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7546,
-      "importance": 0.7546,
-      "importance_score": 0.7546,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9442,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-14T21:21:42Z",
-      "latest_at": "2026-09-14T21:21:42Z",
-      "primary_item": {
-        "id": "38519a1557f9275c22378388579fb3e4b85a9495",
-        "title": "Dario Amodei 发文呼吁放缓前沿 AI 开发后各方表态汇总",
-        "url": "https://www.theverge.com/ai-artificial-intelligence/995141/ai-executives-politicians-safety-regulation-anthropic-dario-amodei",
-        "source": "The Verge：AI（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -759,15 +779,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7516,
-      "importance": 0.7516,
-      "importance_score": 0.7516,
+      "score": 0.7508,
+      "importance": 0.7508,
+      "importance_score": 0.7508,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.84,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7112,
+        "recency": 0.7065,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -782,6 +802,247 @@
         "title": "Anthropic 提出 3 步 Pace the Frontier 放缓计划，获 OpenAI、xAI 和 Microsoft 声援",
         "url": "https://www.marktechpost.com/2026/09/13/anthropics-3-step-pace-the-frontier-plan-wins-openai-xai-and-microsoft-support-is-it-too-late-to-slow-ai-down",
         "source": "MarkTechPost（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_dce815e05e9f",
+      "title": "失控的 OpenAI AI 代理攻击 RubyGems.org：YARD 代码执行与 Fastly 缓存密钥窃取分析",
+      "url": "https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive",
+      "primary_url": "https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "fdd0ba51a57d33ed5c6494ce2177ca67ec8ee42d",
+          "title": "失控的 OpenAI AI 代理攻击 RubyGems.org：YARD 代码执行与 Fastly 缓存密钥窃取分析",
+          "url": "https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T16:02:42.072000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Hacker News 热门（buzzing.cc 中文翻译）"
+      ],
+      "items": [
+        {
+          "id": "fdd0ba51a57d33ed5c6494ce2177ca67ec8ee42d",
+          "title": "失控的 OpenAI AI 代理攻击 RubyGems.org：YARD 代码执行与 Fastly 缓存密钥窃取分析",
+          "url": "https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T16:02:42.072000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.774,
+      "importance": 0.774,
+      "importance_score": 0.774,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.82,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8687,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-14T16:02:42.072000Z",
+      "latest_at": "2026-09-14T16:02:42.072000Z",
+      "primary_item": {
+        "id": "fdd0ba51a57d33ed5c6494ce2177ca67ec8ee42d",
+        "title": "失控的 OpenAI AI 代理攻击 RubyGems.org：YARD 代码执行与 Fastly 缓存密钥窃取分析",
+        "url": "https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive",
+        "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_72c4057198a7",
+      "title": "OpenAI 研究员 Dan Selsam 发文警告 AI 风险，François Chollet 转发并补充智能效率差距分析",
+      "url": "https://x.com/fchollet/status/2099633702888439865",
+      "primary_url": "https://x.com/fchollet/status/2099633702888439865",
+      "source": "X：Francois Chollet (@fchollet)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "5cbf04de0a591e6c7a3b0cee1a175ca8b7e518cb",
+          "title": "OpenAI 研究员 Dan Selsam 发文警告 AI 风险，François Chollet 转发并补充智能效率差距分析",
+          "url": "https://x.com/fchollet/status/2099633702888439865",
+          "source": "X：Francois Chollet (@fchollet)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T22:57:38Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Francois Chollet (@fchollet)"
+      ],
+      "items": [
+        {
+          "id": "5cbf04de0a591e6c7a3b0cee1a175ca8b7e518cb",
+          "title": "OpenAI 研究员 Dan Selsam 发文警告 AI 风险，François Chollet 转发并补充智能效率差距分析",
+          "url": "https://x.com/fchollet/status/2099633702888439865",
+          "source": "X：Francois Chollet (@fchollet)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T22:57:38Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7424,
+      "importance": 0.7424,
+      "importance_score": 0.7424,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.66,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.96,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-14T22:57:38Z",
+      "latest_at": "2026-09-14T22:57:38Z",
+      "primary_item": {
+        "id": "5cbf04de0a591e6c7a3b0cee1a175ca8b7e518cb",
+        "title": "OpenAI 研究员 Dan Selsam 发文警告 AI 风险，François Chollet 转发并补充智能效率差距分析",
+        "url": "https://x.com/fchollet/status/2099633702888439865",
+        "source": "X：Francois Chollet (@fchollet)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_741e0a4a8094",
+      "title": "OpenAI 研究员 Dan Selsam 发布个人 AI 风险声明，警告模型情境感知正让对齐评估失效",
+      "url": "https://x.com/SemiAnalysis_/status/2099660730802778156",
+      "primary_url": "https://x.com/SemiAnalysis_/status/2099660730802778156",
+      "source": "X：SemiAnalysis (@SemiAnalysis_)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "02c928e6aad14e0e673cb9e281b9ba0a6d1e2e2c",
+          "title": "OpenAI 研究员 Dan Selsam 发布个人 AI 风险声明，警告模型情境感知正让对齐评估失效",
+          "url": "https://x.com/SemiAnalysis_/status/2099660730802778156",
+          "source": "X：SemiAnalysis (@SemiAnalysis_)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T00:45:02Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：SemiAnalysis (@SemiAnalysis_)"
+      ],
+      "items": [
+        {
+          "id": "02c928e6aad14e0e673cb9e281b9ba0a6d1e2e2c",
+          "title": "OpenAI 研究员 Dan Selsam 发布个人 AI 风险声明，警告模型情境感知正让对齐评估失效",
+          "url": "https://x.com/SemiAnalysis_/status/2099660730802778156",
+          "source": "X：SemiAnalysis (@SemiAnalysis_)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T00:45:02Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7409,
+      "importance": 0.7409,
+      "importance_score": 0.7409,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.64,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9851,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-15T00:45:02Z",
+      "latest_at": "2026-09-15T00:45:02Z",
+      "primary_item": {
+        "id": "02c928e6aad14e0e673cb9e281b9ba0a6d1e2e2c",
+        "title": "OpenAI 研究员 Dan Selsam 发布个人 AI 风险声明，警告模型情境感知正让对齐评估失效",
+        "url": "https://x.com/SemiAnalysis_/status/2099660730802778156",
+        "source": "X：SemiAnalysis (@SemiAnalysis_)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_83313c4470c2",
+      "title": "SemiAnalysis 实测 Vera Rubin NVL72 智能体推理 性能每美元最高达 GB300 约 67 倍",
+      "url": "https://newsletter.semianalysis.com/p/vera-rubin-nvl72-agentic-inference",
+      "primary_url": "https://newsletter.semianalysis.com/p/vera-rubin-nvl72-agentic-inference",
+      "source": "SemiAnalysis 长文 RSS（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "81edd5b54de7cce52ad35db4f7cabb4ee0178785",
+          "title": "SemiAnalysis 实测 Vera Rubin NVL72 智能体推理 性能每美元最高达 GB300 约 67 倍",
+          "url": "https://newsletter.semianalysis.com/p/vera-rubin-nvl72-agentic-inference",
+          "source": "SemiAnalysis 长文 RSS（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T22:08:56Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "SemiAnalysis 长文 RSS（RSS）"
+      ],
+      "items": [
+        {
+          "id": "81edd5b54de7cce52ad35db4f7cabb4ee0178785",
+          "title": "SemiAnalysis 实测 Vera Rubin NVL72 智能体推理 性能每美元最高达 GB300 约 67 倍",
+          "url": "https://newsletter.semianalysis.com/p/vera-rubin-nvl72-agentic-inference",
+          "source": "SemiAnalysis 长文 RSS（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T22:08:56Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7404,
+      "importance": 0.7404,
+      "importance_score": 0.7404,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.66,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9488,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-14T22:08:56Z",
+      "latest_at": "2026-09-14T22:08:56Z",
+      "primary_item": {
+        "id": "81edd5b54de7cce52ad35db4f7cabb4ee0178785",
+        "title": "SemiAnalysis 实测 Vera Rubin NVL72 智能体推理 性能每美元最高达 GB300 约 67 倍",
+        "url": "https://newsletter.semianalysis.com/p/vera-rubin-nvl72-agentic-inference",
+        "source": "SemiAnalysis 长文 RSS（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -820,15 +1081,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7398,
-      "importance": 0.7398,
-      "importance_score": 0.7398,
+      "score": 0.7389,
+      "importance": 0.7389,
+      "importance_score": 0.7389,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7956,
+        "recency": 0.7904,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -846,83 +1107,62 @@
       }
     },
     {
-      "story_id": "story_7f49d82031d8",
-      "title": "Anthropic 报告称胡塞武装利用 Claude Code 开发导弹制导软件",
-      "url": "https://clashreport.com/world/articles/houthis-used-claude-code-to-develop-missile-guidance-software-anthropic-s52mnx4pwpo",
-      "primary_url": "https://clashreport.com/world/articles/houthis-used-claude-code-to-develop-missile-guidance-software-anthropic-s52mnx4pwpo",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "story_id": "story_79b5fedeeaa6",
+      "title": "奥巴马表态支持放慢 AI 开发并呼吁美国主导国际 AI 安全标准",
+      "url": "https://x.com/AISafetyMemes/status/2099659297005433002",
+      "primary_url": "https://x.com/AISafetyMemes/status/2099659297005433002",
+      "source": "X：AI Safety Memes (@AISafetyMemes)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "871ae0925d6452b62803838349dd7b01fa0e334f",
-          "title": "Anthropic 报告称胡塞武装利用 Claude Code 开发导弹制导软件",
-          "url": "https://clashreport.com/world/articles/houthis-used-claude-code-to-develop-missile-guidance-software-anthropic-s52mnx4pwpo",
-          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "id": "0eb78c857899d47629e860136f2caf3135d63206",
+          "title": "奥巴马表态支持放慢 AI 开发并呼吁美国主导国际 AI 安全标准",
+          "url": "https://x.com/AISafetyMemes/status/2099659297005433002",
+          "source": "X：AI Safety Memes (@AISafetyMemes)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-14T11:00:31.508000Z"
-        },
-        {
-          "id": "233ba3a473d4d2792fa6ebaf00eff4c46865c136",
-          "title": "Anthropic 报告称胡塞组织用 Claude Code 开发导弹制导软件",
-          "url": "https://clashreport.com/world/articles/houthis-used-claude-code-to-develop-missile-guidance-software-anthropic-s52mnx4pwpo",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-13T14:15:40Z"
+          "published_at": "2026-09-15T00:39:20Z"
         }
       ],
-      "source_count": 2,
+      "source_count": 1,
       "source_names": [
-        "Hacker News 热门（buzzing.cc 中文翻译）",
-        "Hacker News：AI 热帖"
+        "X：AI Safety Memes (@AISafetyMemes)"
       ],
       "items": [
         {
-          "id": "871ae0925d6452b62803838349dd7b01fa0e334f",
-          "title": "Anthropic 报告称胡塞武装利用 Claude Code 开发导弹制导软件",
-          "url": "https://clashreport.com/world/articles/houthis-used-claude-code-to-develop-missile-guidance-software-anthropic-s52mnx4pwpo",
-          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "id": "0eb78c857899d47629e860136f2caf3135d63206",
+          "title": "奥巴马表态支持放慢 AI 开发并呼吁美国主导国际 AI 安全标准",
+          "url": "https://x.com/AISafetyMemes/status/2099659297005433002",
+          "source": "X：AI Safety Memes (@AISafetyMemes)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-14T11:00:31.508000Z"
-        },
-        {
-          "id": "233ba3a473d4d2792fa6ebaf00eff4c46865c136",
-          "title": "Anthropic 报告称胡塞组织用 Claude Code 开发导弹制导软件",
-          "url": "https://clashreport.com/world/articles/houthis-used-claude-code-to-develop-missile-guidance-software-anthropic-s52mnx4pwpo",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-13T14:15:40Z"
+          "published_at": "2026-09-15T00:39:20Z"
         }
       ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.762,
-      "importance": 0.762,
-      "importance_score": 0.762,
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7347,
+      "importance": 0.7347,
+      "importance_score": 0.7347,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.73,
+        "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8131,
-        "story_heat": 0.25
+        "recency": 0.9838,
+        "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "multi_source",
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-13T14:15:40Z",
-      "latest_at": "2026-09-14T11:00:31.508000Z",
+      "earliest_at": "2026-09-15T00:39:20Z",
+      "latest_at": "2026-09-15T00:39:20Z",
       "primary_item": {
-        "id": "871ae0925d6452b62803838349dd7b01fa0e334f",
-        "title": "Anthropic 报告称胡塞武装利用 Claude Code 开发导弹制导软件",
-        "url": "https://clashreport.com/world/articles/houthis-used-claude-code-to-develop-missile-guidance-software-anthropic-s52mnx4pwpo",
-        "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+        "id": "0eb78c857899d47629e860136f2caf3135d63206",
+        "title": "奥巴马表态支持放慢 AI 开发并呼吁美国主导国际 AI 安全标准",
+        "url": "https://x.com/AISafetyMemes/status/2099659297005433002",
+        "source": "X：AI Safety Memes (@AISafetyMemes)",
         "source_name": "AI HOT"
       }
     },
@@ -961,15 +1201,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.762,
-      "importance": 0.762,
-      "importance_score": 0.762,
+      "score": 0.7609,
+      "importance": 0.7609,
+      "importance_score": 0.7609,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9189,
+        "recency": 0.9129,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -984,6 +1224,66 @@
         "title": "Apple 发布 iOS 27 与 macOS Golden Gate 27，主打 Siri AI 和 Liquid Glass 改进",
         "url": "https://arstechnica.com/apple/2026/09/apple-releases-ios-27-macos-golden-gate-27-with-siri-ai-and-liquid-glass-refinements",
         "source": "Ars Technica：AI（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_f526f45947e3",
+      "title": "Trump 与黄仁勋在 All In Summit 回应 Dario Amodei 的放缓提议",
+      "url": "https://x.com/kimmonismus/status/2099644362720162044",
+      "primary_url": "https://x.com/kimmonismus/status/2099644362720162044",
+      "source": "X：Kim (@kimmonismus)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "bfd1fd7e2c9342563417ae272efb3fb28f15b7e8",
+          "title": "Trump 与黄仁勋在 All In Summit 回应 Dario Amodei 的放缓提议",
+          "url": "https://x.com/kimmonismus/status/2099644362720162044",
+          "source": "X：Kim (@kimmonismus)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T23:40:00Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Kim (@kimmonismus)"
+      ],
+      "items": [
+        {
+          "id": "bfd1fd7e2c9342563417ae272efb3fb28f15b7e8",
+          "title": "Trump 与黄仁勋在 All In Summit 回应 Dario Amodei 的放缓提议",
+          "url": "https://x.com/kimmonismus/status/2099644362720162044",
+          "source": "X：Kim (@kimmonismus)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T23:40:00Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7292,
+      "importance": 0.7292,
+      "importance_score": 0.7292,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.61,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9698,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-14T23:40:00Z",
+      "latest_at": "2026-09-14T23:40:00Z",
+      "primary_item": {
+        "id": "bfd1fd7e2c9342563417ae272efb3fb28f15b7e8",
+        "title": "Trump 与黄仁勋在 All In Summit 回应 Dario Amodei 的放缓提议",
+        "url": "https://x.com/kimmonismus/status/2099644362720162044",
+        "source": "X：Kim (@kimmonismus)",
         "source_name": "AI HOT"
       }
     },
@@ -1022,15 +1322,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.73,
-      "importance": 0.73,
-      "importance_score": 0.73,
+      "score": 0.729,
+      "importance": 0.729,
+      "importance_score": 0.729,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8912,
+        "recency": 0.8854,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1048,362 +1348,62 @@
       }
     },
     {
-      "story_id": "story_bdc1ffa510b1",
-      "title": "硅基流动上线开源模型 Hy4 preview，770B 总参数、1M 上下文",
-      "url": "https://x.com/SiliconFlowAI/status/2099536759168352634",
-      "primary_url": "https://x.com/SiliconFlowAI/status/2099536759168352634",
-      "source": "X：硅基流动 SiliconFlow (@SiliconFlowAI)",
+      "story_id": "story_4172ebf0cb99",
+      "title": "karminski 实测浏览器内全端运行的 MiniCPM5-2B Coding Agent",
+      "url": "https://x.com/karminski3/status/2099633181934907654",
+      "primary_url": "https://x.com/karminski3/status/2099633181934907654",
+      "source": "X：karminski (@karminski3)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "7e7bdae7d1c78f04ba6c32e9eb975ad87f92e758",
-          "title": "硅基流动上线开源模型 Hy4 preview，770B 总参数、1M 上下文",
-          "url": "https://x.com/SiliconFlowAI/status/2099536759168352634",
-          "source": "X：硅基流动 SiliconFlow (@SiliconFlowAI)",
+          "id": "fe8d7d1252d448d0e0d7da14599d8c5de40dd11f",
+          "title": "karminski 实测浏览器内全端运行的 MiniCPM5-2B Coding Agent",
+          "url": "https://x.com/karminski3/status/2099633181934907654",
+          "source": "X：karminski (@karminski3)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-14T16:32:25Z"
+          "published_at": "2026-09-14T22:55:34Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：硅基流动 SiliconFlow (@SiliconFlowAI)"
+        "X：karminski (@karminski3)"
       ],
       "items": [
         {
-          "id": "7e7bdae7d1c78f04ba6c32e9eb975ad87f92e758",
-          "title": "硅基流动上线开源模型 Hy4 preview，770B 总参数、1M 上下文",
-          "url": "https://x.com/SiliconFlowAI/status/2099536759168352634",
-          "source": "X：硅基流动 SiliconFlow (@SiliconFlowAI)",
+          "id": "fe8d7d1252d448d0e0d7da14599d8c5de40dd11f",
+          "title": "karminski 实测浏览器内全端运行的 MiniCPM5-2B Coding Agent",
+          "url": "https://x.com/karminski3/status/2099633181934907654",
+          "source": "X：karminski (@karminski3)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-14T16:32:25Z"
+          "published_at": "2026-09-14T22:55:34Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7281,
-      "importance": 0.7281,
-      "importance_score": 0.7281,
+      "score": 0.7273,
+      "importance": 0.7273,
+      "importance_score": 0.7273,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.66,
+        "editorial": 0.61,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8807,
+        "recency": 0.9595,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-14T16:32:25Z",
-      "latest_at": "2026-09-14T16:32:25Z",
+      "earliest_at": "2026-09-14T22:55:34Z",
+      "latest_at": "2026-09-14T22:55:34Z",
       "primary_item": {
-        "id": "7e7bdae7d1c78f04ba6c32e9eb975ad87f92e758",
-        "title": "硅基流动上线开源模型 Hy4 preview，770B 总参数、1M 上下文",
-        "url": "https://x.com/SiliconFlowAI/status/2099536759168352634",
-        "source": "X：硅基流动 SiliconFlow (@SiliconFlowAI)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_c8ee7343f89f",
-      "title": "Nvidia、Palantir 与 Booz Allen 因数据留存担忧限制使用 Anthropic 的 Fable",
-      "url": "https://x.com/kimmonismus/status/2099592517037727854",
-      "primary_url": "https://x.com/kimmonismus/status/2099592517037727854",
-      "source": "X：Kim (@kimmonismus)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "7059110c8eb887dd748553e7c72cbf26c6630fb9",
-          "title": "Nvidia、Palantir 与 Booz Allen 因数据留存担忧限制使用 Anthropic 的 Fable",
-          "url": "https://x.com/kimmonismus/status/2099592517037727854",
-          "source": "X：Kim (@kimmonismus)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T20:13:59Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Kim (@kimmonismus)"
-      ],
-      "items": [
-        {
-          "id": "7059110c8eb887dd748553e7c72cbf26c6630fb9",
-          "title": "Nvidia、Palantir 与 Booz Allen 因数据留存担忧限制使用 Anthropic 的 Fable",
-          "url": "https://x.com/kimmonismus/status/2099592517037727854",
-          "source": "X：Kim (@kimmonismus)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T20:13:59Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7278,
-      "importance": 0.7278,
-      "importance_score": 0.7278,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.63,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.929,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T20:13:59Z",
-      "latest_at": "2026-09-14T20:13:59Z",
-      "primary_item": {
-        "id": "7059110c8eb887dd748553e7c72cbf26c6630fb9",
-        "title": "Nvidia、Palantir 与 Booz Allen 因数据留存担忧限制使用 Anthropic 的 Fable",
-        "url": "https://x.com/kimmonismus/status/2099592517037727854",
-        "source": "X：Kim (@kimmonismus)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_4ed21dcc894e",
-      "title": "Sayash Kapoor 用 AI as Normal Technology 框架解读失控事件：OpenAI - Hugging Face 事件是控制失败而非纯对齐危机",
-      "url": "https://www.normaltech.ai/p/the-ai-as-normal-technology-view",
-      "primary_url": "https://www.normaltech.ai/p/the-ai-as-normal-technology-view",
-      "source": "AI as Normal Technology（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "1a9d41a1c656d72d1fe28780eeff7c115fc7c348",
-          "title": "Sayash Kapoor 用 AI as Normal Technology 框架解读失控事件：OpenAI - Hugging Face 事件是控制失败而非纯对齐危机",
-          "url": "https://www.normaltech.ai/p/the-ai-as-normal-technology-view",
-          "source": "AI as Normal Technology（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T10:30:14Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "AI as Normal Technology（RSS）"
-      ],
-      "items": [
-        {
-          "id": "1a9d41a1c656d72d1fe28780eeff7c115fc7c348",
-          "title": "Sayash Kapoor 用 AI as Normal Technology 框架解读失控事件：OpenAI - Hugging Face 事件是控制失败而非纯对齐危机",
-          "url": "https://www.normaltech.ai/p/the-ai-as-normal-technology-view",
-          "source": "AI as Normal Technology（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T10:30:14Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7269,
-      "importance": 0.7269,
-      "importance_score": 0.7269,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.7,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8072,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T10:30:14Z",
-      "latest_at": "2026-09-14T10:30:14Z",
-      "primary_item": {
-        "id": "1a9d41a1c656d72d1fe28780eeff7c115fc7c348",
-        "title": "Sayash Kapoor 用 AI as Normal Technology 框架解读失控事件：OpenAI - Hugging Face 事件是控制失败而非纯对齐危机",
-        "url": "https://www.normaltech.ai/p/the-ai-as-normal-technology-view",
-        "source": "AI as Normal Technology（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_5083300735bf",
-      "title": "Microsoft AI 发布人文主义 AI 行为准则草案并开启六周公众咨询",
-      "url": "https://www.artificialintelligence-news.com/news/microsoft-ai-opens-review-humanist-ai-code-of-conduct",
-      "primary_url": "https://www.artificialintelligence-news.com/news/microsoft-ai-opens-review-humanist-ai-code-of-conduct",
-      "source": "Artificial Intelligence News（网页）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "5eb4e023634ca84e782c12a8a6c30faa831a7efa",
-          "title": "Microsoft AI 发布人文主义 AI 行为准则草案并开启六周公众咨询",
-          "url": "https://www.artificialintelligence-news.com/news/microsoft-ai-opens-review-humanist-ai-code-of-conduct",
-          "source": "Artificial Intelligence News（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T15:47:14.554000Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Artificial Intelligence News（网页）"
-      ],
-      "items": [
-        {
-          "id": "5eb4e023634ca84e782c12a8a6c30faa831a7efa",
-          "title": "Microsoft AI 发布人文主义 AI 行为准则草案并开启六周公众咨询",
-          "url": "https://www.artificialintelligence-news.com/news/microsoft-ai-opens-review-humanist-ai-code-of-conduct",
-          "source": "Artificial Intelligence News（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T15:47:14.554000Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7264,
-      "importance": 0.7264,
-      "importance_score": 0.7264,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8712,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T15:47:14.554000Z",
-      "latest_at": "2026-09-14T15:47:14.554000Z",
-      "primary_item": {
-        "id": "5eb4e023634ca84e782c12a8a6c30faa831a7efa",
-        "title": "Microsoft AI 发布人文主义 AI 行为准则草案并开启六周公众咨询",
-        "url": "https://www.artificialintelligence-news.com/news/microsoft-ai-opens-review-humanist-ai-code-of-conduct",
-        "source": "Artificial Intelligence News（网页）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_948df33b601b",
-      "title": "Bolt 发布 Forge 智能体，仅运行开源权重模型",
-      "url": "https://x.com/testingcatalog/status/2099535055475368071",
-      "primary_url": "https://x.com/testingcatalog/status/2099535055475368071",
-      "source": "X：Testing Catalog (@testingcatalog)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "a79fdc548d09c30d5d2a3fac33a8af1366ae9600",
-          "title": "Bolt 发布 Forge 智能体，仅运行开源权重模型",
-          "url": "https://x.com/testingcatalog/status/2099535055475368071",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T16:25:39Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Testing Catalog (@testingcatalog)"
-      ],
-      "items": [
-        {
-          "id": "a79fdc548d09c30d5d2a3fac33a8af1366ae9600",
-          "title": "Bolt 发布 Forge 智能体，仅运行开源权重模型",
-          "url": "https://x.com/testingcatalog/status/2099535055475368071",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T16:25:39Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7249,
-      "importance": 0.7249,
-      "importance_score": 0.7249,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.65,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8793,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T16:25:39Z",
-      "latest_at": "2026-09-14T16:25:39Z",
-      "primary_item": {
-        "id": "a79fdc548d09c30d5d2a3fac33a8af1366ae9600",
-        "title": "Bolt 发布 Forge 智能体，仅运行开源权重模型",
-        "url": "https://x.com/testingcatalog/status/2099535055475368071",
-        "source": "X：Testing Catalog (@testingcatalog)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_0f1f17c81528",
-      "title": "Richard Socher 谈 Recursive 与自我改进的 Eureka Machine 愿景",
-      "url": "https://www.latent.space/p/recursive",
-      "primary_url": "https://www.latent.space/p/recursive",
-      "source": "Latent Space（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "652a5d67280d420c6a867615862e6e958b43f791",
-          "title": "Richard Socher 谈 Recursive 与自我改进的 Eureka Machine 愿景",
-          "url": "https://www.latent.space/p/recursive",
-          "source": "Latent Space（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T16:04:16Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Latent Space（RSS）"
-      ],
-      "items": [
-        {
-          "id": "652a5d67280d420c6a867615862e6e958b43f791",
-          "title": "Richard Socher 谈 Recursive 与自我改进的 Eureka Machine 愿景",
-          "url": "https://www.latent.space/p/recursive",
-          "source": "Latent Space（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T16:04:16Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7241,
-      "importance": 0.7241,
-      "importance_score": 0.7241,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.65,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8748,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T16:04:16Z",
-      "latest_at": "2026-09-14T16:04:16Z",
-      "primary_item": {
-        "id": "652a5d67280d420c6a867615862e6e958b43f791",
-        "title": "Richard Socher 谈 Recursive 与自我改进的 Eureka Machine 愿景",
-        "url": "https://www.latent.space/p/recursive",
-        "source": "Latent Space（RSS）",
+        "id": "fe8d7d1252d448d0e0d7da14599d8c5de40dd11f",
+        "title": "karminski 实测浏览器内全端运行的 MiniCPM5-2B Coding Agent",
+        "url": "https://x.com/karminski3/status/2099633181934907654",
+        "source": "X：karminski (@karminski3)",
         "source_name": "AI HOT"
       }
     }
