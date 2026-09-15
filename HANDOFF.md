@@ -2,9 +2,16 @@
 
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，完整状态在 `PROJECT_STATE.md`。
 
+## AI HOT 只留 X 原文（2026-09-15，部署中）
+
+- 仍采公开池 `mode=all`，不走精选/分数门。只按原文主机 `x.com` / `twitter.com`（含 `www.` / `mobile.`）留条目，不要用源名 `X：` 认推特。
+- 采集解析丢掉非 X；`build_creator_hot_items` 也丢掉归档里已有的非 X，这样下一轮发布就能从列表里消失。不要在本机改 `data/**`。
+- 工作台不用改：它只认 `siteId=aihot`。已阅仍用推特链接。
+- 本提交上 `master`。推送后由 Actions 重采发布。本仓无活跃四文件。
+
 ## AI HOT 全部动态作未读收件箱（2026-09-14，已验收）
 
-- 采公开池 `mode=all`，不是精选。`siteId=aihot`。已阅用原文链接。
+- 采公开池 `mode=all`，不是精选。`siteId=aihot`。已阅用原文链接。后续已收窄为只留 X 原文，见上节。
 - `5cb5529f` 已合 `master`。独立雷达站能看见；工作台原生列表还要客户端按 siteId 放行，单换嵌页 `wb=` 不够。
 - 工作台侧已合 PR #117、NUC 快进、Mate X6 调试包装上，用户确认计数在涨。细节在工作台仓，不要在本仓改工作台 JS。
 - 本仓无活跃四文件。下一需求先读 PROJECT_STATE.md、CONTEXT.md、`docs/SOURCE_COVERAGE.md`。

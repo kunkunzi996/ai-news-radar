@@ -37,6 +37,7 @@ from scripts.radar.common import (
     event_time,
     first_non_empty,
     host_of_url,
+    is_x_original_url,
     maybe_fix_mojibake,
     normalize_url,
     parse_date_any,
@@ -1089,6 +1090,8 @@ def parse_aihot_feed_items(feed_content: bytes, now: datetime, feed_url: str = A
         link = str(entry.get("link") or "").strip()
         if not title or not link:
             continue
+        if not is_x_original_url(link):
+            continue
         normalized_url = normalize_url(link)
         if normalized_url in seen_urls:
             continue
@@ -1182,6 +1185,8 @@ def parse_aihot_api_items(payload: dict[str, Any], now: datetime | None = None) 
         )
         link = aihot_entry_link(entry)
         if not title or not link.startswith(("http://", "https://")):
+            continue
+        if not is_x_original_url(link):
             continue
         normalized_url = normalize_url(link)
         if normalized_url in seen_urls:

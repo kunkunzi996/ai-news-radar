@@ -672,6 +672,21 @@ def host_of_url(raw_url: str) -> str:
         return ""
 
 
+X_ORIGINAL_HOSTS = frozenset({"x.com", "twitter.com"})
+
+
+def is_x_original_url(raw_url: str) -> bool:
+    host = host_of_url(raw_url)
+    if not host:
+        return False
+    host = host.split("@")[-1].split(":")[0]
+    if host.startswith("www."):
+        host = host[4:]
+    if host.startswith("mobile."):
+        host = host[7:]
+    return host in X_ORIGINAL_HOSTS
+
+
 def first_non_empty(*values: Any) -> str:
     for value in values:
         if value is None:

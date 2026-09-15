@@ -1,8 +1,15 @@
 # PROJECT_STATE
 
+## AI HOT 只留 X 原文（2026-09-15，部署中）
+
+- **做了什么**：公开池仍走 `mode=all`，但解析和发布只留原文主机是 `x.com` / `twitter.com` 的条目（含 `www.` / `mobile.`）。不按分数、不按源名 `X：`。归档旧噪音靠发布侧过滤，本机不改 `data/**`。
+- **Git**：本提交上 `master`。页面脚本戳 `aihot-x-0915a`。
+- **当前无本轮四文件**。
+- **未做**：等 Actions 重采后，列表才会从约 498 条收到约 309 条 X。工作台不用改。
+
 ## AI HOT 全部动态作未读收件箱（2026-09-14，已部署并验收）
 
-- **做了什么**：启用 `online_aihot`，读 `https://aihot.news/api/v1/items?mode=all&window=24h`，保留公开池全部动态，URL 用 `links.original`。独立雷达站有 AI HOT 栏。工作台原生列表的过滤在工作台仓，不在本仓预筛。
+- **做了什么**：启用 `online_aihot`，读 `https://aihot.news/api/v1/items?mode=all&window=24h`，URL 用 `links.original`。独立雷达站有 AI HOT 栏。工作台原生列表的过滤在工作台仓，不在本仓预筛。后续已收窄为只留 X 原文，见上节。
 - **Git**：`5cb5529f` 已合 `master`（经 `7251af2c`）；随后数据快照继续快进。页面脚本戳 `aihot-inbox-0914a`。
 - **验收**：实现时 Python 检查与 `npm run test:e2e` 已跑。生产快照约 339 条中 227 条 `site_id=aihot`。用户 2026-09-14 确认工作台网页「有了」、Mate X6「没问题，确实是在涨的」。
 - **当前无本轮四文件**。轻量接入，无四文件归档。

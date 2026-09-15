@@ -51,7 +51,7 @@ verification:
   `FOLLOW_OPML_B64` or the public example OPML fallback)
 
 Production Actions usually load `config/online-sources.json` and switch to
-`configured_sources`. That list now includes `aihot` (AI HOT 公开池全部动态).
+`configured_sources`. That list now includes `aihot` (AI HOT 公开池里的 X 原文).
 Other legacy public fetchers (Follow Builders, Hacker News, WaytoAGI,
 AgentMail, X API, SocialData, TikHub) remain in the codebase for manual
 `--source-scope all_sources` runs.
@@ -119,10 +119,11 @@ baseline, then let the aggregator layer add breadth.
 - **AI Breakfast**: reads the public Beehiiv archive through Jina Reader because
   the original Beehiiv feed can be blocked from GitHub Actions.
 - **AI HOT**: reads `https://aihot.news/api/v1/items` with `mode=all` and
-  `window=24h`. Every public-pool item is kept (no score gate). The item URL is
-  `links.original` so 已阅 keys match the tweet/article, not the AI HOT
-  permalink. Score and `selected` stay in metadata for display. The old
-  `aihot.virxact.com/api/public/items` selected-mode path is retired.
+  `window=24h`. Keep the public pool without a score gate, but only items whose
+  `links.original` host is `x.com` or `twitter.com`. Do not trust the `X：`
+  source prefix. The item URL is that original tweet so 已阅 keys match X, not
+  the AI HOT permalink. Score and `selected` stay in metadata for display. The
+  old `aihot.virxact.com/api/public/items` selected-mode path is retired.
 - **Hacker News Algolia**: reads the public
   `https://hn.algolia.com/api/v1/search_by_date` endpoint for the last 24 hours
   of HN stories matching focused AI/tooling keywords such as OpenAI, Anthropic,

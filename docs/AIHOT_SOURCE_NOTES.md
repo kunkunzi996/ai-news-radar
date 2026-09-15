@@ -1,12 +1,14 @@
 # AI HOT Source Notes
 
-Date: 2026-06-16 (ingest updated 2026-09-14)
+Date: 2026-06-16 (ingest updated 2026-09-15)
 
 Radar now reads the public v1 API, not the old selected-mode feed:
 
 - `GET https://aihot.news/api/v1/items?mode=all&window=24h&limit=100`
-- Keep the whole public pool. Do not drop low scores.
-- Store `links.original` as the item URL so 已阅 matches the tweet/article.
+- Keep the public pool without a score gate, but only X originals
+  (`x.com` / `twitter.com`). Drop RSS, WeChat, GitHub, and media links.
+- Do not trust a source name that starts with `X：`.
+- Store `links.original` as the item URL so 已阅 matches the tweet.
 - Same product also lives at `https://aihot.virxact.com`; the old
   `/api/public/items` path shuts down 2026-12-31.
 

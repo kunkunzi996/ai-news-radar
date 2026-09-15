@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import patch
 
+from scripts.radar.common import is_x_original_url
 from scripts.radar.pipeline import load_archive_for_collection, prune_archive_records
 from scripts.update_news import (
     add_creator_ranking_fields,
@@ -400,7 +401,7 @@ class TopicFilterTests(unittest.TestCase):
 <rss><channel><title>AI HOT — 精选</title>
 <item>
 <title>OpenAI ships a new Codex feature</title>
-<link>https://example.com/codex</link>
+<link>https://x.com/builder/status/1</link>
 <pubDate>Mon, 11 May 2026 02:05:04 GMT</pubDate>
 <author>noreply@aihot.virxact.com (X：Builder)</author>
 </item>
@@ -410,9 +411,34 @@ class TopicFilterTests(unittest.TestCase):
         self.assertEqual(items[0].site_id, "aihot")
         self.assertEqual(items[0].site_name, "AI HOT")
         self.assertEqual(items[0].title, "OpenAI ships a new Codex feature")
-        self.assertEqual(items[0].url, "https://example.com/codex")
+        self.assertEqual(items[0].url, "https://x.com/builder/status/1")
 
-    def test_parse_aihot_api_items_keeps_all_pool_and_original_links(self):
+    def test_parse_aihot_feed_items_drops_non_x_originals(self):
+        xml = """<?xml version='1.0' encoding='UTF-8'?>
+<rss><channel><title>AI HOT — 精选</title>
+<item>
+<title>IT news</title>
+<link>https://www.ithome.com/0/1.htm</link>
+<pubDate>Mon, 11 May 2026 02:05:04 GMT</pubDate>
+<author>noreply@aihot.virxact.com (X：IT之家)</author>
+</item>
+</channel></rss>""".encode("utf-8")
+        self.assertEqual(parse_aihot_feed_items(xml, now=None), [])
+
+    def test_is_x_original_url_accepts_x_hosts_only(self):
+        self.assertTrue(is_x_original_url("https://x.com/a/status/1"))
+        self.assertTrue(is_x_original_url("https://www.x.com/a/status/1"))
+        self.assertTrue(is_x_original_url("https://twitter.com/a/status/1"))
+        self.assertTrue(is_x_original_url("https://www.twitter.com/a/status/1"))
+        self.assertTrue(is_x_original_url("https://mobile.twitter.com/a/status/1"))
+        self.assertTrue(is_x_original_url("https://mobile.x.com/a/status/1"))
+        self.assertFalse(is_x_original_url("https://www.ithome.com/0/1.htm"))
+        self.assertFalse(is_x_original_url("https://aihot.news/items/1"))
+        self.assertFalse(is_x_original_url("https://nitter.net/a/status/1"))
+        self.assertFalse(is_x_original_url("https://vxtwitter.com/a/status/1"))
+        self.assertFalse(is_x_original_url(""))
+
+    def test_parse_aihot_api_items_keeps_all_x_pool_and_original_links(self):
         payload = {
             "items": [
                 {
@@ -445,7 +471,7 @@ class TopicFilterTests(unittest.TestCase):
                 {
                     "id": "missing",
                     "title": "无分条目",
-                    "url": "https://example.com/missing",
+                    "url": "https://twitter.com/blog/status/3",
                     "source": "Blog",
                     "publishedAt": "2026-06-16T18:00:00.000Z",
                     "score": None,
@@ -454,11 +480,23 @@ class TopicFilterTests(unittest.TestCase):
                 {
                     "id": "bool-score",
                     "title": "布尔分应丢弃分数字段但仍保留",
-                    "url": "https://example.com/bool",
+                    "url": "https://mobile.twitter.com/blog/status/4",
                     "source": "Blog",
                     "publishedAt": "2026-06-16T18:00:00.000Z",
                     "score": True,
                     "selected": False,
+                },
+                {
+                    "id": "media",
+                    "title": "源名带 X 但原文不是推特",
+                    "source": {"name": "X：IT之家"},
+                    "links": {
+                        "aihot": "https://aihot.news/items/media",
+                        "original": "https://www.ithome.com/0/1.htm",
+                    },
+                    "publishedAt": "2026-06-16T17:00:00.000Z",
+                    "score": 90,
+                    "selected": True,
                 },
             ]
         }
@@ -478,7 +516,9 @@ class TopicFilterTests(unittest.TestCase):
         self.assertFalse(items[1].meta["aihot_selected"])
         self.assertNotIn("aihot_score", items[2].meta)
         self.assertEqual(items[2].source, "Blog")
+        self.assertEqual(items[2].url, "https://twitter.com/blog/status/3")
         self.assertNotIn("aihot_score", items[3].meta)
+        self.assertEqual(items[3].url, "https://mobile.twitter.com/blog/status/4")
 
     def test_fetch_aihot_uses_v1_all_pool_without_score_gate(self):
         page_1 = {
@@ -489,7 +529,7 @@ class TopicFilterTests(unittest.TestCase):
                     "source": {"name": "AI HOT Source"},
                     "links": {
                         "aihot": "https://aihot.news/items/page-1",
-                        "original": "https://example.com/page-1",
+                        "original": "https://x.com/one/status/1",
                     },
                     "publishedAt": "2026-06-16T19:35:22.252Z",
                     "score": 88,
@@ -501,7 +541,7 @@ class TopicFilterTests(unittest.TestCase):
                     "source": {"name": "AI HOT Source"},
                     "links": {
                         "aihot": "https://aihot.news/items/page-1-low",
-                        "original": "https://example.com/page-1-low",
+                        "original": "https://x.com/one/status/2",
                     },
                     "publishedAt": "2026-06-16T19:35:22.252Z",
                     "score": 16,
@@ -518,7 +558,7 @@ class TopicFilterTests(unittest.TestCase):
                     "source": {"name": "AI HOT Source"},
                     "links": {
                         "aihot": "https://aihot.news/items/page-2",
-                        "original": "https://example.com/page-2",
+                        "original": "https://x.com/two/status/3",
                     },
                     "publishedAt": "2026-06-16T19:36:22.252Z",
                     "score": 40,
@@ -553,9 +593,9 @@ class TopicFilterTests(unittest.TestCase):
             ["Page one strong item", "Page one low item", "Page two boundary item"],
         )
         self.assertEqual([item.url for item in items], [
-            "https://example.com/page-1",
-            "https://example.com/page-1-low",
-            "https://example.com/page-2",
+            "https://x.com/one/status/1",
+            "https://x.com/one/status/2",
+            "https://x.com/two/status/3",
         ])
         self.assertEqual(session.calls[0][0], "https://aihot.news/api/v1/items")
         self.assertEqual(session.calls[0][1]["params"], {"mode": "all", "window": "24h", "limit": 100})
@@ -2740,6 +2780,16 @@ class TopicFilterTests(unittest.TestCase):
         self.assertEqual(len(items), 1)
         self.assertEqual(items[0]["source_tier_label"], "我的订阅")
         self.assertEqual(items[0]["url"], "https://x.com/karpathy/status/1")
+
+        media = dict(record)
+        media["id"] = "aihot-media"
+        media["source"] = "X：IT之家"
+        media["url"] = "https://www.ithome.com/0/1.htm"
+        self.assertTrue(is_subscription_record(media))
+        self.assertEqual(
+            build_creator_hot_items({"aihot-media": media}, now, ai_only=False),
+            [],
+        )
 
     def test_parse_tikhub_xiaohongshu_accepts_millisecond_api_time(self):
         import datetime as _dt
