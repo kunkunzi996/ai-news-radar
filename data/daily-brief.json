@@ -1,8 +1,69 @@
 {
-  "generated_at": "2026-09-16T16:38:45.776138Z",
+  "generated_at": "2026-09-16T19:57:19.331888Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
+    {
+      "story_id": "story_b121f3ccdf2a",
+      "title": "Anthropic 将 Claude Cowork 与聊天合并为统一的 Claude，并推出 Docs、Slides 等功能",
+      "url": "https://claude.com/blog/cowork-is-now-claude",
+      "primary_url": "https://claude.com/blog/cowork-is-now-claude",
+      "source": "Claude：Blog（网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "69f3afd499479f2465ff757dd0195e7d5354952c",
+          "title": "Anthropic 将 Claude Cowork 与聊天合并为统一的 Claude，并推出 Docs、Slides 等功能",
+          "url": "https://claude.com/blog/cowork-is-now-claude",
+          "source": "Claude：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T16:51:45.914000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Claude：Blog（网页）"
+      ],
+      "items": [
+        {
+          "id": "69f3afd499479f2465ff757dd0195e7d5354952c",
+          "title": "Anthropic 将 Claude Cowork 与聊天合并为统一的 Claude，并推出 Docs、Slides 等功能",
+          "url": "https://claude.com/blog/cowork-is-now-claude",
+          "source": "Claude：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T16:51:45.914000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7747,
+      "importance": 0.7747,
+      "importance_score": 0.7747,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.77,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9563,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-16T16:51:45.914000Z",
+      "latest_at": "2026-09-16T16:51:45.914000Z",
+      "primary_item": {
+        "id": "69f3afd499479f2465ff757dd0195e7d5354952c",
+        "title": "Anthropic 将 Claude Cowork 与聊天合并为统一的 Claude，并推出 Docs、Slides 等功能",
+        "url": "https://claude.com/blog/cowork-is-now-claude",
+        "source": "Claude：Blog（网页）",
+        "source_name": "AI HOT"
+      }
+    },
     {
       "story_id": "story_78a4db2d2f6c",
       "title": "腾讯开源 BrowserSkill：让 Agent 借用你正在用的浏览器标签页干活",
@@ -38,15 +99,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7709,
-      "importance": 0.7709,
-      "importance_score": 0.7709,
+      "score": 0.7626,
+      "importance": 0.7626,
+      "importance_score": 0.7626,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9847,
+        "recency": 0.9388,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -99,21 +160,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7582,
-      "importance": 0.7582,
-      "importance_score": 0.7582,
+      "score": 0.7498,
+      "importance": 0.7498,
+      "importance_score": 0.7498,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9975,
+        "recency": 0.951,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-16T16:28:29Z",
       "latest_at": "2026-09-16T16:28:29Z",
@@ -160,15 +220,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7489,
-      "importance": 0.7489,
-      "importance_score": 0.7489,
+      "score": 0.7408,
+      "importance": 0.7408,
+      "importance_score": 0.7408,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9629,
+        "recency": 0.918,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -220,15 +280,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7466,
-      "importance": 0.7466,
-      "importance_score": 0.7466,
+      "score": 0.7396,
+      "importance": 0.7396,
+      "importance_score": 0.7396,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8331,
+        "recency": 0.7943,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -318,15 +378,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.743,
-      "importance": 0.743,
-      "importance_score": 0.743,
+      "score": 0.7373,
+      "importance": 0.7373,
+      "importance_score": 0.7373,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6857,
+        "recency": 0.6537,
         "story_heat": 0.5
       },
       "category": "multi_source",
@@ -341,6 +401,246 @@
         "title": "生数科技发布 Vidu S2：含 Avatar 与 Editing 双模型，探索空间视频",
         "url": "https://mp.weixin.qq.com/s?__biz=MzkzMDQ5NTQwMQ%3D%3D&mid=2247489246&idx=2&sn=b23b39da69f6c75594eccac11854111f",
         "source": "公众号：生数科技（Vidu·视频）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_5641648aa135",
+      "title": "Anthropic 合并 Claude Chat 与 Claude Cowork，推出 Claude Docs 和 Claude Slides",
+      "url": "https://x.com/testingcatalog/status/2100288394710688250",
+      "primary_url": "https://x.com/testingcatalog/status/2100288394710688250",
+      "source": "X：Testing Catalog (@testingcatalog)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "cf9eff682fb009e127e4fea737f2d9e51459f655",
+          "title": "Anthropic 合并 Claude Chat 与 Claude Cowork，推出 Claude Docs 和 Claude Slides",
+          "url": "https://x.com/testingcatalog/status/2100288394710688250",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T18:19:09Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Testing Catalog (@testingcatalog)"
+      ],
+      "items": [
+        {
+          "id": "cf9eff682fb009e127e4fea737f2d9e51459f655",
+          "title": "Anthropic 合并 Claude Chat 与 Claude Cowork，推出 Claude Docs 和 Claude Slides",
+          "url": "https://x.com/testingcatalog/status/2100288394710688250",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T18:19:09Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7364,
+      "importance": 0.7364,
+      "importance_score": 0.7364,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.63,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9766,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-16T18:19:09Z",
+      "latest_at": "2026-09-16T18:19:09Z",
+      "primary_item": {
+        "id": "cf9eff682fb009e127e4fea737f2d9e51459f655",
+        "title": "Anthropic 合并 Claude Chat 与 Claude Cowork，推出 Claude Docs 和 Claude Slides",
+        "url": "https://x.com/testingcatalog/status/2100288394710688250",
+        "source": "X：Testing Catalog (@testingcatalog)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_7d17b8093cb8",
+      "title": "OpenRouter 推出 openrouter：shell，任意模型可在托管 Linux 容器中运行代码",
+      "url": "https://x.com/OpenRouter/status/2100269250766401683",
+      "primary_url": "https://x.com/OpenRouter/status/2100269250766401683",
+      "source": "X：OpenRouter (@OpenRouter)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "87c04d222ffebfc779594ea23a0c07482a7196da",
+          "title": "OpenRouter 推出 openrouter：shell，任意模型可在托管 Linux 容器中运行代码",
+          "url": "https://x.com/OpenRouter/status/2100269250766401683",
+          "source": "X：OpenRouter (@OpenRouter)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T17:03:05Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：OpenRouter (@OpenRouter)"
+      ],
+      "items": [
+        {
+          "id": "87c04d222ffebfc779594ea23a0c07482a7196da",
+          "title": "OpenRouter 推出 openrouter：shell，任意模型可在托管 Linux 容器中运行代码",
+          "url": "https://x.com/OpenRouter/status/2100269250766401683",
+          "source": "X：OpenRouter (@OpenRouter)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T17:03:05Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7362,
+      "importance": 0.7362,
+      "importance_score": 0.7362,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.64,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9589,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-16T17:03:05Z",
+      "latest_at": "2026-09-16T17:03:05Z",
+      "primary_item": {
+        "id": "87c04d222ffebfc779594ea23a0c07482a7196da",
+        "title": "OpenRouter 推出 openrouter：shell，任意模型可在托管 Linux 容器中运行代码",
+        "url": "https://x.com/OpenRouter/status/2100269250766401683",
+        "source": "X：OpenRouter (@OpenRouter)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_801d7bd9204f",
+      "title": "Arena 评测 7 个模型在 Claude Code、Codex 和 Pi 下的编码表现：harness 选择对成功率影响小但显著影响成本",
+      "url": "https://x.com/arena/status/2100280949661667413",
+      "primary_url": "https://x.com/arena/status/2100280949661667413",
+      "source": "X：Arena (@arena)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "e59f9fe31e7b120fb451cac2558169d6f579ab7b",
+          "title": "Arena 评测 7 个模型在 Claude Code、Codex 和 Pi 下的编码表现：harness 选择对成功率影响小但显著影响成本",
+          "url": "https://x.com/arena/status/2100280949661667413",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T17:49:34Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Arena (@arena)"
+      ],
+      "items": [
+        {
+          "id": "e59f9fe31e7b120fb451cac2558169d6f579ab7b",
+          "title": "Arena 评测 7 个模型在 Claude Code、Codex 和 Pi 下的编码表现：harness 选择对成功率影响小但显著影响成本",
+          "url": "https://x.com/arena/status/2100280949661667413",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T17:49:34Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7351,
+      "importance": 0.7351,
+      "importance_score": 0.7351,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.63,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9697,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-16T17:49:34Z",
+      "latest_at": "2026-09-16T17:49:34Z",
+      "primary_item": {
+        "id": "e59f9fe31e7b120fb451cac2558169d6f579ab7b",
+        "title": "Arena 评测 7 个模型在 Claude Code、Codex 和 Pi 下的编码表现：harness 选择对成功率影响小但显著影响成本",
+        "url": "https://x.com/arena/status/2100280949661667413",
+        "source": "X：Arena (@arena)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_63bbc6119e6e",
+      "title": "Databricks 全员部署 GPT-6 Astra，称其在高复杂任务上胜过 Claude Opus 5",
+      "url": "https://x.com/Yuchenj_UW/status/2100305789508612366",
+      "primary_url": "https://x.com/Yuchenj_UW/status/2100305789508612366",
+      "source": "X：Yuchen Jin (@Yuchenj_UW)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "a13a376cd8e26b196dfa8772fed0f44ce92f687f",
+          "title": "Databricks 全员部署 GPT-6 Astra，称其在高复杂任务上胜过 Claude Opus 5",
+          "url": "https://x.com/Yuchenj_UW/status/2100305789508612366",
+          "source": "X：Yuchen Jin (@Yuchenj_UW)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T19:28:16Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Yuchen Jin (@Yuchenj_UW)"
+      ],
+      "items": [
+        {
+          "id": "a13a376cd8e26b196dfa8772fed0f44ce92f687f",
+          "title": "Databricks 全员部署 GPT-6 Astra，称其在高复杂任务上胜过 Claude Opus 5",
+          "url": "https://x.com/Yuchenj_UW/status/2100305789508612366",
+          "source": "X：Yuchen Jin (@Yuchenj_UW)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T19:28:16Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7333,
+      "importance": 0.7333,
+      "importance_score": 0.7333,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.61,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.993,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-16T19:28:16Z",
+      "latest_at": "2026-09-16T19:28:16Z",
+      "primary_item": {
+        "id": "a13a376cd8e26b196dfa8772fed0f44ce92f687f",
+        "title": "Databricks 全员部署 GPT-6 Astra，称其在高复杂任务上胜过 Claude Opus 5",
+        "url": "https://x.com/Yuchenj_UW/status/2100305789508612366",
+        "source": "X：Yuchen Jin (@Yuchenj_UW)",
         "source_name": "AI HOT"
       }
     },
@@ -379,15 +679,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7404,
-      "importance": 0.7404,
-      "importance_score": 0.7404,
+      "score": 0.7324,
+      "importance": 0.7324,
+      "importance_score": 0.7324,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9487,
+        "recency": 0.9044,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -439,15 +739,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7341,
-      "importance": 0.7341,
-      "importance_score": 0.7341,
+      "score": 0.7283,
+      "importance": 0.7283,
+      "importance_score": 0.7283,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6974,
+        "recency": 0.6649,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -461,6 +761,126 @@
         "title": "Gergely Orosz 探访 OpenAI：Codex 驱动的智能体软件工厂",
         "url": "https://newsletter.pragmaticengineer.com/p/openai-software-factory",
         "source": "Pragmatic Engineer（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_65e386f1a075",
+      "title": "阶跃星辰与 ACE Studio 发布 StepAudio 3 Music 音乐生成基础模型",
+      "url": "https://x.com/StepFun_ai/status/2100269188594225232",
+      "primary_url": "https://x.com/StepFun_ai/status/2100269188594225232",
+      "source": "X：阶跃星辰 StepFun (@StepFun_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "8c3bf9c37e0ae391de3fd2d9e232c894ffd75291",
+          "title": "阶跃星辰与 ACE Studio 发布 StepAudio 3 Music 音乐生成基础模型",
+          "url": "https://x.com/StepFun_ai/status/2100269188594225232",
+          "source": "X：阶跃星辰 StepFun (@StepFun_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T17:02:50Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：阶跃星辰 StepFun (@StepFun_ai)"
+      ],
+      "items": [
+        {
+          "id": "8c3bf9c37e0ae391de3fd2d9e232c894ffd75291",
+          "title": "阶跃星辰与 ACE Studio 发布 StepAudio 3 Music 音乐生成基础模型",
+          "url": "https://x.com/StepFun_ai/status/2100269188594225232",
+          "source": "X：阶跃星辰 StepFun (@StepFun_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T17:02:50Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7242,
+      "importance": 0.7242,
+      "importance_score": 0.7242,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.6,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9589,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-16T17:02:50Z",
+      "latest_at": "2026-09-16T17:02:50Z",
+      "primary_item": {
+        "id": "8c3bf9c37e0ae391de3fd2d9e232c894ffd75291",
+        "title": "阶跃星辰与 ACE Studio 发布 StepAudio 3 Music 音乐生成基础模型",
+        "url": "https://x.com/StepFun_ai/status/2100269188594225232",
+        "source": "X：阶跃星辰 StepFun (@StepFun_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_2de044a94c82",
+      "title": "GPT-6 Astra 登顶最新版 BrokenArXiv 与 ArXivMath 基准",
+      "url": "https://x.com/thsottiaux/status/2100297380968997327",
+      "primary_url": "https://x.com/thsottiaux/status/2100297380968997327",
+      "source": "X：Tibo (@thsottiaux)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "74b7bbcc5dd9bf168a263f942813b4c28eec060d",
+          "title": "GPT-6 Astra 登顶最新版 BrokenArXiv 与 ArXivMath 基准",
+          "url": "https://x.com/thsottiaux/status/2100297380968997327",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T18:54:51Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Tibo (@thsottiaux)"
+      ],
+      "items": [
+        {
+          "id": "74b7bbcc5dd9bf168a263f942813b4c28eec060d",
+          "title": "GPT-6 Astra 登顶最新版 BrokenArXiv 与 ArXivMath 基准",
+          "url": "https://x.com/thsottiaux/status/2100297380968997327",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T18:54:51Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7229,
+      "importance": 0.7229,
+      "importance_score": 0.7229,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.58,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9851,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-16T18:54:51Z",
+      "latest_at": "2026-09-16T18:54:51Z",
+      "primary_item": {
+        "id": "74b7bbcc5dd9bf168a263f942813b4c28eec060d",
+        "title": "GPT-6 Astra 登顶最新版 BrokenArXiv 与 ArXivMath 基准",
+        "url": "https://x.com/thsottiaux/status/2100297380968997327",
+        "source": "X：Tibo (@thsottiaux)",
         "source_name": "AI HOT"
       }
     },
@@ -499,15 +919,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7271,
-      "importance": 0.7271,
-      "importance_score": 0.7271,
+      "score": 0.72,
+      "importance": 0.72,
+      "importance_score": 0.72,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8416,
+        "recency": 0.8023,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -521,186 +941,6 @@
         "title": "OpenAI 传早期洽谈以超 1.2 万亿美元估值融资，较 3 月 8520 亿美元上涨约 41%",
         "url": "https://x.com/kimmonismus/status/2100082761726115849",
         "source": "X：Kim (@kimmonismus)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_90199bd02dfd",
-      "title": "ZHO 转述 OpenAI 研究员 Dan Selsam 的 AI 风险个人声明并总结要点",
-      "url": "https://x.com/ZHO_ZHO_ZHO/status/2100122612794052651",
-      "primary_url": "https://x.com/ZHO_ZHO_ZHO/status/2100122612794052651",
-      "source": "X：ZHO (@ZHO_ZHO_ZHO)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "c7ba55bc4fa2e3540e27abe104d9d5c51c76de40",
-          "title": "ZHO 转述 OpenAI 研究员 Dan Selsam 的 AI 风险个人声明并总结要点",
-          "url": "https://x.com/ZHO_ZHO_ZHO/status/2100122612794052651",
-          "source": "X：ZHO (@ZHO_ZHO_ZHO)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T07:20:23Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：ZHO (@ZHO_ZHO_ZHO)"
-      ],
-      "items": [
-        {
-          "id": "c7ba55bc4fa2e3540e27abe104d9d5c51c76de40",
-          "title": "ZHO 转述 OpenAI 研究员 Dan Selsam 的 AI 风险个人声明并总结要点",
-          "url": "https://x.com/ZHO_ZHO_ZHO/status/2100122612794052651",
-          "source": "X：ZHO (@ZHO_ZHO_ZHO)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T07:20:23Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.727,
-      "importance": 0.727,
-      "importance_score": 0.727,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8743,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T07:20:23Z",
-      "latest_at": "2026-09-16T07:20:23Z",
-      "primary_item": {
-        "id": "c7ba55bc4fa2e3540e27abe104d9d5c51c76de40",
-        "title": "ZHO 转述 OpenAI 研究员 Dan Selsam 的 AI 风险个人声明并总结要点",
-        "url": "https://x.com/ZHO_ZHO_ZHO/status/2100122612794052651",
-        "source": "X：ZHO (@ZHO_ZHO_ZHO)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_c6c6c301c648",
-      "title": "DeepSeek 工程师 intlsy 谈 AI 时代的手艺消亡：从写 attention kernel 到被自己优化的技术取代",
-      "url": "https://x.com/thexpin/status/2100189847533339061",
-      "primary_url": "https://x.com/thexpin/status/2100189847533339061",
-      "source": "X：X.PIN (@thexpin)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "77d5ad007c8f27a4efe2d6ce6c9d68495bb3c969",
-          "title": "DeepSeek 工程师 intlsy 谈 AI 时代的手艺消亡：从写 attention kernel 到被自己优化的技术取代",
-          "url": "https://x.com/thexpin/status/2100189847533339061",
-          "source": "X：X.PIN (@thexpin)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T11:47:33Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：X.PIN (@thexpin)"
-      ],
-      "items": [
-        {
-          "id": "77d5ad007c8f27a4efe2d6ce6c9d68495bb3c969",
-          "title": "DeepSeek 工程师 intlsy 谈 AI 时代的手艺消亡：从写 attention kernel 到被自己优化的技术取代",
-          "url": "https://x.com/thexpin/status/2100189847533339061",
-          "source": "X：X.PIN (@thexpin)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T11:47:33Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7254,
-      "importance": 0.7254,
-      "importance_score": 0.7254,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.62,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9323,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T11:47:33Z",
-      "latest_at": "2026-09-16T11:47:33Z",
-      "primary_item": {
-        "id": "77d5ad007c8f27a4efe2d6ce6c9d68495bb3c969",
-        "title": "DeepSeek 工程师 intlsy 谈 AI 时代的手艺消亡：从写 attention kernel 到被自己优化的技术取代",
-        "url": "https://x.com/thexpin/status/2100189847533339061",
-        "source": "X：X.PIN (@thexpin)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_4c6e6aef9087",
-      "title": "Barret 李靖分析算力供给：市场约 2000 万张 H100 等效卡，Token 消耗量年增长近一个数量级",
-      "url": "https://x.com/Barret_China/status/2100260312213827699",
-      "primary_url": "https://x.com/Barret_China/status/2100260312213827699",
-      "source": "X：Barret 李靖 (@barret_china)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "652c0f2b4153f9b51223d9695c3cbfcabce331e3",
-          "title": "Barret 李靖分析算力供给：市场约 2000 万张 H100 等效卡，Token 消耗量年增长近一个数量级",
-          "url": "https://x.com/Barret_China/status/2100260312213827699",
-          "source": "X：Barret 李靖 (@barret_china)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T16:27:34Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Barret 李靖 (@barret_china)"
-      ],
-      "items": [
-        {
-          "id": "652c0f2b4153f9b51223d9695c3cbfcabce331e3",
-          "title": "Barret 李靖分析算力供给：市场约 2000 万张 H100 等效卡，Token 消耗量年增长近一个数量级",
-          "url": "https://x.com/Barret_China/status/2100260312213827699",
-          "source": "X：Barret 李靖 (@barret_china)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T16:27:34Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7221,
-      "importance": 0.7221,
-      "importance_score": 0.7221,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.57,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9973,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T16:27:34Z",
-      "latest_at": "2026-09-16T16:27:34Z",
-      "primary_item": {
-        "id": "652c0f2b4153f9b51223d9695c3cbfcabce331e3",
-        "title": "Barret 李靖分析算力供给：市场约 2000 万张 H100 等效卡，Token 消耗量年增长近一个数量级",
-        "url": "https://x.com/Barret_China/status/2100260312213827699",
-        "source": "X：Barret 李靖 (@barret_china)",
         "source_name": "AI HOT"
       }
     },
@@ -757,15 +997,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7196,
-      "importance": 0.7196,
-      "importance_score": 0.7196,
+      "score": 0.7149,
+      "importance": 0.7149,
+      "importance_score": 0.7149,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5609,
+        "recency": 0.5348,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -837,15 +1077,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7138,
-      "importance": 0.7138,
-      "importance_score": 0.7138,
+      "score": 0.7078,
+      "importance": 0.7078,
+      "importance_score": 0.7078,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.712,
+        "recency": 0.6788,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -898,15 +1138,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7371,
-      "importance": 0.7371,
-      "importance_score": 0.7371,
+      "score": 0.7287,
+      "importance": 0.7287,
+      "importance_score": 0.7287,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.997,
+        "recency": 0.9504,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -920,85 +1160,6 @@
         "title": "Anthropic 将 Claude Cowork 与聊天合并为一个 Claude，未来几周内向 Pro 和 Max 推出",
         "url": "https://x.com/bcherny/status/2100259951398789487",
         "source": "X：Boris Cherny (@bcherny)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_b5fd1928c34b",
-      "title": "Claude for Small Business 新增 43 个工作流和 27 个集成，并推出免费培训计划",
-      "url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
-      "primary_url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
-      "source": "Claude：Blog（网页）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "4b3e2f673c6f63bf19e76aeb6e8dc792e8309517",
-          "title": "Claude for Small Business 新增 43 个工作流和 27 个集成，并推出免费培训计划",
-          "url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
-          "source": "Claude：Blog（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T17:21:21.489000Z"
-        },
-        {
-          "id": "976df7184f56b855307705582bcd47b86e92b7c5",
-          "title": "Claude for Small Business 新增 43 个 workflow 与 27 个集成",
-          "url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
-          "source": "Claude：Blog（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T16:00:00Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "Claude：Blog（网页）"
-      ],
-      "items": [
-        {
-          "id": "4b3e2f673c6f63bf19e76aeb6e8dc792e8309517",
-          "title": "Claude for Small Business 新增 43 个工作流和 27 个集成，并推出免费培训计划",
-          "url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
-          "source": "Claude：Blog（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T17:21:21.489000Z"
-        },
-        {
-          "id": "976df7184f56b855307705582bcd47b86e92b7c5",
-          "title": "Claude for Small Business 新增 43 个 workflow 与 27 个集成",
-          "url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
-          "source": "Claude：Blog（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T16:00:00Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.7052,
-      "importance": 0.7052,
-      "importance_score": 0.7052,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.6,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7144,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T16:00:00Z",
-      "latest_at": "2026-09-15T17:21:21.489000Z",
-      "primary_item": {
-        "id": "4b3e2f673c6f63bf19e76aeb6e8dc792e8309517",
-        "title": "Claude for Small Business 新增 43 个工作流和 27 个集成，并推出免费培训计划",
-        "url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
-        "source": "Claude：Blog（网页）",
         "source_name": "AI HOT"
       }
     },
@@ -1037,15 +1198,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7289,
-      "importance": 0.7289,
-      "importance_score": 0.7289,
+      "score": 0.7212,
+      "importance": 0.7212,
+      "importance_score": 0.7212,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.64,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9185,
+        "recency": 0.8756,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1059,66 +1220,6 @@
         "title": "Shopify CEO Tobi 谈 AI 协同的反向警钟：警惕烂泥手榴弹拖垮团队审查带宽",
         "url": "https://x.com/AYi_AInotes/status/2100174252326457522",
         "source": "X：阿易 AI Notes (@AYi_AInotes)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_7a6f32dda4e6",
-      "title": "Google 发布 Gemini 3.8 Live 与 Gemini 3.8 Live Extended Thinking，登顶语音对语音榜",
-      "url": "https://x.com/rohanpaul_ai/status/2099942230379401250",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2099942230379401250",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "a57aa58ecc522c531c3a02b153b492d886ebf7ed",
-          "title": "Google 发布 Gemini 3.8 Live 与 Gemini 3.8 Live Extended Thinking，登顶语音对语音榜",
-          "url": "https://x.com/rohanpaul_ai/status/2099942230379401250",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T19:23:37Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "a57aa58ecc522c531c3a02b153b492d886ebf7ed",
-          "title": "Google 发布 Gemini 3.8 Live 与 Gemini 3.8 Live Extended Thinking，登顶语音对语音榜",
-          "url": "https://x.com/rohanpaul_ai/status/2099942230379401250",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T19:23:37Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.723,
-      "importance": 0.723,
-      "importance_score": 0.723,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.73,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7357,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-15T19:23:37Z",
-      "latest_at": "2026-09-15T19:23:37Z",
-      "primary_item": {
-        "id": "a57aa58ecc522c531c3a02b153b492d886ebf7ed",
-        "title": "Google 发布 Gemini 3.8 Live 与 Gemini 3.8 Live Extended Thinking，登顶语音对语音榜",
-        "url": "https://x.com/rohanpaul_ai/status/2099942230379401250",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -1175,15 +1276,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6809,
-      "importance": 0.6809,
-      "importance_score": 0.6809,
+      "score": 0.6728,
+      "importance": 0.6728,
+      "importance_score": 0.6728,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.37,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9625,
+        "recency": 0.9176,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1198,145 +1299,6 @@
         "title": "PixVerse 用 GPT Image 2.5 与 Seedance 2.5 生成舞蹈视频",
         "url": "https://x.com/PixVerse/status/2100223180103377279",
         "source": "X：PixVerse (@PixVerse)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_be0c85865642",
-      "title": "Anthropic 年化收入从约 90 亿美元涨到逾 650 亿美元，Dario Amodei 谈增长预期",
-      "url": "https://x.com/rohanpaul_ai/status/2099971244838056150",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2099971244838056150",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "5e165c10274479dbe5f345fff9174a50fd72689f",
-          "title": "Anthropic 年化收入从约 90 亿美元涨到逾 650 亿美元，Dario Amodei 谈增长预期",
-          "url": "https://x.com/rohanpaul_ai/status/2099971244838056150",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T21:18:55Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "5e165c10274479dbe5f345fff9174a50fd72689f",
-          "title": "Anthropic 年化收入从约 90 亿美元涨到逾 650 亿美元，Dario Amodei 谈增长预期",
-          "url": "https://x.com/rohanpaul_ai/status/2099971244838056150",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T21:18:55Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7208,
-      "importance": 0.7208,
-      "importance_score": 0.7208,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7564,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-15T21:18:55Z",
-      "latest_at": "2026-09-15T21:18:55Z",
-      "primary_item": {
-        "id": "5e165c10274479dbe5f345fff9174a50fd72689f",
-        "title": "Anthropic 年化收入从约 90 亿美元涨到逾 650 亿美元，Dario Amodei 谈增长预期",
-        "url": "https://x.com/rohanpaul_ai/status/2099971244838056150",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_8f1dbbf70c25",
-      "title": "Anthropic 如何重构测试影响分析服务以应对智能体编码带来的 CI 压力",
-      "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
-      "primary_url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
-      "source": "Claude：Blog（网页）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "1f05f3a786cfee3052bbfcdfed2d4f3e8d2f356e",
-          "title": "Anthropic 如何重构测试影响分析服务以应对智能体编码带来的 CI 压力",
-          "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
-          "source": "Claude：Blog（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T19:15:56.861000Z"
-        },
-        {
-          "id": "4a543799b121983530328f84fd0c31b500d489d3",
-          "title": "Anthropic 工程师复盘：智能体编程压力下如何扩展测试影响分析服务",
-          "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
-          "source": "Claude：Blog（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-13T16:00:00Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "Claude：Blog（网页）"
-      ],
-      "items": [
-        {
-          "id": "1f05f3a786cfee3052bbfcdfed2d4f3e8d2f356e",
-          "title": "Anthropic 如何重构测试影响分析服务以应对智能体编码带来的 CI 压力",
-          "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
-          "source": "Claude：Blog（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T19:15:56.861000Z"
-        },
-        {
-          "id": "4a543799b121983530328f84fd0c31b500d489d3",
-          "title": "Anthropic 工程师复盘：智能体编程压力下如何扩展测试影响分析服务",
-          "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
-          "source": "Claude：Blog（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-13T16:00:00Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6761,
-      "importance": 0.6761,
-      "importance_score": 0.6761,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.62,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.5193,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-13T16:00:00Z",
-      "latest_at": "2026-09-14T19:15:56.861000Z",
-      "primary_item": {
-        "id": "1f05f3a786cfee3052bbfcdfed2d4f3e8d2f356e",
-        "title": "Anthropic 如何重构测试影响分析服务以应对智能体编码带来的 CI 压力",
-        "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
-        "source": "Claude：Blog（网页）",
         "source_name": "AI HOT"
       }
     }
