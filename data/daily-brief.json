@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-16T06:35:09.750581Z",
+  "generated_at": "2026-09-16T11:58:36.166500Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -38,15 +38,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.77,
-      "importance": 0.77,
-      "importance_score": 0.77,
+      "score": 0.757,
+      "importance": 0.757,
+      "importance_score": 0.757,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9634,
+        "recency": 0.8913,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -137,15 +137,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.7623,
-      "importance": 0.7623,
-      "importance_score": 0.7623,
+      "score": 0.7516,
+      "importance": 0.7516,
+      "importance_score": 0.7516,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7929,
+        "recency": 0.7335,
         "story_heat": 0.5
       },
       "category": "multi_source",
@@ -199,21 +199,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7538,
-      "importance": 0.7538,
-      "importance_score": 0.7538,
+      "score": 0.7429,
+      "importance": 0.7429,
+      "importance_score": 0.7429,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8065,
+        "recency": 0.7461,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-15T15:41:25Z",
       "latest_at": "2026-09-15T15:41:25Z",
@@ -222,6 +221,126 @@
         "title": "Gergely Orosz 探访 OpenAI：Codex 驱动的智能体软件工厂",
         "url": "https://newsletter.pragmaticengineer.com/p/openai-software-factory",
         "source": "Pragmatic Engineer（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_51f4e3418e09",
+      "title": "Shopify CEO Tobi 谈 AI 协同的反向警钟：警惕烂泥手榴弹拖垮团队审查带宽",
+      "url": "https://x.com/AYi_AInotes/status/2100174252326457522",
+      "primary_url": "https://x.com/AYi_AInotes/status/2100174252326457522",
+      "source": "X：阿易 AI Notes (@AYi_AInotes)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "dc885590878b3fb0799bdc405a5c65d2d4d49e93",
+          "title": "Shopify CEO Tobi 谈 AI 协同的反向警钟：警惕烂泥手榴弹拖垮团队审查带宽",
+          "url": "https://x.com/AYi_AInotes/status/2100174252326457522",
+          "source": "X：阿易 AI Notes (@AYi_AInotes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T10:45:35Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：阿易 AI Notes (@AYi_AInotes)"
+      ],
+      "items": [
+        {
+          "id": "dc885590878b3fb0799bdc405a5c65d2d4d49e93",
+          "title": "Shopify CEO Tobi 谈 AI 协同的反向警钟：警惕烂泥手榴弹拖垮团队审查带宽",
+          "url": "https://x.com/AYi_AInotes/status/2100174252326457522",
+          "source": "X：阿易 AI Notes (@AYi_AInotes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T10:45:35Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7405,
+      "importance": 0.7405,
+      "importance_score": 0.7405,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.64,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9826,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-16T10:45:35Z",
+      "latest_at": "2026-09-16T10:45:35Z",
+      "primary_item": {
+        "id": "dc885590878b3fb0799bdc405a5c65d2d4d49e93",
+        "title": "Shopify CEO Tobi 谈 AI 协同的反向警钟：警惕烂泥手榴弹拖垮团队审查带宽",
+        "url": "https://x.com/AYi_AInotes/status/2100174252326457522",
+        "source": "X：阿易 AI Notes (@AYi_AInotes)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_90199bd02dfd",
+      "title": "ZHO 转述 OpenAI 研究员 Dan Selsam 的 AI 风险个人声明并总结要点",
+      "url": "https://x.com/ZHO_ZHO_ZHO/status/2100122612794052651",
+      "primary_url": "https://x.com/ZHO_ZHO_ZHO/status/2100122612794052651",
+      "source": "X：ZHO (@ZHO_ZHO_ZHO)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "c7ba55bc4fa2e3540e27abe104d9d5c51c76de40",
+          "title": "ZHO 转述 OpenAI 研究员 Dan Selsam 的 AI 风险个人声明并总结要点",
+          "url": "https://x.com/ZHO_ZHO_ZHO/status/2100122612794052651",
+          "source": "X：ZHO (@ZHO_ZHO_ZHO)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T07:20:23Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：ZHO (@ZHO_ZHO_ZHO)"
+      ],
+      "items": [
+        {
+          "id": "c7ba55bc4fa2e3540e27abe104d9d5c51c76de40",
+          "title": "ZHO 转述 OpenAI 研究员 Dan Selsam 的 AI 风险个人声明并总结要点",
+          "url": "https://x.com/ZHO_ZHO_ZHO/status/2100122612794052651",
+          "source": "X：ZHO (@ZHO_ZHO_ZHO)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T07:20:23Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7379,
+      "importance": 0.7379,
+      "importance_score": 0.7379,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.66,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9352,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-16T07:20:23Z",
+      "latest_at": "2026-09-16T07:20:23Z",
+      "primary_item": {
+        "id": "c7ba55bc4fa2e3540e27abe104d9d5c51c76de40",
+        "title": "ZHO 转述 OpenAI 研究员 Dan Selsam 的 AI 风险个人声明并总结要点",
+        "url": "https://x.com/ZHO_ZHO_ZHO/status/2100122612794052651",
+        "source": "X：ZHO (@ZHO_ZHO_ZHO)",
         "source_name": "AI HOT"
       }
     },
@@ -260,21 +379,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7508,
-      "importance": 0.7508,
-      "importance_score": 0.7508,
+      "score": 0.7376,
+      "importance": 0.7376,
+      "importance_score": 0.7376,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9731,
+        "recency": 0.9003,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-16T04:42:02Z",
       "latest_at": "2026-09-16T04:42:02Z",
@@ -283,6 +401,66 @@
         "title": "OpenAI 传早期洽谈以超 1.2 万亿美元估值融资，较 3 月 8520 亿美元上涨约 41%",
         "url": "https://x.com/kimmonismus/status/2100082761726115849",
         "source": "X：Kim (@kimmonismus)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_c6c6c301c648",
+      "title": "DeepSeek 工程师 intlsy 谈 AI 时代的手艺消亡：从写 attention kernel 到被自己优化的技术取代",
+      "url": "https://x.com/thexpin/status/2100189847533339061",
+      "primary_url": "https://x.com/thexpin/status/2100189847533339061",
+      "source": "X：X.PIN (@thexpin)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "77d5ad007c8f27a4efe2d6ce6c9d68495bb3c969",
+          "title": "DeepSeek 工程师 intlsy 谈 AI 时代的手艺消亡：从写 attention kernel 到被自己优化的技术取代",
+          "url": "https://x.com/thexpin/status/2100189847533339061",
+          "source": "X：X.PIN (@thexpin)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T11:47:33Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：X.PIN (@thexpin)"
+      ],
+      "items": [
+        {
+          "id": "77d5ad007c8f27a4efe2d6ce6c9d68495bb3c969",
+          "title": "DeepSeek 工程师 intlsy 谈 AI 时代的手艺消亡：从写 attention kernel 到被自己优化的技术取代",
+          "url": "https://x.com/thexpin/status/2100189847533339061",
+          "source": "X：X.PIN (@thexpin)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T11:47:33Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7371,
+      "importance": 0.7371,
+      "importance_score": 0.7371,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.62,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9973,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-16T11:47:33Z",
+      "latest_at": "2026-09-16T11:47:33Z",
+      "primary_item": {
+        "id": "77d5ad007c8f27a4efe2d6ce6c9d68495bb3c969",
+        "title": "DeepSeek 工程师 intlsy 谈 AI 时代的手艺消亡：从写 attention kernel 到被自己优化的技术取代",
+        "url": "https://x.com/thexpin/status/2100189847533339061",
+        "source": "X：X.PIN (@thexpin)",
         "source_name": "AI HOT"
       }
     },
@@ -321,15 +499,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7368,
-      "importance": 0.7368,
-      "importance_score": 0.7368,
+      "score": 0.7266,
+      "importance": 0.7266,
+      "importance_score": 0.7266,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7624,
+        "recency": 0.7053,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -399,15 +577,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7354,
-      "importance": 0.7354,
-      "importance_score": 0.7354,
+      "score": 0.7266,
+      "importance": 0.7266,
+      "importance_score": 0.7266,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6486,
+        "recency": 0.6001,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -426,21 +604,21 @@
       }
     },
     {
-      "story_id": "story_185193547516",
-      "title": "JD Vance 批评 AI 实验室造出 Frankenstein 后再要求政府监管",
-      "url": "https://x.com/AISafetyMemes/status/2100077593366347951",
-      "primary_url": "https://x.com/AISafetyMemes/status/2100077593366347951",
+      "story_id": "story_020578006633",
+      "title": "POLITICO 民调：约五分之四美国人担忧 AI 可能毁灭人类，两党选民多支持暂停更先进模型开发",
+      "url": "https://x.com/AISafetyMemes/status/2100179884161310777",
+      "primary_url": "https://x.com/AISafetyMemes/status/2100179884161310777",
       "source": "X：AI Safety Memes (@AISafetyMemes)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "29b92c4455342db3a092f41b3a0bbd2db8040012",
-          "title": "JD Vance 批评 AI 实验室造出 Frankenstein 后再要求政府监管",
-          "url": "https://x.com/AISafetyMemes/status/2100077593366347951",
+          "id": "71e782a7343737df5423538df38de57f0c64c045",
+          "title": "POLITICO 民调：约五分之四美国人担忧 AI 可能毁灭人类，两党选民多支持暂停更先进模型开发",
+          "url": "https://x.com/AISafetyMemes/status/2100179884161310777",
           "source": "X：AI Safety Memes (@AISafetyMemes)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-16T04:21:30Z"
+          "published_at": "2026-09-16T11:07:58Z"
         }
       ],
       "source_count": 1,
@@ -449,38 +627,38 @@
       ],
       "items": [
         {
-          "id": "29b92c4455342db3a092f41b3a0bbd2db8040012",
-          "title": "JD Vance 批评 AI 实验室造出 Frankenstein 后再要求政府监管",
-          "url": "https://x.com/AISafetyMemes/status/2100077593366347951",
+          "id": "71e782a7343737df5423538df38de57f0c64c045",
+          "title": "POLITICO 民调：约五分之四美国人担忧 AI 可能毁灭人类，两党选民多支持暂停更先进模型开发",
+          "url": "https://x.com/AISafetyMemes/status/2100179884161310777",
           "source": "X：AI Safety Memes (@AISafetyMemes)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-16T04:21:30Z"
+          "published_at": "2026-09-16T11:07:58Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7349,
-      "importance": 0.7349,
-      "importance_score": 0.7349,
+      "score": 0.7264,
+      "importance": 0.7264,
+      "importance_score": 0.7264,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.63,
+        "editorial": 0.59,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9683,
+        "recency": 0.9879,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-16T04:21:30Z",
-      "latest_at": "2026-09-16T04:21:30Z",
+      "earliest_at": "2026-09-16T11:07:58Z",
+      "latest_at": "2026-09-16T11:07:58Z",
       "primary_item": {
-        "id": "29b92c4455342db3a092f41b3a0bbd2db8040012",
-        "title": "JD Vance 批评 AI 实验室造出 Frankenstein 后再要求政府监管",
-        "url": "https://x.com/AISafetyMemes/status/2100077593366347951",
+        "id": "71e782a7343737df5423538df38de57f0c64c045",
+        "title": "POLITICO 民调：约五分之四美国人担忧 AI 可能毁灭人类，两党选民多支持暂停更先进模型开发",
+        "url": "https://x.com/AISafetyMemes/status/2100179884161310777",
         "source": "X：AI Safety Memes (@AISafetyMemes)",
         "source_name": "AI HOT"
       }
@@ -520,15 +698,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7347,
-      "importance": 0.7347,
-      "importance_score": 0.7347,
+      "score": 0.7261,
+      "importance": 0.7261,
+      "importance_score": 0.7261,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6337,
+        "recency": 0.5862,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -580,15 +758,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7345,
-      "importance": 0.7345,
-      "importance_score": 0.7345,
+      "score": 0.7247,
+      "importance": 0.7247,
+      "importance_score": 0.7247,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.733,
+        "recency": 0.6781,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -602,6 +780,66 @@
         "title": "Anthropic 与 OpenAI 提议协调放缓前沿 AI 开发，Cohere CEO 等批评者质疑其真实动机",
         "url": "https://the-decoder.com/not-everyone-is-convinced-that-big-ais-proposed-development-slowdown-is-really-about-safety",
         "source": "The Decoder：AI News（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_074cc5f617f1",
+      "title": "微软论文提出能力洗白攻击：未对齐小模型拆分任务借调前沿模型完成有害目标",
+      "url": "https://x.com/dair_ai/status/2100167820135059579",
+      "primary_url": "https://x.com/dair_ai/status/2100167820135059579",
+      "source": "X：DAIR.AI (@dair_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "9bd1f726e6758a04e04409d807171b1cfbdf4c66",
+          "title": "微软论文提出能力洗白攻击：未对齐小模型拆分任务借调前沿模型完成有害目标",
+          "url": "https://x.com/dair_ai/status/2100167820135059579",
+          "source": "X：DAIR.AI (@dair_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T10:20:02Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：DAIR.AI (@dair_ai)"
+      ],
+      "items": [
+        {
+          "id": "9bd1f726e6758a04e04409d807171b1cfbdf4c66",
+          "title": "微软论文提出能力洗白攻击：未对齐小模型拆分任务借调前沿模型完成有害目标",
+          "url": "https://x.com/dair_ai/status/2100167820135059579",
+          "source": "X：DAIR.AI (@dair_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T10:20:02Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7244,
+      "importance": 0.7244,
+      "importance_score": 0.7244,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.59,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9766,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-16T10:20:02Z",
+      "latest_at": "2026-09-16T10:20:02Z",
+      "primary_item": {
+        "id": "9bd1f726e6758a04e04409d807171b1cfbdf4c66",
+        "title": "微软论文提出能力洗白攻击：未对齐小模型拆分任务借调前沿模型完成有害目标",
+        "url": "https://x.com/dair_ai/status/2100167820135059579",
+        "source": "X：DAIR.AI (@dair_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -659,15 +897,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7338,
-      "importance": 0.7338,
-      "importance_score": 0.7338,
+      "score": 0.7227,
+      "importance": 0.7227,
+      "importance_score": 0.7227,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8234,
+        "recency": 0.7617,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -720,15 +958,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7331,
-      "importance": 0.7331,
-      "importance_score": 0.7331,
+      "score": 0.7213,
+      "importance": 0.7213,
+      "importance_score": 0.7213,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8751,
+        "recency": 0.8096,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -742,306 +980,6 @@
         "title": "Arena 更新 Image-to-WebDev 榜单：GPT-6 Astra 以 1733 分登顶",
         "url": "https://x.com/arena/status/2099971741993050236",
         "source": "X：Arena (@arena)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_c8d222bf7d39",
-      "title": "Perplexity 自研 CobbleDB 替代 AWS DynamoDB，每年最多可节省一亿美元",
-      "url": "https://x.com/AravSrinivas/status/2099957318935028173",
-      "primary_url": "https://x.com/AravSrinivas/status/2099957318935028173",
-      "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "221ebd9826c4329ea766beb02d2c6824314439fc",
-          "title": "Perplexity 自研 CobbleDB 替代 AWS DynamoDB，每年最多可节省一亿美元",
-          "url": "https://x.com/AravSrinivas/status/2099957318935028173",
-          "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T20:23:34Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)"
-      ],
-      "items": [
-        {
-          "id": "221ebd9826c4329ea766beb02d2c6824314439fc",
-          "title": "Perplexity 自研 CobbleDB 替代 AWS DynamoDB，每年最多可节省一亿美元",
-          "url": "https://x.com/AravSrinivas/status/2099957318935028173",
-          "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T20:23:34Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.731,
-      "importance": 0.731,
-      "importance_score": 0.731,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.68,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8631,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-15T20:23:34Z",
-      "latest_at": "2026-09-15T20:23:34Z",
-      "primary_item": {
-        "id": "221ebd9826c4329ea766beb02d2c6824314439fc",
-        "title": "Perplexity 自研 CobbleDB 替代 AWS DynamoDB，每年最多可节省一亿美元",
-        "url": "https://x.com/AravSrinivas/status/2099957318935028173",
-        "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_278d8c145905",
-      "title": "Gemini 3.8 Live 语音模型评测：Extended Thinking 版登顶 Speech to Speech Index",
-      "url": "https://x.com/ArtificialAnlys/status/2099977679307243773",
-      "primary_url": "https://x.com/ArtificialAnlys/status/2099977679307243773",
-      "source": "X：Artificial Analysis (@ArtificialAnlys)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "ef1eb72aa2a17b396108153a7a7a17028f0d6c69",
-          "title": "Gemini 3.8 Live 语音模型评测：Extended Thinking 版登顶 Speech to Speech Index",
-          "url": "https://x.com/ArtificialAnlys/status/2099977679307243773",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T21:44:29Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Artificial Analysis (@ArtificialAnlys)"
-      ],
-      "items": [
-        {
-          "id": "ef1eb72aa2a17b396108153a7a7a17028f0d6c69",
-          "title": "Gemini 3.8 Live 语音模型评测：Extended Thinking 版登顶 Speech to Speech Index",
-          "url": "https://x.com/ArtificialAnlys/status/2099977679307243773",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T21:44:29Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.728,
-      "importance": 0.728,
-      "importance_score": 0.728,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8801,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-15T21:44:29Z",
-      "latest_at": "2026-09-15T21:44:29Z",
-      "primary_item": {
-        "id": "ef1eb72aa2a17b396108153a7a7a17028f0d6c69",
-        "title": "Gemini 3.8 Live 语音模型评测：Extended Thinking 版登顶 Speech to Speech Index",
-        "url": "https://x.com/ArtificialAnlys/status/2099977679307243773",
-        "source": "X：Artificial Analysis (@ArtificialAnlys)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_ac9b3884f374",
-      "title": "IFM 发布开源 7B Dense 模型 K2-Horizon-7B，AA Bench 得分接近 Qwen3.6-27B",
-      "url": "https://x.com/karminski3/status/2099991128061919596",
-      "primary_url": "https://x.com/karminski3/status/2099991128061919596",
-      "source": "X：karminski (@karminski3)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "d5f1924e7bd6d2b141ec3e05eb49d0c6a70a0add",
-          "title": "IFM 发布开源 7B Dense 模型 K2-Horizon-7B，AA Bench 得分接近 Qwen3.6-27B",
-          "url": "https://x.com/karminski3/status/2099991128061919596",
-          "source": "X：karminski (@karminski3)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T22:37:55Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：karminski (@karminski3)"
-      ],
-      "items": [
-        {
-          "id": "d5f1924e7bd6d2b141ec3e05eb49d0c6a70a0add",
-          "title": "IFM 发布开源 7B Dense 模型 K2-Horizon-7B，AA Bench 得分接近 Qwen3.6-27B",
-          "url": "https://x.com/karminski3/status/2099991128061919596",
-          "source": "X：karminski (@karminski3)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T22:37:55Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7271,
-      "importance": 0.7271,
-      "importance_score": 0.7271,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.65,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8915,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-15T22:37:55Z",
-      "latest_at": "2026-09-15T22:37:55Z",
-      "primary_item": {
-        "id": "d5f1924e7bd6d2b141ec3e05eb49d0c6a70a0add",
-        "title": "IFM 发布开源 7B Dense 模型 K2-Horizon-7B，AA Bench 得分接近 Qwen3.6-27B",
-        "url": "https://x.com/karminski3/status/2099991128061919596",
-        "source": "X：karminski (@karminski3)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_be20183a67a8",
-      "title": "Grok Bot 实战教程拆解：云端 Linux 电脑与多助手协作怎么用",
-      "url": "https://x.com/AYi_AInotes/status/2100097459959525420",
-      "primary_url": "https://x.com/AYi_AInotes/status/2100097459959525420",
-      "source": "X：阿易 AI Notes (@AYi_AInotes)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "b8eff92007e12929b41c2b090be3e276e8895f94",
-          "title": "Grok Bot 实战教程拆解：云端 Linux 电脑与多助手协作怎么用",
-          "url": "https://x.com/AYi_AInotes/status/2100097459959525420",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T05:40:27Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：阿易 AI Notes (@AYi_AInotes)"
-      ],
-      "items": [
-        {
-          "id": "b8eff92007e12929b41c2b090be3e276e8895f94",
-          "title": "Grok Bot 实战教程拆解：云端 Linux 电脑与多助手协作怎么用",
-          "url": "https://x.com/AYi_AInotes/status/2100097459959525420",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T05:40:27Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7262,
-      "importance": 0.7262,
-      "importance_score": 0.7262,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.59,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9869,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T05:40:27Z",
-      "latest_at": "2026-09-16T05:40:27Z",
-      "primary_item": {
-        "id": "b8eff92007e12929b41c2b090be3e276e8895f94",
-        "title": "Grok Bot 实战教程拆解：云端 Linux 电脑与多助手协作怎么用",
-        "url": "https://x.com/AYi_AInotes/status/2100097459959525420",
-        "source": "X：阿易 AI Notes (@AYi_AInotes)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_0876c2e98af8",
-      "title": "DeepSeek V4.1 attention kernel 负责人 Liu Shengyu 文章刷屏，将 Anthropic 掌控 AGI 比作希特勒掌握原子弹",
-      "url": "https://x.com/thexpin/status/2100072339866329546",
-      "primary_url": "https://x.com/thexpin/status/2100072339866329546",
-      "source": "X：X.PIN (@thexpin)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "a7d298ffad92ef908742447780596a71a377ea10",
-          "title": "DeepSeek V4.1 attention kernel 负责人 Liu Shengyu 文章刷屏，将 Anthropic 掌控 AGI 比作希特勒掌握原子弹",
-          "url": "https://x.com/thexpin/status/2100072339866329546",
-          "source": "X：X.PIN (@thexpin)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T04:00:37Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：X.PIN (@thexpin)"
-      ],
-      "items": [
-        {
-          "id": "a7d298ffad92ef908742447780596a71a377ea10",
-          "title": "DeepSeek V4.1 attention kernel 负责人 Liu Shengyu 文章刷屏，将 Anthropic 掌控 AGI 比作希特勒掌握原子弹",
-          "url": "https://x.com/thexpin/status/2100072339866329546",
-          "source": "X：X.PIN (@thexpin)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T04:00:37Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.725,
-      "importance": 0.725,
-      "importance_score": 0.725,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.6,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9635,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T04:00:37Z",
-      "latest_at": "2026-09-16T04:00:37Z",
-      "primary_item": {
-        "id": "a7d298ffad92ef908742447780596a71a377ea10",
-        "title": "DeepSeek V4.1 attention kernel 负责人 Liu Shengyu 文章刷屏，将 Anthropic 掌控 AGI 比作希特勒掌握原子弹",
-        "url": "https://x.com/thexpin/status/2100072339866329546",
-        "source": "X：X.PIN (@thexpin)",
         "source_name": "AI HOT"
       }
     },
@@ -1080,15 +1018,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7437,
-      "importance": 0.7437,
-      "importance_score": 0.7437,
+      "score": 0.7323,
+      "importance": 0.7323,
+      "importance_score": 0.7323,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.73,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8508,
+        "recency": 0.787,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1106,62 +1044,122 @@
       }
     },
     {
-      "story_id": "story_7aaed743cea4",
-      "title": "Atria Dawn Preview 注册即送 1 亿 Token，可在 Claude Code 等工具中使用",
-      "url": "https://x.com/AYi_AInotes/status/2099805207710319087",
-      "primary_url": "https://x.com/AYi_AInotes/status/2099805207710319087",
-      "source": "X：阿易 AI Notes (@AYi_AInotes)",
+      "story_id": "story_185193547516",
+      "title": "JD Vance 批评 AI 实验室造出 Frankenstein 后再要求政府监管",
+      "url": "https://x.com/AISafetyMemes/status/2100077593366347951",
+      "primary_url": "https://x.com/AISafetyMemes/status/2100077593366347951",
+      "source": "X：AI Safety Memes (@AISafetyMemes)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "16f704b956aff4a362143452a1e96a68f4b020f8",
-          "title": "Atria Dawn Preview 注册即送 1 亿 Token，可在 Claude Code 等工具中使用",
-          "url": "https://x.com/AYi_AInotes/status/2099805207710319087",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
+          "id": "29b92c4455342db3a092f41b3a0bbd2db8040012",
+          "title": "JD Vance 批评 AI 实验室造出 Frankenstein 后再要求政府监管",
+          "url": "https://x.com/AISafetyMemes/status/2100077593366347951",
+          "source": "X：AI Safety Memes (@AISafetyMemes)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-15T10:19:08Z"
+          "published_at": "2026-09-16T04:21:30Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：阿易 AI Notes (@AYi_AInotes)"
+        "X：AI Safety Memes (@AISafetyMemes)"
       ],
       "items": [
         {
-          "id": "16f704b956aff4a362143452a1e96a68f4b020f8",
-          "title": "Atria Dawn Preview 注册即送 1 亿 Token，可在 Claude Code 等工具中使用",
-          "url": "https://x.com/AYi_AInotes/status/2099805207710319087",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
+          "id": "29b92c4455342db3a092f41b3a0bbd2db8040012",
+          "title": "JD Vance 批评 AI 实验室造出 Frankenstein 后再要求政府监管",
+          "url": "https://x.com/AISafetyMemes/status/2100077593366347951",
+          "source": "X：AI Safety Memes (@AISafetyMemes)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-15T10:19:08Z"
+          "published_at": "2026-09-16T04:21:30Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7219,
-      "importance": 0.7219,
-      "importance_score": 0.7219,
+      "score": 0.7218,
+      "importance": 0.7218,
+      "importance_score": 0.7218,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.72,
+        "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7463,
+        "recency": 0.8958,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-15T10:19:08Z",
-      "latest_at": "2026-09-15T10:19:08Z",
+      "earliest_at": "2026-09-16T04:21:30Z",
+      "latest_at": "2026-09-16T04:21:30Z",
       "primary_item": {
-        "id": "16f704b956aff4a362143452a1e96a68f4b020f8",
-        "title": "Atria Dawn Preview 注册即送 1 亿 Token，可在 Claude Code 等工具中使用",
-        "url": "https://x.com/AYi_AInotes/status/2099805207710319087",
-        "source": "X：阿易 AI Notes (@AYi_AInotes)",
+        "id": "29b92c4455342db3a092f41b3a0bbd2db8040012",
+        "title": "JD Vance 批评 AI 实验室造出 Frankenstein 后再要求政府监管",
+        "url": "https://x.com/AISafetyMemes/status/2100077593366347951",
+        "source": "X：AI Safety Memes (@AISafetyMemes)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_1c8ae8d5b16e",
+      "title": "字节跳动上半年净利润下滑至 200 亿美元，AI 支出增加",
+      "url": "https://x.com/thexpin/status/2100129228020937098",
+      "primary_url": "https://x.com/thexpin/status/2100129228020937098",
+      "source": "X：X.PIN (@thexpin)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "c99010912e29e7f8d73001e07388f94f5cdbb6c7",
+          "title": "字节跳动上半年净利润下滑至 200 亿美元，AI 支出增加",
+          "url": "https://x.com/thexpin/status/2100129228020937098",
+          "source": "X：X.PIN (@thexpin)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T07:46:41Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：X.PIN (@thexpin)"
+      ],
+      "items": [
+        {
+          "id": "c99010912e29e7f8d73001e07388f94f5cdbb6c7",
+          "title": "字节跳动上半年净利润下滑至 200 亿美元，AI 支出增加",
+          "url": "https://x.com/thexpin/status/2100129228020937098",
+          "source": "X：X.PIN (@thexpin)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T07:46:41Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.721,
+      "importance": 0.721,
+      "importance_score": 0.721,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.6,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9412,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-16T07:46:41Z",
+      "latest_at": "2026-09-16T07:46:41Z",
+      "primary_item": {
+        "id": "c99010912e29e7f8d73001e07388f94f5cdbb6c7",
+        "title": "字节跳动上半年净利润下滑至 200 亿美元，AI 支出增加",
+        "url": "https://x.com/thexpin/status/2100129228020937098",
+        "source": "X：X.PIN (@thexpin)",
         "source_name": "AI HOT"
       }
     },
@@ -1218,15 +1216,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6907,
-      "importance": 0.6907,
-      "importance_score": 0.6907,
+      "score": 0.6826,
+      "importance": 0.6826,
+      "importance_score": 0.6826,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6005,
+        "recency": 0.5555,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1279,15 +1277,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.742,
-      "importance": 0.742,
-      "importance_score": 0.742,
+      "score": 0.7303,
+      "importance": 0.7303,
+      "importance_score": 0.7303,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8747,
+        "recency": 0.8092,
         "story_heat": 0.0
       },
       "category": "industry",
