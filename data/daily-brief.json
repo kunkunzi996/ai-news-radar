@@ -1,24 +1,24 @@
 {
-  "generated_at": "2026-09-17T20:08:22.386721Z",
+  "generated_at": "2026-09-17T23:00:03.277329Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
     {
-      "story_id": "story_5ff94f8b654c",
-      "title": "纽约时报诉 OpenAI 与微软案解封文件披露 AI 抓取被称为史上最大劳动窃取",
-      "url": "https://techcrunch.com/2026/09/17/microsoft-exec-called-ai-scraping-the-largest-theft-of-labor-in-human-history-new-unredacted-filings-reveal",
-      "primary_url": "https://techcrunch.com/2026/09/17/microsoft-exec-called-ai-scraping-the-largest-theft-of-labor-in-human-history-new-unredacted-filings-reveal",
+      "story_id": "story_9688f7ffdee8",
+      "title": "OpenAI 披露 GPT-5.6 Sol 等模型在摘要中留下指令以掩盖不当行为",
+      "url": "https://techcrunch.com/2026/09/17/openai-caught-its-models-leaving-notes-to-successors-to-hide-bad-behavior",
+      "primary_url": "https://techcrunch.com/2026/09/17/openai-caught-its-models-leaving-notes-to-successors-to-hide-bad-behavior",
       "source": "TechCrunch：AI（RSS）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "14511c8b5dd853440e87ab99755ea51b46a6cd25",
-          "title": "纽约时报诉 OpenAI 与微软案解封文件披露 AI 抓取被称为史上最大劳动窃取",
-          "url": "https://techcrunch.com/2026/09/17/microsoft-exec-called-ai-scraping-the-largest-theft-of-labor-in-human-history-new-unredacted-filings-reveal",
+          "id": "35865e57e28da3959d19a865eee0cb4427f50aeb",
+          "title": "OpenAI 披露 GPT-5.6 Sol 等模型在摘要中留下指令以掩盖不当行为",
+          "url": "https://techcrunch.com/2026/09/17/openai-caught-its-models-leaving-notes-to-successors-to-hide-bad-behavior",
           "source": "TechCrunch：AI（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-17T19:46:08Z"
+          "published_at": "2026-09-17T20:34:24Z"
         }
       ],
       "source_count": 1,
@@ -27,26 +27,26 @@
       ],
       "items": [
         {
-          "id": "14511c8b5dd853440e87ab99755ea51b46a6cd25",
-          "title": "纽约时报诉 OpenAI 与微软案解封文件披露 AI 抓取被称为史上最大劳动窃取",
-          "url": "https://techcrunch.com/2026/09/17/microsoft-exec-called-ai-scraping-the-largest-theft-of-labor-in-human-history-new-unredacted-filings-reveal",
+          "id": "35865e57e28da3959d19a865eee0cb4427f50aeb",
+          "title": "OpenAI 披露 GPT-5.6 Sol 等模型在摘要中留下指令以掩盖不当行为",
+          "url": "https://techcrunch.com/2026/09/17/openai-caught-its-models-leaving-notes-to-successors-to-hide-bad-behavior",
           "source": "TechCrunch：AI（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-17T19:46:08Z"
+          "published_at": "2026-09-17T20:34:24Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7906,
-      "importance": 0.7906,
-      "importance_score": 0.7906,
+      "score": 0.7854,
+      "importance": 0.7854,
+      "importance_score": 0.7854,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.8,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9947,
+        "recency": 0.9656,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -54,13 +54,74 @@
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-09-17T19:46:08Z",
-      "latest_at": "2026-09-17T19:46:08Z",
+      "earliest_at": "2026-09-17T20:34:24Z",
+      "latest_at": "2026-09-17T20:34:24Z",
       "primary_item": {
-        "id": "14511c8b5dd853440e87ab99755ea51b46a6cd25",
-        "title": "纽约时报诉 OpenAI 与微软案解封文件披露 AI 抓取被称为史上最大劳动窃取",
-        "url": "https://techcrunch.com/2026/09/17/microsoft-exec-called-ai-scraping-the-largest-theft-of-labor-in-human-history-new-unredacted-filings-reveal",
+        "id": "35865e57e28da3959d19a865eee0cb4427f50aeb",
+        "title": "OpenAI 披露 GPT-5.6 Sol 等模型在摘要中留下指令以掩盖不当行为",
+        "url": "https://techcrunch.com/2026/09/17/openai-caught-its-models-leaving-notes-to-successors-to-hide-bad-behavior",
         "source": "TechCrunch：AI（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_7ce3b1881b41",
+      "title": "纽约时报诉 OpenAI 案新解封文件：微软与 OpenAI 内部承认 LLM 建立在窃取之上并引发 Doom Loop",
+      "url": "https://www.404media.co/doom-loop-openai-and-microsoft-admits-llms-are-destroying-the-web-and-built-on-theft",
+      "primary_url": "https://www.404media.co/doom-loop-openai-and-microsoft-admits-llms-are-destroying-the-web-and-built-on-theft",
+      "source": "404 Media（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "6783ca6749eb14d6c806224607b7d07a915642c8",
+          "title": "纽约时报诉 OpenAI 案新解封文件：微软与 OpenAI 内部承认 LLM 建立在窃取之上并引发 Doom Loop",
+          "url": "https://www.404media.co/doom-loop-openai-and-microsoft-admits-llms-are-destroying-the-web-and-built-on-theft",
+          "source": "404 Media（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T22:01:43Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "404 Media（RSS）"
+      ],
+      "items": [
+        {
+          "id": "6783ca6749eb14d6c806224607b7d07a915642c8",
+          "title": "纽约时报诉 OpenAI 案新解封文件：微软与 OpenAI 内部承认 LLM 建立在窃取之上并引发 Doom Loop",
+          "url": "https://www.404media.co/doom-loop-openai-and-microsoft-admits-llms-are-destroying-the-web-and-built-on-theft",
+          "source": "404 Media（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T22:01:43Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7831,
+      "importance": 0.7831,
+      "importance_score": 0.7831,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.78,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9861,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-17T22:01:43Z",
+      "latest_at": "2026-09-17T22:01:43Z",
+      "primary_item": {
+        "id": "6783ca6749eb14d6c806224607b7d07a915642c8",
+        "title": "纽约时报诉 OpenAI 案新解封文件：微软与 OpenAI 内部承认 LLM 建立在窃取之上并引发 Doom Loop",
+        "url": "https://www.404media.co/doom-loop-openai-and-microsoft-admits-llms-are-destroying-the-web-and-built-on-theft",
+        "source": "404 Media（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -99,15 +160,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7839,
-      "importance": 0.7839,
-      "importance_score": 0.7839,
+      "score": 0.7767,
+      "importance": 0.7767,
+      "importance_score": 0.7767,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9904,
+        "recency": 0.9503,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -217,15 +278,15 @@
       ],
       "item_count": 4,
       "duplicate_count": 4,
-      "score": 0.7765,
-      "importance": 0.7765,
-      "importance_score": 0.7765,
+      "score": 0.771,
+      "importance": 0.771,
+      "importance_score": 0.771,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.65,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7493,
+        "recency": 0.719,
         "story_heat": 0.75
       },
       "category": "multi_source",
@@ -279,15 +340,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7754,
-      "importance": 0.7754,
-      "importance_score": 0.7754,
+      "score": 0.7684,
+      "importance": 0.7684,
+      "importance_score": 0.7684,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9599,
+        "recency": 0.921,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -302,6 +363,128 @@
         "title": "Qwen 发布原生全模态模型 Qwen3.8-Omni-Flash，主打音视频智能体任务交付",
         "url": "https://qwen.ai/blog?id=qwen3.8-omni-flash",
         "source": "Qwen：Blog Retrieval（API）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_44d57de857ac",
+      "title": "Anthropic 数据显示 Claude 主导的模型研发任务占比半年内从 1% 升至 26%",
+      "url": "https://x.com/kimmonismus/status/2100703850630205949",
+      "primary_url": "https://x.com/kimmonismus/status/2100703850630205949",
+      "source": "X：Kim (@kimmonismus)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "430a7e2f24d9f2c7edfe00d72e1bfc9ebe5f43b5",
+          "title": "Anthropic 数据显示 Claude 主导的模型研发任务占比半年内从 1% 升至 26%",
+          "url": "https://x.com/kimmonismus/status/2100703850630205949",
+          "source": "X：Kim (@kimmonismus)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T21:50:01Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Kim (@kimmonismus)"
+      ],
+      "items": [
+        {
+          "id": "430a7e2f24d9f2c7edfe00d72e1bfc9ebe5f43b5",
+          "title": "Anthropic 数据显示 Claude 主导的模型研发任务占比半年内从 1% 升至 26%",
+          "url": "https://x.com/kimmonismus/status/2100703850630205949",
+          "source": "X：Kim (@kimmonismus)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T21:50:01Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7676,
+      "importance": 0.7676,
+      "importance_score": 0.7676,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.73,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9833,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-17T21:50:01Z",
+      "latest_at": "2026-09-17T21:50:01Z",
+      "primary_item": {
+        "id": "430a7e2f24d9f2c7edfe00d72e1bfc9ebe5f43b5",
+        "title": "Anthropic 数据显示 Claude 主导的模型研发任务占比半年内从 1% 升至 26%",
+        "url": "https://x.com/kimmonismus/status/2100703850630205949",
+        "source": "X：Kim (@kimmonismus)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_fb225a3bcd84",
+      "title": "Anthropic 发布前沿 AI 开发节奏测量工具与内部指标快照",
+      "url": "https://www.anthropic.com/institute/measuring-pace-of-ai-development",
+      "primary_url": "https://www.anthropic.com/institute/measuring-pace-of-ai-development",
+      "source": "Anthropic：The Institute（旗舰研究长文 · 网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "10ded19a5fde892f939bc5160f728f7ebf4baa4e",
+          "title": "Anthropic 发布前沿 AI 开发节奏测量工具与内部指标快照",
+          "url": "https://www.anthropic.com/institute/measuring-pace-of-ai-development",
+          "source": "Anthropic：The Institute（旗舰研究长文 · 网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T20:49:01.866000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Anthropic：The Institute（旗舰研究长文 · 网页）"
+      ],
+      "items": [
+        {
+          "id": "10ded19a5fde892f939bc5160f728f7ebf4baa4e",
+          "title": "Anthropic 发布前沿 AI 开发节奏测量工具与内部指标快照",
+          "url": "https://www.anthropic.com/institute/measuring-pace-of-ai-development",
+          "source": "Anthropic：The Institute（旗舰研究长文 · 网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T20:49:01.866000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.762,
+      "importance": 0.762,
+      "importance_score": 0.762,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.72,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.969,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-17T20:49:01.866000Z",
+      "latest_at": "2026-09-17T20:49:01.866000Z",
+      "primary_item": {
+        "id": "10ded19a5fde892f939bc5160f728f7ebf4baa4e",
+        "title": "Anthropic 发布前沿 AI 开发节奏测量工具与内部指标快照",
+        "url": "https://www.anthropic.com/institute/measuring-pace-of-ai-development",
+        "source": "Anthropic：The Institute（旗舰研究长文 · 网页）",
         "source_name": "AI HOT"
       }
     },
@@ -340,15 +523,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.765,
-      "importance": 0.765,
-      "importance_score": 0.765,
+      "score": 0.7596,
+      "importance": 0.7596,
+      "importance_score": 0.7596,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7525,
+        "recency": 0.722,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -401,15 +584,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7608,
-      "importance": 0.7608,
-      "importance_score": 0.7608,
+      "score": 0.7535,
+      "importance": 0.7535,
+      "importance_score": 0.7535,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9955,
+        "recency": 0.9552,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -424,6 +607,67 @@
         "title": "Anthropic 用 Claude 优化 30 多个开源生物分子模型，平均提速约 4 倍并开源全部代码",
         "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
         "source": "Anthropic：Research（发表成果 · 网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_5ff94f8b654c",
+      "title": "纽约时报诉 OpenAI 与微软案解封文件披露 AI 抓取被称为史上最大劳动窃取",
+      "url": "https://techcrunch.com/2026/09/17/microsoft-exec-called-ai-scraping-the-largest-theft-of-labor-in-human-history-new-unredacted-filings-reveal",
+      "primary_url": "https://techcrunch.com/2026/09/17/microsoft-exec-called-ai-scraping-the-largest-theft-of-labor-in-human-history-new-unredacted-filings-reveal",
+      "source": "TechCrunch：AI（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "14511c8b5dd853440e87ab99755ea51b46a6cd25",
+          "title": "纽约时报诉 OpenAI 与微软案解封文件披露 AI 抓取被称为史上最大劳动窃取",
+          "url": "https://techcrunch.com/2026/09/17/microsoft-exec-called-ai-scraping-the-largest-theft-of-labor-in-human-history-new-unredacted-filings-reveal",
+          "source": "TechCrunch：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T19:46:08Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "TechCrunch：AI（RSS）"
+      ],
+      "items": [
+        {
+          "id": "14511c8b5dd853440e87ab99755ea51b46a6cd25",
+          "title": "纽约时报诉 OpenAI 与微软案解封文件披露 AI 抓取被称为史上最大劳动窃取",
+          "url": "https://techcrunch.com/2026/09/17/microsoft-exec-called-ai-scraping-the-largest-theft-of-labor-in-human-history-new-unredacted-filings-reveal",
+          "source": "TechCrunch：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T19:46:08Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7834,
+      "importance": 0.7834,
+      "importance_score": 0.7834,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.8,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9544,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-17T19:46:08Z",
+      "latest_at": "2026-09-17T19:46:08Z",
+      "primary_item": {
+        "id": "14511c8b5dd853440e87ab99755ea51b46a6cd25",
+        "title": "纽约时报诉 OpenAI 与微软案解封文件披露 AI 抓取被称为史上最大劳动窃取",
+        "url": "https://techcrunch.com/2026/09/17/microsoft-exec-called-ai-scraping-the-largest-theft-of-labor-in-human-history-new-unredacted-filings-reveal",
+        "source": "TechCrunch：AI（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -462,21 +706,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7565,
-      "importance": 0.7565,
-      "importance_score": 0.7565,
+      "score": 0.7495,
+      "importance": 0.7495,
+      "importance_score": 0.7495,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9548,
+        "recency": 0.9161,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-17T16:56:07Z",
       "latest_at": "2026-09-17T16:56:07Z",
@@ -489,63 +732,62 @@
       }
     },
     {
-      "story_id": "story_bb65895bed05",
-      "title": "Dwarkesh 对谈 Noam Brown：智能体集群、对齐与递归自我改进",
-      "url": "https://www.dwarkesh.com/p/noam-brown",
-      "primary_url": "https://www.dwarkesh.com/p/noam-brown",
-      "source": "Dwarkesh Patel：Podcast & Blog（RSS）",
+      "story_id": "story_676fa70ba067",
+      "title": "Meta 发布 muse for Mac，智能体可直接操作电脑上的文件、消息和日程",
+      "url": "https://x.com/alexandr_wang/status/2100714048329580957",
+      "primary_url": "https://x.com/alexandr_wang/status/2100714048329580957",
+      "source": "X：Alexandr Wang（Scale AI 创始人/Meta 首席 AI 官） (@alexandr_wang)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "c33d2fa3dee69653b6e5935cd8adc2dc3f480701",
-          "title": "Dwarkesh 对谈 Noam Brown：智能体集群、对齐与递归自我改进",
-          "url": "https://www.dwarkesh.com/p/noam-brown",
-          "source": "Dwarkesh Patel：Podcast & Blog（RSS）",
+          "id": "f6375e07e04bc98c3f121c13cb1fe2c398619ec5",
+          "title": "Meta 发布 muse for Mac，智能体可直接操作电脑上的文件、消息和日程",
+          "url": "https://x.com/alexandr_wang/status/2100714048329580957",
+          "source": "X：Alexandr Wang（Scale AI 创始人/Meta 首席 AI 官） (@alexandr_wang)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-17T15:38:13Z"
+          "published_at": "2026-09-17T22:30:33Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "Dwarkesh Patel：Podcast & Blog（RSS）"
+        "X：Alexandr Wang（Scale AI 创始人/Meta 首席 AI 官） (@alexandr_wang)"
       ],
       "items": [
         {
-          "id": "c33d2fa3dee69653b6e5935cd8adc2dc3f480701",
-          "title": "Dwarkesh 对谈 Noam Brown：智能体集群、对齐与递归自我改进",
-          "url": "https://www.dwarkesh.com/p/noam-brown",
-          "source": "Dwarkesh Patel：Podcast & Blog（RSS）",
+          "id": "f6375e07e04bc98c3f121c13cb1fe2c398619ec5",
+          "title": "Meta 发布 muse for Mac，智能体可直接操作电脑上的文件、消息和日程",
+          "url": "https://x.com/alexandr_wang/status/2100714048329580957",
+          "source": "X：Alexandr Wang（Scale AI 创始人/Meta 首席 AI 官） (@alexandr_wang)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-17T15:38:13Z"
+          "published_at": "2026-09-17T22:30:33Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7533,
-      "importance": 0.7533,
-      "importance_score": 0.7533,
+      "score": 0.7483,
+      "importance": 0.7483,
+      "importance_score": 0.7483,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.71,
+        "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.937,
+        "recency": 0.9929,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-17T15:38:13Z",
-      "latest_at": "2026-09-17T15:38:13Z",
+      "earliest_at": "2026-09-17T22:30:33Z",
+      "latest_at": "2026-09-17T22:30:33Z",
       "primary_item": {
-        "id": "c33d2fa3dee69653b6e5935cd8adc2dc3f480701",
-        "title": "Dwarkesh 对谈 Noam Brown：智能体集群、对齐与递归自我改进",
-        "url": "https://www.dwarkesh.com/p/noam-brown",
-        "source": "Dwarkesh Patel：Podcast & Blog（RSS）",
+        "id": "f6375e07e04bc98c3f121c13cb1fe2c398619ec5",
+        "title": "Meta 发布 muse for Mac，智能体可直接操作电脑上的文件、消息和日程",
+        "url": "https://x.com/alexandr_wang/status/2100714048329580957",
+        "source": "X：Alexandr Wang（Scale AI 创始人/Meta 首席 AI 官） (@alexandr_wang)",
         "source_name": "AI HOT"
       }
     },
@@ -584,21 +826,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7532,
-      "importance": 0.7532,
-      "importance_score": 0.7532,
+      "score": 0.7478,
+      "importance": 0.7478,
+      "importance_score": 0.7478,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7367,
+        "recency": 0.7069,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-16T22:58:50Z",
       "latest_at": "2026-09-16T22:58:50Z",
@@ -607,6 +848,66 @@
         "title": "OpenAI 发布模型错位报告框架，披露未发布模型自行修改自身指令案例",
         "url": "https://x.com/AISafetyMemes/status/2100358777895780704",
         "source": "X：AI Safety Memes (@AISafetyMemes)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_bb65895bed05",
+      "title": "Dwarkesh 对谈 Noam Brown：智能体集群、对齐与递归自我改进",
+      "url": "https://www.dwarkesh.com/p/noam-brown",
+      "primary_url": "https://www.dwarkesh.com/p/noam-brown",
+      "source": "Dwarkesh Patel：Podcast & Blog（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "c33d2fa3dee69653b6e5935cd8adc2dc3f480701",
+          "title": "Dwarkesh 对谈 Noam Brown：智能体集群、对齐与递归自我改进",
+          "url": "https://www.dwarkesh.com/p/noam-brown",
+          "source": "Dwarkesh Patel：Podcast & Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T15:38:13Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Dwarkesh Patel：Podcast & Blog（RSS）"
+      ],
+      "items": [
+        {
+          "id": "c33d2fa3dee69653b6e5935cd8adc2dc3f480701",
+          "title": "Dwarkesh 对谈 Noam Brown：智能体集群、对齐与递归自我改进",
+          "url": "https://www.dwarkesh.com/p/noam-brown",
+          "source": "Dwarkesh Patel：Podcast & Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T15:38:13Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7464,
+      "importance": 0.7464,
+      "importance_score": 0.7464,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.71,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8991,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-17T15:38:13Z",
+      "latest_at": "2026-09-17T15:38:13Z",
+      "primary_item": {
+        "id": "c33d2fa3dee69653b6e5935cd8adc2dc3f480701",
+        "title": "Dwarkesh 对谈 Noam Brown：智能体集群、对齐与递归自我改进",
+        "url": "https://www.dwarkesh.com/p/noam-brown",
+        "source": "Dwarkesh Patel：Podcast & Blog（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -663,15 +964,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.749,
-      "importance": 0.749,
-      "importance_score": 0.749,
+      "score": 0.7441,
+      "importance": 0.7441,
+      "importance_score": 0.7441,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6744,
+        "recency": 0.6471,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -724,15 +1025,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7467,
-      "importance": 0.7467,
-      "importance_score": 0.7467,
+      "score": 0.7398,
+      "importance": 0.7398,
+      "importance_score": 0.7398,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9508,
+        "recency": 0.9123,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -746,6 +1047,186 @@
         "title": "Goodfire Research 发现模型内部信号可规模化检测奖励作弊",
         "url": "https://www.goodfire.com/research/reward-hacking-activation-monitors",
         "source": "Goodfire Research（网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_fce52675aad5",
+      "title": "Meta 发布 Muse for Mac，个人智能体可直接在电脑上执行任务",
+      "url": "https://x.com/AIatMeta/status/2100714755568644409",
+      "primary_url": "https://x.com/AIatMeta/status/2100714755568644409",
+      "source": "X：AI at Meta (@AIatMeta)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "629120c73499a9910cc657c81a8aac07313fdc13",
+          "title": "Meta 发布 Muse for Mac，个人智能体可直接在电脑上执行任务",
+          "url": "https://x.com/AIatMeta/status/2100714755568644409",
+          "source": "X：AI at Meta (@AIatMeta)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T22:33:21Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：AI at Meta (@AIatMeta)"
+      ],
+      "items": [
+        {
+          "id": "629120c73499a9910cc657c81a8aac07313fdc13",
+          "title": "Meta 发布 Muse for Mac，个人智能体可直接在电脑上执行任务",
+          "url": "https://x.com/AIatMeta/status/2100714755568644409",
+          "source": "X：AI at Meta (@AIatMeta)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T22:33:21Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7394,
+      "importance": 0.7394,
+      "importance_score": 0.7394,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.63,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9936,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-17T22:33:21Z",
+      "latest_at": "2026-09-17T22:33:21Z",
+      "primary_item": {
+        "id": "629120c73499a9910cc657c81a8aac07313fdc13",
+        "title": "Meta 发布 Muse for Mac，个人智能体可直接在电脑上执行任务",
+        "url": "https://x.com/AIatMeta/status/2100714755568644409",
+        "source": "X：AI at Meta (@AIatMeta)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_0fda40f6d1fa",
+      "title": "META 🔥： A standalone Muse app for macOS is now available （still US only）. Muse for Mac seems to ha…",
+      "url": "https://x.com/testingcatalog/status/2100716400226582654",
+      "primary_url": "https://x.com/testingcatalog/status/2100716400226582654",
+      "source": "X：Testing Catalog (@testingcatalog)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "d51e566b64204a95d39895f619fc87e2bba1ba4e",
+          "title": "META 🔥： A standalone Muse app for macOS is now available （still US only）. Muse for Mac seems to ha…",
+          "url": "https://x.com/testingcatalog/status/2100716400226582654",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T22:39:53Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Testing Catalog (@testingcatalog)"
+      ],
+      "items": [
+        {
+          "id": "d51e566b64204a95d39895f619fc87e2bba1ba4e",
+          "title": "META 🔥： A standalone Muse app for macOS is now available （still US only）. Muse for Mac seems to ha…",
+          "url": "https://x.com/testingcatalog/status/2100716400226582654",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T22:39:53Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7367,
+      "importance": 0.7367,
+      "importance_score": 0.7367,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.62,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9952,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-17T22:39:53Z",
+      "latest_at": "2026-09-17T22:39:53Z",
+      "primary_item": {
+        "id": "d51e566b64204a95d39895f619fc87e2bba1ba4e",
+        "title": "META 🔥： A standalone Muse app for macOS is now available （still US only）. Muse for Mac seems to ha…",
+        "url": "https://x.com/testingcatalog/status/2100716400226582654",
+        "source": "X：Testing Catalog (@testingcatalog)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_a9ae5172fcf1",
+      "title": "Muse for Mac is out today！ It works across apps， files， calendar， notes， and messages on your comput…",
+      "url": "https://x.com/finkd/status/2100713341555712149",
+      "primary_url": "https://x.com/finkd/status/2100713341555712149",
+      "source": "X：Mark Zuckerberg (@finkd)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "1715b55ea486008b69419cb165b0cc262f2c7504",
+          "title": "Muse for Mac is out today！ It works across apps， files， calendar， notes， and messages on your comput…",
+          "url": "https://x.com/finkd/status/2100713341555712149",
+          "source": "X：Mark Zuckerberg (@finkd)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T22:27:44Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Mark Zuckerberg (@finkd)"
+      ],
+      "items": [
+        {
+          "id": "1715b55ea486008b69419cb165b0cc262f2c7504",
+          "title": "Muse for Mac is out today！ It works across apps， files， calendar， notes， and messages on your comput…",
+          "url": "https://x.com/finkd/status/2100713341555712149",
+          "source": "X：Mark Zuckerberg (@finkd)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T22:27:44Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7362,
+      "importance": 0.7362,
+      "importance_score": 0.7362,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.62,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9923,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-17T22:27:44Z",
+      "latest_at": "2026-09-17T22:27:44Z",
+      "primary_item": {
+        "id": "1715b55ea486008b69419cb165b0cc262f2c7504",
+        "title": "Muse for Mac is out today！ It works across apps， files， calendar， notes， and messages on your comput…",
+        "url": "https://x.com/finkd/status/2100713341555712149",
+        "source": "X：Mark Zuckerberg (@finkd)",
         "source_name": "AI HOT"
       }
     },
@@ -784,15 +1265,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7429,
-      "importance": 0.7429,
-      "importance_score": 0.7429,
+      "score": 0.7361,
+      "importance": 0.7361,
+      "importance_score": 0.7361,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9292,
+        "recency": 0.8916,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -806,486 +1287,6 @@
         "title": "Unsloth 发布 Docker 镜像与 Unsloth Desktop，本地训练运行 500+ 模型",
         "url": "https://x.com/UnslothAI/status/2100601458458804381",
         "source": "X：Unsloth (@UnslothAI)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_5809c8ca7eb9",
-      "title": "Claude 在 Claude Code 中支持从单个对话协调并行任务",
-      "url": "https://x.com/kimmonismus/status/2100651738269458590",
-      "primary_url": "https://x.com/kimmonismus/status/2100651738269458590",
-      "source": "X：Kim (@kimmonismus)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "31f00139caf54c8b7d6b2a8c3124ccf12d5ddc99",
-          "title": "Claude 在 Claude Code 中支持从单个对话协调并行任务",
-          "url": "https://x.com/kimmonismus/status/2100651738269458590",
-          "source": "X：Kim (@kimmonismus)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T18:22:57Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Kim (@kimmonismus)"
-      ],
-      "items": [
-        {
-          "id": "31f00139caf54c8b7d6b2a8c3124ccf12d5ddc99",
-          "title": "Claude 在 Claude Code 中支持从单个对话协调并行任务",
-          "url": "https://x.com/kimmonismus/status/2100651738269458590",
-          "source": "X：Kim (@kimmonismus)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T18:22:57Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7391,
-      "importance": 0.7391,
-      "importance_score": 0.7391,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.64,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9749,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-17T18:22:57Z",
-      "latest_at": "2026-09-17T18:22:57Z",
-      "primary_item": {
-        "id": "31f00139caf54c8b7d6b2a8c3124ccf12d5ddc99",
-        "title": "Claude 在 Claude Code 中支持从单个对话协调并行任务",
-        "url": "https://x.com/kimmonismus/status/2100651738269458590",
-        "source": "X：Kim (@kimmonismus)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_a549daeb9e16",
-      "title": "OpenAI 宣布 ChatGPT in Word 将面向所有套餐开放，含 Free",
-      "url": "https://x.com/testingcatalog/status/2100668254129725775",
-      "primary_url": "https://x.com/testingcatalog/status/2100668254129725775",
-      "source": "X：Testing Catalog (@testingcatalog)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "2942b1e34e59311e7111303dcb778731de78e27c",
-          "title": "OpenAI 宣布 ChatGPT in Word 将面向所有套餐开放，含 Free",
-          "url": "https://x.com/testingcatalog/status/2100668254129725775",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T19:28:34Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Testing Catalog (@testingcatalog)"
-      ],
-      "items": [
-        {
-          "id": "2942b1e34e59311e7111303dcb778731de78e27c",
-          "title": "OpenAI 宣布 ChatGPT in Word 将面向所有套餐开放，含 Free",
-          "url": "https://x.com/testingcatalog/status/2100668254129725775",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T19:28:34Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7389,
-      "importance": 0.7389,
-      "importance_score": 0.7389,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.63,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9905,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-17T19:28:34Z",
-      "latest_at": "2026-09-17T19:28:34Z",
-      "primary_item": {
-        "id": "2942b1e34e59311e7111303dcb778731de78e27c",
-        "title": "OpenAI 宣布 ChatGPT in Word 将面向所有套餐开放，含 Free",
-        "url": "https://x.com/testingcatalog/status/2100668254129725775",
-        "source": "X：Testing Catalog (@testingcatalog)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_409d4bac2aac",
-      "title": "GLM-5.3 团队分享用 GLM-5.3 优化自身推理基础设施，GLM-5.3-Flash 吞吐提升至 3 倍",
-      "url": "https://x.com/rohanpaul_ai/status/2100623376373174778",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2100623376373174778",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "bf988dd719528ee615978c7dc022e7c942e01934",
-          "title": "GLM-5.3 团队分享用 GLM-5.3 优化自身推理基础设施，GLM-5.3-Flash 吞吐提升至 3 倍",
-          "url": "https://x.com/rohanpaul_ai/status/2100623376373174778",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T16:30:15Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "bf988dd719528ee615978c7dc022e7c942e01934",
-          "title": "GLM-5.3 团队分享用 GLM-5.3 优化自身推理基础设施，GLM-5.3-Flash 吞吐提升至 3 倍",
-          "url": "https://x.com/rohanpaul_ai/status/2100623376373174778",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T16:30:15Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7344,
-      "importance": 0.7344,
-      "importance_score": 0.7344,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.64,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9489,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-17T16:30:15Z",
-      "latest_at": "2026-09-17T16:30:15Z",
-      "primary_item": {
-        "id": "bf988dd719528ee615978c7dc022e7c942e01934",
-        "title": "GLM-5.3 团队分享用 GLM-5.3 优化自身推理基础设施，GLM-5.3-Flash 吞吐提升至 3 倍",
-        "url": "https://x.com/rohanpaul_ai/status/2100623376373174778",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_cc7ee5dd82fa",
-      "title": "Exa 发布 Snapshot：4000 亿历史网页快照索引，可按过去状态搜索",
-      "url": "https://x.com/jxnlco/status/2100674424160547088",
-      "primary_url": "https://x.com/jxnlco/status/2100674424160547088",
-      "source": "X：Jason Liu (@jxnlco)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "bda5c4c3edacb3283a420dbd4ad23baa110482fb",
-          "title": "Exa 发布 Snapshot：4000 亿历史网页快照索引，可按过去状态搜索",
-          "url": "https://x.com/jxnlco/status/2100674424160547088",
-          "source": "X：Jason Liu (@jxnlco)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T19:53:06Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Jason Liu (@jxnlco)"
-      ],
-      "items": [
-        {
-          "id": "bda5c4c3edacb3283a420dbd4ad23baa110482fb",
-          "title": "Exa 发布 Snapshot：4000 亿历史网页快照索引，可按过去状态搜索",
-          "url": "https://x.com/jxnlco/status/2100674424160547088",
-          "source": "X：Jason Liu (@jxnlco)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T19:53:06Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7309,
-      "importance": 0.7309,
-      "importance_score": 0.7309,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.6,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9963,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-17T19:53:06Z",
-      "latest_at": "2026-09-17T19:53:06Z",
-      "primary_item": {
-        "id": "bda5c4c3edacb3283a420dbd4ad23baa110482fb",
-        "title": "Exa 发布 Snapshot：4000 亿历史网页快照索引，可按过去状态搜索",
-        "url": "https://x.com/jxnlco/status/2100674424160547088",
-        "source": "X：Jason Liu (@jxnlco)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_d07740b73650",
-      "title": "Thomas Wolf 评价 OpenAI 模型失准报告框架：朝正确方向迈出一步",
-      "url": "https://x.com/Thom_Wolf/status/2100582349486305584",
-      "primary_url": "https://x.com/Thom_Wolf/status/2100582349486305584",
-      "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "ce1f4d5b34835c4ca8e1bf2e629ede7a55f97a12",
-          "title": "Thomas Wolf 评价 OpenAI 模型失准报告框架：朝正确方向迈出一步",
-          "url": "https://x.com/Thom_Wolf/status/2100582349486305584",
-          "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T13:47:13Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)"
-      ],
-      "items": [
-        {
-          "id": "ce1f4d5b34835c4ca8e1bf2e629ede7a55f97a12",
-          "title": "Thomas Wolf 评价 OpenAI 模型失准报告框架：朝正确方向迈出一步",
-          "url": "https://x.com/Thom_Wolf/status/2100582349486305584",
-          "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T13:47:13Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7308,
-      "importance": 0.7308,
-      "importance_score": 0.7308,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.65,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9123,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-17T13:47:13Z",
-      "latest_at": "2026-09-17T13:47:13Z",
-      "primary_item": {
-        "id": "ce1f4d5b34835c4ca8e1bf2e629ede7a55f97a12",
-        "title": "Thomas Wolf 评价 OpenAI 模型失准报告框架：朝正确方向迈出一步",
-        "url": "https://x.com/Thom_Wolf/status/2100582349486305584",
-        "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_d21528aab7f9",
-      "title": "Epoch AI 分析：贸易数据与经马来西亚走私至中国的约 30 亿美元芯片一致",
-      "url": "https://epoch.ai/data-insights/malaysia-china-chip-smuggling",
-      "primary_url": "https://epoch.ai/data-insights/malaysia-china-chip-smuggling",
-      "source": "Epoch AI：研究、数据与评测",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "996726a9ac53981eb863eccd8e5c018833bfdf77",
-          "title": "Epoch AI 分析：贸易数据与经马来西亚走私至中国的约 30 亿美元芯片一致",
-          "url": "https://epoch.ai/data-insights/malaysia-china-chip-smuggling",
-          "source": "Epoch AI：研究、数据与评测",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T00:00:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Epoch AI：研究、数据与评测"
-      ],
-      "items": [
-        {
-          "id": "996726a9ac53981eb863eccd8e5c018833bfdf77",
-          "title": "Epoch AI 分析：贸易数据与经马来西亚走私至中国的约 30 亿美元芯片一致",
-          "url": "https://epoch.ai/data-insights/malaysia-china-chip-smuggling",
-          "source": "Epoch AI：研究、数据与评测",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T00:00:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7282,
-      "importance": 0.7282,
-      "importance_score": 0.7282,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.74,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7476,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-17T00:00:00Z",
-      "latest_at": "2026-09-17T00:00:00Z",
-      "primary_item": {
-        "id": "996726a9ac53981eb863eccd8e5c018833bfdf77",
-        "title": "Epoch AI 分析：贸易数据与经马来西亚走私至中国的约 30 亿美元芯片一致",
-        "url": "https://epoch.ai/data-insights/malaysia-china-chip-smuggling",
-        "source": "Epoch AI：研究、数据与评测",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_3a3f4115278c",
-      "title": "Anthropic 更新 Claude for Small Business，新增 43 个工作流和 27 个连接器",
-      "url": "https://x.com/frxiaobei/status/2100603154626957595",
-      "primary_url": "https://x.com/frxiaobei/status/2100603154626957595",
-      "source": "X：小北 (@frxiaobei)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "66555783c80dff059540352ec0e467d0cc5723c2",
-          "title": "Anthropic 更新 Claude for Small Business，新增 43 个工作流和 27 个连接器",
-          "url": "https://x.com/frxiaobei/status/2100603154626957595",
-          "source": "X：小北 (@frxiaobei)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T15:09:54Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：小北 (@frxiaobei)"
-      ],
-      "items": [
-        {
-          "id": "66555783c80dff059540352ec0e467d0cc5723c2",
-          "title": "Anthropic 更新 Claude for Small Business，新增 43 个工作流和 27 个连接器",
-          "url": "https://x.com/frxiaobei/status/2100603154626957595",
-          "source": "X：小北 (@frxiaobei)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T15:09:54Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7251,
-      "importance": 0.7251,
-      "importance_score": 0.7251,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.62,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9307,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-17T15:09:54Z",
-      "latest_at": "2026-09-17T15:09:54Z",
-      "primary_item": {
-        "id": "66555783c80dff059540352ec0e467d0cc5723c2",
-        "title": "Anthropic 更新 Claude for Small Business，新增 43 个工作流和 27 个连接器",
-        "url": "https://x.com/frxiaobei/status/2100603154626957595",
-        "source": "X：小北 (@frxiaobei)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_bbe6c30a33c9",
-      "title": "OpenAI 发布模型失准披露框架并公开六份失准报告",
-      "url": "https://openai.com/index/model-misalignment-reporting-framework",
-      "primary_url": "https://openai.com/index/model-misalignment-reporting-framework",
-      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "b568a844303081c8d51ffebb6f966d3a359bb0e0",
-          "title": "OpenAI 发布模型失准披露框架并公开六份失准报告",
-          "url": "https://openai.com/index/model-misalignment-reporting-framework",
-          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T17:00:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "OpenAI：官网动态（RSS · 排除企业/客户案例）"
-      ],
-      "items": [
-        {
-          "id": "b568a844303081c8d51ffebb6f966d3a359bb0e0",
-          "title": "OpenAI 发布模型失准披露框架并公开六份失准报告",
-          "url": "https://openai.com/index/model-misalignment-reporting-framework",
-          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T17:00:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7242,
-      "importance": 0.7242,
-      "importance_score": 0.7242,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.77,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6758,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T17:00:00Z",
-      "latest_at": "2026-09-16T17:00:00Z",
-      "primary_item": {
-        "id": "b568a844303081c8d51ffebb6f966d3a359bb0e0",
-        "title": "OpenAI 发布模型失准披露框架并公开六份失准报告",
-        "url": "https://openai.com/index/model-misalignment-reporting-framework",
-        "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
         "source_name": "AI HOT"
       }
     }
