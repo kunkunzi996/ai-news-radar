@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-17T06:34:02.980833Z",
+  "generated_at": "2026-09-17T11:59:52.409719Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -95,15 +95,15 @@
       ],
       "item_count": 4,
       "duplicate_count": 4,
-      "score": 0.8057,
-      "importance": 0.8057,
-      "importance_score": 0.8057,
+      "score": 0.7933,
+      "importance": 0.7933,
+      "importance_score": 0.7933,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.65,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9115,
+        "recency": 0.8428,
         "story_heat": 0.75
       },
       "category": "multi_source",
@@ -157,15 +157,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7944,
-      "importance": 0.7944,
-      "importance_score": 0.7944,
+      "score": 0.7819,
+      "importance": 0.7819,
+      "importance_score": 0.7819,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9154,
+        "recency": 0.8463,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -218,15 +218,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7819,
-      "importance": 0.7819,
-      "importance_score": 0.7819,
+      "score": 0.7698,
+      "importance": 0.7698,
+      "importance_score": 0.7698,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8962,
+        "recency": 0.8286,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -279,21 +279,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7506,
-      "importance": 0.7506,
-      "importance_score": 0.7506,
+      "score": 0.7394,
+      "importance": 0.7394,
+      "importance_score": 0.7394,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8221,
+        "recency": 0.7601,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-16T17:00:00Z",
       "latest_at": "2026-09-16T17:00:00Z",
@@ -340,21 +339,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7503,
-      "importance": 0.7503,
-      "importance_score": 0.7503,
+      "score": 0.7391,
+      "importance": 0.7391,
+      "importance_score": 0.7391,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8204,
+        "recency": 0.7586,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-16T16:51:45.914000Z",
       "latest_at": "2026-09-16T16:51:45.914000Z",
@@ -363,6 +361,66 @@
         "title": "Anthropic 将 Claude Cowork 与聊天合并为统一的 Claude，并推出 Docs、Slides 等功能",
         "url": "https://claude.com/blog/cowork-is-now-claude",
         "source": "Claude：Blog（网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_99a35b52d62a",
+      "title": "OpenAI 发布模型失准披露框架，报告未发布 Astra 系列模型自写入 persona 案例",
+      "url": "https://x.com/haider1/status/2100503934146077157",
+      "primary_url": "https://x.com/haider1/status/2100503934146077157",
+      "source": "X：Haider (@haider1)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "79abaa7bb7e0b62a169f247912c745eefa66b717",
+          "title": "OpenAI 发布模型失准披露框架，报告未发布 Astra 系列模型自写入 persona 案例",
+          "url": "https://x.com/haider1/status/2100503934146077157",
+          "source": "X：Haider (@haider1)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T08:35:38Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Haider (@haider1)"
+      ],
+      "items": [
+        {
+          "id": "79abaa7bb7e0b62a169f247912c745eefa66b717",
+          "title": "OpenAI 发布模型失准披露框架，报告未发布 Astra 系列模型自写入 persona 案例",
+          "url": "https://x.com/haider1/status/2100503934146077157",
+          "source": "X：Haider (@haider1)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T08:35:38Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.735,
+      "importance": 0.735,
+      "importance_score": 0.735,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.64,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.952,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-17T08:35:38Z",
+      "latest_at": "2026-09-17T08:35:38Z",
+      "primary_item": {
+        "id": "79abaa7bb7e0b62a169f247912c745eefa66b717",
+        "title": "OpenAI 发布模型失准披露框架，报告未发布 Astra 系列模型自写入 persona 案例",
+        "url": "https://x.com/haider1/status/2100503934146077157",
+        "source": "X：Haider (@haider1)",
         "source_name": "AI HOT"
       }
     },
@@ -401,15 +459,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7477,
-      "importance": 0.7477,
-      "importance_score": 0.7477,
+      "score": 0.7343,
+      "importance": 0.7343,
+      "importance_score": 0.7343,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9894,
+        "recency": 0.9148,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -461,15 +519,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7429,
-      "importance": 0.7429,
-      "importance_score": 0.7429,
+      "score": 0.7308,
+      "importance": 0.7308,
+      "importance_score": 0.7308,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8964,
+        "recency": 0.8288,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -483,6 +541,126 @@
         "title": "OpenAI 官方博客披露 GPT-5.6 Sol 训练中的模型失对齐案例",
         "url": "https://x.com/rohanpaul_ai/status/2100358937661133000",
         "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_4f5365893e0b",
+      "title": "智谱 Z.ai 完成约 $5B 融资，Coding Plan 销售重启后增长超 15 倍",
+      "url": "https://x.com/thexpin/status/2100506292670660834",
+      "primary_url": "https://x.com/thexpin/status/2100506292670660834",
+      "source": "X：X.PIN (@thexpin)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "82e6a685317809dd6ee65f6ec5080b3436dc3101",
+          "title": "智谱 Z.ai 完成约 $5B 融资，Coding Plan 销售重启后增长超 15 倍",
+          "url": "https://x.com/thexpin/status/2100506292670660834",
+          "source": "X：X.PIN (@thexpin)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T08:45:00Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：X.PIN (@thexpin)"
+      ],
+      "items": [
+        {
+          "id": "82e6a685317809dd6ee65f6ec5080b3436dc3101",
+          "title": "智谱 Z.ai 完成约 $5B 融资，Coding Plan 销售重启后增长超 15 倍",
+          "url": "https://x.com/thexpin/status/2100506292670660834",
+          "source": "X：X.PIN (@thexpin)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T08:45:00Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7294,
+      "importance": 0.7294,
+      "importance_score": 0.7294,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.62,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9542,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-17T08:45:00Z",
+      "latest_at": "2026-09-17T08:45:00Z",
+      "primary_item": {
+        "id": "82e6a685317809dd6ee65f6ec5080b3436dc3101",
+        "title": "智谱 Z.ai 完成约 $5B 融资，Coding Plan 销售重启后增长超 15 倍",
+        "url": "https://x.com/thexpin/status/2100506292670660834",
+        "source": "X：X.PIN (@thexpin)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_5f3e17023dd7",
+      "title": "唐杰谈 GLM-5.3 驱动 Infra Agent 两周内优化 GLM-5.3-Flash 推理系统",
+      "url": "https://x.com/jietang/status/2100482019088060470",
+      "primary_url": "https://x.com/jietang/status/2100482019088060470",
+      "source": "X：唐杰（@jietang）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "e466a68bc3030fa3bdc8fa2a21a909001ef1a2b0",
+          "title": "唐杰谈 GLM-5.3 驱动 Infra Agent 两周内优化 GLM-5.3-Flash 推理系统",
+          "url": "https://x.com/jietang/status/2100482019088060470",
+          "source": "X：唐杰（@jietang）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T07:08:33Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：唐杰（@jietang）"
+      ],
+      "items": [
+        {
+          "id": "e466a68bc3030fa3bdc8fa2a21a909001ef1a2b0",
+          "title": "唐杰谈 GLM-5.3 驱动 Infra Agent 两周内优化 GLM-5.3-Flash 推理系统",
+          "url": "https://x.com/jietang/status/2100482019088060470",
+          "source": "X：唐杰（@jietang）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T07:08:33Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7284,
+      "importance": 0.7284,
+      "importance_score": 0.7284,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.63,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9323,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-17T07:08:33Z",
+      "latest_at": "2026-09-17T07:08:33Z",
+      "primary_item": {
+        "id": "e466a68bc3030fa3bdc8fa2a21a909001ef1a2b0",
+        "title": "唐杰谈 GLM-5.3 驱动 Infra Agent 两周内优化 GLM-5.3-Flash 推理系统",
+        "url": "https://x.com/jietang/status/2100482019088060470",
+        "source": "X：唐杰（@jietang）",
         "source_name": "AI HOT"
       }
     },
@@ -521,15 +699,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7381,
-      "importance": 0.7381,
-      "importance_score": 0.7381,
+      "score": 0.7261,
+      "importance": 0.7261,
+      "importance_score": 0.7261,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8862,
+        "recency": 0.8194,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -543,126 +721,6 @@
         "title": "OpenAI 发布模型失对齐披露框架并报告六个训练与评估中的失对齐案例",
         "url": "https://x.com/kimmonismus/status/2100347051334885818",
         "source": "X：Kim (@kimmonismus)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_c1ff88aed946",
-      "title": "Claude Docs、Claude Slides 与 Claude Design 直接嵌入对话，可导出 PowerPoint 或 PDF",
-      "url": "https://x.com/bcherny/status/2100260544087535639",
-      "primary_url": "https://x.com/bcherny/status/2100260544087535639",
-      "source": "X：Boris Cherny (@bcherny)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "d15aed4f022f2680da8f62bfae9fd9574ecd93ca",
-          "title": "Claude Docs、Claude Slides 与 Claude Design 直接嵌入对话，可导出 PowerPoint 或 PDF",
-          "url": "https://x.com/bcherny/status/2100260544087535639",
-          "source": "X：Boris Cherny (@bcherny)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T16:28:29Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Boris Cherny (@bcherny)"
-      ],
-      "items": [
-        {
-          "id": "d15aed4f022f2680da8f62bfae9fd9574ecd93ca",
-          "title": "Claude Docs、Claude Slides 与 Claude Design 直接嵌入对话，可导出 PowerPoint 或 PDF",
-          "url": "https://x.com/bcherny/status/2100260544087535639",
-          "source": "X：Boris Cherny (@bcherny)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T16:28:29Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7255,
-      "importance": 0.7255,
-      "importance_score": 0.7255,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.69,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8159,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T16:28:29Z",
-      "latest_at": "2026-09-16T16:28:29Z",
-      "primary_item": {
-        "id": "d15aed4f022f2680da8f62bfae9fd9574ecd93ca",
-        "title": "Claude Docs、Claude Slides 与 Claude Design 直接嵌入对话，可导出 PowerPoint 或 PDF",
-        "url": "https://x.com/bcherny/status/2100260544087535639",
-        "source": "X：Boris Cherny (@bcherny)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_6842698ca8d9",
-      "title": "Shopify 上线 ChatGPT Ads，成为 OpenAI 首个商业合作伙伴",
-      "url": "https://x.com/gdb/status/2100369354319884703",
-      "primary_url": "https://x.com/gdb/status/2100369354319884703",
-      "source": "X：Greg Brockman (@gdb)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "72a02387d7f063669fcdd29af566cb237e61a880",
-          "title": "Shopify 上线 ChatGPT Ads，成为 OpenAI 首个商业合作伙伴",
-          "url": "https://x.com/gdb/status/2100369354319884703",
-          "source": "X：Greg Brockman (@gdb)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T23:40:51Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Greg Brockman (@gdb)"
-      ],
-      "items": [
-        {
-          "id": "72a02387d7f063669fcdd29af566cb237e61a880",
-          "title": "Shopify 上线 ChatGPT Ads，成为 OpenAI 首个商业合作伙伴",
-          "url": "https://x.com/gdb/status/2100369354319884703",
-          "source": "X：Greg Brockman (@gdb)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T23:40:51Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7206,
-      "importance": 0.7206,
-      "importance_score": 0.7206,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.62,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9053,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T23:40:51Z",
-      "latest_at": "2026-09-16T23:40:51Z",
-      "primary_item": {
-        "id": "72a02387d7f063669fcdd29af566cb237e61a880",
-        "title": "Shopify 上线 ChatGPT Ads，成为 OpenAI 首个商业合作伙伴",
-        "url": "https://x.com/gdb/status/2100369354319884703",
-        "source": "X：Greg Brockman (@gdb)",
         "source_name": "AI HOT"
       }
     },
@@ -701,15 +759,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7414,
-      "importance": 0.7414,
-      "importance_score": 0.7414,
+      "score": 0.728,
+      "importance": 0.728,
+      "importance_score": 0.728,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.64,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9878,
+        "recency": 0.9133,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -761,15 +819,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7386,
-      "importance": 0.7386,
-      "importance_score": 0.7386,
+      "score": 0.7276,
+      "importance": 0.7276,
+      "importance_score": 0.7276,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8054,
+        "recency": 0.7447,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -839,15 +897,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7012,
-      "importance": 0.7012,
-      "importance_score": 0.7012,
+      "score": 0.695,
+      "importance": 0.695,
+      "importance_score": 0.695,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4588,
+        "recency": 0.4242,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -919,15 +977,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6904,
-      "importance": 0.6904,
-      "importance_score": 0.6904,
+      "score": 0.6825,
+      "importance": 0.6825,
+      "importance_score": 0.6825,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5824,
+        "recency": 0.5384,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -942,66 +1000,6 @@
         "title": "Google 发布 Gemini 3.8 Live 与 3.8 Live Extended Thinking 音频模型",
         "url": "https://x.com/GoogleAI/status/2099908000924193124",
         "source": "X：Google AI (@GoogleAI)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_30c8c4fffa59",
-      "title": "Mozilla 91 页报告：开源权重模型仅落后前沿约 4 个月，但收入占比严重倒挂",
-      "url": "https://x.com/rohanpaul_ai/status/2100446649017594213",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2100446649017594213",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "2d263ebd431c63363e8fbf9027eee12c09c1b7c6",
-          "title": "Mozilla 91 页报告：开源权重模型仅落后前沿约 4 个月，但收入占比严重倒挂",
-          "url": "https://x.com/rohanpaul_ai/status/2100446649017594213",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T04:48:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "2d263ebd431c63363e8fbf9027eee12c09c1b7c6",
-          "title": "Mozilla 91 页报告：开源权重模型仅落后前沿约 4 个月，但收入占比严重倒挂",
-          "url": "https://x.com/rohanpaul_ai/status/2100446649017594213",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T04:48:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7301,
-      "importance": 0.7301,
-      "importance_score": 0.7301,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.61,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9748,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-17T04:48:00Z",
-      "latest_at": "2026-09-17T04:48:00Z",
-      "primary_item": {
-        "id": "2d263ebd431c63363e8fbf9027eee12c09c1b7c6",
-        "title": "Mozilla 91 页报告：开源权重模型仅落后前沿约 4 个月，但收入占比严重倒挂",
-        "url": "https://x.com/rohanpaul_ai/status/2100446649017594213",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -1058,15 +1056,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6818,
-      "importance": 0.6818,
-      "importance_score": 0.6818,
+      "score": 0.6738,
+      "importance": 0.6738,
+      "importance_score": 0.6738,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.6,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5843,
+        "recency": 0.5402,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1137,15 +1135,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6493,
-      "importance": 0.6493,
-      "importance_score": 0.6493,
+      "score": 0.6386,
+      "importance": 0.6386,
+      "importance_score": 0.6386,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.37,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7872,
+        "recency": 0.7279,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1160,126 +1158,6 @@
         "title": "PixVerse 用 GPT Image 2.5 与 Seedance 2.5 生成舞蹈视频",
         "url": "https://x.com/PixVerse/status/2100223180103377279",
         "source": "X：PixVerse (@PixVerse)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_c2b939684de0",
-      "title": "Mozilla 91 页报告：开源权重模型约落后前沿 4 个月，用量占 20% 收入仅占 4%",
-      "url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "4ee2d242fba4a6be033d15f20e8e653b85aeba5d",
-          "title": "Mozilla 91 页报告：开源权重模型约落后前沿 4 个月，用量占 20% 收入仅占 4%",
-          "url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T22:01:31Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "4ee2d242fba4a6be033d15f20e8e653b85aeba5d",
-          "title": "Mozilla 91 页报告：开源权重模型约落后前沿 4 个月，用量占 20% 收入仅占 4%",
-          "url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T22:01:31Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7287,
-      "importance": 0.7287,
-      "importance_score": 0.7287,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.884,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T22:01:31Z",
-      "latest_at": "2026-09-16T22:01:31Z",
-      "primary_item": {
-        "id": "4ee2d242fba4a6be033d15f20e8e653b85aeba5d",
-        "title": "Mozilla 91 页报告：开源权重模型约落后前沿 4 个月，用量占 20% 收入仅占 4%",
-        "url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_9049b0bfda14",
-      "title": "OpenAI 发布模型对齐问题披露框架，并公开六份失当行为报告",
-      "url": "https://x.com/rohanpaul_ai/status/2100354109664813407",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2100354109664813407",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "910557d900a44c2d7d7d9220c0df5ace33fdad3b",
-          "title": "OpenAI 发布模型对齐问题披露框架，并公开六份失当行为报告",
-          "url": "https://x.com/rohanpaul_ai/status/2100354109664813407",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T22:40:17Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "910557d900a44c2d7d7d9220c0df5ace33fdad3b",
-          "title": "OpenAI 发布模型对齐问题披露框架，并公开六份失当行为报告",
-          "url": "https://x.com/rohanpaul_ai/status/2100354109664813407",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T22:40:17Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7272,
-      "importance": 0.7272,
-      "importance_score": 0.7272,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.65,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8922,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T22:40:17Z",
-      "latest_at": "2026-09-16T22:40:17Z",
-      "primary_item": {
-        "id": "910557d900a44c2d7d7d9220c0df5ace33fdad3b",
-        "title": "OpenAI 发布模型对齐问题披露框架，并公开六份失当行为报告",
-        "url": "https://x.com/rohanpaul_ai/status/2100354109664813407",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -1336,15 +1214,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.659,
-      "importance": 0.659,
-      "importance_score": 0.659,
+      "score": 0.6533,
+      "importance": 0.6533,
+      "importance_score": 0.6533,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4247,
+        "recency": 0.3927,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1360,6 +1238,164 @@
         "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
         "source": "Claude：Blog（网页）",
         "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_756f440e378b",
+      "title": "GPT-6 Sol 传闻将发布，定位低于 Astra",
+      "url": "https://x.com/kimmonismus/status/2099842224577982905",
+      "primary_url": "https://x.com/kimmonismus/status/2099842224577982905",
+      "source": "X：Kim (@kimmonismus)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "09b877188140569f2684b3d94522f2dae29dd0c9",
+          "title": "GPT-6 Sol 传闻将发布，定位低于 Astra",
+          "url": "https://x.com/ZHO_ZHO_ZHO/status/2099922222232334550",
+          "source": "X：ZHO (@ZHO_ZHO_ZHO)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T18:04:07Z"
+        },
+        {
+          "id": "6c6a6cbd1a02ccab7d860788853e5973354e8ab3",
+          "title": "GPT-6 Sol 传闻将发布，定位低于 Astra",
+          "url": "https://x.com/kimmonismus/status/2099842224577982905",
+          "source": "X：Kim (@kimmonismus)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T12:46:14Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Kim (@kimmonismus)",
+        "X：ZHO (@ZHO_ZHO_ZHO)"
+      ],
+      "items": [
+        {
+          "id": "09b877188140569f2684b3d94522f2dae29dd0c9",
+          "title": "GPT-6 Sol 传闻将发布，定位低于 Astra",
+          "url": "https://x.com/ZHO_ZHO_ZHO/status/2099922222232334550",
+          "source": "X：ZHO (@ZHO_ZHO_ZHO)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T18:04:07Z"
+        },
+        {
+          "id": "6c6a6cbd1a02ccab7d860788853e5973354e8ab3",
+          "title": "GPT-6 Sol 传闻将发布，定位低于 Astra",
+          "url": "https://x.com/kimmonismus/status/2099842224577982905",
+          "source": "X：Kim (@kimmonismus)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T12:46:14Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.5776,
+      "importance": 0.5776,
+      "importance_score": 0.5776,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.3,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.5056,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-15T12:46:14Z",
+      "latest_at": "2026-09-15T18:04:07Z",
+      "primary_item": {
+        "id": "6c6a6cbd1a02ccab7d860788853e5973354e8ab3",
+        "title": "GPT-6 Sol 传闻将发布，定位低于 Astra",
+        "url": "https://x.com/kimmonismus/status/2099842224577982905",
+        "source": "X：Kim (@kimmonismus)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_76638ac4baf8",
+      "title": "小白必备技巧，让你的GPT6节约70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
+      "url": "https://www.douyin.com/video/7683437126796496174",
+      "primary_url": "https://www.douyin.com/video/7683437126796496174",
+      "source": "FredTalk",
+      "source_name": "MediaCrawler Douyin",
+      "sources": [
+        {
+          "id": "5a578ddd029d6f947adaebcb80a41cf8dd29a3a4",
+          "title": "小白必备技巧，让你的GPT6节约70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
+          "url": "https://www.douyin.com/video/7683437126796496174",
+          "source": "FredTalk",
+          "source_name": "MediaCrawler Douyin",
+          "site_id": "mediacrawler_douyin",
+          "published_at": "2026-09-09T07:40:15Z"
+        },
+        {
+          "id": "5391e3c20e38d828139e24819bc4a8807d5b3f12",
+          "title": "GPT6发布！这些设置帮你省70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
+          "url": "https://www.douyin.com/video/7683385369043209508",
+          "source": "FredTalk",
+          "source_name": "MediaCrawler Douyin",
+          "site_id": "mediacrawler_douyin",
+          "published_at": "2026-09-09T04:19:29Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "FredTalk"
+      ],
+      "items": [
+        {
+          "id": "5a578ddd029d6f947adaebcb80a41cf8dd29a3a4",
+          "title": "小白必备技巧，让你的GPT6节约70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
+          "url": "https://www.douyin.com/video/7683437126796496174",
+          "source": "FredTalk",
+          "source_name": "MediaCrawler Douyin",
+          "site_id": "mediacrawler_douyin",
+          "published_at": "2026-09-09T07:40:15Z"
+        },
+        {
+          "id": "5391e3c20e38d828139e24819bc4a8807d5b3f12",
+          "title": "GPT6发布！这些设置帮你省70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
+          "url": "https://www.douyin.com/video/7683385369043209508",
+          "source": "FredTalk",
+          "source_name": "MediaCrawler Douyin",
+          "site_id": "mediacrawler_douyin",
+          "published_at": "2026-09-09T04:19:29Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.3882,
+      "importance": 0.3882,
+      "importance_score": 0.3882,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.45,
+        "source_tier": 0.48,
+        "ai_relevance": 0.56,
+        "recency": 0.0587,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source"
+      ],
+      "earliest_at": "2026-09-09T04:19:29Z",
+      "latest_at": "2026-09-09T07:40:15Z",
+      "primary_item": {
+        "id": "5a578ddd029d6f947adaebcb80a41cf8dd29a3a4",
+        "title": "小白必备技巧，让你的GPT6节约70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
+        "url": "https://www.douyin.com/video/7683437126796496174",
+        "source": "FredTalk",
+        "source_name": "MediaCrawler Douyin"
       }
     }
   ]
