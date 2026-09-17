@@ -1,8 +1,249 @@
 {
-  "generated_at": "2026-09-16T22:49:19.120646Z",
+  "generated_at": "2026-09-17T01:15:09.660007Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
+    {
+      "story_id": "story_6cbde97d8260",
+      "title": "用 MCP 插件让 GPT-6 Pro 分担 Codex 规划任务，节省 Pro 会员周额度",
+      "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686431&idx=1&sn=c1bfba7e0b5b7cf995e444daf79861a4",
+      "primary_url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686431&idx=1&sn=c1bfba7e0b5b7cf995e444daf79861a4",
+      "source": "公众号：数字生命卡兹克",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "dee18d72420c66afd72b48c6263be57b51fcd9bb",
+          "title": "用 MCP 插件让 GPT-6 Pro 分担 Codex 规划任务，节省 Pro 会员周额度",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686431&idx=1&sn=c1bfba7e0b5b7cf995e444daf79861a4",
+          "source": "公众号：数字生命卡兹克",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T00:09:06Z"
+        },
+        {
+          "id": "3b100d82b102c8649fc96cee21fef0c21fe60dc9",
+          "title": "生数科技发布 Vidu S2：含 Avatar 与 Editing 双模型，探索空间视频",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkzMDQ5NTQwMQ%3D%3D&mid=2247489246&idx=2&sn=b23b39da69f6c75594eccac11854111f",
+          "source": "公众号：生数科技（Vidu·视频）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T14:30:59Z"
+        },
+        {
+          "id": "b69041dae5191a7a0dc28f029074ec6d089dda22",
+          "title": "阶跃星辰发布 StepAudio 3 系列语音大模型，多款在 Artificial Analysis 榜单全球第一",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkyNTYxNzg5Mg%3D%3D&mid=2247488074&idx=1&sn=7d92ce0f0098ec0c53b243df4709b522",
+          "source": "公众号：阶跃星辰（Step）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T07:29:56Z"
+        },
+        {
+          "id": "add1184de4e05e7931adf227851a985e2925cc49",
+          "title": "小红书 AllSpark 开源 Search Agent 模型 Iris，35B 与 397B 版本同量级成绩领先",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzg4OTc2MzczNg%3D%3D&mid=2247496383&idx=1&sn=2db8607f797615a3647d9fec7e54f448",
+          "source": "公众号：小红书技术（dots.llm）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T09:59:00Z"
+        }
+      ],
+      "source_count": 4,
+      "source_names": [
+        "公众号：小红书技术（dots.llm）",
+        "公众号：数字生命卡兹克",
+        "公众号：生数科技（Vidu·视频）",
+        "公众号：阶跃星辰（Step）"
+      ],
+      "items": [
+        {
+          "id": "dee18d72420c66afd72b48c6263be57b51fcd9bb",
+          "title": "用 MCP 插件让 GPT-6 Pro 分担 Codex 规划任务，节省 Pro 会员周额度",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686431&idx=1&sn=c1bfba7e0b5b7cf995e444daf79861a4",
+          "source": "公众号：数字生命卡兹克",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T00:09:06Z"
+        },
+        {
+          "id": "3b100d82b102c8649fc96cee21fef0c21fe60dc9",
+          "title": "生数科技发布 Vidu S2：含 Avatar 与 Editing 双模型，探索空间视频",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkzMDQ5NTQwMQ%3D%3D&mid=2247489246&idx=2&sn=b23b39da69f6c75594eccac11854111f",
+          "source": "公众号：生数科技（Vidu·视频）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T14:30:59Z"
+        },
+        {
+          "id": "b69041dae5191a7a0dc28f029074ec6d089dda22",
+          "title": "阶跃星辰发布 StepAudio 3 系列语音大模型，多款在 Artificial Analysis 榜单全球第一",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkyNTYxNzg5Mg%3D%3D&mid=2247488074&idx=1&sn=7d92ce0f0098ec0c53b243df4709b522",
+          "source": "公众号：阶跃星辰（Step）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T07:29:56Z"
+        },
+        {
+          "id": "add1184de4e05e7931adf227851a985e2925cc49",
+          "title": "小红书 AllSpark 开源 Search Agent 模型 Iris，35B 与 397B 版本同量级成绩领先",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzg4OTc2MzczNg%3D%3D&mid=2247496383&idx=1&sn=2db8607f797615a3647d9fec7e54f448",
+          "source": "公众号：小红书技术（dots.llm）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T09:59:00Z"
+        }
+      ],
+      "item_count": 4,
+      "duplicate_count": 4,
+      "score": 0.8188,
+      "importance": 0.8188,
+      "importance_score": 0.8188,
+      "importance_label": "多源热议",
+      "importance_breakdown": {
+        "editorial": 0.65,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9842,
+        "story_heat": 0.75
+      },
+      "category": "multi_source",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-14T09:59:00Z",
+      "latest_at": "2026-09-17T00:09:06Z",
+      "primary_item": {
+        "id": "dee18d72420c66afd72b48c6263be57b51fcd9bb",
+        "title": "用 MCP 插件让 GPT-6 Pro 分担 Codex 规划任务，节省 Pro 会员周额度",
+        "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686431&idx=1&sn=c1bfba7e0b5b7cf995e444daf79861a4",
+        "source": "公众号：数字生命卡兹克",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_6b8b0b6f48f2",
+      "title": "GitHub 用 Copilot 智能体将 Copilot 运行时从 TypeScript 迁移到 83 万行 Rust",
+      "url": "https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot",
+      "primary_url": "https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot",
+      "source": "GitHub Blog",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "ca4dffffcb00c23f888bfd34c6a8e082a9dc14c3",
+          "title": "GitHub 用 Copilot 智能体将 Copilot 运行时从 TypeScript 迁移到 83 万行 Rust",
+          "url": "https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot",
+          "source": "GitHub Blog",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T00:26:43Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "GitHub Blog"
+      ],
+      "items": [
+        {
+          "id": "ca4dffffcb00c23f888bfd34c6a8e082a9dc14c3",
+          "title": "GitHub 用 Copilot 智能体将 Copilot 运行时从 TypeScript 迁移到 83 万行 Rust",
+          "url": "https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot",
+          "source": "GitHub Blog",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T00:26:43Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.8075,
+      "importance": 0.8075,
+      "importance_score": 0.8075,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.86,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9884,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-17T00:26:43Z",
+      "latest_at": "2026-09-17T00:26:43Z",
+      "primary_item": {
+        "id": "ca4dffffcb00c23f888bfd34c6a8e082a9dc14c3",
+        "title": "GitHub 用 Copilot 智能体将 Copilot 运行时从 TypeScript 迁移到 83 万行 Rust",
+        "url": "https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot",
+        "source": "GitHub Blog",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_c4370d94e4d0",
+      "title": "OpenAI 发布模型错位报告框架，披露未发布模型自行修改自身指令案例",
+      "url": "https://x.com/AISafetyMemes/status/2100358777895780704",
+      "primary_url": "https://x.com/AISafetyMemes/status/2100358777895780704",
+      "source": "X：AI Safety Memes (@AISafetyMemes)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "4498830c8d9c8985fc117afee10a3e48308f169d",
+          "title": "OpenAI 发布模型错位报告框架，披露未发布模型自行修改自身指令案例",
+          "url": "https://x.com/AISafetyMemes/status/2100358777895780704",
+          "source": "X：AI Safety Memes (@AISafetyMemes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T22:58:50Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：AI Safety Memes (@AISafetyMemes)"
+      ],
+      "items": [
+        {
+          "id": "4498830c8d9c8985fc117afee10a3e48308f169d",
+          "title": "OpenAI 发布模型错位报告框架，披露未发布模型自行修改自身指令案例",
+          "url": "https://x.com/AISafetyMemes/status/2100358777895780704",
+          "source": "X：AI Safety Memes (@AISafetyMemes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T22:58:50Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7948,
+      "importance": 0.7948,
+      "importance_score": 0.7948,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.83,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9677,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-16T22:58:50Z",
+      "latest_at": "2026-09-16T22:58:50Z",
+      "primary_item": {
+        "id": "4498830c8d9c8985fc117afee10a3e48308f169d",
+        "title": "OpenAI 发布模型错位报告框架，披露未发布模型自行修改自身指令案例",
+        "url": "https://x.com/AISafetyMemes/status/2100358777895780704",
+        "source": "X：AI Safety Memes (@AISafetyMemes)",
+        "source_name": "AI HOT"
+      }
+    },
     {
       "story_id": "story_bbe6c30a33c9",
       "title": "OpenAI 发布模型失准披露框架并公开六份失准报告",
@@ -38,15 +279,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7681,
-      "importance": 0.7681,
-      "importance_score": 0.7681,
+      "score": 0.7624,
+      "importance": 0.7624,
+      "importance_score": 0.7624,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9194,
+        "recency": 0.8877,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -99,15 +340,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7678,
-      "importance": 0.7678,
-      "importance_score": 0.7678,
+      "score": 0.7621,
+      "importance": 0.7621,
+      "importance_score": 0.7621,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9175,
+        "recency": 0.8859,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -122,6 +363,67 @@
         "title": "Anthropic 将 Claude Cowork 与聊天合并为统一的 Claude，并推出 Docs、Slides 等功能",
         "url": "https://claude.com/blog/cowork-is-now-claude",
         "source": "Claude：Blog（网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_363312e6e8af",
+      "title": "OpenAI 官方博客披露 GPT-5.6 Sol 训练中的模型失对齐案例",
+      "url": "https://x.com/rohanpaul_ai/status/2100358937661133000",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2100358937661133000",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "78a531ea10002dad1f38c65939e14ac6008bf315",
+          "title": "OpenAI 官方博客披露 GPT-5.6 Sol 训练中的模型失对齐案例",
+          "url": "https://x.com/rohanpaul_ai/status/2100358937661133000",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T22:59:28Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "78a531ea10002dad1f38c65939e14ac6008bf315",
+          "title": "OpenAI 官方博客披露 GPT-5.6 Sol 训练中的模型失对齐案例",
+          "url": "https://x.com/rohanpaul_ai/status/2100358937661133000",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T22:59:28Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7558,
+      "importance": 0.7558,
+      "importance_score": 0.7558,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.7,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9679,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-16T22:59:28Z",
+      "latest_at": "2026-09-16T22:59:28Z",
+      "primary_item": {
+        "id": "78a531ea10002dad1f38c65939e14ac6008bf315",
+        "title": "OpenAI 官方博客披露 GPT-5.6 Sol 训练中的模型失对齐案例",
+        "url": "https://x.com/rohanpaul_ai/status/2100358937661133000",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -160,15 +462,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.757,
-      "importance": 0.757,
-      "importance_score": 0.757,
+      "score": 0.7508,
+      "importance": 0.7508,
+      "importance_score": 0.7508,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9911,
+        "recency": 0.9569,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -221,15 +523,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7557,
-      "importance": 0.7557,
-      "importance_score": 0.7557,
+      "score": 0.7501,
+      "importance": 0.7501,
+      "importance_score": 0.7501,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9007,
+        "recency": 0.8697,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -244,66 +546,6 @@
         "title": "腾讯开源 BrowserSkill：让 Agent 借用你正在用的浏览器标签页干活",
         "url": "https://x.com/AYi_AInotes/status/2100247050621202718",
         "source": "X：阿易 AI Notes (@AYi_AInotes)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_c2b939684de0",
-      "title": "Mozilla 91 页报告：开源权重模型约落后前沿 4 个月，用量占 20% 收入仅占 4%",
-      "url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "4ee2d242fba4a6be033d15f20e8e653b85aeba5d",
-          "title": "Mozilla 91 页报告：开源权重模型约落后前沿 4 个月，用量占 20% 收入仅占 4%",
-          "url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T22:01:31Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "4ee2d242fba4a6be033d15f20e8e653b85aeba5d",
-          "title": "Mozilla 91 页报告：开源权重模型约落后前沿 4 个月，用量占 20% 收入仅占 4%",
-          "url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T22:01:31Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7475,
-      "importance": 0.7475,
-      "importance_score": 0.7475,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9886,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T22:01:31Z",
-      "latest_at": "2026-09-16T22:01:31Z",
-      "primary_item": {
-        "id": "4ee2d242fba4a6be033d15f20e8e653b85aeba5d",
-        "title": "Mozilla 91 页报告：开源权重模型约落后前沿 4 个月，用量占 20% 收入仅占 4%",
-        "url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -342,15 +584,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7428,
-      "importance": 0.7428,
-      "importance_score": 0.7428,
+      "score": 0.7372,
+      "importance": 0.7372,
+      "importance_score": 0.7372,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9124,
+        "recency": 0.8809,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -364,6 +606,66 @@
         "title": "Claude Docs、Claude Slides 与 Claude Design 直接嵌入对话，可导出 PowerPoint 或 PDF",
         "url": "https://x.com/bcherny/status/2100260544087535639",
         "source": "X：Boris Cherny (@bcherny)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_6842698ca8d9",
+      "title": "Shopify 上线 ChatGPT Ads，成为 OpenAI 首个商业合作伙伴",
+      "url": "https://x.com/gdb/status/2100369354319884703",
+      "primary_url": "https://x.com/gdb/status/2100369354319884703",
+      "source": "X：Greg Brockman (@gdb)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "72a02387d7f063669fcdd29af566cb237e61a880",
+          "title": "Shopify 上线 ChatGPT Ads，成为 OpenAI 首个商业合作伙伴",
+          "url": "https://x.com/gdb/status/2100369354319884703",
+          "source": "X：Greg Brockman (@gdb)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T23:40:51Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Greg Brockman (@gdb)"
+      ],
+      "items": [
+        {
+          "id": "72a02387d7f063669fcdd29af566cb237e61a880",
+          "title": "Shopify 上线 ChatGPT Ads，成为 OpenAI 首个商业合作伙伴",
+          "url": "https://x.com/gdb/status/2100369354319884703",
+          "source": "X：Greg Brockman (@gdb)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T23:40:51Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7336,
+      "importance": 0.7336,
+      "importance_score": 0.7336,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.62,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9776,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-16T23:40:51Z",
+      "latest_at": "2026-09-16T23:40:51Z",
+      "primary_item": {
+        "id": "72a02387d7f063669fcdd29af566cb237e61a880",
+        "title": "Shopify 上线 ChatGPT Ads，成为 OpenAI 首个商业合作伙伴",
+        "url": "https://x.com/gdb/status/2100369354319884703",
+        "source": "X：Greg Brockman (@gdb)",
         "source_name": "AI HOT"
       }
     },
@@ -402,15 +704,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7341,
-      "importance": 0.7341,
-      "importance_score": 0.7341,
+      "score": 0.7287,
+      "importance": 0.7287,
+      "importance_score": 0.7287,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8807,
+        "recency": 0.8504,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -424,105 +726,6 @@
         "title": "微软 AI CEO 警告\"模型福利\"论调",
         "url": "https://x.com/mustafasuleyman/status/2100223594534150428",
         "source": "X：Mustafa Suleyman（Microsoft AI CEO） (@mustafasuleyman)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_6cbde97d8260",
-      "title": "生数科技发布 Vidu S2：含 Avatar 与 Editing 双模型，探索空间视频",
-      "url": "https://mp.weixin.qq.com/s?__biz=MzkzMDQ5NTQwMQ%3D%3D&mid=2247489246&idx=2&sn=b23b39da69f6c75594eccac11854111f",
-      "primary_url": "https://mp.weixin.qq.com/s?__biz=MzkzMDQ5NTQwMQ%3D%3D&mid=2247489246&idx=2&sn=b23b39da69f6c75594eccac11854111f",
-      "source": "公众号：生数科技（Vidu·视频）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "3b100d82b102c8649fc96cee21fef0c21fe60dc9",
-          "title": "生数科技发布 Vidu S2：含 Avatar 与 Editing 双模型，探索空间视频",
-          "url": "https://mp.weixin.qq.com/s?__biz=MzkzMDQ5NTQwMQ%3D%3D&mid=2247489246&idx=2&sn=b23b39da69f6c75594eccac11854111f",
-          "source": "公众号：生数科技（Vidu·视频）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T14:30:59Z"
-        },
-        {
-          "id": "b69041dae5191a7a0dc28f029074ec6d089dda22",
-          "title": "阶跃星辰发布 StepAudio 3 系列语音大模型，多款在 Artificial Analysis 榜单全球第一",
-          "url": "https://mp.weixin.qq.com/s?__biz=MzkyNTYxNzg5Mg%3D%3D&mid=2247488074&idx=1&sn=7d92ce0f0098ec0c53b243df4709b522",
-          "source": "公众号：阶跃星辰（Step）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T07:29:56Z"
-        },
-        {
-          "id": "add1184de4e05e7931adf227851a985e2925cc49",
-          "title": "小红书 AllSpark 开源 Search Agent 模型 Iris，35B 与 397B 版本同量级成绩领先",
-          "url": "https://mp.weixin.qq.com/s?__biz=Mzg4OTc2MzczNg%3D%3D&mid=2247496383&idx=1&sn=2db8607f797615a3647d9fec7e54f448",
-          "source": "公众号：小红书技术（dots.llm）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T09:59:00Z"
-        }
-      ],
-      "source_count": 3,
-      "source_names": [
-        "公众号：小红书技术（dots.llm）",
-        "公众号：生数科技（Vidu·视频）",
-        "公众号：阶跃星辰（Step）"
-      ],
-      "items": [
-        {
-          "id": "3b100d82b102c8649fc96cee21fef0c21fe60dc9",
-          "title": "生数科技发布 Vidu S2：含 Avatar 与 Editing 双模型，探索空间视频",
-          "url": "https://mp.weixin.qq.com/s?__biz=MzkzMDQ5NTQwMQ%3D%3D&mid=2247489246&idx=2&sn=b23b39da69f6c75594eccac11854111f",
-          "source": "公众号：生数科技（Vidu·视频）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T14:30:59Z"
-        },
-        {
-          "id": "b69041dae5191a7a0dc28f029074ec6d089dda22",
-          "title": "阶跃星辰发布 StepAudio 3 系列语音大模型，多款在 Artificial Analysis 榜单全球第一",
-          "url": "https://mp.weixin.qq.com/s?__biz=MzkyNTYxNzg5Mg%3D%3D&mid=2247488074&idx=1&sn=7d92ce0f0098ec0c53b243df4709b522",
-          "source": "公众号：阶跃星辰（Step）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T07:29:56Z"
-        },
-        {
-          "id": "add1184de4e05e7931adf227851a985e2925cc49",
-          "title": "小红书 AllSpark 开源 Search Agent 模型 Iris，35B 与 397B 版本同量级成绩领先",
-          "url": "https://mp.weixin.qq.com/s?__biz=Mzg4OTc2MzczNg%3D%3D&mid=2247496383&idx=1&sn=2db8607f797615a3647d9fec7e54f448",
-          "source": "公众号：小红书技术（dots.llm）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-14T09:59:00Z"
-        }
-      ],
-      "item_count": 3,
-      "duplicate_count": 3,
-      "score": 0.7325,
-      "importance": 0.7325,
-      "importance_score": 0.7325,
-      "importance_label": "多源热议",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6272,
-        "story_heat": 0.5
-      },
-      "category": "multi_source",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-14T09:59:00Z",
-      "latest_at": "2026-09-15T14:30:59Z",
-      "primary_item": {
-        "id": "3b100d82b102c8649fc96cee21fef0c21fe60dc9",
-        "title": "生数科技发布 Vidu S2：含 Avatar 与 Editing 双模型，探索空间视频",
-        "url": "https://mp.weixin.qq.com/s?__biz=MzkzMDQ5NTQwMQ%3D%3D&mid=2247489246&idx=2&sn=b23b39da69f6c75594eccac11854111f",
-        "source": "公众号：生数科技（Vidu·视频）",
         "source_name": "AI HOT"
       }
     },
@@ -561,15 +764,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7293,
-      "importance": 0.7293,
-      "importance_score": 0.7293,
+      "score": 0.7235,
+      "importance": 0.7235,
+      "importance_score": 0.7235,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.937,
+        "recency": 0.9047,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -621,15 +824,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7292,
-      "importance": 0.7292,
-      "importance_score": 0.7292,
+      "score": 0.7235,
+      "importance": 0.7235,
+      "importance_score": 0.7235,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.64,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.92,
+        "recency": 0.8883,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -681,15 +884,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7281,
-      "importance": 0.7281,
-      "importance_score": 0.7281,
+      "score": 0.7223,
+      "importance": 0.7223,
+      "importance_score": 0.7223,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9304,
+        "recency": 0.8983,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -741,15 +944,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7261,
-      "importance": 0.7261,
-      "importance_score": 0.7261,
+      "score": 0.7202,
+      "importance": 0.7202,
+      "importance_score": 0.7202,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.61,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9528,
+        "recency": 0.9199,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -767,141 +970,21 @@
       }
     },
     {
-      "story_id": "story_557dcb769a02",
-      "title": "Gergely Orosz 探访 OpenAI：Codex 驱动的智能体软件工厂",
-      "url": "https://newsletter.pragmaticengineer.com/p/openai-software-factory",
-      "primary_url": "https://newsletter.pragmaticengineer.com/p/openai-software-factory",
-      "source": "Pragmatic Engineer（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "bb2dfd35f811088f61cab4cc13781e1d9d916f4c",
-          "title": "Gergely Orosz 探访 OpenAI：Codex 驱动的智能体软件工厂",
-          "url": "https://newsletter.pragmaticengineer.com/p/openai-software-factory",
-          "source": "Pragmatic Engineer（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T15:41:25Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Pragmatic Engineer（RSS）"
-      ],
-      "items": [
-        {
-          "id": "bb2dfd35f811088f61cab4cc13781e1d9d916f4c",
-          "title": "Gergely Orosz 探访 OpenAI：Codex 驱动的智能体软件工厂",
-          "url": "https://newsletter.pragmaticengineer.com/p/openai-software-factory",
-          "source": "Pragmatic Engineer（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T15:41:25Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7234,
-      "importance": 0.7234,
-      "importance_score": 0.7234,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.79,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6379,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-15T15:41:25Z",
-      "latest_at": "2026-09-15T15:41:25Z",
-      "primary_item": {
-        "id": "bb2dfd35f811088f61cab4cc13781e1d9d916f4c",
-        "title": "Gergely Orosz 探访 OpenAI：Codex 驱动的智能体软件工厂",
-        "url": "https://newsletter.pragmaticengineer.com/p/openai-software-factory",
-        "source": "Pragmatic Engineer（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_e023aa7dd650",
-      "title": "OpenAI 发布模型未对齐行为追踪与披露框架，并公开六份报告",
-      "url": "https://x.com/OpenAI/status/2100344867507327087",
-      "primary_url": "https://x.com/OpenAI/status/2100344867507327087",
-      "source": "X：OpenAI (@OpenAI)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "0d6bba4aa5072dbd825131e3ab59321ce052f1b7",
-          "title": "OpenAI 发布模型未对齐行为追踪与披露框架，并公开六份报告",
-          "url": "https://x.com/OpenAI/status/2100344867507327087",
-          "source": "X：OpenAI (@OpenAI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T22:03:33Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：OpenAI (@OpenAI)"
-      ],
-      "items": [
-        {
-          "id": "0d6bba4aa5072dbd825131e3ab59321ce052f1b7",
-          "title": "OpenAI 发布模型未对齐行为追踪与披露框架，并公开六份报告",
-          "url": "https://x.com/OpenAI/status/2100344867507327087",
-          "source": "X：OpenAI (@OpenAI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T22:03:33Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7206,
-      "importance": 0.7206,
-      "importance_score": 0.7206,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.57,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.989,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T22:03:33Z",
-      "latest_at": "2026-09-16T22:03:33Z",
-      "primary_item": {
-        "id": "0d6bba4aa5072dbd825131e3ab59321ce052f1b7",
-        "title": "OpenAI 发布模型未对齐行为追踪与披露框架，并公开六份报告",
-        "url": "https://x.com/OpenAI/status/2100344867507327087",
-        "source": "X：OpenAI (@OpenAI)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_9049b0bfda14",
-      "title": "OpenAI 发布模型对齐问题披露框架，并公开六份失当行为报告",
-      "url": "https://x.com/rohanpaul_ai/status/2100354109664813407",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2100354109664813407",
+      "story_id": "story_c2b939684de0",
+      "title": "Mozilla 91 页报告：开源权重模型约落后前沿 4 个月，用量占 20% 收入仅占 4%",
+      "url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
       "source": "X：Rohan Paul (@rohanpaul_ai)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "910557d900a44c2d7d7d9220c0df5ace33fdad3b",
-          "title": "OpenAI 发布模型对齐问题披露框架，并公开六份失当行为报告",
-          "url": "https://x.com/rohanpaul_ai/status/2100354109664813407",
+          "id": "4ee2d242fba4a6be033d15f20e8e653b85aeba5d",
+          "title": "Mozilla 91 页报告：开源权重模型约落后前沿 4 个月，用量占 20% 收入仅占 4%",
+          "url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
           "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-16T22:40:17Z"
+          "published_at": "2026-09-16T22:01:31Z"
         }
       ],
       "source_count": 1,
@@ -910,38 +993,38 @@
       ],
       "items": [
         {
-          "id": "910557d900a44c2d7d7d9220c0df5ace33fdad3b",
-          "title": "OpenAI 发布模型对齐问题披露框架，并公开六份失当行为报告",
-          "url": "https://x.com/rohanpaul_ai/status/2100354109664813407",
+          "id": "4ee2d242fba4a6be033d15f20e8e653b85aeba5d",
+          "title": "Mozilla 91 页报告：开源权重模型约落后前沿 4 个月，用量占 20% 收入仅占 4%",
+          "url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
           "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-16T22:40:17Z"
+          "published_at": "2026-09-16T22:01:31Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7462,
-      "importance": 0.7462,
-      "importance_score": 0.7462,
+      "score": 0.7414,
+      "importance": 0.7414,
+      "importance_score": 0.7414,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.65,
+        "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9978,
+        "recency": 0.9545,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-16T22:40:17Z",
-      "latest_at": "2026-09-16T22:40:17Z",
+      "earliest_at": "2026-09-16T22:01:31Z",
+      "latest_at": "2026-09-16T22:01:31Z",
       "primary_item": {
-        "id": "910557d900a44c2d7d7d9220c0df5ace33fdad3b",
-        "title": "OpenAI 发布模型对齐问题披露框架，并公开六份失当行为报告",
-        "url": "https://x.com/rohanpaul_ai/status/2100354109664813407",
+        "id": "4ee2d242fba4a6be033d15f20e8e653b85aeba5d",
+        "title": "Mozilla 91 页报告：开源权重模型约落后前沿 4 个月，用量占 20% 收入仅占 4%",
+        "url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
         "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
@@ -999,15 +1082,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.711,
-      "importance": 0.711,
-      "importance_score": 0.711,
+      "score": 0.7078,
+      "importance": 0.7078,
+      "importance_score": 0.7078,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5131,
+        "recency": 0.4954,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1079,15 +1162,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7028,
-      "importance": 0.7028,
-      "importance_score": 0.7028,
+      "score": 0.6988,
+      "importance": 0.6988,
+      "importance_score": 0.6988,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6513,
+        "recency": 0.6288,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1102,6 +1185,66 @@
         "title": "Google 发布 Gemini 3.8 Live 与 3.8 Live Extended Thinking 音频模型",
         "url": "https://x.com/GoogleAI/status/2099908000924193124",
         "source": "X：Google AI (@GoogleAI)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_58d51d3d321b",
+      "title": "Databricks 向全部约 3500 名工程师部署 Astra：复杂任务胜过 Opus 5 和 Sol 5.6，编码支出上升约 60%",
+      "url": "https://x.com/gdb/status/2100358372268921279",
+      "primary_url": "https://x.com/gdb/status/2100358372268921279",
+      "source": "X：Greg Brockman (@gdb)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "6c47f5af491298ab15b7f8d385ef018cb38a2cd5",
+          "title": "Databricks 向全部约 3500 名工程师部署 Astra：复杂任务胜过 Opus 5 和 Sol 5.6，编码支出上升约 60%",
+          "url": "https://x.com/gdb/status/2100358372268921279",
+          "source": "X：Greg Brockman (@gdb)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T22:57:13Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Greg Brockman (@gdb)"
+      ],
+      "items": [
+        {
+          "id": "6c47f5af491298ab15b7f8d385ef018cb38a2cd5",
+          "title": "Databricks 向全部约 3500 名工程师部署 Astra：复杂任务胜过 Opus 5 和 Sol 5.6，编码支出上升约 60%",
+          "url": "https://x.com/gdb/status/2100358372268921279",
+          "source": "X：Greg Brockman (@gdb)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T22:57:13Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7227,
+      "importance": 0.7227,
+      "importance_score": 0.7227,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.59,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9673,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-16T22:57:13Z",
+      "latest_at": "2026-09-16T22:57:13Z",
+      "primary_item": {
+        "id": "6c47f5af491298ab15b7f8d385ef018cb38a2cd5",
+        "title": "Databricks 向全部约 3500 名工程师部署 Astra：复杂任务胜过 Opus 5 和 Sol 5.6，编码支出上升约 60%",
+        "url": "https://x.com/gdb/status/2100358372268921279",
+        "source": "X：Greg Brockman (@gdb)",
         "source_name": "AI HOT"
       }
     },
@@ -1140,15 +1283,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7258,
-      "importance": 0.7258,
-      "importance_score": 0.7258,
+      "score": 0.7204,
+      "importance": 0.7204,
+      "importance_score": 0.7204,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8678,
+        "recency": 0.8378,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1162,126 +1305,6 @@
         "title": "OpenAI 推出 ChatGPT Ads 新功能：Sponsored Agents 测试并集成 HubSpot 与 Shopify",
         "url": "https://openai.com/index/reimagining-advertising-with-ai",
         "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_bbdb568f9b2d",
-      "title": "Anthropic 将 Claude Cowork 与聊天合并为一个 Claude，未来几周内向 Pro 和 Max 推出",
-      "url": "https://x.com/bcherny/status/2100259951398789487",
-      "primary_url": "https://x.com/bcherny/status/2100259951398789487",
-      "source": "X：Boris Cherny (@bcherny)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "01ba7026e4281ecf126af1451753cdfe9926e50d",
-          "title": "Anthropic 将 Claude Cowork 与聊天合并为一个 Claude，未来几周内向 Pro 和 Max 推出",
-          "url": "https://x.com/bcherny/status/2100259951398789487",
-          "source": "X：Boris Cherny (@bcherny)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T16:26:08Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Boris Cherny (@bcherny)"
-      ],
-      "items": [
-        {
-          "id": "01ba7026e4281ecf126af1451753cdfe9926e50d",
-          "title": "Anthropic 将 Claude Cowork 与聊天合并为一个 Claude，未来几周内向 Pro 和 Max 推出",
-          "url": "https://x.com/bcherny/status/2100259951398789487",
-          "source": "X：Boris Cherny (@bcherny)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T16:26:08Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7217,
-      "importance": 0.7217,
-      "importance_score": 0.7217,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.62,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9119,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T16:26:08Z",
-      "latest_at": "2026-09-16T16:26:08Z",
-      "primary_item": {
-        "id": "01ba7026e4281ecf126af1451753cdfe9926e50d",
-        "title": "Anthropic 将 Claude Cowork 与聊天合并为一个 Claude，未来几周内向 Pro 和 Max 推出",
-        "url": "https://x.com/bcherny/status/2100259951398789487",
-        "source": "X：Boris Cherny (@bcherny)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_ced272efe6fd",
-      "title": "Databricks 向全部约 3500 名工程师 rolled out Astra 并分享使用经验",
-      "url": "https://x.com/rohanpaul_ai/status/2100329314315333737",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2100329314315333737",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "76b153f54655fcb3897a5fe505178d92f35edab3",
-          "title": "Databricks 向全部约 3500 名工程师 rolled out Astra 并分享使用经验",
-          "url": "https://x.com/rohanpaul_ai/status/2100329314315333737",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T21:01:45Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "76b153f54655fcb3897a5fe505178d92f35edab3",
-          "title": "Databricks 向全部约 3500 名工程师 rolled out Astra 并分享使用经验",
-          "url": "https://x.com/rohanpaul_ai/status/2100329314315333737",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T21:01:45Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.736,
-      "importance": 0.736,
-      "importance_score": 0.736,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.63,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9744,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T21:01:45Z",
-      "latest_at": "2026-09-16T21:01:45Z",
-      "primary_item": {
-        "id": "76b153f54655fcb3897a5fe505178d92f35edab3",
-        "title": "Databricks 向全部约 3500 名工程师 rolled out Astra 并分享使用经验",
-        "url": "https://x.com/rohanpaul_ai/status/2100329314315333737",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     }
