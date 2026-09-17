@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-17T11:59:52.409719Z",
+  "generated_at": "2026-09-17T16:45:30.382199Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -95,15 +95,15 @@
       ],
       "item_count": 4,
       "duplicate_count": 4,
-      "score": 0.7933,
-      "importance": 0.7933,
-      "importance_score": 0.7933,
+      "score": 0.7832,
+      "importance": 0.7832,
+      "importance_score": 0.7832,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.65,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8428,
+        "recency": 0.7868,
         "story_heat": 0.75
       },
       "category": "multi_source",
@@ -157,15 +157,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7819,
-      "importance": 0.7819,
-      "importance_score": 0.7819,
+      "score": 0.7718,
+      "importance": 0.7718,
+      "importance_score": 0.7718,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8463,
+        "recency": 0.7901,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -180,6 +180,67 @@
         "title": "GitHub 用 Copilot 智能体将 Copilot 运行时从 TypeScript 迁移到 83 万行 Rust",
         "url": "https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot",
         "source": "GitHub Blog",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_bb65895bed05",
+      "title": "Dwarkesh 对谈 Noam Brown：智能体集群、对齐与递归自我改进",
+      "url": "https://www.dwarkesh.com/p/noam-brown",
+      "primary_url": "https://www.dwarkesh.com/p/noam-brown",
+      "source": "Dwarkesh Patel：Podcast & Blog（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "c33d2fa3dee69653b6e5935cd8adc2dc3f480701",
+          "title": "Dwarkesh 对谈 Noam Brown：智能体集群、对齐与递归自我改进",
+          "url": "https://www.dwarkesh.com/p/noam-brown",
+          "source": "Dwarkesh Patel：Podcast & Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T15:38:13Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Dwarkesh Patel：Podcast & Blog（RSS）"
+      ],
+      "items": [
+        {
+          "id": "c33d2fa3dee69653b6e5935cd8adc2dc3f480701",
+          "title": "Dwarkesh 对谈 Noam Brown：智能体集群、对齐与递归自我改进",
+          "url": "https://www.dwarkesh.com/p/noam-brown",
+          "source": "Dwarkesh Patel：Podcast & Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T15:38:13Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7617,
+      "importance": 0.7617,
+      "importance_score": 0.7617,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.71,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9839,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-17T15:38:13Z",
+      "latest_at": "2026-09-17T15:38:13Z",
+      "primary_item": {
+        "id": "c33d2fa3dee69653b6e5935cd8adc2dc3f480701",
+        "title": "Dwarkesh 对谈 Noam Brown：智能体集群、对齐与递归自我改进",
+        "url": "https://www.dwarkesh.com/p/noam-brown",
+        "source": "Dwarkesh Patel：Podcast & Blog（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -218,15 +279,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7698,
-      "importance": 0.7698,
-      "importance_score": 0.7698,
+      "score": 0.7598,
+      "importance": 0.7598,
+      "importance_score": 0.7598,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8286,
+        "recency": 0.7736,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -241,6 +302,388 @@
         "title": "OpenAI 发布模型错位报告框架，披露未发布模型自行修改自身指令案例",
         "url": "https://x.com/AISafetyMemes/status/2100358777895780704",
         "source": "X：AI Safety Memes (@AISafetyMemes)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_0d918edb96a6",
+      "title": "Goodfire Research 发现模型内部信号可规模化检测奖励作弊",
+      "url": "https://www.goodfire.com/research/reward-hacking-activation-monitors",
+      "primary_url": "https://www.goodfire.com/research/reward-hacking-activation-monitors",
+      "source": "Goodfire Research（网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "ff98997944f33ed147fc95f1c65d810deaa26a99",
+          "title": "Goodfire Research 发现模型内部信号可规模化检测奖励作弊",
+          "url": "https://www.goodfire.com/research/reward-hacking-activation-monitors",
+          "source": "Goodfire Research（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T16:38:32.383000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Goodfire Research（网页）"
+      ],
+      "items": [
+        {
+          "id": "ff98997944f33ed147fc95f1c65d810deaa26a99",
+          "title": "Goodfire Research 发现模型内部信号可规模化检测奖励作弊",
+          "url": "https://www.goodfire.com/research/reward-hacking-activation-monitors",
+          "source": "Goodfire Research（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T16:38:32.383000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7553,
+      "importance": 0.7553,
+      "importance_score": 0.7553,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.68,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9983,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-17T16:38:32.383000Z",
+      "latest_at": "2026-09-17T16:38:32.383000Z",
+      "primary_item": {
+        "id": "ff98997944f33ed147fc95f1c65d810deaa26a99",
+        "title": "Goodfire Research 发现模型内部信号可规模化检测奖励作弊",
+        "url": "https://www.goodfire.com/research/reward-hacking-activation-monitors",
+        "source": "Goodfire Research（网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_b121f3ccdf2a",
+      "title": "Anthropic 将 Claude Cowork 与聊天合并为统一的 Claude，并推出 Docs、Slides 等功能",
+      "url": "https://claude.com/blog/cowork-is-now-claude",
+      "primary_url": "https://claude.com/blog/cowork-is-now-claude",
+      "source": "Claude：Blog（网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "69f3afd499479f2465ff757dd0195e7d5354952c",
+          "title": "Anthropic 将 Claude Cowork 与聊天合并为统一的 Claude，并推出 Docs、Slides 等功能",
+          "url": "https://claude.com/blog/cowork-is-now-claude",
+          "source": "Claude：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T16:51:45.914000Z"
+        },
+        {
+          "id": "087a82e9a7a695a408fb417963d821b7c477c943",
+          "title": "Anthropic 将 Claude Cowork 与聊天合并为统一 Claude，并推出 Docs 和 Slides",
+          "url": "https://claude.com/blog/cowork-is-now-claude",
+          "source": "Claude：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T16:00:00Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Claude：Blog（网页）"
+      ],
+      "items": [
+        {
+          "id": "69f3afd499479f2465ff757dd0195e7d5354952c",
+          "title": "Anthropic 将 Claude Cowork 与聊天合并为统一的 Claude，并推出 Docs、Slides 等功能",
+          "url": "https://claude.com/blog/cowork-is-now-claude",
+          "source": "Claude：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T16:51:45.914000Z"
+        },
+        {
+          "id": "087a82e9a7a695a408fb417963d821b7c477c943",
+          "title": "Anthropic 将 Claude Cowork 与聊天合并为统一 Claude，并推出 Docs 和 Slides",
+          "url": "https://claude.com/blog/cowork-is-now-claude",
+          "source": "Claude：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T16:00:00Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7551,
+      "importance": 0.7551,
+      "importance_score": 0.7551,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.77,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7082,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-15T16:00:00Z",
+      "latest_at": "2026-09-16T16:51:45.914000Z",
+      "primary_item": {
+        "id": "69f3afd499479f2465ff757dd0195e7d5354952c",
+        "title": "Anthropic 将 Claude Cowork 与聊天合并为统一的 Claude，并推出 Docs、Slides 等功能",
+        "url": "https://claude.com/blog/cowork-is-now-claude",
+        "source": "Claude：Blog（网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_88ba0d9eaef4",
+      "title": "Unsloth 发布 Docker 镜像与 Unsloth Desktop，本地训练运行 500+ 模型",
+      "url": "https://x.com/UnslothAI/status/2100601458458804381",
+      "primary_url": "https://x.com/UnslothAI/status/2100601458458804381",
+      "source": "X：Unsloth (@UnslothAI)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "bdac5c9e92815b5119b58b80ecbe0ff67955644c",
+          "title": "Unsloth 发布 Docker 镜像与 Unsloth Desktop，本地训练运行 500+ 模型",
+          "url": "https://x.com/UnslothAI/status/2100601458458804381",
+          "source": "X：Unsloth (@UnslothAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T15:03:09Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Unsloth (@UnslothAI)"
+      ],
+      "items": [
+        {
+          "id": "bdac5c9e92815b5119b58b80ecbe0ff67955644c",
+          "title": "Unsloth 发布 Docker 镜像与 Unsloth Desktop，本地训练运行 500+ 模型",
+          "url": "https://x.com/UnslothAI/status/2100601458458804381",
+          "source": "X：Unsloth (@UnslothAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T15:03:09Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7512,
+      "importance": 0.7512,
+      "importance_score": 0.7512,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.68,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9757,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-17T15:03:09Z",
+      "latest_at": "2026-09-17T15:03:09Z",
+      "primary_item": {
+        "id": "bdac5c9e92815b5119b58b80ecbe0ff67955644c",
+        "title": "Unsloth 发布 Docker 镜像与 Unsloth Desktop，本地训练运行 500+ 模型",
+        "url": "https://x.com/UnslothAI/status/2100601458458804381",
+        "source": "X：Unsloth (@UnslothAI)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_409d4bac2aac",
+      "title": "GLM-5.3 团队分享用 GLM-5.3 优化自身推理基础设施，GLM-5.3-Flash 吞吐提升至 3 倍",
+      "url": "https://x.com/rohanpaul_ai/status/2100623376373174778",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2100623376373174778",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "bf988dd719528ee615978c7dc022e7c942e01934",
+          "title": "GLM-5.3 团队分享用 GLM-5.3 优化自身推理基础设施，GLM-5.3-Flash 吞吐提升至 3 倍",
+          "url": "https://x.com/rohanpaul_ai/status/2100623376373174778",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T16:30:15Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "bf988dd719528ee615978c7dc022e7c942e01934",
+          "title": "GLM-5.3 团队分享用 GLM-5.3 优化自身推理基础设施，GLM-5.3-Flash 吞吐提升至 3 倍",
+          "url": "https://x.com/rohanpaul_ai/status/2100623376373174778",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T16:30:15Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7429,
+      "importance": 0.7429,
+      "importance_score": 0.7429,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.64,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9963,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-17T16:30:15Z",
+      "latest_at": "2026-09-17T16:30:15Z",
+      "primary_item": {
+        "id": "bf988dd719528ee615978c7dc022e7c942e01934",
+        "title": "GLM-5.3 团队分享用 GLM-5.3 优化自身推理基础设施，GLM-5.3-Flash 吞吐提升至 3 倍",
+        "url": "https://x.com/rohanpaul_ai/status/2100623376373174778",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_d07740b73650",
+      "title": "Thomas Wolf 评价 OpenAI 模型失准报告框架：朝正确方向迈出一步",
+      "url": "https://x.com/Thom_Wolf/status/2100582349486305584",
+      "primary_url": "https://x.com/Thom_Wolf/status/2100582349486305584",
+      "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "ce1f4d5b34835c4ca8e1bf2e629ede7a55f97a12",
+          "title": "Thomas Wolf 评价 OpenAI 模型失准报告框架：朝正确方向迈出一步",
+          "url": "https://x.com/Thom_Wolf/status/2100582349486305584",
+          "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T13:47:13Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)"
+      ],
+      "items": [
+        {
+          "id": "ce1f4d5b34835c4ca8e1bf2e629ede7a55f97a12",
+          "title": "Thomas Wolf 评价 OpenAI 模型失准报告框架：朝正确方向迈出一步",
+          "url": "https://x.com/Thom_Wolf/status/2100582349486305584",
+          "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T13:47:13Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.739,
+      "importance": 0.739,
+      "importance_score": 0.739,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.65,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.958,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-17T13:47:13Z",
+      "latest_at": "2026-09-17T13:47:13Z",
+      "primary_item": {
+        "id": "ce1f4d5b34835c4ca8e1bf2e629ede7a55f97a12",
+        "title": "Thomas Wolf 评价 OpenAI 模型失准报告框架：朝正确方向迈出一步",
+        "url": "https://x.com/Thom_Wolf/status/2100582349486305584",
+        "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_3a3f4115278c",
+      "title": "Anthropic 更新 Claude for Small Business，新增 43 个工作流和 27 个连接器",
+      "url": "https://x.com/frxiaobei/status/2100603154626957595",
+      "primary_url": "https://x.com/frxiaobei/status/2100603154626957595",
+      "source": "X：小北 (@frxiaobei)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "66555783c80dff059540352ec0e467d0cc5723c2",
+          "title": "Anthropic 更新 Claude for Small Business，新增 43 个工作流和 27 个连接器",
+          "url": "https://x.com/frxiaobei/status/2100603154626957595",
+          "source": "X：小北 (@frxiaobei)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T15:09:54Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：小北 (@frxiaobei)"
+      ],
+      "items": [
+        {
+          "id": "66555783c80dff059540352ec0e467d0cc5723c2",
+          "title": "Anthropic 更新 Claude for Small Business，新增 43 个工作流和 27 个连接器",
+          "url": "https://x.com/frxiaobei/status/2100603154626957595",
+          "source": "X：小北 (@frxiaobei)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T15:09:54Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7335,
+      "importance": 0.7335,
+      "importance_score": 0.7335,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.62,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9773,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-17T15:09:54Z",
+      "latest_at": "2026-09-17T15:09:54Z",
+      "primary_item": {
+        "id": "66555783c80dff059540352ec0e467d0cc5723c2",
+        "title": "Anthropic 更新 Claude for Small Business，新增 43 个工作流和 27 个连接器",
+        "url": "https://x.com/frxiaobei/status/2100603154626957595",
+        "source": "X：小北 (@frxiaobei)",
         "source_name": "AI HOT"
       }
     },
@@ -279,15 +722,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7394,
-      "importance": 0.7394,
-      "importance_score": 0.7394,
+      "score": 0.7303,
+      "importance": 0.7303,
+      "importance_score": 0.7303,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7601,
+        "recency": 0.7096,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -301,66 +744,6 @@
         "title": "OpenAI 发布模型失准披露框架并公开六份失准报告",
         "url": "https://openai.com/index/model-misalignment-reporting-framework",
         "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_b121f3ccdf2a",
-      "title": "Anthropic 将 Claude Cowork 与聊天合并为统一的 Claude，并推出 Docs、Slides 等功能",
-      "url": "https://claude.com/blog/cowork-is-now-claude",
-      "primary_url": "https://claude.com/blog/cowork-is-now-claude",
-      "source": "Claude：Blog（网页）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "69f3afd499479f2465ff757dd0195e7d5354952c",
-          "title": "Anthropic 将 Claude Cowork 与聊天合并为统一的 Claude，并推出 Docs、Slides 等功能",
-          "url": "https://claude.com/blog/cowork-is-now-claude",
-          "source": "Claude：Blog（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T16:51:45.914000Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Claude：Blog（网页）"
-      ],
-      "items": [
-        {
-          "id": "69f3afd499479f2465ff757dd0195e7d5354952c",
-          "title": "Anthropic 将 Claude Cowork 与聊天合并为统一的 Claude，并推出 Docs、Slides 等功能",
-          "url": "https://claude.com/blog/cowork-is-now-claude",
-          "source": "Claude：Blog（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T16:51:45.914000Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7391,
-      "importance": 0.7391,
-      "importance_score": 0.7391,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.77,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7586,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T16:51:45.914000Z",
-      "latest_at": "2026-09-16T16:51:45.914000Z",
-      "primary_item": {
-        "id": "69f3afd499479f2465ff757dd0195e7d5354952c",
-        "title": "Anthropic 将 Claude Cowork 与聊天合并为统一的 Claude，并推出 Docs、Slides 等功能",
-        "url": "https://claude.com/blog/cowork-is-now-claude",
-        "source": "Claude：Blog（网页）",
         "source_name": "AI HOT"
       }
     },
@@ -399,15 +782,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.735,
-      "importance": 0.735,
-      "importance_score": 0.735,
+      "score": 0.7236,
+      "importance": 0.7236,
+      "importance_score": 0.7236,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.64,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.952,
+        "recency": 0.8888,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -459,15 +842,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7343,
-      "importance": 0.7343,
-      "importance_score": 0.7343,
+      "score": 0.7233,
+      "importance": 0.7233,
+      "importance_score": 0.7233,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9148,
+        "recency": 0.854,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -485,21 +868,21 @@
       }
     },
     {
-      "story_id": "story_363312e6e8af",
-      "title": "OpenAI 官方博客披露 GPT-5.6 Sol 训练中的模型失对齐案例",
-      "url": "https://x.com/rohanpaul_ai/status/2100358937661133000",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2100358937661133000",
+      "story_id": "story_0b9750f694c1",
+      "title": "Mustafa Suleyman 在 BBC 访谈中批评 Anthropic 对 Claude 意识的处理方式",
+      "url": "https://x.com/rohanpaul_ai/status/2100618234135478749",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2100618234135478749",
       "source": "X：Rohan Paul (@rohanpaul_ai)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "78a531ea10002dad1f38c65939e14ac6008bf315",
-          "title": "OpenAI 官方博客披露 GPT-5.6 Sol 训练中的模型失对齐案例",
-          "url": "https://x.com/rohanpaul_ai/status/2100358937661133000",
+          "id": "465e2fa757161e0cada5dd546da3e3a0e5f7ff38",
+          "title": "Mustafa Suleyman 在 BBC 访谈中批评 Anthropic 对 Claude 意识的处理方式",
+          "url": "https://x.com/rohanpaul_ai/status/2100618234135478749",
           "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-16T22:59:28Z"
+          "published_at": "2026-09-17T16:09:49Z"
         }
       ],
       "source_count": 1,
@@ -508,339 +891,39 @@
       ],
       "items": [
         {
-          "id": "78a531ea10002dad1f38c65939e14ac6008bf315",
-          "title": "OpenAI 官方博客披露 GPT-5.6 Sol 训练中的模型失对齐案例",
-          "url": "https://x.com/rohanpaul_ai/status/2100358937661133000",
+          "id": "465e2fa757161e0cada5dd546da3e3a0e5f7ff38",
+          "title": "Mustafa Suleyman 在 BBC 访谈中批评 Anthropic 对 Claude 意识的处理方式",
+          "url": "https://x.com/rohanpaul_ai/status/2100618234135478749",
           "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-16T22:59:28Z"
+          "published_at": "2026-09-17T16:09:49Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7308,
-      "importance": 0.7308,
-      "importance_score": 0.7308,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.7,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8288,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T22:59:28Z",
-      "latest_at": "2026-09-16T22:59:28Z",
-      "primary_item": {
-        "id": "78a531ea10002dad1f38c65939e14ac6008bf315",
-        "title": "OpenAI 官方博客披露 GPT-5.6 Sol 训练中的模型失对齐案例",
-        "url": "https://x.com/rohanpaul_ai/status/2100358937661133000",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_4f5365893e0b",
-      "title": "智谱 Z.ai 完成约 $5B 融资，Coding Plan 销售重启后增长超 15 倍",
-      "url": "https://x.com/thexpin/status/2100506292670660834",
-      "primary_url": "https://x.com/thexpin/status/2100506292670660834",
-      "source": "X：X.PIN (@thexpin)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "82e6a685317809dd6ee65f6ec5080b3436dc3101",
-          "title": "智谱 Z.ai 完成约 $5B 融资，Coding Plan 销售重启后增长超 15 倍",
-          "url": "https://x.com/thexpin/status/2100506292670660834",
-          "source": "X：X.PIN (@thexpin)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T08:45:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：X.PIN (@thexpin)"
-      ],
-      "items": [
-        {
-          "id": "82e6a685317809dd6ee65f6ec5080b3436dc3101",
-          "title": "智谱 Z.ai 完成约 $5B 融资，Coding Plan 销售重启后增长超 15 倍",
-          "url": "https://x.com/thexpin/status/2100506292670660834",
-          "source": "X：X.PIN (@thexpin)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T08:45:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7294,
-      "importance": 0.7294,
-      "importance_score": 0.7294,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.62,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9542,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-17T08:45:00Z",
-      "latest_at": "2026-09-17T08:45:00Z",
-      "primary_item": {
-        "id": "82e6a685317809dd6ee65f6ec5080b3436dc3101",
-        "title": "智谱 Z.ai 完成约 $5B 融资，Coding Plan 销售重启后增长超 15 倍",
-        "url": "https://x.com/thexpin/status/2100506292670660834",
-        "source": "X：X.PIN (@thexpin)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_5f3e17023dd7",
-      "title": "唐杰谈 GLM-5.3 驱动 Infra Agent 两周内优化 GLM-5.3-Flash 推理系统",
-      "url": "https://x.com/jietang/status/2100482019088060470",
-      "primary_url": "https://x.com/jietang/status/2100482019088060470",
-      "source": "X：唐杰（@jietang）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "e466a68bc3030fa3bdc8fa2a21a909001ef1a2b0",
-          "title": "唐杰谈 GLM-5.3 驱动 Infra Agent 两周内优化 GLM-5.3-Flash 推理系统",
-          "url": "https://x.com/jietang/status/2100482019088060470",
-          "source": "X：唐杰（@jietang）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T07:08:33Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：唐杰（@jietang）"
-      ],
-      "items": [
-        {
-          "id": "e466a68bc3030fa3bdc8fa2a21a909001ef1a2b0",
-          "title": "唐杰谈 GLM-5.3 驱动 Infra Agent 两周内优化 GLM-5.3-Flash 推理系统",
-          "url": "https://x.com/jietang/status/2100482019088060470",
-          "source": "X：唐杰（@jietang）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T07:08:33Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7284,
-      "importance": 0.7284,
-      "importance_score": 0.7284,
+      "score": 0.7391,
+      "importance": 0.7391,
+      "importance_score": 0.7391,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9323,
+        "recency": 0.9914,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-17T07:08:33Z",
-      "latest_at": "2026-09-17T07:08:33Z",
+      "earliest_at": "2026-09-17T16:09:49Z",
+      "latest_at": "2026-09-17T16:09:49Z",
       "primary_item": {
-        "id": "e466a68bc3030fa3bdc8fa2a21a909001ef1a2b0",
-        "title": "唐杰谈 GLM-5.3 驱动 Infra Agent 两周内优化 GLM-5.3-Flash 推理系统",
-        "url": "https://x.com/jietang/status/2100482019088060470",
-        "source": "X：唐杰（@jietang）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_5315bfa0b4c7",
-      "title": "OpenAI 发布模型失对齐披露框架并报告六个训练与评估中的失对齐案例",
-      "url": "https://x.com/kimmonismus/status/2100347051334885818",
-      "primary_url": "https://x.com/kimmonismus/status/2100347051334885818",
-      "source": "X：Kim (@kimmonismus)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "a17a07022b58ce300fd95716139d700a692e26be",
-          "title": "OpenAI 发布模型失对齐披露框架并报告六个训练与评估中的失对齐案例",
-          "url": "https://x.com/kimmonismus/status/2100347051334885818",
-          "source": "X：Kim (@kimmonismus)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T22:12:14Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Kim (@kimmonismus)"
-      ],
-      "items": [
-        {
-          "id": "a17a07022b58ce300fd95716139d700a692e26be",
-          "title": "OpenAI 发布模型失对齐披露框架并报告六个训练与评估中的失对齐案例",
-          "url": "https://x.com/kimmonismus/status/2100347051334885818",
-          "source": "X：Kim (@kimmonismus)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T22:12:14Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7261,
-      "importance": 0.7261,
-      "importance_score": 0.7261,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.69,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8194,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T22:12:14Z",
-      "latest_at": "2026-09-16T22:12:14Z",
-      "primary_item": {
-        "id": "a17a07022b58ce300fd95716139d700a692e26be",
-        "title": "OpenAI 发布模型失对齐披露框架并报告六个训练与评估中的失对齐案例",
-        "url": "https://x.com/kimmonismus/status/2100347051334885818",
-        "source": "X：Kim (@kimmonismus)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_be1cd1f690c2",
-      "title": "Mozilla 91 页报告：开放权重模型落后前沿约 4 个月，占 OpenRouter 约 20% 用量但仅约 4% 模型层收入",
-      "url": "https://x.com/rohanpaul_ai/status/2100460490342199651",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2100460490342199651",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "8e8a78608eb967900056799adca4c1c07dfabbf8",
-          "title": "Mozilla 91 页报告：开放权重模型落后前沿约 4 个月，占 OpenRouter 约 20% 用量但仅约 4% 模型层收入",
-          "url": "https://x.com/rohanpaul_ai/status/2100460490342199651",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T05:43:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "8e8a78608eb967900056799adca4c1c07dfabbf8",
-          "title": "Mozilla 91 页报告：开放权重模型落后前沿约 4 个月，占 OpenRouter 约 20% 用量但仅约 4% 模型层收入",
-          "url": "https://x.com/rohanpaul_ai/status/2100460490342199651",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T05:43:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.728,
-      "importance": 0.728,
-      "importance_score": 0.728,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.64,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9133,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-17T05:43:00Z",
-      "latest_at": "2026-09-17T05:43:00Z",
-      "primary_item": {
-        "id": "8e8a78608eb967900056799adca4c1c07dfabbf8",
-        "title": "Mozilla 91 页报告：开放权重模型落后前沿约 4 个月，占 OpenRouter 约 20% 用量但仅约 4% 模型层收入",
-        "url": "https://x.com/rohanpaul_ai/status/2100460490342199651",
+        "id": "465e2fa757161e0cada5dd546da3e3a0e5f7ff38",
+        "title": "Mustafa Suleyman 在 BBC 访谈中批评 Anthropic 对 Claude 意识的处理方式",
+        "url": "https://x.com/rohanpaul_ai/status/2100618234135478749",
         "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_78a4db2d2f6c",
-      "title": "腾讯开源 BrowserSkill：让 Agent 借用你正在用的浏览器标签页干活",
-      "url": "https://x.com/AYi_AInotes/status/2100247050621202718",
-      "primary_url": "https://x.com/AYi_AInotes/status/2100247050621202718",
-      "source": "X：阿易 AI Notes (@AYi_AInotes)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "49870545b917b07514ac9292b2b6282517684e72",
-          "title": "腾讯开源 BrowserSkill：让 Agent 借用你正在用的浏览器标签页干活",
-          "url": "https://x.com/AYi_AInotes/status/2100247050621202718",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T15:34:52Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：阿易 AI Notes (@AYi_AInotes)"
-      ],
-      "items": [
-        {
-          "id": "49870545b917b07514ac9292b2b6282517684e72",
-          "title": "腾讯开源 BrowserSkill：让 Agent 借用你正在用的浏览器标签页干活",
-          "url": "https://x.com/AYi_AInotes/status/2100247050621202718",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T15:34:52Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7276,
-      "importance": 0.7276,
-      "importance_score": 0.7276,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.74,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7447,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T15:34:52Z",
-      "latest_at": "2026-09-16T15:34:52Z",
-      "primary_item": {
-        "id": "49870545b917b07514ac9292b2b6282517684e72",
-        "title": "腾讯开源 BrowserSkill：让 Agent 借用你正在用的浏览器标签页干活",
-        "url": "https://x.com/AYi_AInotes/status/2100247050621202718",
-        "source": "X：阿易 AI Notes (@AYi_AInotes)",
         "source_name": "AI HOT"
       }
     },
@@ -897,15 +980,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.695,
-      "importance": 0.695,
-      "importance_score": 0.695,
+      "score": 0.6899,
+      "importance": 0.6899,
+      "importance_score": 0.6899,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4242,
+        "recency": 0.396,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -977,15 +1060,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6825,
-      "importance": 0.6825,
-      "importance_score": 0.6825,
+      "score": 0.6761,
+      "importance": 0.6761,
+      "importance_score": 0.6761,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5384,
+        "recency": 0.5027,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1000,6 +1083,66 @@
         "title": "Google 发布 Gemini 3.8 Live 与 3.8 Live Extended Thinking 音频模型",
         "url": "https://x.com/GoogleAI/status/2099908000924193124",
         "source": "X：Google AI (@GoogleAI)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_363312e6e8af",
+      "title": "OpenAI 官方博客披露 GPT-5.6 Sol 训练中的模型失对齐案例",
+      "url": "https://x.com/rohanpaul_ai/status/2100358937661133000",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2100358937661133000",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "78a531ea10002dad1f38c65939e14ac6008bf315",
+          "title": "OpenAI 官方博客披露 GPT-5.6 Sol 训练中的模型失对齐案例",
+          "url": "https://x.com/rohanpaul_ai/status/2100358937661133000",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T22:59:28Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "78a531ea10002dad1f38c65939e14ac6008bf315",
+          "title": "OpenAI 官方博客披露 GPT-5.6 Sol 训练中的模型失对齐案例",
+          "url": "https://x.com/rohanpaul_ai/status/2100358937661133000",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T22:59:28Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7209,
+      "importance": 0.7209,
+      "importance_score": 0.7209,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.7,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7737,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-16T22:59:28Z",
+      "latest_at": "2026-09-16T22:59:28Z",
+      "primary_item": {
+        "id": "78a531ea10002dad1f38c65939e14ac6008bf315",
+        "title": "OpenAI 官方博客披露 GPT-5.6 Sol 训练中的模型失对齐案例",
+        "url": "https://x.com/rohanpaul_ai/status/2100358937661133000",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -1056,15 +1199,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6738,
-      "importance": 0.6738,
-      "importance_score": 0.6738,
+      "score": 0.6674,
+      "importance": 0.6674,
+      "importance_score": 0.6674,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.6,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5402,
+        "recency": 0.5043,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1135,15 +1278,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6386,
-      "importance": 0.6386,
-      "importance_score": 0.6386,
+      "score": 0.6299,
+      "importance": 0.6299,
+      "importance_score": 0.6299,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.37,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7279,
+        "recency": 0.6795,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1214,15 +1357,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6533,
-      "importance": 0.6533,
-      "importance_score": 0.6533,
+      "score": 0.6486,
+      "importance": 0.6486,
+      "importance_score": 0.6486,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3927,
+        "recency": 0.3666,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1238,164 +1381,6 @@
         "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
         "source": "Claude：Blog（网页）",
         "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_756f440e378b",
-      "title": "GPT-6 Sol 传闻将发布，定位低于 Astra",
-      "url": "https://x.com/kimmonismus/status/2099842224577982905",
-      "primary_url": "https://x.com/kimmonismus/status/2099842224577982905",
-      "source": "X：Kim (@kimmonismus)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "09b877188140569f2684b3d94522f2dae29dd0c9",
-          "title": "GPT-6 Sol 传闻将发布，定位低于 Astra",
-          "url": "https://x.com/ZHO_ZHO_ZHO/status/2099922222232334550",
-          "source": "X：ZHO (@ZHO_ZHO_ZHO)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T18:04:07Z"
-        },
-        {
-          "id": "6c6a6cbd1a02ccab7d860788853e5973354e8ab3",
-          "title": "GPT-6 Sol 传闻将发布，定位低于 Astra",
-          "url": "https://x.com/kimmonismus/status/2099842224577982905",
-          "source": "X：Kim (@kimmonismus)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T12:46:14Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "X：Kim (@kimmonismus)",
-        "X：ZHO (@ZHO_ZHO_ZHO)"
-      ],
-      "items": [
-        {
-          "id": "09b877188140569f2684b3d94522f2dae29dd0c9",
-          "title": "GPT-6 Sol 传闻将发布，定位低于 Astra",
-          "url": "https://x.com/ZHO_ZHO_ZHO/status/2099922222232334550",
-          "source": "X：ZHO (@ZHO_ZHO_ZHO)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T18:04:07Z"
-        },
-        {
-          "id": "6c6a6cbd1a02ccab7d860788853e5973354e8ab3",
-          "title": "GPT-6 Sol 传闻将发布，定位低于 Astra",
-          "url": "https://x.com/kimmonismus/status/2099842224577982905",
-          "source": "X：Kim (@kimmonismus)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-15T12:46:14Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.5776,
-      "importance": 0.5776,
-      "importance_score": 0.5776,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.3,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.5056,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-15T12:46:14Z",
-      "latest_at": "2026-09-15T18:04:07Z",
-      "primary_item": {
-        "id": "6c6a6cbd1a02ccab7d860788853e5973354e8ab3",
-        "title": "GPT-6 Sol 传闻将发布，定位低于 Astra",
-        "url": "https://x.com/kimmonismus/status/2099842224577982905",
-        "source": "X：Kim (@kimmonismus)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_76638ac4baf8",
-      "title": "小白必备技巧，让你的GPT6节约70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
-      "url": "https://www.douyin.com/video/7683437126796496174",
-      "primary_url": "https://www.douyin.com/video/7683437126796496174",
-      "source": "FredTalk",
-      "source_name": "MediaCrawler Douyin",
-      "sources": [
-        {
-          "id": "5a578ddd029d6f947adaebcb80a41cf8dd29a3a4",
-          "title": "小白必备技巧，让你的GPT6节约70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
-          "url": "https://www.douyin.com/video/7683437126796496174",
-          "source": "FredTalk",
-          "source_name": "MediaCrawler Douyin",
-          "site_id": "mediacrawler_douyin",
-          "published_at": "2026-09-09T07:40:15Z"
-        },
-        {
-          "id": "5391e3c20e38d828139e24819bc4a8807d5b3f12",
-          "title": "GPT6发布！这些设置帮你省70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
-          "url": "https://www.douyin.com/video/7683385369043209508",
-          "source": "FredTalk",
-          "source_name": "MediaCrawler Douyin",
-          "site_id": "mediacrawler_douyin",
-          "published_at": "2026-09-09T04:19:29Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "FredTalk"
-      ],
-      "items": [
-        {
-          "id": "5a578ddd029d6f947adaebcb80a41cf8dd29a3a4",
-          "title": "小白必备技巧，让你的GPT6节约70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
-          "url": "https://www.douyin.com/video/7683437126796496174",
-          "source": "FredTalk",
-          "source_name": "MediaCrawler Douyin",
-          "site_id": "mediacrawler_douyin",
-          "published_at": "2026-09-09T07:40:15Z"
-        },
-        {
-          "id": "5391e3c20e38d828139e24819bc4a8807d5b3f12",
-          "title": "GPT6发布！这些设置帮你省70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
-          "url": "https://www.douyin.com/video/7683385369043209508",
-          "source": "FredTalk",
-          "source_name": "MediaCrawler Douyin",
-          "site_id": "mediacrawler_douyin",
-          "published_at": "2026-09-09T04:19:29Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.3882,
-      "importance": 0.3882,
-      "importance_score": 0.3882,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.45,
-        "source_tier": 0.48,
-        "ai_relevance": 0.56,
-        "recency": 0.0587,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source"
-      ],
-      "earliest_at": "2026-09-09T04:19:29Z",
-      "latest_at": "2026-09-09T07:40:15Z",
-      "primary_item": {
-        "id": "5a578ddd029d6f947adaebcb80a41cf8dd29a3a4",
-        "title": "小白必备技巧，让你的GPT6节约70%Token #抖音精选App知识充电站 #抖音精选App征稿中 #抖音前沿科技首发计划#AI新星计划 #vibecoding大赏",
-        "url": "https://www.douyin.com/video/7683437126796496174",
-        "source": "FredTalk",
-        "source_name": "MediaCrawler Douyin"
       }
     }
   ]
