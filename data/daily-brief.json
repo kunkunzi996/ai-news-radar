@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-17T01:15:09.660007Z",
+  "generated_at": "2026-09-17T06:34:02.980833Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -95,15 +95,15 @@
       ],
       "item_count": 4,
       "duplicate_count": 4,
-      "score": 0.8188,
-      "importance": 0.8188,
-      "importance_score": 0.8188,
+      "score": 0.8057,
+      "importance": 0.8057,
+      "importance_score": 0.8057,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.65,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9842,
+        "recency": 0.9115,
         "story_heat": 0.75
       },
       "category": "multi_source",
@@ -157,15 +157,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.8075,
-      "importance": 0.8075,
-      "importance_score": 0.8075,
+      "score": 0.7944,
+      "importance": 0.7944,
+      "importance_score": 0.7944,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9884,
+        "recency": 0.9154,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -218,15 +218,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7948,
-      "importance": 0.7948,
-      "importance_score": 0.7948,
+      "score": 0.7819,
+      "importance": 0.7819,
+      "importance_score": 0.7819,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9677,
+        "recency": 0.8962,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -279,15 +279,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7624,
-      "importance": 0.7624,
-      "importance_score": 0.7624,
+      "score": 0.7506,
+      "importance": 0.7506,
+      "importance_score": 0.7506,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8877,
+        "recency": 0.8221,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -340,15 +340,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7621,
-      "importance": 0.7621,
-      "importance_score": 0.7621,
+      "score": 0.7503,
+      "importance": 0.7503,
+      "importance_score": 0.7503,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8859,
+        "recency": 0.8204,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -363,6 +363,66 @@
         "title": "Anthropic 将 Claude Cowork 与聊天合并为统一的 Claude，并推出 Docs、Slides 等功能",
         "url": "https://claude.com/blog/cowork-is-now-claude",
         "source": "Claude：Blog（网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_6063a5e265d2",
+      "title": "Anthropic 宣布 Claude 普通聊天与 Cowork 合并为同一个 Claude",
+      "url": "https://x.com/AYi_AInotes/status/2100462237441732876",
+      "primary_url": "https://x.com/AYi_AInotes/status/2100462237441732876",
+      "source": "X：阿易 AI Notes (@AYi_AInotes)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "ae38bbe76de6c5e3987a1975785477acbd57d17f",
+          "title": "Anthropic 宣布 Claude 普通聊天与 Cowork 合并为同一个 Claude",
+          "url": "https://x.com/AYi_AInotes/status/2100462237441732876",
+          "source": "X：阿易 AI Notes (@AYi_AInotes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T05:49:56Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：阿易 AI Notes (@AYi_AInotes)"
+      ],
+      "items": [
+        {
+          "id": "ae38bbe76de6c5e3987a1975785477acbd57d17f",
+          "title": "Anthropic 宣布 Claude 普通聊天与 Cowork 合并为同一个 Claude",
+          "url": "https://x.com/AYi_AInotes/status/2100462237441732876",
+          "source": "X：阿易 AI Notes (@AYi_AInotes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T05:49:56Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7477,
+      "importance": 0.7477,
+      "importance_score": 0.7477,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.66,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9894,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-17T05:49:56Z",
+      "latest_at": "2026-09-17T05:49:56Z",
+      "primary_item": {
+        "id": "ae38bbe76de6c5e3987a1975785477acbd57d17f",
+        "title": "Anthropic 宣布 Claude 普通聊天与 Cowork 合并为同一个 Claude",
+        "url": "https://x.com/AYi_AInotes/status/2100462237441732876",
+        "source": "X：阿易 AI Notes (@AYi_AInotes)",
         "source_name": "AI HOT"
       }
     },
@@ -401,21 +461,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7558,
-      "importance": 0.7558,
-      "importance_score": 0.7558,
+      "score": 0.7429,
+      "importance": 0.7429,
+      "importance_score": 0.7429,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9679,
+        "recency": 0.8964,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-16T22:59:28Z",
       "latest_at": "2026-09-16T22:59:28Z",
@@ -462,21 +521,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7508,
-      "importance": 0.7508,
-      "importance_score": 0.7508,
+      "score": 0.7381,
+      "importance": 0.7381,
+      "importance_score": 0.7381,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9569,
+        "recency": 0.8862,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-16T22:12:14Z",
       "latest_at": "2026-09-16T22:12:14Z",
@@ -485,67 +543,6 @@
         "title": "OpenAI 发布模型失对齐披露框架并报告六个训练与评估中的失对齐案例",
         "url": "https://x.com/kimmonismus/status/2100347051334885818",
         "source": "X：Kim (@kimmonismus)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_78a4db2d2f6c",
-      "title": "腾讯开源 BrowserSkill：让 Agent 借用你正在用的浏览器标签页干活",
-      "url": "https://x.com/AYi_AInotes/status/2100247050621202718",
-      "primary_url": "https://x.com/AYi_AInotes/status/2100247050621202718",
-      "source": "X：阿易 AI Notes (@AYi_AInotes)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "49870545b917b07514ac9292b2b6282517684e72",
-          "title": "腾讯开源 BrowserSkill：让 Agent 借用你正在用的浏览器标签页干活",
-          "url": "https://x.com/AYi_AInotes/status/2100247050621202718",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T15:34:52Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：阿易 AI Notes (@AYi_AInotes)"
-      ],
-      "items": [
-        {
-          "id": "49870545b917b07514ac9292b2b6282517684e72",
-          "title": "腾讯开源 BrowserSkill：让 Agent 借用你正在用的浏览器标签页干活",
-          "url": "https://x.com/AYi_AInotes/status/2100247050621202718",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T15:34:52Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7501,
-      "importance": 0.7501,
-      "importance_score": 0.7501,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.74,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8697,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-16T15:34:52Z",
-      "latest_at": "2026-09-16T15:34:52Z",
-      "primary_item": {
-        "id": "49870545b917b07514ac9292b2b6282517684e72",
-        "title": "腾讯开源 BrowserSkill：让 Agent 借用你正在用的浏览器标签页干活",
-        "url": "https://x.com/AYi_AInotes/status/2100247050621202718",
-        "source": "X：阿易 AI Notes (@AYi_AInotes)",
         "source_name": "AI HOT"
       }
     },
@@ -584,15 +581,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7372,
-      "importance": 0.7372,
-      "importance_score": 0.7372,
+      "score": 0.7255,
+      "importance": 0.7255,
+      "importance_score": 0.7255,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8809,
+        "recency": 0.8159,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -644,15 +641,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7336,
-      "importance": 0.7336,
-      "importance_score": 0.7336,
+      "score": 0.7206,
+      "importance": 0.7206,
+      "importance_score": 0.7206,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9776,
+        "recency": 0.9053,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -670,321 +667,21 @@
       }
     },
     {
-      "story_id": "story_b70dd0029148",
-      "title": "微软 AI CEO 警告\"模型福利\"论调",
-      "url": "https://x.com/mustafasuleyman/status/2100223594534150428",
-      "primary_url": "https://x.com/mustafasuleyman/status/2100223594534150428",
-      "source": "X：Mustafa Suleyman（Microsoft AI CEO） (@mustafasuleyman)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "ee0df0c50e1a12243249f0d75af2ac6271c4ecd6",
-          "title": "微软 AI CEO 警告\"模型福利\"论调",
-          "url": "https://x.com/mustafasuleyman/status/2100223594534150428",
-          "source": "X：Mustafa Suleyman（Microsoft AI CEO） (@mustafasuleyman)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T14:01:39Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Mustafa Suleyman（Microsoft AI CEO） (@mustafasuleyman)"
-      ],
-      "items": [
-        {
-          "id": "ee0df0c50e1a12243249f0d75af2ac6271c4ecd6",
-          "title": "微软 AI CEO 警告\"模型福利\"论调",
-          "url": "https://x.com/mustafasuleyman/status/2100223594534150428",
-          "source": "X：Mustafa Suleyman（Microsoft AI CEO） (@mustafasuleyman)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T14:01:39Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7287,
-      "importance": 0.7287,
-      "importance_score": 0.7287,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.68,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8504,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T14:01:39Z",
-      "latest_at": "2026-09-16T14:01:39Z",
-      "primary_item": {
-        "id": "ee0df0c50e1a12243249f0d75af2ac6271c4ecd6",
-        "title": "微软 AI CEO 警告\"模型福利\"论调",
-        "url": "https://x.com/mustafasuleyman/status/2100223594534150428",
-        "source": "X：Mustafa Suleyman（Microsoft AI CEO） (@mustafasuleyman)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_5641648aa135",
-      "title": "Anthropic 合并 Claude Chat 与 Claude Cowork，推出 Claude Docs 和 Claude Slides",
-      "url": "https://x.com/testingcatalog/status/2100288394710688250",
-      "primary_url": "https://x.com/testingcatalog/status/2100288394710688250",
-      "source": "X：Testing Catalog (@testingcatalog)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "cf9eff682fb009e127e4fea737f2d9e51459f655",
-          "title": "Anthropic 合并 Claude Chat 与 Claude Cowork，推出 Claude Docs 和 Claude Slides",
-          "url": "https://x.com/testingcatalog/status/2100288394710688250",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T18:19:09Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Testing Catalog (@testingcatalog)"
-      ],
-      "items": [
-        {
-          "id": "cf9eff682fb009e127e4fea737f2d9e51459f655",
-          "title": "Anthropic 合并 Claude Chat 与 Claude Cowork，推出 Claude Docs 和 Claude Slides",
-          "url": "https://x.com/testingcatalog/status/2100288394710688250",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T18:19:09Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7235,
-      "importance": 0.7235,
-      "importance_score": 0.7235,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.63,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9047,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T18:19:09Z",
-      "latest_at": "2026-09-16T18:19:09Z",
-      "primary_item": {
-        "id": "cf9eff682fb009e127e4fea737f2d9e51459f655",
-        "title": "Anthropic 合并 Claude Chat 与 Claude Cowork，推出 Claude Docs 和 Claude Slides",
-        "url": "https://x.com/testingcatalog/status/2100288394710688250",
-        "source": "X：Testing Catalog (@testingcatalog)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_7d17b8093cb8",
-      "title": "OpenRouter 推出 openrouter：shell，任意模型可在托管 Linux 容器中运行代码",
-      "url": "https://x.com/OpenRouter/status/2100269250766401683",
-      "primary_url": "https://x.com/OpenRouter/status/2100269250766401683",
-      "source": "X：OpenRouter (@OpenRouter)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "87c04d222ffebfc779594ea23a0c07482a7196da",
-          "title": "OpenRouter 推出 openrouter：shell，任意模型可在托管 Linux 容器中运行代码",
-          "url": "https://x.com/OpenRouter/status/2100269250766401683",
-          "source": "X：OpenRouter (@OpenRouter)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T17:03:05Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：OpenRouter (@OpenRouter)"
-      ],
-      "items": [
-        {
-          "id": "87c04d222ffebfc779594ea23a0c07482a7196da",
-          "title": "OpenRouter 推出 openrouter：shell，任意模型可在托管 Linux 容器中运行代码",
-          "url": "https://x.com/OpenRouter/status/2100269250766401683",
-          "source": "X：OpenRouter (@OpenRouter)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T17:03:05Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7235,
-      "importance": 0.7235,
-      "importance_score": 0.7235,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.64,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8883,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T17:03:05Z",
-      "latest_at": "2026-09-16T17:03:05Z",
-      "primary_item": {
-        "id": "87c04d222ffebfc779594ea23a0c07482a7196da",
-        "title": "OpenRouter 推出 openrouter：shell，任意模型可在托管 Linux 容器中运行代码",
-        "url": "https://x.com/OpenRouter/status/2100269250766401683",
-        "source": "X：OpenRouter (@OpenRouter)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_801d7bd9204f",
-      "title": "Arena 评测 7 个模型在 Claude Code、Codex 和 Pi 下的编码表现：harness 选择对成功率影响小但显著影响成本",
-      "url": "https://x.com/arena/status/2100280949661667413",
-      "primary_url": "https://x.com/arena/status/2100280949661667413",
-      "source": "X：Arena (@arena)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "e59f9fe31e7b120fb451cac2558169d6f579ab7b",
-          "title": "Arena 评测 7 个模型在 Claude Code、Codex 和 Pi 下的编码表现：harness 选择对成功率影响小但显著影响成本",
-          "url": "https://x.com/arena/status/2100280949661667413",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T17:49:34Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Arena (@arena)"
-      ],
-      "items": [
-        {
-          "id": "e59f9fe31e7b120fb451cac2558169d6f579ab7b",
-          "title": "Arena 评测 7 个模型在 Claude Code、Codex 和 Pi 下的编码表现：harness 选择对成功率影响小但显著影响成本",
-          "url": "https://x.com/arena/status/2100280949661667413",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T17:49:34Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7223,
-      "importance": 0.7223,
-      "importance_score": 0.7223,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.63,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8983,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T17:49:34Z",
-      "latest_at": "2026-09-16T17:49:34Z",
-      "primary_item": {
-        "id": "e59f9fe31e7b120fb451cac2558169d6f579ab7b",
-        "title": "Arena 评测 7 个模型在 Claude Code、Codex 和 Pi 下的编码表现：harness 选择对成功率影响小但显著影响成本",
-        "url": "https://x.com/arena/status/2100280949661667413",
-        "source": "X：Arena (@arena)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_63bbc6119e6e",
-      "title": "Databricks 全员部署 GPT-6 Astra，称其在高复杂任务上胜过 Claude Opus 5",
-      "url": "https://x.com/Yuchenj_UW/status/2100305789508612366",
-      "primary_url": "https://x.com/Yuchenj_UW/status/2100305789508612366",
-      "source": "X：Yuchen Jin (@Yuchenj_UW)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "a13a376cd8e26b196dfa8772fed0f44ce92f687f",
-          "title": "Databricks 全员部署 GPT-6 Astra，称其在高复杂任务上胜过 Claude Opus 5",
-          "url": "https://x.com/Yuchenj_UW/status/2100305789508612366",
-          "source": "X：Yuchen Jin (@Yuchenj_UW)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T19:28:16Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Yuchen Jin (@Yuchenj_UW)"
-      ],
-      "items": [
-        {
-          "id": "a13a376cd8e26b196dfa8772fed0f44ce92f687f",
-          "title": "Databricks 全员部署 GPT-6 Astra，称其在高复杂任务上胜过 Claude Opus 5",
-          "url": "https://x.com/Yuchenj_UW/status/2100305789508612366",
-          "source": "X：Yuchen Jin (@Yuchenj_UW)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T19:28:16Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7202,
-      "importance": 0.7202,
-      "importance_score": 0.7202,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.61,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9199,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T19:28:16Z",
-      "latest_at": "2026-09-16T19:28:16Z",
-      "primary_item": {
-        "id": "a13a376cd8e26b196dfa8772fed0f44ce92f687f",
-        "title": "Databricks 全员部署 GPT-6 Astra，称其在高复杂任务上胜过 Claude Opus 5",
-        "url": "https://x.com/Yuchenj_UW/status/2100305789508612366",
-        "source": "X：Yuchen Jin (@Yuchenj_UW)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_c2b939684de0",
-      "title": "Mozilla 91 页报告：开源权重模型约落后前沿 4 个月，用量占 20% 收入仅占 4%",
-      "url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
+      "story_id": "story_be1cd1f690c2",
+      "title": "Mozilla 91 页报告：开放权重模型落后前沿约 4 个月，占 OpenRouter 约 20% 用量但仅约 4% 模型层收入",
+      "url": "https://x.com/rohanpaul_ai/status/2100460490342199651",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2100460490342199651",
       "source": "X：Rohan Paul (@rohanpaul_ai)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "4ee2d242fba4a6be033d15f20e8e653b85aeba5d",
-          "title": "Mozilla 91 页报告：开源权重模型约落后前沿 4 个月，用量占 20% 收入仅占 4%",
-          "url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
+          "id": "8e8a78608eb967900056799adca4c1c07dfabbf8",
+          "title": "Mozilla 91 页报告：开放权重模型落后前沿约 4 个月，占 OpenRouter 约 20% 用量但仅约 4% 模型层收入",
+          "url": "https://x.com/rohanpaul_ai/status/2100460490342199651",
           "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-16T22:01:31Z"
+          "published_at": "2026-09-17T05:43:00Z"
         }
       ],
       "source_count": 1,
@@ -993,13 +690,13 @@
       ],
       "items": [
         {
-          "id": "4ee2d242fba4a6be033d15f20e8e653b85aeba5d",
-          "title": "Mozilla 91 页报告：开源权重模型约落后前沿 4 个月，用量占 20% 收入仅占 4%",
-          "url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
+          "id": "8e8a78608eb967900056799adca4c1c07dfabbf8",
+          "title": "Mozilla 91 页报告：开放权重模型落后前沿约 4 个月，占 OpenRouter 约 20% 用量但仅约 4% 模型层收入",
+          "url": "https://x.com/rohanpaul_ai/status/2100460490342199651",
           "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-16T22:01:31Z"
+          "published_at": "2026-09-17T05:43:00Z"
         }
       ],
       "item_count": 1,
@@ -1009,23 +706,83 @@
       "importance_score": 0.7414,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.66,
+        "editorial": 0.64,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9545,
+        "recency": 0.9878,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-16T22:01:31Z",
-      "latest_at": "2026-09-16T22:01:31Z",
+      "earliest_at": "2026-09-17T05:43:00Z",
+      "latest_at": "2026-09-17T05:43:00Z",
       "primary_item": {
-        "id": "4ee2d242fba4a6be033d15f20e8e653b85aeba5d",
-        "title": "Mozilla 91 页报告：开源权重模型约落后前沿 4 个月，用量占 20% 收入仅占 4%",
-        "url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
+        "id": "8e8a78608eb967900056799adca4c1c07dfabbf8",
+        "title": "Mozilla 91 页报告：开放权重模型落后前沿约 4 个月，占 OpenRouter 约 20% 用量但仅约 4% 模型层收入",
+        "url": "https://x.com/rohanpaul_ai/status/2100460490342199651",
         "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_78a4db2d2f6c",
+      "title": "腾讯开源 BrowserSkill：让 Agent 借用你正在用的浏览器标签页干活",
+      "url": "https://x.com/AYi_AInotes/status/2100247050621202718",
+      "primary_url": "https://x.com/AYi_AInotes/status/2100247050621202718",
+      "source": "X：阿易 AI Notes (@AYi_AInotes)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "49870545b917b07514ac9292b2b6282517684e72",
+          "title": "腾讯开源 BrowserSkill：让 Agent 借用你正在用的浏览器标签页干活",
+          "url": "https://x.com/AYi_AInotes/status/2100247050621202718",
+          "source": "X：阿易 AI Notes (@AYi_AInotes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T15:34:52Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：阿易 AI Notes (@AYi_AInotes)"
+      ],
+      "items": [
+        {
+          "id": "49870545b917b07514ac9292b2b6282517684e72",
+          "title": "腾讯开源 BrowserSkill：让 Agent 借用你正在用的浏览器标签页干活",
+          "url": "https://x.com/AYi_AInotes/status/2100247050621202718",
+          "source": "X：阿易 AI Notes (@AYi_AInotes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T15:34:52Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7386,
+      "importance": 0.7386,
+      "importance_score": 0.7386,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.74,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8054,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-16T15:34:52Z",
+      "latest_at": "2026-09-16T15:34:52Z",
+      "primary_item": {
+        "id": "49870545b917b07514ac9292b2b6282517684e72",
+        "title": "腾讯开源 BrowserSkill：让 Agent 借用你正在用的浏览器标签页干活",
+        "url": "https://x.com/AYi_AInotes/status/2100247050621202718",
+        "source": "X：阿易 AI Notes (@AYi_AInotes)",
         "source_name": "AI HOT"
       }
     },
@@ -1082,15 +839,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7078,
-      "importance": 0.7078,
-      "importance_score": 0.7078,
+      "score": 0.7012,
+      "importance": 0.7012,
+      "importance_score": 0.7012,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4954,
+        "recency": 0.4588,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1162,15 +919,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6988,
-      "importance": 0.6988,
-      "importance_score": 0.6988,
+      "score": 0.6904,
+      "importance": 0.6904,
+      "importance_score": 0.6904,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6288,
+        "recency": 0.5824,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1189,122 +946,419 @@
       }
     },
     {
-      "story_id": "story_58d51d3d321b",
-      "title": "Databricks 向全部约 3500 名工程师部署 Astra：复杂任务胜过 Opus 5 和 Sol 5.6，编码支出上升约 60%",
-      "url": "https://x.com/gdb/status/2100358372268921279",
-      "primary_url": "https://x.com/gdb/status/2100358372268921279",
-      "source": "X：Greg Brockman (@gdb)",
+      "story_id": "story_30c8c4fffa59",
+      "title": "Mozilla 91 页报告：开源权重模型仅落后前沿约 4 个月，但收入占比严重倒挂",
+      "url": "https://x.com/rohanpaul_ai/status/2100446649017594213",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2100446649017594213",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "6c47f5af491298ab15b7f8d385ef018cb38a2cd5",
-          "title": "Databricks 向全部约 3500 名工程师部署 Astra：复杂任务胜过 Opus 5 和 Sol 5.6，编码支出上升约 60%",
-          "url": "https://x.com/gdb/status/2100358372268921279",
-          "source": "X：Greg Brockman (@gdb)",
+          "id": "2d263ebd431c63363e8fbf9027eee12c09c1b7c6",
+          "title": "Mozilla 91 页报告：开源权重模型仅落后前沿约 4 个月，但收入占比严重倒挂",
+          "url": "https://x.com/rohanpaul_ai/status/2100446649017594213",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-16T22:57:13Z"
+          "published_at": "2026-09-17T04:48:00Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Greg Brockman (@gdb)"
+        "X：Rohan Paul (@rohanpaul_ai)"
       ],
       "items": [
         {
-          "id": "6c47f5af491298ab15b7f8d385ef018cb38a2cd5",
-          "title": "Databricks 向全部约 3500 名工程师部署 Astra：复杂任务胜过 Opus 5 和 Sol 5.6，编码支出上升约 60%",
-          "url": "https://x.com/gdb/status/2100358372268921279",
-          "source": "X：Greg Brockman (@gdb)",
+          "id": "2d263ebd431c63363e8fbf9027eee12c09c1b7c6",
+          "title": "Mozilla 91 页报告：开源权重模型仅落后前沿约 4 个月，但收入占比严重倒挂",
+          "url": "https://x.com/rohanpaul_ai/status/2100446649017594213",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-16T22:57:13Z"
+          "published_at": "2026-09-17T04:48:00Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7227,
-      "importance": 0.7227,
-      "importance_score": 0.7227,
+      "score": 0.7301,
+      "importance": 0.7301,
+      "importance_score": 0.7301,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.59,
+        "editorial": 0.61,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9673,
+        "recency": 0.9748,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-16T22:57:13Z",
-      "latest_at": "2026-09-16T22:57:13Z",
+      "earliest_at": "2026-09-17T04:48:00Z",
+      "latest_at": "2026-09-17T04:48:00Z",
       "primary_item": {
-        "id": "6c47f5af491298ab15b7f8d385ef018cb38a2cd5",
-        "title": "Databricks 向全部约 3500 名工程师部署 Astra：复杂任务胜过 Opus 5 和 Sol 5.6，编码支出上升约 60%",
-        "url": "https://x.com/gdb/status/2100358372268921279",
-        "source": "X：Greg Brockman (@gdb)",
+        "id": "2d263ebd431c63363e8fbf9027eee12c09c1b7c6",
+        "title": "Mozilla 91 页报告：开源权重模型仅落后前沿约 4 个月，但收入占比严重倒挂",
+        "url": "https://x.com/rohanpaul_ai/status/2100446649017594213",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_52752974efc0",
-      "title": "OpenAI 推出 ChatGPT Ads 新功能：Sponsored Agents 测试并集成 HubSpot 与 Shopify",
-      "url": "https://openai.com/index/reimagining-advertising-with-ai",
-      "primary_url": "https://openai.com/index/reimagining-advertising-with-ai",
-      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+      "story_id": "story_b5fd1928c34b",
+      "title": "Claude for Small Business 新增 43 个工作流和 27 个集成，并推出免费培训计划",
+      "url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
+      "primary_url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
+      "source": "Claude：Blog（网页）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "56d701c8ff45e67a3e15d6da12ea18be874c754f",
-          "title": "OpenAI 推出 ChatGPT Ads 新功能：Sponsored Agents 测试并集成 HubSpot 与 Shopify",
-          "url": "https://openai.com/index/reimagining-advertising-with-ai",
-          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+          "id": "4b3e2f673c6f63bf19e76aeb6e8dc792e8309517",
+          "title": "Claude for Small Business 新增 43 个工作流和 27 个集成，并推出免费培训计划",
+          "url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
+          "source": "Claude：Blog（网页）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-16T13:00:00Z"
+          "published_at": "2026-09-15T17:21:21.489000Z"
+        },
+        {
+          "id": "976df7184f56b855307705582bcd47b86e92b7c5",
+          "title": "Claude for Small Business 新增 43 个 workflow 与 27 个集成",
+          "url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
+          "source": "Claude：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T16:00:00Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Claude：Blog（网页）"
+      ],
+      "items": [
+        {
+          "id": "4b3e2f673c6f63bf19e76aeb6e8dc792e8309517",
+          "title": "Claude for Small Business 新增 43 个工作流和 27 个集成，并推出免费培训计划",
+          "url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
+          "source": "Claude：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-15T17:21:21.489000Z"
+        },
+        {
+          "id": "976df7184f56b855307705582bcd47b86e92b7c5",
+          "title": "Claude for Small Business 新增 43 个 workflow 与 27 个集成",
+          "url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
+          "source": "Claude：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T16:00:00Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6818,
+      "importance": 0.6818,
+      "importance_score": 0.6818,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.6,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.5843,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-14T16:00:00Z",
+      "latest_at": "2026-09-15T17:21:21.489000Z",
+      "primary_item": {
+        "id": "4b3e2f673c6f63bf19e76aeb6e8dc792e8309517",
+        "title": "Claude for Small Business 新增 43 个工作流和 27 个集成，并推出免费培训计划",
+        "url": "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
+        "source": "Claude：Blog（网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_81cfb8267ca2",
+      "title": "PixVerse 用 GPT Image 2.5 与 Seedance 2.5 生成舞蹈视频",
+      "url": "https://x.com/PixVerse/status/2100223180103377279",
+      "primary_url": "https://x.com/PixVerse/status/2100223180103377279",
+      "source": "X：PixVerse (@PixVerse)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "d3b40eb7ab5cc148b2ea24a5c2cd7a6d39a45b55",
+          "title": "PixVerse 用 GPT Image 2.5 与 Seedance 生成动画",
+          "url": "https://x.com/PixVerse/status/2100244061340815406",
+          "source": "X：PixVerse (@PixVerse)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T15:22:59Z"
+        },
+        {
+          "id": "ba8e86425abfcaf1a3abb1a86387428612ba734c",
+          "title": "PixVerse 用 GPT Image 2.5 与 Seedance 2.5 生成舞蹈视频",
+          "url": "https://x.com/PixVerse/status/2100223180103377279",
+          "source": "X：PixVerse (@PixVerse)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T14:00:01Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：PixVerse (@PixVerse)"
+      ],
+      "items": [
+        {
+          "id": "d3b40eb7ab5cc148b2ea24a5c2cd7a6d39a45b55",
+          "title": "PixVerse 用 GPT Image 2.5 与 Seedance 生成动画",
+          "url": "https://x.com/PixVerse/status/2100244061340815406",
+          "source": "X：PixVerse (@PixVerse)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T15:22:59Z"
+        },
+        {
+          "id": "ba8e86425abfcaf1a3abb1a86387428612ba734c",
+          "title": "PixVerse 用 GPT Image 2.5 与 Seedance 2.5 生成舞蹈视频",
+          "url": "https://x.com/PixVerse/status/2100223180103377279",
+          "source": "X：PixVerse (@PixVerse)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T14:00:01Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6493,
+      "importance": 0.6493,
+      "importance_score": 0.6493,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.37,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7872,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-16T14:00:01Z",
+      "latest_at": "2026-09-16T15:22:59Z",
+      "primary_item": {
+        "id": "ba8e86425abfcaf1a3abb1a86387428612ba734c",
+        "title": "PixVerse 用 GPT Image 2.5 与 Seedance 2.5 生成舞蹈视频",
+        "url": "https://x.com/PixVerse/status/2100223180103377279",
+        "source": "X：PixVerse (@PixVerse)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_c2b939684de0",
+      "title": "Mozilla 91 页报告：开源权重模型约落后前沿 4 个月，用量占 20% 收入仅占 4%",
+      "url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "4ee2d242fba4a6be033d15f20e8e653b85aeba5d",
+          "title": "Mozilla 91 页报告：开源权重模型约落后前沿 4 个月，用量占 20% 收入仅占 4%",
+          "url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T22:01:31Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "OpenAI：官网动态（RSS · 排除企业/客户案例）"
+        "X：Rohan Paul (@rohanpaul_ai)"
       ],
       "items": [
         {
-          "id": "56d701c8ff45e67a3e15d6da12ea18be874c754f",
-          "title": "OpenAI 推出 ChatGPT Ads 新功能：Sponsored Agents 测试并集成 HubSpot 与 Shopify",
-          "url": "https://openai.com/index/reimagining-advertising-with-ai",
-          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+          "id": "4ee2d242fba4a6be033d15f20e8e653b85aeba5d",
+          "title": "Mozilla 91 页报告：开源权重模型约落后前沿 4 个月，用量占 20% 收入仅占 4%",
+          "url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-16T13:00:00Z"
+          "published_at": "2026-09-16T22:01:31Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7204,
-      "importance": 0.7204,
-      "importance_score": 0.7204,
+      "score": 0.7287,
+      "importance": 0.7287,
+      "importance_score": 0.7287,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8378,
+        "recency": 0.884,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-16T13:00:00Z",
-      "latest_at": "2026-09-16T13:00:00Z",
+      "earliest_at": "2026-09-16T22:01:31Z",
+      "latest_at": "2026-09-16T22:01:31Z",
       "primary_item": {
-        "id": "56d701c8ff45e67a3e15d6da12ea18be874c754f",
-        "title": "OpenAI 推出 ChatGPT Ads 新功能：Sponsored Agents 测试并集成 HubSpot 与 Shopify",
-        "url": "https://openai.com/index/reimagining-advertising-with-ai",
-        "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+        "id": "4ee2d242fba4a6be033d15f20e8e653b85aeba5d",
+        "title": "Mozilla 91 页报告：开源权重模型约落后前沿 4 个月，用量占 20% 收入仅占 4%",
+        "url": "https://x.com/rohanpaul_ai/status/2100344356737806825",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_9049b0bfda14",
+      "title": "OpenAI 发布模型对齐问题披露框架，并公开六份失当行为报告",
+      "url": "https://x.com/rohanpaul_ai/status/2100354109664813407",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2100354109664813407",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "910557d900a44c2d7d7d9220c0df5ace33fdad3b",
+          "title": "OpenAI 发布模型对齐问题披露框架，并公开六份失当行为报告",
+          "url": "https://x.com/rohanpaul_ai/status/2100354109664813407",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T22:40:17Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "910557d900a44c2d7d7d9220c0df5ace33fdad3b",
+          "title": "OpenAI 发布模型对齐问题披露框架，并公开六份失当行为报告",
+          "url": "https://x.com/rohanpaul_ai/status/2100354109664813407",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T22:40:17Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7272,
+      "importance": 0.7272,
+      "importance_score": 0.7272,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.65,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8922,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-16T22:40:17Z",
+      "latest_at": "2026-09-16T22:40:17Z",
+      "primary_item": {
+        "id": "910557d900a44c2d7d7d9220c0df5ace33fdad3b",
+        "title": "OpenAI 发布模型对齐问题披露框架，并公开六份失当行为报告",
+        "url": "https://x.com/rohanpaul_ai/status/2100354109664813407",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_8f1dbbf70c25",
+      "title": "Anthropic 如何重构测试影响分析服务以应对智能体编码带来的 CI 压力",
+      "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
+      "primary_url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
+      "source": "Claude：Blog（网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "1f05f3a786cfee3052bbfcdfed2d4f3e8d2f356e",
+          "title": "Anthropic 如何重构测试影响分析服务以应对智能体编码带来的 CI 压力",
+          "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
+          "source": "Claude：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T19:15:56.861000Z"
+        },
+        {
+          "id": "4a543799b121983530328f84fd0c31b500d489d3",
+          "title": "Anthropic 工程师复盘：智能体编程压力下如何扩展测试影响分析服务",
+          "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
+          "source": "Claude：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-13T16:00:00Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Claude：Blog（网页）"
+      ],
+      "items": [
+        {
+          "id": "1f05f3a786cfee3052bbfcdfed2d4f3e8d2f356e",
+          "title": "Anthropic 如何重构测试影响分析服务以应对智能体编码带来的 CI 压力",
+          "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
+          "source": "Claude：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-14T19:15:56.861000Z"
+        },
+        {
+          "id": "4a543799b121983530328f84fd0c31b500d489d3",
+          "title": "Anthropic 工程师复盘：智能体编程压力下如何扩展测试影响分析服务",
+          "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
+          "source": "Claude：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-13T16:00:00Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.659,
+      "importance": 0.659,
+      "importance_score": 0.659,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.62,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.4247,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-13T16:00:00Z",
+      "latest_at": "2026-09-14T19:15:56.861000Z",
+      "primary_item": {
+        "id": "1f05f3a786cfee3052bbfcdfed2d4f3e8d2f356e",
+        "title": "Anthropic 如何重构测试影响分析服务以应对智能体编码带来的 CI 压力",
+        "url": "https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
+        "source": "Claude：Blog（网页）",
         "source_name": "AI HOT"
       }
     }
