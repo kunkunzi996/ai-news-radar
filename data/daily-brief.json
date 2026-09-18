@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-18T16:14:32.485099Z",
+  "generated_at": "2026-09-18T19:07:40.992585Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -113,15 +113,15 @@
       ],
       "item_count": 5,
       "duplicate_count": 5,
-      "score": 0.8152,
-      "importance": 0.8152,
-      "importance_score": 0.8152,
+      "score": 0.8094,
+      "importance": 0.8094,
+      "importance_score": 0.8094,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7925,
+        "recency": 0.7601,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -141,21 +141,21 @@
       }
     },
     {
-      "story_id": "story_b3566f385089",
-      "title": "逆向分析指 ZCode 登录后静默打包 Git 历史并加密上传至 Aliyun OSS",
-      "url": "https://tokenstead.ai/guides/zcode-silent-git-history-upload",
-      "primary_url": "https://tokenstead.ai/guides/zcode-silent-git-history-upload",
+      "story_id": "story_176ec7b3e8f0",
+      "title": "美军因 AI 幻觉情报报告险些拦截中国船只",
+      "url": "https://www.cnn.com/2026/09/18/politics/us-military-ai-false-intelligence-china-ship",
+      "primary_url": "https://www.cnn.com/2026/09/18/politics/us-military-ai-false-intelligence-china-ship",
       "source": "Hacker News：AI 热帖",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "656596878735c4bdcb0c5b7cf3549b7dd602f588",
-          "title": "逆向分析指 ZCode 登录后静默打包 Git 历史并加密上传至 Aliyun OSS",
-          "url": "https://tokenstead.ai/guides/zcode-silent-git-history-upload",
+          "id": "2decbef3c0728a852ea1e5b34fc103fa36eb94a1",
+          "title": "美军因 AI 幻觉情报报告险些拦截中国船只",
+          "url": "https://www.cnn.com/2026/09/18/politics/us-military-ai-false-intelligence-china-ship",
           "source": "Hacker News：AI 热帖",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-18T10:35:28Z"
+          "published_at": "2026-09-18T17:28:01Z"
         }
       ],
       "source_count": 1,
@@ -164,26 +164,26 @@
       ],
       "items": [
         {
-          "id": "656596878735c4bdcb0c5b7cf3549b7dd602f588",
-          "title": "逆向分析指 ZCode 登录后静默打包 Git 历史并加密上传至 Aliyun OSS",
-          "url": "https://tokenstead.ai/guides/zcode-silent-git-history-upload",
+          "id": "2decbef3c0728a852ea1e5b34fc103fa36eb94a1",
+          "title": "美军因 AI 幻觉情报报告险些拦截中国船只",
+          "url": "https://www.cnn.com/2026/09/18/politics/us-military-ai-false-intelligence-china-ship",
           "source": "Hacker News：AI 热帖",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-18T10:35:28Z"
+          "published_at": "2026-09-18T17:28:01Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7955,
-      "importance": 0.7955,
-      "importance_score": 0.7955,
+      "score": 0.8053,
+      "importance": 0.8053,
+      "importance_score": 0.8053,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9216,
+        "recency": 0.9763,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -191,12 +191,12 @@
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-09-18T10:35:28Z",
-      "latest_at": "2026-09-18T10:35:28Z",
+      "earliest_at": "2026-09-18T17:28:01Z",
+      "latest_at": "2026-09-18T17:28:01Z",
       "primary_item": {
-        "id": "656596878735c4bdcb0c5b7cf3549b7dd602f588",
-        "title": "逆向分析指 ZCode 登录后静默打包 Git 历史并加密上传至 Aliyun OSS",
-        "url": "https://tokenstead.ai/guides/zcode-silent-git-history-upload",
+        "id": "2decbef3c0728a852ea1e5b34fc103fa36eb94a1",
+        "title": "美军因 AI 幻觉情报报告险些拦截中国船只",
+        "url": "https://www.cnn.com/2026/09/18/politics/us-military-ai-false-intelligence-china-ship",
         "source": "Hacker News：AI 热帖",
         "source_name": "AI HOT"
       }
@@ -236,15 +236,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7926,
-      "importance": 0.7926,
-      "importance_score": 0.7926,
+      "score": 0.7853,
+      "importance": 0.7853,
+      "importance_score": 0.7853,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9887,
+        "recency": 0.9484,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -297,15 +297,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7799,
-      "importance": 0.7799,
-      "importance_score": 0.7799,
+      "score": 0.7728,
+      "importance": 0.7728,
+      "importance_score": 0.7728,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9682,
+        "recency": 0.9287,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -358,15 +358,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7761,
-      "importance": 0.7761,
-      "importance_score": 0.7761,
+      "score": 0.7699,
+      "importance": 0.7699,
+      "importance_score": 0.7699,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.84,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8472,
+        "recency": 0.8127,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -385,21 +385,21 @@
       }
     },
     {
-      "story_id": "story_cad75b479216",
-      "title": "3人团队用前沿模型以不到3000美元token成本入侵OpenAI员工账户",
-      "url": "https://x.com/haider1/status/2100848578340220987",
-      "primary_url": "https://x.com/haider1/status/2100848578340220987",
+      "story_id": "story_450e74360a7c",
+      "title": "FrontierMath 首个 Major Advance 问题被解决，GPT-6 Astra 参与证明",
+      "url": "https://x.com/haider1/status/2101008356118769823",
+      "primary_url": "https://x.com/haider1/status/2101008356118769823",
       "source": "X：Haider (@haider1)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "f7b34c49943fa49cfbe8d0de303807e421679c05",
-          "title": "3人团队用前沿模型以不到3000美元token成本入侵OpenAI员工账户",
-          "url": "https://x.com/haider1/status/2100848578340220987",
+          "id": "923e95150f9b98bf8d7d88f86e79b5d1a9291cf5",
+          "title": "FrontierMath 首个 Major Advance 问题被解决，GPT-6 Astra 参与证明",
+          "url": "https://x.com/haider1/status/2101008356118769823",
           "source": "X：Haider (@haider1)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-18T07:25:07Z"
+          "published_at": "2026-09-18T18:00:01Z"
         }
       ],
       "source_count": 1,
@@ -408,26 +408,26 @@
       ],
       "items": [
         {
-          "id": "f7b34c49943fa49cfbe8d0de303807e421679c05",
-          "title": "3人团队用前沿模型以不到3000美元token成本入侵OpenAI员工账户",
-          "url": "https://x.com/haider1/status/2100848578340220987",
+          "id": "923e95150f9b98bf8d7d88f86e79b5d1a9291cf5",
+          "title": "FrontierMath 首个 Major Advance 问题被解决，GPT-6 Astra 参与证明",
+          "url": "https://x.com/haider1/status/2101008356118769823",
           "source": "X：Haider (@haider1)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-18T07:25:07Z"
+          "published_at": "2026-09-18T18:00:01Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7581,
-      "importance": 0.7581,
-      "importance_score": 0.7581,
+      "score": 0.7617,
+      "importance": 0.7617,
+      "importance_score": 0.7617,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.76,
+        "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8804,
+        "recency": 0.9838,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -435,13 +435,154 @@
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-09-18T07:25:07Z",
-      "latest_at": "2026-09-18T07:25:07Z",
+      "earliest_at": "2026-09-18T18:00:01Z",
+      "latest_at": "2026-09-18T18:00:01Z",
       "primary_item": {
-        "id": "f7b34c49943fa49cfbe8d0de303807e421679c05",
-        "title": "3人团队用前沿模型以不到3000美元token成本入侵OpenAI员工账户",
-        "url": "https://x.com/haider1/status/2100848578340220987",
+        "id": "923e95150f9b98bf8d7d88f86e79b5d1a9291cf5",
+        "title": "FrontierMath 首个 Major Advance 问题被解决，GPT-6 Astra 参与证明",
+        "url": "https://x.com/haider1/status/2101008356118769823",
         "source": "X：Haider (@haider1)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_1ed3844ff559",
+      "title": "Justin Cormack 用 35 万行 Rust 复盘 AI Agent 评估：从证据开始",
+      "url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
+      "primary_url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
+      "source": "Tessl：产品与工程博客",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "68ad313b83fddd56799e2af8a571b8b04fc6a2a0",
+          "title": "Justin Cormack 用 35 万行 Rust 复盘 AI Agent 评估：从证据开始",
+          "url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
+          "source": "Tessl：产品与工程博客",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T13:38:06.061000Z"
+        },
+        {
+          "id": "da434ca3bd3755d46a71e37bafe99eb4afdefc0d",
+          "title": "Tessl 博客：AI 智能体评估应从证据开始，用 35 万行 Rust 复刻 S3 的实践复盘",
+          "url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
+          "source": "Tessl：产品与工程博客",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T16:00:00Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Tessl：产品与工程博客"
+      ],
+      "items": [
+        {
+          "id": "68ad313b83fddd56799e2af8a571b8b04fc6a2a0",
+          "title": "Justin Cormack 用 35 万行 Rust 复盘 AI Agent 评估：从证据开始",
+          "url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
+          "source": "Tessl：产品与工程博客",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T13:38:06.061000Z"
+        },
+        {
+          "id": "da434ca3bd3755d46a71e37bafe99eb4afdefc0d",
+          "title": "Tessl 博客：AI 智能体评估应从证据开始，用 35 万行 Rust 复刻 S3 的实践复盘",
+          "url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
+          "source": "Tessl：产品与工程博客",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T16:00:00Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7609,
+      "importance": 0.7609,
+      "importance_score": 0.7609,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.66,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9237,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-16T16:00:00Z",
+      "latest_at": "2026-09-18T13:38:06.061000Z",
+      "primary_item": {
+        "id": "68ad313b83fddd56799e2af8a571b8b04fc6a2a0",
+        "title": "Justin Cormack 用 35 万行 Rust 复盘 AI Agent 评估：从证据开始",
+        "url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
+        "source": "Tessl：产品与工程博客",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_b3566f385089",
+      "title": "逆向分析指 ZCode 登录后静默打包 Git 历史并加密上传至 Aliyun OSS",
+      "url": "https://tokenstead.ai/guides/zcode-silent-git-history-upload",
+      "primary_url": "https://tokenstead.ai/guides/zcode-silent-git-history-upload",
+      "source": "Hacker News：AI 热帖",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "656596878735c4bdcb0c5b7cf3549b7dd602f588",
+          "title": "逆向分析指 ZCode 登录后静默打包 Git 历史并加密上传至 Aliyun OSS",
+          "url": "https://tokenstead.ai/guides/zcode-silent-git-history-upload",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T10:35:28Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Hacker News：AI 热帖"
+      ],
+      "items": [
+        {
+          "id": "656596878735c4bdcb0c5b7cf3549b7dd602f588",
+          "title": "逆向分析指 ZCode 登录后静默打包 Git 历史并加密上传至 Aliyun OSS",
+          "url": "https://tokenstead.ai/guides/zcode-silent-git-history-upload",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T10:35:28Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7887,
+      "importance": 0.7887,
+      "importance_score": 0.7887,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.86,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.884,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-18T10:35:28Z",
+      "latest_at": "2026-09-18T10:35:28Z",
+      "primary_item": {
+        "id": "656596878735c4bdcb0c5b7cf3549b7dd602f588",
+        "title": "逆向分析指 ZCode 登录后静默打包 Git 历史并加密上传至 Aliyun OSS",
+        "url": "https://tokenstead.ai/guides/zcode-silent-git-history-upload",
+        "source": "Hacker News：AI 热帖",
         "source_name": "AI HOT"
       }
     },
@@ -480,21 +621,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7523,
-      "importance": 0.7523,
-      "importance_score": 0.7523,
+      "score": 0.7461,
+      "importance": 0.7461,
+      "importance_score": 0.7461,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8486,
+        "recency": 0.8139,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-18T04:52:13Z",
       "latest_at": "2026-09-18T04:52:13Z",
@@ -503,66 +643,6 @@
         "title": "WSJ：三名研究人员用 Claude Opus 5 借 Discourse 漏洞访问 OpenAI 私有代码",
         "url": "https://x.com/rohanpaul_ai/status/2100810101145891305",
         "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_f2aee1dcd3b9",
-      "title": "Noam Brown 做客 Dwarkesh 播客，谈多智能体、纳维-斯托克斯方程与对齐风险",
-      "url": "https://x.com/AYi_AInotes/status/2100950547972989388",
-      "primary_url": "https://x.com/AYi_AInotes/status/2100950547972989388",
-      "source": "X：阿易 AI Notes (@AYi_AInotes)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "a009243a98945a939fc9c3c4d05cd0e6441f45f7",
-          "title": "Noam Brown 做客 Dwarkesh 播客，谈多智能体、纳维-斯托克斯方程与对齐风险",
-          "url": "https://x.com/AYi_AInotes/status/2100950547972989388",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-18T14:10:19Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：阿易 AI Notes (@AYi_AInotes)"
-      ],
-      "items": [
-        {
-          "id": "a009243a98945a939fc9c3c4d05cd0e6441f45f7",
-          "title": "Noam Brown 做客 Dwarkesh 播客，谈多智能体、纳维-斯托克斯方程与对齐风险",
-          "url": "https://x.com/AYi_AInotes/status/2100950547972989388",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-18T14:10:19Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7443,
-      "importance": 0.7443,
-      "importance_score": 0.7443,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9705,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-18T14:10:19Z",
-      "latest_at": "2026-09-18T14:10:19Z",
-      "primary_item": {
-        "id": "a009243a98945a939fc9c3c4d05cd0e6441f45f7",
-        "title": "Noam Brown 做客 Dwarkesh 播客，谈多智能体、纳维-斯托克斯方程与对齐风险",
-        "url": "https://x.com/AYi_AInotes/status/2100950547972989388",
-        "source": "X：阿易 AI Notes (@AYi_AInotes)",
         "source_name": "AI HOT"
       }
     },
@@ -601,15 +681,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.744,
-      "importance": 0.744,
-      "importance_score": 0.744,
+      "score": 0.7383,
+      "importance": 0.7383,
+      "importance_score": 0.7383,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7687,
+        "recency": 0.7374,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -627,122 +707,341 @@
       }
     },
     {
-      "story_id": "story_1ed3844ff559",
-      "title": "Justin Cormack 用 35 万行 Rust 复盘 AI Agent 评估：从证据开始",
-      "url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
-      "primary_url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
-      "source": "Tessl：产品与工程博客",
+      "story_id": "story_f2aee1dcd3b9",
+      "title": "Noam Brown 做客 Dwarkesh 播客，谈多智能体、纳维-斯托克斯方程与对齐风险",
+      "url": "https://x.com/AYi_AInotes/status/2100950547972989388",
+      "primary_url": "https://x.com/AYi_AInotes/status/2100950547972989388",
+      "source": "X：阿易 AI Notes (@AYi_AInotes)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "68ad313b83fddd56799e2af8a571b8b04fc6a2a0",
-          "title": "Justin Cormack 用 35 万行 Rust 复盘 AI Agent 评估：从证据开始",
-          "url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
-          "source": "Tessl：产品与工程博客",
+          "id": "a009243a98945a939fc9c3c4d05cd0e6441f45f7",
+          "title": "Noam Brown 做客 Dwarkesh 播客，谈多智能体、纳维-斯托克斯方程与对齐风险",
+          "url": "https://x.com/AYi_AInotes/status/2100950547972989388",
+          "source": "X：阿易 AI Notes (@AYi_AInotes)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-18T13:38:06.061000Z"
+          "published_at": "2026-09-18T14:10:19Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "Tessl：产品与工程博客"
+        "X：阿易 AI Notes (@AYi_AInotes)"
       ],
       "items": [
         {
-          "id": "68ad313b83fddd56799e2af8a571b8b04fc6a2a0",
-          "title": "Justin Cormack 用 35 万行 Rust 复盘 AI Agent 评估：从证据开始",
-          "url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
-          "source": "Tessl：产品与工程博客",
+          "id": "a009243a98945a939fc9c3c4d05cd0e6441f45f7",
+          "title": "Noam Brown 做客 Dwarkesh 播客，谈多智能体、纳维-斯托克斯方程与对齐风险",
+          "url": "https://x.com/AYi_AInotes/status/2100950547972989388",
+          "source": "X：阿易 AI Notes (@AYi_AInotes)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-18T13:38:06.061000Z"
+          "published_at": "2026-09-18T14:10:19Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7429,
-      "importance": 0.7429,
-      "importance_score": 0.7429,
+      "score": 0.7372,
+      "importance": 0.7372,
+      "importance_score": 0.7372,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.963,
+        "recency": 0.9309,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-18T13:38:06.061000Z",
-      "latest_at": "2026-09-18T13:38:06.061000Z",
+      "earliest_at": "2026-09-18T14:10:19Z",
+      "latest_at": "2026-09-18T14:10:19Z",
       "primary_item": {
-        "id": "68ad313b83fddd56799e2af8a571b8b04fc6a2a0",
-        "title": "Justin Cormack 用 35 万行 Rust 复盘 AI Agent 评估：从证据开始",
-        "url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
-        "source": "Tessl：产品与工程博客",
+        "id": "a009243a98945a939fc9c3c4d05cd0e6441f45f7",
+        "title": "Noam Brown 做客 Dwarkesh 播客，谈多智能体、纳维-斯托克斯方程与对齐风险",
+        "url": "https://x.com/AYi_AInotes/status/2100950547972989388",
+        "source": "X：阿易 AI Notes (@AYi_AInotes)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_21c1988f8733",
-      "title": "Trail of Bits 用 Agent 为 Miden zkVM 审计自建 LSP、反编译器和 Lean 形式化证明",
-      "url": "https://blog.trailofbits.com/2026/09/18/auditing-in-the-age-of-good-enough-ai",
-      "primary_url": "https://blog.trailofbits.com/2026/09/18/auditing-in-the-age-of-good-enough-ai",
-      "source": "Trail of Bits：AI安全研究",
+      "story_id": "story_ff916376ea3b",
+      "title": "Claude Code 2.1.277 新增 AGENTS.md 支持",
+      "url": "https://x.com/trq212/status/2101009392611278961",
+      "primary_url": "https://x.com/trq212/status/2101009392611278961",
+      "source": "X：Thariq (@trq212)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "1ac31603850f9bcf580631d40b7ca2c62631be3f",
-          "title": "Trail of Bits 用 Agent 为 Miden zkVM 审计自建 LSP、反编译器和 Lean 形式化证明",
-          "url": "https://blog.trailofbits.com/2026/09/18/auditing-in-the-age-of-good-enough-ai",
-          "source": "Trail of Bits：AI安全研究",
+          "id": "9e34b34e4393f74d33e353c70f01c8885290b9d7",
+          "title": "Claude Code 新增 AGENTS.md 支持",
+          "url": "https://x.com/jxnlco/status/2101011263027384406",
+          "source": "X：Jason Liu (@jxnlco)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-18T11:00:00Z"
+          "published_at": "2026-09-18T18:11:34Z"
+        },
+        {
+          "id": "5ee0688341b6d20e52e8d7a0899094e9c0242a35",
+          "title": "Claude Code 2.1.277 新增 AGENTS.md 支持",
+          "url": "https://x.com/trq212/status/2101009392611278961",
+          "source": "X：Thariq (@trq212)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T18:04:08Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Jason Liu (@jxnlco)",
+        "X：Thariq (@trq212)"
+      ],
+      "items": [
+        {
+          "id": "9e34b34e4393f74d33e353c70f01c8885290b9d7",
+          "title": "Claude Code 新增 AGENTS.md 支持",
+          "url": "https://x.com/jxnlco/status/2101011263027384406",
+          "source": "X：Jason Liu (@jxnlco)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T18:11:34Z"
+        },
+        {
+          "id": "5ee0688341b6d20e52e8d7a0899094e9c0242a35",
+          "title": "Claude Code 2.1.277 新增 AGENTS.md 支持",
+          "url": "https://x.com/trq212/status/2101009392611278961",
+          "source": "X：Thariq (@trq212)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T18:04:08Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7359,
+      "importance": 0.7359,
+      "importance_score": 0.7359,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.54,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9848,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-18T18:04:08Z",
+      "latest_at": "2026-09-18T18:11:34Z",
+      "primary_item": {
+        "id": "5ee0688341b6d20e52e8d7a0899094e9c0242a35",
+        "title": "Claude Code 2.1.277 新增 AGENTS.md 支持",
+        "url": "https://x.com/trq212/status/2101009392611278961",
+        "source": "X：Thariq (@trq212)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_0389b68f0dfb",
+      "title": "Anthropic 用 Claude 优化 30 多个开源生物分子模型，平均提速约 4 倍并开源全部代码",
+      "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+      "primary_url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+      "source": "Anthropic：Research（发表成果 · 网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "85b1d750ee667e6121c9b6cc95f26edb10480315",
+          "title": "Anthropic 用 Claude 优化 30 多个开源生物分子模型，平均提速约 4 倍并开源全部代码",
+          "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+          "source": "Anthropic：Research（发表成果 · 网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T19:49:41.095000Z"
+        },
+        {
+          "id": "7d195d4ef0662f130a7a7cd658b32d4ee3f03fbc",
+          "title": "Anthropic：Claude 四周优化 30 多个开源生物分子模型，平均提速约 4 倍并开源代码",
+          "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+          "source": "Anthropic：Research（发表成果 · 网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T16:00:00Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Anthropic：Research（发表成果 · 网页）"
+      ],
+      "items": [
+        {
+          "id": "85b1d750ee667e6121c9b6cc95f26edb10480315",
+          "title": "Anthropic 用 Claude 优化 30 多个开源生物分子模型，平均提速约 4 倍并开源全部代码",
+          "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+          "source": "Anthropic：Research（发表成果 · 网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T19:49:41.095000Z"
+        },
+        {
+          "id": "7d195d4ef0662f130a7a7cd658b32d4ee3f03fbc",
+          "title": "Anthropic：Claude 四周优化 30 多个开源生物分子模型，平均提速约 4 倍并开源代码",
+          "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+          "source": "Anthropic：Research（发表成果 · 网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T16:00:00Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7352,
+      "importance": 0.7352,
+      "importance_score": 0.7352,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.7,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7143,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-16T16:00:00Z",
+      "latest_at": "2026-09-17T19:49:41.095000Z",
+      "primary_item": {
+        "id": "85b1d750ee667e6121c9b6cc95f26edb10480315",
+        "title": "Anthropic 用 Claude 优化 30 多个开源生物分子模型，平均提速约 4 倍并开源全部代码",
+        "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+        "source": "Anthropic：Research（发表成果 · 网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_44ad14e38ca0",
+      "title": "Ethan Mollick 谈能力悬差：GPT-6 Astra 与 Fable 5.1 的现有能力远未被用尽",
+      "url": "https://www.oneusefulthing.org/p/the-overhang",
+      "primary_url": "https://www.oneusefulthing.org/p/the-overhang",
+      "source": "Ethan Mollick：One Useful Thing（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "89c045b893bc93dad861765b5e32082b227147a3",
+          "title": "Ethan Mollick 谈能力悬差：GPT-6 Astra 与 Fable 5.1 的现有能力远未被用尽",
+          "url": "https://www.oneusefulthing.org/p/the-overhang",
+          "source": "Ethan Mollick：One Useful Thing（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T17:54:32Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "Trail of Bits：AI安全研究"
+        "Ethan Mollick：One Useful Thing（RSS）"
       ],
       "items": [
         {
-          "id": "1ac31603850f9bcf580631d40b7ca2c62631be3f",
-          "title": "Trail of Bits 用 Agent 为 Miden zkVM 审计自建 LSP、反编译器和 Lean 形式化证明",
-          "url": "https://blog.trailofbits.com/2026/09/18/auditing-in-the-age-of-good-enough-ai",
-          "source": "Trail of Bits：AI安全研究",
+          "id": "89c045b893bc93dad861765b5e32082b227147a3",
+          "title": "Ethan Mollick 谈能力悬差：GPT-6 Astra 与 Fable 5.1 的现有能力远未被用尽",
+          "url": "https://www.oneusefulthing.org/p/the-overhang",
+          "source": "Ethan Mollick：One Useful Thing（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-18T11:00:00Z"
+          "published_at": "2026-09-18T17:54:32Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7395,
-      "importance": 0.7395,
-      "importance_score": 0.7395,
+      "score": 0.7345,
+      "importance": 0.7345,
+      "importance_score": 0.7345,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.67,
+        "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9271,
+        "recency": 0.9825,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-18T11:00:00Z",
-      "latest_at": "2026-09-18T11:00:00Z",
+      "earliest_at": "2026-09-18T17:54:32Z",
+      "latest_at": "2026-09-18T17:54:32Z",
       "primary_item": {
-        "id": "1ac31603850f9bcf580631d40b7ca2c62631be3f",
-        "title": "Trail of Bits 用 Agent 为 Miden zkVM 审计自建 LSP、反编译器和 Lean 形式化证明",
-        "url": "https://blog.trailofbits.com/2026/09/18/auditing-in-the-age-of-good-enough-ai",
-        "source": "Trail of Bits：AI安全研究",
+        "id": "89c045b893bc93dad861765b5e32082b227147a3",
+        "title": "Ethan Mollick 谈能力悬差：GPT-6 Astra 与 Fable 5.1 的现有能力远未被用尽",
+        "url": "https://www.oneusefulthing.org/p/the-overhang",
+        "source": "Ethan Mollick：One Useful Thing（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_af4722e6611e",
+      "title": "Gary Marcus：近期更该警惕的不是失控超级智能，而是智能体 AI 引发的规模化黑客攻击",
+      "url": "https://garymarcus.substack.com/p/wake-up-people-what-we-should-actually",
+      "primary_url": "https://garymarcus.substack.com/p/wake-up-people-what-we-should-actually",
+      "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "cc1841041930dac7e23fd2f34e3ea0cea4947dc4",
+          "title": "Gary Marcus：近期更该警惕的不是失控超级智能，而是智能体 AI 引发的规模化黑客攻击",
+          "url": "https://garymarcus.substack.com/p/wake-up-people-what-we-should-actually",
+          "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T16:29:57Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Gary Marcus：The Road to AI We Can Trust（RSS）"
+      ],
+      "items": [
+        {
+          "id": "cc1841041930dac7e23fd2f34e3ea0cea4947dc4",
+          "title": "Gary Marcus：近期更该警惕的不是失控超级智能，而是智能体 AI 引发的规模化黑客攻击",
+          "url": "https://garymarcus.substack.com/p/wake-up-people-what-we-should-actually",
+          "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T16:29:57Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7339,
+      "importance": 0.7339,
+      "importance_score": 0.7339,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.63,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9627,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-18T16:29:57Z",
+      "latest_at": "2026-09-18T16:29:57Z",
+      "primary_item": {
+        "id": "cc1841041930dac7e23fd2f34e3ea0cea4947dc4",
+        "title": "Gary Marcus：近期更该警惕的不是失控超级智能，而是智能体 AI 引发的规模化黑客攻击",
+        "url": "https://garymarcus.substack.com/p/wake-up-people-what-we-should-actually",
+        "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -781,15 +1080,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.739,
-      "importance": 0.739,
-      "importance_score": 0.739,
+      "score": 0.7335,
+      "importance": 0.7335,
+      "importance_score": 0.7335,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7409,
+        "recency": 0.7106,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -807,21 +1106,81 @@
       }
     },
     {
-      "story_id": "story_4563ef234441",
-      "title": "据 WSJ 报道，Trump 与 Xi 计划下周在华盛顿讨论 AI 治理",
-      "url": "https://x.com/kimmonismus/status/2100936647907090705",
-      "primary_url": "https://x.com/kimmonismus/status/2100936647907090705",
+      "story_id": "story_21c1988f8733",
+      "title": "Trail of Bits 用 Agent 为 Miden zkVM 审计自建 LSP、反编译器和 Lean 形式化证明",
+      "url": "https://blog.trailofbits.com/2026/09/18/auditing-in-the-age-of-good-enough-ai",
+      "primary_url": "https://blog.trailofbits.com/2026/09/18/auditing-in-the-age-of-good-enough-ai",
+      "source": "Trail of Bits：AI安全研究",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "1ac31603850f9bcf580631d40b7ca2c62631be3f",
+          "title": "Trail of Bits 用 Agent 为 Miden zkVM 审计自建 LSP、反编译器和 Lean 形式化证明",
+          "url": "https://blog.trailofbits.com/2026/09/18/auditing-in-the-age-of-good-enough-ai",
+          "source": "Trail of Bits：AI安全研究",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T11:00:00Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Trail of Bits：AI安全研究"
+      ],
+      "items": [
+        {
+          "id": "1ac31603850f9bcf580631d40b7ca2c62631be3f",
+          "title": "Trail of Bits 用 Agent 为 Miden zkVM 审计自建 LSP、反编译器和 Lean 形式化证明",
+          "url": "https://blog.trailofbits.com/2026/09/18/auditing-in-the-age-of-good-enough-ai",
+          "source": "Trail of Bits：AI安全研究",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T11:00:00Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7327,
+      "importance": 0.7327,
+      "importance_score": 0.7327,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.67,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8893,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-18T11:00:00Z",
+      "latest_at": "2026-09-18T11:00:00Z",
+      "primary_item": {
+        "id": "1ac31603850f9bcf580631d40b7ca2c62631be3f",
+        "title": "Trail of Bits 用 Agent 为 Miden zkVM 审计自建 LSP、反编译器和 Lean 形式化证明",
+        "url": "https://blog.trailofbits.com/2026/09/18/auditing-in-the-age-of-good-enough-ai",
+        "source": "Trail of Bits：AI安全研究",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_4c6ddcaeeda4",
+      "title": "Claude Code v2.1.277 开始支持 AGENTS.md",
+      "url": "https://x.com/kimmonismus/status/2101011738078466513",
+      "primary_url": "https://x.com/kimmonismus/status/2101011738078466513",
       "source": "X：Kim (@kimmonismus)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "8e4911b6c7fe973c7d83d222413e8c06b917b52b",
-          "title": "据 WSJ 报道，Trump 与 Xi 计划下周在华盛顿讨论 AI 治理",
-          "url": "https://x.com/kimmonismus/status/2100936647907090705",
+          "id": "7cc1aed22ddd8392938276141b5eb4c31eb70582",
+          "title": "Claude Code v2.1.277 开始支持 AGENTS.md",
+          "url": "https://x.com/kimmonismus/status/2101011738078466513",
           "source": "X：Kim (@kimmonismus)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-18T13:15:05Z"
+          "published_at": "2026-09-18T18:13:27Z"
         }
       ],
       "source_count": 1,
@@ -830,38 +1189,38 @@
       ],
       "items": [
         {
-          "id": "8e4911b6c7fe973c7d83d222413e8c06b917b52b",
-          "title": "据 WSJ 报道，Trump 与 Xi 计划下周在华盛顿讨论 AI 治理",
-          "url": "https://x.com/kimmonismus/status/2100936647907090705",
+          "id": "7cc1aed22ddd8392938276141b5eb4c31eb70582",
+          "title": "Claude Code v2.1.277 开始支持 AGENTS.md",
+          "url": "https://x.com/kimmonismus/status/2101011738078466513",
           "source": "X：Kim (@kimmonismus)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-18T13:15:05Z"
+          "published_at": "2026-09-18T18:13:27Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.739,
-      "importance": 0.739,
-      "importance_score": 0.739,
+      "score": 0.7323,
+      "importance": 0.7323,
+      "importance_score": 0.7323,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.65,
+        "editorial": 0.61,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9577,
+        "recency": 0.987,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-18T13:15:05Z",
-      "latest_at": "2026-09-18T13:15:05Z",
+      "earliest_at": "2026-09-18T18:13:27Z",
+      "latest_at": "2026-09-18T18:13:27Z",
       "primary_item": {
-        "id": "8e4911b6c7fe973c7d83d222413e8c06b917b52b",
-        "title": "据 WSJ 报道，Trump 与 Xi 计划下周在华盛顿讨论 AI 治理",
-        "url": "https://x.com/kimmonismus/status/2100936647907090705",
+        "id": "7cc1aed22ddd8392938276141b5eb4c31eb70582",
+        "title": "Claude Code v2.1.277 开始支持 AGENTS.md",
+        "url": "https://x.com/kimmonismus/status/2101011738078466513",
         "source": "X：Kim (@kimmonismus)",
         "source_name": "AI HOT"
       }
@@ -901,15 +1260,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7389,
-      "importance": 0.7389,
-      "importance_score": 0.7389,
+      "score": 0.7322,
+      "importance": 0.7322,
+      "importance_score": 0.7322,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9072,
+        "recency": 0.8702,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -961,15 +1320,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7369,
-      "importance": 0.7369,
-      "importance_score": 0.7369,
+      "score": 0.7308,
+      "importance": 0.7308,
+      "importance_score": 0.7308,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8292,
+        "recency": 0.7953,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -983,306 +1342,6 @@
         "title": "通义千问发布 Qwen3.8-Omni-Flash 全模态模型",
         "url": "https://x.com/Alibaba_Qwen/status/2100785962414702599",
         "source": "X：通义千问 / Qwen (@Alibaba_Qwen)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_72e334427c66",
-      "title": "Anthropic 发布 AI 研发进度测量：AI 已主导 26% 的模型研发工作",
-      "url": "https://x.com/AISafetyMemes/status/2100777215571169584",
-      "primary_url": "https://x.com/AISafetyMemes/status/2100777215571169584",
-      "source": "X：AI Safety Memes (@AISafetyMemes)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "4da1f7ade898a4a145e4f55d5059ddb3a7daea2a",
-          "title": "Anthropic 发布 AI 研发进度测量：AI 已主导 26% 的模型研发工作",
-          "url": "https://x.com/AISafetyMemes/status/2100777215571169584",
-          "source": "X：AI Safety Memes (@AISafetyMemes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-18T02:41:33Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：AI Safety Memes (@AISafetyMemes)"
-      ],
-      "items": [
-        {
-          "id": "4da1f7ade898a4a145e4f55d5059ddb3a7daea2a",
-          "title": "Anthropic 发布 AI 研发进度测量：AI 已主导 26% 的模型研发工作",
-          "url": "https://x.com/AISafetyMemes/status/2100777215571169584",
-          "source": "X：AI Safety Memes (@AISafetyMemes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-18T02:41:33Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7356,
-      "importance": 0.7356,
-      "importance_score": 0.7356,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.72,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8223,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-18T02:41:33Z",
-      "latest_at": "2026-09-18T02:41:33Z",
-      "primary_item": {
-        "id": "4da1f7ade898a4a145e4f55d5059ddb3a7daea2a",
-        "title": "Anthropic 发布 AI 研发进度测量：AI 已主导 26% 的模型研发工作",
-        "url": "https://x.com/AISafetyMemes/status/2100777215571169584",
-        "source": "X：AI Safety Memes (@AISafetyMemes)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_383a396e5900",
-      "title": "阿里发布 Qwen3.8-Omni-Flash：首个面向智能体能力的全模态模型",
-      "url": "https://x.com/alibaba_cloud/status/2100801080959639624",
-      "primary_url": "https://x.com/alibaba_cloud/status/2100801080959639624",
-      "source": "X：阿里云 / Alibaba Cloud (@alibaba_cloud)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "1d8c0367d191f903f51d257b77731cb9de3e2171",
-          "title": "阿里发布 Qwen3.8-Omni-Flash：首个面向智能体能力的全模态模型",
-          "url": "https://x.com/alibaba_cloud/status/2100801080959639624",
-          "source": "X：阿里云 / Alibaba Cloud (@alibaba_cloud)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-18T04:16:23Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：阿里云 / Alibaba Cloud (@alibaba_cloud)"
-      ],
-      "items": [
-        {
-          "id": "1d8c0367d191f903f51d257b77731cb9de3e2171",
-          "title": "阿里发布 Qwen3.8-Omni-Flash：首个面向智能体能力的全模态模型",
-          "url": "https://x.com/alibaba_cloud/status/2100801080959639624",
-          "source": "X：阿里云 / Alibaba Cloud (@alibaba_cloud)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-18T04:16:23Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.733,
-      "importance": 0.733,
-      "importance_score": 0.733,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.7,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8413,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-18T04:16:23Z",
-      "latest_at": "2026-09-18T04:16:23Z",
-      "primary_item": {
-        "id": "1d8c0367d191f903f51d257b77731cb9de3e2171",
-        "title": "阿里发布 Qwen3.8-Omni-Flash：首个面向智能体能力的全模态模型",
-        "url": "https://x.com/alibaba_cloud/status/2100801080959639624",
-        "source": "X：阿里云 / Alibaba Cloud (@alibaba_cloud)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_6b8b0b6f48f2",
-      "title": "GitHub 用 Copilot 智能体将 Copilot 运行时从 TypeScript 迁移到 83 万行 Rust",
-      "url": "https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot",
-      "primary_url": "https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot",
-      "source": "GitHub Blog",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "ca4dffffcb00c23f888bfd34c6a8e082a9dc14c3",
-          "title": "GitHub 用 Copilot 智能体将 Copilot 运行时从 TypeScript 迁移到 83 万行 Rust",
-          "url": "https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot",
-          "source": "GitHub Blog",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T00:26:43Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "GitHub Blog"
-      ],
-      "items": [
-        {
-          "id": "ca4dffffcb00c23f888bfd34c6a8e082a9dc14c3",
-          "title": "GitHub 用 Copilot 智能体将 Copilot 运行时从 TypeScript 迁移到 83 万行 Rust",
-          "url": "https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot",
-          "source": "GitHub Blog",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T00:26:43Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7309,
-      "importance": 0.7309,
-      "importance_score": 0.7309,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.86,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.5629,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-17T00:26:43Z",
-      "latest_at": "2026-09-17T00:26:43Z",
-      "primary_item": {
-        "id": "ca4dffffcb00c23f888bfd34c6a8e082a9dc14c3",
-        "title": "GitHub 用 Copilot 智能体将 Copilot 运行时从 TypeScript 迁移到 83 万行 Rust",
-        "url": "https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot",
-        "source": "GitHub Blog",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_eec62c94fe60",
-      "title": "Qwen 发布 Qwen3.8-Omni-Flash，并推出 Qwen-Live-Harness 与 Qwen-MM-Plugins 两个配套框架",
-      "url": "https://x.com/karminski3/status/2100751056104026497",
-      "primary_url": "https://x.com/karminski3/status/2100751056104026497",
-      "source": "X：karminski (@karminski3)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "ea00e909e225c035e20342bb55e5d13831ee8ff4",
-          "title": "Qwen 发布 Qwen3.8-Omni-Flash，并推出 Qwen-Live-Harness 与 Qwen-MM-Plugins 两个配套框架",
-          "url": "https://x.com/karminski3/status/2100751056104026497",
-          "source": "X：karminski (@karminski3)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-18T00:57:36Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：karminski (@karminski3)"
-      ],
-      "items": [
-        {
-          "id": "ea00e909e225c035e20342bb55e5d13831ee8ff4",
-          "title": "Qwen 发布 Qwen3.8-Omni-Flash，并推出 Qwen-Live-Harness 与 Qwen-MM-Plugins 两个配套框架",
-          "url": "https://x.com/karminski3/status/2100751056104026497",
-          "source": "X：karminski (@karminski3)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-18T00:57:36Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.729,
-      "importance": 0.729,
-      "importance_score": 0.729,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.802,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-18T00:57:36Z",
-      "latest_at": "2026-09-18T00:57:36Z",
-      "primary_item": {
-        "id": "ea00e909e225c035e20342bb55e5d13831ee8ff4",
-        "title": "Qwen 发布 Qwen3.8-Omni-Flash，并推出 Qwen-Live-Harness 与 Qwen-MM-Plugins 两个配套框架",
-        "url": "https://x.com/karminski3/status/2100751056104026497",
-        "source": "X：karminski (@karminski3)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_ba12b732e577",
-      "title": "AgentCloak 推出免费浏览器扩展，在 AI 提示词中自动替换个人信息",
-      "url": "https://x.com/omarsar0/status/2100974730387829014",
-      "primary_url": "https://x.com/omarsar0/status/2100974730387829014",
-      "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "a56c1d500d56ed95599dbc952d1529edc9346b8c",
-          "title": "AgentCloak 推出免费浏览器扩展，在 AI 提示词中自动替换个人信息",
-          "url": "https://x.com/omarsar0/status/2100974730387829014",
-          "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-18T15:46:24Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Elvis Saravia (@omarsar0, DAIR.AI)"
-      ],
-      "items": [
-        {
-          "id": "a56c1d500d56ed95599dbc952d1529edc9346b8c",
-          "title": "AgentCloak 推出免费浏览器扩展，在 AI 提示词中自动替换个人信息",
-          "url": "https://x.com/omarsar0/status/2100974730387829014",
-          "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-18T15:46:24Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7274,
-      "importance": 0.7274,
-      "importance_score": 0.7274,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.59,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9932,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-18T15:46:24Z",
-      "latest_at": "2026-09-18T15:46:24Z",
-      "primary_item": {
-        "id": "a56c1d500d56ed95599dbc952d1529edc9346b8c",
-        "title": "AgentCloak 推出免费浏览器扩展，在 AI 提示词中自动替换个人信息",
-        "url": "https://x.com/omarsar0/status/2100974730387829014",
-        "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
         "source_name": "AI HOT"
       }
     }
