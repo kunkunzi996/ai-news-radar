@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-18T01:10:45.832370Z",
+  "generated_at": "2026-09-18T06:29:31.350735Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -113,15 +113,15 @@
       ],
       "item_count": 5,
       "duplicate_count": 5,
-      "score": 0.8499,
-      "importance": 0.8499,
-      "importance_score": 0.8499,
+      "score": 0.8368,
+      "importance": 0.8368,
+      "importance_score": 0.8368,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.985,
+        "recency": 0.9123,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -137,6 +137,128 @@
         "title": "TypeSafe AI 发布只做高频决策的大模型 Jev，作者实测其分类判断性价比",
         "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686475&idx=1&sn=1d9d43036b6d72fd83b9d5658b351215",
         "source": "公众号：数字生命卡兹克",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_39b208522bb5",
+      "title": "Hacktron 复盘利用 libheif 漏洞与 OpenAI SSO 缺陷入侵 OpenAI 论坛并接管员工 ChatGPT 账号",
+      "url": "https://www.hacktron.ai/blog/hacking-openai",
+      "primary_url": "https://www.hacktron.ai/blog/hacking-openai",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "7d2e860c12e91824b743f2cd0766b4a7888011b4",
+          "title": "Hacktron 复盘利用 libheif 漏洞与 OpenAI SSO 缺陷入侵 OpenAI 论坛并接管员工 ChatGPT 账号",
+          "url": "https://www.hacktron.ai/blog/hacking-openai",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T04:45:46.237000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Hacker News 热门（buzzing.cc 中文翻译）"
+      ],
+      "items": [
+        {
+          "id": "7d2e860c12e91824b743f2cd0766b4a7888011b4",
+          "title": "Hacktron 复盘利用 libheif 漏洞与 OpenAI SSO 缺陷入侵 OpenAI 论坛并接管员工 ChatGPT 账号",
+          "url": "https://www.hacktron.ai/blog/hacking-openai",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T04:45:46.237000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7992,
+      "importance": 0.7992,
+      "importance_score": 0.7992,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.84,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9753,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-18T04:45:46.237000Z",
+      "latest_at": "2026-09-18T04:45:46.237000Z",
+      "primary_item": {
+        "id": "7d2e860c12e91824b743f2cd0766b4a7888011b4",
+        "title": "Hacktron 复盘利用 libheif 漏洞与 OpenAI SSO 缺陷入侵 OpenAI 论坛并接管员工 ChatGPT 账号",
+        "url": "https://www.hacktron.ai/blog/hacking-openai",
+        "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_ce8340690fed",
+      "title": "WSJ：三名研究人员用 Claude Opus 5 借 Discourse 漏洞访问 OpenAI 私有代码",
+      "url": "https://x.com/rohanpaul_ai/status/2100810101145891305",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2100810101145891305",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "c017261554a68948464c8f4051893143337aa4b2",
+          "title": "WSJ：三名研究人员用 Claude Opus 5 借 Discourse 漏洞访问 OpenAI 私有代码",
+          "url": "https://x.com/rohanpaul_ai/status/2100810101145891305",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T04:52:13Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "c017261554a68948464c8f4051893143337aa4b2",
+          "title": "WSJ：三名研究人员用 Claude Opus 5 借 Discourse 漏洞访问 OpenAI 私有代码",
+          "url": "https://x.com/rohanpaul_ai/status/2100810101145891305",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T04:52:13Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7754,
+      "importance": 0.7754,
+      "importance_score": 0.7754,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.76,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9769,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-18T04:52:13Z",
+      "latest_at": "2026-09-18T04:52:13Z",
+      "primary_item": {
+        "id": "c017261554a68948464c8f4051893143337aa4b2",
+        "title": "WSJ：三名研究人员用 Claude Opus 5 借 Discourse 漏洞访问 OpenAI 私有代码",
+        "url": "https://x.com/rohanpaul_ai/status/2100810101145891305",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -175,15 +297,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.78,
-      "importance": 0.78,
-      "importance_score": 0.78,
+      "score": 0.7676,
+      "importance": 0.7676,
+      "importance_score": 0.7676,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.8,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9356,
+        "recency": 0.8666,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -236,15 +358,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7776,
-      "importance": 0.7776,
-      "importance_score": 0.7776,
+      "score": 0.7649,
+      "importance": 0.7649,
+      "importance_score": 0.7649,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9555,
+        "recency": 0.885,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -259,6 +381,128 @@
         "title": "纽约时报诉 OpenAI 案新解封文件：微软与 OpenAI 内部承认 LLM 建立在窃取之上并引发 Doom Loop",
         "url": "https://www.404media.co/doom-loop-openai-and-microsoft-admits-llms-are-destroying-the-web-and-built-on-theft",
         "source": "404 Media（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_0f256f776bfd",
+      "title": "Anthropic 在桌面端和网页端推送 Projects in Claude Code",
+      "url": "https://x.com/AYi_AInotes/status/2100811736827760859",
+      "primary_url": "https://x.com/AYi_AInotes/status/2100811736827760859",
+      "source": "X：阿易 AI Notes (@AYi_AInotes)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "0586f9fd981c5f3db00c21d6e268c663e18d06e7",
+          "title": "Anthropic 在桌面端和网页端推送 Projects in Claude Code",
+          "url": "https://x.com/AYi_AInotes/status/2100811736827760859",
+          "source": "X：阿易 AI Notes (@AYi_AInotes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T04:58:43Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：阿易 AI Notes (@AYi_AInotes)"
+      ],
+      "items": [
+        {
+          "id": "0586f9fd981c5f3db00c21d6e268c663e18d06e7",
+          "title": "Anthropic 在桌面端和网页端推送 Projects in Claude Code",
+          "url": "https://x.com/AYi_AInotes/status/2100811736827760859",
+          "source": "X：阿易 AI Notes (@AYi_AInotes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T04:58:43Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7607,
+      "importance": 0.7607,
+      "importance_score": 0.7607,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.71,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9784,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-18T04:58:43Z",
+      "latest_at": "2026-09-18T04:58:43Z",
+      "primary_item": {
+        "id": "0586f9fd981c5f3db00c21d6e268c663e18d06e7",
+        "title": "Anthropic 在桌面端和网页端推送 Projects in Claude Code",
+        "url": "https://x.com/AYi_AInotes/status/2100811736827760859",
+        "source": "X：阿易 AI Notes (@AYi_AInotes)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_ef393f5fa08f",
+      "title": "通义千问发布 Qwen3.8-Omni-Flash 全模态模型",
+      "url": "https://x.com/Alibaba_Qwen/status/2100785962414702599",
+      "primary_url": "https://x.com/Alibaba_Qwen/status/2100785962414702599",
+      "source": "X：通义千问 / Qwen (@Alibaba_Qwen)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "92c3b32706c5defb1f178b5c4c3b833933c8624c",
+          "title": "通义千问发布 Qwen3.8-Omni-Flash 全模态模型",
+          "url": "https://x.com/Alibaba_Qwen/status/2100785962414702599",
+          "source": "X：通义千问 / Qwen (@Alibaba_Qwen)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T03:16:18Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：通义千问 / Qwen (@Alibaba_Qwen)"
+      ],
+      "items": [
+        {
+          "id": "92c3b32706c5defb1f178b5c4c3b833933c8624c",
+          "title": "通义千问发布 Qwen3.8-Omni-Flash 全模态模型",
+          "url": "https://x.com/Alibaba_Qwen/status/2100785962414702599",
+          "source": "X：通义千问 / Qwen (@Alibaba_Qwen)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T03:16:18Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7594,
+      "importance": 0.7594,
+      "importance_score": 0.7594,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.72,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9546,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-18T03:16:18Z",
+      "latest_at": "2026-09-18T03:16:18Z",
+      "primary_item": {
+        "id": "92c3b32706c5defb1f178b5c4c3b833933c8624c",
+        "title": "通义千问发布 Qwen3.8-Omni-Flash 全模态模型",
+        "url": "https://x.com/Alibaba_Qwen/status/2100785962414702599",
+        "source": "X：通义千问 / Qwen (@Alibaba_Qwen)",
         "source_name": "AI HOT"
       }
     },
@@ -297,15 +541,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7714,
-      "importance": 0.7714,
-      "importance_score": 0.7714,
+      "score": 0.7591,
+      "importance": 0.7591,
+      "importance_score": 0.7591,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9209,
+        "recency": 0.8529,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -320,6 +564,128 @@
         "title": "The Verge 汇总 AI 超级智能放缓争论：Amodei 倡议放缓，Altman、Musk 附议，Meta 反对",
         "url": "https://www.theverge.com/ai-artificial-intelligence/996923/ai-safety-slow-openai-anthropic",
         "source": "The Verge：AI（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_72e334427c66",
+      "title": "Anthropic 发布 AI 研发进度测量：AI 已主导 26% 的模型研发工作",
+      "url": "https://x.com/AISafetyMemes/status/2100777215571169584",
+      "primary_url": "https://x.com/AISafetyMemes/status/2100777215571169584",
+      "source": "X：AI Safety Memes (@AISafetyMemes)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "4da1f7ade898a4a145e4f55d5059ddb3a7daea2a",
+          "title": "Anthropic 发布 AI 研发进度测量：AI 已主导 26% 的模型研发工作",
+          "url": "https://x.com/AISafetyMemes/status/2100777215571169584",
+          "source": "X：AI Safety Memes (@AISafetyMemes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T02:41:33Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：AI Safety Memes (@AISafetyMemes)"
+      ],
+      "items": [
+        {
+          "id": "4da1f7ade898a4a145e4f55d5059ddb3a7daea2a",
+          "title": "Anthropic 发布 AI 研发进度测量：AI 已主导 26% 的模型研发工作",
+          "url": "https://x.com/AISafetyMemes/status/2100777215571169584",
+          "source": "X：AI Safety Memes (@AISafetyMemes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T02:41:33Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.758,
+      "importance": 0.758,
+      "importance_score": 0.758,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.72,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9466,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-18T02:41:33Z",
+      "latest_at": "2026-09-18T02:41:33Z",
+      "primary_item": {
+        "id": "4da1f7ade898a4a145e4f55d5059ddb3a7daea2a",
+        "title": "Anthropic 发布 AI 研发进度测量：AI 已主导 26% 的模型研发工作",
+        "url": "https://x.com/AISafetyMemes/status/2100777215571169584",
+        "source": "X：AI Safety Memes (@AISafetyMemes)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_383a396e5900",
+      "title": "阿里发布 Qwen3.8-Omni-Flash：首个面向智能体能力的全模态模型",
+      "url": "https://x.com/alibaba_cloud/status/2100801080959639624",
+      "primary_url": "https://x.com/alibaba_cloud/status/2100801080959639624",
+      "source": "X：阿里云 / Alibaba Cloud (@alibaba_cloud)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "1d8c0367d191f903f51d257b77731cb9de3e2171",
+          "title": "阿里发布 Qwen3.8-Omni-Flash：首个面向智能体能力的全模态模型",
+          "url": "https://x.com/alibaba_cloud/status/2100801080959639624",
+          "source": "X：阿里云 / Alibaba Cloud (@alibaba_cloud)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T04:16:23Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：阿里云 / Alibaba Cloud (@alibaba_cloud)"
+      ],
+      "items": [
+        {
+          "id": "1d8c0367d191f903f51d257b77731cb9de3e2171",
+          "title": "阿里发布 Qwen3.8-Omni-Flash：首个面向智能体能力的全模态模型",
+          "url": "https://x.com/alibaba_cloud/status/2100801080959639624",
+          "source": "X：阿里云 / Alibaba Cloud (@alibaba_cloud)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T04:16:23Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7559,
+      "importance": 0.7559,
+      "importance_score": 0.7559,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.7,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9685,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-18T04:16:23Z",
+      "latest_at": "2026-09-18T04:16:23Z",
+      "primary_item": {
+        "id": "1d8c0367d191f903f51d257b77731cb9de3e2171",
+        "title": "阿里发布 Qwen3.8-Omni-Flash：首个面向智能体能力的全模态模型",
+        "url": "https://x.com/alibaba_cloud/status/2100801080959639624",
+        "source": "X：阿里云 / Alibaba Cloud (@alibaba_cloud)",
         "source_name": "AI HOT"
       }
     },
@@ -358,15 +724,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7632,
-      "importance": 0.7632,
-      "importance_score": 0.7632,
+      "score": 0.7514,
+      "importance": 0.7514,
+      "importance_score": 0.7514,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8925,
+        "recency": 0.8266,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -381,6 +747,67 @@
         "title": "Qwen 发布原生全模态模型 Qwen3.8-Omni-Flash，主打音视频智能体任务交付",
         "url": "https://qwen.ai/blog?id=qwen3.8-omni-flash",
         "source": "Qwen：Blog Retrieval（API）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_eec62c94fe60",
+      "title": "Qwen 发布 Qwen3.8-Omni-Flash，并推出 Qwen-Live-Harness 与 Qwen-MM-Plugins 两个配套框架",
+      "url": "https://x.com/karminski3/status/2100751056104026497",
+      "primary_url": "https://x.com/karminski3/status/2100751056104026497",
+      "source": "X：karminski (@karminski3)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "ea00e909e225c035e20342bb55e5d13831ee8ff4",
+          "title": "Qwen 发布 Qwen3.8-Omni-Flash，并推出 Qwen-Live-Harness 与 Qwen-MM-Plugins 两个配套框架",
+          "url": "https://x.com/karminski3/status/2100751056104026497",
+          "source": "X：karminski (@karminski3)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T00:57:36Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：karminski (@karminski3)"
+      ],
+      "items": [
+        {
+          "id": "ea00e909e225c035e20342bb55e5d13831ee8ff4",
+          "title": "Qwen 发布 Qwen3.8-Omni-Flash，并推出 Qwen-Live-Harness 与 Qwen-MM-Plugins 两个配套框架",
+          "url": "https://x.com/karminski3/status/2100751056104026497",
+          "source": "X：karminski (@karminski3)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T00:57:36Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7508,
+      "importance": 0.7508,
+      "importance_score": 0.7508,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.71,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9232,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-18T00:57:36Z",
+      "latest_at": "2026-09-18T00:57:36Z",
+      "primary_item": {
+        "id": "ea00e909e225c035e20342bb55e5d13831ee8ff4",
+        "title": "Qwen 发布 Qwen3.8-Omni-Flash，并推出 Qwen-Live-Harness 与 Qwen-MM-Plugins 两个配套框架",
+        "url": "https://x.com/karminski3/status/2100751056104026497",
+        "source": "X：karminski (@karminski3)",
         "source_name": "AI HOT"
       }
     },
@@ -419,21 +846,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7621,
-      "importance": 0.7621,
-      "importance_score": 0.7621,
+      "score": 0.7494,
+      "importance": 0.7494,
+      "importance_score": 0.7494,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.73,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9528,
+        "recency": 0.8825,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-17T21:50:01Z",
       "latest_at": "2026-09-17T21:50:01Z",
@@ -442,6 +868,66 @@
         "title": "Anthropic 数据显示 Claude 主导的模型研发任务占比半年内从 1% 升至 26%",
         "url": "https://x.com/kimmonismus/status/2100703850630205949",
         "source": "X：Kim (@kimmonismus)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_6b8b0b6f48f2",
+      "title": "GitHub 用 Copilot 智能体将 Copilot 运行时从 TypeScript 迁移到 83 万行 Rust",
+      "url": "https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot",
+      "primary_url": "https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot",
+      "source": "GitHub Blog",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "ca4dffffcb00c23f888bfd34c6a8e082a9dc14c3",
+          "title": "GitHub 用 Copilot 智能体将 Copilot 运行时从 TypeScript 迁移到 83 万行 Rust",
+          "url": "https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot",
+          "source": "GitHub Blog",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T00:26:43Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "GitHub Blog"
+      ],
+      "items": [
+        {
+          "id": "ca4dffffcb00c23f888bfd34c6a8e082a9dc14c3",
+          "title": "GitHub 用 Copilot 智能体将 Copilot 运行时从 TypeScript 迁移到 83 万行 Rust",
+          "url": "https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot",
+          "source": "GitHub Blog",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T00:26:43Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7462,
+      "importance": 0.7462,
+      "importance_score": 0.7462,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.86,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.648,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-17T00:26:43Z",
+      "latest_at": "2026-09-17T00:26:43Z",
+      "primary_item": {
+        "id": "ca4dffffcb00c23f888bfd34c6a8e082a9dc14c3",
+        "title": "GitHub 用 Copilot 智能体将 Copilot 运行时从 TypeScript 迁移到 83 万行 Rust",
+        "url": "https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot",
+        "source": "GitHub Blog",
         "source_name": "AI HOT"
       }
     },
@@ -480,21 +966,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7576,
-      "importance": 0.7576,
-      "importance_score": 0.7576,
+      "score": 0.7446,
+      "importance": 0.7446,
+      "importance_score": 0.7446,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9776,
+        "recency": 0.9054,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-17T23:36:26Z",
       "latest_at": "2026-09-17T23:36:26Z",
@@ -541,21 +1026,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7566,
-      "importance": 0.7566,
-      "importance_score": 0.7566,
+      "score": 0.7441,
+      "importance": 0.7441,
+      "importance_score": 0.7441,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.939,
+        "recency": 0.8696,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-17T20:49:01.866000Z",
       "latest_at": "2026-09-17T20:49:01.866000Z",
@@ -568,123 +1052,62 @@
       }
     },
     {
-      "story_id": "story_6b8b0b6f48f2",
-      "title": "GitHub 用 Copilot 智能体将 Copilot 运行时从 TypeScript 迁移到 83 万行 Rust",
-      "url": "https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot",
-      "primary_url": "https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot",
-      "source": "GitHub Blog",
+      "story_id": "story_aaaa4ab812e6",
+      "title": "DeepSeek-V4.1-Flash 发布：552B MoE 多模态模型主打 KV cache 压缩",
+      "url": "https://arxiv.org/abs/2609.19969",
+      "primary_url": "https://arxiv.org/abs/2609.19969",
+      "source": "HuggingFace Daily Papers（社区热门论文）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "ca4dffffcb00c23f888bfd34c6a8e082a9dc14c3",
-          "title": "GitHub 用 Copilot 智能体将 Copilot 运行时从 TypeScript 迁移到 83 万行 Rust",
-          "url": "https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot",
-          "source": "GitHub Blog",
+          "id": "c29a5284d736392e22de776a11ade09866c9eb3f",
+          "title": "DeepSeek-V4.1-Flash 发布：552B MoE 多模态模型主打 KV cache 压缩",
+          "url": "https://arxiv.org/abs/2609.19969",
+          "source": "HuggingFace Daily Papers（社区热门论文）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-17T00:26:43Z"
+          "published_at": "2026-09-17T00:00:00Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "GitHub Blog"
+        "HuggingFace Daily Papers（社区热门论文）"
       ],
       "items": [
         {
-          "id": "ca4dffffcb00c23f888bfd34c6a8e082a9dc14c3",
-          "title": "GitHub 用 Copilot 智能体将 Copilot 运行时从 TypeScript 迁移到 83 万行 Rust",
-          "url": "https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot",
-          "source": "GitHub Blog",
+          "id": "c29a5284d736392e22de776a11ade09866c9eb3f",
+          "title": "DeepSeek-V4.1-Flash 发布：552B MoE 多模态模型主打 KV cache 压缩",
+          "url": "https://arxiv.org/abs/2609.19969",
+          "source": "HuggingFace Daily Papers（社区热门论文）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-17T00:26:43Z"
+          "published_at": "2026-09-17T00:00:00Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7555,
-      "importance": 0.7555,
-      "importance_score": 0.7555,
+      "score": 0.7425,
+      "importance": 0.7425,
+      "importance_score": 0.7425,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.86,
+        "editorial": 0.85,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6997,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-17T00:26:43Z",
-      "latest_at": "2026-09-17T00:26:43Z",
-      "primary_item": {
-        "id": "ca4dffffcb00c23f888bfd34c6a8e082a9dc14c3",
-        "title": "GitHub 用 Copilot 智能体将 Copilot 运行时从 TypeScript 迁移到 83 万行 Rust",
-        "url": "https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot",
-        "source": "GitHub Blog",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_cea82b055b85",
-      "title": "Anthropic 公布内部指标：Claude 主导 26% 的 AI 研发工作，90% 以上工作已有 AI 深度参与",
-      "url": "https://x.com/rohanpaul_ai/status/2100717827783299562",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2100717827783299562",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "4e96468cdeafb990641e6f92e2f5966f274bd90f",
-          "title": "Anthropic 公布内部指标：Claude 主导 26% 的 AI 研发工作，90% 以上工作已有 AI 深度参与",
-          "url": "https://x.com/rohanpaul_ai/status/2100717827783299562",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T22:45:34Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "4e96468cdeafb990641e6f92e2f5966f274bd90f",
-          "title": "Anthropic 公布内部指标：Claude 主导 26% 的 AI 研发工作，90% 以上工作已有 AI 深度参与",
-          "url": "https://x.com/rohanpaul_ai/status/2100717827783299562",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T22:45:34Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7494,
-      "importance": 0.7494,
-      "importance_score": 0.7494,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.68,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9657,
+        "recency": 0.6438,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-17T22:45:34Z",
-      "latest_at": "2026-09-17T22:45:34Z",
+      "earliest_at": "2026-09-17T00:00:00Z",
+      "latest_at": "2026-09-17T00:00:00Z",
       "primary_item": {
-        "id": "4e96468cdeafb990641e6f92e2f5966f274bd90f",
-        "title": "Anthropic 公布内部指标：Claude 主导 26% 的 AI 研发工作，90% 以上工作已有 AI 深度参与",
-        "url": "https://x.com/rohanpaul_ai/status/2100717827783299562",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "id": "c29a5284d736392e22de776a11ade09866c9eb3f",
+        "title": "DeepSeek-V4.1-Flash 发布：552B MoE 多模态模型主打 KV cache 压缩",
+        "url": "https://arxiv.org/abs/2609.19969",
+        "source": "HuggingFace Daily Papers（社区热门论文）",
         "source_name": "AI HOT"
       }
     },
@@ -723,15 +1146,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7482,
-      "importance": 0.7482,
-      "importance_score": 0.7482,
+      "score": 0.7359,
+      "importance": 0.7359,
+      "importance_score": 0.7359,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9256,
+        "recency": 0.8573,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -783,15 +1206,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7781,
-      "importance": 0.7781,
-      "importance_score": 0.7781,
+      "score": 0.7658,
+      "importance": 0.7658,
+      "importance_score": 0.7658,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.8,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9248,
+        "recency": 0.8565,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -806,246 +1229,6 @@
         "title": "纽约时报诉 OpenAI 与微软案解封文件披露 AI 抓取被称为史上最大劳动窃取",
         "url": "https://techcrunch.com/2026/09/17/microsoft-exec-called-ai-scraping-the-largest-theft-of-labor-in-human-history-new-unredacted-filings-reveal",
         "source": "TechCrunch：AI（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_8319223f622f",
-      "title": "jasonzhou1993 开源 AI UGC 视频工作流，单条成片成本不到 5 元",
-      "url": "https://x.com/AYi_AInotes/status/2100629888050888911",
-      "primary_url": "https://x.com/AYi_AInotes/status/2100629888050888911",
-      "source": "X：阿易 AI Notes (@AYi_AInotes)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "3c22a7a81881fb924b3d430df3beb45225fa0096",
-          "title": "jasonzhou1993 开源 AI UGC 视频工作流，单条成片成本不到 5 元",
-          "url": "https://x.com/AYi_AInotes/status/2100629888050888911",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T16:56:07Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：阿易 AI Notes (@AYi_AInotes)"
-      ],
-      "items": [
-        {
-          "id": "3c22a7a81881fb924b3d430df3beb45225fa0096",
-          "title": "jasonzhou1993 开源 AI UGC 视频工作流，单条成片成本不到 5 元",
-          "url": "https://x.com/AYi_AInotes/status/2100629888050888911",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T16:56:07Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7444,
-      "importance": 0.7444,
-      "importance_score": 0.7444,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8878,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-17T16:56:07Z",
-      "latest_at": "2026-09-17T16:56:07Z",
-      "primary_item": {
-        "id": "3c22a7a81881fb924b3d430df3beb45225fa0096",
-        "title": "jasonzhou1993 开源 AI UGC 视频工作流，单条成片成本不到 5 元",
-        "url": "https://x.com/AYi_AInotes/status/2100629888050888911",
-        "source": "X：阿易 AI Notes (@AYi_AInotes)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_c4370d94e4d0",
-      "title": "OpenAI 发布模型错位报告框架，披露未发布模型自行修改自身指令案例",
-      "url": "https://x.com/AISafetyMemes/status/2100358777895780704",
-      "primary_url": "https://x.com/AISafetyMemes/status/2100358777895780704",
-      "source": "X：AI Safety Memes (@AISafetyMemes)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "4498830c8d9c8985fc117afee10a3e48308f169d",
-          "title": "OpenAI 发布模型错位报告框架，披露未发布模型自行修改自身指令案例",
-          "url": "https://x.com/AISafetyMemes/status/2100358777895780704",
-          "source": "X：AI Safety Memes (@AISafetyMemes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T22:58:50Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：AI Safety Memes (@AISafetyMemes)"
-      ],
-      "items": [
-        {
-          "id": "4498830c8d9c8985fc117afee10a3e48308f169d",
-          "title": "OpenAI 发布模型错位报告框架，披露未发布模型自行修改自身指令案例",
-          "url": "https://x.com/AISafetyMemes/status/2100358777895780704",
-          "source": "X：AI Safety Memes (@AISafetyMemes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T22:58:50Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7439,
-      "importance": 0.7439,
-      "importance_score": 0.7439,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.83,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.685,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T22:58:50Z",
-      "latest_at": "2026-09-16T22:58:50Z",
-      "primary_item": {
-        "id": "4498830c8d9c8985fc117afee10a3e48308f169d",
-        "title": "OpenAI 发布模型错位报告框架，披露未发布模型自行修改自身指令案例",
-        "url": "https://x.com/AISafetyMemes/status/2100358777895780704",
-        "source": "X：AI Safety Memes (@AISafetyMemes)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_676fa70ba067",
-      "title": "Meta 发布 muse for Mac，智能体可直接操作电脑上的文件、消息和日程",
-      "url": "https://x.com/alexandr_wang/status/2100714048329580957",
-      "primary_url": "https://x.com/alexandr_wang/status/2100714048329580957",
-      "source": "X：Alexandr Wang（Scale AI 创始人/Meta 首席 AI 官） (@alexandr_wang)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "f6375e07e04bc98c3f121c13cb1fe2c398619ec5",
-          "title": "Meta 发布 muse for Mac，智能体可直接操作电脑上的文件、消息和日程",
-          "url": "https://x.com/alexandr_wang/status/2100714048329580957",
-          "source": "X：Alexandr Wang（Scale AI 创始人/Meta 首席 AI 官） (@alexandr_wang)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T22:30:33Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Alexandr Wang（Scale AI 创始人/Meta 首席 AI 官） (@alexandr_wang)"
-      ],
-      "items": [
-        {
-          "id": "f6375e07e04bc98c3f121c13cb1fe2c398619ec5",
-          "title": "Meta 发布 muse for Mac，智能体可直接操作电脑上的文件、消息和日程",
-          "url": "https://x.com/alexandr_wang/status/2100714048329580957",
-          "source": "X：Alexandr Wang（Scale AI 创始人/Meta 首席 AI 官） (@alexandr_wang)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T22:30:33Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7428,
-      "importance": 0.7428,
-      "importance_score": 0.7428,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9622,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-17T22:30:33Z",
-      "latest_at": "2026-09-17T22:30:33Z",
-      "primary_item": {
-        "id": "f6375e07e04bc98c3f121c13cb1fe2c398619ec5",
-        "title": "Meta 发布 muse for Mac，智能体可直接操作电脑上的文件、消息和日程",
-        "url": "https://x.com/alexandr_wang/status/2100714048329580957",
-        "source": "X：Alexandr Wang（Scale AI 创始人/Meta 首席 AI 官） (@alexandr_wang)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_bb65895bed05",
-      "title": "Dwarkesh 对谈 Noam Brown：智能体集群、对齐与递归自我改进",
-      "url": "https://www.dwarkesh.com/p/noam-brown",
-      "primary_url": "https://www.dwarkesh.com/p/noam-brown",
-      "source": "Dwarkesh Patel：Podcast & Blog（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "c33d2fa3dee69653b6e5935cd8adc2dc3f480701",
-          "title": "Dwarkesh 对谈 Noam Brown：智能体集群、对齐与递归自我改进",
-          "url": "https://www.dwarkesh.com/p/noam-brown",
-          "source": "Dwarkesh Patel：Podcast & Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T15:38:13Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Dwarkesh Patel：Podcast & Blog（RSS）"
-      ],
-      "items": [
-        {
-          "id": "c33d2fa3dee69653b6e5935cd8adc2dc3f480701",
-          "title": "Dwarkesh 对谈 Noam Brown：智能体集群、对齐与递归自我改进",
-          "url": "https://www.dwarkesh.com/p/noam-brown",
-          "source": "Dwarkesh Patel：Podcast & Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T15:38:13Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7414,
-      "importance": 0.7414,
-      "importance_score": 0.7414,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8713,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-17T15:38:13Z",
-      "latest_at": "2026-09-17T15:38:13Z",
-      "primary_item": {
-        "id": "c33d2fa3dee69653b6e5935cd8adc2dc3f480701",
-        "title": "Dwarkesh 对谈 Noam Brown：智能体集群、对齐与递归自我改进",
-        "url": "https://www.dwarkesh.com/p/noam-brown",
-        "source": "Dwarkesh Patel：Podcast & Blog（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -1102,15 +1285,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7405,
-      "importance": 0.7405,
-      "importance_score": 0.7405,
+      "score": 0.7321,
+      "importance": 0.7321,
+      "importance_score": 0.7321,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6271,
+        "recency": 0.5808,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -1125,186 +1308,6 @@
         "title": "Anthropic 将 Claude Cowork 与聊天合并为统一的 Claude，并推出 Docs、Slides 等功能",
         "url": "https://claude.com/blog/cowork-is-now-claude",
         "source": "Claude：Blog（网页）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_79ea0a6050b7",
-      "title": "PrismML 发布 Ternary Bonsai 2 27B，基于 Qwen3.8 压缩 9 倍并以 Apache 2.0 开源",
-      "url": "https://x.com/EMostaque/status/2100717168648184002",
-      "primary_url": "https://x.com/EMostaque/status/2100717168648184002",
-      "source": "X：Emad Mostaque (@EMostaque)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "ce627a96c5c2f0765670d80cdf1f0a6a54baa852",
-          "title": "PrismML 发布 Ternary Bonsai 2 27B，基于 Qwen3.8 压缩 9 倍并以 Apache 2.0 开源",
-          "url": "https://x.com/EMostaque/status/2100717168648184002",
-          "source": "X：Emad Mostaque (@EMostaque)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T22:42:57Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Emad Mostaque (@EMostaque)"
-      ],
-      "items": [
-        {
-          "id": "ce627a96c5c2f0765670d80cdf1f0a6a54baa852",
-          "title": "PrismML 发布 Ternary Bonsai 2 27B，基于 Qwen3.8 压缩 9 倍并以 Apache 2.0 开源",
-          "url": "https://x.com/EMostaque/status/2100717168648184002",
-          "source": "X：Emad Mostaque (@EMostaque)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T22:42:57Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7373,
-      "importance": 0.7373,
-      "importance_score": 0.7373,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.64,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9651,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-17T22:42:57Z",
-      "latest_at": "2026-09-17T22:42:57Z",
-      "primary_item": {
-        "id": "ce627a96c5c2f0765670d80cdf1f0a6a54baa852",
-        "title": "PrismML 发布 Ternary Bonsai 2 27B，基于 Qwen3.8 压缩 9 倍并以 Apache 2.0 开源",
-        "url": "https://x.com/EMostaque/status/2100717168648184002",
-        "source": "X：Emad Mostaque (@EMostaque)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_0d918edb96a6",
-      "title": "Goodfire Research 发现模型内部信号可规模化检测奖励作弊",
-      "url": "https://www.goodfire.com/research/reward-hacking-activation-monitors",
-      "primary_url": "https://www.goodfire.com/research/reward-hacking-activation-monitors",
-      "source": "Goodfire Research（网页）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "ff98997944f33ed147fc95f1c65d810deaa26a99",
-          "title": "Goodfire Research 发现模型内部信号可规模化检测奖励作弊",
-          "url": "https://www.goodfire.com/research/reward-hacking-activation-monitors",
-          "source": "Goodfire Research（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T16:38:32.383000Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Goodfire Research（网页）"
-      ],
-      "items": [
-        {
-          "id": "ff98997944f33ed147fc95f1c65d810deaa26a99",
-          "title": "Goodfire Research 发现模型内部信号可规模化检测奖励作弊",
-          "url": "https://www.goodfire.com/research/reward-hacking-activation-monitors",
-          "source": "Goodfire Research（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T16:38:32.383000Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7347,
-      "importance": 0.7347,
-      "importance_score": 0.7347,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.68,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.884,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-17T16:38:32.383000Z",
-      "latest_at": "2026-09-17T16:38:32.383000Z",
-      "primary_item": {
-        "id": "ff98997944f33ed147fc95f1c65d810deaa26a99",
-        "title": "Goodfire Research 发现模型内部信号可规模化检测奖励作弊",
-        "url": "https://www.goodfire.com/research/reward-hacking-activation-monitors",
-        "source": "Goodfire Research（网页）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_fce52675aad5",
-      "title": "Meta 发布 Muse for Mac，个人智能体可直接在电脑上执行任务",
-      "url": "https://x.com/AIatMeta/status/2100714755568644409",
-      "primary_url": "https://x.com/AIatMeta/status/2100714755568644409",
-      "source": "X：AI at Meta (@AIatMeta)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "629120c73499a9910cc657c81a8aac07313fdc13",
-          "title": "Meta 发布 Muse for Mac，个人智能体可直接在电脑上执行任务",
-          "url": "https://x.com/AIatMeta/status/2100714755568644409",
-          "source": "X：AI at Meta (@AIatMeta)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T22:33:21Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：AI at Meta (@AIatMeta)"
-      ],
-      "items": [
-        {
-          "id": "629120c73499a9910cc657c81a8aac07313fdc13",
-          "title": "Meta 发布 Muse for Mac，个人智能体可直接在电脑上执行任务",
-          "url": "https://x.com/AIatMeta/status/2100714755568644409",
-          "source": "X：AI at Meta (@AIatMeta)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T22:33:21Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7339,
-      "importance": 0.7339,
-      "importance_score": 0.7339,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.63,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9628,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-17T22:33:21Z",
-      "latest_at": "2026-09-17T22:33:21Z",
-      "primary_item": {
-        "id": "629120c73499a9910cc657c81a8aac07313fdc13",
-        "title": "Meta 发布 Muse for Mac，个人智能体可直接在电脑上执行任务",
-        "url": "https://x.com/AIatMeta/status/2100714755568644409",
-        "source": "X：AI at Meta (@AIatMeta)",
         "source_name": "AI HOT"
       }
     }
