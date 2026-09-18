@@ -6,7 +6,7 @@
 
 - 同一 `siteId=aihot`。推特栏 = X 原文；AI HOT 栏 = `aihot_selected`。采集 `mode=selected` 再 `mode=all`。发布只藏「既不是 X、也不是精选」的旧噪音。
 - PR #61 已合 `master`（`e3fa3200`）。脚本戳 `aihot-split-0915a`。不要在本机改 `data/**`。
-- 工作台网页必须留下精选标记，单靠拆栏过滤不够：PR #123 修了 `parseItem`。NUC 工作台已快进。鸿蒙解析本来就留字段；本轮未再装 App 包。
+- 工作台网页必须留下精选标记，单靠拆栏过滤不够：PR #123 修了 `parseItem`。NUC 工作台已快进。鸿蒙解析本来就留字段。2026-09-18 真机已装工作台调试包 `4e1396d`，用户确认有推特栏；AGC 未做。细节在工作台仓。
 - 本仓无活跃四文件。下一需求先读 PROJECT_STATE.md、CONTEXT.md、`docs/SOURCE_COVERAGE.md`。
 
 ## AI HOT 全部动态作未读收件箱（2026-09-14，已验收）
