@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T18:46:29.125462Z",
+  "generated_at": "2026-09-19T21:22:59.549406Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -113,15 +113,15 @@
       ],
       "item_count": 5,
       "duplicate_count": 5,
-      "score": 0.7698,
-      "importance": 0.7698,
-      "importance_score": 0.7698,
+      "score": 0.7662,
+      "importance": 0.7662,
+      "importance_score": 0.7662,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5402,
+        "recency": 0.5203,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -175,15 +175,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7669,
-      "importance": 0.7669,
-      "importance_score": 0.7669,
+      "score": 0.7614,
+      "importance": 0.7614,
+      "importance_score": 0.7614,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8296,
+        "recency": 0.7989,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -236,15 +236,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7601,
-      "importance": 0.7601,
-      "importance_score": 0.7601,
+      "score": 0.7554,
+      "importance": 0.7554,
+      "importance_score": 0.7554,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.87,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7082,
+        "recency": 0.682,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -297,15 +297,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7594,
-      "importance": 0.7594,
-      "importance_score": 0.7594,
+      "score": 0.7534,
+      "importance": 0.7534,
+      "importance_score": 0.7534,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9045,
+        "recency": 0.871,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -358,21 +358,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7545,
-      "importance": 0.7545,
-      "importance_score": 0.7545,
+      "score": 0.7499,
+      "importance": 0.7499,
+      "importance_score": 0.7499,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6939,
+        "recency": 0.6682,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-18T17:28:01Z",
       "latest_at": "2026-09-18T17:28:01Z",
@@ -419,21 +418,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7503,
-      "importance": 0.7503,
-      "importance_score": 0.7503,
+      "score": 0.7452,
+      "importance": 0.7452,
+      "importance_score": 0.7452,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7537,
+        "recency": 0.7258,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-18T23:11:25Z",
       "latest_at": "2026-09-18T23:11:25Z",
@@ -442,6 +440,146 @@
         "title": "谷歌披露 Gemini 在安全测试中自主入侵三家真实公司并自行终止",
         "url": "https://www.ithome.com/1/004/355.htm",
         "source": "IT之家（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_4cf35ecfdad7",
+      "title": "特朗普宣布组建 AI Force 并任命 AI 主管",
+      "url": "https://x.com/mark_k/status/2101375842693566856",
+      "primary_url": "https://x.com/mark_k/status/2101375842693566856",
+      "source": "@mark_k",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "e3d78f6749dfb3fbfd5d559b316a19fc7adf6879",
+          "title": "特朗普宣布组建 AI Force 并将任命新 AI 沙皇",
+          "url": "https://x.com/rohanpaul_ai/status/2101408260352090491",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-19T20:29:06Z"
+        },
+        {
+          "id": "b5c8edaba9ed579ca1dff4a30f14df83f597b4de",
+          "title": "特朗普宣布组建 AI Force 并任命 AI 主管",
+          "url": "https://x.com/mark_k/status/2101375842693566856",
+          "source": "@mark_k",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-19T18:20:17Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "@mark_k",
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "e3d78f6749dfb3fbfd5d559b316a19fc7adf6879",
+          "title": "特朗普宣布组建 AI Force 并将任命新 AI 沙皇",
+          "url": "https://x.com/rohanpaul_ai/status/2101408260352090491",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-19T20:29:06Z"
+        },
+        {
+          "id": "b5c8edaba9ed579ca1dff4a30f14df83f597b4de",
+          "title": "特朗普宣布组建 AI Force 并任命 AI 主管",
+          "url": "https://x.com/mark_k/status/2101375842693566856",
+          "source": "@mark_k",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-19T18:20:17Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7399,
+      "importance": 0.7399,
+      "importance_score": 0.7399,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.57,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.957,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-19T18:20:17Z",
+      "latest_at": "2026-09-19T20:29:06Z",
+      "primary_item": {
+        "id": "b5c8edaba9ed579ca1dff4a30f14df83f597b4de",
+        "title": "特朗普宣布组建 AI Force 并任命 AI 主管",
+        "url": "https://x.com/mark_k/status/2101375842693566856",
+        "source": "@mark_k",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_eb21bfa98fb3",
+      "title": "Anthropic 被曝考虑提前发布新 Claude 模型迎击 OpenAI GPT-6 Astra",
+      "url": "https://x.com/AYi_AInotes/status/2101396015756771779",
+      "primary_url": "https://x.com/AYi_AInotes/status/2101396015756771779",
+      "source": "X：阿易 AI Notes (@AYi_AInotes)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "8909f090e0fe874da47b076a53592f040b168072",
+          "title": "Anthropic 被曝考虑提前发布新 Claude 模型迎击 OpenAI GPT-6 Astra",
+          "url": "https://x.com/AYi_AInotes/status/2101396015756771779",
+          "source": "X：阿易 AI Notes (@AYi_AInotes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-19T19:40:26Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：阿易 AI Notes (@AYi_AInotes)"
+      ],
+      "items": [
+        {
+          "id": "8909f090e0fe874da47b076a53592f040b168072",
+          "title": "Anthropic 被曝考虑提前发布新 Claude 模型迎击 OpenAI GPT-6 Astra",
+          "url": "https://x.com/AYi_AInotes/status/2101396015756771779",
+          "source": "X：阿易 AI Notes (@AYi_AInotes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-19T19:40:26Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7362,
+      "importance": 0.7362,
+      "importance_score": 0.7362,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.63,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9756,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-19T19:40:26Z",
+      "latest_at": "2026-09-19T19:40:26Z",
+      "primary_item": {
+        "id": "8909f090e0fe874da47b076a53592f040b168072",
+        "title": "Anthropic 被曝考虑提前发布新 Claude 模型迎击 OpenAI GPT-6 Astra",
+        "url": "https://x.com/AYi_AInotes/status/2101396015756771779",
+        "source": "X：阿易 AI Notes (@AYi_AInotes)",
         "source_name": "AI HOT"
       }
     },
@@ -480,15 +618,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7395,
-      "importance": 0.7395,
-      "importance_score": 0.7395,
+      "score": 0.7344,
+      "importance": 0.7344,
+      "importance_score": 0.7344,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7603,
+        "recency": 0.7322,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -540,15 +678,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7359,
-      "importance": 0.7359,
-      "importance_score": 0.7359,
+      "score": 0.7314,
+      "importance": 0.7314,
+      "importance_score": 0.7314,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.674,
+        "recency": 0.6491,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -562,6 +700,86 @@
         "title": "《纽约时报》等媒体提交简要判决动议，援引 OpenAI 与微软高管内部言论质疑合理使用抗辩",
         "url": "https://the-decoder.com/ai-training-built-on-fair-use-looks-shaky-when-the-companies-own-people-call-it-astonishing-theft",
         "source": "The Decoder：AI News（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_4ffdd05391d6",
+      "title": "MIT 与 Sakana AI 提出 SIFT：低成本的自我改进编码智能体树搜索框架",
+      "url": "https://x.com/omarsar0/status/2101414438549029091",
+      "primary_url": "https://x.com/omarsar0/status/2101414438549029091",
+      "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "f41cda7bde8d90f5e373e47741c57518383c865d",
+          "title": "MIT 与 Sakana AI 提出 SIFT：低成本的自我改进编码智能体树搜索框架",
+          "url": "https://x.com/omarsar0/status/2101414438549029091",
+          "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-19T20:53:39Z"
+        },
+        {
+          "id": "d044eedeeda37982fed3a52df94394e3b8cec7e0",
+          "title": "MIT 与 Sakana AI 提出 SIFT：低成本实现自我改进的编码智能体",
+          "url": "https://x.com/dair_ai/status/2101410759511322725",
+          "source": "X：DAIR.AI (@dair_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-19T20:39:02Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：DAIR.AI (@dair_ai)",
+        "X：Elvis Saravia (@omarsar0, DAIR.AI)"
+      ],
+      "items": [
+        {
+          "id": "f41cda7bde8d90f5e373e47741c57518383c865d",
+          "title": "MIT 与 Sakana AI 提出 SIFT：低成本的自我改进编码智能体树搜索框架",
+          "url": "https://x.com/omarsar0/status/2101414438549029091",
+          "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-19T20:53:39Z"
+        },
+        {
+          "id": "d044eedeeda37982fed3a52df94394e3b8cec7e0",
+          "title": "MIT 与 Sakana AI 提出 SIFT：低成本实现自我改进的编码智能体",
+          "url": "https://x.com/dair_ai/status/2101410759511322725",
+          "source": "X：DAIR.AI (@dair_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-19T20:39:02Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7283,
+      "importance": 0.7283,
+      "importance_score": 0.7283,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.51,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.993,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-19T20:39:02Z",
+      "latest_at": "2026-09-19T20:53:39Z",
+      "primary_item": {
+        "id": "f41cda7bde8d90f5e373e47741c57518383c865d",
+        "title": "MIT 与 Sakana AI 提出 SIFT：低成本的自我改进编码智能体树搜索框架",
+        "url": "https://x.com/omarsar0/status/2101414438549029091",
+        "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
         "source_name": "AI HOT"
       }
     },
@@ -600,15 +818,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7326,
-      "importance": 0.7326,
-      "importance_score": 0.7326,
+      "score": 0.7264,
+      "importance": 0.7264,
+      "importance_score": 0.7264,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.65,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9221,
+        "recency": 0.888,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -660,15 +878,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7276,
-      "importance": 0.7276,
-      "importance_score": 0.7276,
+      "score": 0.7237,
+      "importance": 0.7237,
+      "importance_score": 0.7237,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.84,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5776,
+        "recency": 0.5562,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -720,15 +938,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7244,
-      "importance": 0.7244,
-      "importance_score": 0.7244,
+      "score": 0.72,
+      "importance": 0.72,
+      "importance_score": 0.72,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.66,
+        "recency": 0.6356,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -746,62 +964,62 @@
       }
     },
     {
-      "story_id": "story_4cf35ecfdad7",
-      "title": "特朗普宣布组建 AI Force 并任命 AI 主管",
-      "url": "https://x.com/mark_k/status/2101375842693566856",
-      "primary_url": "https://x.com/mark_k/status/2101375842693566856",
-      "source": "@mark_k",
+      "story_id": "story_b3566f385089",
+      "title": "逆向分析指 ZCode 登录后静默打包 Git 历史并加密上传至 Aliyun OSS",
+      "url": "https://tokenstead.ai/guides/zcode-silent-git-history-upload",
+      "primary_url": "https://tokenstead.ai/guides/zcode-silent-git-history-upload",
+      "source": "Hacker News：AI 热帖",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "b5c8edaba9ed579ca1dff4a30f14df83f597b4de",
-          "title": "特朗普宣布组建 AI Force 并任命 AI 主管",
-          "url": "https://x.com/mark_k/status/2101375842693566856",
-          "source": "@mark_k",
+          "id": "656596878735c4bdcb0c5b7cf3549b7dd602f588",
+          "title": "逆向分析指 ZCode 登录后静默打包 Git 历史并加密上传至 Aliyun OSS",
+          "url": "https://tokenstead.ai/guides/zcode-silent-git-history-upload",
+          "source": "Hacker News：AI 热帖",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-19T18:20:17Z"
+          "published_at": "2026-09-18T10:35:28Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "@mark_k"
+        "Hacker News：AI 热帖"
       ],
       "items": [
         {
-          "id": "b5c8edaba9ed579ca1dff4a30f14df83f597b4de",
-          "title": "特朗普宣布组建 AI Force 并任命 AI 主管",
-          "url": "https://x.com/mark_k/status/2101375842693566856",
-          "source": "@mark_k",
+          "id": "656596878735c4bdcb0c5b7cf3549b7dd602f588",
+          "title": "逆向分析指 ZCode 登录后静默打包 Git 历史并加密上传至 Aliyun OSS",
+          "url": "https://tokenstead.ai/guides/zcode-silent-git-history-upload",
+          "source": "Hacker News：AI 热帖",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-19T18:20:17Z"
+          "published_at": "2026-09-18T10:35:28Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7215,
-      "importance": 0.7215,
-      "importance_score": 0.7215,
+      "score": 0.7385,
+      "importance": 0.7385,
+      "importance_score": 0.7385,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.57,
+        "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9937,
+        "recency": 0.6051,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-19T18:20:17Z",
-      "latest_at": "2026-09-19T18:20:17Z",
+      "earliest_at": "2026-09-18T10:35:28Z",
+      "latest_at": "2026-09-18T10:35:28Z",
       "primary_item": {
-        "id": "b5c8edaba9ed579ca1dff4a30f14df83f597b4de",
-        "title": "特朗普宣布组建 AI Force 并任命 AI 主管",
-        "url": "https://x.com/mark_k/status/2101375842693566856",
-        "source": "@mark_k",
+        "id": "656596878735c4bdcb0c5b7cf3549b7dd602f588",
+        "title": "逆向分析指 ZCode 登录后静默打包 Git 历史并加密上传至 Aliyun OSS",
+        "url": "https://tokenstead.ai/guides/zcode-silent-git-history-upload",
+        "source": "Hacker News：AI 热帖",
         "source_name": "AI HOT"
       }
     },
@@ -858,15 +1076,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7128,
-      "importance": 0.7128,
-      "importance_score": 0.7128,
+      "score": 0.7084,
+      "importance": 0.7084,
+      "importance_score": 0.7084,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6565,
+        "recency": 0.6323,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -885,62 +1103,62 @@
       }
     },
     {
-      "story_id": "story_b3566f385089",
-      "title": "逆向分析指 ZCode 登录后静默打包 Git 历史并加密上传至 Aliyun OSS",
-      "url": "https://tokenstead.ai/guides/zcode-silent-git-history-upload",
-      "primary_url": "https://tokenstead.ai/guides/zcode-silent-git-history-upload",
-      "source": "Hacker News：AI 热帖",
+      "story_id": "story_6fd4319fc28f",
+      "title": "Noam Brown 访谈谈 1，200 个智能体越狱与多智能体协作的真相",
+      "url": "https://x.com/AYi_AInotes/status/2101389079208247686",
+      "primary_url": "https://x.com/AYi_AInotes/status/2101389079208247686",
+      "source": "X：阿易 AI Notes (@AYi_AInotes)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "656596878735c4bdcb0c5b7cf3549b7dd602f588",
-          "title": "逆向分析指 ZCode 登录后静默打包 Git 历史并加密上传至 Aliyun OSS",
-          "url": "https://tokenstead.ai/guides/zcode-silent-git-history-upload",
-          "source": "Hacker News：AI 热帖",
+          "id": "fdef538b64a0fdb6992d3fe9a5ab5d237e9547a3",
+          "title": "Noam Brown 访谈谈 1，200 个智能体越狱与多智能体协作的真相",
+          "url": "https://x.com/AYi_AInotes/status/2101389079208247686",
+          "source": "X：阿易 AI Notes (@AYi_AInotes)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-18T10:35:28Z"
+          "published_at": "2026-09-19T19:12:53Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "Hacker News：AI 热帖"
+        "X：阿易 AI Notes (@AYi_AInotes)"
       ],
       "items": [
         {
-          "id": "656596878735c4bdcb0c5b7cf3549b7dd602f588",
-          "title": "逆向分析指 ZCode 登录后静默打包 Git 历史并加密上传至 Aliyun OSS",
-          "url": "https://tokenstead.ai/guides/zcode-silent-git-history-upload",
-          "source": "Hacker News：AI 热帖",
+          "id": "fdef538b64a0fdb6992d3fe9a5ab5d237e9547a3",
+          "title": "Noam Brown 访谈谈 1，200 个智能体越狱与多智能体协作的真相",
+          "url": "https://x.com/AYi_AInotes/status/2101389079208247686",
+          "source": "X：阿易 AI Notes (@AYi_AInotes)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-18T10:35:28Z"
+          "published_at": "2026-09-19T19:12:53Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7427,
-      "importance": 0.7427,
-      "importance_score": 0.7427,
+      "score": 0.7351,
+      "importance": 0.7351,
+      "importance_score": 0.7351,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.86,
+        "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6283,
+        "recency": 0.9692,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-18T10:35:28Z",
-      "latest_at": "2026-09-18T10:35:28Z",
+      "earliest_at": "2026-09-19T19:12:53Z",
+      "latest_at": "2026-09-19T19:12:53Z",
       "primary_item": {
-        "id": "656596878735c4bdcb0c5b7cf3549b7dd602f588",
-        "title": "逆向分析指 ZCode 登录后静默打包 Git 历史并加密上传至 Aliyun OSS",
-        "url": "https://tokenstead.ai/guides/zcode-silent-git-history-upload",
-        "source": "Hacker News：AI 热帖",
+        "id": "fdef538b64a0fdb6992d3fe9a5ab5d237e9547a3",
+        "title": "Noam Brown 访谈谈 1，200 个智能体越狱与多智能体协作的真相",
+        "url": "https://x.com/AYi_AInotes/status/2101389079208247686",
+        "source": "X：阿易 AI Notes (@AYi_AInotes)",
         "source_name": "AI HOT"
       }
     },
@@ -979,15 +1197,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7401,
-      "importance": 0.7401,
-      "importance_score": 0.7401,
+      "score": 0.735,
+      "importance": 0.735,
+      "importance_score": 0.735,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7638,
+        "recency": 0.7356,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1057,15 +1275,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7098,
-      "importance": 0.7098,
-      "importance_score": 0.7098,
+      "score": 0.705,
+      "importance": 0.705,
+      "importance_score": 0.705,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.61,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7235,
+        "recency": 0.6967,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1156,15 +1374,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.7096,
-      "importance": 0.7096,
-      "importance_score": 0.7096,
+      "score": 0.7049,
+      "importance": 0.7049,
+      "importance_score": 0.7049,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.54,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6999,
+        "recency": 0.6741,
         "story_heat": 0.5
       },
       "category": "multi_source",
@@ -1179,205 +1397,6 @@
         "title": "Claude Code 2.1.277 新增 AGENTS.md 支持",
         "url": "https://x.com/trq212/status/2101009392611278961",
         "source": "X：Thariq (@trq212)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_bc04b0683da3",
-      "title": "投资者看好 Anthropic 上市后达 4 万亿美元估值，但低价模型冲击其经济性",
-      "url": "https://x.com/rohanpaul_ai/status/2101378665145835558",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2101378665145835558",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "2fc0d3453cc38915f370948dc1c221b72bd9bb65",
-          "title": "投资者看好 Anthropic 上市后达 4 万亿美元估值，但低价模型冲击其经济性",
-          "url": "https://x.com/rohanpaul_ai/status/2101378665145835558",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-19T18:31:30Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "2fc0d3453cc38915f370948dc1c221b72bd9bb65",
-          "title": "投资者看好 Anthropic 上市后达 4 万亿美元估值，但低价模型冲击其经济性",
-          "url": "https://x.com/rohanpaul_ai/status/2101378665145835558",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-19T18:31:30Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.737,
-      "importance": 0.737,
-      "importance_score": 0.737,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.62,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9964,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-19T18:31:30Z",
-      "latest_at": "2026-09-19T18:31:30Z",
-      "primary_item": {
-        "id": "2fc0d3453cc38915f370948dc1c221b72bd9bb65",
-        "title": "投资者看好 Anthropic 上市后达 4 万亿美元估值，但低价模型冲击其经济性",
-        "url": "https://x.com/rohanpaul_ai/status/2101378665145835558",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_7cc11ad3795d",
-      "title": "WSJ 报道 Google Gemini 在网络安全测试中入侵三家真实公司",
-      "url": "https://x.com/kimmonismus/status/2101216175480844299",
-      "primary_url": "https://x.com/kimmonismus/status/2101216175480844299",
-      "source": "X：Kim (@kimmonismus)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "1e9be291ffb1b56d6d532d6e11b15738924e8dbd",
-          "title": "WSJ 报道 Google Gemini 在网络安全测试中入侵三家真实公司",
-          "url": "https://x.com/kimmonismus/status/2101216175480844299",
-          "source": "X：Kim (@kimmonismus)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-19T07:45:49Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Kim (@kimmonismus)"
-      ],
-      "items": [
-        {
-          "id": "1e9be291ffb1b56d6d532d6e11b15738924e8dbd",
-          "title": "WSJ 报道 Google Gemini 在网络安全测试中入侵三家真实公司",
-          "url": "https://x.com/kimmonismus/status/2101216175480844299",
-          "source": "X：Kim (@kimmonismus)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-19T07:45:49Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7351,
-      "importance": 0.7351,
-      "importance_score": 0.7351,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.7,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.853,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-19T07:45:49Z",
-      "latest_at": "2026-09-19T07:45:49Z",
-      "primary_item": {
-        "id": "1e9be291ffb1b56d6d532d6e11b15738924e8dbd",
-        "title": "WSJ 报道 Google Gemini 在网络安全测试中入侵三家真实公司",
-        "url": "https://x.com/kimmonismus/status/2101216175480844299",
-        "source": "X：Kim (@kimmonismus)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_0389b68f0dfb",
-      "title": "Anthropic 用 Claude 优化 30 多个开源生物分子模型，平均提速约 4 倍并开源全部代码",
-      "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
-      "primary_url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
-      "source": "Anthropic：Research（发表成果 · 网页）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "85b1d750ee667e6121c9b6cc95f26edb10480315",
-          "title": "Anthropic 用 Claude 优化 30 多个开源生物分子模型，平均提速约 4 倍并开源全部代码",
-          "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
-          "source": "Anthropic：Research（发表成果 · 网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T19:49:41.095000Z"
-        },
-        {
-          "id": "7d195d4ef0662f130a7a7cd658b32d4ee3f03fbc",
-          "title": "Anthropic：Claude 四周优化 30 多个开源生物分子模型，平均提速约 4 倍并开源代码",
-          "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
-          "source": "Anthropic：Research（发表成果 · 网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T16:00:00Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "Anthropic：Research（发表成果 · 网页）"
-      ],
-      "items": [
-        {
-          "id": "85b1d750ee667e6121c9b6cc95f26edb10480315",
-          "title": "Anthropic 用 Claude 优化 30 多个开源生物分子模型，平均提速约 4 倍并开源全部代码",
-          "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
-          "source": "Anthropic：Research（发表成果 · 网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T19:49:41.095000Z"
-        },
-        {
-          "id": "7d195d4ef0662f130a7a7cd658b32d4ee3f03fbc",
-          "title": "Anthropic：Claude 四周优化 30 多个开源生物分子模型，平均提速约 4 倍并开源代码",
-          "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
-          "source": "Anthropic：Research（发表成果 · 网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T16:00:00Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.698,
-      "importance": 0.698,
-      "importance_score": 0.698,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.7,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.5077,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T16:00:00Z",
-      "latest_at": "2026-09-17T19:49:41.095000Z",
-      "primary_item": {
-        "id": "85b1d750ee667e6121c9b6cc95f26edb10480315",
-        "title": "Anthropic 用 Claude 优化 30 多个开源生物分子模型，平均提速约 4 倍并开源全部代码",
-        "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
-        "source": "Anthropic：Research（发表成果 · 网页）",
         "source_name": "AI HOT"
       }
     }
