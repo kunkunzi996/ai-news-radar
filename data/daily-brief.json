@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-20T21:23:31.252350Z",
+  "generated_at": "2026-09-20T23:25:05.483154Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -131,15 +131,15 @@
       ],
       "item_count": 6,
       "duplicate_count": 6,
-      "score": 0.8056,
-      "importance": 0.8056,
-      "importance_score": 0.8056,
+      "score": 0.8017,
+      "importance": 0.8017,
+      "importance_score": 0.8017,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7558,
+        "recency": 0.734,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -193,15 +193,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7829,
-      "importance": 0.7829,
-      "importance_score": 0.7829,
+      "score": 0.7778,
+      "importance": 0.7778,
+      "importance_score": 0.7778,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.985,
+        "recency": 0.9566,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -254,15 +254,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7712,
-      "importance": 0.7712,
-      "importance_score": 0.7712,
+      "score": 0.7663,
+      "importance": 0.7663,
+      "importance_score": 0.7663,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9535,
+        "recency": 0.926,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -315,15 +315,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7475,
-      "importance": 0.7475,
-      "importance_score": 0.7475,
+      "score": 0.7428,
+      "importance": 0.7428,
+      "importance_score": 0.7428,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.905,
+        "recency": 0.8789,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -375,15 +375,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7448,
-      "importance": 0.7448,
-      "importance_score": 0.7448,
+      "score": 0.7402,
+      "importance": 0.7402,
+      "importance_score": 0.7402,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8732,
+        "recency": 0.848,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -397,66 +397,6 @@
         "title": "Qwen 开源 Qwen-Image-2.1：7B 统一生成与编辑并原生支持透明图像",
         "url": "https://qwen.ai/blog?id=qwen-image-2.1",
         "source": "Qwen：Blog Retrieval（API）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_ef677db36fad",
-      "title": "AI 加速发现软件漏洞，WIRED 称今年 CVE 数量近翻倍",
-      "url": "https://x.com/mark_k/status/2101769845192692046",
-      "primary_url": "https://x.com/mark_k/status/2101769845192692046",
-      "source": "@mark_k",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "a2e31cf725b5843b31cb1ae0cbaea18d8f646c21",
-          "title": "AI 加速发现软件漏洞，WIRED 称今年 CVE 数量近翻倍",
-          "url": "https://x.com/mark_k/status/2101769845192692046",
-          "source": "@mark_k",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-20T20:25:54Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "@mark_k"
-      ],
-      "items": [
-        {
-          "id": "a2e31cf725b5843b31cb1ae0cbaea18d8f646c21",
-          "title": "AI 加速发现软件漏洞，WIRED 称今年 CVE 数量近翻倍",
-          "url": "https://x.com/mark_k/status/2101769845192692046",
-          "source": "@mark_k",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-20T20:25:54Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7441,
-      "importance": 0.7441,
-      "importance_score": 0.7441,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.65,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9862,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-20T20:25:54Z",
-      "latest_at": "2026-09-20T20:25:54Z",
-      "primary_item": {
-        "id": "a2e31cf725b5843b31cb1ae0cbaea18d8f646c21",
-        "title": "AI 加速发现软件漏洞，WIRED 称今年 CVE 数量近翻倍",
-        "url": "https://x.com/mark_k/status/2101769845192692046",
-        "source": "@mark_k",
         "source_name": "AI HOT"
       }
     },
@@ -495,15 +435,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7439,
-      "importance": 0.7439,
-      "importance_score": 0.7439,
+      "score": 0.7394,
+      "importance": 0.7394,
+      "importance_score": 0.7394,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8681,
+        "recency": 0.8431,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -517,6 +457,66 @@
         "title": "Anthropic 在湾区建成湿实验室，推进 AI 药物研发",
         "url": "https://x.com/frxiaobei/status/2101636489339625875",
         "source": "X：小北 (@frxiaobei)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_ef677db36fad",
+      "title": "AI 加速发现软件漏洞，WIRED 称今年 CVE 数量近翻倍",
+      "url": "https://x.com/mark_k/status/2101769845192692046",
+      "primary_url": "https://x.com/mark_k/status/2101769845192692046",
+      "source": "@mark_k",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "a2e31cf725b5843b31cb1ae0cbaea18d8f646c21",
+          "title": "AI 加速发现软件漏洞，WIRED 称今年 CVE 数量近翻倍",
+          "url": "https://x.com/mark_k/status/2101769845192692046",
+          "source": "@mark_k",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-20T20:25:54Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "@mark_k"
+      ],
+      "items": [
+        {
+          "id": "a2e31cf725b5843b31cb1ae0cbaea18d8f646c21",
+          "title": "AI 加速发现软件漏洞，WIRED 称今年 CVE 数量近翻倍",
+          "url": "https://x.com/mark_k/status/2101769845192692046",
+          "source": "@mark_k",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-20T20:25:54Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.739,
+      "importance": 0.739,
+      "importance_score": 0.739,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.65,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9578,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-20T20:25:54Z",
+      "latest_at": "2026-09-20T20:25:54Z",
+      "primary_item": {
+        "id": "a2e31cf725b5843b31cb1ae0cbaea18d8f646c21",
+        "title": "AI 加速发现软件漏洞，WIRED 称今年 CVE 数量近翻倍",
+        "url": "https://x.com/mark_k/status/2101769845192692046",
+        "source": "@mark_k",
         "source_name": "AI HOT"
       }
     },
@@ -555,15 +555,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7401,
-      "importance": 0.7401,
-      "importance_score": 0.7401,
+      "score": 0.7354,
+      "importance": 0.7354,
+      "importance_score": 0.7354,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8971,
+        "recency": 0.8712,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -615,15 +615,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7272,
-      "importance": 0.7272,
-      "importance_score": 0.7272,
+      "score": 0.7224,
+      "importance": 0.7224,
+      "importance_score": 0.7224,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9254,
+        "recency": 0.8988,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -637,66 +637,6 @@
         "title": "SemiAnalysis 考虑在 NVIDIA 收购 HuggingFace 后将部分工作迁移至 ModelScope",
         "url": "https://x.com/SemiAnalysis_/status/2101703331286507887",
         "source": "X：SemiAnalysis (@SemiAnalysis_)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_606320af9467",
-      "title": "StepFun 发布 Step 5 Preview：600B/27B MoE 旗舰模型，1M 上下文，10 月 15 日开放权重",
-      "url": "https://x.com/testingcatalog/status/2101591464916451666",
-      "primary_url": "https://x.com/testingcatalog/status/2101591464916451666",
-      "source": "X：Testing Catalog (@testingcatalog)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "70f5b64ee1ff3b666583fe3346796db0278ce22d",
-          "title": "StepFun 发布 Step 5 Preview：600B/27B MoE 旗舰模型，1M 上下文，10 月 15 日开放权重",
-          "url": "https://x.com/testingcatalog/status/2101591464916451666",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-20T08:37:05Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Testing Catalog (@testingcatalog)"
-      ],
-      "items": [
-        {
-          "id": "70f5b64ee1ff3b666583fe3346796db0278ce22d",
-          "title": "StepFun 发布 Step 5 Preview：600B/27B MoE 旗舰模型，1M 上下文，10 月 15 日开放权重",
-          "url": "https://x.com/testingcatalog/status/2101591464916451666",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-20T08:37:05Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7223,
-      "importance": 0.7223,
-      "importance_score": 0.7223,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.67,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8316,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-20T08:37:05Z",
-      "latest_at": "2026-09-20T08:37:05Z",
-      "primary_item": {
-        "id": "70f5b64ee1ff3b666583fe3346796db0278ce22d",
-        "title": "StepFun 发布 Step 5 Preview：600B/27B MoE 旗舰模型，1M 上下文，10 月 15 日开放权重",
-        "url": "https://x.com/testingcatalog/status/2101591464916451666",
-        "source": "X：Testing Catalog (@testingcatalog)",
         "source_name": "AI HOT"
       }
     },
@@ -735,15 +675,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7438,
-      "importance": 0.7438,
-      "importance_score": 0.7438,
+      "score": 0.739,
+      "importance": 0.739,
+      "importance_score": 0.739,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9177,
+        "recency": 0.8912,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -795,15 +735,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7347,
-      "importance": 0.7347,
-      "importance_score": 0.7347,
+      "score": 0.7309,
+      "importance": 0.7309,
+      "importance_score": 0.7309,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7339,
+        "recency": 0.7128,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -817,6 +757,85 @@
         "title": "纽约时报诉讼文件披露：微软高管称 AI 抓取是人类历史上最大规模的劳动力盗用",
         "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/microsoft-director-called-ai-scraping-the-largest-theft-of-labor-in-human-history-while-openai-head-brands-chatgpt-an-existential-threat-to-publishers-revelations-come-from-legal-briefs-filed-in-nyt-lawsuit",
         "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_1ed3844ff559",
+      "title": "Justin Cormack 用 35 万行 Rust 复盘 AI Agent 评估：从证据开始",
+      "url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
+      "primary_url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
+      "source": "Tessl：产品与工程博客",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "68ad313b83fddd56799e2af8a571b8b04fc6a2a0",
+          "title": "Justin Cormack 用 35 万行 Rust 复盘 AI Agent 评估：从证据开始",
+          "url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
+          "source": "Tessl：产品与工程博客",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T13:38:06.061000Z"
+        },
+        {
+          "id": "da434ca3bd3755d46a71e37bafe99eb4afdefc0d",
+          "title": "Tessl 博客：AI 智能体评估应从证据开始，用 35 万行 Rust 复刻 S3 的实践复盘",
+          "url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
+          "source": "Tessl：产品与工程博客",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T16:00:00Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Tessl：产品与工程博客"
+      ],
+      "items": [
+        {
+          "id": "68ad313b83fddd56799e2af8a571b8b04fc6a2a0",
+          "title": "Justin Cormack 用 35 万行 Rust 复盘 AI Agent 评估：从证据开始",
+          "url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
+          "source": "Tessl：产品与工程博客",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-18T13:38:06.061000Z"
+        },
+        {
+          "id": "da434ca3bd3755d46a71e37bafe99eb4afdefc0d",
+          "title": "Tessl 博客：AI 智能体评估应从证据开始，用 35 万行 Rust 复刻 S3 的实践复盘",
+          "url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
+          "source": "Tessl：产品与工程博客",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T16:00:00Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6727,
+      "importance": 0.6727,
+      "importance_score": 0.6727,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.66,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.4341,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-16T16:00:00Z",
+      "latest_at": "2026-09-18T13:38:06.061000Z",
+      "primary_item": {
+        "id": "68ad313b83fddd56799e2af8a571b8b04fc6a2a0",
+        "title": "Justin Cormack 用 35 万行 Rust 复盘 AI Agent 评估：从证据开始",
+        "url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
+        "source": "Tessl：产品与工程博客",
         "source_name": "AI HOT"
       }
     },
@@ -874,15 +893,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.676,
-      "importance": 0.676,
-      "importance_score": 0.676,
+      "score": 0.6723,
+      "importance": 0.6723,
+      "importance_score": 0.6723,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.51,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.702,
+        "recency": 0.6818,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -897,85 +916,6 @@
         "title": "MIT 与 Sakana AI 提出 SIFT：低成本的自我改进编码智能体树搜索框架",
         "url": "https://x.com/omarsar0/status/2101414438549029091",
         "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_1ed3844ff559",
-      "title": "Justin Cormack 用 35 万行 Rust 复盘 AI Agent 评估：从证据开始",
-      "url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
-      "primary_url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
-      "source": "Tessl：产品与工程博客",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "68ad313b83fddd56799e2af8a571b8b04fc6a2a0",
-          "title": "Justin Cormack 用 35 万行 Rust 复盘 AI Agent 评估：从证据开始",
-          "url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
-          "source": "Tessl：产品与工程博客",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-18T13:38:06.061000Z"
-        },
-        {
-          "id": "da434ca3bd3755d46a71e37bafe99eb4afdefc0d",
-          "title": "Tessl 博客：AI 智能体评估应从证据开始，用 35 万行 Rust 复刻 S3 的实践复盘",
-          "url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
-          "source": "Tessl：产品与工程博客",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T16:00:00Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "Tessl：产品与工程博客"
-      ],
-      "items": [
-        {
-          "id": "68ad313b83fddd56799e2af8a571b8b04fc6a2a0",
-          "title": "Justin Cormack 用 35 万行 Rust 复盘 AI Agent 评估：从证据开始",
-          "url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
-          "source": "Tessl：产品与工程博客",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-18T13:38:06.061000Z"
-        },
-        {
-          "id": "da434ca3bd3755d46a71e37bafe99eb4afdefc0d",
-          "title": "Tessl 博客：AI 智能体评估应从证据开始，用 35 万行 Rust 复刻 S3 的实践复盘",
-          "url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
-          "source": "Tessl：产品与工程博客",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T16:00:00Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6751,
-      "importance": 0.6751,
-      "importance_score": 0.6751,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.447,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T16:00:00Z",
-      "latest_at": "2026-09-18T13:38:06.061000Z",
-      "primary_item": {
-        "id": "68ad313b83fddd56799e2af8a571b8b04fc6a2a0",
-        "title": "Justin Cormack 用 35 万行 Rust 复盘 AI Agent 评估：从证据开始",
-        "url": "https://tessl.io/blog/ai-agent-evaluation-starts-with-evidence",
-        "source": "Tessl：产品与工程博客",
         "source_name": "AI HOT"
       }
     },
@@ -1032,15 +972,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6698,
-      "importance": 0.6698,
-      "importance_score": 0.6698,
+      "score": 0.6685,
+      "importance": 0.6685,
+      "importance_score": 0.6685,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2342,
+        "recency": 0.2274,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1055,6 +995,85 @@
         "title": "Anthropic 将 Claude Cowork 与聊天合并为统一的 Claude，并推出 Docs、Slides 等功能",
         "url": "https://claude.com/blog/cowork-is-now-claude",
         "source": "Claude：Blog（网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_0389b68f0dfb",
+      "title": "Anthropic 用 Claude 优化 30 多个开源生物分子模型，平均提速约 4 倍并开源全部代码",
+      "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+      "primary_url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+      "source": "Anthropic：Research（发表成果 · 网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "85b1d750ee667e6121c9b6cc95f26edb10480315",
+          "title": "Anthropic 用 Claude 优化 30 多个开源生物分子模型，平均提速约 4 倍并开源全部代码",
+          "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+          "source": "Anthropic：Research（发表成果 · 网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T19:49:41.095000Z"
+        },
+        {
+          "id": "7d195d4ef0662f130a7a7cd658b32d4ee3f03fbc",
+          "title": "Anthropic：Claude 四周优化 30 多个开源生物分子模型，平均提速约 4 倍并开源代码",
+          "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+          "source": "Anthropic：Research（发表成果 · 网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T16:00:00Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Anthropic：Research（发表成果 · 网页）"
+      ],
+      "items": [
+        {
+          "id": "85b1d750ee667e6121c9b6cc95f26edb10480315",
+          "title": "Anthropic 用 Claude 优化 30 多个开源生物分子模型，平均提速约 4 倍并开源全部代码",
+          "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+          "source": "Anthropic：Research（发表成果 · 网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-17T19:49:41.095000Z"
+        },
+        {
+          "id": "7d195d4ef0662f130a7a7cd658b32d4ee3f03fbc",
+          "title": "Anthropic：Claude 四周优化 30 多个开源生物分子模型，平均提速约 4 倍并开源代码",
+          "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+          "source": "Anthropic：Research（发表成果 · 网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-16T16:00:00Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.667,
+      "importance": 0.667,
+      "importance_score": 0.667,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.7,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.3357,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-16T16:00:00Z",
+      "latest_at": "2026-09-17T19:49:41.095000Z",
+      "primary_item": {
+        "id": "85b1d750ee667e6121c9b6cc95f26edb10480315",
+        "title": "Anthropic 用 Claude 优化 30 多个开源生物分子模型，平均提速约 4 倍并开源全部代码",
+        "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+        "source": "Anthropic：Research（发表成果 · 网页）",
         "source_name": "AI HOT"
       }
     },
@@ -1131,15 +1150,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.6694,
-      "importance": 0.6694,
-      "importance_score": 0.6694,
+      "score": 0.6669,
+      "importance": 0.6669,
+      "importance_score": 0.6669,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.54,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4766,
+        "recency": 0.4628,
         "story_heat": 0.5
       },
       "category": "multi_source",
@@ -1154,85 +1173,6 @@
         "title": "Claude Code 2.1.277 新增 AGENTS.md 支持",
         "url": "https://x.com/trq212/status/2101009392611278961",
         "source": "X：Thariq (@trq212)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_0389b68f0dfb",
-      "title": "Anthropic 用 Claude 优化 30 多个开源生物分子模型，平均提速约 4 倍并开源全部代码",
-      "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
-      "primary_url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
-      "source": "Anthropic：Research（发表成果 · 网页）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "85b1d750ee667e6121c9b6cc95f26edb10480315",
-          "title": "Anthropic 用 Claude 优化 30 多个开源生物分子模型，平均提速约 4 倍并开源全部代码",
-          "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
-          "source": "Anthropic：Research（发表成果 · 网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T19:49:41.095000Z"
-        },
-        {
-          "id": "7d195d4ef0662f130a7a7cd658b32d4ee3f03fbc",
-          "title": "Anthropic：Claude 四周优化 30 多个开源生物分子模型，平均提速约 4 倍并开源代码",
-          "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
-          "source": "Anthropic：Research（发表成果 · 网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T16:00:00Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "Anthropic：Research（发表成果 · 网页）"
-      ],
-      "items": [
-        {
-          "id": "85b1d750ee667e6121c9b6cc95f26edb10480315",
-          "title": "Anthropic 用 Claude 优化 30 多个开源生物分子模型，平均提速约 4 倍并开源全部代码",
-          "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
-          "source": "Anthropic：Research（发表成果 · 网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-17T19:49:41.095000Z"
-        },
-        {
-          "id": "7d195d4ef0662f130a7a7cd658b32d4ee3f03fbc",
-          "title": "Anthropic：Claude 四周优化 30 多个开源生物分子模型，平均提速约 4 倍并开源代码",
-          "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
-          "source": "Anthropic：Research（发表成果 · 网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-16T16:00:00Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6688,
-      "importance": 0.6688,
-      "importance_score": 0.6688,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.7,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.3457,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-16T16:00:00Z",
-      "latest_at": "2026-09-17T19:49:41.095000Z",
-      "primary_item": {
-        "id": "85b1d750ee667e6121c9b6cc95f26edb10480315",
-        "title": "Anthropic 用 Claude 优化 30 多个开源生物分子模型，平均提速约 4 倍并开源全部代码",
-        "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
-        "source": "Anthropic：Research（发表成果 · 网页）",
         "source_name": "AI HOT"
       }
     },
@@ -1289,15 +1229,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6683,
-      "importance": 0.6683,
-      "importance_score": 0.6683,
+      "score": 0.6657,
+      "importance": 0.6657,
+      "importance_score": 0.6657,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.61,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4926,
+        "recency": 0.4784,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1368,15 +1308,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6422,
-      "importance": 0.6422,
-      "importance_score": 0.6422,
+      "score": 0.6415,
+      "importance": 0.6415,
+      "importance_score": 0.6415,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1309,
+        "recency": 0.1272,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1448,15 +1388,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.67,
-      "importance": 0.67,
-      "importance_score": 0.67,
+      "score": 0.6664,
+      "importance": 0.6664,
+      "importance_score": 0.6664,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.49,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7024,
+        "recency": 0.6822,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1471,6 +1411,86 @@
         "title": "纽约邮报称OpenAI与Anthropic夸大AI安全事件",
         "url": "https://x.com/kimmonismus/status/2101415020026368039",
         "source": "X：Kim (@kimmonismus)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_4cf35ecfdad7",
+      "title": "特朗普宣布组建 AI Force 并任命 AI 主管",
+      "url": "https://x.com/mark_k/status/2101375842693566856",
+      "primary_url": "https://x.com/mark_k/status/2101375842693566856",
+      "source": "@mark_k",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "e3d78f6749dfb3fbfd5d559b316a19fc7adf6879",
+          "title": "特朗普宣布组建 AI Force 并将任命新 AI 沙皇",
+          "url": "https://x.com/rohanpaul_ai/status/2101408260352090491",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-19T20:29:06Z"
+        },
+        {
+          "id": "b5c8edaba9ed579ca1dff4a30f14df83f597b4de",
+          "title": "特朗普宣布组建 AI Force 并任命 AI 主管",
+          "url": "https://x.com/mark_k/status/2101375842693566856",
+          "source": "@mark_k",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-19T18:20:17Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "@mark_k",
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "e3d78f6749dfb3fbfd5d559b316a19fc7adf6879",
+          "title": "特朗普宣布组建 AI Force 并将任命新 AI 沙皇",
+          "url": "https://x.com/rohanpaul_ai/status/2101408260352090491",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-19T20:29:06Z"
+        },
+        {
+          "id": "b5c8edaba9ed579ca1dff4a30f14df83f597b4de",
+          "title": "特朗普宣布组建 AI Force 并任命 AI 主管",
+          "url": "https://x.com/mark_k/status/2101375842693566856",
+          "source": "@mark_k",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-19T18:20:17Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6859,
+      "importance": 0.6859,
+      "importance_score": 0.6859,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.57,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.6571,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-19T18:20:17Z",
+      "latest_at": "2026-09-19T20:29:06Z",
+      "primary_item": {
+        "id": "b5c8edaba9ed579ca1dff4a30f14df83f597b4de",
+        "title": "特朗普宣布组建 AI Force 并任命 AI 主管",
+        "url": "https://x.com/mark_k/status/2101375842693566856",
+        "source": "@mark_k",
         "source_name": "AI HOT"
       }
     }
