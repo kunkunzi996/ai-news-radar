@@ -1,16 +1,25 @@
 {
-  "generated_at": "2026-09-21T19:14:09.031957Z",
+  "generated_at": "2026-09-21T22:46:39.807064Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
     {
       "story_id": "story_6cbde97d8260",
-      "title": "Kimi 发布 Kimi Code Desktop 1.0，macOS 与 Windows 版同步上线",
-      "url": "https://mp.weixin.qq.com/s?__biz=MzkzMTY4NTIyNA%3D%3D&mid=2247484344&idx=1&sn=047cf702ff02ab334e3ea2ba8e34b4a6",
-      "primary_url": "https://mp.weixin.qq.com/s?__biz=MzkzMTY4NTIyNA%3D%3D&mid=2247484344&idx=1&sn=047cf702ff02ab334e3ea2ba8e34b4a6",
-      "source": "公众号：月之暗面（Kimi）",
+      "title": "小米发布并开源 MiMo-V2.6 系列，扩展强化学习规模迈向自我提升",
+      "url": "https://mp.weixin.qq.com/s?__biz=Mzk3NTkxMTM2NA%3D%3D&mid=2247484969&idx=1&sn=76c4757b26a2b646e1b690bf78c386d8",
+      "primary_url": "https://mp.weixin.qq.com/s?__biz=Mzk3NTkxMTM2NA%3D%3D&mid=2247484969&idx=1&sn=76c4757b26a2b646e1b690bf78c386d8",
+      "source": "公众号：小米 MiMo",
       "source_name": "AI HOT",
       "sources": [
+        {
+          "id": "e590b247dcf693937e18ae0bb12026ce21c5395d",
+          "title": "小米发布并开源 MiMo-V2.6 系列，扩展强化学习规模迈向自我提升",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzk3NTkxMTM2NA%3D%3D&mid=2247484969&idx=1&sn=76c4757b26a2b646e1b690bf78c386d8",
+          "source": "公众号：小米 MiMo",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T20:18:52Z"
+        },
         {
           "id": "db5c34aadee5e59351366b04dbf21e0d4feb57ca",
           "title": "Kimi 发布 Kimi Code Desktop 1.0，macOS 与 Windows 版同步上线",
@@ -84,8 +93,9 @@
           "published_at": "2026-09-14T09:59:00Z"
         }
       ],
-      "source_count": 8,
+      "source_count": 9,
       "source_names": [
+        "公众号：小米 MiMo",
         "公众号：小红书技术（dots.llm）",
         "公众号：数字生命卡兹克",
         "公众号：月之暗面（Kimi）",
@@ -94,6 +104,15 @@
       ],
       "items": [
         {
+          "id": "e590b247dcf693937e18ae0bb12026ce21c5395d",
+          "title": "小米发布并开源 MiMo-V2.6 系列，扩展强化学习规模迈向自我提升",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzk3NTkxMTM2NA%3D%3D&mid=2247484969&idx=1&sn=76c4757b26a2b646e1b690bf78c386d8",
+          "source": "公众号：小米 MiMo",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T20:18:52Z"
+        },
+        {
           "id": "db5c34aadee5e59351366b04dbf21e0d4feb57ca",
           "title": "Kimi 发布 Kimi Code Desktop 1.0，macOS 与 Windows 版同步上线",
           "url": "https://mp.weixin.qq.com/s?__biz=MzkzMTY4NTIyNA%3D%3D&mid=2247484344&idx=1&sn=047cf702ff02ab334e3ea2ba8e34b4a6",
@@ -166,17 +185,17 @@
           "published_at": "2026-09-14T09:59:00Z"
         }
       ],
-      "item_count": 8,
-      "duplicate_count": 8,
-      "score": 0.8374,
-      "importance": 0.8374,
-      "importance_score": 0.8374,
+      "item_count": 9,
+      "duplicate_count": 9,
+      "score": 0.8673,
+      "importance": 0.8673,
+      "importance_score": 0.8673,
       "importance_label": "多源热议",
       "importance_breakdown": {
-        "editorial": 0.71,
+        "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8491,
+        "recency": 0.9651,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -186,12 +205,337 @@
         "high_importance"
       ],
       "earliest_at": "2026-09-14T09:59:00Z",
-      "latest_at": "2026-09-21T07:54:32Z",
+      "latest_at": "2026-09-21T20:18:52Z",
       "primary_item": {
-        "id": "db5c34aadee5e59351366b04dbf21e0d4feb57ca",
-        "title": "Kimi 发布 Kimi Code Desktop 1.0，macOS 与 Windows 版同步上线",
-        "url": "https://mp.weixin.qq.com/s?__biz=MzkzMTY4NTIyNA%3D%3D&mid=2247484344&idx=1&sn=047cf702ff02ab334e3ea2ba8e34b4a6",
-        "source": "公众号：月之暗面（Kimi）",
+        "id": "e590b247dcf693937e18ae0bb12026ce21c5395d",
+        "title": "小米发布并开源 MiMo-V2.6 系列，扩展强化学习规模迈向自我提升",
+        "url": "https://mp.weixin.qq.com/s?__biz=Mzk3NTkxMTM2NA%3D%3D&mid=2247484969&idx=1&sn=76c4757b26a2b646e1b690bf78c386d8",
+        "source": "公众号：小米 MiMo",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_5a5883cd042e",
+      "title": "小米发布开放权重模型 MiMo-V2.6-Pro，登顶 Artificial Analysis 开放权重模型智能指数",
+      "url": "https://x.com/ClementDelangue/status/2102141768674222323",
+      "primary_url": "https://x.com/ClementDelangue/status/2102141768674222323",
+      "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "bcc1d035655d6ba3d004efb14cbaeba67953c497",
+          "title": "小米发布开放权重模型 MiMo-V2.6-Pro，登顶 Artificial Analysis 开放权重模型智能指数",
+          "url": "https://x.com/ClementDelangue/status/2102141768674222323",
+          "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T21:03:48Z"
+        },
+        {
+          "id": "4e4fb5cdf2824ce2e47ffe2a833fe8fc02f7585d",
+          "title": "小米 MiMo-V2.6-Pro 发布，登顶 Artificial Analysis 开源权重模型智能指数",
+          "url": "https://x.com/ArtificialAnlys/status/2102128560962187701",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T20:11:19Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Artificial Analysis (@ArtificialAnlys)",
+        "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)"
+      ],
+      "items": [
+        {
+          "id": "bcc1d035655d6ba3d004efb14cbaeba67953c497",
+          "title": "小米发布开放权重模型 MiMo-V2.6-Pro，登顶 Artificial Analysis 开放权重模型智能指数",
+          "url": "https://x.com/ClementDelangue/status/2102141768674222323",
+          "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T21:03:48Z"
+        },
+        {
+          "id": "4e4fb5cdf2824ce2e47ffe2a833fe8fc02f7585d",
+          "title": "小米 MiMo-V2.6-Pro 发布，登顶 Artificial Analysis 开源权重模型智能指数",
+          "url": "https://x.com/ArtificialAnlys/status/2102128560962187701",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T20:11:19Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7792,
+      "importance": 0.7792,
+      "importance_score": 0.7792,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.69,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9755,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-21T20:11:19Z",
+      "latest_at": "2026-09-21T21:03:48Z",
+      "primary_item": {
+        "id": "bcc1d035655d6ba3d004efb14cbaeba67953c497",
+        "title": "小米发布开放权重模型 MiMo-V2.6-Pro，登顶 Artificial Analysis 开放权重模型智能指数",
+        "url": "https://x.com/ClementDelangue/status/2102141768674222323",
+        "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_9525c17a5986",
+      "title": "不列颠哥伦比亚省起诉 OpenAI，指其未在枪击案前将 flagged ChatGPT 活动转介警方",
+      "url": "https://x.com/rohanpaul_ai/status/2102128625126605059",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2102128625126605059",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "6ba024751c1ae221c9aafc1b82e29d4dfd669b2f",
+          "title": "不列颠哥伦比亚省起诉 OpenAI，指其未在枪击案前将 flagged ChatGPT 活动转介警方",
+          "url": "https://x.com/rohanpaul_ai/status/2102128625126605059",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T20:11:34Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "6ba024751c1ae221c9aafc1b82e29d4dfd669b2f",
+          "title": "不列颠哥伦比亚省起诉 OpenAI，指其未在枪击案前将 flagged ChatGPT 活动转介警方",
+          "url": "https://x.com/rohanpaul_ai/status/2102128625126605059",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T20:11:34Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.779,
+      "importance": 0.779,
+      "importance_score": 0.779,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.78,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9634,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-21T20:11:34Z",
+      "latest_at": "2026-09-21T20:11:34Z",
+      "primary_item": {
+        "id": "6ba024751c1ae221c9aafc1b82e29d4dfd669b2f",
+        "title": "不列颠哥伦比亚省起诉 OpenAI，指其未在枪击案前将 flagged ChatGPT 活动转介警方",
+        "url": "https://x.com/rohanpaul_ai/status/2102128625126605059",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_6f580068fdf8",
+      "title": "小米发布 MiMo-V2.6 Pro 与 Flash 全模态开源模型",
+      "url": "https://x.com/XiaomiMiMo/status/2102138559952290106",
+      "primary_url": "https://x.com/XiaomiMiMo/status/2102138559952290106",
+      "source": "X：小米 MiMo (@XiaomiMiMo)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "5215af3fdf7511ea7b27eb01110ac6fb05e095cd",
+          "title": "小米发布 MiMo-V2.6 Pro 与 Flash 全模态开源模型",
+          "url": "https://x.com/XiaomiMiMo/status/2102138559952290106",
+          "source": "X：小米 MiMo (@XiaomiMiMo)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T20:51:03Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：小米 MiMo (@XiaomiMiMo)"
+      ],
+      "items": [
+        {
+          "id": "5215af3fdf7511ea7b27eb01110ac6fb05e095cd",
+          "title": "小米发布 MiMo-V2.6 Pro 与 Flash 全模态开源模型",
+          "url": "https://x.com/XiaomiMiMo/status/2102138559952290106",
+          "source": "X：小米 MiMo (@XiaomiMiMo)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T20:51:03Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7657,
+      "importance": 0.7657,
+      "importance_score": 0.7657,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.73,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9726,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-21T20:51:03Z",
+      "latest_at": "2026-09-21T20:51:03Z",
+      "primary_item": {
+        "id": "5215af3fdf7511ea7b27eb01110ac6fb05e095cd",
+        "title": "小米发布 MiMo-V2.6 Pro 与 Flash 全模态开源模型",
+        "url": "https://x.com/XiaomiMiMo/status/2102138559952290106",
+        "source": "X：小米 MiMo (@XiaomiMiMo)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_12d043d42b14",
+      "title": "小米开源 MiMo-V2.6-Pro 与 Flash 双模型，Pro 得分 46 居开源模型之首",
+      "url": "https://x.com/testingcatalog/status/2102154984598950128",
+      "primary_url": "https://x.com/testingcatalog/status/2102154984598950128",
+      "source": "X：Testing Catalog (@testingcatalog)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "f000468b0eba5ba01a6a6d148ec788f5c2c520cc",
+          "title": "小米开源 MiMo-V2.6-Pro 与 Flash 双模型，Pro 得分 46 居开源模型之首",
+          "url": "https://x.com/testingcatalog/status/2102154984598950128",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T21:56:19Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Testing Catalog (@testingcatalog)"
+      ],
+      "items": [
+        {
+          "id": "f000468b0eba5ba01a6a6d148ec788f5c2c520cc",
+          "title": "小米开源 MiMo-V2.6-Pro 与 Flash 双模型，Pro 得分 46 居开源模型之首",
+          "url": "https://x.com/testingcatalog/status/2102154984598950128",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T21:56:19Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7654,
+      "importance": 0.7654,
+      "importance_score": 0.7654,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.72,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.988,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-21T21:56:19Z",
+      "latest_at": "2026-09-21T21:56:19Z",
+      "primary_item": {
+        "id": "f000468b0eba5ba01a6a6d148ec788f5c2c520cc",
+        "title": "小米开源 MiMo-V2.6-Pro 与 Flash 双模型，Pro 得分 46 居开源模型之首",
+        "url": "https://x.com/testingcatalog/status/2102154984598950128",
+        "source": "X：Testing Catalog (@testingcatalog)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_589ad5537385",
+      "title": "小米 MiMo-V2.6 发布，团队复盘大规模 RL 扩展之路",
+      "url": "https://x.com/_LuoFuli/status/2102162926802968749",
+      "primary_url": "https://x.com/_LuoFuli/status/2102162926802968749",
+      "source": "X：罗福莉 (@_LuoFuli)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "b4a1a9baa70dcf3ebd7fef8a6c7c2b2e7af6e2c0",
+          "title": "小米 MiMo-V2.6 发布，团队复盘大规模 RL 扩展之路",
+          "url": "https://x.com/_LuoFuli/status/2102162926802968749",
+          "source": "X：罗福莉 (@_LuoFuli)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T22:27:52Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：罗福莉 (@_LuoFuli)"
+      ],
+      "items": [
+        {
+          "id": "b4a1a9baa70dcf3ebd7fef8a6c7c2b2e7af6e2c0",
+          "title": "小米 MiMo-V2.6 发布，团队复盘大规模 RL 扩展之路",
+          "url": "https://x.com/_LuoFuli/status/2102162926802968749",
+          "source": "X：罗福莉 (@_LuoFuli)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T22:27:52Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7608,
+      "importance": 0.7608,
+      "importance_score": 0.7608,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.7,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9955,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-21T22:27:52Z",
+      "latest_at": "2026-09-21T22:27:52Z",
+      "primary_item": {
+        "id": "b4a1a9baa70dcf3ebd7fef8a6c7c2b2e7af6e2c0",
+        "title": "小米 MiMo-V2.6 发布，团队复盘大规模 RL 扩展之路",
+        "url": "https://x.com/_LuoFuli/status/2102162926802968749",
+        "source": "X：罗福莉 (@_LuoFuli)",
         "source_name": "AI HOT"
       }
     },
@@ -230,15 +574,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7675,
-      "importance": 0.7675,
-      "importance_score": 0.7675,
+      "score": 0.7594,
+      "importance": 0.7594,
+      "importance_score": 0.7594,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8992,
+        "recency": 0.8544,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -253,6 +597,67 @@
         "title": "亚马逊封禁 Meta Muse 智能体代用户购物，双方争端升级",
         "url": "https://www.ithome.com/1/005/418.htm",
         "source": "IT之家（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_bebe59df1cd8",
+      "title": "小米发布 MiMo-V2.6 Pro 与 Flash 全模态模型，开源权重与训练代码",
+      "url": "https://x.com/dongxi_nlp/status/2102148798151532605",
+      "primary_url": "https://x.com/dongxi_nlp/status/2102148798151532605",
+      "source": "X：马东锡 NLP (@dongxi_nlp)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "b59b45a3f949cd668ab698d3b79451bfff569e2b",
+          "title": "小米发布 MiMo-V2.6 Pro 与 Flash 全模态模型，开源权重与训练代码",
+          "url": "https://x.com/dongxi_nlp/status/2102148798151532605",
+          "source": "X：马东锡 NLP (@dongxi_nlp)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T21:31:44Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：马东锡 NLP (@dongxi_nlp)"
+      ],
+      "items": [
+        {
+          "id": "b59b45a3f949cd668ab698d3b79451bfff569e2b",
+          "title": "小米发布 MiMo-V2.6 Pro 与 Flash 全模态模型，开源权重与训练代码",
+          "url": "https://x.com/dongxi_nlp/status/2102148798151532605",
+          "source": "X：马东锡 NLP (@dongxi_nlp)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T21:31:44Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7584,
+      "importance": 0.7584,
+      "importance_score": 0.7584,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.7,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9821,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-21T21:31:44Z",
+      "latest_at": "2026-09-21T21:31:44Z",
+      "primary_item": {
+        "id": "b59b45a3f949cd668ab698d3b79451bfff569e2b",
+        "title": "小米发布 MiMo-V2.6 Pro 与 Flash 全模态模型，开源权重与训练代码",
+        "url": "https://x.com/dongxi_nlp/status/2102148798151532605",
+        "source": "X：马东锡 NLP (@dongxi_nlp)",
         "source_name": "AI HOT"
       }
     },
@@ -291,15 +696,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7634,
-      "importance": 0.7634,
-      "importance_score": 0.7634,
+      "score": 0.7548,
+      "importance": 0.7548,
+      "importance_score": 0.7548,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.73,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.96,
+        "recency": 0.9121,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -352,15 +757,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.761,
-      "importance": 0.761,
-      "importance_score": 0.761,
+      "score": 0.7522,
+      "importance": 0.7522,
+      "importance_score": 0.7522,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9798,
+        "recency": 0.9309,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -379,63 +784,122 @@
       }
     },
     {
-      "story_id": "story_5ee1f6ad6ea1",
-      "title": "Grok 4.7 发布：Harvey 法律基准 19.6% 大幅领先，Terminal-Bench 4.0 得分近翻倍且价格不变",
-      "url": "https://x.com/rohanpaul_ai/status/2102107446852592045",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2102107446852592045",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "story_id": "story_58f67d30ae06",
+      "title": "小米 MiMo-V2.6-Pro 登上 Code Arena： WebDev 榜约第10名，开源权重中约第3",
+      "url": "https://x.com/arena/status/2102142912943489220",
+      "primary_url": "https://x.com/arena/status/2102142912943489220",
+      "source": "X：Arena (@arena)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "11ce3727423321b4eab9c90ed21eb073963d4603",
-          "title": "Grok 4.7 发布：Harvey 法律基准 19.6% 大幅领先，Terminal-Bench 4.0 得分近翻倍且价格不变",
-          "url": "https://x.com/rohanpaul_ai/status/2102107446852592045",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "770d53d2ebfaa17968287b5f7dcce4e8493490bb",
+          "title": "小米 MiMo-V2.6-Pro 登上 Code Arena： WebDev 榜约第10名，开源权重中约第3",
+          "url": "https://x.com/arena/status/2102142912943489220",
+          "source": "X：Arena (@arena)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-21T18:47:25Z"
+          "published_at": "2026-09-21T21:08:21Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
+        "X：Arena (@arena)"
       ],
       "items": [
         {
-          "id": "11ce3727423321b4eab9c90ed21eb073963d4603",
-          "title": "Grok 4.7 发布：Harvey 法律基准 19.6% 大幅领先，Terminal-Bench 4.0 得分近翻倍且价格不变",
-          "url": "https://x.com/rohanpaul_ai/status/2102107446852592045",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "770d53d2ebfaa17968287b5f7dcce4e8493490bb",
+          "title": "小米 MiMo-V2.6-Pro 登上 Code Arena： WebDev 榜约第10名，开源权重中约第3",
+          "url": "https://x.com/arena/status/2102142912943489220",
+          "source": "X：Arena (@arena)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-21T18:47:25Z"
+          "published_at": "2026-09-21T21:08:21Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7544,
-      "importance": 0.7544,
-      "importance_score": 0.7544,
+      "score": 0.7454,
+      "importance": 0.7454,
+      "importance_score": 0.7454,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.68,
+        "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9936,
+        "recency": 0.9766,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-21T18:47:25Z",
-      "latest_at": "2026-09-21T18:47:25Z",
+      "earliest_at": "2026-09-21T21:08:21Z",
+      "latest_at": "2026-09-21T21:08:21Z",
       "primary_item": {
-        "id": "11ce3727423321b4eab9c90ed21eb073963d4603",
-        "title": "Grok 4.7 发布：Harvey 法律基准 19.6% 大幅领先，Terminal-Bench 4.0 得分近翻倍且价格不变",
-        "url": "https://x.com/rohanpaul_ai/status/2102107446852592045",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "id": "770d53d2ebfaa17968287b5f7dcce4e8493490bb",
+        "title": "小米 MiMo-V2.6-Pro 登上 Code Arena： WebDev 榜约第10名，开源权重中约第3",
+        "url": "https://x.com/arena/status/2102142912943489220",
+        "source": "X：Arena (@arena)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_3ed9fa9162b7",
+      "title": "Artificial Analysis 评测 Grok 4.7：智能体知识工作跻身前沿，编码代理得分升至 56",
+      "url": "https://artificialanalysis.ai/articles/benchmarking-grok-4-7",
+      "primary_url": "https://artificialanalysis.ai/articles/benchmarking-grok-4-7",
+      "source": "Artificial Analysis 完整文章（网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "6f3c506835fb8b8b31e458bd1655b7e8a7b999d6",
+          "title": "Artificial Analysis 评测 Grok 4.7：智能体知识工作跻身前沿，编码代理得分升至 56",
+          "url": "https://artificialanalysis.ai/articles/benchmarking-grok-4-7",
+          "source": "Artificial Analysis 完整文章（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T19:41:25.079000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Artificial Analysis 完整文章（网页）"
+      ],
+      "items": [
+        {
+          "id": "6f3c506835fb8b8b31e458bd1655b7e8a7b999d6",
+          "title": "Artificial Analysis 评测 Grok 4.7：智能体知识工作跻身前沿，编码代理得分升至 56",
+          "url": "https://artificialanalysis.ai/articles/benchmarking-grok-4-7",
+          "source": "Artificial Analysis 完整文章（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T19:41:25.079000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7448,
+      "importance": 0.7448,
+      "importance_score": 0.7448,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.67,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9564,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-21T19:41:25.079000Z",
+      "latest_at": "2026-09-21T19:41:25.079000Z",
+      "primary_item": {
+        "id": "6f3c506835fb8b8b31e458bd1655b7e8a7b999d6",
+        "title": "Artificial Analysis 评测 Grok 4.7：智能体知识工作跻身前沿，编码代理得分升至 56",
+        "url": "https://artificialanalysis.ai/articles/benchmarking-grok-4-7",
+        "source": "Artificial Analysis 完整文章（网页）",
         "source_name": "AI HOT"
       }
     },
@@ -474,21 +938,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7531,
-      "importance": 0.7531,
-      "importance_score": 0.7531,
+      "score": 0.7444,
+      "importance": 0.7444,
+      "importance_score": 0.7444,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9697,
+        "recency": 0.9214,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-21T17:06:20Z",
       "latest_at": "2026-09-21T17:06:20Z",
@@ -501,63 +964,62 @@
       }
     },
     {
-      "story_id": "story_18f1f4a5b911",
-      "title": "Grok 4.7 发布，登陆 Grok Build、Cursor 和 API",
-      "url": "https://x.com/testingcatalog/status/2102107305030336867",
-      "primary_url": "https://x.com/testingcatalog/status/2102107305030336867",
-      "source": "X：Testing Catalog (@testingcatalog)",
+      "story_id": "story_a9ca2b27c737",
+      "title": "小米发布 MiMo-V2.6 系列：Pro 1.02T 总参数 42B 激活，Flash 310B-15B",
+      "url": "https://x.com/natolambert/status/2102127392487567651",
+      "primary_url": "https://x.com/natolambert/status/2102127392487567651",
+      "source": "X：Nathan Lambert (@natolambert)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "c8d6f1f45b0f92f196b44b5bf45b0d22f0954539",
-          "title": "Grok 4.7 发布，登陆 Grok Build、Cursor 和 API",
-          "url": "https://x.com/testingcatalog/status/2102107305030336867",
-          "source": "X：Testing Catalog (@testingcatalog)",
+          "id": "bbb332c4f42f0a5a1278a8b9fa4be39103acc467",
+          "title": "小米发布 MiMo-V2.6 系列：Pro 1.02T 总参数 42B 激活，Flash 310B-15B",
+          "url": "https://x.com/natolambert/status/2102127392487567651",
+          "source": "X：Nathan Lambert (@natolambert)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-21T18:46:51Z"
+          "published_at": "2026-09-21T20:06:40Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Testing Catalog (@testingcatalog)"
+        "X：Nathan Lambert (@natolambert)"
       ],
       "items": [
         {
-          "id": "c8d6f1f45b0f92f196b44b5bf45b0d22f0954539",
-          "title": "Grok 4.7 发布，登陆 Grok Build、Cursor 和 API",
-          "url": "https://x.com/testingcatalog/status/2102107305030336867",
-          "source": "X：Testing Catalog (@testingcatalog)",
+          "id": "bbb332c4f42f0a5a1278a8b9fa4be39103acc467",
+          "title": "小米发布 MiMo-V2.6 系列：Pro 1.02T 总参数 42B 激活，Flash 310B-15B",
+          "url": "https://x.com/natolambert/status/2102127392487567651",
+          "source": "X：Nathan Lambert (@natolambert)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-21T18:46:51Z"
+          "published_at": "2026-09-21T20:06:40Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7514,
-      "importance": 0.7514,
-      "importance_score": 0.7514,
+      "score": 0.7428,
+      "importance": 0.7428,
+      "importance_score": 0.7428,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.67,
+        "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9935,
+        "recency": 0.9622,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-21T18:46:51Z",
-      "latest_at": "2026-09-21T18:46:51Z",
+      "earliest_at": "2026-09-21T20:06:40Z",
+      "latest_at": "2026-09-21T20:06:40Z",
       "primary_item": {
-        "id": "c8d6f1f45b0f92f196b44b5bf45b0d22f0954539",
-        "title": "Grok 4.7 发布，登陆 Grok Build、Cursor 和 API",
-        "url": "https://x.com/testingcatalog/status/2102107305030336867",
-        "source": "X：Testing Catalog (@testingcatalog)",
+        "id": "bbb332c4f42f0a5a1278a8b9fa4be39103acc467",
+        "title": "小米发布 MiMo-V2.6 系列：Pro 1.02T 总参数 42B 激活，Flash 310B-15B",
+        "url": "https://x.com/natolambert/status/2102127392487567651",
+        "source": "X：Nathan Lambert (@natolambert)",
         "source_name": "AI HOT"
       }
     },
@@ -596,15 +1058,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7406,
-      "importance": 0.7406,
-      "importance_score": 0.7406,
+      "score": 0.7325,
+      "importance": 0.7325,
+      "importance_score": 0.7325,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9001,
+        "recency": 0.8552,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -656,15 +1118,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.74,
-      "importance": 0.74,
-      "importance_score": 0.74,
+      "score": 0.7313,
+      "importance": 0.7313,
+      "importance_score": 0.7313,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.65,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9631,
+        "recency": 0.9151,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -716,15 +1178,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7397,
-      "importance": 0.7397,
-      "importance_score": 0.7397,
+      "score": 0.7311,
+      "importance": 0.7311,
+      "importance_score": 0.7311,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.65,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9617,
+        "recency": 0.9137,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -738,66 +1200,6 @@
         "title": "Grok 4.7 发布：同价同速下较 Grok 4.6 明显提升",
         "url": "https://x.com/milichab/status/2102073296900796862",
         "source": "X：Andrew Milich (@milichab)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_62959e67858a",
-      "title": "Cloudflare Python Workers 正式 GA，Python 成为平台一等支持语言",
-      "url": "https://x.com/frxiaobei/status/2102035139043966983",
-      "primary_url": "https://x.com/frxiaobei/status/2102035139043966983",
-      "source": "X：小北 (@frxiaobei)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "fc1a485bab88ed587a0f6d374b88a49a7726f035",
-          "title": "Cloudflare Python Workers 正式 GA，Python 成为平台一等支持语言",
-          "url": "https://x.com/frxiaobei/status/2102035139043966983",
-          "source": "X：小北 (@frxiaobei)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T14:00:05Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：小北 (@frxiaobei)"
-      ],
-      "items": [
-        {
-          "id": "fc1a485bab88ed587a0f6d374b88a49a7726f035",
-          "title": "Cloudflare Python Workers 正式 GA，Python 成为平台一等支持语言",
-          "url": "https://x.com/frxiaobei/status/2102035139043966983",
-          "source": "X：小北 (@frxiaobei)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T14:00:05Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7365,
-      "importance": 0.7365,
-      "importance_score": 0.7365,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9272,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-21T14:00:05Z",
-      "latest_at": "2026-09-21T14:00:05Z",
-      "primary_item": {
-        "id": "fc1a485bab88ed587a0f6d374b88a49a7726f035",
-        "title": "Cloudflare Python Workers 正式 GA，Python 成为平台一等支持语言",
-        "url": "https://x.com/frxiaobei/status/2102035139043966983",
-        "source": "X：小北 (@frxiaobei)",
         "source_name": "AI HOT"
       }
     },
@@ -836,15 +1238,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7349,
-      "importance": 0.7349,
-      "importance_score": 0.7349,
+      "score": 0.7285,
+      "importance": 0.7285,
+      "importance_score": 0.7285,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7186,
+        "recency": 0.6827,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -862,81 +1264,81 @@
       }
     },
     {
-      "story_id": "story_2b63877157d3",
-      "title": "Grok 4.7 上线 Arena 的 Agent Arena 评测",
-      "url": "https://x.com/arena/status/2102074819743453410",
-      "primary_url": "https://x.com/arena/status/2102074819743453410",
-      "source": "X：Arena (@arena)",
+      "story_id": "story_62959e67858a",
+      "title": "Cloudflare Python Workers 正式 GA，Python 成为平台一等支持语言",
+      "url": "https://x.com/frxiaobei/status/2102035139043966983",
+      "primary_url": "https://x.com/frxiaobei/status/2102035139043966983",
+      "source": "X：小北 (@frxiaobei)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "0c8b1a0c47bdc5b32554292f051abf6d4a33b46e",
-          "title": "Grok 4.7 上线 Arena 的 Agent Arena 评测",
-          "url": "https://x.com/arena/status/2102074819743453410",
-          "source": "X：Arena (@arena)",
+          "id": "fc1a485bab88ed587a0f6d374b88a49a7726f035",
+          "title": "Cloudflare Python Workers 正式 GA，Python 成为平台一等支持语言",
+          "url": "https://x.com/frxiaobei/status/2102035139043966983",
+          "source": "X：小北 (@frxiaobei)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-21T16:37:46Z"
+          "published_at": "2026-09-21T14:00:05Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Arena (@arena)"
+        "X：小北 (@frxiaobei)"
       ],
       "items": [
         {
-          "id": "0c8b1a0c47bdc5b32554292f051abf6d4a33b46e",
-          "title": "Grok 4.7 上线 Arena 的 Agent Arena 评测",
-          "url": "https://x.com/arena/status/2102074819743453410",
-          "source": "X：Arena (@arena)",
+          "id": "fc1a485bab88ed587a0f6d374b88a49a7726f035",
+          "title": "Cloudflare Python Workers 正式 GA，Python 成为平台一等支持语言",
+          "url": "https://x.com/frxiaobei/status/2102035139043966983",
+          "source": "X：小北 (@frxiaobei)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-21T16:37:46Z"
+          "published_at": "2026-09-21T14:00:05Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.734,
-      "importance": 0.734,
-      "importance_score": 0.734,
+      "score": 0.7282,
+      "importance": 0.7282,
+      "importance_score": 0.7282,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.63,
+        "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9631,
+        "recency": 0.881,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-21T16:37:46Z",
-      "latest_at": "2026-09-21T16:37:46Z",
+      "earliest_at": "2026-09-21T14:00:05Z",
+      "latest_at": "2026-09-21T14:00:05Z",
       "primary_item": {
-        "id": "0c8b1a0c47bdc5b32554292f051abf6d4a33b46e",
-        "title": "Grok 4.7 上线 Arena 的 Agent Arena 评测",
-        "url": "https://x.com/arena/status/2102074819743453410",
-        "source": "X：Arena (@arena)",
+        "id": "fc1a485bab88ed587a0f6d374b88a49a7726f035",
+        "title": "Cloudflare Python Workers 正式 GA，Python 成为平台一等支持语言",
+        "url": "https://x.com/frxiaobei/status/2102035139043966983",
+        "source": "X：小北 (@frxiaobei)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_fd9815f90838",
-      "title": "Grok 4.7 上线 OpenRouter",
-      "url": "https://x.com/OpenRouter/status/2102073186330578989",
-      "primary_url": "https://x.com/OpenRouter/status/2102073186330578989",
+      "story_id": "story_78c7cf1729e7",
+      "title": "小米 MiMo-V2.6 系列三款模型上线 OpenRouter",
+      "url": "https://x.com/OpenRouter/status/2102142830034698644",
+      "primary_url": "https://x.com/OpenRouter/status/2102142830034698644",
       "source": "X：OpenRouter (@OpenRouter)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "154dffa94a0277f69f1be1c108bf56c556140ef5",
-          "title": "Grok 4.7 上线 OpenRouter",
-          "url": "https://x.com/OpenRouter/status/2102073186330578989",
+          "id": "bcddf43dbf422982136e583261c995ba8f2ee818",
+          "title": "小米 MiMo-V2.6 系列三款模型上线 OpenRouter",
+          "url": "https://x.com/OpenRouter/status/2102142830034698644",
           "source": "X：OpenRouter (@OpenRouter)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-21T16:31:16Z"
+          "published_at": "2026-09-21T21:08:01Z"
         }
       ],
       "source_count": 1,
@@ -945,399 +1347,39 @@
       ],
       "items": [
         {
-          "id": "154dffa94a0277f69f1be1c108bf56c556140ef5",
-          "title": "Grok 4.7 上线 OpenRouter",
-          "url": "https://x.com/OpenRouter/status/2102073186330578989",
+          "id": "bcddf43dbf422982136e583261c995ba8f2ee818",
+          "title": "小米 MiMo-V2.6 系列三款模型上线 OpenRouter",
+          "url": "https://x.com/OpenRouter/status/2102142830034698644",
           "source": "X：OpenRouter (@OpenRouter)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-21T16:31:16Z"
+          "published_at": "2026-09-21T21:08:01Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7337,
-      "importance": 0.7337,
-      "importance_score": 0.7337,
+      "score": 0.7274,
+      "importance": 0.7274,
+      "importance_score": 0.7274,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.63,
+        "editorial": 0.6,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9616,
+        "recency": 0.9765,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-21T16:31:16Z",
-      "latest_at": "2026-09-21T16:31:16Z",
+      "earliest_at": "2026-09-21T21:08:01Z",
+      "latest_at": "2026-09-21T21:08:01Z",
       "primary_item": {
-        "id": "154dffa94a0277f69f1be1c108bf56c556140ef5",
-        "title": "Grok 4.7 上线 OpenRouter",
-        "url": "https://x.com/OpenRouter/status/2102073186330578989",
+        "id": "bcddf43dbf422982136e583261c995ba8f2ee818",
+        "title": "小米 MiMo-V2.6 系列三款模型上线 OpenRouter",
+        "url": "https://x.com/OpenRouter/status/2102142830034698644",
         "source": "X：OpenRouter (@OpenRouter)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_e97a255afa7d",
-      "title": "开源社区用 SGLang 限制性打分把本地决策推理做到单步 6 毫秒",
-      "url": "https://x.com/AYi_AInotes/status/2102071501096628617",
-      "primary_url": "https://x.com/AYi_AInotes/status/2102071501096628617",
-      "source": "X：阿易 AI Notes (@AYi_AInotes)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "570583edd7be69e4a05928cda1a4efda58773186",
-          "title": "开源社区用 SGLang 限制性打分把本地决策推理做到单步 6 毫秒",
-          "url": "https://x.com/AYi_AInotes/status/2102071501096628617",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T16:24:35Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：阿易 AI Notes (@AYi_AInotes)"
-      ],
-      "items": [
-        {
-          "id": "570583edd7be69e4a05928cda1a4efda58773186",
-          "title": "开源社区用 SGLang 限制性打分把本地决策推理做到单步 6 毫秒",
-          "url": "https://x.com/AYi_AInotes/status/2102071501096628617",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T16:24:35Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7334,
-      "importance": 0.7334,
-      "importance_score": 0.7334,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.63,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.96,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-21T16:24:35Z",
-      "latest_at": "2026-09-21T16:24:35Z",
-      "primary_item": {
-        "id": "570583edd7be69e4a05928cda1a4efda58773186",
-        "title": "开源社区用 SGLang 限制性打分把本地决策推理做到单步 6 毫秒",
-        "url": "https://x.com/AYi_AInotes/status/2102071501096628617",
-        "source": "X：阿易 AI Notes (@AYi_AInotes)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_81104d8861cf",
-      "title": "xAI 发布 Grok 4.7，主打编码与知识工作",
-      "url": "https://x.ai/news/grok-4-7",
-      "primary_url": "https://x.ai/news/grok-4-7",
-      "source": "xAI：News（网页）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "cad8e581e48683e85a011f828dc5fcda016dafb0",
-          "title": "xAI 发布 Grok 4.7，主打编码与知识工作",
-          "url": "https://x.ai/news/grok-4-7",
-          "source": "xAI：News（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T00:00:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "xAI：News（网页）"
-      ],
-      "items": [
-        {
-          "id": "cad8e581e48683e85a011f828dc5fcda016dafb0",
-          "title": "xAI 发布 Grok 4.7，主打编码与知识工作",
-          "url": "https://x.ai/news/grok-4-7",
-          "source": "xAI：News（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T00:00:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7269,
-      "importance": 0.7269,
-      "importance_score": 0.7269,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.73,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7575,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-21T00:00:00Z",
-      "latest_at": "2026-09-21T00:00:00Z",
-      "primary_item": {
-        "id": "cad8e581e48683e85a011f828dc5fcda016dafb0",
-        "title": "xAI 发布 Grok 4.7，主打编码与知识工作",
-        "url": "https://x.ai/news/grok-4-7",
-        "source": "xAI：News（网页）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_81b3da03dd64",
-      "title": "独立调查：ChatGPT 的 __obi 跨站 Cookie 可将站外浏览行为关联到 ChatGPT 账号",
-      "url": "https://www.buchodi.com/chatgpt-now-knows-what-you-do-on-other-websites-via-ad-collector",
-      "primary_url": "https://www.buchodi.com/chatgpt-now-knows-what-you-do-on-other-websites-via-ad-collector",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "844d7f12ef7fac27524e36cc5345e97f538ad2cc",
-          "title": "独立调查：ChatGPT 的 __obi 跨站 Cookie 可将站外浏览行为关联到 ChatGPT 账号",
-          "url": "https://www.buchodi.com/chatgpt-now-knows-what-you-do-on-other-websites-via-ad-collector",
-          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-20T18:05:38.317000Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Hacker News 热门（buzzing.cc 中文翻译）"
-      ],
-      "items": [
-        {
-          "id": "844d7f12ef7fac27524e36cc5345e97f538ad2cc",
-          "title": "独立调查：ChatGPT 的 __obi 跨站 Cookie 可将站外浏览行为关联到 ChatGPT 账号",
-          "url": "https://www.buchodi.com/chatgpt-now-knows-what-you-do-on-other-websites-via-ad-collector",
-          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-20T18:05:38.317000Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7248,
-      "importance": 0.7248,
-      "importance_score": 0.7248,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.76,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6955,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-20T18:05:38.317000Z",
-      "latest_at": "2026-09-20T18:05:38.317000Z",
-      "primary_item": {
-        "id": "844d7f12ef7fac27524e36cc5345e97f538ad2cc",
-        "title": "独立调查：ChatGPT 的 __obi 跨站 Cookie 可将站外浏览行为关联到 ChatGPT 账号",
-        "url": "https://www.buchodi.com/chatgpt-now-knows-what-you-do-on-other-websites-via-ad-collector",
-        "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_98a1c1d4f06b",
-      "title": "阿里云发布 Qwen-Image-2.1 图像生成模型并开放权重",
-      "url": "https://x.com/alibaba_cloud/status/2101880701952172276",
-      "primary_url": "https://x.com/alibaba_cloud/status/2101880701952172276",
-      "source": "X：阿里云 / Alibaba Cloud (@alibaba_cloud)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "ac4a578b9e481dcae74e15feec3aea17b9f21da9",
-          "title": "阿里云发布 Qwen-Image-2.1 图像生成模型并开放权重",
-          "url": "https://x.com/alibaba_cloud/status/2101880701952172276",
-          "source": "X：阿里云 / Alibaba Cloud (@alibaba_cloud)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T03:46:25Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：阿里云 / Alibaba Cloud (@alibaba_cloud)"
-      ],
-      "items": [
-        {
-          "id": "ac4a578b9e481dcae74e15feec3aea17b9f21da9",
-          "title": "阿里云发布 Qwen-Image-2.1 图像生成模型并开放权重",
-          "url": "https://x.com/alibaba_cloud/status/2101880701952172276",
-          "source": "X：阿里云 / Alibaba Cloud (@alibaba_cloud)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T03:46:25Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7226,
-      "importance": 0.7226,
-      "importance_score": 0.7226,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.69,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7999,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-21T03:46:25Z",
-      "latest_at": "2026-09-21T03:46:25Z",
-      "primary_item": {
-        "id": "ac4a578b9e481dcae74e15feec3aea17b9f21da9",
-        "title": "阿里云发布 Qwen-Image-2.1 图像生成模型并开放权重",
-        "url": "https://x.com/alibaba_cloud/status/2101880701952172276",
-        "source": "X：阿里云 / Alibaba Cloud (@alibaba_cloud)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_015dbc4f8268",
-      "title": "Linear 重构 CI 流程应对 AI 编码带来的验证瓶颈，PR 等待时间从 6 分钟降至 5 分钟",
-      "url": "https://linear.app/now/ci-bottleneck-reworked",
-      "primary_url": "https://linear.app/now/ci-bottleneck-reworked",
-      "source": "Linear：Now（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "5c9a500a63016e575e6887b3642053b45c08b7f4",
-          "title": "Linear 重构 CI 流程应对 AI 编码带来的验证瓶颈，PR 等待时间从 6 分钟降至 5 分钟",
-          "url": "https://linear.app/now/ci-bottleneck-reworked",
-          "source": "Linear：Now（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T12:26:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Linear：Now（RSS）"
-      ],
-      "items": [
-        {
-          "id": "5c9a500a63016e575e6887b3642053b45c08b7f4",
-          "title": "Linear 重构 CI 流程应对 AI 编码带来的验证瓶颈，PR 等待时间从 6 分钟降至 5 分钟",
-          "url": "https://linear.app/now/ci-bottleneck-reworked",
-          "source": "Linear：Now（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T12:26:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7208,
-      "importance": 0.7208,
-      "importance_score": 0.7208,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.62,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9064,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-21T12:26:00Z",
-      "latest_at": "2026-09-21T12:26:00Z",
-      "primary_item": {
-        "id": "5c9a500a63016e575e6887b3642053b45c08b7f4",
-        "title": "Linear 重构 CI 流程应对 AI 编码带来的验证瓶颈，PR 等待时间从 6 分钟降至 5 分钟",
-        "url": "https://linear.app/now/ci-bottleneck-reworked",
-        "source": "Linear：Now（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_bb5dceabc7e5",
-      "title": "通义千问发布 Qwen-Image-2.1：7B 单检查点同时支持图像生成与编辑",
-      "url": "https://x.com/Alibaba_Qwen/status/2101866671900401913",
-      "primary_url": "https://x.com/Alibaba_Qwen/status/2101866671900401913",
-      "source": "X：通义千问 / Qwen (@Alibaba_Qwen)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "4cf683cc7925451046d7ac1a88797d6d30c01c54",
-          "title": "通义千问发布 Qwen-Image-2.1：7B 单检查点同时支持图像生成与编辑",
-          "url": "https://x.com/Alibaba_Qwen/status/2101866671900401913",
-          "source": "X：通义千问 / Qwen (@Alibaba_Qwen)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T02:50:40Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：通义千问 / Qwen (@Alibaba_Qwen)"
-      ],
-      "items": [
-        {
-          "id": "4cf683cc7925451046d7ac1a88797d6d30c01c54",
-          "title": "通义千问发布 Qwen-Image-2.1：7B 单检查点同时支持图像生成与编辑",
-          "url": "https://x.com/Alibaba_Qwen/status/2101866671900401913",
-          "source": "X：通义千问 / Qwen (@Alibaba_Qwen)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T02:50:40Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7207,
-      "importance": 0.7207,
-      "importance_score": 0.7207,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.69,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7892,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-21T02:50:40Z",
-      "latest_at": "2026-09-21T02:50:40Z",
-      "primary_item": {
-        "id": "4cf683cc7925451046d7ac1a88797d6d30c01c54",
-        "title": "通义千问发布 Qwen-Image-2.1：7B 单检查点同时支持图像生成与编辑",
-        "url": "https://x.com/Alibaba_Qwen/status/2101866671900401913",
-        "source": "X：通义千问 / Qwen (@Alibaba_Qwen)",
         "source_name": "AI HOT"
       }
     }
