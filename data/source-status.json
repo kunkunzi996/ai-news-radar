@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-09-20T23:25:05.483154Z",
+  "generated_at": "2026-09-21T01:29:07.820420Z",
   "sites": [
     {
       "site_id": "aihot",
       "site_name": "AI HOT",
       "ok": true,
       "item_count": 149,
-      "duration_ms": 10171,
+      "duration_ms": 4549,
       "error": null,
       "raw_item_count": 149,
       "window_item_count": 149,
@@ -16,8 +16,8 @@
       "site_id": "github_foundation_sunshine_releases",
       "site_name": "GitHub Foundation Sunshine",
       "ok": true,
-      "item_count": 51,
-      "duration_ms": 13560,
+      "item_count": 49,
+      "duration_ms": 12213,
       "error": null,
       "source_kind": "github_release_subscription",
       "repo": "openai/codex-plugin-cc, 1c7/chinese-independent-developer, obra/superpowers, SeemSeam/claude_codex_bridge, OthmanAdi/planning-with-files, multica-ai/multica, mml-book/mml-book.github.io, LearnPrompt/ai-news-radar, Panniantong/Agent-Reach, DeusData/codebase-memory-mcp, xingkongliang/skills-manager, liliBestCoder/ghost-proxifier, zarazhangrui/youtube-digest, emilkowalski/skills, stablyai/orca, Wechat-ggGitHub/wechat-claude-code, VoltAgent/awesome-design-md, lewislulu/llm-wiki-skill, KKKKhazix/khazix-skills, lewislulu/html-ppt-skill, WenyuChiou/awesome-agentic-ai-zh, BigPizzaV3/CodexPlusPlus, plustar35/echo-reading, JimLiu/baoyu-design, joeseesun/qiaomu-goal-meta-skill, LearnPrompt/partner-skill, oomol-lab/open-connector, LiamGvchi/gc-minimal-zine-poster, oil-oil/vibe-hub-skill, joeseesun/qiaomu-bento-ppt, biuworks/bilibili-digest, godotengine/godot, shadcn-ui/ui, youzan/vant-weapp, D4Vinci/Scrapling, DayuanJiang/next-ai-draw-io",
@@ -30,7 +30,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 367,
+          "duration_ms": 272,
           "first_collect_backfill": true
         },
         {
@@ -41,7 +41,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 449,
+          "duration_ms": 431,
           "first_collect_backfill": true
         },
         {
@@ -52,7 +52,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 327,
+          "duration_ms": 345,
           "first_collect_backfill": true
         },
         {
@@ -63,7 +63,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 543,
+          "duration_ms": 552,
           "first_collect_backfill": true
         },
         {
@@ -74,7 +74,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 243,
+          "duration_ms": 248,
           "first_collect_backfill": false
         },
         {
@@ -85,7 +85,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 379,
+          "duration_ms": 311,
           "first_collect_backfill": false
         },
         {
@@ -96,7 +96,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 386,
+          "duration_ms": 399,
           "first_collect_backfill": true
         },
         {
@@ -107,7 +107,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 286,
+          "duration_ms": 267,
           "first_collect_backfill": true
         },
         {
@@ -118,7 +118,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 269,
+          "duration_ms": 245,
           "first_collect_backfill": true
         },
         {
@@ -129,7 +129,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 404,
+          "duration_ms": 352,
           "first_collect_backfill": false
         },
         {
@@ -140,7 +140,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 328,
+          "duration_ms": 343,
           "first_collect_backfill": false
         },
         {
@@ -151,7 +151,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 263,
+          "duration_ms": 272,
           "first_collect_backfill": true
         },
         {
@@ -162,7 +162,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 249,
+          "duration_ms": 222,
           "first_collect_backfill": true
         },
         {
@@ -173,19 +173,19 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 375,
+          "duration_ms": 411,
           "first_collect_backfill": true
         },
         {
           "repo": "stablyai/orca",
           "api_url": "https://api.github.com/repos/stablyai/orca/releases",
           "ok": true,
-          "item_count": 3,
+          "item_count": 1,
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 805,
-          "first_collect_backfill": true
+          "duration_ms": 299,
+          "first_collect_backfill": false
         },
         {
           "repo": "Wechat-ggGitHub/wechat-claude-code",
@@ -195,7 +195,7 @@
           "source_kind": "commit_fallback",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 685,
+          "duration_ms": 555,
           "first_collect_backfill": true
         },
         {
@@ -217,7 +217,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 371,
+          "duration_ms": 320,
           "first_collect_backfill": true
         },
         {
@@ -228,7 +228,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 401,
+          "duration_ms": 350,
           "first_collect_backfill": true
         },
         {
@@ -239,7 +239,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 398,
+          "duration_ms": 405,
           "first_collect_backfill": true
         },
         {
@@ -250,7 +250,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 410,
+          "duration_ms": 354,
           "first_collect_backfill": true
         },
         {
@@ -261,7 +261,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 285,
+          "duration_ms": 227,
           "first_collect_backfill": false
         },
         {
@@ -272,7 +272,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 396,
+          "duration_ms": 377,
           "first_collect_backfill": true
         },
         {
@@ -283,7 +283,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 242,
+          "duration_ms": 244,
           "first_collect_backfill": true
         },
         {
@@ -294,7 +294,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 408,
+          "duration_ms": 352,
           "first_collect_backfill": true
         },
         {
@@ -305,7 +305,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 259,
+          "duration_ms": 247,
           "first_collect_backfill": true
         },
         {
@@ -316,7 +316,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 318,
+          "duration_ms": 246,
           "first_collect_backfill": false
         },
         {
@@ -327,7 +327,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 233,
+          "duration_ms": 228,
           "first_collect_backfill": true
         },
         {
@@ -338,7 +338,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 386,
+          "duration_ms": 406,
           "first_collect_backfill": true
         },
         {
@@ -349,7 +349,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 409,
+          "duration_ms": 459,
           "first_collect_backfill": true
         },
         {
@@ -360,7 +360,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 511,
+          "duration_ms": 374,
           "first_collect_backfill": true
         },
         {
@@ -371,7 +371,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 588,
+          "duration_ms": 492,
           "first_collect_backfill": true
         },
         {
@@ -382,7 +382,7 @@
           "source_kind": "github_release_subscription",
           "skip_reason": "no_important_update",
           "error_code": "",
-          "duration_ms": 276,
+          "duration_ms": 272,
           "first_collect_backfill": true
         },
         {
@@ -393,7 +393,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 292,
+          "duration_ms": 312,
           "first_collect_backfill": true
         },
         {
@@ -404,7 +404,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 214,
+          "duration_ms": 210,
           "first_collect_backfill": false
         },
         {
@@ -415,7 +415,7 @@
           "source_kind": "release",
           "skip_reason": "",
           "error_code": "",
-          "duration_ms": 394,
+          "duration_ms": 404,
           "first_collect_backfill": true
         }
       ],
@@ -428,19 +428,19 @@
       "deferred_count": 0,
       "partial": false,
       "budget_ms": 180000,
-      "elapsed_ms": 13560,
+      "elapsed_ms": 12213,
       "overrun_ms": 0,
       "seen_only": 0,
       "daily_coalesced": 0,
       "window_bypassed": 0,
-      "raw_item_count": 51,
-      "window_item_count": 51,
+      "raw_item_count": 49,
+      "window_item_count": 49,
       "collection_window_hours": 0
     },
     {
       "enabled": true,
       "ok": true,
-      "item_count": 66,
+      "item_count": 61,
       "uid": "13030183,28756625,316183842,3546884870244925,385670211,50247550,505301413",
       "uids": [
         "13030183",
@@ -465,7 +465,8 @@
           "source_name": "中二的大暄哥",
           "ok": true,
           "item_count": 10,
-          "fetch_mode": "cookie_full_dynamic"
+          "fetch_mode": "public_opus_fallback",
+          "fallback_reason": "cookie_full_dynamic_failed:ValueError"
         },
         {
           "uid": "316183842",
@@ -481,31 +482,29 @@
           "ok": true,
           "item_count": 10,
           "first_collect_backfill": true,
-          "fetch_mode": "space_video_fallback",
-          "fallback_reason": "public_opus_failed:ValueError"
+          "fetch_mode": "cookie_full_dynamic"
         },
         {
           "uid": "385670211",
           "source_name": "秋芝2046",
           "ok": true,
           "item_count": 10,
-          "fetch_mode": "public_opus_fallback",
-          "fallback_reason": "cookie_full_dynamic_failed:ValueError"
+          "fetch_mode": "cookie_full_dynamic"
         },
         {
           "uid": "50247550",
           "source_name": "清华姜学长",
           "ok": true,
-          "item_count": 10,
-          "fetch_mode": "cookie_full_dynamic"
+          "item_count": 1,
+          "fetch_mode": "public_opus_fallback",
+          "fallback_reason": "cookie_full_dynamic_failed:ValueError"
         },
         {
           "uid": "505301413",
           "source_name": "Koji杨远骋at十字路口",
           "ok": true,
-          "item_count": 6,
-          "fetch_mode": "public_opus_fallback",
-          "fallback_reason": "cookie_full_dynamic_failed:ValueError"
+          "item_count": 10,
+          "fetch_mode": "cookie_full_dynamic"
         }
       ],
       "max_items": 10,
@@ -522,12 +521,12 @@
       "deferred_count": 0,
       "partial": false,
       "fetch_mode": "mixed",
-      "fallback_reason": "316183842:cookie_full_dynamic_failed:ValueError; 3546884870244925:public_opus_failed:ValueError; 385670211:cookie_full_dynamic_failed:ValueError; 505301413:cookie_full_dynamic_failed:ValueError",
-      "duration_ms": 16418,
+      "fallback_reason": "28756625:cookie_full_dynamic_failed:ValueError; 316183842:cookie_full_dynamic_failed:ValueError; 50247550:cookie_full_dynamic_failed:ValueError",
+      "duration_ms": 12548,
       "site_id": "bilibili_dynamic",
       "site_name": "Bilibili Dynamic",
-      "raw_item_count": 66,
-      "window_item_count": 66,
+      "raw_item_count": 61,
+      "window_item_count": 61,
       "collection_window_hours": 0
     },
     {
@@ -595,7 +594,7 @@
       ],
       "subscription_count": 5,
       "error": null,
-      "duration_ms": 22,
+      "duration_ms": 18,
       "collection_manifest_available": true,
       "partial": true,
       "missing_rows": 0,
@@ -615,7 +614,7 @@
       "ok": true,
       "partial_failures": 0,
       "item_count": 10,
-      "duration_ms": 415,
+      "duration_ms": 123,
       "error": null,
       "feed_count": 2,
       "effective_feed_count": 2,
@@ -673,11 +672,11 @@
   ],
   "zero_item_sites": [],
   "empty_advanced_sources": [],
-  "fetched_raw_items": 326,
-  "raw_items_before_collection_window": 326,
+  "fetched_raw_items": 319,
+  "raw_items_before_collection_window": 319,
   "skipped_collection_window_items": 0,
-  "items_before_topic_filter": 1760,
-  "items_in_24h": 1742,
+  "items_before_topic_filter": 1770,
+  "items_in_24h": 1751,
   "rss_opml": {
     "enabled": true,
     "path": "configured",
@@ -698,7 +697,7 @@
         "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCYPT3wl0MgbOz63ho166KOw",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 198,
+        "duration_ms": 59,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -718,7 +717,7 @@
         "effective_feed_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC26hLZoe-haxcuLYxzWAiNg",
         "ok": true,
         "item_count": 5,
-        "duration_ms": 217,
+        "duration_ms": 64,
         "error": null,
         "skipped": false,
         "skip_reason": null,
@@ -823,7 +822,7 @@
     ],
     "subscription_count": 5,
     "error": null,
-    "duration_ms": 22,
+    "duration_ms": 18,
     "collection_manifest_available": true,
     "partial": true,
     "missing_rows": 0,
@@ -877,8 +876,8 @@
     "candidate_item_ids": [],
     "candidate_counts": {},
     "approval_digest": "",
-    "archive_sha256_before": "0cda64c74a96a892964cbb5b1f8dcb17a02b3a3cd167c9ffc9e655494ec6e46d",
-    "purge_state_sha256": "9977ee9e29de1e500ed74641d5a3acfe85a137ded6d4a00b3d100c111b9df288",
+    "archive_sha256_before": "24beb06920713c037f18136b1f53a6ed599966b64ab6d1263ec53602d6cedd70",
+    "purge_state_sha256": "d139d267f53434dfa2646410943cbe344aaa8b5b1be1390d9b4370ed9a3c910b",
     "workflow_run_id": "",
     "workflow_run_attempt": "",
     "workflow_head_sha": "",
