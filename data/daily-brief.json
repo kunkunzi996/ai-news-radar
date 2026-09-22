@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-22T06:42:54.015980Z",
+  "generated_at": "2026-09-22T12:30:56.247541Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -205,15 +205,15 @@
       ],
       "item_count": 10,
       "duplicate_count": 10,
-      "score": 0.8558,
-      "importance": 0.8558,
-      "importance_score": 0.8558,
+      "score": 0.8423,
+      "importance": 0.8423,
+      "importance_score": 0.8423,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9346,
+        "recency": 0.8595,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -267,15 +267,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.8472,
-      "importance": 0.8472,
-      "importance_score": 0.8472,
+      "score": 0.8331,
+      "importance": 0.8331,
+      "importance_score": 0.8331,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 1.0,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9758,
+        "recency": 0.8974,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -294,49 +294,130 @@
       }
     },
     {
-      "story_id": "story_f69055e42087",
-      "title": "AI Safety Memes 转述 OpenAI 已大幅自动化实验模型训练并称新模型解决百余个数学难题",
-      "url": "https://x.com/AISafetyMemes/status/2102229140544065667",
-      "primary_url": "https://x.com/AISafetyMemes/status/2102229140544065667",
-      "source": "X：AI Safety Memes (@AISafetyMemes)",
+      "story_id": "story_1bd169faff02",
+      "title": "月之暗面 Kimi K3 上架 Amazon Bedrock",
+      "url": "https://x.com/thexpin/status/2102292001874198820",
+      "primary_url": "https://x.com/thexpin/status/2102292001874198820",
+      "source": "X：X.PIN (@thexpin)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "77c1af8c9edd87331d75581bd07442cd2d3e9f27",
-          "title": "AI Safety Memes 转述 OpenAI 已大幅自动化实验模型训练并称新模型解决百余个数学难题",
-          "url": "https://x.com/AISafetyMemes/status/2102229140544065667",
-          "source": "X：AI Safety Memes (@AISafetyMemes)",
+          "id": "d36301a1478d1cc70a0317a36de893f11d1ca46d",
+          "title": "月之暗面 Kimi K3 上架 Amazon Bedrock",
+          "url": "https://x.com/thexpin/status/2102292001874198820",
+          "source": "X：X.PIN (@thexpin)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-22T02:50:59Z"
+          "published_at": "2026-09-22T07:00:46Z"
+        },
+        {
+          "id": "9fa723b3702b000514191a02ec42e8783c1ac863",
+          "title": "Kimi K3 上线 Amazon Bedrock",
+          "url": "https://x.com/Kimi_Moonshot/status/2102244258531213596",
+          "source": "X：Kimi.ai (@Kimi_Moonshot)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T03:51:03Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Kimi.ai (@Kimi_Moonshot)",
+        "X：X.PIN (@thexpin)"
+      ],
+      "items": [
+        {
+          "id": "d36301a1478d1cc70a0317a36de893f11d1ca46d",
+          "title": "月之暗面 Kimi K3 上架 Amazon Bedrock",
+          "url": "https://x.com/thexpin/status/2102292001874198820",
+          "source": "X：X.PIN (@thexpin)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T07:00:46Z"
+        },
+        {
+          "id": "9fa723b3702b000514191a02ec42e8783c1ac863",
+          "title": "Kimi K3 上线 Amazon Bedrock",
+          "url": "https://x.com/Kimi_Moonshot/status/2102244258531213596",
+          "source": "X：Kimi.ai (@Kimi_Moonshot)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T03:51:03Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7548,
+      "importance": 0.7548,
+      "importance_score": 0.7548,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.64,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9236,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-22T03:51:03Z",
+      "latest_at": "2026-09-22T07:00:46Z",
+      "primary_item": {
+        "id": "d36301a1478d1cc70a0317a36de893f11d1ca46d",
+        "title": "月之暗面 Kimi K3 上架 Amazon Bedrock",
+        "url": "https://x.com/thexpin/status/2102292001874198820",
+        "source": "X：X.PIN (@thexpin)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_6bc6365216c2",
+      "title": "Kimi 发布浏览器扩展，由 Kimi WebBridge 更名而来",
+      "url": "https://x.com/Kimi_Moonshot/status/2102352211988865456",
+      "primary_url": "https://x.com/Kimi_Moonshot/status/2102352211988865456",
+      "source": "X：Kimi.ai (@Kimi_Moonshot)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "ecfd41ec1219cf0611e41cefa61d10f8855e6ee2",
+          "title": "Kimi 发布浏览器扩展，由 Kimi WebBridge 更名而来",
+          "url": "https://x.com/Kimi_Moonshot/status/2102352211988865456",
+          "source": "X：Kimi.ai (@Kimi_Moonshot)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T11:00:01Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：AI Safety Memes (@AISafetyMemes)"
+        "X：Kimi.ai (@Kimi_Moonshot)"
       ],
       "items": [
         {
-          "id": "77c1af8c9edd87331d75581bd07442cd2d3e9f27",
-          "title": "AI Safety Memes 转述 OpenAI 已大幅自动化实验模型训练并称新模型解决百余个数学难题",
-          "url": "https://x.com/AISafetyMemes/status/2102229140544065667",
-          "source": "X：AI Safety Memes (@AISafetyMemes)",
+          "id": "ecfd41ec1219cf0611e41cefa61d10f8855e6ee2",
+          "title": "Kimi 发布浏览器扩展，由 Kimi WebBridge 更名而来",
+          "url": "https://x.com/Kimi_Moonshot/status/2102352211988865456",
+          "source": "X：Kimi.ai (@Kimi_Moonshot)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-22T02:50:59Z"
+          "published_at": "2026-09-22T11:00:01Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7608,
-      "importance": 0.7608,
-      "importance_score": 0.7608,
+      "score": 0.7547,
+      "importance": 0.7547,
+      "importance_score": 0.7547,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.73,
+        "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9457,
+        "recency": 0.9784,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -344,13 +425,13 @@
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-09-22T02:50:59Z",
-      "latest_at": "2026-09-22T02:50:59Z",
+      "earliest_at": "2026-09-22T11:00:01Z",
+      "latest_at": "2026-09-22T11:00:01Z",
       "primary_item": {
-        "id": "77c1af8c9edd87331d75581bd07442cd2d3e9f27",
-        "title": "AI Safety Memes 转述 OpenAI 已大幅自动化实验模型训练并称新模型解决百余个数学难题",
-        "url": "https://x.com/AISafetyMemes/status/2102229140544065667",
-        "source": "X：AI Safety Memes (@AISafetyMemes)",
+        "id": "ecfd41ec1219cf0611e41cefa61d10f8855e6ee2",
+        "title": "Kimi 发布浏览器扩展，由 Kimi WebBridge 更名而来",
+        "url": "https://x.com/Kimi_Moonshot/status/2102352211988865456",
+        "source": "X：Kimi.ai (@Kimi_Moonshot)",
         "source_name": "AI HOT"
       }
     },
@@ -389,21 +470,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7602,
-      "importance": 0.7602,
-      "importance_score": 0.7602,
+      "score": 0.7478,
+      "importance": 0.7478,
+      "importance_score": 0.7478,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.859,
+        "recency": 0.79,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-21T20:11:34Z",
       "latest_at": "2026-09-21T20:11:34Z",
@@ -469,22 +549,21 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7602,
-      "importance": 0.7602,
-      "importance_score": 0.7602,
+      "score": 0.7476,
+      "importance": 0.7476,
+      "importance_score": 0.7476,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8699,
+        "recency": 0.8,
         "story_heat": 0.25
       },
       "category": "industry",
       "reasons": [
         "multi_source",
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-21T20:11:19Z",
       "latest_at": "2026-09-21T21:03:48Z",
@@ -493,6 +572,66 @@
         "title": "小米发布开放权重模型 MiMo-V2.6-Pro，登顶 Artificial Analysis 开放权重模型智能指数",
         "url": "https://x.com/ClementDelangue/status/2102141768674222323",
         "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_f69055e42087",
+      "title": "AI Safety Memes 转述 OpenAI 已大幅自动化实验模型训练并称新模型解决百余个数学难题",
+      "url": "https://x.com/AISafetyMemes/status/2102229140544065667",
+      "primary_url": "https://x.com/AISafetyMemes/status/2102229140544065667",
+      "source": "X：AI Safety Memes (@AISafetyMemes)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "77c1af8c9edd87331d75581bd07442cd2d3e9f27",
+          "title": "AI Safety Memes 转述 OpenAI 已大幅自动化实验模型训练并称新模型解决百余个数学难题",
+          "url": "https://x.com/AISafetyMemes/status/2102229140544065667",
+          "source": "X：AI Safety Memes (@AISafetyMemes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T02:50:59Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：AI Safety Memes (@AISafetyMemes)"
+      ],
+      "items": [
+        {
+          "id": "77c1af8c9edd87331d75581bd07442cd2d3e9f27",
+          "title": "AI Safety Memes 转述 OpenAI 已大幅自动化实验模型训练并称新模型解决百余个数学难题",
+          "url": "https://x.com/AISafetyMemes/status/2102229140544065667",
+          "source": "X：AI Safety Memes (@AISafetyMemes)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T02:50:59Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7472,
+      "importance": 0.7472,
+      "importance_score": 0.7472,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.73,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8697,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-22T02:50:59Z",
+      "latest_at": "2026-09-22T02:50:59Z",
+      "primary_item": {
+        "id": "77c1af8c9edd87331d75581bd07442cd2d3e9f27",
+        "title": "AI Safety Memes 转述 OpenAI 已大幅自动化实验模型训练并称新模型解决百余个数学难题",
+        "url": "https://x.com/AISafetyMemes/status/2102229140544065667",
+        "source": "X：AI Safety Memes (@AISafetyMemes)",
         "source_name": "AI HOT"
       }
     },
@@ -531,21 +670,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7578,
-      "importance": 0.7578,
-      "importance_score": 0.7578,
+      "score": 0.7439,
+      "importance": 0.7439,
+      "importance_score": 0.7439,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9623,
+        "recency": 0.885,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-22T04:03:09Z",
       "latest_at": "2026-09-22T04:03:09Z",
@@ -554,6 +692,66 @@
         "title": "xAI 工程师 Lauren Tan 分享单月合入 2500 个 PR 的智能体工程方法，开源插件 pstack 已上架 Cursor 插件市场",
         "url": "https://x.com/AYi_AInotes/status/2102247303390154891",
         "source": "X：阿易 AI Notes (@AYi_AInotes)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_98acfe91fd30",
+      "title": "transformers 支持直接加载 GGUF 量化模型，本地推理性能接近 llama.cpp",
+      "url": "https://huggingface.co/blog/transformers-llama-cpp-quants",
+      "primary_url": "https://huggingface.co/blog/transformers-llama-cpp-quants",
+      "source": "Hugging Face：Blog（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "bdfcbd36b2a4a5b02666684c5e4d7a68864a5bc5",
+          "title": "transformers 支持直接加载 GGUF 量化模型，本地推理性能接近 llama.cpp",
+          "url": "https://huggingface.co/blog/transformers-llama-cpp-quants",
+          "source": "Hugging Face：Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T00:00:00Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Hugging Face：Blog（RSS）"
+      ],
+      "items": [
+        {
+          "id": "bdfcbd36b2a4a5b02666684c5e4d7a68864a5bc5",
+          "title": "transformers 支持直接加载 GGUF 量化模型，本地推理性能接近 llama.cpp",
+          "url": "https://huggingface.co/blog/transformers-llama-cpp-quants",
+          "source": "Hugging Face：Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T00:00:00Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7378,
+      "importance": 0.7378,
+      "importance_score": 0.7378,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.72,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8347,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-22T00:00:00Z",
+      "latest_at": "2026-09-22T00:00:00Z",
+      "primary_item": {
+        "id": "bdfcbd36b2a4a5b02666684c5e4d7a68864a5bc5",
+        "title": "transformers 支持直接加载 GGUF 量化模型，本地推理性能接近 llama.cpp",
+        "url": "https://huggingface.co/blog/transformers-llama-cpp-quants",
+        "source": "Hugging Face：Blog（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -592,15 +790,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7467,
-      "importance": 0.7467,
-      "importance_score": 0.7467,
+      "score": 0.7342,
+      "importance": 0.7342,
+      "importance_score": 0.7342,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.73,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8672,
+        "recency": 0.7976,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -652,15 +850,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7462,
-      "importance": 0.7462,
-      "importance_score": 0.7462,
+      "score": 0.7334,
+      "importance": 0.7334,
+      "importance_score": 0.7334,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.881,
+        "recency": 0.8102,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -712,15 +910,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7427,
-      "importance": 0.7427,
-      "importance_score": 0.7427,
+      "score": 0.7317,
+      "importance": 0.7317,
+      "importance_score": 0.7317,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7619,
+        "recency": 0.7007,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -772,15 +970,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7414,
-      "importance": 0.7414,
-      "importance_score": 0.7414,
+      "score": 0.7285,
+      "importance": 0.7285,
+      "importance_score": 0.7285,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8877,
+        "recency": 0.8164,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -832,15 +1030,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7392,
-      "importance": 0.7392,
-      "importance_score": 0.7392,
+      "score": 0.7266,
+      "importance": 0.7266,
+      "importance_score": 0.7266,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8758,
+        "recency": 0.8054,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -892,15 +1090,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.737,
-      "importance": 0.737,
-      "importance_score": 0.737,
+      "score": 0.7252,
+      "importance": 0.7252,
+      "importance_score": 0.7252,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.73,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8133,
+        "recency": 0.748,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -914,66 +1112,6 @@
         "title": "xAI 发布 Grok 4.7：编码与长时智能体能力提升，价格与 Grok 4.6 持平",
         "url": "https://x.com/mark_k/status/2102071475414986981",
         "source": "@mark_k",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_d032359e7f55",
-      "title": "Artificial Analysis 评测 Step 5 Preview： Intelligence Index 得 44 分，成本约为同级模型 1/2.8",
-      "url": "https://x.com/ArtificialAnlys/status/2102213621963243704",
-      "primary_url": "https://x.com/ArtificialAnlys/status/2102213621963243704",
-      "source": "X：Artificial Analysis (@ArtificialAnlys)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "280fb36eafee73ab0c22463444a492760ebf4a73",
-          "title": "Artificial Analysis 评测 Step 5 Preview： Intelligence Index 得 44 分，成本约为同级模型 1/2.8",
-          "url": "https://x.com/ArtificialAnlys/status/2102213621963243704",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T01:49:19Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Artificial Analysis (@ArtificialAnlys)"
-      ],
-      "items": [
-        {
-          "id": "280fb36eafee73ab0c22463444a492760ebf4a73",
-          "title": "Artificial Analysis 评测 Step 5 Preview： Intelligence Index 得 44 分，成本约为同级模型 1/2.8",
-          "url": "https://x.com/ArtificialAnlys/status/2102213621963243704",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T01:49:19Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7343,
-      "importance": 0.7343,
-      "importance_score": 0.7343,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.65,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9318,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-22T01:49:19Z",
-      "latest_at": "2026-09-22T01:49:19Z",
-      "primary_item": {
-        "id": "280fb36eafee73ab0c22463444a492760ebf4a73",
-        "title": "Artificial Analysis 评测 Step 5 Preview： Intelligence Index 得 44 分，成本约为同级模型 1/2.8",
-        "url": "https://x.com/ArtificialAnlys/status/2102213621963243704",
-        "source": "X：Artificial Analysis (@ArtificialAnlys)",
         "source_name": "AI HOT"
       }
     },
@@ -1012,15 +1150,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.734,
-      "importance": 0.734,
-      "importance_score": 0.734,
+      "score": 0.722,
+      "importance": 0.722,
+      "importance_score": 0.722,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8301,
+        "recency": 0.7634,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1038,81 +1176,81 @@
       }
     },
     {
-      "story_id": "story_b40b0ea8d7f6",
-      "title": "阶跃星辰发布 Step 5 Preview，Artificial Analysis 智能指数得分 44、单任务成本约 $0.71",
-      "url": "https://x.com/StepFun_ai/status/2102231405606625507",
-      "primary_url": "https://x.com/StepFun_ai/status/2102231405606625507",
-      "source": "X：阶跃星辰 StepFun (@StepFun_ai)",
+      "story_id": "story_d032359e7f55",
+      "title": "Artificial Analysis 评测 Step 5 Preview： Intelligence Index 得 44 分，成本约为同级模型 1/2.8",
+      "url": "https://x.com/ArtificialAnlys/status/2102213621963243704",
+      "primary_url": "https://x.com/ArtificialAnlys/status/2102213621963243704",
+      "source": "X：Artificial Analysis (@ArtificialAnlys)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "a79c9aa9106c7bd9a2b1a903efee408c146e5dbc",
-          "title": "阶跃星辰发布 Step 5 Preview，Artificial Analysis 智能指数得分 44、单任务成本约 $0.71",
-          "url": "https://x.com/StepFun_ai/status/2102231405606625507",
-          "source": "X：阶跃星辰 StepFun (@StepFun_ai)",
+          "id": "280fb36eafee73ab0c22463444a492760ebf4a73",
+          "title": "Artificial Analysis 评测 Step 5 Preview： Intelligence Index 得 44 分，成本约为同级模型 1/2.8",
+          "url": "https://x.com/ArtificialAnlys/status/2102213621963243704",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-22T02:59:59Z"
+          "published_at": "2026-09-22T01:49:19Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：阶跃星辰 StepFun (@StepFun_ai)"
+        "X：Artificial Analysis (@ArtificialAnlys)"
       ],
       "items": [
         {
-          "id": "a79c9aa9106c7bd9a2b1a903efee408c146e5dbc",
-          "title": "阶跃星辰发布 Step 5 Preview，Artificial Analysis 智能指数得分 44、单任务成本约 $0.71",
-          "url": "https://x.com/StepFun_ai/status/2102231405606625507",
-          "source": "X：阶跃星辰 StepFun (@StepFun_ai)",
+          "id": "280fb36eafee73ab0c22463444a492760ebf4a73",
+          "title": "Artificial Analysis 评测 Step 5 Preview： Intelligence Index 得 44 分，成本约为同级模型 1/2.8",
+          "url": "https://x.com/ArtificialAnlys/status/2102213621963243704",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-22T02:59:59Z"
+          "published_at": "2026-09-22T01:49:19Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7282,
-      "importance": 0.7282,
-      "importance_score": 0.7282,
+      "score": 0.7208,
+      "importance": 0.7208,
+      "importance_score": 0.7208,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.62,
+        "editorial": 0.65,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9478,
+        "recency": 0.8569,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-22T02:59:59Z",
-      "latest_at": "2026-09-22T02:59:59Z",
+      "earliest_at": "2026-09-22T01:49:19Z",
+      "latest_at": "2026-09-22T01:49:19Z",
       "primary_item": {
-        "id": "a79c9aa9106c7bd9a2b1a903efee408c146e5dbc",
-        "title": "阶跃星辰发布 Step 5 Preview，Artificial Analysis 智能指数得分 44、单任务成本约 $0.71",
-        "url": "https://x.com/StepFun_ai/status/2102231405606625507",
-        "source": "X：阶跃星辰 StepFun (@StepFun_ai)",
+        "id": "280fb36eafee73ab0c22463444a492760ebf4a73",
+        "title": "Artificial Analysis 评测 Step 5 Preview： Intelligence Index 得 44 分，成本约为同级模型 1/2.8",
+        "url": "https://x.com/ArtificialAnlys/status/2102213621963243704",
+        "source": "X：Artificial Analysis (@ArtificialAnlys)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_ff86110996dd",
-      "title": "阿里平头哥发布真武 V900 芯片，称算力达 M890 的 3 倍",
-      "url": "https://x.com/thexpin/status/2102281764362469549",
-      "primary_url": "https://x.com/thexpin/status/2102281764362469549",
+      "story_id": "story_b3ef6f6e946b",
+      "title": "据 The Information 报道，梁文锋称 DeepSeek 计划用华为芯片训练模型",
+      "url": "https://x.com/thexpin/status/2102299835907141654",
+      "primary_url": "https://x.com/thexpin/status/2102299835907141654",
       "source": "X：X.PIN (@thexpin)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "2eb32739034a3d5e01e336387f8540bea7a43ea9",
-          "title": "阿里平头哥发布真武 V900 芯片，称算力达 M890 的 3 倍",
-          "url": "https://x.com/thexpin/status/2102281764362469549",
+          "id": "f41280c7e42bf4cf0e342f83162ea07133ab496b",
+          "title": "据 The Information 报道，梁文锋称 DeepSeek 计划用华为芯片训练模型",
+          "url": "https://x.com/thexpin/status/2102299835907141654",
           "source": "X：X.PIN (@thexpin)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-22T06:20:05Z"
+          "published_at": "2026-09-22T07:31:54Z"
         }
       ],
       "source_count": 1,
@@ -1121,279 +1259,159 @@
       ],
       "items": [
         {
-          "id": "2eb32739034a3d5e01e336387f8540bea7a43ea9",
-          "title": "阿里平头哥发布真武 V900 芯片，称算力达 M890 的 3 倍",
-          "url": "https://x.com/thexpin/status/2102281764362469549",
+          "id": "f41280c7e42bf4cf0e342f83162ea07133ab496b",
+          "title": "据 The Information 报道，梁文锋称 DeepSeek 计划用华为芯片训练模型",
+          "url": "https://x.com/thexpin/status/2102299835907141654",
           "source": "X：X.PIN (@thexpin)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-22T06:20:05Z"
+          "published_at": "2026-09-22T07:31:54Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7276,
-      "importance": 0.7276,
-      "importance_score": 0.7276,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.59,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9945,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-22T06:20:05Z",
-      "latest_at": "2026-09-22T06:20:05Z",
-      "primary_item": {
-        "id": "2eb32739034a3d5e01e336387f8540bea7a43ea9",
-        "title": "阿里平头哥发布真武 V900 芯片，称算力达 M890 的 3 倍",
-        "url": "https://x.com/thexpin/status/2102281764362469549",
-        "source": "X：X.PIN (@thexpin)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_9df088af4d49",
-      "title": "马斯克称 Grok 4.7 使 xAI 在智能体编码领域位列第三",
-      "url": "https://x.com/elonmusk/status/2102082011233931762",
-      "primary_url": "https://x.com/elonmusk/status/2102082011233931762",
-      "source": "X：Elon Musk (@elonmusk, xAI)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "6795ace021f7be53c5997a411c80eadae2e86061",
-          "title": "马斯克称 Grok 4.7 使 xAI 在智能体编码领域位列第三",
-          "url": "https://x.com/elonmusk/status/2102082011233931762",
-          "source": "X：Elon Musk (@elonmusk, xAI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T17:06:20Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Elon Musk (@elonmusk, xAI)"
-      ],
-      "items": [
-        {
-          "id": "6795ace021f7be53c5997a411c80eadae2e86061",
-          "title": "马斯克称 Grok 4.7 使 xAI 在智能体编码领域位列第三",
-          "url": "https://x.com/elonmusk/status/2102082011233931762",
-          "source": "X：Elon Musk (@elonmusk, xAI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T17:06:20Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7265,
-      "importance": 0.7265,
-      "importance_score": 0.7265,
+      "score": 0.7461,
+      "importance": 0.7461,
+      "importance_score": 0.7461,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8216,
+        "recency": 0.9306,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-21T17:06:20Z",
-      "latest_at": "2026-09-21T17:06:20Z",
+      "earliest_at": "2026-09-22T07:31:54Z",
+      "latest_at": "2026-09-22T07:31:54Z",
       "primary_item": {
-        "id": "6795ace021f7be53c5997a411c80eadae2e86061",
-        "title": "马斯克称 Grok 4.7 使 xAI 在智能体编码领域位列第三",
-        "url": "https://x.com/elonmusk/status/2102082011233931762",
-        "source": "X：Elon Musk (@elonmusk, xAI)",
+        "id": "f41280c7e42bf4cf0e342f83162ea07133ab496b",
+        "title": "据 The Information 报道，梁文锋称 DeepSeek 计划用华为芯片训练模型",
+        "url": "https://x.com/thexpin/status/2102299835907141654",
+        "source": "X：X.PIN (@thexpin)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_58f67d30ae06",
-      "title": "小米 MiMo-V2.6-Pro 登上 Code Arena： WebDev 榜约第10名，开源权重中约第3",
-      "url": "https://x.com/arena/status/2102142912943489220",
-      "primary_url": "https://x.com/arena/status/2102142912943489220",
-      "source": "X：Arena (@arena)",
+      "story_id": "story_7b554e2be9b8",
+      "title": "22位国家元首签署公开信呼吁加强对前沿AI模型的管控",
+      "url": "https://x.com/AISafetyMemes/status/2102256013726675062",
+      "primary_url": "https://x.com/AISafetyMemes/status/2102256013726675062",
+      "source": "X：AI Safety Memes (@AISafetyMemes)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "770d53d2ebfaa17968287b5f7dcce4e8493490bb",
-          "title": "小米 MiMo-V2.6-Pro 登上 Code Arena： WebDev 榜约第10名，开源权重中约第3",
-          "url": "https://x.com/arena/status/2102142912943489220",
-          "source": "X：Arena (@arena)",
+          "id": "069d8cef981c78aab38e9a1eb7467eb253784201",
+          "title": "22位国家元首签署公开信呼吁加强对前沿AI模型的管控",
+          "url": "https://x.com/AISafetyMemes/status/2102256013726675062",
+          "source": "X：AI Safety Memes (@AISafetyMemes)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-21T21:08:21Z"
+          "published_at": "2026-09-22T04:37:46Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Arena (@arena)"
+        "X：AI Safety Memes (@AISafetyMemes)"
       ],
       "items": [
         {
-          "id": "770d53d2ebfaa17968287b5f7dcce4e8493490bb",
-          "title": "小米 MiMo-V2.6-Pro 登上 Code Arena： WebDev 榜约第10名，开源权重中约第3",
-          "url": "https://x.com/arena/status/2102142912943489220",
-          "source": "X：Arena (@arena)",
+          "id": "069d8cef981c78aab38e9a1eb7467eb253784201",
+          "title": "22位国家元首签署公开信呼吁加强对前沿AI模型的管控",
+          "url": "https://x.com/AISafetyMemes/status/2102256013726675062",
+          "source": "X：AI Safety Memes (@AISafetyMemes)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-21T21:08:21Z"
+          "published_at": "2026-09-22T04:37:46Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7264,
-      "importance": 0.7264,
-      "importance_score": 0.7264,
+      "score": 0.7272,
+      "importance": 0.7272,
+      "importance_score": 0.7272,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.66,
+        "editorial": 0.65,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8709,
+        "recency": 0.8924,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-21T21:08:21Z",
-      "latest_at": "2026-09-21T21:08:21Z",
+      "earliest_at": "2026-09-22T04:37:46Z",
+      "latest_at": "2026-09-22T04:37:46Z",
       "primary_item": {
-        "id": "770d53d2ebfaa17968287b5f7dcce4e8493490bb",
-        "title": "小米 MiMo-V2.6-Pro 登上 Code Arena： WebDev 榜约第10名，开源权重中约第3",
-        "url": "https://x.com/arena/status/2102142912943489220",
-        "source": "X：Arena (@arena)",
+        "id": "069d8cef981c78aab38e9a1eb7467eb253784201",
+        "title": "22位国家元首签署公开信呼吁加强对前沿AI模型的管控",
+        "url": "https://x.com/AISafetyMemes/status/2102256013726675062",
+        "source": "X：AI Safety Memes (@AISafetyMemes)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_3ed9fa9162b7",
-      "title": "Artificial Analysis 评测 Grok 4.7：智能体知识工作跻身前沿，编码代理得分升至 56",
-      "url": "https://artificialanalysis.ai/articles/benchmarking-grok-4-7",
-      "primary_url": "https://artificialanalysis.ai/articles/benchmarking-grok-4-7",
-      "source": "Artificial Analysis 完整文章（网页）",
+      "story_id": "story_d277a7644b55",
+      "title": "FT 报道 SB Energy 约以 $50B 估值放缓 IPO，投资者质疑其重资本 AI 数据中心建设",
+      "url": "https://x.com/rohanpaul_ai/status/2102248926464078144",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2102248926464078144",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "6f3c506835fb8b8b31e458bd1655b7e8a7b999d6",
-          "title": "Artificial Analysis 评测 Grok 4.7：智能体知识工作跻身前沿，编码代理得分升至 56",
-          "url": "https://artificialanalysis.ai/articles/benchmarking-grok-4-7",
-          "source": "Artificial Analysis 完整文章（网页）",
+          "id": "d6eab74ab6092f45339c3e5a83065edb5a3f367b",
+          "title": "FT 报道 SB Energy 约以 $50B 估值放缓 IPO，投资者质疑其重资本 AI 数据中心建设",
+          "url": "https://x.com/rohanpaul_ai/status/2102248926464078144",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-21T19:41:25.079000Z"
+          "published_at": "2026-09-22T04:09:36Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "Artificial Analysis 完整文章（网页）"
+        "X：Rohan Paul (@rohanpaul_ai)"
       ],
       "items": [
         {
-          "id": "6f3c506835fb8b8b31e458bd1655b7e8a7b999d6",
-          "title": "Artificial Analysis 评测 Grok 4.7：智能体知识工作跻身前沿，编码代理得分升至 56",
-          "url": "https://artificialanalysis.ai/articles/benchmarking-grok-4-7",
-          "source": "Artificial Analysis 完整文章（网页）",
+          "id": "d6eab74ab6092f45339c3e5a83065edb5a3f367b",
+          "title": "FT 报道 SB Energy 约以 $50B 估值放缓 IPO，投资者质疑其重资本 AI 数据中心建设",
+          "url": "https://x.com/rohanpaul_ai/status/2102248926464078144",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-21T19:41:25.079000Z"
+          "published_at": "2026-09-22T04:09:36Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7261,
-      "importance": 0.7261,
-      "importance_score": 0.7261,
+      "score": 0.7231,
+      "importance": 0.7231,
+      "importance_score": 0.7231,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.67,
+        "editorial": 0.64,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8528,
+        "recency": 0.8863,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-21T19:41:25.079000Z",
-      "latest_at": "2026-09-21T19:41:25.079000Z",
+      "earliest_at": "2026-09-22T04:09:36Z",
+      "latest_at": "2026-09-22T04:09:36Z",
       "primary_item": {
-        "id": "6f3c506835fb8b8b31e458bd1655b7e8a7b999d6",
-        "title": "Artificial Analysis 评测 Grok 4.7：智能体知识工作跻身前沿，编码代理得分升至 56",
-        "url": "https://artificialanalysis.ai/articles/benchmarking-grok-4-7",
-        "source": "Artificial Analysis 完整文章（网页）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_a9ca2b27c737",
-      "title": "小米发布 MiMo-V2.6 系列：Pro 1.02T 总参数 42B 激活，Flash 310B-15B",
-      "url": "https://x.com/natolambert/status/2102127392487567651",
-      "primary_url": "https://x.com/natolambert/status/2102127392487567651",
-      "source": "X：Nathan Lambert (@natolambert)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "bbb332c4f42f0a5a1278a8b9fa4be39103acc467",
-          "title": "小米发布 MiMo-V2.6 系列：Pro 1.02T 总参数 42B 激活，Flash 310B-15B",
-          "url": "https://x.com/natolambert/status/2102127392487567651",
-          "source": "X：Nathan Lambert (@natolambert)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T20:06:40Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Nathan Lambert (@natolambert)"
-      ],
-      "items": [
-        {
-          "id": "bbb332c4f42f0a5a1278a8b9fa4be39103acc467",
-          "title": "小米发布 MiMo-V2.6 系列：Pro 1.02T 总参数 42B 激活，Flash 310B-15B",
-          "url": "https://x.com/natolambert/status/2102127392487567651",
-          "source": "X：Nathan Lambert (@natolambert)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T20:06:40Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.724,
-      "importance": 0.724,
-      "importance_score": 0.724,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.858,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-21T20:06:40Z",
-      "latest_at": "2026-09-21T20:06:40Z",
-      "primary_item": {
-        "id": "bbb332c4f42f0a5a1278a8b9fa4be39103acc467",
-        "title": "小米发布 MiMo-V2.6 系列：Pro 1.02T 总参数 42B 激活，Flash 310B-15B",
-        "url": "https://x.com/natolambert/status/2102127392487567651",
-        "source": "X：Nathan Lambert (@natolambert)",
+        "id": "d6eab74ab6092f45339c3e5a83065edb5a3f367b",
+        "title": "FT 报道 SB Energy 约以 $50B 估值放缓 IPO，投资者质疑其重资本 AI 数据中心建设",
+        "url": "https://x.com/rohanpaul_ai/status/2102248926464078144",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     }
