@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-22T12:30:56.247541Z",
+  "generated_at": "2026-09-22T17:12:03.703454Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -205,15 +205,15 @@
       ],
       "item_count": 10,
       "duplicate_count": 10,
-      "score": 0.8423,
-      "importance": 0.8423,
-      "importance_score": 0.8423,
+      "score": 0.8322,
+      "importance": 0.8322,
+      "importance_score": 0.8322,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8595,
+        "recency": 0.8033,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -267,15 +267,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.8331,
-      "importance": 0.8331,
-      "importance_score": 0.8331,
+      "score": 0.8226,
+      "importance": 0.8226,
+      "importance_score": 0.8226,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 1.0,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8974,
+        "recency": 0.8387,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -290,6 +290,798 @@
         "title": "typesafeai 发推\"he olo world\"",
         "url": "https://x.com/typesafeai/status/2102261849945444699",
         "source": "@typesafeai",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_0c90c73c08cf",
+      "title": "Anthropic 发布 Claude Opus 5.5，成本较 Opus 5 降低 40%",
+      "url": "https://www.anthropic.com/claude-opus-5-5",
+      "primary_url": "https://www.anthropic.com/claude-opus-5-5",
+      "source": "Anthropic：Newsroom（网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "a58405996672d080264a33742ee41cde0d801b04",
+          "title": "Anthropic 发布 Claude Opus 5.5，成本较 Opus 5 降低 40%",
+          "url": "https://www.anthropic.com/claude-opus-5-5",
+          "source": "Anthropic：Newsroom（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:53:30.664000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Anthropic：Newsroom（网页）"
+      ],
+      "items": [
+        {
+          "id": "a58405996672d080264a33742ee41cde0d801b04",
+          "title": "Anthropic 发布 Claude Opus 5.5，成本较 Opus 5 降低 40%",
+          "url": "https://www.anthropic.com/claude-opus-5-5",
+          "source": "Anthropic：Newsroom（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:53:30.664000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.8088,
+      "importance": 0.8088,
+      "importance_score": 0.8088,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.86,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9955,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-22T16:53:30.664000Z",
+      "latest_at": "2026-09-22T16:53:30.664000Z",
+      "primary_item": {
+        "id": "a58405996672d080264a33742ee41cde0d801b04",
+        "title": "Anthropic 发布 Claude Opus 5.5，成本较 Opus 5 降低 40%",
+        "url": "https://www.anthropic.com/claude-opus-5-5",
+        "source": "Anthropic：Newsroom（网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_3f2d890918eb",
+      "title": "Anthropic 发布 Claude Opus 5.5，成本降低 40% 且速度提升 30%",
+      "url": "https://x.com/mark_k/status/2102437510731219218",
+      "primary_url": "https://x.com/mark_k/status/2102437510731219218",
+      "source": "@mark_k",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "f954331306c3da6009c3265f549120d3121642d6",
+          "title": "Anthropic 发布 Claude Opus 5.5，成本降低 40% 且速度提升 30%",
+          "url": "https://x.com/mark_k/status/2102437510731219218",
+          "source": "@mark_k",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:38:58Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "@mark_k"
+      ],
+      "items": [
+        {
+          "id": "f954331306c3da6009c3265f549120d3121642d6",
+          "title": "Anthropic 发布 Claude Opus 5.5，成本降低 40% 且速度提升 30%",
+          "url": "https://x.com/mark_k/status/2102437510731219218",
+          "source": "@mark_k",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:38:58Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7992,
+      "importance": 0.7992,
+      "importance_score": 0.7992,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.83,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9921,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-22T16:38:58Z",
+      "latest_at": "2026-09-22T16:38:58Z",
+      "primary_item": {
+        "id": "f954331306c3da6009c3265f549120d3121642d6",
+        "title": "Anthropic 发布 Claude Opus 5.5，成本降低 40% 且速度提升 30%",
+        "url": "https://x.com/mark_k/status/2102437510731219218",
+        "source": "@mark_k",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_0c905d43868e",
+      "title": "Claude Opus 5.5 登顶 Artificial Analysis Intelligence Index，并降价 20%",
+      "url": "https://x.com/ArtificialAnlys/status/2102438210798514391",
+      "primary_url": "https://x.com/ArtificialAnlys/status/2102438210798514391",
+      "source": "X：Artificial Analysis (@ArtificialAnlys)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "6a8ca796a816ed8176056297a444a3d87cc9ef3d",
+          "title": "Claude Opus 5.5 登顶 Artificial Analysis Intelligence Index，并降价 20%",
+          "url": "https://x.com/ArtificialAnlys/status/2102438210798514391",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:41:45Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Artificial Analysis (@ArtificialAnlys)"
+      ],
+      "items": [
+        {
+          "id": "6a8ca796a816ed8176056297a444a3d87cc9ef3d",
+          "title": "Claude Opus 5.5 登顶 Artificial Analysis Intelligence Index，并降价 20%",
+          "url": "https://x.com/ArtificialAnlys/status/2102438210798514391",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:41:45Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7873,
+      "importance": 0.7873,
+      "importance_score": 0.7873,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.79,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9927,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-22T16:41:45Z",
+      "latest_at": "2026-09-22T16:41:45Z",
+      "primary_item": {
+        "id": "6a8ca796a816ed8176056297a444a3d87cc9ef3d",
+        "title": "Claude Opus 5.5 登顶 Artificial Analysis Intelligence Index，并降价 20%",
+        "url": "https://x.com/ArtificialAnlys/status/2102438210798514391",
+        "source": "X：Artificial Analysis (@ArtificialAnlys)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_e7b825a01c48",
+      "title": "Anthropic 发布 Claude Opus 5.5，通信能力更强且按 token 定价更低",
+      "url": "https://x.com/trq212/status/2102437063522136303",
+      "primary_url": "https://x.com/trq212/status/2102437063522136303",
+      "source": "X：Thariq (@trq212)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "ba130eb6716f341d738010327ed5caf3da0f97f4",
+          "title": "Anthropic 发布 Claude Opus 5.5，通信能力更强且按 token 定价更低",
+          "url": "https://x.com/trq212/status/2102437063522136303",
+          "source": "X：Thariq (@trq212)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:37:11Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Thariq (@trq212)"
+      ],
+      "items": [
+        {
+          "id": "ba130eb6716f341d738010327ed5caf3da0f97f4",
+          "title": "Anthropic 发布 Claude Opus 5.5，通信能力更强且按 token 定价更低",
+          "url": "https://x.com/trq212/status/2102437063522136303",
+          "source": "X：Thariq (@trq212)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:37:11Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7841,
+      "importance": 0.7841,
+      "importance_score": 0.7841,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.78,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9916,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-22T16:37:11Z",
+      "latest_at": "2026-09-22T16:37:11Z",
+      "primary_item": {
+        "id": "ba130eb6716f341d738010327ed5caf3da0f97f4",
+        "title": "Anthropic 发布 Claude Opus 5.5，通信能力更强且按 token 定价更低",
+        "url": "https://x.com/trq212/status/2102437063522136303",
+        "source": "X：Thariq (@trq212)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_5efa8c0c34e5",
+      "title": "Anthropic 发布 Claude Opus 5.5，速度提升约 30%、成本低约 40%",
+      "url": "https://x.com/ClaudeDevs/status/2102438800836489554",
+      "primary_url": "https://x.com/ClaudeDevs/status/2102438800836489554",
+      "source": "X：Claude Devs (@ClaudeDevs)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "01961eebf0848f46bb8fe60c67ce365b42b89438",
+          "title": "Anthropic 发布 Claude Opus 5.5，速度提升约 30%、成本低约 40%",
+          "url": "https://x.com/ClaudeDevs/status/2102438800836489554",
+          "source": "X：Claude Devs (@ClaudeDevs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:44:06Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Claude Devs (@ClaudeDevs)"
+      ],
+      "items": [
+        {
+          "id": "01961eebf0848f46bb8fe60c67ce365b42b89438",
+          "title": "Anthropic 发布 Claude Opus 5.5，速度提升约 30%、成本低约 40%",
+          "url": "https://x.com/ClaudeDevs/status/2102438800836489554",
+          "source": "X：Claude Devs (@ClaudeDevs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:44:06Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7784,
+      "importance": 0.7784,
+      "importance_score": 0.7784,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.76,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9933,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-22T16:44:06Z",
+      "latest_at": "2026-09-22T16:44:06Z",
+      "primary_item": {
+        "id": "01961eebf0848f46bb8fe60c67ce365b42b89438",
+        "title": "Anthropic 发布 Claude Opus 5.5，速度提升约 30%、成本低约 40%",
+        "url": "https://x.com/ClaudeDevs/status/2102438800836489554",
+        "source": "X：Claude Devs (@ClaudeDevs)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_5dc131998993",
+      "title": "Meta AI 助手 Muse 曝出严重 0-day，可被本地应用窃取账户令牌",
+      "url": "https://arstechnica.com/security/2026/09/muse-metas-extraordinarily-privileged-ai-assistant-has-a-serious-0-day",
+      "primary_url": "https://arstechnica.com/security/2026/09/muse-metas-extraordinarily-privileged-ai-assistant-has-a-serious-0-day",
+      "source": "Hacker News：AI 热帖",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "ab5995d06b782bfdd43fe94bba41056bad108db1",
+          "title": "Meta AI 助手 Muse 曝出严重 0-day，可被本地应用窃取账户令牌",
+          "url": "https://arstechnica.com/security/2026/09/muse-metas-extraordinarily-privileged-ai-assistant-has-a-serious-0-day",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T14:35:15Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Hacker News：AI 热帖"
+      ],
+      "items": [
+        {
+          "id": "ab5995d06b782bfdd43fe94bba41056bad108db1",
+          "title": "Meta AI 助手 Muse 曝出严重 0-day，可被本地应用窃取账户令牌",
+          "url": "https://arstechnica.com/security/2026/09/muse-metas-extraordinarily-privileged-ai-assistant-has-a-serious-0-day",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T14:35:15Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7729,
+      "importance": 0.7729,
+      "importance_score": 0.7729,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.76,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.963,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-22T14:35:15Z",
+      "latest_at": "2026-09-22T14:35:15Z",
+      "primary_item": {
+        "id": "ab5995d06b782bfdd43fe94bba41056bad108db1",
+        "title": "Meta AI 助手 Muse 曝出严重 0-day，可被本地应用窃取账户令牌",
+        "url": "https://arstechnica.com/security/2026/09/muse-metas-extraordinarily-privileged-ai-assistant-has-a-serious-0-day",
+        "source": "Hacker News：AI 热帖",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_d5a68f820599",
+      "title": "小米开源 MiMo-V2.6-Pro，登顶 Artificial Analysis 开放权重模型智能指数",
+      "url": "https://x.com/omarsar0/status/2102404483800052021",
+      "primary_url": "https://x.com/omarsar0/status/2102404483800052021",
+      "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "bf7b6860f577b0067d5f8df4f3ab4aaa7d8ef42f",
+          "title": "小米开源 MiMo-V2.6-Pro，登顶 Artificial Analysis 开放权重模型智能指数",
+          "url": "https://x.com/omarsar0/status/2102404483800052021",
+          "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T14:27:44Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Elvis Saravia (@omarsar0, DAIR.AI)"
+      ],
+      "items": [
+        {
+          "id": "bf7b6860f577b0067d5f8df4f3ab4aaa7d8ef42f",
+          "title": "小米开源 MiMo-V2.6-Pro，登顶 Artificial Analysis 开放权重模型智能指数",
+          "url": "https://x.com/omarsar0/status/2102404483800052021",
+          "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T14:27:44Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7726,
+      "importance": 0.7726,
+      "importance_score": 0.7726,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.76,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9612,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-22T14:27:44Z",
+      "latest_at": "2026-09-22T14:27:44Z",
+      "primary_item": {
+        "id": "bf7b6860f577b0067d5f8df4f3ab4aaa7d8ef42f",
+        "title": "小米开源 MiMo-V2.6-Pro，登顶 Artificial Analysis 开放权重模型智能指数",
+        "url": "https://x.com/omarsar0/status/2102404483800052021",
+        "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_0a190db40250",
+      "title": "Anthropic 发布 Claude Opus 5.5，智能体编码与计算机使用成绩领先",
+      "url": "https://x.com/testingcatalog/status/2102437617128403057",
+      "primary_url": "https://x.com/testingcatalog/status/2102437617128403057",
+      "source": "X：Testing Catalog (@testingcatalog)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "cbe2242d8d2bbfe28a6c0b4685fe85bd4af738ba",
+          "title": "Anthropic 发布 Claude Opus 5.5，智能体编码与计算机使用成绩领先",
+          "url": "https://x.com/testingcatalog/status/2102437617128403057",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:39:23Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Testing Catalog (@testingcatalog)"
+      ],
+      "items": [
+        {
+          "id": "cbe2242d8d2bbfe28a6c0b4685fe85bd4af738ba",
+          "title": "Anthropic 发布 Claude Opus 5.5，智能体编码与计算机使用成绩领先",
+          "url": "https://x.com/testingcatalog/status/2102437617128403057",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:39:23Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7692,
+      "importance": 0.7692,
+      "importance_score": 0.7692,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.73,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9922,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-22T16:39:23Z",
+      "latest_at": "2026-09-22T16:39:23Z",
+      "primary_item": {
+        "id": "cbe2242d8d2bbfe28a6c0b4685fe85bd4af738ba",
+        "title": "Anthropic 发布 Claude Opus 5.5，智能体编码与计算机使用成绩领先",
+        "url": "https://x.com/testingcatalog/status/2102437617128403057",
+        "source": "X：Testing Catalog (@testingcatalog)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_46b9bbf1e74c",
+      "title": "Claude Opus 5.5 上线 OpenRouter，智能体编码等能力领先 Opus 5",
+      "url": "https://x.com/OpenRouter/status/2102438921213014078",
+      "primary_url": "https://x.com/OpenRouter/status/2102438921213014078",
+      "source": "X：OpenRouter (@OpenRouter)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "532b9aafd26e50f01008c5b21312b333f57f8659",
+          "title": "Claude Opus 5.5 上线 OpenRouter，智能体编码等能力领先 Opus 5",
+          "url": "https://x.com/OpenRouter/status/2102438921213014078",
+          "source": "X：OpenRouter (@OpenRouter)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:44:34Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：OpenRouter (@OpenRouter)"
+      ],
+      "items": [
+        {
+          "id": "532b9aafd26e50f01008c5b21312b333f57f8659",
+          "title": "Claude Opus 5.5 上线 OpenRouter，智能体编码等能力领先 Opus 5",
+          "url": "https://x.com/OpenRouter/status/2102438921213014078",
+          "source": "X：OpenRouter (@OpenRouter)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:44:34Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7664,
+      "importance": 0.7664,
+      "importance_score": 0.7664,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.72,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9934,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-22T16:44:34Z",
+      "latest_at": "2026-09-22T16:44:34Z",
+      "primary_item": {
+        "id": "532b9aafd26e50f01008c5b21312b333f57f8659",
+        "title": "Claude Opus 5.5 上线 OpenRouter，智能体编码等能力领先 Opus 5",
+        "url": "https://x.com/OpenRouter/status/2102438921213014078",
+        "source": "X：OpenRouter (@OpenRouter)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_b48827daea9b",
+      "title": "Anthropic 发布 Claude Opus 5.5",
+      "url": "https://x.com/AnthropicAI/status/2102435703535939725",
+      "primary_url": "https://x.com/AnthropicAI/status/2102435703535939725",
+      "source": "X：Anthropic (@AnthropicAI)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "e68b3e8efd176508d9489034895c045e0648eef2",
+          "title": "Anthropic 发布 Claude Opus 5.5",
+          "url": "https://x.com/AnthropicAI/status/2102435703535939725",
+          "source": "X：Anthropic (@AnthropicAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:31:47Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Anthropic (@AnthropicAI)"
+      ],
+      "items": [
+        {
+          "id": "e68b3e8efd176508d9489034895c045e0648eef2",
+          "title": "Anthropic 发布 Claude Opus 5.5",
+          "url": "https://x.com/AnthropicAI/status/2102435703535939725",
+          "source": "X：Anthropic (@AnthropicAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:31:47Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7629,
+      "importance": 0.7629,
+      "importance_score": 0.7629,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.71,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9904,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-22T16:31:47Z",
+      "latest_at": "2026-09-22T16:31:47Z",
+      "primary_item": {
+        "id": "e68b3e8efd176508d9489034895c045e0648eef2",
+        "title": "Anthropic 发布 Claude Opus 5.5",
+        "url": "https://x.com/AnthropicAI/status/2102435703535939725",
+        "source": "X：Anthropic (@AnthropicAI)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_d647d6ac131e",
+      "title": "Qwen-Image-2.1 开源发布，登顶 Arena 图像编辑榜开源第一",
+      "url": "https://x.com/arena/status/2102416020678008986",
+      "primary_url": "https://x.com/arena/status/2102416020678008986",
+      "source": "X：Arena (@arena)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "fca008f06bf1a076492eb09ceb87439522b46b0c",
+          "title": "Qwen-Image-2.1 开源发布，登顶 Arena 图像编辑榜开源第一",
+          "url": "https://x.com/arena/status/2102416020678008986",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T15:13:34Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Arena (@arena)"
+      ],
+      "items": [
+        {
+          "id": "fca008f06bf1a076492eb09ceb87439522b46b0c",
+          "title": "Qwen-Image-2.1 开源发布，登顶 Arena 图像编辑榜开源第一",
+          "url": "https://x.com/arena/status/2102416020678008986",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T15:13:34Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7625,
+      "importance": 0.7625,
+      "importance_score": 0.7625,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.72,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9719,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-22T15:13:34Z",
+      "latest_at": "2026-09-22T15:13:34Z",
+      "primary_item": {
+        "id": "fca008f06bf1a076492eb09ceb87439522b46b0c",
+        "title": "Qwen-Image-2.1 开源发布，登顶 Arena 图像编辑榜开源第一",
+        "url": "https://x.com/arena/status/2102416020678008986",
+        "source": "X：Arena (@arena)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_5a2caff47bb4",
+      "title": "Anthropic 发布 Claude Opus 5.5，Claude 5.5 系列首个模型",
+      "url": "https://x.com/claudeai/status/2102435511222890900",
+      "primary_url": "https://x.com/claudeai/status/2102435511222890900",
+      "source": "X：Claude (@claudeai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "aa9d73d1a7f42cad7f0e52843e35b82a9eade57a",
+          "title": "Anthropic 发布 Claude Opus 5.5，Claude 5.5 系列首个模型",
+          "url": "https://x.com/claudeai/status/2102435511222890900",
+          "source": "X：Claude (@claudeai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:31:01Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Claude (@claudeai)"
+      ],
+      "items": [
+        {
+          "id": "aa9d73d1a7f42cad7f0e52843e35b82a9eade57a",
+          "title": "Anthropic 发布 Claude Opus 5.5，Claude 5.5 系列首个模型",
+          "url": "https://x.com/claudeai/status/2102435511222890900",
+          "source": "X：Claude (@claudeai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:31:01Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7598,
+      "importance": 0.7598,
+      "importance_score": 0.7598,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.7,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9902,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-22T16:31:01Z",
+      "latest_at": "2026-09-22T16:31:01Z",
+      "primary_item": {
+        "id": "aa9d73d1a7f42cad7f0e52843e35b82a9eade57a",
+        "title": "Anthropic 发布 Claude Opus 5.5，Claude 5.5 系列首个模型",
+        "url": "https://x.com/claudeai/status/2102435511222890900",
+        "source": "X：Claude (@claudeai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_b8f490d6bcc9",
+      "title": "阿里云栖大会吴泳铭发布机器智能时代路线图，模型芯片云三层布局",
+      "url": "https://x.com/rohanpaul_ai/status/2102430290186760224",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2102430290186760224",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "b1d4889273dfe9f7a7f50a9daaf0fe7d836a6ee4",
+          "title": "阿里云栖大会吴泳铭发布机器智能时代路线图，模型芯片云三层布局",
+          "url": "https://x.com/rohanpaul_ai/status/2102430290186760224",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:10:17Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "b1d4889273dfe9f7a7f50a9daaf0fe7d836a6ee4",
+          "title": "阿里云栖大会吴泳铭发布机器智能时代路线图，模型芯片云三层布局",
+          "url": "https://x.com/rohanpaul_ai/status/2102430290186760224",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:10:17Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7499,
+      "importance": 0.7499,
+      "importance_score": 0.7499,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.67,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9852,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-22T16:10:17Z",
+      "latest_at": "2026-09-22T16:10:17Z",
+      "primary_item": {
+        "id": "b1d4889273dfe9f7a7f50a9daaf0fe7d836a6ee4",
+        "title": "阿里云栖大会吴泳铭发布机器智能时代路线图，模型芯片云三层布局",
+        "url": "https://x.com/rohanpaul_ai/status/2102430290186760224",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -347,22 +1139,21 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7548,
-      "importance": 0.7548,
-      "importance_score": 0.7548,
+      "score": 0.744,
+      "importance": 0.744,
+      "importance_score": 0.744,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.64,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9236,
+        "recency": 0.8632,
         "story_heat": 0.25
       },
       "category": "industry",
       "reasons": [
         "multi_source",
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-22T03:51:03Z",
       "latest_at": "2026-09-22T07:00:46Z",
@@ -409,21 +1200,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7547,
-      "importance": 0.7547,
-      "importance_score": 0.7547,
+      "score": 0.7432,
+      "importance": 0.7432,
+      "importance_score": 0.7432,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9784,
+        "recency": 0.9143,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-22T11:00:01Z",
       "latest_at": "2026-09-22T11:00:01Z",
@@ -436,142 +1226,122 @@
       }
     },
     {
-      "story_id": "story_9525c17a5986",
-      "title": "不列颠哥伦比亚省起诉 OpenAI，指其未在枪击案前将 flagged ChatGPT 活动转介警方",
-      "url": "https://x.com/rohanpaul_ai/status/2102128625126605059",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2102128625126605059",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "story_id": "story_65692f19f1a3",
+      "title": "Unsloth 发布 Qwen-Image-2.1 GGUF 量化版，12GB 显存可本地运行",
+      "url": "https://x.com/UnslothAI/status/2102431304591761728",
+      "primary_url": "https://x.com/UnslothAI/status/2102431304591761728",
+      "source": "X：Unsloth (@UnslothAI)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "6ba024751c1ae221c9aafc1b82e29d4dfd669b2f",
-          "title": "不列颠哥伦比亚省起诉 OpenAI，指其未在枪击案前将 flagged ChatGPT 活动转介警方",
-          "url": "https://x.com/rohanpaul_ai/status/2102128625126605059",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "6afdef6c47d240db2a23995e0ccec1a864c9c667",
+          "title": "Unsloth 发布 Qwen-Image-2.1 GGUF 量化版，12GB 显存可本地运行",
+          "url": "https://x.com/UnslothAI/status/2102431304591761728",
+          "source": "X：Unsloth (@UnslothAI)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-21T20:11:34Z"
+          "published_at": "2026-09-22T16:14:18Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
+        "X：Unsloth (@UnslothAI)"
       ],
       "items": [
         {
-          "id": "6ba024751c1ae221c9aafc1b82e29d4dfd669b2f",
-          "title": "不列颠哥伦比亚省起诉 OpenAI，指其未在枪击案前将 flagged ChatGPT 活动转介警方",
-          "url": "https://x.com/rohanpaul_ai/status/2102128625126605059",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "6afdef6c47d240db2a23995e0ccec1a864c9c667",
+          "title": "Unsloth 发布 Qwen-Image-2.1 GGUF 量化版，12GB 显存可本地运行",
+          "url": "https://x.com/UnslothAI/status/2102431304591761728",
+          "source": "X：Unsloth (@UnslothAI)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-21T20:11:34Z"
+          "published_at": "2026-09-22T16:14:18Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7478,
-      "importance": 0.7478,
-      "importance_score": 0.7478,
+      "score": 0.7411,
+      "importance": 0.7411,
+      "importance_score": 0.7411,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.78,
+        "editorial": 0.64,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.79,
+        "recency": 0.9862,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-21T20:11:34Z",
-      "latest_at": "2026-09-21T20:11:34Z",
+      "earliest_at": "2026-09-22T16:14:18Z",
+      "latest_at": "2026-09-22T16:14:18Z",
       "primary_item": {
-        "id": "6ba024751c1ae221c9aafc1b82e29d4dfd669b2f",
-        "title": "不列颠哥伦比亚省起诉 OpenAI，指其未在枪击案前将 flagged ChatGPT 活动转介警方",
-        "url": "https://x.com/rohanpaul_ai/status/2102128625126605059",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "id": "6afdef6c47d240db2a23995e0ccec1a864c9c667",
+        "title": "Unsloth 发布 Qwen-Image-2.1 GGUF 量化版，12GB 显存可本地运行",
+        "url": "https://x.com/UnslothAI/status/2102431304591761728",
+        "source": "X：Unsloth (@UnslothAI)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_5a5883cd042e",
-      "title": "小米发布开放权重模型 MiMo-V2.6-Pro，登顶 Artificial Analysis 开放权重模型智能指数",
-      "url": "https://x.com/ClementDelangue/status/2102141768674222323",
-      "primary_url": "https://x.com/ClementDelangue/status/2102141768674222323",
-      "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+      "story_id": "story_035e6172b7a8",
+      "title": "LiteParse 9 月更新：PDFium 提速 20-25%，新增视觉定位与 is-complex 路由 API",
+      "url": "https://www.llamaindex.ai/blog/liteparse-updates-september-2026",
+      "primary_url": "https://www.llamaindex.ai/blog/liteparse-updates-september-2026",
+      "source": "LlamaIndex：产品、工程与评测",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "bcc1d035655d6ba3d004efb14cbaeba67953c497",
-          "title": "小米发布开放权重模型 MiMo-V2.6-Pro，登顶 Artificial Analysis 开放权重模型智能指数",
-          "url": "https://x.com/ClementDelangue/status/2102141768674222323",
-          "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+          "id": "8a68519c3be53242deeff32eac19d6f6b21d5a02",
+          "title": "LiteParse 9 月更新：PDFium 提速 20-25%，新增视觉定位与 is-complex 路由 API",
+          "url": "https://www.llamaindex.ai/blog/liteparse-updates-september-2026",
+          "source": "LlamaIndex：产品、工程与评测",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-21T21:03:48Z"
-        },
-        {
-          "id": "4e4fb5cdf2824ce2e47ffe2a833fe8fc02f7585d",
-          "title": "小米 MiMo-V2.6-Pro 发布，登顶 Artificial Analysis 开源权重模型智能指数",
-          "url": "https://x.com/ArtificialAnlys/status/2102128560962187701",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T20:11:19Z"
+          "published_at": "2026-09-22T14:38:40.870000Z"
         }
       ],
-      "source_count": 2,
+      "source_count": 1,
       "source_names": [
-        "X：Artificial Analysis (@ArtificialAnlys)",
-        "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)"
+        "LlamaIndex：产品、工程与评测"
       ],
       "items": [
         {
-          "id": "bcc1d035655d6ba3d004efb14cbaeba67953c497",
-          "title": "小米发布开放权重模型 MiMo-V2.6-Pro，登顶 Artificial Analysis 开放权重模型智能指数",
-          "url": "https://x.com/ClementDelangue/status/2102141768674222323",
-          "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+          "id": "8a68519c3be53242deeff32eac19d6f6b21d5a02",
+          "title": "LiteParse 9 月更新：PDFium 提速 20-25%，新增视觉定位与 is-complex 路由 API",
+          "url": "https://www.llamaindex.ai/blog/liteparse-updates-september-2026",
+          "source": "LlamaIndex：产品、工程与评测",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-21T21:03:48Z"
-        },
-        {
-          "id": "4e4fb5cdf2824ce2e47ffe2a833fe8fc02f7585d",
-          "title": "小米 MiMo-V2.6-Pro 发布，登顶 Artificial Analysis 开源权重模型智能指数",
-          "url": "https://x.com/ArtificialAnlys/status/2102128560962187701",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T20:11:19Z"
+          "published_at": "2026-09-22T14:38:40.870000Z"
         }
       ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.7476,
-      "importance": 0.7476,
-      "importance_score": 0.7476,
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7401,
+      "importance": 0.7401,
+      "importance_score": 0.7401,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.69,
+        "editorial": 0.65,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8,
-        "story_heat": 0.25
+        "recency": 0.9638,
+        "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "multi_source",
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-21T20:11:19Z",
-      "latest_at": "2026-09-21T21:03:48Z",
+      "earliest_at": "2026-09-22T14:38:40.870000Z",
+      "latest_at": "2026-09-22T14:38:40.870000Z",
       "primary_item": {
-        "id": "bcc1d035655d6ba3d004efb14cbaeba67953c497",
-        "title": "小米发布开放权重模型 MiMo-V2.6-Pro，登顶 Artificial Analysis 开放权重模型智能指数",
-        "url": "https://x.com/ClementDelangue/status/2102141768674222323",
-        "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+        "id": "8a68519c3be53242deeff32eac19d6f6b21d5a02",
+        "title": "LiteParse 9 月更新：PDFium 提速 20-25%，新增视觉定位与 is-complex 路由 API",
+        "url": "https://www.llamaindex.ai/blog/liteparse-updates-september-2026",
+        "source": "LlamaIndex：产品、工程与评测",
         "source_name": "AI HOT"
       }
     },
@@ -610,15 +1380,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7472,
-      "importance": 0.7472,
-      "importance_score": 0.7472,
+      "score": 0.7369,
+      "importance": 0.7369,
+      "importance_score": 0.7369,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.73,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8697,
+        "recency": 0.8128,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -632,786 +1402,6 @@
         "title": "AI Safety Memes 转述 OpenAI 已大幅自动化实验模型训练并称新模型解决百余个数学难题",
         "url": "https://x.com/AISafetyMemes/status/2102229140544065667",
         "source": "X：AI Safety Memes (@AISafetyMemes)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_9cce27a8b5f6",
-      "title": "xAI 工程师 Lauren Tan 分享单月合入 2500 个 PR 的智能体工程方法，开源插件 pstack 已上架 Cursor 插件市场",
-      "url": "https://x.com/AYi_AInotes/status/2102247303390154891",
-      "primary_url": "https://x.com/AYi_AInotes/status/2102247303390154891",
-      "source": "X：阿易 AI Notes (@AYi_AInotes)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "be4d799b36d1f0ac7b0a2ab56ae0ee548b7fb32e",
-          "title": "xAI 工程师 Lauren Tan 分享单月合入 2500 个 PR 的智能体工程方法，开源插件 pstack 已上架 Cursor 插件市场",
-          "url": "https://x.com/AYi_AInotes/status/2102247303390154891",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T04:03:09Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：阿易 AI Notes (@AYi_AInotes)"
-      ],
-      "items": [
-        {
-          "id": "be4d799b36d1f0ac7b0a2ab56ae0ee548b7fb32e",
-          "title": "xAI 工程师 Lauren Tan 分享单月合入 2500 个 PR 的智能体工程方法，开源插件 pstack 已上架 Cursor 插件市场",
-          "url": "https://x.com/AYi_AInotes/status/2102247303390154891",
-          "source": "X：阿易 AI Notes (@AYi_AInotes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T04:03:09Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7439,
-      "importance": 0.7439,
-      "importance_score": 0.7439,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.885,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-22T04:03:09Z",
-      "latest_at": "2026-09-22T04:03:09Z",
-      "primary_item": {
-        "id": "be4d799b36d1f0ac7b0a2ab56ae0ee548b7fb32e",
-        "title": "xAI 工程师 Lauren Tan 分享单月合入 2500 个 PR 的智能体工程方法，开源插件 pstack 已上架 Cursor 插件市场",
-        "url": "https://x.com/AYi_AInotes/status/2102247303390154891",
-        "source": "X：阿易 AI Notes (@AYi_AInotes)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_98acfe91fd30",
-      "title": "transformers 支持直接加载 GGUF 量化模型，本地推理性能接近 llama.cpp",
-      "url": "https://huggingface.co/blog/transformers-llama-cpp-quants",
-      "primary_url": "https://huggingface.co/blog/transformers-llama-cpp-quants",
-      "source": "Hugging Face：Blog（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "bdfcbd36b2a4a5b02666684c5e4d7a68864a5bc5",
-          "title": "transformers 支持直接加载 GGUF 量化模型，本地推理性能接近 llama.cpp",
-          "url": "https://huggingface.co/blog/transformers-llama-cpp-quants",
-          "source": "Hugging Face：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T00:00:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Hugging Face：Blog（RSS）"
-      ],
-      "items": [
-        {
-          "id": "bdfcbd36b2a4a5b02666684c5e4d7a68864a5bc5",
-          "title": "transformers 支持直接加载 GGUF 量化模型，本地推理性能接近 llama.cpp",
-          "url": "https://huggingface.co/blog/transformers-llama-cpp-quants",
-          "source": "Hugging Face：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T00:00:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7378,
-      "importance": 0.7378,
-      "importance_score": 0.7378,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.72,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8347,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-22T00:00:00Z",
-      "latest_at": "2026-09-22T00:00:00Z",
-      "primary_item": {
-        "id": "bdfcbd36b2a4a5b02666684c5e4d7a68864a5bc5",
-        "title": "transformers 支持直接加载 GGUF 量化模型，本地推理性能接近 llama.cpp",
-        "url": "https://huggingface.co/blog/transformers-llama-cpp-quants",
-        "source": "Hugging Face：Blog（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_6f580068fdf8",
-      "title": "小米发布 MiMo-V2.6 Pro 与 Flash 全模态开源模型",
-      "url": "https://x.com/XiaomiMiMo/status/2102138559952290106",
-      "primary_url": "https://x.com/XiaomiMiMo/status/2102138559952290106",
-      "source": "X：小米 MiMo (@XiaomiMiMo)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "5215af3fdf7511ea7b27eb01110ac6fb05e095cd",
-          "title": "小米发布 MiMo-V2.6 Pro 与 Flash 全模态开源模型",
-          "url": "https://x.com/XiaomiMiMo/status/2102138559952290106",
-          "source": "X：小米 MiMo (@XiaomiMiMo)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T20:51:03Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：小米 MiMo (@XiaomiMiMo)"
-      ],
-      "items": [
-        {
-          "id": "5215af3fdf7511ea7b27eb01110ac6fb05e095cd",
-          "title": "小米发布 MiMo-V2.6 Pro 与 Flash 全模态开源模型",
-          "url": "https://x.com/XiaomiMiMo/status/2102138559952290106",
-          "source": "X：小米 MiMo (@XiaomiMiMo)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T20:51:03Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7342,
-      "importance": 0.7342,
-      "importance_score": 0.7342,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.73,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7976,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-21T20:51:03Z",
-      "latest_at": "2026-09-21T20:51:03Z",
-      "primary_item": {
-        "id": "5215af3fdf7511ea7b27eb01110ac6fb05e095cd",
-        "title": "小米发布 MiMo-V2.6 Pro 与 Flash 全模态开源模型",
-        "url": "https://x.com/XiaomiMiMo/status/2102138559952290106",
-        "source": "X：小米 MiMo (@XiaomiMiMo)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_12d043d42b14",
-      "title": "小米开源 MiMo-V2.6-Pro 与 Flash 双模型，Pro 得分 46 居开源模型之首",
-      "url": "https://x.com/testingcatalog/status/2102154984598950128",
-      "primary_url": "https://x.com/testingcatalog/status/2102154984598950128",
-      "source": "X：Testing Catalog (@testingcatalog)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "f000468b0eba5ba01a6a6d148ec788f5c2c520cc",
-          "title": "小米开源 MiMo-V2.6-Pro 与 Flash 双模型，Pro 得分 46 居开源模型之首",
-          "url": "https://x.com/testingcatalog/status/2102154984598950128",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T21:56:19Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Testing Catalog (@testingcatalog)"
-      ],
-      "items": [
-        {
-          "id": "f000468b0eba5ba01a6a6d148ec788f5c2c520cc",
-          "title": "小米开源 MiMo-V2.6-Pro 与 Flash 双模型，Pro 得分 46 居开源模型之首",
-          "url": "https://x.com/testingcatalog/status/2102154984598950128",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T21:56:19Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7334,
-      "importance": 0.7334,
-      "importance_score": 0.7334,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.72,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8102,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-21T21:56:19Z",
-      "latest_at": "2026-09-21T21:56:19Z",
-      "primary_item": {
-        "id": "f000468b0eba5ba01a6a6d148ec788f5c2c520cc",
-        "title": "小米开源 MiMo-V2.6-Pro 与 Flash 双模型，Pro 得分 46 居开源模型之首",
-        "url": "https://x.com/testingcatalog/status/2102154984598950128",
-        "source": "X：Testing Catalog (@testingcatalog)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_c8db3b672c97",
-      "title": "亚马逊封禁 Meta Muse 智能体代用户购物，双方争端升级",
-      "url": "https://www.ithome.com/1/005/418.htm",
-      "primary_url": "https://www.ithome.com/1/005/418.htm",
-      "source": "IT之家（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "c2478bb68a17ae9d7769897a3f2e634cdebcbc86",
-          "title": "亚马逊封禁 Meta Muse 智能体代用户购物，双方争端升级",
-          "url": "https://www.ithome.com/1/005/418.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T11:52:52Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "IT之家（RSS）"
-      ],
-      "items": [
-        {
-          "id": "c2478bb68a17ae9d7769897a3f2e634cdebcbc86",
-          "title": "亚马逊封禁 Meta Muse 智能体代用户购物，双方争端升级",
-          "url": "https://www.ithome.com/1/005/418.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T11:52:52Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7317,
-      "importance": 0.7317,
-      "importance_score": 0.7317,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.78,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7007,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-21T11:52:52Z",
-      "latest_at": "2026-09-21T11:52:52Z",
-      "primary_item": {
-        "id": "c2478bb68a17ae9d7769897a3f2e634cdebcbc86",
-        "title": "亚马逊封禁 Meta Muse 智能体代用户购物，双方争端升级",
-        "url": "https://www.ithome.com/1/005/418.htm",
-        "source": "IT之家（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_589ad5537385",
-      "title": "小米 MiMo-V2.6 发布，团队复盘大规模 RL 扩展之路",
-      "url": "https://x.com/_LuoFuli/status/2102162926802968749",
-      "primary_url": "https://x.com/_LuoFuli/status/2102162926802968749",
-      "source": "X：罗福莉 (@_LuoFuli)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "b4a1a9baa70dcf3ebd7fef8a6c7c2b2e7af6e2c0",
-          "title": "小米 MiMo-V2.6 发布，团队复盘大规模 RL 扩展之路",
-          "url": "https://x.com/_LuoFuli/status/2102162926802968749",
-          "source": "X：罗福莉 (@_LuoFuli)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T22:27:52Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：罗福莉 (@_LuoFuli)"
-      ],
-      "items": [
-        {
-          "id": "b4a1a9baa70dcf3ebd7fef8a6c7c2b2e7af6e2c0",
-          "title": "小米 MiMo-V2.6 发布，团队复盘大规模 RL 扩展之路",
-          "url": "https://x.com/_LuoFuli/status/2102162926802968749",
-          "source": "X：罗福莉 (@_LuoFuli)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T22:27:52Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7285,
-      "importance": 0.7285,
-      "importance_score": 0.7285,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.7,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8164,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-21T22:27:52Z",
-      "latest_at": "2026-09-21T22:27:52Z",
-      "primary_item": {
-        "id": "b4a1a9baa70dcf3ebd7fef8a6c7c2b2e7af6e2c0",
-        "title": "小米 MiMo-V2.6 发布，团队复盘大规模 RL 扩展之路",
-        "url": "https://x.com/_LuoFuli/status/2102162926802968749",
-        "source": "X：罗福莉 (@_LuoFuli)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_bebe59df1cd8",
-      "title": "小米发布 MiMo-V2.6 Pro 与 Flash 全模态模型，开源权重与训练代码",
-      "url": "https://x.com/dongxi_nlp/status/2102148798151532605",
-      "primary_url": "https://x.com/dongxi_nlp/status/2102148798151532605",
-      "source": "X：马东锡 NLP (@dongxi_nlp)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "b59b45a3f949cd668ab698d3b79451bfff569e2b",
-          "title": "小米发布 MiMo-V2.6 Pro 与 Flash 全模态模型，开源权重与训练代码",
-          "url": "https://x.com/dongxi_nlp/status/2102148798151532605",
-          "source": "X：马东锡 NLP (@dongxi_nlp)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T21:31:44Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：马东锡 NLP (@dongxi_nlp)"
-      ],
-      "items": [
-        {
-          "id": "b59b45a3f949cd668ab698d3b79451bfff569e2b",
-          "title": "小米发布 MiMo-V2.6 Pro 与 Flash 全模态模型，开源权重与训练代码",
-          "url": "https://x.com/dongxi_nlp/status/2102148798151532605",
-          "source": "X：马东锡 NLP (@dongxi_nlp)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T21:31:44Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7266,
-      "importance": 0.7266,
-      "importance_score": 0.7266,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.7,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8054,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-21T21:31:44Z",
-      "latest_at": "2026-09-21T21:31:44Z",
-      "primary_item": {
-        "id": "b59b45a3f949cd668ab698d3b79451bfff569e2b",
-        "title": "小米发布 MiMo-V2.6 Pro 与 Flash 全模态模型，开源权重与训练代码",
-        "url": "https://x.com/dongxi_nlp/status/2102148798151532605",
-        "source": "X：马东锡 NLP (@dongxi_nlp)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_095a238d78e0",
-      "title": "xAI 发布 Grok 4.7：编码与长时智能体能力提升，价格与 Grok 4.6 持平",
-      "url": "https://x.com/mark_k/status/2102071475414986981",
-      "primary_url": "https://x.com/mark_k/status/2102071475414986981",
-      "source": "@mark_k",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "bfff7dd4d67251e8798186ae428068d7b783fd8f",
-          "title": "xAI 发布 Grok 4.7：编码与长时智能体能力提升，价格与 Grok 4.6 持平",
-          "url": "https://x.com/mark_k/status/2102071475414986981",
-          "source": "@mark_k",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T16:24:28Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "@mark_k"
-      ],
-      "items": [
-        {
-          "id": "bfff7dd4d67251e8798186ae428068d7b783fd8f",
-          "title": "xAI 发布 Grok 4.7：编码与长时智能体能力提升，价格与 Grok 4.6 持平",
-          "url": "https://x.com/mark_k/status/2102071475414986981",
-          "source": "@mark_k",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T16:24:28Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7252,
-      "importance": 0.7252,
-      "importance_score": 0.7252,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.73,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.748,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-21T16:24:28Z",
-      "latest_at": "2026-09-21T16:24:28Z",
-      "primary_item": {
-        "id": "bfff7dd4d67251e8798186ae428068d7b783fd8f",
-        "title": "xAI 发布 Grok 4.7：编码与长时智能体能力提升，价格与 Grok 4.6 持平",
-        "url": "https://x.com/mark_k/status/2102071475414986981",
-        "source": "@mark_k",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_011662274339",
-      "title": "Grok 4.7 模型卡发布，多项基准较 4.6 提升且价格不变",
-      "url": "https://x.com/ericzakariasson/status/2102092784727679127",
-      "primary_url": "https://x.com/ericzakariasson/status/2102092784727679127",
-      "source": "X：Eric Zakariasson (@ericzakariasson)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "7e120857a9044b2177cfbdf208705b5136c8b24e",
-          "title": "Grok 4.7 模型卡发布，多项基准较 4.6 提升且价格不变",
-          "url": "https://x.com/ericzakariasson/status/2102092784727679127",
-          "source": "X：Eric Zakariasson (@ericzakariasson)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T17:49:09Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Eric Zakariasson (@ericzakariasson)"
-      ],
-      "items": [
-        {
-          "id": "7e120857a9044b2177cfbdf208705b5136c8b24e",
-          "title": "Grok 4.7 模型卡发布，多项基准较 4.6 提升且价格不变",
-          "url": "https://x.com/ericzakariasson/status/2102092784727679127",
-          "source": "X：Eric Zakariasson (@ericzakariasson)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T17:49:09Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.722,
-      "importance": 0.722,
-      "importance_score": 0.722,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7634,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-21T17:49:09Z",
-      "latest_at": "2026-09-21T17:49:09Z",
-      "primary_item": {
-        "id": "7e120857a9044b2177cfbdf208705b5136c8b24e",
-        "title": "Grok 4.7 模型卡发布，多项基准较 4.6 提升且价格不变",
-        "url": "https://x.com/ericzakariasson/status/2102092784727679127",
-        "source": "X：Eric Zakariasson (@ericzakariasson)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_d032359e7f55",
-      "title": "Artificial Analysis 评测 Step 5 Preview： Intelligence Index 得 44 分，成本约为同级模型 1/2.8",
-      "url": "https://x.com/ArtificialAnlys/status/2102213621963243704",
-      "primary_url": "https://x.com/ArtificialAnlys/status/2102213621963243704",
-      "source": "X：Artificial Analysis (@ArtificialAnlys)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "280fb36eafee73ab0c22463444a492760ebf4a73",
-          "title": "Artificial Analysis 评测 Step 5 Preview： Intelligence Index 得 44 分，成本约为同级模型 1/2.8",
-          "url": "https://x.com/ArtificialAnlys/status/2102213621963243704",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T01:49:19Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Artificial Analysis (@ArtificialAnlys)"
-      ],
-      "items": [
-        {
-          "id": "280fb36eafee73ab0c22463444a492760ebf4a73",
-          "title": "Artificial Analysis 评测 Step 5 Preview： Intelligence Index 得 44 分，成本约为同级模型 1/2.8",
-          "url": "https://x.com/ArtificialAnlys/status/2102213621963243704",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T01:49:19Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7208,
-      "importance": 0.7208,
-      "importance_score": 0.7208,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.65,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8569,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-22T01:49:19Z",
-      "latest_at": "2026-09-22T01:49:19Z",
-      "primary_item": {
-        "id": "280fb36eafee73ab0c22463444a492760ebf4a73",
-        "title": "Artificial Analysis 评测 Step 5 Preview： Intelligence Index 得 44 分，成本约为同级模型 1/2.8",
-        "url": "https://x.com/ArtificialAnlys/status/2102213621963243704",
-        "source": "X：Artificial Analysis (@ArtificialAnlys)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_b3ef6f6e946b",
-      "title": "据 The Information 报道，梁文锋称 DeepSeek 计划用华为芯片训练模型",
-      "url": "https://x.com/thexpin/status/2102299835907141654",
-      "primary_url": "https://x.com/thexpin/status/2102299835907141654",
-      "source": "X：X.PIN (@thexpin)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "f41280c7e42bf4cf0e342f83162ea07133ab496b",
-          "title": "据 The Information 报道，梁文锋称 DeepSeek 计划用华为芯片训练模型",
-          "url": "https://x.com/thexpin/status/2102299835907141654",
-          "source": "X：X.PIN (@thexpin)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T07:31:54Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：X.PIN (@thexpin)"
-      ],
-      "items": [
-        {
-          "id": "f41280c7e42bf4cf0e342f83162ea07133ab496b",
-          "title": "据 The Information 报道，梁文锋称 DeepSeek 计划用华为芯片训练模型",
-          "url": "https://x.com/thexpin/status/2102299835907141654",
-          "source": "X：X.PIN (@thexpin)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T07:31:54Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7461,
-      "importance": 0.7461,
-      "importance_score": 0.7461,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.69,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9306,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-22T07:31:54Z",
-      "latest_at": "2026-09-22T07:31:54Z",
-      "primary_item": {
-        "id": "f41280c7e42bf4cf0e342f83162ea07133ab496b",
-        "title": "据 The Information 报道，梁文锋称 DeepSeek 计划用华为芯片训练模型",
-        "url": "https://x.com/thexpin/status/2102299835907141654",
-        "source": "X：X.PIN (@thexpin)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_7b554e2be9b8",
-      "title": "22位国家元首签署公开信呼吁加强对前沿AI模型的管控",
-      "url": "https://x.com/AISafetyMemes/status/2102256013726675062",
-      "primary_url": "https://x.com/AISafetyMemes/status/2102256013726675062",
-      "source": "X：AI Safety Memes (@AISafetyMemes)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "069d8cef981c78aab38e9a1eb7467eb253784201",
-          "title": "22位国家元首签署公开信呼吁加强对前沿AI模型的管控",
-          "url": "https://x.com/AISafetyMemes/status/2102256013726675062",
-          "source": "X：AI Safety Memes (@AISafetyMemes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T04:37:46Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：AI Safety Memes (@AISafetyMemes)"
-      ],
-      "items": [
-        {
-          "id": "069d8cef981c78aab38e9a1eb7467eb253784201",
-          "title": "22位国家元首签署公开信呼吁加强对前沿AI模型的管控",
-          "url": "https://x.com/AISafetyMemes/status/2102256013726675062",
-          "source": "X：AI Safety Memes (@AISafetyMemes)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T04:37:46Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7272,
-      "importance": 0.7272,
-      "importance_score": 0.7272,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.65,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8924,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-22T04:37:46Z",
-      "latest_at": "2026-09-22T04:37:46Z",
-      "primary_item": {
-        "id": "069d8cef981c78aab38e9a1eb7467eb253784201",
-        "title": "22位国家元首签署公开信呼吁加强对前沿AI模型的管控",
-        "url": "https://x.com/AISafetyMemes/status/2102256013726675062",
-        "source": "X：AI Safety Memes (@AISafetyMemes)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_d277a7644b55",
-      "title": "FT 报道 SB Energy 约以 $50B 估值放缓 IPO，投资者质疑其重资本 AI 数据中心建设",
-      "url": "https://x.com/rohanpaul_ai/status/2102248926464078144",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2102248926464078144",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "d6eab74ab6092f45339c3e5a83065edb5a3f367b",
-          "title": "FT 报道 SB Energy 约以 $50B 估值放缓 IPO，投资者质疑其重资本 AI 数据中心建设",
-          "url": "https://x.com/rohanpaul_ai/status/2102248926464078144",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T04:09:36Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "d6eab74ab6092f45339c3e5a83065edb5a3f367b",
-          "title": "FT 报道 SB Energy 约以 $50B 估值放缓 IPO，投资者质疑其重资本 AI 数据中心建设",
-          "url": "https://x.com/rohanpaul_ai/status/2102248926464078144",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T04:09:36Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7231,
-      "importance": 0.7231,
-      "importance_score": 0.7231,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.64,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8863,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-22T04:09:36Z",
-      "latest_at": "2026-09-22T04:09:36Z",
-      "primary_item": {
-        "id": "d6eab74ab6092f45339c3e5a83065edb5a3f367b",
-        "title": "FT 报道 SB Energy 约以 $50B 估值放缓 IPO，投资者质疑其重资本 AI 数据中心建设",
-        "url": "https://x.com/rohanpaul_ai/status/2102248926464078144",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     }
