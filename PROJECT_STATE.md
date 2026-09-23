@@ -1,5 +1,15 @@
 # PROJECT_STATE
 
+## 推特订阅（2026-09-24，工作台已验收，本仓未合 master）
+
+- **做了什么**：指定推特号单独进「推特订阅」，不进 AI HOT，也不进原来的推特栏。当前名单是向阳乔木 `vista8`、宝玉 `dotey`。页面按发布时间排序。
+- **采集**：不是 GitHub Actions。NUC 计划任务 `XSubscribeCollect`，每天 09:00、15:00、21:00（北京时间）。本机 RSSHub `127.0.0.1:1200` 用小号登录态拉这些号，写成 `C:\OMNIA\production-data\x-subscribe.jsonl`，并给正式站页面 `C:\OMNIA\app\public\x-subscribe.json`。失败写 `x-subscribe-status.json`，脚注才会多出「推特订阅」。登录态只在 `C:\Users\beelink-pc\rsshub\.env`，不要进 Git。
+- **工作台**：正式站 `app.wanyouomnia.cn`、测试站 `app-nuc-test.wanyouomnia.cn` 都已有栏目和设置里的加删。推特号存在工作台自己的 `x-subscribe-sources.json`，因为线上雷达仓 `master` 还不认 `x_subscribe`。
+- **Git**：本仓分支 `feat/x-subscribe`，提交 `94548725`。工作树 `E:\orca\ai-news-radar-run\master-2`。未合 `master`。`radar.wanyouomnia.cn` 还没有这个栏目。
+- **验收**：用户 2026-09-24 确认正式站能看到向阳乔木和宝玉，并按时间排序。定向 `tests/test_x_subscribe.py` 与 `npm run test:e2e` 94 passed。全量 `pytest -q` 768 passed / 4 failed（本机 `Get-FileHash` 与临时仓 pull，不是本功能）。假号 `nosuchuserzz999` 实测记「没采到」，随后已从名单删掉并重采回正常。
+- **当前无本轮四文件**。轻量接入，无四文件归档。
+- **未做**：本仓合入 `master`。不要在 NUC 雷达仓改 `data/**`。
+
 ## 推特栏 + AI HOT 精选拆栏（2026-09-15，待合入验收）
 
 - **做了什么**：同一 `siteId=aihot` 拆成推特（X 原文）和 AI HOT（每日精选）。采集 `mode=selected` + `mode=all`；发布留下 X 或精选。

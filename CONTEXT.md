@@ -24,6 +24,10 @@ _Avoid_: 信源、订阅成员
 公开池容器源，不是订阅成员。同一 `siteId=aihot` 拆两栏：推特吃公开池 X 原文，AI HOT 吃 `mode=selected` 每日精选。已阅用原文链接。工作台原生列表要按栏过滤，不能把所有 aihot 都塞进一个栏。
 _Avoid_: 把推特栏再叫 AI HOT、按源名 `X：` 认推特、用日报 `/dailies` 冒充精选
 
+**推特订阅**：
+用户点名的推特号，`siteId=x_subscribe`。不进推特栏，也不进 AI HOT。工作台正式站每天 09:00、15:00、21:00 由 NUC 本机 RSSHub 采集，不走 GitHub Actions。
+_Avoid_: 把它并进 AI HOT 公开池、用 GitHub 半小时任务当它的采集频率
+
 **已阅**：
 读者点过、按工作台链接键记住的一条。没链接就没有已阅。
 _Avoid_: 故事去重键、列表停留锚点

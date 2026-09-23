@@ -2,6 +2,14 @@
 
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，完整状态在 `PROJECT_STATE.md`。
 
+## 推特订阅（2026-09-24，工作台已验收）
+
+- 指定号进「推特订阅」。不是 AI HOT，也不是原来的推特栏。现有号：向阳乔木 `vista8`、宝玉 `dotey`。
+- 采集在 NUC 计划任务 `XSubscribeCollect`：每天 09:00、15:00、21:00。不走 GitHub Actions。登录态只在 `C:\Users\beelink-pc\rsshub\.env`。
+- 页面读正式站 `C:\OMNIA\app\public\x-subscribe.json`。失败看同目录 `x-subscribe-status.json`，脚注才会提示。
+- 设置里的推特号写在 `C:\OMNIA\production-data\x-subscribe-sources.json`。本仓 `feat/x-subscribe`（`94548725`）未合 `master`，所以 `radar.wanyouomnia.cn` 还没有这栏。
+- 本仓无活跃四文件。不要在 NUC 雷达仓改 `data/**`。
+
 ## 推特栏 + AI HOT 精选拆栏（2026-09-15，待合入验收）
 
 - 同一 `siteId=aihot`。推特栏 = X 原文；AI HOT 栏 = `aihot_selected`。采集 `mode=selected` 再 `mode=all`。

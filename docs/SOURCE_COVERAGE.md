@@ -124,6 +124,7 @@ baseline, then let the aggregator layer add breadth.
   trust the `X：` source prefix. The item URL is `links.original`. Score and
   `selected` stay in metadata. Do not use `/dailies` for this tab. The old
   `aihot.virxact.com/api/public/items` path is retired.
+- **推特订阅**: named X accounts (`siteId=x_subscribe`), separate from the 推特 tab. As of 2026-09-24 the live list is 向阳乔木 `vista8` and 宝玉 `dotey`. Collection is the NUC task `XSubscribeCollect` at 09:00, 15:00, and 21:00 Asia/Shanghai, via local RSSHub. It is not the GitHub Actions half-hour job. The login cookie stays on the NUC and must not be committed. The radar branch `feat/x-subscribe` is not merged, so `radar.wanyouomnia.cn` does not show this tab yet.
 - **Hacker News Algolia**: reads the public
   `https://hn.algolia.com/api/v1/search_by_date` endpoint for the last 24 hours
   of HN stories matching focused AI/tooling keywords such as OpenAI, Anthropic,
