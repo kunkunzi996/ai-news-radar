@@ -29,7 +29,15 @@ ONLINE_OPML_FILENAME = Path("feeds") / "online-sources.opml"
 PUBLIC_SUBSCRIPTION_MEMBERS_FILENAME = Path("data") / "subscription-members.json"
 ONLINE_OPML_SOURCE_ID = "online_opmlrss"
 ONLINE_ALLOWED_TYPES = frozenset(
-    {"aihot", "bilibili_dynamic", "github_release", "mediacrawler_jsonl", "rss", "we_mp_rss_jsonl"}
+    {
+        "aihot",
+        "bilibili_dynamic",
+        "github_release",
+        "mediacrawler_jsonl",
+        "rss",
+        "we_mp_rss_jsonl",
+        "x_subscribe",
+    }
 )
 ONLINE_COMMIT_MESSAGE = "配置：同步线上信源"
 ONLINE_SYNC_STASH_MESSAGE = "ai-news-radar:online-source-sync"
@@ -90,6 +98,7 @@ TYPE_ORDER = {
     "we_mp_rss_jsonl": 3,
     "rss": 4,
     "aihot": 5,
+    "x_subscribe": 6,
 }
 
 
@@ -500,6 +509,26 @@ def normalize_online_source_record(
             "locator": "https://aihot.news/api/v1/items",
             "env": "",
             "notes": notes[:240] or "公开池 X 原文进推特栏，精选进 AI HOT 栏，已阅手筛",
+        }
+        record.update(managed_fields)
+        return record
+
+    if source_type == "x_subscribe":
+        handle = str(locator or "").strip().lstrip("@")
+        if not re.fullmatch(r"[A-Za-z0-9_]{1,20}", handle):
+            raise ValueError(f"sources[{index}].locator must be an X handle")
+        if not name:
+            raise ValueError(f"sources[{index}].name is required")
+        record = {
+            "id": record_id(f"online_x_{handle.lower()}"),
+            "name": name[:120],
+            "type": source_type,
+            "enabled": enabled,
+            "channel": "推特订阅",
+            "target": name[:120],
+            "locator": handle,
+            "env": "",
+            "notes": notes[:240] or "指定推特号，显示在推特订阅栏",
         }
         record.update(managed_fields)
         return record

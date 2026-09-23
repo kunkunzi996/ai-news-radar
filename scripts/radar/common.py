@@ -438,6 +438,7 @@ SOURCE_CONFIG_TYPE_SITE_IDS: dict[str, tuple[str, ...]] = {
     "aihubtoday": ("aihubtoday",),
     "aibase": ("aibase",),
     "aihot": ("aihot",),
+    "x_subscribe": ("x_subscribe",),
     "newsnow": ("newsnow",),
     "opmlrss": ("opmlrss",),
     "rss": ("opmlrss",),

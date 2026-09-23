@@ -72,6 +72,14 @@ REGULAR_ITEMS[6] = makeItem(6, {
   id: "xss-text",
   title: '<img src=x onerror="window.__fixtureXss=true">只应显示为文本',
 });
+REGULAR_ITEMS[65] = makeItem(65, {
+  id: "x-subscribe-vista8",
+  site_id: "x_subscribe",
+  site_name: "推特订阅",
+  source: "向阳乔木",
+  title: "指定推特号的一条更新",
+  url: "https://x.com/vista8/status/fixture-vista8",
+});
 REGULAR_ITEMS[10] = makeItem(10, {
   id: "source-leader",
   source: "批量来源",
@@ -506,6 +514,7 @@ test("所有平台 tab 都完成真实时间流渲染", async ({ page }) => {
     "bilibili",
     "youtube",
     "github",
+    "xsubscribe",
     "twitter",
     "aihot",
     "read",
@@ -537,10 +546,17 @@ test("推特栏只显示 X 原文，AI HOT 栏只显示精选", async ({ page })
   await openSection(page, "twitter");
   await expect(page.locator('#newsList .news-card[data-item-id="aihot-alpha"]')).toHaveCount(1);
   await expect(page.locator('#newsList .news-card[data-item-id="aihot-selected"]')).toHaveCount(0);
+  await expect(page.locator('#newsList .news-card[data-item-id="x-subscribe-vista8"]')).toHaveCount(0);
 
   await openSection(page, "aihot");
   await expect(page.locator('#newsList .news-card[data-item-id="aihot-selected"]')).toHaveCount(1);
   await expect(page.locator('#newsList .news-card[data-item-id="aihot-alpha"]')).toHaveCount(0);
+  await expect(page.locator('#newsList .news-card[data-item-id="x-subscribe-vista8"]')).toHaveCount(0);
+
+  await openSection(page, "xsubscribe");
+  await expect(page.locator('#newsList .news-card[data-item-id="x-subscribe-vista8"]')).toHaveCount(1);
+  await expect(page.locator('#newsList .news-card[data-item-id="aihot-alpha"]')).toHaveCount(0);
+  await expect(page.locator('#newsList .news-card[data-item-id="aihot-selected"]')).toHaveCount(0);
   expect(errors).toEqual([]);
 });
 

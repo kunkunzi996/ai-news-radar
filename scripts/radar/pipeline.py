@@ -596,6 +596,7 @@ SOURCE_TIER_BY_SITE: dict[str, tuple[str, str, int]] = {
     "aihubtoday": ("ai_vertical", "AI垂直源", 1),
     "aibase": ("ai_vertical", "AI垂直源", 1),
     "aihot": ("ai_vertical", "AI垂直源", 1),
+    "x_subscribe": ("self_media", "我的订阅", 4),
     "bestblogs": ("ai_vertical", "AI垂直源", 1),
     "waytoagi": ("community", "社区更新", 2),
     "followbuilders": ("builders", "Builders/X源", 2),

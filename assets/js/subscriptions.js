@@ -116,7 +116,7 @@ async function loadYoutubeSubscriptions(options = {}) {
 }
 function isSubscriptionSection(sectionId) {
   if (isHiddenPlatformId(sectionId)) return false;
-  return sectionId === "creator" || sectionId === "read" || ["douyin", "xiaohongshu", "bilibili", "youtube", "github", "twitter", "aihot"].includes(sectionId);
+  return sectionId === "creator" || sectionId === "read" || ["douyin", "xiaohongshu", "bilibili", "youtube", "github", "xsubscribe", "twitter", "aihot"].includes(sectionId);
 }
 function isXOriginalUrl(rawUrl) {
   try {
@@ -132,7 +132,11 @@ function isAihotSelectedItem(item) {
 function isTwitterInboxItem(item) {
   return String(item?.site_id || "").toLowerCase() === "aihot" && isXOriginalUrl(item?.url || item?.primary_url);
 }
+function isXSubscribeItem(item) {
+  return String(item?.site_id || "").toLowerCase() === "x_subscribe";
+}
 function itemMatchesSubscriptionSection(item, sectionId) {
+  if (sectionId === "xsubscribe") return isXSubscribeItem(item);
   if (sectionId === "twitter") return isTwitterInboxItem(item);
   if (sectionId === "aihot") return isAihotSelectedItem(item);
   return itemPlatformSection(item) === sectionId;
@@ -149,6 +153,7 @@ function itemPlatformSection(item) {
     item?.title_zh,
     item?.title_en,
   ].filter(Boolean).join(" ").toLowerCase();
+  if (siteId === "x_subscribe") return "xsubscribe";
   if (siteId === "aihot") {
     if (isTwitterInboxItem(item)) return "twitter";
     if (isAihotSelectedItem(item)) return "aihot";

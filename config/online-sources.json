@@ -785,6 +785,17 @@
       "locator": "feeds/online-sources.opml",
       "env": "",
       "notes": "公开 feed 列表"
+    },
+    {
+      "id": "online_x_vista8",
+      "name": "向阳乔木",
+      "type": "x_subscribe",
+      "enabled": true,
+      "channel": "推特订阅",
+      "target": "向阳乔木",
+      "locator": "vista8",
+      "env": "",
+      "notes": "指定推特号，显示在推特订阅栏"
     }
   ],
   "github_star_sync": {

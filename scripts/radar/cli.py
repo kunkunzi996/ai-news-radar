@@ -89,6 +89,11 @@ from scripts.radar.fetchers.paid import (
     maybe_fetch_tikhub_updates,
 )
 from scripts.radar.fetchers.public import is_hubtoday_placeholder_title, normalize_aihubtoday_records
+from scripts.radar.fetchers.x_subscribe import (
+    X_SUBSCRIBE_SITE_ID,
+    X_SUBSCRIBE_SITE_NAME,
+    fetch_x_subscribe_items,
+)
 from scripts.radar.fetchers.subscriptions import (
     fetch_github_repo_subscription,
     fetch_maobidao_wechat_subscription,
@@ -622,6 +627,24 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
                     MEDIACRAWLER_DOUYIN_SITE_ID,
                     MEDIACRAWLER_DOUYIN_SITE_NAME,
                     mediacrawler_douyin_status,
+                )
+            )
+    x_subscribe_status = {
+        "enabled": False,
+        "ok": None,
+        "item_count": 0,
+        "disabled_reason": "disabled_by_source_config" if scoped_by_config else "disabled_by_source_scope",
+    }
+    if active_source_ids is None or X_SUBSCRIBE_SITE_ID in active_source_ids:
+        x_subscriptions = source_config_subscriptions_for_site(source_config, X_SUBSCRIBE_SITE_ID) if scoped_by_config else []
+        x_subscribe_items, x_subscribe_status = fetch_x_subscribe_items(x_subscriptions, now)
+        if x_subscribe_status.get("enabled"):
+            raw_items.extend(x_subscribe_items)
+            statuses.append(
+                source_status_entry(
+                    X_SUBSCRIBE_SITE_ID,
+                    X_SUBSCRIBE_SITE_NAME,
+                    x_subscribe_status,
                 )
             )
     mediacrawler_xhs_status = {
