@@ -1,8 +1,69 @@
 {
-  "generated_at": "2026-09-23T17:56:01.292823Z",
+  "generated_at": "2026-09-23T21:23:24.138699Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
+    {
+      "story_id": "story_8f410f838ab4",
+      "title": "Anthropic 报告 Claude agent 在湿实验室发现噬菌体中的新型 ART 酶系统",
+      "url": "https://x.com/rohanpaul_ai/status/2102832068157984990",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2102832068157984990",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "3a27f2bbca8585cf51d57d6bbc6bcb59122b430a",
+          "title": "Anthropic 报告 Claude agent 在湿实验室发现噬菌体中的新型 ART 酶系统",
+          "url": "https://x.com/rohanpaul_ai/status/2102832068157984990",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T18:46:48Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "3a27f2bbca8585cf51d57d6bbc6bcb59122b430a",
+          "title": "Anthropic 报告 Claude agent 在湿实验室发现噬菌体中的新型 ART 酶系统",
+          "url": "https://x.com/rohanpaul_ai/status/2102832068157984990",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T18:46:48Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7879,
+      "importance": 0.7879,
+      "importance_score": 0.7879,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.81,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.963,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-23T18:46:48Z",
+      "latest_at": "2026-09-23T18:46:48Z",
+      "primary_item": {
+        "id": "3a27f2bbca8585cf51d57d6bbc6bcb59122b430a",
+        "title": "Anthropic 报告 Claude agent 在湿实验室发现噬菌体中的新型 ART 酶系统",
+        "url": "https://x.com/rohanpaul_ai/status/2102832068157984990",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
     {
       "story_id": "story_6cbde97d8260",
       "title": "卡兹克实测对比 Grok 4.7 与小米 MiMo V2.6：后者成不可能三角版本答案",
@@ -205,15 +266,15 @@
       ],
       "item_count": 10,
       "duplicate_count": 10,
-      "score": 0.7888,
-      "importance": 0.7888,
-      "importance_score": 0.7888,
+      "score": 0.7838,
+      "importance": 0.7838,
+      "importance_score": 0.7838,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.562,
+        "recency": 0.5347,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -229,6 +290,128 @@
         "title": "卡兹克实测对比 Grok 4.7 与小米 MiMo V2.6：后者成不可能三角版本答案",
         "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686569&idx=1&sn=f716d3dd70259240800a67b9fabd53fd",
         "source": "公众号：数字生命卡兹克",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_f82afb648776",
+      "title": "Anthropic 宣布 Claude 自主发现类 CRISPR 的新型酶系统 ART",
+      "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+      "primary_url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+      "source": "Anthropic：Newsroom（网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "03eab593bf7beec778b286861141f10a5c7253f9",
+          "title": "Anthropic 宣布 Claude 自主发现类 CRISPR 的新型酶系统 ART",
+          "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+          "source": "Anthropic：Newsroom（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T18:27:25.203000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Anthropic：Newsroom（网页）"
+      ],
+      "items": [
+        {
+          "id": "03eab593bf7beec778b286861141f10a5c7253f9",
+          "title": "Anthropic 宣布 Claude 自主发现类 CRISPR 的新型酶系统 ART",
+          "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+          "source": "Anthropic：Newsroom（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T18:27:25.203000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7811,
+      "importance": 0.7811,
+      "importance_score": 0.7811,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.79,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9585,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-23T18:27:25.203000Z",
+      "latest_at": "2026-09-23T18:27:25.203000Z",
+      "primary_item": {
+        "id": "03eab593bf7beec778b286861141f10a5c7253f9",
+        "title": "Anthropic 宣布 Claude 自主发现类 CRISPR 的新型酶系统 ART",
+        "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+        "source": "Anthropic：Newsroom（网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_c295df540598",
+      "title": "团队分享提升 Agent Harness Token 效率的提示词",
+      "url": "https://x.com/ericzakariasson/status/2102853511637774551",
+      "primary_url": "https://x.com/ericzakariasson/status/2102853511637774551",
+      "source": "X：Eric Zakariasson (@ericzakariasson)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "39e65b238e8b2c16e0a6b4204234979ad4753e74",
+          "title": "团队分享提升 Agent Harness Token 效率的提示词",
+          "url": "https://x.com/ericzakariasson/status/2102853511637774551",
+          "source": "X：Eric Zakariasson (@ericzakariasson)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T20:12:00Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Eric Zakariasson (@ericzakariasson)"
+      ],
+      "items": [
+        {
+          "id": "39e65b238e8b2c16e0a6b4204234979ad4753e74",
+          "title": "团队分享提升 Agent Harness Token 效率的提示词",
+          "url": "https://x.com/ericzakariasson/status/2102853511637774551",
+          "source": "X：Eric Zakariasson (@ericzakariasson)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T20:12:00Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7795,
+      "importance": 0.7795,
+      "importance_score": 0.7795,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.77,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.983,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-23T20:12:00Z",
+      "latest_at": "2026-09-23T20:12:00Z",
+      "primary_item": {
+        "id": "39e65b238e8b2c16e0a6b4204234979ad4753e74",
+        "title": "团队分享提升 Agent Harness Token 效率的提示词",
+        "url": "https://x.com/ericzakariasson/status/2102853511637774551",
+        "source": "X：Eric Zakariasson (@ericzakariasson)",
         "source_name": "AI HOT"
       }
     },
@@ -286,15 +469,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.784,
-      "importance": 0.784,
-      "importance_score": 0.784,
+      "score": 0.7777,
+      "importance": 0.7777,
+      "importance_score": 0.7777,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7187,
+        "recency": 0.6837,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -310,6 +493,67 @@
         "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
         "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
         "source": "Hacker News：AI 热帖",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_6e62425d4ac5",
+      "title": "typesafeai 发推\"he olo world\"",
+      "url": "https://x.com/typesafeai/status/2102261849945444699",
+      "primary_url": "https://x.com/typesafeai/status/2102261849945444699",
+      "source": "@typesafeai",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "53eb42b3ec061521c165990283cf785b981f831d",
+          "title": "typesafeai 发推\"he olo world\"",
+          "url": "https://x.com/typesafeai/status/2102261849945444699",
+          "source": "@typesafeai",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T05:00:57Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "@typesafeai"
+      ],
+      "items": [
+        {
+          "id": "53eb42b3ec061521c165990283cf785b981f831d",
+          "title": "typesafeai 发推\"he olo world\"",
+          "url": "https://x.com/typesafeai/status/2102261849945444699",
+          "source": "@typesafeai",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T05:00:57Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7721,
+      "importance": 0.7721,
+      "importance_score": 0.7721,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 1.0,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.5582,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-22T05:00:57Z",
+      "latest_at": "2026-09-22T05:00:57Z",
+      "primary_item": {
+        "id": "53eb42b3ec061521c165990283cf785b981f831d",
+        "title": "typesafeai 发推\"he olo world\"",
+        "url": "https://x.com/typesafeai/status/2102261849945444699",
+        "source": "@typesafeai",
         "source_name": "AI HOT"
       }
     },
@@ -367,15 +611,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7781,
-      "importance": 0.7781,
-      "importance_score": 0.7781,
+      "score": 0.7713,
+      "importance": 0.7713,
+      "importance_score": 0.7713,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7694,
+        "recency": 0.7319,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -395,49 +639,49 @@
       }
     },
     {
-      "story_id": "story_6e62425d4ac5",
-      "title": "typesafeai 发推\"he olo world\"",
-      "url": "https://x.com/typesafeai/status/2102261849945444699",
-      "primary_url": "https://x.com/typesafeai/status/2102261849945444699",
-      "source": "@typesafeai",
+      "story_id": "story_2ea74d2f533c",
+      "title": "Greg Brockman 宣布 GPT Voice 大幅升级，支持使用工具并登陆 ChatGPT Work",
+      "url": "https://x.com/gdb/status/2102821706041819401",
+      "primary_url": "https://x.com/gdb/status/2102821706041819401",
+      "source": "X：Greg Brockman (@gdb)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "53eb42b3ec061521c165990283cf785b981f831d",
-          "title": "typesafeai 发推\"he olo world\"",
-          "url": "https://x.com/typesafeai/status/2102261849945444699",
-          "source": "@typesafeai",
+          "id": "113abeb398e7a645a6c8a59ec5537868d007c9ef",
+          "title": "Greg Brockman 宣布 GPT Voice 大幅升级，支持使用工具并登陆 ChatGPT Work",
+          "url": "https://x.com/gdb/status/2102821706041819401",
+          "source": "X：Greg Brockman (@gdb)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-22T05:00:57Z"
+          "published_at": "2026-09-23T18:05:37Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "@typesafeai"
+        "X：Greg Brockman (@gdb)"
       ],
       "items": [
         {
-          "id": "53eb42b3ec061521c165990283cf785b981f831d",
-          "title": "typesafeai 发推\"he olo world\"",
-          "url": "https://x.com/typesafeai/status/2102261849945444699",
-          "source": "@typesafeai",
+          "id": "113abeb398e7a645a6c8a59ec5537868d007c9ef",
+          "title": "Greg Brockman 宣布 GPT Voice 大幅升级，支持使用工具并登陆 ChatGPT Work",
+          "url": "https://x.com/gdb/status/2102821706041819401",
+          "source": "X：Greg Brockman (@gdb)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-22T05:00:57Z"
+          "published_at": "2026-09-23T18:05:37Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7772,
-      "importance": 0.7772,
-      "importance_score": 0.7772,
+      "score": 0.7712,
+      "importance": 0.7712,
+      "importance_score": 0.7712,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 1.0,
+        "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5868,
+        "recency": 0.9535,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -445,13 +689,13 @@
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-09-22T05:00:57Z",
-      "latest_at": "2026-09-22T05:00:57Z",
+      "earliest_at": "2026-09-23T18:05:37Z",
+      "latest_at": "2026-09-23T18:05:37Z",
       "primary_item": {
-        "id": "53eb42b3ec061521c165990283cf785b981f831d",
-        "title": "typesafeai 发推\"he olo world\"",
-        "url": "https://x.com/typesafeai/status/2102261849945444699",
-        "source": "@typesafeai",
+        "id": "113abeb398e7a645a6c8a59ec5537868d007c9ef",
+        "title": "Greg Brockman 宣布 GPT Voice 大幅升级，支持使用工具并登陆 ChatGPT Work",
+        "url": "https://x.com/gdb/status/2102821706041819401",
+        "source": "X：Greg Brockman (@gdb)",
         "source_name": "AI HOT"
       }
     },
@@ -490,15 +734,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7744,
-      "importance": 0.7744,
-      "importance_score": 0.7744,
+      "score": 0.7658,
+      "importance": 0.7658,
+      "importance_score": 0.7658,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9879,
+        "recency": 0.9398,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -570,15 +814,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7717,
-      "importance": 0.7717,
-      "importance_score": 0.7717,
+      "score": 0.7654,
+      "importance": 0.7654,
+      "importance_score": 0.7654,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7174,
+        "recency": 0.6825,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -650,15 +894,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7702,
-      "importance": 0.7702,
-      "importance_score": 0.7702,
+      "score": 0.7638,
+      "importance": 0.7638,
+      "importance_score": 0.7638,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7253,
+        "recency": 0.69,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -731,15 +975,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.77,
-      "importance": 0.77,
-      "importance_score": 0.77,
+      "score": 0.7638,
+      "importance": 0.7638,
+      "importance_score": 0.7638,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7078,
+        "recency": 0.6733,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -793,15 +1037,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7667,
-      "importance": 0.7667,
-      "importance_score": 0.7667,
+      "score": 0.758,
+      "importance": 0.758,
+      "importance_score": 0.758,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9951,
+        "recency": 0.9467,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -816,128 +1060,6 @@
         "title": "ChatGPT Voice 升级：可调用邮件、日历、Slack 插件并由 GPT-6 Astra、Sol、Luna 驱动",
         "url": "https://x.com/thsottiaux/status/2102814202117411196",
         "source": "X：Tibo (@thsottiaux)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_c1760eb14503",
-      "title": "OpenAI 发布 GPT-6 Sol 与 Luna，API 定价降至五折并公布基准成绩",
-      "url": "https://www.marktechpost.com/2026/09/22/openai-releases-gpt-6-sol-and-luna-50-cheaper-api-pricing-and-benchmarks",
-      "primary_url": "https://www.marktechpost.com/2026/09/22/openai-releases-gpt-6-sol-and-luna-50-cheaper-api-pricing-and-benchmarks",
-      "source": "MarkTechPost（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "46ab56f051cd2fb216ac50b26897f251f6a547d6",
-          "title": "OpenAI 发布 GPT-6 Sol 与 Luna，API 定价降至五折并公布基准成绩",
-          "url": "https://www.marktechpost.com/2026/09/22/openai-releases-gpt-6-sol-and-luna-50-cheaper-api-pricing-and-benchmarks",
-          "source": "MarkTechPost（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T05:18:36Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "MarkTechPost（RSS）"
-      ],
-      "items": [
-        {
-          "id": "46ab56f051cd2fb216ac50b26897f251f6a547d6",
-          "title": "OpenAI 发布 GPT-6 Sol 与 Luna，API 定价降至五折并公布基准成绩",
-          "url": "https://www.marktechpost.com/2026/09/22/openai-releases-gpt-6-sol-and-luna-50-cheaper-api-pricing-and-benchmarks",
-          "source": "MarkTechPost（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T05:18:36Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7646,
-      "importance": 0.7646,
-      "importance_score": 0.7646,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.81,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8334,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-23T05:18:36Z",
-      "latest_at": "2026-09-23T05:18:36Z",
-      "primary_item": {
-        "id": "46ab56f051cd2fb216ac50b26897f251f6a547d6",
-        "title": "OpenAI 发布 GPT-6 Sol 与 Luna，API 定价降至五折并公布基准成绩",
-        "url": "https://www.marktechpost.com/2026/09/22/openai-releases-gpt-6-sol-and-luna-50-cheaper-api-pricing-and-benchmarks",
-        "source": "MarkTechPost（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_914ed32ad555",
-      "title": "Google DeepMind 发布 Gemini 3.8 Flash TTS 与 Flash-Lite TTS 语音生成模型",
-      "url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech",
-      "primary_url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech",
-      "source": "Google DeepMind：Blog（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "4242b71e4e81bb1714db5411d123d5793c7b372f",
-          "title": "Google DeepMind 发布 Gemini 3.8 Flash TTS 与 Flash-Lite TTS 语音生成模型",
-          "url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech",
-          "source": "Google DeepMind：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T15:25:14Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Google DeepMind：Blog（RSS）"
-      ],
-      "items": [
-        {
-          "id": "4242b71e4e81bb1714db5411d123d5793c7b372f",
-          "title": "Google DeepMind 发布 Gemini 3.8 Flash TTS 与 Flash-Lite TTS 语音生成模型",
-          "url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech",
-          "source": "Google DeepMind：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T15:25:14Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7642,
-      "importance": 0.7642,
-      "importance_score": 0.7642,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.73,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9644,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-23T15:25:14Z",
-      "latest_at": "2026-09-23T15:25:14Z",
-      "primary_item": {
-        "id": "4242b71e4e81bb1714db5411d123d5793c7b372f",
-        "title": "Google DeepMind 发布 Gemini 3.8 Flash TTS 与 Flash-Lite TTS 语音生成模型",
-        "url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech",
-        "source": "Google DeepMind：Blog（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -995,15 +1117,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7638,
-      "importance": 0.7638,
-      "importance_score": 0.7638,
+      "score": 0.7574,
+      "importance": 0.7574,
+      "importance_score": 0.7574,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7233,
+        "recency": 0.688,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -1019,6 +1141,189 @@
         "title": "Meta Muse 助手曝出严重 0-day 漏洞，Amazon 已开始封禁 Muse",
         "url": "https://arstechnica.com/security/2026/09/muse-metas-extraordinarily-privileged-ai-assistant-has-a-serious-0-day",
         "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_c1760eb14503",
+      "title": "OpenAI 发布 GPT-6 Sol 与 Luna，API 定价降至五折并公布基准成绩",
+      "url": "https://www.marktechpost.com/2026/09/22/openai-releases-gpt-6-sol-and-luna-50-cheaper-api-pricing-and-benchmarks",
+      "primary_url": "https://www.marktechpost.com/2026/09/22/openai-releases-gpt-6-sol-and-luna-50-cheaper-api-pricing-and-benchmarks",
+      "source": "MarkTechPost（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "46ab56f051cd2fb216ac50b26897f251f6a547d6",
+          "title": "OpenAI 发布 GPT-6 Sol 与 Luna，API 定价降至五折并公布基准成绩",
+          "url": "https://www.marktechpost.com/2026/09/22/openai-releases-gpt-6-sol-and-luna-50-cheaper-api-pricing-and-benchmarks",
+          "source": "MarkTechPost（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T05:18:36Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "MarkTechPost（RSS）"
+      ],
+      "items": [
+        {
+          "id": "46ab56f051cd2fb216ac50b26897f251f6a547d6",
+          "title": "OpenAI 发布 GPT-6 Sol 与 Luna，API 定价降至五折并公布基准成绩",
+          "url": "https://www.marktechpost.com/2026/09/22/openai-releases-gpt-6-sol-and-luna-50-cheaper-api-pricing-and-benchmarks",
+          "source": "MarkTechPost（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T05:18:36Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7573,
+      "importance": 0.7573,
+      "importance_score": 0.7573,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.81,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7928,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-23T05:18:36Z",
+      "latest_at": "2026-09-23T05:18:36Z",
+      "primary_item": {
+        "id": "46ab56f051cd2fb216ac50b26897f251f6a547d6",
+        "title": "OpenAI 发布 GPT-6 Sol 与 Luna，API 定价降至五折并公布基准成绩",
+        "url": "https://www.marktechpost.com/2026/09/22/openai-releases-gpt-6-sol-and-luna-50-cheaper-api-pricing-and-benchmarks",
+        "source": "MarkTechPost（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_914ed32ad555",
+      "title": "Google DeepMind 发布 Gemini 3.8 Flash TTS 与 Flash-Lite TTS 语音生成模型",
+      "url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech",
+      "primary_url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech",
+      "source": "Google DeepMind：Blog（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "4242b71e4e81bb1714db5411d123d5793c7b372f",
+          "title": "Google DeepMind 发布 Gemini 3.8 Flash TTS 与 Flash-Lite TTS 语音生成模型",
+          "url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech",
+          "source": "Google DeepMind：Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T15:25:14Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Google DeepMind：Blog（RSS）"
+      ],
+      "items": [
+        {
+          "id": "4242b71e4e81bb1714db5411d123d5793c7b372f",
+          "title": "Google DeepMind 发布 Gemini 3.8 Flash TTS 与 Flash-Lite TTS 语音生成模型",
+          "url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech",
+          "source": "Google DeepMind：Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T15:25:14Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7557,
+      "importance": 0.7557,
+      "importance_score": 0.7557,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.73,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9174,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-23T15:25:14Z",
+      "latest_at": "2026-09-23T15:25:14Z",
+      "primary_item": {
+        "id": "4242b71e4e81bb1714db5411d123d5793c7b372f",
+        "title": "Google DeepMind 发布 Gemini 3.8 Flash TTS 与 Flash-Lite TTS 语音生成模型",
+        "url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech",
+        "source": "Google DeepMind：Blog（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_b21efcd3b89b",
+      "title": "MiMo-V2.6-Pro、Claude Opus 5.5、GPT-6 Luna/Sol 发布改变智能指数与成本 Pareto 前沿",
+      "url": "https://x.com/ArtificialAnlys/status/2102833926788288704",
+      "primary_url": "https://x.com/ArtificialAnlys/status/2102833926788288704",
+      "source": "X：Artificial Analysis (@ArtificialAnlys)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "e813ab0acc4f36dd146a49e76d7c1868b64e1683",
+          "title": "MiMo-V2.6-Pro、Claude Opus 5.5、GPT-6 Luna/Sol 发布改变智能指数与成本 Pareto 前沿",
+          "url": "https://x.com/ArtificialAnlys/status/2102833926788288704",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T18:54:11Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Artificial Analysis (@ArtificialAnlys)"
+      ],
+      "items": [
+        {
+          "id": "e813ab0acc4f36dd146a49e76d7c1868b64e1683",
+          "title": "MiMo-V2.6-Pro、Claude Opus 5.5、GPT-6 Luna/Sol 发布改变智能指数与成本 Pareto 前沿",
+          "url": "https://x.com/ArtificialAnlys/status/2102833926788288704",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T18:54:11Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7523,
+      "importance": 0.7523,
+      "importance_score": 0.7523,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.69,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9647,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-23T18:54:11Z",
+      "latest_at": "2026-09-23T18:54:11Z",
+      "primary_item": {
+        "id": "e813ab0acc4f36dd146a49e76d7c1868b64e1683",
+        "title": "MiMo-V2.6-Pro、Claude Opus 5.5、GPT-6 Luna/Sol 发布改变智能指数与成本 Pareto 前沿",
+        "url": "https://x.com/ArtificialAnlys/status/2102833926788288704",
+        "source": "X：Artificial Analysis (@ArtificialAnlys)",
         "source_name": "AI HOT"
       }
     },
@@ -1057,15 +1362,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7596,
-      "importance": 0.7596,
-      "importance_score": 0.7596,
+      "score": 0.7509,
+      "importance": 0.7509,
+      "importance_score": 0.7509,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9888,
+        "recency": 0.9406,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1084,424 +1389,123 @@
       }
     },
     {
-      "story_id": "story_0c90c73c08cf",
-      "title": "Anthropic 发布 Claude Opus 5.5，成本较 Opus 5 降低 40%",
-      "url": "https://www.anthropic.com/claude-opus-5-5",
-      "primary_url": "https://www.anthropic.com/claude-opus-5-5",
-      "source": "Anthropic：Newsroom（网页）",
+      "story_id": "story_10fe6fb72765",
+      "title": "Dario Amodei 宣布 Claude 主导发现疑似新型基因编辑机制的酶系统",
+      "url": "https://x.com/DarioAmodei/status/2102831170299834652",
+      "primary_url": "https://x.com/DarioAmodei/status/2102831170299834652",
+      "source": "X：Dario Amodei (@DarioAmodei)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "a58405996672d080264a33742ee41cde0d801b04",
-          "title": "Anthropic 发布 Claude Opus 5.5，成本较 Opus 5 降低 40%",
-          "url": "https://www.anthropic.com/claude-opus-5-5",
-          "source": "Anthropic：Newsroom（网页）",
+          "id": "01a0a8df6c91f95986038abc24295d69ddc0ef50",
+          "title": "Dario Amodei 宣布 Claude 主导发现疑似新型基因编辑机制的酶系统",
+          "url": "https://x.com/DarioAmodei/status/2102831170299834652",
+          "source": "X：Dario Amodei (@DarioAmodei)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-22T16:53:30.664000Z"
+          "published_at": "2026-09-23T18:43:14Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "Anthropic：Newsroom（网页）"
+        "X：Dario Amodei (@DarioAmodei)"
       ],
       "items": [
         {
-          "id": "a58405996672d080264a33742ee41cde0d801b04",
-          "title": "Anthropic 发布 Claude Opus 5.5，成本较 Opus 5 降低 40%",
-          "url": "https://www.anthropic.com/claude-opus-5-5",
-          "source": "Anthropic：Newsroom（网页）",
+          "id": "01a0a8df6c91f95986038abc24295d69ddc0ef50",
+          "title": "Dario Amodei 宣布 Claude 主导发现疑似新型基因编辑机制的酶系统",
+          "url": "https://x.com/DarioAmodei/status/2102831170299834652",
+          "source": "X：Dario Amodei (@DarioAmodei)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-22T16:53:30.664000Z"
+          "published_at": "2026-09-23T18:43:14Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.755,
-      "importance": 0.755,
-      "importance_score": 0.755,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.86,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6965,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-22T16:53:30.664000Z",
-      "latest_at": "2026-09-22T16:53:30.664000Z",
-      "primary_item": {
-        "id": "a58405996672d080264a33742ee41cde0d801b04",
-        "title": "Anthropic 发布 Claude Opus 5.5，成本较 Opus 5 降低 40%",
-        "url": "https://www.anthropic.com/claude-opus-5-5",
-        "source": "Anthropic：Newsroom（网页）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_dfb8348904db",
-      "title": "Artificial Analysis 评测 GPT-6 Sol 与 Luna：成本减半，智能指数持平",
-      "url": "https://x.com/ArtificialAnlys/status/2102462962758033624",
-      "primary_url": "https://x.com/ArtificialAnlys/status/2102462962758033624",
-      "source": "X：Artificial Analysis (@ArtificialAnlys)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "06918dd83ad05a0b9db226a2f6b110d410e23103",
-          "title": "Artificial Analysis 评测 GPT-6 Sol 与 Luna：成本减半，智能指数持平",
-          "url": "https://x.com/ArtificialAnlys/status/2102462962758033624",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T18:20:06Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Artificial Analysis (@ArtificialAnlys)"
-      ],
-      "items": [
-        {
-          "id": "06918dd83ad05a0b9db226a2f6b110d410e23103",
-          "title": "Artificial Analysis 评测 GPT-6 Sol 与 Luna：成本减半，智能指数持平",
-          "url": "https://x.com/ArtificialAnlys/status/2102462962758033624",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T18:20:06Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7516,
-      "importance": 0.7516,
-      "importance_score": 0.7516,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.84,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7112,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-22T18:20:06Z",
-      "latest_at": "2026-09-22T18:20:06Z",
-      "primary_item": {
-        "id": "06918dd83ad05a0b9db226a2f6b110d410e23103",
-        "title": "Artificial Analysis 评测 GPT-6 Sol 与 Luna：成本减半，智能指数持平",
-        "url": "https://x.com/ArtificialAnlys/status/2102462962758033624",
-        "source": "X：Artificial Analysis (@ArtificialAnlys)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_00642f385922",
-      "title": "小米发布 MiMo-V2.6 Pro 与 Flash 开源全模态模型，Pro 在多数 Agent 基准上对标 Claude Opus 5 和 GPT-5.6 Sol",
-      "url": "https://x.com/AravSrinivas/status/2102780186202972254",
-      "primary_url": "https://x.com/AravSrinivas/status/2102780186202972254",
-      "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "60b1b5de7d01034a2756d163d4d1c1b8819d8fb9",
-          "title": "小米发布 MiMo-V2.6 Pro 与 Flash 开源全模态模型，Pro 在多数 Agent 基准上对标 Claude Opus 5 和 GPT-5.6 Sol",
-          "url": "https://x.com/AravSrinivas/status/2102780186202972254",
-          "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T15:20:38Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)"
-      ],
-      "items": [
-        {
-          "id": "60b1b5de7d01034a2756d163d4d1c1b8819d8fb9",
-          "title": "小米发布 MiMo-V2.6 Pro 与 Flash 开源全模态模型，Pro 在多数 Agent 基准上对标 Claude Opus 5 和 GPT-5.6 Sol",
-          "url": "https://x.com/AravSrinivas/status/2102780186202972254",
-          "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T15:20:38Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.749,
-      "importance": 0.749,
-      "importance_score": 0.749,
+      "score": 0.7488,
+      "importance": 0.7488,
+      "importance_score": 0.7488,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9633,
+        "recency": 0.9622,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-23T15:20:38Z",
-      "latest_at": "2026-09-23T15:20:38Z",
+      "earliest_at": "2026-09-23T18:43:14Z",
+      "latest_at": "2026-09-23T18:43:14Z",
       "primary_item": {
-        "id": "60b1b5de7d01034a2756d163d4d1c1b8819d8fb9",
-        "title": "小米发布 MiMo-V2.6 Pro 与 Flash 开源全模态模型，Pro 在多数 Agent 基准上对标 Claude Opus 5 和 GPT-5.6 Sol",
-        "url": "https://x.com/AravSrinivas/status/2102780186202972254",
-        "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
+        "id": "01a0a8df6c91f95986038abc24295d69ddc0ef50",
+        "title": "Dario Amodei 宣布 Claude 主导发现疑似新型基因编辑机制的酶系统",
+        "url": "https://x.com/DarioAmodei/status/2102831170299834652",
+        "source": "X：Dario Amodei (@DarioAmodei)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_2c90f5f2072a",
-      "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，性能更强且比 GPT-5.6 便宜 50%",
-      "url": "https://x.com/polynoamial/status/2102464815751111057",
-      "primary_url": "https://x.com/polynoamial/status/2102464815751111057",
-      "source": "X：Noam Brown (@polynoamial)",
+      "story_id": "story_7d998d11cb8b",
+      "title": "Anthropic 团队详解如何用 Claude 在两周内把 claude.ai 提速约 3 倍",
+      "url": "https://claude.dev/blog/how-we-made-claude-ai-faster",
+      "primary_url": "https://claude.dev/blog/how-we-made-claude-ai-faster",
+      "source": "Hacker News：AI 热帖",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "ac73d5b1f544e32dbc9cb5d6787fbc78445091ec",
-          "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，性能更强且比 GPT-5.6 便宜 50%",
-          "url": "https://x.com/polynoamial/status/2102464815751111057",
-          "source": "X：Noam Brown (@polynoamial)",
+          "id": "e08f17337931db3bdac610517c7dfe1010beb7db",
+          "title": "Anthropic 团队详解如何用 Claude 在两周内把 claude.ai 提速约 3 倍",
+          "url": "https://claude.dev/blog/how-we-made-claude-ai-faster",
+          "source": "Hacker News：AI 热帖",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-22T18:27:28Z"
+          "published_at": "2026-09-23T19:23:40Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Noam Brown (@polynoamial)"
+        "Hacker News：AI 热帖"
       ],
       "items": [
         {
-          "id": "ac73d5b1f544e32dbc9cb5d6787fbc78445091ec",
-          "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，性能更强且比 GPT-5.6 便宜 50%",
-          "url": "https://x.com/polynoamial/status/2102464815751111057",
-          "source": "X：Noam Brown (@polynoamial)",
+          "id": "e08f17337931db3bdac610517c7dfe1010beb7db",
+          "title": "Anthropic 团队详解如何用 Claude 在两周内把 claude.ai 提速约 3 倍",
+          "url": "https://claude.dev/blog/how-we-made-claude-ai-faster",
+          "source": "Hacker News：AI 热帖",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-22T18:27:28Z"
+          "published_at": "2026-09-23T19:23:40Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7458,
-      "importance": 0.7458,
-      "importance_score": 0.7458,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.82,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7125,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-22T18:27:28Z",
-      "latest_at": "2026-09-22T18:27:28Z",
-      "primary_item": {
-        "id": "ac73d5b1f544e32dbc9cb5d6787fbc78445091ec",
-        "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，性能更强且比 GPT-5.6 便宜 50%",
-        "url": "https://x.com/polynoamial/status/2102464815751111057",
-        "source": "X：Noam Brown (@polynoamial)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_3f2d890918eb",
-      "title": "Anthropic 发布 Claude Opus 5.5，成本降低 40% 且速度提升 30%",
-      "url": "https://x.com/mark_k/status/2102437510731219218",
-      "primary_url": "https://x.com/mark_k/status/2102437510731219218",
-      "source": "@mark_k",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "f954331306c3da6009c3265f549120d3121642d6",
-          "title": "Anthropic 发布 Claude Opus 5.5，成本降低 40% 且速度提升 30%",
-          "url": "https://x.com/mark_k/status/2102437510731219218",
-          "source": "@mark_k",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T16:38:58Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "@mark_k"
-      ],
-      "items": [
-        {
-          "id": "f954331306c3da6009c3265f549120d3121642d6",
-          "title": "Anthropic 发布 Claude Opus 5.5，成本降低 40% 且速度提升 30%",
-          "url": "https://x.com/mark_k/status/2102437510731219218",
-          "source": "@mark_k",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T16:38:58Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7455,
-      "importance": 0.7455,
-      "importance_score": 0.7455,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.83,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6941,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-22T16:38:58Z",
-      "latest_at": "2026-09-22T16:38:58Z",
-      "primary_item": {
-        "id": "f954331306c3da6009c3265f549120d3121642d6",
-        "title": "Anthropic 发布 Claude Opus 5.5，成本降低 40% 且速度提升 30%",
-        "url": "https://x.com/mark_k/status/2102437510731219218",
-        "source": "@mark_k",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_06f2bc780d55",
-      "title": "Claude Opus 5.5 发布：较 Opus 5 降价提速，系统卡披露安全演习中约半数运行或有危害行为",
-      "url": "https://x.com/rohanpaul_ai/status/2102491250515681384",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2102491250515681384",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "c19fc09a5e5d15914f5c59ee0ad1fc9a20595681",
-          "title": "Claude Opus 5.5 发布：较 Opus 5 降价提速，系统卡披露安全演习中约半数运行或有危害行为",
-          "url": "https://x.com/rohanpaul_ai/status/2102491250515681384",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T20:12:31Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "c19fc09a5e5d15914f5c59ee0ad1fc9a20595681",
-          "title": "Claude Opus 5.5 发布：较 Opus 5 降价提速，系统卡披露安全演习中约半数运行或有危害行为",
-          "url": "https://x.com/rohanpaul_ai/status/2102491250515681384",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T20:12:31Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7341,
-      "importance": 0.7341,
-      "importance_score": 0.7341,
+      "score": 0.7775,
+      "importance": 0.7775,
+      "importance_score": 0.7775,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7307,
+        "recency": 0.9716,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance"
+        "high_ai_relevance",
+        "high_importance"
       ],
-      "earliest_at": "2026-09-22T20:12:31Z",
-      "latest_at": "2026-09-22T20:12:31Z",
+      "earliest_at": "2026-09-23T19:23:40Z",
+      "latest_at": "2026-09-23T19:23:40Z",
       "primary_item": {
-        "id": "c19fc09a5e5d15914f5c59ee0ad1fc9a20595681",
-        "title": "Claude Opus 5.5 发布：较 Opus 5 降价提速，系统卡披露安全演习中约半数运行或有危害行为",
-        "url": "https://x.com/rohanpaul_ai/status/2102491250515681384",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_b64c4c85d1c3",
-      "title": "如何用 Pi SDK 和 Jev 构建自定义 Agent harness",
-      "url": "https://x.com/omarsar0/status/2102762406204076532",
-      "primary_url": "https://x.com/omarsar0/status/2102762406204076532",
-      "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "f903c9435339ee1a6229942f610ed116e470968f",
-          "title": "如何用 Pi SDK 和 Jev 构建自定义 Agent harness",
-          "url": "https://x.com/omarsar0/status/2102762406204076532",
-          "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T14:09:59Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Elvis Saravia (@omarsar0, DAIR.AI)"
-      ],
-      "items": [
-        {
-          "id": "f903c9435339ee1a6229942f610ed116e470968f",
-          "title": "如何用 Pi SDK 和 Jev 构建自定义 Agent harness",
-          "url": "https://x.com/omarsar0/status/2102762406204076532",
-          "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T14:09:59Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7341,
-      "importance": 0.7341,
-      "importance_score": 0.7341,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.64,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9471,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-23T14:09:59Z",
-      "latest_at": "2026-09-23T14:09:59Z",
-      "primary_item": {
-        "id": "f903c9435339ee1a6229942f610ed116e470968f",
-        "title": "如何用 Pi SDK 和 Jev 构建自定义 Agent harness",
-        "url": "https://x.com/omarsar0/status/2102762406204076532",
-        "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
+        "id": "e08f17337931db3bdac610517c7dfe1010beb7db",
+        "title": "Anthropic 团队详解如何用 Claude 在两周内把 claude.ai 提速约 3 倍",
+        "url": "https://claude.dev/blog/how-we-made-claude-ai-faster",
+        "source": "Hacker News：AI 热帖",
         "source_name": "AI HOT"
       }
     }
