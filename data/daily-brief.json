@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-24T18:37:05.030121Z",
+  "generated_at": "2026-09-24T21:45:03.926500Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -261,15 +261,15 @@
       ],
       "item_count": 13,
       "duplicate_count": 13,
-      "score": 0.8219,
-      "importance": 0.8219,
-      "importance_score": 0.8219,
+      "score": 0.8153,
+      "importance": 0.8153,
+      "importance_score": 0.8153,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8296,
+        "recency": 0.7929,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -323,15 +323,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.8043,
-      "importance": 0.8043,
-      "importance_score": 0.8043,
+      "score": 0.797,
+      "importance": 0.797,
+      "importance_score": 0.797,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.89,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9208,
+        "recency": 0.8801,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -384,15 +384,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.804,
-      "importance": 0.804,
-      "importance_score": 0.804,
+      "score": 0.7966,
+      "importance": 0.7966,
+      "importance_score": 0.7966,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.88,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9357,
+        "recency": 0.8943,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -445,15 +445,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7845,
-      "importance": 0.7845,
-      "importance_score": 0.7845,
+      "score": 0.7775,
+      "importance": 0.7775,
+      "importance_score": 0.7775,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.85,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8771,
+        "recency": 0.8383,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -506,15 +506,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7763,
-      "importance": 0.7763,
-      "importance_score": 0.7763,
+      "score": 0.7685,
+      "importance": 0.7685,
+      "importance_score": 0.7685,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9815,
+        "recency": 0.9381,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -567,15 +567,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7625,
-      "importance": 0.7625,
-      "importance_score": 0.7625,
+      "score": 0.7548,
+      "importance": 0.7548,
+      "importance_score": 0.7548,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9719,
+        "recency": 0.9289,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -647,15 +647,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7563,
-      "importance": 0.7563,
-      "importance_score": 0.7563,
+      "score": 0.7506,
+      "importance": 0.7506,
+      "importance_score": 0.7506,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7151,
+        "recency": 0.6834,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -709,21 +709,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7518,
-      "importance": 0.7518,
-      "importance_score": 0.7518,
+      "score": 0.7455,
+      "importance": 0.7455,
+      "importance_score": 0.7455,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7955,
+        "recency": 0.7603,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-24T02:46:25Z",
       "latest_at": "2026-09-24T02:46:25Z",
@@ -732,66 +731,6 @@
         "title": "Claude Opus 5.5 登顶 Arena Code Arena： WebDev 榜首，得 1818 分",
         "url": "https://x.com/arena/status/2102952767614779403",
         "source": "X：Arena (@arena)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_4228372fae87",
-      "title": "OpenAI 称与苹果的 ChatGPT 合作表现远低于预期",
-      "url": "https://www.ithome.com/1/006/548.htm",
-      "primary_url": "https://www.ithome.com/1/006/548.htm",
-      "source": "IT之家（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "77de31a6ab00f2b058edd0d97259a505e8003b14",
-          "title": "OpenAI 称与苹果的 ChatGPT 合作表现远低于预期",
-          "url": "https://www.ithome.com/1/006/548.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-24T01:12:13Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "IT之家（RSS）"
-      ],
-      "items": [
-        {
-          "id": "77de31a6ab00f2b058edd0d97259a505e8003b14",
-          "title": "OpenAI 称与苹果的 ChatGPT 合作表现远低于预期",
-          "url": "https://www.ithome.com/1/006/548.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-24T01:12:13Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7456,
-      "importance": 0.7456,
-      "importance_score": 0.7456,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.78,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7777,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-24T01:12:13Z",
-      "latest_at": "2026-09-24T01:12:13Z",
-      "primary_item": {
-        "id": "77de31a6ab00f2b058edd0d97259a505e8003b14",
-        "title": "OpenAI 称与苹果的 ChatGPT 合作表现远低于预期",
-        "url": "https://www.ithome.com/1/006/548.htm",
-        "source": "IT之家（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -830,15 +769,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7455,
-      "importance": 0.7455,
-      "importance_score": 0.7455,
+      "score": 0.7423,
+      "importance": 0.7423,
+      "importance_score": 0.7423,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 1.0,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4108,
+        "recency": 0.3927,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -852,6 +791,126 @@
         "title": "typesafeai 发推\"he olo world\"",
         "url": "https://x.com/typesafeai/status/2102261849945444699",
         "source": "@typesafeai",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_b69958a4c581",
+      "title": "Google Project Suncatcher 将把 TPU 送入太空测试",
+      "url": "https://x.com/rohanpaul_ai/status/2103215093911810085",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2103215093911810085",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "717510feb93c5af746993ef32bb7a28a74cd4c7b",
+          "title": "Google Project Suncatcher 将把 TPU 送入太空测试",
+          "url": "https://x.com/rohanpaul_ai/status/2103215093911810085",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T20:08:48Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "717510feb93c5af746993ef32bb7a28a74cd4c7b",
+          "title": "Google Project Suncatcher 将把 TPU 送入太空测试",
+          "url": "https://x.com/rohanpaul_ai/status/2103215093911810085",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T20:08:48Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7395,
+      "importance": 0.7395,
+      "importance_score": 0.7395,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.64,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9771,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-24T20:08:48Z",
+      "latest_at": "2026-09-24T20:08:48Z",
+      "primary_item": {
+        "id": "717510feb93c5af746993ef32bb7a28a74cd4c7b",
+        "title": "Google Project Suncatcher 将把 TPU 送入太空测试",
+        "url": "https://x.com/rohanpaul_ai/status/2103215093911810085",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_4228372fae87",
+      "title": "OpenAI 称与苹果的 ChatGPT 合作表现远低于预期",
+      "url": "https://www.ithome.com/1/006/548.htm",
+      "primary_url": "https://www.ithome.com/1/006/548.htm",
+      "source": "IT之家（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "77de31a6ab00f2b058edd0d97259a505e8003b14",
+          "title": "OpenAI 称与苹果的 ChatGPT 合作表现远低于预期",
+          "url": "https://www.ithome.com/1/006/548.htm",
+          "source": "IT之家（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T01:12:13Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "IT之家（RSS）"
+      ],
+      "items": [
+        {
+          "id": "77de31a6ab00f2b058edd0d97259a505e8003b14",
+          "title": "OpenAI 称与苹果的 ChatGPT 合作表现远低于预期",
+          "url": "https://www.ithome.com/1/006/548.htm",
+          "source": "IT之家（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T01:12:13Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7394,
+      "importance": 0.7394,
+      "importance_score": 0.7394,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.78,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7433,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-24T01:12:13Z",
+      "latest_at": "2026-09-24T01:12:13Z",
+      "primary_item": {
+        "id": "77de31a6ab00f2b058edd0d97259a505e8003b14",
+        "title": "OpenAI 称与苹果的 ChatGPT 合作表现远低于预期",
+        "url": "https://www.ithome.com/1/006/548.htm",
+        "source": "IT之家（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -890,15 +949,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7433,
-      "importance": 0.7433,
-      "importance_score": 0.7433,
+      "score": 0.736,
+      "importance": 0.736,
+      "importance_score": 0.736,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.915,
+        "recency": 0.8745,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -916,62 +975,62 @@
       }
     },
     {
-      "story_id": "story_8f410f838ab4",
-      "title": "Anthropic 报告 Claude agent 在湿实验室发现噬菌体中的新型 ART 酶系统",
-      "url": "https://x.com/rohanpaul_ai/status/2102832068157984990",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2102832068157984990",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "story_id": "story_ca5f208a03f2",
+      "title": "GitHub Security Lab 发布 LLM 驱动的 Fuzzing Taskflow，自动完成 C/C++ 项目模糊测试全流程",
+      "url": "https://github.blog/security/application-security/ai-powered-fuzzing-with-the-github-security-lab-taskflow-agent",
+      "primary_url": "https://github.blog/security/application-security/ai-powered-fuzzing-with-the-github-security-lab-taskflow-agent",
+      "source": "GitHub Blog",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "3a27f2bbca8585cf51d57d6bbc6bcb59122b430a",
-          "title": "Anthropic 报告 Claude agent 在湿实验室发现噬菌体中的新型 ART 酶系统",
-          "url": "https://x.com/rohanpaul_ai/status/2102832068157984990",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "d7c5c4c3190cf0232528c99fde8659513f90918b",
+          "title": "GitHub Security Lab 发布 LLM 驱动的 Fuzzing Taskflow，自动完成 C/C++ 项目模糊测试全流程",
+          "url": "https://github.blog/security/application-security/ai-powered-fuzzing-with-the-github-security-lab-taskflow-agent",
+          "source": "GitHub Blog",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-23T18:46:48Z"
+          "published_at": "2026-09-24T18:26:12Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
+        "GitHub Blog"
       ],
       "items": [
         {
-          "id": "3a27f2bbca8585cf51d57d6bbc6bcb59122b430a",
-          "title": "Anthropic 报告 Claude agent 在湿实验室发现噬菌体中的新型 ART 酶系统",
-          "url": "https://x.com/rohanpaul_ai/status/2102832068157984990",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "d7c5c4c3190cf0232528c99fde8659513f90918b",
+          "title": "GitHub Security Lab 发布 LLM 驱动的 Fuzzing Taskflow，自动完成 C/C++ 项目模糊测试全流程",
+          "url": "https://github.blog/security/application-security/ai-powered-fuzzing-with-the-github-security-lab-taskflow-agent",
+          "source": "GitHub Blog",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-23T18:46:48Z"
+          "published_at": "2026-09-24T18:26:12Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7422,
-      "importance": 0.7422,
-      "importance_score": 0.7422,
+      "score": 0.7352,
+      "importance": 0.7352,
+      "importance_score": 0.7352,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.81,
+        "editorial": 0.64,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7088,
+        "recency": 0.9533,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-23T18:46:48Z",
-      "latest_at": "2026-09-23T18:46:48Z",
+      "earliest_at": "2026-09-24T18:26:12Z",
+      "latest_at": "2026-09-24T18:26:12Z",
       "primary_item": {
-        "id": "3a27f2bbca8585cf51d57d6bbc6bcb59122b430a",
-        "title": "Anthropic 报告 Claude agent 在湿实验室发现噬菌体中的新型 ART 酶系统",
-        "url": "https://x.com/rohanpaul_ai/status/2102832068157984990",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "id": "d7c5c4c3190cf0232528c99fde8659513f90918b",
+        "title": "GitHub Security Lab 发布 LLM 驱动的 Fuzzing Taskflow，自动完成 C/C++ 项目模糊测试全流程",
+        "url": "https://github.blog/security/application-security/ai-powered-fuzzing-with-the-github-security-lab-taskflow-agent",
+        "source": "GitHub Blog",
         "source_name": "AI HOT"
       }
     },
@@ -1010,15 +1069,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7422,
-      "importance": 0.7422,
-      "importance_score": 0.7422,
+      "score": 0.735,
+      "importance": 0.735,
+      "importance_score": 0.735,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.892,
+        "recency": 0.8525,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1070,15 +1129,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7402,
-      "importance": 0.7402,
-      "importance_score": 0.7402,
+      "score": 0.7341,
+      "importance": 0.7341,
+      "importance_score": 0.7341,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7643,
+        "recency": 0.7304,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1092,66 +1151,6 @@
         "title": "OpenRouter 解析 Kimi K3：开源权重与许可证条款，以及如何调用",
         "url": "https://openrouter.ai/blog/insights/kimi-k3-open-source",
         "source": "OpenRouter：Announcements（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_0ad3dcaa586d",
-      "title": "Nathan Lambert 评论 OpenAI 智能体入侵澳大利亚政府网站事件",
-      "url": "https://x.com/natolambert/status/2102872133244183038",
-      "primary_url": "https://x.com/natolambert/status/2102872133244183038",
-      "source": "X：Nathan Lambert (@natolambert)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "0b347ecbf9483d75f2eb2fb9a67583e0d5d723ac",
-          "title": "Nathan Lambert 评论 OpenAI 智能体入侵澳大利亚政府网站事件",
-          "url": "https://x.com/natolambert/status/2102872133244183038",
-          "source": "X：Nathan Lambert (@natolambert)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T21:26:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Nathan Lambert (@natolambert)"
-      ],
-      "items": [
-        {
-          "id": "0b347ecbf9483d75f2eb2fb9a67583e0d5d723ac",
-          "title": "Nathan Lambert 评论 OpenAI 智能体入侵澳大利亚政府网站事件",
-          "url": "https://x.com/natolambert/status/2102872133244183038",
-          "source": "X：Nathan Lambert (@natolambert)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T21:26:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7382,
-      "importance": 0.7382,
-      "importance_score": 0.7382,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.78,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7364,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-23T21:26:00Z",
-      "latest_at": "2026-09-23T21:26:00Z",
-      "primary_item": {
-        "id": "0b347ecbf9483d75f2eb2fb9a67583e0d5d723ac",
-        "title": "Nathan Lambert 评论 OpenAI 智能体入侵澳大利亚政府网站事件",
-        "url": "https://x.com/natolambert/status/2102872133244183038",
-        "source": "X：Nathan Lambert (@natolambert)",
         "source_name": "AI HOT"
       }
     },
@@ -1209,15 +1208,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7366,
-      "importance": 0.7366,
-      "importance_score": 0.7366,
+      "score": 0.7323,
+      "importance": 0.7323,
+      "importance_score": 0.7323,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5387,
+        "recency": 0.5149,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -1236,62 +1235,62 @@
       }
     },
     {
-      "story_id": "story_db52085ae96f",
-      "title": "Odyssey 发布多智能体世界模型 Agora-2 可玩研究预览",
-      "url": "https://x.com/testingcatalog/status/2103164517433606640",
-      "primary_url": "https://x.com/testingcatalog/status/2103164517433606640",
-      "source": "X：Testing Catalog (@testingcatalog)",
+      "story_id": "story_0ad3dcaa586d",
+      "title": "Nathan Lambert 评论 OpenAI 智能体入侵澳大利亚政府网站事件",
+      "url": "https://x.com/natolambert/status/2102872133244183038",
+      "primary_url": "https://x.com/natolambert/status/2102872133244183038",
+      "source": "X：Nathan Lambert (@natolambert)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "b0d31a3bbb6b15278489f9f03f438837a8f4ff2f",
-          "title": "Odyssey 发布多智能体世界模型 Agora-2 可玩研究预览",
-          "url": "https://x.com/testingcatalog/status/2103164517433606640",
-          "source": "X：Testing Catalog (@testingcatalog)",
+          "id": "0b347ecbf9483d75f2eb2fb9a67583e0d5d723ac",
+          "title": "Nathan Lambert 评论 OpenAI 智能体入侵澳大利亚政府网站事件",
+          "url": "https://x.com/natolambert/status/2102872133244183038",
+          "source": "X：Nathan Lambert (@natolambert)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-24T16:47:50Z"
+          "published_at": "2026-09-23T21:26:00Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Testing Catalog (@testingcatalog)"
+        "X：Nathan Lambert (@natolambert)"
       ],
       "items": [
         {
-          "id": "b0d31a3bbb6b15278489f9f03f438837a8f4ff2f",
-          "title": "Odyssey 发布多智能体世界模型 Agora-2 可玩研究预览",
-          "url": "https://x.com/testingcatalog/status/2103164517433606640",
-          "source": "X：Testing Catalog (@testingcatalog)",
+          "id": "0b347ecbf9483d75f2eb2fb9a67583e0d5d723ac",
+          "title": "Nathan Lambert 评论 OpenAI 智能体入侵澳大利亚政府网站事件",
+          "url": "https://x.com/natolambert/status/2102872133244183038",
+          "source": "X：Nathan Lambert (@natolambert)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-24T16:47:50Z"
+          "published_at": "2026-09-23T21:26:00Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7359,
-      "importance": 0.7359,
-      "importance_score": 0.7359,
+      "score": 0.7323,
+      "importance": 0.7323,
+      "importance_score": 0.7323,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.63,
+        "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.974,
+        "recency": 0.7039,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-24T16:47:50Z",
-      "latest_at": "2026-09-24T16:47:50Z",
+      "earliest_at": "2026-09-23T21:26:00Z",
+      "latest_at": "2026-09-23T21:26:00Z",
       "primary_item": {
-        "id": "b0d31a3bbb6b15278489f9f03f438837a8f4ff2f",
-        "title": "Odyssey 发布多智能体世界模型 Agora-2 可玩研究预览",
-        "url": "https://x.com/testingcatalog/status/2103164517433606640",
-        "source": "X：Testing Catalog (@testingcatalog)",
+        "id": "0b347ecbf9483d75f2eb2fb9a67583e0d5d723ac",
+        "title": "Nathan Lambert 评论 OpenAI 智能体入侵澳大利亚政府网站事件",
+        "url": "https://x.com/natolambert/status/2102872133244183038",
+        "source": "X：Nathan Lambert (@natolambert)",
         "source_name": "AI HOT"
       }
     },
@@ -1330,15 +1329,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7356,
-      "importance": 0.7356,
-      "importance_score": 0.7356,
+      "score": 0.73,
+      "importance": 0.73,
+      "importance_score": 0.73,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7055,
+        "recency": 0.6743,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1352,66 +1351,6 @@
         "title": "Anthropic 宣布 Claude 自主发现类 CRISPR 的新型酶系统 ART",
         "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
         "source": "Anthropic：Newsroom（网页）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_84c41aa8f6d3",
-      "title": "Peter Steinberger 分享 test-audit 技能，助 OpenClaw 删除约 40 万行低价值测试",
-      "url": "https://x.com/steipete/status/2103147927313199260",
-      "primary_url": "https://x.com/steipete/status/2103147927313199260",
-      "source": "X：Peter Steinberger (@steipete)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "b4dbd28a0158526e131bf374bfb94fb3f680a26c",
-          "title": "Peter Steinberger 分享 test-audit 技能，助 OpenClaw 删除约 40 万行低价值测试",
-          "url": "https://x.com/steipete/status/2103147927313199260",
-          "source": "X：Peter Steinberger (@steipete)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-24T15:41:55Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Peter Steinberger (@steipete)"
-      ],
-      "items": [
-        {
-          "id": "b4dbd28a0158526e131bf374bfb94fb3f680a26c",
-          "title": "Peter Steinberger 分享 test-audit 技能，助 OpenClaw 删除约 40 万行低价值测试",
-          "url": "https://x.com/steipete/status/2103147927313199260",
-          "source": "X：Peter Steinberger (@steipete)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-24T15:41:55Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7332,
-      "importance": 0.7332,
-      "importance_score": 0.7332,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.63,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9587,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-24T15:41:55Z",
-      "latest_at": "2026-09-24T15:41:55Z",
-      "primary_item": {
-        "id": "b4dbd28a0158526e131bf374bfb94fb3f680a26c",
-        "title": "Peter Steinberger 分享 test-audit 技能，助 OpenClaw 删除约 40 万行低价值测试",
-        "url": "https://x.com/steipete/status/2103147927313199260",
-        "source": "X：Peter Steinberger (@steipete)",
         "source_name": "AI HOT"
       }
     },
@@ -1469,15 +1408,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.733,
-      "importance": 0.733,
-      "importance_score": 0.733,
+      "score": 0.729,
+      "importance": 0.729,
+      "importance_score": 0.729,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5023,
+        "recency": 0.4801,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -1492,6 +1431,66 @@
         "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna",
         "url": "https://x.com/ZHO_ZHO_ZHO/status/2102472026103701697",
         "source": "X：ZHO (@ZHO_ZHO_ZHO)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_db52085ae96f",
+      "title": "Odyssey 发布多智能体世界模型 Agora-2 可玩研究预览",
+      "url": "https://x.com/testingcatalog/status/2103164517433606640",
+      "primary_url": "https://x.com/testingcatalog/status/2103164517433606640",
+      "source": "X：Testing Catalog (@testingcatalog)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "b0d31a3bbb6b15278489f9f03f438837a8f4ff2f",
+          "title": "Odyssey 发布多智能体世界模型 Agora-2 可玩研究预览",
+          "url": "https://x.com/testingcatalog/status/2103164517433606640",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T16:47:50Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Testing Catalog (@testingcatalog)"
+      ],
+      "items": [
+        {
+          "id": "b0d31a3bbb6b15278489f9f03f438837a8f4ff2f",
+          "title": "Odyssey 发布多智能体世界模型 Agora-2 可玩研究预览",
+          "url": "https://x.com/testingcatalog/status/2103164517433606640",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T16:47:50Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7282,
+      "importance": 0.7282,
+      "importance_score": 0.7282,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.63,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.931,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-24T16:47:50Z",
+      "latest_at": "2026-09-24T16:47:50Z",
+      "primary_item": {
+        "id": "b0d31a3bbb6b15278489f9f03f438837a8f4ff2f",
+        "title": "Odyssey 发布多智能体世界模型 Agora-2 可玩研究预览",
+        "url": "https://x.com/testingcatalog/status/2103164517433606640",
+        "source": "X：Testing Catalog (@testingcatalog)",
         "source_name": "AI HOT"
       }
     }
