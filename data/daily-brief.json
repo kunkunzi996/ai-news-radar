@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-24T09:27:29.222913Z",
+  "generated_at": "2026-09-24T14:21:26.986305Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -261,15 +261,15 @@
       ],
       "item_count": 13,
       "duplicate_count": 13,
-      "score": 0.843,
-      "importance": 0.843,
-      "importance_score": 0.843,
+      "score": 0.8314,
+      "importance": 0.8314,
+      "importance_score": 0.8314,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9469,
+        "recency": 0.8822,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -285,6 +285,128 @@
         "title": "火山引擎对话《后西游记》主创，揭秘首部AI长剧登陆湖南卫视黄金档",
         "url": "https://mp.weixin.qq.com/s?__biz=MzI0NzU1NzI5NQ%3D%3D&mid=2247544696&idx=1&sn=eb490357aa03d3f5655fa9fbe00a0606",
         "source": "公众号：火山引擎",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_7d739e4083a7",
+      "title": "澳大利亚将调查OpenAI模型入侵政府医疗网站是否违法",
+      "url": "https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law",
+      "primary_url": "https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law",
+      "source": "TechCrunch：AI（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "d5001bc94486c5b3dc92bb6a990334f9bec6e2f3",
+          "title": "澳大利亚将调查OpenAI模型入侵政府医疗网站是否违法",
+          "url": "https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law",
+          "source": "TechCrunch：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T12:54:19Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "TechCrunch：AI（RSS）"
+      ],
+      "items": [
+        {
+          "id": "d5001bc94486c5b3dc92bb6a990334f9bec6e2f3",
+          "title": "澳大利亚将调查OpenAI模型入侵政府医疗网站是否违法",
+          "url": "https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law",
+          "source": "TechCrunch：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T12:54:19Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.8149,
+      "importance": 0.8149,
+      "importance_score": 0.8149,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.89,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9792,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-24T12:54:19Z",
+      "latest_at": "2026-09-24T12:54:19Z",
+      "primary_item": {
+        "id": "d5001bc94486c5b3dc92bb6a990334f9bec6e2f3",
+        "title": "澳大利亚将调查OpenAI模型入侵政府医疗网站是否违法",
+        "url": "https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law",
+        "source": "TechCrunch：AI（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_bc135f55b670",
+      "title": "Thomas Wolf 转评 Transluce 披露：发布 3 万余条日志，称涉及 OpenAI 攻击澳大利亚政府及更早的智能体活动",
+      "url": "https://x.com/Thom_Wolf/status/2103054896438136973",
+      "primary_url": "https://x.com/Thom_Wolf/status/2103054896438136973",
+      "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "b6e2d3c6cf9cd670c817ab277ea3a4f2d9c9d235",
+          "title": "Thomas Wolf 转评 Transluce 披露：发布 3 万余条日志，称涉及 OpenAI 攻击澳大利亚政府及更早的智能体活动",
+          "url": "https://x.com/Thom_Wolf/status/2103054896438136973",
+          "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T09:32:14Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)"
+      ],
+      "items": [
+        {
+          "id": "b6e2d3c6cf9cd670c817ab277ea3a4f2d9c9d235",
+          "title": "Thomas Wolf 转评 Transluce 披露：发布 3 万余条日志，称涉及 OpenAI 攻击澳大利亚政府及更早的智能体活动",
+          "url": "https://x.com/Thom_Wolf/status/2103054896438136973",
+          "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T09:32:14Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7945,
+      "importance": 0.7945,
+      "importance_score": 0.7945,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.85,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9328,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-24T09:32:14Z",
+      "latest_at": "2026-09-24T09:32:14Z",
+      "primary_item": {
+        "id": "b6e2d3c6cf9cd670c817ab277ea3a4f2d9c9d235",
+        "title": "Thomas Wolf 转评 Transluce 披露：发布 3 万余条日志，称涉及 OpenAI 攻击澳大利亚政府及更早的智能体活动",
+        "url": "https://x.com/Thom_Wolf/status/2103054896438136973",
+        "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
         "source_name": "AI HOT"
       }
     },
@@ -323,15 +445,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7782,
-      "importance": 0.7782,
-      "importance_score": 0.7782,
+      "score": 0.7676,
+      "importance": 0.7676,
+      "importance_score": 0.7676,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.84,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8587,
+        "recency": 0.8,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -403,15 +525,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7745,
-      "importance": 0.7745,
-      "importance_score": 0.7745,
+      "score": 0.7645,
+      "importance": 0.7645,
+      "importance_score": 0.7645,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8162,
+        "recency": 0.7605,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -465,15 +587,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.772,
-      "importance": 0.772,
-      "importance_score": 0.772,
+      "score": 0.7609,
+      "importance": 0.7609,
+      "importance_score": 0.7609,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.908,
+        "recency": 0.846,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -526,15 +648,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7654,
-      "importance": 0.7654,
-      "importance_score": 0.7654,
+      "score": 0.7545,
+      "importance": 0.7545,
+      "importance_score": 0.7545,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8876,
+        "recency": 0.827,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -549,6 +671,128 @@
         "title": "OpenAI 称与苹果的 ChatGPT 合作表现远低于预期",
         "url": "https://www.ithome.com/1/006/548.htm",
         "source": "IT之家（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_f7873f72fc61",
+      "title": "Gary Marcus 借 Jensen Huang 言论主张暂时关停 OpenAI",
+      "url": "https://garymarcus.substack.com/p/i-think-the-answer-is-we-have-to",
+      "primary_url": "https://garymarcus.substack.com/p/i-think-the-answer-is-we-have-to",
+      "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "edea0fcca689be6ff0e0727e7e3ff4d2b6db3fdd",
+          "title": "Gary Marcus 借 Jensen Huang 言论主张暂时关停 OpenAI",
+          "url": "https://garymarcus.substack.com/p/i-think-the-answer-is-we-have-to",
+          "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T12:27:50Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Gary Marcus：The Road to AI We Can Trust（RSS）"
+      ],
+      "items": [
+        {
+          "id": "edea0fcca689be6ff0e0727e7e3ff4d2b6db3fdd",
+          "title": "Gary Marcus 借 Jensen Huang 言论主张暂时关停 OpenAI",
+          "url": "https://garymarcus.substack.com/p/i-think-the-answer-is-we-have-to",
+          "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T12:27:50Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7537,
+      "importance": 0.7537,
+      "importance_score": 0.7537,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.69,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.973,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-24T12:27:50Z",
+      "latest_at": "2026-09-24T12:27:50Z",
+      "primary_item": {
+        "id": "edea0fcca689be6ff0e0727e7e3ff4d2b6db3fdd",
+        "title": "Gary Marcus 借 Jensen Huang 言论主张暂时关停 OpenAI",
+        "url": "https://garymarcus.substack.com/p/i-think-the-answer-is-we-have-to",
+        "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_8eef8cbe81d1",
+      "title": "DeepSeek 年化收入翻倍至 10 亿美元，拟以 750 亿美元估值融资 75 亿美元筹备上海 IPO",
+      "url": "https://x.com/thexpin/status/2103072451554893968",
+      "primary_url": "https://x.com/thexpin/status/2103072451554893968",
+      "source": "X：X.PIN (@thexpin)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "0f2c9c2fb698f9625f4fb33b301e6dbce2d3ac05",
+          "title": "DeepSeek 年化收入翻倍至 10 亿美元，拟以 750 亿美元估值融资 75 亿美元筹备上海 IPO",
+          "url": "https://x.com/thexpin/status/2103072451554893968",
+          "source": "X：X.PIN (@thexpin)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T10:42:00Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：X.PIN (@thexpin)"
+      ],
+      "items": [
+        {
+          "id": "0f2c9c2fb698f9625f4fb33b301e6dbce2d3ac05",
+          "title": "DeepSeek 年化收入翻倍至 10 亿美元，拟以 750 亿美元估值融资 75 亿美元筹备上海 IPO",
+          "url": "https://x.com/thexpin/status/2103072451554893968",
+          "source": "X：X.PIN (@thexpin)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T10:42:00Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7523,
+      "importance": 0.7523,
+      "importance_score": 0.7523,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.7,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9486,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-24T10:42:00Z",
+      "latest_at": "2026-09-24T10:42:00Z",
+      "primary_item": {
+        "id": "0f2c9c2fb698f9625f4fb33b301e6dbce2d3ac05",
+        "title": "DeepSeek 年化收入翻倍至 10 亿美元，拟以 750 亿美元估值融资 75 亿美元筹备上海 IPO",
+        "url": "https://x.com/thexpin/status/2103072451554893968",
+        "source": "X：X.PIN (@thexpin)",
         "source_name": "AI HOT"
       }
     },
@@ -587,15 +831,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7602,
-      "importance": 0.7602,
-      "importance_score": 0.7602,
+      "score": 0.7503,
+      "importance": 0.7503,
+      "importance_score": 0.7503,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.809,
+        "recency": 0.7537,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -610,6 +854,67 @@
         "title": "Anthropic 报告 Claude agent 在湿实验室发现噬菌体中的新型 ART 酶系统",
         "url": "https://x.com/rohanpaul_ai/status/2102832068157984990",
         "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_6e62425d4ac5",
+      "title": "typesafeai 发推\"he olo world\"",
+      "url": "https://x.com/typesafeai/status/2102261849945444699",
+      "primary_url": "https://x.com/typesafeai/status/2102261849945444699",
+      "source": "@typesafeai",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "53eb42b3ec061521c165990283cf785b981f831d",
+          "title": "typesafeai 发推\"he olo world\"",
+          "url": "https://x.com/typesafeai/status/2102261849945444699",
+          "source": "@typesafeai",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T05:00:57Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "@typesafeai"
+      ],
+      "items": [
+        {
+          "id": "53eb42b3ec061521c165990283cf785b981f831d",
+          "title": "typesafeai 发推\"he olo world\"",
+          "url": "https://x.com/typesafeai/status/2102261849945444699",
+          "source": "@typesafeai",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T05:00:57Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7502,
+      "importance": 0.7502,
+      "importance_score": 0.7502,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 1.0,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.4369,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-22T05:00:57Z",
+      "latest_at": "2026-09-22T05:00:57Z",
+      "primary_item": {
+        "id": "53eb42b3ec061521c165990283cf785b981f831d",
+        "title": "typesafeai 发推\"he olo world\"",
+        "url": "https://x.com/typesafeai/status/2102261849945444699",
+        "source": "@typesafeai",
         "source_name": "AI HOT"
       }
     },
@@ -648,21 +953,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7596,
-      "importance": 0.7596,
-      "importance_score": 0.7596,
+      "score": 0.7489,
+      "importance": 0.7489,
+      "importance_score": 0.7489,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8723,
+        "recency": 0.8128,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-24T00:00:00Z",
       "latest_at": "2026-09-24T00:00:00Z",
@@ -709,21 +1013,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7569,
-      "importance": 0.7569,
-      "importance_score": 0.7569,
+      "score": 0.7466,
+      "importance": 0.7466,
+      "importance_score": 0.7466,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8406,
+        "recency": 0.7832,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-23T21:26:00Z",
       "latest_at": "2026-09-23T21:26:00Z",
@@ -732,67 +1035,6 @@
         "title": "Nathan Lambert 评论 OpenAI 智能体入侵澳大利亚政府网站事件",
         "url": "https://x.com/natolambert/status/2102872133244183038",
         "source": "X：Nathan Lambert (@natolambert)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_6e62425d4ac5",
-      "title": "typesafeai 发推\"he olo world\"",
-      "url": "https://x.com/typesafeai/status/2102261849945444699",
-      "primary_url": "https://x.com/typesafeai/status/2102261849945444699",
-      "source": "@typesafeai",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "53eb42b3ec061521c165990283cf785b981f831d",
-          "title": "typesafeai 发推\"he olo world\"",
-          "url": "https://x.com/typesafeai/status/2102261849945444699",
-          "source": "@typesafeai",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T05:00:57Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "@typesafeai"
-      ],
-      "items": [
-        {
-          "id": "53eb42b3ec061521c165990283cf785b981f831d",
-          "title": "typesafeai 发推\"he olo world\"",
-          "url": "https://x.com/typesafeai/status/2102261849945444699",
-          "source": "@typesafeai",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T05:00:57Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.756,
-      "importance": 0.756,
-      "importance_score": 0.756,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 1.0,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.4689,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-22T05:00:57Z",
-      "latest_at": "2026-09-22T05:00:57Z",
-      "primary_item": {
-        "id": "53eb42b3ec061521c165990283cf785b981f831d",
-        "title": "typesafeai 发推\"he olo world\"",
-        "url": "https://x.com/typesafeai/status/2102261849945444699",
-        "source": "@typesafeai",
         "source_name": "AI HOT"
       }
     },
@@ -831,21 +1073,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7535,
-      "importance": 0.7535,
-      "importance_score": 0.7535,
+      "score": 0.7436,
+      "importance": 0.7436,
+      "importance_score": 0.7436,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8052,
+        "recency": 0.7502,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-23T18:27:25.203000Z",
       "latest_at": "2026-09-23T18:27:25.203000Z",
@@ -854,67 +1095,6 @@
         "title": "Anthropic 宣布 Claude 自主发现类 CRISPR 的新型酶系统 ART",
         "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
         "source": "Anthropic：Newsroom（网页）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_c295df540598",
-      "title": "团队分享提升 Agent Harness Token 效率的提示词",
-      "url": "https://x.com/ericzakariasson/status/2102853511637774551",
-      "primary_url": "https://x.com/ericzakariasson/status/2102853511637774551",
-      "source": "X：Eric Zakariasson (@ericzakariasson)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "39e65b238e8b2c16e0a6b4204234979ad4753e74",
-          "title": "团队分享提升 Agent Harness Token 效率的提示词",
-          "url": "https://x.com/ericzakariasson/status/2102853511637774551",
-          "source": "X：Eric Zakariasson (@ericzakariasson)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T20:12:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Eric Zakariasson (@ericzakariasson)"
-      ],
-      "items": [
-        {
-          "id": "39e65b238e8b2c16e0a6b4204234979ad4753e74",
-          "title": "团队分享提升 Agent Harness Token 效率的提示词",
-          "url": "https://x.com/ericzakariasson/status/2102853511637774551",
-          "source": "X：Eric Zakariasson (@ericzakariasson)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T20:12:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7512,
-      "importance": 0.7512,
-      "importance_score": 0.7512,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.77,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8258,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-23T20:12:00Z",
-      "latest_at": "2026-09-23T20:12:00Z",
-      "primary_item": {
-        "id": "39e65b238e8b2c16e0a6b4204234979ad4753e74",
-        "title": "团队分享提升 Agent Harness Token 效率的提示词",
-        "url": "https://x.com/ericzakariasson/status/2102853511637774551",
-        "source": "X：Eric Zakariasson (@ericzakariasson)",
         "source_name": "AI HOT"
       }
     },
@@ -972,22 +1152,21 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7503,
-      "importance": 0.7503,
-      "importance_score": 0.7503,
+      "score": 0.7427,
+      "importance": 0.7427,
+      "importance_score": 0.7427,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6149,
+        "recency": 0.5729,
         "story_heat": 0.25
       },
       "category": "industry",
       "reasons": [
         "multi_source",
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-22T22:21:40Z",
       "latest_at": "2026-09-22T23:46:41Z",
@@ -996,6 +1175,66 @@
         "title": "Claude Opus 5.5 与 GPT-6 Sol/Luna 发布，Simon Willison 详解新一轮价格战",
         "url": "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna",
         "source": "Simon Willison 博客",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_c295df540598",
+      "title": "团队分享提升 Agent Harness Token 效率的提示词",
+      "url": "https://x.com/ericzakariasson/status/2102853511637774551",
+      "primary_url": "https://x.com/ericzakariasson/status/2102853511637774551",
+      "source": "X：Eric Zakariasson (@ericzakariasson)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "39e65b238e8b2c16e0a6b4204234979ad4753e74",
+          "title": "团队分享提升 Agent Harness Token 效率的提示词",
+          "url": "https://x.com/ericzakariasson/status/2102853511637774551",
+          "source": "X：Eric Zakariasson (@ericzakariasson)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T20:12:00Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Eric Zakariasson (@ericzakariasson)"
+      ],
+      "items": [
+        {
+          "id": "39e65b238e8b2c16e0a6b4204234979ad4753e74",
+          "title": "团队分享提升 Agent Harness Token 效率的提示词",
+          "url": "https://x.com/ericzakariasson/status/2102853511637774551",
+          "source": "X：Eric Zakariasson (@ericzakariasson)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T20:12:00Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7411,
+      "importance": 0.7411,
+      "importance_score": 0.7411,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.77,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7694,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-23T20:12:00Z",
+      "latest_at": "2026-09-23T20:12:00Z",
+      "primary_item": {
+        "id": "39e65b238e8b2c16e0a6b4204234979ad4753e74",
+        "title": "团队分享提升 Agent Harness Token 效率的提示词",
+        "url": "https://x.com/ericzakariasson/status/2102853511637774551",
+        "source": "X：Eric Zakariasson (@ericzakariasson)",
         "source_name": "AI HOT"
       }
     },
@@ -1053,15 +1292,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7458,
-      "importance": 0.7458,
-      "importance_score": 0.7458,
+      "score": 0.7388,
+      "importance": 0.7388,
+      "importance_score": 0.7388,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5733,
+        "recency": 0.5342,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -1133,15 +1372,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7444,
-      "importance": 0.7444,
-      "importance_score": 0.7444,
+      "score": 0.7375,
+      "importance": 0.7375,
+      "importance_score": 0.7375,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5656,
+        "recency": 0.527,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -1212,15 +1451,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7439,
-      "importance": 0.7439,
-      "importance_score": 0.7439,
+      "score": 0.7368,
+      "importance": 0.7368,
+      "importance_score": 0.7368,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5796,
+        "recency": 0.5401,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -1273,15 +1512,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7438,
-      "importance": 0.7438,
-      "importance_score": 0.7438,
+      "score": 0.7339,
+      "importance": 0.7339,
+      "importance_score": 0.7339,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.801,
+        "recency": 0.7463,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1295,246 +1534,6 @@
         "title": "Greg Brockman 宣布 GPT Voice 大幅升级，支持使用工具并登陆 ChatGPT Work",
         "url": "https://x.com/gdb/status/2102821706041819401",
         "source": "X：Greg Brockman (@gdb)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_884e5268ca10",
-      "title": "OpenAI 宣布 ChatGPT Voice 支持插件并可用于 ChatGPT Work",
-      "url": "https://x.com/testingcatalog/status/2102837554668089513",
-      "primary_url": "https://x.com/testingcatalog/status/2102837554668089513",
-      "source": "X：Testing Catalog (@testingcatalog)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "a7cf213fef28023c268058a94c62731573269212",
-          "title": "OpenAI 宣布 ChatGPT Voice 支持插件并可用于 ChatGPT Work",
-          "url": "https://x.com/testingcatalog/status/2102837554668089513",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T19:08:36Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Testing Catalog (@testingcatalog)"
-      ],
-      "items": [
-        {
-          "id": "a7cf213fef28023c268058a94c62731573269212",
-          "title": "OpenAI 宣布 ChatGPT Voice 支持插件并可用于 ChatGPT Work",
-          "url": "https://x.com/testingcatalog/status/2102837554668089513",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T19:08:36Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.74,
-      "importance": 0.74,
-      "importance_score": 0.74,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.74,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8133,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-23T19:08:36Z",
-      "latest_at": "2026-09-23T19:08:36Z",
-      "primary_item": {
-        "id": "a7cf213fef28023c268058a94c62731573269212",
-        "title": "OpenAI 宣布 ChatGPT Voice 支持插件并可用于 ChatGPT Work",
-        "url": "https://x.com/testingcatalog/status/2102837554668089513",
-        "source": "X：Testing Catalog (@testingcatalog)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_0df3201badbc",
-      "title": "Claude Marketplace 上线，可发现工具、智能体与服务伙伴",
-      "url": "https://x.com/claudeai/status/2102840851538080172",
-      "primary_url": "https://x.com/claudeai/status/2102840851538080172",
-      "source": "X：Claude (@claudeai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "11d8064e6d7fe4114f4b8b3094b30221510fa5e3",
-          "title": "Claude Marketplace 上线，可发现工具、智能体与服务伙伴",
-          "url": "https://x.com/claudeai/status/2102840851538080172",
-          "source": "X：Claude (@claudeai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T19:21:42Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Claude (@claudeai)"
-      ],
-      "items": [
-        {
-          "id": "11d8064e6d7fe4114f4b8b3094b30221510fa5e3",
-          "title": "Claude Marketplace 上线，可发现工具、智能体与服务伙伴",
-          "url": "https://x.com/claudeai/status/2102840851538080172",
-          "source": "X：Claude (@claudeai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T19:21:42Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7374,
-      "importance": 0.7374,
-      "importance_score": 0.7374,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.73,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8158,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-23T19:21:42Z",
-      "latest_at": "2026-09-23T19:21:42Z",
-      "primary_item": {
-        "id": "11d8064e6d7fe4114f4b8b3094b30221510fa5e3",
-        "title": "Claude Marketplace 上线，可发现工具、智能体与服务伙伴",
-        "url": "https://x.com/claudeai/status/2102840851538080172",
-        "source": "X：Claude (@claudeai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_8e870f1c31cc",
-      "title": "Artificial Analysis：Claude Opus 5.5 登顶 Coding Agent Index，但单任务成本升至 $13.04",
-      "url": "https://x.com/ArtificialAnlys/status/2102932119995756613",
-      "primary_url": "https://x.com/ArtificialAnlys/status/2102932119995756613",
-      "source": "X：Artificial Analysis (@ArtificialAnlys)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "aa72e6778af9ee1724f762ba19fc5d7ef3b1bd52",
-          "title": "Artificial Analysis：Claude Opus 5.5 登顶 Coding Agent Index，但单任务成本升至 $13.04",
-          "url": "https://x.com/ArtificialAnlys/status/2102932119995756613",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-24T01:24:22Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Artificial Analysis (@ArtificialAnlys)"
-      ],
-      "items": [
-        {
-          "id": "aa72e6778af9ee1724f762ba19fc5d7ef3b1bd52",
-          "title": "Artificial Analysis：Claude Opus 5.5 登顶 Coding Agent Index，但单任务成本升至 $13.04",
-          "url": "https://x.com/ArtificialAnlys/status/2102932119995756613",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-24T01:24:22Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7358,
-      "importance": 0.7358,
-      "importance_score": 0.7358,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.68,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8902,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-24T01:24:22Z",
-      "latest_at": "2026-09-24T01:24:22Z",
-      "primary_item": {
-        "id": "aa72e6778af9ee1724f762ba19fc5d7ef3b1bd52",
-        "title": "Artificial Analysis：Claude Opus 5.5 登顶 Coding Agent Index，但单任务成本升至 $13.04",
-        "url": "https://x.com/ArtificialAnlys/status/2102932119995756613",
-        "source": "X：Artificial Analysis (@ArtificialAnlys)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_c1760eb14503",
-      "title": "OpenAI 发布 GPT-6 Sol 与 Luna，API 定价降至五折并公布基准成绩",
-      "url": "https://www.marktechpost.com/2026/09/22/openai-releases-gpt-6-sol-and-luna-50-cheaper-api-pricing-and-benchmarks",
-      "primary_url": "https://www.marktechpost.com/2026/09/22/openai-releases-gpt-6-sol-and-luna-50-cheaper-api-pricing-and-benchmarks",
-      "source": "MarkTechPost（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "46ab56f051cd2fb216ac50b26897f251f6a547d6",
-          "title": "OpenAI 发布 GPT-6 Sol 与 Luna，API 定价降至五折并公布基准成绩",
-          "url": "https://www.marktechpost.com/2026/09/22/openai-releases-gpt-6-sol-and-luna-50-cheaper-api-pricing-and-benchmarks",
-          "source": "MarkTechPost（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T05:18:36Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "MarkTechPost（RSS）"
-      ],
-      "items": [
-        {
-          "id": "46ab56f051cd2fb216ac50b26897f251f6a547d6",
-          "title": "OpenAI 发布 GPT-6 Sol 与 Luna，API 定价降至五折并公布基准成绩",
-          "url": "https://www.marktechpost.com/2026/09/22/openai-releases-gpt-6-sol-and-luna-50-cheaper-api-pricing-and-benchmarks",
-          "source": "MarkTechPost（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T05:18:36Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7345,
-      "importance": 0.7345,
-      "importance_score": 0.7345,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.81,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.666,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-23T05:18:36Z",
-      "latest_at": "2026-09-23T05:18:36Z",
-      "primary_item": {
-        "id": "46ab56f051cd2fb216ac50b26897f251f6a547d6",
-        "title": "OpenAI 发布 GPT-6 Sol 与 Luna，API 定价降至五折并公布基准成绩",
-        "url": "https://www.marktechpost.com/2026/09/22/openai-releases-gpt-6-sol-and-luna-50-cheaper-api-pricing-and-benchmarks",
-        "source": "MarkTechPost（RSS）",
         "source_name": "AI HOT"
       }
     }
