@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-23T23:54:28.530288Z",
+  "generated_at": "2026-09-24T04:23:06.185659Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -38,15 +38,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.801,
-      "importance": 0.801,
-      "importance_score": 0.801,
+      "score": 0.7899,
+      "importance": 0.7899,
+      "importance_score": 0.7899,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.84,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9857,
+        "recency": 0.924,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -65,49 +65,130 @@
       }
     },
     {
-      "story_id": "story_8f410f838ab4",
-      "title": "Anthropic 报告 Claude agent 在湿实验室发现噬菌体中的新型 ART 酶系统",
-      "url": "https://x.com/rohanpaul_ai/status/2102832068157984990",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2102832068157984990",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "story_id": "story_7d998d11cb8b",
+      "title": "Anthropic 团队详解如何用 Claude 在两周内把 claude.ai 提速约 3 倍",
+      "url": "https://claude.dev/blog/how-we-made-claude-ai-faster",
+      "primary_url": "https://claude.dev/blog/how-we-made-claude-ai-faster",
+      "source": "Hacker News：AI 热帖",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "3a27f2bbca8585cf51d57d6bbc6bcb59122b430a",
-          "title": "Anthropic 报告 Claude agent 在湿实验室发现噬菌体中的新型 ART 酶系统",
-          "url": "https://x.com/rohanpaul_ai/status/2102832068157984990",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "9dd7db0ccc7b64a8a99e1bcb3316b77c722d5c1f",
+          "title": "Anthropic 分享如何用 Claude 两周内将 claude.ai 提速 3 倍",
+          "url": "https://x.com/trq212/status/2102857025206255902",
+          "source": "X：Thariq (@trq212)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-23T18:46:48Z"
+          "published_at": "2026-09-23T20:25:58Z"
+        },
+        {
+          "id": "e08f17337931db3bdac610517c7dfe1010beb7db",
+          "title": "Anthropic 团队详解如何用 Claude 在两周内把 claude.ai 提速约 3 倍",
+          "url": "https://claude.dev/blog/how-we-made-claude-ai-faster",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T19:23:40Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Hacker News：AI 热帖",
+        "X：Thariq (@trq212)"
+      ],
+      "items": [
+        {
+          "id": "9dd7db0ccc7b64a8a99e1bcb3316b77c722d5c1f",
+          "title": "Anthropic 分享如何用 Claude 两周内将 claude.ai 提速 3 倍",
+          "url": "https://x.com/trq212/status/2102857025206255902",
+          "source": "X：Thariq (@trq212)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T20:25:58Z"
+        },
+        {
+          "id": "e08f17337931db3bdac610517c7dfe1010beb7db",
+          "title": "Anthropic 团队详解如何用 Claude 在两周内把 claude.ai 提速约 3 倍",
+          "url": "https://claude.dev/blog/how-we-made-claude-ai-faster",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T19:23:40Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7857,
+      "importance": 0.7857,
+      "importance_score": 0.7857,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.77,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8782,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-23T19:23:40Z",
+      "latest_at": "2026-09-23T20:25:58Z",
+      "primary_item": {
+        "id": "e08f17337931db3bdac610517c7dfe1010beb7db",
+        "title": "Anthropic 团队详解如何用 Claude 在两周内把 claude.ai 提速约 3 倍",
+        "url": "https://claude.dev/blog/how-we-made-claude-ai-faster",
+        "source": "Hacker News：AI 热帖",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_44abd059f1dd",
+      "title": "Claude Opus 5.5 登顶 Arena Code Arena： WebDev 榜首，得 1818 分",
+      "url": "https://x.com/arena/status/2102952767614779403",
+      "primary_url": "https://x.com/arena/status/2102952767614779403",
+      "source": "X：Arena (@arena)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "df8bcf0056acf592ea89b56771cc14230d6278f4",
+          "title": "Claude Opus 5.5 登顶 Arena Code Arena： WebDev 榜首，得 1818 分",
+          "url": "https://x.com/arena/status/2102952767614779403",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T02:46:25Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
+        "X：Arena (@arena)"
       ],
       "items": [
         {
-          "id": "3a27f2bbca8585cf51d57d6bbc6bcb59122b430a",
-          "title": "Anthropic 报告 Claude agent 在湿实验室发现噬菌体中的新型 ART 酶系统",
-          "url": "https://x.com/rohanpaul_ai/status/2102832068157984990",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "df8bcf0056acf592ea89b56771cc14230d6278f4",
+          "title": "Claude Opus 5.5 登顶 Arena Code Arena： WebDev 榜首，得 1818 分",
+          "url": "https://x.com/arena/status/2102952767614779403",
+          "source": "X：Arena (@arena)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-23T18:46:48Z"
+          "published_at": "2026-09-24T02:46:25Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7818,
-      "importance": 0.7818,
-      "importance_score": 0.7818,
+      "score": 0.7845,
+      "importance": 0.7845,
+      "importance_score": 0.7845,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.81,
+        "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9286,
+        "recency": 0.977,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -115,13 +196,74 @@
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-09-23T18:46:48Z",
-      "latest_at": "2026-09-23T18:46:48Z",
+      "earliest_at": "2026-09-24T02:46:25Z",
+      "latest_at": "2026-09-24T02:46:25Z",
       "primary_item": {
-        "id": "3a27f2bbca8585cf51d57d6bbc6bcb59122b430a",
-        "title": "Anthropic 报告 Claude agent 在湿实验室发现噬菌体中的新型 ART 酶系统",
-        "url": "https://x.com/rohanpaul_ai/status/2102832068157984990",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "id": "df8bcf0056acf592ea89b56771cc14230d6278f4",
+        "title": "Claude Opus 5.5 登顶 Arena Code Arena： WebDev 榜首，得 1818 分",
+        "url": "https://x.com/arena/status/2102952767614779403",
+        "source": "X：Arena (@arena)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_4228372fae87",
+      "title": "OpenAI 称与苹果的 ChatGPT 合作表现远低于预期",
+      "url": "https://www.ithome.com/1/006/548.htm",
+      "primary_url": "https://www.ithome.com/1/006/548.htm",
+      "source": "IT之家（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "77de31a6ab00f2b058edd0d97259a505e8003b14",
+          "title": "OpenAI 称与苹果的 ChatGPT 合作表现远低于预期",
+          "url": "https://www.ithome.com/1/006/548.htm",
+          "source": "IT之家（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T01:12:13Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "IT之家（RSS）"
+      ],
+      "items": [
+        {
+          "id": "77de31a6ab00f2b058edd0d97259a505e8003b14",
+          "title": "OpenAI 称与苹果的 ChatGPT 合作表现远低于预期",
+          "url": "https://www.ithome.com/1/006/548.htm",
+          "source": "IT之家（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T01:12:13Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7775,
+      "importance": 0.7775,
+      "importance_score": 0.7775,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.78,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9551,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-24T01:12:13Z",
+      "latest_at": "2026-09-24T01:12:13Z",
+      "primary_item": {
+        "id": "77de31a6ab00f2b058edd0d97259a505e8003b14",
+        "title": "OpenAI 称与苹果的 ChatGPT 合作表现远低于预期",
+        "url": "https://www.ithome.com/1/006/548.htm",
+        "source": "IT之家（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -327,15 +469,15 @@
       ],
       "item_count": 10,
       "duplicate_count": 10,
-      "score": 0.7804,
-      "importance": 0.7804,
-      "importance_score": 0.7804,
+      "score": 0.7746,
+      "importance": 0.7746,
+      "importance_score": 0.7746,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5156,
+        "recency": 0.4833,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -351,6 +493,128 @@
         "title": "卡兹克实测对比 Grok 4.7 与小米 MiMo V2.6：后者成不可能三角版本答案",
         "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686569&idx=1&sn=f716d3dd70259240800a67b9fabd53fd",
         "source": "公众号：数字生命卡兹克",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_795368339da0",
+      "title": "OpenRouter 解析 Kimi K3：开源权重与许可证条款，以及如何调用",
+      "url": "https://openrouter.ai/blog/insights/kimi-k3-open-source",
+      "primary_url": "https://openrouter.ai/blog/insights/kimi-k3-open-source",
+      "source": "OpenRouter：Announcements（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "576a54fdbc1cf3414d61535bc441b1f3ae8edc2d",
+          "title": "OpenRouter 解析 Kimi K3：开源权重与许可证条款，以及如何调用",
+          "url": "https://openrouter.ai/blog/insights/kimi-k3-open-source",
+          "source": "OpenRouter：Announcements（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T00:00:00Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "OpenRouter：Announcements（RSS）"
+      ],
+      "items": [
+        {
+          "id": "576a54fdbc1cf3414d61535bc441b1f3ae8edc2d",
+          "title": "OpenRouter 解析 Kimi K3：开源权重与许可证条款，以及如何调用",
+          "url": "https://openrouter.ai/blog/insights/kimi-k3-open-source",
+          "source": "OpenRouter：Announcements（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T00:00:00Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7716,
+      "importance": 0.7716,
+      "importance_score": 0.7716,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.77,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9386,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-24T00:00:00Z",
+      "latest_at": "2026-09-24T00:00:00Z",
+      "primary_item": {
+        "id": "576a54fdbc1cf3414d61535bc441b1f3ae8edc2d",
+        "title": "OpenRouter 解析 Kimi K3：开源权重与许可证条款，以及如何调用",
+        "url": "https://openrouter.ai/blog/insights/kimi-k3-open-source",
+        "source": "OpenRouter：Announcements（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_8f410f838ab4",
+      "title": "Anthropic 报告 Claude agent 在湿实验室发现噬菌体中的新型 ART 酶系统",
+      "url": "https://x.com/rohanpaul_ai/status/2102832068157984990",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2102832068157984990",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "3a27f2bbca8585cf51d57d6bbc6bcb59122b430a",
+          "title": "Anthropic 报告 Claude agent 在湿实验室发现噬菌体中的新型 ART 酶系统",
+          "url": "https://x.com/rohanpaul_ai/status/2102832068157984990",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T18:46:48Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "3a27f2bbca8585cf51d57d6bbc6bcb59122b430a",
+          "title": "Anthropic 报告 Claude agent 在湿实验室发现噬菌体中的新型 ART 酶系统",
+          "url": "https://x.com/rohanpaul_ai/status/2102832068157984990",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T18:46:48Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7713,
+      "importance": 0.7713,
+      "importance_score": 0.7713,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.81,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8705,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-23T18:46:48Z",
+      "latest_at": "2026-09-23T18:46:48Z",
+      "primary_item": {
+        "id": "3a27f2bbca8585cf51d57d6bbc6bcb59122b430a",
+        "title": "Anthropic 报告 Claude agent 在湿实验室发现噬菌体中的新型 ART 酶系统",
+        "url": "https://x.com/rohanpaul_ai/status/2102832068157984990",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -389,15 +653,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7793,
-      "importance": 0.7793,
-      "importance_score": 0.7793,
+      "score": 0.7684,
+      "importance": 0.7684,
+      "importance_score": 0.7684,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9649,
+        "recency": 0.9045,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -450,15 +714,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.775,
-      "importance": 0.775,
-      "importance_score": 0.775,
+      "score": 0.7646,
+      "importance": 0.7646,
+      "importance_score": 0.7646,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9243,
+        "recency": 0.8664,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -473,87 +737,6 @@
         "title": "Anthropic 宣布 Claude 自主发现类 CRISPR 的新型酶系统 ART",
         "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
         "source": "Anthropic：Newsroom（网页）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_245d063e08eb",
-      "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
-      "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
-      "primary_url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
-      "source": "Hacker News：AI 热帖",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "0c2dd88858ae70dcb29f3a0c7336bdb4dbb1af4a",
-          "title": "五角大楼调查称过度依赖AI导致美军导弹误击伊朗Minab学校",
-          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
-          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T20:00:35.186000Z"
-        },
-        {
-          "id": "840d4f3401e4b09406d07030fb1332ef14b1c19e",
-          "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
-          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T19:03:38Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "Hacker News 热门（buzzing.cc 中文翻译）",
-        "Hacker News：AI 热帖"
-      ],
-      "items": [
-        {
-          "id": "0c2dd88858ae70dcb29f3a0c7336bdb4dbb1af4a",
-          "title": "五角大楼调查称过度依赖AI导致美军导弹误击伊朗Minab学校",
-          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
-          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T20:00:35.186000Z"
-        },
-        {
-          "id": "840d4f3401e4b09406d07030fb1332ef14b1c19e",
-          "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
-          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T19:03:38Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.7733,
-      "importance": 0.7733,
-      "importance_score": 0.7733,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.86,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6593,
-        "story_heat": 0.25
-      },
-      "category": "industry",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-22T19:03:38Z",
-      "latest_at": "2026-09-22T20:00:35.186000Z",
-      "primary_item": {
-        "id": "840d4f3401e4b09406d07030fb1332ef14b1c19e",
-        "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
-        "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
-        "source": "Hacker News：AI 热帖",
         "source_name": "AI HOT"
       }
     },
@@ -592,15 +775,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7732,
-      "importance": 0.7732,
-      "importance_score": 0.7732,
+      "score": 0.7625,
+      "importance": 0.7625,
+      "importance_score": 0.7625,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9479,
+        "recency": 0.8885,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -653,15 +836,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7685,
-      "importance": 0.7685,
-      "importance_score": 0.7685,
+      "score": 0.7624,
+      "importance": 0.7624,
+      "importance_score": 0.7624,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 1.0,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5383,
+        "recency": 0.5046,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -733,15 +916,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7666,
-      "importance": 0.7666,
-      "importance_score": 0.7666,
+      "score": 0.7587,
+      "importance": 0.7587,
+      "importance_score": 0.7587,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7058,
+        "recency": 0.6616,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -795,15 +978,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7651,
-      "importance": 0.7651,
-      "importance_score": 0.7651,
+      "score": 0.7547,
+      "importance": 0.7547,
+      "importance_score": 0.7547,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9195,
+        "recency": 0.8619,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -875,15 +1058,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7611,
-      "importance": 0.7611,
-      "importance_score": 0.7611,
+      "score": 0.7536,
+      "importance": 0.7536,
+      "importance_score": 0.7536,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6581,
+        "recency": 0.6169,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -899,67 +1082,6 @@
         "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna",
         "url": "https://x.com/ZHO_ZHO_ZHO/status/2102472026103701697",
         "source": "X：ZHO (@ZHO_ZHO_ZHO)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_7bd033045b19",
-      "title": "Arena 实测：GPT-6 Sol （Max） 以 1689 分列 Code Arena： WebDev 第 4 名",
-      "url": "https://x.com/arena/status/2102806554340974612",
-      "primary_url": "https://x.com/arena/status/2102806554340974612",
-      "source": "X：Arena (@arena)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "6fcb30e52550b39b4b37bea49b4394eeef25700d",
-          "title": "Arena 实测：GPT-6 Sol （Max） 以 1689 分列 Code Arena： WebDev 第 4 名",
-          "url": "https://x.com/arena/status/2102806554340974612",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T17:05:25Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Arena (@arena)"
-      ],
-      "items": [
-        {
-          "id": "6fcb30e52550b39b4b37bea49b4394eeef25700d",
-          "title": "Arena 实测：GPT-6 Sol （Max） 以 1689 分列 Code Arena： WebDev 第 4 名",
-          "url": "https://x.com/arena/status/2102806554340974612",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T17:05:25Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7597,
-      "importance": 0.7597,
-      "importance_score": 0.7597,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.75,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9062,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-23T17:05:25Z",
-      "latest_at": "2026-09-23T17:05:25Z",
-      "primary_item": {
-        "id": "6fcb30e52550b39b4b37bea49b4394eeef25700d",
-        "title": "Arena 实测：GPT-6 Sol （Max） 以 1689 分列 Code Arena： WebDev 第 4 名",
-        "url": "https://x.com/arena/status/2102806554340974612",
-        "source": "X：Arena (@arena)",
         "source_name": "AI HOT"
       }
     },
@@ -1017,15 +1139,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7595,
-      "importance": 0.7595,
-      "importance_score": 0.7595,
+      "score": 0.7522,
+      "importance": 0.7522,
+      "importance_score": 0.7522,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6493,
+        "recency": 0.6086,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -1097,15 +1219,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7594,
-      "importance": 0.7594,
-      "importance_score": 0.7594,
+      "score": 0.7519,
+      "importance": 0.7519,
+      "importance_score": 0.7519,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6654,
+        "recency": 0.6237,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -1121,6 +1243,187 @@
         "title": "Artificial Analysis 评测 GPT-6 Sol 和 Luna：成本减半但各评测有升有降",
         "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
         "source": "Artificial Analysis 完整文章（网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_884e5268ca10",
+      "title": "OpenAI 宣布 ChatGPT Voice 支持插件并可用于 ChatGPT Work",
+      "url": "https://x.com/testingcatalog/status/2102837554668089513",
+      "primary_url": "https://x.com/testingcatalog/status/2102837554668089513",
+      "source": "X：Testing Catalog (@testingcatalog)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "a7cf213fef28023c268058a94c62731573269212",
+          "title": "OpenAI 宣布 ChatGPT Voice 支持插件并可用于 ChatGPT Work",
+          "url": "https://x.com/testingcatalog/status/2102837554668089513",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T19:08:36Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Testing Catalog (@testingcatalog)"
+      ],
+      "items": [
+        {
+          "id": "a7cf213fef28023c268058a94c62731573269212",
+          "title": "OpenAI 宣布 ChatGPT Voice 支持插件并可用于 ChatGPT Work",
+          "url": "https://x.com/testingcatalog/status/2102837554668089513",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T19:08:36Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7511,
+      "importance": 0.7511,
+      "importance_score": 0.7511,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.74,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8751,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-23T19:08:36Z",
+      "latest_at": "2026-09-23T19:08:36Z",
+      "primary_item": {
+        "id": "a7cf213fef28023c268058a94c62731573269212",
+        "title": "OpenAI 宣布 ChatGPT Voice 支持插件并可用于 ChatGPT Work",
+        "url": "https://x.com/testingcatalog/status/2102837554668089513",
+        "source": "X：Testing Catalog (@testingcatalog)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_0df3201badbc",
+      "title": "Claude Marketplace 上线，可发现工具、智能体与服务伙伴",
+      "url": "https://x.com/claudeai/status/2102840851538080172",
+      "primary_url": "https://x.com/claudeai/status/2102840851538080172",
+      "source": "X：Claude (@claudeai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "11d8064e6d7fe4114f4b8b3094b30221510fa5e3",
+          "title": "Claude Marketplace 上线，可发现工具、智能体与服务伙伴",
+          "url": "https://x.com/claudeai/status/2102840851538080172",
+          "source": "X：Claude (@claudeai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T19:21:42Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Claude (@claudeai)"
+      ],
+      "items": [
+        {
+          "id": "11d8064e6d7fe4114f4b8b3094b30221510fa5e3",
+          "title": "Claude Marketplace 上线，可发现工具、智能体与服务伙伴",
+          "url": "https://x.com/claudeai/status/2102840851538080172",
+          "source": "X：Claude (@claudeai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T19:21:42Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7486,
+      "importance": 0.7486,
+      "importance_score": 0.7486,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.73,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8778,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-23T19:21:42Z",
+      "latest_at": "2026-09-23T19:21:42Z",
+      "primary_item": {
+        "id": "11d8064e6d7fe4114f4b8b3094b30221510fa5e3",
+        "title": "Claude Marketplace 上线，可发现工具、智能体与服务伙伴",
+        "url": "https://x.com/claudeai/status/2102840851538080172",
+        "source": "X：Claude (@claudeai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_8e870f1c31cc",
+      "title": "Artificial Analysis：Claude Opus 5.5 登顶 Coding Agent Index，但单任务成本升至 $13.04",
+      "url": "https://x.com/ArtificialAnlys/status/2102932119995756613",
+      "primary_url": "https://x.com/ArtificialAnlys/status/2102932119995756613",
+      "source": "X：Artificial Analysis (@ArtificialAnlys)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "aa72e6778af9ee1724f762ba19fc5d7ef3b1bd52",
+          "title": "Artificial Analysis：Claude Opus 5.5 登顶 Coding Agent Index，但单任务成本升至 $13.04",
+          "url": "https://x.com/ArtificialAnlys/status/2102932119995756613",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T01:24:22Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Artificial Analysis (@ArtificialAnlys)"
+      ],
+      "items": [
+        {
+          "id": "aa72e6778af9ee1724f762ba19fc5d7ef3b1bd52",
+          "title": "Artificial Analysis：Claude Opus 5.5 登顶 Coding Agent Index，但单任务成本升至 $13.04",
+          "url": "https://x.com/ArtificialAnlys/status/2102932119995756613",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T01:24:22Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.748,
+      "importance": 0.748,
+      "importance_score": 0.748,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.68,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9579,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-24T01:24:22Z",
+      "latest_at": "2026-09-24T01:24:22Z",
+      "primary_item": {
+        "id": "aa72e6778af9ee1724f762ba19fc5d7ef3b1bd52",
+        "title": "Artificial Analysis：Claude Opus 5.5 登顶 Coding Agent Index，但单任务成本升至 $13.04",
+        "url": "https://x.com/ArtificialAnlys/status/2102932119995756613",
+        "source": "X：Artificial Analysis (@ArtificialAnlys)",
         "source_name": "AI HOT"
       }
     },
@@ -1159,21 +1462,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7522,
-      "importance": 0.7522,
-      "importance_score": 0.7522,
+      "score": 0.7436,
+      "importance": 0.7436,
+      "importance_score": 0.7436,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7645,
+        "recency": 0.7166,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-23T05:18:36Z",
       "latest_at": "2026-09-23T05:18:36Z",
@@ -1182,308 +1484,6 @@
         "title": "OpenAI 发布 GPT-6 Sol 与 Luna，API 定价降至五折并公布基准成绩",
         "url": "https://www.marktechpost.com/2026/09/22/openai-releases-gpt-6-sol-and-luna-50-cheaper-api-pricing-and-benchmarks",
         "source": "MarkTechPost（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_fb96bd6361a7",
-      "title": "ChatGPT Voice 升级：可调用邮件、日历、Slack 插件并由 GPT-6 Astra、Sol、Luna 驱动",
-      "url": "https://x.com/thsottiaux/status/2102814202117411196",
-      "primary_url": "https://x.com/thsottiaux/status/2102814202117411196",
-      "source": "X：Tibo (@thsottiaux)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "db8c42bb2bad0c837005bf9097cedb37e8ee34cf",
-          "title": "ChatGPT Voice 升级：可调用邮件、日历、Slack 插件并由 GPT-6 Astra、Sol、Luna 驱动",
-          "url": "https://x.com/thsottiaux/status/2102814202117411196",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T17:35:48Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Tibo (@thsottiaux)"
-      ],
-      "items": [
-        {
-          "id": "db8c42bb2bad0c837005bf9097cedb37e8ee34cf",
-          "title": "ChatGPT Voice 升级：可调用邮件、日历、Slack 插件并由 GPT-6 Astra、Sol、Luna 驱动",
-          "url": "https://x.com/thsottiaux/status/2102814202117411196",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T17:35:48Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7519,
-      "importance": 0.7519,
-      "importance_score": 0.7519,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.72,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9129,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-23T17:35:48Z",
-      "latest_at": "2026-09-23T17:35:48Z",
-      "primary_item": {
-        "id": "db8c42bb2bad0c837005bf9097cedb37e8ee34cf",
-        "title": "ChatGPT Voice 升级：可调用邮件、日历、Slack 插件并由 GPT-6 Astra、Sol、Luna 驱动",
-        "url": "https://x.com/thsottiaux/status/2102814202117411196",
-        "source": "X：Tibo (@thsottiaux)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_914ed32ad555",
-      "title": "Google DeepMind 发布 Gemini 3.8 Flash TTS 与 Flash-Lite TTS 语音生成模型",
-      "url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech",
-      "primary_url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech",
-      "source": "Google DeepMind：Blog（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "4242b71e4e81bb1714db5411d123d5793c7b372f",
-          "title": "Google DeepMind 发布 Gemini 3.8 Flash TTS 与 Flash-Lite TTS 语音生成模型",
-          "url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech",
-          "source": "Google DeepMind：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T15:25:14Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Google DeepMind：Blog（RSS）"
-      ],
-      "items": [
-        {
-          "id": "4242b71e4e81bb1714db5411d123d5793c7b372f",
-          "title": "Google DeepMind 发布 Gemini 3.8 Flash TTS 与 Flash-Lite TTS 语音生成模型",
-          "url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech",
-          "source": "Google DeepMind：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T15:25:14Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7498,
-      "importance": 0.7498,
-      "importance_score": 0.7498,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.73,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8847,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-23T15:25:14Z",
-      "latest_at": "2026-09-23T15:25:14Z",
-      "primary_item": {
-        "id": "4242b71e4e81bb1714db5411d123d5793c7b372f",
-        "title": "Google DeepMind 发布 Gemini 3.8 Flash TTS 与 Flash-Lite TTS 语音生成模型",
-        "url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech",
-        "source": "Google DeepMind：Blog（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_b21efcd3b89b",
-      "title": "MiMo-V2.6-Pro、Claude Opus 5.5、GPT-6 Luna/Sol 发布改变智能指数与成本 Pareto 前沿",
-      "url": "https://x.com/ArtificialAnlys/status/2102833926788288704",
-      "primary_url": "https://x.com/ArtificialAnlys/status/2102833926788288704",
-      "source": "X：Artificial Analysis (@ArtificialAnlys)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "e813ab0acc4f36dd146a49e76d7c1868b64e1683",
-          "title": "MiMo-V2.6-Pro、Claude Opus 5.5、GPT-6 Luna/Sol 发布改变智能指数与成本 Pareto 前沿",
-          "url": "https://x.com/ArtificialAnlys/status/2102833926788288704",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T18:54:11Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Artificial Analysis (@ArtificialAnlys)"
-      ],
-      "items": [
-        {
-          "id": "e813ab0acc4f36dd146a49e76d7c1868b64e1683",
-          "title": "MiMo-V2.6-Pro、Claude Opus 5.5、GPT-6 Luna/Sol 发布改变智能指数与成本 Pareto 前沿",
-          "url": "https://x.com/ArtificialAnlys/status/2102833926788288704",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T18:54:11Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.746,
-      "importance": 0.746,
-      "importance_score": 0.746,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.69,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9303,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-23T18:54:11Z",
-      "latest_at": "2026-09-23T18:54:11Z",
-      "primary_item": {
-        "id": "e813ab0acc4f36dd146a49e76d7c1868b64e1683",
-        "title": "MiMo-V2.6-Pro、Claude Opus 5.5、GPT-6 Luna/Sol 发布改变智能指数与成本 Pareto 前沿",
-        "url": "https://x.com/ArtificialAnlys/status/2102833926788288704",
-        "source": "X：Artificial Analysis (@ArtificialAnlys)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_582860178b2b",
-      "title": "Antigravity SDK 支持本地模型，可完全离线运行智能体",
-      "url": "https://developers.googleblog.com/introducing-support-for-local-ai-models-in-the-antigravity-sdk",
-      "primary_url": "https://developers.googleblog.com/introducing-support-for-local-ai-models-in-the-antigravity-sdk",
-      "source": "Google Developers Blog（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "16eb893ecde629842351ba32ee8d1b58080f12b8",
-          "title": "Antigravity SDK 支持本地模型，可完全离线运行智能体",
-          "url": "https://developers.googleblog.com/introducing-support-for-local-ai-models-in-the-antigravity-sdk",
-          "source": "Google Developers Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T17:09:01.108000Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Google Developers Blog（RSS）"
-      ],
-      "items": [
-        {
-          "id": "16eb893ecde629842351ba32ee8d1b58080f12b8",
-          "title": "Antigravity SDK 支持本地模型，可完全离线运行智能体",
-          "url": "https://developers.googleblog.com/introducing-support-for-local-ai-models-in-the-antigravity-sdk",
-          "source": "Google Developers Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T17:09:01.108000Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7449,
-      "importance": 0.7449,
-      "importance_score": 0.7449,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.7,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.907,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-23T17:09:01.108000Z",
-      "latest_at": "2026-09-23T17:09:01.108000Z",
-      "primary_item": {
-        "id": "16eb893ecde629842351ba32ee8d1b58080f12b8",
-        "title": "Antigravity SDK 支持本地模型，可完全离线运行智能体",
-        "url": "https://developers.googleblog.com/introducing-support-for-local-ai-models-in-the-antigravity-sdk",
-        "source": "Google Developers Blog（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_0e68b30630db",
-      "title": "Sanders 与 Casar 提出法案拟禁止人工超级智能并设立 AI 部门",
-      "url": "https://x.com/rohanpaul_ai/status/2102893393189949910",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2102893393189949910",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "ae793d75dbd5d006f924190a5103538222a66251",
-          "title": "Sanders 与 Casar 提出法案拟禁止人工超级智能并设立 AI 部门",
-          "url": "https://x.com/rohanpaul_ai/status/2102893393189949910",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T22:50:29Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "ae793d75dbd5d006f924190a5103538222a66251",
-          "title": "Sanders 与 Casar 提出法案拟禁止人工超级智能并设立 AI 部门",
-          "url": "https://x.com/rohanpaul_ai/status/2102893393189949910",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T22:50:29Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7738,
-      "importance": 0.7738,
-      "importance_score": 0.7738,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.75,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9847,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-23T22:50:29Z",
-      "latest_at": "2026-09-23T22:50:29Z",
-      "primary_item": {
-        "id": "ae793d75dbd5d006f924190a5103538222a66251",
-        "title": "Sanders 与 Casar 提出法案拟禁止人工超级智能并设立 AI 部门",
-        "url": "https://x.com/rohanpaul_ai/status/2102893393189949910",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     }
