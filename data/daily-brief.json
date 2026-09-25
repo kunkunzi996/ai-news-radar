@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-25T15:27:57.810020Z",
+  "generated_at": "2026-09-25T19:27:58.061119Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -38,15 +38,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7984,
-      "importance": 0.7984,
-      "importance_score": 0.7984,
+      "score": 0.7889,
+      "importance": 0.7889,
+      "importance_score": 0.7889,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9376,
+        "recency": 0.885,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -61,6 +61,128 @@
         "title": "Trump 政府 WISeR 项目用 AI 审批 Medicare 预授权，拒批率与激励结构引发争议",
         "url": "https://arstechnica.com/health/2026/09/trump-admin-using-ai-to-deny-medical-care-for-seniors-in-disastrous-experiment",
         "source": "Ars Technica：AI（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_1f14fef7c28f",
+      "title": "OpenAI 智能体集群数月来入侵在线数据库搜寻冷门数据，Transluce 与澳政府相继披露",
+      "url": "https://techcrunch.com/2026/09/25/for-months-openais-agent-swarms-have-been-attacking-online-databases-to-find-obscure-facts",
+      "primary_url": "https://techcrunch.com/2026/09/25/for-months-openais-agent-swarms-have-been-attacking-online-databases-to-find-obscure-facts",
+      "source": "TechCrunch：AI（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "d7b0d7d90711d174a0563e8e81eeb0eac356c018",
+          "title": "OpenAI 智能体集群数月来入侵在线数据库搜寻冷门数据，Transluce 与澳政府相继披露",
+          "url": "https://techcrunch.com/2026/09/25/for-months-openais-agent-swarms-have-been-attacking-online-databases-to-find-obscure-facts",
+          "source": "TechCrunch：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-25T15:48:14Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "TechCrunch：AI（RSS）"
+      ],
+      "items": [
+        {
+          "id": "d7b0d7d90711d174a0563e8e81eeb0eac356c018",
+          "title": "OpenAI 智能体集群数月来入侵在线数据库搜寻冷门数据，Transluce 与澳政府相继披露",
+          "url": "https://techcrunch.com/2026/09/25/for-months-openais-agent-swarms-have-been-attacking-online-databases-to-find-obscure-facts",
+          "source": "TechCrunch：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-25T15:48:14Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7853,
+      "importance": 0.7853,
+      "importance_score": 0.7853,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.81,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9485,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-25T15:48:14Z",
+      "latest_at": "2026-09-25T15:48:14Z",
+      "primary_item": {
+        "id": "d7b0d7d90711d174a0563e8e81eeb0eac356c018",
+        "title": "OpenAI 智能体集群数月来入侵在线数据库搜寻冷门数据，Transluce 与澳政府相继披露",
+        "url": "https://techcrunch.com/2026/09/25/for-months-openais-agent-swarms-have-been-attacking-online-databases-to-find-obscure-facts",
+        "source": "TechCrunch：AI（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_5e8bd66ca873",
+      "title": "美国上诉法院维持五角大楼将 Anthropic 列为供应链风险的认定",
+      "url": "https://www.cnbc.com/2026/09/25/pentagon-anthropic-ai-risk-appeals-court.html",
+      "primary_url": "https://www.cnbc.com/2026/09/25/pentagon-anthropic-ai-risk-appeals-court.html",
+      "source": "Hacker News：AI 热帖",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "042609b7487f01eced16fa1ca33ff95623051866",
+          "title": "美国上诉法院维持五角大楼将 Anthropic 列为供应链风险的认定",
+          "url": "https://www.cnbc.com/2026/09/25/pentagon-anthropic-ai-risk-appeals-court.html",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-25T15:29:25Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Hacker News：AI 热帖"
+      ],
+      "items": [
+        {
+          "id": "042609b7487f01eced16fa1ca33ff95623051866",
+          "title": "美国上诉法院维持五角大楼将 Anthropic 列为供应链风险的认定",
+          "url": "https://www.cnbc.com/2026/09/25/pentagon-anthropic-ai-risk-appeals-court.html",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-25T15:29:25Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7786,
+      "importance": 0.7786,
+      "importance_score": 0.7786,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.79,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9442,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-25T15:29:25Z",
+      "latest_at": "2026-09-25T15:29:25Z",
+      "primary_item": {
+        "id": "042609b7487f01eced16fa1ca33ff95623051866",
+        "title": "美国上诉法院维持五角大楼将 Anthropic 列为供应链风险的认定",
+        "url": "https://www.cnbc.com/2026/09/25/pentagon-anthropic-ai-risk-appeals-court.html",
+        "source": "Hacker News：AI 热帖",
         "source_name": "AI HOT"
       }
     },
@@ -322,15 +444,15 @@
       ],
       "item_count": 13,
       "duplicate_count": 13,
-      "score": 0.7831,
-      "importance": 0.7831,
-      "importance_score": 0.7831,
+      "score": 0.7769,
+      "importance": 0.7769,
+      "importance_score": 0.7769,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6139,
+        "recency": 0.5795,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -346,6 +468,67 @@
         "title": "火山引擎对话《后西游记》主创，揭秘首部AI长剧登陆湖南卫视黄金档",
         "url": "https://mp.weixin.qq.com/s?__biz=MzI0NzU1NzI5NQ%3D%3D&mid=2247544696&idx=1&sn=eb490357aa03d3f5655fa9fbe00a0606",
         "source": "公众号：火山引擎",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_cd57170eb38e",
+      "title": "Claude 完成 N=4 超对称 Yang-Mills 九圈振幅计算，物理学家 Matt von Hippel 复盘挑战始末",
+      "url": "https://www.anthropic.com/research/yes-claude-can-do-nine-loops",
+      "primary_url": "https://www.anthropic.com/research/yes-claude-can-do-nine-loops",
+      "source": "Anthropic：Research（发表成果 · 网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "18ad5d1949272a639d0b3e28920046d68ba92876",
+          "title": "Claude 完成 N=4 超对称 Yang-Mills 九圈振幅计算，物理学家 Matt von Hippel 复盘挑战始末",
+          "url": "https://www.anthropic.com/research/yes-claude-can-do-nine-loops",
+          "source": "Anthropic：Research（发表成果 · 网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-25T17:59:19.824000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Anthropic：Research（发表成果 · 网页）"
+      ],
+      "items": [
+        {
+          "id": "18ad5d1949272a639d0b3e28920046d68ba92876",
+          "title": "Claude 完成 N=4 超对称 Yang-Mills 九圈振幅计算，物理学家 Matt von Hippel 复盘挑战始末",
+          "url": "https://www.anthropic.com/research/yes-claude-can-do-nine-loops",
+          "source": "Anthropic：Research（发表成果 · 网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-25T17:59:19.824000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7698,
+      "importance": 0.7698,
+      "importance_score": 0.7698,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.74,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9789,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-25T17:59:19.824000Z",
+      "latest_at": "2026-09-25T17:59:19.824000Z",
+      "primary_item": {
+        "id": "18ad5d1949272a639d0b3e28920046d68ba92876",
+        "title": "Claude 完成 N=4 超对称 Yang-Mills 九圈振幅计算，物理学家 Matt von Hippel 复盘挑战始末",
+        "url": "https://www.anthropic.com/research/yes-claude-can-do-nine-loops",
+        "source": "Anthropic：Research（发表成果 · 网页）",
         "source_name": "AI HOT"
       }
     },
@@ -384,15 +567,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.768,
-      "importance": 0.768,
-      "importance_score": 0.768,
+      "score": 0.759,
+      "importance": 0.759,
+      "importance_score": 0.759,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8854,
+        "recency": 0.8357,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -411,49 +594,49 @@
       }
     },
     {
-      "story_id": "story_7d739e4083a7",
-      "title": "澳大利亚将调查OpenAI模型入侵政府医疗网站是否违法",
-      "url": "https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law",
-      "primary_url": "https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law",
-      "source": "TechCrunch：AI（RSS）",
+      "story_id": "story_6220572852da",
+      "title": "Cognition 宣布年化收入运行率突破 10 亿美元",
+      "url": "https://cognition.com/blog/1b-run-rate",
+      "primary_url": "https://cognition.com/blog/1b-run-rate",
+      "source": "Cognition 模型 / Devin 博客（网页）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "d5001bc94486c5b3dc92bb6a990334f9bec6e2f3",
-          "title": "澳大利亚将调查OpenAI模型入侵政府医疗网站是否违法",
-          "url": "https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law",
-          "source": "TechCrunch：AI（RSS）",
+          "id": "610696a3bff4d2e722260fd295531b17af651ebc",
+          "title": "Cognition 宣布年化收入运行率突破 10 亿美元",
+          "url": "https://cognition.com/blog/1b-run-rate",
+          "source": "Cognition 模型 / Devin 博客（网页）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-24T12:54:19Z"
+          "published_at": "2026-09-25T15:42:15.643000Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "TechCrunch：AI（RSS）"
+        "Cognition 模型 / Devin 博客（网页）"
       ],
       "items": [
         {
-          "id": "d5001bc94486c5b3dc92bb6a990334f9bec6e2f3",
-          "title": "澳大利亚将调查OpenAI模型入侵政府医疗网站是否违法",
-          "url": "https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law",
-          "source": "TechCrunch：AI（RSS）",
+          "id": "610696a3bff4d2e722260fd295531b17af651ebc",
+          "title": "Cognition 宣布年化收入运行率突破 10 亿美元",
+          "url": "https://cognition.com/blog/1b-run-rate",
+          "source": "Cognition 模型 / Devin 博客（网页）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-24T12:54:19Z"
+          "published_at": "2026-09-25T15:42:15.643000Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7613,
-      "importance": 0.7613,
-      "importance_score": 0.7613,
+      "score": 0.7581,
+      "importance": 0.7581,
+      "importance_score": 0.7581,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.89,
+        "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6814,
+        "recency": 0.9471,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -461,13 +644,74 @@
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-09-24T12:54:19Z",
-      "latest_at": "2026-09-24T12:54:19Z",
+      "earliest_at": "2026-09-25T15:42:15.643000Z",
+      "latest_at": "2026-09-25T15:42:15.643000Z",
       "primary_item": {
-        "id": "d5001bc94486c5b3dc92bb6a990334f9bec6e2f3",
-        "title": "澳大利亚将调查OpenAI模型入侵政府医疗网站是否违法",
-        "url": "https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law",
-        "source": "TechCrunch：AI（RSS）",
+        "id": "610696a3bff4d2e722260fd295531b17af651ebc",
+        "title": "Cognition 宣布年化收入运行率突破 10 亿美元",
+        "url": "https://cognition.com/blog/1b-run-rate",
+        "source": "Cognition 模型 / Devin 博客（网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_1ac887627e14",
+      "title": "Claude 将粒子物理散射振幅计算从 8 环推进到 9 环，Lance Dixon 独立验证",
+      "url": "https://x.com/rohanpaul_ai/status/2103558769984860287",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2103558769984860287",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "bc1a35c5b2463317b282bf6927bfac675dab6ff8",
+          "title": "Claude 将粒子物理散射振幅计算从 8 环推进到 9 环，Lance Dixon 独立验证",
+          "url": "https://x.com/rohanpaul_ai/status/2103558769984860287",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-25T18:54:27Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "bc1a35c5b2463317b282bf6927bfac675dab6ff8",
+          "title": "Claude 将粒子物理散射振幅计算从 8 环推进到 9 环，Lance Dixon 独立验证",
+          "url": "https://x.com/rohanpaul_ai/status/2103558769984860287",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-25T18:54:27Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7572,
+      "importance": 0.7572,
+      "importance_score": 0.7572,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.69,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.992,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-25T18:54:27Z",
+      "latest_at": "2026-09-25T18:54:27Z",
+      "primary_item": {
+        "id": "bc1a35c5b2463317b282bf6927bfac675dab6ff8",
+        "title": "Claude 将粒子物理散射振幅计算从 8 环推进到 9 环，Lance Dixon 独立验证",
+        "url": "https://x.com/rohanpaul_ai/status/2103558769984860287",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -506,15 +750,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7602,
-      "importance": 0.7602,
-      "importance_score": 0.7602,
+      "score": 0.7532,
+      "importance": 0.7532,
+      "importance_score": 0.7532,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.88,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6925,
+        "recency": 0.6536,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -529,6 +773,126 @@
         "title": "OpenAI 智能体在 Hugging Face 事件前数月已尝试入侵政府和大学网站",
         "url": "https://the-decoder.com/openais-agents-went-after-government-and-university-sites-months-before-hugging-face",
         "source": "The Decoder：AI News（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_c42a83cbe0eb",
+      "title": "Anthropic 称 Claude 完成平面 N=4 超杨-米尔斯理论九圈散射振幅计算",
+      "url": "https://x.com/AnthropicAI/status/2103541577083719888",
+      "primary_url": "https://x.com/AnthropicAI/status/2103541577083719888",
+      "source": "X：Anthropic (@AnthropicAI)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "1292abec7e144a9d760e60cd4094159cff9d78b7",
+          "title": "Anthropic 称 Claude 完成平面 N=4 超杨-米尔斯理论九圈散射振幅计算",
+          "url": "https://x.com/AnthropicAI/status/2103541577083719888",
+          "source": "X：Anthropic (@AnthropicAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-25T17:46:08Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Anthropic (@AnthropicAI)"
+      ],
+      "items": [
+        {
+          "id": "1292abec7e144a9d760e60cd4094159cff9d78b7",
+          "title": "Anthropic 称 Claude 完成平面 N=4 超杨-米尔斯理论九圈散射振幅计算",
+          "url": "https://x.com/AnthropicAI/status/2103541577083719888",
+          "source": "X：Anthropic (@AnthropicAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-25T17:46:08Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7482,
+      "importance": 0.7482,
+      "importance_score": 0.7482,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.67,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9758,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-25T17:46:08Z",
+      "latest_at": "2026-09-25T17:46:08Z",
+      "primary_item": {
+        "id": "1292abec7e144a9d760e60cd4094159cff9d78b7",
+        "title": "Anthropic 称 Claude 完成平面 N=4 超杨-米尔斯理论九圈散射振幅计算",
+        "url": "https://x.com/AnthropicAI/status/2103541577083719888",
+        "source": "X：Anthropic (@AnthropicAI)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_0bccf9f933d9",
+      "title": "Claude Devs 测算 Opus 5.5 相比 Opus 5 在 Claude Code 任务中的成本变化",
+      "url": "https://x.com/ClaudeDevs/status/2103548467729887677",
+      "primary_url": "https://x.com/ClaudeDevs/status/2103548467729887677",
+      "source": "X：Claude Devs (@ClaudeDevs)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "7b1e1539fbd3d3b77dcd2a97b8093fc66c4b347d",
+          "title": "Claude Devs 测算 Opus 5.5 相比 Opus 5 在 Claude Code 任务中的成本变化",
+          "url": "https://x.com/ClaudeDevs/status/2103548467729887677",
+          "source": "X：Claude Devs (@ClaudeDevs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-25T18:13:31Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Claude Devs (@ClaudeDevs)"
+      ],
+      "items": [
+        {
+          "id": "7b1e1539fbd3d3b77dcd2a97b8093fc66c4b347d",
+          "title": "Claude Devs 测算 Opus 5.5 相比 Opus 5 在 Claude Code 任务中的成本变化",
+          "url": "https://x.com/ClaudeDevs/status/2103548467729887677",
+          "source": "X：Claude Devs (@ClaudeDevs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-25T18:13:31Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7464,
+      "importance": 0.7464,
+      "importance_score": 0.7464,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.66,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9822,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-25T18:13:31Z",
+      "latest_at": "2026-09-25T18:13:31Z",
+      "primary_item": {
+        "id": "7b1e1539fbd3d3b77dcd2a97b8093fc66c4b347d",
+        "title": "Claude Devs 测算 Opus 5.5 相比 Opus 5 在 Claude Code 任务中的成本变化",
+        "url": "https://x.com/ClaudeDevs/status/2103548467729887677",
+        "source": "X：Claude Devs (@ClaudeDevs)",
         "source_name": "AI HOT"
       }
     },
@@ -567,21 +931,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.755,
-      "importance": 0.755,
-      "importance_score": 0.755,
+      "score": 0.7451,
+      "importance": 0.7451,
+      "importance_score": 0.7451,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9802,
+        "recency": 0.9252,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-25T14:04:43Z",
       "latest_at": "2026-09-25T14:04:43Z",
@@ -594,62 +957,63 @@
       }
     },
     {
-      "story_id": "story_bc2324148dc1",
-      "title": "Satya Nadella 宣布 Copilot 迄今最大更新，定位为工作新 OS",
-      "url": "https://x.com/satyanadella/status/2103455884366188544",
-      "primary_url": "https://x.com/satyanadella/status/2103455884366188544",
-      "source": "X：Satya Nadella (@satyanadella)",
+      "story_id": "story_6adb903e8228",
+      "title": "Anthropic 创始人拟在 IPO 前谋求投票控制权",
+      "url": "https://techcrunch.com/2026/09/25/anthropics-founders-seek-voting-control-ahead-of-ipo",
+      "primary_url": "https://techcrunch.com/2026/09/25/anthropics-founders-seek-voting-control-ahead-of-ipo",
+      "source": "TechCrunch：AI（RSS）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "aaaa5a0af320fe8603a96f2c2297d2315b39b9df",
-          "title": "Satya Nadella 宣布 Copilot 迄今最大更新，定位为工作新 OS",
-          "url": "https://x.com/satyanadella/status/2103455884366188544",
-          "source": "X：Satya Nadella (@satyanadella)",
+          "id": "f5eeec18af72c5eaa6b0f00193c52eb62b5bd259",
+          "title": "Anthropic 创始人拟在 IPO 前谋求投票控制权",
+          "url": "https://techcrunch.com/2026/09/25/anthropics-founders-seek-voting-control-ahead-of-ipo",
+          "source": "TechCrunch：AI（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-25T12:05:37Z"
+          "published_at": "2026-09-25T15:40:03Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Satya Nadella (@satyanadella)"
+        "TechCrunch：AI（RSS）"
       ],
       "items": [
         {
-          "id": "aaaa5a0af320fe8603a96f2c2297d2315b39b9df",
-          "title": "Satya Nadella 宣布 Copilot 迄今最大更新，定位为工作新 OS",
-          "url": "https://x.com/satyanadella/status/2103455884366188544",
-          "source": "X：Satya Nadella (@satyanadella)",
+          "id": "f5eeec18af72c5eaa6b0f00193c52eb62b5bd259",
+          "title": "Anthropic 创始人拟在 IPO 前谋求投票控制权",
+          "url": "https://techcrunch.com/2026/09/25/anthropics-founders-seek-voting-control-ahead-of-ipo",
+          "source": "TechCrunch：AI（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-25T12:05:37Z"
+          "published_at": "2026-09-25T15:40:03Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.744,
-      "importance": 0.744,
-      "importance_score": 0.744,
+      "score": 0.77,
+      "importance": 0.77,
+      "importance_score": 0.77,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.67,
+        "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9525,
+        "recency": 0.9466,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance"
+        "high_ai_relevance",
+        "high_importance"
       ],
-      "earliest_at": "2026-09-25T12:05:37Z",
-      "latest_at": "2026-09-25T12:05:37Z",
+      "earliest_at": "2026-09-25T15:40:03Z",
+      "latest_at": "2026-09-25T15:40:03Z",
       "primary_item": {
-        "id": "aaaa5a0af320fe8603a96f2c2297d2315b39b9df",
-        "title": "Satya Nadella 宣布 Copilot 迄今最大更新，定位为工作新 OS",
-        "url": "https://x.com/satyanadella/status/2103455884366188544",
-        "source": "X：Satya Nadella (@satyanadella)",
+        "id": "f5eeec18af72c5eaa6b0f00193c52eb62b5bd259",
+        "title": "Anthropic 创始人拟在 IPO 前谋求投票控制权",
+        "url": "https://techcrunch.com/2026/09/25/anthropics-founders-seek-voting-control-ahead-of-ipo",
+        "source": "TechCrunch：AI（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -688,15 +1052,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7434,
-      "importance": 0.7434,
-      "importance_score": 0.7434,
+      "score": 0.7369,
+      "importance": 0.7369,
+      "importance_score": 0.7369,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.85,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6491,
+        "recency": 0.6127,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -714,21 +1078,21 @@
       }
     },
     {
-      "story_id": "story_651aa80e0d5f",
-      "title": "GitHub 如何通过迁移 CSS Modules 将 SSR 时间降低 55%",
-      "url": "https://github.blog/engineering/architecture-optimization/improving-site-performance-by-shipping-more-css",
-      "primary_url": "https://github.blog/engineering/architecture-optimization/improving-site-performance-by-shipping-more-css",
+      "story_id": "story_d5e5182aee3c",
+      "title": "GitHub Copilot app 新手教程：如何用 canvases 构建自定义工作流",
+      "url": "https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-how-to-build-custom-workflows-with-canvases",
+      "primary_url": "https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-how-to-build-custom-workflows-with-canvases",
       "source": "GitHub Blog",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "5b57d663729fc131b07cadf6fb35f68bb1caee34",
-          "title": "GitHub 如何通过迁移 CSS Modules 将 SSR 时间降低 55%",
-          "url": "https://github.blog/engineering/architecture-optimization/improving-site-performance-by-shipping-more-css",
+          "id": "c13df04442ec918244417752ab6eb1c154064a31",
+          "title": "GitHub Copilot app 新手教程：如何用 canvases 构建自定义工作流",
+          "url": "https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-how-to-build-custom-workflows-with-canvases",
           "source": "GitHub Blog",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-25T15:00:00Z"
+          "published_at": "2026-09-25T18:00:00Z"
         }
       ],
       "source_count": 1,
@@ -737,99 +1101,159 @@
       ],
       "items": [
         {
-          "id": "5b57d663729fc131b07cadf6fb35f68bb1caee34",
-          "title": "GitHub 如何通过迁移 CSS Modules 将 SSR 时间降低 55%",
-          "url": "https://github.blog/engineering/architecture-optimization/improving-site-performance-by-shipping-more-css",
+          "id": "c13df04442ec918244417752ab6eb1c154064a31",
+          "title": "GitHub Copilot app 新手教程：如何用 canvases 构建自定义工作流",
+          "url": "https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-how-to-build-custom-workflows-with-canvases",
           "source": "GitHub Blog",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-25T15:00:00Z"
+          "published_at": "2026-09-25T18:00:00Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7424,
-      "importance": 0.7424,
-      "importance_score": 0.7424,
+      "score": 0.7368,
+      "importance": 0.7368,
+      "importance_score": 0.7368,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.64,
+        "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9933,
+        "recency": 0.9791,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-25T15:00:00Z",
-      "latest_at": "2026-09-25T15:00:00Z",
+      "earliest_at": "2026-09-25T18:00:00Z",
+      "latest_at": "2026-09-25T18:00:00Z",
       "primary_item": {
-        "id": "5b57d663729fc131b07cadf6fb35f68bb1caee34",
-        "title": "GitHub 如何通过迁移 CSS Modules 将 SSR 时间降低 55%",
-        "url": "https://github.blog/engineering/architecture-optimization/improving-site-performance-by-shipping-more-css",
+        "id": "c13df04442ec918244417752ab6eb1c154064a31",
+        "title": "GitHub Copilot app 新手教程：如何用 canvases 构建自定义工作流",
+        "url": "https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-how-to-build-custom-workflows-with-canvases",
         "source": "GitHub Blog",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_225478237654",
-      "title": "安全研究者披露黑客用 GEO 污染 ChatGPT、Gemini 和 Google AI Overview，374 家企业被植入诈骗联系方式",
-      "url": "https://medium.com/@arielsimon/dark-sourcery-how-hackers-manipulate-ai-to-scam-you-88df434d2073",
-      "primary_url": "https://medium.com/@arielsimon/dark-sourcery-how-hackers-manipulate-ai-to-scam-you-88df434d2073",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "story_id": "story_bc2324148dc1",
+      "title": "Satya Nadella 宣布 Copilot 迄今最大更新，定位为工作新 OS",
+      "url": "https://x.com/satyanadella/status/2103455884366188544",
+      "primary_url": "https://x.com/satyanadella/status/2103455884366188544",
+      "source": "X：Satya Nadella (@satyanadella)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "c74455d54f10d39149f3f83e221935d572452878",
-          "title": "安全研究者披露黑客用 GEO 污染 ChatGPT、Gemini 和 Google AI Overview，374 家企业被植入诈骗联系方式",
-          "url": "https://medium.com/@arielsimon/dark-sourcery-how-hackers-manipulate-ai-to-scam-you-88df434d2073",
-          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "id": "aaaa5a0af320fe8603a96f2c2297d2315b39b9df",
+          "title": "Satya Nadella 宣布 Copilot 迄今最大更新，定位为工作新 OS",
+          "url": "https://x.com/satyanadella/status/2103455884366188544",
+          "source": "X：Satya Nadella (@satyanadella)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-24T17:19:34.716000Z"
+          "published_at": "2026-09-25T12:05:37Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "Hacker News 热门（buzzing.cc 中文翻译）"
+        "X：Satya Nadella (@satyanadella)"
       ],
       "items": [
         {
-          "id": "c74455d54f10d39149f3f83e221935d572452878",
-          "title": "安全研究者披露黑客用 GEO 污染 ChatGPT、Gemini 和 Google AI Overview，374 家企业被植入诈骗联系方式",
-          "url": "https://medium.com/@arielsimon/dark-sourcery-how-hackers-manipulate-ai-to-scam-you-88df434d2073",
-          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "id": "aaaa5a0af320fe8603a96f2c2297d2315b39b9df",
+          "title": "Satya Nadella 宣布 Copilot 迄今最大更新，定位为工作新 OS",
+          "url": "https://x.com/satyanadella/status/2103455884366188544",
+          "source": "X：Satya Nadella (@satyanadella)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-24T17:19:34.716000Z"
+          "published_at": "2026-09-25T12:05:37Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7303,
-      "importance": 0.7303,
-      "importance_score": 0.7303,
+      "score": 0.7344,
+      "importance": 0.7344,
+      "importance_score": 0.7344,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.76,
+        "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7264,
+        "recency": 0.899,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-24T17:19:34.716000Z",
-      "latest_at": "2026-09-24T17:19:34.716000Z",
+      "earliest_at": "2026-09-25T12:05:37Z",
+      "latest_at": "2026-09-25T12:05:37Z",
       "primary_item": {
-        "id": "c74455d54f10d39149f3f83e221935d572452878",
-        "title": "安全研究者披露黑客用 GEO 污染 ChatGPT、Gemini 和 Google AI Overview，374 家企业被植入诈骗联系方式",
-        "url": "https://medium.com/@arielsimon/dark-sourcery-how-hackers-manipulate-ai-to-scam-you-88df434d2073",
-        "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+        "id": "aaaa5a0af320fe8603a96f2c2297d2315b39b9df",
+        "title": "Satya Nadella 宣布 Copilot 迄今最大更新，定位为工作新 OS",
+        "url": "https://x.com/satyanadella/status/2103455884366188544",
+        "source": "X：Satya Nadella (@satyanadella)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_8310ed95e273",
+      "title": "Claude 开放插件目录提交门户，Plugins 成为第三方扩展的主要方式",
+      "url": "https://claude.com/blog/build-plugins-for-claude",
+      "primary_url": "https://claude.com/blog/build-plugins-for-claude",
+      "source": "Claude：Blog（网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "c690e01af7ae8fd59931b9f175ac8035174d8e6e",
+          "title": "Claude 开放插件目录提交门户，Plugins 成为第三方扩展的主要方式",
+          "url": "https://claude.com/blog/build-plugins-for-claude",
+          "source": "Claude：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-25T18:09:06.824000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Claude：Blog（网页）"
+      ],
+      "items": [
+        {
+          "id": "c690e01af7ae8fd59931b9f175ac8035174d8e6e",
+          "title": "Claude 开放插件目录提交门户，Plugins 成为第三方扩展的主要方式",
+          "url": "https://claude.com/blog/build-plugins-for-claude",
+          "source": "Claude：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-25T18:09:06.824000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7342,
+      "importance": 0.7342,
+      "importance_score": 0.7342,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.62,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9812,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-25T18:09:06.824000Z",
+      "latest_at": "2026-09-25T18:09:06.824000Z",
+      "primary_item": {
+        "id": "c690e01af7ae8fd59931b9f175ac8035174d8e6e",
+        "title": "Claude 开放插件目录提交门户，Plugins 成为第三方扩展的主要方式",
+        "url": "https://claude.com/blog/build-plugins-for-claude",
+        "source": "Claude：Blog（网页）",
         "source_name": "AI HOT"
       }
     },
@@ -868,15 +1292,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7263,
-      "importance": 0.7263,
-      "importance_score": 0.7263,
+      "score": 0.7233,
+      "importance": 0.7233,
+      "importance_score": 0.7233,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 1.0,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.304,
+        "recency": 0.287,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -894,540 +1318,21 @@
       }
     },
     {
-      "story_id": "story_d4d7ede1b8c4",
-      "title": "美团 LongCat-2.5-Preview 发布，定价与之前持平",
-      "url": "https://x.com/karminski3/status/2103496213840765095",
-      "primary_url": "https://x.com/karminski3/status/2103496213840765095",
-      "source": "X：karminski (@karminski3)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "d3e508d137326ac0ad78731a8c6ee0b6e1da5fe2",
-          "title": "美团 LongCat-2.5-Preview 发布，定价与之前持平",
-          "url": "https://x.com/karminski3/status/2103496213840765095",
-          "source": "X：karminski (@karminski3)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-25T14:45:53Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：karminski (@karminski3)"
-      ],
-      "items": [
-        {
-          "id": "d3e508d137326ac0ad78731a8c6ee0b6e1da5fe2",
-          "title": "美团 LongCat-2.5-Preview 发布，定价与之前持平",
-          "url": "https://x.com/karminski3/status/2103496213840765095",
-          "source": "X：karminski (@karminski3)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-25T14:45:53Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7238,
-      "importance": 0.7238,
-      "importance_score": 0.7238,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.58,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9899,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-25T14:45:53Z",
-      "latest_at": "2026-09-25T14:45:53Z",
-      "primary_item": {
-        "id": "d3e508d137326ac0ad78731a8c6ee0b6e1da5fe2",
-        "title": "美团 LongCat-2.5-Preview 发布，定价与之前持平",
-        "url": "https://x.com/karminski3/status/2103496213840765095",
-        "source": "X：karminski (@karminski3)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_7d998d11cb8b",
-      "title": "Anthropic 团队详解如何用 Claude 在两周内把 claude.ai 提速约 3 倍",
-      "url": "https://claude.dev/blog/how-we-made-claude-ai-faster",
-      "primary_url": "https://claude.dev/blog/how-we-made-claude-ai-faster",
-      "source": "Hacker News：AI 热帖",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "9dd7db0ccc7b64a8a99e1bcb3316b77c722d5c1f",
-          "title": "Anthropic 分享如何用 Claude 两周内将 claude.ai 提速 3 倍",
-          "url": "https://x.com/trq212/status/2102857025206255902",
-          "source": "X：Thariq (@trq212)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T20:25:58Z"
-        },
-        {
-          "id": "e08f17337931db3bdac610517c7dfe1010beb7db",
-          "title": "Anthropic 团队详解如何用 Claude 在两周内把 claude.ai 提速约 3 倍",
-          "url": "https://claude.dev/blog/how-we-made-claude-ai-faster",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T19:23:40Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "Hacker News：AI 热帖",
-        "X：Thariq (@trq212)"
-      ],
-      "items": [
-        {
-          "id": "9dd7db0ccc7b64a8a99e1bcb3316b77c722d5c1f",
-          "title": "Anthropic 分享如何用 Claude 两周内将 claude.ai 提速 3 倍",
-          "url": "https://x.com/trq212/status/2102857025206255902",
-          "source": "X：Thariq (@trq212)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T20:25:58Z"
-        },
-        {
-          "id": "e08f17337931db3bdac610517c7dfe1010beb7db",
-          "title": "Anthropic 团队详解如何用 Claude 在两周内把 claude.ai 提速约 3 倍",
-          "url": "https://claude.dev/blog/how-we-made-claude-ai-faster",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T19:23:40Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.7229,
-      "importance": 0.7229,
-      "importance_score": 0.7229,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.77,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.5292,
-        "story_heat": 0.25
-      },
-      "category": "industry",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-23T19:23:40Z",
-      "latest_at": "2026-09-23T20:25:58Z",
-      "primary_item": {
-        "id": "e08f17337931db3bdac610517c7dfe1010beb7db",
-        "title": "Anthropic 团队详解如何用 Claude 在两周内把 claude.ai 提速约 3 倍",
-        "url": "https://claude.dev/blog/how-we-made-claude-ai-faster",
-        "source": "Hacker News：AI 热帖",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_0c6f35212478",
-      "title": "微软提出 CASD：用编码代理分析轨迹日志做提示词优化，平均提升 16.6 分",
-      "url": "https://x.com/dair_ai/status/2103479392106352910",
-      "primary_url": "https://x.com/dair_ai/status/2103479392106352910",
-      "source": "X：DAIR.AI (@dair_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "70bc4dfd904a7e15f1991c042f0cc434b295ed39",
-          "title": "微软提出 CASD：用编码代理分析轨迹日志做提示词优化，平均提升 16.6 分",
-          "url": "https://x.com/dair_ai/status/2103479392106352910",
-          "source": "X：DAIR.AI (@dair_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-25T13:39:02Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：DAIR.AI (@dair_ai)"
-      ],
-      "items": [
-        {
-          "id": "70bc4dfd904a7e15f1991c042f0cc434b295ed39",
-          "title": "微软提出 CASD：用编码代理分析轨迹日志做提示词优化，平均提升 16.6 分",
-          "url": "https://x.com/dair_ai/status/2103479392106352910",
-          "source": "X：DAIR.AI (@dair_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-25T13:39:02Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7209,
-      "importance": 0.7209,
-      "importance_score": 0.7209,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.58,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9741,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-25T13:39:02Z",
-      "latest_at": "2026-09-25T13:39:02Z",
-      "primary_item": {
-        "id": "70bc4dfd904a7e15f1991c042f0cc434b295ed39",
-        "title": "微软提出 CASD：用编码代理分析轨迹日志做提示词优化，平均提升 16.6 分",
-        "url": "https://x.com/dair_ai/status/2103479392106352910",
-        "source": "X：DAIR.AI (@dair_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_538f54c6d36d",
-      "title": "Claude Opus 5.5 与 GPT-6 Sol/Luna 发布，Simon Willison 详解新一轮价格战",
-      "url": "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna",
-      "primary_url": "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna",
-      "source": "Simon Willison 博客",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "9204435b1d9bad52b3dc5a56fedd93081b256c33",
-          "title": "Claude Opus 5.5 与 GPT-6 Sol/Luna 发布，Simon Willison 详解新一轮价格战",
-          "url": "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna",
-          "source": "Simon Willison 博客",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T23:46:41Z"
-        },
-        {
-          "id": "bd0a0bf3e2be49cb1c8f2d7f045433b0b176afa8",
-          "title": "Claude Opus 5.5 与 GPT-6 Sol 3D 场景对比",
-          "url": "https://x.com/testingcatalog/status/2102523754186256535",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T22:21:40Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "Simon Willison 博客",
-        "X：Testing Catalog (@testingcatalog)"
-      ],
-      "items": [
-        {
-          "id": "9204435b1d9bad52b3dc5a56fedd93081b256c33",
-          "title": "Claude Opus 5.5 与 GPT-6 Sol/Luna 发布，Simon Willison 详解新一轮价格战",
-          "url": "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna",
-          "source": "Simon Willison 博客",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T23:46:41Z"
-        },
-        {
-          "id": "bd0a0bf3e2be49cb1c8f2d7f045433b0b176afa8",
-          "title": "Claude Opus 5.5 与 GPT-6 Sol 3D 场景对比",
-          "url": "https://x.com/testingcatalog/status/2102523754186256535",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T22:21:40Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.7114,
-      "importance": 0.7114,
-      "importance_score": 0.7114,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.81,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.3986,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-22T22:21:40Z",
-      "latest_at": "2026-09-22T23:46:41Z",
-      "primary_item": {
-        "id": "9204435b1d9bad52b3dc5a56fedd93081b256c33",
-        "title": "Claude Opus 5.5 与 GPT-6 Sol/Luna 发布，Simon Willison 详解新一轮价格战",
-        "url": "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna",
-        "source": "Simon Willison 博客",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_32987b893b11",
-      "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna",
-      "url": "https://x.com/ZHO_ZHO_ZHO/status/2102472026103701697",
-      "primary_url": "https://x.com/ZHO_ZHO_ZHO/status/2102472026103701697",
-      "source": "X：ZHO (@ZHO_ZHO_ZHO)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "08d6a4eccc592bceb0136949d5b1056face35885",
-          "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna",
-          "url": "https://x.com/ZHO_ZHO_ZHO/status/2102472026103701697",
-          "source": "X：ZHO (@ZHO_ZHO_ZHO)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T18:56:07Z"
-        },
-        {
-          "id": "627183fea497e20b013134dcb87575aac641fe00",
-          "title": "OpenAI 推出 GPT-6 Sol 与 Luna",
-          "url": "https://x.com/testingcatalog/status/2102459873518866788",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T18:07:50Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "X：Testing Catalog (@testingcatalog)",
-        "X：ZHO (@ZHO_ZHO_ZHO)"
-      ],
-      "items": [
-        {
-          "id": "08d6a4eccc592bceb0136949d5b1056face35885",
-          "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna",
-          "url": "https://x.com/ZHO_ZHO_ZHO/status/2102472026103701697",
-          "source": "X：ZHO (@ZHO_ZHO_ZHO)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T18:56:07Z"
-        },
-        {
-          "id": "627183fea497e20b013134dcb87575aac641fe00",
-          "title": "OpenAI 推出 GPT-6 Sol 与 Luna",
-          "url": "https://x.com/testingcatalog/status/2102459873518866788",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T18:07:50Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.7095,
-      "importance": 0.7095,
-      "importance_score": 0.7095,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.82,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.3717,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-22T18:07:50Z",
-      "latest_at": "2026-09-22T18:56:07Z",
-      "primary_item": {
-        "id": "08d6a4eccc592bceb0136949d5b1056face35885",
-        "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna",
-        "url": "https://x.com/ZHO_ZHO_ZHO/status/2102472026103701697",
-        "source": "X：ZHO (@ZHO_ZHO_ZHO)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_3d48e529ad7a",
-      "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，API 价格较 GPT-5.6 降 50%",
-      "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
-      "primary_url": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
-      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "aecfaa648cec2e91d17359dd41dd2bea367662e7",
-          "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，API 价格较 GPT-5.6 促销价低 50%",
-          "url": "https://x.com/thsottiaux/status/2102509507415048245",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T21:25:03Z"
-        },
-        {
-          "id": "1acc31f0b1b5ee749c6cdfdec3de897f547d3744",
-          "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，API 价格较 GPT-5.6 降 50%",
-          "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
-          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T18:00:00Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-        "X：Tibo (@thsottiaux)"
-      ],
-      "items": [
-        {
-          "id": "aecfaa648cec2e91d17359dd41dd2bea367662e7",
-          "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，API 价格较 GPT-5.6 促销价低 50%",
-          "url": "https://x.com/thsottiaux/status/2102509507415048245",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T21:25:03Z"
-        },
-        {
-          "id": "1acc31f0b1b5ee749c6cdfdec3de897f547d3744",
-          "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，API 价格较 GPT-5.6 降 50%",
-          "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
-          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T18:00:00Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.7086,
-      "importance": 0.7086,
-      "importance_score": 0.7086,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.82,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.3667,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-22T18:00:00Z",
-      "latest_at": "2026-09-22T21:25:03Z",
-      "primary_item": {
-        "id": "1acc31f0b1b5ee749c6cdfdec3de897f547d3744",
-        "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，API 价格较 GPT-5.6 降 50%",
-        "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
-        "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_47e282dcbada",
-      "title": "Artificial Analysis 评测 GPT-6 Sol 和 Luna：成本减半但各评测有升有降",
-      "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
-      "primary_url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
-      "source": "Artificial Analysis 完整文章（网页）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "33185a5093da65164f7e9f903f5d8a83628b7089",
-          "title": "Artificial Analysis 评测 GPT-6 Sol 和 Luna：成本减半但各评测有升有降",
-          "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
-          "source": "Artificial Analysis 完整文章（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T19:41:37.417000Z"
-        },
-        {
-          "id": "9c44ffadebcbfee1ad5f9f81a9af1f43ea951fe1",
-          "title": "Artificial Analysis 评测 GPT-6 Sol 和 Luna：价格减半但各项表现有升有降",
-          "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
-          "source": "Artificial Analysis 完整文章（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T16:00:00Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "Artificial Analysis 完整文章（网页）"
-      ],
-      "items": [
-        {
-          "id": "33185a5093da65164f7e9f903f5d8a83628b7089",
-          "title": "Artificial Analysis 评测 GPT-6 Sol 和 Luna：成本减半但各评测有升有降",
-          "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
-          "source": "Artificial Analysis 完整文章（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T19:41:37.417000Z"
-        },
-        {
-          "id": "9c44ffadebcbfee1ad5f9f81a9af1f43ea951fe1",
-          "title": "Artificial Analysis 评测 GPT-6 Sol 和 Luna：价格减半但各项表现有升有降",
-          "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
-          "source": "Artificial Analysis 完整文章（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T16:00:00Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.7072,
-      "importance": 0.7072,
-      "importance_score": 0.7072,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.81,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.3758,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-21T16:00:00Z",
-      "latest_at": "2026-09-22T19:41:37.417000Z",
-      "primary_item": {
-        "id": "33185a5093da65164f7e9f903f5d8a83628b7089",
-        "title": "Artificial Analysis 评测 GPT-6 Sol 和 Luna：成本减半但各评测有升有降",
-        "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
-        "source": "Artificial Analysis 完整文章（网页）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_903b1128f9a0",
-      "title": "阿尔巴内塞披露 OpenAI 智能体未经授权访问澳大利亚 Medicare 系统",
-      "url": "https://www.smh.com.au/politics/federal/openai-breaches-medicare-albanese-reveals-20260924-p6100u.html",
-      "primary_url": "https://www.smh.com.au/politics/federal/openai-breaches-medicare-albanese-reveals-20260924-p6100u.html",
+      "story_id": "story_225478237654",
+      "title": "安全研究者披露黑客用 GEO 污染 ChatGPT、Gemini 和 Google AI Overview，374 家企业被植入诈骗联系方式",
+      "url": "https://medium.com/@arielsimon/dark-sourcery-how-hackers-manipulate-ai-to-scam-you-88df434d2073",
+      "primary_url": "https://medium.com/@arielsimon/dark-sourcery-how-hackers-manipulate-ai-to-scam-you-88df434d2073",
       "source": "Hacker News 热门（buzzing.cc 中文翻译）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "8a27344df02311e900846f6b1755060b1061300c",
-          "title": "阿尔巴内塞披露 OpenAI 智能体未经授权访问澳大利亚 Medicare 系统",
-          "url": "https://www.smh.com.au/politics/federal/openai-breaches-medicare-albanese-reveals-20260924-p6100u.html",
+          "id": "c74455d54f10d39149f3f83e221935d572452878",
+          "title": "安全研究者披露黑客用 GEO 污染 ChatGPT、Gemini 和 Google AI Overview，374 家企业被植入诈骗联系方式",
+          "url": "https://medium.com/@arielsimon/dark-sourcery-how-hackers-manipulate-ai-to-scam-you-88df434d2073",
           "source": "Hacker News 热门（buzzing.cc 中文翻译）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-23T22:54:29.320000Z"
+          "published_at": "2026-09-24T17:19:34.716000Z"
         }
       ],
       "source_count": 1,
@@ -1436,119 +1341,99 @@
       ],
       "items": [
         {
-          "id": "8a27344df02311e900846f6b1755060b1061300c",
-          "title": "阿尔巴内塞披露 OpenAI 智能体未经授权访问澳大利亚 Medicare 系统",
-          "url": "https://www.smh.com.au/politics/federal/openai-breaches-medicare-albanese-reveals-20260924-p6100u.html",
+          "id": "c74455d54f10d39149f3f83e221935d572452878",
+          "title": "安全研究者披露黑客用 GEO 污染 ChatGPT、Gemini 和 Google AI Overview，374 家企业被植入诈骗联系方式",
+          "url": "https://medium.com/@arielsimon/dark-sourcery-how-hackers-manipulate-ai-to-scam-you-88df434d2073",
           "source": "Hacker News 热门（buzzing.cc 中文翻译）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-23T22:54:29.320000Z"
+          "published_at": "2026-09-24T17:19:34.716000Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7238,
-      "importance": 0.7238,
-      "importance_score": 0.7238,
+      "score": 0.723,
+      "importance": 0.723,
+      "importance_score": 0.723,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.84,
+        "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5567,
+        "recency": 0.6856,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-23T22:54:29.320000Z",
-      "latest_at": "2026-09-23T22:54:29.320000Z",
+      "earliest_at": "2026-09-24T17:19:34.716000Z",
+      "latest_at": "2026-09-24T17:19:34.716000Z",
       "primary_item": {
-        "id": "8a27344df02311e900846f6b1755060b1061300c",
-        "title": "阿尔巴内塞披露 OpenAI 智能体未经授权访问澳大利亚 Medicare 系统",
-        "url": "https://www.smh.com.au/politics/federal/openai-breaches-medicare-albanese-reveals-20260924-p6100u.html",
+        "id": "c74455d54f10d39149f3f83e221935d572452878",
+        "title": "安全研究者披露黑客用 GEO 污染 ChatGPT、Gemini 和 Google AI Overview，374 家企业被植入诈骗联系方式",
+        "url": "https://medium.com/@arielsimon/dark-sourcery-how-hackers-manipulate-ai-to-scam-you-88df434d2073",
         "source": "Hacker News 热门（buzzing.cc 中文翻译）",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_245d063e08eb",
-      "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
-      "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
-      "primary_url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
-      "source": "Hacker News：AI 热帖",
+      "story_id": "story_fa729051ddbb",
+      "title": "Microsoft 将 Copilot 重构为覆盖聊天、编码与 Office 工作的超级应用",
+      "url": "https://x.com/rohanpaul_ai/status/2103502876379349058",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2103502876379349058",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "0c2dd88858ae70dcb29f3a0c7336bdb4dbb1af4a",
-          "title": "五角大楼调查称过度依赖AI导致美军导弹误击伊朗Minab学校",
-          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
-          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "id": "ea860f7a4e458ad2b98838b75ed9c34beffe372f",
+          "title": "Microsoft 将 Copilot 重构为覆盖聊天、编码与 Office 工作的超级应用",
+          "url": "https://x.com/rohanpaul_ai/status/2103502876379349058",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-22T20:00:35.186000Z"
-        },
-        {
-          "id": "840d4f3401e4b09406d07030fb1332ef14b1c19e",
-          "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
-          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T19:03:38Z"
+          "published_at": "2026-09-25T15:12:21Z"
         }
       ],
-      "source_count": 2,
+      "source_count": 1,
       "source_names": [
-        "Hacker News 热门（buzzing.cc 中文翻译）",
-        "Hacker News：AI 热帖"
+        "X：Rohan Paul (@rohanpaul_ai)"
       ],
       "items": [
         {
-          "id": "0c2dd88858ae70dcb29f3a0c7336bdb4dbb1af4a",
-          "title": "五角大楼调查称过度依赖AI导致美军导弹误击伊朗Minab学校",
-          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
-          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "id": "ea860f7a4e458ad2b98838b75ed9c34beffe372f",
+          "title": "Microsoft 将 Copilot 重构为覆盖聊天、编码与 Office 工作的超级应用",
+          "url": "https://x.com/rohanpaul_ai/status/2103502876379349058",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-22T20:00:35.186000Z"
-        },
-        {
-          "id": "840d4f3401e4b09406d07030fb1332ef14b1c19e",
-          "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
-          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T19:03:38Z"
+          "published_at": "2026-09-25T15:12:21Z"
         }
       ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.7216,
-      "importance": 0.7216,
-      "importance_score": 0.7216,
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7389,
+      "importance": 0.7389,
+      "importance_score": 0.7389,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.86,
+        "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3724,
-        "story_heat": 0.25
+        "recency": 0.9403,
+        "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "multi_source",
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-22T19:03:38Z",
-      "latest_at": "2026-09-22T20:00:35.186000Z",
+      "earliest_at": "2026-09-25T15:12:21Z",
+      "latest_at": "2026-09-25T15:12:21Z",
       "primary_item": {
-        "id": "840d4f3401e4b09406d07030fb1332ef14b1c19e",
-        "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
-        "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
-        "source": "Hacker News：AI 热帖",
+        "id": "ea860f7a4e458ad2b98838b75ed9c34beffe372f",
+        "title": "Microsoft 将 Copilot 重构为覆盖聊天、编码与 Office 工作的超级应用",
+        "url": "https://x.com/rohanpaul_ai/status/2103502876379349058",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     }
