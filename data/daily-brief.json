@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-25T00:24:37.667416Z",
+  "generated_at": "2026-09-25T05:15:55.087248Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -261,15 +261,15 @@
       ],
       "item_count": 13,
       "duplicate_count": 13,
-      "score": 0.8099,
-      "importance": 0.8099,
-      "importance_score": 0.8099,
+      "score": 0.8006,
+      "importance": 0.8006,
+      "importance_score": 0.8006,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.763,
+        "recency": 0.7114,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -323,15 +323,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.791,
-      "importance": 0.791,
-      "importance_score": 0.791,
+      "score": 0.7807,
+      "importance": 0.7807,
+      "importance_score": 0.7807,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.89,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8469,
+        "recency": 0.7896,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -384,15 +384,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7905,
-      "importance": 0.7905,
-      "importance_score": 0.7905,
+      "score": 0.78,
+      "importance": 0.78,
+      "importance_score": 0.78,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.88,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8606,
+        "recency": 0.8024,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -445,15 +445,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7718,
-      "importance": 0.7718,
-      "importance_score": 0.7718,
+      "score": 0.762,
+      "importance": 0.762,
+      "importance_score": 0.762,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.85,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8067,
+        "recency": 0.7521,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -506,15 +506,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7621,
-      "importance": 0.7621,
-      "importance_score": 0.7621,
+      "score": 0.7511,
+      "importance": 0.7511,
+      "importance_score": 0.7511,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9028,
+        "recency": 0.8416,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -567,21 +567,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7534,
-      "importance": 0.7534,
-      "importance_score": 0.7534,
+      "score": 0.7413,
+      "importance": 0.7413,
+      "importance_score": 0.7413,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9876,
+        "recency": 0.9207,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-24T23:32:43Z",
       "latest_at": "2026-09-24T23:32:43Z",
@@ -590,66 +589,6 @@
         "title": "Anthropic 拟让 Dario Amodei 等 7 位联合创始人获得 50.1% 投票权",
         "url": "https://x.com/rohanpaul_ai/status/2103266407987417449",
         "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_b09f0ad26be3",
-      "title": "Anthropic 发布 Claude Opus 5.5，面向更长、上下文更重的编码会话优化成本",
-      "url": "https://claude.com/blog/claude-opus-5-5-built-for-coding-sessions-that-use-more-context",
-      "primary_url": "https://claude.com/blog/claude-opus-5-5-built-for-coding-sessions-that-use-more-context",
-      "source": "Claude：Blog（网页）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "fd9b0953f48aa9689a065bfc51f8ad76c62d8432",
-          "title": "Anthropic 发布 Claude Opus 5.5，面向更长、上下文更重的编码会话优化成本",
-          "url": "https://claude.com/blog/claude-opus-5-5-built-for-coding-sessions-that-use-more-context",
-          "source": "Claude：Blog（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-24T16:38:37.757000Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Claude：Blog（网页）"
-      ],
-      "items": [
-        {
-          "id": "fd9b0953f48aa9689a065bfc51f8ad76c62d8432",
-          "title": "Anthropic 发布 Claude Opus 5.5，面向更长、上下文更重的编码会话优化成本",
-          "url": "https://claude.com/blog/claude-opus-5-5-built-for-coding-sessions-that-use-more-context",
-          "source": "Claude：Blog（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-24T16:38:37.757000Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7485,
-      "importance": 0.7485,
-      "importance_score": 0.7485,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.72,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8939,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-24T16:38:37.757000Z",
-      "latest_at": "2026-09-24T16:38:37.757000Z",
-      "primary_item": {
-        "id": "fd9b0953f48aa9689a065bfc51f8ad76c62d8432",
-        "title": "Anthropic 发布 Claude Opus 5.5，面向更长、上下文更重的编码会话优化成本",
-        "url": "https://claude.com/blog/claude-opus-5-5-built-for-coding-sessions-that-use-more-context",
-        "source": "Claude：Blog（网页）",
         "source_name": "AI HOT"
       }
     },
@@ -707,15 +646,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.746,
-      "importance": 0.746,
-      "importance_score": 0.746,
+      "score": 0.738,
+      "importance": 0.738,
+      "importance_score": 0.738,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6577,
+        "recency": 0.6132,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -734,62 +673,62 @@
       }
     },
     {
-      "story_id": "story_44abd059f1dd",
-      "title": "Claude Opus 5.5 登顶 Arena Code Arena： WebDev 榜首，得 1818 分",
-      "url": "https://x.com/arena/status/2102952767614779403",
-      "primary_url": "https://x.com/arena/status/2102952767614779403",
-      "source": "X：Arena (@arena)",
+      "story_id": "story_b09f0ad26be3",
+      "title": "Anthropic 发布 Claude Opus 5.5，面向更长、上下文更重的编码会话优化成本",
+      "url": "https://claude.com/blog/claude-opus-5-5-built-for-coding-sessions-that-use-more-context",
+      "primary_url": "https://claude.com/blog/claude-opus-5-5-built-for-coding-sessions-that-use-more-context",
+      "source": "Claude：Blog（网页）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "df8bcf0056acf592ea89b56771cc14230d6278f4",
-          "title": "Claude Opus 5.5 登顶 Arena Code Arena： WebDev 榜首，得 1818 分",
-          "url": "https://x.com/arena/status/2102952767614779403",
-          "source": "X：Arena (@arena)",
+          "id": "fd9b0953f48aa9689a065bfc51f8ad76c62d8432",
+          "title": "Anthropic 发布 Claude Opus 5.5，面向更长、上下文更重的编码会话优化成本",
+          "url": "https://claude.com/blog/claude-opus-5-5-built-for-coding-sessions-that-use-more-context",
+          "source": "Claude：Blog（网页）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-24T02:46:25Z"
+          "published_at": "2026-09-24T16:38:37.757000Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Arena (@arena)"
+        "Claude：Blog（网页）"
       ],
       "items": [
         {
-          "id": "df8bcf0056acf592ea89b56771cc14230d6278f4",
-          "title": "Claude Opus 5.5 登顶 Arena Code Arena： WebDev 榜首，得 1818 分",
-          "url": "https://x.com/arena/status/2102952767614779403",
-          "source": "X：Arena (@arena)",
+          "id": "fd9b0953f48aa9689a065bfc51f8ad76c62d8432",
+          "title": "Anthropic 发布 Claude Opus 5.5，面向更长、上下文更重的编码会话优化成本",
+          "url": "https://claude.com/blog/claude-opus-5-5-built-for-coding-sessions-that-use-more-context",
+          "source": "Claude：Blog（网页）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-24T02:46:25Z"
+          "published_at": "2026-09-24T16:38:37.757000Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7403,
-      "importance": 0.7403,
-      "importance_score": 0.7403,
+      "score": 0.7376,
+      "importance": 0.7376,
+      "importance_score": 0.7376,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.79,
+        "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7317,
+        "recency": 0.8334,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-24T02:46:25Z",
-      "latest_at": "2026-09-24T02:46:25Z",
+      "earliest_at": "2026-09-24T16:38:37.757000Z",
+      "latest_at": "2026-09-24T16:38:37.757000Z",
       "primary_item": {
-        "id": "df8bcf0056acf592ea89b56771cc14230d6278f4",
-        "title": "Claude Opus 5.5 登顶 Arena Code Arena： WebDev 榜首，得 1818 分",
-        "url": "https://x.com/arena/status/2102952767614779403",
-        "source": "X：Arena (@arena)",
+        "id": "fd9b0953f48aa9689a065bfc51f8ad76c62d8432",
+        "title": "Anthropic 发布 Claude Opus 5.5，面向更长、上下文更重的编码会话优化成本",
+        "url": "https://claude.com/blog/claude-opus-5-5-built-for-coding-sessions-that-use-more-context",
+        "source": "Claude：Blog（网页）",
         "source_name": "AI HOT"
       }
     },
@@ -828,15 +767,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7396,
-      "importance": 0.7396,
-      "importance_score": 0.7396,
+      "score": 0.735,
+      "importance": 0.735,
+      "importance_score": 0.735,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 1.0,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3779,
+        "recency": 0.3523,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -850,6 +789,66 @@
         "title": "typesafeai 发推\"he olo world\"",
         "url": "https://x.com/typesafeai/status/2102261849945444699",
         "source": "@typesafeai",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_44abd059f1dd",
+      "title": "Claude Opus 5.5 登顶 Arena Code Arena： WebDev 榜首，得 1818 分",
+      "url": "https://x.com/arena/status/2102952767614779403",
+      "primary_url": "https://x.com/arena/status/2102952767614779403",
+      "source": "X：Arena (@arena)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "df8bcf0056acf592ea89b56771cc14230d6278f4",
+          "title": "Claude Opus 5.5 登顶 Arena Code Arena： WebDev 榜首，得 1818 分",
+          "url": "https://x.com/arena/status/2102952767614779403",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T02:46:25Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Arena (@arena)"
+      ],
+      "items": [
+        {
+          "id": "df8bcf0056acf592ea89b56771cc14230d6278f4",
+          "title": "Claude Opus 5.5 登顶 Arena Code Arena： WebDev 榜首，得 1818 分",
+          "url": "https://x.com/arena/status/2102952767614779403",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T02:46:25Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7314,
+      "importance": 0.7314,
+      "importance_score": 0.7314,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.79,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.6821,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-24T02:46:25Z",
+      "latest_at": "2026-09-24T02:46:25Z",
+      "primary_item": {
+        "id": "df8bcf0056acf592ea89b56771cc14230d6278f4",
+        "title": "Claude Opus 5.5 登顶 Arena Code Arena： WebDev 榜首，得 1818 分",
+        "url": "https://x.com/arena/status/2102952767614779403",
+        "source": "X：Arena (@arena)",
         "source_name": "AI HOT"
       }
     },
@@ -888,15 +887,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7343,
-      "importance": 0.7343,
-      "importance_score": 0.7343,
+      "score": 0.7256,
+      "importance": 0.7256,
+      "importance_score": 0.7256,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7153,
+        "recency": 0.6668,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -910,186 +909,6 @@
         "title": "OpenAI 称与苹果的 ChatGPT 合作表现远低于预期",
         "url": "https://www.ithome.com/1/006/548.htm",
         "source": "IT之家（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_f7873f72fc61",
-      "title": "Gary Marcus 借 Jensen Huang 言论主张暂时关停 OpenAI",
-      "url": "https://garymarcus.substack.com/p/i-think-the-answer-is-we-have-to",
-      "primary_url": "https://garymarcus.substack.com/p/i-think-the-answer-is-we-have-to",
-      "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "edea0fcca689be6ff0e0727e7e3ff4d2b6db3fdd",
-          "title": "Gary Marcus 借 Jensen Huang 言论主张暂时关停 OpenAI",
-          "url": "https://garymarcus.substack.com/p/i-think-the-answer-is-we-have-to",
-          "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-24T12:27:50Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Gary Marcus：The Road to AI We Can Trust（RSS）"
-      ],
-      "items": [
-        {
-          "id": "edea0fcca689be6ff0e0727e7e3ff4d2b6db3fdd",
-          "title": "Gary Marcus 借 Jensen Huang 言论主张暂时关停 OpenAI",
-          "url": "https://garymarcus.substack.com/p/i-think-the-answer-is-we-have-to",
-          "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-24T12:27:50Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7301,
-      "importance": 0.7301,
-      "importance_score": 0.7301,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.69,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8415,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-24T12:27:50Z",
-      "latest_at": "2026-09-24T12:27:50Z",
-      "primary_item": {
-        "id": "edea0fcca689be6ff0e0727e7e3ff4d2b6db3fdd",
-        "title": "Gary Marcus 借 Jensen Huang 言论主张暂时关停 OpenAI",
-        "url": "https://garymarcus.substack.com/p/i-think-the-answer-is-we-have-to",
-        "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_8eef8cbe81d1",
-      "title": "DeepSeek 年化收入翻倍至 10 亿美元，拟以 750 亿美元估值融资 75 亿美元筹备上海 IPO",
-      "url": "https://x.com/thexpin/status/2103072451554893968",
-      "primary_url": "https://x.com/thexpin/status/2103072451554893968",
-      "source": "X：X.PIN (@thexpin)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "0f2c9c2fb698f9625f4fb33b301e6dbce2d3ac05",
-          "title": "DeepSeek 年化收入翻倍至 10 亿美元，拟以 750 亿美元估值融资 75 亿美元筹备上海 IPO",
-          "url": "https://x.com/thexpin/status/2103072451554893968",
-          "source": "X：X.PIN (@thexpin)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-24T10:42:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：X.PIN (@thexpin)"
-      ],
-      "items": [
-        {
-          "id": "0f2c9c2fb698f9625f4fb33b301e6dbce2d3ac05",
-          "title": "DeepSeek 年化收入翻倍至 10 亿美元，拟以 750 亿美元估值融资 75 亿美元筹备上海 IPO",
-          "url": "https://x.com/thexpin/status/2103072451554893968",
-          "source": "X：X.PIN (@thexpin)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-24T10:42:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7293,
-      "importance": 0.7293,
-      "importance_score": 0.7293,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.7,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8204,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-24T10:42:00Z",
-      "latest_at": "2026-09-24T10:42:00Z",
-      "primary_item": {
-        "id": "0f2c9c2fb698f9625f4fb33b301e6dbce2d3ac05",
-        "title": "DeepSeek 年化收入翻倍至 10 亿美元，拟以 750 亿美元估值融资 75 亿美元筹备上海 IPO",
-        "url": "https://x.com/thexpin/status/2103072451554893968",
-        "source": "X：X.PIN (@thexpin)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_795368339da0",
-      "title": "OpenRouter 解析 Kimi K3：开源权重与许可证条款，以及如何调用",
-      "url": "https://openrouter.ai/blog/insights/kimi-k3-open-source",
-      "primary_url": "https://openrouter.ai/blog/insights/kimi-k3-open-source",
-      "source": "OpenRouter：Announcements（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "576a54fdbc1cf3414d61535bc441b1f3ae8edc2d",
-          "title": "OpenRouter 解析 Kimi K3：开源权重与许可证条款，以及如何调用",
-          "url": "https://openrouter.ai/blog/insights/kimi-k3-open-source",
-          "source": "OpenRouter：Announcements（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-24T00:00:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "OpenRouter：Announcements（RSS）"
-      ],
-      "items": [
-        {
-          "id": "576a54fdbc1cf3414d61535bc441b1f3ae8edc2d",
-          "title": "OpenRouter 解析 Kimi K3：开源权重与许可证条款，以及如何调用",
-          "url": "https://openrouter.ai/blog/insights/kimi-k3-open-source",
-          "source": "OpenRouter：Announcements（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-24T00:00:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7291,
-      "importance": 0.7291,
-      "importance_score": 0.7291,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.77,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7029,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-24T00:00:00Z",
-      "latest_at": "2026-09-24T00:00:00Z",
-      "primary_item": {
-        "id": "576a54fdbc1cf3414d61535bc441b1f3ae8edc2d",
-        "title": "OpenRouter 解析 Kimi K3：开源权重与许可证条款，以及如何调用",
-        "url": "https://openrouter.ai/blog/insights/kimi-k3-open-source",
-        "source": "OpenRouter：Announcements（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -1147,15 +966,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7288,
-      "importance": 0.7288,
-      "importance_score": 0.7288,
+      "score": 0.7227,
+      "importance": 0.7227,
+      "importance_score": 0.7227,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4955,
+        "recency": 0.4619,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -1174,122 +993,62 @@
       }
     },
     {
-      "story_id": "story_ca5f208a03f2",
-      "title": "GitHub Security Lab 发布 LLM 驱动的 Fuzzing Taskflow，自动完成 C/C++ 项目模糊测试全流程",
-      "url": "https://github.blog/security/application-security/ai-powered-fuzzing-with-the-github-security-lab-taskflow-agent",
-      "primary_url": "https://github.blog/security/application-security/ai-powered-fuzzing-with-the-github-security-lab-taskflow-agent",
-      "source": "GitHub Blog",
+      "story_id": "story_795368339da0",
+      "title": "OpenRouter 解析 Kimi K3：开源权重与许可证条款，以及如何调用",
+      "url": "https://openrouter.ai/blog/insights/kimi-k3-open-source",
+      "primary_url": "https://openrouter.ai/blog/insights/kimi-k3-open-source",
+      "source": "OpenRouter：Announcements（RSS）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "d7c5c4c3190cf0232528c99fde8659513f90918b",
-          "title": "GitHub Security Lab 发布 LLM 驱动的 Fuzzing Taskflow，自动完成 C/C++ 项目模糊测试全流程",
-          "url": "https://github.blog/security/application-security/ai-powered-fuzzing-with-the-github-security-lab-taskflow-agent",
-          "source": "GitHub Blog",
+          "id": "576a54fdbc1cf3414d61535bc441b1f3ae8edc2d",
+          "title": "OpenRouter 解析 Kimi K3：开源权重与许可证条款，以及如何调用",
+          "url": "https://openrouter.ai/blog/insights/kimi-k3-open-source",
+          "source": "OpenRouter：Announcements（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-24T18:26:12Z"
+          "published_at": "2026-09-24T00:00:00Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "GitHub Blog"
+        "OpenRouter：Announcements（RSS）"
       ],
       "items": [
         {
-          "id": "d7c5c4c3190cf0232528c99fde8659513f90918b",
-          "title": "GitHub Security Lab 发布 LLM 驱动的 Fuzzing Taskflow，自动完成 C/C++ 项目模糊测试全流程",
-          "url": "https://github.blog/security/application-security/ai-powered-fuzzing-with-the-github-security-lab-taskflow-agent",
-          "source": "GitHub Blog",
+          "id": "576a54fdbc1cf3414d61535bc441b1f3ae8edc2d",
+          "title": "OpenRouter 解析 Kimi K3：开源权重与许可证条款，以及如何调用",
+          "url": "https://openrouter.ai/blog/insights/kimi-k3-open-source",
+          "source": "OpenRouter：Announcements（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-24T18:26:12Z"
+          "published_at": "2026-09-24T00:00:00Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7287,
-      "importance": 0.7287,
-      "importance_score": 0.7287,
+      "score": 0.7206,
+      "importance": 0.7206,
+      "importance_score": 0.7206,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.64,
+        "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9174,
+        "recency": 0.6553,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-24T18:26:12Z",
-      "latest_at": "2026-09-24T18:26:12Z",
+      "earliest_at": "2026-09-24T00:00:00Z",
+      "latest_at": "2026-09-24T00:00:00Z",
       "primary_item": {
-        "id": "d7c5c4c3190cf0232528c99fde8659513f90918b",
-        "title": "GitHub Security Lab 发布 LLM 驱动的 Fuzzing Taskflow，自动完成 C/C++ 项目模糊测试全流程",
-        "url": "https://github.blog/security/application-security/ai-powered-fuzzing-with-the-github-security-lab-taskflow-agent",
-        "source": "GitHub Blog",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_0ad3dcaa586d",
-      "title": "Nathan Lambert 评论 OpenAI 智能体入侵澳大利亚政府网站事件",
-      "url": "https://x.com/natolambert/status/2102872133244183038",
-      "primary_url": "https://x.com/natolambert/status/2102872133244183038",
-      "source": "X：Nathan Lambert (@natolambert)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "0b347ecbf9483d75f2eb2fb9a67583e0d5d723ac",
-          "title": "Nathan Lambert 评论 OpenAI 智能体入侵澳大利亚政府网站事件",
-          "url": "https://x.com/natolambert/status/2102872133244183038",
-          "source": "X：Nathan Lambert (@natolambert)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T21:26:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Nathan Lambert (@natolambert)"
-      ],
-      "items": [
-        {
-          "id": "0b347ecbf9483d75f2eb2fb9a67583e0d5d723ac",
-          "title": "Nathan Lambert 评论 OpenAI 智能体入侵澳大利亚政府网站事件",
-          "url": "https://x.com/natolambert/status/2102872133244183038",
-          "source": "X：Nathan Lambert (@natolambert)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T21:26:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7275,
-      "importance": 0.7275,
-      "importance_score": 0.7275,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.78,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6774,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-23T21:26:00Z",
-      "latest_at": "2026-09-23T21:26:00Z",
-      "primary_item": {
-        "id": "0b347ecbf9483d75f2eb2fb9a67583e0d5d723ac",
-        "title": "Nathan Lambert 评论 OpenAI 智能体入侵澳大利亚政府网站事件",
-        "url": "https://x.com/natolambert/status/2102872133244183038",
-        "source": "X：Nathan Lambert (@natolambert)",
+        "id": "576a54fdbc1cf3414d61535bc441b1f3ae8edc2d",
+        "title": "OpenRouter 解析 Kimi K3：开源权重与许可证条款，以及如何调用",
+        "url": "https://openrouter.ai/blog/insights/kimi-k3-open-source",
+        "source": "OpenRouter：Announcements（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -1347,15 +1106,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7258,
-      "importance": 0.7258,
-      "importance_score": 0.7258,
+      "score": 0.7201,
+      "importance": 0.7201,
+      "importance_score": 0.7201,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.462,
+        "recency": 0.4307,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -1370,66 +1129,6 @@
         "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna",
         "url": "https://x.com/ZHO_ZHO_ZHO/status/2102472026103701697",
         "source": "X：ZHO (@ZHO_ZHO_ZHO)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_f82afb648776",
-      "title": "Anthropic 宣布 Claude 自主发现类 CRISPR 的新型酶系统 ART",
-      "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
-      "primary_url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
-      "source": "Anthropic：Newsroom（网页）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "03eab593bf7beec778b286861141f10a5c7253f9",
-          "title": "Anthropic 宣布 Claude 自主发现类 CRISPR 的新型酶系统 ART",
-          "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
-          "source": "Anthropic：Newsroom（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T18:27:25.203000Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Anthropic：Newsroom（网页）"
-      ],
-      "items": [
-        {
-          "id": "03eab593bf7beec778b286861141f10a5c7253f9",
-          "title": "Anthropic 宣布 Claude 自主发现类 CRISPR 的新型酶系统 ART",
-          "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
-          "source": "Anthropic：Newsroom（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T18:27:25.203000Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7254,
-      "importance": 0.7254,
-      "importance_score": 0.7254,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.79,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6489,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-23T18:27:25.203000Z",
-      "latest_at": "2026-09-23T18:27:25.203000Z",
-      "primary_item": {
-        "id": "03eab593bf7beec778b286861141f10a5c7253f9",
-        "title": "Anthropic 宣布 Claude 自主发现类 CRISPR 的新型酶系统 ART",
-        "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
-        "source": "Anthropic：Newsroom（网页）",
         "source_name": "AI HOT"
       }
     },
@@ -1487,18 +1186,18 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7246,
-      "importance": 0.7246,
-      "importance_score": 0.7246,
-      "importance_label": "行业动态",
+      "score": 0.7191,
+      "importance": 0.7191,
+      "importance_score": 0.7191,
+      "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4558,
+        "recency": 0.4249,
         "story_heat": 0.25
       },
-      "category": "industry",
+      "category": "watch",
       "reasons": [
         "multi_source",
         "high_ai_relevance"
@@ -1510,6 +1209,364 @@
         "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，API 价格较 GPT-5.6 降 50%",
         "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
         "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_47e282dcbada",
+      "title": "Artificial Analysis 评测 GPT-6 Sol 和 Luna：成本减半但各评测有升有降",
+      "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
+      "primary_url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
+      "source": "Artificial Analysis 完整文章（网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "33185a5093da65164f7e9f903f5d8a83628b7089",
+          "title": "Artificial Analysis 评测 GPT-6 Sol 和 Luna：成本减半但各评测有升有降",
+          "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
+          "source": "Artificial Analysis 完整文章（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T19:41:37.417000Z"
+        },
+        {
+          "id": "9c44ffadebcbfee1ad5f9f81a9af1f43ea951fe1",
+          "title": "Artificial Analysis 评测 GPT-6 Sol 和 Luna：价格减半但各项表现有升有降",
+          "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
+          "source": "Artificial Analysis 完整文章（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T16:00:00Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Artificial Analysis 完整文章（网页）"
+      ],
+      "items": [
+        {
+          "id": "33185a5093da65164f7e9f903f5d8a83628b7089",
+          "title": "Artificial Analysis 评测 GPT-6 Sol 和 Luna：成本减半但各评测有升有降",
+          "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
+          "source": "Artificial Analysis 完整文章（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T19:41:37.417000Z"
+        },
+        {
+          "id": "9c44ffadebcbfee1ad5f9f81a9af1f43ea951fe1",
+          "title": "Artificial Analysis 评测 GPT-6 Sol 和 Luna：价格减半但各项表现有升有降",
+          "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
+          "source": "Artificial Analysis 完整文章（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T16:00:00Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.718,
+      "importance": 0.718,
+      "importance_score": 0.718,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.81,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.4355,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-21T16:00:00Z",
+      "latest_at": "2026-09-22T19:41:37.417000Z",
+      "primary_item": {
+        "id": "33185a5093da65164f7e9f903f5d8a83628b7089",
+        "title": "Artificial Analysis 评测 GPT-6 Sol 和 Luna：成本减半但各评测有升有降",
+        "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
+        "source": "Artificial Analysis 完整文章（网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_903b1128f9a0",
+      "title": "阿尔巴内塞披露 OpenAI 智能体未经授权访问澳大利亚 Medicare 系统",
+      "url": "https://www.smh.com.au/politics/federal/openai-breaches-medicare-albanese-reveals-20260924-p6100u.html",
+      "primary_url": "https://www.smh.com.au/politics/federal/openai-breaches-medicare-albanese-reveals-20260924-p6100u.html",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "8a27344df02311e900846f6b1755060b1061300c",
+          "title": "阿尔巴内塞披露 OpenAI 智能体未经授权访问澳大利亚 Medicare 系统",
+          "url": "https://www.smh.com.au/politics/federal/openai-breaches-medicare-albanese-reveals-20260924-p6100u.html",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T22:54:29.320000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Hacker News 热门（buzzing.cc 中文翻译）"
+      ],
+      "items": [
+        {
+          "id": "8a27344df02311e900846f6b1755060b1061300c",
+          "title": "阿尔巴内塞披露 OpenAI 智能体未经授权访问澳大利亚 Medicare 系统",
+          "url": "https://www.smh.com.au/politics/federal/openai-breaches-medicare-albanese-reveals-20260924-p6100u.html",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T22:54:29.320000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7397,
+      "importance": 0.7397,
+      "importance_score": 0.7397,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.84,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.6451,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-23T22:54:29.320000Z",
+      "latest_at": "2026-09-23T22:54:29.320000Z",
+      "primary_item": {
+        "id": "8a27344df02311e900846f6b1755060b1061300c",
+        "title": "阿尔巴内塞披露 OpenAI 智能体未经授权访问澳大利亚 Medicare 系统",
+        "url": "https://www.smh.com.au/politics/federal/openai-breaches-medicare-albanese-reveals-20260924-p6100u.html",
+        "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_f0d14eecd359",
+      "title": "Moody's 称五大超大规模云厂商未来承诺达约 $2.8T",
+      "url": "https://x.com/rohanpaul_ai/status/2103255744388956441",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2103255744388956441",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "03571a24ff624eacee510e3d3e2d8bce41d4667a",
+          "title": "Moody's 称五大超大规模云厂商未来承诺达约 $2.8T",
+          "url": "https://x.com/rohanpaul_ai/status/2103255744388956441",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T22:50:20Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "03571a24ff624eacee510e3d3e2d8bce41d4667a",
+          "title": "Moody's 称五大超大规模云厂商未来承诺达约 $2.8T",
+          "url": "https://x.com/rohanpaul_ai/status/2103255744388956441",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T22:50:20Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7336,
+      "importance": 0.7336,
+      "importance_score": 0.7336,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.66,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9114,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-24T22:50:20Z",
+      "latest_at": "2026-09-24T22:50:20Z",
+      "primary_item": {
+        "id": "03571a24ff624eacee510e3d3e2d8bce41d4667a",
+        "title": "Moody's 称五大超大规模云厂商未来承诺达约 $2.8T",
+        "url": "https://x.com/rohanpaul_ai/status/2103255744388956441",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_245d063e08eb",
+      "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
+      "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
+      "primary_url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
+      "source": "Hacker News：AI 热帖",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "0c2dd88858ae70dcb29f3a0c7336bdb4dbb1af4a",
+          "title": "五角大楼调查称过度依赖AI导致美军导弹误击伊朗Minab学校",
+          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T20:00:35.186000Z"
+        },
+        {
+          "id": "840d4f3401e4b09406d07030fb1332ef14b1c19e",
+          "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
+          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T19:03:38Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Hacker News 热门（buzzing.cc 中文翻译）",
+        "Hacker News：AI 热帖"
+      ],
+      "items": [
+        {
+          "id": "0c2dd88858ae70dcb29f3a0c7336bdb4dbb1af4a",
+          "title": "五角大楼调查称过度依赖AI导致美军导弹误击伊朗Minab学校",
+          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T20:00:35.186000Z"
+        },
+        {
+          "id": "840d4f3401e4b09406d07030fb1332ef14b1c19e",
+          "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
+          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T19:03:38Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7323,
+      "importance": 0.7323,
+      "importance_score": 0.7323,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.86,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.4315,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-22T19:03:38Z",
+      "latest_at": "2026-09-22T20:00:35.186000Z",
+      "primary_item": {
+        "id": "840d4f3401e4b09406d07030fb1332ef14b1c19e",
+        "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
+        "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
+        "source": "Hacker News：AI 热帖",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_a365d26f319b",
+      "title": "Fireworks Research 发布 Ember-1，以更少推理 token 保持 Kimi K3 质量",
+      "url": "https://fireworks.ai/blog/ember-1",
+      "primary_url": "https://fireworks.ai/blog/ember-1",
+      "source": "Fireworks AI（网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "c5bb87f1ec772dd12b0c26e9b8747b81d940c81f",
+          "title": "Fireworks Research 发布 Ember-1，以更少推理 token 保持 Kimi K3 质量",
+          "url": "https://fireworks.ai/blog/ember-1",
+          "source": "Fireworks AI（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T21:40:50.983000Z"
+        },
+        {
+          "id": "e8207eb993b55caca80d5992379a79b5ffe52096",
+          "title": "Fireworks 发布 Ember-1，以约四成更少 token 达到 Kimi K3 质量",
+          "url": "https://fireworks.ai/blog/ember-1",
+          "source": "Fireworks AI（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:00:00Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Fireworks AI（网页）"
+      ],
+      "items": [
+        {
+          "id": "c5bb87f1ec772dd12b0c26e9b8747b81d940c81f",
+          "title": "Fireworks Research 发布 Ember-1，以更少推理 token 保持 Kimi K3 质量",
+          "url": "https://fireworks.ai/blog/ember-1",
+          "source": "Fireworks AI（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T21:40:50.983000Z"
+        },
+        {
+          "id": "e8207eb993b55caca80d5992379a79b5ffe52096",
+          "title": "Fireworks 发布 Ember-1，以约四成更少 token 达到 Kimi K3 质量",
+          "url": "https://fireworks.ai/blog/ember-1",
+          "source": "Fireworks AI（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:00:00Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6997,
+      "importance": 0.6997,
+      "importance_score": 0.6997,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.63,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.6338,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-22T16:00:00Z",
+      "latest_at": "2026-09-23T21:40:50.983000Z",
+      "primary_item": {
+        "id": "c5bb87f1ec772dd12b0c26e9b8747b81d940c81f",
+        "title": "Fireworks Research 发布 Ember-1，以更少推理 token 保持 Kimi K3 质量",
+        "url": "https://fireworks.ai/blog/ember-1",
+        "source": "Fireworks AI（网页）",
         "source_name": "AI HOT"
       }
     }
