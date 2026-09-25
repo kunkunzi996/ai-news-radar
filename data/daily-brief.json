@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-24T21:45:03.926500Z",
+  "generated_at": "2026-09-25T00:24:37.667416Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -261,15 +261,15 @@
       ],
       "item_count": 13,
       "duplicate_count": 13,
-      "score": 0.8153,
-      "importance": 0.8153,
-      "importance_score": 0.8153,
+      "score": 0.8099,
+      "importance": 0.8099,
+      "importance_score": 0.8099,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7929,
+        "recency": 0.763,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -323,15 +323,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.797,
-      "importance": 0.797,
-      "importance_score": 0.797,
+      "score": 0.791,
+      "importance": 0.791,
+      "importance_score": 0.791,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.89,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8801,
+        "recency": 0.8469,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -384,15 +384,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7966,
-      "importance": 0.7966,
-      "importance_score": 0.7966,
+      "score": 0.7905,
+      "importance": 0.7905,
+      "importance_score": 0.7905,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.88,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8943,
+        "recency": 0.8606,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -445,15 +445,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7775,
-      "importance": 0.7775,
-      "importance_score": 0.7775,
+      "score": 0.7718,
+      "importance": 0.7718,
+      "importance_score": 0.7718,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.85,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8383,
+        "recency": 0.8067,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -506,15 +506,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7685,
-      "importance": 0.7685,
-      "importance_score": 0.7685,
+      "score": 0.7621,
+      "importance": 0.7621,
+      "importance_score": 0.7621,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9381,
+        "recency": 0.9028,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -529,6 +529,67 @@
         "title": "安全研究者披露黑客用 GEO 污染 ChatGPT、Gemini 和 Google AI Overview，374 家企业被植入诈骗联系方式",
         "url": "https://medium.com/@arielsimon/dark-sourcery-how-hackers-manipulate-ai-to-scam-you-88df434d2073",
         "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_53e0ab15e9e9",
+      "title": "Anthropic 拟让 Dario Amodei 等 7 位联合创始人获得 50.1% 投票权",
+      "url": "https://x.com/rohanpaul_ai/status/2103266407987417449",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2103266407987417449",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "f3b42bc1aa51bd771476b1230c5aa3fecd34c1eb",
+          "title": "Anthropic 拟让 Dario Amodei 等 7 位联合创始人获得 50.1% 投票权",
+          "url": "https://x.com/rohanpaul_ai/status/2103266407987417449",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T23:32:43Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "f3b42bc1aa51bd771476b1230c5aa3fecd34c1eb",
+          "title": "Anthropic 拟让 Dario Amodei 等 7 位联合创始人获得 50.1% 投票权",
+          "url": "https://x.com/rohanpaul_ai/status/2103266407987417449",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T23:32:43Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7534,
+      "importance": 0.7534,
+      "importance_score": 0.7534,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.68,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9876,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-24T23:32:43Z",
+      "latest_at": "2026-09-24T23:32:43Z",
+      "primary_item": {
+        "id": "f3b42bc1aa51bd771476b1230c5aa3fecd34c1eb",
+        "title": "Anthropic 拟让 Dario Amodei 等 7 位联合创始人获得 50.1% 投票权",
+        "url": "https://x.com/rohanpaul_ai/status/2103266407987417449",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -567,21 +628,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7548,
-      "importance": 0.7548,
-      "importance_score": 0.7548,
+      "score": 0.7485,
+      "importance": 0.7485,
+      "importance_score": 0.7485,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9289,
+        "recency": 0.8939,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-24T16:38:37.757000Z",
       "latest_at": "2026-09-24T16:38:37.757000Z",
@@ -647,22 +707,21 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7506,
-      "importance": 0.7506,
-      "importance_score": 0.7506,
+      "score": 0.746,
+      "importance": 0.746,
+      "importance_score": 0.746,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6834,
+        "recency": 0.6577,
         "story_heat": 0.25
       },
       "category": "industry",
       "reasons": [
         "multi_source",
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-23T19:23:40Z",
       "latest_at": "2026-09-23T20:25:58Z",
@@ -709,15 +768,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7455,
-      "importance": 0.7455,
-      "importance_score": 0.7455,
+      "score": 0.7403,
+      "importance": 0.7403,
+      "importance_score": 0.7403,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7603,
+        "recency": 0.7317,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -769,15 +828,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7423,
-      "importance": 0.7423,
-      "importance_score": 0.7423,
+      "score": 0.7396,
+      "importance": 0.7396,
+      "importance_score": 0.7396,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 1.0,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3927,
+        "recency": 0.3779,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -791,66 +850,6 @@
         "title": "typesafeai 发推\"he olo world\"",
         "url": "https://x.com/typesafeai/status/2102261849945444699",
         "source": "@typesafeai",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_b69958a4c581",
-      "title": "Google Project Suncatcher 将把 TPU 送入太空测试",
-      "url": "https://x.com/rohanpaul_ai/status/2103215093911810085",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2103215093911810085",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "717510feb93c5af746993ef32bb7a28a74cd4c7b",
-          "title": "Google Project Suncatcher 将把 TPU 送入太空测试",
-          "url": "https://x.com/rohanpaul_ai/status/2103215093911810085",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-24T20:08:48Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "717510feb93c5af746993ef32bb7a28a74cd4c7b",
-          "title": "Google Project Suncatcher 将把 TPU 送入太空测试",
-          "url": "https://x.com/rohanpaul_ai/status/2103215093911810085",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-24T20:08:48Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7395,
-      "importance": 0.7395,
-      "importance_score": 0.7395,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.64,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9771,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-24T20:08:48Z",
-      "latest_at": "2026-09-24T20:08:48Z",
-      "primary_item": {
-        "id": "717510feb93c5af746993ef32bb7a28a74cd4c7b",
-        "title": "Google Project Suncatcher 将把 TPU 送入太空测试",
-        "url": "https://x.com/rohanpaul_ai/status/2103215093911810085",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -889,15 +888,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7394,
-      "importance": 0.7394,
-      "importance_score": 0.7394,
+      "score": 0.7343,
+      "importance": 0.7343,
+      "importance_score": 0.7343,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7433,
+        "recency": 0.7153,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -949,15 +948,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.736,
-      "importance": 0.736,
-      "importance_score": 0.736,
+      "score": 0.7301,
+      "importance": 0.7301,
+      "importance_score": 0.7301,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8745,
+        "recency": 0.8415,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -971,66 +970,6 @@
         "title": "Gary Marcus 借 Jensen Huang 言论主张暂时关停 OpenAI",
         "url": "https://garymarcus.substack.com/p/i-think-the-answer-is-we-have-to",
         "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_ca5f208a03f2",
-      "title": "GitHub Security Lab 发布 LLM 驱动的 Fuzzing Taskflow，自动完成 C/C++ 项目模糊测试全流程",
-      "url": "https://github.blog/security/application-security/ai-powered-fuzzing-with-the-github-security-lab-taskflow-agent",
-      "primary_url": "https://github.blog/security/application-security/ai-powered-fuzzing-with-the-github-security-lab-taskflow-agent",
-      "source": "GitHub Blog",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "d7c5c4c3190cf0232528c99fde8659513f90918b",
-          "title": "GitHub Security Lab 发布 LLM 驱动的 Fuzzing Taskflow，自动完成 C/C++ 项目模糊测试全流程",
-          "url": "https://github.blog/security/application-security/ai-powered-fuzzing-with-the-github-security-lab-taskflow-agent",
-          "source": "GitHub Blog",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-24T18:26:12Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "GitHub Blog"
-      ],
-      "items": [
-        {
-          "id": "d7c5c4c3190cf0232528c99fde8659513f90918b",
-          "title": "GitHub Security Lab 发布 LLM 驱动的 Fuzzing Taskflow，自动完成 C/C++ 项目模糊测试全流程",
-          "url": "https://github.blog/security/application-security/ai-powered-fuzzing-with-the-github-security-lab-taskflow-agent",
-          "source": "GitHub Blog",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-24T18:26:12Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7352,
-      "importance": 0.7352,
-      "importance_score": 0.7352,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.64,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9533,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-24T18:26:12Z",
-      "latest_at": "2026-09-24T18:26:12Z",
-      "primary_item": {
-        "id": "d7c5c4c3190cf0232528c99fde8659513f90918b",
-        "title": "GitHub Security Lab 发布 LLM 驱动的 Fuzzing Taskflow，自动完成 C/C++ 项目模糊测试全流程",
-        "url": "https://github.blog/security/application-security/ai-powered-fuzzing-with-the-github-security-lab-taskflow-agent",
-        "source": "GitHub Blog",
         "source_name": "AI HOT"
       }
     },
@@ -1069,15 +1008,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.735,
-      "importance": 0.735,
-      "importance_score": 0.735,
+      "score": 0.7293,
+      "importance": 0.7293,
+      "importance_score": 0.7293,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8525,
+        "recency": 0.8204,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1129,15 +1068,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7341,
-      "importance": 0.7341,
-      "importance_score": 0.7341,
+      "score": 0.7291,
+      "importance": 0.7291,
+      "importance_score": 0.7291,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7304,
+        "recency": 0.7029,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1208,15 +1147,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7323,
-      "importance": 0.7323,
-      "importance_score": 0.7323,
+      "score": 0.7288,
+      "importance": 0.7288,
+      "importance_score": 0.7288,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5149,
+        "recency": 0.4955,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -1231,6 +1170,66 @@
         "title": "Claude Opus 5.5 与 GPT-6 Sol/Luna 发布，Simon Willison 详解新一轮价格战",
         "url": "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna",
         "source": "Simon Willison 博客",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_ca5f208a03f2",
+      "title": "GitHub Security Lab 发布 LLM 驱动的 Fuzzing Taskflow，自动完成 C/C++ 项目模糊测试全流程",
+      "url": "https://github.blog/security/application-security/ai-powered-fuzzing-with-the-github-security-lab-taskflow-agent",
+      "primary_url": "https://github.blog/security/application-security/ai-powered-fuzzing-with-the-github-security-lab-taskflow-agent",
+      "source": "GitHub Blog",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "d7c5c4c3190cf0232528c99fde8659513f90918b",
+          "title": "GitHub Security Lab 发布 LLM 驱动的 Fuzzing Taskflow，自动完成 C/C++ 项目模糊测试全流程",
+          "url": "https://github.blog/security/application-security/ai-powered-fuzzing-with-the-github-security-lab-taskflow-agent",
+          "source": "GitHub Blog",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T18:26:12Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "GitHub Blog"
+      ],
+      "items": [
+        {
+          "id": "d7c5c4c3190cf0232528c99fde8659513f90918b",
+          "title": "GitHub Security Lab 发布 LLM 驱动的 Fuzzing Taskflow，自动完成 C/C++ 项目模糊测试全流程",
+          "url": "https://github.blog/security/application-security/ai-powered-fuzzing-with-the-github-security-lab-taskflow-agent",
+          "source": "GitHub Blog",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T18:26:12Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7287,
+      "importance": 0.7287,
+      "importance_score": 0.7287,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.64,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9174,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-24T18:26:12Z",
+      "latest_at": "2026-09-24T18:26:12Z",
+      "primary_item": {
+        "id": "d7c5c4c3190cf0232528c99fde8659513f90918b",
+        "title": "GitHub Security Lab 发布 LLM 驱动的 Fuzzing Taskflow，自动完成 C/C++ 项目模糊测试全流程",
+        "url": "https://github.blog/security/application-security/ai-powered-fuzzing-with-the-github-security-lab-taskflow-agent",
+        "source": "GitHub Blog",
         "source_name": "AI HOT"
       }
     },
@@ -1269,15 +1268,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7323,
-      "importance": 0.7323,
-      "importance_score": 0.7323,
+      "score": 0.7275,
+      "importance": 0.7275,
+      "importance_score": 0.7275,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7039,
+        "recency": 0.6774,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1291,66 +1290,6 @@
         "title": "Nathan Lambert 评论 OpenAI 智能体入侵澳大利亚政府网站事件",
         "url": "https://x.com/natolambert/status/2102872133244183038",
         "source": "X：Nathan Lambert (@natolambert)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_f82afb648776",
-      "title": "Anthropic 宣布 Claude 自主发现类 CRISPR 的新型酶系统 ART",
-      "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
-      "primary_url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
-      "source": "Anthropic：Newsroom（网页）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "03eab593bf7beec778b286861141f10a5c7253f9",
-          "title": "Anthropic 宣布 Claude 自主发现类 CRISPR 的新型酶系统 ART",
-          "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
-          "source": "Anthropic：Newsroom（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T18:27:25.203000Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Anthropic：Newsroom（网页）"
-      ],
-      "items": [
-        {
-          "id": "03eab593bf7beec778b286861141f10a5c7253f9",
-          "title": "Anthropic 宣布 Claude 自主发现类 CRISPR 的新型酶系统 ART",
-          "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
-          "source": "Anthropic：Newsroom（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T18:27:25.203000Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.73,
-      "importance": 0.73,
-      "importance_score": 0.73,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.79,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6743,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-23T18:27:25.203000Z",
-      "latest_at": "2026-09-23T18:27:25.203000Z",
-      "primary_item": {
-        "id": "03eab593bf7beec778b286861141f10a5c7253f9",
-        "title": "Anthropic 宣布 Claude 自主发现类 CRISPR 的新型酶系统 ART",
-        "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
-        "source": "Anthropic：Newsroom（网页）",
         "source_name": "AI HOT"
       }
     },
@@ -1408,15 +1347,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.729,
-      "importance": 0.729,
-      "importance_score": 0.729,
+      "score": 0.7258,
+      "importance": 0.7258,
+      "importance_score": 0.7258,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4801,
+        "recency": 0.462,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -1435,62 +1374,142 @@
       }
     },
     {
-      "story_id": "story_db52085ae96f",
-      "title": "Odyssey 发布多智能体世界模型 Agora-2 可玩研究预览",
-      "url": "https://x.com/testingcatalog/status/2103164517433606640",
-      "primary_url": "https://x.com/testingcatalog/status/2103164517433606640",
-      "source": "X：Testing Catalog (@testingcatalog)",
+      "story_id": "story_f82afb648776",
+      "title": "Anthropic 宣布 Claude 自主发现类 CRISPR 的新型酶系统 ART",
+      "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+      "primary_url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+      "source": "Anthropic：Newsroom（网页）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "b0d31a3bbb6b15278489f9f03f438837a8f4ff2f",
-          "title": "Odyssey 发布多智能体世界模型 Agora-2 可玩研究预览",
-          "url": "https://x.com/testingcatalog/status/2103164517433606640",
-          "source": "X：Testing Catalog (@testingcatalog)",
+          "id": "03eab593bf7beec778b286861141f10a5c7253f9",
+          "title": "Anthropic 宣布 Claude 自主发现类 CRISPR 的新型酶系统 ART",
+          "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+          "source": "Anthropic：Newsroom（网页）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-24T16:47:50Z"
+          "published_at": "2026-09-23T18:27:25.203000Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Testing Catalog (@testingcatalog)"
+        "Anthropic：Newsroom（网页）"
       ],
       "items": [
         {
-          "id": "b0d31a3bbb6b15278489f9f03f438837a8f4ff2f",
-          "title": "Odyssey 发布多智能体世界模型 Agora-2 可玩研究预览",
-          "url": "https://x.com/testingcatalog/status/2103164517433606640",
-          "source": "X：Testing Catalog (@testingcatalog)",
+          "id": "03eab593bf7beec778b286861141f10a5c7253f9",
+          "title": "Anthropic 宣布 Claude 自主发现类 CRISPR 的新型酶系统 ART",
+          "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+          "source": "Anthropic：Newsroom（网页）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-24T16:47:50Z"
+          "published_at": "2026-09-23T18:27:25.203000Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7282,
-      "importance": 0.7282,
-      "importance_score": 0.7282,
+      "score": 0.7254,
+      "importance": 0.7254,
+      "importance_score": 0.7254,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.63,
+        "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.931,
+        "recency": 0.6489,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-24T16:47:50Z",
-      "latest_at": "2026-09-24T16:47:50Z",
+      "earliest_at": "2026-09-23T18:27:25.203000Z",
+      "latest_at": "2026-09-23T18:27:25.203000Z",
       "primary_item": {
-        "id": "b0d31a3bbb6b15278489f9f03f438837a8f4ff2f",
-        "title": "Odyssey 发布多智能体世界模型 Agora-2 可玩研究预览",
-        "url": "https://x.com/testingcatalog/status/2103164517433606640",
-        "source": "X：Testing Catalog (@testingcatalog)",
+        "id": "03eab593bf7beec778b286861141f10a5c7253f9",
+        "title": "Anthropic 宣布 Claude 自主发现类 CRISPR 的新型酶系统 ART",
+        "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+        "source": "Anthropic：Newsroom（网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_3d48e529ad7a",
+      "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，API 价格较 GPT-5.6 降 50%",
+      "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
+      "primary_url": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
+      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "aecfaa648cec2e91d17359dd41dd2bea367662e7",
+          "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，API 价格较 GPT-5.6 促销价低 50%",
+          "url": "https://x.com/thsottiaux/status/2102509507415048245",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T21:25:03Z"
+        },
+        {
+          "id": "1acc31f0b1b5ee749c6cdfdec3de897f547d3744",
+          "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，API 价格较 GPT-5.6 降 50%",
+          "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
+          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T18:00:00Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+        "X：Tibo (@thsottiaux)"
+      ],
+      "items": [
+        {
+          "id": "aecfaa648cec2e91d17359dd41dd2bea367662e7",
+          "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，API 价格较 GPT-5.6 促销价低 50%",
+          "url": "https://x.com/thsottiaux/status/2102509507415048245",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T21:25:03Z"
+        },
+        {
+          "id": "1acc31f0b1b5ee749c6cdfdec3de897f547d3744",
+          "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，API 价格较 GPT-5.6 降 50%",
+          "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
+          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T18:00:00Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7246,
+      "importance": 0.7246,
+      "importance_score": 0.7246,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.82,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.4558,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-22T18:00:00Z",
+      "latest_at": "2026-09-22T21:25:03Z",
+      "primary_item": {
+        "id": "1acc31f0b1b5ee749c6cdfdec3de897f547d3744",
+        "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，API 价格较 GPT-5.6 降 50%",
+        "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
+        "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
         "source_name": "AI HOT"
       }
     }
