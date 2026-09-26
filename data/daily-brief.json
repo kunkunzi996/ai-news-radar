@@ -1,8 +1,69 @@
 {
-  "generated_at": "2026-09-25T22:42:45.554204Z",
+  "generated_at": "2026-09-26T01:23:49.904696Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
+    {
+      "story_id": "story_7af26c7f12f1",
+      "title": "独立调查报告揭秘 OpenAI 智能体集群入侵 Hugging Face 的技术细节",
+      "url": "https://swarmtraces.org",
+      "primary_url": "https://swarmtraces.org",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "484e30cd74d96a5802d76ed47a571237e2d22fc0",
+          "title": "独立调查报告揭秘 OpenAI 智能体集群入侵 Hugging Face 的技术细节",
+          "url": "https://swarmtraces.org",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-25T23:59:47.248000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Hacker News 热门（buzzing.cc 中文翻译）"
+      ],
+      "items": [
+        {
+          "id": "484e30cd74d96a5802d76ed47a571237e2d22fc0",
+          "title": "独立调查报告揭秘 OpenAI 智能体集群入侵 Hugging Face 的技术细节",
+          "url": "https://swarmtraces.org",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-25T23:59:47.248000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.794,
+      "importance": 0.794,
+      "importance_score": 0.794,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.82,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.98,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-25T23:59:47.248000Z",
+      "latest_at": "2026-09-25T23:59:47.248000Z",
+      "primary_item": {
+        "id": "484e30cd74d96a5802d76ed47a571237e2d22fc0",
+        "title": "独立调查报告揭秘 OpenAI 智能体集群入侵 Hugging Face 的技术细节",
+        "url": "https://swarmtraces.org",
+        "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+        "source_name": "AI HOT"
+      }
+    },
     {
       "story_id": "story_e24b2ed6e53f",
       "title": "Yuchen Jin 分享 OpenAI Hugging Face 事件中智能体的原始思维链",
@@ -38,15 +99,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.796,
-      "importance": 0.796,
-      "importance_score": 0.796,
+      "score": 0.7893,
+      "importance": 0.7893,
+      "importance_score": 0.7893,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9745,
+        "recency": 0.9374,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -99,15 +160,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7871,
-      "importance": 0.7871,
-      "importance_score": 0.7871,
+      "score": 0.7805,
+      "importance": 0.7805,
+      "importance_score": 0.7805,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9582,
+        "recency": 0.9218,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -160,15 +221,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7816,
-      "importance": 0.7816,
-      "importance_score": 0.7816,
+      "score": 0.7758,
+      "importance": 0.7758,
+      "importance_score": 0.7758,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8445,
+        "recency": 0.8124,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -239,15 +300,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7794,
-      "importance": 0.7794,
-      "importance_score": 0.7794,
+      "score": 0.7728,
+      "importance": 0.7728,
+      "importance_score": 0.7728,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.96,
+        "recency": 0.9235,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -301,15 +362,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7775,
-      "importance": 0.7775,
-      "importance_score": 0.7775,
+      "score": 0.7713,
+      "importance": 0.7713,
+      "importance_score": 0.7713,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.905,
+        "recency": 0.8706,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -585,15 +646,15 @@
       ],
       "item_count": 13,
       "duplicate_count": 13,
-      "score": 0.7721,
-      "importance": 0.7721,
-      "importance_score": 0.7721,
+      "score": 0.7683,
+      "importance": 0.7683,
+      "importance_score": 0.7683,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5529,
+        "recency": 0.5319,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -609,6 +670,67 @@
         "title": "火山引擎对话《后西游记》主创，揭秘首部AI长剧登陆湖南卫视黄金档",
         "url": "https://mp.weixin.qq.com/s?__biz=MzI0NzU1NzI5NQ%3D%3D&mid=2247544696&idx=1&sn=eb490357aa03d3f5655fa9fbe00a0606",
         "source": "公众号：火山引擎",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_01c865c385b0",
+      "title": "OpenAI 报告披露约两打智能体不当行为事件及 53 张用户图片外泄",
+      "url": "https://x.com/rohanpaul_ai/status/2103640184470528066",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2103640184470528066",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "13f81b38d466ac988f2008166461d32d80306db9",
+          "title": "OpenAI 报告披露约两打智能体不当行为事件及 53 张用户图片外泄",
+          "url": "https://x.com/rohanpaul_ai/status/2103640184470528066",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T00:17:58Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "13f81b38d466ac988f2008166461d32d80306db9",
+          "title": "OpenAI 报告披露约两打智能体不当行为事件及 53 张用户图片外泄",
+          "url": "https://x.com/rohanpaul_ai/status/2103640184470528066",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T00:17:58Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7678,
+      "importance": 0.7678,
+      "importance_score": 0.7678,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.73,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9843,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-26T00:17:58Z",
+      "latest_at": "2026-09-26T00:17:58Z",
+      "primary_item": {
+        "id": "13f81b38d466ac988f2008166461d32d80306db9",
+        "title": "OpenAI 报告披露约两打智能体不当行为事件及 53 张用户图片外泄",
+        "url": "https://x.com/rohanpaul_ai/status/2103640184470528066",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -647,15 +769,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7708,
-      "importance": 0.7708,
-      "importance_score": 0.7708,
+      "score": 0.7646,
+      "importance": 0.7646,
+      "importance_score": 0.7646,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.901,
+        "recency": 0.8667,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -708,15 +830,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7617,
-      "importance": 0.7617,
-      "importance_score": 0.7617,
+      "score": 0.7553,
+      "importance": 0.7553,
+      "importance_score": 0.7553,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9341,
+        "recency": 0.8985,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -769,15 +891,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7596,
-      "importance": 0.7596,
-      "importance_score": 0.7596,
+      "score": 0.753,
+      "importance": 0.753,
+      "importance_score": 0.753,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9725,
+        "recency": 0.9355,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -830,21 +952,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7521,
-      "importance": 0.7521,
-      "importance_score": 0.7521,
+      "score": 0.7467,
+      "importance": 0.7467,
+      "importance_score": 0.7467,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7974,
+        "recency": 0.7671,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-25T07:02:05Z",
       "latest_at": "2026-09-25T07:02:05Z",
@@ -853,67 +974,6 @@
         "title": "OpenAI 智能体被曝今年至少 4 次未经指示闯入政府和学校网站",
         "url": "https://www.ithome.com/1/007/144.htm",
         "source": "IT之家（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_34f97fe676a2",
-      "title": "Sam Altman 谈 OpenAI 智能体训练期联网行为审查进展",
-      "url": "https://x.com/sama/status/2103567198690349362",
-      "primary_url": "https://x.com/sama/status/2103567198690349362",
-      "source": "X：Sam Altman (@sama)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "477fb3bd3d3bba747faf2053103523c7c20b5cce",
-          "title": "Sam Altman 谈 OpenAI 智能体训练期联网行为审查进展",
-          "url": "https://x.com/sama/status/2103567198690349362",
-          "source": "X：Sam Altman (@sama)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-25T19:27:57Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Sam Altman (@sama)"
-      ],
-      "items": [
-        {
-          "id": "477fb3bd3d3bba747faf2053103523c7c20b5cce",
-          "title": "Sam Altman 谈 OpenAI 智能体训练期联网行为审查进展",
-          "url": "https://x.com/sama/status/2103567198690349362",
-          "source": "X：Sam Altman (@sama)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-25T19:27:57Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7504,
-      "importance": 0.7504,
-      "importance_score": 0.7504,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.69,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9542,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-25T19:27:57Z",
-      "latest_at": "2026-09-25T19:27:57Z",
-      "primary_item": {
-        "id": "477fb3bd3d3bba747faf2053103523c7c20b5cce",
-        "title": "Sam Altman 谈 OpenAI 智能体训练期联网行为审查进展",
-        "url": "https://x.com/sama/status/2103567198690349362",
-        "source": "X：Sam Altman (@sama)",
         "source_name": "AI HOT"
       }
     },
@@ -952,21 +1012,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7503,
-      "importance": 0.7503,
-      "importance_score": 0.7503,
+      "score": 0.7441,
+      "importance": 0.7441,
+      "importance_score": 0.7441,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9037,
+        "recency": 0.8694,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-25T15:42:15.643000Z",
       "latest_at": "2026-09-25T15:42:15.643000Z",
@@ -979,62 +1038,62 @@
       }
     },
     {
-      "story_id": "story_1ac887627e14",
-      "title": "Claude 将粒子物理散射振幅计算从 8 环推进到 9 环，Lance Dixon 独立验证",
-      "url": "https://x.com/rohanpaul_ai/status/2103558769984860287",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2103558769984860287",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "story_id": "story_34f97fe676a2",
+      "title": "Sam Altman 谈 OpenAI 智能体训练期联网行为审查进展",
+      "url": "https://x.com/sama/status/2103567198690349362",
+      "primary_url": "https://x.com/sama/status/2103567198690349362",
+      "source": "X：Sam Altman (@sama)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "bc1a35c5b2463317b282bf6927bfac675dab6ff8",
-          "title": "Claude 将粒子物理散射振幅计算从 8 环推进到 9 环，Lance Dixon 独立验证",
-          "url": "https://x.com/rohanpaul_ai/status/2103558769984860287",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "477fb3bd3d3bba747faf2053103523c7c20b5cce",
+          "title": "Sam Altman 谈 OpenAI 智能体训练期联网行为审查进展",
+          "url": "https://x.com/sama/status/2103567198690349362",
+          "source": "X：Sam Altman (@sama)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-25T18:54:27Z"
+          "published_at": "2026-09-25T19:27:57Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
+        "X：Sam Altman (@sama)"
       ],
       "items": [
         {
-          "id": "bc1a35c5b2463317b282bf6927bfac675dab6ff8",
-          "title": "Claude 将粒子物理散射振幅计算从 8 环推进到 9 环，Lance Dixon 独立验证",
-          "url": "https://x.com/rohanpaul_ai/status/2103558769984860287",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "477fb3bd3d3bba747faf2053103523c7c20b5cce",
+          "title": "Sam Altman 谈 OpenAI 智能体训练期联网行为审查进展",
+          "url": "https://x.com/sama/status/2103567198690349362",
+          "source": "X：Sam Altman (@sama)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-25T18:54:27Z"
+          "published_at": "2026-09-25T19:27:57Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.749,
-      "importance": 0.749,
-      "importance_score": 0.749,
+      "score": 0.7438,
+      "importance": 0.7438,
+      "importance_score": 0.7438,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9465,
+        "recency": 0.9179,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-25T18:54:27Z",
-      "latest_at": "2026-09-25T18:54:27Z",
+      "earliest_at": "2026-09-25T19:27:57Z",
+      "latest_at": "2026-09-25T19:27:57Z",
       "primary_item": {
-        "id": "bc1a35c5b2463317b282bf6927bfac675dab6ff8",
-        "title": "Claude 将粒子物理散射振幅计算从 8 环推进到 9 环，Lance Dixon 独立验证",
-        "url": "https://x.com/rohanpaul_ai/status/2103558769984860287",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "id": "477fb3bd3d3bba747faf2053103523c7c20b5cce",
+        "title": "Sam Altman 谈 OpenAI 智能体训练期联网行为审查进展",
+        "url": "https://x.com/sama/status/2103567198690349362",
+        "source": "X：Sam Altman (@sama)",
         "source_name": "AI HOT"
       }
     },
@@ -1073,15 +1132,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7479,
-      "importance": 0.7479,
-      "importance_score": 0.7479,
+      "score": 0.7436,
+      "importance": 0.7436,
+      "importance_score": 0.7436,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.88,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6237,
+        "recency": 0.6,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1133,15 +1192,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7402,
-      "importance": 0.7402,
-      "importance_score": 0.7402,
+      "score": 0.7338,
+      "importance": 0.7338,
+      "importance_score": 0.7338,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9311,
+        "recency": 0.8957,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1193,15 +1252,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7383,
-      "importance": 0.7383,
-      "importance_score": 0.7383,
+      "score": 0.7319,
+      "importance": 0.7319,
+      "importance_score": 0.7319,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9373,
+        "recency": 0.9016,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1253,15 +1312,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7375,
-      "importance": 0.7375,
-      "importance_score": 0.7375,
+      "score": 0.7315,
+      "importance": 0.7315,
+      "importance_score": 0.7315,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8828,
+        "recency": 0.8492,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1275,67 +1334,6 @@
         "title": "Ethan Mollick 评 Microsoft Copilot 大更新：模型路由是隐患",
         "url": "https://x.com/emollick/status/2103485857147617393",
         "source": "X：Ethan Mollick (@emollick)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_6adb903e8228",
-      "title": "Anthropic 创始人拟在 IPO 前谋求投票控制权",
-      "url": "https://techcrunch.com/2026/09/25/anthropics-founders-seek-voting-control-ahead-of-ipo",
-      "primary_url": "https://techcrunch.com/2026/09/25/anthropics-founders-seek-voting-control-ahead-of-ipo",
-      "source": "TechCrunch：AI（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "f5eeec18af72c5eaa6b0f00193c52eb62b5bd259",
-          "title": "Anthropic 创始人拟在 IPO 前谋求投票控制权",
-          "url": "https://techcrunch.com/2026/09/25/anthropics-founders-seek-voting-control-ahead-of-ipo",
-          "source": "TechCrunch：AI（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-25T15:40:03Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "TechCrunch：AI（RSS）"
-      ],
-      "items": [
-        {
-          "id": "f5eeec18af72c5eaa6b0f00193c52eb62b5bd259",
-          "title": "Anthropic 创始人拟在 IPO 前谋求投票控制权",
-          "url": "https://techcrunch.com/2026/09/25/anthropics-founders-seek-voting-control-ahead-of-ipo",
-          "source": "TechCrunch：AI（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-25T15:40:03Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7622,
-      "importance": 0.7622,
-      "importance_score": 0.7622,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.76,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9033,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-25T15:40:03Z",
-      "latest_at": "2026-09-25T15:40:03Z",
-      "primary_item": {
-        "id": "f5eeec18af72c5eaa6b0f00193c52eb62b5bd259",
-        "title": "Anthropic 创始人拟在 IPO 前谋求投票控制权",
-        "url": "https://techcrunch.com/2026/09/25/anthropics-founders-seek-voting-control-ahead-of-ipo",
-        "source": "TechCrunch：AI（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -1374,15 +1372,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7318,
-      "importance": 0.7318,
-      "importance_score": 0.7318,
+      "score": 0.7278,
+      "importance": 0.7278,
+      "importance_score": 0.7278,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.85,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5846,
+        "recency": 0.5624,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1400,62 +1398,63 @@
       }
     },
     {
-      "story_id": "story_d5e5182aee3c",
-      "title": "GitHub Copilot app 新手教程：如何用 canvases 构建自定义工作流",
-      "url": "https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-how-to-build-custom-workflows-with-canvases",
-      "primary_url": "https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-how-to-build-custom-workflows-with-canvases",
-      "source": "GitHub Blog",
+      "story_id": "story_6adb903e8228",
+      "title": "Anthropic 创始人拟在 IPO 前谋求投票控制权",
+      "url": "https://techcrunch.com/2026/09/25/anthropics-founders-seek-voting-control-ahead-of-ipo",
+      "primary_url": "https://techcrunch.com/2026/09/25/anthropics-founders-seek-voting-control-ahead-of-ipo",
+      "source": "TechCrunch：AI（RSS）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "c13df04442ec918244417752ab6eb1c154064a31",
-          "title": "GitHub Copilot app 新手教程：如何用 canvases 构建自定义工作流",
-          "url": "https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-how-to-build-custom-workflows-with-canvases",
-          "source": "GitHub Blog",
+          "id": "f5eeec18af72c5eaa6b0f00193c52eb62b5bd259",
+          "title": "Anthropic 创始人拟在 IPO 前谋求投票控制权",
+          "url": "https://techcrunch.com/2026/09/25/anthropics-founders-seek-voting-control-ahead-of-ipo",
+          "source": "TechCrunch：AI（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-25T18:00:00Z"
+          "published_at": "2026-09-25T15:40:03Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "GitHub Blog"
+        "TechCrunch：AI（RSS）"
       ],
       "items": [
         {
-          "id": "c13df04442ec918244417752ab6eb1c154064a31",
-          "title": "GitHub Copilot app 新手教程：如何用 canvases 构建自定义工作流",
-          "url": "https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-how-to-build-custom-workflows-with-canvases",
-          "source": "GitHub Blog",
+          "id": "f5eeec18af72c5eaa6b0f00193c52eb62b5bd259",
+          "title": "Anthropic 创始人拟在 IPO 前谋求投票控制权",
+          "url": "https://techcrunch.com/2026/09/25/anthropics-founders-seek-voting-control-ahead-of-ipo",
+          "source": "TechCrunch：AI（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-25T18:00:00Z"
+          "published_at": "2026-09-25T15:40:03Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7288,
-      "importance": 0.7288,
-      "importance_score": 0.7288,
+      "score": 0.756,
+      "importance": 0.756,
+      "importance_score": 0.756,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.63,
+        "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9342,
+        "recency": 0.8689,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance"
+        "high_ai_relevance",
+        "high_importance"
       ],
-      "earliest_at": "2026-09-25T18:00:00Z",
-      "latest_at": "2026-09-25T18:00:00Z",
+      "earliest_at": "2026-09-25T15:40:03Z",
+      "latest_at": "2026-09-25T15:40:03Z",
       "primary_item": {
-        "id": "c13df04442ec918244417752ab6eb1c154064a31",
-        "title": "GitHub Copilot app 新手教程：如何用 canvases 构建自定义工作流",
-        "url": "https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-how-to-build-custom-workflows-with-canvases",
-        "source": "GitHub Blog",
+        "id": "f5eeec18af72c5eaa6b0f00193c52eb62b5bd259",
+        "title": "Anthropic 创始人拟在 IPO 前谋求投票控制权",
+        "url": "https://techcrunch.com/2026/09/25/anthropics-founders-seek-voting-control-ahead-of-ipo",
+        "source": "TechCrunch：AI（RSS）",
         "source_name": "AI HOT"
       }
     }
