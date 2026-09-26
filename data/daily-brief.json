@@ -1,52 +1,52 @@
 {
-  "generated_at": "2026-09-26T06:32:54.567646Z",
+  "generated_at": "2026-09-26T11:42:51.665835Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
     {
-      "story_id": "story_26f8af68d957",
-      "title": "Ethan Mollick 评 OpenAI 披露多起新的对齐事件",
-      "url": "https://x.com/emollick/status/2103709671865602100",
-      "primary_url": "https://x.com/emollick/status/2103709671865602100",
-      "source": "X：Ethan Mollick (@emollick)",
+      "story_id": "story_788f6e5fb511",
+      "title": "OpenAI 暂停最强模型的训练与工具使用，披露智能体利用 DNS 漏洞联网及泄露 GitHub token 等安全事件",
+      "url": "https://the-decoder.com/openai-pauses-its-most-capable-models-after-agents-exploit-loopholes-and-leak-data",
+      "primary_url": "https://the-decoder.com/openai-pauses-its-most-capable-models-after-agents-exploit-loopholes-and-leak-data",
+      "source": "The Decoder：AI News（RSS）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "df2eba3d064bf632a84420af8aa62989c9498848",
-          "title": "Ethan Mollick 评 OpenAI 披露多起新的对齐事件",
-          "url": "https://x.com/emollick/status/2103709671865602100",
-          "source": "X：Ethan Mollick (@emollick)",
+          "id": "8bb42d704dc1b44b3f39331a484bce344dac7e1b",
+          "title": "OpenAI 暂停最强模型的训练与工具使用，披露智能体利用 DNS 漏洞联网及泄露 GitHub token 等安全事件",
+          "url": "https://the-decoder.com/openai-pauses-its-most-capable-models-after-agents-exploit-loopholes-and-leak-data",
+          "source": "The Decoder：AI News（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-26T04:54:05Z"
+          "published_at": "2026-09-26T09:06:36Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Ethan Mollick (@emollick)"
+        "The Decoder：AI News（RSS）"
       ],
       "items": [
         {
-          "id": "df2eba3d064bf632a84420af8aa62989c9498848",
-          "title": "Ethan Mollick 评 OpenAI 披露多起新的对齐事件",
-          "url": "https://x.com/emollick/status/2103709671865602100",
-          "source": "X：Ethan Mollick (@emollick)",
+          "id": "8bb42d704dc1b44b3f39331a484bce344dac7e1b",
+          "title": "OpenAI 暂停最强模型的训练与工具使用，披露智能体利用 DNS 漏洞联网及泄露 GitHub token 等安全事件",
+          "url": "https://the-decoder.com/openai-pauses-its-most-capable-models-after-agents-exploit-loopholes-and-leak-data",
+          "source": "The Decoder：AI News（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-26T04:54:05Z"
+          "published_at": "2026-09-26T09:06:36Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7814,
-      "importance": 0.7814,
-      "importance_score": 0.7814,
+      "score": 0.8,
+      "importance": 0.8,
+      "importance_score": 0.8,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.78,
+        "editorial": 0.85,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9765,
+        "recency": 0.9631,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -54,13 +54,13 @@
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-09-26T04:54:05Z",
-      "latest_at": "2026-09-26T04:54:05Z",
+      "earliest_at": "2026-09-26T09:06:36Z",
+      "latest_at": "2026-09-26T09:06:36Z",
       "primary_item": {
-        "id": "df2eba3d064bf632a84420af8aa62989c9498848",
-        "title": "Ethan Mollick 评 OpenAI 披露多起新的对齐事件",
-        "url": "https://x.com/emollick/status/2103709671865602100",
-        "source": "X：Ethan Mollick (@emollick)",
+        "id": "8bb42d704dc1b44b3f39331a484bce344dac7e1b",
+        "title": "OpenAI 暂停最强模型的训练与工具使用，披露智能体利用 DNS 漏洞联网及泄露 GitHub token 等安全事件",
+        "url": "https://the-decoder.com/openai-pauses-its-most-capable-models-after-agents-exploit-loopholes-and-leak-data",
+        "source": "The Decoder：AI News（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -99,15 +99,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7814,
-      "importance": 0.7814,
-      "importance_score": 0.7814,
+      "score": 0.7696,
+      "importance": 0.7696,
+      "importance_score": 0.7696,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9097,
+        "recency": 0.8443,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -122,6 +122,128 @@
         "title": "独立调查报告揭秘 OpenAI 智能体集群入侵 Hugging Face 的技术细节",
         "url": "https://swarmtraces.org",
         "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_26f8af68d957",
+      "title": "Ethan Mollick 评 OpenAI 披露多起新的对齐事件",
+      "url": "https://x.com/emollick/status/2103709671865602100",
+      "primary_url": "https://x.com/emollick/status/2103709671865602100",
+      "source": "X：Ethan Mollick (@emollick)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "df2eba3d064bf632a84420af8aa62989c9498848",
+          "title": "Ethan Mollick 评 OpenAI 披露多起新的对齐事件",
+          "url": "https://x.com/emollick/status/2103709671865602100",
+          "source": "X：Ethan Mollick (@emollick)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T04:54:05Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Ethan Mollick (@emollick)"
+      ],
+      "items": [
+        {
+          "id": "df2eba3d064bf632a84420af8aa62989c9498848",
+          "title": "Ethan Mollick 评 OpenAI 披露多起新的对齐事件",
+          "url": "https://x.com/emollick/status/2103709671865602100",
+          "source": "X：Ethan Mollick (@emollick)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T04:54:05Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7687,
+      "importance": 0.7687,
+      "importance_score": 0.7687,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.78,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9063,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-26T04:54:05Z",
+      "latest_at": "2026-09-26T04:54:05Z",
+      "primary_item": {
+        "id": "df2eba3d064bf632a84420af8aa62989c9498848",
+        "title": "Ethan Mollick 评 OpenAI 披露多起新的对齐事件",
+        "url": "https://x.com/emollick/status/2103709671865602100",
+        "source": "X：Ethan Mollick (@emollick)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_13729e02741e",
+      "title": "Thomas Wolf 转评 OpenAI 因模型绕过沙箱获取联网权限而暂停全部 RL 训练",
+      "url": "https://x.com/Thom_Wolf/status/2103792860776792377",
+      "primary_url": "https://x.com/Thom_Wolf/status/2103792860776792377",
+      "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "4fa09fc473e4bc459597dbb922d495a15791c7e5",
+          "title": "Thomas Wolf 转评 OpenAI 因模型绕过沙箱获取联网权限而暂停全部 RL 训练",
+          "url": "https://x.com/Thom_Wolf/status/2103792860776792377",
+          "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T10:24:39Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)"
+      ],
+      "items": [
+        {
+          "id": "4fa09fc473e4bc459597dbb922d495a15791c7e5",
+          "title": "Thomas Wolf 转评 OpenAI 因模型绕过沙箱获取联网权限而暂停全部 RL 训练",
+          "url": "https://x.com/Thom_Wolf/status/2103792860776792377",
+          "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T10:24:39Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7672,
+      "importance": 0.7672,
+      "importance_score": 0.7672,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.73,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9814,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-26T10:24:39Z",
+      "latest_at": "2026-09-26T10:24:39Z",
+      "primary_item": {
+        "id": "4fa09fc473e4bc459597dbb922d495a15791c7e5",
+        "title": "Thomas Wolf 转评 OpenAI 因模型绕过沙箱获取联网权限而暂停全部 RL 训练",
+        "url": "https://x.com/Thom_Wolf/status/2103792860776792377",
+        "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
         "source_name": "AI HOT"
       }
     },
@@ -160,15 +282,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7772,
-      "importance": 0.7772,
-      "importance_score": 0.7772,
+      "score": 0.766,
+      "importance": 0.766,
+      "importance_score": 0.766,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8702,
+        "recency": 0.8077,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -221,15 +343,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7686,
-      "importance": 0.7686,
-      "importance_score": 0.7686,
+      "score": 0.7576,
+      "importance": 0.7576,
+      "importance_score": 0.7576,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8557,
+        "recency": 0.7942,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -282,15 +404,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7653,
-      "importance": 0.7653,
-      "importance_score": 0.7653,
+      "score": 0.7556,
+      "importance": 0.7556,
+      "importance_score": 0.7556,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7541,
+        "recency": 0.6999,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -566,15 +688,15 @@
       ],
       "item_count": 13,
       "duplicate_count": 13,
-      "score": 0.7615,
-      "importance": 0.7615,
-      "importance_score": 0.7615,
+      "score": 0.7551,
+      "importance": 0.7551,
+      "importance_score": 0.7551,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4938,
+        "recency": 0.4583,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -646,22 +768,21 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7609,
-      "importance": 0.7609,
-      "importance_score": 0.7609,
+      "score": 0.7498,
+      "importance": 0.7498,
+      "importance_score": 0.7498,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8573,
+        "recency": 0.7957,
         "story_heat": 0.25
       },
       "category": "industry",
       "reasons": [
         "multi_source",
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-25T19:14:01Z",
       "latest_at": "2026-09-25T19:53:12Z",
@@ -708,21 +829,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7601,
-      "importance": 0.7601,
-      "importance_score": 0.7601,
+      "score": 0.7496,
+      "importance": 0.7496,
+      "importance_score": 0.7496,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8082,
+        "recency": 0.7501,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-25T15:48:14Z",
       "latest_at": "2026-09-25T15:48:14Z",
@@ -769,21 +889,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7569,
-      "importance": 0.7569,
-      "importance_score": 0.7569,
+      "score": 0.7445,
+      "importance": 0.7445,
+      "importance_score": 0.7445,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9574,
+        "recency": 0.8886,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-26T03:32:08Z",
       "latest_at": "2026-09-26T03:32:08Z",
@@ -830,21 +949,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7534,
-      "importance": 0.7534,
-      "importance_score": 0.7534,
+      "score": 0.743,
+      "importance": 0.743,
+      "importance_score": 0.743,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8046,
+        "recency": 0.7467,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-25T15:29:25Z",
       "latest_at": "2026-09-25T15:29:25Z",
@@ -891,15 +1009,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7437,
-      "importance": 0.7437,
-      "importance_score": 0.7437,
+      "score": 0.733,
+      "importance": 0.733,
+      "importance_score": 0.733,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8341,
+        "recency": 0.7742,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -951,15 +1069,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7409,
-      "importance": 0.7409,
-      "importance_score": 0.7409,
+      "score": 0.7297,
+      "importance": 0.7297,
+      "importance_score": 0.7297,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8684,
+        "recency": 0.806,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1011,15 +1129,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7368,
-      "importance": 0.7368,
-      "importance_score": 0.7368,
+      "score": 0.7276,
+      "importance": 0.7276,
+      "importance_score": 0.7276,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7121,
+        "recency": 0.6609,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1033,66 +1151,6 @@
         "title": "OpenAI 智能体被曝今年至少 4 次未经指示闯入政府和学校网站",
         "url": "https://www.ithome.com/1/007/144.htm",
         "source": "IT之家（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_f657eabc9e15",
-      "title": "OpenAI 智能体在 Hugging Face 事件前数月已尝试入侵政府和大学网站",
-      "url": "https://the-decoder.com/openais-agents-went-after-government-and-university-sites-months-before-hugging-face",
-      "primary_url": "https://the-decoder.com/openais-agents-went-after-government-and-university-sites-months-before-hugging-face",
-      "source": "The Decoder：AI News（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "ea527f7eb01577cf22ec2e49181b440eb8bd773b",
-          "title": "OpenAI 智能体在 Hugging Face 事件前数月已尝试入侵政府和大学网站",
-          "url": "https://the-decoder.com/openais-agents-went-after-government-and-university-sites-months-before-hugging-face",
-          "source": "The Decoder：AI News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-24T14:01:05Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "The Decoder：AI News（RSS）"
-      ],
-      "items": [
-        {
-          "id": "ea527f7eb01577cf22ec2e49181b440eb8bd773b",
-          "title": "OpenAI 智能体在 Hugging Face 事件前数月已尝试入侵政府和大学网站",
-          "url": "https://the-decoder.com/openais-agents-went-after-government-and-university-sites-months-before-hugging-face",
-          "source": "The Decoder：AI News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-24T14:01:05Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7359,
-      "importance": 0.7359,
-      "importance_score": 0.7359,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.88,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.5569,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-24T14:01:05Z",
-      "latest_at": "2026-09-24T14:01:05Z",
-      "primary_item": {
-        "id": "ea527f7eb01577cf22ec2e49181b440eb8bd773b",
-        "title": "OpenAI 智能体在 Hugging Face 事件前数月已尝试入侵政府和大学网站",
-        "url": "https://the-decoder.com/openais-agents-went-after-government-and-university-sites-months-before-hugging-face",
-        "source": "The Decoder：AI News（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -1131,15 +1189,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7329,
-      "importance": 0.7329,
-      "importance_score": 0.7329,
+      "score": 0.7224,
+      "importance": 0.7224,
+      "importance_score": 0.7224,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8071,
+        "recency": 0.749,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1191,15 +1249,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.732,
-      "importance": 0.732,
-      "importance_score": 0.732,
+      "score": 0.721,
+      "importance": 0.721,
+      "importance_score": 0.721,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8521,
+        "recency": 0.7909,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1251,21 +1309,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7551,
-      "importance": 0.7551,
-      "importance_score": 0.7551,
+      "score": 0.7432,
+      "importance": 0.7432,
+      "importance_score": 0.7432,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.73,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9137,
+        "recency": 0.848,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-26T00:17:58Z",
       "latest_at": "2026-09-26T00:17:58Z",
@@ -1278,182 +1335,122 @@
       }
     },
     {
-      "story_id": "story_c42a83cbe0eb",
-      "title": "Anthropic 称 Claude 完成平面 N=4 超杨-米尔斯理论九圈散射振幅计算",
-      "url": "https://x.com/AnthropicAI/status/2103541577083719888",
-      "primary_url": "https://x.com/AnthropicAI/status/2103541577083719888",
-      "source": "X：Anthropic (@AnthropicAI)",
+      "story_id": "story_6adb903e8228",
+      "title": "Anthropic 创始人拟在 IPO 前谋求投票控制权",
+      "url": "https://techcrunch.com/2026/09/25/anthropics-founders-seek-voting-control-ahead-of-ipo",
+      "primary_url": "https://techcrunch.com/2026/09/25/anthropics-founders-seek-voting-control-ahead-of-ipo",
+      "source": "TechCrunch：AI（RSS）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "1292abec7e144a9d760e60cd4094159cff9d78b7",
-          "title": "Anthropic 称 Claude 完成平面 N=4 超杨-米尔斯理论九圈散射振幅计算",
-          "url": "https://x.com/AnthropicAI/status/2103541577083719888",
-          "source": "X：Anthropic (@AnthropicAI)",
+          "id": "f5eeec18af72c5eaa6b0f00193c52eb62b5bd259",
+          "title": "Anthropic 创始人拟在 IPO 前谋求投票控制权",
+          "url": "https://techcrunch.com/2026/09/25/anthropics-founders-seek-voting-control-ahead-of-ipo",
+          "source": "TechCrunch：AI（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-25T17:46:08Z"
+          "published_at": "2026-09-25T15:40:03Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Anthropic (@AnthropicAI)"
+        "TechCrunch：AI（RSS）"
       ],
       "items": [
         {
-          "id": "1292abec7e144a9d760e60cd4094159cff9d78b7",
-          "title": "Anthropic 称 Claude 完成平面 N=4 超杨-米尔斯理论九圈散射振幅计算",
-          "url": "https://x.com/AnthropicAI/status/2103541577083719888",
-          "source": "X：Anthropic (@AnthropicAI)",
+          "id": "f5eeec18af72c5eaa6b0f00193c52eb62b5bd259",
+          "title": "Anthropic 创始人拟在 IPO 前谋求投票控制权",
+          "url": "https://techcrunch.com/2026/09/25/anthropics-founders-seek-voting-control-ahead-of-ipo",
+          "source": "TechCrunch：AI（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-25T17:46:08Z"
+          "published_at": "2026-09-25T15:40:03Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7223,
-      "importance": 0.7223,
-      "importance_score": 0.7223,
+      "score": 0.7344,
+      "importance": 0.7344,
+      "importance_score": 0.7344,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.67,
+        "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8315,
+        "recency": 0.7486,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-25T17:46:08Z",
-      "latest_at": "2026-09-25T17:46:08Z",
+      "earliest_at": "2026-09-25T15:40:03Z",
+      "latest_at": "2026-09-25T15:40:03Z",
       "primary_item": {
-        "id": "1292abec7e144a9d760e60cd4094159cff9d78b7",
-        "title": "Anthropic 称 Claude 完成平面 N=4 超杨-米尔斯理论九圈散射振幅计算",
-        "url": "https://x.com/AnthropicAI/status/2103541577083719888",
-        "source": "X：Anthropic (@AnthropicAI)",
+        "id": "f5eeec18af72c5eaa6b0f00193c52eb62b5bd259",
+        "title": "Anthropic 创始人拟在 IPO 前谋求投票控制权",
+        "url": "https://techcrunch.com/2026/09/25/anthropics-founders-seek-voting-control-ahead-of-ipo",
+        "source": "TechCrunch：AI（RSS）",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_bc135f55b670",
-      "title": "Thomas Wolf 转评 Transluce 披露：发布 3 万余条日志，称涉及 OpenAI 攻击澳大利亚政府及更早的智能体活动",
-      "url": "https://x.com/Thom_Wolf/status/2103054896438136973",
-      "primary_url": "https://x.com/Thom_Wolf/status/2103054896438136973",
-      "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
+      "story_id": "story_f657eabc9e15",
+      "title": "OpenAI 智能体在 Hugging Face 事件前数月已尝试入侵政府和大学网站",
+      "url": "https://the-decoder.com/openais-agents-went-after-government-and-university-sites-months-before-hugging-face",
+      "primary_url": "https://the-decoder.com/openais-agents-went-after-government-and-university-sites-months-before-hugging-face",
+      "source": "The Decoder：AI News（RSS）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "b6e2d3c6cf9cd670c817ab277ea3a4f2d9c9d235",
-          "title": "Thomas Wolf 转评 Transluce 披露：发布 3 万余条日志，称涉及 OpenAI 攻击澳大利亚政府及更早的智能体活动",
-          "url": "https://x.com/Thom_Wolf/status/2103054896438136973",
-          "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
+          "id": "ea527f7eb01577cf22ec2e49181b440eb8bd773b",
+          "title": "OpenAI 智能体在 Hugging Face 事件前数月已尝试入侵政府和大学网站",
+          "url": "https://the-decoder.com/openais-agents-went-after-government-and-university-sites-months-before-hugging-face",
+          "source": "The Decoder：AI News（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-24T09:32:14Z"
+          "published_at": "2026-09-24T14:01:05Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)"
+        "The Decoder：AI News（RSS）"
       ],
       "items": [
         {
-          "id": "b6e2d3c6cf9cd670c817ab277ea3a4f2d9c9d235",
-          "title": "Thomas Wolf 转评 Transluce 披露：发布 3 万余条日志，称涉及 OpenAI 攻击澳大利亚政府及更早的智能体活动",
-          "url": "https://x.com/Thom_Wolf/status/2103054896438136973",
-          "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
+          "id": "ea527f7eb01577cf22ec2e49181b440eb8bd773b",
+          "title": "OpenAI 智能体在 Hugging Face 事件前数月已尝试入侵政府和大学网站",
+          "url": "https://the-decoder.com/openais-agents-went-after-government-and-university-sites-months-before-hugging-face",
+          "source": "The Decoder：AI News（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-24T09:32:14Z"
+          "published_at": "2026-09-24T14:01:05Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7206,
-      "importance": 0.7206,
-      "importance_score": 0.7206,
+      "score": 0.7286,
+      "importance": 0.7286,
+      "importance_score": 0.7286,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.85,
+        "editorial": 0.88,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5221,
+        "recency": 0.5169,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-24T09:32:14Z",
-      "latest_at": "2026-09-24T09:32:14Z",
+      "earliest_at": "2026-09-24T14:01:05Z",
+      "latest_at": "2026-09-24T14:01:05Z",
       "primary_item": {
-        "id": "b6e2d3c6cf9cd670c817ab277ea3a4f2d9c9d235",
-        "title": "Thomas Wolf 转评 Transluce 披露：发布 3 万余条日志，称涉及 OpenAI 攻击澳大利亚政府及更早的智能体活动",
-        "url": "https://x.com/Thom_Wolf/status/2103054896438136973",
-        "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_0bccf9f933d9",
-      "title": "Claude Devs 测算 Opus 5.5 相比 Opus 5 在 Claude Code 任务中的成本变化",
-      "url": "https://x.com/ClaudeDevs/status/2103548467729887677",
-      "primary_url": "https://x.com/ClaudeDevs/status/2103548467729887677",
-      "source": "X：Claude Devs (@ClaudeDevs)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "7b1e1539fbd3d3b77dcd2a97b8093fc66c4b347d",
-          "title": "Claude Devs 测算 Opus 5.5 相比 Opus 5 在 Claude Code 任务中的成本变化",
-          "url": "https://x.com/ClaudeDevs/status/2103548467729887677",
-          "source": "X：Claude Devs (@ClaudeDevs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-25T18:13:31Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Claude Devs (@ClaudeDevs)"
-      ],
-      "items": [
-        {
-          "id": "7b1e1539fbd3d3b77dcd2a97b8093fc66c4b347d",
-          "title": "Claude Devs 测算 Opus 5.5 相比 Opus 5 在 Claude Code 任务中的成本变化",
-          "url": "https://x.com/ClaudeDevs/status/2103548467729887677",
-          "source": "X：Claude Devs (@ClaudeDevs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-25T18:13:31Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7203,
-      "importance": 0.7203,
-      "importance_score": 0.7203,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.837,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-25T18:13:31Z",
-      "latest_at": "2026-09-25T18:13:31Z",
-      "primary_item": {
-        "id": "7b1e1539fbd3d3b77dcd2a97b8093fc66c4b347d",
-        "title": "Claude Devs 测算 Opus 5.5 相比 Opus 5 在 Claude Code 任务中的成本变化",
-        "url": "https://x.com/ClaudeDevs/status/2103548467729887677",
-        "source": "X：Claude Devs (@ClaudeDevs)",
+        "id": "ea527f7eb01577cf22ec2e49181b440eb8bd773b",
+        "title": "OpenAI 智能体在 Hugging Face 事件前数月已尝试入侵政府和大学网站",
+        "url": "https://the-decoder.com/openais-agents-went-after-government-and-university-sites-months-before-hugging-face",
+        "source": "The Decoder：AI News（RSS）",
         "source_name": "AI HOT"
       }
     }
