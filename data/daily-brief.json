@@ -1,8 +1,69 @@
 {
-  "generated_at": "2026-09-26T16:12:58.075027Z",
+  "generated_at": "2026-09-26T19:19:26.854225Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
+    {
+      "story_id": "story_eb055a4409b6",
+      "title": "Claude 无人值守算出 N=4 超杨-米尔斯理论九圈散射振幅，刷新人类八圈纪录",
+      "url": "https://www.ithome.com/1/007/444.htm",
+      "primary_url": "https://www.ithome.com/1/007/444.htm",
+      "source": "IT之家（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "9279fb40dd812920f93b7be74e145079d81085ab",
+          "title": "Claude 无人值守算出 N=4 超杨-米尔斯理论九圈散射振幅，刷新人类八圈纪录",
+          "url": "https://www.ithome.com/1/007/444.htm",
+          "source": "IT之家（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T15:44:10Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "IT之家（RSS）"
+      ],
+      "items": [
+        {
+          "id": "9279fb40dd812920f93b7be74e145079d81085ab",
+          "title": "Claude 无人值守算出 N=4 超杨-米尔斯理论九圈散射振幅，刷新人类八圈纪录",
+          "url": "https://www.ithome.com/1/007/444.htm",
+          "source": "IT之家（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T15:44:10Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7825,
+      "importance": 0.7825,
+      "importance_score": 0.7825,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.8,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9495,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-26T15:44:10Z",
+      "latest_at": "2026-09-26T15:44:10Z",
+      "primary_item": {
+        "id": "9279fb40dd812920f93b7be74e145079d81085ab",
+        "title": "Claude 无人值守算出 N=4 超杨-米尔斯理论九圈散射振幅，刷新人类八圈纪录",
+        "url": "https://www.ithome.com/1/007/444.htm",
+        "source": "IT之家（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
     {
       "story_id": "story_788f6e5fb511",
       "title": "OpenAI 暂停最强模型的训练与工具使用，披露智能体利用 DNS 漏洞联网及泄露 GitHub token 等安全事件",
@@ -38,15 +99,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.789,
-      "importance": 0.789,
-      "importance_score": 0.789,
+      "score": 0.7819,
+      "importance": 0.7819,
+      "importance_score": 0.7819,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.85,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9025,
+        "recency": 0.8629,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -61,6 +122,67 @@
         "title": "OpenAI 暂停最强模型的训练与工具使用，披露智能体利用 DNS 漏洞联网及泄露 GitHub token 等安全事件",
         "url": "https://the-decoder.com/openai-pauses-its-most-capable-models-after-agents-exploit-loopholes-and-leak-data",
         "source": "The Decoder：AI News（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_5e312e5a8d40",
+      "title": "Claude Opus 5.5 （High） 以 1509 分登顶 Arena Text Arena 榜首",
+      "url": "https://x.com/arena/status/2103893011164017018",
+      "primary_url": "https://x.com/arena/status/2103893011164017018",
+      "source": "X：Arena (@arena)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "1640607f31c4a14cd3b66072a037aa8b68ba650e",
+          "title": "Claude Opus 5.5 （High） 以 1509 分登顶 Arena Text Arena 榜首",
+          "url": "https://x.com/arena/status/2103893011164017018",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T17:02:36Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Arena (@arena)"
+      ],
+      "items": [
+        {
+          "id": "1640607f31c4a14cd3b66072a037aa8b68ba650e",
+          "title": "Claude Opus 5.5 （High） 以 1509 分登顶 Arena Text Arena 榜首",
+          "url": "https://x.com/arena/status/2103893011164017018",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T17:02:36Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7798,
+      "importance": 0.7798,
+      "importance_score": 0.7798,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.78,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9676,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-26T17:02:36Z",
+      "latest_at": "2026-09-26T17:02:36Z",
+      "primary_item": {
+        "id": "1640607f31c4a14cd3b66072a037aa8b68ba650e",
+        "title": "Claude Opus 5.5 （High） 以 1509 分登顶 Arena Text Arena 榜首",
+        "url": "https://x.com/arena/status/2103893011164017018",
+        "source": "X：Arena (@arena)",
         "source_name": "AI HOT"
       }
     },
@@ -99,15 +221,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.76,
-      "importance": 0.76,
-      "importance_score": 0.76,
+      "score": 0.7538,
+      "importance": 0.7538,
+      "importance_score": 0.7538,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7912,
+        "recency": 0.7565,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -160,15 +282,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7585,
-      "importance": 0.7585,
-      "importance_score": 0.7585,
+      "score": 0.7518,
+      "importance": 0.7518,
+      "importance_score": 0.7518,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8493,
+        "recency": 0.812,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -221,15 +343,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7568,
-      "importance": 0.7568,
-      "importance_score": 0.7568,
+      "score": 0.7509,
+      "importance": 0.7509,
+      "importance_score": 0.7509,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7568,
+        "recency": 0.7236,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -282,21 +404,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7561,
-      "importance": 0.7561,
-      "importance_score": 0.7561,
+      "score": 0.7489,
+      "importance": 0.7489,
+      "importance_score": 0.7489,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.73,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9196,
+        "recency": 0.8792,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-26T10:24:39Z",
       "latest_at": "2026-09-26T10:24:39Z",
@@ -566,15 +687,15 @@
       ],
       "item_count": 13,
       "duplicate_count": 13,
-      "score": 0.7499,
-      "importance": 0.7499,
-      "importance_score": 0.7499,
+      "score": 0.7465,
+      "importance": 0.7465,
+      "importance_score": 0.7465,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4294,
+        "recency": 0.4106,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -589,66 +710,6 @@
         "title": "火山引擎对话《后西游记》主创，揭秘首部AI长剧登陆湖南卫视黄金档",
         "url": "https://mp.weixin.qq.com/s?__biz=MzI0NzU1NzI5NQ%3D%3D&mid=2247544696&idx=1&sn=eb490357aa03d3f5655fa9fbe00a0606",
         "source": "公众号：火山引擎",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_04bdea814ca9",
-      "title": "GPT-6 Sol （Max） 登陆 Arena Agent Arena 排行榜第 6 名，净提升 +7.7%",
-      "url": "https://x.com/arena/status/2103571568467288451",
-      "primary_url": "https://x.com/arena/status/2103571568467288451",
-      "source": "X：Arena (@arena)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "92285f52d168de08a6050da9d626ea6be00e1842",
-          "title": "GPT-6 Sol （Max） 登陆 Arena Agent Arena 排行榜第 6 名，净提升 +7.7%",
-          "url": "https://x.com/arena/status/2103571568467288451",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-25T19:45:19Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Arena (@arena)"
-      ],
-      "items": [
-        {
-          "id": "92285f52d168de08a6050da9d626ea6be00e1842",
-          "title": "GPT-6 Sol （Max） 登陆 Arena Agent Arena 排行榜第 6 名，净提升 +7.7%",
-          "url": "https://x.com/arena/status/2103571568467288451",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-25T19:45:19Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7486,
-      "importance": 0.7486,
-      "importance_score": 0.7486,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.81,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7442,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-25T19:45:19Z",
-      "latest_at": "2026-09-25T19:45:19Z",
-      "primary_item": {
-        "id": "92285f52d168de08a6050da9d626ea6be00e1842",
-        "title": "GPT-6 Sol （Max） 登陆 Arena Agent Arena 排行榜第 6 名，净提升 +7.7%",
-        "url": "https://x.com/arena/status/2103571568467288451",
-        "source": "X：Arena (@arena)",
         "source_name": "AI HOT"
       }
     },
@@ -687,15 +748,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7477,
-      "importance": 0.7477,
-      "importance_score": 0.7477,
+      "score": 0.7425,
+      "importance": 0.7425,
+      "importance_score": 0.7425,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6559,
+        "recency": 0.6271,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -709,126 +770,6 @@
         "title": "Trump 政府 WISeR 项目用 AI 审批 Medicare 预授权，拒批率与激励结构引发争议",
         "url": "https://arstechnica.com/health/2026/09/trump-admin-using-ai-to-deny-medical-care-for-seniors-in-disastrous-experiment",
         "source": "Ars Technica：AI（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_6fbba883d29f",
-      "title": "Waymo 公布最新安全数据：2.7 亿英里里程重伤事故比人类司机少 95%",
-      "url": "https://x.com/JeffDean/status/2103870029599228312",
-      "primary_url": "https://x.com/JeffDean/status/2103870029599228312",
-      "source": "X：Jeff Dean (@JeffDean)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "44d19bea2212c61e540b851cbe46263b2db4439e",
-          "title": "Waymo 公布最新安全数据：2.7 亿英里里程重伤事故比人类司机少 95%",
-          "url": "https://x.com/JeffDean/status/2103870029599228312",
-          "source": "X：Jeff Dean (@JeffDean)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-26T15:31:17Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Jeff Dean (@JeffDean)"
-      ],
-      "items": [
-        {
-          "id": "44d19bea2212c61e540b851cbe46263b2db4439e",
-          "title": "Waymo 公布最新安全数据：2.7 亿英里里程重伤事故比人类司机少 95%",
-          "url": "https://x.com/JeffDean/status/2103870029599228312",
-          "source": "X：Jeff Dean (@JeffDean)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-26T15:31:17Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7418,
-      "importance": 0.7418,
-      "importance_score": 0.7418,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.64,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.99,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-26T15:31:17Z",
-      "latest_at": "2026-09-26T15:31:17Z",
-      "primary_item": {
-        "id": "44d19bea2212c61e540b851cbe46263b2db4439e",
-        "title": "Waymo 公布最新安全数据：2.7 亿英里里程重伤事故比人类司机少 95%",
-        "url": "https://x.com/JeffDean/status/2103870029599228312",
-        "source": "X：Jeff Dean (@JeffDean)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_c7afdcff80f5",
-      "title": "小扎访谈谈 Meta Muse 的三个差异化：为场景设计模型、社交基因与隐私安全",
-      "url": "https://x.com/lifesinger/status/2103866782457217450",
-      "primary_url": "https://x.com/lifesinger/status/2103866782457217450",
-      "source": "X：Frank Wang 玉伯 (@lifesinger)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "a675cc49eff578b269779fdb5675bbae84a4ffbf",
-          "title": "小扎访谈谈 Meta Muse 的三个差异化：为场景设计模型、社交基因与隐私安全",
-          "url": "https://x.com/lifesinger/status/2103866782457217450",
-          "source": "X：Frank Wang 玉伯 (@lifesinger)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-26T15:18:23Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Frank Wang 玉伯 (@lifesinger)"
-      ],
-      "items": [
-        {
-          "id": "a675cc49eff578b269779fdb5675bbae84a4ffbf",
-          "title": "小扎访谈谈 Meta Muse 的三个差异化：为场景设计模型、社交基因与隐私安全",
-          "url": "https://x.com/lifesinger/status/2103866782457217450",
-          "source": "X：Frank Wang 玉伯 (@lifesinger)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-26T15:18:23Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7413,
-      "importance": 0.7413,
-      "importance_score": 0.7413,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.64,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9869,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-26T15:18:23Z",
-      "latest_at": "2026-09-26T15:18:23Z",
-      "primary_item": {
-        "id": "a675cc49eff578b269779fdb5675bbae84a4ffbf",
-        "title": "小扎访谈谈 Meta Muse 的三个差异化：为场景设计模型、社交基因与隐私安全",
-        "url": "https://x.com/lifesinger/status/2103866782457217450",
-        "source": "X：Frank Wang 玉伯 (@lifesinger)",
         "source_name": "AI HOT"
       }
     },
@@ -867,15 +808,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7411,
-      "importance": 0.7411,
-      "importance_score": 0.7411,
+      "score": 0.7356,
+      "importance": 0.7356,
+      "importance_score": 0.7356,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7029,
+        "recency": 0.6721,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -945,15 +886,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7408,
-      "importance": 0.7408,
-      "importance_score": 0.7408,
+      "score": 0.7349,
+      "importance": 0.7349,
+      "importance_score": 0.7349,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7456,
+        "recency": 0.7129,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -968,6 +909,126 @@
         "title": "Qwen 团队发布 Qwen3.8-Omni-Flash 报告：面向原生全模态智能体",
         "url": "https://x.com/dair_ai/status/2103573552611926373",
         "source": "X：DAIR.AI (@dair_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_6fbba883d29f",
+      "title": "Waymo 公布最新安全数据：2.7 亿英里里程重伤事故比人类司机少 95%",
+      "url": "https://x.com/JeffDean/status/2103870029599228312",
+      "primary_url": "https://x.com/JeffDean/status/2103870029599228312",
+      "source": "X：Jeff Dean (@JeffDean)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "44d19bea2212c61e540b851cbe46263b2db4439e",
+          "title": "Waymo 公布最新安全数据：2.7 亿英里里程重伤事故比人类司机少 95%",
+          "url": "https://x.com/JeffDean/status/2103870029599228312",
+          "source": "X：Jeff Dean (@JeffDean)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T15:31:17Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Jeff Dean (@JeffDean)"
+      ],
+      "items": [
+        {
+          "id": "44d19bea2212c61e540b851cbe46263b2db4439e",
+          "title": "Waymo 公布最新安全数据：2.7 亿英里里程重伤事故比人类司机少 95%",
+          "url": "https://x.com/JeffDean/status/2103870029599228312",
+          "source": "X：Jeff Dean (@JeffDean)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T15:31:17Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.734,
+      "importance": 0.734,
+      "importance_score": 0.734,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.64,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9466,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-26T15:31:17Z",
+      "latest_at": "2026-09-26T15:31:17Z",
+      "primary_item": {
+        "id": "44d19bea2212c61e540b851cbe46263b2db4439e",
+        "title": "Waymo 公布最新安全数据：2.7 亿英里里程重伤事故比人类司机少 95%",
+        "url": "https://x.com/JeffDean/status/2103870029599228312",
+        "source": "X：Jeff Dean (@JeffDean)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_c7afdcff80f5",
+      "title": "小扎访谈谈 Meta Muse 的三个差异化：为场景设计模型、社交基因与隐私安全",
+      "url": "https://x.com/lifesinger/status/2103866782457217450",
+      "primary_url": "https://x.com/lifesinger/status/2103866782457217450",
+      "source": "X：Frank Wang 玉伯 (@lifesinger)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "a675cc49eff578b269779fdb5675bbae84a4ffbf",
+          "title": "小扎访谈谈 Meta Muse 的三个差异化：为场景设计模型、社交基因与隐私安全",
+          "url": "https://x.com/lifesinger/status/2103866782457217450",
+          "source": "X：Frank Wang 玉伯 (@lifesinger)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T15:18:23Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Frank Wang 玉伯 (@lifesinger)"
+      ],
+      "items": [
+        {
+          "id": "a675cc49eff578b269779fdb5675bbae84a4ffbf",
+          "title": "小扎访谈谈 Meta Muse 的三个差异化：为场景设计模型、社交基因与隐私安全",
+          "url": "https://x.com/lifesinger/status/2103866782457217450",
+          "source": "X：Frank Wang 玉伯 (@lifesinger)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T15:18:23Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7335,
+      "importance": 0.7335,
+      "importance_score": 0.7335,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.64,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9436,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-26T15:18:23Z",
+      "latest_at": "2026-09-26T15:18:23Z",
+      "primary_item": {
+        "id": "a675cc49eff578b269779fdb5675bbae84a4ffbf",
+        "title": "小扎访谈谈 Meta Muse 的三个差异化：为场景设计模型、社交基因与隐私安全",
+        "url": "https://x.com/lifesinger/status/2103866782457217450",
+        "source": "X：Frank Wang 玉伯 (@lifesinger)",
         "source_name": "AI HOT"
       }
     },
@@ -1006,15 +1067,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7346,
-      "importance": 0.7346,
-      "importance_score": 0.7346,
+      "score": 0.729,
+      "importance": 0.729,
+      "importance_score": 0.729,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6997,
+        "recency": 0.669,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1066,15 +1127,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7345,
-      "importance": 0.7345,
-      "importance_score": 0.7345,
+      "score": 0.7279,
+      "importance": 0.7279,
+      "importance_score": 0.7279,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8327,
+        "recency": 0.7961,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1092,182 +1153,62 @@
       }
     },
     {
-      "story_id": "story_cd57170eb38e",
-      "title": "Claude 完成 N=4 超对称 Yang-Mills 九圈振幅计算，物理学家 Matt von Hippel 复盘挑战始末",
-      "url": "https://www.anthropic.com/research/yes-claude-can-do-nine-loops",
-      "primary_url": "https://www.anthropic.com/research/yes-claude-can-do-nine-loops",
-      "source": "Anthropic：Research（发表成果 · 网页）",
+      "story_id": "story_04bdea814ca9",
+      "title": "GPT-6 Sol （Max） 登陆 Arena Agent Arena 排行榜第 6 名，净提升 +7.7%",
+      "url": "https://x.com/arena/status/2103571568467288451",
+      "primary_url": "https://x.com/arena/status/2103571568467288451",
+      "source": "X：Arena (@arena)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "18ad5d1949272a639d0b3e28920046d68ba92876",
-          "title": "Claude 完成 N=4 超对称 Yang-Mills 九圈振幅计算，物理学家 Matt von Hippel 复盘挑战始末",
-          "url": "https://www.anthropic.com/research/yes-claude-can-do-nine-loops",
-          "source": "Anthropic：Research（发表成果 · 网页）",
+          "id": "92285f52d168de08a6050da9d626ea6be00e1842",
+          "title": "GPT-6 Sol （Max） 登陆 Arena Agent Arena 排行榜第 6 名，净提升 +7.7%",
+          "url": "https://x.com/arena/status/2103571568467288451",
+          "source": "X：Arena (@arena)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-25T17:59:19.824000Z"
+          "published_at": "2026-09-25T19:45:19Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "Anthropic：Research（发表成果 · 网页）"
+        "X：Arena (@arena)"
       ],
       "items": [
         {
-          "id": "18ad5d1949272a639d0b3e28920046d68ba92876",
-          "title": "Claude 完成 N=4 超对称 Yang-Mills 九圈振幅计算，物理学家 Matt von Hippel 复盘挑战始末",
-          "url": "https://www.anthropic.com/research/yes-claude-can-do-nine-loops",
-          "source": "Anthropic：Research（发表成果 · 网页）",
+          "id": "92285f52d168de08a6050da9d626ea6be00e1842",
+          "title": "GPT-6 Sol （Max） 登陆 Arena Agent Arena 排行榜第 6 名，净提升 +7.7%",
+          "url": "https://x.com/arena/status/2103571568467288451",
+          "source": "X：Arena (@arena)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-25T17:59:19.824000Z"
+          "published_at": "2026-09-25T19:45:19Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7242,
-      "importance": 0.7242,
-      "importance_score": 0.7242,
+      "score": 0.7427,
+      "importance": 0.7427,
+      "importance_score": 0.7427,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.74,
+        "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7254,
+        "recency": 0.7115,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-25T17:59:19.824000Z",
-      "latest_at": "2026-09-25T17:59:19.824000Z",
+      "earliest_at": "2026-09-25T19:45:19Z",
+      "latest_at": "2026-09-25T19:45:19Z",
       "primary_item": {
-        "id": "18ad5d1949272a639d0b3e28920046d68ba92876",
-        "title": "Claude 完成 N=4 超对称 Yang-Mills 九圈振幅计算，物理学家 Matt von Hippel 复盘挑战始末",
-        "url": "https://www.anthropic.com/research/yes-claude-can-do-nine-loops",
-        "source": "Anthropic：Research（发表成果 · 网页）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_2fc3d3bc581f",
-      "title": "OpenAI 披露研究中 AI 智能体向第三方服务外传训练与评估数据",
-      "url": "https://x.com/OpenAI/status/2103587050347995581",
-      "primary_url": "https://x.com/OpenAI/status/2103587050347995581",
-      "source": "X：OpenAI (@OpenAI)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "7cf51c955c04e9bc99e3d591af9d572e07bbd2c8",
-          "title": "OpenAI 披露研究中 AI 智能体向第三方服务外传训练与评估数据",
-          "url": "https://x.com/OpenAI/status/2103587050347995581",
-          "source": "X：OpenAI (@OpenAI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-25T20:46:50Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：OpenAI (@OpenAI)"
-      ],
-      "items": [
-        {
-          "id": "7cf51c955c04e9bc99e3d591af9d572e07bbd2c8",
-          "title": "OpenAI 披露研究中 AI 智能体向第三方服务外传训练与评估数据",
-          "url": "https://x.com/OpenAI/status/2103587050347995581",
-          "source": "X：OpenAI (@OpenAI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-25T20:46:50Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7206,
-      "importance": 0.7206,
-      "importance_score": 0.7206,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7553,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-25T20:46:50Z",
-      "latest_at": "2026-09-25T20:46:50Z",
-      "primary_item": {
-        "id": "7cf51c955c04e9bc99e3d591af9d572e07bbd2c8",
-        "title": "OpenAI 披露研究中 AI 智能体向第三方服务外传训练与评估数据",
-        "url": "https://x.com/OpenAI/status/2103587050347995581",
-        "source": "X：OpenAI (@OpenAI)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_442c7a3ebd3e",
-      "title": "OpenAI 智能体被曝今年至少 4 次未经指示闯入政府和学校网站",
-      "url": "https://www.ithome.com/1/007/144.htm",
-      "primary_url": "https://www.ithome.com/1/007/144.htm",
-      "source": "IT之家（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "41e642860049bd23ad4db3d154d31b4810d1f97c",
-          "title": "OpenAI 智能体被曝今年至少 4 次未经指示闯入政府和学校网站",
-          "url": "https://www.ithome.com/1/007/144.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-25T07:02:05Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "IT之家（RSS）"
-      ],
-      "items": [
-        {
-          "id": "41e642860049bd23ad4db3d154d31b4810d1f97c",
-          "title": "OpenAI 智能体被曝今年至少 4 次未经指示闯入政府和学校网站",
-          "url": "https://www.ithome.com/1/007/144.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-25T07:02:05Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7201,
-      "importance": 0.7201,
-      "importance_score": 0.7201,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.79,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6193,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-25T07:02:05Z",
-      "latest_at": "2026-09-25T07:02:05Z",
-      "primary_item": {
-        "id": "41e642860049bd23ad4db3d154d31b4810d1f97c",
-        "title": "OpenAI 智能体被曝今年至少 4 次未经指示闯入政府和学校网站",
-        "url": "https://www.ithome.com/1/007/144.htm",
-        "source": "IT之家（RSS）",
+        "id": "92285f52d168de08a6050da9d626ea6be00e1842",
+        "title": "GPT-6 Sol （Max） 登陆 Arena Agent Arena 排行榜第 6 名，净提升 +7.7%",
+        "url": "https://x.com/arena/status/2103571568467288451",
+        "source": "X：Arena (@arena)",
         "source_name": "AI HOT"
       }
     },
@@ -1324,15 +1265,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7135,
-      "importance": 0.7135,
-      "importance_score": 0.7135,
+      "score": 0.7077,
+      "importance": 0.7077,
+      "importance_score": 0.7077,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7272,
+        "recency": 0.6952,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1385,15 +1326,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7359,
-      "importance": 0.7359,
-      "importance_score": 0.7359,
+      "score": 0.7281,
+      "importance": 0.7281,
+      "importance_score": 0.7281,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9907,
+        "recency": 0.9472,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1445,15 +1386,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7336,
-      "importance": 0.7336,
-      "importance_score": 0.7336,
+      "score": 0.7274,
+      "importance": 0.7274,
+      "importance_score": 0.7274,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.73,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7947,
+        "recency": 0.7598,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1467,6 +1408,66 @@
         "title": "OpenAI 报告披露约两打智能体不当行为事件及 53 张用户图片外泄",
         "url": "https://x.com/rohanpaul_ai/status/2103640184470528066",
         "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_7d739e4083a7",
+      "title": "澳大利亚将调查OpenAI模型入侵政府医疗网站是否违法",
+      "url": "https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law",
+      "primary_url": "https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law",
+      "source": "TechCrunch：AI（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "d5001bc94486c5b3dc92bb6a990334f9bec6e2f3",
+          "title": "澳大利亚将调查OpenAI模型入侵政府医疗网站是否违法",
+          "url": "https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law",
+          "source": "TechCrunch：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T12:54:19Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "TechCrunch：AI（RSS）"
+      ],
+      "items": [
+        {
+          "id": "d5001bc94486c5b3dc92bb6a990334f9bec6e2f3",
+          "title": "澳大利亚将调查OpenAI模型入侵政府医疗网站是否违法",
+          "url": "https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law",
+          "source": "TechCrunch：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-24T12:54:19Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7206,
+      "importance": 0.7206,
+      "importance_score": 0.7206,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.89,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.4557,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-24T12:54:19Z",
+      "latest_at": "2026-09-24T12:54:19Z",
+      "primary_item": {
+        "id": "d5001bc94486c5b3dc92bb6a990334f9bec6e2f3",
+        "title": "澳大利亚将调查OpenAI模型入侵政府医疗网站是否违法",
+        "url": "https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law",
+        "source": "TechCrunch：AI（RSS）",
         "source_name": "AI HOT"
       }
     }
