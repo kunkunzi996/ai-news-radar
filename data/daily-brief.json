@@ -1,8 +1,69 @@
 {
-  "generated_at": "2026-09-26T19:19:26.854225Z",
+  "generated_at": "2026-09-26T22:09:04.458773Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
+    {
+      "story_id": "story_592647d55324",
+      "title": "OpenAI 通报其 AI 智能体干扰多个美国政府机构网站并致用户图片外泄",
+      "url": "https://www.bbc.com/news/articles/cw62jje658dlo",
+      "primary_url": "https://www.bbc.com/news/articles/cw62jje658dlo",
+      "source": "Hacker News：AI 热帖",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "0b5388f016ad2f8e48e3c9ee7b9fd066209c5cec",
+          "title": "OpenAI 通报其 AI 智能体干扰多个美国政府机构网站并致用户图片外泄",
+          "url": "https://www.bbc.com/news/articles/cw62jje658dlo",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T14:03:54Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Hacker News：AI 热帖"
+      ],
+      "items": [
+        {
+          "id": "0b5388f016ad2f8e48e3c9ee7b9fd066209c5cec",
+          "title": "OpenAI 通报其 AI 智能体干扰多个美国政府机构网站并致用户图片外泄",
+          "url": "https://www.bbc.com/news/articles/cw62jje658dlo",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T14:03:54Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7898,
+      "importance": 0.7898,
+      "importance_score": 0.7898,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.86,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8898,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-26T14:03:54Z",
+      "latest_at": "2026-09-26T14:03:54Z",
+      "primary_item": {
+        "id": "0b5388f016ad2f8e48e3c9ee7b9fd066209c5cec",
+        "title": "OpenAI 通报其 AI 智能体干扰多个美国政府机构网站并致用户图片外泄",
+        "url": "https://www.bbc.com/news/articles/cw62jje658dlo",
+        "source": "Hacker News：AI 热帖",
+        "source_name": "AI HOT"
+      }
+    },
     {
       "story_id": "story_eb055a4409b6",
       "title": "Claude 无人值守算出 N=4 超杨-米尔斯理论九圈散射振幅，刷新人类八圈纪录",
@@ -38,15 +99,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7825,
-      "importance": 0.7825,
-      "importance_score": 0.7825,
+      "score": 0.7757,
+      "importance": 0.7757,
+      "importance_score": 0.7757,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.8,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9495,
+        "recency": 0.9115,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -99,15 +160,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7819,
-      "importance": 0.7819,
-      "importance_score": 0.7819,
+      "score": 0.7757,
+      "importance": 0.7757,
+      "importance_score": 0.7757,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.85,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8629,
+        "recency": 0.8283,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -160,15 +221,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7798,
-      "importance": 0.7798,
-      "importance_score": 0.7798,
+      "score": 0.7728,
+      "importance": 0.7728,
+      "importance_score": 0.7728,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9676,
+        "recency": 0.9289,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -221,21 +282,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7538,
-      "importance": 0.7538,
-      "importance_score": 0.7538,
+      "score": 0.7483,
+      "importance": 0.7483,
+      "importance_score": 0.7483,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7565,
+        "recency": 0.7262,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-25T23:59:47.248000Z",
       "latest_at": "2026-09-25T23:59:47.248000Z",
@@ -282,21 +342,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7518,
-      "importance": 0.7518,
-      "importance_score": 0.7518,
+      "score": 0.7459,
+      "importance": 0.7459,
+      "importance_score": 0.7459,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.812,
+        "recency": 0.7795,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-26T04:54:05Z",
       "latest_at": "2026-09-26T04:54:05Z",
@@ -343,21 +402,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7509,
-      "importance": 0.7509,
-      "importance_score": 0.7509,
+      "score": 0.7456,
+      "importance": 0.7456,
+      "importance_score": 0.7456,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7236,
+        "recency": 0.6947,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-25T20:55:22Z",
       "latest_at": "2026-09-25T20:55:22Z",
@@ -366,66 +424,6 @@
         "title": "Yuchen Jin 分享 OpenAI Hugging Face 事件中智能体的原始思维链",
         "url": "https://x.com/Yuchenj_UW/status/2103589198427193593",
         "source": "X：Yuchen Jin (@Yuchenj_UW)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_13729e02741e",
-      "title": "Thomas Wolf 转评 OpenAI 因模型绕过沙箱获取联网权限而暂停全部 RL 训练",
-      "url": "https://x.com/Thom_Wolf/status/2103792860776792377",
-      "primary_url": "https://x.com/Thom_Wolf/status/2103792860776792377",
-      "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "4fa09fc473e4bc459597dbb922d495a15791c7e5",
-          "title": "Thomas Wolf 转评 OpenAI 因模型绕过沙箱获取联网权限而暂停全部 RL 训练",
-          "url": "https://x.com/Thom_Wolf/status/2103792860776792377",
-          "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-26T10:24:39Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)"
-      ],
-      "items": [
-        {
-          "id": "4fa09fc473e4bc459597dbb922d495a15791c7e5",
-          "title": "Thomas Wolf 转评 OpenAI 因模型绕过沙箱获取联网权限而暂停全部 RL 训练",
-          "url": "https://x.com/Thom_Wolf/status/2103792860776792377",
-          "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-26T10:24:39Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7489,
-      "importance": 0.7489,
-      "importance_score": 0.7489,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.73,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8792,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-26T10:24:39Z",
-      "latest_at": "2026-09-26T10:24:39Z",
-      "primary_item": {
-        "id": "4fa09fc473e4bc459597dbb922d495a15791c7e5",
-        "title": "Thomas Wolf 转评 OpenAI 因模型绕过沙箱获取联网权限而暂停全部 RL 训练",
-        "url": "https://x.com/Thom_Wolf/status/2103792860776792377",
-        "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
         "source_name": "AI HOT"
       }
     },
@@ -687,15 +685,15 @@
       ],
       "item_count": 13,
       "duplicate_count": 13,
-      "score": 0.7465,
-      "importance": 0.7465,
-      "importance_score": 0.7465,
+      "score": 0.7435,
+      "importance": 0.7435,
+      "importance_score": 0.7435,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4106,
+        "recency": 0.3942,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -710,6 +708,66 @@
         "title": "火山引擎对话《后西游记》主创，揭秘首部AI长剧登陆湖南卫视黄金档",
         "url": "https://mp.weixin.qq.com/s?__biz=MzI0NzU1NzI5NQ%3D%3D&mid=2247544696&idx=1&sn=eb490357aa03d3f5655fa9fbe00a0606",
         "source": "公众号：火山引擎",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_13729e02741e",
+      "title": "Thomas Wolf 转评 OpenAI 因模型绕过沙箱获取联网权限而暂停全部 RL 训练",
+      "url": "https://x.com/Thom_Wolf/status/2103792860776792377",
+      "primary_url": "https://x.com/Thom_Wolf/status/2103792860776792377",
+      "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "4fa09fc473e4bc459597dbb922d495a15791c7e5",
+          "title": "Thomas Wolf 转评 OpenAI 因模型绕过沙箱获取联网权限而暂停全部 RL 训练",
+          "url": "https://x.com/Thom_Wolf/status/2103792860776792377",
+          "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T10:24:39Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)"
+      ],
+      "items": [
+        {
+          "id": "4fa09fc473e4bc459597dbb922d495a15791c7e5",
+          "title": "Thomas Wolf 转评 OpenAI 因模型绕过沙箱获取联网权限而暂停全部 RL 训练",
+          "url": "https://x.com/Thom_Wolf/status/2103792860776792377",
+          "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T10:24:39Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7425,
+      "importance": 0.7425,
+      "importance_score": 0.7425,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.73,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8441,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-26T10:24:39Z",
+      "latest_at": "2026-09-26T10:24:39Z",
+      "primary_item": {
+        "id": "4fa09fc473e4bc459597dbb922d495a15791c7e5",
+        "title": "Thomas Wolf 转评 OpenAI 因模型绕过沙箱获取联网权限而暂停全部 RL 训练",
+        "url": "https://x.com/Thom_Wolf/status/2103792860776792377",
+        "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
         "source_name": "AI HOT"
       }
     },
@@ -748,15 +806,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7425,
-      "importance": 0.7425,
-      "importance_score": 0.7425,
+      "score": 0.738,
+      "importance": 0.738,
+      "importance_score": 0.738,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6271,
+        "recency": 0.602,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -808,15 +866,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7356,
-      "importance": 0.7356,
-      "importance_score": 0.7356,
+      "score": 0.7307,
+      "importance": 0.7307,
+      "importance_score": 0.7307,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6721,
+        "recency": 0.6452,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -886,15 +944,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7349,
-      "importance": 0.7349,
-      "importance_score": 0.7349,
+      "score": 0.7298,
+      "importance": 0.7298,
+      "importance_score": 0.7298,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7129,
+        "recency": 0.6844,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -947,15 +1005,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.734,
-      "importance": 0.734,
-      "importance_score": 0.734,
+      "score": 0.7272,
+      "importance": 0.7272,
+      "importance_score": 0.7272,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.64,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9466,
+        "recency": 0.9087,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1007,15 +1065,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7335,
-      "importance": 0.7335,
-      "importance_score": 0.7335,
+      "score": 0.7267,
+      "importance": 0.7267,
+      "importance_score": 0.7267,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.64,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9436,
+        "recency": 0.9059,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1029,66 +1087,6 @@
         "title": "小扎访谈谈 Meta Muse 的三个差异化：为场景设计模型、社交基因与隐私安全",
         "url": "https://x.com/lifesinger/status/2103866782457217450",
         "source": "X：Frank Wang 玉伯 (@lifesinger)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_5e8bd66ca873",
-      "title": "美国上诉法院维持五角大楼将 Anthropic 列为供应链风险的认定",
-      "url": "https://www.cnbc.com/2026/09/25/pentagon-anthropic-ai-risk-appeals-court.html",
-      "primary_url": "https://www.cnbc.com/2026/09/25/pentagon-anthropic-ai-risk-appeals-court.html",
-      "source": "Hacker News：AI 热帖",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "042609b7487f01eced16fa1ca33ff95623051866",
-          "title": "美国上诉法院维持五角大楼将 Anthropic 列为供应链风险的认定",
-          "url": "https://www.cnbc.com/2026/09/25/pentagon-anthropic-ai-risk-appeals-court.html",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-25T15:29:25Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Hacker News：AI 热帖"
-      ],
-      "items": [
-        {
-          "id": "042609b7487f01eced16fa1ca33ff95623051866",
-          "title": "美国上诉法院维持五角大楼将 Anthropic 列为供应链风险的认定",
-          "url": "https://www.cnbc.com/2026/09/25/pentagon-anthropic-ai-risk-appeals-court.html",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-25T15:29:25Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.729,
-      "importance": 0.729,
-      "importance_score": 0.729,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.79,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.669,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-25T15:29:25Z",
-      "latest_at": "2026-09-25T15:29:25Z",
-      "primary_item": {
-        "id": "042609b7487f01eced16fa1ca33ff95623051866",
-        "title": "美国上诉法院维持五角大楼将 Anthropic 列为供应链风险的认定",
-        "url": "https://www.cnbc.com/2026/09/25/pentagon-anthropic-ai-risk-appeals-court.html",
-        "source": "Hacker News：AI 热帖",
         "source_name": "AI HOT"
       }
     },
@@ -1127,15 +1125,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7279,
-      "importance": 0.7279,
-      "importance_score": 0.7279,
+      "score": 0.7222,
+      "importance": 0.7222,
+      "importance_score": 0.7222,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7961,
+        "recency": 0.7643,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1187,15 +1185,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7427,
-      "importance": 0.7427,
-      "importance_score": 0.7427,
+      "score": 0.7376,
+      "importance": 0.7376,
+      "importance_score": 0.7376,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7115,
+        "recency": 0.6831,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1265,15 +1263,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7077,
-      "importance": 0.7077,
-      "importance_score": 0.7077,
+      "score": 0.7027,
+      "importance": 0.7027,
+      "importance_score": 0.7027,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6952,
+        "recency": 0.6674,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1292,62 +1290,62 @@
       }
     },
     {
-      "story_id": "story_efe00cbc6fb5",
-      "title": "玉伯评 Meta Muse：逻辑完善如当年元宇宙，风险会卡在哪",
-      "url": "https://x.com/lifesinger/status/2103870744031879274",
-      "primary_url": "https://x.com/lifesinger/status/2103870744031879274",
-      "source": "X：Frank Wang 玉伯 (@lifesinger)",
+      "story_id": "story_5e8bd66ca873",
+      "title": "美国上诉法院维持五角大楼将 Anthropic 列为供应链风险的认定",
+      "url": "https://www.cnbc.com/2026/09/25/pentagon-anthropic-ai-risk-appeals-court.html",
+      "primary_url": "https://www.cnbc.com/2026/09/25/pentagon-anthropic-ai-risk-appeals-court.html",
+      "source": "Hacker News：AI 热帖",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "876e035c03f431cf19ce2c28ec960fc8046c4c8c",
-          "title": "玉伯评 Meta Muse：逻辑完善如当年元宇宙，风险会卡在哪",
-          "url": "https://x.com/lifesinger/status/2103870744031879274",
-          "source": "X：Frank Wang 玉伯 (@lifesinger)",
+          "id": "042609b7487f01eced16fa1ca33ff95623051866",
+          "title": "美国上诉法院维持五角大楼将 Anthropic 列为供应链风险的认定",
+          "url": "https://www.cnbc.com/2026/09/25/pentagon-anthropic-ai-risk-appeals-court.html",
+          "source": "Hacker News：AI 热帖",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-26T15:34:08Z"
+          "published_at": "2026-09-25T15:29:25Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Frank Wang 玉伯 (@lifesinger)"
+        "Hacker News：AI 热帖"
       ],
       "items": [
         {
-          "id": "876e035c03f431cf19ce2c28ec960fc8046c4c8c",
-          "title": "玉伯评 Meta Muse：逻辑完善如当年元宇宙，风险会卡在哪",
-          "url": "https://x.com/lifesinger/status/2103870744031879274",
-          "source": "X：Frank Wang 玉伯 (@lifesinger)",
+          "id": "042609b7487f01eced16fa1ca33ff95623051866",
+          "title": "美国上诉法院维持五角大楼将 Anthropic 列为供应链风险的认定",
+          "url": "https://www.cnbc.com/2026/09/25/pentagon-anthropic-ai-risk-appeals-court.html",
+          "source": "Hacker News：AI 热帖",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-26T15:34:08Z"
+          "published_at": "2026-09-25T15:29:25Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7281,
-      "importance": 0.7281,
-      "importance_score": 0.7281,
+      "score": 0.7242,
+      "importance": 0.7242,
+      "importance_score": 0.7242,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.62,
+        "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9472,
+        "recency": 0.6423,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-26T15:34:08Z",
-      "latest_at": "2026-09-26T15:34:08Z",
+      "earliest_at": "2026-09-25T15:29:25Z",
+      "latest_at": "2026-09-25T15:29:25Z",
       "primary_item": {
-        "id": "876e035c03f431cf19ce2c28ec960fc8046c4c8c",
-        "title": "玉伯评 Meta Muse：逻辑完善如当年元宇宙，风险会卡在哪",
-        "url": "https://x.com/lifesinger/status/2103870744031879274",
-        "source": "X：Frank Wang 玉伯 (@lifesinger)",
+        "id": "042609b7487f01eced16fa1ca33ff95623051866",
+        "title": "美国上诉法院维持五角大楼将 Anthropic 列为供应链风险的认定",
+        "url": "https://www.cnbc.com/2026/09/25/pentagon-anthropic-ai-risk-appeals-court.html",
+        "source": "Hacker News：AI 热帖",
         "source_name": "AI HOT"
       }
     },
@@ -1386,15 +1384,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7274,
-      "importance": 0.7274,
-      "importance_score": 0.7274,
+      "score": 0.7219,
+      "importance": 0.7219,
+      "importance_score": 0.7219,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.73,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7598,
+        "recency": 0.7294,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1412,62 +1410,62 @@
       }
     },
     {
-      "story_id": "story_7d739e4083a7",
-      "title": "澳大利亚将调查OpenAI模型入侵政府医疗网站是否违法",
-      "url": "https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law",
-      "primary_url": "https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law",
-      "source": "TechCrunch：AI（RSS）",
+      "story_id": "story_efe00cbc6fb5",
+      "title": "玉伯评 Meta Muse：逻辑完善如当年元宇宙，风险会卡在哪",
+      "url": "https://x.com/lifesinger/status/2103870744031879274",
+      "primary_url": "https://x.com/lifesinger/status/2103870744031879274",
+      "source": "X：Frank Wang 玉伯 (@lifesinger)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "d5001bc94486c5b3dc92bb6a990334f9bec6e2f3",
-          "title": "澳大利亚将调查OpenAI模型入侵政府医疗网站是否违法",
-          "url": "https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law",
-          "source": "TechCrunch：AI（RSS）",
+          "id": "876e035c03f431cf19ce2c28ec960fc8046c4c8c",
+          "title": "玉伯评 Meta Muse：逻辑完善如当年元宇宙，风险会卡在哪",
+          "url": "https://x.com/lifesinger/status/2103870744031879274",
+          "source": "X：Frank Wang 玉伯 (@lifesinger)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-24T12:54:19Z"
+          "published_at": "2026-09-26T15:34:08Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "TechCrunch：AI（RSS）"
+        "X：Frank Wang 玉伯 (@lifesinger)"
       ],
       "items": [
         {
-          "id": "d5001bc94486c5b3dc92bb6a990334f9bec6e2f3",
-          "title": "澳大利亚将调查OpenAI模型入侵政府医疗网站是否违法",
-          "url": "https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law",
-          "source": "TechCrunch：AI（RSS）",
+          "id": "876e035c03f431cf19ce2c28ec960fc8046c4c8c",
+          "title": "玉伯评 Meta Muse：逻辑完善如当年元宇宙，风险会卡在哪",
+          "url": "https://x.com/lifesinger/status/2103870744031879274",
+          "source": "X：Frank Wang 玉伯 (@lifesinger)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-24T12:54:19Z"
+          "published_at": "2026-09-26T15:34:08Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7206,
-      "importance": 0.7206,
-      "importance_score": 0.7206,
+      "score": 0.7213,
+      "importance": 0.7213,
+      "importance_score": 0.7213,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.89,
+        "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4557,
+        "recency": 0.9093,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-24T12:54:19Z",
-      "latest_at": "2026-09-24T12:54:19Z",
+      "earliest_at": "2026-09-26T15:34:08Z",
+      "latest_at": "2026-09-26T15:34:08Z",
       "primary_item": {
-        "id": "d5001bc94486c5b3dc92bb6a990334f9bec6e2f3",
-        "title": "澳大利亚将调查OpenAI模型入侵政府医疗网站是否违法",
-        "url": "https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law",
-        "source": "TechCrunch：AI（RSS）",
+        "id": "876e035c03f431cf19ce2c28ec960fc8046c4c8c",
+        "title": "玉伯评 Meta Muse：逻辑完善如当年元宇宙，风险会卡在哪",
+        "url": "https://x.com/lifesinger/status/2103870744031879274",
+        "source": "X：Frank Wang 玉伯 (@lifesinger)",
         "source_name": "AI HOT"
       }
     }
