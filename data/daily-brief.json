@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-27T06:28:03.174328Z",
+  "generated_at": "2026-09-27T12:21:44.459946Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -38,15 +38,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7917,
-      "importance": 0.7917,
-      "importance_score": 0.7917,
+      "score": 0.7785,
+      "importance": 0.7785,
+      "importance_score": 0.7785,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9006,
+        "recency": 0.8271,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -61,6 +61,67 @@
         "title": "消息称 OpenAI、Anthropic 正调查数万起 AI 安全事件",
         "url": "https://www.ithome.com/1/007/447.htm",
         "source": "IT之家（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_9fe0a063f817",
+      "title": "Authors Guild v. OpenAI 新文件披露高管早已知道大规模盗版书籍训练违法",
+      "url": "https://authorsguild.org/news/ag-v-openai-top-execs-knew-mass-book-piracy-was-illegal",
+      "primary_url": "https://authorsguild.org/news/ag-v-openai-top-execs-knew-mass-book-piracy-was-illegal",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "17d3afe5be918a4976449e35beeb04120851926c",
+          "title": "Authors Guild v. OpenAI 新文件披露高管早已知道大规模盗版书籍训练违法",
+          "url": "https://authorsguild.org/news/ag-v-openai-top-execs-knew-mass-book-piracy-was-illegal",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-27T09:27:15.061000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Hacker News 热门（buzzing.cc 中文翻译）"
+      ],
+      "items": [
+        {
+          "id": "17d3afe5be918a4976449e35beeb04120851926c",
+          "title": "Authors Guild v. OpenAI 新文件披露高管早已知道大规模盗版书籍训练违法",
+          "url": "https://authorsguild.org/news/ag-v-openai-top-execs-knew-mass-book-piracy-was-illegal",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-27T09:27:15.061000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7752,
+      "importance": 0.7752,
+      "importance_score": 0.7752,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.77,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9589,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-27T09:27:15.061000Z",
+      "latest_at": "2026-09-27T09:27:15.061000Z",
+      "primary_item": {
+        "id": "17d3afe5be918a4976449e35beeb04120851926c",
+        "title": "Authors Guild v. OpenAI 新文件披露高管早已知道大规模盗版书籍训练违法",
+        "url": "https://authorsguild.org/news/ag-v-openai-top-execs-knew-mass-book-piracy-was-illegal",
+        "source": "Hacker News 热门（buzzing.cc 中文翻译）",
         "source_name": "AI HOT"
       }
     },
@@ -99,15 +160,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7716,
-      "importance": 0.7716,
-      "importance_score": 0.7716,
+      "score": 0.76,
+      "importance": 0.76,
+      "importance_score": 0.76,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7891,
+        "recency": 0.7247,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -160,21 +221,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7588,
-      "importance": 0.7588,
-      "importance_score": 0.7588,
+      "score": 0.748,
+      "importance": 0.748,
+      "importance_score": 0.748,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.85,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7346,
+        "recency": 0.6747,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-26T09:06:36Z",
       "latest_at": "2026-09-26T09:06:36Z",
@@ -221,21 +281,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7539,
-      "importance": 0.7539,
-      "importance_score": 0.7539,
+      "score": 0.7418,
+      "importance": 0.7418,
+      "importance_score": 0.7418,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8238,
+        "recency": 0.7566,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-26T17:02:36Z",
       "latest_at": "2026-09-26T17:02:36Z",
@@ -248,62 +307,63 @@
       }
     },
     {
-      "story_id": "story_ee9b8774a2c5",
-      "title": "Gary Marcus 评 AI 智能体安全事件升至数万起并呼吁临时召回",
-      "url": "https://garymarcus.substack.com/p/breaking-ai-agent-incident-toll-has",
-      "primary_url": "https://garymarcus.substack.com/p/breaking-ai-agent-incident-toll-has",
-      "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
+      "story_id": "story_77356f5f6ec0",
+      "title": "OpenAI 与 Anthropic CEO 被传唤出席澳大利亚参议院 AI 调查听证会",
+      "url": "https://www.ithome.com/1/007/508.htm",
+      "primary_url": "https://www.ithome.com/1/007/508.htm",
+      "source": "IT之家（RSS）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "bcc7c18632ea009fe5425ca4d01535bd17ca0de5",
-          "title": "Gary Marcus 评 AI 智能体安全事件升至数万起并呼吁临时召回",
-          "url": "https://garymarcus.substack.com/p/breaking-ai-agent-incident-toll-has",
-          "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
+          "id": "37fb628c083d796ee4ff9a14c8f315cbe44d9d32",
+          "title": "OpenAI 与 Anthropic CEO 被传唤出席澳大利亚参议院 AI 调查听证会",
+          "url": "https://www.ithome.com/1/007/508.htm",
+          "source": "IT之家（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-26T23:55:49Z"
+          "published_at": "2026-09-27T05:35:36Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "Gary Marcus：The Road to AI We Can Trust（RSS）"
+        "IT之家（RSS）"
       ],
       "items": [
         {
-          "id": "bcc7c18632ea009fe5425ca4d01535bd17ca0de5",
-          "title": "Gary Marcus 评 AI 智能体安全事件升至数万起并呼吁临时召回",
-          "url": "https://garymarcus.substack.com/p/breaking-ai-agent-incident-toll-has",
-          "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
+          "id": "37fb628c083d796ee4ff9a14c8f315cbe44d9d32",
+          "title": "OpenAI 与 Anthropic CEO 被传唤出席澳大利亚参议院 AI 调查听证会",
+          "url": "https://www.ithome.com/1/007/508.htm",
+          "source": "IT之家（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-26T23:55:49Z"
+          "published_at": "2026-09-27T05:35:36Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7364,
-      "importance": 0.7364,
-      "importance_score": 0.7364,
+      "score": 0.7628,
+      "importance": 0.7628,
+      "importance_score": 0.7628,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.67,
+        "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9099,
+        "recency": 0.9069,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance"
+        "high_ai_relevance",
+        "high_importance"
       ],
-      "earliest_at": "2026-09-26T23:55:49Z",
-      "latest_at": "2026-09-26T23:55:49Z",
+      "earliest_at": "2026-09-27T05:35:36Z",
+      "latest_at": "2026-09-27T05:35:36Z",
       "primary_item": {
-        "id": "bcc7c18632ea009fe5425ca4d01535bd17ca0de5",
-        "title": "Gary Marcus 评 AI 智能体安全事件升至数万起并呼吁临时召回",
-        "url": "https://garymarcus.substack.com/p/breaking-ai-agent-incident-toll-has",
-        "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
+        "id": "37fb628c083d796ee4ff9a14c8f315cbe44d9d32",
+        "title": "OpenAI 与 Anthropic CEO 被传唤出席澳大利亚参议院 AI 调查听证会",
+        "url": "https://www.ithome.com/1/007/508.htm",
+        "source": "IT之家（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -565,15 +625,15 @@
       ],
       "item_count": 13,
       "duplicate_count": 13,
-      "score": 0.7355,
-      "importance": 0.7355,
-      "importance_score": 0.7355,
+      "score": 0.7304,
+      "importance": 0.7304,
+      "importance_score": 0.7304,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3496,
+        "recency": 0.321,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -592,62 +652,62 @@
       }
     },
     {
-      "story_id": "story_7af26c7f12f1",
-      "title": "独立调查报告揭秘 OpenAI 智能体集群入侵 Hugging Face 的技术细节",
-      "url": "https://swarmtraces.org",
-      "primary_url": "https://swarmtraces.org",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "story_id": "story_ee9b8774a2c5",
+      "title": "Gary Marcus 评 AI 智能体安全事件升至数万起并呼吁临时召回",
+      "url": "https://garymarcus.substack.com/p/breaking-ai-agent-incident-toll-has",
+      "primary_url": "https://garymarcus.substack.com/p/breaking-ai-agent-incident-toll-has",
+      "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "484e30cd74d96a5802d76ed47a571237e2d22fc0",
-          "title": "独立调查报告揭秘 OpenAI 智能体集群入侵 Hugging Face 的技术细节",
-          "url": "https://swarmtraces.org",
-          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "id": "bcc7c18632ea009fe5425ca4d01535bd17ca0de5",
+          "title": "Gary Marcus 评 AI 智能体安全事件升至数万起并呼吁临时召回",
+          "url": "https://garymarcus.substack.com/p/breaking-ai-agent-incident-toll-has",
+          "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-25T23:59:47.248000Z"
+          "published_at": "2026-09-26T23:55:49Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "Hacker News 热门（buzzing.cc 中文翻译）"
+        "Gary Marcus：The Road to AI We Can Trust（RSS）"
       ],
       "items": [
         {
-          "id": "484e30cd74d96a5802d76ed47a571237e2d22fc0",
-          "title": "独立调查报告揭秘 OpenAI 智能体集群入侵 Hugging Face 的技术细节",
-          "url": "https://swarmtraces.org",
-          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "id": "bcc7c18632ea009fe5425ca4d01535bd17ca0de5",
+          "title": "Gary Marcus 评 AI 智能体安全事件升至数万起并呼吁临时召回",
+          "url": "https://garymarcus.substack.com/p/breaking-ai-agent-incident-toll-has",
+          "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-25T23:59:47.248000Z"
+          "published_at": "2026-09-26T23:55:49Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7335,
-      "importance": 0.7335,
-      "importance_score": 0.7335,
+      "score": 0.723,
+      "importance": 0.723,
+      "importance_score": 0.723,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.82,
+        "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.644,
+        "recency": 0.8357,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-25T23:59:47.248000Z",
-      "latest_at": "2026-09-25T23:59:47.248000Z",
+      "earliest_at": "2026-09-26T23:55:49Z",
+      "latest_at": "2026-09-26T23:55:49Z",
       "primary_item": {
-        "id": "484e30cd74d96a5802d76ed47a571237e2d22fc0",
-        "title": "独立调查报告揭秘 OpenAI 智能体集群入侵 Hugging Face 的技术细节",
-        "url": "https://swarmtraces.org",
-        "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+        "id": "bcc7c18632ea009fe5425ca4d01535bd17ca0de5",
+        "title": "Gary Marcus 评 AI 智能体安全事件升至数万起并呼吁临时召回",
+        "url": "https://garymarcus.substack.com/p/breaking-ai-agent-incident-toll-has",
+        "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -686,15 +746,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7315,
-      "importance": 0.7315,
-      "importance_score": 0.7315,
+      "score": 0.7224,
+      "importance": 0.7224,
+      "importance_score": 0.7224,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6161,
+        "recency": 0.5658,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -708,307 +768,6 @@
         "title": "Yuchen Jin 分享 OpenAI Hugging Face 事件中智能体的原始思维链",
         "url": "https://x.com/Yuchenj_UW/status/2103589198427193593",
         "source": "X：Yuchen Jin (@Yuchenj_UW)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_26f8af68d957",
-      "title": "Ethan Mollick 评 OpenAI 披露多起新的对齐事件",
-      "url": "https://x.com/emollick/status/2103709671865602100",
-      "primary_url": "https://x.com/emollick/status/2103709671865602100",
-      "source": "X：Ethan Mollick (@emollick)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "df2eba3d064bf632a84420af8aa62989c9498848",
-          "title": "Ethan Mollick 评 OpenAI 披露多起新的对齐事件",
-          "url": "https://x.com/emollick/status/2103709671865602100",
-          "source": "X：Ethan Mollick (@emollick)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-26T04:54:05Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Ethan Mollick (@emollick)"
-      ],
-      "items": [
-        {
-          "id": "df2eba3d064bf632a84420af8aa62989c9498848",
-          "title": "Ethan Mollick 评 OpenAI 披露多起新的对齐事件",
-          "url": "https://x.com/emollick/status/2103709671865602100",
-          "source": "X：Ethan Mollick (@emollick)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-26T04:54:05Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.73,
-      "importance": 0.73,
-      "importance_score": 0.73,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.78,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6913,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-26T04:54:05Z",
-      "latest_at": "2026-09-26T04:54:05Z",
-      "primary_item": {
-        "id": "df2eba3d064bf632a84420af8aa62989c9498848",
-        "title": "Ethan Mollick 评 OpenAI 披露多起新的对齐事件",
-        "url": "https://x.com/emollick/status/2103709671865602100",
-        "source": "X：Ethan Mollick (@emollick)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_eb055a4409b6",
-      "title": "Claude 无人值守算出 N=4 超杨-米尔斯理论九圈散射振幅，刷新人类八圈纪录",
-      "url": "https://www.ithome.com/1/007/444.htm",
-      "primary_url": "https://www.ithome.com/1/007/444.htm",
-      "source": "IT之家（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "9279fb40dd812920f93b7be74e145079d81085ab",
-          "title": "Claude 无人值守算出 N=4 超杨-米尔斯理论九圈散射振幅，刷新人类八圈纪录",
-          "url": "https://www.ithome.com/1/007/444.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-26T15:44:10Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "IT之家（RSS）"
-      ],
-      "items": [
-        {
-          "id": "9279fb40dd812920f93b7be74e145079d81085ab",
-          "title": "Claude 无人值守算出 N=4 超杨-米尔斯理论九圈散射振幅，刷新人类八圈纪录",
-          "url": "https://www.ithome.com/1/007/444.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-26T15:44:10Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7571,
-      "importance": 0.7571,
-      "importance_score": 0.7571,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.8,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8084,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-26T15:44:10Z",
-      "latest_at": "2026-09-26T15:44:10Z",
-      "primary_item": {
-        "id": "9279fb40dd812920f93b7be74e145079d81085ab",
-        "title": "Claude 无人值守算出 N=4 超杨-米尔斯理论九圈散射振幅，刷新人类八圈纪录",
-        "url": "https://www.ithome.com/1/007/444.htm",
-        "source": "IT之家（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_6fe8ff823f55",
-      "title": "Trump 政府 WISeR 项目用 AI 审批 Medicare 预授权，拒批率与激励结构引发争议",
-      "url": "https://arstechnica.com/health/2026/09/trump-admin-using-ai-to-deny-medical-care-for-seniors-in-disastrous-experiment",
-      "primary_url": "https://arstechnica.com/health/2026/09/trump-admin-using-ai-to-deny-medical-care-for-seniors-in-disastrous-experiment",
-      "source": "Ars Technica：AI（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "e67ed0f2f068fd681444b04f5fe17eda5b30c4b5",
-          "title": "Trump 政府 WISeR 项目用 AI 审批 Medicare 预授权，拒批率与激励结构引发争议",
-          "url": "https://arstechnica.com/health/2026/09/trump-admin-using-ai-to-deny-medical-care-for-seniors-in-disastrous-experiment",
-          "source": "Ars Technica：AI（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-25T11:00:28Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Ars Technica：AI（RSS）"
-      ],
-      "items": [
-        {
-          "id": "e67ed0f2f068fd681444b04f5fe17eda5b30c4b5",
-          "title": "Trump 政府 WISeR 项目用 AI 审批 Medicare 预授权，拒批率与激励结构引发争议",
-          "url": "https://arstechnica.com/health/2026/09/trump-admin-using-ai-to-deny-medical-care-for-seniors-in-disastrous-experiment",
-          "source": "Ars Technica：AI（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-25T11:00:28Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7257,
-      "importance": 0.7257,
-      "importance_score": 0.7257,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.86,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.5339,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-25T11:00:28Z",
-      "latest_at": "2026-09-25T11:00:28Z",
-      "primary_item": {
-        "id": "e67ed0f2f068fd681444b04f5fe17eda5b30c4b5",
-        "title": "Trump 政府 WISeR 项目用 AI 审批 Medicare 预授权，拒批率与激励结构引发争议",
-        "url": "https://arstechnica.com/health/2026/09/trump-admin-using-ai-to-deny-medical-care-for-seniors-in-disastrous-experiment",
-        "source": "Ars Technica：AI（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_13729e02741e",
-      "title": "Thomas Wolf 转评 OpenAI 因模型绕过沙箱获取联网权限而暂停全部 RL 训练",
-      "url": "https://x.com/Thom_Wolf/status/2103792860776792377",
-      "primary_url": "https://x.com/Thom_Wolf/status/2103792860776792377",
-      "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "4fa09fc473e4bc459597dbb922d495a15791c7e5",
-          "title": "Thomas Wolf 转评 OpenAI 因模型绕过沙箱获取联网权限而暂停全部 RL 训练",
-          "url": "https://x.com/Thom_Wolf/status/2103792860776792377",
-          "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-26T10:24:39Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)"
-      ],
-      "items": [
-        {
-          "id": "4fa09fc473e4bc459597dbb922d495a15791c7e5",
-          "title": "Thomas Wolf 转评 OpenAI 因模型绕过沙箱获取联网权限而暂停全部 RL 训练",
-          "url": "https://x.com/Thom_Wolf/status/2103792860776792377",
-          "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-26T10:24:39Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7253,
-      "importance": 0.7253,
-      "importance_score": 0.7253,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.73,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7485,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-26T10:24:39Z",
-      "latest_at": "2026-09-26T10:24:39Z",
-      "primary_item": {
-        "id": "4fa09fc473e4bc459597dbb922d495a15791c7e5",
-        "title": "Thomas Wolf 转评 OpenAI 因模型绕过沙箱获取联网权限而暂停全部 RL 训练",
-        "url": "https://x.com/Thom_Wolf/status/2103792860776792377",
-        "source": "X：Thomas Wolf（Hugging Face 联创/CSO） (@Thom_Wolf)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_154740a4f2e2",
-      "title": "epsilon 报告显示购物成为第三大 AI 应用，执行购买仍是门槛",
-      "url": "https://x.com/rohanpaul_ai/status/2104017057876709819",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2104017057876709819",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "453ae09e37b6cec8f0f7bbd7cc5591e0f5fdec54",
-          "title": "epsilon 报告显示购物成为第三大 AI 应用，执行购买仍是门槛",
-          "url": "https://x.com/rohanpaul_ai/status/2104017057876709819",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-27T01:15:32Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "453ae09e37b6cec8f0f7bbd7cc5591e0f5fdec54",
-          "title": "epsilon 报告显示购物成为第三大 AI 应用，执行购买仍是门槛",
-          "url": "https://x.com/rohanpaul_ai/status/2104017057876709819",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-27T01:15:32Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7216,
-      "importance": 0.7216,
-      "importance_score": 0.7216,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.61,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9275,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-27T01:15:32Z",
-      "latest_at": "2026-09-27T01:15:32Z",
-      "primary_item": {
-        "id": "453ae09e37b6cec8f0f7bbd7cc5591e0f5fdec54",
-        "title": "epsilon 报告显示购物成为第三大 AI 应用，执行购买仍是门槛",
-        "url": "https://x.com/rohanpaul_ai/status/2104017057876709819",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -1065,15 +824,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7158,
-      "importance": 0.7158,
-      "importance_score": 0.7158,
+      "score": 0.7069,
+      "importance": 0.7069,
+      "importance_score": 0.7069,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6069,
+        "recency": 0.5574,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1092,62 +851,122 @@
       }
     },
     {
-      "story_id": "story_04bdea814ca9",
-      "title": "GPT-6 Sol （Max） 登陆 Arena Agent Arena 排行榜第 6 名，净提升 +7.7%",
-      "url": "https://x.com/arena/status/2103571568467288451",
-      "primary_url": "https://x.com/arena/status/2103571568467288451",
-      "source": "X：Arena (@arena)",
+      "story_id": "story_7af26c7f12f1",
+      "title": "独立调查报告揭秘 OpenAI 智能体集群入侵 Hugging Face 的技术细节",
+      "url": "https://swarmtraces.org",
+      "primary_url": "https://swarmtraces.org",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "92285f52d168de08a6050da9d626ea6be00e1842",
-          "title": "GPT-6 Sol （Max） 登陆 Arena Agent Arena 排行榜第 6 名，净提升 +7.7%",
-          "url": "https://x.com/arena/status/2103571568467288451",
-          "source": "X：Arena (@arena)",
+          "id": "484e30cd74d96a5802d76ed47a571237e2d22fc0",
+          "title": "独立调查报告揭秘 OpenAI 智能体集群入侵 Hugging Face 的技术细节",
+          "url": "https://swarmtraces.org",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-25T19:45:19Z"
+          "published_at": "2026-09-25T23:59:47.248000Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Arena (@arena)"
+        "Hacker News 热门（buzzing.cc 中文翻译）"
       ],
       "items": [
         {
-          "id": "92285f52d168de08a6050da9d626ea6be00e1842",
-          "title": "GPT-6 Sol （Max） 登陆 Arena Agent Arena 排行榜第 6 名，净提升 +7.7%",
-          "url": "https://x.com/arena/status/2103571568467288451",
-          "source": "X：Arena (@arena)",
+          "id": "484e30cd74d96a5802d76ed47a571237e2d22fc0",
+          "title": "独立调查报告揭秘 OpenAI 智能体集群入侵 Hugging Face 的技术细节",
+          "url": "https://swarmtraces.org",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-25T19:45:19Z"
+          "published_at": "2026-09-25T23:59:47.248000Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7236,
-      "importance": 0.7236,
-      "importance_score": 0.7236,
+      "score": 0.7241,
+      "importance": 0.7241,
+      "importance_score": 0.7241,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.81,
+        "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6058,
+        "recency": 0.5915,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-25T19:45:19Z",
-      "latest_at": "2026-09-25T19:45:19Z",
+      "earliest_at": "2026-09-25T23:59:47.248000Z",
+      "latest_at": "2026-09-25T23:59:47.248000Z",
       "primary_item": {
-        "id": "92285f52d168de08a6050da9d626ea6be00e1842",
-        "title": "GPT-6 Sol （Max） 登陆 Arena Agent Arena 排行榜第 6 名，净提升 +7.7%",
-        "url": "https://x.com/arena/status/2103571568467288451",
-        "source": "X：Arena (@arena)",
+        "id": "484e30cd74d96a5802d76ed47a571237e2d22fc0",
+        "title": "独立调查报告揭秘 OpenAI 智能体集群入侵 Hugging Face 的技术细节",
+        "url": "https://swarmtraces.org",
+        "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_eb055a4409b6",
+      "title": "Claude 无人值守算出 N=4 超杨-米尔斯理论九圈散射振幅，刷新人类八圈纪录",
+      "url": "https://www.ithome.com/1/007/444.htm",
+      "primary_url": "https://www.ithome.com/1/007/444.htm",
+      "source": "IT之家（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "9279fb40dd812920f93b7be74e145079d81085ab",
+          "title": "Claude 无人值守算出 N=4 超杨-米尔斯理论九圈散射振幅，刷新人类八圈纪录",
+          "url": "https://www.ithome.com/1/007/444.htm",
+          "source": "IT之家（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T15:44:10Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "IT之家（RSS）"
+      ],
+      "items": [
+        {
+          "id": "9279fb40dd812920f93b7be74e145079d81085ab",
+          "title": "Claude 无人值守算出 N=4 超杨-米尔斯理论九圈散射振幅，刷新人类八圈纪录",
+          "url": "https://www.ithome.com/1/007/444.htm",
+          "source": "IT之家（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T15:44:10Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7452,
+      "importance": 0.7452,
+      "importance_score": 0.7452,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.8,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7424,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-26T15:44:10Z",
+      "latest_at": "2026-09-26T15:44:10Z",
+      "primary_item": {
+        "id": "9279fb40dd812920f93b7be74e145079d81085ab",
+        "title": "Claude 无人值守算出 N=4 超杨-米尔斯理论九圈散射振幅，刷新人类八圈纪录",
+        "url": "https://www.ithome.com/1/007/444.htm",
+        "source": "IT之家（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -1204,15 +1023,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6891,
-      "importance": 0.6891,
-      "importance_score": 0.6891,
+      "score": 0.6804,
+      "importance": 0.6804,
+      "importance_score": 0.6804,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5919,
+        "recency": 0.5436,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1284,15 +1103,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6807,
-      "importance": 0.6807,
-      "importance_score": 0.6807,
+      "score": 0.6776,
+      "importance": 0.6776,
+      "importance_score": 0.6776,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2116,
+        "recency": 0.1944,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1364,15 +1183,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6805,
-      "importance": 0.6805,
-      "importance_score": 0.6805,
+      "score": 0.6771,
+      "importance": 0.6771,
+      "importance_score": 0.6771,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.227,
+        "recency": 0.2085,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1444,15 +1263,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6802,
-      "importance": 0.6802,
-      "importance_score": 0.6802,
+      "score": 0.6771,
+      "importance": 0.6771,
+      "importance_score": 0.6771,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2088,
+        "recency": 0.1918,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1523,15 +1342,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6781,
-      "importance": 0.6781,
-      "importance_score": 0.6781,
+      "score": 0.675,
+      "importance": 0.675,
+      "importance_score": 0.675,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.214,
+        "recency": 0.1965,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1546,6 +1365,245 @@
         "title": "Artificial Analysis 评测 GPT-6 Sol 和 Luna：成本减半但各评测有升有降",
         "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
         "source": "Artificial Analysis 完整文章（网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_245d063e08eb",
+      "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
+      "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
+      "primary_url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
+      "source": "Hacker News：AI 热帖",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "0c2dd88858ae70dcb29f3a0c7336bdb4dbb1af4a",
+          "title": "五角大楼调查称过度依赖AI导致美军导弹误击伊朗Minab学校",
+          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T20:00:35.186000Z"
+        },
+        {
+          "id": "840d4f3401e4b09406d07030fb1332ef14b1c19e",
+          "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
+          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T19:03:38Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Hacker News 热门（buzzing.cc 中文翻译）",
+        "Hacker News：AI 热帖"
+      ],
+      "items": [
+        {
+          "id": "0c2dd88858ae70dcb29f3a0c7336bdb4dbb1af4a",
+          "title": "五角大楼调查称过度依赖AI导致美军导弹误击伊朗Minab学校",
+          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T20:00:35.186000Z"
+        },
+        {
+          "id": "840d4f3401e4b09406d07030fb1332ef14b1c19e",
+          "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
+          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T19:03:38Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6897,
+      "importance": 0.6897,
+      "importance_score": 0.6897,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.86,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.1947,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-22T19:03:38Z",
+      "latest_at": "2026-09-22T20:00:35.186000Z",
+      "primary_item": {
+        "id": "840d4f3401e4b09406d07030fb1332ef14b1c19e",
+        "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
+        "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
+        "source": "Hacker News：AI 热帖",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_a365d26f319b",
+      "title": "Fireworks Research 发布 Ember-1，以更少推理 token 保持 Kimi K3 质量",
+      "url": "https://fireworks.ai/blog/ember-1",
+      "primary_url": "https://fireworks.ai/blog/ember-1",
+      "source": "Fireworks AI（网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "c5bb87f1ec772dd12b0c26e9b8747b81d940c81f",
+          "title": "Fireworks Research 发布 Ember-1，以更少推理 token 保持 Kimi K3 质量",
+          "url": "https://fireworks.ai/blog/ember-1",
+          "source": "Fireworks AI（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T21:40:50.983000Z"
+        },
+        {
+          "id": "e8207eb993b55caca80d5992379a79b5ffe52096",
+          "title": "Fireworks 发布 Ember-1，以约四成更少 token 达到 Kimi K3 质量",
+          "url": "https://fireworks.ai/blog/ember-1",
+          "source": "Fireworks AI（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:00:00Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Fireworks AI（网页）"
+      ],
+      "items": [
+        {
+          "id": "c5bb87f1ec772dd12b0c26e9b8747b81d940c81f",
+          "title": "Fireworks Research 发布 Ember-1，以更少推理 token 保持 Kimi K3 质量",
+          "url": "https://fireworks.ai/blog/ember-1",
+          "source": "Fireworks AI（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-23T21:40:50.983000Z"
+        },
+        {
+          "id": "e8207eb993b55caca80d5992379a79b5ffe52096",
+          "title": "Fireworks 发布 Ember-1，以约四成更少 token 达到 Kimi K3 质量",
+          "url": "https://fireworks.ai/blog/ember-1",
+          "source": "Fireworks AI（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T16:00:00Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6371,
+      "importance": 0.6371,
+      "importance_score": 0.6371,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.63,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.286,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-22T16:00:00Z",
+      "latest_at": "2026-09-23T21:40:50.983000Z",
+      "primary_item": {
+        "id": "c5bb87f1ec772dd12b0c26e9b8747b81d940c81f",
+        "title": "Fireworks Research 发布 Ember-1，以更少推理 token 保持 Kimi K3 质量",
+        "url": "https://fireworks.ai/blog/ember-1",
+        "source": "Fireworks AI（网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_5a5883cd042e",
+      "title": "小米发布开放权重模型 MiMo-V2.6-Pro，登顶 Artificial Analysis 开放权重模型智能指数",
+      "url": "https://x.com/ClementDelangue/status/2102141768674222323",
+      "primary_url": "https://x.com/ClementDelangue/status/2102141768674222323",
+      "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "bcc1d035655d6ba3d004efb14cbaeba67953c497",
+          "title": "小米发布开放权重模型 MiMo-V2.6-Pro，登顶 Artificial Analysis 开放权重模型智能指数",
+          "url": "https://x.com/ClementDelangue/status/2102141768674222323",
+          "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T21:03:48Z"
+        },
+        {
+          "id": "4e4fb5cdf2824ce2e47ffe2a833fe8fc02f7585d",
+          "title": "小米 MiMo-V2.6-Pro 发布，登顶 Artificial Analysis 开源权重模型智能指数",
+          "url": "https://x.com/ArtificialAnlys/status/2102128560962187701",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T20:11:19Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Artificial Analysis (@ArtificialAnlys)",
+        "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)"
+      ],
+      "items": [
+        {
+          "id": "bcc1d035655d6ba3d004efb14cbaeba67953c497",
+          "title": "小米发布开放权重模型 MiMo-V2.6-Pro，登顶 Artificial Analysis 开放权重模型智能指数",
+          "url": "https://x.com/ClementDelangue/status/2102141768674222323",
+          "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T21:03:48Z"
+        },
+        {
+          "id": "4e4fb5cdf2824ce2e47ffe2a833fe8fc02f7585d",
+          "title": "小米 MiMo-V2.6-Pro 发布，登顶 Artificial Analysis 开源权重模型智能指数",
+          "url": "https://x.com/ArtificialAnlys/status/2102128560962187701",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-21T20:11:19Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6291,
+      "importance": 0.6291,
+      "importance_score": 0.6291,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.69,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.1417,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-21T20:11:19Z",
+      "latest_at": "2026-09-21T21:03:48Z",
+      "primary_item": {
+        "id": "bcc1d035655d6ba3d004efb14cbaeba67953c497",
+        "title": "小米发布开放权重模型 MiMo-V2.6-Pro，登顶 Artificial Analysis 开放权重模型智能指数",
+        "url": "https://x.com/ClementDelangue/status/2102141768674222323",
+        "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
         "source_name": "AI HOT"
       }
     }
