@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-27T20:20:39.812216Z",
+  "generated_at": "2026-09-27T23:19:46.165635Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -38,15 +38,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7623,
-      "importance": 0.7623,
-      "importance_score": 0.7623,
+      "score": 0.7567,
+      "importance": 0.7567,
+      "importance_score": 0.7567,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.737,
+        "recency": 0.7059,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -99,21 +99,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7564,
-      "importance": 0.7564,
-      "importance_score": 0.7564,
+      "score": 0.7499,
+      "importance": 0.7499,
+      "importance_score": 0.7499,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8545,
+        "recency": 0.8184,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-27T09:27:15.061000Z",
       "latest_at": "2026-09-27T09:27:15.061000Z",
@@ -160,15 +159,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7458,
-      "importance": 0.7458,
-      "importance_score": 0.7458,
+      "score": 0.7409,
+      "importance": 0.7409,
+      "importance_score": 0.7409,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6458,
+        "recency": 0.6186,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -220,15 +219,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7436,
-      "importance": 0.7436,
-      "importance_score": 0.7436,
+      "score": 0.7364,
+      "importance": 0.7364,
+      "importance_score": 0.7364,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9502,
+        "recency": 0.9102,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -280,15 +279,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7348,
-      "importance": 0.7348,
-      "importance_score": 0.7348,
+      "score": 0.7303,
+      "importance": 0.7303,
+      "importance_score": 0.7303,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.85,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6012,
+        "recency": 0.5758,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -302,66 +301,6 @@
         "title": "OpenAI 暂停最强模型的训练与工具使用，披露智能体利用 DNS 漏洞联网及泄露 GitHub token 等安全事件",
         "url": "https://the-decoder.com/openai-pauses-its-most-capable-models-after-agents-exploit-loopholes-and-leak-data",
         "source": "The Decoder：AI News（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_5e312e5a8d40",
-      "title": "Claude Opus 5.5 （High） 以 1509 分登顶 Arena Text Arena 榜首",
-      "url": "https://x.com/arena/status/2103893011164017018",
-      "primary_url": "https://x.com/arena/status/2103893011164017018",
-      "source": "X：Arena (@arena)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "1640607f31c4a14cd3b66072a037aa8b68ba650e",
-          "title": "Claude Opus 5.5 （High） 以 1509 分登顶 Arena Text Arena 榜首",
-          "url": "https://x.com/arena/status/2103893011164017018",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-26T17:02:36Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Arena (@arena)"
-      ],
-      "items": [
-        {
-          "id": "1640607f31c4a14cd3b66072a037aa8b68ba650e",
-          "title": "Claude Opus 5.5 （High） 以 1509 分登顶 Arena Text Arena 榜首",
-          "url": "https://x.com/arena/status/2103893011164017018",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-26T17:02:36Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.727,
-      "importance": 0.727,
-      "importance_score": 0.727,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.78,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6742,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-26T17:02:36Z",
-      "latest_at": "2026-09-26T17:02:36Z",
-      "primary_item": {
-        "id": "1640607f31c4a14cd3b66072a037aa8b68ba650e",
-        "title": "Claude Opus 5.5 （High） 以 1509 分登顶 Arena Text Arena 榜首",
-        "url": "https://x.com/arena/status/2103893011164017018",
-        "source": "X：Arena (@arena)",
         "source_name": "AI HOT"
       }
     },
@@ -623,15 +562,15 @@
       ],
       "item_count": 13,
       "duplicate_count": 13,
-      "score": 0.7241,
-      "importance": 0.7241,
-      "importance_score": 0.7241,
+      "score": 0.7219,
+      "importance": 0.7219,
+      "importance_score": 0.7219,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2861,
+        "recency": 0.274,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -646,6 +585,66 @@
         "title": "火山引擎对话《后西游记》主创，揭秘首部AI长剧登陆湖南卫视黄金档",
         "url": "https://mp.weixin.qq.com/s?__biz=MzI0NzU1NzI5NQ%3D%3D&mid=2247544696&idx=1&sn=eb490357aa03d3f5655fa9fbe00a0606",
         "source": "公众号：火山引擎",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_5e312e5a8d40",
+      "title": "Claude Opus 5.5 （High） 以 1509 分登顶 Arena Text Arena 榜首",
+      "url": "https://x.com/arena/status/2103893011164017018",
+      "primary_url": "https://x.com/arena/status/2103893011164017018",
+      "source": "X：Arena (@arena)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "1640607f31c4a14cd3b66072a037aa8b68ba650e",
+          "title": "Claude Opus 5.5 （High） 以 1509 分登顶 Arena Text Arena 榜首",
+          "url": "https://x.com/arena/status/2103893011164017018",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T17:02:36Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Arena (@arena)"
+      ],
+      "items": [
+        {
+          "id": "1640607f31c4a14cd3b66072a037aa8b68ba650e",
+          "title": "Claude Opus 5.5 （High） 以 1509 分登顶 Arena Text Arena 榜首",
+          "url": "https://x.com/arena/status/2103893011164017018",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T17:02:36Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7218,
+      "importance": 0.7218,
+      "importance_score": 0.7218,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.78,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.6457,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-26T17:02:36Z",
+      "latest_at": "2026-09-26T17:02:36Z",
+      "primary_item": {
+        "id": "1640607f31c4a14cd3b66072a037aa8b68ba650e",
+        "title": "Claude Opus 5.5 （High） 以 1509 分登顶 Arena Text Arena 榜首",
+        "url": "https://x.com/arena/status/2103893011164017018",
+        "source": "X：Arena (@arena)",
         "source_name": "AI HOT"
       }
     },
@@ -684,15 +683,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7451,
-      "importance": 0.7451,
-      "importance_score": 0.7451,
+      "score": 0.7389,
+      "importance": 0.7389,
+      "importance_score": 0.7389,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8081,
+        "recency": 0.774,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -762,15 +761,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.696,
-      "importance": 0.696,
-      "importance_score": 0.696,
+      "score": 0.6922,
+      "importance": 0.6922,
+      "importance_score": 0.6922,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4967,
+        "recency": 0.4757,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -842,15 +841,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6738,
-      "importance": 0.6738,
-      "importance_score": 0.6738,
+      "score": 0.6725,
+      "importance": 0.6725,
+      "importance_score": 0.6725,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1732,
+        "recency": 0.1659,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -922,15 +921,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6734,
-      "importance": 0.6734,
-      "importance_score": 0.6734,
+      "score": 0.6721,
+      "importance": 0.6721,
+      "importance_score": 0.6721,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1709,
+        "recency": 0.1637,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1002,15 +1001,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.673,
-      "importance": 0.673,
-      "importance_score": 0.673,
+      "score": 0.6716,
+      "importance": 0.6716,
+      "importance_score": 0.6716,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1858,
+        "recency": 0.1779,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1081,15 +1080,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6711,
-      "importance": 0.6711,
-      "importance_score": 0.6711,
+      "score": 0.6698,
+      "importance": 0.6698,
+      "importance_score": 0.6698,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1751,
+        "recency": 0.1677,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1104,66 +1103,6 @@
         "title": "Artificial Analysis 评测 GPT-6 Sol 和 Luna：成本减半但各评测有升有降",
         "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
         "source": "Artificial Analysis 完整文章（网页）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_eb055a4409b6",
-      "title": "Claude 无人值守算出 N=4 超杨-米尔斯理论九圈散射振幅，刷新人类八圈纪录",
-      "url": "https://www.ithome.com/1/007/444.htm",
-      "primary_url": "https://www.ithome.com/1/007/444.htm",
-      "source": "IT之家（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "9279fb40dd812920f93b7be74e145079d81085ab",
-          "title": "Claude 无人值守算出 N=4 超杨-米尔斯理论九圈散射振幅，刷新人类八圈纪录",
-          "url": "https://www.ithome.com/1/007/444.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-26T15:44:10Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "IT之家（RSS）"
-      ],
-      "items": [
-        {
-          "id": "9279fb40dd812920f93b7be74e145079d81085ab",
-          "title": "Claude 无人值守算出 N=4 超杨-米尔斯理论九圈散射振幅，刷新人类八圈纪录",
-          "url": "https://www.ithome.com/1/007/444.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-26T15:44:10Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7307,
-      "importance": 0.7307,
-      "importance_score": 0.7307,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.8,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6616,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-26T15:44:10Z",
-      "latest_at": "2026-09-26T15:44:10Z",
-      "primary_item": {
-        "id": "9279fb40dd812920f93b7be74e145079d81085ab",
-        "title": "Claude 无人值守算出 N=4 超杨-米尔斯理论九圈散射振幅，刷新人类八圈纪录",
-        "url": "https://www.ithome.com/1/007/444.htm",
-        "source": "IT之家（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -1220,15 +1159,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6698,
-      "importance": 0.6698,
-      "importance_score": 0.6698,
+      "score": 0.6661,
+      "importance": 0.6661,
+      "importance_score": 0.6661,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4844,
+        "recency": 0.464,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1243,6 +1182,66 @@
         "title": "Claude 开放插件目录提交门户，Plugins 成为第三方扩展的主要方式",
         "url": "https://claude.com/blog/build-plugins-for-claude",
         "source": "Claude：Blog（网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_eb055a4409b6",
+      "title": "Claude 无人值守算出 N=4 超杨-米尔斯理论九圈散射振幅，刷新人类八圈纪录",
+      "url": "https://www.ithome.com/1/007/444.htm",
+      "primary_url": "https://www.ithome.com/1/007/444.htm",
+      "source": "IT之家（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "9279fb40dd812920f93b7be74e145079d81085ab",
+          "title": "Claude 无人值守算出 N=4 超杨-米尔斯理论九圈散射振幅，刷新人类八圈纪录",
+          "url": "https://www.ithome.com/1/007/444.htm",
+          "source": "IT之家（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T15:44:10Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "IT之家（RSS）"
+      ],
+      "items": [
+        {
+          "id": "9279fb40dd812920f93b7be74e145079d81085ab",
+          "title": "Claude 无人值守算出 N=4 超杨-米尔斯理论九圈散射振幅，刷新人类八圈纪录",
+          "url": "https://www.ithome.com/1/007/444.htm",
+          "source": "IT之家（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-26T15:44:10Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7257,
+      "importance": 0.7257,
+      "importance_score": 0.7257,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.8,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.6337,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-26T15:44:10Z",
+      "latest_at": "2026-09-26T15:44:10Z",
+      "primary_item": {
+        "id": "9279fb40dd812920f93b7be74e145079d81085ab",
+        "title": "Claude 无人值守算出 N=4 超杨-米尔斯理论九圈散射振幅，刷新人类八圈纪录",
+        "url": "https://www.ithome.com/1/007/444.htm",
+        "source": "IT之家（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -1300,15 +1299,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6858,
-      "importance": 0.6858,
-      "importance_score": 0.6858,
+      "score": 0.6845,
+      "importance": 0.6845,
+      "importance_score": 0.6845,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1735,
+        "recency": 0.1662,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1380,15 +1379,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.665,
-      "importance": 0.665,
-      "importance_score": 0.665,
+      "score": 0.6637,
+      "importance": 0.6637,
+      "importance_score": 0.6637,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1746,
+        "recency": 0.1673,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1459,15 +1458,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6315,
-      "importance": 0.6315,
-      "importance_score": 0.6315,
+      "score": 0.6295,
+      "importance": 0.6295,
+      "importance_score": 0.6295,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2549,
+        "recency": 0.2441,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1539,15 +1538,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6263,
-      "importance": 0.6263,
-      "importance_score": 0.6263,
+      "score": 0.6254,
+      "importance": 0.6254,
+      "importance_score": 0.6254,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1263,
+        "recency": 0.121,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1618,15 +1617,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6223,
-      "importance": 0.6223,
-      "importance_score": 0.6223,
+      "score": 0.6222,
+      "importance": 0.6222,
+      "importance_score": 0.6222,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0208,
+        "recency": 0.0199,
         "story_heat": 0.25
       },
       "category": "watch",
