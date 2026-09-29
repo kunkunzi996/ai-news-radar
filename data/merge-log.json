@@ -1,29 +1,8 @@
 {
-  "generated_at": "2026-09-29T15:37:39.551669Z",
+  "generated_at": "2026-09-29T20:38:17.759702Z",
   "merge_strategy": "url_or_title_similarity_v0_6",
-  "total_events": 48,
+  "total_events": 46,
   "events": [
-    {
-      "story_id": "story_5202467a63d8",
-      "item_id": "bab22a283fb034c02ee568c228251621d3f14a30",
-      "merged_into": "story_5202467a63d8",
-      "reason": "title_similarity",
-      "similarity": 0.8852
-    },
-    {
-      "story_id": "story_b5fd1928c34b",
-      "item_id": "4b3e2f673c6f63bf19e76aeb6e8dc792e8309517",
-      "merged_into": "story_b5fd1928c34b",
-      "reason": "canonical_url",
-      "similarity": 1.0
-    },
-    {
-      "story_id": "story_756f440e378b",
-      "item_id": "09b877188140569f2684b3d94522f2dae29dd0c9",
-      "merged_into": "story_756f440e378b",
-      "reason": "title_similarity",
-      "similarity": 1.0
-    },
     {
       "story_id": "story_81cfb8267ca2",
       "item_id": "d3b40eb7ab5cc148b2ea24a5c2cd7a6d39a45b55",
@@ -35,13 +14,6 @@
       "story_id": "story_b121f3ccdf2a",
       "item_id": "69f3afd499479f2465ff757dd0195e7d5354952c",
       "merged_into": "story_b121f3ccdf2a",
-      "reason": "canonical_url",
-      "similarity": 1.0
-    },
-    {
-      "story_id": "story_6cbde97d8260",
-      "item_id": "dee18d72420c66afd72b48c6263be57b51fcd9bb",
-      "merged_into": "story_6cbde97d8260",
       "reason": "canonical_url",
       "similarity": 1.0
     },
@@ -338,6 +310,20 @@
       "merged_into": "story_ab0eb4978b9c",
       "reason": "title_similarity",
       "similarity": 0.9189
+    },
+    {
+      "story_id": "story_db8d73909519",
+      "item_id": "d1ccb29b1b17ff2f6caec1a3e7b5b294d2495b83",
+      "merged_into": "story_db8d73909519",
+      "reason": "title_similarity",
+      "similarity": 0.8814
+    },
+    {
+      "story_id": "story_f1ad162ee5a6",
+      "item_id": "958377f34613049c1d9cbbac6eb063f555cea297",
+      "merged_into": "story_f1ad162ee5a6",
+      "reason": "title_similarity",
+      "similarity": 1.0
     }
   ]
 }
