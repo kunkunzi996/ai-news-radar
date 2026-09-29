@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-09-14T02:30:00Z",
+  "updated_at": "2026-09-29T08:57:08Z",
   "sources": [
     {
       "id": "online_bilibili_13030183",
@@ -599,6 +599,21 @@
       "managed_by": "github_stars",
       "managed_account_id": 284580915,
       "managed_repo_id": 1331707935,
+      "managed_state": "active"
+    },
+    {
+      "id": "online_github_repo_1393965829",
+      "name": "KKKKhazix/AIHOT",
+      "type": "github_release",
+      "enabled": true,
+      "channel": "GitHub Release",
+      "target": "KKKKhazix/AIHOT",
+      "locator": "KKKKhazix/AIHOT",
+      "env": "",
+      "notes": "只追踪 release",
+      "managed_by": "github_stars",
+      "managed_account_id": 284580915,
+      "managed_repo_id": 1393965829,
       "managed_state": "active"
     },
     {
