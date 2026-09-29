@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-28T22:29:07.936529Z",
+  "generated_at": "2026-09-29T02:13:31.054662Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -57,15 +57,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.8232,
-      "importance": 0.8232,
-      "importance_score": 0.8232,
+      "score": 0.8144,
+      "importance": 0.8144,
+      "importance_score": 0.8144,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9369,
+        "recency": 0.8876,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -81,6 +81,208 @@
         "title": "Anthropic 发布 Claude Sonnet 5.5：速度提升 30%+，每任务成本最多降 30%",
         "url": "https://www.anthropic.com/claude-sonnet-5-5",
         "source": "Hacker News：AI 热帖",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_b6574943f04d",
+      "title": "李飞飞宣布 World Labs 并入 AMD，出任执行副总裁兼首席科学家",
+      "url": "https://x.com/drfeifei/status/2104664403681632453",
+      "primary_url": "https://x.com/drfeifei/status/2104664403681632453",
+      "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "6bcd7aeaee889c6476b5f41a42fcb9717e861233",
+          "title": "Fei-Fei Li 谈空间智能与 World Labs",
+          "url": "https://x.com/drfeifei/status/2104664403681632453",
+          "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T20:07:51Z"
+        },
+        {
+          "id": "5259641aa1ebda417008afc1e93bb9ebff128d1d",
+          "title": "李飞飞宣布 World Labs 并入 AMD，出任执行副总裁兼首席科学家",
+          "url": "https://x.com/drfeifei/status/2104664403681632453",
+          "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T20:07:51Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Fei-Fei Li (@drfeifei, World Labs)"
+      ],
+      "items": [
+        {
+          "id": "6bcd7aeaee889c6476b5f41a42fcb9717e861233",
+          "title": "Fei-Fei Li 谈空间智能与 World Labs",
+          "url": "https://x.com/drfeifei/status/2104664403681632453",
+          "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T20:07:51Z"
+        },
+        {
+          "id": "5259641aa1ebda417008afc1e93bb9ebff128d1d",
+          "title": "李飞飞宣布 World Labs 并入 AMD，出任执行副总裁兼首席科学家",
+          "url": "https://x.com/drfeifei/status/2104664403681632453",
+          "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T20:07:51Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.8044,
+      "importance": 0.8044,
+      "importance_score": 0.8044,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.81,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9158,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-28T20:07:51Z",
+      "latest_at": "2026-09-28T20:07:51Z",
+      "primary_item": {
+        "id": "5259641aa1ebda417008afc1e93bb9ebff128d1d",
+        "title": "李飞飞宣布 World Labs 并入 AMD，出任执行副总裁兼首席科学家",
+        "url": "https://x.com/drfeifei/status/2104664403681632453",
+        "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_0483fe5c4cc6",
+      "title": "Anthropic IPO 招股书曝光：2025 年净亏损 420 亿美元，估值有望突破 2 万亿美元",
+      "url": "https://www.ithome.com/1/008/082.htm",
+      "primary_url": "https://www.ithome.com/1/008/082.htm",
+      "source": "IT之家（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "0724006b212a0c31928122f761f870166f2a0407",
+          "title": "Anthropic IPO 招股书曝光：2025 年净亏损 420 亿美元，估值有望突破 2 万亿美元",
+          "url": "https://www.ithome.com/1/008/082.htm",
+          "source": "IT之家（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T23:40:42Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "IT之家（RSS）"
+      ],
+      "items": [
+        {
+          "id": "0724006b212a0c31928122f761f870166f2a0407",
+          "title": "Anthropic IPO 招股书曝光：2025 年净亏损 420 亿美元，估值有望突破 2 万亿美元",
+          "url": "https://www.ithome.com/1/008/082.htm",
+          "source": "IT之家（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T23:40:42Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.8031,
+      "importance": 0.8031,
+      "importance_score": 0.8031,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.86,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9639,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-28T23:40:42Z",
+      "latest_at": "2026-09-28T23:40:42Z",
+      "primary_item": {
+        "id": "0724006b212a0c31928122f761f870166f2a0407",
+        "title": "Anthropic IPO 招股书曝光：2025 年净亏损 420 亿美元，估值有望突破 2 万亿美元",
+        "url": "https://www.ithome.com/1/008/082.htm",
+        "source": "IT之家（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_cfe8e900401f",
+      "title": "OpenAI 披露模型在训练评估中未经授权访问澳大利亚政府网站事件及整改措施",
+      "url": "https://openai.com/index/how-we-will-do-better-for-australia",
+      "primary_url": "https://openai.com/index/how-we-will-do-better-for-australia",
+      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "b4460e4623f48639fbd8bd2364e8b15ab5fd0cae",
+          "title": "OpenAI 披露模型在训练评估中未经授权访问澳大利亚政府网站事件及整改措施",
+          "url": "https://openai.com/index/how-we-will-do-better-for-australia",
+          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T01:00:00Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "OpenAI：官网动态（RSS · 排除企业/客户案例）"
+      ],
+      "items": [
+        {
+          "id": "b4460e4623f48639fbd8bd2364e8b15ab5fd0cae",
+          "title": "OpenAI 披露模型在训练评估中未经授权访问澳大利亚政府网站事件及整改措施",
+          "url": "https://openai.com/index/how-we-will-do-better-for-australia",
+          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T01:00:00Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.8004,
+      "importance": 0.8004,
+      "importance_score": 0.8004,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.84,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9825,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-29T01:00:00Z",
+      "latest_at": "2026-09-29T01:00:00Z",
+      "primary_item": {
+        "id": "b4460e4623f48639fbd8bd2364e8b15ab5fd0cae",
+        "title": "OpenAI 披露模型在训练评估中未经授权访问澳大利亚政府网站事件及整改措施",
+        "url": "https://openai.com/index/how-we-will-do-better-for-australia",
+        "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
         "source_name": "AI HOT"
       }
     },
@@ -138,15 +340,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.8038,
-      "importance": 0.8038,
-      "importance_score": 0.8038,
+      "score": 0.7948,
+      "importance": 0.7948,
+      "importance_score": 0.7948,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9455,
+        "recency": 0.8958,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -200,15 +402,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7989,
-      "importance": 0.7989,
-      "importance_score": 0.7989,
+      "score": 0.7897,
+      "importance": 0.7897,
+      "importance_score": 0.7897,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.84,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.974,
+        "recency": 0.9228,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -261,15 +463,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7951,
-      "importance": 0.7951,
-      "importance_score": 0.7951,
+      "score": 0.7858,
+      "importance": 0.7858,
+      "importance_score": 0.7858,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9862,
+        "recency": 0.9344,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -341,15 +543,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7936,
-      "importance": 0.7936,
-      "importance_score": 0.7936,
+      "score": 0.7848,
+      "importance": 0.7848,
+      "importance_score": 0.7848,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9391,
+        "recency": 0.8897,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -365,6 +567,67 @@
         "title": "Anthropic 发布 Claude Sonnet 5.5：比 Sonnet 5 快超 30% 且成本最多降 30%",
         "url": "https://x.com/dongxi_nlp/status/2104634260934054237",
         "source": "X：马东锡 NLP (@dongxi_nlp)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_d1837aae3f62",
+      "title": "Hugging Face CEO 祝贺 Lisa Su 与李飞飞，World Labs 加入 AMD",
+      "url": "https://x.com/ClementDelangue/status/2104731591054660040",
+      "primary_url": "https://x.com/ClementDelangue/status/2104731591054660040",
+      "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "37eb771650ca49374983284ba27269566300cb85",
+          "title": "Hugging Face CEO 祝贺 Lisa Su 与李飞飞，World Labs 加入 AMD",
+          "url": "https://x.com/ClementDelangue/status/2104731591054660040",
+          "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T00:34:49Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)"
+      ],
+      "items": [
+        {
+          "id": "37eb771650ca49374983284ba27269566300cb85",
+          "title": "Hugging Face CEO 祝贺 Lisa Su 与李飞飞，World Labs 加入 AMD",
+          "url": "https://x.com/ClementDelangue/status/2104731591054660040",
+          "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T00:34:49Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7844,
+      "importance": 0.7844,
+      "importance_score": 0.7844,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.79,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9765,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-29T00:34:49Z",
+      "latest_at": "2026-09-29T00:34:49Z",
+      "primary_item": {
+        "id": "37eb771650ca49374983284ba27269566300cb85",
+        "title": "Hugging Face CEO 祝贺 Lisa Su 与李飞飞，World Labs 加入 AMD",
+        "url": "https://x.com/ClementDelangue/status/2104731591054660040",
+        "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
         "source_name": "AI HOT"
       }
     },
@@ -403,15 +666,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7921,
-      "importance": 0.7921,
-      "importance_score": 0.7921,
+      "score": 0.7831,
+      "importance": 0.7831,
+      "importance_score": 0.7831,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9528,
+        "recency": 0.9027,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -464,15 +727,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7876,
-      "importance": 0.7876,
-      "importance_score": 0.7876,
+      "score": 0.7787,
+      "importance": 0.7787,
+      "importance_score": 0.7787,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9444,
+        "recency": 0.8948,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -525,15 +788,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7842,
-      "importance": 0.7842,
-      "importance_score": 0.7842,
+      "score": 0.7764,
+      "importance": 0.7764,
+      "importance_score": 0.7764,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.88,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8255,
+        "recency": 0.7821,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -548,6 +811,67 @@
         "title": "英伟达联合超100家伙伴推出开放代理安全平台",
         "url": "https://x.com/JensenHuang/status/2104499465055023424",
         "source": "X：Jensen Huang (@JensenHuang)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_5062bf2ad858",
+      "title": "据 WSJ 报道 OpenAI 因安全顾虑不发布 GPT-6.1 Astra",
+      "url": "https://x.com/testingcatalog/status/2104729386108805345",
+      "primary_url": "https://x.com/testingcatalog/status/2104729386108805345",
+      "source": "X：Testing Catalog (@testingcatalog)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "0c072e8e64ced64668eb3115771ebf7fa9cd9a2a",
+          "title": "据 WSJ 报道 OpenAI 因安全顾虑不发布 GPT-6.1 Astra",
+          "url": "https://x.com/testingcatalog/status/2104729386108805345",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T00:26:04Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Testing Catalog (@testingcatalog)"
+      ],
+      "items": [
+        {
+          "id": "0c072e8e64ced64668eb3115771ebf7fa9cd9a2a",
+          "title": "据 WSJ 报道 OpenAI 因安全顾虑不发布 GPT-6.1 Astra",
+          "url": "https://x.com/testingcatalog/status/2104729386108805345",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T00:26:04Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.775,
+      "importance": 0.775,
+      "importance_score": 0.775,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.76,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9745,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-29T00:26:04Z",
+      "latest_at": "2026-09-29T00:26:04Z",
+      "primary_item": {
+        "id": "0c072e8e64ced64668eb3115771ebf7fa9cd9a2a",
+        "title": "据 WSJ 报道 OpenAI 因安全顾虑不发布 GPT-6.1 Astra",
+        "url": "https://x.com/testingcatalog/status/2104729386108805345",
+        "source": "X：Testing Catalog (@testingcatalog)",
         "source_name": "AI HOT"
       }
     },
@@ -586,15 +910,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7834,
-      "importance": 0.7834,
-      "importance_score": 0.7834,
+      "score": 0.7745,
+      "importance": 0.7745,
+      "importance_score": 0.7745,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9378,
+        "recency": 0.8885,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -647,15 +971,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7781,
-      "importance": 0.7781,
-      "importance_score": 0.7781,
+      "score": 0.7689,
+      "importance": 0.7689,
+      "importance_score": 0.7689,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9751,
+        "recency": 0.9238,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -708,15 +1032,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7775,
-      "importance": 0.7775,
-      "importance_score": 0.7775,
+      "score": 0.7686,
+      "importance": 0.7686,
+      "importance_score": 0.7686,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9382,
+        "recency": 0.8889,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -769,15 +1093,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7766,
-      "importance": 0.7766,
-      "importance_score": 0.7766,
+      "score": 0.7671,
+      "importance": 0.7671,
+      "importance_score": 0.7671,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 1.0,
+        "recency": 0.9474,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -830,15 +1154,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7712,
-      "importance": 0.7712,
-      "importance_score": 0.7712,
+      "score": 0.7625,
+      "importance": 0.7625,
+      "importance_score": 0.7625,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9201,
+        "recency": 0.8718,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -891,15 +1215,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.801,
-      "importance": 0.801,
-      "importance_score": 0.801,
+      "score": 0.7918,
+      "importance": 0.7918,
+      "importance_score": 0.7918,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.85,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.969,
+        "recency": 0.918,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -952,15 +1276,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7677,
-      "importance": 0.7677,
-      "importance_score": 0.7677,
+      "score": 0.7585,
+      "importance": 0.7585,
+      "importance_score": 0.7585,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9671,
+        "recency": 0.9163,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -975,311 +1299,6 @@
         "title": "Nathan Lambert 批评 ModelScope 在中国以外几乎不可用",
         "url": "https://x.com/natolambert/status/2104664980360741212",
         "source": "X：Nathan Lambert (@natolambert)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_b88187e1c6aa",
-      "title": "英伟达发布AI智能体安全平台，含实时隔离异常智能体的Sentry系统",
-      "url": "https://www.ithome.com/1/007/937.htm",
-      "primary_url": "https://www.ithome.com/1/007/937.htm",
-      "source": "IT之家（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "46fc85e0b9e4a6b82565020330053d9a85eff4f2",
-          "title": "英伟达发布AI智能体安全平台，含实时隔离异常智能体的Sentry系统",
-          "url": "https://www.ithome.com/1/007/937.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T09:33:59Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "IT之家（RSS）"
-      ],
-      "items": [
-        {
-          "id": "46fc85e0b9e4a6b82565020330053d9a85eff4f2",
-          "title": "英伟达发布AI智能体安全平台，含实时隔离异常智能体的Sentry系统",
-          "url": "https://www.ithome.com/1/007/937.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T09:33:59Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.767,
-      "importance": 0.767,
-      "importance_score": 0.767,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.82,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8298,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-28T09:33:59Z",
-      "latest_at": "2026-09-28T09:33:59Z",
-      "primary_item": {
-        "id": "46fc85e0b9e4a6b82565020330053d9a85eff4f2",
-        "title": "英伟达发布AI智能体安全平台，含实时隔离异常智能体的Sentry系统",
-        "url": "https://www.ithome.com/1/007/937.htm",
-        "source": "IT之家（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_ed0f3a2b8d68",
-      "title": "World Labs 宣布加入 AMD",
-      "url": "https://x.com/theworldlabs/status/2104665621120311465",
-      "primary_url": "https://x.com/theworldlabs/status/2104665621120311465",
-      "source": "X：World Labs (@theworldlabs)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "2d620f4754bc3a3a6c2fff275ff9810474f4db7e",
-          "title": "World Labs 宣布加入 AMD",
-          "url": "https://x.com/theworldlabs/status/2104665621120311465",
-          "source": "X：World Labs (@theworldlabs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T20:12:41Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：World Labs (@theworldlabs)"
-      ],
-      "items": [
-        {
-          "id": "2d620f4754bc3a3a6c2fff275ff9810474f4db7e",
-          "title": "World Labs 宣布加入 AMD",
-          "url": "https://x.com/theworldlabs/status/2104665621120311465",
-          "source": "X：World Labs (@theworldlabs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T20:12:41Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7648,
-      "importance": 0.7648,
-      "importance_score": 0.7648,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.73,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9677,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-28T20:12:41Z",
-      "latest_at": "2026-09-28T20:12:41Z",
-      "primary_item": {
-        "id": "2d620f4754bc3a3a6c2fff275ff9810474f4db7e",
-        "title": "World Labs 宣布加入 AMD",
-        "url": "https://x.com/theworldlabs/status/2104665621120311465",
-        "source": "X：World Labs (@theworldlabs)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_897b19d3754f",
-      "title": "Claude Sonnet 5.5 发布，官方附上开发使用指南",
-      "url": "https://x.com/ClaudeDevs/status/2104687805876367793",
-      "primary_url": "https://x.com/ClaudeDevs/status/2104687805876367793",
-      "source": "X：Claude Devs (@ClaudeDevs)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "65045ac1ec8ea82c14a5f28060d4af86656696dd",
-          "title": "Claude Sonnet 5.5 发布，官方附上开发使用指南",
-          "url": "https://x.com/ClaudeDevs/status/2104687805876367793",
-          "source": "X：Claude Devs (@ClaudeDevs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T21:40:50Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Claude Devs (@ClaudeDevs)"
-      ],
-      "items": [
-        {
-          "id": "65045ac1ec8ea82c14a5f28060d4af86656696dd",
-          "title": "Claude Sonnet 5.5 发布，官方附上开发使用指南",
-          "url": "https://x.com/ClaudeDevs/status/2104687805876367793",
-          "source": "X：Claude Devs (@ClaudeDevs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T21:40:50Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7895,
-      "importance": 0.7895,
-      "importance_score": 0.7895,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.8,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9884,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-28T21:40:50Z",
-      "latest_at": "2026-09-28T21:40:50Z",
-      "primary_item": {
-        "id": "65045ac1ec8ea82c14a5f28060d4af86656696dd",
-        "title": "Claude Sonnet 5.5 发布，官方附上开发使用指南",
-        "url": "https://x.com/ClaudeDevs/status/2104687805876367793",
-        "source": "X：Claude Devs (@ClaudeDevs)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_6d8f7f549467",
-      "title": "GitHub 安全团队如何用开源 AI 安全 Agent 找出 24 个 Android 漏洞",
-      "url": "https://github.blog/security/how-we-found-24-android-vulnerabilities-using-our-open-source-ai-security-agent",
-      "primary_url": "https://github.blog/security/how-we-found-24-android-vulnerabilities-using-our-open-source-ai-security-agent",
-      "source": "GitHub Blog",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "7f80a47f4884b2e81c718fb3b46d7243ee5107bd",
-          "title": "GitHub 安全团队如何用开源 AI 安全 Agent 找出 24 个 Android 漏洞",
-          "url": "https://github.blog/security/how-we-found-24-android-vulnerabilities-using-our-open-source-ai-security-agent",
-          "source": "GitHub Blog",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T19:00:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "GitHub Blog"
-      ],
-      "items": [
-        {
-          "id": "7f80a47f4884b2e81c718fb3b46d7243ee5107bd",
-          "title": "GitHub 安全团队如何用开源 AI 安全 Agent 找出 24 个 Android 漏洞",
-          "url": "https://github.blog/security/how-we-found-24-android-vulnerabilities-using-our-open-source-ai-security-agent",
-          "source": "GitHub Blog",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T19:00:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7558,
-      "importance": 0.7558,
-      "importance_score": 0.7558,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9509,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-28T19:00:00Z",
-      "latest_at": "2026-09-28T19:00:00Z",
-      "primary_item": {
-        "id": "7f80a47f4884b2e81c718fb3b46d7243ee5107bd",
-        "title": "GitHub 安全团队如何用开源 AI 安全 Agent 找出 24 个 Android 漏洞",
-        "url": "https://github.blog/security/how-we-found-24-android-vulnerabilities-using-our-open-source-ai-security-agent",
-        "source": "GitHub Blog",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_c4f4fba90aab",
-      "title": "北京或批准部分NVIDIA新款工作站芯片采购，阿里、字节拟购百万颗",
-      "url": "https://x.com/thexpin/status/2104508227451027712",
-      "primary_url": "https://x.com/thexpin/status/2104508227451027712",
-      "source": "X：X.PIN (@thexpin)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "3877773b71cf936e256b42874a5c47327929d03e",
-          "title": "北京或批准部分NVIDIA新款工作站芯片采购，阿里、字节拟购百万颗",
-          "url": "https://x.com/thexpin/status/2104508227451027712",
-          "source": "X：X.PIN (@thexpin)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T09:47:15Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：X.PIN (@thexpin)"
-      ],
-      "items": [
-        {
-          "id": "3877773b71cf936e256b42874a5c47327929d03e",
-          "title": "北京或批准部分NVIDIA新款工作站芯片采购，阿里、字节拟购百万颗",
-          "url": "https://x.com/thexpin/status/2104508227451027712",
-          "source": "X：X.PIN (@thexpin)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T09:47:15Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7554,
-      "importance": 0.7554,
-      "importance_score": 0.7554,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.78,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8325,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-28T09:47:15Z",
-      "latest_at": "2026-09-28T09:47:15Z",
-      "primary_item": {
-        "id": "3877773b71cf936e256b42874a5c47327929d03e",
-        "title": "北京或批准部分NVIDIA新款工作站芯片采购，阿里、字节拟购百万颗",
-        "url": "https://x.com/thexpin/status/2104508227451027712",
-        "source": "X：X.PIN (@thexpin)",
         "source_name": "AI HOT"
       }
     }
