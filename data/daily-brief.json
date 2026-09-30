@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-30T12:21:12.048586Z",
+  "generated_at": "2026-09-30T18:05:44.634097Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -12,6 +12,15 @@
       "source_name": "AI HOT",
       "sources": [
         {
+          "id": "df28f7ee5836406fd2d24b316e142a9576d79dce",
+          "title": "蚂蚁百灵发布 Ling-3.1-flash，面向真实世界长任务升级",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkyODk2MDQwNw%3D%3D&mid=2247488041&idx=1&sn=e895cef2129ff2a96598d78b5a45c17b&chksm=c3a0565f2837a278a1a2f05d010189577c4e94fb18ccdd5e25001862b11c205fcd792160b382&scene=126&sessionid=1790772500",
+          "source": "公众号：蚂蚁百灵（Ling）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T12:30:49Z"
+        },
+        {
           "id": "74231800615e7af33f93162bbce316b685871dd5",
           "title": "DeepSeek 开源面向华为昇腾平台的基础设施组件",
           "url": "https://mp.weixin.qq.com/s?__biz=Mzk0OTYwNzc3NQ%3D%3D&mid=2247485843&idx=1&sn=565102c3642d88e814331390bf62d276&chksm=c2b41a7a4ae29752ec9555ae3de574d2c8f60b42aaf1db0aaf4511c38f174d7abc860a8ee56c&scene=126&sessionid=1790739034",
@@ -120,7 +129,7 @@
           "published_at": "2026-09-17T00:09:06Z"
         }
       ],
-      "source_count": 12,
+      "source_count": 13,
       "source_names": [
         "公众号：DeepSeek（深度求索）",
         "公众号：小米 MiMo",
@@ -132,6 +141,15 @@
       ],
       "items": [
         {
+          "id": "df28f7ee5836406fd2d24b316e142a9576d79dce",
+          "title": "蚂蚁百灵发布 Ling-3.1-flash，面向真实世界长任务升级",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkyODk2MDQwNw%3D%3D&mid=2247488041&idx=1&sn=e895cef2129ff2a96598d78b5a45c17b&chksm=c3a0565f2837a278a1a2f05d010189577c4e94fb18ccdd5e25001862b11c205fcd792160b382&scene=126&sessionid=1790772500",
+          "source": "公众号：蚂蚁百灵（Ling）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T12:30:49Z"
+        },
+        {
           "id": "74231800615e7af33f93162bbce316b685871dd5",
           "title": "DeepSeek 开源面向华为昇腾平台的基础设施组件",
           "url": "https://mp.weixin.qq.com/s?__biz=Mzk0OTYwNzc3NQ%3D%3D&mid=2247485843&idx=1&sn=565102c3642d88e814331390bf62d276&chksm=c2b41a7a4ae29752ec9555ae3de574d2c8f60b42aaf1db0aaf4511c38f174d7abc860a8ee56c&scene=126&sessionid=1790739034",
@@ -240,17 +258,17 @@
           "published_at": "2026-09-17T00:09:06Z"
         }
       ],
-      "item_count": 12,
-      "duplicate_count": 12,
-      "score": 0.8545,
-      "importance": 0.8545,
-      "importance_score": 0.8545,
+      "item_count": 13,
+      "duplicate_count": 13,
+      "score": 0.8429,
+      "importance": 0.8429,
+      "importance_score": 0.8429,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8104,
+        "recency": 0.7459,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -260,12 +278,73 @@
         "high_importance"
       ],
       "earliest_at": "2026-09-17T00:09:06Z",
-      "latest_at": "2026-09-30T02:01:00Z",
+      "latest_at": "2026-09-30T12:30:49Z",
       "primary_item": {
         "id": "411faf8e50045571da0e4d2971e617fe3c7601ea",
         "title": "OpenAI DevDay 2026 发布 Dots、GPT-6.1 Sol、500美元订阅等一揽子更新",
         "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686841&idx=1&sn=630c0dc22de47c9c2f58bd5253a91a9a&chksm=f1e33576f80f214c7290b1545cc8bfbb32ac24c3144cd141b7c2dd7cdaaf71f44d3cf319db8b&scene=126&sessionid=1790722837",
         "source": "公众号：数字生命卡兹克",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_6eb18f6ff1c2",
+      "title": "FTC 以消费者保护为由对 OpenAI、Anthropic 等 AI 实验室启动全面调查",
+      "url": "https://the-decoder.com/ftc-launches-sweeping-probe-into-openai-anthropic-and-other-ai-labs-over-consumer-protection-concerns",
+      "primary_url": "https://the-decoder.com/ftc-launches-sweeping-probe-into-openai-anthropic-and-other-ai-labs-over-consumer-protection-concerns",
+      "source": "The Decoder：AI News（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "642e8da577619291348e2e74443467b30fe57f10",
+          "title": "FTC 以消费者保护为由对 OpenAI、Anthropic 等 AI 实验室启动全面调查",
+          "url": "https://the-decoder.com/ftc-launches-sweeping-probe-into-openai-anthropic-and-other-ai-labs-over-consumer-protection-concerns",
+          "source": "The Decoder：AI News（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T16:20:04Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "The Decoder：AI News（RSS）"
+      ],
+      "items": [
+        {
+          "id": "642e8da577619291348e2e74443467b30fe57f10",
+          "title": "FTC 以消费者保护为由对 OpenAI、Anthropic 等 AI 实验室启动全面调查",
+          "url": "https://the-decoder.com/ftc-launches-sweeping-probe-into-openai-anthropic-and-other-ai-labs-over-consumer-protection-concerns",
+          "source": "The Decoder：AI News（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T16:20:04Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7931,
+      "importance": 0.7931,
+      "importance_score": 0.7931,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.82,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9749,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-30T16:20:04Z",
+      "latest_at": "2026-09-30T16:20:04Z",
+      "primary_item": {
+        "id": "642e8da577619291348e2e74443467b30fe57f10",
+        "title": "FTC 以消费者保护为由对 OpenAI、Anthropic 等 AI 实验室启动全面调查",
+        "url": "https://the-decoder.com/ftc-launches-sweeping-probe-into-openai-anthropic-and-other-ai-labs-over-consumer-protection-concerns",
+        "source": "The Decoder：AI News（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -323,15 +402,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7914,
-      "importance": 0.7914,
-      "importance_score": 0.7914,
+      "score": 0.7805,
+      "importance": 0.7805,
+      "importance_score": 0.7805,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7599,
+        "recency": 0.6994,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -404,15 +483,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7875,
-      "importance": 0.7875,
-      "importance_score": 0.7875,
+      "score": 0.7762,
+      "importance": 0.7762,
+      "importance_score": 0.7762,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7883,
+        "recency": 0.7255,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -466,15 +545,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7872,
-      "importance": 0.7872,
-      "importance_score": 0.7872,
+      "score": 0.7749,
+      "importance": 0.7749,
+      "importance_score": 0.7749,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.87,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8587,
+        "recency": 0.7904,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -489,6 +568,250 @@
         "title": "纽约时报报道 OpenAI 在 AI 失控前已接到员工安全警告但被无视",
         "url": "https://www.ithome.com/1/008/592.htm",
         "source": "IT之家（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_433c6b8fa491",
+      "title": "Hugging Face CEO 称收到数千条私信，将花几天逐一处理",
+      "url": "https://x.com/ClementDelangue/status/2105276853632094607",
+      "primary_url": "https://x.com/ClementDelangue/status/2105276853632094607",
+      "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "ec59ddf97ad786f27bf162c00512cae58b88963b",
+          "title": "Hugging Face CEO 称收到数千条私信，将花几天逐一处理",
+          "url": "https://x.com/ClementDelangue/status/2105276853632094607",
+          "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T12:41:30Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)"
+      ],
+      "items": [
+        {
+          "id": "ec59ddf97ad786f27bf162c00512cae58b88963b",
+          "title": "Hugging Face CEO 称收到数千条私信，将花几天逐一处理",
+          "url": "https://x.com/ClementDelangue/status/2105276853632094607",
+          "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T12:41:30Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7661,
+      "importance": 0.7661,
+      "importance_score": 0.7661,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.76,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9249,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-30T12:41:30Z",
+      "latest_at": "2026-09-30T12:41:30Z",
+      "primary_item": {
+        "id": "ec59ddf97ad786f27bf162c00512cae58b88963b",
+        "title": "Hugging Face CEO 称收到数千条私信，将花几天逐一处理",
+        "url": "https://x.com/ClementDelangue/status/2105276853632094607",
+        "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_f439bec3017f",
+      "title": "FTC 将强制 Anthropic、OpenAI 和 METR 高管就 rogue agents 作证",
+      "url": "https://x.com/rohanpaul_ai/status/2105355633201758232",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2105355633201758232",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "e94caf2fb9aa256e0328b25324bd3abda8b305ac",
+          "title": "FTC 将强制 Anthropic、OpenAI 和 METR 高管就 rogue agents 作证",
+          "url": "https://x.com/rohanpaul_ai/status/2105355633201758232",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T17:54:33Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "e94caf2fb9aa256e0328b25324bd3abda8b305ac",
+          "title": "FTC 将强制 Anthropic、OpenAI 和 METR 高管就 rogue agents 作证",
+          "url": "https://x.com/rohanpaul_ai/status/2105355633201758232",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T17:54:33Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7611,
+      "importance": 0.7611,
+      "importance_score": 0.7611,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.7,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9973,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-30T17:54:33Z",
+      "latest_at": "2026-09-30T17:54:33Z",
+      "primary_item": {
+        "id": "e94caf2fb9aa256e0328b25324bd3abda8b305ac",
+        "title": "FTC 将强制 Anthropic、OpenAI 和 METR 高管就 rogue agents 作证",
+        "url": "https://x.com/rohanpaul_ai/status/2105355633201758232",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_c6f2a0925082",
+      "title": "Arena 开放限时测试 Claude Sonnet 5.5，Direct Mode 可用 48 小时",
+      "url": "https://x.com/arena/status/2105311267619848419",
+      "primary_url": "https://x.com/arena/status/2105311267619848419",
+      "source": "X：Arena (@arena)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "44ca452aff182d1cdbe3a0aab9f7d6df05bac414",
+          "title": "Arena 开放限时测试 Claude Sonnet 5.5，Direct Mode 可用 48 小时",
+          "url": "https://x.com/arena/status/2105311267619848419",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T14:58:15Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Arena (@arena)"
+      ],
+      "items": [
+        {
+          "id": "44ca452aff182d1cdbe3a0aab9f7d6df05bac414",
+          "title": "Arena 开放限时测试 Claude Sonnet 5.5，Direct Mode 可用 48 小时",
+          "url": "https://x.com/arena/status/2105311267619848419",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T14:58:15Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7567,
+      "importance": 0.7567,
+      "importance_score": 0.7567,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.71,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9559,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-30T14:58:15Z",
+      "latest_at": "2026-09-30T14:58:15Z",
+      "primary_item": {
+        "id": "44ca452aff182d1cdbe3a0aab9f7d6df05bac414",
+        "title": "Arena 开放限时测试 Claude Sonnet 5.5，Direct Mode 可用 48 小时",
+        "url": "https://x.com/arena/status/2105311267619848419",
+        "source": "X：Arena (@arena)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_fcb0264e0559",
+      "title": "ElevenLabs 员工要约收购估值达 220 亿美元",
+      "url": "https://x.com/ElevenLabs/status/2105332239316000886",
+      "primary_url": "https://x.com/ElevenLabs/status/2105332239316000886",
+      "source": "X：ElevenLabs (@elevenlabs)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "b01cbb2ce603e62d837b5b51d208286f88431a92",
+          "title": "ElevenLabs 员工要约收购估值达 220 亿美元",
+          "url": "https://x.com/ElevenLabs/status/2105332239316000886",
+          "source": "X：ElevenLabs (@elevenlabs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T16:21:35Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：ElevenLabs (@elevenlabs)"
+      ],
+      "items": [
+        {
+          "id": "b01cbb2ce603e62d837b5b51d208286f88431a92",
+          "title": "ElevenLabs 员工要约收购估值达 220 亿美元",
+          "url": "https://x.com/ElevenLabs/status/2105332239316000886",
+          "source": "X：ElevenLabs (@elevenlabs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T16:21:35Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7541,
+      "importance": 0.7541,
+      "importance_score": 0.7541,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.69,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9752,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-30T16:21:35Z",
+      "latest_at": "2026-09-30T16:21:35Z",
+      "primary_item": {
+        "id": "b01cbb2ce603e62d837b5b51d208286f88431a92",
+        "title": "ElevenLabs 员工要约收购估值达 220 亿美元",
+        "url": "https://x.com/ElevenLabs/status/2105332239316000886",
+        "source": "X：ElevenLabs (@elevenlabs)",
         "source_name": "AI HOT"
       }
     },
@@ -527,15 +850,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7659,
-      "importance": 0.7659,
-      "importance_score": 0.7659,
+      "score": 0.7536,
+      "importance": 0.7536,
+      "importance_score": 0.7536,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.8,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8572,
+        "recency": 0.789,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -588,15 +911,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7637,
-      "importance": 0.7637,
-      "importance_score": 0.7637,
+      "score": 0.7532,
+      "importance": 0.7532,
+      "importance_score": 0.7532,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.87,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7281,
+        "recency": 0.6701,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -615,49 +938,49 @@
       }
     },
     {
-      "story_id": "story_cc119fedf6bc",
-      "title": "Hugging Face CEO 称被 NVIDIA 收购后可招募人才并用十年推动开源 AI 取胜",
-      "url": "https://x.com/ClementDelangue/status/2104960836796342729",
-      "primary_url": "https://x.com/ClementDelangue/status/2104960836796342729",
-      "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+      "story_id": "story_3fbe18f13a9f",
+      "title": "Jensen Huang 称行业领袖在白宫签署超级智能协定",
+      "url": "https://x.com/JensenHuang/status/2105348324484342238",
+      "primary_url": "https://x.com/JensenHuang/status/2105348324484342238",
+      "source": "X：Jensen Huang (@JensenHuang)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "ec435108add6ff71cab964156cb797be3c197105",
-          "title": "Hugging Face CEO 称被 NVIDIA 收购后可招募人才并用十年推动开源 AI 取胜",
-          "url": "https://x.com/ClementDelangue/status/2104960836796342729",
-          "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+          "id": "6188696ba9d027ecc1f82ee63d66ddc6ae485fbf",
+          "title": "Jensen Huang 称行业领袖在白宫签署超级智能协定",
+          "url": "https://x.com/JensenHuang/status/2105348324484342238",
+          "source": "X：Jensen Huang (@JensenHuang)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-29T15:45:46Z"
+          "published_at": "2026-09-30T17:25:30Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)"
+        "X：Jensen Huang (@JensenHuang)"
       ],
       "items": [
         {
-          "id": "ec435108add6ff71cab964156cb797be3c197105",
-          "title": "Hugging Face CEO 称被 NVIDIA 收购后可招募人才并用十年推动开源 AI 取胜",
-          "url": "https://x.com/ClementDelangue/status/2104960836796342729",
-          "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+          "id": "6188696ba9d027ecc1f82ee63d66ddc6ae485fbf",
+          "title": "Jensen Huang 称行业领袖在白宫签署超级智能协定",
+          "url": "https://x.com/JensenHuang/status/2105348324484342238",
+          "source": "X：Jensen Huang (@JensenHuang)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-29T15:45:46Z"
+          "published_at": "2026-09-30T17:25:30Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7633,
-      "importance": 0.7633,
-      "importance_score": 0.7633,
+      "score": 0.7509,
+      "importance": 0.7509,
+      "importance_score": 0.7509,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.86,
+        "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7428,
+        "recency": 0.9904,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -665,60 +988,60 @@
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-09-29T15:45:46Z",
-      "latest_at": "2026-09-29T15:45:46Z",
+      "earliest_at": "2026-09-30T17:25:30Z",
+      "latest_at": "2026-09-30T17:25:30Z",
       "primary_item": {
-        "id": "ec435108add6ff71cab964156cb797be3c197105",
-        "title": "Hugging Face CEO 称被 NVIDIA 收购后可招募人才并用十年推动开源 AI 取胜",
-        "url": "https://x.com/ClementDelangue/status/2104960836796342729",
-        "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+        "id": "6188696ba9d027ecc1f82ee63d66ddc6ae485fbf",
+        "title": "Jensen Huang 称行业领袖在白宫签署超级智能协定",
+        "url": "https://x.com/JensenHuang/status/2105348324484342238",
+        "source": "X：Jensen Huang (@JensenHuang)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_3857965b98a8",
-      "title": "Claude Sonnet 5.5 (High) 以 1699 分登 Code Arena: WebDev 第 4 名",
-      "url": "https://x.com/arena/status/2104998408616558940",
-      "primary_url": "https://x.com/arena/status/2104998408616558940",
-      "source": "X：Arena (@arena)",
+      "story_id": "story_eaad920159fb",
+      "title": "Kimi K3 与 GLM-5.3 进入 OpenAI Codex 销售，由 Baseten 美国服务器托管",
+      "url": "https://x.com/thexpin/status/2105326693120643221",
+      "primary_url": "https://x.com/thexpin/status/2105326693120643221",
+      "source": "X：X.PIN (@thexpin)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "a95da7bb5da8e6ada76d39a83574968ad4231c1d",
-          "title": "Claude Sonnet 5.5 (High) 以 1699 分登 Code Arena: WebDev 第 4 名",
-          "url": "https://x.com/arena/status/2104998408616558940",
-          "source": "X：Arena (@arena)",
+          "id": "f7a55b13250c40a49383463ed9047a61262ea522",
+          "title": "Kimi K3 与 GLM-5.3 进入 OpenAI Codex 销售，由 Baseten 美国服务器托管",
+          "url": "https://x.com/thexpin/status/2105326693120643221",
+          "source": "X：X.PIN (@thexpin)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-29T18:15:04Z"
+          "published_at": "2026-09-30T15:59:33Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Arena (@arena)"
+        "X：X.PIN (@thexpin)"
       ],
       "items": [
         {
-          "id": "a95da7bb5da8e6ada76d39a83574968ad4231c1d",
-          "title": "Claude Sonnet 5.5 (High) 以 1699 分登 Code Arena: WebDev 第 4 名",
-          "url": "https://x.com/arena/status/2104998408616558940",
-          "source": "X：Arena (@arena)",
+          "id": "f7a55b13250c40a49383463ed9047a61262ea522",
+          "title": "Kimi K3 与 GLM-5.3 进入 OpenAI Codex 销售，由 Baseten 美国服务器托管",
+          "url": "https://x.com/thexpin/status/2105326693120643221",
+          "source": "X：X.PIN (@thexpin)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-29T18:15:04Z"
+          "published_at": "2026-09-30T15:59:33Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7622,
-      "importance": 0.7622,
-      "importance_score": 0.7622,
+      "score": 0.7502,
+      "importance": 0.7502,
+      "importance_score": 0.7502,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.84,
+        "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.77,
+        "recency": 0.9701,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -726,74 +1049,13 @@
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-09-29T18:15:04Z",
-      "latest_at": "2026-09-29T18:15:04Z",
+      "earliest_at": "2026-09-30T15:59:33Z",
+      "latest_at": "2026-09-30T15:59:33Z",
       "primary_item": {
-        "id": "a95da7bb5da8e6ada76d39a83574968ad4231c1d",
-        "title": "Claude Sonnet 5.5 (High) 以 1699 分登 Code Arena: WebDev 第 4 名",
-        "url": "https://x.com/arena/status/2104998408616558940",
-        "source": "X：Arena (@arena)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_72001d22fa40",
-      "title": "英国 AISI 评测发现 GPT-6 Astra 未授权攻击率达 GPT-5.6 Sol 的约五倍",
-      "url": "https://the-decoder.com/uk-ai-security-institute-finds-gpt-6-astras-rogue-attack-rate-jumped-fivefold-over-its-predecessor",
-      "primary_url": "https://the-decoder.com/uk-ai-security-institute-finds-gpt-6-astras-rogue-attack-rate-jumped-fivefold-over-its-predecessor",
-      "source": "The Decoder：AI News（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "1dd1c93d7b1cdfd9ceb1c70488df0702a397d6f2",
-          "title": "英国 AISI 评测发现 GPT-6 Astra 未授权攻击率达 GPT-5.6 Sol 的约五倍",
-          "url": "https://the-decoder.com/uk-ai-security-institute-finds-gpt-6-astras-rogue-attack-rate-jumped-fivefold-over-its-predecessor",
-          "source": "The Decoder：AI News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T19:24:12Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "The Decoder：AI News（RSS）"
-      ],
-      "items": [
-        {
-          "id": "1dd1c93d7b1cdfd9ceb1c70488df0702a397d6f2",
-          "title": "英国 AISI 评测发现 GPT-6 Astra 未授权攻击率达 GPT-5.6 Sol 的约五倍",
-          "url": "https://the-decoder.com/uk-ai-security-institute-finds-gpt-6-astras-rogue-attack-rate-jumped-fivefold-over-its-predecessor",
-          "source": "The Decoder：AI News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T19:24:12Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7525,
-      "importance": 0.7525,
-      "importance_score": 0.7525,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.8,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7829,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-29T19:24:12Z",
-      "latest_at": "2026-09-29T19:24:12Z",
-      "primary_item": {
-        "id": "1dd1c93d7b1cdfd9ceb1c70488df0702a397d6f2",
-        "title": "英国 AISI 评测发现 GPT-6 Astra 未授权攻击率达 GPT-5.6 Sol 的约五倍",
-        "url": "https://the-decoder.com/uk-ai-security-institute-finds-gpt-6-astras-rogue-attack-rate-jumped-fivefold-over-its-predecessor",
-        "source": "The Decoder：AI News（RSS）",
+        "id": "f7a55b13250c40a49383463ed9047a61262ea522",
+        "title": "Kimi K3 与 GLM-5.3 进入 OpenAI Codex 销售，由 Baseten 美国服务器托管",
+        "url": "https://x.com/thexpin/status/2105326693120643221",
+        "source": "X：X.PIN (@thexpin)",
         "source_name": "AI HOT"
       }
     },
@@ -851,22 +1113,21 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7522,
-      "importance": 0.7522,
-      "importance_score": 0.7522,
+      "score": 0.7444,
+      "importance": 0.7444,
+      "importance_score": 0.7444,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5422,
+        "recency": 0.4991,
         "story_heat": 0.25
       },
       "category": "industry",
       "reasons": [
         "multi_source",
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-28T17:58:11Z",
       "latest_at": "2026-09-28T18:10:20Z",
@@ -879,63 +1140,62 @@
       }
     },
     {
-      "story_id": "story_673395d6615f",
-      "title": "OpenAI 发布 Dots：拥有独立云端环境的常驻 ChatGPT 智能体",
-      "url": "https://x.com/rohanpaul_ai/status/2105001158930817478",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2105001158930817478",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "story_id": "story_396b95f3429c",
+      "title": "Google DeepMind 发布 SynthID Bio，为 AI 生成的蛋白质嵌入可验证水印",
+      "url": "https://deepmind.google/blog/introducing-synthid-bio",
+      "primary_url": "https://deepmind.google/blog/introducing-synthid-bio",
+      "source": "Google DeepMind：Blog（RSS）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "eeb868304673bd522a86fe6c611bba1c6b3aba08",
-          "title": "OpenAI 发布 Dots：拥有独立云端环境的常驻 ChatGPT 智能体",
-          "url": "https://x.com/rohanpaul_ai/status/2105001158930817478",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "d227a7e21209de44cca6245c5f4df093f1ef374f",
+          "title": "Google DeepMind 发布 SynthID Bio，为 AI 生成的蛋白质嵌入可验证水印",
+          "url": "https://deepmind.google/blog/introducing-synthid-bio",
+          "source": "Google DeepMind：Blog（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-29T18:25:59Z"
+          "published_at": "2026-09-30T15:03:07Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
+        "Google DeepMind：Blog（RSS）"
       ],
       "items": [
         {
-          "id": "eeb868304673bd522a86fe6c611bba1c6b3aba08",
-          "title": "OpenAI 发布 Dots：拥有独立云端环境的常驻 ChatGPT 智能体",
-          "url": "https://x.com/rohanpaul_ai/status/2105001158930817478",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "d227a7e21209de44cca6245c5f4df093f1ef374f",
+          "title": "Google DeepMind 发布 SynthID Bio，为 AI 生成的蛋白质嵌入可验证水印",
+          "url": "https://deepmind.google/blog/introducing-synthid-bio",
+          "source": "Google DeepMind：Blog（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-29T18:25:59Z"
+          "published_at": "2026-09-30T15:03:07Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7506,
-      "importance": 0.7506,
-      "importance_score": 0.7506,
+      "score": 0.7419,
+      "importance": 0.7419,
+      "importance_score": 0.7419,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.8,
+        "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.772,
+        "recency": 0.957,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-29T18:25:59Z",
-      "latest_at": "2026-09-29T18:25:59Z",
+      "earliest_at": "2026-09-30T15:03:07Z",
+      "latest_at": "2026-09-30T15:03:07Z",
       "primary_item": {
-        "id": "eeb868304673bd522a86fe6c611bba1c6b3aba08",
-        "title": "OpenAI 发布 Dots：拥有独立云端环境的常驻 ChatGPT 智能体",
-        "url": "https://x.com/rohanpaul_ai/status/2105001158930817478",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "id": "d227a7e21209de44cca6245c5f4df093f1ef374f",
+        "title": "Google DeepMind 发布 SynthID Bio，为 AI 生成的蛋白质嵌入可验证水印",
+        "url": "https://deepmind.google/blog/introducing-synthid-bio",
+        "source": "Google DeepMind：Blog（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -974,21 +1234,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7502,
-      "importance": 0.7502,
-      "importance_score": 0.7502,
+      "score": 0.7382,
+      "importance": 0.7382,
+      "importance_score": 0.7382,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8366,
+        "recency": 0.77,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-30T00:00:00Z",
       "latest_at": "2026-09-30T00:00:00Z",
@@ -997,187 +1256,6 @@
         "title": "PromptArmor 披露 Copilot Cowork AI 网关被劫持绕过沙箱外传文件漏洞",
         "url": "https://www.promptarmor.com/resources/hijacking-copilot-coworks-ai-gateway-to-exfiltrate-files",
         "source": "PromptArmor：Threat Intelligence",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_e005feaf1929",
-      "title": "ZCode 被曝静默上传整个项目代码",
-      "url": "https://x.com/thexpin/status/2104992890275635553",
-      "primary_url": "https://x.com/thexpin/status/2104992890275635553",
-      "source": "X：X.PIN (@thexpin)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "957cf869b2b27b0425cc7ecc5df761cfa3d53a6e",
-          "title": "ZCode 被曝静默上传整个项目代码",
-          "url": "https://x.com/thexpin/status/2104992890275635553",
-          "source": "X：X.PIN (@thexpin)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:53:08Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：X.PIN (@thexpin)"
-      ],
-      "items": [
-        {
-          "id": "957cf869b2b27b0425cc7ecc5df761cfa3d53a6e",
-          "title": "ZCode 被曝静默上传整个项目代码",
-          "url": "https://x.com/thexpin/status/2104992890275635553",
-          "source": "X：X.PIN (@thexpin)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:53:08Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7435,
-      "importance": 0.7435,
-      "importance_score": 0.7435,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.78,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7659,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-29T17:53:08Z",
-      "latest_at": "2026-09-29T17:53:08Z",
-      "primary_item": {
-        "id": "957cf869b2b27b0425cc7ecc5df761cfa3d53a6e",
-        "title": "ZCode 被曝静默上传整个项目代码",
-        "url": "https://x.com/thexpin/status/2104992890275635553",
-        "source": "X：X.PIN (@thexpin)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_b3d7fca67d2f",
-      "title": "Anthropic 与 SpaceX 签署最高 845 亿美元算力协议，可提前 90 天通知解除",
-      "url": "https://www.ithome.com/1/008/589.htm",
-      "primary_url": "https://www.ithome.com/1/008/589.htm",
-      "source": "IT之家（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "9a01c2900b567c02652eb34f17fa229603a7d684",
-          "title": "Anthropic 与 SpaceX 签署最高 845 亿美元算力协议，可提前 90 天通知解除",
-          "url": "https://www.ithome.com/1/008/589.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-30T01:41:26Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "IT之家（RSS）"
-      ],
-      "items": [
-        {
-          "id": "9a01c2900b567c02652eb34f17fa229603a7d684",
-          "title": "Anthropic 与 SpaceX 签署最高 845 亿美元算力协议，可提前 90 天通知解除",
-          "url": "https://www.ithome.com/1/008/589.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-30T01:41:26Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7719,
-      "importance": 0.7719,
-      "importance_score": 0.7719,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.82,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8573,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-30T01:41:26Z",
-      "latest_at": "2026-09-30T01:41:26Z",
-      "primary_item": {
-        "id": "9a01c2900b567c02652eb34f17fa229603a7d684",
-        "title": "Anthropic 与 SpaceX 签署最高 845 亿美元算力协议，可提前 90 天通知解除",
-        "url": "https://www.ithome.com/1/008/589.htm",
-        "source": "IT之家（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_732db14c7d33",
-      "title": "OpenAI 发布 GPT-6.1 Sol，强化智能体编码与 computer use",
-      "url": "https://x.com/OpenAIDevs/status/2104993035507712318",
-      "primary_url": "https://x.com/OpenAIDevs/status/2104993035507712318",
-      "source": "X：OpenAI Developers (@OpenAIDevs)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "8859df6f78438bde7105c2c14049abda894caf11",
-          "title": "OpenAI 发布 GPT-6.1 Sol，强化智能体编码与 computer use",
-          "url": "https://x.com/OpenAIDevs/status/2104993035507712318",
-          "source": "X：OpenAI Developers (@OpenAIDevs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:53:43Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：OpenAI Developers (@OpenAIDevs)"
-      ],
-      "items": [
-        {
-          "id": "8859df6f78438bde7105c2c14049abda894caf11",
-          "title": "OpenAI 发布 GPT-6.1 Sol，强化智能体编码与 computer use",
-          "url": "https://x.com/OpenAIDevs/status/2104993035507712318",
-          "source": "X：OpenAI Developers (@OpenAIDevs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:53:43Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7405,
-      "importance": 0.7405,
-      "importance_score": 0.7405,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.77,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.766,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-29T17:53:43Z",
-      "latest_at": "2026-09-29T17:53:43Z",
-      "primary_item": {
-        "id": "8859df6f78438bde7105c2c14049abda894caf11",
-        "title": "OpenAI 发布 GPT-6.1 Sol，强化智能体编码与 computer use",
-        "url": "https://x.com/OpenAIDevs/status/2104993035507712318",
-        "source": "X：OpenAI Developers (@OpenAIDevs)",
         "source_name": "AI HOT"
       }
     },
@@ -1234,15 +1312,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7403,
-      "importance": 0.7403,
-      "importance_score": 0.7403,
+      "score": 0.7323,
+      "importance": 0.7323,
+      "importance_score": 0.7323,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5594,
+        "recency": 0.5149,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -1257,6 +1335,127 @@
         "title": "李飞飞宣布 World Labs 并入 AMD，出任执行副总裁兼首席科学家",
         "url": "https://x.com/drfeifei/status/2104664403681632453",
         "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_b3d7fca67d2f",
+      "title": "Anthropic 与 SpaceX 签署最高 845 亿美元算力协议，可提前 90 天通知解除",
+      "url": "https://www.ithome.com/1/008/589.htm",
+      "primary_url": "https://www.ithome.com/1/008/589.htm",
+      "source": "IT之家（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "9a01c2900b567c02652eb34f17fa229603a7d684",
+          "title": "Anthropic 与 SpaceX 签署最高 845 亿美元算力协议，可提前 90 天通知解除",
+          "url": "https://www.ithome.com/1/008/589.htm",
+          "source": "IT之家（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T01:41:26Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "IT之家（RSS）"
+      ],
+      "items": [
+        {
+          "id": "9a01c2900b567c02652eb34f17fa229603a7d684",
+          "title": "Anthropic 与 SpaceX 签署最高 845 亿美元算力协议，可提前 90 天通知解除",
+          "url": "https://www.ithome.com/1/008/589.htm",
+          "source": "IT之家（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T01:41:26Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7596,
+      "importance": 0.7596,
+      "importance_score": 0.7596,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.82,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7891,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-09-30T01:41:26Z",
+      "latest_at": "2026-09-30T01:41:26Z",
+      "primary_item": {
+        "id": "9a01c2900b567c02652eb34f17fa229603a7d684",
+        "title": "Anthropic 与 SpaceX 签署最高 845 亿美元算力协议，可提前 90 天通知解除",
+        "url": "https://www.ithome.com/1/008/589.htm",
+        "source": "IT之家（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_732db14c7d33",
+      "title": "OpenAI 发布 GPT-6.1 Sol，强化智能体编码与 computer use",
+      "url": "https://x.com/OpenAIDevs/status/2104993035507712318",
+      "primary_url": "https://x.com/OpenAIDevs/status/2104993035507712318",
+      "source": "X：OpenAI Developers (@OpenAIDevs)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "8859df6f78438bde7105c2c14049abda894caf11",
+          "title": "OpenAI 发布 GPT-6.1 Sol，强化智能体编码与 computer use",
+          "url": "https://x.com/OpenAIDevs/status/2104993035507712318",
+          "source": "X：OpenAI Developers (@OpenAIDevs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T17:53:43Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：OpenAI Developers (@OpenAIDevs)"
+      ],
+      "items": [
+        {
+          "id": "8859df6f78438bde7105c2c14049abda894caf11",
+          "title": "OpenAI 发布 GPT-6.1 Sol，强化智能体编码与 computer use",
+          "url": "https://x.com/OpenAIDevs/status/2104993035507712318",
+          "source": "X：OpenAI Developers (@OpenAIDevs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T17:53:43Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7295,
+      "importance": 0.7295,
+      "importance_score": 0.7295,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.77,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7051,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-29T17:53:43Z",
+      "latest_at": "2026-09-29T17:53:43Z",
+      "primary_item": {
+        "id": "8859df6f78438bde7105c2c14049abda894caf11",
+        "title": "OpenAI 发布 GPT-6.1 Sol，强化智能体编码与 computer use",
+        "url": "https://x.com/OpenAIDevs/status/2104993035507712318",
+        "source": "X：OpenAI Developers (@OpenAIDevs)",
         "source_name": "AI HOT"
       }
     },
@@ -1295,15 +1494,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7395,
-      "importance": 0.7395,
-      "importance_score": 0.7395,
+      "score": 0.7289,
+      "importance": 0.7289,
+      "importance_score": 0.7289,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7441,
+        "recency": 0.6849,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1317,226 +1516,6 @@
         "title": "Shopify 宣布放弃 React Native，AI 编码智能体让回归原生开发成为新选择",
         "url": "https://newsletter.pragmaticengineer.com/p/shopify-native-mobile",
         "source": "Pragmatic Engineer（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_db8d73909519",
-      "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
-      "url": "https://x.com/testingcatalog/status/2104987633894010982",
-      "primary_url": "https://x.com/testingcatalog/status/2104987633894010982",
-      "source": "X：Testing Catalog (@testingcatalog)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "d1ccb29b1b17ff2f6caec1a3e7b5b294d2495b83",
-          "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
-          "url": "https://x.com/testingcatalog/status/2104987633894010982",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:32:15Z"
-        },
-        {
-          "id": "a81582caa8460dbb4233989c91b91981dac25c33",
-          "title": "OpenAI 推出 ChatGPT Space 协作功能",
-          "url": "https://x.com/thsottiaux/status/2104983716049379472",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:16:41Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "X：Testing Catalog (@testingcatalog)",
-        "X：Tibo (@thsottiaux)"
-      ],
-      "items": [
-        {
-          "id": "d1ccb29b1b17ff2f6caec1a3e7b5b294d2495b83",
-          "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
-          "url": "https://x.com/testingcatalog/status/2104987633894010982",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:32:15Z"
-        },
-        {
-          "id": "a81582caa8460dbb4233989c91b91981dac25c33",
-          "title": "OpenAI 推出 ChatGPT Space 协作功能",
-          "url": "https://x.com/thsottiaux/status/2104983716049379472",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:16:41Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.7348,
-      "importance": 0.7348,
-      "importance_score": 0.7348,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.67,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7621,
-        "story_heat": 0.25
-      },
-      "category": "industry",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-29T17:16:41Z",
-      "latest_at": "2026-09-29T17:32:15Z",
-      "primary_item": {
-        "id": "d1ccb29b1b17ff2f6caec1a3e7b5b294d2495b83",
-        "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
-        "url": "https://x.com/testingcatalog/status/2104987633894010982",
-        "source": "X：Testing Catalog (@testingcatalog)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_a21a523d2053",
-      "title": "ChatGPT 订阅额度现可在 60 多个合作方产品中直接使用",
-      "url": "https://x.com/thsottiaux/status/2104991529416999243",
-      "primary_url": "https://x.com/thsottiaux/status/2104991529416999243",
-      "source": "X：Tibo (@thsottiaux)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "e8c26d7f027469255a76697dd93c2a00b5f3bf47",
-          "title": "ChatGPT 订阅额度现可在 60 多个合作方产品中直接使用",
-          "url": "https://x.com/thsottiaux/status/2104991529416999243",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:47:44Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Tibo (@thsottiaux)"
-      ],
-      "items": [
-        {
-          "id": "e8c26d7f027469255a76697dd93c2a00b5f3bf47",
-          "title": "ChatGPT 订阅额度现可在 60 多个合作方产品中直接使用",
-          "url": "https://x.com/thsottiaux/status/2104991529416999243",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:47:44Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7343,
-      "importance": 0.7343,
-      "importance_score": 0.7343,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.75,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7649,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-29T17:47:44Z",
-      "latest_at": "2026-09-29T17:47:44Z",
-      "primary_item": {
-        "id": "e8c26d7f027469255a76697dd93c2a00b5f3bf47",
-        "title": "ChatGPT 订阅额度现可在 60 多个合作方产品中直接使用",
-        "url": "https://x.com/thsottiaux/status/2104991529416999243",
-        "source": "X：Tibo (@thsottiaux)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_de35e53397fa",
-      "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
-      "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
-      "primary_url": "https://x.com/ClaudeDevs/status/2104641318555353400",
-      "source": "X：Claude Devs (@ClaudeDevs)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "b719f447f05f438014ff5f0f328dcac723f043ef",
-          "title": "Claude Sonnet 5.5 发布：比 Sonnet 5 快 30% 以上，多数工作成本降低至多 30%",
-          "url": "https://x.com/trq212/status/2104660926373023830",
-          "source": "X：Thariq (@trq212)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T19:54:02Z"
-        },
-        {
-          "id": "174b8f3b0886c612fa58740af5b9afabfa805433",
-          "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
-          "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
-          "source": "X：Claude Devs (@ClaudeDevs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T18:36:07Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "X：Claude Devs (@ClaudeDevs)",
-        "X：Thariq (@trq212)"
-      ],
-      "items": [
-        {
-          "id": "b719f447f05f438014ff5f0f328dcac723f043ef",
-          "title": "Claude Sonnet 5.5 发布：比 Sonnet 5 快 30% 以上，多数工作成本降低至多 30%",
-          "url": "https://x.com/trq212/status/2104660926373023830",
-          "source": "X：Thariq (@trq212)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T19:54:02Z"
-        },
-        {
-          "id": "174b8f3b0886c612fa58740af5b9afabfa805433",
-          "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
-          "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
-          "source": "X：Claude Devs (@ClaudeDevs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T18:36:07Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.7321,
-      "importance": 0.7321,
-      "importance_score": 0.7321,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.79,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.5472,
-        "story_heat": 0.25
-      },
-      "category": "industry",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-28T18:36:07Z",
-      "latest_at": "2026-09-28T19:54:02Z",
-      "primary_item": {
-        "id": "174b8f3b0886c612fa58740af5b9afabfa805433",
-        "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
-        "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
-        "source": "X：Claude Devs (@ClaudeDevs)",
         "source_name": "AI HOT"
       }
     }
