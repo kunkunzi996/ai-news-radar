@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-01T07:39:35.627204Z",
+  "generated_at": "2026-10-01T15:20:07.931787Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -242,15 +242,15 @@
       ],
       "item_count": 12,
       "duplicate_count": 12,
-      "score": 0.819,
-      "importance": 0.819,
-      "importance_score": 0.819,
+      "score": 0.8074,
+      "importance": 0.8074,
+      "importance_score": 0.8074,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6132,
+        "recency": 0.5489,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -266,6 +266,67 @@
         "title": "OpenAI DevDay 2026 发布 Dots、GPT-6.1 Sol、500美元订阅等一揽子更新",
         "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686841&idx=1&sn=630c0dc22de47c9c2f58bd5253a91a9a&chksm=f1e33576f80f214c7290b1545cc8bfbb32ac24c3144cd141b7c2dd7cdaaf71f44d3cf319db8b&scene=126&sessionid=1790722837",
         "source": "公众号：数字生命卡兹克",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_0d41a58e9bee",
+      "title": "OpenAI 称拦截蒸馏窃取攻击，但研究者称同样手法在 Azure 上仍可窃取 GPT-6 Astra 等模型的推理内容",
+      "url": "https://the-decoder.com/openai-says-it-stopped-a-campaign-to-steal-its-models-reasoning-but-the-trick-still-worked-on-azure",
+      "primary_url": "https://the-decoder.com/openai-says-it-stopped-a-campaign-to-steal-its-models-reasoning-but-the-trick-still-worked-on-azure",
+      "source": "The Decoder：AI News（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "c5b406c3dda7be181007a6b78766d116c816412c",
+          "title": "OpenAI 称拦截蒸馏窃取攻击，但研究者称同样手法在 Azure 上仍可窃取 GPT-6 Astra 等模型的推理内容",
+          "url": "https://the-decoder.com/openai-says-it-stopped-a-campaign-to-steal-its-models-reasoning-but-the-trick-still-worked-on-azure",
+          "source": "The Decoder：AI News（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T12:05:49Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "The Decoder：AI News（RSS）"
+      ],
+      "items": [
+        {
+          "id": "c5b406c3dda7be181007a6b78766d116c816412c",
+          "title": "OpenAI 称拦截蒸馏窃取攻击，但研究者称同样手法在 Azure 上仍可窃取 GPT-6 Astra 等模型的推理内容",
+          "url": "https://the-decoder.com/openai-says-it-stopped-a-campaign-to-steal-its-models-reasoning-but-the-trick-still-worked-on-azure",
+          "source": "The Decoder：AI News（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T12:05:49Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7744,
+      "importance": 0.7744,
+      "importance_score": 0.7744,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.77,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9543,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-01T12:05:49Z",
+      "latest_at": "2026-10-01T12:05:49Z",
+      "primary_item": {
+        "id": "c5b406c3dda7be181007a6b78766d116c816412c",
+        "title": "OpenAI 称拦截蒸馏窃取攻击，但研究者称同样手法在 Azure 上仍可窃取 GPT-6 Astra 等模型的推理内容",
+        "url": "https://the-decoder.com/openai-says-it-stopped-a-campaign-to-steal-its-models-reasoning-but-the-trick-still-worked-on-azure",
+        "source": "The Decoder：AI News（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -304,21 +365,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7642,
-      "importance": 0.7642,
-      "importance_score": 0.7642,
+      "score": 0.7479,
+      "importance": 0.7479,
+      "importance_score": 0.7479,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8647,
+        "recency": 0.774,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-30T21:35:38Z",
       "latest_at": "2026-09-30T21:35:38Z",
@@ -327,189 +387,6 @@
         "title": "Gemini 4 Argon (High) 登 Arena Agent Arena 第 8 名，净提升 +7.92%",
         "url": "https://x.com/arena/status/2105411271525052418",
         "source": "X：Arena (@arena)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_8f584ffddbc7",
-      "title": "OpenAI 发布 GPT-6.1 Sol：以 Astra 五分之一价格接近其编码与计算机操作水平",
-      "url": "https://www.marktechpost.com/2026/09/30/openai-releases-gpt-6-1-sol-near-astra-coding-and-computer-use-at-one-fifth-of-astras-token-price",
-      "primary_url": "https://www.marktechpost.com/2026/09/30/openai-releases-gpt-6-1-sol-near-astra-coding-and-computer-use-at-one-fifth-of-astras-token-price",
-      "source": "MarkTechPost（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "73f55d5d3ab47ca86895e3f210b1ab06ec1d8be2",
-          "title": "OpenAI 发布 GPT-6.1 Sol：以 Astra 五分之一价格接近其编码与计算机操作水平",
-          "url": "https://www.marktechpost.com/2026/09/30/openai-releases-gpt-6-1-sol-near-astra-coding-and-computer-use-at-one-fifth-of-astras-token-price",
-          "source": "MarkTechPost（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-30T21:09:24Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "MarkTechPost（RSS）"
-      ],
-      "items": [
-        {
-          "id": "73f55d5d3ab47ca86895e3f210b1ab06ec1d8be2",
-          "title": "OpenAI 发布 GPT-6.1 Sol：以 Astra 五分之一价格接近其编码与计算机操作水平",
-          "url": "https://www.marktechpost.com/2026/09/30/openai-releases-gpt-6-1-sol-near-astra-coding-and-computer-use-at-one-fifth-of-astras-token-price",
-          "source": "MarkTechPost（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-30T21:09:24Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7633,
-      "importance": 0.7633,
-      "importance_score": 0.7633,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.79,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8593,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-30T21:09:24Z",
-      "latest_at": "2026-09-30T21:09:24Z",
-      "primary_item": {
-        "id": "73f55d5d3ab47ca86895e3f210b1ab06ec1d8be2",
-        "title": "OpenAI 发布 GPT-6.1 Sol：以 Astra 五分之一价格接近其编码与计算机操作水平",
-        "url": "https://www.marktechpost.com/2026/09/30/openai-releases-gpt-6-1-sol-near-astra-coding-and-computer-use-at-one-fifth-of-astras-token-price",
-        "source": "MarkTechPost（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_6eb18f6ff1c2",
-      "title": "FTC 以消费者保护为由对 OpenAI、Anthropic 等 AI 实验室启动全面调查",
-      "url": "https://the-decoder.com/ftc-launches-sweeping-probe-into-openai-anthropic-and-other-ai-labs-over-consumer-protection-concerns",
-      "primary_url": "https://the-decoder.com/ftc-launches-sweeping-probe-into-openai-anthropic-and-other-ai-labs-over-consumer-protection-concerns",
-      "source": "The Decoder：AI News（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "642e8da577619291348e2e74443467b30fe57f10",
-          "title": "FTC 以消费者保护为由对 OpenAI、Anthropic 等 AI 实验室启动全面调查",
-          "url": "https://the-decoder.com/ftc-launches-sweeping-probe-into-openai-anthropic-and-other-ai-labs-over-consumer-protection-concerns",
-          "source": "The Decoder：AI News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-30T16:20:04Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "The Decoder：AI News（RSS）"
-      ],
-      "items": [
-        {
-          "id": "642e8da577619291348e2e74443467b30fe57f10",
-          "title": "FTC 以消费者保护为由对 OpenAI、Anthropic 等 AI 实验室启动全面调查",
-          "url": "https://the-decoder.com/ftc-launches-sweeping-probe-into-openai-anthropic-and-other-ai-labs-over-consumer-protection-concerns",
-          "source": "The Decoder：AI News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-30T16:20:04Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7619,
-      "importance": 0.7619,
-      "importance_score": 0.7619,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.82,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8015,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-30T16:20:04Z",
-      "latest_at": "2026-09-30T16:20:04Z",
-      "primary_item": {
-        "id": "642e8da577619291348e2e74443467b30fe57f10",
-        "title": "FTC 以消费者保护为由对 OpenAI、Anthropic 等 AI 实验室启动全面调查",
-        "url": "https://the-decoder.com/ftc-launches-sweeping-probe-into-openai-anthropic-and-other-ai-labs-over-consumer-protection-concerns",
-        "source": "The Decoder：AI News（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_95a885abc644",
-      "title": "Artificial Analysis 评测 Gemini 4 Argon，智能指数追平 GPT-6 Astra 且成本仅 60%",
-      "url": "https://x.com/ArtificialAnlys/status/2105392625788637299",
-      "primary_url": "https://x.com/ArtificialAnlys/status/2105392625788637299",
-      "source": "X：Artificial Analysis (@ArtificialAnlys)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "df8c7a6d1421bcd13035ca2d527f7bc1c3912802",
-          "title": "Artificial Analysis 评测 Gemini 4 Argon，智能指数追平 GPT-6 Astra 且成本仅 60%",
-          "url": "https://x.com/ArtificialAnlys/status/2105392625788637299",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-30T20:21:32Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Artificial Analysis (@ArtificialAnlys)"
-      ],
-      "items": [
-        {
-          "id": "df8c7a6d1421bcd13035ca2d527f7bc1c3912802",
-          "title": "Artificial Analysis 评测 Gemini 4 Argon，智能指数追平 GPT-6 Astra 且成本仅 60%",
-          "url": "https://x.com/ArtificialAnlys/status/2105392625788637299",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-30T20:21:32Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7615,
-      "importance": 0.7615,
-      "importance_score": 0.7615,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.79,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8494,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-30T20:21:32Z",
-      "latest_at": "2026-09-30T20:21:32Z",
-      "primary_item": {
-        "id": "df8c7a6d1421bcd13035ca2d527f7bc1c3912802",
-        "title": "Artificial Analysis 评测 Gemini 4 Argon，智能指数追平 GPT-6 Astra 且成本仅 60%",
-        "url": "https://x.com/ArtificialAnlys/status/2105392625788637299",
-        "source": "X：Artificial Analysis (@ArtificialAnlys)",
         "source_name": "AI HOT"
       }
     },
@@ -567,22 +444,21 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7581,
-      "importance": 0.7581,
-      "importance_score": 0.7581,
+      "score": 0.7472,
+      "importance": 0.7472,
+      "importance_score": 0.7472,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.575,
+        "recency": 0.5147,
         "story_heat": 0.25
       },
       "category": "industry",
       "reasons": [
         "multi_source",
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-29T17:20:30.075000Z",
       "latest_at": "2026-09-29T17:26:16Z",
@@ -591,6 +467,126 @@
         "title": "OpenAI 发布 GPT-6.1 Sol，以约五分之一价格接近 GPT-6 Astra 智能",
         "url": "https://openai.com/index/introducing-gpt-6-1-sol",
         "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_8f584ffddbc7",
+      "title": "OpenAI 发布 GPT-6.1 Sol：以 Astra 五分之一价格接近其编码与计算机操作水平",
+      "url": "https://www.marktechpost.com/2026/09/30/openai-releases-gpt-6-1-sol-near-astra-coding-and-computer-use-at-one-fifth-of-astras-token-price",
+      "primary_url": "https://www.marktechpost.com/2026/09/30/openai-releases-gpt-6-1-sol-near-astra-coding-and-computer-use-at-one-fifth-of-astras-token-price",
+      "source": "MarkTechPost（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "73f55d5d3ab47ca86895e3f210b1ab06ec1d8be2",
+          "title": "OpenAI 发布 GPT-6.1 Sol：以 Astra 五分之一价格接近其编码与计算机操作水平",
+          "url": "https://www.marktechpost.com/2026/09/30/openai-releases-gpt-6-1-sol-near-astra-coding-and-computer-use-at-one-fifth-of-astras-token-price",
+          "source": "MarkTechPost（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T21:09:24Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "MarkTechPost（RSS）"
+      ],
+      "items": [
+        {
+          "id": "73f55d5d3ab47ca86895e3f210b1ab06ec1d8be2",
+          "title": "OpenAI 发布 GPT-6.1 Sol：以 Astra 五分之一价格接近其编码与计算机操作水平",
+          "url": "https://www.marktechpost.com/2026/09/30/openai-releases-gpt-6-1-sol-near-astra-coding-and-computer-use-at-one-fifth-of-astras-token-price",
+          "source": "MarkTechPost（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T21:09:24Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.747,
+      "importance": 0.747,
+      "importance_score": 0.747,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.79,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7691,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-30T21:09:24Z",
+      "latest_at": "2026-09-30T21:09:24Z",
+      "primary_item": {
+        "id": "73f55d5d3ab47ca86895e3f210b1ab06ec1d8be2",
+        "title": "OpenAI 发布 GPT-6.1 Sol：以 Astra 五分之一价格接近其编码与计算机操作水平",
+        "url": "https://www.marktechpost.com/2026/09/30/openai-releases-gpt-6-1-sol-near-astra-coding-and-computer-use-at-one-fifth-of-astras-token-price",
+        "source": "MarkTechPost（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_95a885abc644",
+      "title": "Artificial Analysis 评测 Gemini 4 Argon，智能指数追平 GPT-6 Astra 且成本仅 60%",
+      "url": "https://x.com/ArtificialAnlys/status/2105392625788637299",
+      "primary_url": "https://x.com/ArtificialAnlys/status/2105392625788637299",
+      "source": "X：Artificial Analysis (@ArtificialAnlys)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "df8c7a6d1421bcd13035ca2d527f7bc1c3912802",
+          "title": "Artificial Analysis 评测 Gemini 4 Argon，智能指数追平 GPT-6 Astra 且成本仅 60%",
+          "url": "https://x.com/ArtificialAnlys/status/2105392625788637299",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T20:21:32Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Artificial Analysis (@ArtificialAnlys)"
+      ],
+      "items": [
+        {
+          "id": "df8c7a6d1421bcd13035ca2d527f7bc1c3912802",
+          "title": "Artificial Analysis 评测 Gemini 4 Argon，智能指数追平 GPT-6 Astra 且成本仅 60%",
+          "url": "https://x.com/ArtificialAnlys/status/2105392625788637299",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T20:21:32Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7455,
+      "importance": 0.7455,
+      "importance_score": 0.7455,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.79,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7603,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-30T20:21:32Z",
+      "latest_at": "2026-09-30T20:21:32Z",
+      "primary_item": {
+        "id": "df8c7a6d1421bcd13035ca2d527f7bc1c3912802",
+        "title": "Artificial Analysis 评测 Gemini 4 Argon，智能指数追平 GPT-6 Astra 且成本仅 60%",
+        "url": "https://x.com/ArtificialAnlys/status/2105392625788637299",
+        "source": "X：Artificial Analysis (@ArtificialAnlys)",
         "source_name": "AI HOT"
       }
     },
@@ -629,21 +625,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7581,
-      "importance": 0.7581,
-      "importance_score": 0.7581,
+      "score": 0.7424,
+      "importance": 0.7424,
+      "importance_score": 0.7424,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8303,
+        "recency": 0.7432,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-30T18:47:01Z",
       "latest_at": "2026-09-30T18:47:01Z",
@@ -690,21 +685,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7578,
-      "importance": 0.7578,
-      "importance_score": 0.7578,
+      "score": 0.7418,
+      "importance": 0.7418,
+      "importance_score": 0.7418,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8454,
+        "recency": 0.7567,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-30T20:01:45Z",
       "latest_at": "2026-09-30T20:01:45Z",
@@ -713,67 +707,6 @@
         "title": "Google DeepMind 发布 Gemini 4 Argon，面向可信网络防御者先行开放",
         "url": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence",
         "source": "Google DeepMind：Blog（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_8f905df14664",
-      "title": "FT 报道腾讯向 Oracle 租用约 10 万颗先进 AI 芯片，为期 5 年价值约 70 亿美元",
-      "url": "https://x.com/rohanpaul_ai/status/2105504789526409498",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2105504789526409498",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "a00de563d65b81b8854dd8efb8c46a87c7a98934",
-          "title": "FT 报道腾讯向 Oracle 租用约 10 万颗先进 AI 芯片，为期 5 年价值约 70 亿美元",
-          "url": "https://x.com/rohanpaul_ai/status/2105504789526409498",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T03:47:14Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "a00de563d65b81b8854dd8efb8c46a87c7a98934",
-          "title": "FT 报道腾讯向 Oracle 租用约 10 万颗先进 AI 芯片，为期 5 年价值约 70 亿美元",
-          "url": "https://x.com/rohanpaul_ai/status/2105504789526409498",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T03:47:14Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7548,
-      "importance": 0.7548,
-      "importance_score": 0.7548,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9456,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-01T03:47:14Z",
-      "latest_at": "2026-10-01T03:47:14Z",
-      "primary_item": {
-        "id": "a00de563d65b81b8854dd8efb8c46a87c7a98934",
-        "title": "FT 报道腾讯向 Oracle 租用约 10 万颗先进 AI 芯片，为期 5 年价值约 70 亿美元",
-        "url": "https://x.com/rohanpaul_ai/status/2105504789526409498",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -831,22 +764,21 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.753,
-      "importance": 0.753,
-      "importance_score": 0.753,
+      "score": 0.7417,
+      "importance": 0.7417,
+      "importance_score": 0.7417,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5965,
+        "recency": 0.5339,
         "story_heat": 0.25
       },
       "category": "industry",
       "reasons": [
         "multi_source",
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-09-29T19:32:30Z",
       "latest_at": "2026-09-29T19:52:37Z",
@@ -855,67 +787,6 @@
         "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
         "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
         "source": "TechCrunch：AI（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_7b0443d9889b",
-      "title": "Modal Clusters 正式发布，通过 @modal.clustered 提供多节点 GPU 集群",
-      "url": "https://modal.com/blog/modal-clusters-generally-available",
-      "primary_url": "https://modal.com/blog/modal-clusters-generally-available",
-      "source": "Modal 官方工程博客（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "10475e511695c99db79c08d74b401b4da02fb238",
-          "title": "Modal Clusters 正式发布，通过 @modal.clustered 提供多节点 GPU 集群",
-          "url": "https://modal.com/blog/modal-clusters-generally-available",
-          "source": "Modal 官方工程博客（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": null
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Modal 官方工程博客（RSS）"
-      ],
-      "items": [
-        {
-          "id": "10475e511695c99db79c08d74b401b4da02fb238",
-          "title": "Modal Clusters 正式发布，通过 @modal.clustered 提供多节点 GPU 集群",
-          "url": "https://modal.com/blog/modal-clusters-generally-available",
-          "source": "Modal 官方工程博客（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": null
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7526,
-      "importance": 0.7526,
-      "importance_score": 0.7526,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.67,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 1.0,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-01T07:39:35.627204Z",
-      "latest_at": "2026-10-01T07:39:35.627204Z",
-      "primary_item": {
-        "id": "10475e511695c99db79c08d74b401b4da02fb238",
-        "title": "Modal Clusters 正式发布，通过 @modal.clustered 提供多节点 GPU 集群",
-        "url": "https://modal.com/blog/modal-clusters-generally-available",
-        "source": "Modal 官方工程博客（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -954,15 +825,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7496,
-      "importance": 0.7496,
-      "importance_score": 0.7496,
+      "score": 0.7373,
+      "importance": 0.7373,
+      "importance_score": 0.7373,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.87,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6498,
+        "recency": 0.5816,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -976,6 +847,186 @@
         "title": "纽约时报报道 OpenAI 在 AI 失控前已接到员工安全警告但被无视",
         "url": "https://www.ithome.com/1/008/592.htm",
         "source": "IT之家（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_8f905df14664",
+      "title": "FT 报道腾讯向 Oracle 租用约 10 万颗先进 AI 芯片，为期 5 年价值约 70 亿美元",
+      "url": "https://x.com/rohanpaul_ai/status/2105504789526409498",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2105504789526409498",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "a00de563d65b81b8854dd8efb8c46a87c7a98934",
+          "title": "FT 报道腾讯向 Oracle 租用约 10 万颗先进 AI 芯片，为期 5 年价值约 70 亿美元",
+          "url": "https://x.com/rohanpaul_ai/status/2105504789526409498",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T03:47:14Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "a00de563d65b81b8854dd8efb8c46a87c7a98934",
+          "title": "FT 报道腾讯向 Oracle 租用约 10 万颗先进 AI 芯片，为期 5 年价值约 70 亿美元",
+          "url": "https://x.com/rohanpaul_ai/status/2105504789526409498",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T03:47:14Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.737,
+      "importance": 0.737,
+      "importance_score": 0.737,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.71,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8464,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-01T03:47:14Z",
+      "latest_at": "2026-10-01T03:47:14Z",
+      "primary_item": {
+        "id": "a00de563d65b81b8854dd8efb8c46a87c7a98934",
+        "title": "FT 报道腾讯向 Oracle 租用约 10 万颗先进 AI 芯片，为期 5 年价值约 70 亿美元",
+        "url": "https://x.com/rohanpaul_ai/status/2105504789526409498",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_7b0443d9889b",
+      "title": "Modal Clusters 正式发布，通过 @modal.clustered 提供多节点 GPU 集群",
+      "url": "https://modal.com/blog/modal-clusters-generally-available",
+      "primary_url": "https://modal.com/blog/modal-clusters-generally-available",
+      "source": "Modal 官方工程博客（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "10475e511695c99db79c08d74b401b4da02fb238",
+          "title": "Modal Clusters 正式发布，通过 @modal.clustered 提供多节点 GPU 集群",
+          "url": "https://modal.com/blog/modal-clusters-generally-available",
+          "source": "Modal 官方工程博客（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": null
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Modal 官方工程博客（RSS）"
+      ],
+      "items": [
+        {
+          "id": "10475e511695c99db79c08d74b401b4da02fb238",
+          "title": "Modal Clusters 正式发布，通过 @modal.clustered 提供多节点 GPU 集群",
+          "url": "https://modal.com/blog/modal-clusters-generally-available",
+          "source": "Modal 官方工程博客（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": null
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7337,
+      "importance": 0.7337,
+      "importance_score": 0.7337,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.67,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8951,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-01T07:39:35.627204Z",
+      "latest_at": "2026-10-01T07:39:35.627204Z",
+      "primary_item": {
+        "id": "10475e511695c99db79c08d74b401b4da02fb238",
+        "title": "Modal Clusters 正式发布，通过 @modal.clustered 提供多节点 GPU 集群",
+        "url": "https://modal.com/blog/modal-clusters-generally-available",
+        "source": "Modal 官方工程博客（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_ee61659f9646",
+      "title": "Ethan Mollick 谈点与群：智能体自组织为何让管理假设失效",
+      "url": "https://www.oneusefulthing.org/p/the-dot-and-the-swarm",
+      "primary_url": "https://www.oneusefulthing.org/p/the-dot-and-the-swarm",
+      "source": "Ethan Mollick：One Useful Thing（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "f4d1bb95b4c1c4ef480458a314e5f4cdd932b05f",
+          "title": "Ethan Mollick 谈点与群：智能体自组织为何让管理假设失效",
+          "url": "https://www.oneusefulthing.org/p/the-dot-and-the-swarm",
+          "source": "Ethan Mollick：One Useful Thing（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T10:54:12Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Ethan Mollick：One Useful Thing（RSS）"
+      ],
+      "items": [
+        {
+          "id": "f4d1bb95b4c1c4ef480458a314e5f4cdd932b05f",
+          "title": "Ethan Mollick 谈点与群：智能体自组织为何让管理假设失效",
+          "url": "https://www.oneusefulthing.org/p/the-dot-and-the-swarm",
+          "source": "Ethan Mollick：One Useful Thing（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T10:54:12Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7324,
+      "importance": 0.7324,
+      "importance_score": 0.7324,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.64,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.938,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-01T10:54:12Z",
+      "latest_at": "2026-10-01T10:54:12Z",
+      "primary_item": {
+        "id": "f4d1bb95b4c1c4ef480458a314e5f4cdd932b05f",
+        "title": "Ethan Mollick 谈点与群：智能体自组织为何让管理假设失效",
+        "url": "https://www.oneusefulthing.org/p/the-dot-and-the-swarm",
+        "source": "Ethan Mollick：One Useful Thing（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -1014,15 +1065,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7482,
-      "importance": 0.7482,
-      "importance_score": 0.7482,
+      "score": 0.7301,
+      "importance": 0.7301,
+      "importance_score": 0.7301,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9588,
+        "recency": 0.8582,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1036,66 +1087,6 @@
         "title": "ChatGPT 现可直接构建并部署 MCP 服务器",
         "url": "https://x.com/thsottiaux/status/2105519215092584786",
         "source": "X：Tibo (@thsottiaux)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_c943108bbbb2",
-      "title": "OpenRouter 指南：用置信度阈值实现模型分级升级路由",
-      "url": "https://openrouter.ai/blog/insights/confidence-thresholds-for-model-escalation-routing",
-      "primary_url": "https://openrouter.ai/blog/insights/confidence-thresholds-for-model-escalation-routing",
-      "source": "OpenRouter：Announcements（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "ce0cca5af452c45ea58c225ad64efde7e4c6ac15",
-          "title": "OpenRouter 指南：用置信度阈值实现模型分级升级路由",
-          "url": "https://openrouter.ai/blog/insights/confidence-thresholds-for-model-escalation-routing",
-          "source": "OpenRouter：Announcements（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T00:00:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "OpenRouter：Announcements（RSS）"
-      ],
-      "items": [
-        {
-          "id": "ce0cca5af452c45ea58c225ad64efde7e4c6ac15",
-          "title": "OpenRouter 指南：用置信度阈值实现模型分级升级路由",
-          "url": "https://openrouter.ai/blog/insights/confidence-thresholds-for-model-escalation-routing",
-          "source": "OpenRouter：Announcements（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T00:00:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7368,
-      "importance": 0.7368,
-      "importance_score": 0.7368,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.68,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8953,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-01T00:00:00Z",
-      "latest_at": "2026-10-01T00:00:00Z",
-      "primary_item": {
-        "id": "ce0cca5af452c45ea58c225ad64efde7e4c6ac15",
-        "title": "OpenRouter 指南：用置信度阈值实现模型分级升级路由",
-        "url": "https://openrouter.ai/blog/insights/confidence-thresholds-for-model-escalation-routing",
-        "source": "OpenRouter：Announcements（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -1134,15 +1125,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7365,
-      "importance": 0.7365,
-      "importance_score": 0.7365,
+      "score": 0.7221,
+      "importance": 0.7221,
+      "importance_score": 0.7221,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7604,
+        "recency": 0.6806,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1213,15 +1204,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7285,
-      "importance": 0.7285,
-      "importance_score": 0.7285,
+      "score": 0.7207,
+      "importance": 0.7207,
+      "importance_score": 0.7207,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4103,
+        "recency": 0.3673,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -1240,122 +1231,141 @@
       }
     },
     {
-      "story_id": "story_b5c0f035b149",
-      "title": "GamersNexus 分析内存厂商以长期协议锁定产能，消费级 RAM 与 SSD 价格一年大涨",
-      "url": "https://gamersnexus.net/news-features/memory-companies-have-destroyed-consumer-market",
-      "primary_url": "https://gamersnexus.net/news-features/memory-companies-have-destroyed-consumer-market",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "story_id": "story_6eb18f6ff1c2",
+      "title": "FTC 以消费者保护为由对 OpenAI、Anthropic 等 AI 实验室启动全面调查",
+      "url": "https://the-decoder.com/ftc-launches-sweeping-probe-into-openai-anthropic-and-other-ai-labs-over-consumer-protection-concerns",
+      "primary_url": "https://the-decoder.com/ftc-launches-sweeping-probe-into-openai-anthropic-and-other-ai-labs-over-consumer-protection-concerns",
+      "source": "The Decoder：AI News（RSS）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "74bf172644458eba8c5f0c60486b2674b46ae594",
-          "title": "GamersNexus 分析内存厂商以长期协议锁定产能，消费级 RAM 与 SSD 价格一年大涨",
-          "url": "https://gamersnexus.net/news-features/memory-companies-have-destroyed-consumer-market",
-          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "id": "642e8da577619291348e2e74443467b30fe57f10",
+          "title": "FTC 以消费者保护为由对 OpenAI、Anthropic 等 AI 实验室启动全面调查",
+          "url": "https://the-decoder.com/ftc-launches-sweeping-probe-into-openai-anthropic-and-other-ai-labs-over-consumer-protection-concerns",
+          "source": "The Decoder：AI News（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-30T01:40:59.989000Z"
+          "published_at": "2026-09-30T16:20:04Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "Hacker News 热门（buzzing.cc 中文翻译）"
+        "The Decoder：AI News（RSS）"
       ],
       "items": [
         {
-          "id": "74bf172644458eba8c5f0c60486b2674b46ae594",
-          "title": "GamersNexus 分析内存厂商以长期协议锁定产能，消费级 RAM 与 SSD 价格一年大涨",
-          "url": "https://gamersnexus.net/news-features/memory-companies-have-destroyed-consumer-market",
-          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "id": "642e8da577619291348e2e74443467b30fe57f10",
+          "title": "FTC 以消费者保护为由对 OpenAI、Anthropic 等 AI 实验室启动全面调查",
+          "url": "https://the-decoder.com/ftc-launches-sweeping-probe-into-openai-anthropic-and-other-ai-labs-over-consumer-protection-concerns",
+          "source": "The Decoder：AI News（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-30T01:40:59.989000Z"
+          "published_at": "2026-09-30T16:20:04Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7284,
-      "importance": 0.7284,
-      "importance_score": 0.7284,
+      "score": 0.7467,
+      "importance": 0.7467,
+      "importance_score": 0.7467,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.8,
+        "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6486,
+        "recency": 0.7174,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-30T01:40:59.989000Z",
-      "latest_at": "2026-09-30T01:40:59.989000Z",
+      "earliest_at": "2026-09-30T16:20:04Z",
+      "latest_at": "2026-09-30T16:20:04Z",
       "primary_item": {
-        "id": "74bf172644458eba8c5f0c60486b2674b46ae594",
-        "title": "GamersNexus 分析内存厂商以长期协议锁定产能，消费级 RAM 与 SSD 价格一年大涨",
-        "url": "https://gamersnexus.net/news-features/memory-companies-have-destroyed-consumer-market",
-        "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+        "id": "642e8da577619291348e2e74443467b30fe57f10",
+        "title": "FTC 以消费者保护为由对 OpenAI、Anthropic 等 AI 实验室启动全面调查",
+        "url": "https://the-decoder.com/ftc-launches-sweeping-probe-into-openai-anthropic-and-other-ai-labs-over-consumer-protection-concerns",
+        "source": "The Decoder：AI News（RSS）",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_51fe4244ac1c",
-      "title": "Google 发布 Gemini 4 Argon，支持 1M token 输出上限",
-      "url": "https://x.com/Google/status/2105388143902175529",
-      "primary_url": "https://x.com/Google/status/2105388143902175529",
-      "source": "X：Google (@Google)",
+      "story_id": "story_b6574943f04d",
+      "title": "李飞飞宣布 World Labs 并入 AMD，出任执行副总裁兼首席科学家",
+      "url": "https://x.com/drfeifei/status/2104664403681632453",
+      "primary_url": "https://x.com/drfeifei/status/2104664403681632453",
+      "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "c3eafa1acdd4171d61c10904a102ceb5b36e7452",
-          "title": "Google 发布 Gemini 4 Argon，支持 1M token 输出上限",
-          "url": "https://x.com/Google/status/2105388143902175529",
-          "source": "X：Google (@Google)",
+          "id": "6bcd7aeaee889c6476b5f41a42fcb9717e861233",
+          "title": "Fei-Fei Li 谈空间智能与 World Labs",
+          "url": "https://x.com/drfeifei/status/2104664403681632453",
+          "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-30T20:03:44Z"
+          "published_at": "2026-09-28T20:07:51Z"
+        },
+        {
+          "id": "5259641aa1ebda417008afc1e93bb9ebff128d1d",
+          "title": "李飞飞宣布 World Labs 并入 AMD，出任执行副总裁兼首席科学家",
+          "url": "https://x.com/drfeifei/status/2104664403681632453",
+          "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T20:07:51Z"
         }
       ],
-      "source_count": 1,
+      "source_count": 2,
       "source_names": [
-        "X：Google (@Google)"
+        "X：Fei-Fei Li (@drfeifei, World Labs)"
       ],
       "items": [
         {
-          "id": "c3eafa1acdd4171d61c10904a102ceb5b36e7452",
-          "title": "Google 发布 Gemini 4 Argon，支持 1M token 输出上限",
-          "url": "https://x.com/Google/status/2105388143902175529",
-          "source": "X：Google (@Google)",
+          "id": "6bcd7aeaee889c6476b5f41a42fcb9717e861233",
+          "title": "Fei-Fei Li 谈空间智能与 World Labs",
+          "url": "https://x.com/drfeifei/status/2104664403681632453",
+          "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-30T20:03:44Z"
+          "published_at": "2026-09-28T20:07:51Z"
+        },
+        {
+          "id": "5259641aa1ebda417008afc1e93bb9ebff128d1d",
+          "title": "李飞飞宣布 World Labs 并入 AMD，出任执行副总裁兼首席科学家",
+          "url": "https://x.com/drfeifei/status/2104664403681632453",
+          "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T20:07:51Z"
         }
       ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7278,
-      "importance": 0.7278,
-      "importance_score": 0.7278,
-      "importance_label": "行业动态",
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7078,
+      "importance": 0.7078,
+      "importance_score": 0.7078,
+      "importance_label": "值得关注",
       "importance_breakdown": {
-        "editorial": 0.68,
+        "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8458,
-        "story_heat": 0.0
+        "recency": 0.3789,
+        "story_heat": 0.25
       },
-      "category": "industry",
+      "category": "watch",
       "reasons": [
+        "multi_source",
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-30T20:03:44Z",
-      "latest_at": "2026-09-30T20:03:44Z",
+      "earliest_at": "2026-09-28T20:07:51Z",
+      "latest_at": "2026-09-28T20:07:51Z",
       "primary_item": {
-        "id": "c3eafa1acdd4171d61c10904a102ceb5b36e7452",
-        "title": "Google 发布 Gemini 4 Argon，支持 1M token 输出上限",
-        "url": "https://x.com/Google/status/2105388143902175529",
-        "source": "X：Google (@Google)",
+        "id": "5259641aa1ebda417008afc1e93bb9ebff128d1d",
+        "title": "李飞飞宣布 World Labs 并入 AMD，出任执行副总裁兼首席科学家",
+        "url": "https://x.com/drfeifei/status/2104664403681632453",
+        "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
         "source_name": "AI HOT"
       }
     },
@@ -1394,21 +1404,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7546,
-      "importance": 0.7546,
-      "importance_score": 0.7546,
+      "score": 0.7368,
+      "importance": 0.7368,
+      "importance_score": 0.7368,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9447,
+        "recency": 0.8456,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-01T03:43:16Z",
       "latest_at": "2026-10-01T03:43:16Z",
@@ -1421,62 +1430,82 @@
       }
     },
     {
-      "story_id": "story_fcb0264e0559",
-      "title": "ElevenLabs 员工要约收购估值达 220 亿美元",
-      "url": "https://x.com/ElevenLabs/status/2105332239316000886",
-      "primary_url": "https://x.com/ElevenLabs/status/2105332239316000886",
-      "source": "X：ElevenLabs (@elevenlabs)",
+      "story_id": "story_de35e53397fa",
+      "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
+      "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
+      "primary_url": "https://x.com/ClaudeDevs/status/2104641318555353400",
+      "source": "X：Claude Devs (@ClaudeDevs)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "b01cbb2ce603e62d837b5b51d208286f88431a92",
-          "title": "ElevenLabs 员工要约收购估值达 220 亿美元",
-          "url": "https://x.com/ElevenLabs/status/2105332239316000886",
-          "source": "X：ElevenLabs (@elevenlabs)",
+          "id": "b719f447f05f438014ff5f0f328dcac723f043ef",
+          "title": "Claude Sonnet 5.5 发布：比 Sonnet 5 快 30% 以上，多数工作成本降低至多 30%",
+          "url": "https://x.com/trq212/status/2104660926373023830",
+          "source": "X：Thariq (@trq212)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-30T16:21:35Z"
+          "published_at": "2026-09-28T19:54:02Z"
+        },
+        {
+          "id": "174b8f3b0886c612fa58740af5b9afabfa805433",
+          "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
+          "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
+          "source": "X：Claude Devs (@ClaudeDevs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T18:36:07Z"
         }
       ],
-      "source_count": 1,
+      "source_count": 2,
       "source_names": [
-        "X：ElevenLabs (@elevenlabs)"
+        "X：Claude Devs (@ClaudeDevs)",
+        "X：Thariq (@trq212)"
       ],
       "items": [
         {
-          "id": "b01cbb2ce603e62d837b5b51d208286f88431a92",
-          "title": "ElevenLabs 员工要约收购估值达 220 亿美元",
-          "url": "https://x.com/ElevenLabs/status/2105332239316000886",
-          "source": "X：ElevenLabs (@elevenlabs)",
+          "id": "b719f447f05f438014ff5f0f328dcac723f043ef",
+          "title": "Claude Sonnet 5.5 发布：比 Sonnet 5 快 30% 以上，多数工作成本降低至多 30%",
+          "url": "https://x.com/trq212/status/2104660926373023830",
+          "source": "X：Thariq (@trq212)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-09-30T16:21:35Z"
+          "published_at": "2026-09-28T19:54:02Z"
+        },
+        {
+          "id": "174b8f3b0886c612fa58740af5b9afabfa805433",
+          "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
+          "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
+          "source": "X：Claude Devs (@ClaudeDevs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T18:36:07Z"
         }
       ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7229,
-      "importance": 0.7229,
-      "importance_score": 0.7229,
-      "importance_label": "行业动态",
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7003,
+      "importance": 0.7003,
+      "importance_score": 0.7003,
+      "importance_label": "值得关注",
       "importance_breakdown": {
-        "editorial": 0.69,
+        "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8018,
-        "story_heat": 0.0
+        "recency": 0.3706,
+        "story_heat": 0.25
       },
-      "category": "industry",
+      "category": "watch",
       "reasons": [
+        "multi_source",
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-09-30T16:21:35Z",
-      "latest_at": "2026-09-30T16:21:35Z",
+      "earliest_at": "2026-09-28T18:36:07Z",
+      "latest_at": "2026-09-28T19:54:02Z",
       "primary_item": {
-        "id": "b01cbb2ce603e62d837b5b51d208286f88431a92",
-        "title": "ElevenLabs 员工要约收购估值达 220 亿美元",
-        "url": "https://x.com/ElevenLabs/status/2105332239316000886",
-        "source": "X：ElevenLabs (@elevenlabs)",
+        "id": "174b8f3b0886c612fa58740af5b9afabfa805433",
+        "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
+        "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
+        "source": "X：Claude Devs (@ClaudeDevs)",
         "source_name": "AI HOT"
       }
     }
