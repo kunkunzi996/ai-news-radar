@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T11:16:28.570513Z",
+  "generated_at": "2026-10-02T15:28:03.660353Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -243,15 +243,15 @@
       ],
       "item_count": 12,
       "duplicate_count": 12,
-      "score": 0.7827,
-      "importance": 0.7827,
-      "importance_score": 0.7827,
+      "score": 0.7783,
+      "importance": 0.7783,
+      "importance_score": 0.7783,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4116,
+        "recency": 0.3874,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -305,15 +305,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7698,
-      "importance": 0.7698,
-      "importance_score": 0.7698,
+      "score": 0.7598,
+      "importance": 0.7598,
+      "importance_score": 0.7598,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9454,
+        "recency": 0.8899,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -366,21 +366,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7558,
-      "importance": 0.7558,
-      "importance_score": 0.7558,
+      "score": 0.7468,
+      "importance": 0.7468,
+      "importance_score": 0.7468,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.851,
+        "recency": 0.801,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-02T00:06:15Z",
       "latest_at": "2026-10-02T00:06:15Z",
@@ -389,6 +388,66 @@
         "title": "加州检察长向 OpenAI 发出传票，调查 AI 智能体网络安全风险",
         "url": "https://www.ithome.com/1/009/204.htm",
         "source": "IT之家（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_d4e3054526b7",
+      "title": "NVIDIA DGX Spark 推出 64GB 版本，10 月 23 日起以 $4,999 开售",
+      "url": "https://blogs.nvidia.com/blog/local-ai-dgx-spark-64gb-sync",
+      "primary_url": "https://blogs.nvidia.com/blog/local-ai-dgx-spark-64gb-sync",
+      "source": "NVIDIA Blog（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "4704055ba4617f6054282d6374b0d71ea0596cdf",
+          "title": "NVIDIA DGX Spark 推出 64GB 版本，10 月 23 日起以 $4,999 开售",
+          "url": "https://blogs.nvidia.com/blog/local-ai-dgx-spark-64gb-sync",
+          "source": "NVIDIA Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-02T13:00:39Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "NVIDIA Blog（RSS）"
+      ],
+      "items": [
+        {
+          "id": "4704055ba4617f6054282d6374b0d71ea0596cdf",
+          "title": "NVIDIA DGX Spark 推出 64GB 版本，10 月 23 日起以 $4,999 开售",
+          "url": "https://blogs.nvidia.com/blog/local-ai-dgx-spark-64gb-sync",
+          "source": "NVIDIA Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-02T13:00:39Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7463,
+      "importance": 0.7463,
+      "importance_score": 0.7463,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.67,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9651,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-02T13:00:39Z",
+      "latest_at": "2026-10-02T13:00:39Z",
+      "primary_item": {
+        "id": "4704055ba4617f6054282d6374b0d71ea0596cdf",
+        "title": "NVIDIA DGX Spark 推出 64GB 版本，10 月 23 日起以 $4,999 开售",
+        "url": "https://blogs.nvidia.com/blog/local-ai-dgx-spark-64gb-sync",
+        "source": "NVIDIA Blog（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -427,21 +486,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7503,
-      "importance": 0.7503,
-      "importance_score": 0.7503,
+      "score": 0.7405,
+      "importance": 0.7405,
+      "importance_score": 0.7405,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9203,
+        "recency": 0.8662,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-02T05:31:19Z",
       "latest_at": "2026-10-02T05:31:19Z",
@@ -488,15 +546,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7442,
-      "importance": 0.7442,
-      "importance_score": 0.7442,
+      "score": 0.7352,
+      "importance": 0.7352,
+      "importance_score": 0.7352,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.73,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8533,
+        "recency": 0.8031,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -548,15 +606,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7423,
-      "importance": 0.7423,
-      "importance_score": 0.7423,
+      "score": 0.7332,
+      "importance": 0.7332,
+      "importance_score": 0.7332,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8592,
+        "recency": 0.8087,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -608,15 +666,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7662,
-      "importance": 0.7662,
-      "importance_score": 0.7662,
+      "score": 0.7571,
+      "importance": 0.7571,
+      "importance_score": 0.7571,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.8,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8589,
+        "recency": 0.8085,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -669,15 +727,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7333,
-      "importance": 0.7333,
-      "importance_score": 0.7333,
+      "score": 0.7247,
+      "importance": 0.7247,
+      "importance_score": 0.7247,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8094,
+        "recency": 0.7618,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -729,15 +787,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7314,
-      "importance": 0.7314,
-      "importance_score": 0.7314,
+      "score": 0.7238,
+      "importance": 0.7238,
+      "importance_score": 0.7238,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7156,
+        "recency": 0.6735,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -751,66 +809,6 @@
         "title": "OpenAI 称拦截蒸馏窃取攻击，但研究者称同样手法在 Azure 上仍可窃取 GPT-6 Astra 等模型的推理内容",
         "url": "https://the-decoder.com/openai-says-it-stopped-a-campaign-to-steal-its-models-reasoning-but-the-trick-still-worked-on-azure",
         "source": "The Decoder：AI News（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_9128069ece23",
-      "title": "NVIDIA 介绍 Blackwell GPU 如何加速 OpenAI GPT-6 Astra Ultrafast",
-      "url": "https://blogs.nvidia.com/blog/gpus-openai-gpt-6-astra-ultrafast",
-      "primary_url": "https://blogs.nvidia.com/blog/gpus-openai-gpt-6-astra-ultrafast",
-      "source": "NVIDIA Blog（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "e874f23f6b419b05e0da8c0a5789ba4223e709f9",
-          "title": "NVIDIA 介绍 Blackwell GPU 如何加速 OpenAI GPT-6 Astra Ultrafast",
-          "url": "https://blogs.nvidia.com/blog/gpus-openai-gpt-6-astra-ultrafast",
-          "source": "NVIDIA Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T23:44:13Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "NVIDIA Blog（RSS）"
-      ],
-      "items": [
-        {
-          "id": "e874f23f6b419b05e0da8c0a5789ba4223e709f9",
-          "title": "NVIDIA 介绍 Blackwell GPU 如何加速 OpenAI GPT-6 Astra Ultrafast",
-          "url": "https://blogs.nvidia.com/blog/gpus-openai-gpt-6-astra-ultrafast",
-          "source": "NVIDIA Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T23:44:13Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.731,
-      "importance": 0.731,
-      "importance_score": 0.731,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.69,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8465,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-01T23:44:13Z",
-      "latest_at": "2026-10-01T23:44:13Z",
-      "primary_item": {
-        "id": "e874f23f6b419b05e0da8c0a5789ba4223e709f9",
-        "title": "NVIDIA 介绍 Blackwell GPU 如何加速 OpenAI GPT-6 Astra Ultrafast",
-        "url": "https://blogs.nvidia.com/blog/gpus-openai-gpt-6-astra-ultrafast",
-        "source": "NVIDIA Blog（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -849,15 +847,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7302,
-      "importance": 0.7302,
-      "importance_score": 0.7302,
+      "score": 0.7216,
+      "importance": 0.7216,
+      "importance_score": 0.7216,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8088,
+        "recency": 0.7613,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -871,126 +869,6 @@
         "title": "Suno 推出 Speech beta：语音与背景音乐一体生成",
         "url": "https://suno.com/blog/introducing-speech-beta",
         "source": "Suno：Blog（网页）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_f822aeedd7a6",
-      "title": "DeepSeek Harness 发布 macOS 与 Windows 桌面版",
-      "url": "https://x.com/deepseek_ai/status/2105915715241062644",
-      "primary_url": "https://x.com/deepseek_ai/status/2105915715241062644",
-      "source": "X：DeepSeek (@deepseek_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "ec0073c28e4c97ec193cf059d22c5bd4b8d9a5f0",
-          "title": "DeepSeek Harness 发布 macOS 与 Windows 桌面版",
-          "url": "https://x.com/deepseek_ai/status/2105915715241062644",
-          "source": "X：DeepSeek (@deepseek_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T07:00:07Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：DeepSeek (@deepseek_ai)"
-      ],
-      "items": [
-        {
-          "id": "ec0073c28e4c97ec193cf059d22c5bd4b8d9a5f0",
-          "title": "DeepSeek Harness 发布 macOS 与 Windows 桌面版",
-          "url": "https://x.com/deepseek_ai/status/2105915715241062644",
-          "source": "X：DeepSeek (@deepseek_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T07:00:07Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7298,
-      "importance": 0.7298,
-      "importance_score": 0.7298,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.63,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9402,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-02T07:00:07Z",
-      "latest_at": "2026-10-02T07:00:07Z",
-      "primary_item": {
-        "id": "ec0073c28e4c97ec193cf059d22c5bd4b8d9a5f0",
-        "title": "DeepSeek Harness 发布 macOS 与 Windows 桌面版",
-        "url": "https://x.com/deepseek_ai/status/2105915715241062644",
-        "source": "X：DeepSeek (@deepseek_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_04d4b4f4e20c",
-      "title": "FLUX 3 Image 现已登陆 Krea，支持多轮编辑与 4K 生成",
-      "url": "https://x.com/krea_ai/status/2105769469880799716",
-      "primary_url": "https://x.com/krea_ai/status/2105769469880799716",
-      "source": "X：Krea AI (@krea_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "f61f78ecb87af9a364695b370713ab95021622b4",
-          "title": "FLUX 3 Image 现已登陆 Krea，支持多轮编辑与 4K 生成",
-          "url": "https://x.com/krea_ai/status/2105769469880799716",
-          "source": "X：Krea AI (@krea_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T21:18:59Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Krea AI (@krea_ai)"
-      ],
-      "items": [
-        {
-          "id": "f61f78ecb87af9a364695b370713ab95021622b4",
-          "title": "FLUX 3 Image 现已登陆 Krea，支持多轮编辑与 4K 生成",
-          "url": "https://x.com/krea_ai/status/2105769469880799716",
-          "source": "X：Krea AI (@krea_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T21:18:59Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7257,
-      "importance": 0.7257,
-      "importance_score": 0.7257,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.69,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8175,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-01T21:18:59Z",
-      "latest_at": "2026-10-01T21:18:59Z",
-      "primary_item": {
-        "id": "f61f78ecb87af9a364695b370713ab95021622b4",
-        "title": "FLUX 3 Image 现已登陆 Krea，支持多轮编辑与 4K 生成",
-        "url": "https://x.com/krea_ai/status/2105769469880799716",
-        "source": "X：Krea AI (@krea_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -1048,15 +926,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7241,
-      "importance": 0.7241,
-      "importance_score": 0.7241,
+      "score": 0.72,
+      "importance": 0.72,
+      "importance_score": 0.72,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3859,
+        "recency": 0.3633,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -1071,126 +949,6 @@
         "title": "OpenAI 发布 GPT-6.1 Sol，以约五分之一价格接近 GPT-6 Astra 智能",
         "url": "https://openai.com/index/introducing-gpt-6-1-sol",
         "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_e3887eee4b96",
-      "title": "Andrej Karpathy 分享理解 LLM 输出的技巧：从 ASD-STE100 写作到定制讲解视频",
-      "url": "https://x.com/karpathy/status/2105819303471976479",
-      "primary_url": "https://x.com/karpathy/status/2105819303471976479",
-      "source": "X：Andrej Karpathy (@karpathy)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "72e23155195c45be8e8273887d46c040749fca72",
-          "title": "Andrej Karpathy 分享理解 LLM 输出的技巧：从 ASD-STE100 写作到定制讲解视频",
-          "url": "https://x.com/karpathy/status/2105819303471976479",
-          "source": "X：Andrej Karpathy (@karpathy)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T00:37:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Andrej Karpathy (@karpathy)"
-      ],
-      "items": [
-        {
-          "id": "72e23155195c45be8e8273887d46c040749fca72",
-          "title": "Andrej Karpathy 分享理解 LLM 输出的技巧：从 ASD-STE100 写作到定制讲解视频",
-          "url": "https://x.com/karpathy/status/2105819303471976479",
-          "source": "X：Andrej Karpathy (@karpathy)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T00:37:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7239,
-      "importance": 0.7239,
-      "importance_score": 0.7239,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8574,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-02T00:37:00Z",
-      "latest_at": "2026-10-02T00:37:00Z",
-      "primary_item": {
-        "id": "72e23155195c45be8e8273887d46c040749fca72",
-        "title": "Andrej Karpathy 分享理解 LLM 输出的技巧：从 ASD-STE100 写作到定制讲解视频",
-        "url": "https://x.com/karpathy/status/2105819303471976479",
-        "source": "X：Andrej Karpathy (@karpathy)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_44a72a2ca921",
-      "title": "Claude Sonnet 5.5 (xHigh) 以 1786 分登 Code Arena: WebDev 第 3 名",
-      "url": "https://x.com/arena/status/2105702037849841954",
-      "primary_url": "https://x.com/arena/status/2105702037849841954",
-      "source": "X：Arena (@arena)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "44b6ef20e792986c3637456af67b1517a109d3e3",
-          "title": "Claude Sonnet 5.5 (xHigh) 以 1786 分登 Code Arena: WebDev 第 3 名",
-          "url": "https://x.com/arena/status/2105702037849841954",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T16:51:02Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Arena (@arena)"
-      ],
-      "items": [
-        {
-          "id": "44b6ef20e792986c3637456af67b1517a109d3e3",
-          "title": "Claude Sonnet 5.5 (xHigh) 以 1786 分登 Code Arena: WebDev 第 3 名",
-          "url": "https://x.com/arena/status/2105702037849841954",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T16:51:02Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7226,
-      "importance": 0.7226,
-      "importance_score": 0.7226,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7664,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-01T16:51:02Z",
-      "latest_at": "2026-10-01T16:51:02Z",
-      "primary_item": {
-        "id": "44b6ef20e792986c3637456af67b1517a109d3e3",
-        "title": "Claude Sonnet 5.5 (xHigh) 以 1786 分登 Code Arena: WebDev 第 3 名",
-        "url": "https://x.com/arena/status/2105702037849841954",
-        "source": "X：Arena (@arena)",
         "source_name": "AI HOT"
       }
     },
@@ -1248,15 +1006,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7177,
-      "importance": 0.7177,
-      "importance_score": 0.7177,
+      "score": 0.7134,
+      "importance": 0.7134,
+      "importance_score": 0.7134,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4003,
+        "recency": 0.3768,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1327,15 +1085,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.709,
-      "importance": 0.709,
-      "importance_score": 0.709,
+      "score": 0.7033,
+      "importance": 0.7033,
+      "importance_score": 0.7033,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5353,
+        "recency": 0.5039,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1350,86 +1108,6 @@
         "title": "Manus 2.0 发布视频编辑器，从一句话生成整支视频",
         "url": "https://manus.im/zh-cn/blog/introducing-video-editor",
         "source": "Manus：Blog（网页）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_0c6cb391df3a",
-      "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
-      "url": "https://x.com/milichab/status/2105782588799594871",
-      "primary_url": "https://x.com/milichab/status/2105782588799594871",
-      "source": "X：Andrew Milich (@milichab)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "ce48262e29839413db30dee45296cea41808964a",
-          "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
-          "url": "https://x.com/milichab/status/2105782588799594871",
-          "source": "X：Andrew Milich (@milichab)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T22:11:07Z"
-        },
-        {
-          "id": "9e1e6e7a51478218a5c9f50dba29eda7c2420c6a",
-          "title": "Grok Build 新增 Agent Dashboard",
-          "url": "https://x.com/grok/status/2105782433362878757",
-          "source": "X：Grok (@grok)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T22:10:30Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "X：Andrew Milich (@milichab)",
-        "X：Grok (@grok)"
-      ],
-      "items": [
-        {
-          "id": "ce48262e29839413db30dee45296cea41808964a",
-          "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
-          "url": "https://x.com/milichab/status/2105782588799594871",
-          "source": "X：Andrew Milich (@milichab)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T22:11:07Z"
-        },
-        {
-          "id": "9e1e6e7a51478218a5c9f50dba29eda7c2420c6a",
-          "title": "Grok Build 新增 Agent Dashboard",
-          "url": "https://x.com/grok/status/2105782433362878757",
-          "source": "X：Grok (@grok)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T22:10:30Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.7046,
-      "importance": 0.7046,
-      "importance_score": 0.7046,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.53,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8278,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-01T22:10:30Z",
-      "latest_at": "2026-10-01T22:11:07Z",
-      "primary_item": {
-        "id": "ce48262e29839413db30dee45296cea41808964a",
-        "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
-        "url": "https://x.com/milichab/status/2105782588799594871",
-        "source": "X：Andrew Milich (@milichab)",
         "source_name": "AI HOT"
       }
     },
@@ -1487,15 +1165,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7042,
-      "importance": 0.7042,
-      "importance_score": 0.7042,
+      "score": 0.7013,
+      "importance": 0.7013,
+      "importance_score": 0.7013,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2754,
+        "recency": 0.2592,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1510,6 +1188,365 @@
         "title": "Anthropic 发布 Claude Sonnet 5.5：速度提升 30%+，每任务成本最多降 30%",
         "url": "https://www.anthropic.com/claude-sonnet-5-5",
         "source": "Hacker News：AI 热帖",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_0c6cb391df3a",
+      "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+      "url": "https://x.com/milichab/status/2105782588799594871",
+      "primary_url": "https://x.com/milichab/status/2105782588799594871",
+      "source": "X：Andrew Milich (@milichab)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "ce48262e29839413db30dee45296cea41808964a",
+          "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+          "url": "https://x.com/milichab/status/2105782588799594871",
+          "source": "X：Andrew Milich (@milichab)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:11:07Z"
+        },
+        {
+          "id": "9e1e6e7a51478218a5c9f50dba29eda7c2420c6a",
+          "title": "Grok Build 新增 Agent Dashboard",
+          "url": "https://x.com/grok/status/2105782433362878757",
+          "source": "X：Grok (@grok)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:10:30Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Andrew Milich (@milichab)",
+        "X：Grok (@grok)"
+      ],
+      "items": [
+        {
+          "id": "ce48262e29839413db30dee45296cea41808964a",
+          "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+          "url": "https://x.com/milichab/status/2105782588799594871",
+          "source": "X：Andrew Milich (@milichab)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:11:07Z"
+        },
+        {
+          "id": "9e1e6e7a51478218a5c9f50dba29eda7c2420c6a",
+          "title": "Grok Build 新增 Agent Dashboard",
+          "url": "https://x.com/grok/status/2105782433362878757",
+          "source": "X：Grok (@grok)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:10:30Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6958,
+      "importance": 0.6958,
+      "importance_score": 0.6958,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.53,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7791,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-01T22:10:30Z",
+      "latest_at": "2026-10-01T22:11:07Z",
+      "primary_item": {
+        "id": "ce48262e29839413db30dee45296cea41808964a",
+        "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+        "url": "https://x.com/milichab/status/2105782588799594871",
+        "source": "X：Andrew Milich (@milichab)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_9128069ece23",
+      "title": "NVIDIA 介绍 Blackwell GPU 如何加速 OpenAI GPT-6 Astra Ultrafast",
+      "url": "https://blogs.nvidia.com/blog/gpus-openai-gpt-6-astra-ultrafast",
+      "primary_url": "https://blogs.nvidia.com/blog/gpus-openai-gpt-6-astra-ultrafast",
+      "source": "NVIDIA Blog（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "e874f23f6b419b05e0da8c0a5789ba4223e709f9",
+          "title": "NVIDIA 介绍 Blackwell GPU 如何加速 OpenAI GPT-6 Astra Ultrafast",
+          "url": "https://blogs.nvidia.com/blog/gpus-openai-gpt-6-astra-ultrafast",
+          "source": "NVIDIA Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T23:44:13Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "NVIDIA Blog（RSS）"
+      ],
+      "items": [
+        {
+          "id": "e874f23f6b419b05e0da8c0a5789ba4223e709f9",
+          "title": "NVIDIA 介绍 Blackwell GPU 如何加速 OpenAI GPT-6 Astra Ultrafast",
+          "url": "https://blogs.nvidia.com/blog/gpus-openai-gpt-6-astra-ultrafast",
+          "source": "NVIDIA Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T23:44:13Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.722,
+      "importance": 0.722,
+      "importance_score": 0.722,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.69,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7968,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-01T23:44:13Z",
+      "latest_at": "2026-10-01T23:44:13Z",
+      "primary_item": {
+        "id": "e874f23f6b419b05e0da8c0a5789ba4223e709f9",
+        "title": "NVIDIA 介绍 Blackwell GPU 如何加速 OpenAI GPT-6 Astra Ultrafast",
+        "url": "https://blogs.nvidia.com/blog/gpus-openai-gpt-6-astra-ultrafast",
+        "source": "NVIDIA Blog（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_b6574943f04d",
+      "title": "李飞飞宣布 World Labs 并入 AMD，出任执行副总裁兼首席科学家",
+      "url": "https://x.com/drfeifei/status/2104664403681632453",
+      "primary_url": "https://x.com/drfeifei/status/2104664403681632453",
+      "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "6bcd7aeaee889c6476b5f41a42fcb9717e861233",
+          "title": "Fei-Fei Li 谈空间智能与 World Labs",
+          "url": "https://x.com/drfeifei/status/2104664403681632453",
+          "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T20:07:51Z"
+        },
+        {
+          "id": "5259641aa1ebda417008afc1e93bb9ebff128d1d",
+          "title": "李飞飞宣布 World Labs 并入 AMD，出任执行副总裁兼首席科学家",
+          "url": "https://x.com/drfeifei/status/2104664403681632453",
+          "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T20:07:51Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Fei-Fei Li (@drfeifei, World Labs)"
+      ],
+      "items": [
+        {
+          "id": "6bcd7aeaee889c6476b5f41a42fcb9717e861233",
+          "title": "Fei-Fei Li 谈空间智能与 World Labs",
+          "url": "https://x.com/drfeifei/status/2104664403681632453",
+          "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T20:07:51Z"
+        },
+        {
+          "id": "5259641aa1ebda417008afc1e93bb9ebff128d1d",
+          "title": "李飞飞宣布 World Labs 并入 AMD，出任执行副总裁兼首席科学家",
+          "url": "https://x.com/drfeifei/status/2104664403681632453",
+          "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T20:07:51Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6877,
+      "importance": 0.6877,
+      "importance_score": 0.6877,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.81,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.2674,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-28T20:07:51Z",
+      "latest_at": "2026-09-28T20:07:51Z",
+      "primary_item": {
+        "id": "5259641aa1ebda417008afc1e93bb9ebff128d1d",
+        "title": "李飞飞宣布 World Labs 并入 AMD，出任执行副总裁兼首席科学家",
+        "url": "https://x.com/drfeifei/status/2104664403681632453",
+        "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_f5c88cda7647",
+      "title": "Broadcom 同意向 Anthropic 提供最高 420 亿美元贷款用于租赁其 AI 芯片",
+      "url": "https://x.com/rohanpaul_ai/status/2105861023328821429",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2105861023328821429",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "6945150b99e29b1deb59c6fdc7c04caf9c1074e5",
+          "title": "Broadcom 同意向 Anthropic 提供最高 420 亿美元贷款用于租赁其 AI 芯片",
+          "url": "https://x.com/rohanpaul_ai/status/2105861023328821429",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-02T03:22:47Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "6945150b99e29b1deb59c6fdc7c04caf9c1074e5",
+          "title": "Broadcom 同意向 Anthropic 提供最高 420 亿美元贷款用于租赁其 AI 芯片",
+          "url": "https://x.com/rohanpaul_ai/status/2105861023328821429",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-02T03:22:47Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7418,
+      "importance": 0.7418,
+      "importance_score": 0.7418,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.73,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8398,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-02T03:22:47Z",
+      "latest_at": "2026-10-02T03:22:47Z",
+      "primary_item": {
+        "id": "6945150b99e29b1deb59c6fdc7c04caf9c1074e5",
+        "title": "Broadcom 同意向 Anthropic 提供最高 420 亿美元贷款用于租赁其 AI 芯片",
+        "url": "https://x.com/rohanpaul_ai/status/2105861023328821429",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_de35e53397fa",
+      "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
+      "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
+      "primary_url": "https://x.com/ClaudeDevs/status/2104641318555353400",
+      "source": "X：Claude Devs (@ClaudeDevs)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "b719f447f05f438014ff5f0f328dcac723f043ef",
+          "title": "Claude Sonnet 5.5 发布：比 Sonnet 5 快 30% 以上，多数工作成本降低至多 30%",
+          "url": "https://x.com/trq212/status/2104660926373023830",
+          "source": "X：Thariq (@trq212)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T19:54:02Z"
+        },
+        {
+          "id": "174b8f3b0886c612fa58740af5b9afabfa805433",
+          "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
+          "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
+          "source": "X：Claude Devs (@ClaudeDevs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T18:36:07Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Claude Devs (@ClaudeDevs)",
+        "X：Thariq (@trq212)"
+      ],
+      "items": [
+        {
+          "id": "b719f447f05f438014ff5f0f328dcac723f043ef",
+          "title": "Claude Sonnet 5.5 发布：比 Sonnet 5 快 30% 以上，多数工作成本降低至多 30%",
+          "url": "https://x.com/trq212/status/2104660926373023830",
+          "source": "X：Thariq (@trq212)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T19:54:02Z"
+        },
+        {
+          "id": "174b8f3b0886c612fa58740af5b9afabfa805433",
+          "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
+          "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
+          "source": "X：Claude Devs (@ClaudeDevs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T18:36:07Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6807,
+      "importance": 0.6807,
+      "importance_score": 0.6807,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.79,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.2616,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-28T18:36:07Z",
+      "latest_at": "2026-09-28T19:54:02Z",
+      "primary_item": {
+        "id": "174b8f3b0886c612fa58740af5b9afabfa805433",
+        "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
+        "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
+        "source": "X：Claude Devs (@ClaudeDevs)",
         "source_name": "AI HOT"
       }
     }
