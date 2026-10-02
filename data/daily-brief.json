@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-01T20:26:49.401244Z",
+  "generated_at": "2026-10-02T00:05:27.513544Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -242,15 +242,15 @@
       ],
       "item_count": 12,
       "duplicate_count": 12,
-      "score": 0.8004,
-      "importance": 0.8004,
-      "importance_score": 0.8004,
+      "score": 0.7957,
+      "importance": 0.7957,
+      "importance_score": 0.7957,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5098,
+        "recency": 0.4837,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -270,21 +270,82 @@
       }
     },
     {
-      "story_id": "story_369cc3edbce1",
-      "title": "Nvidia 与 SoftBank 各支付最后 100 亿美元，OpenAI 600 亿美元认缴额于 10 月 1 日完成",
-      "url": "https://x.com/rohanpaul_ai/status/2105727955888746708",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2105727955888746708",
+      "story_id": "story_50566681553e",
+      "title": "FLUX 3 Image 上线 OpenRouter，支持原生 4K 生成与多参考编辑",
+      "url": "https://x.com/OpenRouter/status/2105759062835220852",
+      "primary_url": "https://x.com/OpenRouter/status/2105759062835220852",
+      "source": "X：OpenRouter (@OpenRouter)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "6d02910a0b7262c57072a618a4e45ae6373272ea",
+          "title": "FLUX 3 Image 上线 OpenRouter，支持原生 4K 生成与多参考编辑",
+          "url": "https://x.com/OpenRouter/status/2105759062835220852",
+          "source": "X：OpenRouter (@OpenRouter)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T20:37:38Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：OpenRouter (@OpenRouter)"
+      ],
+      "items": [
+        {
+          "id": "6d02910a0b7262c57072a618a4e45ae6373272ea",
+          "title": "FLUX 3 Image 上线 OpenRouter，支持原生 4K 生成与多参考编辑",
+          "url": "https://x.com/OpenRouter/status/2105759062835220852",
+          "source": "X：OpenRouter (@OpenRouter)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T20:37:38Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7588,
+      "importance": 0.7588,
+      "importance_score": 0.7588,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.72,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9512,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-01T20:37:38Z",
+      "latest_at": "2026-10-01T20:37:38Z",
+      "primary_item": {
+        "id": "6d02910a0b7262c57072a618a4e45ae6373272ea",
+        "title": "FLUX 3 Image 上线 OpenRouter，支持原生 4K 生成与多参考编辑",
+        "url": "https://x.com/OpenRouter/status/2105759062835220852",
+        "source": "X：OpenRouter (@OpenRouter)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_95f1248dd36d",
+      "title": "Ben Affleck 谈解冻权重微调开源视频模型，Netflix 以 5.87 亿美元收购 InterPositive",
+      "url": "https://x.com/rohanpaul_ai/status/2105786881111896126",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2105786881111896126",
       "source": "X：Rohan Paul (@rohanpaul_ai)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "c3f5d19cbb6d21ed77557d80a667c75aec188f9b",
-          "title": "Nvidia 与 SoftBank 各支付最后 100 亿美元，OpenAI 600 亿美元认缴额于 10 月 1 日完成",
-          "url": "https://x.com/rohanpaul_ai/status/2105727955888746708",
+          "id": "93003f5349356940d6a5a8a5838bc616109ff53d",
+          "title": "Ben Affleck 谈解冻权重微调开源视频模型，Netflix 以 5.87 亿美元收购 InterPositive",
+          "url": "https://x.com/rohanpaul_ai/status/2105786881111896126",
           "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-01T18:34:01Z"
+          "published_at": "2026-10-01T22:28:10Z"
         }
       ],
       "source_count": 1,
@@ -293,26 +354,26 @@
       ],
       "items": [
         {
-          "id": "c3f5d19cbb6d21ed77557d80a667c75aec188f9b",
-          "title": "Nvidia 与 SoftBank 各支付最后 100 亿美元，OpenAI 600 亿美元认缴额于 10 月 1 日完成",
-          "url": "https://x.com/rohanpaul_ai/status/2105727955888746708",
+          "id": "93003f5349356940d6a5a8a5838bc616109ff53d",
+          "title": "Ben Affleck 谈解冻权重微调开源视频模型，Netflix 以 5.87 亿美元收购 InterPositive",
+          "url": "https://x.com/rohanpaul_ai/status/2105786881111896126",
           "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-01T18:34:01Z"
+          "published_at": "2026-10-01T22:28:10Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7658,
-      "importance": 0.7658,
-      "importance_score": 0.7658,
+      "score": 0.7574,
+      "importance": 0.7574,
+      "importance_score": 0.7574,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.73,
+        "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9732,
+        "recency": 0.9769,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -320,13 +381,135 @@
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-10-01T18:34:01Z",
-      "latest_at": "2026-10-01T18:34:01Z",
+      "earliest_at": "2026-10-01T22:28:10Z",
+      "latest_at": "2026-10-01T22:28:10Z",
       "primary_item": {
-        "id": "c3f5d19cbb6d21ed77557d80a667c75aec188f9b",
-        "title": "Nvidia 与 SoftBank 各支付最后 100 亿美元，OpenAI 600 亿美元认缴额于 10 月 1 日完成",
-        "url": "https://x.com/rohanpaul_ai/status/2105727955888746708",
+        "id": "93003f5349356940d6a5a8a5838bc616109ff53d",
+        "title": "Ben Affleck 谈解冻权重微调开源视频模型，Netflix 以 5.87 亿美元收购 InterPositive",
+        "url": "https://x.com/rohanpaul_ai/status/2105786881111896126",
         "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_9506769ef6ff",
+      "title": "Suno 推出 Speech beta：语音与背景音乐一体生成",
+      "url": "https://suno.com/blog/introducing-speech-beta",
+      "primary_url": "https://suno.com/blog/introducing-speech-beta",
+      "source": "Suno：Blog（网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "b92d0a2b80504ddfece5e27a9fb7a8a3e4918ef4",
+          "title": "Suno 推出 Speech beta：语音与背景音乐一体生成",
+          "url": "https://suno.com/blog/introducing-speech-beta",
+          "source": "Suno：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T20:35:00Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Suno：Blog（网页）"
+      ],
+      "items": [
+        {
+          "id": "b92d0a2b80504ddfece5e27a9fb7a8a3e4918ef4",
+          "title": "Suno 推出 Speech beta：语音与背景音乐一体生成",
+          "url": "https://suno.com/blog/introducing-speech-beta",
+          "source": "Suno：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T20:35:00Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7557,
+      "importance": 0.7557,
+      "importance_score": 0.7557,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.71,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9506,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-01T20:35:00Z",
+      "latest_at": "2026-10-01T20:35:00Z",
+      "primary_item": {
+        "id": "b92d0a2b80504ddfece5e27a9fb7a8a3e4918ef4",
+        "title": "Suno 推出 Speech beta：语音与背景音乐一体生成",
+        "url": "https://suno.com/blog/introducing-speech-beta",
+        "source": "Suno：Blog（网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_e2222d31e665",
+      "title": "Artificial Analysis 评测：Qwen-Image-2.1 登顶两个 AA-Image 榜单的开源权重模型",
+      "url": "https://x.com/ArtificialAnlys/status/2105790682376065463",
+      "primary_url": "https://x.com/ArtificialAnlys/status/2105790682376065463",
+      "source": "X：Artificial Analysis (@ArtificialAnlys)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "8e18fbe70daa6a142ef1934895750767f733646e",
+          "title": "Artificial Analysis 评测：Qwen-Image-2.1 登顶两个 AA-Image 榜单的开源权重模型",
+          "url": "https://x.com/ArtificialAnlys/status/2105790682376065463",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:43:17Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Artificial Analysis (@ArtificialAnlys)"
+      ],
+      "items": [
+        {
+          "id": "8e18fbe70daa6a142ef1934895750767f733646e",
+          "title": "Artificial Analysis 评测：Qwen-Image-2.1 登顶两个 AA-Image 榜单的开源权重模型",
+          "url": "https://x.com/ArtificialAnlys/status/2105790682376065463",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:43:17Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7551,
+      "importance": 0.7551,
+      "importance_score": 0.7551,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.69,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9804,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-01T22:43:17Z",
+      "latest_at": "2026-10-01T22:43:17Z",
+      "primary_item": {
+        "id": "8e18fbe70daa6a142ef1934895750767f733646e",
+        "title": "Artificial Analysis 评测：Qwen-Image-2.1 登顶两个 AA-Image 榜单的开源权重模型",
+        "url": "https://x.com/ArtificialAnlys/status/2105790682376065463",
+        "source": "X：Artificial Analysis (@ArtificialAnlys)",
         "source_name": "AI HOT"
       }
     },
@@ -365,15 +548,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7622,
-      "importance": 0.7622,
-      "importance_score": 0.7622,
+      "score": 0.754,
+      "importance": 0.754,
+      "importance_score": 0.754,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8864,
+        "recency": 0.841,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -388,6 +571,67 @@
         "title": "OpenAI 称拦截蒸馏窃取攻击，但研究者称同样手法在 Azure 上仍可窃取 GPT-6 Astra 等模型的推理内容",
         "url": "https://the-decoder.com/openai-says-it-stopped-a-campaign-to-steal-its-models-reasoning-but-the-trick-still-worked-on-azure",
         "source": "The Decoder：AI News（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_04d4b4f4e20c",
+      "title": "FLUX 3 Image 现已登陆 Krea，支持多轮编辑与 4K 生成",
+      "url": "https://x.com/krea_ai/status/2105769469880799716",
+      "primary_url": "https://x.com/krea_ai/status/2105769469880799716",
+      "source": "X：Krea AI (@krea_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "f61f78ecb87af9a364695b370713ab95021622b4",
+          "title": "FLUX 3 Image 现已登陆 Krea，支持多轮编辑与 4K 生成",
+          "url": "https://x.com/krea_ai/status/2105769469880799716",
+          "source": "X：Krea AI (@krea_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T21:18:59Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Krea AI (@krea_ai)"
+      ],
+      "items": [
+        {
+          "id": "f61f78ecb87af9a364695b370713ab95021622b4",
+          "title": "FLUX 3 Image 现已登陆 Krea，支持多轮编辑与 4K 生成",
+          "url": "https://x.com/krea_ai/status/2105769469880799716",
+          "source": "X：Krea AI (@krea_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T21:18:59Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7515,
+      "importance": 0.7515,
+      "importance_score": 0.7515,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.69,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9607,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-01T21:18:59Z",
+      "latest_at": "2026-10-01T21:18:59Z",
+      "primary_item": {
+        "id": "f61f78ecb87af9a364695b370713ab95021622b4",
+        "title": "FLUX 3 Image 现已登陆 Krea，支持多轮编辑与 4K 生成",
+        "url": "https://x.com/krea_ai/status/2105769469880799716",
+        "source": "X：Krea AI (@krea_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -426,21 +670,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7555,
-      "importance": 0.7555,
-      "importance_score": 0.7555,
+      "score": 0.7467,
+      "importance": 0.7467,
+      "importance_score": 0.7467,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9494,
+        "recency": 0.9007,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-01T16:51:02Z",
       "latest_at": "2026-10-01T16:51:02Z",
@@ -487,15 +730,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7499,
-      "importance": 0.7499,
-      "importance_score": 0.7499,
+      "score": 0.7411,
+      "importance": 0.7411,
+      "importance_score": 0.7411,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9518,
+        "recency": 0.903,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -547,15 +790,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7499,
-      "importance": 0.7499,
-      "importance_score": 0.7499,
+      "score": 0.7411,
+      "importance": 0.7411,
+      "importance_score": 0.7411,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9517,
+        "recency": 0.9029,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -607,15 +850,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7467,
-      "importance": 0.7467,
-      "importance_score": 0.7467,
+      "score": 0.7378,
+      "importance": 0.7378,
+      "importance_score": 0.7378,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9672,
+        "recency": 0.9176,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -667,15 +910,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7458,
-      "importance": 0.7458,
-      "importance_score": 0.7458,
+      "score": 0.7368,
+      "importance": 0.7368,
+      "importance_score": 0.7368,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.979,
+        "recency": 0.9289,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -689,66 +932,6 @@
         "title": "Claude Code 推出 Mods 功能，支持自定义行为与 UI",
         "url": "https://x.com/trq212/status/2105734197801562264",
         "source": "X：Thariq (@trq212)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_23a2c14e0146",
-      "title": "Claude Code 推出 Mods 功能，用户可修改构建并自定义 UI",
-      "url": "https://x.com/testingcatalog/status/2105752819441525182",
-      "primary_url": "https://x.com/testingcatalog/status/2105752819441525182",
-      "source": "X：Testing Catalog (@testingcatalog)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "2ad69dc5229fdd3594053258bb91a6c6187fb2b8",
-          "title": "Claude Code 推出 Mods 功能，用户可修改构建并自定义 UI",
-          "url": "https://x.com/testingcatalog/status/2105752819441525182",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T20:12:49Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Testing Catalog (@testingcatalog)"
-      ],
-      "items": [
-        {
-          "id": "2ad69dc5229fdd3594053258bb91a6c6187fb2b8",
-          "title": "Claude Code 推出 Mods 功能，用户可修改构建并自定义 UI",
-          "url": "https://x.com/testingcatalog/status/2105752819441525182",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T20:12:49Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.743,
-      "importance": 0.743,
-      "importance_score": 0.743,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.64,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9966,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-01T20:12:49Z",
-      "latest_at": "2026-10-01T20:12:49Z",
-      "primary_item": {
-        "id": "2ad69dc5229fdd3594053258bb91a6c6187fb2b8",
-        "title": "Claude Code 推出 Mods 功能，用户可修改构建并自定义 UI",
-        "url": "https://x.com/testingcatalog/status/2105752819441525182",
-        "source": "X：Testing Catalog (@testingcatalog)",
         "source_name": "AI HOT"
       }
     },
@@ -806,15 +989,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7407,
-      "importance": 0.7407,
-      "importance_score": 0.7407,
+      "score": 0.7362,
+      "importance": 0.7362,
+      "importance_score": 0.7362,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4781,
+        "recency": 0.4536,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -833,62 +1016,322 @@
       }
     },
     {
-      "story_id": "story_a17da5b49e3f",
-      "title": "FLUX 3 Image 上线 fal 平台",
-      "url": "https://x.com/fal/status/2105745492474802514",
-      "primary_url": "https://x.com/fal/status/2105745492474802514",
-      "source": "X：fal (@fal)",
+      "story_id": "story_7867288e5265",
+      "title": "Black Forest Labs 发布 FLUX 3 Image，支持精确编辑与 4K",
+      "url": "https://x.com/testingcatalog/status/2105797384785502626",
+      "primary_url": "https://x.com/testingcatalog/status/2105797384785502626",
+      "source": "X：Testing Catalog (@testingcatalog)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "12b970b86bf38005e8278ed9e1d3ae9381aecb15",
-          "title": "FLUX 3 Image 上线 fal 平台",
-          "url": "https://x.com/fal/status/2105745492474802514",
-          "source": "X：fal (@fal)",
+          "id": "e128a52610158dad4f06cd7df1bfba8a0fe2f73c",
+          "title": "Black Forest Labs 发布 FLUX 3 Image，支持精确编辑与 4K",
+          "url": "https://x.com/testingcatalog/status/2105797384785502626",
+          "source": "X：Testing Catalog (@testingcatalog)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-01T19:43:42Z"
+          "published_at": "2026-10-01T23:09:55Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：fal (@fal)"
+        "X：Testing Catalog (@testingcatalog)"
       ],
       "items": [
         {
-          "id": "12b970b86bf38005e8278ed9e1d3ae9381aecb15",
-          "title": "FLUX 3 Image 上线 fal 平台",
-          "url": "https://x.com/fal/status/2105745492474802514",
-          "source": "X：fal (@fal)",
+          "id": "e128a52610158dad4f06cd7df1bfba8a0fe2f73c",
+          "title": "Black Forest Labs 发布 FLUX 3 Image，支持精确编辑与 4K",
+          "url": "https://x.com/testingcatalog/status/2105797384785502626",
+          "source": "X：Testing Catalog (@testingcatalog)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-01T19:43:42Z"
+          "published_at": "2026-10-01T23:09:55Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7387,
-      "importance": 0.7387,
-      "importance_score": 0.7387,
+      "score": 0.7352,
+      "importance": 0.7352,
+      "importance_score": 0.7352,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.63,
+        "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9897,
+        "recency": 0.9867,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-01T19:43:42Z",
-      "latest_at": "2026-10-01T19:43:42Z",
+      "earliest_at": "2026-10-01T23:09:55Z",
+      "latest_at": "2026-10-01T23:09:55Z",
       "primary_item": {
-        "id": "12b970b86bf38005e8278ed9e1d3ae9381aecb15",
-        "title": "FLUX 3 Image 上线 fal 平台",
-        "url": "https://x.com/fal/status/2105745492474802514",
-        "source": "X：fal (@fal)",
+        "id": "e128a52610158dad4f06cd7df1bfba8a0fe2f73c",
+        "title": "Black Forest Labs 发布 FLUX 3 Image，支持精确编辑与 4K",
+        "url": "https://x.com/testingcatalog/status/2105797384785502626",
+        "source": "X：Testing Catalog (@testingcatalog)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_15343c7c5736",
+      "title": "Tianyi Cui 评 Claude Code Mods，对比 DeepSeekHarness 的全插件架构",
+      "url": "https://x.com/tianyi/status/2105790798461882377",
+      "primary_url": "https://x.com/tianyi/status/2105790798461882377",
+      "source": "X：Tianyi Cui（@tianyi）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "bf5c074f20a645cda78d9b76e09597ace7462027",
+          "title": "Tianyi Cui 评 Claude Code Mods，对比 DeepSeekHarness 的全插件架构",
+          "url": "https://x.com/tianyi/status/2105790798461882377",
+          "source": "X：Tianyi Cui（@tianyi）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:43:44Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Tianyi Cui（@tianyi）"
+      ],
+      "items": [
+        {
+          "id": "bf5c074f20a645cda78d9b76e09597ace7462027",
+          "title": "Tianyi Cui 评 Claude Code Mods，对比 DeepSeekHarness 的全插件架构",
+          "url": "https://x.com/tianyi/status/2105790798461882377",
+          "source": "X：Tianyi Cui（@tianyi）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:43:44Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7341,
+      "importance": 0.7341,
+      "importance_score": 0.7341,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.62,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9805,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-01T22:43:44Z",
+      "latest_at": "2026-10-01T22:43:44Z",
+      "primary_item": {
+        "id": "bf5c074f20a645cda78d9b76e09597ace7462027",
+        "title": "Tianyi Cui 评 Claude Code Mods，对比 DeepSeekHarness 的全插件架构",
+        "url": "https://x.com/tianyi/status/2105790798461882377",
+        "source": "X：Tianyi Cui（@tianyi）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_87b41109eaef",
+      "title": "Google 与 Planet 合作发射搭载四颗 TPU 的卫星，启动 Project Suncatcher 太空机器学习基础设施研究",
+      "url": "https://x.com/Google/status/2105803583648100611",
+      "primary_url": "https://x.com/Google/status/2105803583648100611",
+      "source": "X：Google (@Google)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "d160af2436490a698a3c92334420d936225c31a5",
+          "title": "Google 与 Planet 合作发射搭载四颗 TPU 的卫星，启动 Project Suncatcher 太空机器学习基础设施研究",
+          "url": "https://x.com/Google/status/2105803583648100611",
+          "source": "X：Google (@Google)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T23:34:32Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Google (@Google)"
+      ],
+      "items": [
+        {
+          "id": "d160af2436490a698a3c92334420d936225c31a5",
+          "title": "Google 与 Planet 合作发射搭载四颗 TPU 的卫星，启动 Project Suncatcher 太空机器学习基础设施研究",
+          "url": "https://x.com/Google/status/2105803583648100611",
+          "source": "X：Google (@Google)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T23:34:32Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7333,
+      "importance": 0.7333,
+      "importance_score": 0.7333,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.61,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9926,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-01T23:34:32Z",
+      "latest_at": "2026-10-01T23:34:32Z",
+      "primary_item": {
+        "id": "d160af2436490a698a3c92334420d936225c31a5",
+        "title": "Google 与 Planet 合作发射搭载四颗 TPU 的卫星，启动 Project Suncatcher 太空机器学习基础设施研究",
+        "url": "https://x.com/Google/status/2105803583648100611",
+        "source": "X：Google (@Google)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_80017bcafca8",
+      "title": "Suno 推出 Speech Beta，可生成带匹配背景音乐的语音音频",
+      "url": "https://x.com/suno/status/2105783810159747294",
+      "primary_url": "https://x.com/suno/status/2105783810159747294",
+      "source": "X：Suno (@suno)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "6530ca119e919ffbea7c40001d4896476e3c9aaf",
+          "title": "Suno 推出 Speech Beta，可生成带匹配背景音乐的语音音频",
+          "url": "https://x.com/suno/status/2105783810159747294",
+          "source": "X：Suno (@suno)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:15:58Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Suno (@suno)"
+      ],
+      "items": [
+        {
+          "id": "6530ca119e919ffbea7c40001d4896476e3c9aaf",
+          "title": "Suno 推出 Speech Beta，可生成带匹配背景音乐的语音音频",
+          "url": "https://x.com/suno/status/2105783810159747294",
+          "source": "X：Suno (@suno)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:15:58Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7329,
+      "importance": 0.7329,
+      "importance_score": 0.7329,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.62,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.974,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-01T22:15:58Z",
+      "latest_at": "2026-10-01T22:15:58Z",
+      "primary_item": {
+        "id": "6530ca119e919ffbea7c40001d4896476e3c9aaf",
+        "title": "Suno 推出 Speech Beta，可生成带匹配背景音乐的语音音频",
+        "url": "https://x.com/suno/status/2105783810159747294",
+        "source": "X：Suno (@suno)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_0c6cb391df3a",
+      "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+      "url": "https://x.com/milichab/status/2105782588799594871",
+      "primary_url": "https://x.com/milichab/status/2105782588799594871",
+      "source": "X：Andrew Milich (@milichab)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "ce48262e29839413db30dee45296cea41808964a",
+          "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+          "url": "https://x.com/milichab/status/2105782588799594871",
+          "source": "X：Andrew Milich (@milichab)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:11:07Z"
+        },
+        {
+          "id": "9e1e6e7a51478218a5c9f50dba29eda7c2420c6a",
+          "title": "Grok Build 新增 Agent Dashboard",
+          "url": "https://x.com/grok/status/2105782433362878757",
+          "source": "X：Grok (@grok)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:10:30Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Andrew Milich (@milichab)",
+        "X：Grok (@grok)"
+      ],
+      "items": [
+        {
+          "id": "ce48262e29839413db30dee45296cea41808964a",
+          "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+          "url": "https://x.com/milichab/status/2105782588799594871",
+          "source": "X：Andrew Milich (@milichab)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:11:07Z"
+        },
+        {
+          "id": "9e1e6e7a51478218a5c9f50dba29eda7c2420c6a",
+          "title": "Grok Build 新增 Agent Dashboard",
+          "url": "https://x.com/grok/status/2105782433362878757",
+          "source": "X：Grok (@grok)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:10:30Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7307,
+      "importance": 0.7307,
+      "importance_score": 0.7307,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.53,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9729,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-01T22:10:30Z",
+      "latest_at": "2026-10-01T22:11:07Z",
+      "primary_item": {
+        "id": "ce48262e29839413db30dee45296cea41808964a",
+        "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+        "url": "https://x.com/milichab/status/2105782588799594871",
+        "source": "X：Andrew Milich (@milichab)",
         "source_name": "AI HOT"
       }
     },
@@ -927,15 +1370,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7372,
-      "importance": 0.7372,
-      "importance_score": 0.7372,
+      "score": 0.7306,
+      "importance": 0.7306,
+      "importance_score": 0.7306,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7144,
+        "recency": 0.6778,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -949,126 +1392,6 @@
         "title": "OpenAI 发布 GPT-6.1 Sol：以 Astra 五分之一价格接近其编码与计算机操作水平",
         "url": "https://www.marktechpost.com/2026/09/30/openai-releases-gpt-6-1-sol-near-astra-coding-and-computer-use-at-one-fifth-of-astras-token-price",
         "source": "MarkTechPost（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_95a885abc644",
-      "title": "Artificial Analysis 评测 Gemini 4 Argon，智能指数追平 GPT-6 Astra 且成本仅 60%",
-      "url": "https://x.com/ArtificialAnlys/status/2105392625788637299",
-      "primary_url": "https://x.com/ArtificialAnlys/status/2105392625788637299",
-      "source": "X：Artificial Analysis (@ArtificialAnlys)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "df8c7a6d1421bcd13035ca2d527f7bc1c3912802",
-          "title": "Artificial Analysis 评测 Gemini 4 Argon，智能指数追平 GPT-6 Astra 且成本仅 60%",
-          "url": "https://x.com/ArtificialAnlys/status/2105392625788637299",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-30T20:21:32Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Artificial Analysis (@ArtificialAnlys)"
-      ],
-      "items": [
-        {
-          "id": "df8c7a6d1421bcd13035ca2d527f7bc1c3912802",
-          "title": "Artificial Analysis 评测 Gemini 4 Argon，智能指数追平 GPT-6 Astra 且成本仅 60%",
-          "url": "https://x.com/ArtificialAnlys/status/2105392625788637299",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-30T20:21:32Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7357,
-      "importance": 0.7357,
-      "importance_score": 0.7357,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.79,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7062,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-30T20:21:32Z",
-      "latest_at": "2026-09-30T20:21:32Z",
-      "primary_item": {
-        "id": "df8c7a6d1421bcd13035ca2d527f7bc1c3912802",
-        "title": "Artificial Analysis 评测 Gemini 4 Argon，智能指数追平 GPT-6 Astra 且成本仅 60%",
-        "url": "https://x.com/ArtificialAnlys/status/2105392625788637299",
-        "source": "X：Artificial Analysis (@ArtificialAnlys)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_4a8c364d1c7c",
-      "title": "Claude Code mods 入门教程：从零构建 Token Weather 上下文窗口预报插件",
-      "url": "https://claude.dev/blog/getting-started-with-claude-code-mods",
-      "primary_url": "https://claude.dev/blog/getting-started-with-claude-code-mods",
-      "source": "Anthropic：Claude.dev 开发者博客（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "c7ec9dce9a21dbd241c0fd74bfe26b174b11d1da",
-          "title": "Claude Code mods 入门教程：从零构建 Token Weather 上下文窗口预报插件",
-          "url": "https://claude.dev/blog/getting-started-with-claude-code-mods",
-          "source": "Anthropic：Claude.dev 开发者博客（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T12:00:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Anthropic：Claude.dev 开发者博客（RSS）"
-      ],
-      "items": [
-        {
-          "id": "c7ec9dce9a21dbd241c0fd74bfe26b174b11d1da",
-          "title": "Claude Code mods 入门教程：从零构建 Token Weather 上下文窗口预报插件",
-          "url": "https://claude.dev/blog/getting-started-with-claude-code-mods",
-          "source": "Anthropic：Claude.dev 开发者博客（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T12:00:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7349,
-      "importance": 0.7349,
-      "importance_score": 0.7349,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.68,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8852,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-01T12:00:00Z",
-      "latest_at": "2026-10-01T12:00:00Z",
-      "primary_item": {
-        "id": "c7ec9dce9a21dbd241c0fd74bfe26b174b11d1da",
-        "title": "Claude Code mods 入门教程：从零构建 Token Weather 上下文窗口预报插件",
-        "url": "https://claude.dev/blog/getting-started-with-claude-code-mods",
-        "source": "Anthropic：Claude.dev 开发者博客（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -1126,15 +1449,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7349,
-      "importance": 0.7349,
-      "importance_score": 0.7349,
+      "score": 0.7303,
+      "importance": 0.7303,
+      "importance_score": 0.7303,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4959,
+        "recency": 0.4705,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -1149,307 +1472,6 @@
         "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
         "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
         "source": "TechCrunch：AI（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_6213f764a48a",
-      "title": "Microsoft AI 发布流式语音转写模型 MAI-Transcribe-2-Streaming",
-      "url": "https://x.com/mustafasuleyman/status/2105699115602677984",
-      "primary_url": "https://x.com/mustafasuleyman/status/2105699115602677984",
-      "source": "X：Mustafa Suleyman（Microsoft AI CEO） (@mustafasuleyman)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "46d7775f651be65b7722cc0fa8d5840129044c53",
-          "title": "Microsoft AI 发布流式语音转写模型 MAI-Transcribe-2-Streaming",
-          "url": "https://x.com/mustafasuleyman/status/2105699115602677984",
-          "source": "X：Mustafa Suleyman（Microsoft AI CEO） (@mustafasuleyman)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T16:39:25Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Mustafa Suleyman（Microsoft AI CEO） (@mustafasuleyman)"
-      ],
-      "items": [
-        {
-          "id": "46d7775f651be65b7722cc0fa8d5840129044c53",
-          "title": "Microsoft AI 发布流式语音转写模型 MAI-Transcribe-2-Streaming",
-          "url": "https://x.com/mustafasuleyman/status/2105699115602677984",
-          "source": "X：Mustafa Suleyman（Microsoft AI CEO） (@mustafasuleyman)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T16:39:25Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.734,
-      "importance": 0.734,
-      "importance_score": 0.734,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.64,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9467,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-01T16:39:25Z",
-      "latest_at": "2026-10-01T16:39:25Z",
-      "primary_item": {
-        "id": "46d7775f651be65b7722cc0fa8d5840129044c53",
-        "title": "Microsoft AI 发布流式语音转写模型 MAI-Transcribe-2-Streaming",
-        "url": "https://x.com/mustafasuleyman/status/2105699115602677984",
-        "source": "X：Mustafa Suleyman（Microsoft AI CEO） (@mustafasuleyman)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_beee353d4f9f",
-      "title": "Trump 推动二十余家科技公司签署自愿性 AI 安全协议",
-      "url": "https://arstechnica.com/tech-policy/2026/09/trump-plan-to-combat-ai-risks-hinges-on-big-tech-pals-policing-themselves",
-      "primary_url": "https://arstechnica.com/tech-policy/2026/09/trump-plan-to-combat-ai-risks-hinges-on-big-tech-pals-policing-themselves",
-      "source": "Ars Technica：AI（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "5eb3791a3aca4973cdffda35bf2dbc5dc82baf93",
-          "title": "Trump 推动二十余家科技公司签署自愿性 AI 安全协议",
-          "url": "https://arstechnica.com/tech-policy/2026/09/trump-plan-to-combat-ai-risks-hinges-on-big-tech-pals-policing-themselves",
-          "source": "Ars Technica：AI（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-30T18:47:01Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Ars Technica：AI（RSS）"
-      ],
-      "items": [
-        {
-          "id": "5eb3791a3aca4973cdffda35bf2dbc5dc82baf93",
-          "title": "Trump 推动二十余家科技公司签署自愿性 AI 安全协议",
-          "url": "https://arstechnica.com/tech-policy/2026/09/trump-plan-to-combat-ai-risks-hinges-on-big-tech-pals-policing-themselves",
-          "source": "Ars Technica：AI（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-30T18:47:01Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7329,
-      "importance": 0.7329,
-      "importance_score": 0.7329,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.79,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6903,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-30T18:47:01Z",
-      "latest_at": "2026-09-30T18:47:01Z",
-      "primary_item": {
-        "id": "5eb3791a3aca4973cdffda35bf2dbc5dc82baf93",
-        "title": "Trump 推动二十余家科技公司签署自愿性 AI 安全协议",
-        "url": "https://arstechnica.com/tech-policy/2026/09/trump-plan-to-combat-ai-risks-hinges-on-big-tech-pals-policing-themselves",
-        "source": "Ars Technica：AI（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_311e095023e6",
-      "title": "Google DeepMind 发布 Gemini 4 Argon，面向可信网络防御者先行开放",
-      "url": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence",
-      "primary_url": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence",
-      "source": "Google DeepMind：Blog（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "3f27dce6b1b35d033935fe1e7e186d55beeafa44",
-          "title": "Google DeepMind 发布 Gemini 4 Argon，面向可信网络防御者先行开放",
-          "url": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence",
-          "source": "Google DeepMind：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-30T20:01:45Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Google DeepMind：Blog（RSS）"
-      ],
-      "items": [
-        {
-          "id": "3f27dce6b1b35d033935fe1e7e186d55beeafa44",
-          "title": "Google DeepMind 发布 Gemini 4 Argon，面向可信网络防御者先行开放",
-          "url": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence",
-          "source": "Google DeepMind：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-30T20:01:45Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7321,
-      "importance": 0.7321,
-      "importance_score": 0.7321,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.78,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7029,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-30T20:01:45Z",
-      "latest_at": "2026-09-30T20:01:45Z",
-      "primary_item": {
-        "id": "3f27dce6b1b35d033935fe1e7e186d55beeafa44",
-        "title": "Google DeepMind 发布 Gemini 4 Argon，面向可信网络防御者先行开放",
-        "url": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence",
-        "source": "Google DeepMind：Blog（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_527de07bcab2",
-      "title": "纽约时报报道 OpenAI 在 AI 失控前已接到员工安全警告但被无视",
-      "url": "https://www.ithome.com/1/008/592.htm",
-      "primary_url": "https://www.ithome.com/1/008/592.htm",
-      "source": "IT之家（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "6637be9e422b35701ff8ab7b2883c8bf52904838",
-          "title": "纽约时报报道 OpenAI 在 AI 失控前已接到员工安全警告但被无视",
-          "url": "https://www.ithome.com/1/008/592.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-30T01:48:21Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "IT之家（RSS）"
-      ],
-      "items": [
-        {
-          "id": "6637be9e422b35701ff8ab7b2883c8bf52904838",
-          "title": "纽约时报报道 OpenAI 在 AI 失控前已接到员工安全警告但被无视",
-          "url": "https://www.ithome.com/1/008/592.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-30T01:48:21Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7298,
-      "importance": 0.7298,
-      "importance_score": 0.7298,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.87,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.5402,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-30T01:48:21Z",
-      "latest_at": "2026-09-30T01:48:21Z",
-      "primary_item": {
-        "id": "6637be9e422b35701ff8ab7b2883c8bf52904838",
-        "title": "纽约时报报道 OpenAI 在 AI 失控前已接到员工安全警告但被无视",
-        "url": "https://www.ithome.com/1/008/592.htm",
-        "source": "IT之家（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_2d696cb76d76",
-      "title": "MiMo-V2.6-Pro 和 MiMo-V2.6-Flash 登陆 Agent Arena，分列开源模型第5和第9",
-      "url": "https://x.com/arena/status/2105733983250301224",
-      "primary_url": "https://x.com/arena/status/2105733983250301224",
-      "source": "X：Arena (@arena)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "39b203bef17eae3f8d7f26f6b089fd3a9dc2439f",
-          "title": "MiMo-V2.6-Pro 和 MiMo-V2.6-Flash 登陆 Agent Arena，分列开源模型第5和第9",
-          "url": "https://x.com/arena/status/2105733983250301224",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T18:57:58Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Arena (@arena)"
-      ],
-      "items": [
-        {
-          "id": "39b203bef17eae3f8d7f26f6b089fd3a9dc2439f",
-          "title": "MiMo-V2.6-Pro 和 MiMo-V2.6-Flash 登陆 Agent Arena，分列开源模型第5和第9",
-          "url": "https://x.com/arena/status/2105733983250301224",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T18:57:58Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7548,
-      "importance": 0.7548,
-      "importance_score": 0.7548,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.69,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9788,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-01T18:57:58Z",
-      "latest_at": "2026-10-01T18:57:58Z",
-      "primary_item": {
-        "id": "39b203bef17eae3f8d7f26f6b089fd3a9dc2439f",
-        "title": "MiMo-V2.6-Pro 和 MiMo-V2.6-Flash 登陆 Agent Arena，分列开源模型第5和第9",
-        "url": "https://x.com/arena/status/2105733983250301224",
-        "source": "X：Arena (@arena)",
         "source_name": "AI HOT"
       }
     }
