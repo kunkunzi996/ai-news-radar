@@ -39,7 +39,30 @@ function failedSourceCount(status = state.sourceStatus) {
   const failedFeeds = visibleFeedList(rss.failed_feeds).length;
   return failedSites + failedFeeds;
 }
+const DOUYIN_COLLECTION_STALE_MS = 2 * 24 * 60 * 60 * 1000;
+
+function douyinCollectionStaleNotice(status, now = Date.now()) {
+  const sites = Array.isArray(status?.sites) ? status.sites : [];
+  const site = sites.find((item) => item?.site_id === "mediacrawler_douyin");
+  const at = Date.parse(site?.collection_generated_at || "");
+  if (!Number.isFinite(at)) return "";
+  const age = now - at;
+  if (age < DOUYIN_COLLECTION_STALE_MS) return "";
+  const days = Math.floor(age / (24 * 60 * 60 * 1000));
+  if (days < 2) return "";
+  return `抖音已经${days}天没采到新内容`;
+}
+
+function renderDouyinStaleNotice() {
+  const noticeEl = document.getElementById("douyinStaleNotice");
+  if (!noticeEl) return;
+  const text = douyinCollectionStaleNotice(state.sourceStatus);
+  noticeEl.textContent = text;
+  noticeEl.hidden = !text;
+}
+
 function renderSourceStatusPill(errorMessage = "") {
+  renderDouyinStaleNotice();
   if (!sourceStatusPillEl) return;
   const status = state.sourceStatus;
   sourceStatusPillEl.className = "source-status-pill";

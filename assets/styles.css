@@ -79,6 +79,21 @@ button {
   background: rgba(180, 35, 24, 0.07);
 }
 
+.douyin-stale-notice {
+  display: block;
+  width: 100%;
+  flex: 0 1 auto;
+  margin: 0;
+  color: var(--warn);
+  font-size: 12px;
+  font-weight: 740;
+  line-height: 1.45;
+}
+
+.douyin-stale-notice[hidden] {
+  display: none;
+}
+
 .data-source-pill {
   display: inline-flex;
   width: max-content;
