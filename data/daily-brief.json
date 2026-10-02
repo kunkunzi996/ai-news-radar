@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T05:24:44.516922Z",
+  "generated_at": "2026-10-02T11:16:28.570513Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -243,15 +243,15 @@
       ],
       "item_count": 12,
       "duplicate_count": 12,
-      "score": 0.7892,
-      "importance": 0.7892,
-      "importance_score": 0.7892,
+      "score": 0.7827,
+      "importance": 0.7827,
+      "importance_score": 0.7827,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4479,
+        "recency": 0.4116,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -271,21 +271,21 @@
       }
     },
     {
-      "story_id": "story_019e546a9b82",
-      "title": "Google 首次轨道 AI 芯片试验确认在轨运行正常",
-      "url": "https://x.com/rohanpaul_ai/status/2105821230368706769",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2105821230368706769",
+      "story_id": "story_faf4acfaabab",
+      "title": "Bloomberg：Anthropic 为可能估值近 2 万亿美元的 IPO 邀请机构投资者质询高管",
+      "url": "https://x.com/rohanpaul_ai/status/2105921530211508488",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2105921530211508488",
       "source": "X：Rohan Paul (@rohanpaul_ai)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "9244507ff15319af7063dcc4f2aff734550bf8af",
-          "title": "Google 首次轨道 AI 芯片试验确认在轨运行正常",
-          "url": "https://x.com/rohanpaul_ai/status/2105821230368706769",
+          "id": "80379d05868b888bce46fe2c5c3842db5998b24f",
+          "title": "Bloomberg：Anthropic 为可能估值近 2 万亿美元的 IPO 邀请机构投资者质询高管",
+          "url": "https://x.com/rohanpaul_ai/status/2105921530211508488",
           "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-02T00:44:40Z"
+          "published_at": "2026-10-02T07:23:13Z"
         }
       ],
       "source_count": 1,
@@ -294,26 +294,26 @@
       ],
       "items": [
         {
-          "id": "9244507ff15319af7063dcc4f2aff734550bf8af",
-          "title": "Google 首次轨道 AI 芯片试验确认在轨运行正常",
-          "url": "https://x.com/rohanpaul_ai/status/2105821230368706769",
+          "id": "80379d05868b888bce46fe2c5c3842db5998b24f",
+          "title": "Bloomberg：Anthropic 为可能估值近 2 万亿美元的 IPO 邀请机构投资者质询高管",
+          "url": "https://x.com/rohanpaul_ai/status/2105921530211508488",
           "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-02T00:44:40Z"
+          "published_at": "2026-10-02T07:23:13Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7799,
-      "importance": 0.7799,
-      "importance_score": 0.7799,
+      "score": 0.7698,
+      "importance": 0.7698,
+      "importance_score": 0.7698,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.8,
+        "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9348,
+        "recency": 0.9454,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -321,12 +321,12 @@
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-10-02T00:44:40Z",
-      "latest_at": "2026-10-02T00:44:40Z",
+      "earliest_at": "2026-10-02T07:23:13Z",
+      "latest_at": "2026-10-02T07:23:13Z",
       "primary_item": {
-        "id": "9244507ff15319af7063dcc4f2aff734550bf8af",
-        "title": "Google 首次轨道 AI 芯片试验确认在轨运行正常",
-        "url": "https://x.com/rohanpaul_ai/status/2105821230368706769",
+        "id": "80379d05868b888bce46fe2c5c3842db5998b24f",
+        "title": "Bloomberg：Anthropic 为可能估值近 2 万亿美元的 IPO 邀请机构投资者质询高管",
+        "url": "https://x.com/rohanpaul_ai/status/2105921530211508488",
         "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
@@ -366,15 +366,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7693,
-      "importance": 0.7693,
-      "importance_score": 0.7693,
+      "score": 0.7558,
+      "importance": 0.7558,
+      "importance_score": 0.7558,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9262,
+        "recency": 0.851,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -389,6 +389,67 @@
         "title": "加州检察长向 OpenAI 发出传票，调查 AI 智能体网络安全风险",
         "url": "https://www.ithome.com/1/009/204.htm",
         "source": "IT之家（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_c7aa81b1f8f8",
+      "title": "东锡 NLP 谈 LLM 耐心讲解代码，让老登被时代抛弃",
+      "url": "https://x.com/dongxi_nlp/status/2105893369142546585",
+      "primary_url": "https://x.com/dongxi_nlp/status/2105893369142546585",
+      "source": "X：马东锡 NLP (@dongxi_nlp)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "043d81d3b90b7e5cf9362758b44bf0850be969eb",
+          "title": "东锡 NLP 谈 LLM 耐心讲解代码，让老登被时代抛弃",
+          "url": "https://x.com/dongxi_nlp/status/2105893369142546585",
+          "source": "X：马东锡 NLP (@dongxi_nlp)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-02T05:31:19Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：马东锡 NLP (@dongxi_nlp)"
+      ],
+      "items": [
+        {
+          "id": "043d81d3b90b7e5cf9362758b44bf0850be969eb",
+          "title": "东锡 NLP 谈 LLM 耐心讲解代码，让老登被时代抛弃",
+          "url": "https://x.com/dongxi_nlp/status/2105893369142546585",
+          "source": "X：马东锡 NLP (@dongxi_nlp)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-02T05:31:19Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7503,
+      "importance": 0.7503,
+      "importance_score": 0.7503,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.71,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9203,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-02T05:31:19Z",
+      "latest_at": "2026-10-02T05:31:19Z",
+      "primary_item": {
+        "id": "043d81d3b90b7e5cf9362758b44bf0850be969eb",
+        "title": "东锡 NLP 谈 LLM 耐心讲解代码，让老登被时代抛弃",
+        "url": "https://x.com/dongxi_nlp/status/2105893369142546585",
+        "source": "X：马东锡 NLP (@dongxi_nlp)",
         "source_name": "AI HOT"
       }
     },
@@ -427,21 +488,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7578,
-      "importance": 0.7578,
-      "importance_score": 0.7578,
+      "score": 0.7442,
+      "importance": 0.7442,
+      "importance_score": 0.7442,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.73,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9287,
+        "recency": 0.8533,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-02T00:17:12Z",
       "latest_at": "2026-10-02T00:17:12Z",
@@ -488,21 +548,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7559,
-      "importance": 0.7559,
-      "importance_score": 0.7559,
+      "score": 0.7423,
+      "importance": 0.7423,
+      "importance_score": 0.7423,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9351,
+        "recency": 0.8592,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-02T00:45:49Z",
       "latest_at": "2026-10-02T00:45:49Z",
@@ -511,6 +570,67 @@
         "title": "Karpathy 分享用 LLM 生成写作、网页和讲解视频的技巧，Yuchen Jin 盼其回归更新视频",
         "url": "https://x.com/Yuchenj_UW/status/2105821521201799480",
         "source": "X：Yuchen Jin (@Yuchenj_UW)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_019e546a9b82",
+      "title": "Google 首次轨道 AI 芯片试验确认在轨运行正常",
+      "url": "https://x.com/rohanpaul_ai/status/2105821230368706769",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2105821230368706769",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "9244507ff15319af7063dcc4f2aff734550bf8af",
+          "title": "Google 首次轨道 AI 芯片试验确认在轨运行正常",
+          "url": "https://x.com/rohanpaul_ai/status/2105821230368706769",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-02T00:44:40Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "9244507ff15319af7063dcc4f2aff734550bf8af",
+          "title": "Google 首次轨道 AI 芯片试验确认在轨运行正常",
+          "url": "https://x.com/rohanpaul_ai/status/2105821230368706769",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-02T00:44:40Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7662,
+      "importance": 0.7662,
+      "importance_score": 0.7662,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.8,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8589,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-02T00:44:40Z",
+      "latest_at": "2026-10-02T00:44:40Z",
+      "primary_item": {
+        "id": "9244507ff15319af7063dcc4f2aff734550bf8af",
+        "title": "Google 首次轨道 AI 芯片试验确认在轨运行正常",
+        "url": "https://x.com/rohanpaul_ai/status/2105821230368706769",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -549,15 +669,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7462,
-      "importance": 0.7462,
-      "importance_score": 0.7462,
+      "score": 0.7333,
+      "importance": 0.7333,
+      "importance_score": 0.7333,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8809,
+        "recency": 0.8094,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -571,6 +691,66 @@
         "title": "FLUX 3 Image 上线 OpenRouter，支持原生 4K 生成与多参考编辑",
         "url": "https://x.com/OpenRouter/status/2105759062835220852",
         "source": "X：OpenRouter (@OpenRouter)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_0d41a58e9bee",
+      "title": "OpenAI 称拦截蒸馏窃取攻击，但研究者称同样手法在 Azure 上仍可窃取 GPT-6 Astra 等模型的推理内容",
+      "url": "https://the-decoder.com/openai-says-it-stopped-a-campaign-to-steal-its-models-reasoning-but-the-trick-still-worked-on-azure",
+      "primary_url": "https://the-decoder.com/openai-says-it-stopped-a-campaign-to-steal-its-models-reasoning-but-the-trick-still-worked-on-azure",
+      "source": "The Decoder：AI News（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "c5b406c3dda7be181007a6b78766d116c816412c",
+          "title": "OpenAI 称拦截蒸馏窃取攻击，但研究者称同样手法在 Azure 上仍可窃取 GPT-6 Astra 等模型的推理内容",
+          "url": "https://the-decoder.com/openai-says-it-stopped-a-campaign-to-steal-its-models-reasoning-but-the-trick-still-worked-on-azure",
+          "source": "The Decoder：AI News（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T12:05:49Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "The Decoder：AI News（RSS）"
+      ],
+      "items": [
+        {
+          "id": "c5b406c3dda7be181007a6b78766d116c816412c",
+          "title": "OpenAI 称拦截蒸馏窃取攻击，但研究者称同样手法在 Azure 上仍可窃取 GPT-6 Astra 等模型的推理内容",
+          "url": "https://the-decoder.com/openai-says-it-stopped-a-campaign-to-steal-its-models-reasoning-but-the-trick-still-worked-on-azure",
+          "source": "The Decoder：AI News（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T12:05:49Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7314,
+      "importance": 0.7314,
+      "importance_score": 0.7314,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.77,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7156,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-01T12:05:49Z",
+      "latest_at": "2026-10-01T12:05:49Z",
+      "primary_item": {
+        "id": "c5b406c3dda7be181007a6b78766d116c816412c",
+        "title": "OpenAI 称拦截蒸馏窃取攻击，但研究者称同样手法在 Azure 上仍可窃取 GPT-6 Astra 等模型的推理内容",
+        "url": "https://the-decoder.com/openai-says-it-stopped-a-campaign-to-steal-its-models-reasoning-but-the-trick-still-worked-on-azure",
+        "source": "The Decoder：AI News（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -609,15 +789,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7444,
-      "importance": 0.7444,
-      "importance_score": 0.7444,
+      "score": 0.731,
+      "importance": 0.731,
+      "importance_score": 0.731,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9213,
+        "recency": 0.8465,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -669,15 +849,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7431,
-      "importance": 0.7431,
-      "importance_score": 0.7431,
+      "score": 0.7302,
+      "importance": 0.7302,
+      "importance_score": 0.7302,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8803,
+        "recency": 0.8088,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -695,62 +875,62 @@
       }
     },
     {
-      "story_id": "story_0d41a58e9bee",
-      "title": "OpenAI 称拦截蒸馏窃取攻击，但研究者称同样手法在 Azure 上仍可窃取 GPT-6 Astra 等模型的推理内容",
-      "url": "https://the-decoder.com/openai-says-it-stopped-a-campaign-to-steal-its-models-reasoning-but-the-trick-still-worked-on-azure",
-      "primary_url": "https://the-decoder.com/openai-says-it-stopped-a-campaign-to-steal-its-models-reasoning-but-the-trick-still-worked-on-azure",
-      "source": "The Decoder：AI News（RSS）",
+      "story_id": "story_f822aeedd7a6",
+      "title": "DeepSeek Harness 发布 macOS 与 Windows 桌面版",
+      "url": "https://x.com/deepseek_ai/status/2105915715241062644",
+      "primary_url": "https://x.com/deepseek_ai/status/2105915715241062644",
+      "source": "X：DeepSeek (@deepseek_ai)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "c5b406c3dda7be181007a6b78766d116c816412c",
-          "title": "OpenAI 称拦截蒸馏窃取攻击，但研究者称同样手法在 Azure 上仍可窃取 GPT-6 Astra 等模型的推理内容",
-          "url": "https://the-decoder.com/openai-says-it-stopped-a-campaign-to-steal-its-models-reasoning-but-the-trick-still-worked-on-azure",
-          "source": "The Decoder：AI News（RSS）",
+          "id": "ec0073c28e4c97ec193cf059d22c5bd4b8d9a5f0",
+          "title": "DeepSeek Harness 发布 macOS 与 Windows 桌面版",
+          "url": "https://x.com/deepseek_ai/status/2105915715241062644",
+          "source": "X：DeepSeek (@deepseek_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-01T12:05:49Z"
+          "published_at": "2026-10-02T07:00:07Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "The Decoder：AI News（RSS）"
+        "X：DeepSeek (@deepseek_ai)"
       ],
       "items": [
         {
-          "id": "c5b406c3dda7be181007a6b78766d116c816412c",
-          "title": "OpenAI 称拦截蒸馏窃取攻击，但研究者称同样手法在 Azure 上仍可窃取 GPT-6 Astra 等模型的推理内容",
-          "url": "https://the-decoder.com/openai-says-it-stopped-a-campaign-to-steal-its-models-reasoning-but-the-trick-still-worked-on-azure",
-          "source": "The Decoder：AI News（RSS）",
+          "id": "ec0073c28e4c97ec193cf059d22c5bd4b8d9a5f0",
+          "title": "DeepSeek Harness 发布 macOS 与 Windows 桌面版",
+          "url": "https://x.com/deepseek_ai/status/2105915715241062644",
+          "source": "X：DeepSeek (@deepseek_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-01T12:05:49Z"
+          "published_at": "2026-10-02T07:00:07Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7428,
-      "importance": 0.7428,
-      "importance_score": 0.7428,
+      "score": 0.7298,
+      "importance": 0.7298,
+      "importance_score": 0.7298,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.77,
+        "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7788,
+        "recency": 0.9402,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-01T12:05:49Z",
-      "latest_at": "2026-10-01T12:05:49Z",
+      "earliest_at": "2026-10-02T07:00:07Z",
+      "latest_at": "2026-10-02T07:00:07Z",
       "primary_item": {
-        "id": "c5b406c3dda7be181007a6b78766d116c816412c",
-        "title": "OpenAI 称拦截蒸馏窃取攻击，但研究者称同样手法在 Azure 上仍可窃取 GPT-6 Astra 等模型的推理内容",
-        "url": "https://the-decoder.com/openai-says-it-stopped-a-campaign-to-steal-its-models-reasoning-but-the-trick-still-worked-on-azure",
-        "source": "The Decoder：AI News（RSS）",
+        "id": "ec0073c28e4c97ec193cf059d22c5bd4b8d9a5f0",
+        "title": "DeepSeek Harness 发布 macOS 与 Windows 桌面版",
+        "url": "https://x.com/deepseek_ai/status/2105915715241062644",
+        "source": "X：DeepSeek (@deepseek_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -789,15 +969,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7387,
-      "importance": 0.7387,
-      "importance_score": 0.7387,
+      "score": 0.7257,
+      "importance": 0.7257,
+      "importance_score": 0.7257,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8897,
+        "recency": 0.8175,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -811,187 +991,6 @@
         "title": "FLUX 3 Image 现已登陆 Krea，支持多轮编辑与 4K 生成",
         "url": "https://x.com/krea_ai/status/2105769469880799716",
         "source": "X：Krea AI (@krea_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_e3887eee4b96",
-      "title": "Andrej Karpathy 分享理解 LLM 输出的技巧：从 ASD-STE100 写作到定制讲解视频",
-      "url": "https://x.com/karpathy/status/2105819303471976479",
-      "primary_url": "https://x.com/karpathy/status/2105819303471976479",
-      "source": "X：Andrej Karpathy (@karpathy)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "72e23155195c45be8e8273887d46c040749fca72",
-          "title": "Andrej Karpathy 分享理解 LLM 输出的技巧：从 ASD-STE100 写作到定制讲解视频",
-          "url": "https://x.com/karpathy/status/2105819303471976479",
-          "source": "X：Andrej Karpathy (@karpathy)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T00:37:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Andrej Karpathy (@karpathy)"
-      ],
-      "items": [
-        {
-          "id": "72e23155195c45be8e8273887d46c040749fca72",
-          "title": "Andrej Karpathy 分享理解 LLM 输出的技巧：从 ASD-STE100 写作到定制讲解视频",
-          "url": "https://x.com/karpathy/status/2105819303471976479",
-          "source": "X：Andrej Karpathy (@karpathy)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T00:37:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7376,
-      "importance": 0.7376,
-      "importance_score": 0.7376,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9331,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-02T00:37:00Z",
-      "latest_at": "2026-10-02T00:37:00Z",
-      "primary_item": {
-        "id": "72e23155195c45be8e8273887d46c040749fca72",
-        "title": "Andrej Karpathy 分享理解 LLM 输出的技巧：从 ASD-STE100 写作到定制讲解视频",
-        "url": "https://x.com/karpathy/status/2105819303471976479",
-        "source": "X：Andrej Karpathy (@karpathy)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_f5c88cda7647",
-      "title": "Broadcom 同意向 Anthropic 提供最高 420 亿美元贷款用于租赁其 AI 芯片",
-      "url": "https://x.com/rohanpaul_ai/status/2105861023328821429",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2105861023328821429",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "6945150b99e29b1deb59c6fdc7c04caf9c1074e5",
-          "title": "Broadcom 同意向 Anthropic 提供最高 420 亿美元贷款用于租赁其 AI 芯片",
-          "url": "https://x.com/rohanpaul_ai/status/2105861023328821429",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T03:22:47Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "6945150b99e29b1deb59c6fdc7c04caf9c1074e5",
-          "title": "Broadcom 同意向 Anthropic 提供最高 420 亿美元贷款用于租赁其 AI 芯片",
-          "url": "https://x.com/rohanpaul_ai/status/2105861023328821429",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T03:22:47Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7654,
-      "importance": 0.7654,
-      "importance_score": 0.7654,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.73,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9711,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-02T03:22:47Z",
-      "latest_at": "2026-10-02T03:22:47Z",
-      "primary_item": {
-        "id": "6945150b99e29b1deb59c6fdc7c04caf9c1074e5",
-        "title": "Broadcom 同意向 Anthropic 提供最高 420 亿美元贷款用于租赁其 AI 芯片",
-        "url": "https://x.com/rohanpaul_ai/status/2105861023328821429",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_44a72a2ca921",
-      "title": "Claude Sonnet 5.5 (xHigh) 以 1786 分登 Code Arena: WebDev 第 3 名",
-      "url": "https://x.com/arena/status/2105702037849841954",
-      "primary_url": "https://x.com/arena/status/2105702037849841954",
-      "source": "X：Arena (@arena)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "44b6ef20e792986c3637456af67b1517a109d3e3",
-          "title": "Claude Sonnet 5.5 (xHigh) 以 1786 分登 Code Arena: WebDev 第 3 名",
-          "url": "https://x.com/arena/status/2105702037849841954",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T16:51:02Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Arena (@arena)"
-      ],
-      "items": [
-        {
-          "id": "44b6ef20e792986c3637456af67b1517a109d3e3",
-          "title": "Claude Sonnet 5.5 (xHigh) 以 1786 分登 Code Arena: WebDev 第 3 名",
-          "url": "https://x.com/arena/status/2105702037849841954",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T16:51:02Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7347,
-      "importance": 0.7347,
-      "importance_score": 0.7347,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8341,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-01T16:51:02Z",
-      "latest_at": "2026-10-01T16:51:02Z",
-      "primary_item": {
-        "id": "44b6ef20e792986c3637456af67b1517a109d3e3",
-        "title": "Claude Sonnet 5.5 (xHigh) 以 1786 分登 Code Arena: WebDev 第 3 名",
-        "url": "https://x.com/arena/status/2105702037849841954",
-        "source": "X：Arena (@arena)",
         "source_name": "AI HOT"
       }
     },
@@ -1049,15 +1048,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7302,
-      "importance": 0.7302,
-      "importance_score": 0.7302,
+      "score": 0.7241,
+      "importance": 0.7241,
+      "importance_score": 0.7241,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.42,
+        "recency": 0.3859,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -1076,362 +1075,441 @@
       }
     },
     {
-      "story_id": "story_c766e15e4023",
-      "title": "LangChain 讲解如何在 Agent Harness 中构建模型路由器",
-      "url": "https://www.langchain.com/blog/how-to-build-a-model-router-in-the-harness",
-      "primary_url": "https://www.langchain.com/blog/how-to-build-a-model-router-in-the-harness",
-      "source": "LangChain：Blog（RSS）",
+      "story_id": "story_e3887eee4b96",
+      "title": "Andrej Karpathy 分享理解 LLM 输出的技巧：从 ASD-STE100 写作到定制讲解视频",
+      "url": "https://x.com/karpathy/status/2105819303471976479",
+      "primary_url": "https://x.com/karpathy/status/2105819303471976479",
+      "source": "X：Andrej Karpathy (@karpathy)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "3f7bac22c6aec30c016f6ac716501b8580b0cd88",
-          "title": "LangChain 讲解如何在 Agent Harness 中构建模型路由器",
-          "url": "https://www.langchain.com/blog/how-to-build-a-model-router-in-the-harness",
-          "source": "LangChain：Blog（RSS）",
+          "id": "72e23155195c45be8e8273887d46c040749fca72",
+          "title": "Andrej Karpathy 分享理解 LLM 输出的技巧：从 ASD-STE100 写作到定制讲解视频",
+          "url": "https://x.com/karpathy/status/2105819303471976479",
+          "source": "X：Andrej Karpathy (@karpathy)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-01T17:01:32Z"
+          "published_at": "2026-10-02T00:37:00Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "LangChain：Blog（RSS）"
+        "X：Andrej Karpathy (@karpathy)"
       ],
       "items": [
         {
-          "id": "3f7bac22c6aec30c016f6ac716501b8580b0cd88",
-          "title": "LangChain 讲解如何在 Agent Harness 中构建模型路由器",
-          "url": "https://www.langchain.com/blog/how-to-build-a-model-router-in-the-harness",
-          "source": "LangChain：Blog（RSS）",
+          "id": "72e23155195c45be8e8273887d46c040749fca72",
+          "title": "Andrej Karpathy 分享理解 LLM 输出的技巧：从 ASD-STE100 写作到定制讲解视频",
+          "url": "https://x.com/karpathy/status/2105819303471976479",
+          "source": "X：Andrej Karpathy (@karpathy)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-01T17:01:32Z"
+          "published_at": "2026-10-02T00:37:00Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7291,
-      "importance": 0.7291,
-      "importance_score": 0.7291,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.69,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8362,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-01T17:01:32Z",
-      "latest_at": "2026-10-01T17:01:32Z",
-      "primary_item": {
-        "id": "3f7bac22c6aec30c016f6ac716501b8580b0cd88",
-        "title": "LangChain 讲解如何在 Agent Harness 中构建模型路由器",
-        "url": "https://www.langchain.com/blog/how-to-build-a-model-router-in-the-harness",
-        "source": "LangChain：Blog（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_0b19f715cea3",
-      "title": "OpenAI 称超 1.5 万个账户试图提取其模型推理，并将核心团伙与 Moonshot AI 相关人员联系起来",
-      "url": "https://x.com/thexpin/status/2105704614465327231",
-      "primary_url": "https://x.com/thexpin/status/2105704614465327231",
-      "source": "X：X.PIN (@thexpin)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "ade1d049d3793146b549a7c5e3c3bb1c058b0d06",
-          "title": "OpenAI 称超 1.5 万个账户试图提取其模型推理，并将核心团伙与 Moonshot AI 相关人员联系起来",
-          "url": "https://x.com/thexpin/status/2105704614465327231",
-          "source": "X：X.PIN (@thexpin)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T17:01:16Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：X.PIN (@thexpin)"
-      ],
-      "items": [
-        {
-          "id": "ade1d049d3793146b549a7c5e3c3bb1c058b0d06",
-          "title": "OpenAI 称超 1.5 万个账户试图提取其模型推理，并将核心团伙与 Moonshot AI 相关人员联系起来",
-          "url": "https://x.com/thexpin/status/2105704614465327231",
-          "source": "X：X.PIN (@thexpin)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T17:01:16Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7291,
-      "importance": 0.7291,
-      "importance_score": 0.7291,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.69,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8362,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-01T17:01:16Z",
-      "latest_at": "2026-10-01T17:01:16Z",
-      "primary_item": {
-        "id": "ade1d049d3793146b549a7c5e3c3bb1c058b0d06",
-        "title": "OpenAI 称超 1.5 万个账户试图提取其模型推理，并将核心团伙与 Moonshot AI 相关人员联系起来",
-        "url": "https://x.com/thexpin/status/2105704614465327231",
-        "source": "X：X.PIN (@thexpin)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_3e881b867feb",
-      "title": "Cloudflare 推出 Apache 2.0 开源的分拣模型 Clef，用于 Agent 任务分发",
-      "url": "https://x.com/frxiaobei/status/2105877133046526081",
-      "primary_url": "https://x.com/frxiaobei/status/2105877133046526081",
-      "source": "X：小北 (@frxiaobei)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "c85aa8932fe1d0452e57df6b21fa64eebc845ad8",
-          "title": "Cloudflare 推出 Apache 2.0 开源的分拣模型 Clef，用于 Agent 任务分发",
-          "url": "https://x.com/frxiaobei/status/2105877133046526081",
-          "source": "X：小北 (@frxiaobei)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T04:26:48Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：小北 (@frxiaobei)"
-      ],
-      "items": [
-        {
-          "id": "c85aa8932fe1d0452e57df6b21fa64eebc845ad8",
-          "title": "Cloudflare 推出 Apache 2.0 开源的分拣模型 Clef，用于 Agent 任务分发",
-          "url": "https://x.com/frxiaobei/status/2105877133046526081",
-          "source": "X：小北 (@frxiaobei)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T04:26:48Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7261,
-      "importance": 0.7261,
-      "importance_score": 0.7261,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.59,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9862,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-02T04:26:48Z",
-      "latest_at": "2026-10-02T04:26:48Z",
-      "primary_item": {
-        "id": "c85aa8932fe1d0452e57df6b21fa64eebc845ad8",
-        "title": "Cloudflare 推出 Apache 2.0 开源的分拣模型 Clef，用于 Agent 任务分发",
-        "url": "https://x.com/frxiaobei/status/2105877133046526081",
-        "source": "X：小北 (@frxiaobei)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_3118c72789f3",
-      "title": "Claude Code 推出 mods 功能，可用 TypeScript 定制行为与 UI",
-      "url": "https://x.com/ClaudeDevs/status/2105721434807083061",
-      "primary_url": "https://x.com/ClaudeDevs/status/2105721434807083061",
-      "source": "X：Claude Devs (@ClaudeDevs)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "7db0975ce244f1da554a8f5de278328282e7d7a1",
-          "title": "Claude Code 推出 mods 功能，可用 TypeScript 定制行为与 UI",
-          "url": "https://x.com/ClaudeDevs/status/2105721434807083061",
-          "source": "X：Claude Devs (@ClaudeDevs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T18:08:07Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Claude Devs (@ClaudeDevs)"
-      ],
-      "items": [
-        {
-          "id": "7db0975ce244f1da554a8f5de278328282e7d7a1",
-          "title": "Claude Code 推出 mods 功能，可用 TypeScript 定制行为与 UI",
-          "url": "https://x.com/ClaudeDevs/status/2105721434807083061",
-          "source": "X：Claude Devs (@ClaudeDevs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T18:08:07Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7255,
-      "importance": 0.7255,
-      "importance_score": 0.7255,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.67,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8497,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-01T18:08:07Z",
-      "latest_at": "2026-10-01T18:08:07Z",
-      "primary_item": {
-        "id": "7db0975ce244f1da554a8f5de278328282e7d7a1",
-        "title": "Claude Code 推出 mods 功能，可用 TypeScript 定制行为与 UI",
-        "url": "https://x.com/ClaudeDevs/status/2105721434807083061",
-        "source": "X：Claude Devs (@ClaudeDevs)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_33f9f7cfd3dd",
-      "title": "Claude Code 推出 Mods 功能，支持自定义行为与 UI",
-      "url": "https://x.com/trq212/status/2105734197801562264",
-      "primary_url": "https://x.com/trq212/status/2105734197801562264",
-      "source": "X：Thariq (@trq212)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "ce340bdee29d1322fc5f39d15ea5ca43ae59ca80",
-          "title": "Claude Code 推出 Mods 功能，支持自定义行为与 UI",
-          "url": "https://x.com/trq212/status/2105734197801562264",
-          "source": "X：Thariq (@trq212)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T18:58:50Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Thariq (@trq212)"
-      ],
-      "items": [
-        {
-          "id": "ce340bdee29d1322fc5f39d15ea5ca43ae59ca80",
-          "title": "Claude Code 推出 Mods 功能，支持自定义行为与 UI",
-          "url": "https://x.com/trq212/status/2105734197801562264",
-          "source": "X：Thariq (@trq212)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T18:58:50Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7244,
-      "importance": 0.7244,
-      "importance_score": 0.7244,
+      "score": 0.7239,
+      "importance": 0.7239,
+      "importance_score": 0.7239,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8602,
+        "recency": 0.8574,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-01T18:58:50Z",
-      "latest_at": "2026-10-01T18:58:50Z",
+      "earliest_at": "2026-10-02T00:37:00Z",
+      "latest_at": "2026-10-02T00:37:00Z",
       "primary_item": {
-        "id": "ce340bdee29d1322fc5f39d15ea5ca43ae59ca80",
-        "title": "Claude Code 推出 Mods 功能，支持自定义行为与 UI",
-        "url": "https://x.com/trq212/status/2105734197801562264",
-        "source": "X：Thariq (@trq212)",
+        "id": "72e23155195c45be8e8273887d46c040749fca72",
+        "title": "Andrej Karpathy 分享理解 LLM 输出的技巧：从 ASD-STE100 写作到定制讲解视频",
+        "url": "https://x.com/karpathy/status/2105819303471976479",
+        "source": "X：Andrej Karpathy (@karpathy)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_f6a9762ac724",
-      "title": "OpenRouter 解析 LangChain 与 CrewAI 编排和 OpenRouter 原生路由的差异",
-      "url": "https://openrouter.ai/blog/insights/langchain-vs-crewai-orchestration-compared-to-openrouter-native-routing",
-      "primary_url": "https://openrouter.ai/blog/insights/langchain-vs-crewai-orchestration-compared-to-openrouter-native-routing",
-      "source": "OpenRouter：Announcements（RSS）",
+      "story_id": "story_44a72a2ca921",
+      "title": "Claude Sonnet 5.5 (xHigh) 以 1786 分登 Code Arena: WebDev 第 3 名",
+      "url": "https://x.com/arena/status/2105702037849841954",
+      "primary_url": "https://x.com/arena/status/2105702037849841954",
+      "source": "X：Arena (@arena)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "fb9183eb893f9756b431e52634014151fad46e04",
-          "title": "OpenRouter 解析 LangChain 与 CrewAI 编排和 OpenRouter 原生路由的差异",
-          "url": "https://openrouter.ai/blog/insights/langchain-vs-crewai-orchestration-compared-to-openrouter-native-routing",
-          "source": "OpenRouter：Announcements（RSS）",
+          "id": "44b6ef20e792986c3637456af67b1517a109d3e3",
+          "title": "Claude Sonnet 5.5 (xHigh) 以 1786 分登 Code Arena: WebDev 第 3 名",
+          "url": "https://x.com/arena/status/2105702037849841954",
+          "source": "X：Arena (@arena)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-02T00:00:00Z"
+          "published_at": "2026-10-01T16:51:02Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "OpenRouter：Announcements（RSS）"
+        "X：Arena (@arena)"
       ],
       "items": [
         {
-          "id": "fb9183eb893f9756b431e52634014151fad46e04",
-          "title": "OpenRouter 解析 LangChain 与 CrewAI 编排和 OpenRouter 原生路由的差异",
-          "url": "https://openrouter.ai/blog/insights/langchain-vs-crewai-orchestration-compared-to-openrouter-native-routing",
-          "source": "OpenRouter：Announcements（RSS）",
+          "id": "44b6ef20e792986c3637456af67b1517a109d3e3",
+          "title": "Claude Sonnet 5.5 (xHigh) 以 1786 分登 Code Arena: WebDev 第 3 名",
+          "url": "https://x.com/arena/status/2105702037849841954",
+          "source": "X：Arena (@arena)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-02T00:00:00Z"
+          "published_at": "2026-10-01T16:51:02Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7241,
-      "importance": 0.7241,
-      "importance_score": 0.7241,
+      "score": 0.7226,
+      "importance": 0.7226,
+      "importance_score": 0.7226,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.62,
+        "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9248,
+        "recency": 0.7664,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-02T00:00:00Z",
-      "latest_at": "2026-10-02T00:00:00Z",
+      "earliest_at": "2026-10-01T16:51:02Z",
+      "latest_at": "2026-10-01T16:51:02Z",
       "primary_item": {
-        "id": "fb9183eb893f9756b431e52634014151fad46e04",
-        "title": "OpenRouter 解析 LangChain 与 CrewAI 编排和 OpenRouter 原生路由的差异",
-        "url": "https://openrouter.ai/blog/insights/langchain-vs-crewai-orchestration-compared-to-openrouter-native-routing",
-        "source": "OpenRouter：Announcements（RSS）",
+        "id": "44b6ef20e792986c3637456af67b1517a109d3e3",
+        "title": "Claude Sonnet 5.5 (xHigh) 以 1786 分登 Code Arena: WebDev 第 3 名",
+        "url": "https://x.com/arena/status/2105702037849841954",
+        "source": "X：Arena (@arena)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_a51e6459db17",
+      "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
+      "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
+      "primary_url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
+      "source": "TechCrunch：AI（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "498dc000c78d24ef9003ed81482127745fdc4a1b",
+          "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
+          "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
+          "source": "TechCrunch：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T19:52:37Z"
+        },
+        {
+          "id": "64f8f8b1a6db2d38b4ac1067308170161f734910",
+          "title": "OpenAI 拟以约 1.4 万亿美元投前估值融资至少 300 亿美元",
+          "url": "https://x.com/rohanpaul_ai/status/2105017898343575731",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T19:32:30Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "TechCrunch：AI（RSS）",
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "498dc000c78d24ef9003ed81482127745fdc4a1b",
+          "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
+          "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
+          "source": "TechCrunch：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T19:52:37Z"
+        },
+        {
+          "id": "64f8f8b1a6db2d38b4ac1067308170161f734910",
+          "title": "OpenAI 拟以约 1.4 万亿美元投前估值融资至少 300 亿美元",
+          "url": "https://x.com/rohanpaul_ai/status/2105017898343575731",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T19:32:30Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7177,
+      "importance": 0.7177,
+      "importance_score": 0.7177,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.83,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.4003,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-29T19:32:30Z",
+      "latest_at": "2026-09-29T19:52:37Z",
+      "primary_item": {
+        "id": "498dc000c78d24ef9003ed81482127745fdc4a1b",
+        "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
+        "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
+        "source": "TechCrunch：AI（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_39ce215eab43",
+      "title": "Manus 2.0 发布视频编辑器，从一句话生成整支视频",
+      "url": "https://manus.im/zh-cn/blog/introducing-video-editor",
+      "primary_url": "https://manus.im/zh-cn/blog/introducing-video-editor",
+      "source": "Manus：Blog（网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "7c1fef818ab0f894d8c969963eeb1feb035e9a3c",
+          "title": "Manus 2.0 发布视频编辑器，从一句话生成整支视频",
+          "url": "https://manus.im/zh-cn/blog/introducing-video-editor",
+          "source": "Manus：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T16:00:00Z"
+        },
+        {
+          "id": "bcc1ce51cbf02711739afe48905aee366c965638",
+          "title": "Manus 分享视频生成与时间线编辑工作流",
+          "url": "https://manus.im/zh-cn/blog/introducing-video-editor",
+          "source": "Manus：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T16:00:00Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Manus：Blog（网页）"
+      ],
+      "items": [
+        {
+          "id": "7c1fef818ab0f894d8c969963eeb1feb035e9a3c",
+          "title": "Manus 2.0 发布视频编辑器，从一句话生成整支视频",
+          "url": "https://manus.im/zh-cn/blog/introducing-video-editor",
+          "source": "Manus：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T16:00:00Z"
+        },
+        {
+          "id": "bcc1ce51cbf02711739afe48905aee366c965638",
+          "title": "Manus 分享视频生成与时间线编辑工作流",
+          "url": "https://manus.im/zh-cn/blog/introducing-video-editor",
+          "source": "Manus：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T16:00:00Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.709,
+      "importance": 0.709,
+      "importance_score": 0.709,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.72,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.5353,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-30T16:00:00Z",
+      "latest_at": "2026-09-30T16:00:00Z",
+      "primary_item": {
+        "id": "7c1fef818ab0f894d8c969963eeb1feb035e9a3c",
+        "title": "Manus 2.0 发布视频编辑器，从一句话生成整支视频",
+        "url": "https://manus.im/zh-cn/blog/introducing-video-editor",
+        "source": "Manus：Blog（网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_0c6cb391df3a",
+      "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+      "url": "https://x.com/milichab/status/2105782588799594871",
+      "primary_url": "https://x.com/milichab/status/2105782588799594871",
+      "source": "X：Andrew Milich (@milichab)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "ce48262e29839413db30dee45296cea41808964a",
+          "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+          "url": "https://x.com/milichab/status/2105782588799594871",
+          "source": "X：Andrew Milich (@milichab)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:11:07Z"
+        },
+        {
+          "id": "9e1e6e7a51478218a5c9f50dba29eda7c2420c6a",
+          "title": "Grok Build 新增 Agent Dashboard",
+          "url": "https://x.com/grok/status/2105782433362878757",
+          "source": "X：Grok (@grok)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:10:30Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Andrew Milich (@milichab)",
+        "X：Grok (@grok)"
+      ],
+      "items": [
+        {
+          "id": "ce48262e29839413db30dee45296cea41808964a",
+          "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+          "url": "https://x.com/milichab/status/2105782588799594871",
+          "source": "X：Andrew Milich (@milichab)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:11:07Z"
+        },
+        {
+          "id": "9e1e6e7a51478218a5c9f50dba29eda7c2420c6a",
+          "title": "Grok Build 新增 Agent Dashboard",
+          "url": "https://x.com/grok/status/2105782433362878757",
+          "source": "X：Grok (@grok)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:10:30Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7046,
+      "importance": 0.7046,
+      "importance_score": 0.7046,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.53,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8278,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-01T22:10:30Z",
+      "latest_at": "2026-10-01T22:11:07Z",
+      "primary_item": {
+        "id": "ce48262e29839413db30dee45296cea41808964a",
+        "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+        "url": "https://x.com/milichab/status/2105782588799594871",
+        "source": "X：Andrew Milich (@milichab)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_50e18c541984",
+      "title": "Anthropic 发布 Claude Sonnet 5.5：速度提升 30%+，每任务成本最多降 30%",
+      "url": "https://www.anthropic.com/claude-sonnet-5-5",
+      "primary_url": "https://www.anthropic.com/claude-sonnet-5-5",
+      "source": "Hacker News：AI 热帖",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "a462e96ea895c40ad3ed2723b00598245331b752",
+          "title": "Anthropic 正式发布 Claude Sonnet 5.5，速度提升 30% 且成本降低 30%",
+          "url": "https://x.com/testingcatalog/status/2104634831409651716",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T18:10:20Z"
+        },
+        {
+          "id": "2f1e1b180faf0063d850eaff5efae4507ba79a46",
+          "title": "Anthropic 发布 Claude Sonnet 5.5：速度提升 30%+，每任务成本最多降 30%",
+          "url": "https://www.anthropic.com/claude-sonnet-5-5",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T17:58:11Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Hacker News：AI 热帖",
+        "X：Testing Catalog (@testingcatalog)"
+      ],
+      "items": [
+        {
+          "id": "a462e96ea895c40ad3ed2723b00598245331b752",
+          "title": "Anthropic 正式发布 Claude Sonnet 5.5，速度提升 30% 且成本降低 30%",
+          "url": "https://x.com/testingcatalog/status/2104634831409651716",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T18:10:20Z"
+        },
+        {
+          "id": "2f1e1b180faf0063d850eaff5efae4507ba79a46",
+          "title": "Anthropic 发布 Claude Sonnet 5.5：速度提升 30%+，每任务成本最多降 30%",
+          "url": "https://www.anthropic.com/claude-sonnet-5-5",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T17:58:11Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7042,
+      "importance": 0.7042,
+      "importance_score": 0.7042,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.86,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.2754,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-28T17:58:11Z",
+      "latest_at": "2026-09-28T18:10:20Z",
+      "primary_item": {
+        "id": "2f1e1b180faf0063d850eaff5efae4507ba79a46",
+        "title": "Anthropic 发布 Claude Sonnet 5.5：速度提升 30%+，每任务成本最多降 30%",
+        "url": "https://www.anthropic.com/claude-sonnet-5-5",
+        "source": "Hacker News：AI 热帖",
         "source_name": "AI HOT"
       }
     }
