@@ -1,8 +1,69 @@
 {
-  "generated_at": "2026-10-03T11:56:29.858157Z",
+  "generated_at": "2026-10-03T16:05:09.787158Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
+    {
+      "story_id": "story_a754eea0186f",
+      "title": "LMSYS 发布开源聊天模型 Vicuna-13B，用 ShareGPT 对话微调 LLaMA，训练成本约 $300",
+      "url": "https://www.lmsys.org/blog/2023-03-30-vicuna",
+      "primary_url": "https://www.lmsys.org/blog/2023-03-30-vicuna",
+      "source": "LMSYS：Blog（Chatbot Arena 团队）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "7654202328494479b00a63601dedf32af4a164cb",
+          "title": "LMSYS 发布开源聊天模型 Vicuna-13B，用 ShareGPT 对话微调 LLaMA，训练成本约 $300",
+          "url": "https://www.lmsys.org/blog/2023-03-30-vicuna",
+          "source": "LMSYS：Blog（Chatbot Arena 团队）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": null
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "LMSYS：Blog（Chatbot Arena 团队）"
+      ],
+      "items": [
+        {
+          "id": "7654202328494479b00a63601dedf32af4a164cb",
+          "title": "LMSYS 发布开源聊天模型 Vicuna-13B，用 ShareGPT 对话微调 LLaMA，训练成本约 $300",
+          "url": "https://www.lmsys.org/blog/2023-03-30-vicuna",
+          "source": "LMSYS：Blog（Chatbot Arena 团队）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": null
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7886,
+      "importance": 0.7886,
+      "importance_score": 0.7886,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.79,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 1.0,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-03T16:05:09.787158Z",
+      "latest_at": "2026-10-03T16:05:09.787158Z",
+      "primary_item": {
+        "id": "7654202328494479b00a63601dedf32af4a164cb",
+        "title": "LMSYS 发布开源聊天模型 Vicuna-13B，用 ShareGPT 对话微调 LLaMA，训练成本约 $300",
+        "url": "https://www.lmsys.org/blog/2023-03-30-vicuna",
+        "source": "LMSYS：Blog（Chatbot Arena 团队）",
+        "source_name": "AI HOT"
+      }
+    },
     {
       "story_id": "story_8023f1ca7887",
       "title": "OpenAI 每天投入超 50 万美元调查旗下智能体入侵 Medicare 与 Hugging Face 等事件",
@@ -38,15 +99,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7745,
-      "importance": 0.7745,
-      "importance_score": 0.7745,
+      "score": 0.7649,
+      "importance": 0.7649,
+      "importance_score": 0.7649,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9219,
+        "recency": 0.8683,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -304,15 +365,15 @@
       ],
       "item_count": 12,
       "duplicate_count": 12,
-      "score": 0.7605,
-      "importance": 0.7605,
-      "importance_score": 0.7605,
+      "score": 0.7575,
+      "importance": 0.7575,
+      "importance_score": 0.7575,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2882,
+        "recency": 0.2715,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -366,15 +427,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7332,
-      "importance": 0.7332,
-      "importance_score": 0.7332,
+      "score": 0.7249,
+      "importance": 0.7249,
+      "importance_score": 0.7249,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.73,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7921,
+        "recency": 0.7461,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -426,15 +487,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7277,
-      "importance": 0.7277,
-      "importance_score": 0.7277,
+      "score": 0.7215,
+      "importance": 0.7215,
+      "importance_score": 0.7215,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5951,
+        "recency": 0.5605,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -452,181 +513,81 @@
       }
     },
     {
-      "story_id": "story_c2f358888364",
-      "title": "ChatGPT 推出 Finances 财务管理功能",
-      "url": "https://x.com/ChatGPT/status/2106083595433791573",
-      "primary_url": "https://x.com/ChatGPT/status/2106083595433791573",
-      "source": "X：ChatGPT (@ChatGPT)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "1e5d23c6dce92b573e366d0b5fdd197c59b16b1a",
-          "title": "ChatGPT 推出 Finances 财务管理功能",
-          "url": "https://x.com/ChatGPT/status/2106083595433791573",
-          "source": "X：ChatGPT (@ChatGPT)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T18:07:12Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：ChatGPT (@ChatGPT)"
-      ],
-      "items": [
-        {
-          "id": "1e5d23c6dce92b573e366d0b5fdd197c59b16b1a",
-          "title": "ChatGPT 推出 Finances 财务管理功能",
-          "url": "https://x.com/ChatGPT/status/2106083595433791573",
-          "source": "X：ChatGPT (@ChatGPT)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T18:07:12Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7238,
-      "importance": 0.7238,
-      "importance_score": 0.7238,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7731,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-02T18:07:12Z",
-      "latest_at": "2026-10-02T18:07:12Z",
-      "primary_item": {
-        "id": "1e5d23c6dce92b573e366d0b5fdd197c59b16b1a",
-        "title": "ChatGPT 推出 Finances 财务管理功能",
-        "url": "https://x.com/ChatGPT/status/2106083595433791573",
-        "source": "X：ChatGPT (@ChatGPT)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_fede0f28a8bb",
-      "title": "BIS 发布 AI 公司循环融资报告：同行投资占 AI 企业流入资金 55.2%",
-      "url": "https://x.com/rohanpaul_ai/status/2106113455686365558",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2106113455686365558",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "0b2a0201689d15a1776532115dcf47a1c9c33a75",
-          "title": "BIS 发布 AI 公司循环融资报告：同行投资占 AI 企业流入资金 55.2%",
-          "url": "https://x.com/rohanpaul_ai/status/2106113455686365558",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T20:05:52Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "0b2a0201689d15a1776532115dcf47a1c9c33a75",
-          "title": "BIS 发布 AI 公司循环融资报告：同行投资占 AI 企业流入资金 55.2%",
-          "url": "https://x.com/rohanpaul_ai/status/2106113455686365558",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T20:05:52Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7218,
-      "importance": 0.7218,
-      "importance_score": 0.7218,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.69,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7955,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-02T20:05:52Z",
-      "latest_at": "2026-10-02T20:05:52Z",
-      "primary_item": {
-        "id": "0b2a0201689d15a1776532115dcf47a1c9c33a75",
-        "title": "BIS 发布 AI 公司循环融资报告：同行投资占 AI 企业流入资金 55.2%",
-        "url": "https://x.com/rohanpaul_ai/status/2106113455686365558",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_8e206c4d9ed6",
-      "title": "OpenAI 发布 GPT-6 家族实用指南：选型、提示词与长任务管理",
-      "url": "https://openai.com/index/practical-guide-building-gpt-6",
-      "primary_url": "https://openai.com/index/practical-guide-building-gpt-6",
+      "story_id": "story_dd66acaed2a0",
+      "title": "OpenAI 发布 GPT-6.1 Sol，以约五分之一价格接近 GPT-6 Astra 智能",
+      "url": "https://openai.com/index/introducing-gpt-6-1-sol",
+      "primary_url": "https://openai.com/index/introducing-gpt-6-1-sol",
       "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "b6a5169a91a32d900daf93ec976dae4a837ed8e3",
-          "title": "OpenAI 发布 GPT-6 家族实用指南：选型、提示词与长任务管理",
-          "url": "https://openai.com/index/practical-guide-building-gpt-6",
+          "id": "47a40eb569560f4024865e8c7e98e522a806b7e3",
+          "title": "OpenAI 发布 GPT-6.1 Sol：以五分之一价格提供接近 Astra 的智能",
+          "url": "https://x.com/OpenAI/status/2104986129686741046",
+          "source": "X：OpenAI (@OpenAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T17:26:16Z"
+        },
+        {
+          "id": "12d0a4425111dfd06441f22f43a1a253d96d5d66",
+          "title": "OpenAI 发布 GPT-6.1 Sol，以约五分之一价格接近 GPT-6 Astra 智能",
+          "url": "https://openai.com/index/introducing-gpt-6-1-sol",
           "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-02T16:15:00Z"
+          "published_at": "2026-09-29T17:20:30.075000Z"
         }
       ],
-      "source_count": 1,
+      "source_count": 2,
       "source_names": [
-        "OpenAI：官网动态（RSS · 排除企业/客户案例）"
+        "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+        "X：OpenAI (@OpenAI)"
       ],
       "items": [
         {
-          "id": "b6a5169a91a32d900daf93ec976dae4a837ed8e3",
-          "title": "OpenAI 发布 GPT-6 家族实用指南：选型、提示词与长任务管理",
-          "url": "https://openai.com/index/practical-guide-building-gpt-6",
+          "id": "47a40eb569560f4024865e8c7e98e522a806b7e3",
+          "title": "OpenAI 发布 GPT-6.1 Sol：以五分之一价格提供接近 Astra 的智能",
+          "url": "https://x.com/OpenAI/status/2104986129686741046",
+          "source": "X：OpenAI (@OpenAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T17:26:16Z"
+        },
+        {
+          "id": "12d0a4425111dfd06441f22f43a1a253d96d5d66",
+          "title": "OpenAI 发布 GPT-6.1 Sol，以约五分之一价格接近 GPT-6 Astra 智能",
+          "url": "https://openai.com/index/introducing-gpt-6-1-sol",
           "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-02T16:15:00Z"
+          "published_at": "2026-09-29T17:20:30.075000Z"
         }
       ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.72,
-      "importance": 0.72,
-      "importance_score": 0.72,
-      "importance_label": "行业动态",
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7004,
+      "importance": 0.7004,
+      "importance_score": 0.7004,
+      "importance_label": "值得关注",
       "importance_breakdown": {
-        "editorial": 0.71,
+        "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7525,
-        "story_heat": 0.0
+        "recency": 0.2546,
+        "story_heat": 0.25
       },
-      "category": "industry",
+      "category": "watch",
       "reasons": [
+        "multi_source",
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-02T16:15:00Z",
-      "latest_at": "2026-10-02T16:15:00Z",
+      "earliest_at": "2026-09-29T17:20:30.075000Z",
+      "latest_at": "2026-09-29T17:26:16Z",
       "primary_item": {
-        "id": "b6a5169a91a32d900daf93ec976dae4a837ed8e3",
-        "title": "OpenAI 发布 GPT-6 家族实用指南：选型、提示词与长任务管理",
-        "url": "https://openai.com/index/practical-guide-building-gpt-6",
+        "id": "12d0a4425111dfd06441f22f43a1a253d96d5d66",
+        "title": "OpenAI 发布 GPT-6.1 Sol，以约五分之一价格接近 GPT-6 Astra 智能",
+        "url": "https://openai.com/index/introducing-gpt-6-1-sol",
         "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
         "source_name": "AI HOT"
       }
@@ -685,15 +646,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6961,
-      "importance": 0.6961,
-      "importance_score": 0.6961,
+      "score": 0.6931,
+      "importance": 0.6931,
+      "importance_score": 0.6931,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2804,
+        "recency": 0.2641,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -708,66 +669,6 @@
         "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
         "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
         "source": "TechCrunch：AI（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_07e142fdb08c",
-      "title": "Arena 评测：Claude Sonnet 5.5 登顶 Agent Arena 第 3 名但未入 Pareto 前沿",
-      "url": "https://x.com/arena/status/2106105400487821764",
-      "primary_url": "https://x.com/arena/status/2106105400487821764",
-      "source": "X：Arena (@arena)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "7fafcd9a85b38c8198ab770065c4ada1aae58198",
-          "title": "Arena 评测：Claude Sonnet 5.5 登顶 Agent Arena 第 3 名但未入 Pareto 前沿",
-          "url": "https://x.com/arena/status/2106105400487821764",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T19:33:51Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Arena (@arena)"
-      ],
-      "items": [
-        {
-          "id": "7fafcd9a85b38c8198ab770065c4ada1aae58198",
-          "title": "Arena 评测：Claude Sonnet 5.5 登顶 Agent Arena 第 3 名但未入 Pareto 前沿",
-          "url": "https://x.com/arena/status/2106105400487821764",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T19:33:51Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7207,
-      "importance": 0.7207,
-      "importance_score": 0.7207,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.69,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7894,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-02T19:33:51Z",
-      "latest_at": "2026-10-02T19:33:51Z",
-      "primary_item": {
-        "id": "7fafcd9a85b38c8198ab770065c4ada1aae58198",
-        "title": "Arena 评测：Claude Sonnet 5.5 登顶 Agent Arena 第 3 名但未入 Pareto 前沿",
-        "url": "https://x.com/arena/status/2106105400487821764",
-        "source": "X：Arena (@arena)",
         "source_name": "AI HOT"
       }
     },
@@ -825,15 +726,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6893,
-      "importance": 0.6893,
-      "importance_score": 0.6893,
+      "score": 0.6873,
+      "importance": 0.6873,
+      "importance_score": 0.6873,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1929,
+        "recency": 0.1817,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -904,15 +805,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6801,
-      "importance": 0.6801,
-      "importance_score": 0.6801,
+      "score": 0.6762,
+      "importance": 0.6762,
+      "importance_score": 0.6762,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3749,
+        "recency": 0.3531,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -983,15 +884,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6754,
-      "importance": 0.6754,
-      "importance_score": 0.6754,
+      "score": 0.6733,
+      "importance": 0.6733,
+      "importance_score": 0.6733,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.199,
+        "recency": 0.1874,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1006,86 +907,6 @@
         "title": "李飞飞宣布 World Labs 并入 AMD，出任执行副总裁兼首席科学家",
         "url": "https://x.com/drfeifei/status/2104664403681632453",
         "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_dd66acaed2a0",
-      "title": "OpenAI 发布 GPT-6.1 Sol，以约五分之一价格接近 GPT-6 Astra 智能",
-      "url": "https://openai.com/index/introducing-gpt-6-1-sol",
-      "primary_url": "https://openai.com/index/introducing-gpt-6-1-sol",
-      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "47a40eb569560f4024865e8c7e98e522a806b7e3",
-          "title": "OpenAI 发布 GPT-6.1 Sol：以五分之一价格提供接近 Astra 的智能",
-          "url": "https://x.com/OpenAI/status/2104986129686741046",
-          "source": "X：OpenAI (@OpenAI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:26:16Z"
-        },
-        {
-          "id": "12d0a4425111dfd06441f22f43a1a253d96d5d66",
-          "title": "OpenAI 发布 GPT-6.1 Sol，以约五分之一价格接近 GPT-6 Astra 智能",
-          "url": "https://openai.com/index/introducing-gpt-6-1-sol",
-          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:20:30.075000Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-        "X：OpenAI (@OpenAI)"
-      ],
-      "items": [
-        {
-          "id": "47a40eb569560f4024865e8c7e98e522a806b7e3",
-          "title": "OpenAI 发布 GPT-6.1 Sol：以五分之一价格提供接近 Astra 的智能",
-          "url": "https://x.com/OpenAI/status/2104986129686741046",
-          "source": "X：OpenAI (@OpenAI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:26:16Z"
-        },
-        {
-          "id": "12d0a4425111dfd06441f22f43a1a253d96d5d66",
-          "title": "OpenAI 发布 GPT-6.1 Sol，以约五分之一价格接近 GPT-6 Astra 智能",
-          "url": "https://openai.com/index/introducing-gpt-6-1-sol",
-          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:20:30.075000Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.7032,
-      "importance": 0.7032,
-      "importance_score": 0.7032,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.86,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.2703,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-29T17:20:30.075000Z",
-      "latest_at": "2026-09-29T17:26:16Z",
-      "primary_item": {
-        "id": "12d0a4425111dfd06441f22f43a1a253d96d5d66",
-        "title": "OpenAI 发布 GPT-6.1 Sol，以约五分之一价格接近 GPT-6 Astra 智能",
-        "url": "https://openai.com/index/introducing-gpt-6-1-sol",
-        "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
         "source_name": "AI HOT"
       }
     },
@@ -1143,15 +964,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6686,
-      "importance": 0.6686,
-      "importance_score": 0.6686,
+      "score": 0.6666,
+      "importance": 0.6666,
+      "importance_score": 0.6666,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1946,
+        "recency": 0.1833,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1166,86 +987,6 @@
         "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
         "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
         "source": "X：Claude Devs (@ClaudeDevs)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_0c6cb391df3a",
-      "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
-      "url": "https://x.com/milichab/status/2105782588799594871",
-      "primary_url": "https://x.com/milichab/status/2105782588799594871",
-      "source": "X：Andrew Milich (@milichab)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "ce48262e29839413db30dee45296cea41808964a",
-          "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
-          "url": "https://x.com/milichab/status/2105782588799594871",
-          "source": "X：Andrew Milich (@milichab)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T22:11:07Z"
-        },
-        {
-          "id": "9e1e6e7a51478218a5c9f50dba29eda7c2420c6a",
-          "title": "Grok Build 新增 Agent Dashboard",
-          "url": "https://x.com/grok/status/2105782433362878757",
-          "source": "X：Grok (@grok)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T22:10:30Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "X：Andrew Milich (@milichab)",
-        "X：Grok (@grok)"
-      ],
-      "items": [
-        {
-          "id": "ce48262e29839413db30dee45296cea41808964a",
-          "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
-          "url": "https://x.com/milichab/status/2105782588799594871",
-          "source": "X：Andrew Milich (@milichab)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T22:11:07Z"
-        },
-        {
-          "id": "9e1e6e7a51478218a5c9f50dba29eda7c2420c6a",
-          "title": "Grok Build 新增 Agent Dashboard",
-          "url": "https://x.com/grok/status/2105782433362878757",
-          "source": "X：Grok (@grok)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T22:10:30Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6599,
-      "importance": 0.6599,
-      "importance_score": 0.6599,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.53,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.5797,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-01T22:10:30Z",
-      "latest_at": "2026-10-01T22:11:07Z",
-      "primary_item": {
-        "id": "ce48262e29839413db30dee45296cea41808964a",
-        "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
-        "url": "https://x.com/milichab/status/2105782588799594871",
-        "source": "X：Andrew Milich (@milichab)",
         "source_name": "AI HOT"
       }
     },
@@ -1303,15 +1044,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6594,
-      "importance": 0.6594,
-      "importance_score": 0.6594,
+      "score": 0.6574,
+      "importance": 0.6574,
+      "importance_score": 0.6574,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1933,
+        "recency": 0.1821,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1326,6 +1067,86 @@
         "title": "Anthropic 发布 Claude Sonnet 5.5：比 Sonnet 5 快超 30% 且成本最多降 30%",
         "url": "https://x.com/dongxi_nlp/status/2104634260934054237",
         "source": "X：马东锡 NLP (@dongxi_nlp)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_0c6cb391df3a",
+      "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+      "url": "https://x.com/milichab/status/2105782588799594871",
+      "primary_url": "https://x.com/milichab/status/2105782588799594871",
+      "source": "X：Andrew Milich (@milichab)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "ce48262e29839413db30dee45296cea41808964a",
+          "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+          "url": "https://x.com/milichab/status/2105782588799594871",
+          "source": "X：Andrew Milich (@milichab)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:11:07Z"
+        },
+        {
+          "id": "9e1e6e7a51478218a5c9f50dba29eda7c2420c6a",
+          "title": "Grok Build 新增 Agent Dashboard",
+          "url": "https://x.com/grok/status/2105782433362878757",
+          "source": "X：Grok (@grok)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:10:30Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Andrew Milich (@milichab)",
+        "X：Grok (@grok)"
+      ],
+      "items": [
+        {
+          "id": "ce48262e29839413db30dee45296cea41808964a",
+          "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+          "url": "https://x.com/milichab/status/2105782588799594871",
+          "source": "X：Andrew Milich (@milichab)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:11:07Z"
+        },
+        {
+          "id": "9e1e6e7a51478218a5c9f50dba29eda7c2420c6a",
+          "title": "Grok Build 新增 Agent Dashboard",
+          "url": "https://x.com/grok/status/2105782433362878757",
+          "source": "X：Grok (@grok)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:10:30Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6539,
+      "importance": 0.6539,
+      "importance_score": 0.6539,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.53,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.546,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-01T22:10:30Z",
+      "latest_at": "2026-10-01T22:11:07Z",
+      "primary_item": {
+        "id": "ce48262e29839413db30dee45296cea41808964a",
+        "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+        "url": "https://x.com/milichab/status/2105782588799594871",
+        "source": "X：Andrew Milich (@milichab)",
         "source_name": "AI HOT"
       }
     },
@@ -1383,15 +1204,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.647,
-      "importance": 0.647,
-      "importance_score": 0.647,
+      "score": 0.6467,
+      "importance": 0.6467,
+      "importance_score": 0.6467,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0244,
+        "recency": 0.023,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1406,86 +1227,6 @@
         "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna",
         "url": "https://x.com/ZHO_ZHO_ZHO/status/2102472026103701697",
         "source": "X：ZHO (@ZHO_ZHO_ZHO)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_db8d73909519",
-      "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
-      "url": "https://x.com/testingcatalog/status/2104987633894010982",
-      "primary_url": "https://x.com/testingcatalog/status/2104987633894010982",
-      "source": "X：Testing Catalog (@testingcatalog)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "d1ccb29b1b17ff2f6caec1a3e7b5b294d2495b83",
-          "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
-          "url": "https://x.com/testingcatalog/status/2104987633894010982",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:32:15Z"
-        },
-        {
-          "id": "a81582caa8460dbb4233989c91b91981dac25c33",
-          "title": "OpenAI 推出 ChatGPT Space 协作功能",
-          "url": "https://x.com/thsottiaux/status/2104983716049379472",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:16:41Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "X：Testing Catalog (@testingcatalog)",
-        "X：Tibo (@thsottiaux)"
-      ],
-      "items": [
-        {
-          "id": "d1ccb29b1b17ff2f6caec1a3e7b5b294d2495b83",
-          "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
-          "url": "https://x.com/testingcatalog/status/2104987633894010982",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:32:15Z"
-        },
-        {
-          "id": "a81582caa8460dbb4233989c91b91981dac25c33",
-          "title": "OpenAI 推出 ChatGPT Space 协作功能",
-          "url": "https://x.com/thsottiaux/status/2104983716049379472",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:16:41Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6464,
-      "importance": 0.6464,
-      "importance_score": 0.6464,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.67,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.271,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-29T17:16:41Z",
-      "latest_at": "2026-09-29T17:32:15Z",
-      "primary_item": {
-        "id": "d1ccb29b1b17ff2f6caec1a3e7b5b294d2495b83",
-        "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
-        "url": "https://x.com/testingcatalog/status/2104987633894010982",
-        "source": "X：Testing Catalog (@testingcatalog)",
         "source_name": "AI HOT"
       }
     },
@@ -1543,15 +1284,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6443,
-      "importance": 0.6443,
-      "importance_score": 0.6443,
+      "score": 0.644,
+      "importance": 0.644,
+      "importance_score": 0.644,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0262,
+        "recency": 0.0247,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1622,15 +1363,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.644,
-      "importance": 0.644,
-      "importance_score": 0.644,
+      "score": 0.6438,
+      "importance": 0.6438,
+      "importance_score": 0.6438,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0247,
+        "recency": 0.0233,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1645,6 +1386,325 @@
         "title": "Artificial Analysis 评测 GPT-6 Sol 和 Luna：成本减半但各评测有升有降",
         "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
         "source": "Artificial Analysis 完整文章（网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_db8d73909519",
+      "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
+      "url": "https://x.com/testingcatalog/status/2104987633894010982",
+      "primary_url": "https://x.com/testingcatalog/status/2104987633894010982",
+      "source": "X：Testing Catalog (@testingcatalog)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "d1ccb29b1b17ff2f6caec1a3e7b5b294d2495b83",
+          "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
+          "url": "https://x.com/testingcatalog/status/2104987633894010982",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T17:32:15Z"
+        },
+        {
+          "id": "a81582caa8460dbb4233989c91b91981dac25c33",
+          "title": "OpenAI 推出 ChatGPT Space 协作功能",
+          "url": "https://x.com/thsottiaux/status/2104983716049379472",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T17:16:41Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Testing Catalog (@testingcatalog)",
+        "X：Tibo (@thsottiaux)"
+      ],
+      "items": [
+        {
+          "id": "d1ccb29b1b17ff2f6caec1a3e7b5b294d2495b83",
+          "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
+          "url": "https://x.com/testingcatalog/status/2104987633894010982",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T17:32:15Z"
+        },
+        {
+          "id": "a81582caa8460dbb4233989c91b91981dac25c33",
+          "title": "OpenAI 推出 ChatGPT Space 协作功能",
+          "url": "https://x.com/thsottiaux/status/2104983716049379472",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T17:16:41Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6436,
+      "importance": 0.6436,
+      "importance_score": 0.6436,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.67,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.2553,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-29T17:16:41Z",
+      "latest_at": "2026-09-29T17:32:15Z",
+      "primary_item": {
+        "id": "d1ccb29b1b17ff2f6caec1a3e7b5b294d2495b83",
+        "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
+        "url": "https://x.com/testingcatalog/status/2104987633894010982",
+        "source": "X：Testing Catalog (@testingcatalog)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_5dc131998993",
+      "title": "Meta Muse 助手曝出严重 0-day 漏洞，Amazon 已开始封禁 Muse",
+      "url": "https://arstechnica.com/security/2026/09/muse-metas-extraordinarily-privileged-ai-assistant-has-a-serious-0-day",
+      "primary_url": "https://arstechnica.com/security/2026/09/muse-metas-extraordinarily-privileged-ai-assistant-has-a-serious-0-day",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "78659cabf90b8546abc9f6dd8f673fd51f95d16b",
+          "title": "Meta Muse 助手曝出严重 0-day 漏洞，Amazon 已开始封禁 Muse",
+          "url": "https://arstechnica.com/security/2026/09/muse-metas-extraordinarily-privileged-ai-assistant-has-a-serious-0-day",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T19:29:49.288000Z"
+        },
+        {
+          "id": "ab5995d06b782bfdd43fe94bba41056bad108db1",
+          "title": "Meta AI 助手 Muse 曝出严重 0-day，可被本地应用窃取账户令牌",
+          "url": "https://arstechnica.com/security/2026/09/muse-metas-extraordinarily-privileged-ai-assistant-has-a-serious-0-day",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T14:35:15Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Hacker News 热门（buzzing.cc 中文翻译）",
+        "Hacker News：AI 热帖"
+      ],
+      "items": [
+        {
+          "id": "78659cabf90b8546abc9f6dd8f673fd51f95d16b",
+          "title": "Meta Muse 助手曝出严重 0-day 漏洞，Amazon 已开始封禁 Muse",
+          "url": "https://arstechnica.com/security/2026/09/muse-metas-extraordinarily-privileged-ai-assistant-has-a-serious-0-day",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T19:29:49.288000Z"
+        },
+        {
+          "id": "ab5995d06b782bfdd43fe94bba41056bad108db1",
+          "title": "Meta AI 助手 Muse 曝出严重 0-day，可被本地应用窃取账户令牌",
+          "url": "https://arstechnica.com/security/2026/09/muse-metas-extraordinarily-privileged-ai-assistant-has-a-serious-0-day",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T14:35:15Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6378,
+      "importance": 0.6378,
+      "importance_score": 0.6378,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.79,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.0232,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-22T14:35:15Z",
+      "latest_at": "2026-09-22T19:29:49.288000Z",
+      "primary_item": {
+        "id": "78659cabf90b8546abc9f6dd8f673fd51f95d16b",
+        "title": "Meta Muse 助手曝出严重 0-day 漏洞，Amazon 已开始封禁 Muse",
+        "url": "https://arstechnica.com/security/2026/09/muse-metas-extraordinarily-privileged-ai-assistant-has-a-serious-0-day",
+        "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_245d063e08eb",
+      "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
+      "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
+      "primary_url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
+      "source": "Hacker News：AI 热帖",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "0c2dd88858ae70dcb29f3a0c7336bdb4dbb1af4a",
+          "title": "五角大楼调查称过度依赖AI导致美军导弹误击伊朗Minab学校",
+          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T20:00:35.186000Z"
+        },
+        {
+          "id": "840d4f3401e4b09406d07030fb1332ef14b1c19e",
+          "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
+          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T19:03:38Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Hacker News 热门（buzzing.cc 中文翻译）",
+        "Hacker News：AI 热帖"
+      ],
+      "items": [
+        {
+          "id": "0c2dd88858ae70dcb29f3a0c7336bdb4dbb1af4a",
+          "title": "五角大楼调查称过度依赖AI导致美军导弹误击伊朗Minab学校",
+          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T20:00:35.186000Z"
+        },
+        {
+          "id": "840d4f3401e4b09406d07030fb1332ef14b1c19e",
+          "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
+          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-22T19:03:38Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6588,
+      "importance": 0.6588,
+      "importance_score": 0.6588,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.86,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.0231,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-22T19:03:38Z",
+      "latest_at": "2026-09-22T20:00:35.186000Z",
+      "primary_item": {
+        "id": "840d4f3401e4b09406d07030fb1332ef14b1c19e",
+        "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
+        "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
+        "source": "Hacker News：AI 热帖",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_107f1a0fdf41",
+      "title": "Databricks 如何让 12000 名员工在模型发布首日用上新前沿模型",
+      "url": "https://www.databricks.com/blog/how-databricks-rolls-out-frontier-models-14000-employees-day-1",
+      "primary_url": "https://www.databricks.com/blog/how-databricks-rolls-out-frontier-models-14000-employees-day-1",
+      "source": "Databricks：Blog（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "6ed22d8e1e68c06a069f6288bc9e4a49e279f718",
+          "title": "Databricks 如何让 1.4 万名员工在模型发布首日用上新模型",
+          "url": "https://www.databricks.com/blog/how-databricks-rolls-out-frontier-models-14000-employees-day-1",
+          "source": "Databricks：Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T20:11:23Z"
+        },
+        {
+          "id": "024924c20f8966ef3ec0786765fc13b1157ce46d",
+          "title": "Databricks 如何让 12000 名员工在模型发布首日用上新前沿模型",
+          "url": "https://www.databricks.com/blog/how-databricks-rolls-out-frontier-models-14000-employees-day-1",
+          "source": "Databricks：Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T20:11:23Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Databricks：Blog（RSS）"
+      ],
+      "items": [
+        {
+          "id": "6ed22d8e1e68c06a069f6288bc9e4a49e279f718",
+          "title": "Databricks 如何让 1.4 万名员工在模型发布首日用上新模型",
+          "url": "https://www.databricks.com/blog/how-databricks-rolls-out-frontier-models-14000-employees-day-1",
+          "source": "Databricks：Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T20:11:23Z"
+        },
+        {
+          "id": "024924c20f8966ef3ec0786765fc13b1157ce46d",
+          "title": "Databricks 如何让 12000 名员工在模型发布首日用上新前沿模型",
+          "url": "https://www.databricks.com/blog/how-databricks-rolls-out-frontier-models-14000-employees-day-1",
+          "source": "Databricks：Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T20:11:23Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6254,
+      "importance": 0.6254,
+      "importance_score": 0.6254,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.65,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.1876,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-28T20:11:23Z",
+      "latest_at": "2026-09-28T20:11:23Z",
+      "primary_item": {
+        "id": "024924c20f8966ef3ec0786765fc13b1157ce46d",
+        "title": "Databricks 如何让 12000 名员工在模型发布首日用上新前沿模型",
+        "url": "https://www.databricks.com/blog/how-databricks-rolls-out-frontier-models-14000-employees-day-1",
+        "source": "Databricks：Blog（RSS）",
         "source_name": "AI HOT"
       }
     }
