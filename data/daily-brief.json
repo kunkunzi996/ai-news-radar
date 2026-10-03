@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-03T16:05:09.787158Z",
+  "generated_at": "2026-10-03T19:10:14.817341Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -38,15 +38,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7886,
-      "importance": 0.7886,
-      "importance_score": 0.7886,
+      "score": 0.7808,
+      "importance": 0.7808,
+      "importance_score": 0.7808,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 1.0,
+        "recency": 0.9564,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -99,15 +99,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7649,
-      "importance": 0.7649,
-      "importance_score": 0.7649,
+      "score": 0.7581,
+      "importance": 0.7581,
+      "importance_score": 0.7581,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8683,
+        "recency": 0.8305,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -365,15 +365,15 @@
       ],
       "item_count": 12,
       "duplicate_count": 12,
-      "score": 0.7575,
-      "importance": 0.7575,
-      "importance_score": 0.7575,
+      "score": 0.7553,
+      "importance": 0.7553,
+      "importance_score": 0.7553,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2715,
+        "recency": 0.2597,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -393,122 +393,302 @@
       }
     },
     {
-      "story_id": "story_e89ac95ac934",
-      "title": "GPT-6.1 Sol (Max) 进入 Agent Arena 第 5 名，以更低成本逼近前列模型",
-      "url": "https://x.com/arena/status/2106109027923140928",
-      "primary_url": "https://x.com/arena/status/2106109027923140928",
-      "source": "X：Arena (@arena)",
+      "story_id": "story_5f047dfd4ba5",
+      "title": "Meta Superintelligence Labs 论文提出 Sharpening Tax：RL 后训练降低模型测试时解题覆盖",
+      "url": "https://x.com/dair_ai/status/2106418508259377411",
+      "primary_url": "https://x.com/dair_ai/status/2106418508259377411",
+      "source": "X：DAIR.AI (@dair_ai)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "448fbd384a7108fe2df37b8330ded3ee7b97a6b8",
-          "title": "GPT-6.1 Sol (Max) 进入 Agent Arena 第 5 名，以更低成本逼近前列模型",
-          "url": "https://x.com/arena/status/2106109027923140928",
-          "source": "X：Arena (@arena)",
+          "id": "24c49f36121016b1a1b6afb0503f0d8f32bfcf5c",
+          "title": "Meta Superintelligence Labs 论文提出 Sharpening Tax：RL 后训练降低模型测试时解题覆盖",
+          "url": "https://x.com/dair_ai/status/2106418508259377411",
+          "source": "X：DAIR.AI (@dair_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-02T19:48:16Z"
+          "published_at": "2026-10-03T16:18:02Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Arena (@arena)"
+        "X：DAIR.AI (@dair_ai)"
       ],
       "items": [
         {
-          "id": "448fbd384a7108fe2df37b8330ded3ee7b97a6b8",
-          "title": "GPT-6.1 Sol (Max) 进入 Agent Arena 第 5 名，以更低成本逼近前列模型",
-          "url": "https://x.com/arena/status/2106109027923140928",
-          "source": "X：Arena (@arena)",
+          "id": "24c49f36121016b1a1b6afb0503f0d8f32bfcf5c",
+          "title": "Meta Superintelligence Labs 论文提出 Sharpening Tax：RL 后训练降低模型测试时解题覆盖",
+          "url": "https://x.com/dair_ai/status/2106418508259377411",
+          "source": "X：DAIR.AI (@dair_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-02T19:48:16Z"
+          "published_at": "2026-10-03T16:18:02Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7249,
-      "importance": 0.7249,
-      "importance_score": 0.7249,
+      "score": 0.7483,
+      "importance": 0.7483,
+      "importance_score": 0.7483,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.73,
+        "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7461,
+        "recency": 0.9594,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-02T19:48:16Z",
-      "latest_at": "2026-10-02T19:48:16Z",
+      "earliest_at": "2026-10-03T16:18:02Z",
+      "latest_at": "2026-10-03T16:18:02Z",
       "primary_item": {
-        "id": "448fbd384a7108fe2df37b8330ded3ee7b97a6b8",
-        "title": "GPT-6.1 Sol (Max) 进入 Agent Arena 第 5 名，以更低成本逼近前列模型",
-        "url": "https://x.com/arena/status/2106109027923140928",
-        "source": "X：Arena (@arena)",
+        "id": "24c49f36121016b1a1b6afb0503f0d8f32bfcf5c",
+        "title": "Meta Superintelligence Labs 论文提出 Sharpening Tax：RL 后训练降低模型测试时解题覆盖",
+        "url": "https://x.com/dair_ai/status/2106418508259377411",
+        "source": "X：DAIR.AI (@dair_ai)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_918986e09b7c",
-      "title": "OpenAI 披露内部研究模型在评估中利用漏洞入侵内部 EDA 机器事件",
-      "url": "https://alignment.openai.com/misalignment-reports/reaching-an-internal-eda-host-through-a-reference-tool",
-      "primary_url": "https://alignment.openai.com/misalignment-reports/reaching-an-internal-eda-host-through-a-reference-tool",
-      "source": "OpenAI：失准报告与通报（网页）",
+      "story_id": "story_e350534ed8a8",
+      "title": "华为称昇腾 AI 芯片在中国市场份额已超过 Nvidia",
+      "url": "https://x.com/thexpin/status/2106429589425930659",
+      "primary_url": "https://x.com/thexpin/status/2106429589425930659",
+      "source": "X：X.PIN (@thexpin)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "4332e6230767dbf9e43962effd26a033933774d5",
-          "title": "OpenAI 披露内部研究模型在评估中利用漏洞入侵内部 EDA 机器事件",
-          "url": "https://alignment.openai.com/misalignment-reports/reaching-an-internal-eda-host-through-a-reference-tool",
-          "source": "OpenAI：失准报告与通报（网页）",
+          "id": "1d1a91030d3e4255b55ac5f74e80da0e8e10f41c",
+          "title": "华为称昇腾 AI 芯片在中国市场份额已超过 Nvidia",
+          "url": "https://x.com/thexpin/status/2106429589425930659",
+          "source": "X：X.PIN (@thexpin)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-02T00:00:00Z"
+          "published_at": "2026-10-03T17:02:04Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "OpenAI：失准报告与通报（网页）"
+        "X：X.PIN (@thexpin)"
       ],
       "items": [
         {
-          "id": "4332e6230767dbf9e43962effd26a033933774d5",
-          "title": "OpenAI 披露内部研究模型在评估中利用漏洞入侵内部 EDA 机器事件",
-          "url": "https://alignment.openai.com/misalignment-reports/reaching-an-internal-eda-host-through-a-reference-tool",
-          "source": "OpenAI：失准报告与通报（网页）",
+          "id": "1d1a91030d3e4255b55ac5f74e80da0e8e10f41c",
+          "title": "华为称昇腾 AI 芯片在中国市场份额已超过 Nvidia",
+          "url": "https://x.com/thexpin/status/2106429589425930659",
+          "source": "X：X.PIN (@thexpin)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-02T00:00:00Z"
+          "published_at": "2026-10-03T17:02:04Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7215,
-      "importance": 0.7215,
-      "importance_score": 0.7215,
+      "score": 0.7441,
+      "importance": 0.7441,
+      "importance_score": 0.7441,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.83,
+        "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5605,
+        "recency": 0.9696,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-02T00:00:00Z",
-      "latest_at": "2026-10-02T00:00:00Z",
+      "earliest_at": "2026-10-03T17:02:04Z",
+      "latest_at": "2026-10-03T17:02:04Z",
       "primary_item": {
-        "id": "4332e6230767dbf9e43962effd26a033933774d5",
-        "title": "OpenAI 披露内部研究模型在评估中利用漏洞入侵内部 EDA 机器事件",
-        "url": "https://alignment.openai.com/misalignment-reports/reaching-an-internal-eda-host-through-a-reference-tool",
-        "source": "OpenAI：失准报告与通报（网页）",
+        "id": "1d1a91030d3e4255b55ac5f74e80da0e8e10f41c",
+        "title": "华为称昇腾 AI 芯片在中国市场份额已超过 Nvidia",
+        "url": "https://x.com/thexpin/status/2106429589425930659",
+        "source": "X：X.PIN (@thexpin)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_908999b44a76",
+      "title": "Aleph Alpha 发布 78B 参数 MoE 开源模型 Kolibri，支持 1M 上下文并以 Apache 2.0 开放权重",
+      "url": "https://x.com/testingcatalog/status/2106453084020920491",
+      "primary_url": "https://x.com/testingcatalog/status/2106453084020920491",
+      "source": "X：Testing Catalog (@testingcatalog)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "ffe045b9bc0e9f5a8bbb373f2a6f71f9dba398a0",
+          "title": "Aleph Alpha 发布 78B 参数 MoE 开源模型 Kolibri，支持 1M 上下文并以 Apache 2.0 开放权重",
+          "url": "https://x.com/testingcatalog/status/2106453084020920491",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-03T18:35:25Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Testing Catalog (@testingcatalog)"
+      ],
+      "items": [
+        {
+          "id": "ffe045b9bc0e9f5a8bbb373f2a6f71f9dba398a0",
+          "title": "Aleph Alpha 发布 78B 参数 MoE 开源模型 Kolibri，支持 1M 上下文并以 Apache 2.0 开放权重",
+          "url": "https://x.com/testingcatalog/status/2106453084020920491",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-03T18:35:25Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7391,
+      "importance": 0.7391,
+      "importance_score": 0.7391,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.63,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9917,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-03T18:35:25Z",
+      "latest_at": "2026-10-03T18:35:25Z",
+      "primary_item": {
+        "id": "ffe045b9bc0e9f5a8bbb373f2a6f71f9dba398a0",
+        "title": "Aleph Alpha 发布 78B 参数 MoE 开源模型 Kolibri，支持 1M 上下文并以 Apache 2.0 开放权重",
+        "url": "https://x.com/testingcatalog/status/2106453084020920491",
+        "source": "X：Testing Catalog (@testingcatalog)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_3f2fa33a799c",
+      "title": "Aleph Alpha 开源 Kolibri 模型，78B 参数、Apache 2.0 权重开放",
+      "url": "https://x.com/cohere/status/2106454131023995094",
+      "primary_url": "https://x.com/cohere/status/2106454131023995094",
+      "source": "X：Cohere（@cohere）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "becbe1163ded904d1d7464bb7988edb3fdeef331",
+          "title": "Aleph Alpha 开源 Kolibri 模型，78B 参数、Apache 2.0 权重开放",
+          "url": "https://x.com/cohere/status/2106454131023995094",
+          "source": "X：Cohere（@cohere）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-03T18:39:35Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Cohere（@cohere）"
+      ],
+      "items": [
+        {
+          "id": "becbe1163ded904d1d7464bb7988edb3fdeef331",
+          "title": "Aleph Alpha 开源 Kolibri 模型，78B 参数、Apache 2.0 权重开放",
+          "url": "https://x.com/cohere/status/2106454131023995094",
+          "source": "X：Cohere（@cohere）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-03T18:39:35Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7273,
+      "importance": 0.7273,
+      "importance_score": 0.7273,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.59,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9926,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-03T18:39:35Z",
+      "latest_at": "2026-10-03T18:39:35Z",
+      "primary_item": {
+        "id": "becbe1163ded904d1d7464bb7988edb3fdeef331",
+        "title": "Aleph Alpha 开源 Kolibri 模型，78B 参数、Apache 2.0 权重开放",
+        "url": "https://x.com/cohere/status/2106454131023995094",
+        "source": "X：Cohere（@cohere）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_6b20ce4629c1",
+      "title": "Nathan Lambert 批评 AI 生态对 Trillium Labs 发布的敌意反应",
+      "url": "https://x.com/natolambert/status/2106434951516414374",
+      "primary_url": "https://x.com/natolambert/status/2106434951516414374",
+      "source": "X：Nathan Lambert (@natolambert)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "2fe39ca95583327dec63bae880bf8469c50a0e5e",
+          "title": "Nathan Lambert 批评 AI 生态对 Trillium Labs 发布的敌意反应",
+          "url": "https://x.com/natolambert/status/2106434951516414374",
+          "source": "X：Nathan Lambert (@natolambert)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-03T17:23:22Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Nathan Lambert (@natolambert)"
+      ],
+      "items": [
+        {
+          "id": "2fe39ca95583327dec63bae880bf8469c50a0e5e",
+          "title": "Nathan Lambert 批评 AI 生态对 Trillium Labs 发布的敌意反应",
+          "url": "https://x.com/natolambert/status/2106434951516414374",
+          "source": "X：Nathan Lambert (@natolambert)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-03T17:23:22Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.724,
+      "importance": 0.724,
+      "importance_score": 0.724,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.59,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9746,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-03T17:23:22Z",
+      "latest_at": "2026-10-03T17:23:22Z",
+      "primary_item": {
+        "id": "2fe39ca95583327dec63bae880bf8469c50a0e5e",
+        "title": "Nathan Lambert 批评 AI 生态对 Trillium Labs 发布的敌意反应",
+        "url": "https://x.com/natolambert/status/2106434951516414374",
+        "source": "X：Nathan Lambert (@natolambert)",
         "source_name": "AI HOT"
       }
     },
@@ -566,15 +746,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7004,
-      "importance": 0.7004,
-      "importance_score": 0.7004,
+      "score": 0.6984,
+      "importance": 0.6984,
+      "importance_score": 0.6984,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2546,
+        "recency": 0.2435,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -646,15 +826,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6931,
-      "importance": 0.6931,
-      "importance_score": 0.6931,
+      "score": 0.6911,
+      "importance": 0.6911,
+      "importance_score": 0.6911,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2641,
+        "recency": 0.2526,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -726,15 +906,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6873,
-      "importance": 0.6873,
-      "importance_score": 0.6873,
+      "score": 0.6859,
+      "importance": 0.6859,
+      "importance_score": 0.6859,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1817,
+        "recency": 0.1737,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -805,15 +985,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6762,
-      "importance": 0.6762,
-      "importance_score": 0.6762,
+      "score": 0.6734,
+      "importance": 0.6734,
+      "importance_score": 0.6734,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3531,
+        "recency": 0.3377,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -884,15 +1064,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6733,
-      "importance": 0.6733,
-      "importance_score": 0.6733,
+      "score": 0.6719,
+      "importance": 0.6719,
+      "importance_score": 0.6719,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1874,
+        "recency": 0.1792,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -964,15 +1144,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6666,
-      "importance": 0.6666,
-      "importance_score": 0.6666,
+      "score": 0.6652,
+      "importance": 0.6652,
+      "importance_score": 0.6652,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1833,
+        "recency": 0.1753,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1044,15 +1224,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6574,
-      "importance": 0.6574,
-      "importance_score": 0.6574,
+      "score": 0.6559,
+      "importance": 0.6559,
+      "importance_score": 0.6559,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1821,
+        "recency": 0.1742,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1124,15 +1304,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6539,
-      "importance": 0.6539,
-      "importance_score": 0.6539,
+      "score": 0.6496,
+      "importance": 0.6496,
+      "importance_score": 0.6496,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.53,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.546,
+        "recency": 0.5222,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1204,15 +1384,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6467,
-      "importance": 0.6467,
-      "importance_score": 0.6467,
+      "score": 0.6466,
+      "importance": 0.6466,
+      "importance_score": 0.6466,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.023,
+        "recency": 0.022,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1284,15 +1464,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.644,
-      "importance": 0.644,
-      "importance_score": 0.644,
+      "score": 0.6439,
+      "importance": 0.6439,
+      "importance_score": 0.6439,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0247,
+        "recency": 0.0236,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1363,15 +1543,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6438,
-      "importance": 0.6438,
-      "importance_score": 0.6438,
+      "score": 0.6436,
+      "importance": 0.6436,
+      "importance_score": 0.6436,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0233,
+        "recency": 0.0223,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1386,86 +1566,6 @@
         "title": "Artificial Analysis 评测 GPT-6 Sol 和 Luna：成本减半但各评测有升有降",
         "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
         "source": "Artificial Analysis 完整文章（网页）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_db8d73909519",
-      "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
-      "url": "https://x.com/testingcatalog/status/2104987633894010982",
-      "primary_url": "https://x.com/testingcatalog/status/2104987633894010982",
-      "source": "X：Testing Catalog (@testingcatalog)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "d1ccb29b1b17ff2f6caec1a3e7b5b294d2495b83",
-          "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
-          "url": "https://x.com/testingcatalog/status/2104987633894010982",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:32:15Z"
-        },
-        {
-          "id": "a81582caa8460dbb4233989c91b91981dac25c33",
-          "title": "OpenAI 推出 ChatGPT Space 协作功能",
-          "url": "https://x.com/thsottiaux/status/2104983716049379472",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:16:41Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "X：Testing Catalog (@testingcatalog)",
-        "X：Tibo (@thsottiaux)"
-      ],
-      "items": [
-        {
-          "id": "d1ccb29b1b17ff2f6caec1a3e7b5b294d2495b83",
-          "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
-          "url": "https://x.com/testingcatalog/status/2104987633894010982",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:32:15Z"
-        },
-        {
-          "id": "a81582caa8460dbb4233989c91b91981dac25c33",
-          "title": "OpenAI 推出 ChatGPT Space 协作功能",
-          "url": "https://x.com/thsottiaux/status/2104983716049379472",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:16:41Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6436,
-      "importance": 0.6436,
-      "importance_score": 0.6436,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.67,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.2553,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-29T17:16:41Z",
-      "latest_at": "2026-09-29T17:32:15Z",
-      "primary_item": {
-        "id": "d1ccb29b1b17ff2f6caec1a3e7b5b294d2495b83",
-        "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
-        "url": "https://x.com/testingcatalog/status/2104987633894010982",
-        "source": "X：Testing Catalog (@testingcatalog)",
         "source_name": "AI HOT"
       }
     },
@@ -1523,15 +1623,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6378,
-      "importance": 0.6378,
-      "importance_score": 0.6378,
+      "score": 0.6376,
+      "importance": 0.6376,
+      "importance_score": 0.6376,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0232,
+        "recency": 0.0222,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1546,165 +1646,6 @@
         "title": "Meta Muse 助手曝出严重 0-day 漏洞，Amazon 已开始封禁 Muse",
         "url": "https://arstechnica.com/security/2026/09/muse-metas-extraordinarily-privileged-ai-assistant-has-a-serious-0-day",
         "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_245d063e08eb",
-      "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
-      "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
-      "primary_url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
-      "source": "Hacker News：AI 热帖",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "0c2dd88858ae70dcb29f3a0c7336bdb4dbb1af4a",
-          "title": "五角大楼调查称过度依赖AI导致美军导弹误击伊朗Minab学校",
-          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
-          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T20:00:35.186000Z"
-        },
-        {
-          "id": "840d4f3401e4b09406d07030fb1332ef14b1c19e",
-          "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
-          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T19:03:38Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "Hacker News 热门（buzzing.cc 中文翻译）",
-        "Hacker News：AI 热帖"
-      ],
-      "items": [
-        {
-          "id": "0c2dd88858ae70dcb29f3a0c7336bdb4dbb1af4a",
-          "title": "五角大楼调查称过度依赖AI导致美军导弹误击伊朗Minab学校",
-          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
-          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T20:00:35.186000Z"
-        },
-        {
-          "id": "840d4f3401e4b09406d07030fb1332ef14b1c19e",
-          "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
-          "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T19:03:38Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6588,
-      "importance": 0.6588,
-      "importance_score": 0.6588,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.86,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.0231,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-22T19:03:38Z",
-      "latest_at": "2026-09-22T20:00:35.186000Z",
-      "primary_item": {
-        "id": "840d4f3401e4b09406d07030fb1332ef14b1c19e",
-        "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
-        "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
-        "source": "Hacker News：AI 热帖",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_107f1a0fdf41",
-      "title": "Databricks 如何让 12000 名员工在模型发布首日用上新前沿模型",
-      "url": "https://www.databricks.com/blog/how-databricks-rolls-out-frontier-models-14000-employees-day-1",
-      "primary_url": "https://www.databricks.com/blog/how-databricks-rolls-out-frontier-models-14000-employees-day-1",
-      "source": "Databricks：Blog（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "6ed22d8e1e68c06a069f6288bc9e4a49e279f718",
-          "title": "Databricks 如何让 1.4 万名员工在模型发布首日用上新模型",
-          "url": "https://www.databricks.com/blog/how-databricks-rolls-out-frontier-models-14000-employees-day-1",
-          "source": "Databricks：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T20:11:23Z"
-        },
-        {
-          "id": "024924c20f8966ef3ec0786765fc13b1157ce46d",
-          "title": "Databricks 如何让 12000 名员工在模型发布首日用上新前沿模型",
-          "url": "https://www.databricks.com/blog/how-databricks-rolls-out-frontier-models-14000-employees-day-1",
-          "source": "Databricks：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T20:11:23Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "Databricks：Blog（RSS）"
-      ],
-      "items": [
-        {
-          "id": "6ed22d8e1e68c06a069f6288bc9e4a49e279f718",
-          "title": "Databricks 如何让 1.4 万名员工在模型发布首日用上新模型",
-          "url": "https://www.databricks.com/blog/how-databricks-rolls-out-frontier-models-14000-employees-day-1",
-          "source": "Databricks：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T20:11:23Z"
-        },
-        {
-          "id": "024924c20f8966ef3ec0786765fc13b1157ce46d",
-          "title": "Databricks 如何让 12000 名员工在模型发布首日用上新前沿模型",
-          "url": "https://www.databricks.com/blog/how-databricks-rolls-out-frontier-models-14000-employees-day-1",
-          "source": "Databricks：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T20:11:23Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6254,
-      "importance": 0.6254,
-      "importance_score": 0.6254,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.65,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.1876,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-28T20:11:23Z",
-      "latest_at": "2026-09-28T20:11:23Z",
-      "primary_item": {
-        "id": "024924c20f8966ef3ec0786765fc13b1157ce46d",
-        "title": "Databricks 如何让 12000 名员工在模型发布首日用上新前沿模型",
-        "url": "https://www.databricks.com/blog/how-databricks-rolls-out-frontier-models-14000-employees-day-1",
-        "source": "Databricks：Blog（RSS）",
         "source_name": "AI HOT"
       }
     }
