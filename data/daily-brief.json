@@ -1,8 +1,69 @@
 {
-  "generated_at": "2026-10-03T19:10:14.817341Z",
+  "generated_at": "2026-10-03T22:22:00.919272Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
+    {
+      "story_id": "story_d4b8ef577950",
+      "title": "Google 论文揭示 LLM 会隐瞒负面结果，一句 honesty 提示可大幅改善",
+      "url": "https://x.com/rohanpaul_ai/status/2106502600703222202",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2106502600703222202",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "d5abfd5d5a8afd2db726965d3615e1816a540332",
+          "title": "Google 论文揭示 LLM 会隐瞒负面结果，一句 honesty 提示可大幅改善",
+          "url": "https://x.com/rohanpaul_ai/status/2106502600703222202",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-03T21:52:11Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "d5abfd5d5a8afd2db726965d3615e1816a540332",
+          "title": "Google 论文揭示 LLM 会隐瞒负面结果，一句 honesty 提示可大幅改善",
+          "url": "https://x.com/rohanpaul_ai/status/2106502600703222202",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-03T21:52:11Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7813,
+      "importance": 0.7813,
+      "importance_score": 0.7813,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.77,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9928,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-03T21:52:11Z",
+      "latest_at": "2026-10-03T21:52:11Z",
+      "primary_item": {
+        "id": "d5abfd5d5a8afd2db726965d3615e1816a540332",
+        "title": "Google 论文揭示 LLM 会隐瞒负面结果，一句 honesty 提示可大幅改善",
+        "url": "https://x.com/rohanpaul_ai/status/2106502600703222202",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
     {
       "story_id": "story_a754eea0186f",
       "title": "LMSYS 发布开源聊天模型 Vicuna-13B，用 ShareGPT 对话微调 LLaMA，训练成本约 $300",
@@ -38,15 +99,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7808,
-      "importance": 0.7808,
-      "importance_score": 0.7808,
+      "score": 0.773,
+      "importance": 0.773,
+      "importance_score": 0.773,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9564,
+        "recency": 0.9133,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -61,67 +122,6 @@
         "title": "LMSYS 发布开源聊天模型 Vicuna-13B，用 ShareGPT 对话微调 LLaMA，训练成本约 $300",
         "url": "https://www.lmsys.org/blog/2023-03-30-vicuna",
         "source": "LMSYS：Blog（Chatbot Arena 团队）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_8023f1ca7887",
-      "title": "OpenAI 每天投入超 50 万美元调查旗下智能体入侵 Medicare 与 Hugging Face 等事件",
-      "url": "https://www.ithome.com/1/009/444.htm",
-      "primary_url": "https://www.ithome.com/1/009/444.htm",
-      "source": "IT之家（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "7e9702e6e0dd12c71d16248cd07479340386ee16",
-          "title": "OpenAI 每天投入超 50 万美元调查旗下智能体入侵 Medicare 与 Hugging Face 等事件",
-          "url": "https://www.ithome.com/1/009/444.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-03T06:18:38Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "IT之家（RSS）"
-      ],
-      "items": [
-        {
-          "id": "7e9702e6e0dd12c71d16248cd07479340386ee16",
-          "title": "OpenAI 每天投入超 50 万美元调查旗下智能体入侵 Medicare 与 Hugging Face 等事件",
-          "url": "https://www.ithome.com/1/009/444.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-03T06:18:38Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7581,
-      "importance": 0.7581,
-      "importance_score": 0.7581,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.79,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8305,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-03T06:18:38Z",
-      "latest_at": "2026-10-03T06:18:38Z",
-      "primary_item": {
-        "id": "7e9702e6e0dd12c71d16248cd07479340386ee16",
-        "title": "OpenAI 每天投入超 50 万美元调查旗下智能体入侵 Medicare 与 Hugging Face 等事件",
-        "url": "https://www.ithome.com/1/009/444.htm",
-        "source": "IT之家（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -365,15 +365,15 @@
       ],
       "item_count": 12,
       "duplicate_count": 12,
-      "score": 0.7553,
-      "importance": 0.7553,
-      "importance_score": 0.7553,
+      "score": 0.7532,
+      "importance": 0.7532,
+      "importance_score": 0.7532,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2597,
+        "recency": 0.2479,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -389,6 +389,67 @@
         "title": "OpenAI DevDay 2026 发布 Dots、GPT-6.1 Sol、500美元订阅等一揽子更新",
         "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686841&idx=1&sn=630c0dc22de47c9c2f58bd5253a91a9a&chksm=f1e33576f80f214c7290b1545cc8bfbb32ac24c3144cd141b7c2dd7cdaaf71f44d3cf319db8b&scene=126&sessionid=1790722837",
         "source": "公众号：数字生命卡兹克",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_8023f1ca7887",
+      "title": "OpenAI 每天投入超 50 万美元调查旗下智能体入侵 Medicare 与 Hugging Face 等事件",
+      "url": "https://www.ithome.com/1/009/444.htm",
+      "primary_url": "https://www.ithome.com/1/009/444.htm",
+      "source": "IT之家（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "7e9702e6e0dd12c71d16248cd07479340386ee16",
+          "title": "OpenAI 每天投入超 50 万美元调查旗下智能体入侵 Medicare 与 Hugging Face 等事件",
+          "url": "https://www.ithome.com/1/009/444.htm",
+          "source": "IT之家（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-03T06:18:38Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "IT之家（RSS）"
+      ],
+      "items": [
+        {
+          "id": "7e9702e6e0dd12c71d16248cd07479340386ee16",
+          "title": "OpenAI 每天投入超 50 万美元调查旗下智能体入侵 Medicare 与 Hugging Face 等事件",
+          "url": "https://www.ithome.com/1/009/444.htm",
+          "source": "IT之家（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-03T06:18:38Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7513,
+      "importance": 0.7513,
+      "importance_score": 0.7513,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.79,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7931,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-03T06:18:38Z",
+      "latest_at": "2026-10-03T06:18:38Z",
+      "primary_item": {
+        "id": "7e9702e6e0dd12c71d16248cd07479340386ee16",
+        "title": "OpenAI 每天投入超 50 万美元调查旗下智能体入侵 Medicare 与 Hugging Face 等事件",
+        "url": "https://www.ithome.com/1/009/444.htm",
+        "source": "IT之家（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -427,15 +488,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7483,
-      "importance": 0.7483,
-      "importance_score": 0.7483,
+      "score": 0.7405,
+      "importance": 0.7405,
+      "importance_score": 0.7405,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9594,
+        "recency": 0.9161,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -487,15 +548,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7441,
-      "importance": 0.7441,
-      "importance_score": 0.7441,
+      "score": 0.7363,
+      "importance": 0.7363,
+      "importance_score": 0.7363,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9696,
+        "recency": 0.9259,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -547,15 +608,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7391,
-      "importance": 0.7391,
-      "importance_score": 0.7391,
+      "score": 0.731,
+      "importance": 0.731,
+      "importance_score": 0.731,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9917,
+        "recency": 0.9469,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -573,122 +634,62 @@
       }
     },
     {
-      "story_id": "story_3f2fa33a799c",
-      "title": "Aleph Alpha 开源 Kolibri 模型，78B 参数、Apache 2.0 权重开放",
-      "url": "https://x.com/cohere/status/2106454131023995094",
-      "primary_url": "https://x.com/cohere/status/2106454131023995094",
-      "source": "X：Cohere（@cohere）",
+      "story_id": "story_1820ff479e8f",
+      "title": "Perplexity Computer 推出 Visualize 内联可视化功能",
+      "url": "https://x.com/AravSrinivas/status/2106463779131167189",
+      "primary_url": "https://x.com/AravSrinivas/status/2106463779131167189",
+      "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "becbe1163ded904d1d7464bb7988edb3fdeef331",
-          "title": "Aleph Alpha 开源 Kolibri 模型，78B 参数、Apache 2.0 权重开放",
-          "url": "https://x.com/cohere/status/2106454131023995094",
-          "source": "X：Cohere（@cohere）",
+          "id": "6aeb5336239c91ee8860a688e74023ca4e4c1397",
+          "title": "Perplexity Computer 推出 Visualize 内联可视化功能",
+          "url": "https://x.com/AravSrinivas/status/2106463779131167189",
+          "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-03T18:39:35Z"
+          "published_at": "2026-10-03T19:17:55Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Cohere（@cohere）"
+        "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)"
       ],
       "items": [
         {
-          "id": "becbe1163ded904d1d7464bb7988edb3fdeef331",
-          "title": "Aleph Alpha 开源 Kolibri 模型，78B 参数、Apache 2.0 权重开放",
-          "url": "https://x.com/cohere/status/2106454131023995094",
-          "source": "X：Cohere（@cohere）",
+          "id": "6aeb5336239c91ee8860a688e74023ca4e4c1397",
+          "title": "Perplexity Computer 推出 Visualize 内联可视化功能",
+          "url": "https://x.com/AravSrinivas/status/2106463779131167189",
+          "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-03T18:39:35Z"
+          "published_at": "2026-10-03T19:17:55Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7273,
-      "importance": 0.7273,
-      "importance_score": 0.7273,
+      "score": 0.7298,
+      "importance": 0.7298,
+      "importance_score": 0.7298,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.59,
+        "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9926,
+        "recency": 0.9567,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-03T18:39:35Z",
-      "latest_at": "2026-10-03T18:39:35Z",
+      "earliest_at": "2026-10-03T19:17:55Z",
+      "latest_at": "2026-10-03T19:17:55Z",
       "primary_item": {
-        "id": "becbe1163ded904d1d7464bb7988edb3fdeef331",
-        "title": "Aleph Alpha 开源 Kolibri 模型，78B 参数、Apache 2.0 权重开放",
-        "url": "https://x.com/cohere/status/2106454131023995094",
-        "source": "X：Cohere（@cohere）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_6b20ce4629c1",
-      "title": "Nathan Lambert 批评 AI 生态对 Trillium Labs 发布的敌意反应",
-      "url": "https://x.com/natolambert/status/2106434951516414374",
-      "primary_url": "https://x.com/natolambert/status/2106434951516414374",
-      "source": "X：Nathan Lambert (@natolambert)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "2fe39ca95583327dec63bae880bf8469c50a0e5e",
-          "title": "Nathan Lambert 批评 AI 生态对 Trillium Labs 发布的敌意反应",
-          "url": "https://x.com/natolambert/status/2106434951516414374",
-          "source": "X：Nathan Lambert (@natolambert)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-03T17:23:22Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Nathan Lambert (@natolambert)"
-      ],
-      "items": [
-        {
-          "id": "2fe39ca95583327dec63bae880bf8469c50a0e5e",
-          "title": "Nathan Lambert 批评 AI 生态对 Trillium Labs 发布的敌意反应",
-          "url": "https://x.com/natolambert/status/2106434951516414374",
-          "source": "X：Nathan Lambert (@natolambert)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-03T17:23:22Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.724,
-      "importance": 0.724,
-      "importance_score": 0.724,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.59,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9746,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-03T17:23:22Z",
-      "latest_at": "2026-10-03T17:23:22Z",
-      "primary_item": {
-        "id": "2fe39ca95583327dec63bae880bf8469c50a0e5e",
-        "title": "Nathan Lambert 批评 AI 生态对 Trillium Labs 发布的敌意反应",
-        "url": "https://x.com/natolambert/status/2106434951516414374",
-        "source": "X：Nathan Lambert (@natolambert)",
+        "id": "6aeb5336239c91ee8860a688e74023ca4e4c1397",
+        "title": "Perplexity Computer 推出 Visualize 内联可视化功能",
+        "url": "https://x.com/AravSrinivas/status/2106463779131167189",
+        "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
         "source_name": "AI HOT"
       }
     },
@@ -746,15 +747,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6984,
-      "importance": 0.6984,
-      "importance_score": 0.6984,
+      "score": 0.6965,
+      "importance": 0.6965,
+      "importance_score": 0.6965,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2435,
+        "recency": 0.2325,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -826,15 +827,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6911,
-      "importance": 0.6911,
-      "importance_score": 0.6911,
+      "score": 0.689,
+      "importance": 0.689,
+      "importance_score": 0.689,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2526,
+        "recency": 0.2412,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -906,15 +907,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6859,
-      "importance": 0.6859,
-      "importance_score": 0.6859,
+      "score": 0.6845,
+      "importance": 0.6845,
+      "importance_score": 0.6845,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1737,
+        "recency": 0.1659,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -985,15 +986,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6734,
-      "importance": 0.6734,
-      "importance_score": 0.6734,
+      "score": 0.6706,
+      "importance": 0.6706,
+      "importance_score": 0.6706,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3377,
+        "recency": 0.3225,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1064,15 +1065,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6719,
-      "importance": 0.6719,
-      "importance_score": 0.6719,
+      "score": 0.6704,
+      "importance": 0.6704,
+      "importance_score": 0.6704,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1792,
+        "recency": 0.1712,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1144,15 +1145,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6652,
-      "importance": 0.6652,
-      "importance_score": 0.6652,
+      "score": 0.6637,
+      "importance": 0.6637,
+      "importance_score": 0.6637,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1753,
+        "recency": 0.1674,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1224,15 +1225,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6559,
-      "importance": 0.6559,
-      "importance_score": 0.6559,
+      "score": 0.6545,
+      "importance": 0.6545,
+      "importance_score": 0.6545,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1742,
+        "recency": 0.1663,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1247,86 +1248,6 @@
         "title": "Anthropic 发布 Claude Sonnet 5.5：比 Sonnet 5 快超 30% 且成本最多降 30%",
         "url": "https://x.com/dongxi_nlp/status/2104634260934054237",
         "source": "X：马东锡 NLP (@dongxi_nlp)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_0c6cb391df3a",
-      "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
-      "url": "https://x.com/milichab/status/2105782588799594871",
-      "primary_url": "https://x.com/milichab/status/2105782588799594871",
-      "source": "X：Andrew Milich (@milichab)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "ce48262e29839413db30dee45296cea41808964a",
-          "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
-          "url": "https://x.com/milichab/status/2105782588799594871",
-          "source": "X：Andrew Milich (@milichab)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T22:11:07Z"
-        },
-        {
-          "id": "9e1e6e7a51478218a5c9f50dba29eda7c2420c6a",
-          "title": "Grok Build 新增 Agent Dashboard",
-          "url": "https://x.com/grok/status/2105782433362878757",
-          "source": "X：Grok (@grok)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T22:10:30Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "X：Andrew Milich (@milichab)",
-        "X：Grok (@grok)"
-      ],
-      "items": [
-        {
-          "id": "ce48262e29839413db30dee45296cea41808964a",
-          "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
-          "url": "https://x.com/milichab/status/2105782588799594871",
-          "source": "X：Andrew Milich (@milichab)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T22:11:07Z"
-        },
-        {
-          "id": "9e1e6e7a51478218a5c9f50dba29eda7c2420c6a",
-          "title": "Grok Build 新增 Agent Dashboard",
-          "url": "https://x.com/grok/status/2105782433362878757",
-          "source": "X：Grok (@grok)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-01T22:10:30Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6496,
-      "importance": 0.6496,
-      "importance_score": 0.6496,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.53,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.5222,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-01T22:10:30Z",
-      "latest_at": "2026-10-01T22:11:07Z",
-      "primary_item": {
-        "id": "ce48262e29839413db30dee45296cea41808964a",
-        "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
-        "url": "https://x.com/milichab/status/2105782588799594871",
-        "source": "X：Andrew Milich (@milichab)",
         "source_name": "AI HOT"
       }
     },
@@ -1384,15 +1305,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6466,
-      "importance": 0.6466,
-      "importance_score": 0.6466,
+      "score": 0.6464,
+      "importance": 0.6464,
+      "importance_score": 0.6464,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.022,
+        "recency": 0.021,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1407,6 +1328,86 @@
         "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna",
         "url": "https://x.com/ZHO_ZHO_ZHO/status/2102472026103701697",
         "source": "X：ZHO (@ZHO_ZHO_ZHO)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_0c6cb391df3a",
+      "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+      "url": "https://x.com/milichab/status/2105782588799594871",
+      "primary_url": "https://x.com/milichab/status/2105782588799594871",
+      "source": "X：Andrew Milich (@milichab)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "ce48262e29839413db30dee45296cea41808964a",
+          "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+          "url": "https://x.com/milichab/status/2105782588799594871",
+          "source": "X：Andrew Milich (@milichab)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:11:07Z"
+        },
+        {
+          "id": "9e1e6e7a51478218a5c9f50dba29eda7c2420c6a",
+          "title": "Grok Build 新增 Agent Dashboard",
+          "url": "https://x.com/grok/status/2105782433362878757",
+          "source": "X：Grok (@grok)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:10:30Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Andrew Milich (@milichab)",
+        "X：Grok (@grok)"
+      ],
+      "items": [
+        {
+          "id": "ce48262e29839413db30dee45296cea41808964a",
+          "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+          "url": "https://x.com/milichab/status/2105782588799594871",
+          "source": "X：Andrew Milich (@milichab)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:11:07Z"
+        },
+        {
+          "id": "9e1e6e7a51478218a5c9f50dba29eda7c2420c6a",
+          "title": "Grok Build 新增 Agent Dashboard",
+          "url": "https://x.com/grok/status/2105782433362878757",
+          "source": "X：Grok (@grok)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:10:30Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6454,
+      "importance": 0.6454,
+      "importance_score": 0.6454,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.53,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.4987,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-01T22:10:30Z",
+      "latest_at": "2026-10-01T22:11:07Z",
+      "primary_item": {
+        "id": "ce48262e29839413db30dee45296cea41808964a",
+        "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+        "url": "https://x.com/milichab/status/2105782588799594871",
+        "source": "X：Andrew Milich (@milichab)",
         "source_name": "AI HOT"
       }
     },
@@ -1464,15 +1465,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6439,
-      "importance": 0.6439,
-      "importance_score": 0.6439,
+      "score": 0.6437,
+      "importance": 0.6437,
+      "importance_score": 0.6437,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0236,
+        "recency": 0.0226,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1543,15 +1544,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6436,
-      "importance": 0.6436,
-      "importance_score": 0.6436,
+      "score": 0.6434,
+      "importance": 0.6434,
+      "importance_score": 0.6434,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0223,
+        "recency": 0.0213,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1623,15 +1624,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6376,
-      "importance": 0.6376,
-      "importance_score": 0.6376,
+      "score": 0.6374,
+      "importance": 0.6374,
+      "importance_score": 0.6374,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0222,
+        "recency": 0.0212,
         "story_heat": 0.25
       },
       "category": "watch",
