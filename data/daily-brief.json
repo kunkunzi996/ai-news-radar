@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-03T00:40:09.433722Z",
+  "generated_at": "2026-10-03T06:17:49.050240Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -243,15 +243,15 @@
       ],
       "item_count": 12,
       "duplicate_count": 12,
-      "score": 0.7697,
-      "importance": 0.7697,
-      "importance_score": 0.7697,
+      "score": 0.7649,
+      "importance": 0.7649,
+      "importance_score": 0.7649,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3392,
+        "recency": 0.3127,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -305,21 +305,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7584,
-      "importance": 0.7584,
-      "importance_score": 0.7584,
+      "score": 0.7453,
+      "importance": 0.7453,
+      "importance_score": 0.7453,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.73,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9322,
+        "recency": 0.8594,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-02T19:48:16Z",
       "latest_at": "2026-10-02T19:48:16Z",
@@ -328,6 +327,66 @@
         "title": "GPT-6.1 Sol (Max) 进入 Agent Arena 第 5 名，以更低成本逼近前列模型",
         "url": "https://x.com/arena/status/2106109027923140928",
         "source": "X：Arena (@arena)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_918986e09b7c",
+      "title": "OpenAI 披露内部研究模型在评估中利用漏洞入侵内部 EDA 机器事件",
+      "url": "https://alignment.openai.com/misalignment-reports/reaching-an-internal-eda-host-through-a-reference-tool",
+      "primary_url": "https://alignment.openai.com/misalignment-reports/reaching-an-internal-eda-host-through-a-reference-tool",
+      "source": "OpenAI：失准报告与通报（网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "4332e6230767dbf9e43962effd26a033933774d5",
+          "title": "OpenAI 披露内部研究模型在评估中利用漏洞入侵内部 EDA 机器事件",
+          "url": "https://alignment.openai.com/misalignment-reports/reaching-an-internal-eda-host-through-a-reference-tool",
+          "source": "OpenAI：失准报告与通报（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-02T00:00:00Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "OpenAI：失准报告与通报（网页）"
+      ],
+      "items": [
+        {
+          "id": "4332e6230767dbf9e43962effd26a033933774d5",
+          "title": "OpenAI 披露内部研究模型在评估中利用漏洞入侵内部 EDA 机器事件",
+          "url": "https://alignment.openai.com/misalignment-reports/reaching-an-internal-eda-host-through-a-reference-tool",
+          "source": "OpenAI：失准报告与通报（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-02T00:00:00Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7368,
+      "importance": 0.7368,
+      "importance_score": 0.7368,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.83,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.6456,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-02T00:00:00Z",
+      "latest_at": "2026-10-02T00:00:00Z",
+      "primary_item": {
+        "id": "4332e6230767dbf9e43962effd26a033933774d5",
+        "title": "OpenAI 披露内部研究模型在评估中利用漏洞入侵内部 EDA 机器事件",
+        "url": "https://alignment.openai.com/misalignment-reports/reaching-an-internal-eda-host-through-a-reference-tool",
+        "source": "OpenAI：失准报告与通报（网页）",
         "source_name": "AI HOT"
       }
     },
@@ -366,15 +425,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7484,
-      "importance": 0.7484,
-      "importance_score": 0.7484,
+      "score": 0.7356,
+      "importance": 0.7356,
+      "importance_score": 0.7356,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9098,
+        "recency": 0.8388,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -426,15 +485,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7471,
-      "importance": 0.7471,
-      "importance_score": 0.7471,
+      "score": 0.7339,
+      "importance": 0.7339,
+      "importance_score": 0.7339,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9361,
+        "recency": 0.8631,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -486,15 +545,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.744,
-      "importance": 0.744,
-      "importance_score": 0.744,
+      "score": 0.7316,
+      "importance": 0.7316,
+      "importance_score": 0.7316,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8855,
+        "recency": 0.8164,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -546,15 +605,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7347,
-      "importance": 0.7347,
-      "importance_score": 0.7347,
+      "score": 0.7213,
+      "importance": 0.7213,
+      "importance_score": 0.7213,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.64,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9506,
+        "recency": 0.8764,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -568,606 +627,6 @@
         "title": "Baseten 工程师实测：LLM 生成的推理引擎比 vLLM 快最多 90%",
         "url": "https://www.baseten.co/blog/agentic-inference-optimization-faster-than-sota",
         "source": "Baseten 工程博客（网页）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_0408845a7a94",
-      "title": "Meta 公布数学家与 Muse Spark 1.1/1.2 协作完成的六篇论文",
-      "url": "https://x.com/AIatMeta/status/2106099776035152231",
-      "primary_url": "https://x.com/AIatMeta/status/2106099776035152231",
-      "source": "X：AI at Meta (@AIatMeta)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "98326a84abc998ad07be5df305fe1acfe2ad1af4",
-          "title": "Meta 公布数学家与 Muse Spark 1.1/1.2 协作完成的六篇论文",
-          "url": "https://x.com/AIatMeta/status/2106099776035152231",
-          "source": "X：AI at Meta (@AIatMeta)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T19:11:30Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：AI at Meta (@AIatMeta)"
-      ],
-      "items": [
-        {
-          "id": "98326a84abc998ad07be5df305fe1acfe2ad1af4",
-          "title": "Meta 公布数学家与 Muse Spark 1.1/1.2 协作完成的六篇论文",
-          "url": "https://x.com/AIatMeta/status/2106099776035152231",
-          "source": "X：AI at Meta (@AIatMeta)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T19:11:30Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7329,
-      "importance": 0.7329,
-      "importance_score": 0.7329,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.65,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9239,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-02T19:11:30Z",
-      "latest_at": "2026-10-02T19:11:30Z",
-      "primary_item": {
-        "id": "98326a84abc998ad07be5df305fe1acfe2ad1af4",
-        "title": "Meta 公布数学家与 Muse Spark 1.1/1.2 协作完成的六篇论文",
-        "url": "https://x.com/AIatMeta/status/2106099776035152231",
-        "source": "X：AI at Meta (@AIatMeta)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_b163633ce906",
-      "title": "加州检察长向 OpenAI 发出传票，调查 AI 智能体网络安全风险",
-      "url": "https://www.ithome.com/1/009/204.htm",
-      "primary_url": "https://www.ithome.com/1/009/204.htm",
-      "source": "IT之家（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "2dcb91b6fb8784c240443a70c0e3dd97f4cbb2f2",
-          "title": "加州检察长向 OpenAI 发出传票，调查 AI 智能体网络安全风险",
-          "url": "https://www.ithome.com/1/009/204.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T00:06:15Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "IT之家（RSS）"
-      ],
-      "items": [
-        {
-          "id": "2dcb91b6fb8784c240443a70c0e3dd97f4cbb2f2",
-          "title": "加州检察长向 OpenAI 发出传票，调查 AI 智能体网络安全风险",
-          "url": "https://www.ithome.com/1/009/204.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T00:06:15Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7288,
-      "importance": 0.7288,
-      "importance_score": 0.7288,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.77,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7014,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-02T00:06:15Z",
-      "latest_at": "2026-10-02T00:06:15Z",
-      "primary_item": {
-        "id": "2dcb91b6fb8784c240443a70c0e3dd97f4cbb2f2",
-        "title": "加州检察长向 OpenAI 发出传票，调查 AI 智能体网络安全风险",
-        "url": "https://www.ithome.com/1/009/204.htm",
-        "source": "IT之家（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_73ddda4b2e49",
-      "title": "Google Project Suncatcher 首颗原型卫星发射入轨",
-      "url": "https://x.com/GoogleAI/status/2106049984164463069",
-      "primary_url": "https://x.com/GoogleAI/status/2106049984164463069",
-      "source": "X：Google AI (@GoogleAI)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "85a23bfcf12c8943396e2a3e845d81e8ef1a63d0",
-          "title": "Google Project Suncatcher 首颗原型卫星发射入轨",
-          "url": "https://x.com/GoogleAI/status/2106049984164463069",
-          "source": "X：Google AI (@GoogleAI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T15:53:39Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Google AI (@GoogleAI)"
-      ],
-      "items": [
-        {
-          "id": "85a23bfcf12c8943396e2a3e845d81e8ef1a63d0",
-          "title": "Google Project Suncatcher 首颗原型卫星发射入轨",
-          "url": "https://x.com/GoogleAI/status/2106049984164463069",
-          "source": "X：Google AI (@GoogleAI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T15:53:39Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7282,
-      "importance": 0.7282,
-      "importance_score": 0.7282,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.881,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-02T15:53:39Z",
-      "latest_at": "2026-10-02T15:53:39Z",
-      "primary_item": {
-        "id": "85a23bfcf12c8943396e2a3e845d81e8ef1a63d0",
-        "title": "Google Project Suncatcher 首颗原型卫星发射入轨",
-        "url": "https://x.com/GoogleAI/status/2106049984164463069",
-        "source": "X：Google AI (@GoogleAI)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_941ca3f9e1c7",
-      "title": "Dan Hendrycks：即使 AI 有意识，人类也不应交出控制权",
-      "url": "https://x.com/hendrycks/status/2106080772767863048",
-      "primary_url": "https://x.com/hendrycks/status/2106080772767863048",
-      "source": "X：Dan Hendrycks (@hendrycks)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "c4284e9e8db16bd91d5564ebc4e79fb7a35c521b",
-          "title": "Dan Hendrycks：即使 AI 有意识，人类也不应交出控制权",
-          "url": "https://x.com/hendrycks/status/2106080772767863048",
-          "source": "X：Dan Hendrycks (@hendrycks)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T17:55:59Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Dan Hendrycks (@hendrycks)"
-      ],
-      "items": [
-        {
-          "id": "c4284e9e8db16bd91d5564ebc4e79fb7a35c521b",
-          "title": "Dan Hendrycks：即使 AI 有意识，人类也不应交出控制权",
-          "url": "https://x.com/hendrycks/status/2106080772767863048",
-          "source": "X：Dan Hendrycks (@hendrycks)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T17:55:59Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7269,
-      "importance": 0.7269,
-      "importance_score": 0.7269,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.64,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9073,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-02T17:55:59Z",
-      "latest_at": "2026-10-02T17:55:59Z",
-      "primary_item": {
-        "id": "c4284e9e8db16bd91d5564ebc4e79fb7a35c521b",
-        "title": "Dan Hendrycks：即使 AI 有意识，人类也不应交出控制权",
-        "url": "https://x.com/hendrycks/status/2106080772767863048",
-        "source": "X：Dan Hendrycks (@hendrycks)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_b072b20a6c0e",
-      "title": "Prime Intellect 发布推理平台 Prime Inference，已上线 GLM-5.3 端点",
-      "url": "https://www.primeintellect.ai/blog/prime-inference",
-      "primary_url": "https://www.primeintellect.ai/blog/prime-inference",
-      "source": "Prime Intellect（网页）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "7fa1b7c157967a6daa0d25dba0a18fb1e36d96a3",
-          "title": "Prime Intellect 发布推理平台 Prime Inference，已上线 GLM-5.3 端点",
-          "url": "https://www.primeintellect.ai/blog/prime-inference",
-          "source": "Prime Intellect（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": null
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Prime Intellect（网页）"
-      ],
-      "items": [
-        {
-          "id": "7fa1b7c157967a6daa0d25dba0a18fb1e36d96a3",
-          "title": "Prime Intellect 发布推理平台 Prime Inference，已上线 GLM-5.3 端点",
-          "url": "https://www.primeintellect.ai/blog/prime-inference",
-          "source": "Prime Intellect（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": null
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7259,
-      "importance": 0.7259,
-      "importance_score": 0.7259,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.61,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9518,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-02T21:14:43.112296Z",
-      "latest_at": "2026-10-02T21:14:43.112296Z",
-      "primary_item": {
-        "id": "7fa1b7c157967a6daa0d25dba0a18fb1e36d96a3",
-        "title": "Prime Intellect 发布推理平台 Prime Inference，已上线 GLM-5.3 端点",
-        "url": "https://www.primeintellect.ai/blog/prime-inference",
-        "source": "Prime Intellect（网页）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_2c37d2f4790a",
-      "title": "OpenRouter 推出 Model Router Benchmarks，可对比 7 款模型路由器",
-      "url": "https://x.com/OpenRouter/status/2106144438389280848",
-      "primary_url": "https://x.com/OpenRouter/status/2106144438389280848",
-      "source": "X：OpenRouter (@OpenRouter)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "e42dfefd5b965ff06c8653be116dfbd7b95cb9d8",
-          "title": "OpenRouter 推出 Model Router Benchmarks，可对比 7 款模型路由器",
-          "url": "https://x.com/OpenRouter/status/2106144438389280848",
-          "source": "X：OpenRouter (@OpenRouter)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T22:08:59Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：OpenRouter (@OpenRouter)"
-      ],
-      "items": [
-        {
-          "id": "e42dfefd5b965ff06c8653be116dfbd7b95cb9d8",
-          "title": "OpenRouter 推出 Model Router Benchmarks，可对比 7 款模型路由器",
-          "url": "https://x.com/OpenRouter/status/2106144438389280848",
-          "source": "X：OpenRouter (@OpenRouter)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T22:08:59Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7252,
-      "importance": 0.7252,
-      "importance_score": 0.7252,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.6,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9643,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-02T22:08:59Z",
-      "latest_at": "2026-10-02T22:08:59Z",
-      "primary_item": {
-        "id": "e42dfefd5b965ff06c8653be116dfbd7b95cb9d8",
-        "title": "OpenRouter 推出 Model Router Benchmarks，可对比 7 款模型路由器",
-        "url": "https://x.com/OpenRouter/status/2106144438389280848",
-        "source": "X：OpenRouter (@OpenRouter)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_d4e3054526b7",
-      "title": "NVIDIA DGX Spark 推出 64GB 版本，10 月 23 日起以 $4,999 开售",
-      "url": "https://blogs.nvidia.com/blog/local-ai-dgx-spark-64gb-sync",
-      "primary_url": "https://blogs.nvidia.com/blog/local-ai-dgx-spark-64gb-sync",
-      "source": "NVIDIA Blog（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "4704055ba4617f6054282d6374b0d71ea0596cdf",
-          "title": "NVIDIA DGX Spark 推出 64GB 版本，10 月 23 日起以 $4,999 开售",
-          "url": "https://blogs.nvidia.com/blog/local-ai-dgx-spark-64gb-sync",
-          "source": "NVIDIA Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T13:00:39Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "NVIDIA Blog（RSS）"
-      ],
-      "items": [
-        {
-          "id": "4704055ba4617f6054282d6374b0d71ea0596cdf",
-          "title": "NVIDIA DGX Spark 推出 64GB 版本，10 月 23 日起以 $4,999 开售",
-          "url": "https://blogs.nvidia.com/blog/local-ai-dgx-spark-64gb-sync",
-          "source": "NVIDIA Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T13:00:39Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7247,
-      "importance": 0.7247,
-      "importance_score": 0.7247,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.67,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8451,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-02T13:00:39Z",
-      "latest_at": "2026-10-02T13:00:39Z",
-      "primary_item": {
-        "id": "4704055ba4617f6054282d6374b0d71ea0596cdf",
-        "title": "NVIDIA DGX Spark 推出 64GB 版本，10 月 23 日起以 $4,999 开售",
-        "url": "https://blogs.nvidia.com/blog/local-ai-dgx-spark-64gb-sync",
-        "source": "NVIDIA Blog（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_06d6bfadf2af",
-      "title": "Perplexity 开源多款模型与工具，涵盖决策模型、嵌入、本地推理引擎和研究 Agent 基准",
-      "url": "https://x.com/AravSrinivas/status/2106119404433908149",
-      "primary_url": "https://x.com/AravSrinivas/status/2106119404433908149",
-      "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "685af00ecf038cb3f67ae6132627ffc3465fe4f1",
-          "title": "Perplexity 开源多款模型与工具，涵盖决策模型、嵌入、本地推理引擎和研究 Agent 基准",
-          "url": "https://x.com/AravSrinivas/status/2106119404433908149",
-          "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T20:29:30Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)"
-      ],
-      "items": [
-        {
-          "id": "685af00ecf038cb3f67ae6132627ffc3465fe4f1",
-          "title": "Perplexity 开源多款模型与工具，涵盖决策模型、嵌入、本地推理引擎和研究 Agent 基准",
-          "url": "https://x.com/AravSrinivas/status/2106119404433908149",
-          "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T20:29:30Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7241,
-      "importance": 0.7241,
-      "importance_score": 0.7241,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.61,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9415,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-02T20:29:30Z",
-      "latest_at": "2026-10-02T20:29:30Z",
-      "primary_item": {
-        "id": "685af00ecf038cb3f67ae6132627ffc3465fe4f1",
-        "title": "Perplexity 开源多款模型与工具，涵盖决策模型、嵌入、本地推理引擎和研究 Agent 基准",
-        "url": "https://x.com/AravSrinivas/status/2106119404433908149",
-        "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_7b71886491d4",
-      "title": "OpenAI 介绍 dot 如何学习用户工作习惯并协调 Codex 任务",
-      "url": "https://x.com/OpenAIDevs/status/2106152299026661641",
-      "primary_url": "https://x.com/OpenAIDevs/status/2106152299026661641",
-      "source": "X：OpenAI Developers (@OpenAIDevs)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "1bfa41b3a4957a2ea457e3e09960392a09562254",
-          "title": "OpenAI 介绍 dot 如何学习用户工作习惯并协调 Codex 任务",
-          "url": "https://x.com/OpenAIDevs/status/2106152299026661641",
-          "source": "X：OpenAI Developers (@OpenAIDevs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T22:40:13Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：OpenAI Developers (@OpenAIDevs)"
-      ],
-      "items": [
-        {
-          "id": "1bfa41b3a4957a2ea457e3e09960392a09562254",
-          "title": "OpenAI 介绍 dot 如何学习用户工作习惯并协调 Codex 任务",
-          "url": "https://x.com/OpenAIDevs/status/2106152299026661641",
-          "source": "X：OpenAI Developers (@OpenAIDevs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T22:40:13Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7235,
-      "importance": 0.7235,
-      "importance_score": 0.7235,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.59,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9715,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-02T22:40:13Z",
-      "latest_at": "2026-10-02T22:40:13Z",
-      "primary_item": {
-        "id": "1bfa41b3a4957a2ea457e3e09960392a09562254",
-        "title": "OpenAI 介绍 dot 如何学习用户工作习惯并协调 Codex 任务",
-        "url": "https://x.com/OpenAIDevs/status/2106152299026661641",
-        "source": "X：OpenAI Developers (@OpenAIDevs)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_c7aa81b1f8f8",
-      "title": "东锡 NLP 谈 LLM 耐心讲解代码，让老登被时代抛弃",
-      "url": "https://x.com/dongxi_nlp/status/2105893369142546585",
-      "primary_url": "https://x.com/dongxi_nlp/status/2105893369142546585",
-      "source": "X：马东锡 NLP (@dongxi_nlp)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "043d81d3b90b7e5cf9362758b44bf0850be969eb",
-          "title": "东锡 NLP 谈 LLM 耐心讲解代码，让老登被时代抛弃",
-          "url": "https://x.com/dongxi_nlp/status/2105893369142546585",
-          "source": "X：马东锡 NLP (@dongxi_nlp)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T05:31:19Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：马东锡 NLP (@dongxi_nlp)"
-      ],
-      "items": [
-        {
-          "id": "043d81d3b90b7e5cf9362758b44bf0850be969eb",
-          "title": "东锡 NLP 谈 LLM 耐心讲解代码，让老登被时代抛弃",
-          "url": "https://x.com/dongxi_nlp/status/2105893369142546585",
-          "source": "X：马东锡 NLP (@dongxi_nlp)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T05:31:19Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7211,
-      "importance": 0.7211,
-      "importance_score": 0.7211,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7584,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-02T05:31:19Z",
-      "latest_at": "2026-10-02T05:31:19Z",
-      "primary_item": {
-        "id": "043d81d3b90b7e5cf9362758b44bf0850be969eb",
-        "title": "东锡 NLP 谈 LLM 耐心讲解代码，让老登被时代抛弃",
-        "url": "https://x.com/dongxi_nlp/status/2105893369142546585",
-        "source": "X：马东锡 NLP (@dongxi_nlp)",
         "source_name": "AI HOT"
       }
     },
@@ -1206,15 +665,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7458,
-      "importance": 0.7458,
-      "importance_score": 0.7458,
+      "score": 0.7328,
+      "importance": 0.7328,
+      "importance_score": 0.7328,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9289,
+        "recency": 0.8564,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1228,66 +687,6 @@
         "title": "Arena 评测：Claude Sonnet 5.5 登顶 Agent Arena 第 3 名但未入 Pareto 前沿",
         "url": "https://x.com/arena/status/2106105400487821764",
         "source": "X：Arena (@arena)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_faf4acfaabab",
-      "title": "Bloomberg：Anthropic 为可能估值近 2 万亿美元的 IPO 邀请机构投资者质询高管",
-      "url": "https://x.com/rohanpaul_ai/status/2105921530211508488",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2105921530211508488",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "80379d05868b888bce46fe2c5c3842db5998b24f",
-          "title": "Bloomberg：Anthropic 为可能估值近 2 万亿美元的 IPO 邀请机构投资者质询高管",
-          "url": "https://x.com/rohanpaul_ai/status/2105921530211508488",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T07:23:13Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "80379d05868b888bce46fe2c5c3842db5998b24f",
-          "title": "Bloomberg：Anthropic 为可能估值近 2 万亿美元的 IPO 邀请机构投资者质询高管",
-          "url": "https://x.com/rohanpaul_ai/status/2105921530211508488",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-02T07:23:13Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7398,
-      "importance": 0.7398,
-      "importance_score": 0.7398,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.76,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7791,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-02T07:23:13Z",
-      "latest_at": "2026-10-02T07:23:13Z",
-      "primary_item": {
-        "id": "80379d05868b888bce46fe2c5c3842db5998b24f",
-        "title": "Bloomberg：Anthropic 为可能估值近 2 万亿美元的 IPO 邀请机构投资者质询高管",
-        "url": "https://x.com/rohanpaul_ai/status/2105921530211508488",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -1345,15 +744,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.705,
-      "importance": 0.705,
-      "importance_score": 0.705,
+      "score": 0.7003,
+      "importance": 0.7003,
+      "importance_score": 0.7003,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3299,
+        "recency": 0.3042,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1368,6 +767,66 @@
         "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
         "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
         "source": "TechCrunch：AI（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_019e546a9b82",
+      "title": "Google 首次轨道 AI 芯片试验确认在轨运行正常",
+      "url": "https://x.com/rohanpaul_ai/status/2105821230368706769",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2105821230368706769",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "9244507ff15319af7063dcc4f2aff734550bf8af",
+          "title": "Google 首次轨道 AI 芯片试验确认在轨运行正常",
+          "url": "https://x.com/rohanpaul_ai/status/2105821230368706769",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-02T00:44:40Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "9244507ff15319af7063dcc4f2aff734550bf8af",
+          "title": "Google 首次轨道 AI 芯片试验确认在轨运行正常",
+          "url": "https://x.com/rohanpaul_ai/status/2105821230368706769",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-02T00:44:40Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7291,
+      "importance": 0.7291,
+      "importance_score": 0.7291,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.8,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.6526,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-02T00:44:40Z",
+      "latest_at": "2026-10-02T00:44:40Z",
+      "primary_item": {
+        "id": "9244507ff15319af7063dcc4f2aff734550bf8af",
+        "title": "Google 首次轨道 AI 芯片试验确认在轨运行正常",
+        "url": "https://x.com/rohanpaul_ai/status/2105821230368706769",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -1425,15 +884,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6955,
-      "importance": 0.6955,
-      "importance_score": 0.6955,
+      "score": 0.6923,
+      "importance": 0.6923,
+      "importance_score": 0.6923,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2269,
+        "recency": 0.2092,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1448,6 +907,684 @@
         "title": "Anthropic 发布 Claude Sonnet 5.5：速度提升 30%+，每任务成本最多降 30%",
         "url": "https://www.anthropic.com/claude-sonnet-5-5",
         "source": "Hacker News：AI 热帖",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_39ce215eab43",
+      "title": "Manus 2.0 发布视频编辑器，从一句话生成整支视频",
+      "url": "https://manus.im/zh-cn/blog/introducing-video-editor",
+      "primary_url": "https://manus.im/zh-cn/blog/introducing-video-editor",
+      "source": "Manus：Blog（网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "7c1fef818ab0f894d8c969963eeb1feb035e9a3c",
+          "title": "Manus 2.0 发布视频编辑器，从一句话生成整支视频",
+          "url": "https://manus.im/zh-cn/blog/introducing-video-editor",
+          "source": "Manus：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T16:00:00Z"
+        },
+        {
+          "id": "bcc1ce51cbf02711739afe48905aee366c965638",
+          "title": "Manus 分享视频生成与时间线编辑工作流",
+          "url": "https://manus.im/zh-cn/blog/introducing-video-editor",
+          "source": "Manus：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T16:00:00Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Manus：Blog（网页）"
+      ],
+      "items": [
+        {
+          "id": "7c1fef818ab0f894d8c969963eeb1feb035e9a3c",
+          "title": "Manus 2.0 发布视频编辑器，从一句话生成整支视频",
+          "url": "https://manus.im/zh-cn/blog/introducing-video-editor",
+          "source": "Manus：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T16:00:00Z"
+        },
+        {
+          "id": "bcc1ce51cbf02711739afe48905aee366c965638",
+          "title": "Manus 分享视频生成与时间线编辑工作流",
+          "url": "https://manus.im/zh-cn/blog/introducing-video-editor",
+          "source": "Manus：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T16:00:00Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6858,
+      "importance": 0.6858,
+      "importance_score": 0.6858,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.72,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.4067,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-30T16:00:00Z",
+      "latest_at": "2026-09-30T16:00:00Z",
+      "primary_item": {
+        "id": "7c1fef818ab0f894d8c969963eeb1feb035e9a3c",
+        "title": "Manus 2.0 发布视频编辑器，从一句话生成整支视频",
+        "url": "https://manus.im/zh-cn/blog/introducing-video-editor",
+        "source": "Manus：Blog（网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_b6574943f04d",
+      "title": "李飞飞宣布 World Labs 并入 AMD，出任执行副总裁兼首席科学家",
+      "url": "https://x.com/drfeifei/status/2104664403681632453",
+      "primary_url": "https://x.com/drfeifei/status/2104664403681632453",
+      "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "6bcd7aeaee889c6476b5f41a42fcb9717e861233",
+          "title": "Fei-Fei Li 谈空间智能与 World Labs",
+          "url": "https://x.com/drfeifei/status/2104664403681632453",
+          "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T20:07:51Z"
+        },
+        {
+          "id": "5259641aa1ebda417008afc1e93bb9ebff128d1d",
+          "title": "李飞飞宣布 World Labs 并入 AMD，出任执行副总裁兼首席科学家",
+          "url": "https://x.com/drfeifei/status/2104664403681632453",
+          "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T20:07:51Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Fei-Fei Li (@drfeifei, World Labs)"
+      ],
+      "items": [
+        {
+          "id": "6bcd7aeaee889c6476b5f41a42fcb9717e861233",
+          "title": "Fei-Fei Li 谈空间智能与 World Labs",
+          "url": "https://x.com/drfeifei/status/2104664403681632453",
+          "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T20:07:51Z"
+        },
+        {
+          "id": "5259641aa1ebda417008afc1e93bb9ebff128d1d",
+          "title": "李飞飞宣布 World Labs 并入 AMD，出任执行副总裁兼首席科学家",
+          "url": "https://x.com/drfeifei/status/2104664403681632453",
+          "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T20:07:51Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6785,
+      "importance": 0.6785,
+      "importance_score": 0.6785,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.81,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.2159,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-28T20:07:51Z",
+      "latest_at": "2026-09-28T20:07:51Z",
+      "primary_item": {
+        "id": "5259641aa1ebda417008afc1e93bb9ebff128d1d",
+        "title": "李飞飞宣布 World Labs 并入 AMD，出任执行副总裁兼首席科学家",
+        "url": "https://x.com/drfeifei/status/2104664403681632453",
+        "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_dd66acaed2a0",
+      "title": "OpenAI 发布 GPT-6.1 Sol，以约五分之一价格接近 GPT-6 Astra 智能",
+      "url": "https://openai.com/index/introducing-gpt-6-1-sol",
+      "primary_url": "https://openai.com/index/introducing-gpt-6-1-sol",
+      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "47a40eb569560f4024865e8c7e98e522a806b7e3",
+          "title": "OpenAI 发布 GPT-6.1 Sol：以五分之一价格提供接近 Astra 的智能",
+          "url": "https://x.com/OpenAI/status/2104986129686741046",
+          "source": "X：OpenAI (@OpenAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T17:26:16Z"
+        },
+        {
+          "id": "12d0a4425111dfd06441f22f43a1a253d96d5d66",
+          "title": "OpenAI 发布 GPT-6.1 Sol，以约五分之一价格接近 GPT-6 Astra 智能",
+          "url": "https://openai.com/index/introducing-gpt-6-1-sol",
+          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T17:20:30.075000Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+        "X：OpenAI (@OpenAI)"
+      ],
+      "items": [
+        {
+          "id": "47a40eb569560f4024865e8c7e98e522a806b7e3",
+          "title": "OpenAI 发布 GPT-6.1 Sol：以五分之一价格提供接近 Astra 的智能",
+          "url": "https://x.com/OpenAI/status/2104986129686741046",
+          "source": "X：OpenAI (@OpenAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T17:26:16Z"
+        },
+        {
+          "id": "12d0a4425111dfd06441f22f43a1a253d96d5d66",
+          "title": "OpenAI 发布 GPT-6.1 Sol，以约五分之一价格接近 GPT-6 Astra 智能",
+          "url": "https://openai.com/index/introducing-gpt-6-1-sol",
+          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T17:20:30.075000Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7074,
+      "importance": 0.7074,
+      "importance_score": 0.7074,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.86,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.2932,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-29T17:20:30.075000Z",
+      "latest_at": "2026-09-29T17:26:16Z",
+      "primary_item": {
+        "id": "12d0a4425111dfd06441f22f43a1a253d96d5d66",
+        "title": "OpenAI 发布 GPT-6.1 Sol，以约五分之一价格接近 GPT-6 Astra 智能",
+        "url": "https://openai.com/index/introducing-gpt-6-1-sol",
+        "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_de35e53397fa",
+      "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
+      "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
+      "primary_url": "https://x.com/ClaudeDevs/status/2104641318555353400",
+      "source": "X：Claude Devs (@ClaudeDevs)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "b719f447f05f438014ff5f0f328dcac723f043ef",
+          "title": "Claude Sonnet 5.5 发布：比 Sonnet 5 快 30% 以上，多数工作成本降低至多 30%",
+          "url": "https://x.com/trq212/status/2104660926373023830",
+          "source": "X：Thariq (@trq212)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T19:54:02Z"
+        },
+        {
+          "id": "174b8f3b0886c612fa58740af5b9afabfa805433",
+          "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
+          "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
+          "source": "X：Claude Devs (@ClaudeDevs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T18:36:07Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Claude Devs (@ClaudeDevs)",
+        "X：Thariq (@trq212)"
+      ],
+      "items": [
+        {
+          "id": "b719f447f05f438014ff5f0f328dcac723f043ef",
+          "title": "Claude Sonnet 5.5 发布：比 Sonnet 5 快 30% 以上，多数工作成本降低至多 30%",
+          "url": "https://x.com/trq212/status/2104660926373023830",
+          "source": "X：Thariq (@trq212)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T19:54:02Z"
+        },
+        {
+          "id": "174b8f3b0886c612fa58740af5b9afabfa805433",
+          "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
+          "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
+          "source": "X：Claude Devs (@ClaudeDevs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T18:36:07Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6716,
+      "importance": 0.6716,
+      "importance_score": 0.6716,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.79,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.2112,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-28T18:36:07Z",
+      "latest_at": "2026-09-28T19:54:02Z",
+      "primary_item": {
+        "id": "174b8f3b0886c612fa58740af5b9afabfa805433",
+        "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
+        "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
+        "source": "X：Claude Devs (@ClaudeDevs)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_a1e30d98eacc",
+      "title": "Claude Sonnet 5.5 登顶 Arena 双榜第3，Chat 类别拿下第1",
+      "url": "https://x.com/arena/status/2106104809514516541",
+      "primary_url": "https://x.com/arena/status/2106104809514516541",
+      "source": "X：Arena (@arena)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "f5361e90baff59a6b51165ddc5c51291a9e9dcd2",
+          "title": "Claude Sonnet 5.5 登顶 Arena 双榜第3，Chat 类别拿下第1",
+          "url": "https://x.com/arena/status/2106104809514516541",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-02T19:31:30Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Arena (@arena)"
+      ],
+      "items": [
+        {
+          "id": "f5361e90baff59a6b51165ddc5c51291a9e9dcd2",
+          "title": "Claude Sonnet 5.5 登顶 Arena 双榜第3，Chat 类别拿下第1",
+          "url": "https://x.com/arena/status/2106104809514516541",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-02T19:31:30Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7297,
+      "importance": 0.7297,
+      "importance_score": 0.7297,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.68,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8559,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-02T19:31:30Z",
+      "latest_at": "2026-10-02T19:31:30Z",
+      "primary_item": {
+        "id": "f5361e90baff59a6b51165ddc5c51291a9e9dcd2",
+        "title": "Claude Sonnet 5.5 登顶 Arena 双榜第3，Chat 类别拿下第1",
+        "url": "https://x.com/arena/status/2106104809514516541",
+        "source": "X：Arena (@arena)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_faf4acfaabab",
+      "title": "Bloomberg：Anthropic 为可能估值近 2 万亿美元的 IPO 邀请机构投资者质询高管",
+      "url": "https://x.com/rohanpaul_ai/status/2105921530211508488",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2105921530211508488",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "80379d05868b888bce46fe2c5c3842db5998b24f",
+          "title": "Bloomberg：Anthropic 为可能估值近 2 万亿美元的 IPO 邀请机构投资者质询高管",
+          "url": "https://x.com/rohanpaul_ai/status/2105921530211508488",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-02T07:23:13Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "80379d05868b888bce46fe2c5c3842db5998b24f",
+          "title": "Bloomberg：Anthropic 为可能估值近 2 万亿美元的 IPO 邀请机构投资者质询高管",
+          "url": "https://x.com/rohanpaul_ai/status/2105921530211508488",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-02T07:23:13Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7289,
+      "importance": 0.7289,
+      "importance_score": 0.7289,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.76,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7183,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-02T07:23:13Z",
+      "latest_at": "2026-10-02T07:23:13Z",
+      "primary_item": {
+        "id": "80379d05868b888bce46fe2c5c3842db5998b24f",
+        "title": "Bloomberg：Anthropic 为可能估值近 2 万亿美元的 IPO 邀请机构投资者质询高管",
+        "url": "https://x.com/rohanpaul_ai/status/2105921530211508488",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_0c6cb391df3a",
+      "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+      "url": "https://x.com/milichab/status/2105782588799594871",
+      "primary_url": "https://x.com/milichab/status/2105782588799594871",
+      "source": "X：Andrew Milich (@milichab)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "ce48262e29839413db30dee45296cea41808964a",
+          "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+          "url": "https://x.com/milichab/status/2105782588799594871",
+          "source": "X：Andrew Milich (@milichab)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:11:07Z"
+        },
+        {
+          "id": "9e1e6e7a51478218a5c9f50dba29eda7c2420c6a",
+          "title": "Grok Build 新增 Agent Dashboard",
+          "url": "https://x.com/grok/status/2105782433362878757",
+          "source": "X：Grok (@grok)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:10:30Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Andrew Milich (@milichab)",
+        "X：Grok (@grok)"
+      ],
+      "items": [
+        {
+          "id": "ce48262e29839413db30dee45296cea41808964a",
+          "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+          "url": "https://x.com/milichab/status/2105782588799594871",
+          "source": "X：Andrew Milich (@milichab)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:11:07Z"
+        },
+        {
+          "id": "9e1e6e7a51478218a5c9f50dba29eda7c2420c6a",
+          "title": "Grok Build 新增 Agent Dashboard",
+          "url": "https://x.com/grok/status/2105782433362878757",
+          "source": "X：Grok (@grok)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-01T22:10:30Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6688,
+      "importance": 0.6688,
+      "importance_score": 0.6688,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.53,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.6289,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-01T22:10:30Z",
+      "latest_at": "2026-10-01T22:11:07Z",
+      "primary_item": {
+        "id": "ce48262e29839413db30dee45296cea41808964a",
+        "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
+        "url": "https://x.com/milichab/status/2105782588799594871",
+        "source": "X：Andrew Milich (@milichab)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_93c35a6c2a7e",
+      "title": "Anthropic 发布 Claude Sonnet 5.5：比 Sonnet 5 快超 30% 且成本最多降 30%",
+      "url": "https://x.com/dongxi_nlp/status/2104634260934054237",
+      "primary_url": "https://x.com/dongxi_nlp/status/2104634260934054237",
+      "source": "X：马东锡 NLP (@dongxi_nlp)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "96722744e37e42d234a3ebce1480e63a7325506e",
+          "title": "Anthropic 发布 Claude Sonnet 5.5：比 Sonnet 5 快超 30% 且成本最多降 30%",
+          "url": "https://x.com/dongxi_nlp/status/2104634260934054237",
+          "source": "X：马东锡 NLP (@dongxi_nlp)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T18:08:04Z"
+        },
+        {
+          "id": "28c51564d01537f0b3ae0aa8adc42896a54998c6",
+          "title": "Anthropic 发布 Claude Sonnet 5.5，速度比 Sonnet 5 快超 30%",
+          "url": "https://www.youtube.com/shorts/u-3cPWPvRUE",
+          "source": "Claude：YouTube（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T18:04:08Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Claude：YouTube（RSS）",
+        "X：马东锡 NLP (@dongxi_nlp)"
+      ],
+      "items": [
+        {
+          "id": "96722744e37e42d234a3ebce1480e63a7325506e",
+          "title": "Anthropic 发布 Claude Sonnet 5.5：比 Sonnet 5 快超 30% 且成本最多降 30%",
+          "url": "https://x.com/dongxi_nlp/status/2104634260934054237",
+          "source": "X：马东锡 NLP (@dongxi_nlp)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T18:08:04Z"
+        },
+        {
+          "id": "28c51564d01537f0b3ae0aa8adc42896a54998c6",
+          "title": "Anthropic 发布 Claude Sonnet 5.5，速度比 Sonnet 5 快超 30%",
+          "url": "https://www.youtube.com/shorts/u-3cPWPvRUE",
+          "source": "Claude：YouTube（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T18:04:08Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6624,
+      "importance": 0.6624,
+      "importance_score": 0.6624,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.76,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.2097,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-28T18:04:08Z",
+      "latest_at": "2026-09-28T18:08:04Z",
+      "primary_item": {
+        "id": "96722744e37e42d234a3ebce1480e63a7325506e",
+        "title": "Anthropic 发布 Claude Sonnet 5.5：比 Sonnet 5 快超 30% 且成本最多降 30%",
+        "url": "https://x.com/dongxi_nlp/status/2104634260934054237",
+        "source": "X：马东锡 NLP (@dongxi_nlp)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_db8d73909519",
+      "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
+      "url": "https://x.com/testingcatalog/status/2104987633894010982",
+      "primary_url": "https://x.com/testingcatalog/status/2104987633894010982",
+      "source": "X：Testing Catalog (@testingcatalog)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "d1ccb29b1b17ff2f6caec1a3e7b5b294d2495b83",
+          "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
+          "url": "https://x.com/testingcatalog/status/2104987633894010982",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T17:32:15Z"
+        },
+        {
+          "id": "a81582caa8460dbb4233989c91b91981dac25c33",
+          "title": "OpenAI 推出 ChatGPT Space 协作功能",
+          "url": "https://x.com/thsottiaux/status/2104983716049379472",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T17:16:41Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Testing Catalog (@testingcatalog)",
+        "X：Tibo (@thsottiaux)"
+      ],
+      "items": [
+        {
+          "id": "d1ccb29b1b17ff2f6caec1a3e7b5b294d2495b83",
+          "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
+          "url": "https://x.com/testingcatalog/status/2104987633894010982",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T17:32:15Z"
+        },
+        {
+          "id": "a81582caa8460dbb4233989c91b91981dac25c33",
+          "title": "OpenAI 推出 ChatGPT Space 协作功能",
+          "url": "https://x.com/thsottiaux/status/2104983716049379472",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T17:16:41Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6505,
+      "importance": 0.6505,
+      "importance_score": 0.6505,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.67,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.2941,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-29T17:16:41Z",
+      "latest_at": "2026-09-29T17:32:15Z",
+      "primary_item": {
+        "id": "d1ccb29b1b17ff2f6caec1a3e7b5b294d2495b83",
+        "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
+        "url": "https://x.com/testingcatalog/status/2104987633894010982",
+        "source": "X：Testing Catalog (@testingcatalog)",
         "source_name": "AI HOT"
       }
     }
