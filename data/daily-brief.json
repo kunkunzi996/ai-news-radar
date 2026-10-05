@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-04T21:50:36.139063Z",
+  "generated_at": "2026-10-05T00:39:59.976786Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -38,15 +38,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7631,
-      "importance": 0.7631,
-      "importance_score": 0.7631,
+      "score": 0.7563,
+      "importance": 0.7563,
+      "importance_score": 0.7563,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9416,
+        "recency": 0.904,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -61,6 +61,66 @@
         "title": "Elvis Saravia 分享通用智能体协作界面的个人实践",
         "url": "https://x.com/omarsar0/status/2106801689495826520",
         "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_ff878e799710",
+      "title": "PromptArmor 披露 Databricks Genie 恶意 Skill 可绕过四类控制实施钓鱼与数据外泄",
+      "url": "https://www.promptarmor.com/resources/four-databricks-genie-controls-that-dont-stop-malicious-skills",
+      "primary_url": "https://www.promptarmor.com/resources/four-databricks-genie-controls-that-dont-stop-malicious-skills",
+      "source": "PromptArmor：Threat Intelligence",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "06be24552591ac18a92e2ce2d2535b549e19817d",
+          "title": "PromptArmor 披露 Databricks Genie 恶意 Skill 可绕过四类控制实施钓鱼与数据外泄",
+          "url": "https://www.promptarmor.com/resources/four-databricks-genie-controls-that-dont-stop-malicious-skills",
+          "source": "PromptArmor：Threat Intelligence",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-05T00:24:02Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "PromptArmor：Threat Intelligence"
+      ],
+      "items": [
+        {
+          "id": "06be24552591ac18a92e2ce2d2535b549e19817d",
+          "title": "PromptArmor 披露 Databricks Genie 恶意 Skill 可绕过四类控制实施钓鱼与数据外泄",
+          "url": "https://www.promptarmor.com/resources/four-databricks-genie-controls-that-dont-stop-malicious-skills",
+          "source": "PromptArmor：Threat Intelligence",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-05T00:24:02Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7489,
+      "importance": 0.7489,
+      "importance_score": 0.7489,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.66,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9962,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-05T00:24:02Z",
+      "latest_at": "2026-10-05T00:24:02Z",
+      "primary_item": {
+        "id": "06be24552591ac18a92e2ce2d2535b549e19817d",
+        "title": "PromptArmor 披露 Databricks Genie 恶意 Skill 可绕过四类控制实施钓鱼与数据外泄",
+        "url": "https://www.promptarmor.com/resources/four-databricks-genie-controls-that-dont-stop-malicious-skills",
+        "source": "PromptArmor：Threat Intelligence",
         "source_name": "AI HOT"
       }
     },
@@ -266,15 +326,15 @@
       ],
       "item_count": 10,
       "duplicate_count": 10,
-      "score": 0.7404,
-      "importance": 0.7404,
-      "importance_score": 0.7404,
+      "score": 0.7391,
+      "importance": 0.7391,
+      "importance_score": 0.7391,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1767,
+        "recency": 0.1696,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -327,15 +387,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7299,
-      "importance": 0.7299,
-      "importance_score": 0.7299,
+      "score": 0.7248,
+      "importance": 0.7248,
+      "importance_score": 0.7248,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7074,
+        "recency": 0.6791,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -387,15 +447,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7257,
-      "importance": 0.7257,
-      "importance_score": 0.7257,
+      "score": 0.721,
+      "importance": 0.721,
+      "importance_score": 0.721,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6507,
+        "recency": 0.6247,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -409,66 +469,6 @@
         "title": "LMSYS 发布开源聊天模型 Vicuna-13B，用 ShareGPT 对话微调 LLaMA，训练成本约 $300",
         "url": "https://www.lmsys.org/blog/2023-03-30-vicuna",
         "source": "LMSYS：Blog（Chatbot Arena 团队）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_87641546bfd2",
-      "title": "Rohan Paul：个人智能体记忆不是越多越好，计数类任务用代码更可靠",
-      "url": "https://x.com/rohanpaul_ai/status/2106781194616803778",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2106781194616803778",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "0200a9f4c808dd575f0bbe6e0b4da8b9bbe1d369",
-          "title": "Rohan Paul：个人智能体记忆不是越多越好，计数类任务用代码更可靠",
-          "url": "https://x.com/rohanpaul_ai/status/2106781194616803778",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-04T16:19:13Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "0200a9f4c808dd575f0bbe6e0b4da8b9bbe1d369",
-          "title": "Rohan Paul：个人智能体记忆不是越多越好，计数类任务用代码更可靠",
-          "url": "https://x.com/rohanpaul_ai/status/2106781194616803778",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-04T16:19:13Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7238,
-      "importance": 0.7238,
-      "importance_score": 0.7238,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.62,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9233,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-04T16:19:13Z",
-      "latest_at": "2026-10-04T16:19:13Z",
-      "primary_item": {
-        "id": "0200a9f4c808dd575f0bbe6e0b4da8b9bbe1d369",
-        "title": "Rohan Paul：个人智能体记忆不是越多越好，计数类任务用代码更可靠",
-        "url": "https://x.com/rohanpaul_ai/status/2106781194616803778",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -526,15 +526,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6844,
-      "importance": 0.6844,
-      "importance_score": 0.6844,
+      "score": 0.6832,
+      "importance": 0.6832,
+      "importance_score": 0.6832,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1657,
+        "recency": 0.159,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -606,15 +606,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6765,
-      "importance": 0.6765,
-      "importance_score": 0.6765,
+      "score": 0.6753,
+      "importance": 0.6753,
+      "importance_score": 0.6753,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1718,
+        "recency": 0.165,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -686,15 +686,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6759,
-      "importance": 0.6759,
-      "importance_score": 0.6759,
+      "score": 0.675,
+      "importance": 0.675,
+      "importance_score": 0.675,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1182,
+        "recency": 0.1135,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -765,15 +765,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6616,
-      "importance": 0.6616,
-      "importance_score": 0.6616,
+      "score": 0.6607,
+      "importance": 0.6607,
+      "importance_score": 0.6607,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1219,
+        "recency": 0.1171,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -845,15 +845,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6551,
-      "importance": 0.6551,
-      "importance_score": 0.6551,
+      "score": 0.6542,
+      "importance": 0.6542,
+      "importance_score": 0.6542,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1193,
+        "recency": 0.1145,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -924,15 +924,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.654,
-      "importance": 0.654,
-      "importance_score": 0.654,
+      "score": 0.6523,
+      "importance": 0.6523,
+      "importance_score": 0.6523,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2298,
+        "recency": 0.2206,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -947,86 +947,6 @@
         "title": "Manus 2.0 发布视频编辑器，从一句话生成整支视频",
         "url": "https://manus.im/zh-cn/blog/introducing-video-editor",
         "source": "Manus：Blog（网页）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_93c35a6c2a7e",
-      "title": "Anthropic 发布 Claude Sonnet 5.5：比 Sonnet 5 快超 30% 且成本最多降 30%",
-      "url": "https://x.com/dongxi_nlp/status/2104634260934054237",
-      "primary_url": "https://x.com/dongxi_nlp/status/2104634260934054237",
-      "source": "X：马东锡 NLP (@dongxi_nlp)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "96722744e37e42d234a3ebce1480e63a7325506e",
-          "title": "Anthropic 发布 Claude Sonnet 5.5：比 Sonnet 5 快超 30% 且成本最多降 30%",
-          "url": "https://x.com/dongxi_nlp/status/2104634260934054237",
-          "source": "X：马东锡 NLP (@dongxi_nlp)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T18:08:04Z"
-        },
-        {
-          "id": "28c51564d01537f0b3ae0aa8adc42896a54998c6",
-          "title": "Anthropic 发布 Claude Sonnet 5.5，速度比 Sonnet 5 快超 30%",
-          "url": "https://www.youtube.com/shorts/u-3cPWPvRUE",
-          "source": "Claude：YouTube（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T18:04:08Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "Claude：YouTube（RSS）",
-        "X：马东锡 NLP (@dongxi_nlp)"
-      ],
-      "items": [
-        {
-          "id": "96722744e37e42d234a3ebce1480e63a7325506e",
-          "title": "Anthropic 发布 Claude Sonnet 5.5：比 Sonnet 5 快超 30% 且成本最多降 30%",
-          "url": "https://x.com/dongxi_nlp/status/2104634260934054237",
-          "source": "X：马东锡 NLP (@dongxi_nlp)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T18:08:04Z"
-        },
-        {
-          "id": "28c51564d01537f0b3ae0aa8adc42896a54998c6",
-          "title": "Anthropic 发布 Claude Sonnet 5.5，速度比 Sonnet 5 快超 30%",
-          "url": "https://www.youtube.com/shorts/u-3cPWPvRUE",
-          "source": "Claude：YouTube（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T18:04:08Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6459,
-      "importance": 0.6459,
-      "importance_score": 0.6459,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.76,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.1185,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-28T18:04:08Z",
-      "latest_at": "2026-09-28T18:08:04Z",
-      "primary_item": {
-        "id": "96722744e37e42d234a3ebce1480e63a7325506e",
-        "title": "Anthropic 发布 Claude Sonnet 5.5：比 Sonnet 5 快超 30% 且成本最多降 30%",
-        "url": "https://x.com/dongxi_nlp/status/2104634260934054237",
-        "source": "X：马东锡 NLP (@dongxi_nlp)",
         "source_name": "AI HOT"
       }
     },
@@ -1084,15 +1004,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6453,
-      "importance": 0.6453,
-      "importance_score": 0.6453,
+      "score": 0.6452,
+      "importance": 0.6452,
+      "importance_score": 0.6452,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.015,
+        "recency": 0.0144,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1107,6 +1027,86 @@
         "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna",
         "url": "https://x.com/ZHO_ZHO_ZHO/status/2102472026103701697",
         "source": "X：ZHO (@ZHO_ZHO_ZHO)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_93c35a6c2a7e",
+      "title": "Anthropic 发布 Claude Sonnet 5.5：比 Sonnet 5 快超 30% 且成本最多降 30%",
+      "url": "https://x.com/dongxi_nlp/status/2104634260934054237",
+      "primary_url": "https://x.com/dongxi_nlp/status/2104634260934054237",
+      "source": "X：马东锡 NLP (@dongxi_nlp)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "96722744e37e42d234a3ebce1480e63a7325506e",
+          "title": "Anthropic 发布 Claude Sonnet 5.5：比 Sonnet 5 快超 30% 且成本最多降 30%",
+          "url": "https://x.com/dongxi_nlp/status/2104634260934054237",
+          "source": "X：马东锡 NLP (@dongxi_nlp)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T18:08:04Z"
+        },
+        {
+          "id": "28c51564d01537f0b3ae0aa8adc42896a54998c6",
+          "title": "Anthropic 发布 Claude Sonnet 5.5，速度比 Sonnet 5 快超 30%",
+          "url": "https://www.youtube.com/shorts/u-3cPWPvRUE",
+          "source": "Claude：YouTube（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T18:04:08Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Claude：YouTube（RSS）",
+        "X：马东锡 NLP (@dongxi_nlp)"
+      ],
+      "items": [
+        {
+          "id": "96722744e37e42d234a3ebce1480e63a7325506e",
+          "title": "Anthropic 发布 Claude Sonnet 5.5：比 Sonnet 5 快超 30% 且成本最多降 30%",
+          "url": "https://x.com/dongxi_nlp/status/2104634260934054237",
+          "source": "X：马东锡 NLP (@dongxi_nlp)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T18:08:04Z"
+        },
+        {
+          "id": "28c51564d01537f0b3ae0aa8adc42896a54998c6",
+          "title": "Anthropic 发布 Claude Sonnet 5.5，速度比 Sonnet 5 快超 30%",
+          "url": "https://www.youtube.com/shorts/u-3cPWPvRUE",
+          "source": "Claude：YouTube（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T18:04:08Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6451,
+      "importance": 0.6451,
+      "importance_score": 0.6451,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.76,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.1137,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-28T18:04:08Z",
+      "latest_at": "2026-09-28T18:08:04Z",
+      "primary_item": {
+        "id": "96722744e37e42d234a3ebce1480e63a7325506e",
+        "title": "Anthropic 发布 Claude Sonnet 5.5：比 Sonnet 5 快超 30% 且成本最多降 30%",
+        "url": "https://x.com/dongxi_nlp/status/2104634260934054237",
+        "source": "X：马东锡 NLP (@dongxi_nlp)",
         "source_name": "AI HOT"
       }
     },
@@ -1164,15 +1164,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6425,
-      "importance": 0.6425,
-      "importance_score": 0.6425,
+      "score": 0.6424,
+      "importance": 0.6424,
+      "importance_score": 0.6424,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0161,
+        "recency": 0.0154,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1243,15 +1243,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6423,
-      "importance": 0.6423,
-      "importance_score": 0.6423,
+      "score": 0.6422,
+      "importance": 0.6422,
+      "importance_score": 0.6422,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0151,
+        "recency": 0.0145,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1323,15 +1323,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6363,
-      "importance": 0.6363,
-      "importance_score": 0.6363,
+      "score": 0.6362,
+      "importance": 0.6362,
+      "importance_score": 0.6362,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0151,
+        "recency": 0.0145,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1346,86 +1346,6 @@
         "title": "Meta Muse 助手曝出严重 0-day 漏洞，Amazon 已开始封禁 Muse",
         "url": "https://arstechnica.com/security/2026/09/muse-metas-extraordinarily-privileged-ai-assistant-has-a-serious-0-day",
         "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_db8d73909519",
-      "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
-      "url": "https://x.com/testingcatalog/status/2104987633894010982",
-      "primary_url": "https://x.com/testingcatalog/status/2104987633894010982",
-      "source": "X：Testing Catalog (@testingcatalog)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "d1ccb29b1b17ff2f6caec1a3e7b5b294d2495b83",
-          "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
-          "url": "https://x.com/testingcatalog/status/2104987633894010982",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:32:15Z"
-        },
-        {
-          "id": "a81582caa8460dbb4233989c91b91981dac25c33",
-          "title": "OpenAI 推出 ChatGPT Space 协作功能",
-          "url": "https://x.com/thsottiaux/status/2104983716049379472",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:16:41Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "X：Testing Catalog (@testingcatalog)",
-        "X：Tibo (@thsottiaux)"
-      ],
-      "items": [
-        {
-          "id": "d1ccb29b1b17ff2f6caec1a3e7b5b294d2495b83",
-          "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
-          "url": "https://x.com/testingcatalog/status/2104987633894010982",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:32:15Z"
-        },
-        {
-          "id": "a81582caa8460dbb4233989c91b91981dac25c33",
-          "title": "OpenAI 推出 ChatGPT Space 协作功能",
-          "url": "https://x.com/thsottiaux/status/2104983716049379472",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:16:41Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6275,
-      "importance": 0.6275,
-      "importance_score": 0.6275,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.67,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.1661,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-29T17:16:41Z",
-      "latest_at": "2026-09-29T17:32:15Z",
-      "primary_item": {
-        "id": "d1ccb29b1b17ff2f6caec1a3e7b5b294d2495b83",
-        "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
-        "url": "https://x.com/testingcatalog/status/2104987633894010982",
-        "source": "X：Testing Catalog (@testingcatalog)",
         "source_name": "AI HOT"
       }
     },
@@ -1483,15 +1403,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6573,
-      "importance": 0.6573,
-      "importance_score": 0.6573,
+      "score": 0.6572,
+      "importance": 0.6572,
+      "importance_score": 0.6572,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.015,
+        "recency": 0.0144,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1506,6 +1426,86 @@
         "title": "五角大楼调查：过度依赖 Maven AI 是美军误击伊朗米纳布学校的原因之一",
         "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack",
         "source": "Hacker News：AI 热帖",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_db8d73909519",
+      "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
+      "url": "https://x.com/testingcatalog/status/2104987633894010982",
+      "primary_url": "https://x.com/testingcatalog/status/2104987633894010982",
+      "source": "X：Testing Catalog (@testingcatalog)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "d1ccb29b1b17ff2f6caec1a3e7b5b294d2495b83",
+          "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
+          "url": "https://x.com/testingcatalog/status/2104987633894010982",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T17:32:15Z"
+        },
+        {
+          "id": "a81582caa8460dbb4233989c91b91981dac25c33",
+          "title": "OpenAI 推出 ChatGPT Space 协作功能",
+          "url": "https://x.com/thsottiaux/status/2104983716049379472",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T17:16:41Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Testing Catalog (@testingcatalog)",
+        "X：Tibo (@thsottiaux)"
+      ],
+      "items": [
+        {
+          "id": "d1ccb29b1b17ff2f6caec1a3e7b5b294d2495b83",
+          "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
+          "url": "https://x.com/testingcatalog/status/2104987633894010982",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T17:32:15Z"
+        },
+        {
+          "id": "a81582caa8460dbb4233989c91b91981dac25c33",
+          "title": "OpenAI 推出 ChatGPT Space 协作功能",
+          "url": "https://x.com/thsottiaux/status/2104983716049379472",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T17:16:41Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6263,
+      "importance": 0.6263,
+      "importance_score": 0.6263,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.67,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.1595,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-29T17:16:41Z",
+      "latest_at": "2026-09-29T17:32:15Z",
+      "primary_item": {
+        "id": "d1ccb29b1b17ff2f6caec1a3e7b5b294d2495b83",
+        "title": "OpenAI 推出 ChatGPT Space 人机协作工作区",
+        "url": "https://x.com/testingcatalog/status/2104987633894010982",
+        "source": "X：Testing Catalog (@testingcatalog)",
         "source_name": "AI HOT"
       }
     },
@@ -1562,15 +1562,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6212,
-      "importance": 0.6212,
-      "importance_score": 0.6212,
+      "score": 0.6211,
+      "importance": 0.6211,
+      "importance_score": 0.6211,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0144,
+        "recency": 0.0138,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1642,15 +1642,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6196,
-      "importance": 0.6196,
-      "importance_score": 0.6196,
+      "score": 0.617,
+      "importance": 0.617,
+      "importance_score": 0.617,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.53,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3553,
+        "recency": 0.3411,
         "story_heat": 0.25
       },
       "category": "watch",
