@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-05T00:39:59.976786Z",
+  "generated_at": "2026-10-05T06:47:00.506099Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -38,21 +38,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7563,
-      "importance": 0.7563,
-      "importance_score": 0.7563,
+      "score": 0.7426,
+      "importance": 0.7426,
+      "importance_score": 0.7426,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.904,
+        "recency": 0.8276,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-04T17:40:39Z",
       "latest_at": "2026-10-04T17:40:39Z",
@@ -61,66 +60,6 @@
         "title": "Elvis Saravia 分享通用智能体协作界面的个人实践",
         "url": "https://x.com/omarsar0/status/2106801689495826520",
         "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_ff878e799710",
-      "title": "PromptArmor 披露 Databricks Genie 恶意 Skill 可绕过四类控制实施钓鱼与数据外泄",
-      "url": "https://www.promptarmor.com/resources/four-databricks-genie-controls-that-dont-stop-malicious-skills",
-      "primary_url": "https://www.promptarmor.com/resources/four-databricks-genie-controls-that-dont-stop-malicious-skills",
-      "source": "PromptArmor：Threat Intelligence",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "06be24552591ac18a92e2ce2d2535b549e19817d",
-          "title": "PromptArmor 披露 Databricks Genie 恶意 Skill 可绕过四类控制实施钓鱼与数据外泄",
-          "url": "https://www.promptarmor.com/resources/four-databricks-genie-controls-that-dont-stop-malicious-skills",
-          "source": "PromptArmor：Threat Intelligence",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-05T00:24:02Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "PromptArmor：Threat Intelligence"
-      ],
-      "items": [
-        {
-          "id": "06be24552591ac18a92e2ce2d2535b549e19817d",
-          "title": "PromptArmor 披露 Databricks Genie 恶意 Skill 可绕过四类控制实施钓鱼与数据外泄",
-          "url": "https://www.promptarmor.com/resources/four-databricks-genie-controls-that-dont-stop-malicious-skills",
-          "source": "PromptArmor：Threat Intelligence",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-05T00:24:02Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7489,
-      "importance": 0.7489,
-      "importance_score": 0.7489,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9962,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-05T00:24:02Z",
-      "latest_at": "2026-10-05T00:24:02Z",
-      "primary_item": {
-        "id": "06be24552591ac18a92e2ce2d2535b549e19817d",
-        "title": "PromptArmor 披露 Databricks Genie 恶意 Skill 可绕过四类控制实施钓鱼与数据外泄",
-        "url": "https://www.promptarmor.com/resources/four-databricks-genie-controls-that-dont-stop-malicious-skills",
-        "source": "PromptArmor：Threat Intelligence",
         "source_name": "AI HOT"
       }
     },
@@ -326,15 +265,15 @@
       ],
       "item_count": 10,
       "duplicate_count": 10,
-      "score": 0.7391,
-      "importance": 0.7391,
-      "importance_score": 0.7391,
+      "score": 0.7365,
+      "importance": 0.7365,
+      "importance_score": 0.7365,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1696,
+        "recency": 0.1553,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -353,122 +292,182 @@
       }
     },
     {
-      "story_id": "story_d4b8ef577950",
-      "title": "Google 论文揭示 LLM 会隐瞒负面结果，一句 honesty 提示可大幅改善",
-      "url": "https://x.com/rohanpaul_ai/status/2106502600703222202",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2106502600703222202",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "story_id": "story_ff878e799710",
+      "title": "PromptArmor 披露 Databricks Genie 恶意 Skill 可绕过四类控制实施钓鱼与数据外泄",
+      "url": "https://www.promptarmor.com/resources/four-databricks-genie-controls-that-dont-stop-malicious-skills",
+      "primary_url": "https://www.promptarmor.com/resources/four-databricks-genie-controls-that-dont-stop-malicious-skills",
+      "source": "PromptArmor：Threat Intelligence",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "d5abfd5d5a8afd2db726965d3615e1816a540332",
-          "title": "Google 论文揭示 LLM 会隐瞒负面结果，一句 honesty 提示可大幅改善",
-          "url": "https://x.com/rohanpaul_ai/status/2106502600703222202",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "06be24552591ac18a92e2ce2d2535b549e19817d",
+          "title": "PromptArmor 披露 Databricks Genie 恶意 Skill 可绕过四类控制实施钓鱼与数据外泄",
+          "url": "https://www.promptarmor.com/resources/four-databricks-genie-controls-that-dont-stop-malicious-skills",
+          "source": "PromptArmor：Threat Intelligence",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-03T21:52:11Z"
+          "published_at": "2026-10-05T00:24:02Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
+        "PromptArmor：Threat Intelligence"
       ],
       "items": [
         {
-          "id": "d5abfd5d5a8afd2db726965d3615e1816a540332",
-          "title": "Google 论文揭示 LLM 会隐瞒负面结果，一句 honesty 提示可大幅改善",
-          "url": "https://x.com/rohanpaul_ai/status/2106502600703222202",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "06be24552591ac18a92e2ce2d2535b549e19817d",
+          "title": "PromptArmor 披露 Databricks Genie 恶意 Skill 可绕过四类控制实施钓鱼与数据外泄",
+          "url": "https://www.promptarmor.com/resources/four-databricks-genie-controls-that-dont-stop-malicious-skills",
+          "source": "PromptArmor：Threat Intelligence",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-03T21:52:11Z"
+          "published_at": "2026-10-05T00:24:02Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7248,
-      "importance": 0.7248,
-      "importance_score": 0.7248,
+      "score": 0.7338,
+      "importance": 0.7338,
+      "importance_score": 0.7338,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.77,
+        "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6791,
+        "recency": 0.9119,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-03T21:52:11Z",
-      "latest_at": "2026-10-03T21:52:11Z",
+      "earliest_at": "2026-10-05T00:24:02Z",
+      "latest_at": "2026-10-05T00:24:02Z",
       "primary_item": {
-        "id": "d5abfd5d5a8afd2db726965d3615e1816a540332",
-        "title": "Google 论文揭示 LLM 会隐瞒负面结果，一句 honesty 提示可大幅改善",
-        "url": "https://x.com/rohanpaul_ai/status/2106502600703222202",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "id": "06be24552591ac18a92e2ce2d2535b549e19817d",
+        "title": "PromptArmor 披露 Databricks Genie 恶意 Skill 可绕过四类控制实施钓鱼与数据外泄",
+        "url": "https://www.promptarmor.com/resources/four-databricks-genie-controls-that-dont-stop-malicious-skills",
+        "source": "PromptArmor：Threat Intelligence",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_a754eea0186f",
-      "title": "LMSYS 发布开源聊天模型 Vicuna-13B，用 ShareGPT 对话微调 LLaMA，训练成本约 $300",
-      "url": "https://www.lmsys.org/blog/2023-03-30-vicuna",
-      "primary_url": "https://www.lmsys.org/blog/2023-03-30-vicuna",
-      "source": "LMSYS：Blog（Chatbot Arena 团队）",
+      "story_id": "story_ca7243d776cf",
+      "title": "EverMind AI 开源多智能体系统 Raven：为每个模型和领域自动演化专用 harness",
+      "url": "https://x.com/dair_ai/status/2106902948173529447",
+      "primary_url": "https://x.com/dair_ai/status/2106902948173529447",
+      "source": "X：DAIR.AI (@dair_ai)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "7654202328494479b00a63601dedf32af4a164cb",
-          "title": "LMSYS 发布开源聊天模型 Vicuna-13B，用 ShareGPT 对话微调 LLaMA，训练成本约 $300",
-          "url": "https://www.lmsys.org/blog/2023-03-30-vicuna",
-          "source": "LMSYS：Blog（Chatbot Arena 团队）",
+          "id": "142d8e87bf92f211847000f0df4e5b37ee3bf627",
+          "title": "EverMind AI 开源多智能体系统 Raven：为每个模型和领域自动演化专用 harness",
+          "url": "https://x.com/dair_ai/status/2106902948173529447",
+          "source": "X：DAIR.AI (@dair_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": null
+          "published_at": "2026-10-05T00:23:01Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "LMSYS：Blog（Chatbot Arena 团队）"
+        "X：DAIR.AI (@dair_ai)"
       ],
       "items": [
         {
-          "id": "7654202328494479b00a63601dedf32af4a164cb",
-          "title": "LMSYS 发布开源聊天模型 Vicuna-13B，用 ShareGPT 对话微调 LLaMA，训练成本约 $300",
-          "url": "https://www.lmsys.org/blog/2023-03-30-vicuna",
-          "source": "LMSYS：Blog（Chatbot Arena 团队）",
+          "id": "142d8e87bf92f211847000f0df4e5b37ee3bf627",
+          "title": "EverMind AI 开源多智能体系统 Raven：为每个模型和领域自动演化专用 harness",
+          "url": "https://x.com/dair_ai/status/2106902948173529447",
+          "source": "X：DAIR.AI (@dair_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": null
+          "published_at": "2026-10-05T00:23:01Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.721,
-      "importance": 0.721,
-      "importance_score": 0.721,
+      "score": 0.7307,
+      "importance": 0.7307,
+      "importance_score": 0.7307,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.79,
+        "editorial": 0.65,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6247,
+        "recency": 0.9117,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-03T16:05:09.787158Z",
-      "latest_at": "2026-10-03T16:05:09.787158Z",
+      "earliest_at": "2026-10-05T00:23:01Z",
+      "latest_at": "2026-10-05T00:23:01Z",
       "primary_item": {
-        "id": "7654202328494479b00a63601dedf32af4a164cb",
-        "title": "LMSYS 发布开源聊天模型 Vicuna-13B，用 ShareGPT 对话微调 LLaMA，训练成本约 $300",
-        "url": "https://www.lmsys.org/blog/2023-03-30-vicuna",
-        "source": "LMSYS：Blog（Chatbot Arena 团队）",
+        "id": "142d8e87bf92f211847000f0df4e5b37ee3bf627",
+        "title": "EverMind AI 开源多智能体系统 Raven：为每个模型和领域自动演化专用 harness",
+        "url": "https://x.com/dair_ai/status/2106902948173529447",
+        "source": "X：DAIR.AI (@dair_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_302204b696bf",
+      "title": "Ethan Mollick 谈 GPT 将停用：迁移插件无法公开分享，创作者与教育者受影响",
+      "url": "https://x.com/emollick/status/2106958444196413670",
+      "primary_url": "https://x.com/emollick/status/2106958444196413670",
+      "source": "X：Ethan Mollick (@emollick)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "e9818e6594dbcf795d698c86c718843c568bff2e",
+          "title": "Ethan Mollick 谈 GPT 将停用：迁移插件无法公开分享，创作者与教育者受影响",
+          "url": "https://x.com/emollick/status/2106958444196413670",
+          "source": "X：Ethan Mollick (@emollick)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-05T04:03:33Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Ethan Mollick (@emollick)"
+      ],
+      "items": [
+        {
+          "id": "e9818e6594dbcf795d698c86c718843c568bff2e",
+          "title": "Ethan Mollick 谈 GPT 将停用：迁移插件无法公开分享，创作者与教育者受影响",
+          "url": "https://x.com/emollick/status/2106958444196413670",
+          "source": "X：Ethan Mollick (@emollick)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-05T04:03:33Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7217,
+      "importance": 0.7217,
+      "importance_score": 0.7217,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.59,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9614,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-05T04:03:33Z",
+      "latest_at": "2026-10-05T04:03:33Z",
+      "primary_item": {
+        "id": "e9818e6594dbcf795d698c86c718843c568bff2e",
+        "title": "Ethan Mollick 谈 GPT 将停用：迁移插件无法公开分享，创作者与教育者受影响",
+        "url": "https://x.com/emollick/status/2106958444196413670",
+        "source": "X：Ethan Mollick (@emollick)",
         "source_name": "AI HOT"
       }
     },
@@ -526,15 +525,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6832,
-      "importance": 0.6832,
-      "importance_score": 0.6832,
+      "score": 0.6808,
+      "importance": 0.6808,
+      "importance_score": 0.6808,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.159,
+        "recency": 0.1456,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -549,86 +548,6 @@
         "title": "OpenAI 发布 GPT-6.1 Sol，以约五分之一价格接近 GPT-6 Astra 智能",
         "url": "https://openai.com/index/introducing-gpt-6-1-sol",
         "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_a51e6459db17",
-      "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
-      "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
-      "primary_url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
-      "source": "TechCrunch：AI（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "498dc000c78d24ef9003ed81482127745fdc4a1b",
-          "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
-          "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
-          "source": "TechCrunch：AI（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T19:52:37Z"
-        },
-        {
-          "id": "64f8f8b1a6db2d38b4ac1067308170161f734910",
-          "title": "OpenAI 拟以约 1.4 万亿美元投前估值融资至少 300 亿美元",
-          "url": "https://x.com/rohanpaul_ai/status/2105017898343575731",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T19:32:30Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "TechCrunch：AI（RSS）",
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "498dc000c78d24ef9003ed81482127745fdc4a1b",
-          "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
-          "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
-          "source": "TechCrunch：AI（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T19:52:37Z"
-        },
-        {
-          "id": "64f8f8b1a6db2d38b4ac1067308170161f734910",
-          "title": "OpenAI 拟以约 1.4 万亿美元投前估值融资至少 300 亿美元",
-          "url": "https://x.com/rohanpaul_ai/status/2105017898343575731",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T19:32:30Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6753,
-      "importance": 0.6753,
-      "importance_score": 0.6753,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.83,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.165,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-29T19:32:30Z",
-      "latest_at": "2026-09-29T19:52:37Z",
-      "primary_item": {
-        "id": "498dc000c78d24ef9003ed81482127745fdc4a1b",
-        "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
-        "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
-        "source": "TechCrunch：AI（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -686,15 +605,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.675,
-      "importance": 0.675,
-      "importance_score": 0.675,
+      "score": 0.6733,
+      "importance": 0.6733,
+      "importance_score": 0.6733,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1135,
+        "recency": 0.1039,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -709,6 +628,86 @@
         "title": "Anthropic 发布 Claude Sonnet 5.5：速度提升 30%+，每任务成本最多降 30%",
         "url": "https://www.anthropic.com/claude-sonnet-5-5",
         "source": "Hacker News：AI 热帖",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_a51e6459db17",
+      "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
+      "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
+      "primary_url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
+      "source": "TechCrunch：AI（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "498dc000c78d24ef9003ed81482127745fdc4a1b",
+          "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
+          "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
+          "source": "TechCrunch：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T19:52:37Z"
+        },
+        {
+          "id": "64f8f8b1a6db2d38b4ac1067308170161f734910",
+          "title": "OpenAI 拟以约 1.4 万亿美元投前估值融资至少 300 亿美元",
+          "url": "https://x.com/rohanpaul_ai/status/2105017898343575731",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T19:32:30Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "TechCrunch：AI（RSS）",
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "498dc000c78d24ef9003ed81482127745fdc4a1b",
+          "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
+          "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
+          "source": "TechCrunch：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T19:52:37Z"
+        },
+        {
+          "id": "64f8f8b1a6db2d38b4ac1067308170161f734910",
+          "title": "OpenAI 拟以约 1.4 万亿美元投前估值融资至少 300 亿美元",
+          "url": "https://x.com/rohanpaul_ai/status/2105017898343575731",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T19:32:30Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6728,
+      "importance": 0.6728,
+      "importance_score": 0.6728,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.83,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.151,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-29T19:32:30Z",
+      "latest_at": "2026-09-29T19:52:37Z",
+      "primary_item": {
+        "id": "498dc000c78d24ef9003ed81482127745fdc4a1b",
+        "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
+        "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
+        "source": "TechCrunch：AI（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -765,15 +764,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6607,
-      "importance": 0.6607,
-      "importance_score": 0.6607,
+      "score": 0.6589,
+      "importance": 0.6589,
+      "importance_score": 0.6589,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1171,
+        "recency": 0.1072,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -845,15 +844,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6542,
-      "importance": 0.6542,
-      "importance_score": 0.6542,
+      "score": 0.6525,
+      "importance": 0.6525,
+      "importance_score": 0.6525,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1145,
+        "recency": 0.1048,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -924,15 +923,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6523,
-      "importance": 0.6523,
-      "importance_score": 0.6523,
+      "score": 0.6489,
+      "importance": 0.6489,
+      "importance_score": 0.6489,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2206,
+        "recency": 0.2019,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1004,15 +1003,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6452,
-      "importance": 0.6452,
-      "importance_score": 0.6452,
+      "score": 0.645,
+      "importance": 0.645,
+      "importance_score": 0.645,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0144,
+        "recency": 0.0132,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1084,15 +1083,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6451,
-      "importance": 0.6451,
-      "importance_score": 0.6451,
+      "score": 0.6433,
+      "importance": 0.6433,
+      "importance_score": 0.6433,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1137,
+        "recency": 0.1041,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1164,15 +1163,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6424,
-      "importance": 0.6424,
-      "importance_score": 0.6424,
+      "score": 0.6421,
+      "importance": 0.6421,
+      "importance_score": 0.6421,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0154,
+        "recency": 0.0141,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1243,15 +1242,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6422,
-      "importance": 0.6422,
-      "importance_score": 0.6422,
+      "score": 0.642,
+      "importance": 0.642,
+      "importance_score": 0.642,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0145,
+        "recency": 0.0133,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1323,15 +1322,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6362,
-      "importance": 0.6362,
-      "importance_score": 0.6362,
+      "score": 0.636,
+      "importance": 0.636,
+      "importance_score": 0.636,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0145,
+        "recency": 0.0133,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1403,15 +1402,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6572,
-      "importance": 0.6572,
-      "importance_score": 0.6572,
+      "score": 0.657,
+      "importance": 0.657,
+      "importance_score": 0.657,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0144,
+        "recency": 0.0132,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1483,15 +1482,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6263,
-      "importance": 0.6263,
-      "importance_score": 0.6263,
+      "score": 0.6239,
+      "importance": 0.6239,
+      "importance_score": 0.6239,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1595,
+        "recency": 0.146,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1562,15 +1561,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6211,
-      "importance": 0.6211,
-      "importance_score": 0.6211,
+      "score": 0.6209,
+      "importance": 0.6209,
+      "importance_score": 0.6209,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0138,
+        "recency": 0.0126,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1589,68 +1588,68 @@
       }
     },
     {
-      "story_id": "story_0c6cb391df3a",
-      "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
-      "url": "https://x.com/milichab/status/2105782588799594871",
-      "primary_url": "https://x.com/milichab/status/2105782588799594871",
-      "source": "X：Andrew Milich (@milichab)",
+      "story_id": "story_3d48e529ad7a",
+      "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，API 价格较 GPT-5.6 降 50%",
+      "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
+      "primary_url": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
+      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "ce48262e29839413db30dee45296cea41808964a",
-          "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
-          "url": "https://x.com/milichab/status/2105782588799594871",
-          "source": "X：Andrew Milich (@milichab)",
+          "id": "aecfaa648cec2e91d17359dd41dd2bea367662e7",
+          "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，API 价格较 GPT-5.6 促销价低 50%",
+          "url": "https://x.com/thsottiaux/status/2102509507415048245",
+          "source": "X：Tibo (@thsottiaux)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-01T22:11:07Z"
+          "published_at": "2026-09-22T21:25:03Z"
         },
         {
-          "id": "9e1e6e7a51478218a5c9f50dba29eda7c2420c6a",
-          "title": "Grok Build 新增 Agent Dashboard",
-          "url": "https://x.com/grok/status/2105782433362878757",
-          "source": "X：Grok (@grok)",
+          "id": "1acc31f0b1b5ee749c6cdfdec3de897f547d3744",
+          "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，API 价格较 GPT-5.6 降 50%",
+          "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
+          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-01T22:10:30Z"
+          "published_at": "2026-09-22T18:00:00Z"
         }
       ],
       "source_count": 2,
       "source_names": [
-        "X：Andrew Milich (@milichab)",
-        "X：Grok (@grok)"
+        "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+        "X：Tibo (@thsottiaux)"
       ],
       "items": [
         {
-          "id": "ce48262e29839413db30dee45296cea41808964a",
-          "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
-          "url": "https://x.com/milichab/status/2105782588799594871",
-          "source": "X：Andrew Milich (@milichab)",
+          "id": "aecfaa648cec2e91d17359dd41dd2bea367662e7",
+          "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，API 价格较 GPT-5.6 促销价低 50%",
+          "url": "https://x.com/thsottiaux/status/2102509507415048245",
+          "source": "X：Tibo (@thsottiaux)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-01T22:11:07Z"
+          "published_at": "2026-09-22T21:25:03Z"
         },
         {
-          "id": "9e1e6e7a51478218a5c9f50dba29eda7c2420c6a",
-          "title": "Grok Build 新增 Agent Dashboard",
-          "url": "https://x.com/grok/status/2105782433362878757",
-          "source": "X：Grok (@grok)",
+          "id": "1acc31f0b1b5ee749c6cdfdec3de897f547d3744",
+          "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，API 价格较 GPT-5.6 降 50%",
+          "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
+          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-01T22:10:30Z"
+          "published_at": "2026-09-22T18:00:00Z"
         }
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.617,
-      "importance": 0.617,
-      "importance_score": 0.617,
+      "score": 0.6449,
+      "importance": 0.6449,
+      "importance_score": 0.6449,
       "importance_label": "值得关注",
       "importance_breakdown": {
-        "editorial": 0.53,
+        "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3411,
+        "recency": 0.013,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1658,13 +1657,13 @@
         "multi_source",
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-01T22:10:30Z",
-      "latest_at": "2026-10-01T22:11:07Z",
+      "earliest_at": "2026-09-22T18:00:00Z",
+      "latest_at": "2026-09-22T21:25:03Z",
       "primary_item": {
-        "id": "ce48262e29839413db30dee45296cea41808964a",
-        "title": "Grok Build 推出 Agent Dashboard，一个 /dashboard 视图同时查看多个 agent 与 worktree",
-        "url": "https://x.com/milichab/status/2105782588799594871",
-        "source": "X：Andrew Milich (@milichab)",
+        "id": "1acc31f0b1b5ee749c6cdfdec3de897f547d3744",
+        "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，API 价格较 GPT-5.6 降 50%",
+        "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
+        "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
         "source_name": "AI HOT"
       }
     }
