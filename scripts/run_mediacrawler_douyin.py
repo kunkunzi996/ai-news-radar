@@ -242,7 +242,6 @@ def dedicated_browser_args(
         "--hide-crash-restore-bubble",
         "--disable-sync",
         "--disable-features=TranslateUI",
-        "--disable-blink-features=AutomationControlled",
     ]
     if offscreen:
         args += ["--window-position=-32000,-32000", "--window-size=1600,900"]
@@ -1119,6 +1118,86 @@ def douyin_detail_backoff_seconds(attempt: int) -> float:
     return DOUYIN_DETAIL_RETRY_BACKOFF_SECONDS[index]
 
 
+AWEME_POST_PATH = "/aweme/v1/web/aweme/post/"
+CREATOR_PAGE_POST_TIMEOUT_SECONDS = 30.0
+CREATOR_PAGE_SCROLL_JS = """() => {
+  const root = document.scrollingElement || document.body;
+  let best = root;
+  let bestHeight = 0;
+  for (const node of document.querySelectorAll("*")) {
+    if (!(node instanceof Element)) continue;
+    if (node.scrollHeight > node.clientHeight + 40 && node.scrollHeight > bestHeight) {
+      best = node;
+      bestHeight = node.scrollHeight;
+    }
+  }
+  if (best) best.scrollTop = best.scrollHeight;
+  window.scrollTo(0, root ? root.scrollHeight : 0);
+}"""
+
+
+def aweme_post_response_matches(url: str, sec_user_id: str, max_cursor: str) -> bool:
+    """只认这个博主页面自己发出的作品列表响应。"""
+    text = str(url or "")
+    if AWEME_POST_PATH not in text or not sec_user_id or sec_user_id not in text:
+        return False
+    if not max_cursor:
+        return "max_cursor=" not in text or "max_cursor=0" in text
+    return f"max_cursor={max_cursor}" in text
+
+
+def remember_page_awemes(cache: dict[str, dict[str, Any]], aweme_list: object) -> None:
+    if not isinstance(aweme_list, list):
+        return
+    for item in aweme_list:
+        if isinstance(item, dict) and item.get("aweme_id"):
+            cache[str(item["aweme_id"])] = item
+
+
+async def capture_creator_aweme_posts(
+    page: Any,
+    sec_user_id: str,
+    max_cursor: str = "",
+    timeout: float = CREATOR_PAGE_POST_TIMEOUT_SECONDS,
+) -> dict[str, Any]:
+    """等博主页自己把作品列表要下来。
+
+    采集程序原先在浏览器外面另发一次请求，并把这台 Windows 电脑写成 Mac 上的
+    Chrome 125。抖音拦住的是那一次。页面上能看见的作品，来自页面自己的请求。
+    """
+    loop = asyncio.get_running_loop()
+    future: asyncio.Future[dict[str, Any]] = loop.create_future()
+
+    async def on_response(response: Any) -> None:
+        if future.done() or not aweme_post_response_matches(getattr(response, "url", ""), sec_user_id, max_cursor):
+            return
+        try:
+            data = await response.json()
+        except Exception:
+            return
+        if future.done():
+            return
+        aweme_list = data.get("aweme_list") if isinstance(data, dict) else None
+        if isinstance(aweme_list, list) and aweme_list:
+            future.set_result(data)
+
+    page.on("response", on_response)
+    try:
+        if not max_cursor:
+            await page.goto(
+                f"https://www.douyin.com/user/{sec_user_id}",
+                wait_until="domcontentloaded",
+                timeout=int(timeout * 1000),
+            )
+        else:
+            await page.evaluate(CREATOR_PAGE_SCROLL_JS)
+        return await asyncio.wait_for(future, timeout)
+    except asyncio.TimeoutError as exc:
+        raise RuntimeError("douyin_risk_control") from exc
+    finally:
+        page.remove_listener("response", on_response)
+
+
 def install_douyin_observer(
     observer: DouyinRunObserver,
     max_notes: int,
@@ -1133,6 +1212,7 @@ def install_douyin_observer(
     original_get_user_aweme_posts = DouYinClient.get_user_aweme_posts
     original_get_video_by_id = DouYinClient.get_video_by_id
     original_store_aweme = douyin_store.update_douyin_aweme
+    page_awemes: dict[str, dict[str, Any]] = {}
 
     async def get_user_info(self: object, sec_user_id: str) -> dict[str, Any]:
         # BUG-02：MediaCrawler 的创作者循环（core.py:277-291）对本调用没有 try/except，
@@ -1149,8 +1229,13 @@ def install_douyin_observer(
 
     async def get_user_aweme_posts(self: object, sec_user_id: str, max_cursor: str = "") -> dict[str, Any]:
         try:
-            response = await original_get_user_aweme_posts(self, sec_user_id, max_cursor)
+            page = getattr(self, "playwright_page", None)
+            if page is not None:
+                response = await capture_creator_aweme_posts(page, sec_user_id, max_cursor)
+            else:
+                response = await original_get_user_aweme_posts(self, sec_user_id, max_cursor)
             response = validate_douyin_aweme_page(response, max_cursor)
+            remember_page_awemes(page_awemes, response.get("aweme_list"))
             observer.record(sec_user_id)["api_pages_valid"] = True
             return response
         except Exception as exc:
@@ -1183,6 +1268,10 @@ def install_douyin_observer(
     async def get_video_by_id(self: object, aweme_id: str) -> Any:
         # 耗尽重试后必须抛回**原异常对象**：MediaCrawler core.py:227 只 catch DataFetchError，
         # 一旦在这里改写异常类型，那条 except 就接不住，整轮采集会直接崩。
+        # 页面已经拿到的作品直接交回去，不再为同一条作品另发详情请求。
+        cached = page_awemes.get(str(aweme_id))
+        if getattr(self, "playwright_page", None) is not None and cached is not None:
+            return cached
         last_error: BaseException | None = None
         total = DOUYIN_DETAIL_RETRY_ATTEMPTS + 1
         for attempt in range(total):
