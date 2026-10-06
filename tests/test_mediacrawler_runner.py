@@ -21,6 +21,8 @@ from scripts.run_mediacrawler_douyin import (
     browser_window_commands,
     close_cdp_page_targets,
     creator_output_delta,
+    aweme_post_response_matches,
+    capture_creator_aweme_posts,
     dedicated_browser_args,
     ensure_dedicated_browser,
     list_cdp_page_targets,
@@ -120,6 +122,7 @@ class MediaCrawlerRunnerTests(unittest.TestCase):
         self.assertIn("--window-size=1600,900", offscreen)
         self.assertNotIn("--start-maximized", offscreen)
         self.assertIn("--hide-crash-restore-bubble", offscreen)
+        self.assertFalse(any("AutomationControlled" in arg for arg in offscreen + visible))
         self.assertIn("--start-maximized", visible)
         self.assertIn("--hide-crash-restore-bubble", visible)
         self.assertFalse(any(arg.startswith("--window-position") for arg in visible))
@@ -632,6 +635,98 @@ class MediaCrawlerRunnerTests(unittest.TestCase):
                 self.assertEqual(runner.main(), 0)
 
             closed.assert_called_once_with(9333, ["B"])
+
+
+class DouyinPageAwemeTests(unittest.TestCase):
+    """作品列表用博主页自己的响应，不再从浏览器外面另发伪装请求。"""
+
+    def test_response_match_requires_this_creator_and_cursor(self):
+        url = "https://www.douyin.com/aweme/v1/web/aweme/post/?sec_user_id=SEC&max_cursor=0"
+        self.assertTrue(aweme_post_response_matches(url, "SEC", ""))
+        self.assertFalse(aweme_post_response_matches(url, "OTHER", ""))
+        self.assertFalse(aweme_post_response_matches(url.replace("max_cursor=0", "max_cursor=99"), "SEC", ""))
+        self.assertTrue(aweme_post_response_matches(url.replace("max_cursor=0", "max_cursor=99"), "SEC", "99"))
+
+    def test_capture_reads_the_page_response_for_the_open_creator(self):
+        payload = {
+            "status_code": 0,
+            "aweme_list": [{"aweme_id": "A", "desc": "看得见"}],
+            "has_more": 0,
+            "max_cursor": "",
+        }
+
+        class Page:
+            def __init__(self):
+                self.handler = None
+                self.goto_url = ""
+
+            def on(self, event, handler):
+                self.handler = handler
+
+            def remove_listener(self, event, handler):
+                if self.handler is handler:
+                    self.handler = None
+
+            async def goto(self, url, wait_until=None, timeout=None):
+                self.goto_url = url
+                response = mock.Mock()
+                response.url = "https://www.douyin.com/aweme/v1/web/aweme/post/?sec_user_id=SEC&max_cursor=0"
+                response.json = mock.AsyncMock(return_value=payload)
+                await self.handler(response)
+
+        page = Page()
+        got = asyncio.run(capture_creator_aweme_posts(page, "SEC", ""))
+        self.assertEqual(got["aweme_list"][0]["aweme_id"], "A")
+        self.assertEqual(page.goto_url, "https://www.douyin.com/user/SEC")
+
+    def test_visible_page_skips_external_list_and_detail_requests(self):
+        with DouyinCreatorIsolationTests.fake_mediacrawler_modules() as (client_cls, _store, _rows):
+            observer = DouyinRunObserver(["SEC"])
+            calls = []
+            payload = {
+                "status_code": 0,
+                "aweme_list": [{"aweme_id": "A", "desc": "看得见", "author": {"sec_uid": "SEC"}}],
+                "has_more": 0,
+                "max_cursor": "",
+            }
+
+            class Page:
+                def __init__(self):
+                    self.handler = None
+
+                def on(self, event, handler):
+                    self.handler = handler
+
+                def remove_listener(self, event, handler):
+                    self.handler = None
+
+                async def goto(self, url, wait_until=None, timeout=None):
+                    response = mock.Mock()
+                    response.url = "https://www.douyin.com/aweme/v1/web/aweme/post/?sec_user_id=SEC&max_cursor=0"
+                    response.json = mock.AsyncMock(return_value=payload)
+                    await self.handler(response)
+
+            async def external_posts(self, sec_user_id, max_cursor=""):
+                calls.append(("posts", sec_user_id))
+                raise AssertionError("external list request")
+
+            async def external_detail(self, aweme_id):
+                calls.append(("detail", aweme_id))
+                raise AssertionError("external detail request")
+
+            client_cls.get_user_aweme_posts = external_posts
+            client_cls.get_video_by_id = external_detail
+            runner.install_douyin_observer(observer, 10)
+            client = client_cls()
+            client.playwright_page = Page()
+
+            listed = asyncio.run(client.get_user_aweme_posts("SEC", ""))
+            detail = asyncio.run(client.get_video_by_id("A"))
+
+            self.assertEqual(calls, [])
+            self.assertEqual(listed["aweme_list"][0]["aweme_id"], "A")
+            self.assertEqual(detail["desc"], "看得见")
+            self.assertTrue(observer.record("SEC")["api_pages_valid"])
 
 
 class DouyinCreatorIsolationTests(unittest.TestCase):
