@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T09:18:34.278384Z",
+  "generated_at": "2026-10-06T16:11:28.987307Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -149,15 +149,15 @@
       ],
       "item_count": 7,
       "duplicate_count": 7,
-      "score": 0.8426,
-      "importance": 0.8426,
-      "importance_score": 0.8426,
+      "score": 0.8277,
+      "importance": 0.8277,
+      "importance_score": 0.8277,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.878,
+        "recency": 0.7949,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -173,6 +173,330 @@
         "title": "卡兹克解读A16Z两份AI报告，AI使用广但付费和深度仍小众",
         "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686876&idx=1&sn=55c719c9dded44507dbd2a000a2ec5a7",
         "source": "公众号：数字生命卡兹克",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_efe52b80d045",
+      "title": "Claude Code 云端会话实战指南：每个任务独占一台 VM，可并行跑任务并以分支收尾",
+      "url": "https://claude.dev/blog/claude-code-in-the-cloud",
+      "primary_url": "https://claude.dev/blog/claude-code-in-the-cloud",
+      "source": "Anthropic：Claude.dev 开发者博客（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "273d73c99464cb7256dd93c7451d2e7d65976d36",
+          "title": "Claude Code 云端会话实战指南：每个任务独占一台 VM，可并行跑任务并以分支收尾",
+          "url": "https://claude.dev/blog/claude-code-in-the-cloud",
+          "source": "Anthropic：Claude.dev 开发者博客（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T12:00:00Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Anthropic：Claude.dev 开发者博客（RSS）"
+      ],
+      "items": [
+        {
+          "id": "273d73c99464cb7256dd93c7451d2e7d65976d36",
+          "title": "Claude Code 云端会话实战指南：每个任务独占一台 VM，可并行跑任务并以分支收尾",
+          "url": "https://claude.dev/blog/claude-code-in-the-cloud",
+          "source": "Anthropic：Claude.dev 开发者博客（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T12:00:00Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.787,
+      "importance": 0.787,
+      "importance_score": 0.787,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.82,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9413,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-06T12:00:00Z",
+      "latest_at": "2026-10-06T12:00:00Z",
+      "primary_item": {
+        "id": "273d73c99464cb7256dd93c7451d2e7d65976d36",
+        "title": "Claude Code 云端会话实战指南：每个任务独占一台 VM，可并行跑任务并以分支收尾",
+        "url": "https://claude.dev/blog/claude-code-in-the-cloud",
+        "source": "Anthropic：Claude.dev 开发者博客（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_3f74e4740f5f",
+      "title": "Mistral Large 4 上线 OpenRouter 公测：1T 参数、1M 上下文、前两周五折",
+      "url": "https://x.com/OpenRouter/status/2107477859317297600",
+      "primary_url": "https://x.com/OpenRouter/status/2107477859317297600",
+      "source": "X：OpenRouter (@OpenRouter)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "7ad716af53ae70ff2e34cbb5c4c2de8d89dd6fbf",
+          "title": "Mistral Large 4 上线 OpenRouter 公测：1T 参数、1M 上下文、前两周五折",
+          "url": "https://x.com/OpenRouter/status/2107477859317297600",
+          "source": "X：OpenRouter (@OpenRouter)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T14:27:31Z"
+        },
+        {
+          "id": "cc19177e6fbdf4a67d8007b928e7224f686d8878",
+          "title": "Mistral Large 4 上线 OpenRouter 公测：1T 参数、512K 上下文",
+          "url": "https://x.com/OpenRouter/status/2107471559040635360",
+          "source": "X：OpenRouter (@OpenRouter)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T14:02:29Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：OpenRouter (@OpenRouter)"
+      ],
+      "items": [
+        {
+          "id": "7ad716af53ae70ff2e34cbb5c4c2de8d89dd6fbf",
+          "title": "Mistral Large 4 上线 OpenRouter 公测：1T 参数、1M 上下文、前两周五折",
+          "url": "https://x.com/OpenRouter/status/2107477859317297600",
+          "source": "X：OpenRouter (@OpenRouter)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T14:27:31Z"
+        },
+        {
+          "id": "cc19177e6fbdf4a67d8007b928e7224f686d8878",
+          "title": "Mistral Large 4 上线 OpenRouter 公测：1T 参数、512K 上下文",
+          "url": "https://x.com/OpenRouter/status/2107471559040635360",
+          "source": "X：OpenRouter (@OpenRouter)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T14:02:29Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7852,
+      "importance": 0.7852,
+      "importance_score": 0.7852,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.71,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9753,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-06T14:02:29Z",
+      "latest_at": "2026-10-06T14:27:31Z",
+      "primary_item": {
+        "id": "7ad716af53ae70ff2e34cbb5c4c2de8d89dd6fbf",
+        "title": "Mistral Large 4 上线 OpenRouter 公测：1T 参数、1M 上下文、前两周五折",
+        "url": "https://x.com/OpenRouter/status/2107477859317297600",
+        "source": "X：OpenRouter (@OpenRouter)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_663a8ac1b538",
+      "title": "Google Nano Banana 2.1 图像模型上线 Google AI Studio、API 和 Gemini",
+      "url": "https://x.com/testingcatalog/status/2107499443532530001",
+      "primary_url": "https://x.com/testingcatalog/status/2107499443532530001",
+      "source": "X：Testing Catalog (@testingcatalog)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "9ea5512aae56ab22d3ed01f4cfd7918b95508d4b",
+          "title": "Google Nano Banana 2.1 图像模型上线 Google AI Studio、API 和 Gemini",
+          "url": "https://x.com/testingcatalog/status/2107499443532530001",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T15:53:17Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Testing Catalog (@testingcatalog)"
+      ],
+      "items": [
+        {
+          "id": "9ea5512aae56ab22d3ed01f4cfd7918b95508d4b",
+          "title": "Google Nano Banana 2.1 图像模型上线 Google AI Studio、API 和 Gemini",
+          "url": "https://x.com/testingcatalog/status/2107499443532530001",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T15:53:17Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7788,
+      "importance": 0.7788,
+      "importance_score": 0.7788,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.76,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9956,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-06T15:53:17Z",
+      "latest_at": "2026-10-06T15:53:17Z",
+      "primary_item": {
+        "id": "9ea5512aae56ab22d3ed01f4cfd7918b95508d4b",
+        "title": "Google Nano Banana 2.1 图像模型上线 Google AI Studio、API 和 Gemini",
+        "url": "https://x.com/testingcatalog/status/2107499443532530001",
+        "source": "X：Testing Catalog (@testingcatalog)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_820bd24a41c4",
+      "title": "Mistral 发布 Large 4 公开预览版，1 万亿参数将开放权重",
+      "url": "https://mistral.ai/news/mistral-large-4",
+      "primary_url": "https://mistral.ai/news/mistral-large-4",
+      "source": "Hacker News：AI 热帖",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "6c25b6630b5c4256ac31216f468f913d6b760714",
+          "title": "Mistral 发布 Large 4 公开预览版，1 万亿参数将开放权重",
+          "url": "https://mistral.ai/news/mistral-large-4",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T13:25:50Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Hacker News：AI 热帖"
+      ],
+      "items": [
+        {
+          "id": "6c25b6630b5c4256ac31216f468f913d6b760714",
+          "title": "Mistral 发布 Large 4 公开预览版，1 万亿参数将开放权重",
+          "url": "https://mistral.ai/news/mistral-large-4",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T13:25:50Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7756,
+      "importance": 0.7756,
+      "importance_score": 0.7756,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.77,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9609,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-06T13:25:50Z",
+      "latest_at": "2026-10-06T13:25:50Z",
+      "primary_item": {
+        "id": "6c25b6630b5c4256ac31216f468f913d6b760714",
+        "title": "Mistral 发布 Large 4 公开预览版，1 万亿参数将开放权重",
+        "url": "https://mistral.ai/news/mistral-large-4",
+        "source": "Hacker News：AI 热帖",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_4fed14e55fde",
+      "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活的原生多模态模型",
+      "url": "https://x.com/arthurmensch/status/2107463276326162840",
+      "primary_url": "https://x.com/arthurmensch/status/2107463276326162840",
+      "source": "X：Arthur Mensch（Mistral CEO） (@arthurmensch)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "58dfe46430707460723f5de9f2d4c4d0ba07118a",
+          "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活的原生多模态模型",
+          "url": "https://x.com/arthurmensch/status/2107463276326162840",
+          "source": "X：Arthur Mensch（Mistral CEO） (@arthurmensch)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T13:29:34Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Arthur Mensch（Mistral CEO） (@arthurmensch)"
+      ],
+      "items": [
+        {
+          "id": "58dfe46430707460723f5de9f2d4c4d0ba07118a",
+          "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活的原生多模态模型",
+          "url": "https://x.com/arthurmensch/status/2107463276326162840",
+          "source": "X：Arthur Mensch（Mistral CEO） (@arthurmensch)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T13:29:34Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7697,
+      "importance": 0.7697,
+      "importance_score": 0.7697,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.75,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9618,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-06T13:29:34Z",
+      "latest_at": "2026-10-06T13:29:34Z",
+      "primary_item": {
+        "id": "58dfe46430707460723f5de9f2d4c4d0ba07118a",
+        "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活的原生多模态模型",
+        "url": "https://x.com/arthurmensch/status/2107463276326162840",
+        "source": "X：Arthur Mensch（Mistral CEO） (@arthurmensch)",
         "source_name": "AI HOT"
       }
     },
@@ -211,15 +535,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7842,
-      "importance": 0.7842,
-      "importance_score": 0.7842,
+      "score": 0.7679,
+      "importance": 0.7679,
+      "importance_score": 0.7679,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.8,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9591,
+        "recency": 0.8684,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -272,15 +596,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7761,
-      "importance": 0.7761,
-      "importance_score": 0.7761,
+      "score": 0.7597,
+      "importance": 0.7597,
+      "importance_score": 0.7597,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9637,
+        "recency": 0.8725,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -295,6 +619,371 @@
         "title": "Bloomberg：DeepSeek 接近完成至少 120 亿美元融资，估值或达 710 亿美元",
         "url": "https://x.com/rohanpaul_ai/status/2107361452428611741",
         "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_327f31ad4393",
+      "title": "Mistral 发布 Mistral Large 4，Artificial Analysis 智能指数得 38 分",
+      "url": "https://x.com/ArtificialAnlys/status/2107467221421420919",
+      "primary_url": "https://x.com/ArtificialAnlys/status/2107467221421420919",
+      "source": "X：Artificial Analysis (@ArtificialAnlys)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "9ab08f32bb5f9e902a9a7e95322bfacf69e3bd0c",
+          "title": "Mistral 发布 Mistral Large 4，Artificial Analysis 智能指数得 38 分",
+          "url": "https://x.com/ArtificialAnlys/status/2107467221421420919",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T13:45:15Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Artificial Analysis (@ArtificialAnlys)"
+      ],
+      "items": [
+        {
+          "id": "9ab08f32bb5f9e902a9a7e95322bfacf69e3bd0c",
+          "title": "Mistral 发布 Mistral Large 4，Artificial Analysis 智能指数得 38 分",
+          "url": "https://x.com/ArtificialAnlys/status/2107467221421420919",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T13:45:15Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7584,
+      "importance": 0.7584,
+      "importance_score": 0.7584,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.71,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9654,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-06T13:45:15Z",
+      "latest_at": "2026-10-06T13:45:15Z",
+      "primary_item": {
+        "id": "9ab08f32bb5f9e902a9a7e95322bfacf69e3bd0c",
+        "title": "Mistral 发布 Mistral Large 4，Artificial Analysis 智能指数得 38 分",
+        "url": "https://x.com/ArtificialAnlys/status/2107467221421420919",
+        "source": "X：Artificial Analysis (@ArtificialAnlys)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_474665d2a7fd",
+      "title": "Mistral 发布 Mistral Large 4，1T 参数原生多模态，月底开放权重",
+      "url": "https://x.com/MistralAI/status/2107457414387622310",
+      "primary_url": "https://x.com/MistralAI/status/2107457414387622310",
+      "source": "X：Mistral AI (@MistralAI)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "ab0658927caa426758306a44bdd0eead35afb00c",
+          "title": "Mistral 发布 Mistral Large 4，1T 参数原生多模态，月底开放权重",
+          "url": "https://x.com/MistralAI/status/2107457414387622310",
+          "source": "X：Mistral AI (@MistralAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T13:06:16Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Mistral AI (@MistralAI)"
+      ],
+      "items": [
+        {
+          "id": "ab0658927caa426758306a44bdd0eead35afb00c",
+          "title": "Mistral 发布 Mistral Large 4，1T 参数原生多模态，月底开放权重",
+          "url": "https://x.com/MistralAI/status/2107457414387622310",
+          "source": "X：Mistral AI (@MistralAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T13:06:16Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7538,
+      "importance": 0.7538,
+      "importance_score": 0.7538,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.7,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9564,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-06T13:06:16Z",
+      "latest_at": "2026-10-06T13:06:16Z",
+      "primary_item": {
+        "id": "ab0658927caa426758306a44bdd0eead35afb00c",
+        "title": "Mistral 发布 Mistral Large 4，1T 参数原生多模态，月底开放权重",
+        "url": "https://x.com/MistralAI/status/2107457414387622310",
+        "source": "X：Mistral AI (@MistralAI)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_5a598f63c5ab",
+      "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活，开源权重十月底放出",
+      "url": "https://x.com/Yuchenj_UW/status/2107466520851046886",
+      "primary_url": "https://x.com/Yuchenj_UW/status/2107466520851046886",
+      "source": "X：Yuchen Jin (@Yuchenj_UW)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "dec01815e87f58c1a7715df2ca43ab4d21f1dd25",
+          "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活，开源权重十月底放出",
+          "url": "https://x.com/Yuchenj_UW/status/2107466520851046886",
+          "source": "X：Yuchen Jin (@Yuchenj_UW)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T13:42:28Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Yuchen Jin (@Yuchenj_UW)"
+      ],
+      "items": [
+        {
+          "id": "dec01815e87f58c1a7715df2ca43ab4d21f1dd25",
+          "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活，开源权重十月底放出",
+          "url": "https://x.com/Yuchenj_UW/status/2107466520851046886",
+          "source": "X：Yuchen Jin (@Yuchenj_UW)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T13:42:28Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7523,
+      "importance": 0.7523,
+      "importance_score": 0.7523,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.69,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9648,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-06T13:42:28Z",
+      "latest_at": "2026-10-06T13:42:28Z",
+      "primary_item": {
+        "id": "dec01815e87f58c1a7715df2ca43ab4d21f1dd25",
+        "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活，开源权重十月底放出",
+        "url": "https://x.com/Yuchenj_UW/status/2107466520851046886",
+        "source": "X：Yuchen Jin (@Yuchenj_UW)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_b2f138511a70",
+      "title": "Mistral 发布 Mistral Large 4：1T 参数多模态开源权重模型，作者称性能不够惊艳",
+      "url": "https://x.com/omarsar0/status/2107484943953621127",
+      "primary_url": "https://x.com/omarsar0/status/2107484943953621127",
+      "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "c314f564cddc3a4193da60dac5a32dc26b1cb304",
+          "title": "Mistral 发布 Mistral Large 4：1T 参数多模态开源权重模型，作者称性能不够惊艳",
+          "url": "https://x.com/omarsar0/status/2107484943953621127",
+          "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T14:55:40Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Elvis Saravia (@omarsar0, DAIR.AI)"
+      ],
+      "items": [
+        {
+          "id": "c314f564cddc3a4193da60dac5a32dc26b1cb304",
+          "title": "Mistral 发布 Mistral Large 4：1T 参数多模态开源权重模型，作者称性能不够惊艳",
+          "url": "https://x.com/omarsar0/status/2107484943953621127",
+          "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T14:55:40Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7523,
+      "importance": 0.7523,
+      "importance_score": 0.7523,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.68,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9819,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-06T14:55:40Z",
+      "latest_at": "2026-10-06T14:55:40Z",
+      "primary_item": {
+        "id": "c314f564cddc3a4193da60dac5a32dc26b1cb304",
+        "title": "Mistral 发布 Mistral Large 4：1T 参数多模态开源权重模型，作者称性能不够惊艳",
+        "url": "https://x.com/omarsar0/status/2107484943953621127",
+        "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_bdae67cfc7e8",
+      "title": "DeepSeek V4.1 Flash 在 ARC-AGI (Verified) 评测中的成绩公布",
+      "url": "https://x.com/arcprize/status/2107491194007585239",
+      "primary_url": "https://x.com/arcprize/status/2107491194007585239",
+      "source": "X：ARC Prize (@arcprize)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "ada926462a325cd9fc30810db5f960c8b658e641",
+          "title": "DeepSeek V4.1 Flash 在 ARC-AGI (Verified) 评测中的成绩公布",
+          "url": "https://x.com/arcprize/status/2107491194007585239",
+          "source": "X：ARC Prize (@arcprize)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T15:20:30Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：ARC Prize (@arcprize)"
+      ],
+      "items": [
+        {
+          "id": "ada926462a325cd9fc30810db5f960c8b658e641",
+          "title": "DeepSeek V4.1 Flash 在 ARC-AGI (Verified) 评测中的成绩公布",
+          "url": "https://x.com/arcprize/status/2107491194007585239",
+          "source": "X：ARC Prize (@arcprize)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T15:20:30Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7504,
+      "importance": 0.7504,
+      "importance_score": 0.7504,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.67,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9878,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-06T15:20:30Z",
+      "latest_at": "2026-10-06T15:20:30Z",
+      "primary_item": {
+        "id": "ada926462a325cd9fc30810db5f960c8b658e641",
+        "title": "DeepSeek V4.1 Flash 在 ARC-AGI (Verified) 评测中的成绩公布",
+        "url": "https://x.com/arcprize/status/2107491194007585239",
+        "source": "X：ARC Prize (@arcprize)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_4624de961f64",
+      "title": "Mistral Large 4 上线 Arena 的 Agent Arena 与 Code Arena 评测",
+      "url": "https://x.com/arena/status/2107476436223504484",
+      "primary_url": "https://x.com/arena/status/2107476436223504484",
+      "source": "X：Arena (@arena)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "bff3f1ce265e017e2e8c5d6372d84e46c5213079",
+          "title": "Mistral Large 4 上线 Arena 的 Agent Arena 与 Code Arena 评测",
+          "url": "https://x.com/arena/status/2107476436223504484",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T14:21:52Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Arena (@arena)"
+      ],
+      "items": [
+        {
+          "id": "bff3f1ce265e017e2e8c5d6372d84e46c5213079",
+          "title": "Mistral Large 4 上线 Arena 的 Agent Arena 与 Code Arena 评测",
+          "url": "https://x.com/arena/status/2107476436223504484",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T14:21:52Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7479,
+      "importance": 0.7479,
+      "importance_score": 0.7479,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.67,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.974,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-06T14:21:52Z",
+      "latest_at": "2026-10-06T14:21:52Z",
+      "primary_item": {
+        "id": "bff3f1ce265e017e2e8c5d6372d84e46c5213079",
+        "title": "Mistral Large 4 上线 Arena 的 Agent Arena 与 Code Arena 评测",
+        "url": "https://x.com/arena/status/2107476436223504484",
+        "source": "X：Arena (@arena)",
         "source_name": "AI HOT"
       }
     },
@@ -333,21 +1022,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7508,
-      "importance": 0.7508,
-      "importance_score": 0.7508,
+      "score": 0.7354,
+      "importance": 0.7354,
+      "importance_score": 0.7354,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9068,
+        "recency": 0.821,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-06T02:31:56Z",
       "latest_at": "2026-10-06T02:31:56Z",
@@ -356,66 +1044,6 @@
         "title": "卡兹克解读 A16Z 两份 AI 报告：AI 使用很广但用得还浅，头部 1% 用户月均花 903 美元",
         "url": "https://x.com/Khazix0918/status/2107297777583825359",
         "source": "X：卡兹克 (@Khazix0918)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_deeb3d35a36b",
-      "title": "Wikimedia 基金会发现 OpenAI \"流氓\"智能体在维基媒体平台上的活动",
-      "url": "https://diff.wikimedia.org/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects",
-      "primary_url": "https://diff.wikimedia.org/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects",
-      "source": "Hacker News：AI 热帖",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "603a1628201cc8ad31d36feed0296ac4d2fca96f",
-          "title": "Wikimedia 基金会发现 OpenAI \"流氓\"智能体在维基媒体平台上的活动",
-          "url": "https://diff.wikimedia.org/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-05T17:53:35Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Hacker News：AI 热帖"
-      ],
-      "items": [
-        {
-          "id": "603a1628201cc8ad31d36feed0296ac4d2fca96f",
-          "title": "Wikimedia 基金会发现 OpenAI \"流氓\"智能体在维基媒体平台上的活动",
-          "url": "https://diff.wikimedia.org/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-05T17:53:35Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7497,
-      "importance": 0.7497,
-      "importance_score": 0.7497,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.78,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8004,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-05T17:53:35Z",
-      "latest_at": "2026-10-05T17:53:35Z",
-      "primary_item": {
-        "id": "603a1628201cc8ad31d36feed0296ac4d2fca96f",
-        "title": "Wikimedia 基金会发现 OpenAI \"流氓\"智能体在维基媒体平台上的活动",
-        "url": "https://diff.wikimedia.org/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects",
-        "source": "Hacker News：AI 热帖",
         "source_name": "AI HOT"
       }
     },
@@ -454,15 +1082,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7737,
-      "importance": 0.7737,
-      "importance_score": 0.7737,
+      "score": 0.7575,
+      "importance": 0.7575,
+      "importance_score": 0.7575,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9504,
+        "recency": 0.8605,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -515,15 +1143,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7424,
-      "importance": 0.7424,
-      "importance_score": 0.7424,
+      "score": 0.726,
+      "importance": 0.726,
+      "importance_score": 0.726,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9599,
+        "recency": 0.8691,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -541,81 +1169,21 @@
       }
     },
     {
-      "story_id": "story_ebdbe868a594",
-      "title": "SemiAnalysis 测算：Anthropic 订阅的 API 等价价值约为 OpenAI 的 5 倍以上",
-      "url": "https://newsletter.semianalysis.com/p/anthropic-subscriptions-offer-5x",
-      "primary_url": "https://newsletter.semianalysis.com/p/anthropic-subscriptions-offer-5x",
-      "source": "SemiAnalysis 长文 RSS（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "b906c87e1be812fa3e77f08e9b3992962674d815",
-          "title": "SemiAnalysis 测算：Anthropic 订阅的 API 等价价值约为 OpenAI 的 5 倍以上",
-          "url": "https://newsletter.semianalysis.com/p/anthropic-subscriptions-offer-5x",
-          "source": "SemiAnalysis 长文 RSS（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-05T20:01:09Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "SemiAnalysis 长文 RSS（RSS）"
-      ],
-      "items": [
-        {
-          "id": "b906c87e1be812fa3e77f08e9b3992962674d815",
-          "title": "SemiAnalysis 测算：Anthropic 订阅的 API 等价价值约为 OpenAI 的 5 倍以上",
-          "url": "https://newsletter.semianalysis.com/p/anthropic-subscriptions-offer-5x",
-          "source": "SemiAnalysis 长文 RSS（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-05T20:01:09Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7332,
-      "importance": 0.7332,
-      "importance_score": 0.7332,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8254,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-05T20:01:09Z",
-      "latest_at": "2026-10-05T20:01:09Z",
-      "primary_item": {
-        "id": "b906c87e1be812fa3e77f08e9b3992962674d815",
-        "title": "SemiAnalysis 测算：Anthropic 订阅的 API 等价价值约为 OpenAI 的 5 倍以上",
-        "url": "https://newsletter.semianalysis.com/p/anthropic-subscriptions-offer-5x",
-        "source": "SemiAnalysis 长文 RSS（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_7755a74cf752",
-      "title": "Google 让 Google Drive 和 Google Docs 原生支持 Markdown 文件",
-      "url": "https://x.com/testingcatalog/status/2107376863039402058",
-      "primary_url": "https://x.com/testingcatalog/status/2107376863039402058",
+      "story_id": "story_8d8aa45205dd",
+      "title": "Mistral 发布 1T 参数开源权重模型 Mistral Large 4 \"Le Chonk\"",
+      "url": "https://x.com/testingcatalog/status/2107458562825802143",
+      "primary_url": "https://x.com/testingcatalog/status/2107458562825802143",
       "source": "X：Testing Catalog (@testingcatalog)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "466f5e09dd1c2cd6c573b0210c5713e7c55ca52b",
-          "title": "Google 让 Google Drive 和 Google Docs 原生支持 Markdown 文件",
-          "url": "https://x.com/testingcatalog/status/2107376863039402058",
+          "id": "336d0953039a38c18a95c05551075b56f3aa3766",
+          "title": "Mistral 发布 1T 参数开源权重模型 Mistral Large 4 \"Le Chonk\"",
+          "url": "https://x.com/testingcatalog/status/2107458562825802143",
           "source": "X：Testing Catalog (@testingcatalog)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-06T07:46:11Z"
+          "published_at": "2026-10-06T13:10:50Z"
         }
       ],
       "source_count": 1,
@@ -624,857 +1192,160 @@
       ],
       "items": [
         {
-          "id": "466f5e09dd1c2cd6c573b0210c5713e7c55ca52b",
-          "title": "Google 让 Google Drive 和 Google Docs 原生支持 Markdown 文件",
-          "url": "https://x.com/testingcatalog/status/2107376863039402058",
+          "id": "336d0953039a38c18a95c05551075b56f3aa3766",
+          "title": "Mistral 发布 1T 参数开源权重模型 Mistral Large 4 \"Le Chonk\"",
+          "url": "https://x.com/testingcatalog/status/2107458562825802143",
           "source": "X：Testing Catalog (@testingcatalog)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-06T07:46:11Z"
+          "published_at": "2026-10-06T13:10:50Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7276,
-      "importance": 0.7276,
-      "importance_score": 0.7276,
+      "score": 0.7509,
+      "importance": 0.7509,
+      "importance_score": 0.7509,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.6,
+        "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.978,
+        "recency": 0.9575,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance"
+        "high_ai_relevance",
+        "high_importance"
       ],
-      "earliest_at": "2026-10-06T07:46:11Z",
-      "latest_at": "2026-10-06T07:46:11Z",
+      "earliest_at": "2026-10-06T13:10:50Z",
+      "latest_at": "2026-10-06T13:10:50Z",
       "primary_item": {
-        "id": "466f5e09dd1c2cd6c573b0210c5713e7c55ca52b",
-        "title": "Google 让 Google Drive 和 Google Docs 原生支持 Markdown 文件",
-        "url": "https://x.com/testingcatalog/status/2107376863039402058",
+        "id": "336d0953039a38c18a95c05551075b56f3aa3766",
+        "title": "Mistral 发布 1T 参数开源权重模型 Mistral Large 4 \"Le Chonk\"",
+        "url": "https://x.com/testingcatalog/status/2107458562825802143",
         "source": "X：Testing Catalog (@testingcatalog)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_87c57be8b705",
-      "title": "OpenAI 将 ChatGPT Auto-review 免费开放给所有 ChatGPT 账号用户",
-      "url": "https://x.com/testingcatalog/status/2107371974540382697",
-      "primary_url": "https://x.com/testingcatalog/status/2107371974540382697",
-      "source": "X：Testing Catalog (@testingcatalog)",
+      "story_id": "story_deeb3d35a36b",
+      "title": "Wikimedia 基金会发现 OpenAI \"流氓\"智能体在维基媒体平台上的活动",
+      "url": "https://diff.wikimedia.org/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects",
+      "primary_url": "https://diff.wikimedia.org/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects",
+      "source": "Hacker News：AI 热帖",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "e2106b7e49a6259e00b8a63ecbff8b2990eddcc8",
-          "title": "OpenAI 将 ChatGPT Auto-review 免费开放给所有 ChatGPT 账号用户",
-          "url": "https://x.com/testingcatalog/status/2107371974540382697",
-          "source": "X：Testing Catalog (@testingcatalog)",
+          "id": "603a1628201cc8ad31d36feed0296ac4d2fca96f",
+          "title": "Wikimedia 基金会发现 OpenAI \"流氓\"智能体在维基媒体平台上的活动",
+          "url": "https://diff.wikimedia.org/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects",
+          "source": "Hacker News：AI 热帖",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-06T07:26:46Z"
+          "published_at": "2026-10-05T17:53:35Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Testing Catalog (@testingcatalog)"
+        "Hacker News：AI 热帖"
       ],
       "items": [
         {
-          "id": "e2106b7e49a6259e00b8a63ecbff8b2990eddcc8",
-          "title": "OpenAI 将 ChatGPT Auto-review 免费开放给所有 ChatGPT 账号用户",
-          "url": "https://x.com/testingcatalog/status/2107371974540382697",
-          "source": "X：Testing Catalog (@testingcatalog)",
+          "id": "603a1628201cc8ad31d36feed0296ac4d2fca96f",
+          "title": "Wikimedia 基金会发现 OpenAI \"流氓\"智能体在维基媒体平台上的活动",
+          "url": "https://diff.wikimedia.org/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects",
+          "source": "Hacker News：AI 热帖",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-06T07:26:46Z"
+          "published_at": "2026-10-05T17:53:35Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7268,
-      "importance": 0.7268,
-      "importance_score": 0.7268,
+      "score": 0.736,
+      "importance": 0.736,
+      "importance_score": 0.736,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.6,
+        "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9735,
+        "recency": 0.7247,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-06T07:26:46Z",
-      "latest_at": "2026-10-06T07:26:46Z",
+      "earliest_at": "2026-10-05T17:53:35Z",
+      "latest_at": "2026-10-05T17:53:35Z",
       "primary_item": {
-        "id": "e2106b7e49a6259e00b8a63ecbff8b2990eddcc8",
-        "title": "OpenAI 将 ChatGPT Auto-review 免费开放给所有 ChatGPT 账号用户",
-        "url": "https://x.com/testingcatalog/status/2107371974540382697",
-        "source": "X：Testing Catalog (@testingcatalog)",
+        "id": "603a1628201cc8ad31d36feed0296ac4d2fca96f",
+        "title": "Wikimedia 基金会发现 OpenAI \"流氓\"智能体在维基媒体平台上的活动",
+        "url": "https://diff.wikimedia.org/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects",
+        "source": "Hacker News：AI 热帖",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_60594606700a",
-      "title": "Wikimedia 称与 OpenAI 相关的智能体可能致 Wikidata 查询服务部分中断",
-      "url": "https://x.com/rohanpaul_ai/status/2107315632199152099",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2107315632199152099",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "story_id": "story_89c1dbb6098e",
+      "title": "Ant Group 发布 Ling 3.1 Flash，Artificial Analysis 智能指数得分从 20 升至 41",
+      "url": "https://x.com/ArtificialAnlys/status/2107440860849901822",
+      "primary_url": "https://x.com/ArtificialAnlys/status/2107440860849901822",
+      "source": "X：Artificial Analysis (@ArtificialAnlys)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "8af36f051c8c6af6e1609bfe46174d0128becd8b",
-          "title": "Wikimedia 称与 OpenAI 相关的智能体可能致 Wikidata 查询服务部分中断",
-          "url": "https://x.com/rohanpaul_ai/status/2107315632199152099",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "18cd338c5208768b2d16d07cf7779c1e4f4b3231",
+          "title": "Ant Group 发布 Ling 3.1 Flash，Artificial Analysis 智能指数得分从 20 升至 41",
+          "url": "https://x.com/ArtificialAnlys/status/2107440860849901822",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-06T03:42:53Z"
+          "published_at": "2026-10-06T12:00:30Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
+        "X：Artificial Analysis (@ArtificialAnlys)"
       ],
       "items": [
         {
-          "id": "8af36f051c8c6af6e1609bfe46174d0128becd8b",
-          "title": "Wikimedia 称与 OpenAI 相关的智能体可能致 Wikidata 查询服务部分中断",
-          "url": "https://x.com/rohanpaul_ai/status/2107315632199152099",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "18cd338c5208768b2d16d07cf7779c1e4f4b3231",
+          "title": "Ant Group 发布 Ling 3.1 Flash，Artificial Analysis 智能指数得分从 20 升至 41",
+          "url": "https://x.com/ArtificialAnlys/status/2107440860849901822",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-06T03:42:53Z"
+          "published_at": "2026-10-06T12:00:30Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7386,
-      "importance": 0.7386,
-      "importance_score": 0.7386,
+      "score": 0.733,
+      "importance": 0.733,
+      "importance_score": 0.733,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.67,
+        "editorial": 0.64,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9224,
+        "recency": 0.9414,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-06T03:42:53Z",
-      "latest_at": "2026-10-06T03:42:53Z",
+      "earliest_at": "2026-10-06T12:00:30Z",
+      "latest_at": "2026-10-06T12:00:30Z",
       "primary_item": {
-        "id": "8af36f051c8c6af6e1609bfe46174d0128becd8b",
-        "title": "Wikimedia 称与 OpenAI 相关的智能体可能致 Wikidata 查询服务部分中断",
-        "url": "https://x.com/rohanpaul_ai/status/2107315632199152099",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_dd66acaed2a0",
-      "title": "OpenAI 发布 GPT-6.1 Sol，以约五分之一价格接近 GPT-6 Astra 智能",
-      "url": "https://openai.com/index/introducing-gpt-6-1-sol",
-      "primary_url": "https://openai.com/index/introducing-gpt-6-1-sol",
-      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "47a40eb569560f4024865e8c7e98e522a806b7e3",
-          "title": "OpenAI 发布 GPT-6.1 Sol：以五分之一价格提供接近 Astra 的智能",
-          "url": "https://x.com/OpenAI/status/2104986129686741046",
-          "source": "X：OpenAI (@OpenAI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:26:16Z"
-        },
-        {
-          "id": "12d0a4425111dfd06441f22f43a1a253d96d5d66",
-          "title": "OpenAI 发布 GPT-6.1 Sol，以约五分之一价格接近 GPT-6 Astra 智能",
-          "url": "https://openai.com/index/introducing-gpt-6-1-sol",
-          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:20:30.075000Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-        "X：OpenAI (@OpenAI)"
-      ],
-      "items": [
-        {
-          "id": "47a40eb569560f4024865e8c7e98e522a806b7e3",
-          "title": "OpenAI 发布 GPT-6.1 Sol：以五分之一价格提供接近 Astra 的智能",
-          "url": "https://x.com/OpenAI/status/2104986129686741046",
-          "source": "X：OpenAI (@OpenAI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:26:16Z"
-        },
-        {
-          "id": "12d0a4425111dfd06441f22f43a1a253d96d5d66",
-          "title": "OpenAI 发布 GPT-6.1 Sol，以约五分之一价格接近 GPT-6 Astra 智能",
-          "url": "https://openai.com/index/introducing-gpt-6-1-sol",
-          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T17:20:30.075000Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6725,
-      "importance": 0.6725,
-      "importance_score": 0.6725,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.86,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.0993,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-29T17:20:30.075000Z",
-      "latest_at": "2026-09-29T17:26:16Z",
-      "primary_item": {
-        "id": "12d0a4425111dfd06441f22f43a1a253d96d5d66",
-        "title": "OpenAI 发布 GPT-6.1 Sol，以约五分之一价格接近 GPT-6 Astra 智能",
-        "url": "https://openai.com/index/introducing-gpt-6-1-sol",
-        "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_a51e6459db17",
-      "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
-      "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
-      "primary_url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
-      "source": "TechCrunch：AI（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "498dc000c78d24ef9003ed81482127745fdc4a1b",
-          "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
-          "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
-          "source": "TechCrunch：AI（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T19:52:37Z"
-        },
-        {
-          "id": "64f8f8b1a6db2d38b4ac1067308170161f734910",
-          "title": "OpenAI 拟以约 1.4 万亿美元投前估值融资至少 300 亿美元",
-          "url": "https://x.com/rohanpaul_ai/status/2105017898343575731",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T19:32:30Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "TechCrunch：AI（RSS）",
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "498dc000c78d24ef9003ed81482127745fdc4a1b",
-          "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
-          "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
-          "source": "TechCrunch：AI（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T19:52:37Z"
-        },
-        {
-          "id": "64f8f8b1a6db2d38b4ac1067308170161f734910",
-          "title": "OpenAI 拟以约 1.4 万亿美元投前估值融资至少 300 亿美元",
-          "url": "https://x.com/rohanpaul_ai/status/2105017898343575731",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T19:32:30Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6641,
-      "importance": 0.6641,
-      "importance_score": 0.6641,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.83,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.103,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-29T19:32:30Z",
-      "latest_at": "2026-09-29T19:52:37Z",
-      "primary_item": {
-        "id": "498dc000c78d24ef9003ed81482127745fdc4a1b",
-        "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
-        "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
-        "source": "TechCrunch：AI（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_b6574943f04d",
-      "title": "李飞飞宣布 World Labs 并入 AMD，出任执行副总裁兼首席科学家",
-      "url": "https://x.com/drfeifei/status/2104664403681632453",
-      "primary_url": "https://x.com/drfeifei/status/2104664403681632453",
-      "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "6bcd7aeaee889c6476b5f41a42fcb9717e861233",
-          "title": "Fei-Fei Li 谈空间智能与 World Labs",
-          "url": "https://x.com/drfeifei/status/2104664403681632453",
-          "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T20:07:51Z"
-        },
-        {
-          "id": "5259641aa1ebda417008afc1e93bb9ebff128d1d",
-          "title": "李飞飞宣布 World Labs 并入 AMD，出任执行副总裁兼首席科学家",
-          "url": "https://x.com/drfeifei/status/2104664403681632453",
-          "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T20:07:51Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "X：Fei-Fei Li (@drfeifei, World Labs)"
-      ],
-      "items": [
-        {
-          "id": "6bcd7aeaee889c6476b5f41a42fcb9717e861233",
-          "title": "Fei-Fei Li 谈空间智能与 World Labs",
-          "url": "https://x.com/drfeifei/status/2104664403681632453",
-          "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T20:07:51Z"
-        },
-        {
-          "id": "5259641aa1ebda417008afc1e93bb9ebff128d1d",
-          "title": "李飞飞宣布 World Labs 并入 AMD，出任执行副总裁兼首席科学家",
-          "url": "https://x.com/drfeifei/status/2104664403681632453",
-          "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T20:07:51Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6528,
-      "importance": 0.6528,
-      "importance_score": 0.6528,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.81,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.0731,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-28T20:07:51Z",
-      "latest_at": "2026-09-28T20:07:51Z",
-      "primary_item": {
-        "id": "5259641aa1ebda417008afc1e93bb9ebff128d1d",
-        "title": "李飞飞宣布 World Labs 并入 AMD，出任执行副总裁兼首席科学家",
-        "url": "https://x.com/drfeifei/status/2104664403681632453",
-        "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_de35e53397fa",
-      "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
-      "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
-      "primary_url": "https://x.com/ClaudeDevs/status/2104641318555353400",
-      "source": "X：Claude Devs (@ClaudeDevs)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "b719f447f05f438014ff5f0f328dcac723f043ef",
-          "title": "Claude Sonnet 5.5 发布：比 Sonnet 5 快 30% 以上，多数工作成本降低至多 30%",
-          "url": "https://x.com/trq212/status/2104660926373023830",
-          "source": "X：Thariq (@trq212)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T19:54:02Z"
-        },
-        {
-          "id": "174b8f3b0886c612fa58740af5b9afabfa805433",
-          "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
-          "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
-          "source": "X：Claude Devs (@ClaudeDevs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T18:36:07Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "X：Claude Devs (@ClaudeDevs)",
-        "X：Thariq (@trq212)"
-      ],
-      "items": [
-        {
-          "id": "b719f447f05f438014ff5f0f328dcac723f043ef",
-          "title": "Claude Sonnet 5.5 发布：比 Sonnet 5 快 30% 以上，多数工作成本降低至多 30%",
-          "url": "https://x.com/trq212/status/2104660926373023830",
-          "source": "X：Thariq (@trq212)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T19:54:02Z"
-        },
-        {
-          "id": "174b8f3b0886c612fa58740af5b9afabfa805433",
-          "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
-          "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
-          "source": "X：Claude Devs (@ClaudeDevs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T18:36:07Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6465,
-      "importance": 0.6465,
-      "importance_score": 0.6465,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.79,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.0715,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-28T18:36:07Z",
-      "latest_at": "2026-09-28T19:54:02Z",
-      "primary_item": {
-        "id": "174b8f3b0886c612fa58740af5b9afabfa805433",
-        "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
-        "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
-        "source": "X：Claude Devs (@ClaudeDevs)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_1e36a2c9ce6e",
-      "title": "Nvidia 据报重新设计 AI 算力合作协议，以云收入分成取代租赁担保",
-      "url": "https://x.com/rohanpaul_ai/status/2107316587585998892",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2107316587585998892",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "7a52327f5c7c458b58ab18b5d45d4e940fdb76c8",
-          "title": "Nvidia 据报重新设计 AI 算力合作协议，以云收入分成取代租赁担保",
-          "url": "https://x.com/rohanpaul_ai/status/2107316587585998892",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T03:46:41Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "7a52327f5c7c458b58ab18b5d45d4e940fdb76c8",
-          "title": "Nvidia 据报重新设计 AI 算力合作协议，以云收入分成取代租赁担保",
-          "url": "https://x.com/rohanpaul_ai/status/2107316587585998892",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T03:46:41Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7358,
-      "importance": 0.7358,
-      "importance_score": 0.7358,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9232,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-06T03:46:41Z",
-      "latest_at": "2026-10-06T03:46:41Z",
-      "primary_item": {
-        "id": "7a52327f5c7c458b58ab18b5d45d4e940fdb76c8",
-        "title": "Nvidia 据报重新设计 AI 算力合作协议，以云收入分成取代租赁担保",
-        "url": "https://x.com/rohanpaul_ai/status/2107316587585998892",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_32987b893b11",
-      "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna",
-      "url": "https://x.com/ZHO_ZHO_ZHO/status/2102472026103701697",
-      "primary_url": "https://x.com/ZHO_ZHO_ZHO/status/2102472026103701697",
-      "source": "X：ZHO (@ZHO_ZHO_ZHO)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "08d6a4eccc592bceb0136949d5b1056face35885",
-          "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna",
-          "url": "https://x.com/ZHO_ZHO_ZHO/status/2102472026103701697",
-          "source": "X：ZHO (@ZHO_ZHO_ZHO)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T18:56:07Z"
-        },
-        {
-          "id": "627183fea497e20b013134dcb87575aac641fe00",
-          "title": "OpenAI 推出 GPT-6 Sol 与 Luna",
-          "url": "https://x.com/testingcatalog/status/2102459873518866788",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T18:07:50Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "X：Testing Catalog (@testingcatalog)",
-        "X：ZHO (@ZHO_ZHO_ZHO)"
-      ],
-      "items": [
-        {
-          "id": "08d6a4eccc592bceb0136949d5b1056face35885",
-          "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna",
-          "url": "https://x.com/ZHO_ZHO_ZHO/status/2102472026103701697",
-          "source": "X：ZHO (@ZHO_ZHO_ZHO)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T18:56:07Z"
-        },
-        {
-          "id": "627183fea497e20b013134dcb87575aac641fe00",
-          "title": "OpenAI 推出 GPT-6 Sol 与 Luna",
-          "url": "https://x.com/testingcatalog/status/2102459873518866788",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T18:07:50Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6442,
-      "importance": 0.6442,
-      "importance_score": 0.6442,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.82,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.009,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-22T18:07:50Z",
-      "latest_at": "2026-09-22T18:56:07Z",
-      "primary_item": {
-        "id": "08d6a4eccc592bceb0136949d5b1056face35885",
-        "title": "OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna",
-        "url": "https://x.com/ZHO_ZHO_ZHO/status/2102472026103701697",
-        "source": "X：ZHO (@ZHO_ZHO_ZHO)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_538f54c6d36d",
-      "title": "Claude Opus 5.5 与 GPT-6 Sol/Luna 发布，Simon Willison 详解新一轮价格战",
-      "url": "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna",
-      "primary_url": "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna",
-      "source": "Simon Willison 博客",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "9204435b1d9bad52b3dc5a56fedd93081b256c33",
-          "title": "Claude Opus 5.5 与 GPT-6 Sol/Luna 发布，Simon Willison 详解新一轮价格战",
-          "url": "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna",
-          "source": "Simon Willison 博客",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T23:46:41Z"
-        },
-        {
-          "id": "bd0a0bf3e2be49cb1c8f2d7f045433b0b176afa8",
-          "title": "Claude Opus 5.5 与 GPT-6 Sol 3D 场景对比",
-          "url": "https://x.com/testingcatalog/status/2102523754186256535",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T22:21:40Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "Simon Willison 博客",
-        "X：Testing Catalog (@testingcatalog)"
-      ],
-      "items": [
-        {
-          "id": "9204435b1d9bad52b3dc5a56fedd93081b256c33",
-          "title": "Claude Opus 5.5 与 GPT-6 Sol/Luna 发布，Simon Willison 详解新一轮价格战",
-          "url": "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna",
-          "source": "Simon Willison 博客",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T23:46:41Z"
-        },
-        {
-          "id": "bd0a0bf3e2be49cb1c8f2d7f045433b0b176afa8",
-          "title": "Claude Opus 5.5 与 GPT-6 Sol 3D 场景对比",
-          "url": "https://x.com/testingcatalog/status/2102523754186256535",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T22:21:40Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6413,
-      "importance": 0.6413,
-      "importance_score": 0.6413,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.81,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.0096,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-22T22:21:40Z",
-      "latest_at": "2026-09-22T23:46:41Z",
-      "primary_item": {
-        "id": "9204435b1d9bad52b3dc5a56fedd93081b256c33",
-        "title": "Claude Opus 5.5 与 GPT-6 Sol/Luna 发布，Simon Willison 详解新一轮价格战",
-        "url": "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna",
-        "source": "Simon Willison 博客",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_47e282dcbada",
-      "title": "Artificial Analysis 评测 GPT-6 Sol 和 Luna：成本减半但各评测有升有降",
-      "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
-      "primary_url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
-      "source": "Artificial Analysis 完整文章（网页）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "33185a5093da65164f7e9f903f5d8a83628b7089",
-          "title": "Artificial Analysis 评测 GPT-6 Sol 和 Luna：成本减半但各评测有升有降",
-          "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
-          "source": "Artificial Analysis 完整文章（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T19:41:37.417000Z"
-        },
-        {
-          "id": "9c44ffadebcbfee1ad5f9f81a9af1f43ea951fe1",
-          "title": "Artificial Analysis 评测 GPT-6 Sol 和 Luna：价格减半但各项表现有升有降",
-          "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
-          "source": "Artificial Analysis 完整文章（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T16:00:00Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "Artificial Analysis 完整文章（网页）"
-      ],
-      "items": [
-        {
-          "id": "33185a5093da65164f7e9f903f5d8a83628b7089",
-          "title": "Artificial Analysis 评测 GPT-6 Sol 和 Luna：成本减半但各评测有升有降",
-          "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
-          "source": "Artificial Analysis 完整文章（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T19:41:37.417000Z"
-        },
-        {
-          "id": "9c44ffadebcbfee1ad5f9f81a9af1f43ea951fe1",
-          "title": "Artificial Analysis 评测 GPT-6 Sol 和 Luna：价格减半但各项表现有升有降",
-          "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
-          "source": "Artificial Analysis 完整文章（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-21T16:00:00Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6412,
-      "importance": 0.6412,
-      "importance_score": 0.6412,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.81,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.0091,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-21T16:00:00Z",
-      "latest_at": "2026-09-22T19:41:37.417000Z",
-      "primary_item": {
-        "id": "33185a5093da65164f7e9f903f5d8a83628b7089",
-        "title": "Artificial Analysis 评测 GPT-6 Sol 和 Luna：成本减半但各评测有升有降",
-        "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
-        "source": "Artificial Analysis 完整文章（网页）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_93c35a6c2a7e",
-      "title": "Anthropic 发布 Claude Sonnet 5.5：比 Sonnet 5 快超 30% 且成本最多降 30%",
-      "url": "https://x.com/dongxi_nlp/status/2104634260934054237",
-      "primary_url": "https://x.com/dongxi_nlp/status/2104634260934054237",
-      "source": "X：马东锡 NLP (@dongxi_nlp)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "96722744e37e42d234a3ebce1480e63a7325506e",
-          "title": "Anthropic 发布 Claude Sonnet 5.5：比 Sonnet 5 快超 30% 且成本最多降 30%",
-          "url": "https://x.com/dongxi_nlp/status/2104634260934054237",
-          "source": "X：马东锡 NLP (@dongxi_nlp)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T18:08:04Z"
-        },
-        {
-          "id": "28c51564d01537f0b3ae0aa8adc42896a54998c6",
-          "title": "Anthropic 发布 Claude Sonnet 5.5，速度比 Sonnet 5 快超 30%",
-          "url": "https://www.youtube.com/shorts/u-3cPWPvRUE",
-          "source": "Claude：YouTube（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T18:04:08Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "Claude：YouTube（RSS）",
-        "X：马东锡 NLP (@dongxi_nlp)"
-      ],
-      "items": [
-        {
-          "id": "96722744e37e42d234a3ebce1480e63a7325506e",
-          "title": "Anthropic 发布 Claude Sonnet 5.5：比 Sonnet 5 快超 30% 且成本最多降 30%",
-          "url": "https://x.com/dongxi_nlp/status/2104634260934054237",
-          "source": "X：马东锡 NLP (@dongxi_nlp)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T18:08:04Z"
-        },
-        {
-          "id": "28c51564d01537f0b3ae0aa8adc42896a54998c6",
-          "title": "Anthropic 发布 Claude Sonnet 5.5，速度比 Sonnet 5 快超 30%",
-          "url": "https://www.youtube.com/shorts/u-3cPWPvRUE",
-          "source": "Claude：YouTube（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T18:04:08Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6374,
-      "importance": 0.6374,
-      "importance_score": 0.6374,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.76,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.071,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-28T18:04:08Z",
-      "latest_at": "2026-09-28T18:08:04Z",
-      "primary_item": {
-        "id": "96722744e37e42d234a3ebce1480e63a7325506e",
-        "title": "Anthropic 发布 Claude Sonnet 5.5：比 Sonnet 5 快超 30% 且成本最多降 30%",
-        "url": "https://x.com/dongxi_nlp/status/2104634260934054237",
-        "source": "X：马东锡 NLP (@dongxi_nlp)",
+        "id": "18cd338c5208768b2d16d07cf7779c1e4f4b3231",
+        "title": "Ant Group 发布 Ling 3.1 Flash，Artificial Analysis 智能指数得分从 20 升至 41",
+        "url": "https://x.com/ArtificialAnlys/status/2107440860849901822",
+        "source": "X：Artificial Analysis (@ArtificialAnlys)",
         "source_name": "AI HOT"
       }
     }
