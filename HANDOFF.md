@@ -2,12 +2,12 @@
 
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，完整状态在 `PROJECT_STATE.md`。
 
-## 推特栏 + AI HOT 精选拆栏（2026-09-15，已验收）
+## 抖音作品改读页面自己的列表（2026-10-06，已验收）
 
-- 同一 `siteId=aihot`。推特栏 = X 原文；AI HOT 栏 = `aihot_selected`。采集 `mode=selected` 再 `mode=all`。发布只藏「既不是 X、也不是精选」的旧噪音。
-- PR #61 已合 `master`（`e3fa3200`）。脚本戳 `aihot-split-0915a`。不要在本机改 `data/**`。
-- 工作台网页必须留下精选标记，单靠拆栏过滤不够：PR #123 修了 `parseItem`。NUC 工作台已快进。鸿蒙解析本来就留字段。2026-09-18 真机已装工作台调试包 `4e1396d`，用户确认有推特栏；AGC 未做。细节在工作台仓。
-- 本仓无活跃四文件。下一需求先读 PROJECT_STATE.md、CONTEXT.md、`docs/SOURCE_COVERAGE.md`。
+- 人看见的作品来自页面自己的请求。不要再发把这台 Windows 机器说成另一套浏览器的第二次请求，也不要把 `AutomationControlled` 加回启动参数。
+- 有页面时读 `/aweme/v1/web/aweme/post/`，列表项直接当详情。超时仍是 `douyin_risk_control`，留旧行，不要连跑，不要拆 Argus。
+- 功能 `a49c189`，合并 `d1a21844`。2026-10-06 09:20 北京那一班五个号都采全，桥接已推送。快照 `d4007f6` 已收下这份清单。
+- 本仓无活跃四文件。白字要等专用浏览器关掉重开才消失。下一需求先读 PROJECT_STATE.md 和 `CLAUDE.md`「抖音空号与 B 站动态空的禁区」。
 
 ## AI HOT 全部动态作未读收件箱（2026-09-14，已验收）
 
@@ -181,9 +181,9 @@
 
 ## 下一轮入口
 
-1. 当前无活跃四文件，无进行中功能窗口。新需求另开一轮。前端清理已上生产。
+1. 当前无活跃四文件，无进行中功能窗口。抖音页面读取已在 `master` `d1a21844`，生产 2026-10-06 09:20 那一班已通过。新需求另开一轮。
 2. 网站若再停更：先看 NUC `logs/auto-ff.log` 最后一行的 `reason`（`worktree_dirty` = 本机有人写了 `data/**`，`fetch_failed` = 网络），再比本地 `data/latest-24h-all.json` 与 `git show origin/master:data/latest-24h-all.json` 的 `generated_at`——**不要只看 `source-status.json`**，2026-09-11 它是新的而列表是旧的。云端是否在出数据看 `gh run list`（Update AI News Snapshot）。抖音单独停更时再看 `mediacrawler_douyin.collection_generated_at` 和 NUC `douyin-collect-status.json`，不要只看看板更新时间或计划任务 `LastTaskResult`。
-3. 下次油管两个号一起 404：看 `fetch_mode` / `keep_last_restored`，不要改频道地址、不要连跑快照。下次抖音某个号 `listed=0`：核对 `keep_last_restored` 和 3 秒重试，不要连跑补采。
+3. 下次油管两个号一起 404：看 `fetch_mode` / `keep_last_restored`，不要改频道地址、不要连跑快照。下次抖音某个号 `listed=0`：先确认走的是页面自己的作品列表，再核对 `keep_last_restored` 和 3 秒重试，不要连跑补采。
 4. NUC SSH 连不上时，先核对当前 IP / WiFi，不要沿用旧 HostName。
 5. 改采集会话重试或源预算前，读 `CLAUDE.md`「GitHub Actions 采集超时的禁区」。改油管 RSS 前读「油管 RSS 抽风的禁区」。改抖音空号/B站备用前，读「抖音空号与 B 站动态空的禁区」。
 6. 改历史清理逻辑前，读 `CLAUDE.md`「清理历史条目的禁区」。改线上同步前，恢复工作区只用 `git restore`。

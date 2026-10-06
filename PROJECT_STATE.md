@@ -1,14 +1,14 @@
 # PROJECT_STATE
 
-## 推特栏 + AI HOT 精选拆栏（2026-09-15，已部署并验收）
+## 抖音作品改读页面自己的列表（2026-10-06，已部署并验收）
 
-- **做了什么**：同一 `siteId=aihot` 拆成推特（X 原文）和 AI HOT（`mode=selected` 每日精选）。采集先 `selected` 再 `all`；发布留下 X 或精选。不要用 `/dailies`，不要按源名 `X：` 认推特。
-- **Git**：PR #61 合 `master` `e3fa3200`（功能 tip `74d21612`）。页面脚本戳 `aihot-split-0915a`。随后数据快照继续快进。不要在本机改 `data/**`。
-- **工作台同轮**：拆栏 PR #121 合 `main` `951a688`；网页 `parseItem` 丢精选标记后 PR #123 合 `main` `cbb7496`。NUC `C:\OMNIA\app` 已快进到 `cbb7496`，未重启 8765。细节在工作台仓。
-- **验收**：实现时相关 pytest 与 `npm run test:e2e` 已跑。生产快照约 516 条：推特 388、精选 14。用户先在独立雷达站看见拆栏，后在正式工作台确认「ok正常了」。
-- **当前无本轮四文件**。轻量拆栏，无四文件归档。
-- **未做**：采集频率仍是整轮 Actions `7,37 * * * *`，不是这两个栏单独的日更。AGC 正式发布未做。
-- **真机（2026-09-18）**：Mate X6 已覆盖安装工作台调试包 `OMNIA-1.0.6-main-4e1396d-debug.hap`，用户确认原生列表有推特 / AI HOT。网页刷新到不了 App。细节在工作台仓。
+- **现象**：网页抖音从 2026-10-03 08:17 北京起没有新内容。计划任务在跑，登录还在，五个号的主页都通，作品列表被标成 `douyin_risk_control`，桥接不覆盖。
+- **根因**：人看见的作品来自浏览器自己的请求。采集又在浏览器外发了一次，并把这台 Windows 机器说成 Mac Chrome。这次请求被拦。启动参数里的 `AutomationControlled` 只是页面顶上的白字，不是列表为空的原因。
+- **修法**：有页面时只读页面自己的 `/aweme/v1/web/aweme/post/`，列表项直接当详情。去掉该启动参数。没有页面时仍走原来的请求。超时仍是 `douyin_risk_control`，留旧行规则不变。不拆 Argus，不加账号池。
+- **Git**：功能 `a49c189`，合并 `d1a21844`，已在 `master`。本地 `master` 随后快进到快照 `d4007f6`。NUC `C:\AI-news-reader\ai-news-radar-run` 已含该修法。
+- **验收**：2026-10-06 09:17 北京触发一次 `DouyinCollectAndPush`，09:20 结束：`state=succeeded`，`stage=completed_pushed`，`login_state=logged_in`。五个创作者都是 `completed`，每人 listed 10、written 10、missing 0。追加 50 行，其中 6 条是新作品，桥接已推送。`manifest.json` 的 `generated_at` 为 `2026-10-06T01:19:57Z`。失败日志没有新行。快照 `d4007f6` 里 `mediacrawler_douyin` 为 `ok=true`、`partial=false`、`item_count=50`，`collection_generated_at` 与这份清单相同。
+- **当前无活跃 SPEC/PLAN/TASK/TEST**。轻量热修，无四文件。
+- **未做**：已经开着的浏览器仍是旧启动，顶上白字要关掉重开才消失。不要为白字或补一条连跑采集。
 
 ## AI HOT 全部动态作未读收件箱（2026-09-14，已部署并验收）
 

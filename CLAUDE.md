@@ -106,6 +106,7 @@ job 上限 15 分钟。见 `docs/bugs/BUG-03-GitHub采集卡满15分钟整轮停
 1. 单个号 `listed=0` / `douyin_risk_control` 时，不要当成号消失或整轮失败。发布前把上一轮好行补回；空号只允许隔 3 秒再试一次。
 2. 不要为补一条连续重跑 `DouyinCollectAndPush`，不要拆 Argus，不要加账号池，除非用户另开一轮。
 3. B 站 cookie 动态和公开 opus 都空时，走空间投稿 `/x/space/wbi/arc/search`，`fetch_mode=space_video_fallback`。不要把动态空当成账号失败。
+4. 有浏览器页面时，作品列表只认页面自己的 `/aweme/v1/web/aweme/post/` 响应，列表项直接当详情。不要再发把这台机器说成另一套浏览器的第二次请求。不要把 `--disable-blink-features=AutomationControlled` 加回启动参数。页面超时仍是 `douyin_risk_control`，第 1 条的留旧行规则不变。见 `master` `d1a21844`。
 
 ### 采集窗挪位的禁区
 
