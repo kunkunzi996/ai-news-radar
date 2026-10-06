@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T16:11:28.987307Z",
+  "generated_at": "2026-10-06T21:09:35.034736Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -149,15 +149,15 @@
       ],
       "item_count": 7,
       "duplicate_count": 7,
-      "score": 0.8277,
-      "importance": 0.8277,
-      "importance_score": 0.8277,
+      "score": 0.8178,
+      "importance": 0.8178,
+      "importance_score": 0.8178,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7949,
+        "recency": 0.7399,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -173,6 +173,228 @@
         "title": "卡兹克解读A16Z两份AI报告，AI使用广但付费和深度仍小众",
         "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686876&idx=1&sn=55c719c9dded44507dbd2a000a2ec5a7",
         "source": "公众号：数字生命卡兹克",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_bcb2617028fc",
+      "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
+      "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
+      "primary_url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
+      "source": "Google DeepMind：Blog（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "dafa76d6b8e020f913333e4744d7297aeb9f0f9d",
+          "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
+          "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
+          "source": "Google DeepMind：Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T19:57:04Z"
+        },
+        {
+          "id": "487f0f1c5dd5571b6871c2ed74bea06ce32bde92",
+          "title": "Google 发布 740M 参数多模态嵌入模型 EmbeddingGemma 2",
+          "url": "https://x.com/Google/status/2107505123941376129",
+          "source": "X：Google (@Google)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T16:15:51Z"
+        },
+        {
+          "id": "d318911354a347d0529787e3cff001fcb2f2a347",
+          "title": "Google 发布开源多模态嵌入模型 EmbeddingGemma 2",
+          "url": "https://x.com/sundarpichai/status/2107501975671890211",
+          "source": "X：Sundar Pichai (@sundarpichai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T16:03:21Z"
+        }
+      ],
+      "source_count": 3,
+      "source_names": [
+        "Google DeepMind：Blog（RSS）",
+        "X：Google (@Google)",
+        "X：Sundar Pichai (@sundarpichai)"
+      ],
+      "items": [
+        {
+          "id": "dafa76d6b8e020f913333e4744d7297aeb9f0f9d",
+          "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
+          "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
+          "source": "Google DeepMind：Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T19:57:04Z"
+        },
+        {
+          "id": "487f0f1c5dd5571b6871c2ed74bea06ce32bde92",
+          "title": "Google 发布 740M 参数多模态嵌入模型 EmbeddingGemma 2",
+          "url": "https://x.com/Google/status/2107505123941376129",
+          "source": "X：Google (@Google)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T16:15:51Z"
+        },
+        {
+          "id": "d318911354a347d0529787e3cff001fcb2f2a347",
+          "title": "Google 发布开源多模态嵌入模型 EmbeddingGemma 2",
+          "url": "https://x.com/sundarpichai/status/2107501975671890211",
+          "source": "X：Sundar Pichai (@sundarpichai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T16:03:21Z"
+        }
+      ],
+      "item_count": 3,
+      "duplicate_count": 3,
+      "score": 0.8085,
+      "importance": 0.8085,
+      "importance_score": 0.8085,
+      "importance_label": "多源热议",
+      "importance_breakdown": {
+        "editorial": 0.7,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9827,
+        "story_heat": 0.5
+      },
+      "category": "multi_source",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-06T16:03:21Z",
+      "latest_at": "2026-10-06T19:57:04Z",
+      "primary_item": {
+        "id": "dafa76d6b8e020f913333e4744d7297aeb9f0f9d",
+        "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
+        "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
+        "source": "Google DeepMind：Blog（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_43092d6d6065",
+      "title": "亚利桑那州法院裁定AI生成受害者视频带有不当情感分量，凶手须重新量刑",
+      "url": "https://www.404media.co/her-ai-generated-video-swayed-the-judge-the-court-said-it-carried-undue-emotional-weight",
+      "primary_url": "https://www.404media.co/her-ai-generated-video-swayed-the-judge-the-court-said-it-carried-undue-emotional-weight",
+      "source": "404 Media（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "6d37fe2fb1db87f8e31fd7ae89bc86b0e459e4ac",
+          "title": "亚利桑那州法院裁定AI生成受害者视频带有不当情感分量，凶手须重新量刑",
+          "url": "https://www.404media.co/her-ai-generated-video-swayed-the-judge-the-court-said-it-carried-undue-emotional-weight",
+          "source": "404 Media（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T19:26:09Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "404 Media（RSS）"
+      ],
+      "items": [
+        {
+          "id": "6d37fe2fb1db87f8e31fd7ae89bc86b0e459e4ac",
+          "title": "亚利桑那州法院裁定AI生成受害者视频带有不当情感分量，凶手须重新量刑",
+          "url": "https://www.404media.co/her-ai-generated-video-swayed-the-judge-the-court-said-it-carried-undue-emotional-weight",
+          "source": "404 Media（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T19:26:09Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7992,
+      "importance": 0.7992,
+      "importance_score": 0.7992,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.84,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9754,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-06T19:26:09Z",
+      "latest_at": "2026-10-06T19:26:09Z",
+      "primary_item": {
+        "id": "6d37fe2fb1db87f8e31fd7ae89bc86b0e459e4ac",
+        "title": "亚利桑那州法院裁定AI生成受害者视频带有不当情感分量，凶手须重新量刑",
+        "url": "https://www.404media.co/her-ai-generated-video-swayed-the-judge-the-court-said-it-carried-undue-emotional-weight",
+        "source": "404 Media（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_28276ed93094",
+      "title": "DeepSeek 据报道接近完成至少 800 亿元融资，腾讯与宁德时代参与",
+      "url": "https://x.com/thexpin/status/2107524306058289533",
+      "primary_url": "https://x.com/thexpin/status/2107524306058289533",
+      "source": "X：X.PIN (@thexpin)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "94c5884fa3bb345a8c1f794d8e09a67a9485ffcd",
+          "title": "DeepSeek 据报道接近完成至少 800 亿元融资，腾讯与宁德时代参与",
+          "url": "https://x.com/thexpin/status/2107524306058289533",
+          "source": "X：X.PIN (@thexpin)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T17:32:05Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：X.PIN (@thexpin)"
+      ],
+      "items": [
+        {
+          "id": "94c5884fa3bb345a8c1f794d8e09a67a9485ffcd",
+          "title": "DeepSeek 据报道接近完成至少 800 亿元融资，腾讯与宁德时代参与",
+          "url": "https://x.com/thexpin/status/2107524306058289533",
+          "source": "X：X.PIN (@thexpin)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T17:32:05Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7884,
+      "importance": 0.7884,
+      "importance_score": 0.7884,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.82,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.949,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-06T17:32:05Z",
+      "latest_at": "2026-10-06T17:32:05Z",
+      "primary_item": {
+        "id": "94c5884fa3bb345a8c1f794d8e09a67a9485ffcd",
+        "title": "DeepSeek 据报道接近完成至少 800 亿元融资，腾讯与宁德时代参与",
+        "url": "https://x.com/thexpin/status/2107524306058289533",
+        "source": "X：X.PIN (@thexpin)",
         "source_name": "AI HOT"
       }
     },
@@ -211,15 +433,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.787,
-      "importance": 0.787,
-      "importance_score": 0.787,
+      "score": 0.7753,
+      "importance": 0.7753,
+      "importance_score": 0.7753,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9413,
+        "recency": 0.8761,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -290,15 +512,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7852,
-      "importance": 0.7852,
-      "importance_score": 0.7852,
+      "score": 0.773,
+      "importance": 0.773,
+      "importance_score": 0.773,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9753,
+        "recency": 0.9078,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -352,15 +574,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7788,
-      "importance": 0.7788,
-      "importance_score": 0.7788,
+      "score": 0.7664,
+      "importance": 0.7664,
+      "importance_score": 0.7664,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9956,
+        "recency": 0.9267,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -413,15 +635,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7756,
-      "importance": 0.7756,
-      "importance_score": 0.7756,
+      "score": 0.7636,
+      "importance": 0.7636,
+      "importance_score": 0.7636,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9609,
+        "recency": 0.8944,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -436,6 +658,67 @@
         "title": "Mistral 发布 Large 4 公开预览版，1 万亿参数将开放权重",
         "url": "https://mistral.ai/news/mistral-large-4",
         "source": "Hacker News：AI 热帖",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_438642416251",
+      "title": "Nano Banana 2.1（gemini-nano-banana-2.1）发布，价格降至每张 $0.034 并超越前代 Pro",
+      "url": "https://x.com/_philschmid/status/2107502894685749672",
+      "primary_url": "https://x.com/_philschmid/status/2107502894685749672",
+      "source": "X：Philipp Schmid（Google DeepMind 开发者体验） (@_philschmid)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "9d90494ccf634f24e69b318e61adcbd89ec229d4",
+          "title": "Nano Banana 2.1（gemini-nano-banana-2.1）发布，价格降至每张 $0.034 并超越前代 Pro",
+          "url": "https://x.com/_philschmid/status/2107502894685749672",
+          "source": "X：Philipp Schmid（Google DeepMind 开发者体验） (@_philschmid)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T16:07:00Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Philipp Schmid（Google DeepMind 开发者体验） (@_philschmid)"
+      ],
+      "items": [
+        {
+          "id": "9d90494ccf634f24e69b318e61adcbd89ec229d4",
+          "title": "Nano Banana 2.1（gemini-nano-banana-2.1）发布，价格降至每张 $0.034 并超越前代 Pro",
+          "url": "https://x.com/_philschmid/status/2107502894685749672",
+          "source": "X：Philipp Schmid（Google DeepMind 开发者体验） (@_philschmid)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T16:07:00Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.761,
+      "importance": 0.761,
+      "importance_score": 0.761,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.74,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9298,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-06T16:07:00Z",
+      "latest_at": "2026-10-06T16:07:00Z",
+      "primary_item": {
+        "id": "9d90494ccf634f24e69b318e61adcbd89ec229d4",
+        "title": "Nano Banana 2.1（gemini-nano-banana-2.1）发布，价格降至每张 $0.034 并超越前代 Pro",
+        "url": "https://x.com/_philschmid/status/2107502894685749672",
+        "source": "X：Philipp Schmid（Google DeepMind 开发者体验） (@_philschmid)",
         "source_name": "AI HOT"
       }
     },
@@ -474,15 +757,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7697,
-      "importance": 0.7697,
-      "importance_score": 0.7697,
+      "score": 0.7577,
+      "importance": 0.7577,
+      "importance_score": 0.7577,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9618,
+        "recency": 0.8952,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -535,15 +818,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7679,
-      "importance": 0.7679,
-      "importance_score": 0.7679,
+      "score": 0.7571,
+      "importance": 0.7571,
+      "importance_score": 0.7571,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.8,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8684,
+        "recency": 0.8083,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -558,6 +841,250 @@
         "title": "消息称 DeepSeek 接近完成至少 800 亿元融资，腾讯、宁德时代重金参与",
         "url": "https://www.ithome.com/1/009/990.htm",
         "source": "IT之家（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_430873ba5b10",
+      "title": "Claude Code 推出 Cloud sessions：每任务独立 VM，合盖后任务继续运行",
+      "url": "https://x.com/ClaudeDevs/status/2107542087243907506",
+      "primary_url": "https://x.com/ClaudeDevs/status/2107542087243907506",
+      "source": "X：Claude Devs (@ClaudeDevs)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "c3de9f950257dfd6498395656895add912cdb905",
+          "title": "Claude Code 推出 Cloud sessions：每任务独立 VM，合盖后任务继续运行",
+          "url": "https://x.com/ClaudeDevs/status/2107542087243907506",
+          "source": "X：Claude Devs (@ClaudeDevs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T18:42:44Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Claude Devs (@ClaudeDevs)"
+      ],
+      "items": [
+        {
+          "id": "c3de9f950257dfd6498395656895add912cdb905",
+          "title": "Claude Code 推出 Cloud sessions：每任务独立 VM，合盖后任务继续运行",
+          "url": "https://x.com/ClaudeDevs/status/2107542087243907506",
+          "source": "X：Claude Devs (@ClaudeDevs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T18:42:44Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7553,
+      "importance": 0.7553,
+      "importance_score": 0.7553,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.7,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9653,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-06T18:42:44Z",
+      "latest_at": "2026-10-06T18:42:44Z",
+      "primary_item": {
+        "id": "c3de9f950257dfd6498395656895add912cdb905",
+        "title": "Claude Code 推出 Cloud sessions：每任务独立 VM，合盖后任务继续运行",
+        "url": "https://x.com/ClaudeDevs/status/2107542087243907506",
+        "source": "X：Claude Devs (@ClaudeDevs)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_c4e12cfaecde",
+      "title": "Claude 接入 Google Docs、Sheets 和 Slides，支持侧边栏就地编辑",
+      "url": "https://x.com/claudeai/status/2107522596845822135",
+      "primary_url": "https://x.com/claudeai/status/2107522596845822135",
+      "source": "X：Claude (@claudeai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "269bcb21c4221f207b8b5d49e626bb3dc4eb1e2b",
+          "title": "Claude 接入 Google Docs、Sheets 和 Slides，支持侧边栏就地编辑",
+          "url": "https://x.com/claudeai/status/2107522596845822135",
+          "source": "X：Claude (@claudeai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T17:25:17Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Claude (@claudeai)"
+      ],
+      "items": [
+        {
+          "id": "269bcb21c4221f207b8b5d49e626bb3dc4eb1e2b",
+          "title": "Claude 接入 Google Docs、Sheets 和 Slides，支持侧边栏就地编辑",
+          "url": "https://x.com/claudeai/status/2107522596845822135",
+          "source": "X：Claude (@claudeai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T17:25:17Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7521,
+      "importance": 0.7521,
+      "importance_score": 0.7521,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.7,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9474,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-06T17:25:17Z",
+      "latest_at": "2026-10-06T17:25:17Z",
+      "primary_item": {
+        "id": "269bcb21c4221f207b8b5d49e626bb3dc4eb1e2b",
+        "title": "Claude 接入 Google Docs、Sheets 和 Slides，支持侧边栏就地编辑",
+        "url": "https://x.com/claudeai/status/2107522596845822135",
+        "source": "X：Claude (@claudeai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_d12760993a97",
+      "title": "GitHub 重建 Git 基础设施，应对智能体规模开发",
+      "url": "https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development",
+      "primary_url": "https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development",
+      "source": "GitHub Blog",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "7ea407dcc289d833eb3a077ae5e992166ace8f18",
+          "title": "GitHub 重建 Git 基础设施，应对智能体规模开发",
+          "url": "https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development",
+          "source": "GitHub Blog",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T20:57:56Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "GitHub Blog"
+      ],
+      "items": [
+        {
+          "id": "7ea407dcc289d833eb3a077ae5e992166ace8f18",
+          "title": "GitHub 重建 Git 基础设施，应对智能体规模开发",
+          "url": "https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development",
+          "source": "GitHub Blog",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T20:57:56Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7521,
+      "importance": 0.7521,
+      "importance_score": 0.7521,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.67,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9972,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-06T20:57:56Z",
+      "latest_at": "2026-10-06T20:57:56Z",
+      "primary_item": {
+        "id": "7ea407dcc289d833eb3a077ae5e992166ace8f18",
+        "title": "GitHub 重建 Git 基础设施，应对智能体规模开发",
+        "url": "https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development",
+        "source": "GitHub Blog",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_774f7412d1a3",
+      "title": "Claude for Google Workspace 开启 beta，可直接在 Docs、Sheets、Slides 中编辑",
+      "url": "https://www.youtube.com/watch?v=idJQMJwHtyM",
+      "primary_url": "https://www.youtube.com/watch?v=idJQMJwHtyM",
+      "source": "Claude：YouTube（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "c540239301bf1b32a1c7a206dc6db87208c2c739",
+          "title": "Claude for Google Workspace 开启 beta，可直接在 Docs、Sheets、Slides 中编辑",
+          "url": "https://www.youtube.com/watch?v=idJQMJwHtyM",
+          "source": "Claude：YouTube（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T17:02:37Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Claude：YouTube（RSS）"
+      ],
+      "items": [
+        {
+          "id": "c540239301bf1b32a1c7a206dc6db87208c2c739",
+          "title": "Claude for Google Workspace 开启 beta，可直接在 Docs、Sheets、Slides 中编辑",
+          "url": "https://www.youtube.com/watch?v=idJQMJwHtyM",
+          "source": "Claude：YouTube（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T17:02:37Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7512,
+      "importance": 0.7512,
+      "importance_score": 0.7512,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.7,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9423,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-06T17:02:37Z",
+      "latest_at": "2026-10-06T17:02:37Z",
+      "primary_item": {
+        "id": "c540239301bf1b32a1c7a206dc6db87208c2c739",
+        "title": "Claude for Google Workspace 开启 beta，可直接在 Docs、Sheets、Slides 中编辑",
+        "url": "https://www.youtube.com/watch?v=idJQMJwHtyM",
+        "source": "Claude：YouTube（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -596,21 +1123,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7597,
-      "importance": 0.7597,
-      "importance_score": 0.7597,
+      "score": 0.7488,
+      "importance": 0.7488,
+      "importance_score": 0.7488,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8725,
+        "recency": 0.8121,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-06T06:44:57Z",
       "latest_at": "2026-10-06T06:44:57Z",
@@ -657,21 +1183,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7584,
-      "importance": 0.7584,
-      "importance_score": 0.7584,
+      "score": 0.7463,
+      "importance": 0.7463,
+      "importance_score": 0.7463,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9654,
+        "recency": 0.8986,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-06T13:45:15Z",
       "latest_at": "2026-10-06T13:45:15Z",
@@ -718,21 +1243,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7538,
-      "importance": 0.7538,
-      "importance_score": 0.7538,
+      "score": 0.7418,
+      "importance": 0.7418,
+      "importance_score": 0.7418,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9564,
+        "recency": 0.8902,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-06T13:06:16Z",
       "latest_at": "2026-10-06T13:06:16Z",
@@ -779,21 +1303,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7523,
-      "importance": 0.7523,
-      "importance_score": 0.7523,
+      "score": 0.7402,
+      "importance": 0.7402,
+      "importance_score": 0.7402,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9648,
+        "recency": 0.898,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-06T13:42:28Z",
       "latest_at": "2026-10-06T13:42:28Z",
@@ -840,21 +1363,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7523,
-      "importance": 0.7523,
-      "importance_score": 0.7523,
+      "score": 0.7401,
+      "importance": 0.7401,
+      "importance_score": 0.7401,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9819,
+        "recency": 0.9139,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-06T14:55:40Z",
       "latest_at": "2026-10-06T14:55:40Z",
@@ -863,489 +1385,6 @@
         "title": "Mistral 发布 Mistral Large 4：1T 参数多模态开源权重模型，作者称性能不够惊艳",
         "url": "https://x.com/omarsar0/status/2107484943953621127",
         "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_bdae67cfc7e8",
-      "title": "DeepSeek V4.1 Flash 在 ARC-AGI (Verified) 评测中的成绩公布",
-      "url": "https://x.com/arcprize/status/2107491194007585239",
-      "primary_url": "https://x.com/arcprize/status/2107491194007585239",
-      "source": "X：ARC Prize (@arcprize)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "ada926462a325cd9fc30810db5f960c8b658e641",
-          "title": "DeepSeek V4.1 Flash 在 ARC-AGI (Verified) 评测中的成绩公布",
-          "url": "https://x.com/arcprize/status/2107491194007585239",
-          "source": "X：ARC Prize (@arcprize)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T15:20:30Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：ARC Prize (@arcprize)"
-      ],
-      "items": [
-        {
-          "id": "ada926462a325cd9fc30810db5f960c8b658e641",
-          "title": "DeepSeek V4.1 Flash 在 ARC-AGI (Verified) 评测中的成绩公布",
-          "url": "https://x.com/arcprize/status/2107491194007585239",
-          "source": "X：ARC Prize (@arcprize)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T15:20:30Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7504,
-      "importance": 0.7504,
-      "importance_score": 0.7504,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.67,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9878,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-06T15:20:30Z",
-      "latest_at": "2026-10-06T15:20:30Z",
-      "primary_item": {
-        "id": "ada926462a325cd9fc30810db5f960c8b658e641",
-        "title": "DeepSeek V4.1 Flash 在 ARC-AGI (Verified) 评测中的成绩公布",
-        "url": "https://x.com/arcprize/status/2107491194007585239",
-        "source": "X：ARC Prize (@arcprize)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_4624de961f64",
-      "title": "Mistral Large 4 上线 Arena 的 Agent Arena 与 Code Arena 评测",
-      "url": "https://x.com/arena/status/2107476436223504484",
-      "primary_url": "https://x.com/arena/status/2107476436223504484",
-      "source": "X：Arena (@arena)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "bff3f1ce265e017e2e8c5d6372d84e46c5213079",
-          "title": "Mistral Large 4 上线 Arena 的 Agent Arena 与 Code Arena 评测",
-          "url": "https://x.com/arena/status/2107476436223504484",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T14:21:52Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Arena (@arena)"
-      ],
-      "items": [
-        {
-          "id": "bff3f1ce265e017e2e8c5d6372d84e46c5213079",
-          "title": "Mistral Large 4 上线 Arena 的 Agent Arena 与 Code Arena 评测",
-          "url": "https://x.com/arena/status/2107476436223504484",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T14:21:52Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7479,
-      "importance": 0.7479,
-      "importance_score": 0.7479,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.67,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.974,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-06T14:21:52Z",
-      "latest_at": "2026-10-06T14:21:52Z",
-      "primary_item": {
-        "id": "bff3f1ce265e017e2e8c5d6372d84e46c5213079",
-        "title": "Mistral Large 4 上线 Arena 的 Agent Arena 与 Code Arena 评测",
-        "url": "https://x.com/arena/status/2107476436223504484",
-        "source": "X：Arena (@arena)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_b2c456299b55",
-      "title": "卡兹克解读 A16Z 两份 AI 报告：AI 使用很广但用得还浅，头部 1% 用户月均花 903 美元",
-      "url": "https://x.com/Khazix0918/status/2107297777583825359",
-      "primary_url": "https://x.com/Khazix0918/status/2107297777583825359",
-      "source": "X：卡兹克 (@Khazix0918)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "c9a673d6e65e64c99d578906d5fd5117eed00424",
-          "title": "卡兹克解读 A16Z 两份 AI 报告：AI 使用很广但用得还浅，头部 1% 用户月均花 903 美元",
-          "url": "https://x.com/Khazix0918/status/2107297777583825359",
-          "source": "X：卡兹克 (@Khazix0918)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T02:31:56Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：卡兹克 (@Khazix0918)"
-      ],
-      "items": [
-        {
-          "id": "c9a673d6e65e64c99d578906d5fd5117eed00424",
-          "title": "卡兹克解读 A16Z 两份 AI 报告：AI 使用很广但用得还浅，头部 1% 用户月均花 903 美元",
-          "url": "https://x.com/Khazix0918/status/2107297777583825359",
-          "source": "X：卡兹克 (@Khazix0918)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T02:31:56Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7354,
-      "importance": 0.7354,
-      "importance_score": 0.7354,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.72,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.821,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-06T02:31:56Z",
-      "latest_at": "2026-10-06T02:31:56Z",
-      "primary_item": {
-        "id": "c9a673d6e65e64c99d578906d5fd5117eed00424",
-        "title": "卡兹克解读 A16Z 两份 AI 报告：AI 使用很广但用得还浅，头部 1% 用户月均花 903 美元",
-        "url": "https://x.com/Khazix0918/status/2107297777583825359",
-        "source": "X：卡兹克 (@Khazix0918)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_f4d22d610773",
-      "title": "Anthropic 5180亿美元计算力支出中约4137亿美元无论使用与否都需支付",
-      "url": "https://x.com/rohanpaul_ai/status/2107346890648076595",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2107346890648076595",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "2747ef6e2e2821cdefdec11753d479ccf1559a95",
-          "title": "Anthropic 5180亿美元计算力支出中约4137亿美元无论使用与否都需支付",
-          "url": "https://x.com/rohanpaul_ai/status/2107346890648076595",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T05:47:05Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "2747ef6e2e2821cdefdec11753d479ccf1559a95",
-          "title": "Anthropic 5180亿美元计算力支出中约4137亿美元无论使用与否都需支付",
-          "url": "https://x.com/rohanpaul_ai/status/2107346890648076595",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T05:47:05Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7575,
-      "importance": 0.7575,
-      "importance_score": 0.7575,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.77,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8605,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-06T05:47:05Z",
-      "latest_at": "2026-10-06T05:47:05Z",
-      "primary_item": {
-        "id": "2747ef6e2e2821cdefdec11753d479ccf1559a95",
-        "title": "Anthropic 5180亿美元计算力支出中约4137亿美元无论使用与否都需支付",
-        "url": "https://x.com/rohanpaul_ai/status/2107346890648076595",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_75046b1c8fed",
-      "title": "Reflection 发布 501B-A23B 开源编码模型 Beam",
-      "url": "https://www.latent.space/p/ainews-reflection-beam-501b-a23b",
-      "primary_url": "https://www.latent.space/p/ainews-reflection-beam-501b-a23b",
-      "source": "Latent Space（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "3e5236252ad5fe9feb7411f79fb2ff4fe5fb1b64",
-          "title": "Reflection 发布 501B-A23B 开源编码模型 Beam",
-          "url": "https://www.latent.space/p/ainews-reflection-beam-501b-a23b",
-          "source": "Latent Space（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T06:28:43Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Latent Space（RSS）"
-      ],
-      "items": [
-        {
-          "id": "3e5236252ad5fe9feb7411f79fb2ff4fe5fb1b64",
-          "title": "Reflection 发布 501B-A23B 开源编码模型 Beam",
-          "url": "https://www.latent.space/p/ainews-reflection-beam-501b-a23b",
-          "source": "Latent Space（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T06:28:43Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.726,
-      "importance": 0.726,
-      "importance_score": 0.726,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8691,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-06T06:28:43Z",
-      "latest_at": "2026-10-06T06:28:43Z",
-      "primary_item": {
-        "id": "3e5236252ad5fe9feb7411f79fb2ff4fe5fb1b64",
-        "title": "Reflection 发布 501B-A23B 开源编码模型 Beam",
-        "url": "https://www.latent.space/p/ainews-reflection-beam-501b-a23b",
-        "source": "Latent Space（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_8d8aa45205dd",
-      "title": "Mistral 发布 1T 参数开源权重模型 Mistral Large 4 \"Le Chonk\"",
-      "url": "https://x.com/testingcatalog/status/2107458562825802143",
-      "primary_url": "https://x.com/testingcatalog/status/2107458562825802143",
-      "source": "X：Testing Catalog (@testingcatalog)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "336d0953039a38c18a95c05551075b56f3aa3766",
-          "title": "Mistral 发布 1T 参数开源权重模型 Mistral Large 4 \"Le Chonk\"",
-          "url": "https://x.com/testingcatalog/status/2107458562825802143",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T13:10:50Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Testing Catalog (@testingcatalog)"
-      ],
-      "items": [
-        {
-          "id": "336d0953039a38c18a95c05551075b56f3aa3766",
-          "title": "Mistral 发布 1T 参数开源权重模型 Mistral Large 4 \"Le Chonk\"",
-          "url": "https://x.com/testingcatalog/status/2107458562825802143",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T13:10:50Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7509,
-      "importance": 0.7509,
-      "importance_score": 0.7509,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.69,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9575,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-06T13:10:50Z",
-      "latest_at": "2026-10-06T13:10:50Z",
-      "primary_item": {
-        "id": "336d0953039a38c18a95c05551075b56f3aa3766",
-        "title": "Mistral 发布 1T 参数开源权重模型 Mistral Large 4 \"Le Chonk\"",
-        "url": "https://x.com/testingcatalog/status/2107458562825802143",
-        "source": "X：Testing Catalog (@testingcatalog)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_deeb3d35a36b",
-      "title": "Wikimedia 基金会发现 OpenAI \"流氓\"智能体在维基媒体平台上的活动",
-      "url": "https://diff.wikimedia.org/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects",
-      "primary_url": "https://diff.wikimedia.org/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects",
-      "source": "Hacker News：AI 热帖",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "603a1628201cc8ad31d36feed0296ac4d2fca96f",
-          "title": "Wikimedia 基金会发现 OpenAI \"流氓\"智能体在维基媒体平台上的活动",
-          "url": "https://diff.wikimedia.org/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-05T17:53:35Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Hacker News：AI 热帖"
-      ],
-      "items": [
-        {
-          "id": "603a1628201cc8ad31d36feed0296ac4d2fca96f",
-          "title": "Wikimedia 基金会发现 OpenAI \"流氓\"智能体在维基媒体平台上的活动",
-          "url": "https://diff.wikimedia.org/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-05T17:53:35Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.736,
-      "importance": 0.736,
-      "importance_score": 0.736,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.78,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7247,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-05T17:53:35Z",
-      "latest_at": "2026-10-05T17:53:35Z",
-      "primary_item": {
-        "id": "603a1628201cc8ad31d36feed0296ac4d2fca96f",
-        "title": "Wikimedia 基金会发现 OpenAI \"流氓\"智能体在维基媒体平台上的活动",
-        "url": "https://diff.wikimedia.org/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects",
-        "source": "Hacker News：AI 热帖",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_89c1dbb6098e",
-      "title": "Ant Group 发布 Ling 3.1 Flash，Artificial Analysis 智能指数得分从 20 升至 41",
-      "url": "https://x.com/ArtificialAnlys/status/2107440860849901822",
-      "primary_url": "https://x.com/ArtificialAnlys/status/2107440860849901822",
-      "source": "X：Artificial Analysis (@ArtificialAnlys)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "18cd338c5208768b2d16d07cf7779c1e4f4b3231",
-          "title": "Ant Group 发布 Ling 3.1 Flash，Artificial Analysis 智能指数得分从 20 升至 41",
-          "url": "https://x.com/ArtificialAnlys/status/2107440860849901822",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T12:00:30Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Artificial Analysis (@ArtificialAnlys)"
-      ],
-      "items": [
-        {
-          "id": "18cd338c5208768b2d16d07cf7779c1e4f4b3231",
-          "title": "Ant Group 发布 Ling 3.1 Flash，Artificial Analysis 智能指数得分从 20 升至 41",
-          "url": "https://x.com/ArtificialAnlys/status/2107440860849901822",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T12:00:30Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.733,
-      "importance": 0.733,
-      "importance_score": 0.733,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.64,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9414,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-06T12:00:30Z",
-      "latest_at": "2026-10-06T12:00:30Z",
-      "primary_item": {
-        "id": "18cd338c5208768b2d16d07cf7779c1e4f4b3231",
-        "title": "Ant Group 发布 Ling 3.1 Flash，Artificial Analysis 智能指数得分从 20 升至 41",
-        "url": "https://x.com/ArtificialAnlys/status/2107440860849901822",
-        "source": "X：Artificial Analysis (@ArtificialAnlys)",
         "source_name": "AI HOT"
       }
     }
