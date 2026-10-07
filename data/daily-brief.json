@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T07:04:58.476724Z",
+  "generated_at": "2026-10-07T14:25:15.004692Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -149,15 +149,15 @@
       ],
       "item_count": 7,
       "duplicate_count": 7,
-      "score": 0.8,
-      "importance": 0.8,
-      "importance_score": 0.8,
+      "score": 0.7884,
+      "importance": 0.7884,
+      "importance_score": 0.7884,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6411,
+        "recency": 0.5767,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -173,6 +173,67 @@
         "title": "卡兹克解读A16Z两份AI报告，AI使用广但付费和深度仍小众",
         "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686876&idx=1&sn=55c719c9dded44507dbd2a000a2ec5a7",
         "source": "公众号：数字生命卡兹克",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_5bdd694c6290",
+      "title": "Nemotron 系列微调后达到 IOI 2026 与 IMO 2026 金牌水平",
+      "url": "https://huggingface.co/blog/nvidia/nemotron-ioi-and-imo-2026",
+      "primary_url": "https://huggingface.co/blog/nvidia/nemotron-ioi-and-imo-2026",
+      "source": "Hugging Face：Blog（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "2934002d583f9770c27b7cc16f4acaea366a14b1",
+          "title": "Nemotron 系列微调后达到 IOI 2026 与 IMO 2026 金牌水平",
+          "url": "https://huggingface.co/blog/nvidia/nemotron-ioi-and-imo-2026",
+          "source": "Hugging Face：Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T12:45:31Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Hugging Face：Blog（RSS）"
+      ],
+      "items": [
+        {
+          "id": "2934002d583f9770c27b7cc16f4acaea366a14b1",
+          "title": "Nemotron 系列微调后达到 IOI 2026 与 IMO 2026 金牌水平",
+          "url": "https://huggingface.co/blog/nvidia/nemotron-ioi-and-imo-2026",
+          "source": "Hugging Face：Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T12:45:31Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7723,
+      "importance": 0.7723,
+      "importance_score": 0.7723,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.75,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9763,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-07T12:45:31Z",
+      "latest_at": "2026-10-07T12:45:31Z",
+      "primary_item": {
+        "id": "2934002d583f9770c27b7cc16f4acaea366a14b1",
+        "title": "Nemotron 系列微调后达到 IOI 2026 与 IMO 2026 金牌水平",
+        "url": "https://huggingface.co/blog/nvidia/nemotron-ioi-and-imo-2026",
+        "source": "Hugging Face：Blog（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -249,15 +310,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.7849,
-      "importance": 0.7849,
-      "importance_score": 0.7849,
+      "score": 0.7695,
+      "importance": 0.7695,
+      "importance_score": 0.7695,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8515,
+        "recency": 0.7659,
         "story_heat": 0.5
       },
       "category": "multi_source",
@@ -311,15 +372,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7757,
-      "importance": 0.7757,
-      "importance_score": 0.7757,
+      "score": 0.7604,
+      "importance": 0.7604,
+      "importance_score": 0.7604,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.84,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8452,
+        "recency": 0.7602,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -372,15 +433,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7656,
-      "importance": 0.7656,
-      "importance_score": 0.7656,
+      "score": 0.7507,
+      "importance": 0.7507,
+      "importance_score": 0.7507,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8223,
+        "recency": 0.7396,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -433,21 +494,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7542,
-      "importance": 0.7542,
-      "importance_score": 0.7542,
+      "score": 0.7405,
+      "importance": 0.7405,
+      "importance_score": 0.7405,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7591,
+        "recency": 0.6828,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-06T12:00:00Z",
       "latest_at": "2026-10-06T12:00:00Z",
@@ -460,63 +520,62 @@
       }
     },
     {
-      "story_id": "story_5d9e73b2647b",
-      "title": "Mistral Large 4 进入 Code Arena: WebDev 排名第45，得分1534",
-      "url": "https://x.com/arena/status/2107717155374727602",
-      "primary_url": "https://x.com/arena/status/2107717155374727602",
-      "source": "X：Arena (@arena)",
+      "story_id": "story_1cb74fc8c8c5",
+      "title": "Google DeepMind 的 SynthID Detector 面向所有人开放",
+      "url": "https://x.com/GoogleDeepMind/status/2107834249680499136",
+      "primary_url": "https://x.com/GoogleDeepMind/status/2107834249680499136",
+      "source": "X：Google DeepMind (@GoogleDeepMind)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "98a54ceab16397206eb29f21fd3ba89a3afaad15",
-          "title": "Mistral Large 4 进入 Code Arena: WebDev 排名第45，得分1534",
-          "url": "https://x.com/arena/status/2107717155374727602",
-          "source": "X：Arena (@arena)",
+          "id": "8f4a69547e8d7065efa8f9959f15765fa3e3dd45",
+          "title": "Google DeepMind 的 SynthID Detector 面向所有人开放",
+          "url": "https://x.com/GoogleDeepMind/status/2107834249680499136",
+          "source": "X：Google DeepMind (@GoogleDeepMind)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T06:18:23Z"
+          "published_at": "2026-10-07T14:03:41Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Arena (@arena)"
+        "X：Google DeepMind (@GoogleDeepMind)"
       ],
       "items": [
         {
-          "id": "98a54ceab16397206eb29f21fd3ba89a3afaad15",
-          "title": "Mistral Large 4 进入 Code Arena: WebDev 排名第45，得分1534",
-          "url": "https://x.com/arena/status/2107717155374727602",
-          "source": "X：Arena (@arena)",
+          "id": "8f4a69547e8d7065efa8f9959f15765fa3e3dd45",
+          "title": "Google DeepMind 的 SynthID Detector 面向所有人开放",
+          "url": "https://x.com/GoogleDeepMind/status/2107834249680499136",
+          "source": "X：Google DeepMind (@GoogleDeepMind)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T06:18:23Z"
+          "published_at": "2026-10-07T14:03:41Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7536,
-      "importance": 0.7536,
-      "importance_score": 0.7536,
+      "score": 0.7397,
+      "importance": 0.7397,
+      "importance_score": 0.7397,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.68,
+        "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9888,
+        "recency": 0.9948,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-07T06:18:23Z",
-      "latest_at": "2026-10-07T06:18:23Z",
+      "earliest_at": "2026-10-07T14:03:41Z",
+      "latest_at": "2026-10-07T14:03:41Z",
       "primary_item": {
-        "id": "98a54ceab16397206eb29f21fd3ba89a3afaad15",
-        "title": "Mistral Large 4 进入 Code Arena: WebDev 排名第45，得分1534",
-        "url": "https://x.com/arena/status/2107717155374727602",
-        "source": "X：Arena (@arena)",
+        "id": "8f4a69547e8d7065efa8f9959f15765fa3e3dd45",
+        "title": "Google DeepMind 的 SynthID Detector 面向所有人开放",
+        "url": "https://x.com/GoogleDeepMind/status/2107834249680499136",
+        "source": "X：Google DeepMind (@GoogleDeepMind)",
         "source_name": "AI HOT"
       }
     },
@@ -573,22 +632,21 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7512,
-      "importance": 0.7512,
-      "importance_score": 0.7512,
+      "score": 0.7369,
+      "importance": 0.7369,
+      "importance_score": 0.7369,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7866,
+        "recency": 0.7075,
         "story_heat": 0.25
       },
       "category": "industry",
       "reasons": [
         "multi_source",
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-06T14:02:29Z",
       "latest_at": "2026-10-06T14:27:31Z",
@@ -597,6 +655,66 @@
         "title": "Mistral Large 4 上线 OpenRouter 公测：1T 参数、1M 上下文、前两周五折",
         "url": "https://x.com/OpenRouter/status/2107477859317297600",
         "source": "X：OpenRouter (@OpenRouter)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_5d9e73b2647b",
+      "title": "Mistral Large 4 进入 Code Arena: WebDev 排名第45，得分1534",
+      "url": "https://x.com/arena/status/2107717155374727602",
+      "primary_url": "https://x.com/arena/status/2107717155374727602",
+      "source": "X：Arena (@arena)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "98a54ceab16397206eb29f21fd3ba89a3afaad15",
+          "title": "Mistral Large 4 进入 Code Arena: WebDev 排名第45，得分1534",
+          "url": "https://x.com/arena/status/2107717155374727602",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T06:18:23Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Arena (@arena)"
+      ],
+      "items": [
+        {
+          "id": "98a54ceab16397206eb29f21fd3ba89a3afaad15",
+          "title": "Mistral Large 4 进入 Code Arena: WebDev 排名第45，得分1534",
+          "url": "https://x.com/arena/status/2107717155374727602",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T06:18:23Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7357,
+      "importance": 0.7357,
+      "importance_score": 0.7357,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.68,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8894,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-07T06:18:23Z",
+      "latest_at": "2026-10-07T06:18:23Z",
+      "primary_item": {
+        "id": "98a54ceab16397206eb29f21fd3ba89a3afaad15",
+        "title": "Mistral Large 4 进入 Code Arena: WebDev 排名第45，得分1534",
+        "url": "https://x.com/arena/status/2107717155374727602",
+        "source": "X：Arena (@arena)",
         "source_name": "AI HOT"
       }
     },
@@ -635,15 +753,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7462,
-      "importance": 0.7462,
-      "importance_score": 0.7462,
+      "score": 0.7303,
+      "importance": 0.7303,
+      "importance_score": 0.7303,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8813,
+        "recency": 0.7927,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -657,126 +775,6 @@
         "title": "OpenAI 发布内部前沿模型产出的新数学成果",
         "url": "https://x.com/OpenAI/status/2107596713791767021",
         "source": "X：OpenAI (@OpenAI)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_2583342ace15",
-      "title": "OpenAI 测试模型回答是否符合战争法",
-      "url": "https://x.com/rohanpaul_ai/status/2107722593184956905",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2107722593184956905",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "a0fbb8e9e42d2e674660357bf7ab9cf94d5afd74",
-          "title": "OpenAI 测试模型回答是否符合战争法",
-          "url": "https://x.com/rohanpaul_ai/status/2107722593184956905",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T06:40:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "a0fbb8e9e42d2e674660357bf7ab9cf94d5afd74",
-          "title": "OpenAI 测试模型回答是否符合战争法",
-          "url": "https://x.com/rohanpaul_ai/status/2107722593184956905",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T06:40:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7455,
-      "importance": 0.7455,
-      "importance_score": 0.7455,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.65,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.994,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-07T06:40:00Z",
-      "latest_at": "2026-10-07T06:40:00Z",
-      "primary_item": {
-        "id": "a0fbb8e9e42d2e674660357bf7ab9cf94d5afd74",
-        "title": "OpenAI 测试模型回答是否符合战争法",
-        "url": "https://x.com/rohanpaul_ai/status/2107722593184956905",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_47b9255d8fa0",
-      "title": "OpenAI 发布内部前沿模型产出的数学研究成果",
-      "url": "https://openai.com/index/sharing-ai-progress-in-mathematics",
-      "primary_url": "https://openai.com/index/sharing-ai-progress-in-mathematics",
-      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "02b12876fb3eb437aec169fe451761ddd907d8ac",
-          "title": "OpenAI 发布内部前沿模型产出的数学研究成果",
-          "url": "https://openai.com/index/sharing-ai-progress-in-mathematics",
-          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T23:01:09.228000Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "OpenAI：官网动态（RSS · 排除企业/客户案例）"
-      ],
-      "items": [
-        {
-          "id": "02b12876fb3eb437aec169fe451761ddd907d8ac",
-          "title": "OpenAI 发布内部前沿模型产出的数学研究成果",
-          "url": "https://openai.com/index/sharing-ai-progress-in-mathematics",
-          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T23:01:09.228000Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7448,
-      "importance": 0.7448,
-      "importance_score": 0.7448,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8901,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-06T23:01:09.228000Z",
-      "latest_at": "2026-10-06T23:01:09.228000Z",
-      "primary_item": {
-        "id": "02b12876fb3eb437aec169fe451761ddd907d8ac",
-        "title": "OpenAI 发布内部前沿模型产出的数学研究成果",
-        "url": "https://openai.com/index/sharing-ai-progress-in-mathematics",
-        "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
         "source_name": "AI HOT"
       }
     },
@@ -815,15 +813,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7441,
-      "importance": 0.7441,
-      "importance_score": 0.7441,
+      "score": 0.7296,
+      "importance": 0.7296,
+      "importance_score": 0.7296,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.803,
+        "recency": 0.7222,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -837,6 +835,126 @@
         "title": "Google Nano Banana 2.1 图像模型上线 Google AI Studio、API 和 Gemini",
         "url": "https://x.com/testingcatalog/status/2107499443532530001",
         "source": "X：Testing Catalog (@testingcatalog)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_47b9255d8fa0",
+      "title": "OpenAI 发布内部前沿模型产出的数学研究成果",
+      "url": "https://openai.com/index/sharing-ai-progress-in-mathematics",
+      "primary_url": "https://openai.com/index/sharing-ai-progress-in-mathematics",
+      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "02b12876fb3eb437aec169fe451761ddd907d8ac",
+          "title": "OpenAI 发布内部前沿模型产出的数学研究成果",
+          "url": "https://openai.com/index/sharing-ai-progress-in-mathematics",
+          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T23:01:09.228000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "OpenAI：官网动态（RSS · 排除企业/客户案例）"
+      ],
+      "items": [
+        {
+          "id": "02b12876fb3eb437aec169fe451761ddd907d8ac",
+          "title": "OpenAI 发布内部前沿模型产出的数学研究成果",
+          "url": "https://openai.com/index/sharing-ai-progress-in-mathematics",
+          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T23:01:09.228000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7287,
+      "importance": 0.7287,
+      "importance_score": 0.7287,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.71,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8006,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-06T23:01:09.228000Z",
+      "latest_at": "2026-10-06T23:01:09.228000Z",
+      "primary_item": {
+        "id": "02b12876fb3eb437aec169fe451761ddd907d8ac",
+        "title": "OpenAI 发布内部前沿模型产出的数学研究成果",
+        "url": "https://openai.com/index/sharing-ai-progress-in-mathematics",
+        "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_12d35166771e",
+      "title": "Apple 论文：强模型只需最小 harness 即可完成自主 ML 工程",
+      "url": "https://x.com/rohanpaul_ai/status/2107801865148600738",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2107801865148600738",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "fc30fb46a556de8a655744dbfad896f582a68bf3",
+          "title": "Apple 论文：强模型只需最小 harness 即可完成自主 ML 工程",
+          "url": "https://x.com/rohanpaul_ai/status/2107801865148600738",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T11:55:00Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "fc30fb46a556de8a655744dbfad896f582a68bf3",
+          "title": "Apple 论文：强模型只需最小 harness 即可完成自主 ML 工程",
+          "url": "https://x.com/rohanpaul_ai/status/2107801865148600738",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T11:55:00Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7282,
+      "importance": 0.7282,
+      "importance_score": 0.7282,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.61,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9645,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-07T11:55:00Z",
+      "latest_at": "2026-10-07T11:55:00Z",
+      "primary_item": {
+        "id": "fc30fb46a556de8a655744dbfad896f582a68bf3",
+        "title": "Apple 论文：强模型只需最小 harness 即可完成自主 ML 工程",
+        "url": "https://x.com/rohanpaul_ai/status/2107801865148600738",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -875,15 +993,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7421,
-      "importance": 0.7421,
-      "importance_score": 0.7421,
+      "score": 0.7281,
+      "importance": 0.7281,
+      "importance_score": 0.7281,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.775,
+        "recency": 0.6971,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -897,6 +1015,186 @@
         "title": "Mistral 发布 Large 4 公开预览版，1 万亿参数将开放权重",
         "url": "https://mistral.ai/news/mistral-large-4",
         "source": "Hacker News：AI 热帖",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_9bac19027c44",
+      "title": "消息称 DeepSeek 接近完成至少 800 亿元融资，腾讯、宁德时代重金参与",
+      "url": "https://www.ithome.com/1/009/990.htm",
+      "primary_url": "https://www.ithome.com/1/009/990.htm",
+      "source": "IT之家（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "59e9dae79a50a0d38aa18f7cb7d8590f95b9cdf8",
+          "title": "消息称 DeepSeek 接近完成至少 800 亿元融资，腾讯、宁德时代重金参与",
+          "url": "https://www.ithome.com/1/009/990.htm",
+          "source": "IT之家（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T06:25:15Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "IT之家（RSS）"
+      ],
+      "items": [
+        {
+          "id": "59e9dae79a50a0d38aa18f7cb7d8590f95b9cdf8",
+          "title": "消息称 DeepSeek 接近完成至少 800 亿元融资，腾讯、宁德时代重金参与",
+          "url": "https://www.ithome.com/1/009/990.htm",
+          "source": "IT之家（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T06:25:15Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.725,
+      "importance": 0.725,
+      "importance_score": 0.725,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.8,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.63,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-06T06:25:15Z",
+      "latest_at": "2026-10-06T06:25:15Z",
+      "primary_item": {
+        "id": "59e9dae79a50a0d38aa18f7cb7d8590f95b9cdf8",
+        "title": "消息称 DeepSeek 接近完成至少 800 亿元融资，腾讯、宁德时代重金参与",
+        "url": "https://www.ithome.com/1/009/990.htm",
+        "source": "IT之家（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_438642416251",
+      "title": "Nano Banana 2.1（gemini-nano-banana-2.1）发布，价格降至每张 $0.034 并超越前代 Pro",
+      "url": "https://x.com/_philschmid/status/2107502894685749672",
+      "primary_url": "https://x.com/_philschmid/status/2107502894685749672",
+      "source": "X：Philipp Schmid（Google DeepMind 开发者体验） (@_philschmid)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "9d90494ccf634f24e69b318e61adcbd89ec229d4",
+          "title": "Nano Banana 2.1（gemini-nano-banana-2.1）发布，价格降至每张 $0.034 并超越前代 Pro",
+          "url": "https://x.com/_philschmid/status/2107502894685749672",
+          "source": "X：Philipp Schmid（Google DeepMind 开发者体验） (@_philschmid)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T16:07:00Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Philipp Schmid（Google DeepMind 开发者体验） (@_philschmid)"
+      ],
+      "items": [
+        {
+          "id": "9d90494ccf634f24e69b318e61adcbd89ec229d4",
+          "title": "Nano Banana 2.1（gemini-nano-banana-2.1）发布，价格降至每张 $0.034 并超越前代 Pro",
+          "url": "https://x.com/_philschmid/status/2107502894685749672",
+          "source": "X：Philipp Schmid（Google DeepMind 开发者体验） (@_philschmid)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T16:07:00Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.724,
+      "importance": 0.724,
+      "importance_score": 0.724,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.74,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7246,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-06T16:07:00Z",
+      "latest_at": "2026-10-06T16:07:00Z",
+      "primary_item": {
+        "id": "9d90494ccf634f24e69b318e61adcbd89ec229d4",
+        "title": "Nano Banana 2.1（gemini-nano-banana-2.1）发布，价格降至每张 $0.034 并超越前代 Pro",
+        "url": "https://x.com/_philschmid/status/2107502894685749672",
+        "source": "X：Philipp Schmid（Google DeepMind 开发者体验） (@_philschmid)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_cdc3c9b880e0",
+      "title": "DAIR.AI 发布 MCP 工具，可连接 Codex、Claude Code、Grok Bot 探索每周热门 AI 论文",
+      "url": "https://x.com/dair_ai/status/2107828509934559509",
+      "primary_url": "https://x.com/dair_ai/status/2107828509934559509",
+      "source": "X：DAIR.AI (@dair_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "977d2eee78e43db823994f5d06cc9998c77a9351",
+          "title": "DAIR.AI 发布 MCP 工具，可连接 Codex、Claude Code、Grok Bot 探索每周热门 AI 论文",
+          "url": "https://x.com/dair_ai/status/2107828509934559509",
+          "source": "X：DAIR.AI (@dair_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T13:40:52Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：DAIR.AI (@dair_ai)"
+      ],
+      "items": [
+        {
+          "id": "977d2eee78e43db823994f5d06cc9998c77a9351",
+          "title": "DAIR.AI 发布 MCP 工具，可连接 Codex、Claude Code、Grok Bot 探索每周热门 AI 论文",
+          "url": "https://x.com/dair_ai/status/2107828509934559509",
+          "source": "X：DAIR.AI (@dair_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T13:40:52Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7237,
+      "importance": 0.7237,
+      "importance_score": 0.7237,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.58,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9894,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-07T13:40:52Z",
+      "latest_at": "2026-10-07T13:40:52Z",
+      "primary_item": {
+        "id": "977d2eee78e43db823994f5d06cc9998c77a9351",
+        "title": "DAIR.AI 发布 MCP 工具，可连接 Codex、Claude Code、Grok Bot 探索每周热门 AI 论文",
+        "url": "https://x.com/dair_ai/status/2107828509934559509",
+        "source": "X：DAIR.AI (@dair_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -953,15 +1251,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7394,
-      "importance": 0.7394,
-      "importance_score": 0.7394,
+      "score": 0.7236,
+      "importance": 0.7236,
+      "importance_score": 0.7236,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.871,
+        "recency": 0.7834,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -980,62 +1278,62 @@
       }
     },
     {
-      "story_id": "story_438642416251",
-      "title": "Nano Banana 2.1（gemini-nano-banana-2.1）发布，价格降至每张 $0.034 并超越前代 Pro",
-      "url": "https://x.com/_philschmid/status/2107502894685749672",
-      "primary_url": "https://x.com/_philschmid/status/2107502894685749672",
-      "source": "X：Philipp Schmid（Google DeepMind 开发者体验） (@_philschmid)",
+      "story_id": "story_4fed14e55fde",
+      "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活的原生多模态模型",
+      "url": "https://x.com/arthurmensch/status/2107463276326162840",
+      "primary_url": "https://x.com/arthurmensch/status/2107463276326162840",
+      "source": "X：Arthur Mensch（Mistral CEO） (@arthurmensch)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "9d90494ccf634f24e69b318e61adcbd89ec229d4",
-          "title": "Nano Banana 2.1（gemini-nano-banana-2.1）发布，价格降至每张 $0.034 并超越前代 Pro",
-          "url": "https://x.com/_philschmid/status/2107502894685749672",
-          "source": "X：Philipp Schmid（Google DeepMind 开发者体验） (@_philschmid)",
+          "id": "58dfe46430707460723f5de9f2d4c4d0ba07118a",
+          "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活的原生多模态模型",
+          "url": "https://x.com/arthurmensch/status/2107463276326162840",
+          "source": "X：Arthur Mensch（Mistral CEO） (@arthurmensch)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-06T16:07:00Z"
+          "published_at": "2026-10-06T13:29:34Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Philipp Schmid（Google DeepMind 开发者体验） (@_philschmid)"
+        "X：Arthur Mensch（Mistral CEO） (@arthurmensch)"
       ],
       "items": [
         {
-          "id": "9d90494ccf634f24e69b318e61adcbd89ec229d4",
-          "title": "Nano Banana 2.1（gemini-nano-banana-2.1）发布，价格降至每张 $0.034 并超越前代 Pro",
-          "url": "https://x.com/_philschmid/status/2107502894685749672",
-          "source": "X：Philipp Schmid（Google DeepMind 开发者体验） (@_philschmid)",
+          "id": "58dfe46430707460723f5de9f2d4c4d0ba07118a",
+          "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活的原生多模态模型",
+          "url": "https://x.com/arthurmensch/status/2107463276326162840",
+          "source": "X：Arthur Mensch（Mistral CEO） (@arthurmensch)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-06T16:07:00Z"
+          "published_at": "2026-10-06T13:29:34Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7386,
-      "importance": 0.7386,
-      "importance_score": 0.7386,
+      "score": 0.7222,
+      "importance": 0.7222,
+      "importance_score": 0.7222,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.74,
+        "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8056,
+        "recency": 0.6977,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-06T16:07:00Z",
-      "latest_at": "2026-10-06T16:07:00Z",
+      "earliest_at": "2026-10-06T13:29:34Z",
+      "latest_at": "2026-10-06T13:29:34Z",
       "primary_item": {
-        "id": "9d90494ccf634f24e69b318e61adcbd89ec229d4",
-        "title": "Nano Banana 2.1（gemini-nano-banana-2.1）发布，价格降至每张 $0.034 并超越前代 Pro",
-        "url": "https://x.com/_philschmid/status/2107502894685749672",
-        "source": "X：Philipp Schmid（Google DeepMind 开发者体验） (@_philschmid)",
+        "id": "58dfe46430707460723f5de9f2d4c4d0ba07118a",
+        "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活的原生多模态模型",
+        "url": "https://x.com/arthurmensch/status/2107463276326162840",
+        "source": "X：Arthur Mensch（Mistral CEO） (@arthurmensch)",
         "source_name": "AI HOT"
       }
     },
@@ -1093,15 +1391,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7377,
-      "importance": 0.7377,
-      "importance_score": 0.7377,
+      "score": 0.7221,
+      "importance": 0.7221,
+      "importance_score": 0.7221,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8618,
+        "recency": 0.7752,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -1116,306 +1414,6 @@
         "title": "ChatGPT 推出 Meetings 插件，可自动记会议纪要并跟进待办",
         "url": "https://x.com/thsottiaux/status/2107573405553938664",
         "source": "X：Tibo (@thsottiaux)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_9bac19027c44",
-      "title": "消息称 DeepSeek 接近完成至少 800 亿元融资，腾讯、宁德时代重金参与",
-      "url": "https://www.ithome.com/1/009/990.htm",
-      "primary_url": "https://www.ithome.com/1/009/990.htm",
-      "source": "IT之家（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "59e9dae79a50a0d38aa18f7cb7d8590f95b9cdf8",
-          "title": "消息称 DeepSeek 接近完成至少 800 亿元融资，腾讯、宁德时代重金参与",
-          "url": "https://www.ithome.com/1/009/990.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T06:25:15Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "IT之家（RSS）"
-      ],
-      "items": [
-        {
-          "id": "59e9dae79a50a0d38aa18f7cb7d8590f95b9cdf8",
-          "title": "消息称 DeepSeek 接近完成至少 800 亿元融资，腾讯、宁德时代重金参与",
-          "url": "https://www.ithome.com/1/009/990.htm",
-          "source": "IT之家（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T06:25:15Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7377,
-      "importance": 0.7377,
-      "importance_score": 0.7377,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.8,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7004,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-06T06:25:15Z",
-      "latest_at": "2026-10-06T06:25:15Z",
-      "primary_item": {
-        "id": "59e9dae79a50a0d38aa18f7cb7d8590f95b9cdf8",
-        "title": "消息称 DeepSeek 接近完成至少 800 亿元融资，腾讯、宁德时代重金参与",
-        "url": "https://www.ithome.com/1/009/990.htm",
-        "source": "IT之家（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_4fed14e55fde",
-      "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活的原生多模态模型",
-      "url": "https://x.com/arthurmensch/status/2107463276326162840",
-      "primary_url": "https://x.com/arthurmensch/status/2107463276326162840",
-      "source": "X：Arthur Mensch（Mistral CEO） (@arthurmensch)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "58dfe46430707460723f5de9f2d4c4d0ba07118a",
-          "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活的原生多模态模型",
-          "url": "https://x.com/arthurmensch/status/2107463276326162840",
-          "source": "X：Arthur Mensch（Mistral CEO） (@arthurmensch)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T13:29:34Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Arthur Mensch（Mistral CEO） (@arthurmensch)"
-      ],
-      "items": [
-        {
-          "id": "58dfe46430707460723f5de9f2d4c4d0ba07118a",
-          "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活的原生多模态模型",
-          "url": "https://x.com/arthurmensch/status/2107463276326162840",
-          "source": "X：Arthur Mensch（Mistral CEO） (@arthurmensch)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T13:29:34Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7362,
-      "importance": 0.7362,
-      "importance_score": 0.7362,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.75,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7757,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-06T13:29:34Z",
-      "latest_at": "2026-10-06T13:29:34Z",
-      "primary_item": {
-        "id": "58dfe46430707460723f5de9f2d4c4d0ba07118a",
-        "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活的原生多模态模型",
-        "url": "https://x.com/arthurmensch/status/2107463276326162840",
-        "source": "X：Arthur Mensch（Mistral CEO） (@arthurmensch)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_430873ba5b10",
-      "title": "Claude Code 推出 Cloud sessions：每任务独立 VM，合盖后任务继续运行",
-      "url": "https://x.com/ClaudeDevs/status/2107542087243907506",
-      "primary_url": "https://x.com/ClaudeDevs/status/2107542087243907506",
-      "source": "X：Claude Devs (@ClaudeDevs)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "c3de9f950257dfd6498395656895add912cdb905",
-          "title": "Claude Code 推出 Cloud sessions：每任务独立 VM，合盖后任务继续运行",
-          "url": "https://x.com/ClaudeDevs/status/2107542087243907506",
-          "source": "X：Claude Devs (@ClaudeDevs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T18:42:44Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Claude Devs (@ClaudeDevs)"
-      ],
-      "items": [
-        {
-          "id": "c3de9f950257dfd6498395656895add912cdb905",
-          "title": "Claude Code 推出 Cloud sessions：每任务独立 VM，合盖后任务继续运行",
-          "url": "https://x.com/ClaudeDevs/status/2107542087243907506",
-          "source": "X：Claude Devs (@ClaudeDevs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T18:42:44Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7322,
-      "importance": 0.7322,
-      "importance_score": 0.7322,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.7,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8364,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-06T18:42:44Z",
-      "latest_at": "2026-10-06T18:42:44Z",
-      "primary_item": {
-        "id": "c3de9f950257dfd6498395656895add912cdb905",
-        "title": "Claude Code 推出 Cloud sessions：每任务独立 VM，合盖后任务继续运行",
-        "url": "https://x.com/ClaudeDevs/status/2107542087243907506",
-        "source": "X：Claude Devs (@ClaudeDevs)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_c4e12cfaecde",
-      "title": "Claude 接入 Google Docs、Sheets 和 Slides，支持侧边栏就地编辑",
-      "url": "https://x.com/claudeai/status/2107522596845822135",
-      "primary_url": "https://x.com/claudeai/status/2107522596845822135",
-      "source": "X：Claude (@claudeai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "269bcb21c4221f207b8b5d49e626bb3dc4eb1e2b",
-          "title": "Claude 接入 Google Docs、Sheets 和 Slides，支持侧边栏就地编辑",
-          "url": "https://x.com/claudeai/status/2107522596845822135",
-          "source": "X：Claude (@claudeai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T17:25:17Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Claude (@claudeai)"
-      ],
-      "items": [
-        {
-          "id": "269bcb21c4221f207b8b5d49e626bb3dc4eb1e2b",
-          "title": "Claude 接入 Google Docs、Sheets 和 Slides，支持侧边栏就地编辑",
-          "url": "https://x.com/claudeai/status/2107522596845822135",
-          "source": "X：Claude (@claudeai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T17:25:17Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7294,
-      "importance": 0.7294,
-      "importance_score": 0.7294,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.7,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.821,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-06T17:25:17Z",
-      "latest_at": "2026-10-06T17:25:17Z",
-      "primary_item": {
-        "id": "269bcb21c4221f207b8b5d49e626bb3dc4eb1e2b",
-        "title": "Claude 接入 Google Docs、Sheets 和 Slides，支持侧边栏就地编辑",
-        "url": "https://x.com/claudeai/status/2107522596845822135",
-        "source": "X：Claude (@claudeai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_a7a8c7cb4146",
-      "title": "Nano Banana 2.1 发布，Google Labs 高管称蒙版编辑是当日最爱",
-      "url": "https://x.com/joshwoodward/status/2107679061854273656",
-      "primary_url": "https://x.com/joshwoodward/status/2107679061854273656",
-      "source": "X：Josh Woodward (@joshwoodward, Google Labs VP)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "0490c9c82ba360e76e10bcecc0485df76278d974",
-          "title": "Nano Banana 2.1 发布，Google Labs 高管称蒙版编辑是当日最爱",
-          "url": "https://x.com/joshwoodward/status/2107679061854273656",
-          "source": "X：Josh Woodward (@joshwoodward, Google Labs VP)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T03:47:01Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Josh Woodward (@joshwoodward, Google Labs VP)"
-      ],
-      "items": [
-        {
-          "id": "0490c9c82ba360e76e10bcecc0485df76278d974",
-          "title": "Nano Banana 2.1 发布，Google Labs 高管称蒙版编辑是当日最爱",
-          "url": "https://x.com/joshwoodward/status/2107679061854273656",
-          "source": "X：Josh Woodward (@joshwoodward, Google Labs VP)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T03:47:01Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7292,
-      "importance": 0.7292,
-      "importance_score": 0.7292,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.62,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9535,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-07T03:47:01Z",
-      "latest_at": "2026-10-07T03:47:01Z",
-      "primary_item": {
-        "id": "0490c9c82ba360e76e10bcecc0485df76278d974",
-        "title": "Nano Banana 2.1 发布，Google Labs 高管称蒙版编辑是当日最爱",
-        "url": "https://x.com/joshwoodward/status/2107679061854273656",
-        "source": "X：Josh Woodward (@joshwoodward, Google Labs VP)",
         "source_name": "AI HOT"
       }
     }
