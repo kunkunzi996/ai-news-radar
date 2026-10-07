@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T21:09:35.034736Z",
+  "generated_at": "2026-10-07T00:57:37.060515Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -149,15 +149,15 @@
       ],
       "item_count": 7,
       "duplicate_count": 7,
-      "score": 0.8178,
-      "importance": 0.8178,
-      "importance_score": 0.8178,
+      "score": 0.8107,
+      "importance": 0.8107,
+      "importance_score": 0.8107,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7399,
+        "recency": 0.7004,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -249,15 +249,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.8085,
-      "importance": 0.8085,
-      "importance_score": 0.8085,
+      "score": 0.799,
+      "importance": 0.799,
+      "importance_score": 0.799,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9827,
+        "recency": 0.9302,
         "story_heat": 0.5
       },
       "category": "multi_source",
@@ -311,15 +311,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7992,
-      "importance": 0.7992,
-      "importance_score": 0.7992,
+      "score": 0.7898,
+      "importance": 0.7898,
+      "importance_score": 0.7898,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.84,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9754,
+        "recency": 0.9233,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -372,15 +372,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7884,
-      "importance": 0.7884,
-      "importance_score": 0.7884,
+      "score": 0.7793,
+      "importance": 0.7793,
+      "importance_score": 0.7793,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.949,
+        "recency": 0.8983,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -433,15 +433,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7753,
-      "importance": 0.7753,
-      "importance_score": 0.7753,
+      "score": 0.7669,
+      "importance": 0.7669,
+      "importance_score": 0.7669,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8761,
+        "recency": 0.8293,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -512,15 +512,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.773,
-      "importance": 0.773,
-      "importance_score": 0.773,
+      "score": 0.7643,
+      "importance": 0.7643,
+      "importance_score": 0.7643,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9078,
+        "recency": 0.8593,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -536,6 +536,128 @@
         "title": "Mistral Large 4 上线 OpenRouter 公测：1T 参数、1M 上下文、前两周五折",
         "url": "https://x.com/OpenRouter/status/2107477859317297600",
         "source": "X：OpenRouter (@OpenRouter)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_0f09093704ef",
+      "title": "OpenAI 发布内部前沿模型产出的新数学成果",
+      "url": "https://x.com/OpenAI/status/2107596713791767021",
+      "primary_url": "https://x.com/OpenAI/status/2107596713791767021",
+      "source": "X：OpenAI (@OpenAI)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "2ac8a1f7ce18cb78717ec73f79fb3c5003426f51",
+          "title": "OpenAI 发布内部前沿模型产出的新数学成果",
+          "url": "https://x.com/OpenAI/status/2107596713791767021",
+          "source": "X：OpenAI (@OpenAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T22:19:48Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：OpenAI (@OpenAI)"
+      ],
+      "items": [
+        {
+          "id": "2ac8a1f7ce18cb78717ec73f79fb3c5003426f51",
+          "title": "OpenAI 发布内部前沿模型产出的新数学成果",
+          "url": "https://x.com/OpenAI/status/2107596713791767021",
+          "source": "X：OpenAI (@OpenAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T22:19:48Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7609,
+      "importance": 0.7609,
+      "importance_score": 0.7609,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.72,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9627,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-06T22:19:48Z",
+      "latest_at": "2026-10-06T22:19:48Z",
+      "primary_item": {
+        "id": "2ac8a1f7ce18cb78717ec73f79fb3c5003426f51",
+        "title": "OpenAI 发布内部前沿模型产出的新数学成果",
+        "url": "https://x.com/OpenAI/status/2107596713791767021",
+        "source": "X：OpenAI (@OpenAI)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_47b9255d8fa0",
+      "title": "OpenAI 发布内部前沿模型产出的数学研究成果",
+      "url": "https://openai.com/index/sharing-ai-progress-in-mathematics",
+      "primary_url": "https://openai.com/index/sharing-ai-progress-in-mathematics",
+      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "02b12876fb3eb437aec169fe451761ddd907d8ac",
+          "title": "OpenAI 发布内部前沿模型产出的数学研究成果",
+          "url": "https://openai.com/index/sharing-ai-progress-in-mathematics",
+          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T23:01:09.228000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "OpenAI：官网动态（RSS · 排除企业/客户案例）"
+      ],
+      "items": [
+        {
+          "id": "02b12876fb3eb437aec169fe451761ddd907d8ac",
+          "title": "OpenAI 发布内部前沿模型产出的数学研究成果",
+          "url": "https://openai.com/index/sharing-ai-progress-in-mathematics",
+          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T23:01:09.228000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7596,
+      "importance": 0.7596,
+      "importance_score": 0.7596,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.71,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9724,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-06T23:01:09.228000Z",
+      "latest_at": "2026-10-06T23:01:09.228000Z",
+      "primary_item": {
+        "id": "02b12876fb3eb437aec169fe451761ddd907d8ac",
+        "title": "OpenAI 发布内部前沿模型产出的数学研究成果",
+        "url": "https://openai.com/index/sharing-ai-progress-in-mathematics",
+        "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
         "source_name": "AI HOT"
       }
     },
@@ -574,15 +696,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7664,
-      "importance": 0.7664,
-      "importance_score": 0.7664,
+      "score": 0.7575,
+      "importance": 0.7575,
+      "importance_score": 0.7575,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9267,
+        "recency": 0.8772,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -635,15 +757,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7636,
-      "importance": 0.7636,
-      "importance_score": 0.7636,
+      "score": 0.755,
+      "importance": 0.755,
+      "importance_score": 0.755,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8944,
+        "recency": 0.8466,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -658,6 +780,167 @@
         "title": "Mistral 发布 Large 4 公开预览版，1 万亿参数将开放权重",
         "url": "https://mistral.ai/news/mistral-large-4",
         "source": "Hacker News：AI 热帖",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_01b491731ea1",
+      "title": "fal 上线 Google nano-banana-2.1 文生图与图像编辑模型",
+      "url": "https://x.com/fal/status/2107584475723145358",
+      "primary_url": "https://x.com/fal/status/2107584475723145358",
+      "source": "X：fal (@fal)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "bfe548df73e3c1e2cb6809c5860703fa9e169b91",
+          "title": "fal 上线 Google nano-banana-2.1 文生图与图像编辑模型",
+          "url": "https://x.com/fal/status/2107584475723145358",
+          "source": "X：fal (@fal)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T21:31:10Z"
+        },
+        {
+          "id": "e08c9dbab15a0c2ad7dde6c7365631b6355013bf",
+          "title": "fal 上线 Google Nano Banana 2.1 文生图与图像编辑模型",
+          "url": "https://x.com/fal/status/2107502774728409378",
+          "source": "X：fal (@fal)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T16:06:31Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：fal (@fal)"
+      ],
+      "items": [
+        {
+          "id": "bfe548df73e3c1e2cb6809c5860703fa9e169b91",
+          "title": "fal 上线 Google nano-banana-2.1 文生图与图像编辑模型",
+          "url": "https://x.com/fal/status/2107584475723145358",
+          "source": "X：fal (@fal)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T21:31:10Z"
+        },
+        {
+          "id": "e08c9dbab15a0c2ad7dde6c7365631b6355013bf",
+          "title": "fal 上线 Google Nano Banana 2.1 文生图与图像编辑模型",
+          "url": "https://x.com/fal/status/2107502774728409378",
+          "source": "X：fal (@fal)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T16:06:31Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7539,
+      "importance": 0.7539,
+      "importance_score": 0.7539,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.62,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9515,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-06T16:06:31Z",
+      "latest_at": "2026-10-06T21:31:10Z",
+      "primary_item": {
+        "id": "bfe548df73e3c1e2cb6809c5860703fa9e169b91",
+        "title": "fal 上线 Google nano-banana-2.1 文生图与图像编辑模型",
+        "url": "https://x.com/fal/status/2107584475723145358",
+        "source": "X：fal (@fal)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_eae73d0bf061",
+      "title": "ChatGPT 推出 Meetings 插件，可自动记会议纪要并跟进待办",
+      "url": "https://x.com/thsottiaux/status/2107573405553938664",
+      "primary_url": "https://x.com/thsottiaux/status/2107573405553938664",
+      "source": "X：Tibo (@thsottiaux)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "34f5a2c579a2aeddf9076bb44a4228bb413a056d",
+          "title": "ChatGPT 推出 Meetings 插件，可自动记会议纪要并跟进待办",
+          "url": "https://x.com/thsottiaux/status/2107573405553938664",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T20:47:11Z"
+        },
+        {
+          "id": "69e7bb18262f13cb368a84d4cea3b3bb382747b6",
+          "title": "ChatGPT 推出 Meetings 插件，自动记录会议纪要并跟进后续任务",
+          "url": "https://x.com/ChatGPT/status/2107567930557026653",
+          "source": "X：ChatGPT (@ChatGPT)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T20:25:26Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：ChatGPT (@ChatGPT)",
+        "X：Tibo (@thsottiaux)"
+      ],
+      "items": [
+        {
+          "id": "34f5a2c579a2aeddf9076bb44a4228bb413a056d",
+          "title": "ChatGPT 推出 Meetings 插件，可自动记会议纪要并跟进待办",
+          "url": "https://x.com/thsottiaux/status/2107573405553938664",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T20:47:11Z"
+        },
+        {
+          "id": "69e7bb18262f13cb368a84d4cea3b3bb382747b6",
+          "title": "ChatGPT 推出 Meetings 插件，自动记录会议纪要并跟进后续任务",
+          "url": "https://x.com/ChatGPT/status/2107567930557026653",
+          "source": "X：ChatGPT (@ChatGPT)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T20:25:26Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7521,
+      "importance": 0.7521,
+      "importance_score": 0.7521,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.62,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9415,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-06T20:25:26Z",
+      "latest_at": "2026-10-06T20:47:11Z",
+      "primary_item": {
+        "id": "34f5a2c579a2aeddf9076bb44a4228bb413a056d",
+        "title": "ChatGPT 推出 Meetings 插件，可自动记会议纪要并跟进待办",
+        "url": "https://x.com/thsottiaux/status/2107573405553938664",
+        "source": "X：Tibo (@thsottiaux)",
         "source_name": "AI HOT"
       }
     },
@@ -696,15 +979,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.761,
-      "importance": 0.761,
-      "importance_score": 0.761,
+      "score": 0.752,
+      "importance": 0.752,
+      "importance_score": 0.752,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9298,
+        "recency": 0.8801,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -719,67 +1002,6 @@
         "title": "Nano Banana 2.1（gemini-nano-banana-2.1）发布，价格降至每张 $0.034 并超越前代 Pro",
         "url": "https://x.com/_philschmid/status/2107502894685749672",
         "source": "X：Philipp Schmid（Google DeepMind 开发者体验） (@_philschmid)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_4fed14e55fde",
-      "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活的原生多模态模型",
-      "url": "https://x.com/arthurmensch/status/2107463276326162840",
-      "primary_url": "https://x.com/arthurmensch/status/2107463276326162840",
-      "source": "X：Arthur Mensch（Mistral CEO） (@arthurmensch)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "58dfe46430707460723f5de9f2d4c4d0ba07118a",
-          "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活的原生多模态模型",
-          "url": "https://x.com/arthurmensch/status/2107463276326162840",
-          "source": "X：Arthur Mensch（Mistral CEO） (@arthurmensch)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T13:29:34Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Arthur Mensch（Mistral CEO） (@arthurmensch)"
-      ],
-      "items": [
-        {
-          "id": "58dfe46430707460723f5de9f2d4c4d0ba07118a",
-          "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活的原生多模态模型",
-          "url": "https://x.com/arthurmensch/status/2107463276326162840",
-          "source": "X：Arthur Mensch（Mistral CEO） (@arthurmensch)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T13:29:34Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7577,
-      "importance": 0.7577,
-      "importance_score": 0.7577,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.75,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8952,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-06T13:29:34Z",
-      "latest_at": "2026-10-06T13:29:34Z",
-      "primary_item": {
-        "id": "58dfe46430707460723f5de9f2d4c4d0ba07118a",
-        "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活的原生多模态模型",
-        "url": "https://x.com/arthurmensch/status/2107463276326162840",
-        "source": "X：Arthur Mensch（Mistral CEO） (@arthurmensch)",
         "source_name": "AI HOT"
       }
     },
@@ -818,21 +1040,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7571,
-      "importance": 0.7571,
-      "importance_score": 0.7571,
+      "score": 0.7493,
+      "importance": 0.7493,
+      "importance_score": 0.7493,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.8,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8083,
+        "recency": 0.7651,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-06T06:25:15Z",
       "latest_at": "2026-10-06T06:25:15Z",
@@ -841,6 +1062,66 @@
         "title": "消息称 DeepSeek 接近完成至少 800 亿元融资，腾讯、宁德时代重金参与",
         "url": "https://www.ithome.com/1/009/990.htm",
         "source": "IT之家（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_4fed14e55fde",
+      "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活的原生多模态模型",
+      "url": "https://x.com/arthurmensch/status/2107463276326162840",
+      "primary_url": "https://x.com/arthurmensch/status/2107463276326162840",
+      "source": "X：Arthur Mensch（Mistral CEO） (@arthurmensch)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "58dfe46430707460723f5de9f2d4c4d0ba07118a",
+          "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活的原生多模态模型",
+          "url": "https://x.com/arthurmensch/status/2107463276326162840",
+          "source": "X：Arthur Mensch（Mistral CEO） (@arthurmensch)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T13:29:34Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Arthur Mensch（Mistral CEO） (@arthurmensch)"
+      ],
+      "items": [
+        {
+          "id": "58dfe46430707460723f5de9f2d4c4d0ba07118a",
+          "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活的原生多模态模型",
+          "url": "https://x.com/arthurmensch/status/2107463276326162840",
+          "source": "X：Arthur Mensch（Mistral CEO） (@arthurmensch)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T13:29:34Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7491,
+      "importance": 0.7491,
+      "importance_score": 0.7491,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.75,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8474,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-06T13:29:34Z",
+      "latest_at": "2026-10-06T13:29:34Z",
+      "primary_item": {
+        "id": "58dfe46430707460723f5de9f2d4c4d0ba07118a",
+        "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活的原生多模态模型",
+        "url": "https://x.com/arthurmensch/status/2107463276326162840",
+        "source": "X：Arthur Mensch（Mistral CEO） (@arthurmensch)",
         "source_name": "AI HOT"
       }
     },
@@ -879,21 +1160,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7553,
-      "importance": 0.7553,
-      "importance_score": 0.7553,
+      "score": 0.7461,
+      "importance": 0.7461,
+      "importance_score": 0.7461,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9653,
+        "recency": 0.9137,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-06T18:42:44Z",
       "latest_at": "2026-10-06T18:42:44Z",
@@ -902,6 +1182,66 @@
         "title": "Claude Code 推出 Cloud sessions：每任务独立 VM，合盖后任务继续运行",
         "url": "https://x.com/ClaudeDevs/status/2107542087243907506",
         "source": "X：Claude Devs (@ClaudeDevs)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_9b4e3b1f6873",
+      "title": "OpenAI 公开内部模型数学成果论文：722 篇手稿覆盖 372 项结果",
+      "url": "https://x.com/rohanpaul_ai/status/2107617064693510311",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2107617064693510311",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "bf349c6482cb469580f1bd955447dd8e76be8e31",
+          "title": "OpenAI 公开内部模型数学成果论文：722 篇手稿覆盖 372 项结果",
+          "url": "https://x.com/rohanpaul_ai/status/2107617064693510311",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T23:40:40Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "bf349c6482cb469580f1bd955447dd8e76be8e31",
+          "title": "OpenAI 公开内部模型数学成果论文：722 篇手稿覆盖 372 项结果",
+          "url": "https://x.com/rohanpaul_ai/status/2107617064693510311",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T23:40:40Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7433,
+      "importance": 0.7433,
+      "importance_score": 0.7433,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.65,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9817,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-06T23:40:40Z",
+      "latest_at": "2026-10-06T23:40:40Z",
+      "primary_item": {
+        "id": "bf349c6482cb469580f1bd955447dd8e76be8e31",
+        "title": "OpenAI 公开内部模型数学成果论文：722 篇手稿覆盖 372 项结果",
+        "url": "https://x.com/rohanpaul_ai/status/2107617064693510311",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -940,21 +1280,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7521,
-      "importance": 0.7521,
-      "importance_score": 0.7521,
+      "score": 0.743,
+      "importance": 0.743,
+      "importance_score": 0.743,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9474,
+        "recency": 0.8969,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-06T17:25:17Z",
       "latest_at": "2026-10-06T17:25:17Z",
@@ -1001,21 +1340,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7521,
-      "importance": 0.7521,
-      "importance_score": 0.7521,
+      "score": 0.7425,
+      "importance": 0.7425,
+      "importance_score": 0.7425,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9972,
+        "recency": 0.9439,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-06T20:57:56Z",
       "latest_at": "2026-10-06T20:57:56Z",
@@ -1062,21 +1400,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7512,
-      "importance": 0.7512,
-      "importance_score": 0.7512,
+      "score": 0.7422,
+      "importance": 0.7422,
+      "importance_score": 0.7422,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9423,
+        "recency": 0.892,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-06T17:02:37Z",
       "latest_at": "2026-10-06T17:02:37Z",
@@ -1085,306 +1422,6 @@
         "title": "Claude for Google Workspace 开启 beta，可直接在 Docs、Sheets、Slides 中编辑",
         "url": "https://www.youtube.com/watch?v=idJQMJwHtyM",
         "source": "Claude：YouTube（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_f34870bc81ca",
-      "title": "Bloomberg：DeepSeek 接近完成至少 120 亿美元融资，估值或达 710 亿美元",
-      "url": "https://x.com/rohanpaul_ai/status/2107361452428611741",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2107361452428611741",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "27c09c14c742abd1ded9879d51db81d9829322f0",
-          "title": "Bloomberg：DeepSeek 接近完成至少 120 亿美元融资，估值或达 710 亿美元",
-          "url": "https://x.com/rohanpaul_ai/status/2107361452428611741",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T06:44:57Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "27c09c14c742abd1ded9879d51db81d9829322f0",
-          "title": "Bloomberg：DeepSeek 接近完成至少 120 亿美元融资，估值或达 710 亿美元",
-          "url": "https://x.com/rohanpaul_ai/status/2107361452428611741",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T06:44:57Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7488,
-      "importance": 0.7488,
-      "importance_score": 0.7488,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.77,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8121,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-06T06:44:57Z",
-      "latest_at": "2026-10-06T06:44:57Z",
-      "primary_item": {
-        "id": "27c09c14c742abd1ded9879d51db81d9829322f0",
-        "title": "Bloomberg：DeepSeek 接近完成至少 120 亿美元融资，估值或达 710 亿美元",
-        "url": "https://x.com/rohanpaul_ai/status/2107361452428611741",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_327f31ad4393",
-      "title": "Mistral 发布 Mistral Large 4，Artificial Analysis 智能指数得 38 分",
-      "url": "https://x.com/ArtificialAnlys/status/2107467221421420919",
-      "primary_url": "https://x.com/ArtificialAnlys/status/2107467221421420919",
-      "source": "X：Artificial Analysis (@ArtificialAnlys)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "9ab08f32bb5f9e902a9a7e95322bfacf69e3bd0c",
-          "title": "Mistral 发布 Mistral Large 4，Artificial Analysis 智能指数得 38 分",
-          "url": "https://x.com/ArtificialAnlys/status/2107467221421420919",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T13:45:15Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Artificial Analysis (@ArtificialAnlys)"
-      ],
-      "items": [
-        {
-          "id": "9ab08f32bb5f9e902a9a7e95322bfacf69e3bd0c",
-          "title": "Mistral 发布 Mistral Large 4，Artificial Analysis 智能指数得 38 分",
-          "url": "https://x.com/ArtificialAnlys/status/2107467221421420919",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T13:45:15Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7463,
-      "importance": 0.7463,
-      "importance_score": 0.7463,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8986,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-06T13:45:15Z",
-      "latest_at": "2026-10-06T13:45:15Z",
-      "primary_item": {
-        "id": "9ab08f32bb5f9e902a9a7e95322bfacf69e3bd0c",
-        "title": "Mistral 发布 Mistral Large 4，Artificial Analysis 智能指数得 38 分",
-        "url": "https://x.com/ArtificialAnlys/status/2107467221421420919",
-        "source": "X：Artificial Analysis (@ArtificialAnlys)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_474665d2a7fd",
-      "title": "Mistral 发布 Mistral Large 4，1T 参数原生多模态，月底开放权重",
-      "url": "https://x.com/MistralAI/status/2107457414387622310",
-      "primary_url": "https://x.com/MistralAI/status/2107457414387622310",
-      "source": "X：Mistral AI (@MistralAI)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "ab0658927caa426758306a44bdd0eead35afb00c",
-          "title": "Mistral 发布 Mistral Large 4，1T 参数原生多模态，月底开放权重",
-          "url": "https://x.com/MistralAI/status/2107457414387622310",
-          "source": "X：Mistral AI (@MistralAI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T13:06:16Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Mistral AI (@MistralAI)"
-      ],
-      "items": [
-        {
-          "id": "ab0658927caa426758306a44bdd0eead35afb00c",
-          "title": "Mistral 发布 Mistral Large 4，1T 参数原生多模态，月底开放权重",
-          "url": "https://x.com/MistralAI/status/2107457414387622310",
-          "source": "X：Mistral AI (@MistralAI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T13:06:16Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7418,
-      "importance": 0.7418,
-      "importance_score": 0.7418,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.7,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8902,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-06T13:06:16Z",
-      "latest_at": "2026-10-06T13:06:16Z",
-      "primary_item": {
-        "id": "ab0658927caa426758306a44bdd0eead35afb00c",
-        "title": "Mistral 发布 Mistral Large 4，1T 参数原生多模态，月底开放权重",
-        "url": "https://x.com/MistralAI/status/2107457414387622310",
-        "source": "X：Mistral AI (@MistralAI)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_5a598f63c5ab",
-      "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活，开源权重十月底放出",
-      "url": "https://x.com/Yuchenj_UW/status/2107466520851046886",
-      "primary_url": "https://x.com/Yuchenj_UW/status/2107466520851046886",
-      "source": "X：Yuchen Jin (@Yuchenj_UW)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "dec01815e87f58c1a7715df2ca43ab4d21f1dd25",
-          "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活，开源权重十月底放出",
-          "url": "https://x.com/Yuchenj_UW/status/2107466520851046886",
-          "source": "X：Yuchen Jin (@Yuchenj_UW)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T13:42:28Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Yuchen Jin (@Yuchenj_UW)"
-      ],
-      "items": [
-        {
-          "id": "dec01815e87f58c1a7715df2ca43ab4d21f1dd25",
-          "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活，开源权重十月底放出",
-          "url": "https://x.com/Yuchenj_UW/status/2107466520851046886",
-          "source": "X：Yuchen Jin (@Yuchenj_UW)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T13:42:28Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7402,
-      "importance": 0.7402,
-      "importance_score": 0.7402,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.69,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.898,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-06T13:42:28Z",
-      "latest_at": "2026-10-06T13:42:28Z",
-      "primary_item": {
-        "id": "dec01815e87f58c1a7715df2ca43ab4d21f1dd25",
-        "title": "Mistral 发布 Mistral Large 4：1T 参数、49B 激活，开源权重十月底放出",
-        "url": "https://x.com/Yuchenj_UW/status/2107466520851046886",
-        "source": "X：Yuchen Jin (@Yuchenj_UW)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_b2f138511a70",
-      "title": "Mistral 发布 Mistral Large 4：1T 参数多模态开源权重模型，作者称性能不够惊艳",
-      "url": "https://x.com/omarsar0/status/2107484943953621127",
-      "primary_url": "https://x.com/omarsar0/status/2107484943953621127",
-      "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "c314f564cddc3a4193da60dac5a32dc26b1cb304",
-          "title": "Mistral 发布 Mistral Large 4：1T 参数多模态开源权重模型，作者称性能不够惊艳",
-          "url": "https://x.com/omarsar0/status/2107484943953621127",
-          "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T14:55:40Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Elvis Saravia (@omarsar0, DAIR.AI)"
-      ],
-      "items": [
-        {
-          "id": "c314f564cddc3a4193da60dac5a32dc26b1cb304",
-          "title": "Mistral 发布 Mistral Large 4：1T 参数多模态开源权重模型，作者称性能不够惊艳",
-          "url": "https://x.com/omarsar0/status/2107484943953621127",
-          "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T14:55:40Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7401,
-      "importance": 0.7401,
-      "importance_score": 0.7401,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.68,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9139,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-06T14:55:40Z",
-      "latest_at": "2026-10-06T14:55:40Z",
-      "primary_item": {
-        "id": "c314f564cddc3a4193da60dac5a32dc26b1cb304",
-        "title": "Mistral 发布 Mistral Large 4：1T 参数多模态开源权重模型，作者称性能不够惊艳",
-        "url": "https://x.com/omarsar0/status/2107484943953621127",
-        "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
         "source_name": "AI HOT"
       }
     }
