@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-08T06:32:45.517001Z",
+  "generated_at": "2026-10-08T13:54:48.678296Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -38,15 +38,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.8401,
-      "importance": 0.8401,
-      "importance_score": 0.8401,
+      "score": 0.8231,
+      "importance": 0.8231,
+      "importance_score": 0.8231,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 1.0,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.936,
+        "recency": 0.8415,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -118,15 +118,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.8078,
-      "importance": 0.8078,
-      "importance_score": 0.8078,
+      "score": 0.7926,
+      "importance": 0.7926,
+      "importance_score": 0.7926,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.87,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8345,
+        "recency": 0.7503,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -142,6 +142,67 @@
         "title": "OpenAI 向全部 ChatGPT 用户推出 GPT-6 与 Intelligent UI",
         "url": "https://openai.com/index/gpt-6-for-everyone",
         "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_50a66e8e1b35",
+      "title": "Zenity 研究人员发现一条提示词即可劫持 AWS 账户内全部 AgentCore 智能体",
+      "url": "https://the-decoder.com/a-single-prompt-was-enough-to-hijack-every-ai-agent-in-an-aws-account-zenity-researchers-found",
+      "primary_url": "https://the-decoder.com/a-single-prompt-was-enough-to-hijack-every-ai-agent-in-an-aws-account-zenity-researchers-found",
+      "source": "The Decoder：AI News（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "53da602216c4fe60a67d386a9ccbd530bab544a0",
+          "title": "Zenity 研究人员发现一条提示词即可劫持 AWS 账户内全部 AgentCore 智能体",
+          "url": "https://the-decoder.com/a-single-prompt-was-enough-to-hijack-every-ai-agent-in-an-aws-account-zenity-researchers-found",
+          "source": "The Decoder：AI News（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T13:01:01Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "The Decoder：AI News（RSS）"
+      ],
+      "items": [
+        {
+          "id": "53da602216c4fe60a67d386a9ccbd530bab544a0",
+          "title": "Zenity 研究人员发现一条提示词即可劫持 AWS 账户内全部 AgentCore 智能体",
+          "url": "https://the-decoder.com/a-single-prompt-was-enough-to-hijack-every-ai-agent-in-an-aws-account-zenity-researchers-found",
+          "source": "The Decoder：AI News（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T13:01:01Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7893,
+      "importance": 0.7893,
+      "importance_score": 0.7893,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.8,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9871,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-08T13:01:01Z",
+      "latest_at": "2026-10-08T13:01:01Z",
+      "primary_item": {
+        "id": "53da602216c4fe60a67d386a9ccbd530bab544a0",
+        "title": "Zenity 研究人员发现一条提示词即可劫持 AWS 账户内全部 AgentCore 智能体",
+        "url": "https://the-decoder.com/a-single-prompt-was-enough-to-hijack-every-ai-agent-in-an-aws-account-zenity-researchers-found",
+        "source": "The Decoder：AI News（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -180,15 +241,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7961,
-      "importance": 0.7961,
-      "importance_score": 0.7961,
+      "score": 0.779,
+      "importance": 0.779,
+      "importance_score": 0.779,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.85,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9416,
+        "recency": 0.8466,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -260,15 +321,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7835,
-      "importance": 0.7835,
-      "importance_score": 0.7835,
+      "score": 0.7681,
+      "importance": 0.7681,
+      "importance_score": 0.7681,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8496,
+        "recency": 0.7638,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -322,15 +383,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7809,
-      "importance": 0.7809,
-      "importance_score": 0.7809,
+      "score": 0.7635,
+      "importance": 0.7635,
+      "importance_score": 0.7635,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9574,
+        "recency": 0.8608,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -349,63 +410,82 @@
       }
     },
     {
-      "story_id": "story_efff0efe8d7b",
-      "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
-      "url": "https://x.com/emollick/status/2107938889004396561",
-      "primary_url": "https://x.com/emollick/status/2107938889004396561",
-      "source": "X：Ethan Mollick (@emollick)",
+      "story_id": "story_ad34714ca563",
+      "title": "Step 5 Preview 上线 OpenRouter",
+      "url": "https://x.com/OpenRouter/status/2108188953757331803",
+      "primary_url": "https://x.com/OpenRouter/status/2108188953757331803",
+      "source": "X：OpenRouter (@OpenRouter)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "a9899b166aeda121aa76167924c4f9d5dff63713",
-          "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
-          "url": "https://x.com/emollick/status/2107938889004396561",
-          "source": "X：Ethan Mollick (@emollick)",
+          "id": "5e3e04deadb3d2fee376b73ea33a296fe42b6dc0",
+          "title": "Step 5 Preview 上线 OpenRouter，输入 $1.00/M、缓存命中仅 $0.05/M",
+          "url": "https://x.com/OpenRouter/status/2108188987357901047",
+          "source": "X：OpenRouter (@OpenRouter)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T20:59:29Z"
+          "published_at": "2026-10-08T13:33:17Z"
+        },
+        {
+          "id": "9f0afed4ed5c186205f656198e8cff2ed9c30b15",
+          "title": "Step 5 Preview 上线 OpenRouter",
+          "url": "https://x.com/OpenRouter/status/2108188953757331803",
+          "source": "X：OpenRouter (@OpenRouter)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T13:33:09Z"
         }
       ],
-      "source_count": 1,
+      "source_count": 2,
       "source_names": [
-        "X：Ethan Mollick (@emollick)"
+        "X：OpenRouter (@OpenRouter)"
       ],
       "items": [
         {
-          "id": "a9899b166aeda121aa76167924c4f9d5dff63713",
-          "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
-          "url": "https://x.com/emollick/status/2107938889004396561",
-          "source": "X：Ethan Mollick (@emollick)",
+          "id": "5e3e04deadb3d2fee376b73ea33a296fe42b6dc0",
+          "title": "Step 5 Preview 上线 OpenRouter，输入 $1.00/M、缓存命中仅 $0.05/M",
+          "url": "https://x.com/OpenRouter/status/2108188987357901047",
+          "source": "X：OpenRouter (@OpenRouter)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T20:59:29Z"
+          "published_at": "2026-10-08T13:33:17Z"
+        },
+        {
+          "id": "9f0afed4ed5c186205f656198e8cff2ed9c30b15",
+          "title": "Step 5 Preview 上线 OpenRouter",
+          "url": "https://x.com/OpenRouter/status/2108188953757331803",
+          "source": "X：OpenRouter (@OpenRouter)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T13:33:09Z"
         }
       ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7744,
-      "importance": 0.7744,
-      "importance_score": 0.7744,
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7617,
+      "importance": 0.7617,
+      "importance_score": 0.7617,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.82,
+        "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8711,
-        "story_heat": 0.0
+        "recency": 0.9948,
+        "story_heat": 0.25
       },
       "category": "industry",
       "reasons": [
+        "multi_source",
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-10-07T20:59:29Z",
-      "latest_at": "2026-10-07T20:59:29Z",
+      "earliest_at": "2026-10-08T13:33:09Z",
+      "latest_at": "2026-10-08T13:33:17Z",
       "primary_item": {
-        "id": "a9899b166aeda121aa76167924c4f9d5dff63713",
-        "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
-        "url": "https://x.com/emollick/status/2107938889004396561",
-        "source": "X：Ethan Mollick (@emollick)",
+        "id": "9f0afed4ed5c186205f656198e8cff2ed9c30b15",
+        "title": "Step 5 Preview 上线 OpenRouter",
+        "url": "https://x.com/OpenRouter/status/2108188953757331803",
+        "source": "X：OpenRouter (@OpenRouter)",
         "source_name": "AI HOT"
       }
     },
@@ -444,15 +524,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.774,
-      "importance": 0.774,
-      "importance_score": 0.774,
+      "score": 0.7588,
+      "importance": 0.7588,
+      "importance_score": 0.7588,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.84,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8353,
+        "recency": 0.751,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -467,6 +547,67 @@
         "title": "OpenAI 全球推送 GPT-6 智能界面，Plus 等付费档用 GPT-6 Sol",
         "url": "https://x.com/OpenAI/status/2107895006350791071",
         "source": "X：OpenAI (@OpenAI)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_efff0efe8d7b",
+      "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
+      "url": "https://x.com/emollick/status/2107938889004396561",
+      "primary_url": "https://x.com/emollick/status/2107938889004396561",
+      "source": "X：Ethan Mollick (@emollick)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "a9899b166aeda121aa76167924c4f9d5dff63713",
+          "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
+          "url": "https://x.com/emollick/status/2107938889004396561",
+          "source": "X：Ethan Mollick (@emollick)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T20:59:29Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Ethan Mollick (@emollick)"
+      ],
+      "items": [
+        {
+          "id": "a9899b166aeda121aa76167924c4f9d5dff63713",
+          "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
+          "url": "https://x.com/emollick/status/2107938889004396561",
+          "source": "X：Ethan Mollick (@emollick)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T20:59:29Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7586,
+      "importance": 0.7586,
+      "importance_score": 0.7586,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.82,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7832,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-07T20:59:29Z",
+      "latest_at": "2026-10-07T20:59:29Z",
+      "primary_item": {
+        "id": "a9899b166aeda121aa76167924c4f9d5dff63713",
+        "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
+        "url": "https://x.com/emollick/status/2107938889004396561",
+        "source": "X：Ethan Mollick (@emollick)",
         "source_name": "AI HOT"
       }
     },
@@ -523,15 +664,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7734,
-      "importance": 0.7734,
-      "importance_score": 0.7734,
+      "score": 0.7581,
+      "importance": 0.7581,
+      "importance_score": 0.7581,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8435,
+        "recency": 0.7583,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -547,6 +688,67 @@
         "title": "NVIDIA 与 Microsoft 发布 RTX Spark 及 DGX Station for Windows，推动 AI Agent 落地 Windows PC",
         "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
         "source": "NVIDIA Blog（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_85789f272dcb",
+      "title": "Crowdstrike 报告疑似单人使用 AI 渗透工具攻击多家韩国银行",
+      "url": "https://the-decoder.com/ai-powered-hacking-tools-enabled-a-likely-single-attacker-to-breach-multiple-south-korean-banks",
+      "primary_url": "https://the-decoder.com/ai-powered-hacking-tools-enabled-a-likely-single-attacker-to-breach-multiple-south-korean-banks",
+      "source": "The Decoder：AI News（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "96cef21a5d9693679c7089b34bd71f25214088e0",
+          "title": "Crowdstrike 报告疑似单人使用 AI 渗透工具攻击多家韩国银行",
+          "url": "https://the-decoder.com/ai-powered-hacking-tools-enabled-a-likely-single-attacker-to-breach-multiple-south-korean-banks",
+          "source": "The Decoder：AI News（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T09:24:17Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "The Decoder：AI News（RSS）"
+      ],
+      "items": [
+        {
+          "id": "96cef21a5d9693679c7089b34bd71f25214088e0",
+          "title": "Crowdstrike 报告疑似单人使用 AI 渗透工具攻击多家韩国银行",
+          "url": "https://the-decoder.com/ai-powered-hacking-tools-enabled-a-likely-single-attacker-to-breach-multiple-south-korean-banks",
+          "source": "The Decoder：AI News（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T09:24:17Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7863,
+      "importance": 0.7863,
+      "importance_score": 0.7863,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.82,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.937,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-08T09:24:17Z",
+      "latest_at": "2026-10-08T09:24:17Z",
+      "primary_item": {
+        "id": "96cef21a5d9693679c7089b34bd71f25214088e0",
+        "title": "Crowdstrike 报告疑似单人使用 AI 渗透工具攻击多家韩国银行",
+        "url": "https://the-decoder.com/ai-powered-hacking-tools-enabled-a-likely-single-attacker-to-breach-multiple-south-korean-banks",
+        "source": "The Decoder：AI News（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -585,15 +787,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.772,
-      "importance": 0.772,
-      "importance_score": 0.772,
+      "score": 0.7561,
+      "importance": 0.7561,
+      "importance_score": 0.7561,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8744,
+        "recency": 0.7862,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -608,179 +810,6 @@
         "title": "OpenAI 向所有用户推出 ChatGPT Intelligent UI 界面功能",
         "url": "https://x.com/rohanpaul_ai/status/2107942819881185733",
         "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_6cbde97d8260",
-      "title": "卡兹克解读A16Z两份AI报告，AI使用广但付费和深度仍小众",
-      "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686876&idx=1&sn=55c719c9dded44507dbd2a000a2ec5a7",
-      "primary_url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686876&idx=1&sn=55c719c9dded44507dbd2a000a2ec5a7",
-      "source": "公众号：数字生命卡兹克",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "0c59abf680fe79a36ddbefdc88193c9be8071cdf",
-          "title": "卡兹克解读A16Z两份AI报告，AI使用广但付费和深度仍小众",
-          "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686876&idx=1&sn=55c719c9dded44507dbd2a000a2ec5a7",
-          "source": "公众号：数字生命卡兹克",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T00:18:00Z"
-        },
-        {
-          "id": "df28f7ee5836406fd2d24b316e142a9576d79dce",
-          "title": "蚂蚁百灵发布 Ling-3.1-flash，面向真实世界长任务升级",
-          "url": "https://mp.weixin.qq.com/s?__biz=MzkyODk2MDQwNw%3D%3D&mid=2247488041&idx=1&sn=e895cef2129ff2a96598d78b5a45c17b&chksm=c3a0565f2837a278a1a2f05d010189577c4e94fb18ccdd5e25001862b11c205fcd792160b382&scene=126&sessionid=1790772500",
-          "source": "公众号：蚂蚁百灵（Ling）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-30T12:30:49Z"
-        },
-        {
-          "id": "74231800615e7af33f93162bbce316b685871dd5",
-          "title": "DeepSeek 开源面向华为昇腾平台的基础设施组件",
-          "url": "https://mp.weixin.qq.com/s?__biz=Mzk0OTYwNzc3NQ%3D%3D&mid=2247485843&idx=1&sn=565102c3642d88e814331390bf62d276&chksm=c2b41a7a4ae29752ec9555ae3de574d2c8f60b42aaf1db0aaf4511c38f174d7abc860a8ee56c&scene=126&sessionid=1790739034",
-          "source": "公众号：DeepSeek（深度求索）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-30T02:01:00Z"
-        },
-        {
-          "id": "411faf8e50045571da0e4d2971e617fe3c7601ea",
-          "title": "OpenAI DevDay 2026 发布 Dots、GPT-6.1 Sol、500美元订阅等一揽子更新",
-          "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686841&idx=1&sn=630c0dc22de47c9c2f58bd5253a91a9a&chksm=f1e33576f80f214c7290b1545cc8bfbb32ac24c3144cd141b7c2dd7cdaaf71f44d3cf319db8b&scene=126&sessionid=1790722837",
-          "source": "公众号：数字生命卡兹克",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T21:47:43Z"
-        },
-        {
-          "id": "68b85740c0b16dde2ddd083834e6c670f5c5d9e5",
-          "title": "火山引擎对话《后西游记》主创，揭秘首部AI长剧登陆湖南卫视黄金档",
-          "url": "https://mp.weixin.qq.com/s?__biz=MzI0NzU1NzI5NQ%3D%3D&mid=2247544696&idx=1&sn=eb490357aa03d3f5655fa9fbe00a0606",
-          "source": "公众号：火山引擎",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-24T05:40:51Z"
-        },
-        {
-          "id": "3fda2d8324b3441a1e15fe9a03383361a59cbba7",
-          "title": "蚂蚁开源 Ming-Image-0.1-Design 系列：两个 6B 模型打通设计生成与图层编辑",
-          "url": "https://mp.weixin.qq.com/s?__biz=MzkyODk2MDQwNw%3D%3D&mid=2247487951&idx=1&sn=60410b279510db5cab77ec92afc96f2a",
-          "source": "公众号：蚂蚁百灵（Ling）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T02:00:00Z"
-        },
-        {
-          "id": "7e6bd5c6b93b570009b2d12f6511335abe26f0f2",
-          "title": "Seedance 2.5 API 上线 Draft 模式，480P 试错后 1080P 一次成片",
-          "url": "https://mp.weixin.qq.com/s?__biz=MzI0NzU1NzI5NQ%3D%3D&mid=2247544657&idx=1&sn=e5fdcf14a3224fad53ca898eb7877280",
-          "source": "公众号：火山引擎",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T10:08:06Z"
-        }
-      ],
-      "source_count": 7,
-      "source_names": [
-        "公众号：DeepSeek（深度求索）",
-        "公众号：数字生命卡兹克",
-        "公众号：火山引擎",
-        "公众号：蚂蚁百灵（Ling）"
-      ],
-      "items": [
-        {
-          "id": "0c59abf680fe79a36ddbefdc88193c9be8071cdf",
-          "title": "卡兹克解读A16Z两份AI报告，AI使用广但付费和深度仍小众",
-          "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686876&idx=1&sn=55c719c9dded44507dbd2a000a2ec5a7",
-          "source": "公众号：数字生命卡兹克",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T00:18:00Z"
-        },
-        {
-          "id": "df28f7ee5836406fd2d24b316e142a9576d79dce",
-          "title": "蚂蚁百灵发布 Ling-3.1-flash，面向真实世界长任务升级",
-          "url": "https://mp.weixin.qq.com/s?__biz=MzkyODk2MDQwNw%3D%3D&mid=2247488041&idx=1&sn=e895cef2129ff2a96598d78b5a45c17b&chksm=c3a0565f2837a278a1a2f05d010189577c4e94fb18ccdd5e25001862b11c205fcd792160b382&scene=126&sessionid=1790772500",
-          "source": "公众号：蚂蚁百灵（Ling）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-30T12:30:49Z"
-        },
-        {
-          "id": "74231800615e7af33f93162bbce316b685871dd5",
-          "title": "DeepSeek 开源面向华为昇腾平台的基础设施组件",
-          "url": "https://mp.weixin.qq.com/s?__biz=Mzk0OTYwNzc3NQ%3D%3D&mid=2247485843&idx=1&sn=565102c3642d88e814331390bf62d276&chksm=c2b41a7a4ae29752ec9555ae3de574d2c8f60b42aaf1db0aaf4511c38f174d7abc860a8ee56c&scene=126&sessionid=1790739034",
-          "source": "公众号：DeepSeek（深度求索）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-30T02:01:00Z"
-        },
-        {
-          "id": "411faf8e50045571da0e4d2971e617fe3c7601ea",
-          "title": "OpenAI DevDay 2026 发布 Dots、GPT-6.1 Sol、500美元订阅等一揽子更新",
-          "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686841&idx=1&sn=630c0dc22de47c9c2f58bd5253a91a9a&chksm=f1e33576f80f214c7290b1545cc8bfbb32ac24c3144cd141b7c2dd7cdaaf71f44d3cf319db8b&scene=126&sessionid=1790722837",
-          "source": "公众号：数字生命卡兹克",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-29T21:47:43Z"
-        },
-        {
-          "id": "68b85740c0b16dde2ddd083834e6c670f5c5d9e5",
-          "title": "火山引擎对话《后西游记》主创，揭秘首部AI长剧登陆湖南卫视黄金档",
-          "url": "https://mp.weixin.qq.com/s?__biz=MzI0NzU1NzI5NQ%3D%3D&mid=2247544696&idx=1&sn=eb490357aa03d3f5655fa9fbe00a0606",
-          "source": "公众号：火山引擎",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-24T05:40:51Z"
-        },
-        {
-          "id": "3fda2d8324b3441a1e15fe9a03383361a59cbba7",
-          "title": "蚂蚁开源 Ming-Image-0.1-Design 系列：两个 6B 模型打通设计生成与图层编辑",
-          "url": "https://mp.weixin.qq.com/s?__biz=MzkyODk2MDQwNw%3D%3D&mid=2247487951&idx=1&sn=60410b279510db5cab77ec92afc96f2a",
-          "source": "公众号：蚂蚁百灵（Ling）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-23T02:00:00Z"
-        },
-        {
-          "id": "7e6bd5c6b93b570009b2d12f6511335abe26f0f2",
-          "title": "Seedance 2.5 API 上线 Draft 模式，480P 试错后 1080P 一次成片",
-          "url": "https://mp.weixin.qq.com/s?__biz=MzI0NzU1NzI5NQ%3D%3D&mid=2247544657&idx=1&sn=e5fdcf14a3224fad53ca898eb7877280",
-          "source": "公众号：火山引擎",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-22T10:08:06Z"
-        }
-      ],
-      "item_count": 7,
-      "duplicate_count": 7,
-      "score": 0.7668,
-      "importance": 0.7668,
-      "importance_score": 0.7668,
-      "importance_label": "多源热议",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.4569,
-        "story_heat": 1.0
-      },
-      "category": "multi_source",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-09-22T10:08:06Z",
-      "latest_at": "2026-10-06T00:18:00Z",
-      "primary_item": {
-        "id": "0c59abf680fe79a36ddbefdc88193c9be8071cdf",
-        "title": "卡兹克解读A16Z两份AI报告，AI使用广但付费和深度仍小众",
-        "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686876&idx=1&sn=55c719c9dded44507dbd2a000a2ec5a7",
-        "source": "公众号：数字生命卡兹克",
         "source_name": "AI HOT"
       }
     },
@@ -819,15 +848,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7656,
-      "importance": 0.7656,
-      "importance_score": 0.7656,
+      "score": 0.7504,
+      "importance": 0.7504,
+      "importance_score": 0.7504,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8392,
+        "recency": 0.7545,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -842,6 +871,66 @@
         "title": "OpenAI 在 ChatGPT 推出 GPT-6 与 Intelligent UI 交互式回答功能",
         "url": "https://x.com/reach_vb/status/2107899798024007897",
         "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_1b35443cec6d",
+      "title": "ts-rust 发布：由 LLM 将 TypeScript 编译器、检查器和 LSP 移植到 Rust",
+      "url": "https://github.com/pingdotgg/ts-rust",
+      "primary_url": "https://github.com/pingdotgg/ts-rust",
+      "source": "Hacker News：AI 热帖",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "ee9f97b75a4c7f8f29d61a2e00f792dd566eba39",
+          "title": "ts-rust 发布：由 LLM 将 TypeScript 编译器、检查器和 LSP 移植到 Rust",
+          "url": "https://github.com/pingdotgg/ts-rust",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T00:46:00Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Hacker News：AI 热帖"
+      ],
+      "items": [
+        {
+          "id": "ee9f97b75a4c7f8f29d61a2e00f792dd566eba39",
+          "title": "ts-rust 发布：由 LLM 将 TypeScript 编译器、检查器和 LSP 移植到 Rust",
+          "url": "https://github.com/pingdotgg/ts-rust",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T00:46:00Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7485,
+      "importance": 0.7485,
+      "importance_score": 0.7485,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.76,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8271,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-08T00:46:00Z",
+      "latest_at": "2026-10-08T00:46:00Z",
+      "primary_item": {
+        "id": "ee9f97b75a4c7f8f29d61a2e00f792dd566eba39",
+        "title": "ts-rust 发布：由 LLM 将 TypeScript 编译器、检查器和 LSP 移植到 Rust",
+        "url": "https://github.com/pingdotgg/ts-rust",
+        "source": "Hacker News：AI 热帖",
         "source_name": "AI HOT"
       }
     },
@@ -880,21 +969,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7632,
-      "importance": 0.7632,
-      "importance_score": 0.7632,
+      "score": 0.7476,
+      "importance": 0.7476,
+      "importance_score": 0.7476,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8591,
+        "recency": 0.7724,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-07T20:01:57Z",
       "latest_at": "2026-10-07T20:01:57Z",
@@ -941,21 +1029,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7626,
-      "importance": 0.7626,
-      "importance_score": 0.7626,
+      "score": 0.7473,
+      "importance": 0.7473,
+      "importance_score": 0.7473,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.8,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8386,
+        "recency": 0.754,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-07T18:21:34Z",
       "latest_at": "2026-10-07T18:21:34Z",
@@ -964,6 +1051,67 @@
         "title": "ChatGPT 推出 Intelligent UI 交互式界面能力",
         "url": "https://x.com/gdb/status/2107899150247616531",
         "source": "X：Greg Brockman (@gdb)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_a838cc1bff67",
+      "title": "腾讯云开源自托管多智能体 AI 助手平台 Octop",
+      "url": "https://x.com/shao__meng/status/2108160838695788654",
+      "primary_url": "https://x.com/shao__meng/status/2108160838695788654",
+      "source": "X：邵猛 (@shao__meng)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "b638e1d60736937fb7454f0c00624a416199e3b2",
+          "title": "腾讯云开源自托管多智能体 AI 助手平台 Octop",
+          "url": "https://x.com/shao__meng/status/2108160838695788654",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T11:41:26Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：邵猛 (@shao__meng)"
+      ],
+      "items": [
+        {
+          "id": "b638e1d60736937fb7454f0c00624a416199e3b2",
+          "title": "腾讯云开源自托管多智能体 AI 助手平台 Octop",
+          "url": "https://x.com/shao__meng/status/2108160838695788654",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T11:41:26Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7679,
+      "importance": 0.7679,
+      "importance_score": 0.7679,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.74,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9684,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-08T11:41:26Z",
+      "latest_at": "2026-10-08T11:41:26Z",
+      "primary_item": {
+        "id": "b638e1d60736937fb7454f0c00624a416199e3b2",
+        "title": "腾讯云开源自托管多智能体 AI 助手平台 Octop",
+        "url": "https://x.com/shao__meng/status/2108160838695788654",
+        "source": "X：邵猛 (@shao__meng)",
         "source_name": "AI HOT"
       }
     },
@@ -1002,15 +1150,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7489,
-      "importance": 0.7489,
-      "importance_score": 0.7489,
+      "score": 0.7345,
+      "importance": 0.7345,
+      "importance_score": 0.7345,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7963,
+        "recency": 0.7159,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1028,403 +1176,179 @@
       }
     },
     {
-      "story_id": "story_0e474f7a900b",
-      "title": "Anthropic 发布 Claude Haiku 5.5，Artificial Analysis 智能指数得分 43",
-      "url": "https://x.com/ArtificialAnlys/status/2107911905822351609",
-      "primary_url": "https://x.com/ArtificialAnlys/status/2107911905822351609",
-      "source": "X：Artificial Analysis (@ArtificialAnlys)",
+      "story_id": "story_6cbde97d8260",
+      "title": "卡兹克解读A16Z两份AI报告，AI使用广但付费和深度仍小众",
+      "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686876&idx=1&sn=55c719c9dded44507dbd2a000a2ec5a7",
+      "primary_url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686876&idx=1&sn=55c719c9dded44507dbd2a000a2ec5a7",
+      "source": "公众号：数字生命卡兹克",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "96f4c28dd57487f956f1a75c65767b3532502be7",
-          "title": "Anthropic 发布 Claude Haiku 5.5，Artificial Analysis 智能指数得分 43",
-          "url": "https://x.com/ArtificialAnlys/status/2107911905822351609",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "id": "0c59abf680fe79a36ddbefdc88193c9be8071cdf",
+          "title": "卡兹克解读A16Z两份AI报告，AI使用广但付费和深度仍小众",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686876&idx=1&sn=55c719c9dded44507dbd2a000a2ec5a7",
+          "source": "公众号：数字生命卡兹克",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T19:12:16Z"
+          "published_at": "2026-10-06T00:18:00Z"
+        },
+        {
+          "id": "df28f7ee5836406fd2d24b316e142a9576d79dce",
+          "title": "蚂蚁百灵发布 Ling-3.1-flash，面向真实世界长任务升级",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkyODk2MDQwNw%3D%3D&mid=2247488041&idx=1&sn=e895cef2129ff2a96598d78b5a45c17b&chksm=c3a0565f2837a278a1a2f05d010189577c4e94fb18ccdd5e25001862b11c205fcd792160b382&scene=126&sessionid=1790772500",
+          "source": "公众号：蚂蚁百灵（Ling）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T12:30:49Z"
+        },
+        {
+          "id": "74231800615e7af33f93162bbce316b685871dd5",
+          "title": "DeepSeek 开源面向华为昇腾平台的基础设施组件",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzk0OTYwNzc3NQ%3D%3D&mid=2247485843&idx=1&sn=565102c3642d88e814331390bf62d276&chksm=c2b41a7a4ae29752ec9555ae3de574d2c8f60b42aaf1db0aaf4511c38f174d7abc860a8ee56c&scene=126&sessionid=1790739034",
+          "source": "公众号：DeepSeek（深度求索）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T02:01:00Z"
+        },
+        {
+          "id": "411faf8e50045571da0e4d2971e617fe3c7601ea",
+          "title": "OpenAI DevDay 2026 发布 Dots、GPT-6.1 Sol、500美元订阅等一揽子更新",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686841&idx=1&sn=630c0dc22de47c9c2f58bd5253a91a9a&chksm=f1e33576f80f214c7290b1545cc8bfbb32ac24c3144cd141b7c2dd7cdaaf71f44d3cf319db8b&scene=126&sessionid=1790722837",
+          "source": "公众号：数字生命卡兹克",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T21:47:43Z"
         }
       ],
-      "source_count": 1,
+      "source_count": 4,
       "source_names": [
-        "X：Artificial Analysis (@ArtificialAnlys)"
+        "公众号：DeepSeek（深度求索）",
+        "公众号：数字生命卡兹克",
+        "公众号：蚂蚁百灵（Ling）"
       ],
       "items": [
         {
-          "id": "96f4c28dd57487f956f1a75c65767b3532502be7",
-          "title": "Anthropic 发布 Claude Haiku 5.5，Artificial Analysis 智能指数得分 43",
-          "url": "https://x.com/ArtificialAnlys/status/2107911905822351609",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "id": "0c59abf680fe79a36ddbefdc88193c9be8071cdf",
+          "title": "卡兹克解读A16Z两份AI报告，AI使用广但付费和深度仍小众",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686876&idx=1&sn=55c719c9dded44507dbd2a000a2ec5a7",
+          "source": "公众号：数字生命卡兹克",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T19:12:16Z"
+          "published_at": "2026-10-06T00:18:00Z"
+        },
+        {
+          "id": "df28f7ee5836406fd2d24b316e142a9576d79dce",
+          "title": "蚂蚁百灵发布 Ling-3.1-flash，面向真实世界长任务升级",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkyODk2MDQwNw%3D%3D&mid=2247488041&idx=1&sn=e895cef2129ff2a96598d78b5a45c17b&chksm=c3a0565f2837a278a1a2f05d010189577c4e94fb18ccdd5e25001862b11c205fcd792160b382&scene=126&sessionid=1790772500",
+          "source": "公众号：蚂蚁百灵（Ling）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T12:30:49Z"
+        },
+        {
+          "id": "74231800615e7af33f93162bbce316b685871dd5",
+          "title": "DeepSeek 开源面向华为昇腾平台的基础设施组件",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzk0OTYwNzc3NQ%3D%3D&mid=2247485843&idx=1&sn=565102c3642d88e814331390bf62d276&chksm=c2b41a7a4ae29752ec9555ae3de574d2c8f60b42aaf1db0aaf4511c38f174d7abc860a8ee56c&scene=126&sessionid=1790739034",
+          "source": "公众号：DeepSeek（深度求索）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-30T02:01:00Z"
+        },
+        {
+          "id": "411faf8e50045571da0e4d2971e617fe3c7601ea",
+          "title": "OpenAI DevDay 2026 发布 Dots、GPT-6.1 Sol、500美元订阅等一揽子更新",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686841&idx=1&sn=630c0dc22de47c9c2f58bd5253a91a9a&chksm=f1e33576f80f214c7290b1545cc8bfbb32ac24c3144cd141b7c2dd7cdaaf71f44d3cf319db8b&scene=126&sessionid=1790722837",
+          "source": "公众号：数字生命卡兹克",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T21:47:43Z"
         }
       ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7464,
-      "importance": 0.7464,
-      "importance_score": 0.7464,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.74,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8489,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-07T19:12:16Z",
-      "latest_at": "2026-10-07T19:12:16Z",
-      "primary_item": {
-        "id": "96f4c28dd57487f956f1a75c65767b3532502be7",
-        "title": "Anthropic 发布 Claude Haiku 5.5，Artificial Analysis 智能指数得分 43",
-        "url": "https://x.com/ArtificialAnlys/status/2107911905822351609",
-        "source": "X：Artificial Analysis (@ArtificialAnlys)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_bcb2617028fc",
-      "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
-      "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
-      "primary_url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
-      "source": "Google DeepMind：Blog（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "dafa76d6b8e020f913333e4744d7297aeb9f0f9d",
-          "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
-          "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
-          "source": "Google DeepMind：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T19:57:04Z"
-        },
-        {
-          "id": "487f0f1c5dd5571b6871c2ed74bea06ce32bde92",
-          "title": "Google 发布 740M 参数多模态嵌入模型 EmbeddingGemma 2",
-          "url": "https://x.com/Google/status/2107505123941376129",
-          "source": "X：Google (@Google)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T16:15:51Z"
-        },
-        {
-          "id": "d318911354a347d0529787e3cff001fcb2f2a347",
-          "title": "Google 发布开源多模态嵌入模型 EmbeddingGemma 2",
-          "url": "https://x.com/sundarpichai/status/2107501975671890211",
-          "source": "X：Sundar Pichai (@sundarpichai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T16:03:21Z"
-        }
-      ],
-      "source_count": 3,
-      "source_names": [
-        "Google DeepMind：Blog（RSS）",
-        "X：Google (@Google)",
-        "X：Sundar Pichai (@sundarpichai)"
-      ],
-      "items": [
-        {
-          "id": "dafa76d6b8e020f913333e4744d7297aeb9f0f9d",
-          "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
-          "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
-          "source": "Google DeepMind：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T19:57:04Z"
-        },
-        {
-          "id": "487f0f1c5dd5571b6871c2ed74bea06ce32bde92",
-          "title": "Google 发布 740M 参数多模态嵌入模型 EmbeddingGemma 2",
-          "url": "https://x.com/Google/status/2107505123941376129",
-          "source": "X：Google (@Google)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T16:15:51Z"
-        },
-        {
-          "id": "d318911354a347d0529787e3cff001fcb2f2a347",
-          "title": "Google 发布开源多模态嵌入模型 EmbeddingGemma 2",
-          "url": "https://x.com/sundarpichai/status/2107501975671890211",
-          "source": "X：Sundar Pichai (@sundarpichai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T16:03:21Z"
-        }
-      ],
-      "item_count": 3,
-      "duplicate_count": 3,
-      "score": 0.7408,
-      "importance": 0.7408,
-      "importance_score": 0.7408,
+      "item_count": 4,
+      "duplicate_count": 4,
+      "score": 0.7335,
+      "importance": 0.7335,
+      "importance_score": 0.7335,
       "importance_label": "多源热议",
       "importance_breakdown": {
-        "editorial": 0.7,
+        "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6068,
-        "story_heat": 0.5
+        "recency": 0.4108,
+        "story_heat": 0.75
       },
       "category": "multi_source",
       "reasons": [
         "multi_source",
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-06T16:03:21Z",
-      "latest_at": "2026-10-06T19:57:04Z",
+      "earliest_at": "2026-09-29T21:47:43Z",
+      "latest_at": "2026-10-06T00:18:00Z",
       "primary_item": {
-        "id": "dafa76d6b8e020f913333e4744d7297aeb9f0f9d",
-        "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
-        "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
-        "source": "Google DeepMind：Blog（RSS）",
+        "id": "0c59abf680fe79a36ddbefdc88193c9be8071cdf",
+        "title": "卡兹克解读A16Z两份AI报告，AI使用广但付费和深度仍小众",
+        "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686876&idx=1&sn=55c719c9dded44507dbd2a000a2ec5a7",
+        "source": "公众号：数字生命卡兹克",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_566daffb0c84",
-      "title": "a16z 解析德州为何让数据中心排队等电",
-      "url": "https://www.a16z.news/p/why-texas-is-making-data-centers",
-      "primary_url": "https://www.a16z.news/p/why-texas-is-making-data-centers",
-      "source": "a16z：News（RSS）",
+      "story_id": "story_45b002466d7b",
+      "title": "Waymo 完成 50 亿美元债务融资，加速业务扩张",
+      "url": "https://waymo.com/blog/2026/10/waymo-closes-5-billion-debt-financing",
+      "primary_url": "https://waymo.com/blog/2026/10/waymo-closes-5-billion-debt-financing",
+      "source": "Waymo：Blog（网页）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "24652cdfe96cc0b3052d6e1e362e94e382208125",
-          "title": "a16z 解析德州为何让数据中心排队等电",
-          "url": "https://www.a16z.news/p/why-texas-is-making-data-centers",
-          "source": "a16z：News（RSS）",
+          "id": "c8a30281b81dd2999625160b015534ef14988904",
+          "title": "Waymo 完成 50 亿美元债务融资，加速业务扩张",
+          "url": "https://waymo.com/blog/2026/10/waymo-closes-5-billion-debt-financing",
+          "source": "Waymo：Blog（网页）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T14:01:44Z"
+          "published_at": "2026-10-08T07:00:00Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "a16z：News（RSS）"
+        "Waymo：Blog（网页）"
       ],
       "items": [
         {
-          "id": "24652cdfe96cc0b3052d6e1e362e94e382208125",
-          "title": "a16z 解析德州为何让数据中心排队等电",
-          "url": "https://www.a16z.news/p/why-texas-is-making-data-centers",
-          "source": "a16z：News（RSS）",
+          "id": "c8a30281b81dd2999625160b015534ef14988904",
+          "title": "Waymo 完成 50 亿美元债务融资，加速业务扩张",
+          "url": "https://waymo.com/blog/2026/10/waymo-closes-5-billion-debt-financing",
+          "source": "Waymo：Blog（网页）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T14:01:44Z"
+          "published_at": "2026-10-08T07:00:00Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7384,
-      "importance": 0.7384,
-      "importance_score": 0.7384,
+      "score": 0.7325,
+      "importance": 0.7325,
+      "importance_score": 0.7325,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.75,
+        "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7878,
+        "recency": 0.905,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-07T14:01:44Z",
-      "latest_at": "2026-10-07T14:01:44Z",
+      "earliest_at": "2026-10-08T07:00:00Z",
+      "latest_at": "2026-10-08T07:00:00Z",
       "primary_item": {
-        "id": "24652cdfe96cc0b3052d6e1e362e94e382208125",
-        "title": "a16z 解析德州为何让数据中心排队等电",
-        "url": "https://www.a16z.news/p/why-texas-is-making-data-centers",
-        "source": "a16z：News（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_d6768503cce7",
-      "title": "Jeff Dean 悼念 Margaret Hamilton：MIT 宣布阿波罗飞行软件先驱逝世，享年 90 岁",
-      "url": "https://x.com/JeffDean/status/2108027570382086435",
-      "primary_url": "https://x.com/JeffDean/status/2108027570382086435",
-      "source": "X：Jeff Dean (@JeffDean)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "0604e93193603d1e9c6938d2e93ffc09689b8122",
-          "title": "Jeff Dean 悼念 Margaret Hamilton：MIT 宣布阿波罗飞行软件先驱逝世，享年 90 岁",
-          "url": "https://x.com/JeffDean/status/2108027570382086435",
-          "source": "X：Jeff Dean (@JeffDean)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T02:51:52Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Jeff Dean (@JeffDean)"
-      ],
-      "items": [
-        {
-          "id": "0604e93193603d1e9c6938d2e93ffc09689b8122",
-          "title": "Jeff Dean 悼念 Margaret Hamilton：MIT 宣布阿波罗飞行软件先驱逝世，享年 90 岁",
-          "url": "https://x.com/JeffDean/status/2108027570382086435",
-          "source": "X：Jeff Dean (@JeffDean)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T02:51:52Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7373,
-      "importance": 0.7373,
-      "importance_score": 0.7373,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.65,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9482,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-08T02:51:52Z",
-      "latest_at": "2026-10-08T02:51:52Z",
-      "primary_item": {
-        "id": "0604e93193603d1e9c6938d2e93ffc09689b8122",
-        "title": "Jeff Dean 悼念 Margaret Hamilton：MIT 宣布阿波罗飞行软件先驱逝世，享年 90 岁",
-        "url": "https://x.com/JeffDean/status/2108027570382086435",
-        "source": "X：Jeff Dean (@JeffDean)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_a94d8e86c2be",
-      "title": "微软将 Windows 定位升级为 hybrid intelligence 之家，发布 MXC、本地模型与硬件四层布局",
-      "url": "https://x.com/shao__meng/status/2108025064205738442",
-      "primary_url": "https://x.com/shao__meng/status/2108025064205738442",
-      "source": "X：邵猛 (@shao__meng)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "6d0f00b2444116a70789aad8a41a3bfa939330a6",
-          "title": "微软将 Windows 定位升级为 hybrid intelligence 之家，发布 MXC、本地模型与硬件四层布局",
-          "url": "https://x.com/shao__meng/status/2108025064205738442",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T02:41:55Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：邵猛 (@shao__meng)"
-      ],
-      "items": [
-        {
-          "id": "6d0f00b2444116a70789aad8a41a3bfa939330a6",
-          "title": "微软将 Windows 定位升级为 hybrid intelligence 之家，发布 MXC、本地模型与硬件四层布局",
-          "url": "https://x.com/shao__meng/status/2108025064205738442",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T02:41:55Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7669,
-      "importance": 0.7669,
-      "importance_score": 0.7669,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.75,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.946,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-08T02:41:55Z",
-      "latest_at": "2026-10-08T02:41:55Z",
-      "primary_item": {
-        "id": "6d0f00b2444116a70789aad8a41a3bfa939330a6",
-        "title": "微软将 Windows 定位升级为 hybrid intelligence 之家，发布 MXC、本地模型与硬件四层布局",
-        "url": "https://x.com/shao__meng/status/2108025064205738442",
-        "source": "X：邵猛 (@shao__meng)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_2059346474e3",
-      "title": "Codex 与 ChatGPT Work 活跃用户达 4000 万新高，付费账户重置已全部到账",
-      "url": "https://x.com/thsottiaux/status/2108040921044639779",
-      "primary_url": "https://x.com/thsottiaux/status/2108040921044639779",
-      "source": "X：Tibo (@thsottiaux)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "b9798e6758a5964a01c7b0d7599574e0b4e4d825",
-          "title": "Codex 与 ChatGPT Work 活跃用户达 4000 万新高，付费账户重置已全部到账",
-          "url": "https://x.com/thsottiaux/status/2108040921044639779",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T03:44:55Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Tibo (@thsottiaux)"
-      ],
-      "items": [
-        {
-          "id": "b9798e6758a5964a01c7b0d7599574e0b4e4d825",
-          "title": "Codex 与 ChatGPT Work 活跃用户达 4000 万新高，付费账户重置已全部到账",
-          "url": "https://x.com/thsottiaux/status/2108040921044639779",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T03:44:55Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7665,
-      "importance": 0.7665,
-      "importance_score": 0.7665,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.74,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9604,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-08T03:44:55Z",
-      "latest_at": "2026-10-08T03:44:55Z",
-      "primary_item": {
-        "id": "b9798e6758a5964a01c7b0d7599574e0b4e4d825",
-        "title": "Codex 与 ChatGPT Work 活跃用户达 4000 万新高，付费账户重置已全部到账",
-        "url": "https://x.com/thsottiaux/status/2108040921044639779",
-        "source": "X：Tibo (@thsottiaux)",
+        "id": "c8a30281b81dd2999625160b015534ef14988904",
+        "title": "Waymo 完成 50 亿美元债务融资，加速业务扩张",
+        "url": "https://waymo.com/blog/2026/10/waymo-closes-5-billion-debt-financing",
+        "source": "Waymo：Blog（网页）",
         "source_name": "AI HOT"
       }
     }
