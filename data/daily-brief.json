@@ -1,8 +1,69 @@
 {
-  "generated_at": "2026-10-08T00:07:48.774705Z",
+  "generated_at": "2026-10-08T06:32:45.517001Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
+    {
+      "story_id": "story_d12c6b059ed5",
+      "title": "Boris Cherny 回归阅读",
+      "url": "https://x.com/bcherny/status/2108013947144085714",
+      "primary_url": "https://x.com/bcherny/status/2108013947144085714",
+      "source": "X：Boris Cherny (@bcherny)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "50daaadeef25a8ffd9873b84f8d4a6b3e2f14fa3",
+          "title": "Boris Cherny 回归阅读",
+          "url": "https://x.com/bcherny/status/2108013947144085714",
+          "source": "X：Boris Cherny (@bcherny)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T01:57:44Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Boris Cherny (@bcherny)"
+      ],
+      "items": [
+        {
+          "id": "50daaadeef25a8ffd9873b84f8d4a6b3e2f14fa3",
+          "title": "Boris Cherny 回归阅读",
+          "url": "https://x.com/bcherny/status/2108013947144085714",
+          "source": "X：Boris Cherny (@bcherny)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T01:57:44Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.8401,
+      "importance": 0.8401,
+      "importance_score": 0.8401,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 1.0,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.936,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-08T01:57:44Z",
+      "latest_at": "2026-10-08T01:57:44Z",
+      "primary_item": {
+        "id": "50daaadeef25a8ffd9873b84f8d4a6b3e2f14fa3",
+        "title": "Boris Cherny 回归阅读",
+        "url": "https://x.com/bcherny/status/2108013947144085714",
+        "source": "X：Boris Cherny (@bcherny)",
+        "source_name": "AI HOT"
+      }
+    },
     {
       "story_id": "story_0ca1450969b5",
       "title": "OpenAI 向全部 ChatGPT 用户推出 GPT-6 与 Intelligent UI",
@@ -57,15 +118,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.8224,
-      "importance": 0.8224,
-      "importance_score": 0.8224,
+      "score": 0.8078,
+      "importance": 0.8078,
+      "importance_score": 0.8078,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.87,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9155,
+        "recency": 0.8345,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -81,6 +142,67 @@
         "title": "OpenAI 向全部 ChatGPT 用户推出 GPT-6 与 Intelligent UI",
         "url": "https://openai.com/index/gpt-6-for-everyone",
         "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_516e9e3eda33",
+      "title": "GPT-6 面向超 12 亿 ChatGPT 用户全面推送，带来 Intelligent UI 生成式界面能力",
+      "url": "https://x.com/shao__meng/status/2108020232183029778",
+      "primary_url": "https://x.com/shao__meng/status/2108020232183029778",
+      "source": "X：邵猛 (@shao__meng)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "4b70ea7e69e7548ef3c61ba047c4d55fe4b31b6a",
+          "title": "GPT-6 面向超 12 亿 ChatGPT 用户全面推送，带来 Intelligent UI 生成式界面能力",
+          "url": "https://x.com/shao__meng/status/2108020232183029778",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T02:22:43Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：邵猛 (@shao__meng)"
+      ],
+      "items": [
+        {
+          "id": "4b70ea7e69e7548ef3c61ba047c4d55fe4b31b6a",
+          "title": "GPT-6 面向超 12 亿 ChatGPT 用户全面推送，带来 Intelligent UI 生成式界面能力",
+          "url": "https://x.com/shao__meng/status/2108020232183029778",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T02:22:43Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7961,
+      "importance": 0.7961,
+      "importance_score": 0.7961,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.85,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9416,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-08T02:22:43Z",
+      "latest_at": "2026-10-08T02:22:43Z",
+      "primary_item": {
+        "id": "4b70ea7e69e7548ef3c61ba047c4d55fe4b31b6a",
+        "title": "GPT-6 面向超 12 亿 ChatGPT 用户全面推送，带来 Intelligent UI 生成式界面能力",
+        "url": "https://x.com/shao__meng/status/2108020232183029778",
+        "source": "X：邵猛 (@shao__meng)",
         "source_name": "AI HOT"
       }
     },
@@ -138,15 +260,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7984,
-      "importance": 0.7984,
-      "importance_score": 0.7984,
+      "score": 0.7835,
+      "importance": 0.7835,
+      "importance_score": 0.7835,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9321,
+        "recency": 0.8496,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -162,6 +284,67 @@
         "title": "GPT-6 新版本随 Intelligent UI 向全部 ChatGPT 用户推送",
         "url": "https://x.com/thsottiaux/status/2107912709715132482",
         "source": "X：Tibo (@thsottiaux)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_db7fed16b15d",
+      "title": "OpenAI 发布 722 份数学手稿后，卡兹克长文解读 AI 如何改变数学研究",
+      "url": "https://x.com/Khazix0918/status/2108037650003493350",
+      "primary_url": "https://x.com/Khazix0918/status/2108037650003493350",
+      "source": "X：卡兹克 (@Khazix0918)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "fe20dc79991cbd0fb95cef8e6ce9d387a0471613",
+          "title": "OpenAI 发布 722 份数学手稿后，卡兹克长文解读 AI 如何改变数学研究",
+          "url": "https://x.com/Khazix0918/status/2108037650003493350",
+          "source": "X：卡兹克 (@Khazix0918)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T03:31:55Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：卡兹克 (@Khazix0918)"
+      ],
+      "items": [
+        {
+          "id": "fe20dc79991cbd0fb95cef8e6ce9d387a0471613",
+          "title": "OpenAI 发布 722 份数学手稿后，卡兹克长文解读 AI 如何改变数学研究",
+          "url": "https://x.com/Khazix0918/status/2108037650003493350",
+          "source": "X：卡兹克 (@Khazix0918)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T03:31:55Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7809,
+      "importance": 0.7809,
+      "importance_score": 0.7809,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.79,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9574,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-08T03:31:55Z",
+      "latest_at": "2026-10-08T03:31:55Z",
+      "primary_item": {
+        "id": "fe20dc79991cbd0fb95cef8e6ce9d387a0471613",
+        "title": "OpenAI 发布 722 份数学手稿后，卡兹克长文解读 AI 如何改变数学研究",
+        "url": "https://x.com/Khazix0918/status/2108037650003493350",
+        "source": "X：卡兹克 (@Khazix0918)",
         "source_name": "AI HOT"
       }
     },
@@ -200,15 +383,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7896,
-      "importance": 0.7896,
-      "importance_score": 0.7896,
+      "score": 0.7744,
+      "importance": 0.7744,
+      "importance_score": 0.7744,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9557,
+        "recency": 0.8711,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -261,15 +444,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7886,
-      "importance": 0.7886,
-      "importance_score": 0.7886,
+      "score": 0.774,
+      "importance": 0.774,
+      "importance_score": 0.774,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.84,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9164,
+        "recency": 0.8353,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -284,6 +467,86 @@
         "title": "OpenAI 全球推送 GPT-6 智能界面，Plus 等付费档用 GPT-6 Sol",
         "url": "https://x.com/OpenAI/status/2107895006350791071",
         "source": "X：OpenAI (@OpenAI)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_6f02344687c4",
+      "title": "NVIDIA 与 Microsoft 发布 RTX Spark 及 DGX Station for Windows，推动 AI Agent 落地 Windows PC",
+      "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
+      "primary_url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
+      "source": "NVIDIA Blog（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "167a38f113a770fc4d3752a7a64939a19b867dac",
+          "title": "NVIDIA 与 Microsoft 发布 RTX Spark 及 DGX Station for Windows，推动 AI Agent 落地 Windows PC",
+          "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
+          "source": "NVIDIA Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T18:45:28Z"
+        },
+        {
+          "id": "b0719e52d2514cc44359051052fbf344a00960ff",
+          "title": "NVIDIA 与 Microsoft 推出 RTX Spark 平台并宣布 MXC 让 AI Agent 落地 Windows PC",
+          "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
+          "source": "NVIDIA Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T18:45:28Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "NVIDIA Blog（RSS）"
+      ],
+      "items": [
+        {
+          "id": "167a38f113a770fc4d3752a7a64939a19b867dac",
+          "title": "NVIDIA 与 Microsoft 发布 RTX Spark 及 DGX Station for Windows，推动 AI Agent 落地 Windows PC",
+          "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
+          "source": "NVIDIA Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T18:45:28Z"
+        },
+        {
+          "id": "b0719e52d2514cc44359051052fbf344a00960ff",
+          "title": "NVIDIA 与 Microsoft 推出 RTX Spark 平台并宣布 MXC 让 AI Agent 落地 Windows PC",
+          "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
+          "source": "NVIDIA Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T18:45:28Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7734,
+      "importance": 0.7734,
+      "importance_score": 0.7734,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.75,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8435,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-07T18:45:28Z",
+      "latest_at": "2026-10-07T18:45:28Z",
+      "primary_item": {
+        "id": "167a38f113a770fc4d3752a7a64939a19b867dac",
+        "title": "NVIDIA 与 Microsoft 发布 RTX Spark 及 DGX Station for Windows，推动 AI Agent 落地 Windows PC",
+        "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
+        "source": "NVIDIA Blog（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -322,15 +585,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7873,
-      "importance": 0.7873,
-      "importance_score": 0.7873,
+      "score": 0.772,
+      "importance": 0.772,
+      "importance_score": 0.772,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9593,
+        "recency": 0.8744,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -345,189 +608,6 @@
         "title": "OpenAI 向所有用户推出 ChatGPT Intelligent UI 界面功能",
         "url": "https://x.com/rohanpaul_ai/status/2107942819881185733",
         "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_a23cf234f67c",
-      "title": "OpenAI 在 ChatGPT 推出 GPT-6 与 Intelligent UI 交互式回答功能",
-      "url": "https://x.com/reach_vb/status/2107899798024007897",
-      "primary_url": "https://x.com/reach_vb/status/2107899798024007897",
-      "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "14694aad8fb49d08ec7a0f0b5c8d6a9447796fad",
-          "title": "OpenAI 在 ChatGPT 推出 GPT-6 与 Intelligent UI 交互式回答功能",
-          "url": "https://x.com/reach_vb/status/2107899798024007897",
-          "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:24:09Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Vaibhav Srivastav（OpenAI）(@reach_vb)"
-      ],
-      "items": [
-        {
-          "id": "14694aad8fb49d08ec7a0f0b5c8d6a9447796fad",
-          "title": "OpenAI 在 ChatGPT 推出 GPT-6 与 Intelligent UI 交互式回答功能",
-          "url": "https://x.com/reach_vb/status/2107899798024007897",
-          "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:24:09Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7803,
-      "importance": 0.7803,
-      "importance_score": 0.7803,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.81,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9206,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-07T18:24:09Z",
-      "latest_at": "2026-10-07T18:24:09Z",
-      "primary_item": {
-        "id": "14694aad8fb49d08ec7a0f0b5c8d6a9447796fad",
-        "title": "OpenAI 在 ChatGPT 推出 GPT-6 与 Intelligent UI 交互式回答功能",
-        "url": "https://x.com/reach_vb/status/2107899798024007897",
-        "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_87762bce91e8",
-      "title": "Sam Altman 宣布 ChatGPT 可生成自定义 UI",
-      "url": "https://x.com/sama/status/2107924408597950702",
-      "primary_url": "https://x.com/sama/status/2107924408597950702",
-      "source": "X：Sam Altman (@sama)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "6c0bc141332a9186153607167107a244bded4129",
-          "title": "Sam Altman 宣布 ChatGPT 可生成自定义 UI",
-          "url": "https://x.com/sama/status/2107924408597950702",
-          "source": "X：Sam Altman (@sama)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T20:01:57Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Sam Altman (@sama)"
-      ],
-      "items": [
-        {
-          "id": "6c0bc141332a9186153607167107a244bded4129",
-          "title": "Sam Altman 宣布 ChatGPT 可生成自定义 UI",
-          "url": "https://x.com/sama/status/2107924408597950702",
-          "source": "X：Sam Altman (@sama)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T20:01:57Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7783,
-      "importance": 0.7783,
-      "importance_score": 0.7783,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.79,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9425,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-07T20:01:57Z",
-      "latest_at": "2026-10-07T20:01:57Z",
-      "primary_item": {
-        "id": "6c0bc141332a9186153607167107a244bded4129",
-        "title": "Sam Altman 宣布 ChatGPT 可生成自定义 UI",
-        "url": "https://x.com/sama/status/2107924408597950702",
-        "source": "X：Sam Altman (@sama)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_246d30fb98f6",
-      "title": "ChatGPT 推出 Intelligent UI 交互式界面能力",
-      "url": "https://x.com/gdb/status/2107899150247616531",
-      "primary_url": "https://x.com/gdb/status/2107899150247616531",
-      "source": "X：Greg Brockman (@gdb)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "e85dd8d7da2ec0cb9226af0824c0dab1a487a1e9",
-          "title": "ChatGPT 推出 Intelligent UI 交互式界面能力",
-          "url": "https://x.com/gdb/status/2107899150247616531",
-          "source": "X：Greg Brockman (@gdb)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:21:34Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Greg Brockman (@gdb)"
-      ],
-      "items": [
-        {
-          "id": "e85dd8d7da2ec0cb9226af0824c0dab1a487a1e9",
-          "title": "ChatGPT 推出 Intelligent UI 交互式界面能力",
-          "url": "https://x.com/gdb/status/2107899150247616531",
-          "source": "X：Greg Brockman (@gdb)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:21:34Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7772,
-      "importance": 0.7772,
-      "importance_score": 0.7772,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.8,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.92,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-07T18:21:34Z",
-      "latest_at": "2026-10-07T18:21:34Z",
-      "primary_item": {
-        "id": "e85dd8d7da2ec0cb9226af0824c0dab1a487a1e9",
-        "title": "ChatGPT 推出 Intelligent UI 交互式界面能力",
-        "url": "https://x.com/gdb/status/2107899150247616531",
-        "source": "X：Greg Brockman (@gdb)",
         "source_name": "AI HOT"
       }
     },
@@ -677,15 +757,15 @@
       ],
       "item_count": 7,
       "duplicate_count": 7,
-      "score": 0.7748,
-      "importance": 0.7748,
-      "importance_score": 0.7748,
+      "score": 0.7668,
+      "importance": 0.7668,
+      "importance_score": 0.7668,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5012,
+        "recency": 0.4569,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -705,49 +785,49 @@
       }
     },
     {
-      "story_id": "story_0f8c89de7167",
-      "title": "Anthropic 向 Max 会员每月发放免费 API 额度，$100 档领 $100、$200 档领 $200",
-      "url": "https://x.com/Khazix0918/status/2107918094220083326",
-      "primary_url": "https://x.com/Khazix0918/status/2107918094220083326",
-      "source": "X：卡兹克 (@Khazix0918)",
+      "story_id": "story_a23cf234f67c",
+      "title": "OpenAI 在 ChatGPT 推出 GPT-6 与 Intelligent UI 交互式回答功能",
+      "url": "https://x.com/reach_vb/status/2107899798024007897",
+      "primary_url": "https://x.com/reach_vb/status/2107899798024007897",
+      "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "e55ccc54bc5ce986d18af573b92be733819b585b",
-          "title": "Anthropic 向 Max 会员每月发放免费 API 额度，$100 档领 $100、$200 档领 $200",
-          "url": "https://x.com/Khazix0918/status/2107918094220083326",
-          "source": "X：卡兹克 (@Khazix0918)",
+          "id": "14694aad8fb49d08ec7a0f0b5c8d6a9447796fad",
+          "title": "OpenAI 在 ChatGPT 推出 GPT-6 与 Intelligent UI 交互式回答功能",
+          "url": "https://x.com/reach_vb/status/2107899798024007897",
+          "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T19:36:51Z"
+          "published_at": "2026-10-07T18:24:09Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：卡兹克 (@Khazix0918)"
+        "X：Vaibhav Srivastav（OpenAI）(@reach_vb)"
       ],
       "items": [
         {
-          "id": "e55ccc54bc5ce986d18af573b92be733819b585b",
-          "title": "Anthropic 向 Max 会员每月发放免费 API 额度，$100 档领 $100、$200 档领 $200",
-          "url": "https://x.com/Khazix0918/status/2107918094220083326",
-          "source": "X：卡兹克 (@Khazix0918)",
+          "id": "14694aad8fb49d08ec7a0f0b5c8d6a9447796fad",
+          "title": "OpenAI 在 ChatGPT 推出 GPT-6 与 Intelligent UI 交互式回答功能",
+          "url": "https://x.com/reach_vb/status/2107899798024007897",
+          "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T19:36:51Z"
+          "published_at": "2026-10-07T18:24:09Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7742,
-      "importance": 0.7742,
-      "importance_score": 0.7742,
+      "score": 0.7656,
+      "importance": 0.7656,
+      "importance_score": 0.7656,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.78,
+        "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9369,
+        "recency": 0.8392,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -755,47 +835,47 @@
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-10-07T19:36:51Z",
-      "latest_at": "2026-10-07T19:36:51Z",
+      "earliest_at": "2026-10-07T18:24:09Z",
+      "latest_at": "2026-10-07T18:24:09Z",
       "primary_item": {
-        "id": "e55ccc54bc5ce986d18af573b92be733819b585b",
-        "title": "Anthropic 向 Max 会员每月发放免费 API 额度，$100 档领 $100、$200 档领 $200",
-        "url": "https://x.com/Khazix0918/status/2107918094220083326",
-        "source": "X：卡兹克 (@Khazix0918)",
+        "id": "14694aad8fb49d08ec7a0f0b5c8d6a9447796fad",
+        "title": "OpenAI 在 ChatGPT 推出 GPT-6 与 Intelligent UI 交互式回答功能",
+        "url": "https://x.com/reach_vb/status/2107899798024007897",
+        "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_6f02344687c4",
-      "title": "NVIDIA 与 Microsoft 发布 RTX Spark 及 DGX Station for Windows，推动 AI Agent 落地 Windows PC",
-      "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
-      "primary_url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
-      "source": "NVIDIA Blog（RSS）",
+      "story_id": "story_87762bce91e8",
+      "title": "Sam Altman 宣布 ChatGPT 可生成自定义 UI",
+      "url": "https://x.com/sama/status/2107924408597950702",
+      "primary_url": "https://x.com/sama/status/2107924408597950702",
+      "source": "X：Sam Altman (@sama)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "167a38f113a770fc4d3752a7a64939a19b867dac",
-          "title": "NVIDIA 与 Microsoft 发布 RTX Spark 及 DGX Station for Windows，推动 AI Agent 落地 Windows PC",
-          "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
-          "source": "NVIDIA Blog（RSS）",
+          "id": "6c0bc141332a9186153607167107a244bded4129",
+          "title": "Sam Altman 宣布 ChatGPT 可生成自定义 UI",
+          "url": "https://x.com/sama/status/2107924408597950702",
+          "source": "X：Sam Altman (@sama)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T18:45:28Z"
+          "published_at": "2026-10-07T20:01:57Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "NVIDIA Blog（RSS）"
+        "X：Sam Altman (@sama)"
       ],
       "items": [
         {
-          "id": "167a38f113a770fc4d3752a7a64939a19b867dac",
-          "title": "NVIDIA 与 Microsoft 发布 RTX Spark 及 DGX Station for Windows，推动 AI Agent 落地 Windows PC",
-          "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
-          "source": "NVIDIA Blog（RSS）",
+          "id": "6c0bc141332a9186153607167107a244bded4129",
+          "title": "Sam Altman 宣布 ChatGPT 可生成自定义 UI",
+          "url": "https://x.com/sama/status/2107924408597950702",
+          "source": "X：Sam Altman (@sama)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T18:45:28Z"
+          "published_at": "2026-10-07T20:01:57Z"
         }
       ],
       "item_count": 1,
@@ -805,10 +885,10 @@
       "importance_score": 0.7632,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.75,
+        "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9254,
+        "recency": 0.8591,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -816,13 +896,74 @@
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-10-07T18:45:28Z",
-      "latest_at": "2026-10-07T18:45:28Z",
+      "earliest_at": "2026-10-07T20:01:57Z",
+      "latest_at": "2026-10-07T20:01:57Z",
       "primary_item": {
-        "id": "167a38f113a770fc4d3752a7a64939a19b867dac",
-        "title": "NVIDIA 与 Microsoft 发布 RTX Spark 及 DGX Station for Windows，推动 AI Agent 落地 Windows PC",
-        "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
-        "source": "NVIDIA Blog（RSS）",
+        "id": "6c0bc141332a9186153607167107a244bded4129",
+        "title": "Sam Altman 宣布 ChatGPT 可生成自定义 UI",
+        "url": "https://x.com/sama/status/2107924408597950702",
+        "source": "X：Sam Altman (@sama)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_246d30fb98f6",
+      "title": "ChatGPT 推出 Intelligent UI 交互式界面能力",
+      "url": "https://x.com/gdb/status/2107899150247616531",
+      "primary_url": "https://x.com/gdb/status/2107899150247616531",
+      "source": "X：Greg Brockman (@gdb)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "e85dd8d7da2ec0cb9226af0824c0dab1a487a1e9",
+          "title": "ChatGPT 推出 Intelligent UI 交互式界面能力",
+          "url": "https://x.com/gdb/status/2107899150247616531",
+          "source": "X：Greg Brockman (@gdb)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T18:21:34Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Greg Brockman (@gdb)"
+      ],
+      "items": [
+        {
+          "id": "e85dd8d7da2ec0cb9226af0824c0dab1a487a1e9",
+          "title": "ChatGPT 推出 Intelligent UI 交互式界面能力",
+          "url": "https://x.com/gdb/status/2107899150247616531",
+          "source": "X：Greg Brockman (@gdb)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T18:21:34Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7626,
+      "importance": 0.7626,
+      "importance_score": 0.7626,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.8,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8386,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-07T18:21:34Z",
+      "latest_at": "2026-10-07T18:21:34Z",
+      "primary_item": {
+        "id": "e85dd8d7da2ec0cb9226af0824c0dab1a487a1e9",
+        "title": "ChatGPT 推出 Intelligent UI 交互式界面能力",
+        "url": "https://x.com/gdb/status/2107899150247616531",
+        "source": "X：Greg Brockman (@gdb)",
         "source_name": "AI HOT"
       }
     },
@@ -861,21 +1002,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7628,
-      "importance": 0.7628,
-      "importance_score": 0.7628,
+      "score": 0.7489,
+      "importance": 0.7489,
+      "importance_score": 0.7489,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8736,
+        "recency": 0.7963,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-07T14:46:15Z",
       "latest_at": "2026-10-07T14:46:15Z",
@@ -922,21 +1062,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7612,
-      "importance": 0.7612,
-      "importance_score": 0.7612,
+      "score": 0.7464,
+      "importance": 0.7464,
+      "importance_score": 0.7464,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9313,
+        "recency": 0.8489,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-07T19:12:16Z",
       "latest_at": "2026-10-07T19:12:16Z",
@@ -945,67 +1084,6 @@
         "title": "Anthropic 发布 Claude Haiku 5.5，Artificial Analysis 智能指数得分 43",
         "url": "https://x.com/ArtificialAnlys/status/2107911905822351609",
         "source": "X：Artificial Analysis (@ArtificialAnlys)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_566daffb0c84",
-      "title": "a16z 解析德州为何让数据中心排队等电",
-      "url": "https://www.a16z.news/p/why-texas-is-making-data-centers",
-      "primary_url": "https://www.a16z.news/p/why-texas-is-making-data-centers",
-      "source": "a16z：News（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "24652cdfe96cc0b3052d6e1e362e94e382208125",
-          "title": "a16z 解析德州为何让数据中心排队等电",
-          "url": "https://www.a16z.news/p/why-texas-is-making-data-centers",
-          "source": "a16z：News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T14:01:44Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "a16z：News（RSS）"
-      ],
-      "items": [
-        {
-          "id": "24652cdfe96cc0b3052d6e1e362e94e382208125",
-          "title": "a16z 解析德州为何让数据中心排队等电",
-          "url": "https://www.a16z.news/p/why-texas-is-making-data-centers",
-          "source": "a16z：News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T14:01:44Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7522,
-      "importance": 0.7522,
-      "importance_score": 0.7522,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.75,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8643,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-07T14:01:44Z",
-      "latest_at": "2026-10-07T14:01:44Z",
-      "primary_item": {
-        "id": "24652cdfe96cc0b3052d6e1e362e94e382208125",
-        "title": "a16z 解析德州为何让数据中心排队等电",
-        "url": "https://www.a16z.news/p/why-texas-is-making-data-centers",
-        "source": "a16z：News（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -1082,22 +1160,21 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.7514,
-      "importance": 0.7514,
-      "importance_score": 0.7514,
+      "score": 0.7408,
+      "importance": 0.7408,
+      "importance_score": 0.7408,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6657,
+        "recency": 0.6068,
         "story_heat": 0.5
       },
       "category": "multi_source",
       "reasons": [
         "multi_source",
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-06T16:03:21Z",
       "latest_at": "2026-10-06T19:57:04Z",
@@ -1110,302 +1187,244 @@
       }
     },
     {
-      "story_id": "story_1c5b8d547c1a",
-      "title": "Cursor 公布 Claude Haiku 5.5 定价并下调 Claude Sonnet 5.5 缓存读取价格",
-      "url": "https://x.com/cursor_ai/status/2107897257651769464",
-      "primary_url": "https://x.com/cursor_ai/status/2107897257651769464",
-      "source": "X：Cursor (@cursor_ai)",
+      "story_id": "story_566daffb0c84",
+      "title": "a16z 解析德州为何让数据中心排队等电",
+      "url": "https://www.a16z.news/p/why-texas-is-making-data-centers",
+      "primary_url": "https://www.a16z.news/p/why-texas-is-making-data-centers",
+      "source": "a16z：News（RSS）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "53355e489f229621f1e8889e7bc47861aa900a2a",
-          "title": "Cursor 公布 Claude Haiku 5.5 定价并下调 Claude Sonnet 5.5 缓存读取价格",
-          "url": "https://x.com/cursor_ai/status/2107897257651769464",
-          "source": "X：Cursor (@cursor_ai)",
+          "id": "24652cdfe96cc0b3052d6e1e362e94e382208125",
+          "title": "a16z 解析德州为何让数据中心排队等电",
+          "url": "https://www.a16z.news/p/why-texas-is-making-data-centers",
+          "source": "a16z：News（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T18:14:03Z"
+          "published_at": "2026-10-07T14:01:44Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Cursor (@cursor_ai)"
+        "a16z：News（RSS）"
       ],
       "items": [
         {
-          "id": "53355e489f229621f1e8889e7bc47861aa900a2a",
-          "title": "Cursor 公布 Claude Haiku 5.5 定价并下调 Claude Sonnet 5.5 缓存读取价格",
-          "url": "https://x.com/cursor_ai/status/2107897257651769464",
-          "source": "X：Cursor (@cursor_ai)",
+          "id": "24652cdfe96cc0b3052d6e1e362e94e382208125",
+          "title": "a16z 解析德州为何让数据中心排队等电",
+          "url": "https://www.a16z.news/p/why-texas-is-making-data-centers",
+          "source": "a16z：News（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T18:14:03Z"
+          "published_at": "2026-10-07T14:01:44Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7499,
-      "importance": 0.7499,
-      "importance_score": 0.7499,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9184,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-07T18:14:03Z",
-      "latest_at": "2026-10-07T18:14:03Z",
-      "primary_item": {
-        "id": "53355e489f229621f1e8889e7bc47861aa900a2a",
-        "title": "Cursor 公布 Claude Haiku 5.5 定价并下调 Claude Sonnet 5.5 缓存读取价格",
-        "url": "https://x.com/cursor_ai/status/2107897257651769464",
-        "source": "X：Cursor (@cursor_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_5bdd694c6290",
-      "title": "Nemotron 系列微调后达到 IOI 2026 与 IMO 2026 金牌水平",
-      "url": "https://huggingface.co/blog/nvidia/nemotron-ioi-and-imo-2026",
-      "primary_url": "https://huggingface.co/blog/nvidia/nemotron-ioi-and-imo-2026",
-      "source": "Hugging Face 社区博客（混合发现）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "e604890092b2b3e860f6a73a9463552f349d2f3d",
-          "title": "Nemotron 系列微调后达到 IOI 2026 与 IMO 2026 金牌水平",
-          "url": "https://huggingface.co/blog/nvidia/nemotron-ioi-and-imo-2026",
-          "source": "Hugging Face 社区博客（混合发现）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T12:45:31Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Hugging Face 社区博客（混合发现）"
-      ],
-      "items": [
-        {
-          "id": "e604890092b2b3e860f6a73a9463552f349d2f3d",
-          "title": "Nemotron 系列微调后达到 IOI 2026 与 IMO 2026 金牌水平",
-          "url": "https://huggingface.co/blog/nvidia/nemotron-ioi-and-imo-2026",
-          "source": "Hugging Face 社区博客（混合发现）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T12:45:31Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7493,
-      "importance": 0.7493,
-      "importance_score": 0.7493,
+      "score": 0.7384,
+      "importance": 0.7384,
+      "importance_score": 0.7384,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8486,
+        "recency": 0.7878,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-07T12:45:31Z",
-      "latest_at": "2026-10-07T12:45:31Z",
+      "earliest_at": "2026-10-07T14:01:44Z",
+      "latest_at": "2026-10-07T14:01:44Z",
       "primary_item": {
-        "id": "e604890092b2b3e860f6a73a9463552f349d2f3d",
-        "title": "Nemotron 系列微调后达到 IOI 2026 与 IMO 2026 金牌水平",
-        "url": "https://huggingface.co/blog/nvidia/nemotron-ioi-and-imo-2026",
-        "source": "Hugging Face 社区博客（混合发现）",
+        "id": "24652cdfe96cc0b3052d6e1e362e94e382208125",
+        "title": "a16z 解析德州为何让数据中心排队等电",
+        "url": "https://www.a16z.news/p/why-texas-is-making-data-centers",
+        "source": "a16z：News（RSS）",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_dc38a9e38395",
-      "title": "Anthropic 为 Claude Max 和 Team 套餐推出月度 Platform API 额度",
-      "url": "https://x.com/ClaudeDevs/status/2107895957933408429",
-      "primary_url": "https://x.com/ClaudeDevs/status/2107895957933408429",
-      "source": "X：Claude Devs (@ClaudeDevs)",
+      "story_id": "story_d6768503cce7",
+      "title": "Jeff Dean 悼念 Margaret Hamilton：MIT 宣布阿波罗飞行软件先驱逝世，享年 90 岁",
+      "url": "https://x.com/JeffDean/status/2108027570382086435",
+      "primary_url": "https://x.com/JeffDean/status/2108027570382086435",
+      "source": "X：Jeff Dean (@JeffDean)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "e61ba62b2c702585858363c034d3d4f396b2775a",
-          "title": "Anthropic 为 Claude Max 和 Team 套餐推出月度 Platform API 额度",
-          "url": "https://x.com/ClaudeDevs/status/2107895957933408429",
-          "source": "X：Claude Devs (@ClaudeDevs)",
+          "id": "0604e93193603d1e9c6938d2e93ffc09689b8122",
+          "title": "Jeff Dean 悼念 Margaret Hamilton：MIT 宣布阿波罗飞行软件先驱逝世，享年 90 岁",
+          "url": "https://x.com/JeffDean/status/2108027570382086435",
+          "source": "X：Jeff Dean (@JeffDean)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T18:08:53Z"
+          "published_at": "2026-10-08T02:51:52Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Claude Devs (@ClaudeDevs)"
+        "X：Jeff Dean (@JeffDean)"
       ],
       "items": [
         {
-          "id": "e61ba62b2c702585858363c034d3d4f396b2775a",
-          "title": "Anthropic 为 Claude Max 和 Team 套餐推出月度 Platform API 额度",
-          "url": "https://x.com/ClaudeDevs/status/2107895957933408429",
-          "source": "X：Claude Devs (@ClaudeDevs)",
+          "id": "0604e93193603d1e9c6938d2e93ffc09689b8122",
+          "title": "Jeff Dean 悼念 Margaret Hamilton：MIT 宣布阿波罗飞行软件先驱逝世，享年 90 岁",
+          "url": "https://x.com/JeffDean/status/2108027570382086435",
+          "source": "X：Jeff Dean (@JeffDean)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T18:08:53Z"
+          "published_at": "2026-10-08T02:51:52Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7467,
-      "importance": 0.7467,
-      "importance_score": 0.7467,
+      "score": 0.7373,
+      "importance": 0.7373,
+      "importance_score": 0.7373,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.7,
+        "editorial": 0.65,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9172,
+        "recency": 0.9482,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-07T18:08:53Z",
-      "latest_at": "2026-10-07T18:08:53Z",
+      "earliest_at": "2026-10-08T02:51:52Z",
+      "latest_at": "2026-10-08T02:51:52Z",
       "primary_item": {
-        "id": "e61ba62b2c702585858363c034d3d4f396b2775a",
-        "title": "Anthropic 为 Claude Max 和 Team 套餐推出月度 Platform API 额度",
-        "url": "https://x.com/ClaudeDevs/status/2107895957933408429",
-        "source": "X：Claude Devs (@ClaudeDevs)",
+        "id": "0604e93193603d1e9c6938d2e93ffc09689b8122",
+        "title": "Jeff Dean 悼念 Margaret Hamilton：MIT 宣布阿波罗飞行软件先驱逝世，享年 90 岁",
+        "url": "https://x.com/JeffDean/status/2108027570382086435",
+        "source": "X：Jeff Dean (@JeffDean)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_9fc232ec44ca",
-      "title": "Anthropic 发布 Claude Haiku 5.5，10 万 token 以内价格比 Haiku 4.5 便宜 10 倍",
-      "url": "https://x.com/trq212/status/2107898493234982968",
-      "primary_url": "https://x.com/trq212/status/2107898493234982968",
-      "source": "X：Thariq (@trq212)",
+      "story_id": "story_a94d8e86c2be",
+      "title": "微软将 Windows 定位升级为 hybrid intelligence 之家，发布 MXC、本地模型与硬件四层布局",
+      "url": "https://x.com/shao__meng/status/2108025064205738442",
+      "primary_url": "https://x.com/shao__meng/status/2108025064205738442",
+      "source": "X：邵猛 (@shao__meng)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "17c425c3448118931b865561ae53221ac847f6c8",
-          "title": "Anthropic 发布 Claude Haiku 5.5，10 万 token 以内价格比 Haiku 4.5 便宜 10 倍",
-          "url": "https://x.com/trq212/status/2107898493234982968",
-          "source": "X：Thariq (@trq212)",
+          "id": "6d0f00b2444116a70789aad8a41a3bfa939330a6",
+          "title": "微软将 Windows 定位升级为 hybrid intelligence 之家，发布 MXC、本地模型与硬件四层布局",
+          "url": "https://x.com/shao__meng/status/2108025064205738442",
+          "source": "X：邵猛 (@shao__meng)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T18:18:58Z"
+          "published_at": "2026-10-08T02:41:55Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Thariq (@trq212)"
+        "X：邵猛 (@shao__meng)"
       ],
       "items": [
         {
-          "id": "17c425c3448118931b865561ae53221ac847f6c8",
-          "title": "Anthropic 发布 Claude Haiku 5.5，10 万 token 以内价格比 Haiku 4.5 便宜 10 倍",
-          "url": "https://x.com/trq212/status/2107898493234982968",
-          "source": "X：Thariq (@trq212)",
+          "id": "6d0f00b2444116a70789aad8a41a3bfa939330a6",
+          "title": "微软将 Windows 定位升级为 hybrid intelligence 之家，发布 MXC、本地模型与硬件四层布局",
+          "url": "https://x.com/shao__meng/status/2108025064205738442",
+          "source": "X：邵猛 (@shao__meng)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T18:18:58Z"
+          "published_at": "2026-10-08T02:41:55Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7411,
-      "importance": 0.7411,
-      "importance_score": 0.7411,
+      "score": 0.7669,
+      "importance": 0.7669,
+      "importance_score": 0.7669,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.68,
+        "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9195,
+        "recency": 0.946,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance"
+        "high_ai_relevance",
+        "high_importance"
       ],
-      "earliest_at": "2026-10-07T18:18:58Z",
-      "latest_at": "2026-10-07T18:18:58Z",
+      "earliest_at": "2026-10-08T02:41:55Z",
+      "latest_at": "2026-10-08T02:41:55Z",
       "primary_item": {
-        "id": "17c425c3448118931b865561ae53221ac847f6c8",
-        "title": "Anthropic 发布 Claude Haiku 5.5，10 万 token 以内价格比 Haiku 4.5 便宜 10 倍",
-        "url": "https://x.com/trq212/status/2107898493234982968",
-        "source": "X：Thariq (@trq212)",
+        "id": "6d0f00b2444116a70789aad8a41a3bfa939330a6",
+        "title": "微软将 Windows 定位升级为 hybrid intelligence 之家，发布 MXC、本地模型与硬件四层布局",
+        "url": "https://x.com/shao__meng/status/2108025064205738442",
+        "source": "X：邵猛 (@shao__meng)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_2a0372ac5678",
-      "title": "GPT-6 Luna Decisions 上架 OpenRouter",
-      "url": "https://x.com/OpenRouter/status/2107929204142874759",
-      "primary_url": "https://x.com/OpenRouter/status/2107929204142874759",
-      "source": "X：OpenRouter (@OpenRouter)",
+      "story_id": "story_2059346474e3",
+      "title": "Codex 与 ChatGPT Work 活跃用户达 4000 万新高，付费账户重置已全部到账",
+      "url": "https://x.com/thsottiaux/status/2108040921044639779",
+      "primary_url": "https://x.com/thsottiaux/status/2108040921044639779",
+      "source": "X：Tibo (@thsottiaux)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "5f6ad1411daca1cfdaa088277b17c6467c921709",
-          "title": "GPT-6 Luna Decisions 上架 OpenRouter",
-          "url": "https://x.com/OpenRouter/status/2107929204142874759",
-          "source": "X：OpenRouter (@OpenRouter)",
+          "id": "b9798e6758a5964a01c7b0d7599574e0b4e4d825",
+          "title": "Codex 与 ChatGPT Work 活跃用户达 4000 万新高，付费账户重置已全部到账",
+          "url": "https://x.com/thsottiaux/status/2108040921044639779",
+          "source": "X：Tibo (@thsottiaux)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T20:21:00Z"
+          "published_at": "2026-10-08T03:44:55Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：OpenRouter (@OpenRouter)"
+        "X：Tibo (@thsottiaux)"
       ],
       "items": [
         {
-          "id": "5f6ad1411daca1cfdaa088277b17c6467c921709",
-          "title": "GPT-6 Luna Decisions 上架 OpenRouter",
-          "url": "https://x.com/OpenRouter/status/2107929204142874759",
-          "source": "X：OpenRouter (@OpenRouter)",
+          "id": "b9798e6758a5964a01c7b0d7599574e0b4e4d825",
+          "title": "Codex 与 ChatGPT Work 活跃用户达 4000 万新高，付费账户重置已全部到账",
+          "url": "https://x.com/thsottiaux/status/2108040921044639779",
+          "source": "X：Tibo (@thsottiaux)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T20:21:00Z"
+          "published_at": "2026-10-08T03:44:55Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.74,
-      "importance": 0.74,
-      "importance_score": 0.74,
+      "score": 0.7665,
+      "importance": 0.7665,
+      "importance_score": 0.7665,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.66,
+        "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9469,
+        "recency": 0.9604,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance"
+        "high_ai_relevance",
+        "high_importance"
       ],
-      "earliest_at": "2026-10-07T20:21:00Z",
-      "latest_at": "2026-10-07T20:21:00Z",
+      "earliest_at": "2026-10-08T03:44:55Z",
+      "latest_at": "2026-10-08T03:44:55Z",
       "primary_item": {
-        "id": "5f6ad1411daca1cfdaa088277b17c6467c921709",
-        "title": "GPT-6 Luna Decisions 上架 OpenRouter",
-        "url": "https://x.com/OpenRouter/status/2107929204142874759",
-        "source": "X：OpenRouter (@OpenRouter)",
+        "id": "b9798e6758a5964a01c7b0d7599574e0b4e4d825",
+        "title": "Codex 与 ChatGPT Work 活跃用户达 4000 万新高，付费账户重置已全部到账",
+        "url": "https://x.com/thsottiaux/status/2108040921044639779",
+        "source": "X：Tibo (@thsottiaux)",
         "source_name": "AI HOT"
       }
     }
