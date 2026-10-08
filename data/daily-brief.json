@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T20:06:03.460446Z",
+  "generated_at": "2026-10-08T00:07:48.774705Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -12,20 +12,14 @@
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "9812f46d2f4c0f9eb3380207ba7624fcdde2ad1a",
-          "title": "OpenAI 向全部 ChatGPT 用户推出 GPT-6 与 Intelligent UI",
-          "url": "https://openai.com/index/gpt-6-for-everyone",
-          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+          "id": "675c29413d6c8fb6e63f6cb1901b53742a9b2851",
+          "title": "OpenAI 开始向 ChatGPT 全档位推送 GPT-6 与 Intelligent UI",
+          "url": "https://x.com/ChatGPT/status/2107933136780947764",
+          "source": "X：ChatGPT (@ChatGPT)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T18:00:58Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "OpenAI：官网动态（RSS · 排除企业/客户案例）"
-      ],
-      "items": [
+          "published_at": "2026-10-07T20:36:37Z"
+        },
         {
           "id": "9812f46d2f4c0f9eb3380207ba7624fcdde2ad1a",
           "title": "OpenAI 向全部 ChatGPT 用户推出 GPT-6 与 Intelligent UI",
@@ -36,17 +30,185 @@
           "published_at": "2026-10-07T18:00:58Z"
         }
       ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.8073,
-      "importance": 0.8073,
-      "importance_score": 0.8073,
+      "source_count": 2,
+      "source_names": [
+        "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+        "X：ChatGPT (@ChatGPT)"
+      ],
+      "items": [
+        {
+          "id": "675c29413d6c8fb6e63f6cb1901b53742a9b2851",
+          "title": "OpenAI 开始向 ChatGPT 全档位推送 GPT-6 与 Intelligent UI",
+          "url": "https://x.com/ChatGPT/status/2107933136780947764",
+          "source": "X：ChatGPT (@ChatGPT)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T20:36:37Z"
+        },
+        {
+          "id": "9812f46d2f4c0f9eb3380207ba7624fcdde2ad1a",
+          "title": "OpenAI 向全部 ChatGPT 用户推出 GPT-6 与 Intelligent UI",
+          "url": "https://openai.com/index/gpt-6-for-everyone",
+          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T18:00:58Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.8224,
+      "importance": 0.8224,
+      "importance_score": 0.8224,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.87,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9703,
+        "recency": 0.9155,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-07T18:00:58Z",
+      "latest_at": "2026-10-07T20:36:37Z",
+      "primary_item": {
+        "id": "9812f46d2f4c0f9eb3380207ba7624fcdde2ad1a",
+        "title": "OpenAI 向全部 ChatGPT 用户推出 GPT-6 与 Intelligent UI",
+        "url": "https://openai.com/index/gpt-6-for-everyone",
+        "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_02c4777dbbfa",
+      "title": "GPT-6 新版本随 Intelligent UI 向全部 ChatGPT 用户推送",
+      "url": "https://x.com/thsottiaux/status/2107912709715132482",
+      "primary_url": "https://x.com/thsottiaux/status/2107912709715132482",
+      "source": "X：Tibo (@thsottiaux)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "292877b2fef29f8bf5254232a90bfbbd42620f30",
+          "title": "GPT-6 与 Intelligent UI 开始向所有 ChatGPT 用户推送",
+          "url": "https://x.com/testingcatalog/status/2107923723638493593",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T19:59:13Z"
+        },
+        {
+          "id": "704c4d46af315bbb532a42be1ce1ea65d1f2a87d",
+          "title": "GPT-6 新版本随 Intelligent UI 向全部 ChatGPT 用户推送",
+          "url": "https://x.com/thsottiaux/status/2107912709715132482",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T19:15:27Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Testing Catalog (@testingcatalog)",
+        "X：Tibo (@thsottiaux)"
+      ],
+      "items": [
+        {
+          "id": "292877b2fef29f8bf5254232a90bfbbd42620f30",
+          "title": "GPT-6 与 Intelligent UI 开始向所有 ChatGPT 用户推送",
+          "url": "https://x.com/testingcatalog/status/2107923723638493593",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T19:59:13Z"
+        },
+        {
+          "id": "704c4d46af315bbb532a42be1ce1ea65d1f2a87d",
+          "title": "GPT-6 新版本随 Intelligent UI 向全部 ChatGPT 用户推送",
+          "url": "https://x.com/thsottiaux/status/2107912709715132482",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T19:15:27Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7984,
+      "importance": 0.7984,
+      "importance_score": 0.7984,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.78,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9321,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-07T19:15:27Z",
+      "latest_at": "2026-10-07T19:59:13Z",
+      "primary_item": {
+        "id": "704c4d46af315bbb532a42be1ce1ea65d1f2a87d",
+        "title": "GPT-6 新版本随 Intelligent UI 向全部 ChatGPT 用户推送",
+        "url": "https://x.com/thsottiaux/status/2107912709715132482",
+        "source": "X：Tibo (@thsottiaux)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_efff0efe8d7b",
+      "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
+      "url": "https://x.com/emollick/status/2107938889004396561",
+      "primary_url": "https://x.com/emollick/status/2107938889004396561",
+      "source": "X：Ethan Mollick (@emollick)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "a9899b166aeda121aa76167924c4f9d5dff63713",
+          "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
+          "url": "https://x.com/emollick/status/2107938889004396561",
+          "source": "X：Ethan Mollick (@emollick)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T20:59:29Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Ethan Mollick (@emollick)"
+      ],
+      "items": [
+        {
+          "id": "a9899b166aeda121aa76167924c4f9d5dff63713",
+          "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
+          "url": "https://x.com/emollick/status/2107938889004396561",
+          "source": "X：Ethan Mollick (@emollick)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T20:59:29Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7896,
+      "importance": 0.7896,
+      "importance_score": 0.7896,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.82,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9557,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -54,13 +216,13 @@
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-10-07T18:00:58Z",
-      "latest_at": "2026-10-07T18:00:58Z",
+      "earliest_at": "2026-10-07T20:59:29Z",
+      "latest_at": "2026-10-07T20:59:29Z",
       "primary_item": {
-        "id": "9812f46d2f4c0f9eb3380207ba7624fcdde2ad1a",
-        "title": "OpenAI 向全部 ChatGPT 用户推出 GPT-6 与 Intelligent UI",
-        "url": "https://openai.com/index/gpt-6-for-everyone",
-        "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+        "id": "a9899b166aeda121aa76167924c4f9d5dff63713",
+        "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
+        "url": "https://x.com/emollick/status/2107938889004396561",
+        "source": "X：Ethan Mollick (@emollick)",
         "source_name": "AI HOT"
       }
     },
@@ -99,15 +261,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7984,
-      "importance": 0.7984,
-      "importance_score": 0.7984,
+      "score": 0.7886,
+      "importance": 0.7886,
+      "importance_score": 0.7886,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.84,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9713,
+        "recency": 0.9164,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -122,6 +284,67 @@
         "title": "OpenAI 全球推送 GPT-6 智能界面，Plus 等付费档用 GPT-6 Sol",
         "url": "https://x.com/OpenAI/status/2107895006350791071",
         "source": "X：OpenAI (@OpenAI)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_153db2161b43",
+      "title": "OpenAI 向所有用户推出 ChatGPT Intelligent UI 界面功能",
+      "url": "https://x.com/rohanpaul_ai/status/2107942819881185733",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2107942819881185733",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "aca5ca50c5cff3fde034db4b812653f8323cde9c",
+          "title": "OpenAI 向所有用户推出 ChatGPT Intelligent UI 界面功能",
+          "url": "https://x.com/rohanpaul_ai/status/2107942819881185733",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T21:15:06Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "aca5ca50c5cff3fde034db4b812653f8323cde9c",
+          "title": "OpenAI 向所有用户推出 ChatGPT Intelligent UI 界面功能",
+          "url": "https://x.com/rohanpaul_ai/status/2107942819881185733",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T21:15:06Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7873,
+      "importance": 0.7873,
+      "importance_score": 0.7873,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.81,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9593,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-07T21:15:06Z",
+      "latest_at": "2026-10-07T21:15:06Z",
+      "primary_item": {
+        "id": "aca5ca50c5cff3fde034db4b812653f8323cde9c",
+        "title": "OpenAI 向所有用户推出 ChatGPT Intelligent UI 界面功能",
+        "url": "https://x.com/rohanpaul_ai/status/2107942819881185733",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -160,15 +383,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7902,
-      "importance": 0.7902,
-      "importance_score": 0.7902,
+      "score": 0.7803,
+      "importance": 0.7803,
+      "importance_score": 0.7803,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9758,
+        "recency": 0.9206,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -183,6 +406,67 @@
         "title": "OpenAI 在 ChatGPT 推出 GPT-6 与 Intelligent UI 交互式回答功能",
         "url": "https://x.com/reach_vb/status/2107899798024007897",
         "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_87762bce91e8",
+      "title": "Sam Altman 宣布 ChatGPT 可生成自定义 UI",
+      "url": "https://x.com/sama/status/2107924408597950702",
+      "primary_url": "https://x.com/sama/status/2107924408597950702",
+      "source": "X：Sam Altman (@sama)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "6c0bc141332a9186153607167107a244bded4129",
+          "title": "Sam Altman 宣布 ChatGPT 可生成自定义 UI",
+          "url": "https://x.com/sama/status/2107924408597950702",
+          "source": "X：Sam Altman (@sama)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T20:01:57Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Sam Altman (@sama)"
+      ],
+      "items": [
+        {
+          "id": "6c0bc141332a9186153607167107a244bded4129",
+          "title": "Sam Altman 宣布 ChatGPT 可生成自定义 UI",
+          "url": "https://x.com/sama/status/2107924408597950702",
+          "source": "X：Sam Altman (@sama)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T20:01:57Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7783,
+      "importance": 0.7783,
+      "importance_score": 0.7783,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.79,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9425,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-07T20:01:57Z",
+      "latest_at": "2026-10-07T20:01:57Z",
+      "primary_item": {
+        "id": "6c0bc141332a9186153607167107a244bded4129",
+        "title": "Sam Altman 宣布 ChatGPT 可生成自定义 UI",
+        "url": "https://x.com/sama/status/2107924408597950702",
+        "source": "X：Sam Altman (@sama)",
         "source_name": "AI HOT"
       }
     },
@@ -221,15 +505,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7871,
-      "importance": 0.7871,
-      "importance_score": 0.7871,
+      "score": 0.7772,
+      "importance": 0.7772,
+      "importance_score": 0.7772,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.8,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9752,
+        "recency": 0.92,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -244,67 +528,6 @@
         "title": "ChatGPT 推出 Intelligent UI 交互式界面能力",
         "url": "https://x.com/gdb/status/2107899150247616531",
         "source": "X：Greg Brockman (@gdb)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_02c4777dbbfa",
-      "title": "GPT-6 新版本随 Intelligent UI 向全部 ChatGPT 用户推送",
-      "url": "https://x.com/thsottiaux/status/2107912709715132482",
-      "primary_url": "https://x.com/thsottiaux/status/2107912709715132482",
-      "source": "X：Tibo (@thsottiaux)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "704c4d46af315bbb532a42be1ce1ea65d1f2a87d",
-          "title": "GPT-6 新版本随 Intelligent UI 向全部 ChatGPT 用户推送",
-          "url": "https://x.com/thsottiaux/status/2107912709715132482",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T19:15:27Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Tibo (@thsottiaux)"
-      ],
-      "items": [
-        {
-          "id": "704c4d46af315bbb532a42be1ce1ea65d1f2a87d",
-          "title": "GPT-6 新版本随 Intelligent UI 向全部 ChatGPT 用户推送",
-          "url": "https://x.com/thsottiaux/status/2107912709715132482",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T19:15:27Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7834,
-      "importance": 0.7834,
-      "importance_score": 0.7834,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.78,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9879,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-07T19:15:27Z",
-      "latest_at": "2026-10-07T19:15:27Z",
-      "primary_item": {
-        "id": "704c4d46af315bbb532a42be1ce1ea65d1f2a87d",
-        "title": "GPT-6 新版本随 Intelligent UI 向全部 ChatGPT 用户推送",
-        "url": "https://x.com/thsottiaux/status/2107912709715132482",
-        "source": "X：Tibo (@thsottiaux)",
         "source_name": "AI HOT"
       }
     },
@@ -454,15 +677,15 @@
       ],
       "item_count": 7,
       "duplicate_count": 7,
-      "score": 0.7802,
-      "importance": 0.7802,
-      "importance_score": 0.7802,
+      "score": 0.7748,
+      "importance": 0.7748,
+      "importance_score": 0.7748,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5313,
+        "recency": 0.5012,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -482,49 +705,49 @@
       }
     },
     {
-      "story_id": "story_db412e0532ce",
-      "title": "Anthropic 发布 Claude Haiku 5.5，成本更低且多项基准大幅提升",
-      "url": "https://x.com/rohanpaul_ai/status/2107901719858622628",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2107901719858622628",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "story_id": "story_0f8c89de7167",
+      "title": "Anthropic 向 Max 会员每月发放免费 API 额度，$100 档领 $100、$200 档领 $200",
+      "url": "https://x.com/Khazix0918/status/2107918094220083326",
+      "primary_url": "https://x.com/Khazix0918/status/2107918094220083326",
+      "source": "X：卡兹克 (@Khazix0918)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "377e618095149b3381b22d75a937182eee0a4b35",
-          "title": "Anthropic 发布 Claude Haiku 5.5，成本更低且多项基准大幅提升",
-          "url": "https://x.com/rohanpaul_ai/status/2107901719858622628",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "e55ccc54bc5ce986d18af573b92be733819b585b",
+          "title": "Anthropic 向 Max 会员每月发放免费 API 额度，$100 档领 $100、$200 档领 $200",
+          "url": "https://x.com/Khazix0918/status/2107918094220083326",
+          "source": "X：卡兹克 (@Khazix0918)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T18:31:47Z"
+          "published_at": "2026-10-07T19:36:51Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
+        "X：卡兹克 (@Khazix0918)"
       ],
       "items": [
         {
-          "id": "377e618095149b3381b22d75a937182eee0a4b35",
-          "title": "Anthropic 发布 Claude Haiku 5.5，成本更低且多项基准大幅提升",
-          "url": "https://x.com/rohanpaul_ai/status/2107901719858622628",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "e55ccc54bc5ce986d18af573b92be733819b585b",
+          "title": "Anthropic 向 Max 会员每月发放免费 API 额度，$100 档领 $100、$200 档领 $200",
+          "url": "https://x.com/Khazix0918/status/2107918094220083326",
+          "source": "X：卡兹克 (@Khazix0918)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T18:31:47Z"
+          "published_at": "2026-10-07T19:36:51Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7756,
-      "importance": 0.7756,
-      "importance_score": 0.7756,
+      "score": 0.7742,
+      "importance": 0.7742,
+      "importance_score": 0.7742,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.76,
+        "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9776,
+        "recency": 0.9369,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -532,13 +755,13 @@
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-10-07T18:31:47Z",
-      "latest_at": "2026-10-07T18:31:47Z",
+      "earliest_at": "2026-10-07T19:36:51Z",
+      "latest_at": "2026-10-07T19:36:51Z",
       "primary_item": {
-        "id": "377e618095149b3381b22d75a937182eee0a4b35",
-        "title": "Anthropic 发布 Claude Haiku 5.5，成本更低且多项基准大幅提升",
-        "url": "https://x.com/rohanpaul_ai/status/2107901719858622628",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "id": "e55ccc54bc5ce986d18af573b92be733819b585b",
+        "title": "Anthropic 向 Max 会员每月发放免费 API 额度，$100 档领 $100、$200 档领 $200",
+        "url": "https://x.com/Khazix0918/status/2107918094220083326",
+        "source": "X：卡兹克 (@Khazix0918)",
         "source_name": "AI HOT"
       }
     },
@@ -577,15 +800,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7731,
-      "importance": 0.7731,
-      "importance_score": 0.7731,
+      "score": 0.7632,
+      "importance": 0.7632,
+      "importance_score": 0.7632,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9808,
+        "recency": 0.9254,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -638,15 +861,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7723,
-      "importance": 0.7723,
-      "importance_score": 0.7723,
+      "score": 0.7628,
+      "importance": 0.7628,
+      "importance_score": 0.7628,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9259,
+        "recency": 0.8736,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -699,15 +922,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7713,
-      "importance": 0.7713,
-      "importance_score": 0.7713,
+      "score": 0.7612,
+      "importance": 0.7612,
+      "importance_score": 0.7612,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9871,
+        "recency": 0.9313,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -760,15 +983,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7615,
-      "importance": 0.7615,
-      "importance_score": 0.7615,
+      "score": 0.7522,
+      "importance": 0.7522,
+      "importance_score": 0.7522,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9161,
+        "recency": 0.8643,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -783,67 +1006,6 @@
         "title": "a16z 解析德州为何让数据中心排队等电",
         "url": "https://www.a16z.news/p/why-texas-is-making-data-centers",
         "source": "a16z：News（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_1c5b8d547c1a",
-      "title": "Cursor 公布 Claude Haiku 5.5 定价并下调 Claude Sonnet 5.5 缓存读取价格",
-      "url": "https://x.com/cursor_ai/status/2107897257651769464",
-      "primary_url": "https://x.com/cursor_ai/status/2107897257651769464",
-      "source": "X：Cursor (@cursor_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "53355e489f229621f1e8889e7bc47861aa900a2a",
-          "title": "Cursor 公布 Claude Haiku 5.5 定价并下调 Claude Sonnet 5.5 缓存读取价格",
-          "url": "https://x.com/cursor_ai/status/2107897257651769464",
-          "source": "X：Cursor (@cursor_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:14:03Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Cursor (@cursor_ai)"
-      ],
-      "items": [
-        {
-          "id": "53355e489f229621f1e8889e7bc47861aa900a2a",
-          "title": "Cursor 公布 Claude Haiku 5.5 定价并下调 Claude Sonnet 5.5 缓存读取价格",
-          "url": "https://x.com/cursor_ai/status/2107897257651769464",
-          "source": "X：Cursor (@cursor_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:14:03Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7598,
-      "importance": 0.7598,
-      "importance_score": 0.7598,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9734,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-07T18:14:03Z",
-      "latest_at": "2026-10-07T18:14:03Z",
-      "primary_item": {
-        "id": "53355e489f229621f1e8889e7bc47861aa900a2a",
-        "title": "Cursor 公布 Claude Haiku 5.5 定价并下调 Claude Sonnet 5.5 缓存读取价格",
-        "url": "https://x.com/cursor_ai/status/2107897257651769464",
-        "source": "X：Cursor (@cursor_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -920,15 +1082,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.7586,
-      "importance": 0.7586,
-      "importance_score": 0.7586,
+      "score": 0.7514,
+      "importance": 0.7514,
+      "importance_score": 0.7514,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7056,
+        "recency": 0.6657,
         "story_heat": 0.5
       },
       "category": "multi_source",
@@ -944,6 +1106,66 @@
         "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
         "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
         "source": "Google DeepMind：Blog（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_1c5b8d547c1a",
+      "title": "Cursor 公布 Claude Haiku 5.5 定价并下调 Claude Sonnet 5.5 缓存读取价格",
+      "url": "https://x.com/cursor_ai/status/2107897257651769464",
+      "primary_url": "https://x.com/cursor_ai/status/2107897257651769464",
+      "source": "X：Cursor (@cursor_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "53355e489f229621f1e8889e7bc47861aa900a2a",
+          "title": "Cursor 公布 Claude Haiku 5.5 定价并下调 Claude Sonnet 5.5 缓存读取价格",
+          "url": "https://x.com/cursor_ai/status/2107897257651769464",
+          "source": "X：Cursor (@cursor_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T18:14:03Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Cursor (@cursor_ai)"
+      ],
+      "items": [
+        {
+          "id": "53355e489f229621f1e8889e7bc47861aa900a2a",
+          "title": "Cursor 公布 Claude Haiku 5.5 定价并下调 Claude Sonnet 5.5 缓存读取价格",
+          "url": "https://x.com/cursor_ai/status/2107897257651769464",
+          "source": "X：Cursor (@cursor_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T18:14:03Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7499,
+      "importance": 0.7499,
+      "importance_score": 0.7499,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.71,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9184,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-07T18:14:03Z",
+      "latest_at": "2026-10-07T18:14:03Z",
+      "primary_item": {
+        "id": "53355e489f229621f1e8889e7bc47861aa900a2a",
+        "title": "Cursor 公布 Claude Haiku 5.5 定价并下调 Claude Sonnet 5.5 缓存读取价格",
+        "url": "https://x.com/cursor_ai/status/2107897257651769464",
+        "source": "X：Cursor (@cursor_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -982,21 +1204,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7585,
-      "importance": 0.7585,
-      "importance_score": 0.7585,
+      "score": 0.7493,
+      "importance": 0.7493,
+      "importance_score": 0.7493,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8994,
+        "recency": 0.8486,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-07T12:45:31Z",
       "latest_at": "2026-10-07T12:45:31Z",
@@ -1043,21 +1264,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7566,
-      "importance": 0.7566,
-      "importance_score": 0.7566,
+      "score": 0.7467,
+      "importance": 0.7467,
+      "importance_score": 0.7467,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9722,
+        "recency": 0.9172,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-07T18:08:53Z",
       "latest_at": "2026-10-07T18:08:53Z",
@@ -1104,21 +1324,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.751,
-      "importance": 0.751,
-      "importance_score": 0.751,
+      "score": 0.7411,
+      "importance": 0.7411,
+      "importance_score": 0.7411,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9746,
+        "recency": 0.9195,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-07T18:18:58Z",
       "latest_at": "2026-10-07T18:18:58Z",
@@ -1131,141 +1350,21 @@
       }
     },
     {
-      "story_id": "story_c7de22c7db25",
-      "title": "Microsoft Research Asia 开源 Agent Lightning v1.0：3,500 行代码的真实 harness 智能体 RL 训练框架",
-      "url": "https://www.microsoft.com/en-us/research/blog/agent-lightning-v1-0-a-3500-line-lightweight-agentic-rl-framework-for-training-agents-with-real-harnesses",
-      "primary_url": "https://www.microsoft.com/en-us/research/blog/agent-lightning-v1-0-a-3500-line-lightweight-agentic-rl-framework-for-training-agents-with-real-harnesses",
-      "source": "Microsoft Research 博客（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "74ccba7acc445f10a7295fa2758bf445780c47b6",
-          "title": "Microsoft Research Asia 开源 Agent Lightning v1.0：3,500 行代码的真实 harness 智能体 RL 训练框架",
-          "url": "https://www.microsoft.com/en-us/research/blog/agent-lightning-v1-0-a-3500-line-lightweight-agentic-rl-framework-for-training-agents-with-real-harnesses",
-          "source": "Microsoft Research 博客（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T16:00:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Microsoft Research 博客（RSS）"
-      ],
-      "items": [
-        {
-          "id": "74ccba7acc445f10a7295fa2758bf445780c47b6",
-          "title": "Microsoft Research Asia 开源 Agent Lightning v1.0：3,500 行代码的真实 harness 智能体 RL 训练框架",
-          "url": "https://www.microsoft.com/en-us/research/blog/agent-lightning-v1-0-a-3500-line-lightweight-agentic-rl-framework-for-training-agents-with-real-harnesses",
-          "source": "Microsoft Research 博客（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T16:00:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7482,
-      "importance": 0.7482,
-      "importance_score": 0.7482,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.69,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9425,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-07T16:00:00Z",
-      "latest_at": "2026-10-07T16:00:00Z",
-      "primary_item": {
-        "id": "74ccba7acc445f10a7295fa2758bf445780c47b6",
-        "title": "Microsoft Research Asia 开源 Agent Lightning v1.0：3,500 行代码的真实 harness 智能体 RL 训练框架",
-        "url": "https://www.microsoft.com/en-us/research/blog/agent-lightning-v1-0-a-3500-line-lightweight-agentic-rl-framework-for-training-agents-with-real-harnesses",
-        "source": "Microsoft Research 博客（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_1a00f696401c",
-      "title": "Anthropic 发布 Claude Haiku 5.5",
-      "url": "https://x.com/AnthropicAI/status/2107894208547983705",
-      "primary_url": "https://x.com/AnthropicAI/status/2107894208547983705",
-      "source": "X：Anthropic (@AnthropicAI)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "8aa83ca763ab2c5d24fdbcbb78a4d5caffa7a121",
-          "title": "Anthropic 发布 Claude Haiku 5.5",
-          "url": "https://x.com/AnthropicAI/status/2107894208547983705",
-          "source": "X：Anthropic (@AnthropicAI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:01:56Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Anthropic (@AnthropicAI)"
-      ],
-      "items": [
-        {
-          "id": "8aa83ca763ab2c5d24fdbcbb78a4d5caffa7a121",
-          "title": "Anthropic 发布 Claude Haiku 5.5",
-          "url": "https://x.com/AnthropicAI/status/2107894208547983705",
-          "source": "X：Anthropic (@AnthropicAI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:01:56Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7443,
-      "importance": 0.7443,
-      "importance_score": 0.7443,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9706,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-07T18:01:56Z",
-      "latest_at": "2026-10-07T18:01:56Z",
-      "primary_item": {
-        "id": "8aa83ca763ab2c5d24fdbcbb78a4d5caffa7a121",
-        "title": "Anthropic 发布 Claude Haiku 5.5",
-        "url": "https://x.com/AnthropicAI/status/2107894208547983705",
-        "source": "X：Anthropic (@AnthropicAI)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_501004bf9781",
-      "title": "Claude Haiku 5.5 上线 OpenRouter",
-      "url": "https://x.com/OpenRouter/status/2107906035109490991",
-      "primary_url": "https://x.com/OpenRouter/status/2107906035109490991",
+      "story_id": "story_2a0372ac5678",
+      "title": "GPT-6 Luna Decisions 上架 OpenRouter",
+      "url": "https://x.com/OpenRouter/status/2107929204142874759",
+      "primary_url": "https://x.com/OpenRouter/status/2107929204142874759",
       "source": "X：OpenRouter (@OpenRouter)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "64fd17a34640604e85bfd59d958b1e03f40834df",
-          "title": "Claude Haiku 5.5 上线 OpenRouter",
-          "url": "https://x.com/OpenRouter/status/2107906035109490991",
+          "id": "5f6ad1411daca1cfdaa088277b17c6467c921709",
+          "title": "GPT-6 Luna Decisions 上架 OpenRouter",
+          "url": "https://x.com/OpenRouter/status/2107929204142874759",
           "source": "X：OpenRouter (@OpenRouter)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T18:48:56Z"
+          "published_at": "2026-10-07T20:21:00Z"
         }
       ],
       "source_count": 1,
@@ -1274,99 +1373,39 @@
       ],
       "items": [
         {
-          "id": "64fd17a34640604e85bfd59d958b1e03f40834df",
-          "title": "Claude Haiku 5.5 上线 OpenRouter",
-          "url": "https://x.com/OpenRouter/status/2107906035109490991",
+          "id": "5f6ad1411daca1cfdaa088277b17c6467c921709",
+          "title": "GPT-6 Luna Decisions 上架 OpenRouter",
+          "url": "https://x.com/OpenRouter/status/2107929204142874759",
           "source": "X：OpenRouter (@OpenRouter)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T18:48:56Z"
+          "published_at": "2026-10-07T20:21:00Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7433,
-      "importance": 0.7433,
-      "importance_score": 0.7433,
+      "score": 0.74,
+      "importance": 0.74,
+      "importance_score": 0.74,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.65,
+        "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9816,
+        "recency": 0.9469,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-07T18:48:56Z",
-      "latest_at": "2026-10-07T18:48:56Z",
+      "earliest_at": "2026-10-07T20:21:00Z",
+      "latest_at": "2026-10-07T20:21:00Z",
       "primary_item": {
-        "id": "64fd17a34640604e85bfd59d958b1e03f40834df",
-        "title": "Claude Haiku 5.5 上线 OpenRouter",
-        "url": "https://x.com/OpenRouter/status/2107906035109490991",
+        "id": "5f6ad1411daca1cfdaa088277b17c6467c921709",
+        "title": "GPT-6 Luna Decisions 上架 OpenRouter",
+        "url": "https://x.com/OpenRouter/status/2107929204142874759",
         "source": "X：OpenRouter (@OpenRouter)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_778cbc36b006",
-      "title": "Anthropic 将 Claude Sonnet 5.5 缓存读取价格减半至每百万 token $0.10",
-      "url": "https://x.com/claudeai/status/2107894060229034197",
-      "primary_url": "https://x.com/claudeai/status/2107894060229034197",
-      "source": "X：Claude (@claudeai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "6c786561686de448551f4ac828051ffb1cf3cacf",
-          "title": "Anthropic 将 Claude Sonnet 5.5 缓存读取价格减半至每百万 token $0.10",
-          "url": "https://x.com/claudeai/status/2107894060229034197",
-          "source": "X：Claude (@claudeai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:01:21Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Claude (@claudeai)"
-      ],
-      "items": [
-        {
-          "id": "6c786561686de448551f4ac828051ffb1cf3cacf",
-          "title": "Anthropic 将 Claude Sonnet 5.5 缓存读取价格减半至每百万 token $0.10",
-          "url": "https://x.com/claudeai/status/2107894060229034197",
-          "source": "X：Claude (@claudeai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:01:21Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7413,
-      "importance": 0.7413,
-      "importance_score": 0.7413,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.65,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9704,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-07T18:01:21Z",
-      "latest_at": "2026-10-07T18:01:21Z",
-      "primary_item": {
-        "id": "6c786561686de448551f4ac828051ffb1cf3cacf",
-        "title": "Anthropic 将 Claude Sonnet 5.5 缓存读取价格减半至每百万 token $0.10",
-        "url": "https://x.com/claudeai/status/2107894060229034197",
-        "source": "X：Claude (@claudeai)",
         "source_name": "AI HOT"
       }
     }
