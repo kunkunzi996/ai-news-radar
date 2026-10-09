@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T06:33:51.521106Z",
+  "generated_at": "2026-10-09T13:39:39.642006Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -56,15 +56,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.8428,
-      "importance": 0.8428,
-      "importance_score": 0.8428,
+      "score": 0.8268,
+      "importance": 0.8268,
+      "importance_score": 0.8268,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.94,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9123,
+        "recency": 0.8234,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -192,15 +192,15 @@
       ],
       "item_count": 5,
       "duplicate_count": 5,
-      "score": 0.8314,
-      "importance": 0.8314,
-      "importance_score": 0.8314,
+      "score": 0.82,
+      "importance": 0.82,
+      "importance_score": 0.82,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6488,
+        "recency": 0.5856,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -254,15 +254,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7907,
-      "importance": 0.7907,
-      "importance_score": 0.7907,
+      "score": 0.7791,
+      "importance": 0.7791,
+      "importance_score": 0.7791,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 1.0,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6616,
+        "recency": 0.5972,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -351,15 +351,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.7748,
-      "importance": 0.7748,
-      "importance_score": 0.7748,
+      "score": 0.7594,
+      "importance": 0.7594,
+      "importance_score": 0.7594,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.65,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8788,
+        "recency": 0.7932,
         "story_heat": 0.5
       },
       "category": "multi_source",
@@ -379,49 +379,49 @@
       }
     },
     {
-      "story_id": "story_13d9d250f0af",
-      "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
-      "url": "https://www.ithome.com/1/010/751.htm",
-      "primary_url": "https://www.ithome.com/1/010/751.htm",
-      "source": "IT之家·人工智能",
+      "story_id": "story_e0cdd0dabadc",
+      "title": "OpenAI 三次否认解雇三名安全研究员与提出安全担忧有关",
+      "url": "https://x.com/rohanpaul_ai/status/2108484237460722121",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2108484237460722121",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "67c26722df40bfae1ce6f077d6d26fd5d2e21d60",
-          "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
-          "url": "https://www.ithome.com/1/010/751.htm",
-          "source": "IT之家·人工智能",
+          "id": "190866a81d79a6f64009c03951740c76b50a937c",
+          "title": "OpenAI 三次否认解雇三名安全研究员与提出安全担忧有关",
+          "url": "https://x.com/rohanpaul_ai/status/2108484237460722121",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-08T23:02:44.683000Z"
+          "published_at": "2026-10-09T09:06:30Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "IT之家·人工智能"
+        "X：Rohan Paul (@rohanpaul_ai)"
       ],
       "items": [
         {
-          "id": "67c26722df40bfae1ce6f077d6d26fd5d2e21d60",
-          "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
-          "url": "https://www.ithome.com/1/010/751.htm",
-          "source": "IT之家·人工智能",
+          "id": "190866a81d79a6f64009c03951740c76b50a937c",
+          "title": "OpenAI 三次否认解雇三名安全研究员与提出安全担忧有关",
+          "url": "https://x.com/rohanpaul_ai/status/2108484237460722121",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-08T23:02:44.683000Z"
+          "published_at": "2026-10-09T09:06:30Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7671,
-      "importance": 0.7671,
-      "importance_score": 0.7671,
+      "score": 0.7561,
+      "importance": 0.7561,
+      "importance_score": 0.7561,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.78,
+        "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8971,
+        "recency": 0.9364,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -429,74 +429,13 @@
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-10-08T23:02:44.683000Z",
-      "latest_at": "2026-10-08T23:02:44.683000Z",
+      "earliest_at": "2026-10-09T09:06:30Z",
+      "latest_at": "2026-10-09T09:06:30Z",
       "primary_item": {
-        "id": "67c26722df40bfae1ce6f077d6d26fd5d2e21d60",
-        "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
-        "url": "https://www.ithome.com/1/010/751.htm",
-        "source": "IT之家·人工智能",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_9a3494f049dc",
-      "title": "部分数学家呼吁抵制 OpenAI，AI 生成的数学证明涌入数学领域",
-      "url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
-      "primary_url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
-      "source": "The Decoder：AI News（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "9a6c1abc58143cba093d6c4646fff1acfcfe9a66",
-          "title": "部分数学家呼吁抵制 OpenAI，AI 生成的数学证明涌入数学领域",
-          "url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
-          "source": "The Decoder：AI News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T18:17:07Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "The Decoder：AI News（RSS）"
-      ],
-      "items": [
-        {
-          "id": "9a6c1abc58143cba093d6c4646fff1acfcfe9a66",
-          "title": "部分数学家呼吁抵制 OpenAI，AI 生成的数学证明涌入数学领域",
-          "url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
-          "source": "The Decoder：AI News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T18:17:07Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7654,
-      "importance": 0.7654,
-      "importance_score": 0.7654,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.81,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8375,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-08T18:17:07Z",
-      "latest_at": "2026-10-08T18:17:07Z",
-      "primary_item": {
-        "id": "9a6c1abc58143cba093d6c4646fff1acfcfe9a66",
-        "title": "部分数学家呼吁抵制 OpenAI，AI 生成的数学证明涌入数学领域",
-        "url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
-        "source": "The Decoder：AI News（RSS）",
+        "id": "190866a81d79a6f64009c03951740c76b50a937c",
+        "title": "OpenAI 三次否认解雇三名安全研究员与提出安全担忧有关",
+        "url": "https://x.com/rohanpaul_ai/status/2108484237460722121",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -554,15 +493,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7638,
-      "importance": 0.7638,
-      "importance_score": 0.7638,
+      "score": 0.7534,
+      "importance": 0.7534,
+      "importance_score": 0.7534,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.87,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5899,
+        "recency": 0.5325,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -578,6 +517,188 @@
         "title": "OpenAI 向全部 ChatGPT 用户推出 GPT-6 与 Intelligent UI",
         "url": "https://openai.com/index/gpt-6-for-everyone",
         "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_13d9d250f0af",
+      "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
+      "url": "https://www.ithome.com/1/010/751.htm",
+      "primary_url": "https://www.ithome.com/1/010/751.htm",
+      "source": "IT之家·人工智能",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "67c26722df40bfae1ce6f077d6d26fd5d2e21d60",
+          "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
+          "url": "https://www.ithome.com/1/010/751.htm",
+          "source": "IT之家·人工智能",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T23:02:44.683000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "IT之家·人工智能"
+      ],
+      "items": [
+        {
+          "id": "67c26722df40bfae1ce6f077d6d26fd5d2e21d60",
+          "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
+          "url": "https://www.ithome.com/1/010/751.htm",
+          "source": "IT之家·人工智能",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T23:02:44.683000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7514,
+      "importance": 0.7514,
+      "importance_score": 0.7514,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.78,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8097,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-08T23:02:44.683000Z",
+      "latest_at": "2026-10-08T23:02:44.683000Z",
+      "primary_item": {
+        "id": "67c26722df40bfae1ce6f077d6d26fd5d2e21d60",
+        "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
+        "url": "https://www.ithome.com/1/010/751.htm",
+        "source": "IT之家·人工智能",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_9a3494f049dc",
+      "title": "部分数学家呼吁抵制 OpenAI，AI 生成的数学证明涌入数学领域",
+      "url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
+      "primary_url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
+      "source": "The Decoder：AI News（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "9a6c1abc58143cba093d6c4646fff1acfcfe9a66",
+          "title": "部分数学家呼吁抵制 OpenAI，AI 生成的数学证明涌入数学领域",
+          "url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
+          "source": "The Decoder：AI News（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T18:17:07Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "The Decoder：AI News（RSS）"
+      ],
+      "items": [
+        {
+          "id": "9a6c1abc58143cba093d6c4646fff1acfcfe9a66",
+          "title": "部分数学家呼吁抵制 OpenAI，AI 生成的数学证明涌入数学领域",
+          "url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
+          "source": "The Decoder：AI News（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T18:17:07Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7507,
+      "importance": 0.7507,
+      "importance_score": 0.7507,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.81,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7559,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-08T18:17:07Z",
+      "latest_at": "2026-10-08T18:17:07Z",
+      "primary_item": {
+        "id": "9a6c1abc58143cba093d6c4646fff1acfcfe9a66",
+        "title": "部分数学家呼吁抵制 OpenAI，AI 生成的数学证明涌入数学领域",
+        "url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
+        "source": "The Decoder：AI News（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_7bff145dd415",
+      "title": "OpenAI 研究负责人发声明回应三名员工离职争议",
+      "url": "https://x.com/OpenAINewsroom/status/2108441580806025712",
+      "primary_url": "https://x.com/OpenAINewsroom/status/2108441580806025712",
+      "source": "X：OpenAI Newsroom (@OpenAINewsroom)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "c9a79fec44485cd24f540e96e9add155d83d27c6",
+          "title": "OpenAI 研究负责人发声明回应三名员工离职争议",
+          "url": "https://x.com/OpenAINewsroom/status/2108441580806025712",
+          "source": "X：OpenAI Newsroom (@OpenAINewsroom)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T06:17:00Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：OpenAI Newsroom (@OpenAINewsroom)"
+      ],
+      "items": [
+        {
+          "id": "c9a79fec44485cd24f540e96e9add155d83d27c6",
+          "title": "OpenAI 研究负责人发声明回应三名员工离职争议",
+          "url": "https://x.com/OpenAINewsroom/status/2108441580806025712",
+          "source": "X：OpenAI Newsroom (@OpenAINewsroom)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T06:17:00Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7434,
+      "importance": 0.7434,
+      "importance_score": 0.7434,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.7,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8989,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-09T06:17:00Z",
+      "latest_at": "2026-10-09T06:17:00Z",
+      "primary_item": {
+        "id": "c9a79fec44485cd24f540e96e9add155d83d27c6",
+        "title": "OpenAI 研究负责人发声明回应三名员工离职争议",
+        "url": "https://x.com/OpenAINewsroom/status/2108441580806025712",
+        "source": "X：OpenAI Newsroom (@OpenAINewsroom)",
         "source_name": "AI HOT"
       }
     },
@@ -616,21 +737,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7599,
-      "importance": 0.7599,
-      "importance_score": 0.7599,
+      "score": 0.7431,
+      "importance": 0.7431,
+      "importance_score": 0.7431,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9574,
+        "recency": 0.8641,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-09T03:32:53Z",
       "latest_at": "2026-10-09T03:32:53Z",
@@ -643,63 +763,62 @@
       }
     },
     {
-      "story_id": "story_fac5e5dc223c",
-      "title": "OpenAI 年化营收下修至近 500 亿美元拖累纳指百创跌 1.4%",
-      "url": "https://x.com/rohanpaul_ai/status/2108394998253396357",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2108394998253396357",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "story_id": "story_ac368678f783",
+      "title": "通义千问发布 Qwen-Image-2.1-Turbo，8 步去噪即可生成和编辑图像并开放权重",
+      "url": "https://x.com/Alibaba_Qwen/status/2108549075218120949",
+      "primary_url": "https://x.com/Alibaba_Qwen/status/2108549075218120949",
+      "source": "X：通义千问 / Qwen (@Alibaba_Qwen)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "52b271320ad67cbe58377794bf6c046beb5d65a4",
-          "title": "OpenAI 年化营收下修至近 500 亿美元拖累纳指百创跌 1.4%",
-          "url": "https://x.com/rohanpaul_ai/status/2108394998253396357",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "264ecda861ab8ba545d95822d3bec088c421c7d3",
+          "title": "通义千问发布 Qwen-Image-2.1-Turbo，8 步去噪即可生成和编辑图像并开放权重",
+          "url": "https://x.com/Alibaba_Qwen/status/2108549075218120949",
+          "source": "X：通义千问 / Qwen (@Alibaba_Qwen)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-09T03:11:54Z"
+          "published_at": "2026-10-09T13:24:09Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
+        "X：通义千问 / Qwen (@Alibaba_Qwen)"
       ],
       "items": [
         {
-          "id": "52b271320ad67cbe58377794bf6c046beb5d65a4",
-          "title": "OpenAI 年化营收下修至近 500 亿美元拖累纳指百创跌 1.4%",
-          "url": "https://x.com/rohanpaul_ai/status/2108394998253396357",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "264ecda861ab8ba545d95822d3bec088c421c7d3",
+          "title": "通义千问发布 Qwen-Image-2.1-Turbo，8 步去噪即可生成和编辑图像并开放权重",
+          "url": "https://x.com/Alibaba_Qwen/status/2108549075218120949",
+          "source": "X：通义千问 / Qwen (@Alibaba_Qwen)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-09T03:11:54Z"
+          "published_at": "2026-10-09T13:24:09Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7561,
-      "importance": 0.7561,
-      "importance_score": 0.7561,
+      "score": 0.7429,
+      "importance": 0.7429,
+      "importance_score": 0.7429,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.71,
+        "editorial": 0.64,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9526,
+        "recency": 0.9963,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-09T03:11:54Z",
-      "latest_at": "2026-10-09T03:11:54Z",
+      "earliest_at": "2026-10-09T13:24:09Z",
+      "latest_at": "2026-10-09T13:24:09Z",
       "primary_item": {
-        "id": "52b271320ad67cbe58377794bf6c046beb5d65a4",
-        "title": "OpenAI 年化营收下修至近 500 亿美元拖累纳指百创跌 1.4%",
-        "url": "https://x.com/rohanpaul_ai/status/2108394998253396357",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "id": "264ecda861ab8ba545d95822d3bec088c421c7d3",
+        "title": "通义千问发布 Qwen-Image-2.1-Turbo，8 步去噪即可生成和编辑图像并开放权重",
+        "url": "https://x.com/Alibaba_Qwen/status/2108549075218120949",
+        "source": "X：通义千问 / Qwen (@Alibaba_Qwen)",
         "source_name": "AI HOT"
       }
     },
@@ -738,21 +857,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7503,
-      "importance": 0.7503,
-      "importance_score": 0.7503,
+      "score": 0.733,
+      "importance": 0.733,
+      "importance_score": 0.733,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9873,
+        "recency": 0.8911,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-09T05:40:47Z",
       "latest_at": "2026-10-09T05:40:47Z",
@@ -799,15 +917,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.744,
-      "importance": 0.744,
-      "importance_score": 0.744,
+      "score": 0.7296,
+      "importance": 0.7296,
+      "importance_score": 0.7296,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8187,
+        "recency": 0.739,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -825,182 +943,63 @@
       }
     },
     {
-      "story_id": "story_db7fed16b15d",
-      "title": "OpenAI 发布 722 份数学手稿后，卡兹克长文解读 AI 如何改变数学研究",
-      "url": "https://x.com/Khazix0918/status/2108037650003493350",
-      "primary_url": "https://x.com/Khazix0918/status/2108037650003493350",
-      "source": "X：卡兹克 (@Khazix0918)",
+      "story_id": "story_4ac2bbaf461a",
+      "title": "Financial Times：汇丰计划裁减约 70% 英国理财顾问，将财富客户转向 AI 支持的数字服务",
+      "url": "https://x.com/rohanpaul_ai/status/2108531987963359536",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2108531987963359536",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "fe20dc79991cbd0fb95cef8e6ce9d387a0471613",
-          "title": "OpenAI 发布 722 份数学手稿后，卡兹克长文解读 AI 如何改变数学研究",
-          "url": "https://x.com/Khazix0918/status/2108037650003493350",
-          "source": "X：卡兹克 (@Khazix0918)",
+          "id": "6b135c7d05d3992f6f3651d8f06750c833cbdf81",
+          "title": "Financial Times：汇丰计划裁减约 70% 英国理财顾问，将财富客户转向 AI 支持的数字服务",
+          "url": "https://x.com/rohanpaul_ai/status/2108531987963359536",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-08T03:31:55Z"
+          "published_at": "2026-10-09T12:16:15Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：卡兹克 (@Khazix0918)"
+        "X：Rohan Paul (@rohanpaul_ai)"
       ],
       "items": [
         {
-          "id": "fe20dc79991cbd0fb95cef8e6ce9d387a0471613",
-          "title": "OpenAI 发布 722 份数学手稿后，卡兹克长文解读 AI 如何改变数学研究",
-          "url": "https://x.com/Khazix0918/status/2108037650003493350",
-          "source": "X：卡兹克 (@Khazix0918)",
+          "id": "6b135c7d05d3992f6f3651d8f06750c833cbdf81",
+          "title": "Financial Times：汇丰计划裁减约 70% 英国理财顾问，将财富客户转向 AI 支持的数字服务",
+          "url": "https://x.com/rohanpaul_ai/status/2108531987963359536",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-08T03:31:55Z"
+          "published_at": "2026-10-09T12:16:15Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7304,
-      "importance": 0.7304,
-      "importance_score": 0.7304,
+      "score": 0.752,
+      "importance": 0.752,
+      "importance_score": 0.752,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.79,
+        "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6768,
+        "recency": 0.9801,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance"
+        "high_ai_relevance",
+        "high_importance"
       ],
-      "earliest_at": "2026-10-08T03:31:55Z",
-      "latest_at": "2026-10-08T03:31:55Z",
+      "earliest_at": "2026-10-09T12:16:15Z",
+      "latest_at": "2026-10-09T12:16:15Z",
       "primary_item": {
-        "id": "fe20dc79991cbd0fb95cef8e6ce9d387a0471613",
-        "title": "OpenAI 发布 722 份数学手稿后，卡兹克长文解读 AI 如何改变数学研究",
-        "url": "https://x.com/Khazix0918/status/2108037650003493350",
-        "source": "X：卡兹克 (@Khazix0918)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_e0903ff72f28",
-      "title": "OpenAI 全球推送 GPT-6 智能界面，Plus 等付费档用 GPT-6 Sol",
-      "url": "https://x.com/OpenAI/status/2107895006350791071",
-      "primary_url": "https://x.com/OpenAI/status/2107895006350791071",
-      "source": "X：OpenAI (@OpenAI)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "48150c0f16061dea1dc293b7cc3a7362b1ea94fa",
-          "title": "OpenAI 全球推送 GPT-6 智能界面，Plus 等付费档用 GPT-6 Sol",
-          "url": "https://x.com/OpenAI/status/2107895006350791071",
-          "source": "X：OpenAI (@OpenAI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:05:06Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：OpenAI (@OpenAI)"
-      ],
-      "items": [
-        {
-          "id": "48150c0f16061dea1dc293b7cc3a7362b1ea94fa",
-          "title": "OpenAI 全球推送 GPT-6 智能界面，Plus 等付费档用 GPT-6 Sol",
-          "url": "https://x.com/OpenAI/status/2107895006350791071",
-          "source": "X：OpenAI (@OpenAI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:05:06Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7299,
-      "importance": 0.7299,
-      "importance_score": 0.7299,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.84,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.5905,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-07T18:05:06Z",
-      "latest_at": "2026-10-07T18:05:06Z",
-      "primary_item": {
-        "id": "48150c0f16061dea1dc293b7cc3a7362b1ea94fa",
-        "title": "OpenAI 全球推送 GPT-6 智能界面，Plus 等付费档用 GPT-6 Sol",
-        "url": "https://x.com/OpenAI/status/2107895006350791071",
-        "source": "X：OpenAI (@OpenAI)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_da93cff36971",
-      "title": "Anthropic 更新 Claude 使用政策，禁止对模型持续无必要的辱骂或残忍行为",
-      "url": "https://x.com/indigox/status/2108357145813217749",
-      "primary_url": "https://x.com/indigox/status/2108357145813217749",
-      "source": "X：indigo (@indigox)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "6de2cd5a7ae44f0096695615a00eb303a098da67",
-          "title": "Anthropic 更新 Claude 使用政策，禁止对模型持续无必要的辱骂或残忍行为",
-          "url": "https://x.com/indigox/status/2108357145813217749",
-          "source": "X：indigo (@indigox)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T00:41:29Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：indigo (@indigox)"
-      ],
-      "items": [
-        {
-          "id": "6de2cd5a7ae44f0096695615a00eb303a098da67",
-          "title": "Anthropic 更新 Claude 使用政策，禁止对模型持续无必要的辱骂或残忍行为",
-          "url": "https://x.com/indigox/status/2108357145813217749",
-          "source": "X：indigo (@indigox)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T00:41:29Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.729,
-      "importance": 0.729,
-      "importance_score": 0.729,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.64,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9187,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-09T00:41:29Z",
-      "latest_at": "2026-10-09T00:41:29Z",
-      "primary_item": {
-        "id": "6de2cd5a7ae44f0096695615a00eb303a098da67",
-        "title": "Anthropic 更新 Claude 使用政策，禁止对模型持续无必要的辱骂或残忍行为",
-        "url": "https://x.com/indigox/status/2108357145813217749",
-        "source": "X：indigo (@indigox)",
+        "id": "6b135c7d05d3992f6f3651d8f06750c833cbdf81",
+        "title": "Financial Times：汇丰计划裁减约 70% 英国理财顾问，将财富客户转向 AI 支持的数字服务",
+        "url": "https://x.com/rohanpaul_ai/status/2108531987963359536",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -1057,18 +1056,18 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7289,
-      "importance": 0.7289,
-      "importance_score": 0.7289,
-      "importance_label": "行业动态",
+      "score": 0.7185,
+      "importance": 0.7185,
+      "importance_score": 0.7185,
+      "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5963,
+        "recency": 0.5382,
         "story_heat": 0.25
       },
-      "category": "industry",
+      "category": "watch",
       "reasons": [
         "multi_source",
         "high_ai_relevance"
@@ -1080,66 +1079,6 @@
         "title": "NVIDIA 与 Microsoft 发布 RTX Spark 及 DGX Station for Windows，推动 AI Agent 落地 Windows PC",
         "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
         "source": "NVIDIA Blog（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_efff0efe8d7b",
-      "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
-      "url": "https://x.com/emollick/status/2107938889004396561",
-      "primary_url": "https://x.com/emollick/status/2107938889004396561",
-      "source": "X：Ethan Mollick (@emollick)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "a9899b166aeda121aa76167924c4f9d5dff63713",
-          "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
-          "url": "https://x.com/emollick/status/2107938889004396561",
-          "source": "X：Ethan Mollick (@emollick)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T20:59:29Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Ethan Mollick (@emollick)"
-      ],
-      "items": [
-        {
-          "id": "a9899b166aeda121aa76167924c4f9d5dff63713",
-          "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
-          "url": "https://x.com/emollick/status/2107938889004396561",
-          "source": "X：Ethan Mollick (@emollick)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T20:59:29Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7284,
-      "importance": 0.7284,
-      "importance_score": 0.7284,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.82,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6158,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-07T20:59:29Z",
-      "latest_at": "2026-10-07T20:59:29Z",
-      "primary_item": {
-        "id": "a9899b166aeda121aa76167924c4f9d5dff63713",
-        "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
-        "url": "https://x.com/emollick/status/2107938889004396561",
-        "source": "X：Ethan Mollick (@emollick)",
         "source_name": "AI HOT"
       }
     },
@@ -1178,21 +1117,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7578,
-      "importance": 0.7578,
-      "importance_score": 0.7578,
+      "score": 0.7409,
+      "importance": 0.7409,
+      "importance_score": 0.7409,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9621,
+        "recency": 0.8684,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-09T03:53:32Z",
       "latest_at": "2026-10-09T03:53:32Z",
@@ -1201,127 +1139,6 @@
         "title": "Mistral Large 4 进入 Agent Arena 前十五实验室，排名第 43",
         "url": "https://x.com/arena/status/2108405474391728357",
         "source": "X：Arena (@arena)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_74b2e331f389",
-      "title": "Sundar Pichai 宣布 Google AMIE 对话诊断研究登上 The Lancet，为首个真实门诊前瞻性研究",
-      "url": "https://x.com/sundarpichai/status/2108329198955958339",
-      "primary_url": "https://x.com/sundarpichai/status/2108329198955958339",
-      "source": "X：Sundar Pichai (@sundarpichai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "166d7c15b739a9706f6342d4775af007df0cef17",
-          "title": "Sundar Pichai 宣布 Google AMIE 对话诊断研究登上 The Lancet，为首个真实门诊前瞻性研究",
-          "url": "https://x.com/sundarpichai/status/2108329198955958339",
-          "source": "X：Sundar Pichai (@sundarpichai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T22:50:26Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Sundar Pichai (@sundarpichai)"
-      ],
-      "items": [
-        {
-          "id": "166d7c15b739a9706f6342d4775af007df0cef17",
-          "title": "Sundar Pichai 宣布 Google AMIE 对话诊断研究登上 The Lancet，为首个真实门诊前瞻性研究",
-          "url": "https://x.com/sundarpichai/status/2108329198955958339",
-          "source": "X：Sundar Pichai (@sundarpichai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T22:50:26Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7246,
-      "importance": 0.7246,
-      "importance_score": 0.7246,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.64,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8945,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-08T22:50:26Z",
-      "latest_at": "2026-10-08T22:50:26Z",
-      "primary_item": {
-        "id": "166d7c15b739a9706f6342d4775af007df0cef17",
-        "title": "Sundar Pichai 宣布 Google AMIE 对话诊断研究登上 The Lancet，为首个真实门诊前瞻性研究",
-        "url": "https://x.com/sundarpichai/status/2108329198955958339",
-        "source": "X：Sundar Pichai (@sundarpichai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_1d069709357d",
-      "title": "密歇根大学 EECS 498 AASE 课程解读：把 AI 编程方法论做成五个 Skill",
-      "url": "https://x.com/shao__meng/status/2108384062796873888",
-      "primary_url": "https://x.com/shao__meng/status/2108384062796873888",
-      "source": "X：邵猛 (@shao__meng)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "f862e6ea12845c5f8b9b41dc60fc66279d470595",
-          "title": "密歇根大学 EECS 498 AASE 课程解读：把 AI 编程方法论做成五个 Skill",
-          "url": "https://x.com/shao__meng/status/2108384062796873888",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T02:28:27Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：邵猛 (@shao__meng)"
-      ],
-      "items": [
-        {
-          "id": "f862e6ea12845c5f8b9b41dc60fc66279d470595",
-          "title": "密歇根大学 EECS 498 AASE 课程解读：把 AI 编程方法论做成五个 Skill",
-          "url": "https://x.com/shao__meng/status/2108384062796873888",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T02:28:27Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7543,
-      "importance": 0.7543,
-      "importance_score": 0.7543,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9426,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-09T02:28:27Z",
-      "latest_at": "2026-10-09T02:28:27Z",
-      "primary_item": {
-        "id": "f862e6ea12845c5f8b9b41dc60fc66279d470595",
-        "title": "密歇根大学 EECS 498 AASE 课程解读：把 AI 编程方法论做成五个 Skill",
-        "url": "https://x.com/shao__meng/status/2108384062796873888",
-        "source": "X：邵猛 (@shao__meng)",
         "source_name": "AI HOT"
       }
     },
@@ -1378,18 +1195,18 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7234,
-      "importance": 0.7234,
-      "importance_score": 0.7234,
-      "importance_label": "行业动态",
+      "score": 0.7097,
+      "importance": 0.7097,
+      "importance_score": 0.7097,
+      "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7822,
+        "recency": 0.706,
         "story_heat": 0.25
       },
-      "category": "industry",
+      "category": "watch",
       "reasons": [
         "multi_source",
         "high_ai_relevance"
@@ -1401,6 +1218,225 @@
         "title": "Step 5 Preview 上线 OpenRouter",
         "url": "https://x.com/OpenRouter/status/2108188953757331803",
         "source": "X：OpenRouter (@OpenRouter)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_50a66e8e1b35",
+      "title": "Zenity 研究人员发现一条提示词即可劫持 AWS 账户内全部 AgentCore 智能体",
+      "url": "https://the-decoder.com/a-single-prompt-was-enough-to-hijack-every-ai-agent-in-an-aws-account-zenity-researchers-found",
+      "primary_url": "https://the-decoder.com/a-single-prompt-was-enough-to-hijack-every-ai-agent-in-an-aws-account-zenity-researchers-found",
+      "source": "The Decoder：AI News（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "53da602216c4fe60a67d386a9ccbd530bab544a0",
+          "title": "Zenity 研究人员发现一条提示词即可劫持 AWS 账户内全部 AgentCore 智能体",
+          "url": "https://the-decoder.com/a-single-prompt-was-enough-to-hijack-every-ai-agent-in-an-aws-account-zenity-researchers-found",
+          "source": "The Decoder：AI News（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T13:01:01Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "The Decoder：AI News（RSS）"
+      ],
+      "items": [
+        {
+          "id": "53da602216c4fe60a67d386a9ccbd530bab544a0",
+          "title": "Zenity 研究人员发现一条提示词即可劫持 AWS 账户内全部 AgentCore 智能体",
+          "url": "https://the-decoder.com/a-single-prompt-was-enough-to-hijack-every-ai-agent-in-an-aws-account-zenity-researchers-found",
+          "source": "The Decoder：AI News（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T13:01:01Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7377,
+      "importance": 0.7377,
+      "importance_score": 0.7377,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.8,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7006,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-08T13:01:01Z",
+      "latest_at": "2026-10-08T13:01:01Z",
+      "primary_item": {
+        "id": "53da602216c4fe60a67d386a9ccbd530bab544a0",
+        "title": "Zenity 研究人员发现一条提示词即可劫持 AWS 账户内全部 AgentCore 智能体",
+        "url": "https://the-decoder.com/a-single-prompt-was-enough-to-hijack-every-ai-agent-in-an-aws-account-zenity-researchers-found",
+        "source": "The Decoder：AI News（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_1d069709357d",
+      "title": "密歇根大学 EECS 498 AASE 课程解读：把 AI 编程方法论做成五个 Skill",
+      "url": "https://x.com/shao__meng/status/2108384062796873888",
+      "primary_url": "https://x.com/shao__meng/status/2108384062796873888",
+      "source": "X：邵猛 (@shao__meng)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "f862e6ea12845c5f8b9b41dc60fc66279d470595",
+          "title": "密歇根大学 EECS 498 AASE 课程解读：把 AI 编程方法论做成五个 Skill",
+          "url": "https://x.com/shao__meng/status/2108384062796873888",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T02:28:27Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：邵猛 (@shao__meng)"
+      ],
+      "items": [
+        {
+          "id": "f862e6ea12845c5f8b9b41dc60fc66279d470595",
+          "title": "密歇根大学 EECS 498 AASE 课程解读：把 AI 编程方法论做成五个 Skill",
+          "url": "https://x.com/shao__meng/status/2108384062796873888",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T02:28:27Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7377,
+      "importance": 0.7377,
+      "importance_score": 0.7377,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.71,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8508,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-09T02:28:27Z",
+      "latest_at": "2026-10-09T02:28:27Z",
+      "primary_item": {
+        "id": "f862e6ea12845c5f8b9b41dc60fc66279d470595",
+        "title": "密歇根大学 EECS 498 AASE 课程解读：把 AI 编程方法论做成五个 Skill",
+        "url": "https://x.com/shao__meng/status/2108384062796873888",
+        "source": "X：邵猛 (@shao__meng)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_bcb2617028fc",
+      "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
+      "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
+      "primary_url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
+      "source": "Google DeepMind：Blog（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "dafa76d6b8e020f913333e4744d7297aeb9f0f9d",
+          "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
+          "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
+          "source": "Google DeepMind：Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T19:57:04Z"
+        },
+        {
+          "id": "487f0f1c5dd5571b6871c2ed74bea06ce32bde92",
+          "title": "Google 发布 740M 参数多模态嵌入模型 EmbeddingGemma 2",
+          "url": "https://x.com/Google/status/2107505123941376129",
+          "source": "X：Google (@Google)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T16:15:51Z"
+        },
+        {
+          "id": "d318911354a347d0529787e3cff001fcb2f2a347",
+          "title": "Google 发布开源多模态嵌入模型 EmbeddingGemma 2",
+          "url": "https://x.com/sundarpichai/status/2107501975671890211",
+          "source": "X：Sundar Pichai (@sundarpichai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T16:03:21Z"
+        }
+      ],
+      "source_count": 3,
+      "source_names": [
+        "Google DeepMind：Blog（RSS）",
+        "X：Google (@Google)",
+        "X：Sundar Pichai (@sundarpichai)"
+      ],
+      "items": [
+        {
+          "id": "dafa76d6b8e020f913333e4744d7297aeb9f0f9d",
+          "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
+          "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
+          "source": "Google DeepMind：Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T19:57:04Z"
+        },
+        {
+          "id": "487f0f1c5dd5571b6871c2ed74bea06ce32bde92",
+          "title": "Google 发布 740M 参数多模态嵌入模型 EmbeddingGemma 2",
+          "url": "https://x.com/Google/status/2107505123941376129",
+          "source": "X：Google (@Google)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T16:15:51Z"
+        },
+        {
+          "id": "d318911354a347d0529787e3cff001fcb2f2a347",
+          "title": "Google 发布开源多模态嵌入模型 EmbeddingGemma 2",
+          "url": "https://x.com/sundarpichai/status/2107501975671890211",
+          "source": "X：Sundar Pichai (@sundarpichai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T16:03:21Z"
+        }
+      ],
+      "item_count": 3,
+      "duplicate_count": 3,
+      "score": 0.7013,
+      "importance": 0.7013,
+      "importance_score": 0.7013,
+      "importance_label": "多源热议",
+      "importance_breakdown": {
+        "editorial": 0.7,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.3872,
+        "story_heat": 0.5
+      },
+      "category": "multi_source",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-06T16:03:21Z",
+      "latest_at": "2026-10-06T19:57:04Z",
+      "primary_item": {
+        "id": "dafa76d6b8e020f913333e4744d7297aeb9f0f9d",
+        "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
+        "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
+        "source": "Google DeepMind：Blog（RSS）",
         "source_name": "AI HOT"
       }
     }
