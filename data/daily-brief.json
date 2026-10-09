@@ -1,8 +1,88 @@
 {
-  "generated_at": "2026-10-09T00:13:59.108653Z",
+  "generated_at": "2026-10-09T06:33:51.521106Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
+    {
+      "story_id": "story_671951865d8c",
+      "title": "Tibo 发帖称“宣布 ChatGPT”",
+      "url": "https://x.com/thsottiaux/status/2108349826727588000",
+      "primary_url": "https://x.com/thsottiaux/status/2108349826727588000",
+      "source": "X：Tibo (@thsottiaux)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "48ad7c37fc061092c404dd2dc0a6a347bb0e04ce",
+          "title": "Tibo 发帖称“宣布 ChatGPT”",
+          "url": "https://x.com/thsottiaux/status/2108349826727588000",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T00:12:24Z"
+        },
+        {
+          "id": "2932e2401f6cc398ece20dd8e5b36639b029ba1d",
+          "title": "Tibo 宣布发布 ChatGPT",
+          "url": "https://x.com/thsottiaux/status/2108349826727588000",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T00:12:24Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Tibo (@thsottiaux)"
+      ],
+      "items": [
+        {
+          "id": "48ad7c37fc061092c404dd2dc0a6a347bb0e04ce",
+          "title": "Tibo 发帖称“宣布 ChatGPT”",
+          "url": "https://x.com/thsottiaux/status/2108349826727588000",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T00:12:24Z"
+        },
+        {
+          "id": "2932e2401f6cc398ece20dd8e5b36639b029ba1d",
+          "title": "Tibo 宣布发布 ChatGPT",
+          "url": "https://x.com/thsottiaux/status/2108349826727588000",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T00:12:24Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.8428,
+      "importance": 0.8428,
+      "importance_score": 0.8428,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.94,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9123,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-09T00:12:24Z",
+      "latest_at": "2026-10-09T00:12:24Z",
+      "primary_item": {
+        "id": "48ad7c37fc061092c404dd2dc0a6a347bb0e04ce",
+        "title": "Tibo 发帖称“宣布 ChatGPT”",
+        "url": "https://x.com/thsottiaux/status/2108349826727588000",
+        "source": "X：Tibo (@thsottiaux)",
+        "source_name": "AI HOT"
+      }
+    },
     {
       "story_id": "story_6cbde97d8260",
       "title": "OpenAI 在 GitHub 发布 openai/math 仓库，722 份数学手稿引发数学界震荡",
@@ -112,15 +192,15 @@
       ],
       "item_count": 5,
       "duplicate_count": 5,
-      "score": 0.8426,
-      "importance": 0.8426,
-      "importance_score": 0.8426,
+      "score": 0.8314,
+      "importance": 0.8314,
+      "importance_score": 0.8314,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7109,
+        "recency": 0.6488,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -136,67 +216,6 @@
         "title": "OpenAI 在 GitHub 发布 openai/math 仓库，722 份数学手稿引发数学界震荡",
         "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686908&idx=1&sn=29a97b5ff695871a7bf219d3d6bd6487",
         "source": "公众号：数字生命卡兹克",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_671951865d8c",
-      "title": "Tibo 宣布发布 ChatGPT",
-      "url": "https://x.com/thsottiaux/status/2108349826727588000",
-      "primary_url": "https://x.com/thsottiaux/status/2108349826727588000",
-      "source": "X：Tibo (@thsottiaux)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "2932e2401f6cc398ece20dd8e5b36639b029ba1d",
-          "title": "Tibo 宣布发布 ChatGPT",
-          "url": "https://x.com/thsottiaux/status/2108349826727588000",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T00:12:24Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Tibo (@thsottiaux)"
-      ],
-      "items": [
-        {
-          "id": "2932e2401f6cc398ece20dd8e5b36639b029ba1d",
-          "title": "Tibo 宣布发布 ChatGPT",
-          "url": "https://x.com/thsottiaux/status/2108349826727588000",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T00:12:24Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.8335,
-      "importance": 0.8335,
-      "importance_score": 0.8335,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.94,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9996,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-09T00:12:24Z",
-      "latest_at": "2026-10-09T00:12:24Z",
-      "primary_item": {
-        "id": "2932e2401f6cc398ece20dd8e5b36639b029ba1d",
-        "title": "Tibo 宣布发布 ChatGPT",
-        "url": "https://x.com/thsottiaux/status/2108349826727588000",
-        "source": "X：Tibo (@thsottiaux)",
         "source_name": "AI HOT"
       }
     },
@@ -235,15 +254,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.8021,
-      "importance": 0.8021,
-      "importance_score": 0.8021,
+      "score": 0.7907,
+      "importance": 0.7907,
+      "importance_score": 0.7907,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 1.0,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.725,
+        "recency": 0.6616,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -332,15 +351,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.7899,
-      "importance": 0.7899,
-      "importance_score": 0.7899,
+      "score": 0.7748,
+      "importance": 0.7748,
+      "importance_score": 0.7748,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.65,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9629,
+        "recency": 0.8788,
         "story_heat": 0.5
       },
       "category": "multi_source",
@@ -394,15 +413,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7825,
-      "importance": 0.7825,
-      "importance_score": 0.7825,
+      "score": 0.7671,
+      "importance": 0.7671,
+      "importance_score": 0.7671,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.983,
+        "recency": 0.8971,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -455,15 +474,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7798,
-      "importance": 0.7798,
-      "importance_score": 0.7798,
+      "score": 0.7654,
+      "importance": 0.7654,
+      "importance_score": 0.7654,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9177,
+        "recency": 0.8375,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -535,15 +554,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.774,
-      "importance": 0.774,
-      "importance_score": 0.774,
+      "score": 0.7638,
+      "importance": 0.7638,
+      "importance_score": 0.7638,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.87,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6464,
+        "recency": 0.5899,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -559,6 +578,189 @@
         "title": "OpenAI 向全部 ChatGPT 用户推出 GPT-6 与 Intelligent UI",
         "url": "https://openai.com/index/gpt-6-for-everyone",
         "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_e275239758e4",
+      "title": "斯坦福 CS146S 第三周课程公开：Agent Skills 与 CLI",
+      "url": "https://x.com/shao__meng/status/2108400281402908960",
+      "primary_url": "https://x.com/shao__meng/status/2108400281402908960",
+      "source": "X：邵猛 (@shao__meng)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "b03aea29a93e3dfb38a87b99a10dad6ff7f92bd1",
+          "title": "斯坦福 CS146S 第三周课程公开：Agent Skills 与 CLI",
+          "url": "https://x.com/shao__meng/status/2108400281402908960",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T03:32:53Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：邵猛 (@shao__meng)"
+      ],
+      "items": [
+        {
+          "id": "b03aea29a93e3dfb38a87b99a10dad6ff7f92bd1",
+          "title": "斯坦福 CS146S 第三周课程公开：Agent Skills 与 CLI",
+          "url": "https://x.com/shao__meng/status/2108400281402908960",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T03:32:53Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7599,
+      "importance": 0.7599,
+      "importance_score": 0.7599,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.72,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9574,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-09T03:32:53Z",
+      "latest_at": "2026-10-09T03:32:53Z",
+      "primary_item": {
+        "id": "b03aea29a93e3dfb38a87b99a10dad6ff7f92bd1",
+        "title": "斯坦福 CS146S 第三周课程公开：Agent Skills 与 CLI",
+        "url": "https://x.com/shao__meng/status/2108400281402908960",
+        "source": "X：邵猛 (@shao__meng)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_fac5e5dc223c",
+      "title": "OpenAI 年化营收下修至近 500 亿美元拖累纳指百创跌 1.4%",
+      "url": "https://x.com/rohanpaul_ai/status/2108394998253396357",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2108394998253396357",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "52b271320ad67cbe58377794bf6c046beb5d65a4",
+          "title": "OpenAI 年化营收下修至近 500 亿美元拖累纳指百创跌 1.4%",
+          "url": "https://x.com/rohanpaul_ai/status/2108394998253396357",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T03:11:54Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "52b271320ad67cbe58377794bf6c046beb5d65a4",
+          "title": "OpenAI 年化营收下修至近 500 亿美元拖累纳指百创跌 1.4%",
+          "url": "https://x.com/rohanpaul_ai/status/2108394998253396357",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T03:11:54Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7561,
+      "importance": 0.7561,
+      "importance_score": 0.7561,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.71,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9526,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-09T03:11:54Z",
+      "latest_at": "2026-10-09T03:11:54Z",
+      "primary_item": {
+        "id": "52b271320ad67cbe58377794bf6c046beb5d65a4",
+        "title": "OpenAI 年化营收下修至近 500 亿美元拖累纳指百创跌 1.4%",
+        "url": "https://x.com/rohanpaul_ai/status/2108394998253396357",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_23c7b32aed22",
+      "title": "Manus 母公司 Butterfly Effect 宣布超 5 亿美元融资，Boyu Capital 与 IDG 领投",
+      "url": "https://x.com/thexpin/status/2108432468118520070",
+      "primary_url": "https://x.com/thexpin/status/2108432468118520070",
+      "source": "X：X.PIN (@thexpin)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "e3603d9988a2eb17b058c62652e9895c1d88fb87",
+          "title": "Manus 母公司 Butterfly Effect 宣布超 5 亿美元融资，Boyu Capital 与 IDG 领投",
+          "url": "https://x.com/thexpin/status/2108432468118520070",
+          "source": "X：X.PIN (@thexpin)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T05:40:47Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：X.PIN (@thexpin)"
+      ],
+      "items": [
+        {
+          "id": "e3603d9988a2eb17b058c62652e9895c1d88fb87",
+          "title": "Manus 母公司 Butterfly Effect 宣布超 5 亿美元融资，Boyu Capital 与 IDG 领投",
+          "url": "https://x.com/thexpin/status/2108432468118520070",
+          "source": "X：X.PIN (@thexpin)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T05:40:47Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7503,
+      "importance": 0.7503,
+      "importance_score": 0.7503,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.67,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9873,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-09T05:40:47Z",
+      "latest_at": "2026-10-09T05:40:47Z",
+      "primary_item": {
+        "id": "e3603d9988a2eb17b058c62652e9895c1d88fb87",
+        "title": "Manus 母公司 Butterfly Effect 宣布超 5 亿美元融资，Boyu Capital 与 IDG 领投",
+        "url": "https://x.com/thexpin/status/2108432468118520070",
+        "source": "X：X.PIN (@thexpin)",
         "source_name": "AI HOT"
       }
     },
@@ -597,21 +799,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7581,
-      "importance": 0.7581,
-      "importance_score": 0.7581,
+      "score": 0.744,
+      "importance": 0.744,
+      "importance_score": 0.744,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8971,
+        "recency": 0.8187,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-08T16:42:42Z",
       "latest_at": "2026-10-08T16:42:42Z",
@@ -620,127 +821,6 @@
         "title": "Artificial Analysis 评测 Google Nano Banana 2.1，两榜居第 4 且价格为前代一半",
         "url": "https://x.com/ArtificialAnlys/status/2108236656700768310",
         "source": "X：Artificial Analysis (@ArtificialAnlys)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_516e9e3eda33",
-      "title": "GPT-6 面向超 12 亿 ChatGPT 用户全面推送，带来 Intelligent UI 生成式界面能力",
-      "url": "https://x.com/shao__meng/status/2108020232183029778",
-      "primary_url": "https://x.com/shao__meng/status/2108020232183029778",
-      "source": "X：邵猛 (@shao__meng)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "4b70ea7e69e7548ef3c61ba047c4d55fe4b31b6a",
-          "title": "GPT-6 面向超 12 亿 ChatGPT 用户全面推送，带来 Intelligent UI 生成式界面能力",
-          "url": "https://x.com/shao__meng/status/2108020232183029778",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T02:22:43Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：邵猛 (@shao__meng)"
-      ],
-      "items": [
-        {
-          "id": "4b70ea7e69e7548ef3c61ba047c4d55fe4b31b6a",
-          "title": "GPT-6 面向超 12 亿 ChatGPT 用户全面推送，带来 Intelligent UI 生成式界面能力",
-          "url": "https://x.com/shao__meng/status/2108020232183029778",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T02:22:43Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7579,
-      "importance": 0.7579,
-      "importance_score": 0.7579,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.85,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7294,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-08T02:22:43Z",
-      "latest_at": "2026-10-08T02:22:43Z",
-      "primary_item": {
-        "id": "4b70ea7e69e7548ef3c61ba047c4d55fe4b31b6a",
-        "title": "GPT-6 面向超 12 亿 ChatGPT 用户全面推送，带来 Intelligent UI 生成式界面能力",
-        "url": "https://x.com/shao__meng/status/2108020232183029778",
-        "source": "X：邵猛 (@shao__meng)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_b5066a78724c",
-      "title": "FT 报道 OpenAI 年化营收接近 $500 亿，比流传的 $700 亿低约 $200 亿",
-      "url": "https://x.com/rohanpaul_ai/status/2108255683393286179",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2108255683393286179",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "80a8cfb8ce5b661be328ffe8c36013cf68c1eb6f",
-          "title": "FT 报道 OpenAI 年化营收接近 $500 亿，比流传的 $700 亿低约 $200 亿",
-          "url": "https://x.com/rohanpaul_ai/status/2108255683393286179",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T17:58:19Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "80a8cfb8ce5b661be328ffe8c36013cf68c1eb6f",
-          "title": "FT 报道 OpenAI 年化营收接近 $500 亿，比流传的 $700 亿低约 $200 亿",
-          "url": "https://x.com/rohanpaul_ai/status/2108255683393286179",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T17:58:19Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.743,
-      "importance": 0.743,
-      "importance_score": 0.743,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.69,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9136,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-08T17:58:19Z",
-      "latest_at": "2026-10-08T17:58:19Z",
-      "primary_item": {
-        "id": "80a8cfb8ce5b661be328ffe8c36013cf68c1eb6f",
-        "title": "FT 报道 OpenAI 年化营收接近 $500 亿，比流传的 $700 亿低约 $200 亿",
-        "url": "https://x.com/rohanpaul_ai/status/2108255683393286179",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -779,15 +859,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7421,
-      "importance": 0.7421,
-      "importance_score": 0.7421,
+      "score": 0.7304,
+      "importance": 0.7304,
+      "importance_score": 0.7304,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7416,
+        "recency": 0.6768,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -839,15 +919,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7401,
-      "importance": 0.7401,
-      "importance_score": 0.7401,
+      "score": 0.7299,
+      "importance": 0.7299,
+      "importance_score": 0.7299,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.84,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.647,
+        "recency": 0.5905,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -865,62 +945,62 @@
       }
     },
     {
-      "story_id": "story_74b2e331f389",
-      "title": "Sundar Pichai 宣布 Google AMIE 对话诊断研究登上 The Lancet，为首个真实门诊前瞻性研究",
-      "url": "https://x.com/sundarpichai/status/2108329198955958339",
-      "primary_url": "https://x.com/sundarpichai/status/2108329198955958339",
-      "source": "X：Sundar Pichai (@sundarpichai)",
+      "story_id": "story_da93cff36971",
+      "title": "Anthropic 更新 Claude 使用政策，禁止对模型持续无必要的辱骂或残忍行为",
+      "url": "https://x.com/indigox/status/2108357145813217749",
+      "primary_url": "https://x.com/indigox/status/2108357145813217749",
+      "source": "X：indigo (@indigox)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "166d7c15b739a9706f6342d4775af007df0cef17",
-          "title": "Sundar Pichai 宣布 Google AMIE 对话诊断研究登上 The Lancet，为首个真实门诊前瞻性研究",
-          "url": "https://x.com/sundarpichai/status/2108329198955958339",
-          "source": "X：Sundar Pichai (@sundarpichai)",
+          "id": "6de2cd5a7ae44f0096695615a00eb303a098da67",
+          "title": "Anthropic 更新 Claude 使用政策，禁止对模型持续无必要的辱骂或残忍行为",
+          "url": "https://x.com/indigox/status/2108357145813217749",
+          "source": "X：indigo (@indigox)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-08T22:50:26Z"
+          "published_at": "2026-10-09T00:41:29Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Sundar Pichai (@sundarpichai)"
+        "X：indigo (@indigox)"
       ],
       "items": [
         {
-          "id": "166d7c15b739a9706f6342d4775af007df0cef17",
-          "title": "Sundar Pichai 宣布 Google AMIE 对话诊断研究登上 The Lancet，为首个真实门诊前瞻性研究",
-          "url": "https://x.com/sundarpichai/status/2108329198955958339",
-          "source": "X：Sundar Pichai (@sundarpichai)",
+          "id": "6de2cd5a7ae44f0096695615a00eb303a098da67",
+          "title": "Anthropic 更新 Claude 使用政策，禁止对模型持续无必要的辱骂或残忍行为",
+          "url": "https://x.com/indigox/status/2108357145813217749",
+          "source": "X：indigo (@indigox)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-08T22:50:26Z"
+          "published_at": "2026-10-09T00:41:29Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.74,
-      "importance": 0.74,
-      "importance_score": 0.74,
+      "score": 0.729,
+      "importance": 0.729,
+      "importance_score": 0.729,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.64,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9801,
+        "recency": 0.9187,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-08T22:50:26Z",
-      "latest_at": "2026-10-08T22:50:26Z",
+      "earliest_at": "2026-10-09T00:41:29Z",
+      "latest_at": "2026-10-09T00:41:29Z",
       "primary_item": {
-        "id": "166d7c15b739a9706f6342d4775af007df0cef17",
-        "title": "Sundar Pichai 宣布 Google AMIE 对话诊断研究登上 The Lancet，为首个真实门诊前瞻性研究",
-        "url": "https://x.com/sundarpichai/status/2108329198955958339",
-        "source": "X：Sundar Pichai (@sundarpichai)",
+        "id": "6de2cd5a7ae44f0096695615a00eb303a098da67",
+        "title": "Anthropic 更新 Claude 使用政策，禁止对模型持续无必要的辱骂或残忍行为",
+        "url": "https://x.com/indigox/status/2108357145813217749",
+        "source": "X：indigo (@indigox)",
         "source_name": "AI HOT"
       }
     },
@@ -977,15 +1057,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7392,
-      "importance": 0.7392,
-      "importance_score": 0.7392,
+      "score": 0.7289,
+      "importance": 0.7289,
+      "importance_score": 0.7289,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6534,
+        "recency": 0.5963,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -1038,15 +1118,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7391,
-      "importance": 0.7391,
-      "importance_score": 0.7391,
+      "score": 0.7284,
+      "importance": 0.7284,
+      "importance_score": 0.7284,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6748,
+        "recency": 0.6158,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1064,62 +1144,184 @@
       }
     },
     {
-      "story_id": "story_21c506941618",
-      "title": "OpenAI 解雇三名安全研究员，当事人发公开信称因优先安全被清除",
-      "url": "https://x.com/dongxi_nlp/status/2108280915709276490",
-      "primary_url": "https://x.com/dongxi_nlp/status/2108280915709276490",
-      "source": "X：马东锡 NLP (@dongxi_nlp)",
+      "story_id": "story_1a3f3ecdacec",
+      "title": "Mistral Large 4 进入 Agent Arena 前十五实验室，排名第 43",
+      "url": "https://x.com/arena/status/2108405474391728357",
+      "primary_url": "https://x.com/arena/status/2108405474391728357",
+      "source": "X：Arena (@arena)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "86cc378f0e70f090dcfe0c1a7a433b5ac891ed77",
-          "title": "OpenAI 解雇三名安全研究员，当事人发公开信称因优先安全被清除",
-          "url": "https://x.com/dongxi_nlp/status/2108280915709276490",
-          "source": "X：马东锡 NLP (@dongxi_nlp)",
+          "id": "7b2be2a5f58bcc5cb80e275aa14f9d3fd7b99eef",
+          "title": "Mistral Large 4 进入 Agent Arena 前十五实验室，排名第 43",
+          "url": "https://x.com/arena/status/2108405474391728357",
+          "source": "X：Arena (@arena)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-08T19:38:34Z"
+          "published_at": "2026-10-09T03:53:32Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：马东锡 NLP (@dongxi_nlp)"
+        "X：Arena (@arena)"
       ],
       "items": [
         {
-          "id": "86cc378f0e70f090dcfe0c1a7a433b5ac891ed77",
-          "title": "OpenAI 解雇三名安全研究员，当事人发公开信称因优先安全被清除",
-          "url": "https://x.com/dongxi_nlp/status/2108280915709276490",
-          "source": "X：马东锡 NLP (@dongxi_nlp)",
+          "id": "7b2be2a5f58bcc5cb80e275aa14f9d3fd7b99eef",
+          "title": "Mistral Large 4 进入 Agent Arena 前十五实验室，排名第 43",
+          "url": "https://x.com/arena/status/2108405474391728357",
+          "source": "X：Arena (@arena)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-08T19:38:34Z"
+          "published_at": "2026-10-09T03:53:32Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7381,
-      "importance": 0.7381,
-      "importance_score": 0.7381,
+      "score": 0.7578,
+      "importance": 0.7578,
+      "importance_score": 0.7578,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.66,
+        "editorial": 0.71,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9359,
+        "recency": 0.9621,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-09T03:53:32Z",
+      "latest_at": "2026-10-09T03:53:32Z",
+      "primary_item": {
+        "id": "7b2be2a5f58bcc5cb80e275aa14f9d3fd7b99eef",
+        "title": "Mistral Large 4 进入 Agent Arena 前十五实验室，排名第 43",
+        "url": "https://x.com/arena/status/2108405474391728357",
+        "source": "X：Arena (@arena)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_74b2e331f389",
+      "title": "Sundar Pichai 宣布 Google AMIE 对话诊断研究登上 The Lancet，为首个真实门诊前瞻性研究",
+      "url": "https://x.com/sundarpichai/status/2108329198955958339",
+      "primary_url": "https://x.com/sundarpichai/status/2108329198955958339",
+      "source": "X：Sundar Pichai (@sundarpichai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "166d7c15b739a9706f6342d4775af007df0cef17",
+          "title": "Sundar Pichai 宣布 Google AMIE 对话诊断研究登上 The Lancet，为首个真实门诊前瞻性研究",
+          "url": "https://x.com/sundarpichai/status/2108329198955958339",
+          "source": "X：Sundar Pichai (@sundarpichai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T22:50:26Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Sundar Pichai (@sundarpichai)"
+      ],
+      "items": [
+        {
+          "id": "166d7c15b739a9706f6342d4775af007df0cef17",
+          "title": "Sundar Pichai 宣布 Google AMIE 对话诊断研究登上 The Lancet，为首个真实门诊前瞻性研究",
+          "url": "https://x.com/sundarpichai/status/2108329198955958339",
+          "source": "X：Sundar Pichai (@sundarpichai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T22:50:26Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7246,
+      "importance": 0.7246,
+      "importance_score": 0.7246,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.64,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8945,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-08T19:38:34Z",
-      "latest_at": "2026-10-08T19:38:34Z",
+      "earliest_at": "2026-10-08T22:50:26Z",
+      "latest_at": "2026-10-08T22:50:26Z",
       "primary_item": {
-        "id": "86cc378f0e70f090dcfe0c1a7a433b5ac891ed77",
-        "title": "OpenAI 解雇三名安全研究员，当事人发公开信称因优先安全被清除",
-        "url": "https://x.com/dongxi_nlp/status/2108280915709276490",
-        "source": "X：马东锡 NLP (@dongxi_nlp)",
+        "id": "166d7c15b739a9706f6342d4775af007df0cef17",
+        "title": "Sundar Pichai 宣布 Google AMIE 对话诊断研究登上 The Lancet，为首个真实门诊前瞻性研究",
+        "url": "https://x.com/sundarpichai/status/2108329198955958339",
+        "source": "X：Sundar Pichai (@sundarpichai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_1d069709357d",
+      "title": "密歇根大学 EECS 498 AASE 课程解读：把 AI 编程方法论做成五个 Skill",
+      "url": "https://x.com/shao__meng/status/2108384062796873888",
+      "primary_url": "https://x.com/shao__meng/status/2108384062796873888",
+      "source": "X：邵猛 (@shao__meng)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "f862e6ea12845c5f8b9b41dc60fc66279d470595",
+          "title": "密歇根大学 EECS 498 AASE 课程解读：把 AI 编程方法论做成五个 Skill",
+          "url": "https://x.com/shao__meng/status/2108384062796873888",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T02:28:27Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：邵猛 (@shao__meng)"
+      ],
+      "items": [
+        {
+          "id": "f862e6ea12845c5f8b9b41dc60fc66279d470595",
+          "title": "密歇根大学 EECS 498 AASE 课程解读：把 AI 编程方法论做成五个 Skill",
+          "url": "https://x.com/shao__meng/status/2108384062796873888",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T02:28:27Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7543,
+      "importance": 0.7543,
+      "importance_score": 0.7543,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.71,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9426,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-09T02:28:27Z",
+      "latest_at": "2026-10-09T02:28:27Z",
+      "primary_item": {
+        "id": "f862e6ea12845c5f8b9b41dc60fc66279d470595",
+        "title": "密歇根大学 EECS 498 AASE 课程解读：把 AI 编程方法论做成五个 Skill",
+        "url": "https://x.com/shao__meng/status/2108384062796873888",
+        "source": "X：邵猛 (@shao__meng)",
         "source_name": "AI HOT"
       }
     },
@@ -1176,15 +1378,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7369,
-      "importance": 0.7369,
-      "importance_score": 0.7369,
+      "score": 0.7234,
+      "importance": 0.7234,
+      "importance_score": 0.7234,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8571,
+        "recency": 0.7822,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -1199,187 +1401,6 @@
         "title": "Step 5 Preview 上线 OpenRouter",
         "url": "https://x.com/OpenRouter/status/2108188953757331803",
         "source": "X：OpenRouter (@OpenRouter)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_5ae593074929",
-      "title": "如何在单张 RTX 5090 上用 MiniMax H3 生成实时视频",
-      "url": "https://blog.comfy.org/p/how-i-generated-live-video-with-minimax",
-      "primary_url": "https://blog.comfy.org/p/how-i-generated-live-video-with-minimax",
-      "source": "Comfy Blog",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "c072a512daef5b8bdf019ac58b79c593c00fd614",
-          "title": "如何在单张 RTX 5090 上用 MiniMax H3 生成实时视频",
-          "url": "https://blog.comfy.org/p/how-i-generated-live-video-with-minimax",
-          "source": "Comfy Blog",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T19:01:22Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Comfy Blog"
-      ],
-      "items": [
-        {
-          "id": "c072a512daef5b8bdf019ac58b79c593c00fd614",
-          "title": "如何在单张 RTX 5090 上用 MiniMax H3 生成实时视频",
-          "url": "https://blog.comfy.org/p/how-i-generated-live-video-with-minimax",
-          "source": "Comfy Blog",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T19:01:22Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7366,
-      "importance": 0.7366,
-      "importance_score": 0.7366,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9275,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-08T19:01:22Z",
-      "latest_at": "2026-10-08T19:01:22Z",
-      "primary_item": {
-        "id": "c072a512daef5b8bdf019ac58b79c593c00fd614",
-        "title": "如何在单张 RTX 5090 上用 MiniMax H3 生成实时视频",
-        "url": "https://blog.comfy.org/p/how-i-generated-live-video-with-minimax",
-        "source": "Comfy Blog",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_f9044cf9ed5f",
-      "title": "Google 医疗研究系统 AMIE 真实临床前瞻性研究结果发表于 The Lancet",
-      "url": "https://x.com/Google/status/2108324514442461225",
-      "primary_url": "https://x.com/Google/status/2108324514442461225",
-      "source": "X：Google (@Google)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "6050f7f6b7b648556e26aef0e5ee24bbcbca53f3",
-          "title": "Google 医疗研究系统 AMIE 真实临床前瞻性研究结果发表于 The Lancet",
-          "url": "https://x.com/Google/status/2108324514442461225",
-          "source": "X：Google (@Google)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T22:31:49Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Google (@Google)"
-      ],
-      "items": [
-        {
-          "id": "6050f7f6b7b648556e26aef0e5ee24bbcbca53f3",
-          "title": "Google 医疗研究系统 AMIE 真实临床前瞻性研究结果发表于 The Lancet",
-          "url": "https://x.com/Google/status/2108324514442461225",
-          "source": "X：Google (@Google)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T22:31:49Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7362,
-      "importance": 0.7362,
-      "importance_score": 0.7362,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.63,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9757,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-08T22:31:49Z",
-      "latest_at": "2026-10-08T22:31:49Z",
-      "primary_item": {
-        "id": "6050f7f6b7b648556e26aef0e5ee24bbcbca53f3",
-        "title": "Google 医疗研究系统 AMIE 真实临床前瞻性研究结果发表于 The Lancet",
-        "url": "https://x.com/Google/status/2108324514442461225",
-        "source": "X：Google (@Google)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_50a66e8e1b35",
-      "title": "Zenity 研究人员发现一条提示词即可劫持 AWS 账户内全部 AgentCore 智能体",
-      "url": "https://the-decoder.com/a-single-prompt-was-enough-to-hijack-every-ai-agent-in-an-aws-account-zenity-researchers-found",
-      "primary_url": "https://the-decoder.com/a-single-prompt-was-enough-to-hijack-every-ai-agent-in-an-aws-account-zenity-researchers-found",
-      "source": "The Decoder：AI News（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "53da602216c4fe60a67d386a9ccbd530bab544a0",
-          "title": "Zenity 研究人员发现一条提示词即可劫持 AWS 账户内全部 AgentCore 智能体",
-          "url": "https://the-decoder.com/a-single-prompt-was-enough-to-hijack-every-ai-agent-in-an-aws-account-zenity-researchers-found",
-          "source": "The Decoder：AI News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T13:01:01Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "The Decoder：AI News（RSS）"
-      ],
-      "items": [
-        {
-          "id": "53da602216c4fe60a67d386a9ccbd530bab544a0",
-          "title": "Zenity 研究人员发现一条提示词即可劫持 AWS 账户内全部 AgentCore 智能体",
-          "url": "https://the-decoder.com/a-single-prompt-was-enough-to-hijack-every-ai-agent-in-an-aws-account-zenity-researchers-found",
-          "source": "The Decoder：AI News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T13:01:01Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7647,
-      "importance": 0.7647,
-      "importance_score": 0.7647,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.8,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8505,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-08T13:01:01Z",
-      "latest_at": "2026-10-08T13:01:01Z",
-      "primary_item": {
-        "id": "53da602216c4fe60a67d386a9ccbd530bab544a0",
-        "title": "Zenity 研究人员发现一条提示词即可劫持 AWS 账户内全部 AgentCore 智能体",
-        "url": "https://the-decoder.com/a-single-prompt-was-enough-to-hijack-every-ai-agent-in-an-aws-account-zenity-researchers-found",
-        "source": "The Decoder：AI News（RSS）",
         "source_name": "AI HOT"
       }
     }
