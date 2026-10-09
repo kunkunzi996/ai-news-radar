@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-08T19:46:39.641254Z",
+  "generated_at": "2026-10-09T00:13:59.108653Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -112,15 +112,15 @@
       ],
       "item_count": 5,
       "duplicate_count": 5,
-      "score": 0.8511,
-      "importance": 0.8511,
-      "importance_score": 0.8511,
+      "score": 0.8426,
+      "importance": 0.8426,
+      "importance_score": 0.8426,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7581,
+        "recency": 0.7109,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -136,6 +136,67 @@
         "title": "OpenAI 在 GitHub 发布 openai/math 仓库，722 份数学手稿引发数学界震荡",
         "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686908&idx=1&sn=29a97b5ff695871a7bf219d3d6bd6487",
         "source": "公众号：数字生命卡兹克",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_671951865d8c",
+      "title": "Tibo 宣布发布 ChatGPT",
+      "url": "https://x.com/thsottiaux/status/2108349826727588000",
+      "primary_url": "https://x.com/thsottiaux/status/2108349826727588000",
+      "source": "X：Tibo (@thsottiaux)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "2932e2401f6cc398ece20dd8e5b36639b029ba1d",
+          "title": "Tibo 宣布发布 ChatGPT",
+          "url": "https://x.com/thsottiaux/status/2108349826727588000",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T00:12:24Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Tibo (@thsottiaux)"
+      ],
+      "items": [
+        {
+          "id": "2932e2401f6cc398ece20dd8e5b36639b029ba1d",
+          "title": "Tibo 宣布发布 ChatGPT",
+          "url": "https://x.com/thsottiaux/status/2108349826727588000",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T00:12:24Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.8335,
+      "importance": 0.8335,
+      "importance_score": 0.8335,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.94,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9996,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-09T00:12:24Z",
+      "latest_at": "2026-10-09T00:12:24Z",
+      "primary_item": {
+        "id": "2932e2401f6cc398ece20dd8e5b36639b029ba1d",
+        "title": "Tibo 宣布发布 ChatGPT",
+        "url": "https://x.com/thsottiaux/status/2108349826727588000",
+        "source": "X：Tibo (@thsottiaux)",
         "source_name": "AI HOT"
       }
     },
@@ -174,15 +235,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.8108,
-      "importance": 0.8108,
-      "importance_score": 0.8108,
+      "score": 0.8021,
+      "importance": 0.8021,
+      "importance_score": 0.8021,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 1.0,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7732,
+        "recency": 0.725,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -197,6 +258,165 @@
         "title": "Boris Cherny 回归阅读",
         "url": "https://x.com/bcherny/status/2108013947144085714",
         "source": "X：Boris Cherny (@bcherny)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_67e7841fa849",
+      "title": "Arena 完成 2 亿美元 B 轮融资，估值 31 亿美元并发布 Alignment Index",
+      "url": "https://x.com/arena/status/2108310714423423254",
+      "primary_url": "https://x.com/arena/status/2108310714423423254",
+      "source": "X：Arena (@arena)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "8a42727ab6ee563c5d59caeddb72180458d5820b",
+          "title": "Arena 完成 2 亿美元 B 轮融资，估值 31 亿美元并发布 Alignment Index",
+          "url": "https://x.com/arena/status/2108310714423423254",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T21:36:59Z"
+        },
+        {
+          "id": "e4b966395ba6cca50bd750dbe58d5c8f5d74e673",
+          "title": "Arena 完成 2 亿美元 B 轮融资，估值 31 亿美元并推出 Arena AI Alignment Index",
+          "url": "https://x.com/arena/status/2108310194619044253",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T21:34:55Z"
+        },
+        {
+          "id": "d89ed5786a4a33a1586eb95b51f8a172b5e03d3d",
+          "title": "Arena 宣布 2 亿美元 B 轮融资，估值达 31 亿美元，并推出 Alignment Index",
+          "url": "https://x.com/arena/status/2108243026741248348",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T17:08:01Z"
+        }
+      ],
+      "source_count": 3,
+      "source_names": [
+        "X：Arena (@arena)"
+      ],
+      "items": [
+        {
+          "id": "8a42727ab6ee563c5d59caeddb72180458d5820b",
+          "title": "Arena 完成 2 亿美元 B 轮融资，估值 31 亿美元并发布 Alignment Index",
+          "url": "https://x.com/arena/status/2108310714423423254",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T21:36:59Z"
+        },
+        {
+          "id": "e4b966395ba6cca50bd750dbe58d5c8f5d74e673",
+          "title": "Arena 完成 2 亿美元 B 轮融资，估值 31 亿美元并推出 Arena AI Alignment Index",
+          "url": "https://x.com/arena/status/2108310194619044253",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T21:34:55Z"
+        },
+        {
+          "id": "d89ed5786a4a33a1586eb95b51f8a172b5e03d3d",
+          "title": "Arena 宣布 2 亿美元 B 轮融资，估值达 31 亿美元，并推出 Alignment Index",
+          "url": "https://x.com/arena/status/2108243026741248348",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T17:08:01Z"
+        }
+      ],
+      "item_count": 3,
+      "duplicate_count": 3,
+      "score": 0.7899,
+      "importance": 0.7899,
+      "importance_score": 0.7899,
+      "importance_label": "多源热议",
+      "importance_breakdown": {
+        "editorial": 0.65,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9629,
+        "story_heat": 0.5
+      },
+      "category": "multi_source",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-08T17:08:01Z",
+      "latest_at": "2026-10-08T21:36:59Z",
+      "primary_item": {
+        "id": "8a42727ab6ee563c5d59caeddb72180458d5820b",
+        "title": "Arena 完成 2 亿美元 B 轮融资，估值 31 亿美元并发布 Alignment Index",
+        "url": "https://x.com/arena/status/2108310714423423254",
+        "source": "X：Arena (@arena)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_13d9d250f0af",
+      "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
+      "url": "https://www.ithome.com/1/010/751.htm",
+      "primary_url": "https://www.ithome.com/1/010/751.htm",
+      "source": "IT之家·人工智能",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "67c26722df40bfae1ce6f077d6d26fd5d2e21d60",
+          "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
+          "url": "https://www.ithome.com/1/010/751.htm",
+          "source": "IT之家·人工智能",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T23:02:44.683000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "IT之家·人工智能"
+      ],
+      "items": [
+        {
+          "id": "67c26722df40bfae1ce6f077d6d26fd5d2e21d60",
+          "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
+          "url": "https://www.ithome.com/1/010/751.htm",
+          "source": "IT之家·人工智能",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T23:02:44.683000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7825,
+      "importance": 0.7825,
+      "importance_score": 0.7825,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.78,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.983,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-08T23:02:44.683000Z",
+      "latest_at": "2026-10-08T23:02:44.683000Z",
+      "primary_item": {
+        "id": "67c26722df40bfae1ce6f077d6d26fd5d2e21d60",
+        "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
+        "url": "https://www.ithome.com/1/010/751.htm",
+        "source": "IT之家·人工智能",
         "source_name": "AI HOT"
       }
     },
@@ -235,15 +455,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7908,
-      "importance": 0.7908,
-      "importance_score": 0.7908,
+      "score": 0.7798,
+      "importance": 0.7798,
+      "importance_score": 0.7798,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9787,
+        "recency": 0.9177,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -315,15 +535,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7817,
-      "importance": 0.7817,
-      "importance_score": 0.7817,
+      "score": 0.774,
+      "importance": 0.774,
+      "importance_score": 0.774,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.87,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6893,
+        "recency": 0.6464,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -377,15 +597,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7688,
-      "importance": 0.7688,
-      "importance_score": 0.7688,
+      "score": 0.7581,
+      "importance": 0.7581,
+      "importance_score": 0.7581,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9567,
+        "recency": 0.8971,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -438,15 +658,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7666,
-      "importance": 0.7666,
-      "importance_score": 0.7666,
+      "score": 0.7579,
+      "importance": 0.7579,
+      "importance_score": 0.7579,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.85,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7778,
+        "recency": 0.7294,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -461,87 +681,6 @@
         "title": "GPT-6 面向超 12 亿 ChatGPT 用户全面推送，带来 Intelligent UI 生成式界面能力",
         "url": "https://x.com/shao__meng/status/2108020232183029778",
         "source": "X：邵猛 (@shao__meng)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_02c4777dbbfa",
-      "title": "GPT-6 新版本随 Intelligent UI 向全部 ChatGPT 用户推送",
-      "url": "https://x.com/thsottiaux/status/2107912709715132482",
-      "primary_url": "https://x.com/thsottiaux/status/2107912709715132482",
-      "source": "X：Tibo (@thsottiaux)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "292877b2fef29f8bf5254232a90bfbbd42620f30",
-          "title": "GPT-6 与 Intelligent UI 开始向所有 ChatGPT 用户推送",
-          "url": "https://x.com/testingcatalog/status/2107923723638493593",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T19:59:13Z"
-        },
-        {
-          "id": "704c4d46af315bbb532a42be1ce1ea65d1f2a87d",
-          "title": "GPT-6 新版本随 Intelligent UI 向全部 ChatGPT 用户推送",
-          "url": "https://x.com/thsottiaux/status/2107912709715132482",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T19:15:27Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "X：Testing Catalog (@testingcatalog)",
-        "X：Tibo (@thsottiaux)"
-      ],
-      "items": [
-        {
-          "id": "292877b2fef29f8bf5254232a90bfbbd42620f30",
-          "title": "GPT-6 与 Intelligent UI 开始向所有 ChatGPT 用户推送",
-          "url": "https://x.com/testingcatalog/status/2107923723638493593",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T19:59:13Z"
-        },
-        {
-          "id": "704c4d46af315bbb532a42be1ce1ea65d1f2a87d",
-          "title": "GPT-6 新版本随 Intelligent UI 向全部 ChatGPT 用户推送",
-          "url": "https://x.com/thsottiaux/status/2107912709715132482",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T19:15:27Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.7569,
-      "importance": 0.7569,
-      "importance_score": 0.7569,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.78,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7018,
-        "story_heat": 0.25
-      },
-      "category": "industry",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-07T19:15:27Z",
-      "latest_at": "2026-10-07T19:59:13Z",
-      "primary_item": {
-        "id": "704c4d46af315bbb532a42be1ce1ea65d1f2a87d",
-        "title": "GPT-6 新版本随 Intelligent UI 向全部 ChatGPT 用户推送",
-        "url": "https://x.com/thsottiaux/status/2107912709715132482",
-        "source": "X：Tibo (@thsottiaux)",
         "source_name": "AI HOT"
       }
     },
@@ -580,21 +719,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.754,
-      "importance": 0.754,
-      "importance_score": 0.754,
+      "score": 0.743,
+      "importance": 0.743,
+      "importance_score": 0.743,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9743,
+        "recency": 0.9136,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-08T17:58:19Z",
       "latest_at": "2026-10-08T17:58:19Z",
@@ -641,21 +779,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.751,
-      "importance": 0.751,
-      "importance_score": 0.751,
+      "score": 0.7421,
+      "importance": 0.7421,
+      "importance_score": 0.7421,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7909,
+        "recency": 0.7416,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-08T03:31:55Z",
       "latest_at": "2026-10-08T03:31:55Z",
@@ -664,67 +801,6 @@
         "title": "OpenAI 发布 722 份数学手稿后，卡兹克长文解读 AI 如何改变数学研究",
         "url": "https://x.com/Khazix0918/status/2108037650003493350",
         "source": "X：卡兹克 (@Khazix0918)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_640a55126a35",
-      "title": "Arena 获 Lightspeed 领投 2 亿美元 B 轮融资，估值 31 亿美元并推出 Alignment Index",
-      "url": "https://x.com/arena/status/2108269048467513429",
-      "primary_url": "https://x.com/arena/status/2108269048467513429",
-      "source": "X：Arena (@arena)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "54131903dfb48d1c0b72245c71ac4111348ce8c7",
-          "title": "Arena 获 Lightspeed 领投 2 亿美元 B 轮融资，估值 31 亿美元并推出 Alignment Index",
-          "url": "https://x.com/arena/status/2108269048467513429",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T18:51:25Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Arena (@arena)"
-      ],
-      "items": [
-        {
-          "id": "54131903dfb48d1c0b72245c71ac4111348ce8c7",
-          "title": "Arena 获 Lightspeed 领投 2 亿美元 B 轮融资，估值 31 亿美元并推出 Alignment Index",
-          "url": "https://x.com/arena/status/2108269048467513429",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T18:51:25Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7502,
-      "importance": 0.7502,
-      "importance_score": 0.7502,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.67,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9868,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-08T18:51:25Z",
-      "latest_at": "2026-10-08T18:51:25Z",
-      "primary_item": {
-        "id": "54131903dfb48d1c0b72245c71ac4111348ce8c7",
-        "title": "Arena 获 Lightspeed 领投 2 亿美元 B 轮融资，估值 31 亿美元并推出 Alignment Index",
-        "url": "https://x.com/arena/status/2108269048467513429",
-        "source": "X：Arena (@arena)",
         "source_name": "AI HOT"
       }
     },
@@ -763,15 +839,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7478,
-      "importance": 0.7478,
-      "importance_score": 0.7478,
+      "score": 0.7401,
+      "importance": 0.7401,
+      "importance_score": 0.7401,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.84,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.69,
+        "recency": 0.647,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -789,201 +865,62 @@
       }
     },
     {
-      "story_id": "story_5ae593074929",
-      "title": "如何在单张 RTX 5090 上用 MiniMax H3 生成实时视频",
-      "url": "https://blog.comfy.org/p/how-i-generated-live-video-with-minimax",
-      "primary_url": "https://blog.comfy.org/p/how-i-generated-live-video-with-minimax",
-      "source": "Comfy Blog",
+      "story_id": "story_74b2e331f389",
+      "title": "Sundar Pichai 宣布 Google AMIE 对话诊断研究登上 The Lancet，为首个真实门诊前瞻性研究",
+      "url": "https://x.com/sundarpichai/status/2108329198955958339",
+      "primary_url": "https://x.com/sundarpichai/status/2108329198955958339",
+      "source": "X：Sundar Pichai (@sundarpichai)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "c072a512daef5b8bdf019ac58b79c593c00fd614",
-          "title": "如何在单张 RTX 5090 上用 MiniMax H3 生成实时视频",
-          "url": "https://blog.comfy.org/p/how-i-generated-live-video-with-minimax",
-          "source": "Comfy Blog",
+          "id": "166d7c15b739a9706f6342d4775af007df0cef17",
+          "title": "Sundar Pichai 宣布 Google AMIE 对话诊断研究登上 The Lancet，为首个真实门诊前瞻性研究",
+          "url": "https://x.com/sundarpichai/status/2108329198955958339",
+          "source": "X：Sundar Pichai (@sundarpichai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-08T19:01:22Z"
+          "published_at": "2026-10-08T22:50:26Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "Comfy Blog"
+        "X：Sundar Pichai (@sundarpichai)"
       ],
       "items": [
         {
-          "id": "c072a512daef5b8bdf019ac58b79c593c00fd614",
-          "title": "如何在单张 RTX 5090 上用 MiniMax H3 生成实时视频",
-          "url": "https://blog.comfy.org/p/how-i-generated-live-video-with-minimax",
-          "source": "Comfy Blog",
+          "id": "166d7c15b739a9706f6342d4775af007df0cef17",
+          "title": "Sundar Pichai 宣布 Google AMIE 对话诊断研究登上 The Lancet，为首个真实门诊前瞻性研究",
+          "url": "https://x.com/sundarpichai/status/2108329198955958339",
+          "source": "X：Sundar Pichai (@sundarpichai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-08T19:01:22Z"
+          "published_at": "2026-10-08T22:50:26Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7476,
-      "importance": 0.7476,
-      "importance_score": 0.7476,
+      "score": 0.74,
+      "importance": 0.74,
+      "importance_score": 0.74,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.66,
+        "editorial": 0.64,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9892,
+        "recency": 0.9801,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-08T19:01:22Z",
-      "latest_at": "2026-10-08T19:01:22Z",
+      "earliest_at": "2026-10-08T22:50:26Z",
+      "latest_at": "2026-10-08T22:50:26Z",
       "primary_item": {
-        "id": "c072a512daef5b8bdf019ac58b79c593c00fd614",
-        "title": "如何在单张 RTX 5090 上用 MiniMax H3 生成实时视频",
-        "url": "https://blog.comfy.org/p/how-i-generated-live-video-with-minimax",
-        "source": "Comfy Blog",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_efff0efe8d7b",
-      "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
-      "url": "https://x.com/emollick/status/2107938889004396561",
-      "primary_url": "https://x.com/emollick/status/2107938889004396561",
-      "source": "X：Ethan Mollick (@emollick)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "a9899b166aeda121aa76167924c4f9d5dff63713",
-          "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
-          "url": "https://x.com/emollick/status/2107938889004396561",
-          "source": "X：Ethan Mollick (@emollick)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T20:59:29Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Ethan Mollick (@emollick)"
-      ],
-      "items": [
-        {
-          "id": "a9899b166aeda121aa76167924c4f9d5dff63713",
-          "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
-          "url": "https://x.com/emollick/status/2107938889004396561",
-          "source": "X：Ethan Mollick (@emollick)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T20:59:29Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7471,
-      "importance": 0.7471,
-      "importance_score": 0.7471,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.82,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7196,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-07T20:59:29Z",
-      "latest_at": "2026-10-07T20:59:29Z",
-      "primary_item": {
-        "id": "a9899b166aeda121aa76167924c4f9d5dff63713",
-        "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
-        "url": "https://x.com/emollick/status/2107938889004396561",
-        "source": "X：Ethan Mollick (@emollick)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_ad34714ca563",
-      "title": "Step 5 Preview 上线 OpenRouter",
-      "url": "https://x.com/OpenRouter/status/2108188953757331803",
-      "primary_url": "https://x.com/OpenRouter/status/2108188953757331803",
-      "source": "X：OpenRouter (@OpenRouter)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "5e3e04deadb3d2fee376b73ea33a296fe42b6dc0",
-          "title": "Step 5 Preview 上线 OpenRouter，输入 $1.00/M、缓存命中仅 $0.05/M",
-          "url": "https://x.com/OpenRouter/status/2108188987357901047",
-          "source": "X：OpenRouter (@OpenRouter)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T13:33:17Z"
-        },
-        {
-          "id": "9f0afed4ed5c186205f656198e8cff2ed9c30b15",
-          "title": "Step 5 Preview 上线 OpenRouter",
-          "url": "https://x.com/OpenRouter/status/2108188953757331803",
-          "source": "X：OpenRouter (@OpenRouter)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T13:33:09Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "X：OpenRouter (@OpenRouter)"
-      ],
-      "items": [
-        {
-          "id": "5e3e04deadb3d2fee376b73ea33a296fe42b6dc0",
-          "title": "Step 5 Preview 上线 OpenRouter，输入 $1.00/M、缓存命中仅 $0.05/M",
-          "url": "https://x.com/OpenRouter/status/2108188987357901047",
-          "source": "X：OpenRouter (@OpenRouter)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T13:33:17Z"
-        },
-        {
-          "id": "9f0afed4ed5c186205f656198e8cff2ed9c30b15",
-          "title": "Step 5 Preview 上线 OpenRouter",
-          "url": "https://x.com/OpenRouter/status/2108188953757331803",
-          "source": "X：OpenRouter (@OpenRouter)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T13:33:09Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.7471,
-      "importance": 0.7471,
-      "importance_score": 0.7471,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.62,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.914,
-        "story_heat": 0.25
-      },
-      "category": "industry",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-08T13:33:09Z",
-      "latest_at": "2026-10-08T13:33:17Z",
-      "primary_item": {
-        "id": "9f0afed4ed5c186205f656198e8cff2ed9c30b15",
-        "title": "Step 5 Preview 上线 OpenRouter",
-        "url": "https://x.com/OpenRouter/status/2108188953757331803",
-        "source": "X：OpenRouter (@OpenRouter)",
+        "id": "166d7c15b739a9706f6342d4775af007df0cef17",
+        "title": "Sundar Pichai 宣布 Google AMIE 对话诊断研究登上 The Lancet，为首个真实门诊前瞻性研究",
+        "url": "https://x.com/sundarpichai/status/2108329198955958339",
+        "source": "X：Sundar Pichai (@sundarpichai)",
         "source_name": "AI HOT"
       }
     },
@@ -1040,15 +977,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.747,
-      "importance": 0.747,
-      "importance_score": 0.747,
+      "score": 0.7392,
+      "importance": 0.7392,
+      "importance_score": 0.7392,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6968,
+        "recency": 0.6534,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -1063,6 +1000,325 @@
         "title": "NVIDIA 与 Microsoft 发布 RTX Spark 及 DGX Station for Windows，推动 AI Agent 落地 Windows PC",
         "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
         "source": "NVIDIA Blog（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_efff0efe8d7b",
+      "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
+      "url": "https://x.com/emollick/status/2107938889004396561",
+      "primary_url": "https://x.com/emollick/status/2107938889004396561",
+      "source": "X：Ethan Mollick (@emollick)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "a9899b166aeda121aa76167924c4f9d5dff63713",
+          "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
+          "url": "https://x.com/emollick/status/2107938889004396561",
+          "source": "X：Ethan Mollick (@emollick)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T20:59:29Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Ethan Mollick (@emollick)"
+      ],
+      "items": [
+        {
+          "id": "a9899b166aeda121aa76167924c4f9d5dff63713",
+          "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
+          "url": "https://x.com/emollick/status/2107938889004396561",
+          "source": "X：Ethan Mollick (@emollick)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-07T20:59:29Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7391,
+      "importance": 0.7391,
+      "importance_score": 0.7391,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.82,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.6748,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-07T20:59:29Z",
+      "latest_at": "2026-10-07T20:59:29Z",
+      "primary_item": {
+        "id": "a9899b166aeda121aa76167924c4f9d5dff63713",
+        "title": "Ethan Mollick 谈 ChatGPT Intelligent UI：界面正按问题按需生成",
+        "url": "https://x.com/emollick/status/2107938889004396561",
+        "source": "X：Ethan Mollick (@emollick)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_21c506941618",
+      "title": "OpenAI 解雇三名安全研究员，当事人发公开信称因优先安全被清除",
+      "url": "https://x.com/dongxi_nlp/status/2108280915709276490",
+      "primary_url": "https://x.com/dongxi_nlp/status/2108280915709276490",
+      "source": "X：马东锡 NLP (@dongxi_nlp)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "86cc378f0e70f090dcfe0c1a7a433b5ac891ed77",
+          "title": "OpenAI 解雇三名安全研究员，当事人发公开信称因优先安全被清除",
+          "url": "https://x.com/dongxi_nlp/status/2108280915709276490",
+          "source": "X：马东锡 NLP (@dongxi_nlp)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T19:38:34Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：马东锡 NLP (@dongxi_nlp)"
+      ],
+      "items": [
+        {
+          "id": "86cc378f0e70f090dcfe0c1a7a433b5ac891ed77",
+          "title": "OpenAI 解雇三名安全研究员，当事人发公开信称因优先安全被清除",
+          "url": "https://x.com/dongxi_nlp/status/2108280915709276490",
+          "source": "X：马东锡 NLP (@dongxi_nlp)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T19:38:34Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7381,
+      "importance": 0.7381,
+      "importance_score": 0.7381,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.66,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9359,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-08T19:38:34Z",
+      "latest_at": "2026-10-08T19:38:34Z",
+      "primary_item": {
+        "id": "86cc378f0e70f090dcfe0c1a7a433b5ac891ed77",
+        "title": "OpenAI 解雇三名安全研究员，当事人发公开信称因优先安全被清除",
+        "url": "https://x.com/dongxi_nlp/status/2108280915709276490",
+        "source": "X：马东锡 NLP (@dongxi_nlp)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_ad34714ca563",
+      "title": "Step 5 Preview 上线 OpenRouter",
+      "url": "https://x.com/OpenRouter/status/2108188953757331803",
+      "primary_url": "https://x.com/OpenRouter/status/2108188953757331803",
+      "source": "X：OpenRouter (@OpenRouter)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "5e3e04deadb3d2fee376b73ea33a296fe42b6dc0",
+          "title": "Step 5 Preview 上线 OpenRouter，输入 $1.00/M、缓存命中仅 $0.05/M",
+          "url": "https://x.com/OpenRouter/status/2108188987357901047",
+          "source": "X：OpenRouter (@OpenRouter)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T13:33:17Z"
+        },
+        {
+          "id": "9f0afed4ed5c186205f656198e8cff2ed9c30b15",
+          "title": "Step 5 Preview 上线 OpenRouter",
+          "url": "https://x.com/OpenRouter/status/2108188953757331803",
+          "source": "X：OpenRouter (@OpenRouter)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T13:33:09Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：OpenRouter (@OpenRouter)"
+      ],
+      "items": [
+        {
+          "id": "5e3e04deadb3d2fee376b73ea33a296fe42b6dc0",
+          "title": "Step 5 Preview 上线 OpenRouter，输入 $1.00/M、缓存命中仅 $0.05/M",
+          "url": "https://x.com/OpenRouter/status/2108188987357901047",
+          "source": "X：OpenRouter (@OpenRouter)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T13:33:17Z"
+        },
+        {
+          "id": "9f0afed4ed5c186205f656198e8cff2ed9c30b15",
+          "title": "Step 5 Preview 上线 OpenRouter",
+          "url": "https://x.com/OpenRouter/status/2108188953757331803",
+          "source": "X：OpenRouter (@OpenRouter)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T13:33:09Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7369,
+      "importance": 0.7369,
+      "importance_score": 0.7369,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.62,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8571,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-08T13:33:09Z",
+      "latest_at": "2026-10-08T13:33:17Z",
+      "primary_item": {
+        "id": "9f0afed4ed5c186205f656198e8cff2ed9c30b15",
+        "title": "Step 5 Preview 上线 OpenRouter",
+        "url": "https://x.com/OpenRouter/status/2108188953757331803",
+        "source": "X：OpenRouter (@OpenRouter)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_5ae593074929",
+      "title": "如何在单张 RTX 5090 上用 MiniMax H3 生成实时视频",
+      "url": "https://blog.comfy.org/p/how-i-generated-live-video-with-minimax",
+      "primary_url": "https://blog.comfy.org/p/how-i-generated-live-video-with-minimax",
+      "source": "Comfy Blog",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "c072a512daef5b8bdf019ac58b79c593c00fd614",
+          "title": "如何在单张 RTX 5090 上用 MiniMax H3 生成实时视频",
+          "url": "https://blog.comfy.org/p/how-i-generated-live-video-with-minimax",
+          "source": "Comfy Blog",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T19:01:22Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Comfy Blog"
+      ],
+      "items": [
+        {
+          "id": "c072a512daef5b8bdf019ac58b79c593c00fd614",
+          "title": "如何在单张 RTX 5090 上用 MiniMax H3 生成实时视频",
+          "url": "https://blog.comfy.org/p/how-i-generated-live-video-with-minimax",
+          "source": "Comfy Blog",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T19:01:22Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7366,
+      "importance": 0.7366,
+      "importance_score": 0.7366,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.66,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9275,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-08T19:01:22Z",
+      "latest_at": "2026-10-08T19:01:22Z",
+      "primary_item": {
+        "id": "c072a512daef5b8bdf019ac58b79c593c00fd614",
+        "title": "如何在单张 RTX 5090 上用 MiniMax H3 生成实时视频",
+        "url": "https://blog.comfy.org/p/how-i-generated-live-video-with-minimax",
+        "source": "Comfy Blog",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_f9044cf9ed5f",
+      "title": "Google 医疗研究系统 AMIE 真实临床前瞻性研究结果发表于 The Lancet",
+      "url": "https://x.com/Google/status/2108324514442461225",
+      "primary_url": "https://x.com/Google/status/2108324514442461225",
+      "source": "X：Google (@Google)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "6050f7f6b7b648556e26aef0e5ee24bbcbca53f3",
+          "title": "Google 医疗研究系统 AMIE 真实临床前瞻性研究结果发表于 The Lancet",
+          "url": "https://x.com/Google/status/2108324514442461225",
+          "source": "X：Google (@Google)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T22:31:49Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Google (@Google)"
+      ],
+      "items": [
+        {
+          "id": "6050f7f6b7b648556e26aef0e5ee24bbcbca53f3",
+          "title": "Google 医疗研究系统 AMIE 真实临床前瞻性研究结果发表于 The Lancet",
+          "url": "https://x.com/Google/status/2108324514442461225",
+          "source": "X：Google (@Google)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T22:31:49Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7362,
+      "importance": 0.7362,
+      "importance_score": 0.7362,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.63,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9757,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-08T22:31:49Z",
+      "latest_at": "2026-10-08T22:31:49Z",
+      "primary_item": {
+        "id": "6050f7f6b7b648556e26aef0e5ee24bbcbca53f3",
+        "title": "Google 医疗研究系统 AMIE 真实临床前瞻性研究结果发表于 The Lancet",
+        "url": "https://x.com/Google/status/2108324514442461225",
+        "source": "X：Google (@Google)",
         "source_name": "AI HOT"
       }
     },
@@ -1101,15 +1357,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7749,
-      "importance": 0.7749,
-      "importance_score": 0.7749,
+      "score": 0.7647,
+      "importance": 0.7647,
+      "importance_score": 0.7647,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.8,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.907,
+        "recency": 0.8505,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1124,246 +1380,6 @@
         "title": "Zenity 研究人员发现一条提示词即可劫持 AWS 账户内全部 AgentCore 智能体",
         "url": "https://the-decoder.com/a-single-prompt-was-enough-to-hijack-every-ai-agent-in-an-aws-account-zenity-researchers-found",
         "source": "The Decoder：AI News（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_e406d4ff0178",
-      "title": "Anthropic 为 Claude Max 和 Team 计划推出月度 API credits",
-      "url": "https://x.com/ClaudeDevs/status/2108228391404966005",
-      "primary_url": "https://x.com/ClaudeDevs/status/2108228391404966005",
-      "source": "X：Claude Devs (@ClaudeDevs)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "a70bdddfddde86f62fe9f4f93b6242d12eebb31c",
-          "title": "Anthropic 为 Claude Max 和 Team 计划推出月度 API credits",
-          "url": "https://x.com/ClaudeDevs/status/2108228391404966005",
-          "source": "X：Claude Devs (@ClaudeDevs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T16:09:52Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Claude Devs (@ClaudeDevs)"
-      ],
-      "items": [
-        {
-          "id": "a70bdddfddde86f62fe9f4f93b6242d12eebb31c",
-          "title": "Anthropic 为 Claude Max 和 Team 计划推出月度 API credits",
-          "url": "https://x.com/ClaudeDevs/status/2108228391404966005",
-          "source": "X：Claude Devs (@ClaudeDevs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T16:09:52Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7404,
-      "importance": 0.7404,
-      "importance_score": 0.7404,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9492,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-08T16:09:52Z",
-      "latest_at": "2026-10-08T16:09:52Z",
-      "primary_item": {
-        "id": "a70bdddfddde86f62fe9f4f93b6242d12eebb31c",
-        "title": "Anthropic 为 Claude Max 和 Team 计划推出月度 API credits",
-        "url": "https://x.com/ClaudeDevs/status/2108228391404966005",
-        "source": "X：Claude Devs (@ClaudeDevs)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_a49cf4f91473",
-      "title": "Claude 九月回顾：Chat 与 Cowork 合一，Claude 5.5 系列模型上线",
-      "url": "https://www.youtube.com/shorts/n9WfoNW2XnE",
-      "primary_url": "https://www.youtube.com/shorts/n9WfoNW2XnE",
-      "source": "Claude：YouTube（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "1a3a4140130097b5826407cc03271420f5e3c849",
-          "title": "Claude 九月回顾：Chat 与 Cowork 合一，Claude 5.5 系列模型上线",
-          "url": "https://www.youtube.com/shorts/n9WfoNW2XnE",
-          "source": "Claude：YouTube（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T15:53:13Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Claude：YouTube（RSS）"
-      ],
-      "items": [
-        {
-          "id": "1a3a4140130097b5826407cc03271420f5e3c849",
-          "title": "Claude 九月回顾：Chat 与 Cowork 合一，Claude 5.5 系列模型上线",
-          "url": "https://www.youtube.com/shorts/n9WfoNW2XnE",
-          "source": "Claude：YouTube（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T15:53:13Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7398,
-      "importance": 0.7398,
-      "importance_score": 0.7398,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9454,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-08T15:53:13Z",
-      "latest_at": "2026-10-08T15:53:13Z",
-      "primary_item": {
-        "id": "1a3a4140130097b5826407cc03271420f5e3c849",
-        "title": "Claude 九月回顾：Chat 与 Cowork 合一，Claude 5.5 系列模型上线",
-        "url": "https://www.youtube.com/shorts/n9WfoNW2XnE",
-        "source": "Claude：YouTube（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_a23cf234f67c",
-      "title": "OpenAI 在 ChatGPT 推出 GPT-6 与 Intelligent UI 交互式回答功能",
-      "url": "https://x.com/reach_vb/status/2107899798024007897",
-      "primary_url": "https://x.com/reach_vb/status/2107899798024007897",
-      "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "14694aad8fb49d08ec7a0f0b5c8d6a9447796fad",
-          "title": "OpenAI 在 ChatGPT 推出 GPT-6 与 Intelligent UI 交互式回答功能",
-          "url": "https://x.com/reach_vb/status/2107899798024007897",
-          "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:24:09Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Vaibhav Srivastav（OpenAI）(@reach_vb)"
-      ],
-      "items": [
-        {
-          "id": "14694aad8fb49d08ec7a0f0b5c8d6a9447796fad",
-          "title": "OpenAI 在 ChatGPT 推出 GPT-6 与 Intelligent UI 交互式回答功能",
-          "url": "https://x.com/reach_vb/status/2107899798024007897",
-          "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:24:09Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7394,
-      "importance": 0.7394,
-      "importance_score": 0.7394,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.81,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6932,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-07T18:24:09Z",
-      "latest_at": "2026-10-07T18:24:09Z",
-      "primary_item": {
-        "id": "14694aad8fb49d08ec7a0f0b5c8d6a9447796fad",
-        "title": "OpenAI 在 ChatGPT 推出 GPT-6 与 Intelligent UI 交互式回答功能",
-        "url": "https://x.com/reach_vb/status/2107899798024007897",
-        "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_50827233e7bf",
-      "title": "Anthropic 用 Claude Managed Agents 构建定时智能体自动化的实践指南",
-      "url": "https://claude.dev/blog/building-effective-agent-automations",
-      "primary_url": "https://claude.dev/blog/building-effective-agent-automations",
-      "source": "Anthropic：Claude.dev 开发者博客（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "2684cbbd08e99b581673bf3478183d6f077bcf3e",
-          "title": "Anthropic 用 Claude Managed Agents 构建定时智能体自动化的实践指南",
-          "url": "https://claude.dev/blog/building-effective-agent-automations",
-          "source": "Anthropic：Claude.dev 开发者博客（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T12:00:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Anthropic：Claude.dev 开发者博客（RSS）"
-      ],
-      "items": [
-        {
-          "id": "2684cbbd08e99b581673bf3478183d6f077bcf3e",
-          "title": "Anthropic 用 Claude Managed Agents 构建定时智能体自动化的实践指南",
-          "url": "https://claude.dev/blog/building-effective-agent-automations",
-          "source": "Anthropic：Claude.dev 开发者博客（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T12:00:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7365,
-      "importance": 0.7365,
-      "importance_score": 0.7365,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.68,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8938,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-08T12:00:00Z",
-      "latest_at": "2026-10-08T12:00:00Z",
-      "primary_item": {
-        "id": "2684cbbd08e99b581673bf3478183d6f077bcf3e",
-        "title": "Anthropic 用 Claude Managed Agents 构建定时智能体自动化的实践指南",
-        "url": "https://claude.dev/blog/building-effective-agent-automations",
-        "source": "Anthropic：Claude.dev 开发者博客（RSS）",
         "source_name": "AI HOT"
       }
     }
