@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T13:39:39.642006Z",
+  "generated_at": "2026-10-09T19:23:34.816630Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -56,15 +56,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.8268,
-      "importance": 0.8268,
-      "importance_score": 0.8268,
+      "score": 0.815,
+      "importance": 0.815,
+      "importance_score": 0.815,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.94,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8234,
+        "recency": 0.758,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -192,15 +192,15 @@
       ],
       "item_count": 5,
       "duplicate_count": 5,
-      "score": 0.82,
-      "importance": 0.82,
-      "importance_score": 0.82,
+      "score": 0.8116,
+      "importance": 0.8116,
+      "importance_score": 0.8116,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5856,
+        "recency": 0.539,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -216,6 +216,128 @@
         "title": "OpenAI 在 GitHub 发布 openai/math 仓库，722 份数学手稿引发数学界震荡",
         "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686908&idx=1&sn=29a97b5ff695871a7bf219d3d6bd6487",
         "source": "公众号：数字生命卡兹克",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_78897a6b0a8c",
+      "title": "OpenAI 年化收入约 500 亿美元并寻求 300 亿美元新融资",
+      "url": "https://the-decoder.com/openai-revenue-keeps-surging-as-company-seeks-30-billion-in-fresh-capital",
+      "primary_url": "https://the-decoder.com/openai-revenue-keeps-surging-as-company-seeks-30-billion-in-fresh-capital",
+      "source": "The Decoder：AI News（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "fc24b29be58f57fceac5d2f3a9e6ebd222cc2874",
+          "title": "OpenAI 年化收入约 500 亿美元并寻求 300 亿美元新融资",
+          "url": "https://the-decoder.com/openai-revenue-keeps-surging-as-company-seeks-30-billion-in-fresh-capital",
+          "source": "The Decoder：AI News（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T17:20:34Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "The Decoder：AI News（RSS）"
+      ],
+      "items": [
+        {
+          "id": "fc24b29be58f57fceac5d2f3a9e6ebd222cc2874",
+          "title": "OpenAI 年化收入约 500 亿美元并寻求 300 亿美元新融资",
+          "url": "https://the-decoder.com/openai-revenue-keeps-surging-as-company-seeks-30-billion-in-fresh-capital",
+          "source": "The Decoder：AI News（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T17:20:34Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7923,
+      "importance": 0.7923,
+      "importance_score": 0.7923,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.82,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9708,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-09T17:20:34Z",
+      "latest_at": "2026-10-09T17:20:34Z",
+      "primary_item": {
+        "id": "fc24b29be58f57fceac5d2f3a9e6ebd222cc2874",
+        "title": "OpenAI 年化收入约 500 亿美元并寻求 300 亿美元新融资",
+        "url": "https://the-decoder.com/openai-revenue-keeps-surging-as-company-seeks-30-billion-in-fresh-capital",
+        "source": "The Decoder：AI News（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_e436320cbb36",
+      "title": "ARC Prize 2026：TUFA Labs 以 88.06% 登顶 ARC-AGI-2 高分榜",
+      "url": "https://x.com/arcprize/status/2108578092558250148",
+      "primary_url": "https://x.com/arcprize/status/2108578092558250148",
+      "source": "X：ARC Prize (@arcprize)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "38851d20485286ffb8bf29ad7e7d5c2f1d0ebbf8",
+          "title": "ARC Prize 2026：TUFA Labs 以 88.06% 登顶 ARC-AGI-2 高分榜",
+          "url": "https://x.com/arcprize/status/2108578092558250148",
+          "source": "X：ARC Prize (@arcprize)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T15:19:27Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：ARC Prize (@arcprize)"
+      ],
+      "items": [
+        {
+          "id": "38851d20485286ffb8bf29ad7e7d5c2f1d0ebbf8",
+          "title": "ARC Prize 2026：TUFA Labs 以 88.06% 登顶 ARC-AGI-2 高分榜",
+          "url": "https://x.com/arcprize/status/2108578092558250148",
+          "source": "X：ARC Prize (@arcprize)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T15:19:27Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7723,
+      "importance": 0.7723,
+      "importance_score": 0.7723,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.77,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9429,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-09T15:19:27Z",
+      "latest_at": "2026-10-09T15:19:27Z",
+      "primary_item": {
+        "id": "38851d20485286ffb8bf29ad7e7d5c2f1d0ebbf8",
+        "title": "ARC Prize 2026：TUFA Labs 以 88.06% 登顶 ARC-AGI-2 高分榜",
+        "url": "https://x.com/arcprize/status/2108578092558250148",
+        "source": "X：ARC Prize (@arcprize)",
         "source_name": "AI HOT"
       }
     },
@@ -254,15 +376,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7791,
-      "importance": 0.7791,
-      "importance_score": 0.7791,
+      "score": 0.7706,
+      "importance": 0.7706,
+      "importance_score": 0.7706,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 1.0,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5972,
+        "recency": 0.5498,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -351,22 +473,21 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.7594,
-      "importance": 0.7594,
-      "importance_score": 0.7594,
+      "score": 0.748,
+      "importance": 0.748,
+      "importance_score": 0.748,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.65,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7932,
+        "recency": 0.7302,
         "story_heat": 0.5
       },
       "category": "multi_source",
       "reasons": [
         "multi_source",
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-08T17:08:01Z",
       "latest_at": "2026-10-08T21:36:59Z",
@@ -375,67 +496,6 @@
         "title": "Arena 完成 2 亿美元 B 轮融资，估值 31 亿美元并发布 Alignment Index",
         "url": "https://x.com/arena/status/2108310714423423254",
         "source": "X：Arena (@arena)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_e0cdd0dabadc",
-      "title": "OpenAI 三次否认解雇三名安全研究员与提出安全担忧有关",
-      "url": "https://x.com/rohanpaul_ai/status/2108484237460722121",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2108484237460722121",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "190866a81d79a6f64009c03951740c76b50a937c",
-          "title": "OpenAI 三次否认解雇三名安全研究员与提出安全担忧有关",
-          "url": "https://x.com/rohanpaul_ai/status/2108484237460722121",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T09:06:30Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "190866a81d79a6f64009c03951740c76b50a937c",
-          "title": "OpenAI 三次否认解雇三名安全研究员与提出安全担忧有关",
-          "url": "https://x.com/rohanpaul_ai/status/2108484237460722121",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T09:06:30Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7561,
-      "importance": 0.7561,
-      "importance_score": 0.7561,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.72,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9364,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-09T09:06:30Z",
-      "latest_at": "2026-10-09T09:06:30Z",
-      "primary_item": {
-        "id": "190866a81d79a6f64009c03951740c76b50a937c",
-        "title": "OpenAI 三次否认解雇三名安全研究员与提出安全担忧有关",
-        "url": "https://x.com/rohanpaul_ai/status/2108484237460722121",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -493,22 +553,21 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7534,
-      "importance": 0.7534,
-      "importance_score": 0.7534,
+      "score": 0.7458,
+      "importance": 0.7458,
+      "importance_score": 0.7458,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.87,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5325,
+        "recency": 0.4902,
         "story_heat": 0.25
       },
       "category": "industry",
       "reasons": [
         "multi_source",
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-07T18:00:58Z",
       "latest_at": "2026-10-07T20:36:37Z",
@@ -517,6 +576,66 @@
         "title": "OpenAI 向全部 ChatGPT 用户推出 GPT-6 与 Intelligent UI",
         "url": "https://openai.com/index/gpt-6-for-everyone",
         "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_e0cdd0dabadc",
+      "title": "OpenAI 三次否认解雇三名安全研究员与提出安全担忧有关",
+      "url": "https://x.com/rohanpaul_ai/status/2108484237460722121",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2108484237460722121",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "190866a81d79a6f64009c03951740c76b50a937c",
+          "title": "OpenAI 三次否认解雇三名安全研究员与提出安全担忧有关",
+          "url": "https://x.com/rohanpaul_ai/status/2108484237460722121",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T09:06:30Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "190866a81d79a6f64009c03951740c76b50a937c",
+          "title": "OpenAI 三次否认解雇三名安全研究员与提出安全担忧有关",
+          "url": "https://x.com/rohanpaul_ai/status/2108484237460722121",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T09:06:30Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7428,
+      "importance": 0.7428,
+      "importance_score": 0.7428,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.72,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.862,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-09T09:06:30Z",
+      "latest_at": "2026-10-09T09:06:30Z",
+      "primary_item": {
+        "id": "190866a81d79a6f64009c03951740c76b50a937c",
+        "title": "OpenAI 三次否认解雇三名安全研究员与提出安全担忧有关",
+        "url": "https://x.com/rohanpaul_ai/status/2108484237460722121",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -555,21 +674,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7514,
-      "importance": 0.7514,
-      "importance_score": 0.7514,
+      "score": 0.7398,
+      "importance": 0.7398,
+      "importance_score": 0.7398,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8097,
+        "recency": 0.7454,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-08T23:02:44.683000Z",
       "latest_at": "2026-10-08T23:02:44.683000Z",
@@ -582,123 +700,182 @@
       }
     },
     {
-      "story_id": "story_9a3494f049dc",
-      "title": "部分数学家呼吁抵制 OpenAI，AI 生成的数学证明涌入数学领域",
-      "url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
-      "primary_url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
-      "source": "The Decoder：AI News（RSS）",
+      "story_id": "story_27e99f3d8f98",
+      "title": "Epoch AI 发布 InnovationEval 评测：前沿模型仅达到人类论文 SDPO 增益的 15%",
+      "url": "https://epochai.substack.com/p/can-ai-automate-ai-r-and-d-yet",
+      "primary_url": "https://epochai.substack.com/p/can-ai-automate-ai-r-and-d-yet",
+      "source": "Epoch AI：Gradient Updates（RSS）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "9a6c1abc58143cba093d6c4646fff1acfcfe9a66",
-          "title": "部分数学家呼吁抵制 OpenAI，AI 生成的数学证明涌入数学领域",
-          "url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
-          "source": "The Decoder：AI News（RSS）",
+          "id": "5cbb0d656643d05afd840ba27d4abe7983e3e59a",
+          "title": "Epoch AI 发布 InnovationEval 评测：前沿模型仅达到人类论文 SDPO 增益的 15%",
+          "url": "https://epochai.substack.com/p/can-ai-automate-ai-r-and-d-yet",
+          "source": "Epoch AI：Gradient Updates（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-08T18:17:07Z"
+          "published_at": "2026-10-09T18:41:00Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "The Decoder：AI News（RSS）"
+        "Epoch AI：Gradient Updates（RSS）"
       ],
       "items": [
         {
-          "id": "9a6c1abc58143cba093d6c4646fff1acfcfe9a66",
-          "title": "部分数学家呼吁抵制 OpenAI，AI 生成的数学证明涌入数学领域",
-          "url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
-          "source": "The Decoder：AI News（RSS）",
+          "id": "5cbb0d656643d05afd840ba27d4abe7983e3e59a",
+          "title": "Epoch AI 发布 InnovationEval 评测：前沿模型仅达到人类论文 SDPO 增益的 15%",
+          "url": "https://epochai.substack.com/p/can-ai-automate-ai-r-and-d-yet",
+          "source": "Epoch AI：Gradient Updates（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-08T18:17:07Z"
+          "published_at": "2026-10-09T18:41:00Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7507,
-      "importance": 0.7507,
-      "importance_score": 0.7507,
+      "score": 0.7358,
+      "importance": 0.7358,
+      "importance_score": 0.7358,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.81,
+        "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7559,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-08T18:17:07Z",
-      "latest_at": "2026-10-08T18:17:07Z",
-      "primary_item": {
-        "id": "9a6c1abc58143cba093d6c4646fff1acfcfe9a66",
-        "title": "部分数学家呼吁抵制 OpenAI，AI 生成的数学证明涌入数学领域",
-        "url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
-        "source": "The Decoder：AI News（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_7bff145dd415",
-      "title": "OpenAI 研究负责人发声明回应三名员工离职争议",
-      "url": "https://x.com/OpenAINewsroom/status/2108441580806025712",
-      "primary_url": "https://x.com/OpenAINewsroom/status/2108441580806025712",
-      "source": "X：OpenAI Newsroom (@OpenAINewsroom)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "c9a79fec44485cd24f540e96e9add155d83d27c6",
-          "title": "OpenAI 研究负责人发声明回应三名员工离职争议",
-          "url": "https://x.com/OpenAINewsroom/status/2108441580806025712",
-          "source": "X：OpenAI Newsroom (@OpenAINewsroom)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T06:17:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：OpenAI Newsroom (@OpenAINewsroom)"
-      ],
-      "items": [
-        {
-          "id": "c9a79fec44485cd24f540e96e9add155d83d27c6",
-          "title": "OpenAI 研究负责人发声明回应三名员工离职争议",
-          "url": "https://x.com/OpenAINewsroom/status/2108441580806025712",
-          "source": "X：OpenAI Newsroom (@OpenAINewsroom)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T06:17:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7434,
-      "importance": 0.7434,
-      "importance_score": 0.7434,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.7,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8989,
+        "recency": 0.9898,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-09T06:17:00Z",
-      "latest_at": "2026-10-09T06:17:00Z",
+      "earliest_at": "2026-10-09T18:41:00Z",
+      "latest_at": "2026-10-09T18:41:00Z",
       "primary_item": {
-        "id": "c9a79fec44485cd24f540e96e9add155d83d27c6",
-        "title": "OpenAI 研究负责人发声明回应三名员工离职争议",
-        "url": "https://x.com/OpenAINewsroom/status/2108441580806025712",
-        "source": "X：OpenAI Newsroom (@OpenAINewsroom)",
+        "id": "5cbb0d656643d05afd840ba27d4abe7983e3e59a",
+        "title": "Epoch AI 发布 InnovationEval 评测：前沿模型仅达到人类论文 SDPO 增益的 15%",
+        "url": "https://epochai.substack.com/p/can-ai-automate-ai-r-and-d-yet",
+        "source": "Epoch AI：Gradient Updates（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_57449f94a0f2",
+      "title": "Anthropic 将 Claude Managed Agents 的动态工作流扩展至公开测试",
+      "url": "https://x.com/testingcatalog/status/2108597580435231118",
+      "primary_url": "https://x.com/testingcatalog/status/2108597580435231118",
+      "source": "X：Testing Catalog (@testingcatalog)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "f0ad2970bd750db9921cd8cfecf09431a5366809",
+          "title": "Anthropic 将 Claude Managed Agents 的动态工作流扩展至公开测试",
+          "url": "https://x.com/testingcatalog/status/2108597580435231118",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T16:36:53Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Testing Catalog (@testingcatalog)"
+      ],
+      "items": [
+        {
+          "id": "f0ad2970bd750db9921cd8cfecf09431a5366809",
+          "title": "Anthropic 将 Claude Managed Agents 的动态工作流扩展至公开测试",
+          "url": "https://x.com/testingcatalog/status/2108597580435231118",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T16:36:53Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7335,
+      "importance": 0.7335,
+      "importance_score": 0.7335,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.63,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9607,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-09T16:36:53Z",
+      "latest_at": "2026-10-09T16:36:53Z",
+      "primary_item": {
+        "id": "f0ad2970bd750db9921cd8cfecf09431a5366809",
+        "title": "Anthropic 将 Claude Managed Agents 的动态工作流扩展至公开测试",
+        "url": "https://x.com/testingcatalog/status/2108597580435231118",
+        "source": "X：Testing Catalog (@testingcatalog)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_9be053aa35af",
+      "title": "Ethan Mollick 分享 AI 辅助学习随机实验结果：辅导式使用提升测试成绩且一周后仍有保留",
+      "url": "https://x.com/emollick/status/2108594749305135613",
+      "primary_url": "https://x.com/emollick/status/2108594749305135613",
+      "source": "X：Ethan Mollick (@emollick)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "86ec841cffed6c0a9f8db24ffecea0df3ef25d95",
+          "title": "Ethan Mollick 分享 AI 辅助学习随机实验结果：辅导式使用提升测试成绩且一周后仍有保留",
+          "url": "https://x.com/emollick/status/2108594749305135613",
+          "source": "X：Ethan Mollick (@emollick)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T16:25:38Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Ethan Mollick (@emollick)"
+      ],
+      "items": [
+        {
+          "id": "86ec841cffed6c0a9f8db24ffecea0df3ef25d95",
+          "title": "Ethan Mollick 分享 AI 辅助学习随机实验结果：辅导式使用提升测试成绩且一周后仍有保留",
+          "url": "https://x.com/emollick/status/2108594749305135613",
+          "source": "X：Ethan Mollick (@emollick)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T16:25:38Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7331,
+      "importance": 0.7331,
+      "importance_score": 0.7331,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.63,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9581,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-09T16:25:38Z",
+      "latest_at": "2026-10-09T16:25:38Z",
+      "primary_item": {
+        "id": "86ec841cffed6c0a9f8db24ffecea0df3ef25d95",
+        "title": "Ethan Mollick 分享 AI 辅助学习随机实验结果：辅导式使用提升测试成绩且一周后仍有保留",
+        "url": "https://x.com/emollick/status/2108594749305135613",
+        "source": "X：Ethan Mollick (@emollick)",
         "source_name": "AI HOT"
       }
     },
@@ -737,15 +914,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7431,
-      "importance": 0.7431,
-      "importance_score": 0.7431,
+      "score": 0.7308,
+      "importance": 0.7308,
+      "importance_score": 0.7308,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8641,
+        "recency": 0.7955,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -759,6 +936,126 @@
         "title": "斯坦福 CS146S 第三周课程公开：Agent Skills 与 CLI",
         "url": "https://x.com/shao__meng/status/2108400281402908960",
         "source": "X：邵猛 (@shao__meng)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_7bff145dd415",
+      "title": "OpenAI 研究负责人发声明回应三名员工离职争议",
+      "url": "https://x.com/OpenAINewsroom/status/2108441580806025712",
+      "primary_url": "https://x.com/OpenAINewsroom/status/2108441580806025712",
+      "source": "X：OpenAI Newsroom (@OpenAINewsroom)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "c9a79fec44485cd24f540e96e9add155d83d27c6",
+          "title": "OpenAI 研究负责人发声明回应三名员工离职争议",
+          "url": "https://x.com/OpenAINewsroom/status/2108441580806025712",
+          "source": "X：OpenAI Newsroom (@OpenAINewsroom)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T06:17:00Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：OpenAI Newsroom (@OpenAINewsroom)"
+      ],
+      "items": [
+        {
+          "id": "c9a79fec44485cd24f540e96e9add155d83d27c6",
+          "title": "OpenAI 研究负责人发声明回应三名员工离职争议",
+          "url": "https://x.com/OpenAINewsroom/status/2108441580806025712",
+          "source": "X：OpenAI Newsroom (@OpenAINewsroom)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T06:17:00Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7306,
+      "importance": 0.7306,
+      "importance_score": 0.7306,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.7,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8275,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-09T06:17:00Z",
+      "latest_at": "2026-10-09T06:17:00Z",
+      "primary_item": {
+        "id": "c9a79fec44485cd24f540e96e9add155d83d27c6",
+        "title": "OpenAI 研究负责人发声明回应三名员工离职争议",
+        "url": "https://x.com/OpenAINewsroom/status/2108441580806025712",
+        "source": "X：OpenAI Newsroom (@OpenAINewsroom)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_b8176024bc2b",
+      "title": "Claude Managed Agents 动态工作流公开测试版上线",
+      "url": "https://x.com/ClaudeDevs/status/2108591328732856655",
+      "primary_url": "https://x.com/ClaudeDevs/status/2108591328732856655",
+      "source": "X：Claude Devs (@ClaudeDevs)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "2d954759fd09410b0ea4209ea93271342d5490e8",
+          "title": "Claude Managed Agents 动态工作流公开测试版上线",
+          "url": "https://x.com/ClaudeDevs/status/2108591328732856655",
+          "source": "X：Claude Devs (@ClaudeDevs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T16:12:03Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Claude Devs (@ClaudeDevs)"
+      ],
+      "items": [
+        {
+          "id": "2d954759fd09410b0ea4209ea93271342d5490e8",
+          "title": "Claude Managed Agents 动态工作流公开测试版上线",
+          "url": "https://x.com/ClaudeDevs/status/2108591328732856655",
+          "source": "X：Claude Devs (@ClaudeDevs)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T16:12:03Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7295,
+      "importance": 0.7295,
+      "importance_score": 0.7295,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.62,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9549,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-09T16:12:03Z",
+      "latest_at": "2026-10-09T16:12:03Z",
+      "primary_item": {
+        "id": "2d954759fd09410b0ea4209ea93271342d5490e8",
+        "title": "Claude Managed Agents 动态工作流公开测试版上线",
+        "url": "https://x.com/ClaudeDevs/status/2108591328732856655",
+        "source": "X：Claude Devs (@ClaudeDevs)",
         "source_name": "AI HOT"
       }
     },
@@ -797,15 +1094,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7429,
-      "importance": 0.7429,
-      "importance_score": 0.7429,
+      "score": 0.7287,
+      "importance": 0.7287,
+      "importance_score": 0.7287,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.64,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9963,
+        "recency": 0.9171,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -819,6 +1116,186 @@
         "title": "通义千问发布 Qwen-Image-2.1-Turbo，8 步去噪即可生成和编辑图像并开放权重",
         "url": "https://x.com/Alibaba_Qwen/status/2108549075218120949",
         "source": "X：通义千问 / Qwen (@Alibaba_Qwen)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_7ebcf192b629",
+      "title": "Owain Evans 团队新论文：隐式学习可传递学到的高级能力与后门",
+      "url": "https://x.com/dongxi_nlp/status/2108589802236833792",
+      "primary_url": "https://x.com/dongxi_nlp/status/2108589802236833792",
+      "source": "X：马东锡 NLP (@dongxi_nlp)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "a321480a2126d2e0da66e5fd8b6c10683d02ead7",
+          "title": "Owain Evans 团队新论文：隐式学习可传递学到的高级能力与后门",
+          "url": "https://x.com/dongxi_nlp/status/2108589802236833792",
+          "source": "X：马东锡 NLP (@dongxi_nlp)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T16:05:59Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：马东锡 NLP (@dongxi_nlp)"
+      ],
+      "items": [
+        {
+          "id": "a321480a2126d2e0da66e5fd8b6c10683d02ead7",
+          "title": "Owain Evans 团队新论文：隐式学习可传递学到的高级能力与后门",
+          "url": "https://x.com/dongxi_nlp/status/2108589802236833792",
+          "source": "X：马东锡 NLP (@dongxi_nlp)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T16:05:59Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7232,
+      "importance": 0.7232,
+      "importance_score": 0.7232,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.6,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9536,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-09T16:05:59Z",
+      "latest_at": "2026-10-09T16:05:59Z",
+      "primary_item": {
+        "id": "a321480a2126d2e0da66e5fd8b6c10683d02ead7",
+        "title": "Owain Evans 团队新论文：隐式学习可传递学到的高级能力与后门",
+        "url": "https://x.com/dongxi_nlp/status/2108589802236833792",
+        "source": "X：马东锡 NLP (@dongxi_nlp)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_c899fcf87c95",
+      "title": "François Chollet 谈 Kaggle 上 ARC-AGI-2 分数已达 88.06%",
+      "url": "https://x.com/fchollet/status/2108579538372612400",
+      "primary_url": "https://x.com/fchollet/status/2108579538372612400",
+      "source": "X：Francois Chollet (@fchollet)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "aadb37f4b7529287455ff0f221cf1527054f20b3",
+          "title": "François Chollet 谈 Kaggle 上 ARC-AGI-2 分数已达 88.06%",
+          "url": "https://x.com/fchollet/status/2108579538372612400",
+          "source": "X：Francois Chollet (@fchollet)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T15:25:12Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Francois Chollet (@fchollet)"
+      ],
+      "items": [
+        {
+          "id": "aadb37f4b7529287455ff0f221cf1527054f20b3",
+          "title": "François Chollet 谈 Kaggle 上 ARC-AGI-2 分数已达 88.06%",
+          "url": "https://x.com/fchollet/status/2108579538372612400",
+          "source": "X：Francois Chollet (@fchollet)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T15:25:12Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7216,
+      "importance": 0.7216,
+      "importance_score": 0.7216,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.6,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9442,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-09T15:25:12Z",
+      "latest_at": "2026-10-09T15:25:12Z",
+      "primary_item": {
+        "id": "aadb37f4b7529287455ff0f221cf1527054f20b3",
+        "title": "François Chollet 谈 Kaggle 上 ARC-AGI-2 分数已达 88.06%",
+        "url": "https://x.com/fchollet/status/2108579538372612400",
+        "source": "X：Francois Chollet (@fchollet)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_d2a3fe1b4269",
+      "title": "Grok Bot 推出独立邮箱功能",
+      "url": "https://x.com/grok/status/2108610528423842095",
+      "primary_url": "https://x.com/grok/status/2108610528423842095",
+      "source": "X：Grok (@grok)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "590b632a2a75bdee70a7117423cb7024f1c2817f",
+          "title": "Grok Bot 推出独立邮箱功能",
+          "url": "https://x.com/grok/status/2108610528423842095",
+          "source": "X：Grok (@grok)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T17:28:20Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Grok (@grok)"
+      ],
+      "items": [
+        {
+          "id": "590b632a2a75bdee70a7117423cb7024f1c2817f",
+          "title": "Grok Bot 推出独立邮箱功能",
+          "url": "https://x.com/grok/status/2108610528423842095",
+          "source": "X：Grok (@grok)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T17:28:20Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7207,
+      "importance": 0.7207,
+      "importance_score": 0.7207,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.58,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9726,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-09T17:28:20Z",
+      "latest_at": "2026-10-09T17:28:20Z",
+      "primary_item": {
+        "id": "590b632a2a75bdee70a7117423cb7024f1c2817f",
+        "title": "Grok Bot 推出独立邮箱功能",
+        "url": "https://x.com/grok/status/2108610528423842095",
+        "source": "X：Grok (@grok)",
         "source_name": "AI HOT"
       }
     },
@@ -857,15 +1334,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.733,
-      "importance": 0.733,
-      "importance_score": 0.733,
+      "score": 0.7203,
+      "importance": 0.7203,
+      "importance_score": 0.7203,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8911,
+        "recency": 0.8203,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -879,564 +1356,6 @@
         "title": "Manus 母公司 Butterfly Effect 宣布超 5 亿美元融资，Boyu Capital 与 IDG 领投",
         "url": "https://x.com/thexpin/status/2108432468118520070",
         "source": "X：X.PIN (@thexpin)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_924cb8a4a645",
-      "title": "Artificial Analysis 评测 Google Nano Banana 2.1，两榜居第 4 且价格为前代一半",
-      "url": "https://x.com/ArtificialAnlys/status/2108236656700768310",
-      "primary_url": "https://x.com/ArtificialAnlys/status/2108236656700768310",
-      "source": "X：Artificial Analysis (@ArtificialAnlys)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "1f9823f40d994730810318520de0f53b02b350ca",
-          "title": "Artificial Analysis 评测 Google Nano Banana 2.1，两榜居第 4 且价格为前代一半",
-          "url": "https://x.com/ArtificialAnlys/status/2108236656700768310",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T16:42:42Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Artificial Analysis (@ArtificialAnlys)"
-      ],
-      "items": [
-        {
-          "id": "1f9823f40d994730810318520de0f53b02b350ca",
-          "title": "Artificial Analysis 评测 Google Nano Banana 2.1，两榜居第 4 且价格为前代一半",
-          "url": "https://x.com/ArtificialAnlys/status/2108236656700768310",
-          "source": "X：Artificial Analysis (@ArtificialAnlys)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T16:42:42Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7296,
-      "importance": 0.7296,
-      "importance_score": 0.7296,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.75,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.739,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-08T16:42:42Z",
-      "latest_at": "2026-10-08T16:42:42Z",
-      "primary_item": {
-        "id": "1f9823f40d994730810318520de0f53b02b350ca",
-        "title": "Artificial Analysis 评测 Google Nano Banana 2.1，两榜居第 4 且价格为前代一半",
-        "url": "https://x.com/ArtificialAnlys/status/2108236656700768310",
-        "source": "X：Artificial Analysis (@ArtificialAnlys)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_4ac2bbaf461a",
-      "title": "Financial Times：汇丰计划裁减约 70% 英国理财顾问，将财富客户转向 AI 支持的数字服务",
-      "url": "https://x.com/rohanpaul_ai/status/2108531987963359536",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2108531987963359536",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "6b135c7d05d3992f6f3651d8f06750c833cbdf81",
-          "title": "Financial Times：汇丰计划裁减约 70% 英国理财顾问，将财富客户转向 AI 支持的数字服务",
-          "url": "https://x.com/rohanpaul_ai/status/2108531987963359536",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T12:16:15Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "6b135c7d05d3992f6f3651d8f06750c833cbdf81",
-          "title": "Financial Times：汇丰计划裁减约 70% 英国理财顾问，将财富客户转向 AI 支持的数字服务",
-          "url": "https://x.com/rohanpaul_ai/status/2108531987963359536",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T12:16:15Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.752,
-      "importance": 0.752,
-      "importance_score": 0.752,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.68,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9801,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-09T12:16:15Z",
-      "latest_at": "2026-10-09T12:16:15Z",
-      "primary_item": {
-        "id": "6b135c7d05d3992f6f3651d8f06750c833cbdf81",
-        "title": "Financial Times：汇丰计划裁减约 70% 英国理财顾问，将财富客户转向 AI 支持的数字服务",
-        "url": "https://x.com/rohanpaul_ai/status/2108531987963359536",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_6f02344687c4",
-      "title": "NVIDIA 与 Microsoft 发布 RTX Spark 及 DGX Station for Windows，推动 AI Agent 落地 Windows PC",
-      "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
-      "primary_url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
-      "source": "NVIDIA Blog（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "167a38f113a770fc4d3752a7a64939a19b867dac",
-          "title": "NVIDIA 与 Microsoft 发布 RTX Spark 及 DGX Station for Windows，推动 AI Agent 落地 Windows PC",
-          "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
-          "source": "NVIDIA Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:45:28Z"
-        },
-        {
-          "id": "b0719e52d2514cc44359051052fbf344a00960ff",
-          "title": "NVIDIA 与 Microsoft 推出 RTX Spark 平台并宣布 MXC 让 AI Agent 落地 Windows PC",
-          "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
-          "source": "NVIDIA Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:45:28Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "NVIDIA Blog（RSS）"
-      ],
-      "items": [
-        {
-          "id": "167a38f113a770fc4d3752a7a64939a19b867dac",
-          "title": "NVIDIA 与 Microsoft 发布 RTX Spark 及 DGX Station for Windows，推动 AI Agent 落地 Windows PC",
-          "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
-          "source": "NVIDIA Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:45:28Z"
-        },
-        {
-          "id": "b0719e52d2514cc44359051052fbf344a00960ff",
-          "title": "NVIDIA 与 Microsoft 推出 RTX Spark 平台并宣布 MXC 让 AI Agent 落地 Windows PC",
-          "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
-          "source": "NVIDIA Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:45:28Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.7185,
-      "importance": 0.7185,
-      "importance_score": 0.7185,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.75,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.5382,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-07T18:45:28Z",
-      "latest_at": "2026-10-07T18:45:28Z",
-      "primary_item": {
-        "id": "167a38f113a770fc4d3752a7a64939a19b867dac",
-        "title": "NVIDIA 与 Microsoft 发布 RTX Spark 及 DGX Station for Windows，推动 AI Agent 落地 Windows PC",
-        "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
-        "source": "NVIDIA Blog（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_1a3f3ecdacec",
-      "title": "Mistral Large 4 进入 Agent Arena 前十五实验室，排名第 43",
-      "url": "https://x.com/arena/status/2108405474391728357",
-      "primary_url": "https://x.com/arena/status/2108405474391728357",
-      "source": "X：Arena (@arena)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "7b2be2a5f58bcc5cb80e275aa14f9d3fd7b99eef",
-          "title": "Mistral Large 4 进入 Agent Arena 前十五实验室，排名第 43",
-          "url": "https://x.com/arena/status/2108405474391728357",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T03:53:32Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Arena (@arena)"
-      ],
-      "items": [
-        {
-          "id": "7b2be2a5f58bcc5cb80e275aa14f9d3fd7b99eef",
-          "title": "Mistral Large 4 进入 Agent Arena 前十五实验室，排名第 43",
-          "url": "https://x.com/arena/status/2108405474391728357",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T03:53:32Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7409,
-      "importance": 0.7409,
-      "importance_score": 0.7409,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8684,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-09T03:53:32Z",
-      "latest_at": "2026-10-09T03:53:32Z",
-      "primary_item": {
-        "id": "7b2be2a5f58bcc5cb80e275aa14f9d3fd7b99eef",
-        "title": "Mistral Large 4 进入 Agent Arena 前十五实验室，排名第 43",
-        "url": "https://x.com/arena/status/2108405474391728357",
-        "source": "X：Arena (@arena)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_ad34714ca563",
-      "title": "Step 5 Preview 上线 OpenRouter",
-      "url": "https://x.com/OpenRouter/status/2108188953757331803",
-      "primary_url": "https://x.com/OpenRouter/status/2108188953757331803",
-      "source": "X：OpenRouter (@OpenRouter)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "5e3e04deadb3d2fee376b73ea33a296fe42b6dc0",
-          "title": "Step 5 Preview 上线 OpenRouter，输入 $1.00/M、缓存命中仅 $0.05/M",
-          "url": "https://x.com/OpenRouter/status/2108188987357901047",
-          "source": "X：OpenRouter (@OpenRouter)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T13:33:17Z"
-        },
-        {
-          "id": "9f0afed4ed5c186205f656198e8cff2ed9c30b15",
-          "title": "Step 5 Preview 上线 OpenRouter",
-          "url": "https://x.com/OpenRouter/status/2108188953757331803",
-          "source": "X：OpenRouter (@OpenRouter)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T13:33:09Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "X：OpenRouter (@OpenRouter)"
-      ],
-      "items": [
-        {
-          "id": "5e3e04deadb3d2fee376b73ea33a296fe42b6dc0",
-          "title": "Step 5 Preview 上线 OpenRouter，输入 $1.00/M、缓存命中仅 $0.05/M",
-          "url": "https://x.com/OpenRouter/status/2108188987357901047",
-          "source": "X：OpenRouter (@OpenRouter)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T13:33:17Z"
-        },
-        {
-          "id": "9f0afed4ed5c186205f656198e8cff2ed9c30b15",
-          "title": "Step 5 Preview 上线 OpenRouter",
-          "url": "https://x.com/OpenRouter/status/2108188953757331803",
-          "source": "X：OpenRouter (@OpenRouter)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T13:33:09Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.7097,
-      "importance": 0.7097,
-      "importance_score": 0.7097,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.62,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.706,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-08T13:33:09Z",
-      "latest_at": "2026-10-08T13:33:17Z",
-      "primary_item": {
-        "id": "9f0afed4ed5c186205f656198e8cff2ed9c30b15",
-        "title": "Step 5 Preview 上线 OpenRouter",
-        "url": "https://x.com/OpenRouter/status/2108188953757331803",
-        "source": "X：OpenRouter (@OpenRouter)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_50a66e8e1b35",
-      "title": "Zenity 研究人员发现一条提示词即可劫持 AWS 账户内全部 AgentCore 智能体",
-      "url": "https://the-decoder.com/a-single-prompt-was-enough-to-hijack-every-ai-agent-in-an-aws-account-zenity-researchers-found",
-      "primary_url": "https://the-decoder.com/a-single-prompt-was-enough-to-hijack-every-ai-agent-in-an-aws-account-zenity-researchers-found",
-      "source": "The Decoder：AI News（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "53da602216c4fe60a67d386a9ccbd530bab544a0",
-          "title": "Zenity 研究人员发现一条提示词即可劫持 AWS 账户内全部 AgentCore 智能体",
-          "url": "https://the-decoder.com/a-single-prompt-was-enough-to-hijack-every-ai-agent-in-an-aws-account-zenity-researchers-found",
-          "source": "The Decoder：AI News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T13:01:01Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "The Decoder：AI News（RSS）"
-      ],
-      "items": [
-        {
-          "id": "53da602216c4fe60a67d386a9ccbd530bab544a0",
-          "title": "Zenity 研究人员发现一条提示词即可劫持 AWS 账户内全部 AgentCore 智能体",
-          "url": "https://the-decoder.com/a-single-prompt-was-enough-to-hijack-every-ai-agent-in-an-aws-account-zenity-researchers-found",
-          "source": "The Decoder：AI News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T13:01:01Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7377,
-      "importance": 0.7377,
-      "importance_score": 0.7377,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.8,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7006,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-08T13:01:01Z",
-      "latest_at": "2026-10-08T13:01:01Z",
-      "primary_item": {
-        "id": "53da602216c4fe60a67d386a9ccbd530bab544a0",
-        "title": "Zenity 研究人员发现一条提示词即可劫持 AWS 账户内全部 AgentCore 智能体",
-        "url": "https://the-decoder.com/a-single-prompt-was-enough-to-hijack-every-ai-agent-in-an-aws-account-zenity-researchers-found",
-        "source": "The Decoder：AI News（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_1d069709357d",
-      "title": "密歇根大学 EECS 498 AASE 课程解读：把 AI 编程方法论做成五个 Skill",
-      "url": "https://x.com/shao__meng/status/2108384062796873888",
-      "primary_url": "https://x.com/shao__meng/status/2108384062796873888",
-      "source": "X：邵猛 (@shao__meng)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "f862e6ea12845c5f8b9b41dc60fc66279d470595",
-          "title": "密歇根大学 EECS 498 AASE 课程解读：把 AI 编程方法论做成五个 Skill",
-          "url": "https://x.com/shao__meng/status/2108384062796873888",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T02:28:27Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：邵猛 (@shao__meng)"
-      ],
-      "items": [
-        {
-          "id": "f862e6ea12845c5f8b9b41dc60fc66279d470595",
-          "title": "密歇根大学 EECS 498 AASE 课程解读：把 AI 编程方法论做成五个 Skill",
-          "url": "https://x.com/shao__meng/status/2108384062796873888",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T02:28:27Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7377,
-      "importance": 0.7377,
-      "importance_score": 0.7377,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8508,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-09T02:28:27Z",
-      "latest_at": "2026-10-09T02:28:27Z",
-      "primary_item": {
-        "id": "f862e6ea12845c5f8b9b41dc60fc66279d470595",
-        "title": "密歇根大学 EECS 498 AASE 课程解读：把 AI 编程方法论做成五个 Skill",
-        "url": "https://x.com/shao__meng/status/2108384062796873888",
-        "source": "X：邵猛 (@shao__meng)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_bcb2617028fc",
-      "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
-      "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
-      "primary_url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
-      "source": "Google DeepMind：Blog（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "dafa76d6b8e020f913333e4744d7297aeb9f0f9d",
-          "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
-          "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
-          "source": "Google DeepMind：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T19:57:04Z"
-        },
-        {
-          "id": "487f0f1c5dd5571b6871c2ed74bea06ce32bde92",
-          "title": "Google 发布 740M 参数多模态嵌入模型 EmbeddingGemma 2",
-          "url": "https://x.com/Google/status/2107505123941376129",
-          "source": "X：Google (@Google)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T16:15:51Z"
-        },
-        {
-          "id": "d318911354a347d0529787e3cff001fcb2f2a347",
-          "title": "Google 发布开源多模态嵌入模型 EmbeddingGemma 2",
-          "url": "https://x.com/sundarpichai/status/2107501975671890211",
-          "source": "X：Sundar Pichai (@sundarpichai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T16:03:21Z"
-        }
-      ],
-      "source_count": 3,
-      "source_names": [
-        "Google DeepMind：Blog（RSS）",
-        "X：Google (@Google)",
-        "X：Sundar Pichai (@sundarpichai)"
-      ],
-      "items": [
-        {
-          "id": "dafa76d6b8e020f913333e4744d7297aeb9f0f9d",
-          "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
-          "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
-          "source": "Google DeepMind：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T19:57:04Z"
-        },
-        {
-          "id": "487f0f1c5dd5571b6871c2ed74bea06ce32bde92",
-          "title": "Google 发布 740M 参数多模态嵌入模型 EmbeddingGemma 2",
-          "url": "https://x.com/Google/status/2107505123941376129",
-          "source": "X：Google (@Google)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T16:15:51Z"
-        },
-        {
-          "id": "d318911354a347d0529787e3cff001fcb2f2a347",
-          "title": "Google 发布开源多模态嵌入模型 EmbeddingGemma 2",
-          "url": "https://x.com/sundarpichai/status/2107501975671890211",
-          "source": "X：Sundar Pichai (@sundarpichai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T16:03:21Z"
-        }
-      ],
-      "item_count": 3,
-      "duplicate_count": 3,
-      "score": 0.7013,
-      "importance": 0.7013,
-      "importance_score": 0.7013,
-      "importance_label": "多源热议",
-      "importance_breakdown": {
-        "editorial": 0.7,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.3872,
-        "story_heat": 0.5
-      },
-      "category": "multi_source",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-06T16:03:21Z",
-      "latest_at": "2026-10-06T19:57:04Z",
-      "primary_item": {
-        "id": "dafa76d6b8e020f913333e4744d7297aeb9f0f9d",
-        "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
-        "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
-        "source": "Google DeepMind：Blog（RSS）",
         "source_name": "AI HOT"
       }
     }
