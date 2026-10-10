@@ -1,88 +1,8 @@
 {
-  "generated_at": "2026-10-09T23:25:40.076141Z",
+  "generated_at": "2026-10-10T02:37:38.180823Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
-    {
-      "story_id": "story_671951865d8c",
-      "title": "Tibo 发帖称“宣布 ChatGPT”",
-      "url": "https://x.com/thsottiaux/status/2108349826727588000",
-      "primary_url": "https://x.com/thsottiaux/status/2108349826727588000",
-      "source": "X：Tibo (@thsottiaux)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "48ad7c37fc061092c404dd2dc0a6a347bb0e04ce",
-          "title": "Tibo 发帖称“宣布 ChatGPT”",
-          "url": "https://x.com/thsottiaux/status/2108349826727588000",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T00:12:24Z"
-        },
-        {
-          "id": "2932e2401f6cc398ece20dd8e5b36639b029ba1d",
-          "title": "Tibo 宣布发布 ChatGPT",
-          "url": "https://x.com/thsottiaux/status/2108349826727588000",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T00:12:24Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "X：Tibo (@thsottiaux)"
-      ],
-      "items": [
-        {
-          "id": "48ad7c37fc061092c404dd2dc0a6a347bb0e04ce",
-          "title": "Tibo 发帖称“宣布 ChatGPT”",
-          "url": "https://x.com/thsottiaux/status/2108349826727588000",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T00:12:24Z"
-        },
-        {
-          "id": "2932e2401f6cc398ece20dd8e5b36639b029ba1d",
-          "title": "Tibo 宣布发布 ChatGPT",
-          "url": "https://x.com/thsottiaux/status/2108349826727588000",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T00:12:24Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.8073,
-      "importance": 0.8073,
-      "importance_score": 0.8073,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.94,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7151,
-        "story_heat": 0.25
-      },
-      "category": "industry",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-09T00:12:24Z",
-      "latest_at": "2026-10-09T00:12:24Z",
-      "primary_item": {
-        "id": "48ad7c37fc061092c404dd2dc0a6a347bb0e04ce",
-        "title": "Tibo 发帖称“宣布 ChatGPT”",
-        "url": "https://x.com/thsottiaux/status/2108349826727588000",
-        "source": "X：Tibo (@thsottiaux)",
-        "source_name": "AI HOT"
-      }
-    },
     {
       "story_id": "story_6cbde97d8260",
       "title": "OpenAI 在 GitHub 发布 openai/math 仓库，722 份数学手稿引发数学界震荡",
@@ -192,15 +112,15 @@
       ],
       "item_count": 5,
       "duplicate_count": 5,
-      "score": 0.8061,
-      "importance": 0.8061,
-      "importance_score": 0.8061,
+      "score": 0.802,
+      "importance": 0.802,
+      "importance_score": 0.802,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5085,
+        "recency": 0.4856,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -216,6 +136,269 @@
         "title": "OpenAI 在 GitHub 发布 openai/math 仓库，722 份数学手稿引发数学界震荡",
         "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686908&idx=1&sn=29a97b5ff695871a7bf219d3d6bd6487",
         "source": "公众号：数字生命卡兹克",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_671951865d8c",
+      "title": "Tibo 发帖称“宣布 ChatGPT”",
+      "url": "https://x.com/thsottiaux/status/2108349826727588000",
+      "primary_url": "https://x.com/thsottiaux/status/2108349826727588000",
+      "source": "X：Tibo (@thsottiaux)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "48ad7c37fc061092c404dd2dc0a6a347bb0e04ce",
+          "title": "Tibo 发帖称“宣布 ChatGPT”",
+          "url": "https://x.com/thsottiaux/status/2108349826727588000",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T00:12:24Z"
+        },
+        {
+          "id": "2932e2401f6cc398ece20dd8e5b36639b029ba1d",
+          "title": "Tibo 宣布发布 ChatGPT",
+          "url": "https://x.com/thsottiaux/status/2108349826727588000",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T00:12:24Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Tibo (@thsottiaux)"
+      ],
+      "items": [
+        {
+          "id": "48ad7c37fc061092c404dd2dc0a6a347bb0e04ce",
+          "title": "Tibo 发帖称“宣布 ChatGPT”",
+          "url": "https://x.com/thsottiaux/status/2108349826727588000",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T00:12:24Z"
+        },
+        {
+          "id": "2932e2401f6cc398ece20dd8e5b36639b029ba1d",
+          "title": "Tibo 宣布发布 ChatGPT",
+          "url": "https://x.com/thsottiaux/status/2108349826727588000",
+          "source": "X：Tibo (@thsottiaux)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T00:12:24Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.8015,
+      "importance": 0.8015,
+      "importance_score": 0.8015,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.94,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.6828,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-09T00:12:24Z",
+      "latest_at": "2026-10-09T00:12:24Z",
+      "primary_item": {
+        "id": "48ad7c37fc061092c404dd2dc0a6a347bb0e04ce",
+        "title": "Tibo 发帖称“宣布 ChatGPT”",
+        "url": "https://x.com/thsottiaux/status/2108349826727588000",
+        "source": "X：Tibo (@thsottiaux)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_6cd6f5cc677d",
+      "title": "Anthropic 承认难以可靠控制其 AI 智能体，将切断内部评测的实时联网",
+      "url": "https://techcrunch.com/2026/10/09/anthropic-cant-reliably-control-its-ai-agents-its-cutting-off-its-internal-evals-from-the-live-internet-instead",
+      "primary_url": "https://techcrunch.com/2026/10/09/anthropic-cant-reliably-control-its-ai-agents-its-cutting-off-its-internal-evals-from-the-live-internet-instead",
+      "source": "TechCrunch：AI（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "5fffef4c62768a02a0ef4173810cf42d18f3ce7f",
+          "title": "Anthropic 承认难以可靠控制其 AI 智能体，将切断内部评测的实时联网",
+          "url": "https://techcrunch.com/2026/10/09/anthropic-cant-reliably-control-its-ai-agents-its-cutting-off-its-internal-evals-from-the-live-internet-instead",
+          "source": "TechCrunch：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T00:18:32Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "TechCrunch：AI（RSS）"
+      ],
+      "items": [
+        {
+          "id": "5fffef4c62768a02a0ef4173810cf42d18f3ce7f",
+          "title": "Anthropic 承认难以可靠控制其 AI 智能体，将切断内部评测的实时联网",
+          "url": "https://techcrunch.com/2026/10/09/anthropic-cant-reliably-control-its-ai-agents-its-cutting-off-its-internal-evals-from-the-live-internet-instead",
+          "source": "TechCrunch：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T00:18:32Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7857,
+      "importance": 0.7857,
+      "importance_score": 0.7857,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.8,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9671,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-10T00:18:32Z",
+      "latest_at": "2026-10-10T00:18:32Z",
+      "primary_item": {
+        "id": "5fffef4c62768a02a0ef4173810cf42d18f3ce7f",
+        "title": "Anthropic 承认难以可靠控制其 AI 智能体，将切断内部评测的实时联网",
+        "url": "https://techcrunch.com/2026/10/09/anthropic-cant-reliably-control-its-ai-agents-its-cutting-off-its-internal-evals-from-the-live-internet-instead",
+        "source": "TechCrunch：AI（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_b72411781b2c",
+      "title": "Anthropic 向白宫通报 AI 智能体失控事件，曾试图访问美国政府网站",
+      "url": "https://www.ithome.com/1/011/194.htm",
+      "primary_url": "https://www.ithome.com/1/011/194.htm",
+      "source": "IT之家·人工智能",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "bacb542641a8f98b896bae662a55fad5b27e3798",
+          "title": "Anthropic 向白宫通报 AI 智能体失控事件，曾试图访问美国政府网站",
+          "url": "https://www.ithome.com/1/011/194.htm",
+          "source": "IT之家·人工智能",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T01:07:47.053000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "IT之家·人工智能"
+      ],
+      "items": [
+        {
+          "id": "bacb542641a8f98b896bae662a55fad5b27e3798",
+          "title": "Anthropic 向白宫通报 AI 智能体失控事件，曾试图访问美国政府网站",
+          "url": "https://www.ithome.com/1/011/194.htm",
+          "source": "IT之家·人工智能",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T01:07:47.053000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7817,
+      "importance": 0.7817,
+      "importance_score": 0.7817,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.78,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9786,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-10T01:07:47.053000Z",
+      "latest_at": "2026-10-10T01:07:47.053000Z",
+      "primary_item": {
+        "id": "bacb542641a8f98b896bae662a55fad5b27e3798",
+        "title": "Anthropic 向白宫通报 AI 智能体失控事件，曾试图访问美国政府网站",
+        "url": "https://www.ithome.com/1/011/194.htm",
+        "source": "IT之家·人工智能",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_98538a79e69e",
+      "title": "Anthropic 承认模型对自身推理的解释不可作为行为动机的证据",
+      "url": "https://x.com/rohanpaul_ai/status/2108741349419913339",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2108741349419913339",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "9f87a0f945cc58c8a9fa6838aebd33c32f81f476",
+          "title": "Anthropic 承认模型对自身推理的解释不可作为行为动机的证据",
+          "url": "https://x.com/rohanpaul_ai/status/2108741349419913339",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T02:08:10Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "9f87a0f945cc58c8a9fa6838aebd33c32f81f476",
+          "title": "Anthropic 承认模型对自身推理的解释不可作为行为动机的证据",
+          "url": "https://x.com/rohanpaul_ai/status/2108741349419913339",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T02:08:10Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7813,
+      "importance": 0.7813,
+      "importance_score": 0.7813,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.77,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9929,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-10T02:08:10Z",
+      "latest_at": "2026-10-10T02:08:10Z",
+      "primary_item": {
+        "id": "9f87a0f945cc58c8a9fa6838aebd33c32f81f476",
+        "title": "Anthropic 承认模型对自身推理的解释不可作为行为动机的证据",
+        "url": "https://x.com/rohanpaul_ai/status/2108741349419913339",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -254,15 +437,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7825,
-      "importance": 0.7825,
-      "importance_score": 0.7825,
+      "score": 0.775,
+      "importance": 0.775,
+      "importance_score": 0.775,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9159,
+        "recency": 0.8745,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -277,67 +460,6 @@
         "title": "OpenAI 年化收入约 500 亿美元并寻求 300 亿美元新融资",
         "url": "https://the-decoder.com/openai-revenue-keeps-surging-as-company-seeks-30-billion-in-fresh-capital",
         "source": "The Decoder：AI News（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_702ec1f96a32",
-      "title": "Anthropic AI 模型自动化测试中向费城警方网站提交虚构凶杀案线索",
-      "url": "https://x.com/rohanpaul_ai/status/2108681738767740983",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2108681738767740983",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "b94a46dfca12412332148d0e21a676e07200f0ba",
-          "title": "Anthropic AI 模型自动化测试中向费城警方网站提交虚构凶杀案线索",
-          "url": "https://x.com/rohanpaul_ai/status/2108681738767740983",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T22:11:18Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "b94a46dfca12412332148d0e21a676e07200f0ba",
-          "title": "Anthropic AI 模型自动化测试中向费城警方网站提交虚构凶杀案线索",
-          "url": "https://x.com/rohanpaul_ai/status/2108681738767740983",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T22:11:18Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7764,
-      "importance": 0.7764,
-      "importance_score": 0.7764,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.76,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9823,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-09T22:11:18Z",
-      "latest_at": "2026-10-09T22:11:18Z",
-      "primary_item": {
-        "id": "b94a46dfca12412332148d0e21a676e07200f0ba",
-        "title": "Anthropic AI 模型自动化测试中向费城警方网站提交虚构凶杀案线索",
-        "url": "https://x.com/rohanpaul_ai/status/2108681738767740983",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -376,15 +498,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.765,
-      "importance": 0.765,
-      "importance_score": 0.765,
+      "score": 0.7607,
+      "importance": 0.7607,
+      "importance_score": 0.7607,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 1.0,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.5186,
+        "recency": 0.4952,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -437,15 +559,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7627,
-      "importance": 0.7627,
-      "importance_score": 0.7627,
+      "score": 0.7555,
+      "importance": 0.7555,
+      "importance_score": 0.7555,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8896,
+        "recency": 0.8494,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -460,6 +582,67 @@
         "title": "ARC Prize 2026：TUFA Labs 以 88.06% 登顶 ARC-AGI-2 高分榜",
         "url": "https://x.com/arcprize/status/2108578092558250148",
         "source": "X：ARC Prize (@arcprize)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_1133c13e70e8",
+      "title": "Anthropic 报告 Claude 在真实网站上的多起意外行为并暂停内部评测联网",
+      "url": "https://x.com/rohanpaul_ai/status/2108740901581574192",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2108740901581574192",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "14e6e40c1330d525b87c191555b498eebbcc8c3a",
+          "title": "Anthropic 报告 Claude 在真实网站上的多起意外行为并暂停内部评测联网",
+          "url": "https://x.com/rohanpaul_ai/status/2108740901581574192",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T02:06:24Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "14e6e40c1330d525b87c191555b498eebbcc8c3a",
+          "title": "Anthropic 报告 Claude 在真实网站上的多起意外行为并暂停内部评测联网",
+          "url": "https://x.com/rohanpaul_ai/status/2108740901581574192",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T02:06:24Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7753,
+      "importance": 0.7753,
+      "importance_score": 0.7753,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.75,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9925,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-10T02:06:24Z",
+      "latest_at": "2026-10-10T02:06:24Z",
+      "primary_item": {
+        "id": "14e6e40c1330d525b87c191555b498eebbcc8c3a",
+        "title": "Anthropic 报告 Claude 在真实网站上的多起意外行为并暂停内部评测联网",
+        "url": "https://x.com/rohanpaul_ai/status/2108740901581574192",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -517,15 +700,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7408,
-      "importance": 0.7408,
-      "importance_score": 0.7408,
+      "score": 0.7371,
+      "importance": 0.7371,
+      "importance_score": 0.7371,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.87,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4624,
+        "recency": 0.4415,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -540,6 +723,66 @@
         "title": "OpenAI 向全部 ChatGPT 用户推出 GPT-6 与 Intelligent UI",
         "url": "https://openai.com/index/gpt-6-for-everyone",
         "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_45dd3e093018",
+      "title": "Lee Robinson 在斯坦福 CS146S 讲座视频发布，详解常驻式主动智能体的工作原理",
+      "url": "https://x.com/shao__meng/status/2108738979277471813",
+      "primary_url": "https://x.com/shao__meng/status/2108738979277471813",
+      "source": "X：邵猛 (@shao__meng)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "46ea1c4f725bbee232312b7f43452afab2e3a971",
+          "title": "Lee Robinson 在斯坦福 CS146S 讲座视频发布，详解常驻式主动智能体的工作原理",
+          "url": "https://x.com/shao__meng/status/2108738979277471813",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T01:58:45Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：邵猛 (@shao__meng)"
+      ],
+      "items": [
+        {
+          "id": "46ea1c4f725bbee232312b7f43452afab2e3a971",
+          "title": "Lee Robinson 在斯坦福 CS146S 讲座视频发布，详解常驻式主动智能体的工作原理",
+          "url": "https://x.com/shao__meng/status/2108738979277471813",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T01:58:45Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7359,
+      "importance": 0.7359,
+      "importance_score": 0.7359,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.62,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9907,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-10T01:58:45Z",
+      "latest_at": "2026-10-10T01:58:45Z",
+      "primary_item": {
+        "id": "46ea1c4f725bbee232312b7f43452afab2e3a971",
+        "title": "Lee Robinson 在斯坦福 CS146S 讲座视频发布，详解常驻式主动智能体的工作原理",
+        "url": "https://x.com/shao__meng/status/2108738979277471813",
+        "source": "X：邵猛 (@shao__meng)",
         "source_name": "AI HOT"
       }
     },
@@ -614,15 +857,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.7406,
-      "importance": 0.7406,
-      "importance_score": 0.7406,
+      "score": 0.735,
+      "importance": 0.735,
+      "importance_score": 0.735,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.65,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6889,
+        "recency": 0.6577,
         "story_heat": 0.5
       },
       "category": "multi_source",
@@ -675,15 +918,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7377,
-      "importance": 0.7377,
-      "importance_score": 0.7377,
+      "score": 0.73,
+      "importance": 0.73,
+      "importance_score": 0.73,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.65,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9508,
+        "recency": 0.9079,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -735,15 +978,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7372,
-      "importance": 0.7372,
-      "importance_score": 0.7372,
+      "score": 0.7292,
+      "importance": 0.7292,
+      "importance_score": 0.7292,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9812,
+        "recency": 0.9369,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -761,482 +1004,63 @@
       }
     },
     {
-      "story_id": "story_13d9d250f0af",
-      "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
-      "url": "https://www.ithome.com/1/010/751.htm",
-      "primary_url": "https://www.ithome.com/1/010/751.htm",
-      "source": "IT之家·人工智能",
+      "story_id": "story_702ec1f96a32",
+      "title": "Anthropic AI 模型自动化测试中向费城警方网站提交虚构凶杀案线索",
+      "url": "https://x.com/rohanpaul_ai/status/2108681738767740983",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2108681738767740983",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "67c26722df40bfae1ce6f077d6d26fd5d2e21d60",
-          "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
-          "url": "https://www.ithome.com/1/010/751.htm",
-          "source": "IT之家·人工智能",
+          "id": "b94a46dfca12412332148d0e21a676e07200f0ba",
+          "title": "Anthropic AI 模型自动化测试中向费城警方网站提交虚构凶杀案线索",
+          "url": "https://x.com/rohanpaul_ai/status/2108681738767740983",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-08T23:02:44.683000Z"
+          "published_at": "2026-10-09T22:11:18Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "IT之家·人工智能"
+        "X：Rohan Paul (@rohanpaul_ai)"
       ],
       "items": [
         {
-          "id": "67c26722df40bfae1ce6f077d6d26fd5d2e21d60",
-          "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
-          "url": "https://www.ithome.com/1/010/751.htm",
-          "source": "IT之家·人工智能",
+          "id": "b94a46dfca12412332148d0e21a676e07200f0ba",
+          "title": "Anthropic AI 模型自动化测试中向费城警方网站提交虚构凶杀案线索",
+          "url": "https://x.com/rohanpaul_ai/status/2108681738767740983",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-08T23:02:44.683000Z"
+          "published_at": "2026-10-09T22:11:18Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7322,
-      "importance": 0.7322,
-      "importance_score": 0.7322,
+      "score": 0.7684,
+      "importance": 0.7684,
+      "importance_score": 0.7684,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.78,
+        "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7032,
+        "recency": 0.9379,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance"
+        "high_ai_relevance",
+        "high_importance"
       ],
-      "earliest_at": "2026-10-08T23:02:44.683000Z",
-      "latest_at": "2026-10-08T23:02:44.683000Z",
+      "earliest_at": "2026-10-09T22:11:18Z",
+      "latest_at": "2026-10-09T22:11:18Z",
       "primary_item": {
-        "id": "67c26722df40bfae1ce6f077d6d26fd5d2e21d60",
-        "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
-        "url": "https://www.ithome.com/1/010/751.htm",
-        "source": "IT之家·人工智能",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_ab5c5157668c",
-      "title": "阶跃星辰 Step 5 Preview 上 Nous Portal 免费开放一周",
-      "url": "https://x.com/StepFun_ai/status/2108671660840894652",
-      "primary_url": "https://x.com/StepFun_ai/status/2108671660840894652",
-      "source": "X：阶跃星辰 StepFun (@StepFun_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "9267c4ac452c299a9b62a3048dcdacc1b988d677",
-          "title": "阶跃星辰 Step 5 Preview 上 Nous Portal 免费开放一周",
-          "url": "https://x.com/StepFun_ai/status/2108671660840894652",
-          "source": "X：阶跃星辰 StepFun (@StepFun_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T21:31:15Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：阶跃星辰 StepFun (@StepFun_ai)"
-      ],
-      "items": [
-        {
-          "id": "9267c4ac452c299a9b62a3048dcdacc1b988d677",
-          "title": "阶跃星辰 Step 5 Preview 上 Nous Portal 免费开放一周",
-          "url": "https://x.com/StepFun_ai/status/2108671660840894652",
-          "source": "X：阶跃星辰 StepFun (@StepFun_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T21:31:15Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7267,
-      "importance": 0.7267,
-      "importance_score": 0.7267,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.6,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9728,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-09T21:31:15Z",
-      "latest_at": "2026-10-09T21:31:15Z",
-      "primary_item": {
-        "id": "9267c4ac452c299a9b62a3048dcdacc1b988d677",
-        "title": "阶跃星辰 Step 5 Preview 上 Nous Portal 免费开放一周",
-        "url": "https://x.com/StepFun_ai/status/2108671660840894652",
-        "source": "X：阶跃星辰 StepFun (@StepFun_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_27e99f3d8f98",
-      "title": "Epoch AI 发布 InnovationEval 评测：前沿模型仅达到人类论文 SDPO 增益的 15%",
-      "url": "https://epochai.substack.com/p/can-ai-automate-ai-r-and-d-yet",
-      "primary_url": "https://epochai.substack.com/p/can-ai-automate-ai-r-and-d-yet",
-      "source": "Epoch AI：Gradient Updates（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "5cbb0d656643d05afd840ba27d4abe7983e3e59a",
-          "title": "Epoch AI 发布 InnovationEval 评测：前沿模型仅达到人类论文 SDPO 增益的 15%",
-          "url": "https://epochai.substack.com/p/can-ai-automate-ai-r-and-d-yet",
-          "source": "Epoch AI：Gradient Updates（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T18:41:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Epoch AI：Gradient Updates（RSS）"
-      ],
-      "items": [
-        {
-          "id": "5cbb0d656643d05afd840ba27d4abe7983e3e59a",
-          "title": "Epoch AI 发布 InnovationEval 评测：前沿模型仅达到人类论文 SDPO 增益的 15%",
-          "url": "https://epochai.substack.com/p/can-ai-automate-ai-r-and-d-yet",
-          "source": "Epoch AI：Gradient Updates（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T18:41:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7257,
-      "importance": 0.7257,
-      "importance_score": 0.7257,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.62,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9338,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-09T18:41:00Z",
-      "latest_at": "2026-10-09T18:41:00Z",
-      "primary_item": {
-        "id": "5cbb0d656643d05afd840ba27d4abe7983e3e59a",
-        "title": "Epoch AI 发布 InnovationEval 评测：前沿模型仅达到人类论文 SDPO 增益的 15%",
-        "url": "https://epochai.substack.com/p/can-ai-automate-ai-r-and-d-yet",
-        "source": "Epoch AI：Gradient Updates（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_ae6c46aa1c21",
-      "title": "Microsoft-Decision-1 决策模型上线 OpenRouter",
-      "url": "https://x.com/OpenRouter/status/2108689756372775370",
-      "primary_url": "https://x.com/OpenRouter/status/2108689756372775370",
-      "source": "X：OpenRouter (@OpenRouter)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "446e418306dab4c77c42ab397711e48a56eaa4d4",
-          "title": "Microsoft-Decision-1 决策模型上线 OpenRouter",
-          "url": "https://x.com/OpenRouter/status/2108689756372775370",
-          "source": "X：OpenRouter (@OpenRouter)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T22:43:10Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：OpenRouter (@OpenRouter)"
-      ],
-      "items": [
-        {
-          "id": "446e418306dab4c77c42ab397711e48a56eaa4d4",
-          "title": "Microsoft-Decision-1 决策模型上线 OpenRouter",
-          "url": "https://x.com/OpenRouter/status/2108689756372775370",
-          "source": "X：OpenRouter (@OpenRouter)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T22:43:10Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7238,
-      "importance": 0.7238,
-      "importance_score": 0.7238,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.58,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9898,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-09T22:43:10Z",
-      "latest_at": "2026-10-09T22:43:10Z",
-      "primary_item": {
-        "id": "446e418306dab4c77c42ab397711e48a56eaa4d4",
-        "title": "Microsoft-Decision-1 决策模型上线 OpenRouter",
-        "url": "https://x.com/OpenRouter/status/2108689756372775370",
-        "source": "X：OpenRouter (@OpenRouter)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_57449f94a0f2",
-      "title": "Anthropic 将 Claude Managed Agents 的动态工作流扩展至公开测试",
-      "url": "https://x.com/testingcatalog/status/2108597580435231118",
-      "primary_url": "https://x.com/testingcatalog/status/2108597580435231118",
-      "source": "X：Testing Catalog (@testingcatalog)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "f0ad2970bd750db9921cd8cfecf09431a5366809",
-          "title": "Anthropic 将 Claude Managed Agents 的动态工作流扩展至公开测试",
-          "url": "https://x.com/testingcatalog/status/2108597580435231118",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T16:36:53Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Testing Catalog (@testingcatalog)"
-      ],
-      "items": [
-        {
-          "id": "f0ad2970bd750db9921cd8cfecf09431a5366809",
-          "title": "Anthropic 将 Claude Managed Agents 的动态工作流扩展至公开测试",
-          "url": "https://x.com/testingcatalog/status/2108597580435231118",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T16:36:53Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7237,
-      "importance": 0.7237,
-      "importance_score": 0.7237,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.63,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9063,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-09T16:36:53Z",
-      "latest_at": "2026-10-09T16:36:53Z",
-      "primary_item": {
-        "id": "f0ad2970bd750db9921cd8cfecf09431a5366809",
-        "title": "Anthropic 将 Claude Managed Agents 的动态工作流扩展至公开测试",
-        "url": "https://x.com/testingcatalog/status/2108597580435231118",
-        "source": "X：Testing Catalog (@testingcatalog)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_9be053aa35af",
-      "title": "Ethan Mollick 分享 AI 辅助学习随机实验结果：辅导式使用提升测试成绩且一周后仍有保留",
-      "url": "https://x.com/emollick/status/2108594749305135613",
-      "primary_url": "https://x.com/emollick/status/2108594749305135613",
-      "source": "X：Ethan Mollick (@emollick)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "86ec841cffed6c0a9f8db24ffecea0df3ef25d95",
-          "title": "Ethan Mollick 分享 AI 辅助学习随机实验结果：辅导式使用提升测试成绩且一周后仍有保留",
-          "url": "https://x.com/emollick/status/2108594749305135613",
-          "source": "X：Ethan Mollick (@emollick)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T16:25:38Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Ethan Mollick (@emollick)"
-      ],
-      "items": [
-        {
-          "id": "86ec841cffed6c0a9f8db24ffecea0df3ef25d95",
-          "title": "Ethan Mollick 分享 AI 辅助学习随机实验结果：辅导式使用提升测试成绩且一周后仍有保留",
-          "url": "https://x.com/emollick/status/2108594749305135613",
-          "source": "X：Ethan Mollick (@emollick)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T16:25:38Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7233,
-      "importance": 0.7233,
-      "importance_score": 0.7233,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.63,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9038,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-09T16:25:38Z",
-      "latest_at": "2026-10-09T16:25:38Z",
-      "primary_item": {
-        "id": "86ec841cffed6c0a9f8db24ffecea0df3ef25d95",
-        "title": "Ethan Mollick 分享 AI 辅助学习随机实验结果：辅导式使用提升测试成绩且一周后仍有保留",
-        "url": "https://x.com/emollick/status/2108594749305135613",
-        "source": "X：Ethan Mollick (@emollick)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_e275239758e4",
-      "title": "斯坦福 CS146S 第三周课程公开：Agent Skills 与 CLI",
-      "url": "https://x.com/shao__meng/status/2108400281402908960",
-      "primary_url": "https://x.com/shao__meng/status/2108400281402908960",
-      "source": "X：邵猛 (@shao__meng)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "b03aea29a93e3dfb38a87b99a10dad6ff7f92bd1",
-          "title": "斯坦福 CS146S 第三周课程公开：Agent Skills 与 CLI",
-          "url": "https://x.com/shao__meng/status/2108400281402908960",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T03:32:53Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：邵猛 (@shao__meng)"
-      ],
-      "items": [
-        {
-          "id": "b03aea29a93e3dfb38a87b99a10dad6ff7f92bd1",
-          "title": "斯坦福 CS146S 第三周课程公开：Agent Skills 与 CLI",
-          "url": "https://x.com/shao__meng/status/2108400281402908960",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T03:32:53Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7227,
-      "importance": 0.7227,
-      "importance_score": 0.7227,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.72,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7505,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-09T03:32:53Z",
-      "latest_at": "2026-10-09T03:32:53Z",
-      "primary_item": {
-        "id": "b03aea29a93e3dfb38a87b99a10dad6ff7f92bd1",
-        "title": "斯坦福 CS146S 第三周课程公开：Agent Skills 与 CLI",
-        "url": "https://x.com/shao__meng/status/2108400281402908960",
-        "source": "X：邵猛 (@shao__meng)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_7bff145dd415",
-      "title": "OpenAI 研究负责人发声明回应三名员工离职争议",
-      "url": "https://x.com/OpenAINewsroom/status/2108441580806025712",
-      "primary_url": "https://x.com/OpenAINewsroom/status/2108441580806025712",
-      "source": "X：OpenAI Newsroom (@OpenAINewsroom)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "c9a79fec44485cd24f540e96e9add155d83d27c6",
-          "title": "OpenAI 研究负责人发声明回应三名员工离职争议",
-          "url": "https://x.com/OpenAINewsroom/status/2108441580806025712",
-          "source": "X：OpenAI Newsroom (@OpenAINewsroom)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T06:17:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：OpenAI Newsroom (@OpenAINewsroom)"
-      ],
-      "items": [
-        {
-          "id": "c9a79fec44485cd24f540e96e9add155d83d27c6",
-          "title": "OpenAI 研究负责人发声明回应三名员工离职争议",
-          "url": "https://x.com/OpenAINewsroom/status/2108441580806025712",
-          "source": "X：OpenAI Newsroom (@OpenAINewsroom)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T06:17:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7221,
-      "importance": 0.7221,
-      "importance_score": 0.7221,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.7,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7807,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-09T06:17:00Z",
-      "latest_at": "2026-10-09T06:17:00Z",
-      "primary_item": {
-        "id": "c9a79fec44485cd24f540e96e9add155d83d27c6",
-        "title": "OpenAI 研究负责人发声明回应三名员工离职争议",
-        "url": "https://x.com/OpenAINewsroom/status/2108441580806025712",
-        "source": "X：OpenAI Newsroom (@OpenAINewsroom)",
+        "id": "b94a46dfca12412332148d0e21a676e07200f0ba",
+        "title": "Anthropic AI 模型自动化测试中向费城警方网站提交虚构凶杀案线索",
+        "url": "https://x.com/rohanpaul_ai/status/2108681738767740983",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -1293,15 +1117,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7057,
-      "importance": 0.7057,
-      "importance_score": 0.7057,
+      "score": 0.7019,
+      "importance": 0.7019,
+      "importance_score": 0.7019,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4674,
+        "recency": 0.4463,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1320,62 +1144,281 @@
       }
     },
     {
-      "story_id": "story_e0cdd0dabadc",
-      "title": "OpenAI 三次否认解雇三名安全研究员与提出安全担忧有关",
-      "url": "https://x.com/rohanpaul_ai/status/2108484237460722121",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2108484237460722121",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "story_id": "story_9a3494f049dc",
+      "title": "部分数学家呼吁抵制 OpenAI，AI 生成的数学证明涌入数学领域",
+      "url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
+      "primary_url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
+      "source": "The Decoder：AI News（RSS）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "190866a81d79a6f64009c03951740c76b50a937c",
-          "title": "OpenAI 三次否认解雇三名安全研究员与提出安全担忧有关",
-          "url": "https://x.com/rohanpaul_ai/status/2108484237460722121",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "9a6c1abc58143cba093d6c4646fff1acfcfe9a66",
+          "title": "部分数学家呼吁抵制 OpenAI，AI 生成的数学证明涌入数学领域",
+          "url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
+          "source": "The Decoder：AI News（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-09T09:06:30Z"
+          "published_at": "2026-10-08T18:17:07Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
+        "The Decoder：AI News（RSS）"
       ],
       "items": [
         {
-          "id": "190866a81d79a6f64009c03951740c76b50a937c",
-          "title": "OpenAI 三次否认解雇三名安全研究员与提出安全担忧有关",
-          "url": "https://x.com/rohanpaul_ai/status/2108484237460722121",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "9a6c1abc58143cba093d6c4646fff1acfcfe9a66",
+          "title": "部分数学家呼吁抵制 OpenAI，AI 生成的数学证明涌入数学领域",
+          "url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
+          "source": "The Decoder：AI News（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-09T09:06:30Z"
+          "published_at": "2026-10-08T18:17:07Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.734,
-      "importance": 0.734,
-      "importance_score": 0.734,
+      "score": 0.7274,
+      "importance": 0.7274,
+      "importance_score": 0.7274,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.72,
+        "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8132,
+        "recency": 0.6269,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-09T09:06:30Z",
-      "latest_at": "2026-10-09T09:06:30Z",
+      "earliest_at": "2026-10-08T18:17:07Z",
+      "latest_at": "2026-10-08T18:17:07Z",
       "primary_item": {
-        "id": "190866a81d79a6f64009c03951740c76b50a937c",
-        "title": "OpenAI 三次否认解雇三名安全研究员与提出安全担忧有关",
-        "url": "https://x.com/rohanpaul_ai/status/2108484237460722121",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "id": "9a6c1abc58143cba093d6c4646fff1acfcfe9a66",
+        "title": "部分数学家呼吁抵制 OpenAI，AI 生成的数学证明涌入数学领域",
+        "url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
+        "source": "The Decoder：AI News（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_13d9d250f0af",
+      "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
+      "url": "https://www.ithome.com/1/010/751.htm",
+      "primary_url": "https://www.ithome.com/1/010/751.htm",
+      "source": "IT之家·人工智能",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "67c26722df40bfae1ce6f077d6d26fd5d2e21d60",
+          "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
+          "url": "https://www.ithome.com/1/010/751.htm",
+          "source": "IT之家·人工智能",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T23:02:44.683000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "IT之家·人工智能"
+      ],
+      "items": [
+        {
+          "id": "67c26722df40bfae1ce6f077d6d26fd5d2e21d60",
+          "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
+          "url": "https://www.ithome.com/1/010/751.htm",
+          "source": "IT之家·人工智能",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T23:02:44.683000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7265,
+      "importance": 0.7265,
+      "importance_score": 0.7265,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.78,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.6715,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-08T23:02:44.683000Z",
+      "latest_at": "2026-10-08T23:02:44.683000Z",
+      "primary_item": {
+        "id": "67c26722df40bfae1ce6f077d6d26fd5d2e21d60",
+        "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
+        "url": "https://www.ithome.com/1/010/751.htm",
+        "source": "IT之家·人工智能",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_db7f7383f723",
+      "title": "Paul Vann 发布 4 个可直接使用的 Grok Bot 模板，覆盖产品发布、威胁猎捕、威胁情报与 X API 开发",
+      "url": "https://x.com/shao__meng/status/2108741985284895153",
+      "primary_url": "https://x.com/shao__meng/status/2108741985284895153",
+      "source": "X：邵猛 (@shao__meng)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "6c46803a2517333b74eff6b0ec8b61353dd10af7",
+          "title": "Paul Vann 发布 4 个可直接使用的 Grok Bot 模板，覆盖产品发布、威胁猎捕、威胁情报与 X API 开发",
+          "url": "https://x.com/shao__meng/status/2108741985284895153",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T02:10:42Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：邵猛 (@shao__meng)"
+      ],
+      "items": [
+        {
+          "id": "6c46803a2517333b74eff6b0ec8b61353dd10af7",
+          "title": "Paul Vann 发布 4 个可直接使用的 Grok Bot 模板，覆盖产品发布、威胁猎捕、威胁情报与 X API 开发",
+          "url": "https://x.com/shao__meng/status/2108741985284895153",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T02:10:42Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7244,
+      "importance": 0.7244,
+      "importance_score": 0.7244,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.58,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9935,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-10T02:10:42Z",
+      "latest_at": "2026-10-10T02:10:42Z",
+      "primary_item": {
+        "id": "6c46803a2517333b74eff6b0ec8b61353dd10af7",
+        "title": "Paul Vann 发布 4 个可直接使用的 Grok Bot 模板，覆盖产品发布、威胁猎捕、威胁情报与 X API 开发",
+        "url": "https://x.com/shao__meng/status/2108741985284895153",
+        "source": "X：邵猛 (@shao__meng)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_bcb2617028fc",
+      "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
+      "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
+      "primary_url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
+      "source": "Google DeepMind：Blog（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "dafa76d6b8e020f913333e4744d7297aeb9f0f9d",
+          "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
+          "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
+          "source": "Google DeepMind：Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T19:57:04Z"
+        },
+        {
+          "id": "487f0f1c5dd5571b6871c2ed74bea06ce32bde92",
+          "title": "Google 发布 740M 参数多模态嵌入模型 EmbeddingGemma 2",
+          "url": "https://x.com/Google/status/2107505123941376129",
+          "source": "X：Google (@Google)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T16:15:51Z"
+        },
+        {
+          "id": "d318911354a347d0529787e3cff001fcb2f2a347",
+          "title": "Google 发布开源多模态嵌入模型 EmbeddingGemma 2",
+          "url": "https://x.com/sundarpichai/status/2107501975671890211",
+          "source": "X：Sundar Pichai (@sundarpichai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T16:03:21Z"
+        }
+      ],
+      "source_count": 3,
+      "source_names": [
+        "Google DeepMind：Blog（RSS）",
+        "X：Google (@Google)",
+        "X：Sundar Pichai (@sundarpichai)"
+      ],
+      "items": [
+        {
+          "id": "dafa76d6b8e020f913333e4744d7297aeb9f0f9d",
+          "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
+          "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
+          "source": "Google DeepMind：Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T19:57:04Z"
+        },
+        {
+          "id": "487f0f1c5dd5571b6871c2ed74bea06ce32bde92",
+          "title": "Google 发布 740M 参数多模态嵌入模型 EmbeddingGemma 2",
+          "url": "https://x.com/Google/status/2107505123941376129",
+          "source": "X：Google (@Google)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T16:15:51Z"
+        },
+        {
+          "id": "d318911354a347d0529787e3cff001fcb2f2a347",
+          "title": "Google 发布开源多模态嵌入模型 EmbeddingGemma 2",
+          "url": "https://x.com/sundarpichai/status/2107501975671890211",
+          "source": "X：Sundar Pichai (@sundarpichai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-06T16:03:21Z"
+        }
+      ],
+      "item_count": 3,
+      "duplicate_count": 3,
+      "score": 0.6894,
+      "importance": 0.6894,
+      "importance_score": 0.6894,
+      "importance_label": "多源热议",
+      "importance_breakdown": {
+        "editorial": 0.7,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.3211,
+        "story_heat": 0.5
+      },
+      "category": "multi_source",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-06T16:03:21Z",
+      "latest_at": "2026-10-06T19:57:04Z",
+      "primary_item": {
+        "id": "dafa76d6b8e020f913333e4744d7297aeb9f0f9d",
+        "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
+        "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
+        "source": "Google DeepMind：Blog（RSS）",
         "source_name": "AI HOT"
       }
     }
