@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-10T02:37:38.180823Z",
+  "generated_at": "2026-10-10T09:40:26.906319Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -112,15 +112,15 @@
       ],
       "item_count": 5,
       "duplicate_count": 5,
-      "score": 0.802,
-      "importance": 0.802,
-      "importance_score": 0.802,
+      "score": 0.7935,
+      "importance": 0.7935,
+      "importance_score": 0.7935,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4856,
+        "recency": 0.4386,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -192,15 +192,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.8015,
-      "importance": 0.8015,
-      "importance_score": 0.8015,
+      "score": 0.7896,
+      "importance": 0.7896,
+      "importance_score": 0.7896,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.94,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6828,
+        "recency": 0.6168,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -216,6 +216,67 @@
         "title": "Tibo 发帖称“宣布 ChatGPT”",
         "url": "https://x.com/thsottiaux/status/2108349826727588000",
         "source": "X：Tibo (@thsottiaux)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_83a5417202a3",
+      "title": "State of AI Report 2026 速读：AI 加速 AI、千亿收入、电力瓶颈与安全",
+      "url": "https://x.com/indigox/status/2108791275914993998",
+      "primary_url": "https://x.com/indigox/status/2108791275914993998",
+      "source": "X：indigo (@indigox)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "8767310b69dd7c77de9607e0656310de88ba3daf",
+          "title": "State of AI Report 2026 速读：AI 加速 AI、千亿收入、电力瓶颈与安全",
+          "url": "https://x.com/indigox/status/2108791275914993998",
+          "source": "X：indigo (@indigox)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T05:26:34Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：indigo (@indigox)"
+      ],
+      "items": [
+        {
+          "id": "8767310b69dd7c77de9607e0656310de88ba3daf",
+          "title": "State of AI Report 2026 速读：AI 加速 AI、千亿收入、电力瓶颈与安全",
+          "url": "https://x.com/indigox/status/2108791275914993998",
+          "source": "X：indigo (@indigox)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T05:26:34Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7839,
+      "importance": 0.7839,
+      "importance_score": 0.7839,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.81,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9407,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-10T05:26:34Z",
+      "latest_at": "2026-10-10T05:26:34Z",
+      "primary_item": {
+        "id": "8767310b69dd7c77de9607e0656310de88ba3daf",
+        "title": "State of AI Report 2026 速读：AI 加速 AI、千亿收入、电力瓶颈与安全",
+        "url": "https://x.com/indigox/status/2108791275914993998",
+        "source": "X：indigo (@indigox)",
         "source_name": "AI HOT"
       }
     },
@@ -254,15 +315,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7857,
-      "importance": 0.7857,
-      "importance_score": 0.7857,
+      "score": 0.7688,
+      "importance": 0.7688,
+      "importance_score": 0.7688,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.8,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9671,
+        "recency": 0.8735,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -315,15 +376,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7817,
-      "importance": 0.7817,
-      "importance_score": 0.7817,
+      "score": 0.7647,
+      "importance": 0.7647,
+      "importance_score": 0.7647,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9786,
+        "recency": 0.8839,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -376,15 +437,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7813,
-      "importance": 0.7813,
-      "importance_score": 0.7813,
+      "score": 0.764,
+      "importance": 0.764,
+      "importance_score": 0.764,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9929,
+        "recency": 0.8969,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -437,15 +498,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.775,
-      "importance": 0.775,
-      "importance_score": 0.775,
+      "score": 0.7598,
+      "importance": 0.7598,
+      "importance_score": 0.7598,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8745,
+        "recency": 0.7899,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -460,6 +521,67 @@
         "title": "OpenAI 年化收入约 500 亿美元并寻求 300 亿美元新融资",
         "url": "https://the-decoder.com/openai-revenue-keeps-surging-as-company-seeks-30-billion-in-fresh-capital",
         "source": "The Decoder：AI News（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_4f46b90875e0",
+      "title": "Lee Robinson 斯坦福 CS146S 讲座详解常驻智能体架构与上下文工程",
+      "url": "https://x.com/shao__meng/status/2108760694665691284",
+      "primary_url": "https://x.com/shao__meng/status/2108760694665691284",
+      "source": "X：邵猛 (@shao__meng)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "a82d69238e56213b1587013028231b0706b9834d",
+          "title": "Lee Robinson 斯坦福 CS146S 讲座详解常驻智能体架构与上下文工程",
+          "url": "https://x.com/shao__meng/status/2108760694665691284",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T03:25:03Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：邵猛 (@shao__meng)"
+      ],
+      "items": [
+        {
+          "id": "a82d69238e56213b1587013028231b0706b9834d",
+          "title": "Lee Robinson 斯坦福 CS146S 讲座详解常驻智能体架构与上下文工程",
+          "url": "https://x.com/shao__meng/status/2108760694665691284",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T03:25:03Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7581,
+      "importance": 0.7581,
+      "importance_score": 0.7581,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.74,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9136,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-10T03:25:03Z",
+      "latest_at": "2026-10-10T03:25:03Z",
+      "primary_item": {
+        "id": "a82d69238e56213b1587013028231b0706b9834d",
+        "title": "Lee Robinson 斯坦福 CS146S 讲座详解常驻智能体架构与上下文工程",
+        "url": "https://x.com/shao__meng/status/2108760694665691284",
+        "source": "X：邵猛 (@shao__meng)",
         "source_name": "AI HOT"
       }
     },
@@ -498,15 +620,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7607,
-      "importance": 0.7607,
-      "importance_score": 0.7607,
+      "score": 0.7521,
+      "importance": 0.7521,
+      "importance_score": 0.7521,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 1.0,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4952,
+        "recency": 0.4473,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -559,21 +681,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7555,
-      "importance": 0.7555,
-      "importance_score": 0.7555,
+      "score": 0.7407,
+      "importance": 0.7407,
+      "importance_score": 0.7407,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8494,
+        "recency": 0.7672,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-09T15:19:27Z",
       "latest_at": "2026-10-09T15:19:27Z",
@@ -582,67 +703,6 @@
         "title": "ARC Prize 2026：TUFA Labs 以 88.06% 登顶 ARC-AGI-2 高分榜",
         "url": "https://x.com/arcprize/status/2108578092558250148",
         "source": "X：ARC Prize (@arcprize)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_1133c13e70e8",
-      "title": "Anthropic 报告 Claude 在真实网站上的多起意外行为并暂停内部评测联网",
-      "url": "https://x.com/rohanpaul_ai/status/2108740901581574192",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2108740901581574192",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "14e6e40c1330d525b87c191555b498eebbcc8c3a",
-          "title": "Anthropic 报告 Claude 在真实网站上的多起意外行为并暂停内部评测联网",
-          "url": "https://x.com/rohanpaul_ai/status/2108740901581574192",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-10T02:06:24Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "14e6e40c1330d525b87c191555b498eebbcc8c3a",
-          "title": "Anthropic 报告 Claude 在真实网站上的多起意外行为并暂停内部评测联网",
-          "url": "https://x.com/rohanpaul_ai/status/2108740901581574192",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-10T02:06:24Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7753,
-      "importance": 0.7753,
-      "importance_score": 0.7753,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.75,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9925,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-10T02:06:24Z",
-      "latest_at": "2026-10-10T02:06:24Z",
-      "primary_item": {
-        "id": "14e6e40c1330d525b87c191555b498eebbcc8c3a",
-        "title": "Anthropic 报告 Claude 在真实网站上的多起意外行为并暂停内部评测联网",
-        "url": "https://x.com/rohanpaul_ai/status/2108740901581574192",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -700,15 +760,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7371,
-      "importance": 0.7371,
-      "importance_score": 0.7371,
+      "score": 0.7294,
+      "importance": 0.7294,
+      "importance_score": 0.7294,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.87,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4415,
+        "recency": 0.3988,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -727,21 +787,142 @@
       }
     },
     {
-      "story_id": "story_45dd3e093018",
-      "title": "Lee Robinson 在斯坦福 CS146S 讲座视频发布，详解常驻式主动智能体的工作原理",
-      "url": "https://x.com/shao__meng/status/2108738979277471813",
-      "primary_url": "https://x.com/shao__meng/status/2108738979277471813",
+      "story_id": "story_26f07ef06ef8",
+      "title": "卡兹克花5天用AI改造公司：自建以Agent为原生的企业中台",
+      "url": "https://x.com/Khazix0918/status/2108800048050106751",
+      "primary_url": "https://x.com/Khazix0918/status/2108800048050106751",
+      "source": "X：卡兹克 (@Khazix0918)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "6c8f6b0c5cd1f0284c042661acf247a0b667d497",
+          "title": "卡兹克花5天用AI改造公司：自建以Agent为原生的企业中台",
+          "url": "https://x.com/Khazix0918/status/2108800048050106751",
+          "source": "X：卡兹克 (@Khazix0918)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T06:01:25Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：卡兹克 (@Khazix0918)"
+      ],
+      "items": [
+        {
+          "id": "6c8f6b0c5cd1f0284c042661acf247a0b667d497",
+          "title": "卡兹克花5天用AI改造公司：自建以Agent为原生的企业中台",
+          "url": "https://x.com/Khazix0918/status/2108800048050106751",
+          "source": "X：卡兹克 (@Khazix0918)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T06:01:25Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7284,
+      "importance": 0.7284,
+      "importance_score": 0.7284,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.62,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9486,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-10T06:01:25Z",
+      "latest_at": "2026-10-10T06:01:25Z",
+      "primary_item": {
+        "id": "6c8f6b0c5cd1f0284c042661acf247a0b667d497",
+        "title": "卡兹克花5天用AI改造公司：自建以Agent为原生的企业中台",
+        "url": "https://x.com/Khazix0918/status/2108800048050106751",
+        "source": "X：卡兹克 (@Khazix0918)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_1133c13e70e8",
+      "title": "Anthropic 报告 Claude 在真实网站上的多起意外行为并暂停内部评测联网",
+      "url": "https://x.com/rohanpaul_ai/status/2108740901581574192",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2108740901581574192",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "14e6e40c1330d525b87c191555b498eebbcc8c3a",
+          "title": "Anthropic 报告 Claude 在真实网站上的多起意外行为并暂停内部评测联网",
+          "url": "https://x.com/rohanpaul_ai/status/2108740901581574192",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T02:06:24Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "14e6e40c1330d525b87c191555b498eebbcc8c3a",
+          "title": "Anthropic 报告 Claude 在真实网站上的多起意外行为并暂停内部评测联网",
+          "url": "https://x.com/rohanpaul_ai/status/2108740901581574192",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T02:06:24Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.758,
+      "importance": 0.758,
+      "importance_score": 0.758,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.75,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8965,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-10T02:06:24Z",
+      "latest_at": "2026-10-10T02:06:24Z",
+      "primary_item": {
+        "id": "14e6e40c1330d525b87c191555b498eebbcc8c3a",
+        "title": "Anthropic 报告 Claude 在真实网站上的多起意外行为并暂停内部评测联网",
+        "url": "https://x.com/rohanpaul_ai/status/2108740901581574192",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_dc43308f31ff",
+      "title": "小米 MiMo-V2.6 技术报告：260 万美元 RL 算力与三维扩展将万亿参数 MoE 模型推入前沿梯队",
+      "url": "https://x.com/shao__meng/status/2108829340704162034",
+      "primary_url": "https://x.com/shao__meng/status/2108829340704162034",
       "source": "X：邵猛 (@shao__meng)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "46ea1c4f725bbee232312b7f43452afab2e3a971",
-          "title": "Lee Robinson 在斯坦福 CS146S 讲座视频发布，详解常驻式主动智能体的工作原理",
-          "url": "https://x.com/shao__meng/status/2108738979277471813",
+          "id": "5df932c72242ccef1cb6c3dcb55657b6332289ef",
+          "title": "小米 MiMo-V2.6 技术报告：260 万美元 RL 算力与三维扩展将万亿参数 MoE 模型推入前沿梯队",
+          "url": "https://x.com/shao__meng/status/2108829340704162034",
           "source": "X：邵猛 (@shao__meng)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-10T01:58:45Z"
+          "published_at": "2026-10-10T07:57:49Z"
         }
       ],
       "source_count": 1,
@@ -750,38 +931,39 @@
       ],
       "items": [
         {
-          "id": "46ea1c4f725bbee232312b7f43452afab2e3a971",
-          "title": "Lee Robinson 在斯坦福 CS146S 讲座视频发布，详解常驻式主动智能体的工作原理",
-          "url": "https://x.com/shao__meng/status/2108738979277471813",
+          "id": "5df932c72242ccef1cb6c3dcb55657b6332289ef",
+          "title": "小米 MiMo-V2.6 技术报告：260 万美元 RL 算力与三维扩展将万亿参数 MoE 模型推入前沿梯队",
+          "url": "https://x.com/shao__meng/status/2108829340704162034",
           "source": "X：邵猛 (@shao__meng)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-10T01:58:45Z"
+          "published_at": "2026-10-10T07:57:49Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7359,
-      "importance": 0.7359,
-      "importance_score": 0.7359,
+      "score": 0.7542,
+      "importance": 0.7542,
+      "importance_score": 0.7542,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.62,
+        "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9907,
+        "recency": 0.9756,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance"
+        "high_ai_relevance",
+        "high_importance"
       ],
-      "earliest_at": "2026-10-10T01:58:45Z",
-      "latest_at": "2026-10-10T01:58:45Z",
+      "earliest_at": "2026-10-10T07:57:49Z",
+      "latest_at": "2026-10-10T07:57:49Z",
       "primary_item": {
-        "id": "46ea1c4f725bbee232312b7f43452afab2e3a971",
-        "title": "Lee Robinson 在斯坦福 CS146S 讲座视频发布，详解常驻式主动智能体的工作原理",
-        "url": "https://x.com/shao__meng/status/2108738979277471813",
+        "id": "5df932c72242ccef1cb6c3dcb55657b6332289ef",
+        "title": "小米 MiMo-V2.6 技术报告：260 万美元 RL 算力与三维扩展将万亿参数 MoE 模型推入前沿梯队",
+        "url": "https://x.com/shao__meng/status/2108829340704162034",
         "source": "X：邵猛 (@shao__meng)",
         "source_name": "AI HOT"
       }
@@ -857,15 +1039,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.735,
-      "importance": 0.735,
-      "importance_score": 0.735,
+      "score": 0.7235,
+      "importance": 0.7235,
+      "importance_score": 0.7235,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.65,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6577,
+        "recency": 0.5941,
         "story_heat": 0.5
       },
       "category": "multi_source",
@@ -880,187 +1062,6 @@
         "title": "Arena 完成 2 亿美元 B 轮融资，估值 31 亿美元并发布 Alignment Index",
         "url": "https://x.com/arena/status/2108310714423423254",
         "source": "X：Arena (@arena)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_d8e692c54664",
-      "title": "Sierra 发布 Personal Agent Protocol（Poppy）协议草案，新增 35 家设计伙伴",
-      "url": "https://sierra.ai/blog/poppy",
-      "primary_url": "https://sierra.ai/blog/poppy",
-      "source": "Sierra：Blog（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "a7000cdfd3f2b9791ce182422673686ac6706839",
-          "title": "Sierra 发布 Personal Agent Protocol（Poppy）协议草案，新增 35 家设计伙伴",
-          "url": "https://sierra.ai/blog/poppy",
-          "source": "Sierra：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T19:56:06Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Sierra：Blog（RSS）"
-      ],
-      "items": [
-        {
-          "id": "a7000cdfd3f2b9791ce182422673686ac6706839",
-          "title": "Sierra 发布 Personal Agent Protocol（Poppy）协议草案，新增 35 家设计伙伴",
-          "url": "https://sierra.ai/blog/poppy",
-          "source": "Sierra：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T19:56:06Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.73,
-      "importance": 0.73,
-      "importance_score": 0.73,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.65,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9079,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-09T19:56:06Z",
-      "latest_at": "2026-10-09T19:56:06Z",
-      "primary_item": {
-        "id": "a7000cdfd3f2b9791ce182422673686ac6706839",
-        "title": "Sierra 发布 Personal Agent Protocol（Poppy）协议草案，新增 35 家设计伙伴",
-        "url": "https://sierra.ai/blog/poppy",
-        "source": "Sierra：Blog（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_98153a63a36e",
-      "title": "Redwood Research 发布论文：实证检验蒸馏定罪（DFI）与蒸馏提能（DFC）",
-      "url": "https://blog.redwoodresearch.org/p/paper-distillation-for-incrimination",
-      "primary_url": "https://blog.redwoodresearch.org/p/paper-distillation-for-incrimination",
-      "source": "Redwood Research：Blog（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "0c3712ba797602e9ce592e277869e8eef9b19cbf",
-          "title": "Redwood Research 发布论文：实证检验蒸馏定罪（DFI）与蒸馏提能（DFC）",
-          "url": "https://blog.redwoodresearch.org/p/paper-distillation-for-incrimination",
-          "source": "Redwood Research：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T22:06:51Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Redwood Research：Blog（RSS）"
-      ],
-      "items": [
-        {
-          "id": "0c3712ba797602e9ce592e277869e8eef9b19cbf",
-          "title": "Redwood Research 发布论文：实证检验蒸馏定罪（DFI）与蒸馏提能（DFC）",
-          "url": "https://blog.redwoodresearch.org/p/paper-distillation-for-incrimination",
-          "source": "Redwood Research：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T22:06:51Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7292,
-      "importance": 0.7292,
-      "importance_score": 0.7292,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.63,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9369,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-09T22:06:51Z",
-      "latest_at": "2026-10-09T22:06:51Z",
-      "primary_item": {
-        "id": "0c3712ba797602e9ce592e277869e8eef9b19cbf",
-        "title": "Redwood Research 发布论文：实证检验蒸馏定罪（DFI）与蒸馏提能（DFC）",
-        "url": "https://blog.redwoodresearch.org/p/paper-distillation-for-incrimination",
-        "source": "Redwood Research：Blog（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_702ec1f96a32",
-      "title": "Anthropic AI 模型自动化测试中向费城警方网站提交虚构凶杀案线索",
-      "url": "https://x.com/rohanpaul_ai/status/2108681738767740983",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2108681738767740983",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "b94a46dfca12412332148d0e21a676e07200f0ba",
-          "title": "Anthropic AI 模型自动化测试中向费城警方网站提交虚构凶杀案线索",
-          "url": "https://x.com/rohanpaul_ai/status/2108681738767740983",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T22:11:18Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "b94a46dfca12412332148d0e21a676e07200f0ba",
-          "title": "Anthropic AI 模型自动化测试中向费城警方网站提交虚构凶杀案线索",
-          "url": "https://x.com/rohanpaul_ai/status/2108681738767740983",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T22:11:18Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7684,
-      "importance": 0.7684,
-      "importance_score": 0.7684,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.76,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9379,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-09T22:11:18Z",
-      "latest_at": "2026-10-09T22:11:18Z",
-      "primary_item": {
-        "id": "b94a46dfca12412332148d0e21a676e07200f0ba",
-        "title": "Anthropic AI 模型自动化测试中向费城警方网站提交虚构凶杀案线索",
-        "url": "https://x.com/rohanpaul_ai/status/2108681738767740983",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -1117,15 +1118,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7019,
-      "importance": 0.7019,
-      "importance_score": 0.7019,
+      "score": 0.6942,
+      "importance": 0.6942,
+      "importance_score": 0.6942,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4463,
+        "recency": 0.4031,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1144,141 +1145,21 @@
       }
     },
     {
-      "story_id": "story_9a3494f049dc",
-      "title": "部分数学家呼吁抵制 OpenAI，AI 生成的数学证明涌入数学领域",
-      "url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
-      "primary_url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
-      "source": "The Decoder：AI News（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "9a6c1abc58143cba093d6c4646fff1acfcfe9a66",
-          "title": "部分数学家呼吁抵制 OpenAI，AI 生成的数学证明涌入数学领域",
-          "url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
-          "source": "The Decoder：AI News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T18:17:07Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "The Decoder：AI News（RSS）"
-      ],
-      "items": [
-        {
-          "id": "9a6c1abc58143cba093d6c4646fff1acfcfe9a66",
-          "title": "部分数学家呼吁抵制 OpenAI，AI 生成的数学证明涌入数学领域",
-          "url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
-          "source": "The Decoder：AI News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T18:17:07Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7274,
-      "importance": 0.7274,
-      "importance_score": 0.7274,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.81,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6269,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-08T18:17:07Z",
-      "latest_at": "2026-10-08T18:17:07Z",
-      "primary_item": {
-        "id": "9a6c1abc58143cba093d6c4646fff1acfcfe9a66",
-        "title": "部分数学家呼吁抵制 OpenAI，AI 生成的数学证明涌入数学领域",
-        "url": "https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field",
-        "source": "The Decoder：AI News（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_13d9d250f0af",
-      "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
-      "url": "https://www.ithome.com/1/010/751.htm",
-      "primary_url": "https://www.ithome.com/1/010/751.htm",
-      "source": "IT之家·人工智能",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "67c26722df40bfae1ce6f077d6d26fd5d2e21d60",
-          "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
-          "url": "https://www.ithome.com/1/010/751.htm",
-          "source": "IT之家·人工智能",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T23:02:44.683000Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "IT之家·人工智能"
-      ],
-      "items": [
-        {
-          "id": "67c26722df40bfae1ce6f077d6d26fd5d2e21d60",
-          "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
-          "url": "https://www.ithome.com/1/010/751.htm",
-          "source": "IT之家·人工智能",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T23:02:44.683000Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7265,
-      "importance": 0.7265,
-      "importance_score": 0.7265,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.78,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6715,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-08T23:02:44.683000Z",
-      "latest_at": "2026-10-08T23:02:44.683000Z",
-      "primary_item": {
-        "id": "67c26722df40bfae1ce6f077d6d26fd5d2e21d60",
-        "title": "OpenAI 年化营收被曝接近 500 亿美元，与此前预期差距约 200 亿美元",
-        "url": "https://www.ithome.com/1/010/751.htm",
-        "source": "IT之家·人工智能",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_db7f7383f723",
-      "title": "Paul Vann 发布 4 个可直接使用的 Grok Bot 模板，覆盖产品发布、威胁猎捕、威胁情报与 X API 开发",
-      "url": "https://x.com/shao__meng/status/2108741985284895153",
-      "primary_url": "https://x.com/shao__meng/status/2108741985284895153",
+      "story_id": "story_f3e5c6548fd6",
+      "title": "从 RAG 失败到 91% 准确率：Uber 法务红线 Agent 的四次架构演进",
+      "url": "https://x.com/shao__meng/status/2108835904534290445",
+      "primary_url": "https://x.com/shao__meng/status/2108835904534290445",
       "source": "X：邵猛 (@shao__meng)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "6c46803a2517333b74eff6b0ec8b61353dd10af7",
-          "title": "Paul Vann 发布 4 个可直接使用的 Grok Bot 模板，覆盖产品发布、威胁猎捕、威胁情报与 X API 开发",
-          "url": "https://x.com/shao__meng/status/2108741985284895153",
+          "id": "6185ecf692ead6748e0389f1eee07af86bfbde56",
+          "title": "从 RAG 失败到 91% 准确率：Uber 法务红线 Agent 的四次架构演进",
+          "url": "https://x.com/shao__meng/status/2108835904534290445",
           "source": "X：邵猛 (@shao__meng)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-10T02:10:42Z"
+          "published_at": "2026-10-10T08:23:54Z"
         }
       ],
       "source_count": 1,
@@ -1287,39 +1168,101 @@
       ],
       "items": [
         {
-          "id": "6c46803a2517333b74eff6b0ec8b61353dd10af7",
-          "title": "Paul Vann 发布 4 个可直接使用的 Grok Bot 模板，覆盖产品发布、威胁猎捕、威胁情报与 X API 开发",
-          "url": "https://x.com/shao__meng/status/2108741985284895153",
+          "id": "6185ecf692ead6748e0389f1eee07af86bfbde56",
+          "title": "从 RAG 失败到 91% 准确率：Uber 法务红线 Agent 的四次架构演进",
+          "url": "https://x.com/shao__meng/status/2108835904534290445",
           "source": "X：邵猛 (@shao__meng)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-10T02:10:42Z"
+          "published_at": "2026-10-10T08:23:54Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7244,
-      "importance": 0.7244,
-      "importance_score": 0.7244,
+      "score": 0.7523,
+      "importance": 0.7523,
+      "importance_score": 0.7523,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.58,
+        "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9935,
+        "recency": 0.9817,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance"
+        "high_ai_relevance",
+        "high_importance"
       ],
-      "earliest_at": "2026-10-10T02:10:42Z",
-      "latest_at": "2026-10-10T02:10:42Z",
+      "earliest_at": "2026-10-10T08:23:54Z",
+      "latest_at": "2026-10-10T08:23:54Z",
       "primary_item": {
-        "id": "6c46803a2517333b74eff6b0ec8b61353dd10af7",
-        "title": "Paul Vann 发布 4 个可直接使用的 Grok Bot 模板，覆盖产品发布、威胁猎捕、威胁情报与 X API 开发",
-        "url": "https://x.com/shao__meng/status/2108741985284895153",
+        "id": "6185ecf692ead6748e0389f1eee07af86bfbde56",
+        "title": "从 RAG 失败到 91% 准确率：Uber 法务红线 Agent 的四次架构演进",
+        "url": "https://x.com/shao__meng/status/2108835904534290445",
         "source": "X：邵猛 (@shao__meng)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_702ec1f96a32",
+      "title": "Anthropic AI 模型自动化测试中向费城警方网站提交虚构凶杀案线索",
+      "url": "https://x.com/rohanpaul_ai/status/2108681738767740983",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2108681738767740983",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "b94a46dfca12412332148d0e21a676e07200f0ba",
+          "title": "Anthropic AI 模型自动化测试中向费城警方网站提交虚构凶杀案线索",
+          "url": "https://x.com/rohanpaul_ai/status/2108681738767740983",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T22:11:18Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "b94a46dfca12412332148d0e21a676e07200f0ba",
+          "title": "Anthropic AI 模型自动化测试中向费城警方网站提交虚构凶杀案线索",
+          "url": "https://x.com/rohanpaul_ai/status/2108681738767740983",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-09T22:11:18Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7521,
+      "importance": 0.7521,
+      "importance_score": 0.7521,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.76,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8472,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-09T22:11:18Z",
+      "latest_at": "2026-10-09T22:11:18Z",
+      "primary_item": {
+        "id": "b94a46dfca12412332148d0e21a676e07200f0ba",
+        "title": "Anthropic AI 模型自动化测试中向费城警方网站提交虚构凶杀案线索",
+        "url": "https://x.com/rohanpaul_ai/status/2108681738767740983",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -1396,15 +1339,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.6894,
-      "importance": 0.6894,
-      "importance_score": 0.6894,
+      "score": 0.6838,
+      "importance": 0.6838,
+      "importance_score": 0.6838,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3211,
+        "recency": 0.29,
         "story_heat": 0.5
       },
       "category": "multi_source",
@@ -1419,6 +1362,85 @@
         "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
         "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
         "source": "Google DeepMind：Blog（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_ad34714ca563",
+      "title": "Step 5 Preview 上线 OpenRouter",
+      "url": "https://x.com/OpenRouter/status/2108188953757331803",
+      "primary_url": "https://x.com/OpenRouter/status/2108188953757331803",
+      "source": "X：OpenRouter (@OpenRouter)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "5e3e04deadb3d2fee376b73ea33a296fe42b6dc0",
+          "title": "Step 5 Preview 上线 OpenRouter，输入 $1.00/M、缓存命中仅 $0.05/M",
+          "url": "https://x.com/OpenRouter/status/2108188987357901047",
+          "source": "X：OpenRouter (@OpenRouter)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T13:33:17Z"
+        },
+        {
+          "id": "9f0afed4ed5c186205f656198e8cff2ed9c30b15",
+          "title": "Step 5 Preview 上线 OpenRouter",
+          "url": "https://x.com/OpenRouter/status/2108188953757331803",
+          "source": "X：OpenRouter (@OpenRouter)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T13:33:09Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：OpenRouter (@OpenRouter)"
+      ],
+      "items": [
+        {
+          "id": "5e3e04deadb3d2fee376b73ea33a296fe42b6dc0",
+          "title": "Step 5 Preview 上线 OpenRouter，输入 $1.00/M、缓存命中仅 $0.05/M",
+          "url": "https://x.com/OpenRouter/status/2108188987357901047",
+          "source": "X：OpenRouter (@OpenRouter)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T13:33:17Z"
+        },
+        {
+          "id": "9f0afed4ed5c186205f656198e8cff2ed9c30b15",
+          "title": "Step 5 Preview 上线 OpenRouter",
+          "url": "https://x.com/OpenRouter/status/2108188953757331803",
+          "source": "X：OpenRouter (@OpenRouter)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-08T13:33:09Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6778,
+      "importance": 0.6778,
+      "importance_score": 0.6778,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.62,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.5288,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-08T13:33:09Z",
+      "latest_at": "2026-10-08T13:33:17Z",
+      "primary_item": {
+        "id": "9f0afed4ed5c186205f656198e8cff2ed9c30b15",
+        "title": "Step 5 Preview 上线 OpenRouter",
+        "url": "https://x.com/OpenRouter/status/2108188953757331803",
+        "source": "X：OpenRouter (@OpenRouter)",
         "source_name": "AI HOT"
       }
     }
