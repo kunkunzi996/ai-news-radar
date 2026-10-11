@@ -1,69 +1,8 @@
 {
-  "generated_at": "2026-10-11T19:39:55.867360Z",
+  "generated_at": "2026-10-11T23:33:07.092410Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
-    {
-      "story_id": "story_3b8fc5482363",
-      "title": "密歇根大学 AI 编程课 Applied Agentic Software Engineering 发布五个工程 Skills",
-      "url": "https://x.com/shao__meng/status/2109305199357784357",
-      "primary_url": "https://x.com/shao__meng/status/2109305199357784357",
-      "source": "X：邵猛 (@shao__meng)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "e9bf5122904bfccea22f833ebc92aad13acd296d",
-          "title": "密歇根大学 AI 编程课 Applied Agentic Software Engineering 发布五个工程 Skills",
-          "url": "https://x.com/shao__meng/status/2109305199357784357",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T15:28:43Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：邵猛 (@shao__meng)"
-      ],
-      "items": [
-        {
-          "id": "e9bf5122904bfccea22f833ebc92aad13acd296d",
-          "title": "密歇根大学 AI 编程课 Applied Agentic Software Engineering 发布五个工程 Skills",
-          "url": "https://x.com/shao__meng/status/2109305199357784357",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T15:28:43Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.763,
-      "importance": 0.763,
-      "importance_score": 0.763,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.74,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9413,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-11T15:28:43Z",
-      "latest_at": "2026-10-11T15:28:43Z",
-      "primary_item": {
-        "id": "e9bf5122904bfccea22f833ebc92aad13acd296d",
-        "title": "密歇根大学 AI 编程课 Applied Agentic Software Engineering 发布五个工程 Skills",
-        "url": "https://x.com/shao__meng/status/2109305199357784357",
-        "source": "X：邵猛 (@shao__meng)",
-        "source_name": "AI HOT"
-      }
-    },
     {
       "story_id": "story_6cbde97d8260",
       "title": "OpenAI 在 GitHub 发布 openai/math 仓库，722 份数学手稿引发数学界震荡",
@@ -173,15 +112,15 @@
       ],
       "item_count": 5,
       "duplicate_count": 5,
-      "score": 0.7629,
-      "importance": 0.7629,
-      "importance_score": 0.7629,
+      "score": 0.7603,
+      "importance": 0.7603,
+      "importance_score": 0.7603,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2685,
+        "recency": 0.2538,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -197,6 +136,67 @@
         "title": "OpenAI 在 GitHub 发布 openai/math 仓库，722 份数学手稿引发数学界震荡",
         "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686908&idx=1&sn=29a97b5ff695871a7bf219d3d6bd6487",
         "source": "公众号：数字生命卡兹克",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_3b8fc5482363",
+      "title": "密歇根大学 AI 编程课 Applied Agentic Software Engineering 发布五个工程 Skills",
+      "url": "https://x.com/shao__meng/status/2109305199357784357",
+      "primary_url": "https://x.com/shao__meng/status/2109305199357784357",
+      "source": "X：邵猛 (@shao__meng)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "e9bf5122904bfccea22f833ebc92aad13acd296d",
+          "title": "密歇根大学 AI 编程课 Applied Agentic Software Engineering 发布五个工程 Skills",
+          "url": "https://x.com/shao__meng/status/2109305199357784357",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T15:28:43Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：邵猛 (@shao__meng)"
+      ],
+      "items": [
+        {
+          "id": "e9bf5122904bfccea22f833ebc92aad13acd296d",
+          "title": "密歇根大学 AI 编程课 Applied Agentic Software Engineering 发布五个工程 Skills",
+          "url": "https://x.com/shao__meng/status/2109305199357784357",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T15:28:43Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7538,
+      "importance": 0.7538,
+      "importance_score": 0.7538,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.74,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.89,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-11T15:28:43Z",
+      "latest_at": "2026-10-11T15:28:43Z",
+      "primary_item": {
+        "id": "e9bf5122904bfccea22f833ebc92aad13acd296d",
+        "title": "密歇根大学 AI 编程课 Applied Agentic Software Engineering 发布五个工程 Skills",
+        "url": "https://x.com/shao__meng/status/2109305199357784357",
+        "source": "X：邵猛 (@shao__meng)",
         "source_name": "AI HOT"
       }
     },
@@ -235,15 +235,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7573,
-      "importance": 0.7573,
-      "importance_score": 0.7573,
+      "score": 0.7502,
+      "importance": 0.7502,
+      "importance_score": 0.7502,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.85,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7262,
+        "recency": 0.6866,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -262,122 +262,62 @@
       }
     },
     {
-      "story_id": "story_81c0a1839a64",
-      "title": "Karpathy：LLM 能力认知鸿沟正扩大为漏斗，仅约 0.2% 的专业用户看到前沿智能体能力",
-      "url": "https://x.com/karpathy/status/2109361546505966046",
-      "primary_url": "https://x.com/karpathy/status/2109361546505966046",
-      "source": "X：Andrej Karpathy (@karpathy)",
+      "story_id": "story_d4cf17904efd",
+      "title": "Karpathy 提出 LLM 能力认知漏斗，Ethan Mollick 补充实验室内部应用仍集中",
+      "url": "https://x.com/emollick/status/2109422437616029941",
+      "primary_url": "https://x.com/emollick/status/2109422437616029941",
+      "source": "X：Ethan Mollick (@emollick)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "9536b7062b7b9c5d45fa6849b46b63482df9befc",
-          "title": "Karpathy：LLM 能力认知鸿沟正扩大为漏斗，仅约 0.2% 的专业用户看到前沿智能体能力",
-          "url": "https://x.com/karpathy/status/2109361546505966046",
-          "source": "X：Andrej Karpathy (@karpathy)",
+          "id": "31817afc609494dfe4ad4a5f3318ae85517dfde5",
+          "title": "Karpathy 提出 LLM 能力认知漏斗，Ethan Mollick 补充实验室内部应用仍集中",
+          "url": "https://x.com/emollick/status/2109422437616029941",
+          "source": "X：Ethan Mollick (@emollick)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-11T19:12:37Z"
+          "published_at": "2026-10-11T23:14:34Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Andrej Karpathy (@karpathy)"
+        "X：Ethan Mollick (@emollick)"
       ],
       "items": [
         {
-          "id": "9536b7062b7b9c5d45fa6849b46b63482df9befc",
-          "title": "Karpathy：LLM 能力认知鸿沟正扩大为漏斗，仅约 0.2% 的专业用户看到前沿智能体能力",
-          "url": "https://x.com/karpathy/status/2109361546505966046",
-          "source": "X：Andrej Karpathy (@karpathy)",
+          "id": "31817afc609494dfe4ad4a5f3318ae85517dfde5",
+          "title": "Karpathy 提出 LLM 能力认知漏斗，Ethan Mollick 补充实验室内部应用仍集中",
+          "url": "https://x.com/emollick/status/2109422437616029941",
+          "source": "X：Ethan Mollick (@emollick)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-11T19:12:37Z"
+          "published_at": "2026-10-11T23:14:34Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7484,
-      "importance": 0.7484,
-      "importance_score": 0.7484,
+      "score": 0.7488,
+      "importance": 0.7488,
+      "importance_score": 0.7488,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9934,
+        "recency": 0.9955,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-11T19:12:37Z",
-      "latest_at": "2026-10-11T19:12:37Z",
+      "earliest_at": "2026-10-11T23:14:34Z",
+      "latest_at": "2026-10-11T23:14:34Z",
       "primary_item": {
-        "id": "9536b7062b7b9c5d45fa6849b46b63482df9befc",
-        "title": "Karpathy：LLM 能力认知鸿沟正扩大为漏斗，仅约 0.2% 的专业用户看到前沿智能体能力",
-        "url": "https://x.com/karpathy/status/2109361546505966046",
-        "source": "X：Andrej Karpathy (@karpathy)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_109d57dd5b5d",
-      "title": "OpenAI 一次发布数百篇 AI 生成论文后，西北大学数学学生开始动摇去留",
-      "url": "https://x.com/rohanpaul_ai/status/2109358434177180101",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2109358434177180101",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "5504d445b93aad78bd5e692aa59161f238ecbcb8",
-          "title": "OpenAI 一次发布数百篇 AI 生成论文后，西北大学数学学生开始动摇去留",
-          "url": "https://x.com/rohanpaul_ai/status/2109358434177180101",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T19:00:15Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "5504d445b93aad78bd5e692aa59161f238ecbcb8",
-          "title": "OpenAI 一次发布数百篇 AI 生成论文后，西北大学数学学生开始动摇去留",
-          "url": "https://x.com/rohanpaul_ai/status/2109358434177180101",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T19:00:15Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7479,
-      "importance": 0.7479,
-      "importance_score": 0.7479,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9905,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-11T19:00:15Z",
-      "latest_at": "2026-10-11T19:00:15Z",
-      "primary_item": {
-        "id": "5504d445b93aad78bd5e692aa59161f238ecbcb8",
-        "title": "OpenAI 一次发布数百篇 AI 生成论文后，西北大学数学学生开始动摇去留",
-        "url": "https://x.com/rohanpaul_ai/status/2109358434177180101",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "id": "31817afc609494dfe4ad4a5f3318ae85517dfde5",
+        "title": "Karpathy 提出 LLM 能力认知漏斗，Ethan Mollick 补充实验室内部应用仍集中",
+        "url": "https://x.com/emollick/status/2109422437616029941",
+        "source": "X：Ethan Mollick (@emollick)",
         "source_name": "AI HOT"
       }
     },
@@ -434,15 +374,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7466,
-      "importance": 0.7466,
-      "importance_score": 0.7466,
+      "score": 0.7428,
+      "importance": 0.7428,
+      "importance_score": 0.7428,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.94,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3775,
+        "recency": 0.3569,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -457,6 +397,205 @@
         "title": "Tibo 发帖称“宣布 ChatGPT”",
         "url": "https://x.com/thsottiaux/status/2108349826727588000",
         "source": "X：Tibo (@thsottiaux)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_81c0a1839a64",
+      "title": "Karpathy：LLM 能力认知鸿沟正扩大为漏斗，仅约 0.2% 的专业用户看到前沿智能体能力",
+      "url": "https://x.com/karpathy/status/2109361546505966046",
+      "primary_url": "https://x.com/karpathy/status/2109361546505966046",
+      "source": "X：Andrej Karpathy (@karpathy)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "9536b7062b7b9c5d45fa6849b46b63482df9befc",
+          "title": "Karpathy：LLM 能力认知鸿沟正扩大为漏斗，仅约 0.2% 的专业用户看到前沿智能体能力",
+          "url": "https://x.com/karpathy/status/2109361546505966046",
+          "source": "X：Andrej Karpathy (@karpathy)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T19:12:37Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Andrej Karpathy (@karpathy)"
+      ],
+      "items": [
+        {
+          "id": "9536b7062b7b9c5d45fa6849b46b63482df9befc",
+          "title": "Karpathy：LLM 能力认知鸿沟正扩大为漏斗，仅约 0.2% 的专业用户看到前沿智能体能力",
+          "url": "https://x.com/karpathy/status/2109361546505966046",
+          "source": "X：Andrej Karpathy (@karpathy)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T19:12:37Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7387,
+      "importance": 0.7387,
+      "importance_score": 0.7387,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.66,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9392,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-11T19:12:37Z",
+      "latest_at": "2026-10-11T19:12:37Z",
+      "primary_item": {
+        "id": "9536b7062b7b9c5d45fa6849b46b63482df9befc",
+        "title": "Karpathy：LLM 能力认知鸿沟正扩大为漏斗，仅约 0.2% 的专业用户看到前沿智能体能力",
+        "url": "https://x.com/karpathy/status/2109361546505966046",
+        "source": "X：Andrej Karpathy (@karpathy)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_109d57dd5b5d",
+      "title": "OpenAI 一次发布数百篇 AI 生成论文后，西北大学数学学生开始动摇去留",
+      "url": "https://x.com/rohanpaul_ai/status/2109358434177180101",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2109358434177180101",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "5504d445b93aad78bd5e692aa59161f238ecbcb8",
+          "title": "OpenAI 一次发布数百篇 AI 生成论文后，西北大学数学学生开始动摇去留",
+          "url": "https://x.com/rohanpaul_ai/status/2109358434177180101",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T19:00:15Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "5504d445b93aad78bd5e692aa59161f238ecbcb8",
+          "title": "OpenAI 一次发布数百篇 AI 生成论文后，西北大学数学学生开始动摇去留",
+          "url": "https://x.com/rohanpaul_ai/status/2109358434177180101",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T19:00:15Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7382,
+      "importance": 0.7382,
+      "importance_score": 0.7382,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.66,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9364,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-11T19:00:15Z",
+      "latest_at": "2026-10-11T19:00:15Z",
+      "primary_item": {
+        "id": "5504d445b93aad78bd5e692aa59161f238ecbcb8",
+        "title": "OpenAI 一次发布数百篇 AI 生成论文后，西北大学数学学生开始动摇去留",
+        "url": "https://x.com/rohanpaul_ai/status/2109358434177180101",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_356d9ae47a37",
+      "title": "OpenClaw v2026.10.1 发布",
+      "url": "https://x.com/openclaw/status/2109347136328417718",
+      "primary_url": "https://x.com/openclaw/status/2109347136328417718",
+      "source": "X：OpenClaw (@openclaw)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "1ec2a2ac7875ade3e72304ce76de057b61e498fd",
+          "title": "OpenClaw v2026.10.1 更新要点",
+          "url": "https://x.com/openclaw/status/2109419419529351517",
+          "source": "X：OpenClaw (@openclaw)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T23:02:35Z"
+        },
+        {
+          "id": "d9d1d4a26756f6fe9cb2ff2336700b6f90597edc",
+          "title": "OpenClaw v2026.10.1 发布",
+          "url": "https://x.com/openclaw/status/2109347136328417718",
+          "source": "X：OpenClaw (@openclaw)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T18:15:21Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：OpenClaw (@openclaw)"
+      ],
+      "items": [
+        {
+          "id": "1ec2a2ac7875ade3e72304ce76de057b61e498fd",
+          "title": "OpenClaw v2026.10.1 更新要点",
+          "url": "https://x.com/openclaw/status/2109419419529351517",
+          "source": "X：OpenClaw (@openclaw)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T23:02:35Z"
+        },
+        {
+          "id": "d9d1d4a26756f6fe9cb2ff2336700b6f90597edc",
+          "title": "OpenClaw v2026.10.1 发布",
+          "url": "https://x.com/openclaw/status/2109347136328417718",
+          "source": "X：OpenClaw (@openclaw)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T18:15:21Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7313,
+      "importance": 0.7313,
+      "importance_score": 0.7313,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.56,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9264,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-11T18:15:21Z",
+      "latest_at": "2026-10-11T23:02:35Z",
+      "primary_item": {
+        "id": "d9d1d4a26756f6fe9cb2ff2336700b6f90597edc",
+        "title": "OpenClaw v2026.10.1 发布",
+        "url": "https://x.com/openclaw/status/2109347136328417718",
+        "source": "X：OpenClaw (@openclaw)",
         "source_name": "AI HOT"
       }
     },
@@ -495,15 +634,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7333,
-      "importance": 0.7333,
-      "importance_score": 0.7333,
+      "score": 0.727,
+      "importance": 0.727,
+      "importance_score": 0.727,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6428,
+        "recency": 0.6078,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -555,15 +694,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7326,
-      "importance": 0.7326,
-      "importance_score": 0.7326,
+      "score": 0.7229,
+      "importance": 0.7229,
+      "importance_score": 0.7229,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.61,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9891,
+        "recency": 0.9351,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -615,15 +754,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7324,
-      "importance": 0.7324,
-      "importance_score": 0.7324,
+      "score": 0.7228,
+      "importance": 0.7228,
+      "importance_score": 0.7228,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9709,
+        "recency": 0.918,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -637,66 +776,6 @@
         "title": "Yuchen Jin 谈 Google 用 Code Comprehension 轮取代 LeetCode 面试",
         "url": "https://x.com/Yuchenj_UW/status/2109337587207000326",
         "source": "X：Yuchen Jin (@Yuchenj_UW)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_d12c6b059ed5",
-      "title": "Boris Cherny 回归阅读",
-      "url": "https://x.com/bcherny/status/2108013947144085714",
-      "primary_url": "https://x.com/bcherny/status/2108013947144085714",
-      "source": "X：Boris Cherny (@bcherny)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "50daaadeef25a8ffd9873b84f8d4a6b3e2f14fa3",
-          "title": "Boris Cherny 回归阅读",
-          "url": "https://x.com/bcherny/status/2108013947144085714",
-          "source": "X：Boris Cherny (@bcherny)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T01:57:44Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Boris Cherny (@bcherny)"
-      ],
-      "items": [
-        {
-          "id": "50daaadeef25a8ffd9873b84f8d4a6b3e2f14fa3",
-          "title": "Boris Cherny 回归阅读",
-          "url": "https://x.com/bcherny/status/2108013947144085714",
-          "source": "X：Boris Cherny (@bcherny)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T01:57:44Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7209,
-      "importance": 0.7209,
-      "importance_score": 0.7209,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 1.0,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.2738,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-08T01:57:44Z",
-      "latest_at": "2026-10-08T01:57:44Z",
-      "primary_item": {
-        "id": "50daaadeef25a8ffd9873b84f8d4a6b3e2f14fa3",
-        "title": "Boris Cherny 回归阅读",
-        "url": "https://x.com/bcherny/status/2108013947144085714",
-        "source": "X：Boris Cherny (@bcherny)",
         "source_name": "AI HOT"
       }
     },
@@ -735,21 +814,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7505,
-      "importance": 0.7505,
-      "importance_score": 0.7505,
+      "score": 0.7416,
+      "importance": 0.7416,
+      "importance_score": 0.7416,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.72,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9051,
+        "recency": 0.8557,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-11T12:45:25Z",
       "latest_at": "2026-10-11T12:45:25Z",
@@ -815,15 +893,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7015,
-      "importance": 0.7015,
-      "importance_score": 0.7015,
+      "score": 0.6991,
+      "importance": 0.6991,
+      "importance_score": 0.6991,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.87,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2441,
+        "recency": 0.2308,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -912,15 +990,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.684,
-      "importance": 0.684,
-      "importance_score": 0.684,
+      "score": 0.6806,
+      "importance": 0.6806,
+      "importance_score": 0.6806,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3409,
+        "recency": 0.3223,
         "story_heat": 0.5
       },
       "category": "multi_source",
@@ -991,15 +1069,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.666,
-      "importance": 0.666,
-      "importance_score": 0.666,
+      "score": 0.6636,
+      "importance": 0.6636,
+      "importance_score": 0.6636,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2467,
+        "recency": 0.2333,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1090,15 +1168,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.6636,
-      "importance": 0.6636,
-      "importance_score": 0.6636,
+      "score": 0.6618,
+      "importance": 0.6618,
+      "importance_score": 0.6618,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1775,
+        "recency": 0.1678,
         "story_heat": 0.5
       },
       "category": "multi_source",
@@ -1113,66 +1191,6 @@
         "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
         "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
         "source": "Google DeepMind：Blog（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_b1a8cda4635a",
-      "title": "哈佛 2026 秋季 CS2680〈现代 AI 系统〉课程深度解读：从 Agent Loop 到推理引擎",
-      "url": "https://x.com/shao__meng/status/2109255026631983170",
-      "primary_url": "https://x.com/shao__meng/status/2109255026631983170",
-      "source": "X：邵猛 (@shao__meng)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "b63335db9d29483771293be5b208580a559ca533",
-          "title": "哈佛 2026 秋季 CS2680〈现代 AI 系统〉课程深度解读：从 Agent Loop 到推理引擎",
-          "url": "https://x.com/shao__meng/status/2109255026631983170",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T12:09:21Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：邵猛 (@shao__meng)"
-      ],
-      "items": [
-        {
-          "id": "b63335db9d29483771293be5b208580a559ca533",
-          "title": "哈佛 2026 秋季 CS2680〈现代 AI 系统〉课程深度解读：从 Agent Loop 到推理引擎",
-          "url": "https://x.com/shao__meng/status/2109255026631983170",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T12:09:21Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7221,
-      "importance": 0.7221,
-      "importance_score": 0.7221,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.63,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8972,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-11T12:09:21Z",
-      "latest_at": "2026-10-11T12:09:21Z",
-      "primary_item": {
-        "id": "b63335db9d29483771293be5b208580a559ca533",
-        "title": "哈佛 2026 秋季 CS2680〈现代 AI 系统〉课程深度解读：从 Agent Loop 到推理引擎",
-        "url": "https://x.com/shao__meng/status/2109255026631983170",
-        "source": "X：邵猛 (@shao__meng)",
         "source_name": "AI HOT"
       }
     },
@@ -1230,15 +1248,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6565,
-      "importance": 0.6565,
-      "importance_score": 0.6565,
+      "score": 0.6564,
+      "importance": 0.6564,
+      "importance_score": 0.6564,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0108,
+        "recency": 0.0102,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1310,15 +1328,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6484,
-      "importance": 0.6484,
-      "importance_score": 0.6484,
+      "score": 0.6483,
+      "importance": 0.6483,
+      "importance_score": 0.6483,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0157,
+        "recency": 0.0148,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1390,15 +1408,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6753,
-      "importance": 0.6753,
-      "importance_score": 0.6753,
+      "score": 0.6729,
+      "importance": 0.6729,
+      "importance_score": 0.6729,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2485,
+        "recency": 0.235,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1469,15 +1487,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6416,
-      "importance": 0.6416,
-      "importance_score": 0.6416,
+      "score": 0.6415,
+      "importance": 0.6415,
+      "importance_score": 0.6415,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0111,
+        "recency": 0.0105,
         "story_heat": 0.25
       },
       "category": "watch",
