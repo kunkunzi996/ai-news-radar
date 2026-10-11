@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-10T23:23:13.996454Z",
+  "generated_at": "2026-10-11T02:06:13.030315Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -38,15 +38,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.8018,
-      "importance": 0.8018,
-      "importance_score": 0.8018,
+      "score": 0.795,
+      "importance": 0.795,
+      "importance_score": 0.795,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.85,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9733,
+        "recency": 0.9358,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -173,15 +173,15 @@
       ],
       "item_count": 5,
       "duplicate_count": 5,
-      "score": 0.7794,
-      "importance": 0.7794,
-      "importance_score": 0.7794,
+      "score": 0.7769,
+      "importance": 0.7769,
+      "importance_score": 0.7769,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3598,
+        "recency": 0.346,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -235,15 +235,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7727,
-      "importance": 0.7727,
-      "importance_score": 0.7727,
+      "score": 0.7667,
+      "importance": 0.7667,
+      "importance_score": 0.7667,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8615,
+        "recency": 0.8284,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -314,15 +314,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7697,
-      "importance": 0.7697,
-      "importance_score": 0.7697,
+      "score": 0.7662,
+      "importance": 0.7662,
+      "importance_score": 0.7662,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.94,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.506,
+        "recency": 0.4865,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -376,15 +376,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7596,
-      "importance": 0.7596,
-      "importance_score": 0.7596,
+      "score": 0.7536,
+      "importance": 0.7536,
+      "importance_score": 0.7536,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8724,
+        "recency": 0.8388,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -437,21 +437,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7535,
-      "importance": 0.7535,
-      "importance_score": 0.7535,
+      "score": 0.7482,
+      "importance": 0.7482,
+      "importance_score": 0.7482,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7717,
+        "recency": 0.742,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-10T05:26:34Z",
       "latest_at": "2026-10-10T05:26:34Z",
@@ -460,6 +459,66 @@
         "title": "State of AI Report 2026 速读：AI 加速 AI、千亿收入、电力瓶颈与安全",
         "url": "https://x.com/indigox/status/2108791275914993998",
         "source": "X：indigo (@indigox)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_e9f517ce413b",
+      "title": "华为开源多智能体协作框架 JiuwenSwarm",
+      "url": "https://x.com/shao__meng/status/2109083154682351988",
+      "primary_url": "https://x.com/shao__meng/status/2109083154682351988",
+      "source": "X：邵猛 (@shao__meng)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "4927554a6a8ed1d71dd813f7a7a7bf333bb97f1e",
+          "title": "华为开源多智能体协作框架 JiuwenSwarm",
+          "url": "https://x.com/shao__meng/status/2109083154682351988",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T00:46:23Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：邵猛 (@shao__meng)"
+      ],
+      "items": [
+        {
+          "id": "4927554a6a8ed1d71dd813f7a7a7bf333bb97f1e",
+          "title": "华为开源多智能体协作框架 JiuwenSwarm",
+          "url": "https://x.com/shao__meng/status/2109083154682351988",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T00:46:23Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7402,
+      "importance": 0.7402,
+      "importance_score": 0.7402,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.64,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.981,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-11T00:46:23Z",
+      "latest_at": "2026-10-11T00:46:23Z",
+      "primary_item": {
+        "id": "4927554a6a8ed1d71dd813f7a7a7bf333bb97f1e",
+        "title": "华为开源多智能体协作框架 JiuwenSwarm",
+        "url": "https://x.com/shao__meng/status/2109083154682351988",
+        "source": "X：邵猛 (@shao__meng)",
         "source_name": "AI HOT"
       }
     },
@@ -498,15 +557,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7464,
-      "importance": 0.7464,
-      "importance_score": 0.7464,
+      "score": 0.7398,
+      "importance": 0.7398,
+      "importance_score": 0.7398,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9658,
+        "recency": 0.9287,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -558,15 +617,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7406,
-      "importance": 0.7406,
-      "importance_score": 0.7406,
+      "score": 0.7356,
+      "importance": 0.7356,
+      "importance_score": 0.7356,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.8,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7166,
+        "recency": 0.689,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -618,15 +677,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7377,
-      "importance": 0.7377,
-      "importance_score": 0.7377,
+      "score": 0.7351,
+      "importance": 0.7351,
+      "importance_score": 0.7351,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 1.0,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3669,
+        "recency": 0.3528,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -678,15 +737,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7361,
-      "importance": 0.7361,
-      "importance_score": 0.7361,
+      "score": 0.7311,
+      "importance": 0.7311,
+      "importance_score": 0.7311,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7251,
+        "recency": 0.6972,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -738,15 +797,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7357,
-      "importance": 0.7357,
-      "importance_score": 0.7357,
+      "score": 0.7295,
+      "importance": 0.7295,
+      "importance_score": 0.7295,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9063,
+        "recency": 0.8715,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -798,15 +857,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7353,
-      "importance": 0.7353,
-      "importance_score": 0.7353,
+      "score": 0.7291,
+      "importance": 0.7291,
+      "importance_score": 0.7291,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.68,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8871,
+        "recency": 0.853,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -820,66 +879,6 @@
         "title": "八款 AI 语音输入法实测对比：微信、千问、OpenLess、秘塔等，作者选出 Vibe Coding 搭配方案",
         "url": "https://x.com/aiwarts/status/2108936975294337297",
         "source": "X：卡尔的 AI 沃茨 (@aiwarts)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_4f46b90875e0",
-      "title": "Lee Robinson 斯坦福 CS146S 讲座详解常驻智能体架构与上下文工程",
-      "url": "https://x.com/shao__meng/status/2108760694665691284",
-      "primary_url": "https://x.com/shao__meng/status/2108760694665691284",
-      "source": "X：邵猛 (@shao__meng)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "a82d69238e56213b1587013028231b0706b9834d",
-          "title": "Lee Robinson 斯坦福 CS146S 讲座详解常驻智能体架构与上下文工程",
-          "url": "https://x.com/shao__meng/status/2108760694665691284",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-10T03:25:03Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：邵猛 (@shao__meng)"
-      ],
-      "items": [
-        {
-          "id": "a82d69238e56213b1587013028231b0706b9834d",
-          "title": "Lee Robinson 斯坦福 CS146S 讲座详解常驻智能体架构与上下文工程",
-          "url": "https://x.com/shao__meng/status/2108760694665691284",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-10T03:25:03Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7285,
-      "importance": 0.7285,
-      "importance_score": 0.7285,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.74,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7495,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-10T03:25:03Z",
-      "latest_at": "2026-10-10T03:25:03Z",
-      "primary_item": {
-        "id": "a82d69238e56213b1587013028231b0706b9834d",
-        "title": "Lee Robinson 斯坦福 CS146S 讲座详解常驻智能体架构与上下文工程",
-        "url": "https://x.com/shao__meng/status/2108760694665691284",
-        "source": "X：邵猛 (@shao__meng)",
         "source_name": "AI HOT"
       }
     },
@@ -937,15 +936,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7165,
-      "importance": 0.7165,
-      "importance_score": 0.7165,
+      "score": 0.7142,
+      "importance": 0.7142,
+      "importance_score": 0.7142,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.87,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3272,
+        "recency": 0.3146,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -960,66 +959,6 @@
         "title": "OpenAI 向全部 ChatGPT 用户推出 GPT-6 与 Intelligent UI",
         "url": "https://openai.com/index/gpt-6-for-everyone",
         "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_98538a79e69e",
-      "title": "Anthropic 承认模型对自身推理的解释不可作为行为动机的证据",
-      "url": "https://x.com/rohanpaul_ai/status/2108741349419913339",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2108741349419913339",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "9f87a0f945cc58c8a9fa6838aebd33c32f81f476",
-          "title": "Anthropic 承认模型对自身推理的解释不可作为行为动机的证据",
-          "url": "https://x.com/rohanpaul_ai/status/2108741349419913339",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-10T02:08:10Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "9f87a0f945cc58c8a9fa6838aebd33c32f81f476",
-          "title": "Anthropic 承认模型对自身推理的解释不可作为行为动机的证据",
-          "url": "https://x.com/rohanpaul_ai/status/2108741349419913339",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-10T02:08:10Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.735,
-      "importance": 0.735,
-      "importance_score": 0.735,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.77,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7357,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-10T02:08:10Z",
-      "latest_at": "2026-10-10T02:08:10Z",
-      "primary_item": {
-        "id": "9f87a0f945cc58c8a9fa6838aebd33c32f81f476",
-        "title": "Anthropic 承认模型对自身推理的解释不可作为行为动机的证据",
-        "url": "https://x.com/rohanpaul_ai/status/2108741349419913339",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -1094,15 +1033,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.7048,
-      "importance": 0.7048,
-      "importance_score": 0.7048,
+      "score": 0.7017,
+      "importance": 0.7017,
+      "importance_score": 0.7017,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4568,
+        "recency": 0.4393,
         "story_heat": 0.5
       },
       "category": "multi_source",
@@ -1117,6 +1056,66 @@
         "title": "Arena 宣布 2 亿美元 B 轮融资，估值达 31 亿美元，并推出 Alignment Index",
         "url": "https://x.com/arena/status/2108243026741248348",
         "source": "X：Arena (@arena)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_98538a79e69e",
+      "title": "Anthropic 承认模型对自身推理的解释不可作为行为动机的证据",
+      "url": "https://x.com/rohanpaul_ai/status/2108741349419913339",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2108741349419913339",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "9f87a0f945cc58c8a9fa6838aebd33c32f81f476",
+          "title": "Anthropic 承认模型对自身推理的解释不可作为行为动机的证据",
+          "url": "https://x.com/rohanpaul_ai/status/2108741349419913339",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T02:08:10Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "9f87a0f945cc58c8a9fa6838aebd33c32f81f476",
+          "title": "Anthropic 承认模型对自身推理的解释不可作为行为动机的证据",
+          "url": "https://x.com/rohanpaul_ai/status/2108741349419913339",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T02:08:10Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7299,
+      "importance": 0.7299,
+      "importance_score": 0.7299,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.77,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7074,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-10T02:08:10Z",
+      "latest_at": "2026-10-10T02:08:10Z",
+      "primary_item": {
+        "id": "9f87a0f945cc58c8a9fa6838aebd33c32f81f476",
+        "title": "Anthropic 承认模型对自身推理的解释不可作为行为动机的证据",
+        "url": "https://x.com/rohanpaul_ai/status/2108741349419913339",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -1155,15 +1154,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7342,
-      "importance": 0.7342,
-      "importance_score": 0.7342,
+      "score": 0.7298,
+      "importance": 0.7298,
+      "importance_score": 0.7298,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.648,
+        "recency": 0.6231,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -1181,21 +1180,21 @@
       }
     },
     {
-      "story_id": "story_dc43308f31ff",
-      "title": "小米 MiMo-V2.6 技术报告：260 万美元 RL 算力与三维扩展将万亿参数 MoE 模型推入前沿梯队",
-      "url": "https://x.com/shao__meng/status/2108829340704162034",
-      "primary_url": "https://x.com/shao__meng/status/2108829340704162034",
+      "story_id": "story_4f46b90875e0",
+      "title": "Lee Robinson 斯坦福 CS146S 讲座详解常驻智能体架构与上下文工程",
+      "url": "https://x.com/shao__meng/status/2108760694665691284",
+      "primary_url": "https://x.com/shao__meng/status/2108760694665691284",
       "source": "X：邵猛 (@shao__meng)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "5df932c72242ccef1cb6c3dcb55657b6332289ef",
-          "title": "小米 MiMo-V2.6 技术报告：260 万美元 RL 算力与三维扩展将万亿参数 MoE 模型推入前沿梯队",
-          "url": "https://x.com/shao__meng/status/2108829340704162034",
+          "id": "a82d69238e56213b1587013028231b0706b9834d",
+          "title": "Lee Robinson 斯坦福 CS146S 讲座详解常驻智能体架构与上下文工程",
+          "url": "https://x.com/shao__meng/status/2108760694665691284",
           "source": "X：邵猛 (@shao__meng)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-10T07:57:49Z"
+          "published_at": "2026-10-10T03:25:03Z"
         }
       ],
       "source_count": 1,
@@ -1204,38 +1203,38 @@
       ],
       "items": [
         {
-          "id": "5df932c72242ccef1cb6c3dcb55657b6332289ef",
-          "title": "小米 MiMo-V2.6 技术报告：260 万美元 RL 算力与三维扩展将万亿参数 MoE 模型推入前沿梯队",
-          "url": "https://x.com/shao__meng/status/2108829340704162034",
+          "id": "a82d69238e56213b1587013028231b0706b9834d",
+          "title": "Lee Robinson 斯坦福 CS146S 讲座详解常驻智能体架构与上下文工程",
+          "url": "https://x.com/shao__meng/status/2108760694665691284",
           "source": "X：邵猛 (@shao__meng)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-10T07:57:49Z"
+          "published_at": "2026-10-10T03:25:03Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7227,
-      "importance": 0.7227,
-      "importance_score": 0.7227,
+      "score": 0.7233,
+      "importance": 0.7233,
+      "importance_score": 0.7233,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.69,
+        "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8003,
+        "recency": 0.7207,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-10T07:57:49Z",
-      "latest_at": "2026-10-10T07:57:49Z",
+      "earliest_at": "2026-10-10T03:25:03Z",
+      "latest_at": "2026-10-10T03:25:03Z",
       "primary_item": {
-        "id": "5df932c72242ccef1cb6c3dcb55657b6332289ef",
-        "title": "小米 MiMo-V2.6 技术报告：260 万美元 RL 算力与三维扩展将万亿参数 MoE 模型推入前沿梯队",
-        "url": "https://x.com/shao__meng/status/2108829340704162034",
+        "id": "a82d69238e56213b1587013028231b0706b9834d",
+        "title": "Lee Robinson 斯坦福 CS146S 讲座详解常驻智能体架构与上下文工程",
+        "url": "https://x.com/shao__meng/status/2108760694665691284",
         "source": "X：邵猛 (@shao__meng)",
         "source_name": "AI HOT"
       }
@@ -1293,15 +1292,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6811,
-      "importance": 0.6811,
-      "importance_score": 0.6811,
+      "score": 0.6788,
+      "importance": 0.6788,
+      "importance_score": 0.6788,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3307,
+        "recency": 0.318,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1392,15 +1391,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.6744,
-      "importance": 0.6744,
-      "importance_score": 0.6744,
+      "score": 0.6728,
+      "importance": 0.6728,
+      "importance_score": 0.6728,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2379,
+        "recency": 0.2287,
         "story_heat": 0.5
       },
       "category": "multi_source",
