@@ -1,69 +1,8 @@
 {
-  "generated_at": "2026-10-11T08:41:44.810254Z",
+  "generated_at": "2026-10-11T15:31:31.547530Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
-    {
-      "story_id": "story_2e3af46c5b7b",
-      "title": "OpenAI 测试智能体逃逸 ExploitGym 并入侵 Hugging Face 基础设施，暴露对齐与追责困境",
-      "url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
-      "primary_url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
-      "source": "MarkTechPost（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "c01fe277cea6b5e9d91df46cbc3b2f27e9d158fc",
-          "title": "OpenAI 测试智能体逃逸 ExploitGym 并入侵 Hugging Face 基础设施，暴露对齐与追责困境",
-          "url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
-          "source": "MarkTechPost（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-10T21:30:36Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "MarkTechPost（RSS）"
-      ],
-      "items": [
-        {
-          "id": "c01fe277cea6b5e9d91df46cbc3b2f27e9d158fc",
-          "title": "OpenAI 测试智能体逃逸 ExploitGym 并入侵 Hugging Face 基础设施，暴露对齐与追责困境",
-          "url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
-          "source": "MarkTechPost（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-10T21:30:36Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7798,
-      "importance": 0.7798,
-      "importance_score": 0.7798,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.85,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8508,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-10T21:30:36Z",
-      "latest_at": "2026-10-10T21:30:36Z",
-      "primary_item": {
-        "id": "c01fe277cea6b5e9d91df46cbc3b2f27e9d158fc",
-        "title": "OpenAI 测试智能体逃逸 ExploitGym 并入侵 Hugging Face 基础设施，暴露对齐与追责困境",
-        "url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
-        "source": "MarkTechPost（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
     {
       "story_id": "story_6cbde97d8260",
       "title": "OpenAI 在 GitHub 发布 openai/math 仓库，722 份数学手稿引发数学界震荡",
@@ -173,15 +112,15 @@
       ],
       "item_count": 5,
       "duplicate_count": 5,
-      "score": 0.7712,
-      "importance": 0.7712,
-      "importance_score": 0.7712,
+      "score": 0.7659,
+      "importance": 0.7659,
+      "importance_score": 0.7659,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3145,
+        "recency": 0.285,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -197,6 +136,128 @@
         "title": "OpenAI 在 GitHub 发布 openai/math 仓库，722 份数学手稿引发数学界震荡",
         "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686908&idx=1&sn=29a97b5ff695871a7bf219d3d6bd6487",
         "source": "公众号：数字生命卡兹克",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_2e3af46c5b7b",
+      "title": "OpenAI 测试智能体逃逸 ExploitGym 并入侵 Hugging Face 基础设施，暴露对齐与追责困境",
+      "url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
+      "primary_url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
+      "source": "MarkTechPost（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "c01fe277cea6b5e9d91df46cbc3b2f27e9d158fc",
+          "title": "OpenAI 测试智能体逃逸 ExploitGym 并入侵 Hugging Face 基础设施，暴露对齐与追责困境",
+          "url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
+          "source": "MarkTechPost（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T21:30:36Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "MarkTechPost（RSS）"
+      ],
+      "items": [
+        {
+          "id": "c01fe277cea6b5e9d91df46cbc3b2f27e9d158fc",
+          "title": "OpenAI 测试智能体逃逸 ExploitGym 并入侵 Hugging Face 基础设施，暴露对齐与追责困境",
+          "url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
+          "source": "MarkTechPost（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-10T21:30:36Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7654,
+      "importance": 0.7654,
+      "importance_score": 0.7654,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.85,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7709,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-10T21:30:36Z",
+      "latest_at": "2026-10-10T21:30:36Z",
+      "primary_item": {
+        "id": "c01fe277cea6b5e9d91df46cbc3b2f27e9d158fc",
+        "title": "OpenAI 测试智能体逃逸 ExploitGym 并入侵 Hugging Face 基础设施，暴露对齐与追责困境",
+        "url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
+        "source": "MarkTechPost（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_a66bed1ccb68",
+      "title": "哥伦比亚大学 Agentic Engineering 第 5 讲：221 分钟讲透 Agent 工具",
+      "url": "https://x.com/shao__meng/status/2109264105286807685",
+      "primary_url": "https://x.com/shao__meng/status/2109264105286807685",
+      "source": "X：邵猛 (@shao__meng)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "24d0d11e7541d02d4f75d88c036f137b050eec0b",
+          "title": "哥伦比亚大学 Agentic Engineering 第 5 讲：221 分钟讲透 Agent 工具",
+          "url": "https://x.com/shao__meng/status/2109264105286807685",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T12:45:25Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：邵猛 (@shao__meng)"
+      ],
+      "items": [
+        {
+          "id": "24d0d11e7541d02d4f75d88c036f137b050eec0b",
+          "title": "哥伦比亚大学 Agentic Engineering 第 5 讲：221 分钟讲透 Agent 工具",
+          "url": "https://x.com/shao__meng/status/2109264105286807685",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T12:45:25Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7605,
+      "importance": 0.7605,
+      "importance_score": 0.7605,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.72,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9608,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-11T12:45:25Z",
+      "latest_at": "2026-10-11T12:45:25Z",
+      "primary_item": {
+        "id": "24d0d11e7541d02d4f75d88c036f137b050eec0b",
+        "title": "哥伦比亚大学 Agentic Engineering 第 5 讲：221 分钟讲透 Agent 工具",
+        "url": "https://x.com/shao__meng/status/2109264105286807685",
+        "source": "X：邵猛 (@shao__meng)",
         "source_name": "AI HOT"
       }
     },
@@ -253,15 +314,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7582,
-      "importance": 0.7582,
-      "importance_score": 0.7582,
+      "score": 0.7507,
+      "importance": 0.7507,
+      "importance_score": 0.7507,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.94,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4423,
+        "recency": 0.4008,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -315,21 +376,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7532,
-      "importance": 0.7532,
-      "importance_score": 0.7532,
+      "score": 0.7404,
+      "importance": 0.7404,
+      "importance_score": 0.7404,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7532,
+        "recency": 0.6824,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-10T13:03:59Z",
       "latest_at": "2026-10-10T13:03:59Z",
@@ -376,15 +436,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7399,
-      "importance": 0.7399,
-      "importance_score": 0.7399,
+      "score": 0.727,
+      "importance": 0.727,
+      "importance_score": 0.727,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7627,
+        "recency": 0.691,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -398,6 +458,66 @@
         "title": "MIT 教授谈 OpenAI 模型解 Navier-Stokes 反例：人类读不懂的证明来了",
         "url": "https://x.com/SaitoWu/status/2108919486581796872",
         "source": "X：Saito 硬地骇客 (@SaitoWu)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_5f511c2babb0",
+      "title": "陶哲轩在 Caltech \"Math 2.0\" 演讲中警告盲目用 AI 解题有害数学长期健康",
+      "url": "https://x.com/rohanpaul_ai/status/2109260111067971603",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2109260111067971603",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "7b1ee82db4daa07076263c280e06a279736dab99",
+          "title": "陶哲轩在 Caltech \"Math 2.0\" 演讲中警告盲目用 AI 解题有害数学长期健康",
+          "url": "https://x.com/rohanpaul_ai/status/2109260111067971603",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T12:29:33Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "7b1ee82db4daa07076263c280e06a279736dab99",
+          "title": "陶哲轩在 Caltech \"Math 2.0\" 演讲中警告盲目用 AI 解题有害数学长期健康",
+          "url": "https://x.com/rohanpaul_ai/status/2109260111067971603",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T12:29:33Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7269,
+      "importance": 0.7269,
+      "importance_score": 0.7269,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.61,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9571,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-11T12:29:33Z",
+      "latest_at": "2026-10-11T12:29:33Z",
+      "primary_item": {
+        "id": "7b1ee82db4daa07076263c280e06a279736dab99",
+        "title": "陶哲轩在 Caltech \"Math 2.0\" 演讲中警告盲目用 AI 解题有害数学长期健康",
+        "url": "https://x.com/rohanpaul_ai/status/2109260111067971603",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -436,15 +556,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.736,
-      "importance": 0.736,
-      "importance_score": 0.736,
+      "score": 0.7246,
+      "importance": 0.7246,
+      "importance_score": 0.7246,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6747,
+        "recency": 0.6113,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -496,15 +616,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7293,
-      "importance": 0.7293,
-      "importance_score": 0.7293,
+      "score": 0.7239,
+      "importance": 0.7239,
+      "importance_score": 0.7239,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 1.0,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3208,
+        "recency": 0.2907,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -518,186 +638,6 @@
         "title": "Boris Cherny 回归阅读",
         "url": "https://x.com/bcherny/status/2108013947144085714",
         "source": "X：Boris Cherny (@bcherny)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_0405a54be107",
-      "title": "FT 报道 Nvidia 洽谈收购或追加投资 250 亿美元估值的开源权重模型公司 Reflection AI",
-      "url": "https://x.com/rohanpaul_ai/status/2109025847835529580",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2109025847835529580",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "03b17231e3abbdf40ab6a2c7155b1d7a5bbf1c9b",
-          "title": "FT 报道 Nvidia 洽谈收购或追加投资 250 亿美元估值的开源权重模型公司 Reflection AI",
-          "url": "https://x.com/rohanpaul_ai/status/2109025847835529580",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-10T20:58:40Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "03b17231e3abbdf40ab6a2c7155b1d7a5bbf1c9b",
-          "title": "FT 报道 Nvidia 洽谈收购或追加投资 250 亿美元估值的开源权重模型公司 Reflection AI",
-          "url": "https://x.com/rohanpaul_ai/status/2109025847835529580",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-10T20:58:40Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7246,
-      "importance": 0.7246,
-      "importance_score": 0.7246,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.67,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8443,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-10T20:58:40Z",
-      "latest_at": "2026-10-10T20:58:40Z",
-      "primary_item": {
-        "id": "03b17231e3abbdf40ab6a2c7155b1d7a5bbf1c9b",
-        "title": "FT 报道 Nvidia 洽谈收购或追加投资 250 亿美元估值的开源权重模型公司 Reflection AI",
-        "url": "https://x.com/rohanpaul_ai/status/2109025847835529580",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_6cd6f5cc677d",
-      "title": "Anthropic 承认难以可靠控制其 AI 智能体，将切断内部评测的实时联网",
-      "url": "https://techcrunch.com/2026/10/09/anthropic-cant-reliably-control-its-ai-agents-its-cutting-off-its-internal-evals-from-the-live-internet-instead",
-      "primary_url": "https://techcrunch.com/2026/10/09/anthropic-cant-reliably-control-its-ai-agents-its-cutting-off-its-internal-evals-from-the-live-internet-instead",
-      "source": "TechCrunch：AI（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "5fffef4c62768a02a0ef4173810cf42d18f3ce7f",
-          "title": "Anthropic 承认难以可靠控制其 AI 智能体，将切断内部评测的实时联网",
-          "url": "https://techcrunch.com/2026/10/09/anthropic-cant-reliably-control-its-ai-agents-its-cutting-off-its-internal-evals-from-the-live-internet-instead",
-          "source": "TechCrunch：AI（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-10T00:18:32Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "TechCrunch：AI（RSS）"
-      ],
-      "items": [
-        {
-          "id": "5fffef4c62768a02a0ef4173810cf42d18f3ce7f",
-          "title": "Anthropic 承认难以可靠控制其 AI 智能体，将切断内部评测的实时联网",
-          "url": "https://techcrunch.com/2026/10/09/anthropic-cant-reliably-control-its-ai-agents-its-cutting-off-its-internal-evals-from-the-live-internet-instead",
-          "source": "TechCrunch：AI（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-10T00:18:32Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7244,
-      "importance": 0.7244,
-      "importance_score": 0.7244,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.8,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6265,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-10T00:18:32Z",
-      "latest_at": "2026-10-10T00:18:32Z",
-      "primary_item": {
-        "id": "5fffef4c62768a02a0ef4173810cf42d18f3ce7f",
-        "title": "Anthropic 承认难以可靠控制其 AI 智能体，将切断内部评测的实时联网",
-        "url": "https://techcrunch.com/2026/10/09/anthropic-cant-reliably-control-its-ai-agents-its-cutting-off-its-internal-evals-from-the-live-internet-instead",
-        "source": "TechCrunch：AI（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_e9f517ce413b",
-      "title": "华为开源多智能体协作框架 JiuwenSwarm",
-      "url": "https://x.com/shao__meng/status/2109083154682351988",
-      "primary_url": "https://x.com/shao__meng/status/2109083154682351988",
-      "source": "X：邵猛 (@shao__meng)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "4927554a6a8ed1d71dd813f7a7a7bf333bb97f1e",
-          "title": "华为开源多智能体协作框架 JiuwenSwarm",
-          "url": "https://x.com/shao__meng/status/2109083154682351988",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T00:46:23Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：邵猛 (@shao__meng)"
-      ],
-      "items": [
-        {
-          "id": "4927554a6a8ed1d71dd813f7a7a7bf333bb97f1e",
-          "title": "华为开源多智能体协作框架 JiuwenSwarm",
-          "url": "https://x.com/shao__meng/status/2109083154682351988",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T00:46:23Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7241,
-      "importance": 0.7241,
-      "importance_score": 0.7241,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.64,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8919,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-11T00:46:23Z",
-      "latest_at": "2026-10-11T00:46:23Z",
-      "primary_item": {
-        "id": "4927554a6a8ed1d71dd813f7a7a7bf333bb97f1e",
-        "title": "华为开源多智能体协作框架 JiuwenSwarm",
-        "url": "https://x.com/shao__meng/status/2109083154682351988",
-        "source": "X：邵猛 (@shao__meng)",
         "source_name": "AI HOT"
       }
     },
@@ -755,15 +695,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7091,
-      "importance": 0.7091,
-      "importance_score": 0.7091,
+      "score": 0.7042,
+      "importance": 0.7042,
+      "importance_score": 0.7042,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.87,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.286,
+        "recency": 0.2592,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -778,6 +718,126 @@
         "title": "OpenAI 向全部 ChatGPT 用户推出 GPT-6 与 Intelligent UI",
         "url": "https://openai.com/index/gpt-6-for-everyone",
         "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_b1a8cda4635a",
+      "title": "哈佛 2026 秋季 CS2680〈现代 AI 系统〉课程深度解读：从 Agent Loop 到推理引擎",
+      "url": "https://x.com/shao__meng/status/2109255026631983170",
+      "primary_url": "https://x.com/shao__meng/status/2109255026631983170",
+      "source": "X：邵猛 (@shao__meng)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "b63335db9d29483771293be5b208580a559ca533",
+          "title": "哈佛 2026 秋季 CS2680〈现代 AI 系统〉课程深度解读：从 Agent Loop 到推理引擎",
+          "url": "https://x.com/shao__meng/status/2109255026631983170",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T12:09:21Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：邵猛 (@shao__meng)"
+      ],
+      "items": [
+        {
+          "id": "b63335db9d29483771293be5b208580a559ca533",
+          "title": "哈佛 2026 秋季 CS2680〈现代 AI 系统〉课程深度解读：从 Agent Loop 到推理引擎",
+          "url": "https://x.com/shao__meng/status/2109255026631983170",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T12:09:21Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7321,
+      "importance": 0.7321,
+      "importance_score": 0.7321,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.63,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9525,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-11T12:09:21Z",
+      "latest_at": "2026-10-11T12:09:21Z",
+      "primary_item": {
+        "id": "b63335db9d29483771293be5b208580a559ca533",
+        "title": "哈佛 2026 秋季 CS2680〈现代 AI 系统〉课程深度解读：从 Agent Loop 到推理引擎",
+        "url": "https://x.com/shao__meng/status/2109255026631983170",
+        "source": "X：邵猛 (@shao__meng)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_9fdb9456563a",
+      "title": "有人逆向拆解了 ChatGPT Intelligent UI 的工作原理",
+      "url": "https://x.com/rohanpaul_ai/status/2109256090173190542",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2109256090173190542",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "307104f0aa718b3376edce2aea0c19d1176c992c",
+          "title": "有人逆向拆解了 ChatGPT Intelligent UI 的工作原理",
+          "url": "https://x.com/rohanpaul_ai/status/2109256090173190542",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T12:13:34Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "307104f0aa718b3376edce2aea0c19d1176c992c",
+          "title": "有人逆向拆解了 ChatGPT Intelligent UI 的工作原理",
+          "url": "https://x.com/rohanpaul_ai/status/2109256090173190542",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T12:13:34Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7232,
+      "importance": 0.7232,
+      "importance_score": 0.7232,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.6,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9535,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-11T12:13:34Z",
+      "latest_at": "2026-10-11T12:13:34Z",
+      "primary_item": {
+        "id": "307104f0aa718b3376edce2aea0c19d1176c992c",
+        "title": "有人逆向拆解了 ChatGPT Intelligent UI 的工作原理",
+        "url": "https://x.com/rohanpaul_ai/status/2109256090173190542",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -852,15 +912,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.6945,
-      "importance": 0.6945,
-      "importance_score": 0.6945,
+      "score": 0.6877,
+      "importance": 0.6877,
+      "importance_score": 0.6877,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3994,
+        "recency": 0.3619,
         "story_heat": 0.5
       },
       "category": "multi_source",
@@ -931,15 +991,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6736,
-      "importance": 0.6736,
-      "importance_score": 0.6736,
+      "score": 0.6688,
+      "importance": 0.6688,
+      "importance_score": 0.6688,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2891,
+        "recency": 0.2619,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1030,15 +1090,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.669,
-      "importance": 0.669,
-      "importance_score": 0.669,
+      "score": 0.6655,
+      "importance": 0.6655,
+      "importance_score": 0.6655,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.208,
+        "recency": 0.1884,
         "story_heat": 0.5
       },
       "category": "multi_source",
@@ -1110,15 +1170,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6569,
-      "importance": 0.6569,
-      "importance_score": 0.6569,
+      "score": 0.6567,
+      "importance": 0.6567,
+      "importance_score": 0.6567,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0126,
+        "recency": 0.0114,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1133,6 +1193,86 @@
         "title": "Anthropic 发布 Claude Sonnet 5.5：速度提升 30%+，每任务成本最多降 30%",
         "url": "https://www.anthropic.com/claude-sonnet-5-5",
         "source": "Hacker News：AI 热帖",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_a51e6459db17",
+      "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
+      "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
+      "primary_url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
+      "source": "TechCrunch：AI（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "498dc000c78d24ef9003ed81482127745fdc4a1b",
+          "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
+          "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
+          "source": "TechCrunch：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T19:52:37Z"
+        },
+        {
+          "id": "64f8f8b1a6db2d38b4ac1067308170161f734910",
+          "title": "OpenAI 拟以约 1.4 万亿美元投前估值融资至少 300 亿美元",
+          "url": "https://x.com/rohanpaul_ai/status/2105017898343575731",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T19:32:30Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "TechCrunch：AI（RSS）",
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "498dc000c78d24ef9003ed81482127745fdc4a1b",
+          "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
+          "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
+          "source": "TechCrunch：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T19:52:37Z"
+        },
+        {
+          "id": "64f8f8b1a6db2d38b4ac1067308170161f734910",
+          "title": "OpenAI 拟以约 1.4 万亿美元投前估值融资至少 300 亿美元",
+          "url": "https://x.com/rohanpaul_ai/status/2105017898343575731",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-29T19:32:30Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6486,
+      "importance": 0.6486,
+      "importance_score": 0.6486,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.83,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.0166,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-29T19:32:30Z",
+      "latest_at": "2026-09-29T19:52:37Z",
+      "primary_item": {
+        "id": "498dc000c78d24ef9003ed81482127745fdc4a1b",
+        "title": "OpenAI 据报道洽谈以约 1.4 万亿美元估值融资至少 300 亿美元",
+        "url": "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation",
+        "source": "TechCrunch：AI（RSS）",
         "source_name": "AI HOT"
       }
     },
@@ -1190,15 +1330,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.683,
-      "importance": 0.683,
-      "importance_score": 0.683,
+      "score": 0.6781,
+      "importance": 0.6781,
+      "importance_score": 0.6781,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2912,
+        "recency": 0.2638,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1269,15 +1409,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6509,
-      "importance": 0.6509,
-      "importance_score": 0.6509,
+      "score": 0.6445,
+      "importance": 0.6445,
+      "importance_score": 0.6445,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3792,
+        "recency": 0.3436,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1348,15 +1488,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6419,
-      "importance": 0.6419,
-      "importance_score": 0.6419,
+      "score": 0.6417,
+      "importance": 0.6417,
+      "importance_score": 0.6417,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.013,
+        "recency": 0.0118,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1371,165 +1511,6 @@
         "title": "李飞飞宣布 World Labs 并入 AMD，出任执行副总裁兼首席科学家",
         "url": "https://x.com/drfeifei/status/2104664403681632453",
         "source": "X：Fei-Fei Li (@drfeifei, World Labs)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_de35e53397fa",
-      "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
-      "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
-      "primary_url": "https://x.com/ClaudeDevs/status/2104641318555353400",
-      "source": "X：Claude Devs (@ClaudeDevs)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "b719f447f05f438014ff5f0f328dcac723f043ef",
-          "title": "Claude Sonnet 5.5 发布：比 Sonnet 5 快 30% 以上，多数工作成本降低至多 30%",
-          "url": "https://x.com/trq212/status/2104660926373023830",
-          "source": "X：Thariq (@trq212)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T19:54:02Z"
-        },
-        {
-          "id": "174b8f3b0886c612fa58740af5b9afabfa805433",
-          "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
-          "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
-          "source": "X：Claude Devs (@ClaudeDevs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T18:36:07Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "X：Claude Devs (@ClaudeDevs)",
-        "X：Thariq (@trq212)"
-      ],
-      "items": [
-        {
-          "id": "b719f447f05f438014ff5f0f328dcac723f043ef",
-          "title": "Claude Sonnet 5.5 发布：比 Sonnet 5 快 30% 以上，多数工作成本降低至多 30%",
-          "url": "https://x.com/trq212/status/2104660926373023830",
-          "source": "X：Thariq (@trq212)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T19:54:02Z"
-        },
-        {
-          "id": "174b8f3b0886c612fa58740af5b9afabfa805433",
-          "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
-          "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
-          "source": "X：Claude Devs (@ClaudeDevs)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T18:36:07Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6359,
-      "importance": 0.6359,
-      "importance_score": 0.6359,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.79,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.0127,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-28T18:36:07Z",
-      "latest_at": "2026-09-28T19:54:02Z",
-      "primary_item": {
-        "id": "174b8f3b0886c612fa58740af5b9afabfa805433",
-        "title": "Claude Sonnet 5.5 发布，比 Sonnet 5 快超 30%、多数工作成本最多低 30%",
-        "url": "https://x.com/ClaudeDevs/status/2104641318555353400",
-        "source": "X：Claude Devs (@ClaudeDevs)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_80a567fdb16f",
-      "title": "Gemini Nano Banana 2.1 图像生成模型正式发布，gemini-3.1-flash-image 被弃用",
-      "url": "https://ai.google.dev/gemini-api/docs/changelog",
-      "primary_url": "https://ai.google.dev/gemini-api/docs/changelog",
-      "source": "Gemini API：更新日志（网页）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "1146f02aad3908f848cdb9a18f05239a9353c716",
-          "title": "Gemini Nano Banana 2.1 图像生成模型正式发布，gemini-3.1-flash-image 被弃用",
-          "url": "https://ai.google.dev/gemini-api/docs/changelog",
-          "source": "Gemini API：更新日志（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T00:00:00Z"
-        },
-        {
-          "id": "25ea24117151845b17d578a06485a6530691099f",
-          "title": "Gemini Nano Banana 2.1 正式发布，gemini-3.1-flash-image 将于 2026 年 10 月 29 日停用",
-          "url": "https://ai.google.dev/gemini-api/docs/changelog",
-          "source": "Gemini API：更新日志（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T00:00:00Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "Gemini API：更新日志（网页）"
-      ],
-      "items": [
-        {
-          "id": "1146f02aad3908f848cdb9a18f05239a9353c716",
-          "title": "Gemini Nano Banana 2.1 图像生成模型正式发布，gemini-3.1-flash-image 被弃用",
-          "url": "https://ai.google.dev/gemini-api/docs/changelog",
-          "source": "Gemini API：更新日志（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T00:00:00Z"
-        },
-        {
-          "id": "25ea24117151845b17d578a06485a6530691099f",
-          "title": "Gemini Nano Banana 2.1 正式发布，gemini-3.1-flash-image 将于 2026 年 10 月 29 日停用",
-          "url": "https://ai.google.dev/gemini-api/docs/changelog",
-          "source": "Gemini API：更新日志（网页）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T00:00:00Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6287,
-      "importance": 0.6287,
-      "importance_score": 0.6287,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.68,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.1559,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-06T00:00:00Z",
-      "latest_at": "2026-10-06T00:00:00Z",
-      "primary_item": {
-        "id": "1146f02aad3908f848cdb9a18f05239a9353c716",
-        "title": "Gemini Nano Banana 2.1 图像生成模型正式发布，gemini-3.1-flash-image 被弃用",
-        "url": "https://ai.google.dev/gemini-api/docs/changelog",
-        "source": "Gemini API：更新日志（网页）",
         "source_name": "AI HOT"
       }
     }
