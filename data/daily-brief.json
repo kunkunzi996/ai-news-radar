@@ -1,8 +1,69 @@
 {
-  "generated_at": "2026-10-11T15:31:31.547530Z",
+  "generated_at": "2026-10-11T19:39:55.867360Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
+    {
+      "story_id": "story_3b8fc5482363",
+      "title": "密歇根大学 AI 编程课 Applied Agentic Software Engineering 发布五个工程 Skills",
+      "url": "https://x.com/shao__meng/status/2109305199357784357",
+      "primary_url": "https://x.com/shao__meng/status/2109305199357784357",
+      "source": "X：邵猛 (@shao__meng)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "e9bf5122904bfccea22f833ebc92aad13acd296d",
+          "title": "密歇根大学 AI 编程课 Applied Agentic Software Engineering 发布五个工程 Skills",
+          "url": "https://x.com/shao__meng/status/2109305199357784357",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T15:28:43Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：邵猛 (@shao__meng)"
+      ],
+      "items": [
+        {
+          "id": "e9bf5122904bfccea22f833ebc92aad13acd296d",
+          "title": "密歇根大学 AI 编程课 Applied Agentic Software Engineering 发布五个工程 Skills",
+          "url": "https://x.com/shao__meng/status/2109305199357784357",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T15:28:43Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.763,
+      "importance": 0.763,
+      "importance_score": 0.763,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.74,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9413,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-11T15:28:43Z",
+      "latest_at": "2026-10-11T15:28:43Z",
+      "primary_item": {
+        "id": "e9bf5122904bfccea22f833ebc92aad13acd296d",
+        "title": "密歇根大学 AI 编程课 Applied Agentic Software Engineering 发布五个工程 Skills",
+        "url": "https://x.com/shao__meng/status/2109305199357784357",
+        "source": "X：邵猛 (@shao__meng)",
+        "source_name": "AI HOT"
+      }
+    },
     {
       "story_id": "story_6cbde97d8260",
       "title": "OpenAI 在 GitHub 发布 openai/math 仓库，722 份数学手稿引发数学界震荡",
@@ -112,15 +173,15 @@
       ],
       "item_count": 5,
       "duplicate_count": 5,
-      "score": 0.7659,
-      "importance": 0.7659,
-      "importance_score": 0.7659,
+      "score": 0.7629,
+      "importance": 0.7629,
+      "importance_score": 0.7629,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.285,
+        "recency": 0.2685,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -174,15 +235,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7654,
-      "importance": 0.7654,
-      "importance_score": 0.7654,
+      "score": 0.7573,
+      "importance": 0.7573,
+      "importance_score": 0.7573,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.85,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7709,
+        "recency": 0.7262,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -201,63 +262,122 @@
       }
     },
     {
-      "story_id": "story_a66bed1ccb68",
-      "title": "哥伦比亚大学 Agentic Engineering 第 5 讲：221 分钟讲透 Agent 工具",
-      "url": "https://x.com/shao__meng/status/2109264105286807685",
-      "primary_url": "https://x.com/shao__meng/status/2109264105286807685",
-      "source": "X：邵猛 (@shao__meng)",
+      "story_id": "story_81c0a1839a64",
+      "title": "Karpathy：LLM 能力认知鸿沟正扩大为漏斗，仅约 0.2% 的专业用户看到前沿智能体能力",
+      "url": "https://x.com/karpathy/status/2109361546505966046",
+      "primary_url": "https://x.com/karpathy/status/2109361546505966046",
+      "source": "X：Andrej Karpathy (@karpathy)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "24d0d11e7541d02d4f75d88c036f137b050eec0b",
-          "title": "哥伦比亚大学 Agentic Engineering 第 5 讲：221 分钟讲透 Agent 工具",
-          "url": "https://x.com/shao__meng/status/2109264105286807685",
-          "source": "X：邵猛 (@shao__meng)",
+          "id": "9536b7062b7b9c5d45fa6849b46b63482df9befc",
+          "title": "Karpathy：LLM 能力认知鸿沟正扩大为漏斗，仅约 0.2% 的专业用户看到前沿智能体能力",
+          "url": "https://x.com/karpathy/status/2109361546505966046",
+          "source": "X：Andrej Karpathy (@karpathy)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-11T12:45:25Z"
+          "published_at": "2026-10-11T19:12:37Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：邵猛 (@shao__meng)"
+        "X：Andrej Karpathy (@karpathy)"
       ],
       "items": [
         {
-          "id": "24d0d11e7541d02d4f75d88c036f137b050eec0b",
-          "title": "哥伦比亚大学 Agentic Engineering 第 5 讲：221 分钟讲透 Agent 工具",
-          "url": "https://x.com/shao__meng/status/2109264105286807685",
-          "source": "X：邵猛 (@shao__meng)",
+          "id": "9536b7062b7b9c5d45fa6849b46b63482df9befc",
+          "title": "Karpathy：LLM 能力认知鸿沟正扩大为漏斗，仅约 0.2% 的专业用户看到前沿智能体能力",
+          "url": "https://x.com/karpathy/status/2109361546505966046",
+          "source": "X：Andrej Karpathy (@karpathy)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-11T12:45:25Z"
+          "published_at": "2026-10-11T19:12:37Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7605,
-      "importance": 0.7605,
-      "importance_score": 0.7605,
+      "score": 0.7484,
+      "importance": 0.7484,
+      "importance_score": 0.7484,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.72,
+        "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9608,
+        "recency": 0.9934,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-11T12:45:25Z",
-      "latest_at": "2026-10-11T12:45:25Z",
+      "earliest_at": "2026-10-11T19:12:37Z",
+      "latest_at": "2026-10-11T19:12:37Z",
       "primary_item": {
-        "id": "24d0d11e7541d02d4f75d88c036f137b050eec0b",
-        "title": "哥伦比亚大学 Agentic Engineering 第 5 讲：221 分钟讲透 Agent 工具",
-        "url": "https://x.com/shao__meng/status/2109264105286807685",
-        "source": "X：邵猛 (@shao__meng)",
+        "id": "9536b7062b7b9c5d45fa6849b46b63482df9befc",
+        "title": "Karpathy：LLM 能力认知鸿沟正扩大为漏斗，仅约 0.2% 的专业用户看到前沿智能体能力",
+        "url": "https://x.com/karpathy/status/2109361546505966046",
+        "source": "X：Andrej Karpathy (@karpathy)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_109d57dd5b5d",
+      "title": "OpenAI 一次发布数百篇 AI 生成论文后，西北大学数学学生开始动摇去留",
+      "url": "https://x.com/rohanpaul_ai/status/2109358434177180101",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2109358434177180101",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "5504d445b93aad78bd5e692aa59161f238ecbcb8",
+          "title": "OpenAI 一次发布数百篇 AI 生成论文后，西北大学数学学生开始动摇去留",
+          "url": "https://x.com/rohanpaul_ai/status/2109358434177180101",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T19:00:15Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "5504d445b93aad78bd5e692aa59161f238ecbcb8",
+          "title": "OpenAI 一次发布数百篇 AI 生成论文后，西北大学数学学生开始动摇去留",
+          "url": "https://x.com/rohanpaul_ai/status/2109358434177180101",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T19:00:15Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7479,
+      "importance": 0.7479,
+      "importance_score": 0.7479,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.66,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9905,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-11T19:00:15Z",
+      "latest_at": "2026-10-11T19:00:15Z",
+      "primary_item": {
+        "id": "5504d445b93aad78bd5e692aa59161f238ecbcb8",
+        "title": "OpenAI 一次发布数百篇 AI 生成论文后，西北大学数学学生开始动摇去留",
+        "url": "https://x.com/rohanpaul_ai/status/2109358434177180101",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -314,22 +434,21 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7507,
-      "importance": 0.7507,
-      "importance_score": 0.7507,
+      "score": 0.7466,
+      "importance": 0.7466,
+      "importance_score": 0.7466,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.94,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.4008,
+        "recency": 0.3775,
         "story_heat": 0.25
       },
       "category": "industry",
       "reasons": [
         "multi_source",
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-09T00:12:24Z",
       "latest_at": "2026-10-09T00:12:24Z",
@@ -376,15 +495,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7404,
-      "importance": 0.7404,
-      "importance_score": 0.7404,
+      "score": 0.7333,
+      "importance": 0.7333,
+      "importance_score": 0.7333,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6824,
+        "recency": 0.6428,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -402,182 +521,122 @@
       }
     },
     {
-      "story_id": "story_c842af9430c6",
-      "title": "MIT 教授谈 OpenAI 模型解 Navier-Stokes 反例：人类读不懂的证明来了",
-      "url": "https://x.com/SaitoWu/status/2108919486581796872",
-      "primary_url": "https://x.com/SaitoWu/status/2108919486581796872",
-      "source": "X：Saito 硬地骇客 (@SaitoWu)",
+      "story_id": "story_831910d513ed",
+      "title": "Lauren Tan：智能体写代码时代需要更新对好代码的定义",
+      "url": "https://x.com/poteto/status/2109356992032817621",
+      "primary_url": "https://x.com/poteto/status/2109356992032817621",
+      "source": "X：Lauren Tan (@poteto)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "69bfa5e3f216503c129d795e05cd47b96e123c4f",
-          "title": "MIT 教授谈 OpenAI 模型解 Navier-Stokes 反例：人类读不懂的证明来了",
-          "url": "https://x.com/SaitoWu/status/2108919486581796872",
-          "source": "X：Saito 硬地骇客 (@SaitoWu)",
+          "id": "5e950531090cf7f16f3f13fddd56678cf2510223",
+          "title": "Lauren Tan：智能体写代码时代需要更新对好代码的定义",
+          "url": "https://x.com/poteto/status/2109356992032817621",
+          "source": "X：Lauren Tan (@poteto)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-10T13:56:02Z"
+          "published_at": "2026-10-11T18:54:31Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Saito 硬地骇客 (@SaitoWu)"
+        "X：Lauren Tan (@poteto)"
       ],
       "items": [
         {
-          "id": "69bfa5e3f216503c129d795e05cd47b96e123c4f",
-          "title": "MIT 教授谈 OpenAI 模型解 Navier-Stokes 反例：人类读不懂的证明来了",
-          "url": "https://x.com/SaitoWu/status/2108919486581796872",
-          "source": "X：Saito 硬地骇客 (@SaitoWu)",
+          "id": "5e950531090cf7f16f3f13fddd56678cf2510223",
+          "title": "Lauren Tan：智能体写代码时代需要更新对好代码的定义",
+          "url": "https://x.com/poteto/status/2109356992032817621",
+          "source": "X：Lauren Tan (@poteto)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-10T13:56:02Z"
+          "published_at": "2026-10-11T18:54:31Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.727,
-      "importance": 0.727,
-      "importance_score": 0.727,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.77,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.691,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-10T13:56:02Z",
-      "latest_at": "2026-10-10T13:56:02Z",
-      "primary_item": {
-        "id": "69bfa5e3f216503c129d795e05cd47b96e123c4f",
-        "title": "MIT 教授谈 OpenAI 模型解 Navier-Stokes 反例：人类读不懂的证明来了",
-        "url": "https://x.com/SaitoWu/status/2108919486581796872",
-        "source": "X：Saito 硬地骇客 (@SaitoWu)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_5f511c2babb0",
-      "title": "陶哲轩在 Caltech \"Math 2.0\" 演讲中警告盲目用 AI 解题有害数学长期健康",
-      "url": "https://x.com/rohanpaul_ai/status/2109260111067971603",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2109260111067971603",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "7b1ee82db4daa07076263c280e06a279736dab99",
-          "title": "陶哲轩在 Caltech \"Math 2.0\" 演讲中警告盲目用 AI 解题有害数学长期健康",
-          "url": "https://x.com/rohanpaul_ai/status/2109260111067971603",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T12:29:33Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "7b1ee82db4daa07076263c280e06a279736dab99",
-          "title": "陶哲轩在 Caltech \"Math 2.0\" 演讲中警告盲目用 AI 解题有害数学长期健康",
-          "url": "https://x.com/rohanpaul_ai/status/2109260111067971603",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T12:29:33Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7269,
-      "importance": 0.7269,
-      "importance_score": 0.7269,
+      "score": 0.7326,
+      "importance": 0.7326,
+      "importance_score": 0.7326,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.61,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9571,
+        "recency": 0.9891,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-11T12:29:33Z",
-      "latest_at": "2026-10-11T12:29:33Z",
+      "earliest_at": "2026-10-11T18:54:31Z",
+      "latest_at": "2026-10-11T18:54:31Z",
       "primary_item": {
-        "id": "7b1ee82db4daa07076263c280e06a279736dab99",
-        "title": "陶哲轩在 Caltech \"Math 2.0\" 演讲中警告盲目用 AI 解题有害数学长期健康",
-        "url": "https://x.com/rohanpaul_ai/status/2109260111067971603",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "id": "5e950531090cf7f16f3f13fddd56678cf2510223",
+        "title": "Lauren Tan：智能体写代码时代需要更新对好代码的定义",
+        "url": "https://x.com/poteto/status/2109356992032817621",
+        "source": "X：Lauren Tan (@poteto)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_83a5417202a3",
-      "title": "State of AI Report 2026 速读：AI 加速 AI、千亿收入、电力瓶颈与安全",
-      "url": "https://x.com/indigox/status/2108791275914993998",
-      "primary_url": "https://x.com/indigox/status/2108791275914993998",
-      "source": "X：indigo (@indigox)",
+      "story_id": "story_23e157f0b4ed",
+      "title": "Yuchen Jin 谈 Google 用 Code Comprehension 轮取代 LeetCode 面试",
+      "url": "https://x.com/Yuchenj_UW/status/2109337587207000326",
+      "primary_url": "https://x.com/Yuchenj_UW/status/2109337587207000326",
+      "source": "X：Yuchen Jin (@Yuchenj_UW)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "8767310b69dd7c77de9607e0656310de88ba3daf",
-          "title": "State of AI Report 2026 速读：AI 加速 AI、千亿收入、电力瓶颈与安全",
-          "url": "https://x.com/indigox/status/2108791275914993998",
-          "source": "X：indigo (@indigox)",
+          "id": "cfbc6c4ebb76be12307088c7d67c0757bd12fac8",
+          "title": "Yuchen Jin 谈 Google 用 Code Comprehension 轮取代 LeetCode 面试",
+          "url": "https://x.com/Yuchenj_UW/status/2109337587207000326",
+          "source": "X：Yuchen Jin (@Yuchenj_UW)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-10T05:26:34Z"
+          "published_at": "2026-10-11T17:37:25Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：indigo (@indigox)"
+        "X：Yuchen Jin (@Yuchenj_UW)"
       ],
       "items": [
         {
-          "id": "8767310b69dd7c77de9607e0656310de88ba3daf",
-          "title": "State of AI Report 2026 速读：AI 加速 AI、千亿收入、电力瓶颈与安全",
-          "url": "https://x.com/indigox/status/2108791275914993998",
-          "source": "X：indigo (@indigox)",
+          "id": "cfbc6c4ebb76be12307088c7d67c0757bd12fac8",
+          "title": "Yuchen Jin 谈 Google 用 Code Comprehension 轮取代 LeetCode 面试",
+          "url": "https://x.com/Yuchenj_UW/status/2109337587207000326",
+          "source": "X：Yuchen Jin (@Yuchenj_UW)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-10T05:26:34Z"
+          "published_at": "2026-10-11T17:37:25Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7246,
-      "importance": 0.7246,
-      "importance_score": 0.7246,
+      "score": 0.7324,
+      "importance": 0.7324,
+      "importance_score": 0.7324,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.81,
+        "editorial": 0.62,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6113,
+        "recency": 0.9709,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-10T05:26:34Z",
-      "latest_at": "2026-10-10T05:26:34Z",
+      "earliest_at": "2026-10-11T17:37:25Z",
+      "latest_at": "2026-10-11T17:37:25Z",
       "primary_item": {
-        "id": "8767310b69dd7c77de9607e0656310de88ba3daf",
-        "title": "State of AI Report 2026 速读：AI 加速 AI、千亿收入、电力瓶颈与安全",
-        "url": "https://x.com/indigox/status/2108791275914993998",
-        "source": "X：indigo (@indigox)",
+        "id": "cfbc6c4ebb76be12307088c7d67c0757bd12fac8",
+        "title": "Yuchen Jin 谈 Google 用 Code Comprehension 轮取代 LeetCode 面试",
+        "url": "https://x.com/Yuchenj_UW/status/2109337587207000326",
+        "source": "X：Yuchen Jin (@Yuchenj_UW)",
         "source_name": "AI HOT"
       }
     },
@@ -616,15 +675,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7239,
-      "importance": 0.7239,
-      "importance_score": 0.7239,
+      "score": 0.7209,
+      "importance": 0.7209,
+      "importance_score": 0.7209,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 1.0,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2907,
+        "recency": 0.2738,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -638,6 +697,67 @@
         "title": "Boris Cherny 回归阅读",
         "url": "https://x.com/bcherny/status/2108013947144085714",
         "source": "X：Boris Cherny (@bcherny)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_a66bed1ccb68",
+      "title": "哥伦比亚大学 Agentic Engineering 第 5 讲：221 分钟讲透 Agent 工具",
+      "url": "https://x.com/shao__meng/status/2109264105286807685",
+      "primary_url": "https://x.com/shao__meng/status/2109264105286807685",
+      "source": "X：邵猛 (@shao__meng)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "24d0d11e7541d02d4f75d88c036f137b050eec0b",
+          "title": "哥伦比亚大学 Agentic Engineering 第 5 讲：221 分钟讲透 Agent 工具",
+          "url": "https://x.com/shao__meng/status/2109264105286807685",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T12:45:25Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：邵猛 (@shao__meng)"
+      ],
+      "items": [
+        {
+          "id": "24d0d11e7541d02d4f75d88c036f137b050eec0b",
+          "title": "哥伦比亚大学 Agentic Engineering 第 5 讲：221 分钟讲透 Agent 工具",
+          "url": "https://x.com/shao__meng/status/2109264105286807685",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T12:45:25Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7505,
+      "importance": 0.7505,
+      "importance_score": 0.7505,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.72,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9051,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-11T12:45:25Z",
+      "latest_at": "2026-10-11T12:45:25Z",
+      "primary_item": {
+        "id": "24d0d11e7541d02d4f75d88c036f137b050eec0b",
+        "title": "哥伦比亚大学 Agentic Engineering 第 5 讲：221 分钟讲透 Agent 工具",
+        "url": "https://x.com/shao__meng/status/2109264105286807685",
+        "source": "X：邵猛 (@shao__meng)",
         "source_name": "AI HOT"
       }
     },
@@ -695,15 +815,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7042,
-      "importance": 0.7042,
-      "importance_score": 0.7042,
+      "score": 0.7015,
+      "importance": 0.7015,
+      "importance_score": 0.7015,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.87,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2592,
+        "recency": 0.2441,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -718,126 +838,6 @@
         "title": "OpenAI 向全部 ChatGPT 用户推出 GPT-6 与 Intelligent UI",
         "url": "https://openai.com/index/gpt-6-for-everyone",
         "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_b1a8cda4635a",
-      "title": "哈佛 2026 秋季 CS2680〈现代 AI 系统〉课程深度解读：从 Agent Loop 到推理引擎",
-      "url": "https://x.com/shao__meng/status/2109255026631983170",
-      "primary_url": "https://x.com/shao__meng/status/2109255026631983170",
-      "source": "X：邵猛 (@shao__meng)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "b63335db9d29483771293be5b208580a559ca533",
-          "title": "哈佛 2026 秋季 CS2680〈现代 AI 系统〉课程深度解读：从 Agent Loop 到推理引擎",
-          "url": "https://x.com/shao__meng/status/2109255026631983170",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T12:09:21Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：邵猛 (@shao__meng)"
-      ],
-      "items": [
-        {
-          "id": "b63335db9d29483771293be5b208580a559ca533",
-          "title": "哈佛 2026 秋季 CS2680〈现代 AI 系统〉课程深度解读：从 Agent Loop 到推理引擎",
-          "url": "https://x.com/shao__meng/status/2109255026631983170",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T12:09:21Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7321,
-      "importance": 0.7321,
-      "importance_score": 0.7321,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.63,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9525,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-11T12:09:21Z",
-      "latest_at": "2026-10-11T12:09:21Z",
-      "primary_item": {
-        "id": "b63335db9d29483771293be5b208580a559ca533",
-        "title": "哈佛 2026 秋季 CS2680〈现代 AI 系统〉课程深度解读：从 Agent Loop 到推理引擎",
-        "url": "https://x.com/shao__meng/status/2109255026631983170",
-        "source": "X：邵猛 (@shao__meng)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_9fdb9456563a",
-      "title": "有人逆向拆解了 ChatGPT Intelligent UI 的工作原理",
-      "url": "https://x.com/rohanpaul_ai/status/2109256090173190542",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2109256090173190542",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "307104f0aa718b3376edce2aea0c19d1176c992c",
-          "title": "有人逆向拆解了 ChatGPT Intelligent UI 的工作原理",
-          "url": "https://x.com/rohanpaul_ai/status/2109256090173190542",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T12:13:34Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "307104f0aa718b3376edce2aea0c19d1176c992c",
-          "title": "有人逆向拆解了 ChatGPT Intelligent UI 的工作原理",
-          "url": "https://x.com/rohanpaul_ai/status/2109256090173190542",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T12:13:34Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7232,
-      "importance": 0.7232,
-      "importance_score": 0.7232,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.6,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9535,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-11T12:13:34Z",
-      "latest_at": "2026-10-11T12:13:34Z",
-      "primary_item": {
-        "id": "307104f0aa718b3376edce2aea0c19d1176c992c",
-        "title": "有人逆向拆解了 ChatGPT Intelligent UI 的工作原理",
-        "url": "https://x.com/rohanpaul_ai/status/2109256090173190542",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -912,15 +912,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.6877,
-      "importance": 0.6877,
-      "importance_score": 0.6877,
+      "score": 0.684,
+      "importance": 0.684,
+      "importance_score": 0.684,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3619,
+        "recency": 0.3409,
         "story_heat": 0.5
       },
       "category": "multi_source",
@@ -991,15 +991,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6688,
-      "importance": 0.6688,
-      "importance_score": 0.6688,
+      "score": 0.666,
+      "importance": 0.666,
+      "importance_score": 0.666,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2619,
+        "recency": 0.2467,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1090,15 +1090,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.6655,
-      "importance": 0.6655,
-      "importance_score": 0.6655,
+      "score": 0.6636,
+      "importance": 0.6636,
+      "importance_score": 0.6636,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1884,
+        "recency": 0.1775,
         "story_heat": 0.5
       },
       "category": "multi_source",
@@ -1113,6 +1113,66 @@
         "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
         "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
         "source": "Google DeepMind：Blog（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_b1a8cda4635a",
+      "title": "哈佛 2026 秋季 CS2680〈现代 AI 系统〉课程深度解读：从 Agent Loop 到推理引擎",
+      "url": "https://x.com/shao__meng/status/2109255026631983170",
+      "primary_url": "https://x.com/shao__meng/status/2109255026631983170",
+      "source": "X：邵猛 (@shao__meng)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "b63335db9d29483771293be5b208580a559ca533",
+          "title": "哈佛 2026 秋季 CS2680〈现代 AI 系统〉课程深度解读：从 Agent Loop 到推理引擎",
+          "url": "https://x.com/shao__meng/status/2109255026631983170",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T12:09:21Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：邵猛 (@shao__meng)"
+      ],
+      "items": [
+        {
+          "id": "b63335db9d29483771293be5b208580a559ca533",
+          "title": "哈佛 2026 秋季 CS2680〈现代 AI 系统〉课程深度解读：从 Agent Loop 到推理引擎",
+          "url": "https://x.com/shao__meng/status/2109255026631983170",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T12:09:21Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7221,
+      "importance": 0.7221,
+      "importance_score": 0.7221,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.63,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8972,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-11T12:09:21Z",
+      "latest_at": "2026-10-11T12:09:21Z",
+      "primary_item": {
+        "id": "b63335db9d29483771293be5b208580a559ca533",
+        "title": "哈佛 2026 秋季 CS2680〈现代 AI 系统〉课程深度解读：从 Agent Loop 到推理引擎",
+        "url": "https://x.com/shao__meng/status/2109255026631983170",
+        "source": "X：邵猛 (@shao__meng)",
         "source_name": "AI HOT"
       }
     },
@@ -1170,15 +1230,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6567,
-      "importance": 0.6567,
-      "importance_score": 0.6567,
+      "score": 0.6565,
+      "importance": 0.6565,
+      "importance_score": 0.6565,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.86,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0114,
+        "recency": 0.0108,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1250,15 +1310,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6486,
-      "importance": 0.6486,
-      "importance_score": 0.6486,
+      "score": 0.6484,
+      "importance": 0.6484,
+      "importance_score": 0.6484,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0166,
+        "recency": 0.0157,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1330,15 +1390,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6781,
-      "importance": 0.6781,
-      "importance_score": 0.6781,
+      "score": 0.6753,
+      "importance": 0.6753,
+      "importance_score": 0.6753,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2638,
+        "recency": 0.2485,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1353,85 +1413,6 @@
         "title": "GPT-6 新版本随 Intelligent UI 向全部 ChatGPT 用户推送",
         "url": "https://x.com/thsottiaux/status/2107912709715132482",
         "source": "X：Tibo (@thsottiaux)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_ad34714ca563",
-      "title": "Step 5 Preview 上线 OpenRouter",
-      "url": "https://x.com/OpenRouter/status/2108188953757331803",
-      "primary_url": "https://x.com/OpenRouter/status/2108188953757331803",
-      "source": "X：OpenRouter (@OpenRouter)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "5e3e04deadb3d2fee376b73ea33a296fe42b6dc0",
-          "title": "Step 5 Preview 上线 OpenRouter，输入 $1.00/M、缓存命中仅 $0.05/M",
-          "url": "https://x.com/OpenRouter/status/2108188987357901047",
-          "source": "X：OpenRouter (@OpenRouter)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T13:33:17Z"
-        },
-        {
-          "id": "9f0afed4ed5c186205f656198e8cff2ed9c30b15",
-          "title": "Step 5 Preview 上线 OpenRouter",
-          "url": "https://x.com/OpenRouter/status/2108188953757331803",
-          "source": "X：OpenRouter (@OpenRouter)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T13:33:09Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "X：OpenRouter (@OpenRouter)"
-      ],
-      "items": [
-        {
-          "id": "5e3e04deadb3d2fee376b73ea33a296fe42b6dc0",
-          "title": "Step 5 Preview 上线 OpenRouter，输入 $1.00/M、缓存命中仅 $0.05/M",
-          "url": "https://x.com/OpenRouter/status/2108188987357901047",
-          "source": "X：OpenRouter (@OpenRouter)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T13:33:17Z"
-        },
-        {
-          "id": "9f0afed4ed5c186205f656198e8cff2ed9c30b15",
-          "title": "Step 5 Preview 上线 OpenRouter",
-          "url": "https://x.com/OpenRouter/status/2108188953757331803",
-          "source": "X：OpenRouter (@OpenRouter)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T13:33:09Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6445,
-      "importance": 0.6445,
-      "importance_score": 0.6445,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.62,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.3436,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-08T13:33:09Z",
-      "latest_at": "2026-10-08T13:33:17Z",
-      "primary_item": {
-        "id": "9f0afed4ed5c186205f656198e8cff2ed9c30b15",
-        "title": "Step 5 Preview 上线 OpenRouter",
-        "url": "https://x.com/OpenRouter/status/2108188953757331803",
-        "source": "X：OpenRouter (@OpenRouter)",
         "source_name": "AI HOT"
       }
     },
@@ -1488,15 +1469,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6417,
-      "importance": 0.6417,
-      "importance_score": 0.6417,
+      "score": 0.6416,
+      "importance": 0.6416,
+      "importance_score": 0.6416,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.0118,
+        "recency": 0.0111,
         "story_heat": 0.25
       },
       "category": "watch",
