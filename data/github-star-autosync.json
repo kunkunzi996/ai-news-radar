@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "synced",
-  "finished_at": "2026-10-12T09:41:57Z",
+  "outcome": "no_change",
+  "finished_at": "2026-10-12T19:43:57Z",
   "error_code": "",
-  "workflow_run_id": "38231534301",
+  "workflow_run_id": "38299557012",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "27f02ccbae9785802c84b5daf02ee7de16e4ccee",
+  "workflow_head_sha": "9e811fe981d89d7f6c8d49408dcc553bd2478acc",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-10-12T09:41:57Z",
-  "purge_state_sha256": "9bb2be7d2d66f087c2d1cf0f376e2a7ed0bfccd72824060fc479523ed6a211a8",
+  "snapshot_completed_at": "2026-10-12T19:43:57Z",
+  "purge_state_sha256": "fa92bc4fd862ad230cce7044f5cd163369a11c618f09819402e78b632426913d",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -21,13 +21,7 @@
   "starred_count": 38,
   "private_skipped_count": 0,
   "summary": {
-    "added": [
-      {
-        "repo_id": 1267303378,
-        "repo": "adrianpunk/Punk-Skill",
-        "source_id": "online_github_repo_1267303378"
-      }
-    ],
+    "added": [],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],

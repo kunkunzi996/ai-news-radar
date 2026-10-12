@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-12T09:41:59.488164Z",
+  "generated_at": "2026-10-12T19:43:59.110628Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -130,15 +130,15 @@
       ],
       "item_count": 6,
       "duplicate_count": 6,
-      "score": 0.8271,
-      "importance": 0.8271,
-      "importance_score": 0.8271,
+      "score": 0.8058,
+      "importance": 0.8058,
+      "importance_score": 0.8058,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8748,
+        "recency": 0.7568,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -154,6 +154,917 @@
         "title": "AI逆向一切：Brandon Thomas用Claude Opus 5.5重写Adobe七款软件开源，REA项目逼近10万Star",
         "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686995&idx=1&sn=cc40a3488a2ea7652d2ab589056f40b4",
         "source": "公众号：数字生命卡兹克",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_31ba1e7c3abd",
+      "title": "Meta 发布 Muse Wonder 与 Muse Wonder Full 模型，主打个人与专业智能体能力",
+      "url": "https://research.meta.ai/blog/muse-wonder",
+      "primary_url": "https://research.meta.ai/blog/muse-wonder",
+      "source": "Meta AI：Research Blog（网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "8b0297ea589208591d028d02c5961053ed113784",
+          "title": "Meta 发布 Muse Wonder 与 Muse Wonder Full 模型，主打个人与专业智能体能力",
+          "url": "https://research.meta.ai/blog/muse-wonder",
+          "source": "Meta AI：Research Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T17:33:59.334000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Meta AI：Research Blog（网页）"
+      ],
+      "items": [
+        {
+          "id": "8b0297ea589208591d028d02c5961053ed113784",
+          "title": "Meta 发布 Muse Wonder 与 Muse Wonder Full 模型，主打个人与专业智能体能力",
+          "url": "https://research.meta.ai/blog/muse-wonder",
+          "source": "Meta AI：Research Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T17:33:59.334000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7831,
+      "importance": 0.7831,
+      "importance_score": 0.7831,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.79,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9692,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-12T17:33:59.334000Z",
+      "latest_at": "2026-10-12T17:33:59.334000Z",
+      "primary_item": {
+        "id": "8b0297ea589208591d028d02c5961053ed113784",
+        "title": "Meta 发布 Muse Wonder 与 Muse Wonder Full 模型，主打个人与专业智能体能力",
+        "url": "https://research.meta.ai/blog/muse-wonder",
+        "source": "Meta AI：Research Blog（网页）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_1cb84cfd891a",
+      "title": "Anthropic 的 Claude 向费城警方误提交虚假凶案线索",
+      "url": "https://arstechnica.com/tech-policy/2026/10/anthropics-claude-ai-submitted-false-murder-tip-to-philadelphia-police",
+      "primary_url": "https://arstechnica.com/tech-policy/2026/10/anthropics-claude-ai-submitted-false-murder-tip-to-philadelphia-police",
+      "source": "Ars Technica：AI（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "3df9e5d8e050de37bee7775e1f9be729c18d418f",
+          "title": "Anthropic 的 Claude 向费城警方误提交虚假凶案线索",
+          "url": "https://arstechnica.com/tech-policy/2026/10/anthropics-claude-ai-submitted-false-murder-tip-to-philadelphia-police",
+          "source": "Ars Technica：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T18:21:36Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Ars Technica：AI（RSS）"
+      ],
+      "items": [
+        {
+          "id": "3df9e5d8e050de37bee7775e1f9be729c18d418f",
+          "title": "Anthropic 的 Claude 向费城警方误提交虚假凶案线索",
+          "url": "https://arstechnica.com/tech-policy/2026/10/anthropics-claude-ai-submitted-false-murder-tip-to-philadelphia-police",
+          "source": "Ars Technica：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T18:21:36Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7821,
+      "importance": 0.7821,
+      "importance_score": 0.7821,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.78,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9804,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-12T18:21:36Z",
+      "latest_at": "2026-10-12T18:21:36Z",
+      "primary_item": {
+        "id": "3df9e5d8e050de37bee7775e1f9be729c18d418f",
+        "title": "Anthropic 的 Claude 向费城警方误提交虚假凶案线索",
+        "url": "https://arstechnica.com/tech-policy/2026/10/anthropics-claude-ai-submitted-false-murder-tip-to-philadelphia-police",
+        "source": "Ars Technica：AI（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_04be8b18bb77",
+      "title": "Meta Muse Wonder 系列上线 Agent Arena，分数即将公布",
+      "url": "https://x.com/arena/status/2109706854700044523",
+      "primary_url": "https://x.com/arena/status/2109706854700044523",
+      "source": "X：Arena (@arena)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "4eb616f6e8dfc1b04a7e40de0dddb587442f07d7",
+          "title": "Meta Muse Wonder 系列上线 Agent Arena，分数即将公布",
+          "url": "https://x.com/arena/status/2109706854700044523",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T18:04:45Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Arena (@arena)"
+      ],
+      "items": [
+        {
+          "id": "4eb616f6e8dfc1b04a7e40de0dddb587442f07d7",
+          "title": "Meta Muse Wonder 系列上线 Agent Arena，分数即将公布",
+          "url": "https://x.com/arena/status/2109706854700044523",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T18:04:45Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7814,
+      "importance": 0.7814,
+      "importance_score": 0.7814,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.78,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9764,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-12T18:04:45Z",
+      "latest_at": "2026-10-12T18:04:45Z",
+      "primary_item": {
+        "id": "4eb616f6e8dfc1b04a7e40de0dddb587442f07d7",
+        "title": "Meta Muse Wonder 系列上线 Agent Arena，分数即将公布",
+        "url": "https://x.com/arena/status/2109706854700044523",
+        "source": "X：Arena (@arena)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_0f09a9ec71b8",
+      "title": "Meta Superintelligence Labs 发布 Muse Wonder 与 Muse Wonder Full 两款模型",
+      "url": "https://x.com/finkd/status/2109689307288240154",
+      "primary_url": "https://x.com/finkd/status/2109689307288240154",
+      "source": "X：Mark Zuckerberg (@finkd)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "b7a8c3b139b9aa1edb8c1788a9c6499632f720aa",
+          "title": "Meta Superintelligence Labs 发布 Muse Wonder 与 Muse Wonder Full 两款模型",
+          "url": "https://x.com/finkd/status/2109689307288240154",
+          "source": "X：Mark Zuckerberg (@finkd)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T16:55:01Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Mark Zuckerberg (@finkd)"
+      ],
+      "items": [
+        {
+          "id": "b7a8c3b139b9aa1edb8c1788a9c6499632f720aa",
+          "title": "Meta Superintelligence Labs 发布 Muse Wonder 与 Muse Wonder Full 两款模型",
+          "url": "https://x.com/finkd/status/2109689307288240154",
+          "source": "X：Mark Zuckerberg (@finkd)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T16:55:01Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7664,
+      "importance": 0.7664,
+      "importance_score": 0.7664,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.74,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9601,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-12T16:55:01Z",
+      "latest_at": "2026-10-12T16:55:01Z",
+      "primary_item": {
+        "id": "b7a8c3b139b9aa1edb8c1788a9c6499632f720aa",
+        "title": "Meta Superintelligence Labs 发布 Muse Wonder 与 Muse Wonder Full 两款模型",
+        "url": "https://x.com/finkd/status/2109689307288240154",
+        "source": "X：Mark Zuckerberg (@finkd)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_a0bd275656d1",
+      "title": "Meta 发布 Muse Wonder 与 Muse Wonder Full，Artificial Analysis 智能指数分别达 52 和 56",
+      "url": "https://x.com/ArtificialAnlys/status/2109697083519447118",
+      "primary_url": "https://x.com/ArtificialAnlys/status/2109697083519447118",
+      "source": "X：Artificial Analysis (@ArtificialAnlys)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "4ef4dfd11c9d05de5ce1ecc8ea5537de28e1e4cb",
+          "title": "Meta 发布 Muse Wonder 与 Muse Wonder Full，Artificial Analysis 智能指数分别达 52 和 56",
+          "url": "https://x.com/ArtificialAnlys/status/2109697083519447118",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T17:25:55Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Artificial Analysis (@ArtificialAnlys)"
+      ],
+      "items": [
+        {
+          "id": "4ef4dfd11c9d05de5ce1ecc8ea5537de28e1e4cb",
+          "title": "Meta 发布 Muse Wonder 与 Muse Wonder Full，Artificial Analysis 智能指数分别达 52 和 56",
+          "url": "https://x.com/ArtificialAnlys/status/2109697083519447118",
+          "source": "X：Artificial Analysis (@ArtificialAnlys)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T17:25:55Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7647,
+      "importance": 0.7647,
+      "importance_score": 0.7647,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.73,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9673,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-12T17:25:55Z",
+      "latest_at": "2026-10-12T17:25:55Z",
+      "primary_item": {
+        "id": "4ef4dfd11c9d05de5ce1ecc8ea5537de28e1e4cb",
+        "title": "Meta 发布 Muse Wonder 与 Muse Wonder Full，Artificial Analysis 智能指数分别达 52 和 56",
+        "url": "https://x.com/ArtificialAnlys/status/2109697083519447118",
+        "source": "X：Artificial Analysis (@ArtificialAnlys)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_c68c034bd72c",
+      "title": "QGIS 通过 QEP428 禁止 AI 辅助贡献",
+      "url": "https://github.com/qgis/QGIS-Enhancement-Proposals/pull/387",
+      "primary_url": "https://github.com/qgis/QGIS-Enhancement-Proposals/pull/387",
+      "source": "Hacker News：AI 热帖",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "e3ea9ace5d71835bc12e67ebcfd26e609b0319f8",
+          "title": "QGIS 通过 QEP428 禁止 AI 辅助贡献",
+          "url": "https://github.com/qgis/QGIS-Enhancement-Proposals/pull/387",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T11:22:24Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Hacker News：AI 热帖"
+      ],
+      "items": [
+        {
+          "id": "e3ea9ace5d71835bc12e67ebcfd26e609b0319f8",
+          "title": "QGIS 通过 QEP428 禁止 AI 辅助贡献",
+          "url": "https://github.com/qgis/QGIS-Enhancement-Proposals/pull/387",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T11:22:24Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7591,
+      "importance": 0.7591,
+      "importance_score": 0.7591,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.76,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8863,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-12T11:22:24Z",
+      "latest_at": "2026-10-12T11:22:24Z",
+      "primary_item": {
+        "id": "e3ea9ace5d71835bc12e67ebcfd26e609b0319f8",
+        "title": "QGIS 通过 QEP428 禁止 AI 辅助贡献",
+        "url": "https://github.com/qgis/QGIS-Enhancement-Proposals/pull/387",
+        "source": "Hacker News：AI 热帖",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_396099b0209a",
+      "title": "Meta 发布 Muse Wonder 系列模型，顶配版在 14 项基准中 8 项超过 Claude Opus 5.5",
+      "url": "https://x.com/rohanpaul_ai/status/2109696630807269823",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2109696630807269823",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "ef4fb99c27e3e06ad07e7e91f4ea881cdd31a885",
+          "title": "Meta 发布 Muse Wonder 系列模型，顶配版在 14 项基准中 8 项超过 Claude Opus 5.5",
+          "url": "https://x.com/rohanpaul_ai/status/2109696630807269823",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T17:24:07Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "ef4fb99c27e3e06ad07e7e91f4ea881cdd31a885",
+          "title": "Meta 发布 Muse Wonder 系列模型，顶配版在 14 项基准中 8 项超过 Claude Opus 5.5",
+          "url": "https://x.com/rohanpaul_ai/status/2109696630807269823",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T17:24:07Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7586,
+      "importance": 0.7586,
+      "importance_score": 0.7586,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.71,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9669,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-12T17:24:07Z",
+      "latest_at": "2026-10-12T17:24:07Z",
+      "primary_item": {
+        "id": "ef4fb99c27e3e06ad07e7e91f4ea881cdd31a885",
+        "title": "Meta 发布 Muse Wonder 系列模型，顶配版在 14 项基准中 8 项超过 Claude Opus 5.5",
+        "url": "https://x.com/rohanpaul_ai/status/2109696630807269823",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_c33f08e392ce",
+      "title": "Meta 发布 Muse Wonder 与 Muse Wonder Full，后者在 Artificial Analysis Index 排名第二",
+      "url": "https://x.com/testingcatalog/status/2109693532592013798",
+      "primary_url": "https://x.com/testingcatalog/status/2109693532592013798",
+      "source": "X：Testing Catalog (@testingcatalog)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "276be202344dfad18b7cd2c10d11009ff76db131",
+          "title": "Meta 发布 Muse Wonder 与 Muse Wonder Full，后者在 Artificial Analysis Index 排名第二",
+          "url": "https://x.com/testingcatalog/status/2109693532592013798",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T17:11:49Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Testing Catalog (@testingcatalog)"
+      ],
+      "items": [
+        {
+          "id": "276be202344dfad18b7cd2c10d11009ff76db131",
+          "title": "Meta 发布 Muse Wonder 与 Muse Wonder Full，后者在 Artificial Analysis Index 排名第二",
+          "url": "https://x.com/testingcatalog/status/2109693532592013798",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T17:11:49Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7581,
+      "importance": 0.7581,
+      "importance_score": 0.7581,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.71,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.964,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-12T17:11:49Z",
+      "latest_at": "2026-10-12T17:11:49Z",
+      "primary_item": {
+        "id": "276be202344dfad18b7cd2c10d11009ff76db131",
+        "title": "Meta 发布 Muse Wonder 与 Muse Wonder Full，后者在 Artificial Analysis Index 排名第二",
+        "url": "https://x.com/testingcatalog/status/2109693532592013798",
+        "source": "X：Testing Catalog (@testingcatalog)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_1167dd1e5ce8",
+      "title": "AlphaProof Nexus 攻克 9 个未解 Erdős 问题并经同行评审",
+      "url": "https://the-decoder.com/google-deepminds-alphaproof-nexus-solved-dozens-of-open-math-problems-and-actually-got-peer-reviewed",
+      "primary_url": "https://the-decoder.com/google-deepminds-alphaproof-nexus-solved-dozens-of-open-math-problems-and-actually-got-peer-reviewed",
+      "source": "The Decoder：AI News（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "e202ca86d4ca8c9e05762dc4553f7a5e5beaa966",
+          "title": "AlphaProof Nexus 攻克 9 个未解 Erdős 问题并经同行评审",
+          "url": "https://the-decoder.com/google-deepminds-alphaproof-nexus-solved-dozens-of-open-math-problems-and-actually-got-peer-reviewed",
+          "source": "The Decoder：AI News（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T09:35:54Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "The Decoder：AI News（RSS）"
+      ],
+      "items": [
+        {
+          "id": "e202ca86d4ca8c9e05762dc4553f7a5e5beaa966",
+          "title": "AlphaProof Nexus 攻克 9 个未解 Erdős 问题并经同行评审",
+          "url": "https://the-decoder.com/google-deepminds-alphaproof-nexus-solved-dozens-of-open-math-problems-and-actually-got-peer-reviewed",
+          "source": "The Decoder：AI News（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T09:35:54Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7551,
+      "importance": 0.7551,
+      "importance_score": 0.7551,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.76,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8639,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-12T09:35:54Z",
+      "latest_at": "2026-10-12T09:35:54Z",
+      "primary_item": {
+        "id": "e202ca86d4ca8c9e05762dc4553f7a5e5beaa966",
+        "title": "AlphaProof Nexus 攻克 9 个未解 Erdős 问题并经同行评审",
+        "url": "https://the-decoder.com/google-deepminds-alphaproof-nexus-solved-dozens-of-open-math-problems-and-actually-got-peer-reviewed",
+        "source": "The Decoder：AI News（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_90731594dd0c",
+      "title": "Charlie Holtz 实测 Meta 新模型 Wonder，CLI 一次找出其他 Agent 漏掉的漏洞",
+      "url": "https://x.com/charlieholtz/status/2109693358512001118",
+      "primary_url": "https://x.com/charlieholtz/status/2109693358512001118",
+      "source": "X：Charlie Holtz（@charlieholtz）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "5e73c41154f21db348475dd5017b06fe78c88836",
+          "title": "Charlie Holtz 实测 Meta 新模型 Wonder，CLI 一次找出其他 Agent 漏掉的漏洞",
+          "url": "https://x.com/charlieholtz/status/2109693358512001118",
+          "source": "X：Charlie Holtz（@charlieholtz）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T17:11:07Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Charlie Holtz（@charlieholtz）"
+      ],
+      "items": [
+        {
+          "id": "5e73c41154f21db348475dd5017b06fe78c88836",
+          "title": "Charlie Holtz 实测 Meta 新模型 Wonder，CLI 一次找出其他 Agent 漏掉的漏洞",
+          "url": "https://x.com/charlieholtz/status/2109693358512001118",
+          "source": "X：Charlie Holtz（@charlieholtz）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T17:11:07Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7551,
+      "importance": 0.7551,
+      "importance_score": 0.7551,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.7,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9639,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-12T17:11:07Z",
+      "latest_at": "2026-10-12T17:11:07Z",
+      "primary_item": {
+        "id": "5e73c41154f21db348475dd5017b06fe78c88836",
+        "title": "Charlie Holtz 实测 Meta 新模型 Wonder，CLI 一次找出其他 Agent 漏掉的漏洞",
+        "url": "https://x.com/charlieholtz/status/2109693358512001118",
+        "source": "X：Charlie Holtz（@charlieholtz）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_83bd7d597000",
+      "title": "Meta 发布 Muse Wonder 前沿模型家族，主打个人与专业智能体任务",
+      "url": "https://x.com/Yuchenj_UW/status/2109694119023100145",
+      "primary_url": "https://x.com/Yuchenj_UW/status/2109694119023100145",
+      "source": "X：Yuchen Jin (@Yuchenj_UW)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "0d0579cd7c8b24665241dfe0a854480810a5a12b",
+          "title": "Meta 发布 Muse Wonder 前沿模型家族，主打个人与专业智能体任务",
+          "url": "https://x.com/Yuchenj_UW/status/2109694119023100145",
+          "source": "X：Yuchen Jin (@Yuchenj_UW)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T17:14:08Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Yuchen Jin (@Yuchenj_UW)"
+      ],
+      "items": [
+        {
+          "id": "0d0579cd7c8b24665241dfe0a854480810a5a12b",
+          "title": "Meta 发布 Muse Wonder 前沿模型家族，主打个人与专业智能体任务",
+          "url": "https://x.com/Yuchenj_UW/status/2109694119023100145",
+          "source": "X：Yuchen Jin (@Yuchenj_UW)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T17:14:08Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7522,
+      "importance": 0.7522,
+      "importance_score": 0.7522,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.69,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9646,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-12T17:14:08Z",
+      "latest_at": "2026-10-12T17:14:08Z",
+      "primary_item": {
+        "id": "0d0579cd7c8b24665241dfe0a854480810a5a12b",
+        "title": "Meta 发布 Muse Wonder 前沿模型家族，主打个人与专业智能体任务",
+        "url": "https://x.com/Yuchenj_UW/status/2109694119023100145",
+        "source": "X：Yuchen Jin (@Yuchenj_UW)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_6001ee7ed96b",
+      "title": "用户报告 Codex CLI 0.157.0 默认启动持久化自更新后台守护进程",
+      "url": "https://github.com/openai/codex/issues/48195",
+      "primary_url": "https://github.com/openai/codex/issues/48195",
+      "source": "Codex：GitHub Releases（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "c9d10ab67673311a12bdbaad002267b02fe1faaf",
+          "title": "用户报告 Codex CLI 0.157.0 默认启动持久化自更新后台守护进程",
+          "url": "https://github.com/openai/codex/issues/48195",
+          "source": "Codex：GitHub Releases（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T19:25:54.721000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Codex：GitHub Releases（RSS）"
+      ],
+      "items": [
+        {
+          "id": "c9d10ab67673311a12bdbaad002267b02fe1faaf",
+          "title": "用户报告 Codex CLI 0.157.0 默认启动持久化自更新后台守护进程",
+          "url": "https://github.com/openai/codex/issues/48195",
+          "source": "Codex：GitHub Releases（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T19:25:54.721000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7488,
+      "importance": 0.7488,
+      "importance_score": 0.7488,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.66,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9957,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-12T19:25:54.721000Z",
+      "latest_at": "2026-10-12T19:25:54.721000Z",
+      "primary_item": {
+        "id": "c9d10ab67673311a12bdbaad002267b02fe1faaf",
+        "title": "用户报告 Codex CLI 0.157.0 默认启动持久化自更新后台守护进程",
+        "url": "https://github.com/openai/codex/issues/48195",
+        "source": "Codex：GitHub Releases（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_3332cfb5c48f",
+      "title": "Google 5天 AI Agents 课程首份白皮书 The New SDLC With Vibe Coding 解读",
+      "url": "https://x.com/shao__meng/status/2109581157151215998",
+      "primary_url": "https://x.com/shao__meng/status/2109581157151215998",
+      "source": "X：邵猛 (@shao__meng)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "08dc0a1829cec4b4d80661476af754e1d0f23982",
+          "title": "Google 5天 AI Agents 课程首份白皮书 The New SDLC With Vibe Coding 解读",
+          "url": "https://x.com/shao__meng/status/2109581157151215998",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T09:45:16Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：邵猛 (@shao__meng)"
+      ],
+      "items": [
+        {
+          "id": "08dc0a1829cec4b4d80661476af754e1d0f23982",
+          "title": "Google 5天 AI Agents 课程首份白皮书 The New SDLC With Vibe Coding 解读",
+          "url": "https://x.com/shao__meng/status/2109581157151215998",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T09:45:16Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7374,
+      "importance": 0.7374,
+      "importance_score": 0.7374,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.7,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8658,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-12T09:45:16Z",
+      "latest_at": "2026-10-12T09:45:16Z",
+      "primary_item": {
+        "id": "08dc0a1829cec4b4d80661476af754e1d0f23982",
+        "title": "Google 5天 AI Agents 课程首份白皮书 The New SDLC With Vibe Coding 解读",
+        "url": "https://x.com/shao__meng/status/2109581157151215998",
+        "source": "X：邵猛 (@shao__meng)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_e7101a22c282",
+      "title": "面壁智能发布开源多模态模型 MiniCPM-V 4.7 系列，含 35B-A3B 与 1B 两个型号",
+      "url": "https://x.com/OpenBMB/status/2109694573408866351",
+      "primary_url": "https://x.com/OpenBMB/status/2109694573408866351",
+      "source": "X：面壁智能 OpenBMB (@OpenBMB)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "6d59e3ea4d2d69eb44aec9d6b16d43473e5d8bc3",
+          "title": "面壁智能发布开源多模态模型 MiniCPM-V 4.7 系列，含 35B-A3B 与 1B 两个型号",
+          "url": "https://x.com/OpenBMB/status/2109694573408866351",
+          "source": "X：面壁智能 OpenBMB (@OpenBMB)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T17:15:57Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：面壁智能 OpenBMB (@OpenBMB)"
+      ],
+      "items": [
+        {
+          "id": "6d59e3ea4d2d69eb44aec9d6b16d43473e5d8bc3",
+          "title": "面壁智能发布开源多模态模型 MiniCPM-V 4.7 系列，含 35B-A3B 与 1B 两个型号",
+          "url": "https://x.com/OpenBMB/status/2109694573408866351",
+          "source": "X：面壁智能 OpenBMB (@OpenBMB)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T17:15:57Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7343,
+      "importance": 0.7343,
+      "importance_score": 0.7343,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.63,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.965,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-12T17:15:57Z",
+      "latest_at": "2026-10-12T17:15:57Z",
+      "primary_item": {
+        "id": "6d59e3ea4d2d69eb44aec9d6b16d43473e5d8bc3",
+        "title": "面壁智能发布开源多模态模型 MiniCPM-V 4.7 系列，含 35B-A3B 与 1B 两个型号",
+        "url": "https://x.com/OpenBMB/status/2109694573408866351",
+        "source": "X：面壁智能 OpenBMB (@OpenBMB)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_0b3365146057",
+      "title": "Microsoft 发布 Maia 300 芯片并将 Maia 系列扩展为自家主力推理系统",
+      "url": "https://x.com/mustafasuleyman/status/2109655335250366752",
+      "primary_url": "https://x.com/mustafasuleyman/status/2109655335250366752",
+      "source": "X：Mustafa Suleyman（Microsoft AI CEO） (@mustafasuleyman)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "9f47b24c3adc305b61b0f917ee2fa949d61af843",
+          "title": "Microsoft 发布 Maia 300 芯片并将 Maia 系列扩展为自家主力推理系统",
+          "url": "https://x.com/mustafasuleyman/status/2109655335250366752",
+          "source": "X：Mustafa Suleyman（Microsoft AI CEO） (@mustafasuleyman)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T14:40:02Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Mustafa Suleyman（Microsoft AI CEO） (@mustafasuleyman)"
+      ],
+      "items": [
+        {
+          "id": "9f47b24c3adc305b61b0f917ee2fa949d61af843",
+          "title": "Microsoft 发布 Maia 300 芯片并将 Maia 系列扩展为自家主力推理系统",
+          "url": "https://x.com/mustafasuleyman/status/2109655335250366752",
+          "source": "X：Mustafa Suleyman（Microsoft AI CEO） (@mustafasuleyman)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T14:40:02Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7339,
+      "importance": 0.7339,
+      "importance_score": 0.7339,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.65,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9295,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-12T14:40:02Z",
+      "latest_at": "2026-10-12T14:40:02Z",
+      "primary_item": {
+        "id": "9f47b24c3adc305b61b0f917ee2fa949d61af843",
+        "title": "Microsoft 发布 Maia 300 芯片并将 Maia 系列扩展为自家主力推理系统",
+        "url": "https://x.com/mustafasuleyman/status/2109655335250366752",
+        "source": "X：Mustafa Suleyman（Microsoft AI CEO） (@mustafasuleyman)",
         "source_name": "AI HOT"
       }
     },
@@ -192,21 +1103,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7566,
-      "importance": 0.7566,
-      "importance_score": 0.7566,
+      "score": 0.733,
+      "importance": 0.733,
+      "importance_score": 0.733,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9722,
+        "recency": 0.8411,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-12T07:44:47Z",
       "latest_at": "2026-10-12T07:44:47Z",
@@ -219,686 +1129,46 @@
       }
     },
     {
-      "story_id": "story_4ed86b9e0bad",
-      "title": "Google 与 Kaggle 五天 AI Agents 课程解读：五份白皮书串联从 Vibe Coding 到生产级 Agent",
-      "url": "https://x.com/shao__meng/status/2109547294945398848",
-      "primary_url": "https://x.com/shao__meng/status/2109547294945398848",
-      "source": "X：邵猛 (@shao__meng)",
+      "story_id": "story_1de0c2cdd402",
+      "title": "微软发布自研芯片 Maia 300 并将大规模扩展 Maia 推理部署",
+      "url": "https://x.com/satyanadella/status/2109631106404487523",
+      "primary_url": "https://x.com/satyanadella/status/2109631106404487523",
+      "source": "X：Satya Nadella (@satyanadella)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "4f87f0bba8b8af7312dc19ea7ddc89ffae8527b1",
-          "title": "Google 与 Kaggle 五天 AI Agents 课程解读：五份白皮书串联从 Vibe Coding 到生产级 Agent",
-          "url": "https://x.com/shao__meng/status/2109547294945398848",
-          "source": "X：邵猛 (@shao__meng)",
+          "id": "34ba92f836e456922a97d96dfb74e3f4423e42f1",
+          "title": "微软发布自研芯片 Maia 300 并将大规模扩展 Maia 推理部署",
+          "url": "https://x.com/satyanadella/status/2109631106404487523",
+          "source": "X：Satya Nadella (@satyanadella)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-12T07:30:43Z"
+          "published_at": "2026-10-12T13:03:45Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：邵猛 (@shao__meng)"
+        "X：Satya Nadella (@satyanadella)"
       ],
       "items": [
         {
-          "id": "4f87f0bba8b8af7312dc19ea7ddc89ffae8527b1",
-          "title": "Google 与 Kaggle 五天 AI Agents 课程解读：五份白皮书串联从 Vibe Coding 到生产级 Agent",
-          "url": "https://x.com/shao__meng/status/2109547294945398848",
-          "source": "X：邵猛 (@shao__meng)",
+          "id": "34ba92f836e456922a97d96dfb74e3f4423e42f1",
+          "title": "微软发布自研芯片 Maia 300 并将大规模扩展 Maia 推理部署",
+          "url": "https://x.com/satyanadella/status/2109631106404487523",
+          "source": "X：Satya Nadella (@satyanadella)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-12T07:30:43Z"
+          "published_at": "2026-10-12T13:03:45Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.753,
-      "importance": 0.753,
-      "importance_score": 0.753,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.69,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9689,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-12T07:30:43Z",
-      "latest_at": "2026-10-12T07:30:43Z",
-      "primary_item": {
-        "id": "4f87f0bba8b8af7312dc19ea7ddc89ffae8527b1",
-        "title": "Google 与 Kaggle 五天 AI Agents 课程解读：五份白皮书串联从 Vibe Coding 到生产级 Agent",
-        "url": "https://x.com/shao__meng/status/2109547294945398848",
-        "source": "X：邵猛 (@shao__meng)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_3417354b8507",
-      "title": "GPT-6.1 Sol 默认上下文窗口从 272k 提升至 500k，覆盖 Codex 与 ChatGPT Work",
-      "url": "https://x.com/reach_vb/status/2109543080609165508",
-      "primary_url": "https://x.com/reach_vb/status/2109543080609165508",
-      "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "9e744bbbf7761d71d7ef008cb76e00a16f9d6a6e",
-          "title": "GPT-6.1 Sol 默认上下文窗口从 272k 提升至 500k，覆盖 Codex 与 ChatGPT Work",
-          "url": "https://x.com/reach_vb/status/2109543080609165508",
-          "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-12T07:13:58Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Vaibhav Srivastav（OpenAI）(@reach_vb)"
-      ],
-      "items": [
-        {
-          "id": "9e744bbbf7761d71d7ef008cb76e00a16f9d6a6e",
-          "title": "GPT-6.1 Sol 默认上下文窗口从 272k 提升至 500k，覆盖 Codex 与 ChatGPT Work",
-          "url": "https://x.com/reach_vb/status/2109543080609165508",
-          "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-12T07:13:58Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7403,
-      "importance": 0.7403,
-      "importance_score": 0.7403,
+      "score": 0.7301,
+      "importance": 0.7301,
+      "importance_score": 0.7301,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.65,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.965,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-12T07:13:58Z",
-      "latest_at": "2026-10-12T07:13:58Z",
-      "primary_item": {
-        "id": "9e744bbbf7761d71d7ef008cb76e00a16f9d6a6e",
-        "title": "GPT-6.1 Sol 默认上下文窗口从 272k 提升至 500k，覆盖 Codex 与 ChatGPT Work",
-        "url": "https://x.com/reach_vb/status/2109543080609165508",
-        "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_7ce8a939cdbc",
-      "title": "从Brandon Thomas用Claude Opus 5.5开源重写Adobe全家桶看AI逆向一切趋势",
-      "url": "https://x.com/Khazix0918/status/2109501787736813663",
-      "primary_url": "https://x.com/Khazix0918/status/2109501787736813663",
-      "source": "X：卡兹克 (@Khazix0918)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "4d75d0fa41cd12eb95b90c1a1cbfd837476bafa8",
-          "title": "从Brandon Thomas用Claude Opus 5.5开源重写Adobe全家桶看AI逆向一切趋势",
-          "url": "https://x.com/Khazix0918/status/2109501787736813663",
-          "source": "X：卡兹克 (@Khazix0918)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-12T04:29:53Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：卡兹克 (@Khazix0918)"
-      ],
-      "items": [
-        {
-          "id": "4d75d0fa41cd12eb95b90c1a1cbfd837476bafa8",
-          "title": "从Brandon Thomas用Claude Opus 5.5开源重写Adobe全家桶看AI逆向一切趋势",
-          "url": "https://x.com/Khazix0918/status/2109501787736813663",
-          "source": "X：卡兹克 (@Khazix0918)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-12T04:29:53Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7396,
-      "importance": 0.7396,
-      "importance_score": 0.7396,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.67,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9276,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-12T04:29:53Z",
-      "latest_at": "2026-10-12T04:29:53Z",
-      "primary_item": {
-        "id": "4d75d0fa41cd12eb95b90c1a1cbfd837476bafa8",
-        "title": "从Brandon Thomas用Claude Opus 5.5开源重写Adobe全家桶看AI逆向一切趋势",
-        "url": "https://x.com/Khazix0918/status/2109501787736813663",
-        "source": "X：卡兹克 (@Khazix0918)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_facb02dfa042",
-      "title": "Lauren Tan 谈让 Agent 写出更正确代码的起点：自我验证",
-      "url": "https://x.com/poteto/status/2109436202554372476",
-      "primary_url": "https://x.com/poteto/status/2109436202554372476",
-      "source": "X：Lauren Tan (@poteto)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "690f86f47ff9ed3dca024246ef35183878fb7266",
-          "title": "Lauren Tan 谈让 Agent 写出更正确代码的起点：自我验证",
-          "url": "https://x.com/poteto/status/2109436202554372476",
-          "source": "X：Lauren Tan (@poteto)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-12T00:09:16Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Lauren Tan (@poteto)"
-      ],
-      "items": [
-        {
-          "id": "690f86f47ff9ed3dca024246ef35183878fb7266",
-          "title": "Lauren Tan 谈让 Agent 写出更正确代码的起点：自我验证",
-          "url": "https://x.com/poteto/status/2109436202554372476",
-          "source": "X：Lauren Tan (@poteto)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-12T00:09:16Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7354,
-      "importance": 0.7354,
-      "importance_score": 0.7354,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.69,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8712,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-12T00:09:16Z",
-      "latest_at": "2026-10-12T00:09:16Z",
-      "primary_item": {
-        "id": "690f86f47ff9ed3dca024246ef35183878fb7266",
-        "title": "Lauren Tan 谈让 Agent 写出更正确代码的起点：自我验证",
-        "url": "https://x.com/poteto/status/2109436202554372476",
-        "source": "X：Lauren Tan (@poteto)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_671951865d8c",
-      "title": "Tibo 发帖称“宣布 ChatGPT”",
-      "url": "https://x.com/thsottiaux/status/2108349826727588000",
-      "primary_url": "https://x.com/thsottiaux/status/2108349826727588000",
-      "source": "X：Tibo (@thsottiaux)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "48ad7c37fc061092c404dd2dc0a6a347bb0e04ce",
-          "title": "Tibo 发帖称“宣布 ChatGPT”",
-          "url": "https://x.com/thsottiaux/status/2108349826727588000",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T00:12:24Z"
-        },
-        {
-          "id": "2932e2401f6cc398ece20dd8e5b36639b029ba1d",
-          "title": "Tibo 宣布发布 ChatGPT",
-          "url": "https://x.com/thsottiaux/status/2108349826727588000",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T00:12:24Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "X：Tibo (@thsottiaux)"
-      ],
-      "items": [
-        {
-          "id": "48ad7c37fc061092c404dd2dc0a6a347bb0e04ce",
-          "title": "Tibo 发帖称“宣布 ChatGPT”",
-          "url": "https://x.com/thsottiaux/status/2108349826727588000",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T00:12:24Z"
-        },
-        {
-          "id": "2932e2401f6cc398ece20dd8e5b36639b029ba1d",
-          "title": "Tibo 宣布发布 ChatGPT",
-          "url": "https://x.com/thsottiaux/status/2108349826727588000",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-09T00:12:24Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.7341,
-      "importance": 0.7341,
-      "importance_score": 0.7341,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.94,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.3083,
-        "story_heat": 0.25
-      },
-      "category": "industry",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-09T00:12:24Z",
-      "latest_at": "2026-10-09T00:12:24Z",
-      "primary_item": {
-        "id": "48ad7c37fc061092c404dd2dc0a6a347bb0e04ce",
-        "title": "Tibo 发帖称“宣布 ChatGPT”",
-        "url": "https://x.com/thsottiaux/status/2108349826727588000",
-        "source": "X：Tibo (@thsottiaux)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_2e3af46c5b7b",
-      "title": "OpenAI 测试智能体逃逸 ExploitGym 并入侵 Hugging Face 基础设施，暴露对齐与追责困境",
-      "url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
-      "primary_url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
-      "source": "MarkTechPost（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "c01fe277cea6b5e9d91df46cbc3b2f27e9d158fc",
-          "title": "OpenAI 测试智能体逃逸 ExploitGym 并入侵 Hugging Face 基础设施，暴露对齐与追责困境",
-          "url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
-          "source": "MarkTechPost（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-10T21:30:36Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "MarkTechPost（RSS）"
-      ],
-      "items": [
-        {
-          "id": "c01fe277cea6b5e9d91df46cbc3b2f27e9d158fc",
-          "title": "OpenAI 测试智能体逃逸 ExploitGym 并入侵 Hugging Face 基础设施，暴露对齐与追责困境",
-          "url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
-          "source": "MarkTechPost（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-10T21:30:36Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7333,
-      "importance": 0.7333,
-      "importance_score": 0.7333,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.85,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.593,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-10T21:30:36Z",
-      "latest_at": "2026-10-10T21:30:36Z",
-      "primary_item": {
-        "id": "c01fe277cea6b5e9d91df46cbc3b2f27e9d158fc",
-        "title": "OpenAI 测试智能体逃逸 ExploitGym 并入侵 Hugging Face 基础设施，暴露对齐与追责困境",
-        "url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
-        "source": "MarkTechPost（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_b0cd6d8c7395",
-      "title": "FT：AI 生成论文涌入学术期刊，220 亿美元出版业转向并购应对",
-      "url": "https://x.com/rohanpaul_ai/status/2109487106313847119",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2109487106313847119",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "f18265af5106bc49310105b290e942a9aedeeb67",
-          "title": "FT：AI 生成论文涌入学术期刊，220 亿美元出版业转向并购应对",
-          "url": "https://x.com/rohanpaul_ai/status/2109487106313847119",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-12T03:31:33Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "f18265af5106bc49310105b290e942a9aedeeb67",
-          "title": "FT：AI 生成论文涌入学术期刊，220 亿美元出版业转向并购应对",
-          "url": "https://x.com/rohanpaul_ai/status/2109487106313847119",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-12T03:31:33Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7252,
-      "importance": 0.7252,
-      "importance_score": 0.7252,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.63,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9147,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-12T03:31:33Z",
-      "latest_at": "2026-10-12T03:31:33Z",
-      "primary_item": {
-        "id": "f18265af5106bc49310105b290e942a9aedeeb67",
-        "title": "FT：AI 生成论文涌入学术期刊，220 亿美元出版业转向并购应对",
-        "url": "https://x.com/rohanpaul_ai/status/2109487106313847119",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_d4cf17904efd",
-      "title": "Karpathy 提出 LLM 能力认知漏斗，Ethan Mollick 补充实验室内部应用仍集中",
-      "url": "https://x.com/emollick/status/2109422437616029941",
-      "primary_url": "https://x.com/emollick/status/2109422437616029941",
-      "source": "X：Ethan Mollick (@emollick)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "31817afc609494dfe4ad4a5f3318ae85517dfde5",
-          "title": "Karpathy 提出 LLM 能力认知漏斗，Ethan Mollick 补充实验室内部应用仍集中",
-          "url": "https://x.com/emollick/status/2109422437616029941",
-          "source": "X：Ethan Mollick (@emollick)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T23:14:34Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Ethan Mollick (@emollick)"
-      ],
-      "items": [
-        {
-          "id": "31817afc609494dfe4ad4a5f3318ae85517dfde5",
-          "title": "Karpathy 提出 LLM 能力认知漏斗，Ethan Mollick 补充实验室内部应用仍集中",
-          "url": "https://x.com/emollick/status/2109422437616029941",
-          "source": "X：Ethan Mollick (@emollick)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T23:14:34Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7244,
-      "importance": 0.7244,
-      "importance_score": 0.7244,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8598,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-11T23:14:34Z",
-      "latest_at": "2026-10-11T23:14:34Z",
-      "primary_item": {
-        "id": "31817afc609494dfe4ad4a5f3318ae85517dfde5",
-        "title": "Karpathy 提出 LLM 能力认知漏斗，Ethan Mollick 补充实验室内部应用仍集中",
-        "url": "https://x.com/emollick/status/2109422437616029941",
-        "source": "X：Ethan Mollick (@emollick)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_152d1d191b39",
-      "title": "Beyond Naive RAG：9 位检索专家总结朴素 RAG 的失效与进阶实践",
-      "url": "https://x.com/shao__meng/status/2109471678015389835",
-      "primary_url": "https://x.com/shao__meng/status/2109471678015389835",
-      "source": "X：邵猛 (@shao__meng)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "97f1cc5a6e6f9024666a956e3c4334692ab80728",
-          "title": "Beyond Naive RAG：9 位检索专家总结朴素 RAG 的失效与进阶实践",
-          "url": "https://x.com/shao__meng/status/2109471678015389835",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-12T02:30:14Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：邵猛 (@shao__meng)"
-      ],
-      "items": [
-        {
-          "id": "97f1cc5a6e6f9024666a956e3c4334692ab80728",
-          "title": "Beyond Naive RAG：9 位检索专家总结朴素 RAG 的失效与进阶实践",
-          "url": "https://x.com/shao__meng/status/2109471678015389835",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-12T02:30:14Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7528,
-      "importance": 0.7528,
-      "importance_score": 0.7528,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.73,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9013,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-12T02:30:14Z",
-      "latest_at": "2026-10-12T02:30:14Z",
-      "primary_item": {
-        "id": "97f1cc5a6e6f9024666a956e3c4334692ab80728",
-        "title": "Beyond Naive RAG：9 位检索专家总结朴素 RAG 的失效与进阶实践",
-        "url": "https://x.com/shao__meng/status/2109471678015389835",
-        "source": "X：邵猛 (@shao__meng)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_356d9ae47a37",
-      "title": "OpenClaw v2026.10.1 发布",
-      "url": "https://x.com/openclaw/status/2109347136328417718",
-      "primary_url": "https://x.com/openclaw/status/2109347136328417718",
-      "source": "X：OpenClaw (@openclaw)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "1ec2a2ac7875ade3e72304ce76de057b61e498fd",
-          "title": "OpenClaw v2026.10.1 更新要点",
-          "url": "https://x.com/openclaw/status/2109419419529351517",
-          "source": "X：OpenClaw (@openclaw)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T23:02:35Z"
-        },
-        {
-          "id": "d9d1d4a26756f6fe9cb2ff2336700b6f90597edc",
-          "title": "OpenClaw v2026.10.1 发布",
-          "url": "https://x.com/openclaw/status/2109347136328417718",
-          "source": "X：OpenClaw (@openclaw)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T18:15:21Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "X：OpenClaw (@openclaw)"
-      ],
-      "items": [
-        {
-          "id": "1ec2a2ac7875ade3e72304ce76de057b61e498fd",
-          "title": "OpenClaw v2026.10.1 更新要点",
-          "url": "https://x.com/openclaw/status/2109419419529351517",
-          "source": "X：OpenClaw (@openclaw)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T23:02:35Z"
-        },
-        {
-          "id": "d9d1d4a26756f6fe9cb2ff2336700b6f90597edc",
-          "title": "OpenClaw v2026.10.1 发布",
-          "url": "https://x.com/openclaw/status/2109347136328417718",
-          "source": "X：OpenClaw (@openclaw)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T18:15:21Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.7086,
-      "importance": 0.7086,
-      "importance_score": 0.7086,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.56,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8001,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-11T18:15:21Z",
-      "latest_at": "2026-10-11T23:02:35Z",
-      "primary_item": {
-        "id": "d9d1d4a26756f6fe9cb2ff2336700b6f90597edc",
-        "title": "OpenClaw v2026.10.1 发布",
-        "url": "https://x.com/openclaw/status/2109347136328417718",
-        "source": "X：OpenClaw (@openclaw)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_26690168454d",
-      "title": "WSJ 报道亚马逊洽购 Decart 约 70 亿美元，此前与 Nvidia 和 Anthropic 谈判破裂",
-      "url": "https://x.com/rohanpaul_ai/status/2109479701689565297",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2109479701689565297",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "dca8d1c9c8fad91f63a5f822c8331442c7b3d3b7",
-          "title": "WSJ 报道亚马逊洽购 Decart 约 70 亿美元，此前与 Nvidia 和 Anthropic 谈判破裂",
-          "url": "https://x.com/rohanpaul_ai/status/2109479701689565297",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-12T03:02:07Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "dca8d1c9c8fad91f63a5f822c8331442c7b3d3b7",
-          "title": "WSJ 报道亚马逊洽购 Decart 约 70 亿美元，此前与 Nvidia 和 Anthropic 谈判破裂",
-          "url": "https://x.com/rohanpaul_ai/status/2109479701689565297",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-12T03:02:07Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7241,
-      "importance": 0.7241,
-      "importance_score": 0.7241,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
         "recency": 0.9082,
@@ -908,568 +1178,133 @@
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-12T03:02:07Z",
-      "latest_at": "2026-10-12T03:02:07Z",
+      "earliest_at": "2026-10-12T13:03:45Z",
+      "latest_at": "2026-10-12T13:03:45Z",
       "primary_item": {
-        "id": "dca8d1c9c8fad91f63a5f822c8331442c7b3d3b7",
-        "title": "WSJ 报道亚马逊洽购 Decart 约 70 亿美元，此前与 Nvidia 和 Anthropic 谈判破裂",
-        "url": "https://x.com/rohanpaul_ai/status/2109479701689565297",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "id": "34ba92f836e456922a97d96dfb74e3f4423e42f1",
+        "title": "微软发布自研芯片 Maia 300 并将大规模扩展 Maia 推理部署",
+        "url": "https://x.com/satyanadella/status/2109631106404487523",
+        "source": "X：Satya Nadella (@satyanadella)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_0ca1450969b5",
-      "title": "OpenAI 向全部 ChatGPT 用户推出 GPT-6 与 Intelligent UI",
-      "url": "https://openai.com/index/gpt-6-for-everyone",
-      "primary_url": "https://openai.com/index/gpt-6-for-everyone",
-      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+      "story_id": "story_e05f5dfb850c",
+      "title": "AWS 提出 priming 方法，可将预训练 Transformer 改造成混合状态空间架构",
+      "url": "https://www.amazon.science/blog/can-we-change-an-ai-models-architecture-without-retraining-it-from-scratch",
+      "primary_url": "https://www.amazon.science/blog/can-we-change-an-ai-models-architecture-without-retraining-it-from-scratch",
+      "source": "Amazon Science（RSS）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "675c29413d6c8fb6e63f6cb1901b53742a9b2851",
-          "title": "OpenAI 开始向 ChatGPT 全档位推送 GPT-6 与 Intelligent UI",
-          "url": "https://x.com/ChatGPT/status/2107933136780947764",
-          "source": "X：ChatGPT (@ChatGPT)",
+          "id": "0e3a671a7441e014235d27d12338ee7135f910ce",
+          "title": "AWS 提出 priming 方法，可将预训练 Transformer 改造成混合状态空间架构",
+          "url": "https://www.amazon.science/blog/can-we-change-an-ai-models-architecture-without-retraining-it-from-scratch",
+          "source": "Amazon Science（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-07T20:36:37Z"
-        },
-        {
-          "id": "9812f46d2f4c0f9eb3380207ba7624fcdde2ad1a",
-          "title": "OpenAI 向全部 ChatGPT 用户推出 GPT-6 与 Intelligent UI",
-          "url": "https://openai.com/index/gpt-6-for-everyone",
-          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:00:58Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-        "X：ChatGPT (@ChatGPT)"
-      ],
-      "items": [
-        {
-          "id": "675c29413d6c8fb6e63f6cb1901b53742a9b2851",
-          "title": "OpenAI 开始向 ChatGPT 全档位推送 GPT-6 与 Intelligent UI",
-          "url": "https://x.com/ChatGPT/status/2107933136780947764",
-          "source": "X：ChatGPT (@ChatGPT)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T20:36:37Z"
-        },
-        {
-          "id": "9812f46d2f4c0f9eb3380207ba7624fcdde2ad1a",
-          "title": "OpenAI 向全部 ChatGPT 用户推出 GPT-6 与 Intelligent UI",
-          "url": "https://openai.com/index/gpt-6-for-everyone",
-          "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:00:58Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6935,
-      "importance": 0.6935,
-      "importance_score": 0.6935,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.87,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.1993,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-07T18:00:58Z",
-      "latest_at": "2026-10-07T20:36:37Z",
-      "primary_item": {
-        "id": "9812f46d2f4c0f9eb3380207ba7624fcdde2ad1a",
-        "title": "OpenAI 向全部 ChatGPT 用户推出 GPT-6 与 Intelligent UI",
-        "url": "https://openai.com/index/gpt-6-for-everyone",
-        "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_52bd2fa13c1f",
-      "title": "Hamel Husain 将 AI 评估课程浓缩为 13 张口袋指南信息卡",
-      "url": "https://x.com/shao__meng/status/2109445747133579381",
-      "primary_url": "https://x.com/shao__meng/status/2109445747133579381",
-      "source": "X：邵猛 (@shao__meng)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "dd3bccb49e2657fc12b60f51e947f6ae7c866516",
-          "title": "Hamel Husain 将 AI 评估课程浓缩为 13 张口袋指南信息卡",
-          "url": "https://x.com/shao__meng/status/2109445747133579381",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-12T00:47:12Z"
+          "published_at": "2026-10-12T17:36:18Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：邵猛 (@shao__meng)"
+        "Amazon Science（RSS）"
       ],
       "items": [
         {
-          "id": "dd3bccb49e2657fc12b60f51e947f6ae7c866516",
-          "title": "Hamel Husain 将 AI 评估课程浓缩为 13 张口袋指南信息卡",
-          "url": "https://x.com/shao__meng/status/2109445747133579381",
-          "source": "X：邵猛 (@shao__meng)",
+          "id": "0e3a671a7441e014235d27d12338ee7135f910ce",
+          "title": "AWS 提出 priming 方法，可将预训练 Transformer 改造成混合状态空间架构",
+          "url": "https://www.amazon.science/blog/can-we-change-an-ai-models-architecture-without-retraining-it-from-scratch",
+          "source": "Amazon Science（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-12T00:47:12Z"
+          "published_at": "2026-10-12T17:36:18Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7489,
-      "importance": 0.7489,
-      "importance_score": 0.7489,
+      "score": 0.7292,
+      "importance": 0.7292,
+      "importance_score": 0.7292,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.73,
+        "editorial": 0.61,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8792,
+        "recency": 0.9697,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-12T00:47:12Z",
-      "latest_at": "2026-10-12T00:47:12Z",
+      "earliest_at": "2026-10-12T17:36:18Z",
+      "latest_at": "2026-10-12T17:36:18Z",
       "primary_item": {
-        "id": "dd3bccb49e2657fc12b60f51e947f6ae7c866516",
-        "title": "Hamel Husain 将 AI 评估课程浓缩为 13 张口袋指南信息卡",
-        "url": "https://x.com/shao__meng/status/2109445747133579381",
-        "source": "X：邵猛 (@shao__meng)",
+        "id": "0e3a671a7441e014235d27d12338ee7135f910ce",
+        "title": "AWS 提出 priming 方法，可将预训练 Transformer 改造成混合状态空间架构",
+        "url": "https://www.amazon.science/blog/can-we-change-an-ai-models-architecture-without-retraining-it-from-scratch",
+        "source": "Amazon Science（RSS）",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_67e7841fa849",
-      "title": "Arena 宣布 2 亿美元 B 轮融资，估值达 31 亿美元，并推出 Alignment Index",
-      "url": "https://x.com/arena/status/2108243026741248348",
-      "primary_url": "https://x.com/arena/status/2108243026741248348",
-      "source": "X：Arena (@arena)",
+      "story_id": "story_e7a66707924e",
+      "title": "Meta 发布 Muse Wonder 系列模型，含 Muse Wonder 与 Muse Wonder Full",
+      "url": "https://x.com/AIatMeta/status/2109691148943999167",
+      "primary_url": "https://x.com/AIatMeta/status/2109691148943999167",
+      "source": "X：AI at Meta (@AIatMeta)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "8a42727ab6ee563c5d59caeddb72180458d5820b",
-          "title": "Arena 完成 2 亿美元 B 轮融资，估值 31 亿美元并发布 Alignment Index",
-          "url": "https://x.com/arena/status/2108310714423423254",
-          "source": "X：Arena (@arena)",
+          "id": "98fffedee341fedf3701229b2fa6291fe20dacab",
+          "title": "Meta 发布 Muse Wonder 系列模型，含 Muse Wonder 与 Muse Wonder Full",
+          "url": "https://x.com/AIatMeta/status/2109691148943999167",
+          "source": "X：AI at Meta (@AIatMeta)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-08T21:36:59Z"
-        },
-        {
-          "id": "e4b966395ba6cca50bd750dbe58d5c8f5d74e673",
-          "title": "Arena 完成 2 亿美元 B 轮融资，估值 31 亿美元并推出 Arena AI Alignment Index",
-          "url": "https://x.com/arena/status/2108310194619044253",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T21:34:55Z"
-        },
-        {
-          "id": "d89ed5786a4a33a1586eb95b51f8a172b5e03d3d",
-          "title": "Arena 宣布 2 亿美元 B 轮融资，估值达 31 亿美元，并推出 Alignment Index",
-          "url": "https://x.com/arena/status/2108243026741248348",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T17:08:01Z"
-        }
-      ],
-      "source_count": 3,
-      "source_names": [
-        "X：Arena (@arena)"
-      ],
-      "items": [
-        {
-          "id": "8a42727ab6ee563c5d59caeddb72180458d5820b",
-          "title": "Arena 完成 2 亿美元 B 轮融资，估值 31 亿美元并发布 Alignment Index",
-          "url": "https://x.com/arena/status/2108310714423423254",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T21:36:59Z"
-        },
-        {
-          "id": "e4b966395ba6cca50bd750dbe58d5c8f5d74e673",
-          "title": "Arena 完成 2 亿美元 B 轮融资，估值 31 亿美元并推出 Arena AI Alignment Index",
-          "url": "https://x.com/arena/status/2108310194619044253",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T21:34:55Z"
-        },
-        {
-          "id": "d89ed5786a4a33a1586eb95b51f8a172b5e03d3d",
-          "title": "Arena 宣布 2 亿美元 B 轮融资，估值达 31 亿美元，并推出 Alignment Index",
-          "url": "https://x.com/arena/status/2108243026741248348",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-08T17:08:01Z"
-        }
-      ],
-      "item_count": 3,
-      "duplicate_count": 3,
-      "score": 0.6727,
-      "importance": 0.6727,
-      "importance_score": 0.6727,
-      "importance_label": "多源热议",
-      "importance_breakdown": {
-        "editorial": 0.67,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.2783,
-        "story_heat": 0.5
-      },
-      "category": "multi_source",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-08T17:08:01Z",
-      "latest_at": "2026-10-08T21:36:59Z",
-      "primary_item": {
-        "id": "d89ed5786a4a33a1586eb95b51f8a172b5e03d3d",
-        "title": "Arena 宣布 2 亿美元 B 轮融资，估值达 31 亿美元，并推出 Alignment Index",
-        "url": "https://x.com/arena/status/2108243026741248348",
-        "source": "X：Arena (@arena)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_6f02344687c4",
-      "title": "NVIDIA 与 Microsoft 发布 RTX Spark 及 DGX Station for Windows，推动 AI Agent 落地 Windows PC",
-      "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
-      "primary_url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
-      "source": "NVIDIA Blog（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "167a38f113a770fc4d3752a7a64939a19b867dac",
-          "title": "NVIDIA 与 Microsoft 发布 RTX Spark 及 DGX Station for Windows，推动 AI Agent 落地 Windows PC",
-          "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
-          "source": "NVIDIA Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:45:28Z"
-        },
-        {
-          "id": "b0719e52d2514cc44359051052fbf344a00960ff",
-          "title": "NVIDIA 与 Microsoft 推出 RTX Spark 平台并宣布 MXC 让 AI Agent 落地 Windows PC",
-          "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
-          "source": "NVIDIA Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:45:28Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "NVIDIA Blog（RSS）"
-      ],
-      "items": [
-        {
-          "id": "167a38f113a770fc4d3752a7a64939a19b867dac",
-          "title": "NVIDIA 与 Microsoft 发布 RTX Spark 及 DGX Station for Windows，推动 AI Agent 落地 Windows PC",
-          "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
-          "source": "NVIDIA Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:45:28Z"
-        },
-        {
-          "id": "b0719e52d2514cc44359051052fbf344a00960ff",
-          "title": "NVIDIA 与 Microsoft 推出 RTX Spark 平台并宣布 MXC 让 AI Agent 落地 Windows PC",
-          "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
-          "source": "NVIDIA Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-07T18:45:28Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6579,
-      "importance": 0.6579,
-      "importance_score": 0.6579,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.75,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.2015,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-07T18:45:28Z",
-      "latest_at": "2026-10-07T18:45:28Z",
-      "primary_item": {
-        "id": "167a38f113a770fc4d3752a7a64939a19b867dac",
-        "title": "NVIDIA 与 Microsoft 发布 RTX Spark 及 DGX Station for Windows，推动 AI Agent 落地 Windows PC",
-        "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event",
-        "source": "NVIDIA Blog（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_bcb2617028fc",
-      "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
-      "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
-      "primary_url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
-      "source": "Google DeepMind：Blog（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "dafa76d6b8e020f913333e4744d7297aeb9f0f9d",
-          "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
-          "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
-          "source": "Google DeepMind：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T19:57:04Z"
-        },
-        {
-          "id": "487f0f1c5dd5571b6871c2ed74bea06ce32bde92",
-          "title": "Google 发布 740M 参数多模态嵌入模型 EmbeddingGemma 2",
-          "url": "https://x.com/Google/status/2107505123941376129",
-          "source": "X：Google (@Google)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T16:15:51Z"
-        },
-        {
-          "id": "d318911354a347d0529787e3cff001fcb2f2a347",
-          "title": "Google 发布开源多模态嵌入模型 EmbeddingGemma 2",
-          "url": "https://x.com/sundarpichai/status/2107501975671890211",
-          "source": "X：Sundar Pichai (@sundarpichai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T16:03:21Z"
-        }
-      ],
-      "source_count": 3,
-      "source_names": [
-        "Google DeepMind：Blog（RSS）",
-        "X：Google (@Google)",
-        "X：Sundar Pichai (@sundarpichai)"
-      ],
-      "items": [
-        {
-          "id": "dafa76d6b8e020f913333e4744d7297aeb9f0f9d",
-          "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
-          "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
-          "source": "Google DeepMind：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T19:57:04Z"
-        },
-        {
-          "id": "487f0f1c5dd5571b6871c2ed74bea06ce32bde92",
-          "title": "Google 发布 740M 参数多模态嵌入模型 EmbeddingGemma 2",
-          "url": "https://x.com/Google/status/2107505123941376129",
-          "source": "X：Google (@Google)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T16:15:51Z"
-        },
-        {
-          "id": "d318911354a347d0529787e3cff001fcb2f2a347",
-          "title": "Google 发布开源多模态嵌入模型 EmbeddingGemma 2",
-          "url": "https://x.com/sundarpichai/status/2107501975671890211",
-          "source": "X：Sundar Pichai (@sundarpichai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-06T16:03:21Z"
-        }
-      ],
-      "item_count": 3,
-      "duplicate_count": 3,
-      "score": 0.6577,
-      "importance": 0.6577,
-      "importance_score": 0.6577,
-      "importance_label": "多源热议",
-      "importance_breakdown": {
-        "editorial": 0.7,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.1449,
-        "story_heat": 0.5
-      },
-      "category": "multi_source",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-06T16:03:21Z",
-      "latest_at": "2026-10-06T19:57:04Z",
-      "primary_item": {
-        "id": "dafa76d6b8e020f913333e4744d7297aeb9f0f9d",
-        "title": "Google DeepMind 发布开源轻量多模态嵌入模型 EmbeddingGemma 2",
-        "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
-        "source": "Google DeepMind：Blog（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_50e18c541984",
-      "title": "Anthropic 发布 Claude Sonnet 5.5：速度提升 30%+，每任务成本最多降 30%",
-      "url": "https://www.anthropic.com/claude-sonnet-5-5",
-      "primary_url": "https://www.anthropic.com/claude-sonnet-5-5",
-      "source": "Hacker News：AI 热帖",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "a462e96ea895c40ad3ed2723b00598245331b752",
-          "title": "Anthropic 正式发布 Claude Sonnet 5.5，速度提升 30% 且成本降低 30%",
-          "url": "https://x.com/testingcatalog/status/2104634831409651716",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T18:10:20Z"
-        },
-        {
-          "id": "2f1e1b180faf0063d850eaff5efae4507ba79a46",
-          "title": "Anthropic 发布 Claude Sonnet 5.5：速度提升 30%+，每任务成本最多降 30%",
-          "url": "https://www.anthropic.com/claude-sonnet-5-5",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T17:58:11Z"
-        }
-      ],
-      "source_count": 2,
-      "source_names": [
-        "Hacker News：AI 热帖",
-        "X：Testing Catalog (@testingcatalog)"
-      ],
-      "items": [
-        {
-          "id": "a462e96ea895c40ad3ed2723b00598245331b752",
-          "title": "Anthropic 正式发布 Claude Sonnet 5.5，速度提升 30% 且成本降低 30%",
-          "url": "https://x.com/testingcatalog/status/2104634831409651716",
-          "source": "X：Testing Catalog (@testingcatalog)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T18:10:20Z"
-        },
-        {
-          "id": "2f1e1b180faf0063d850eaff5efae4507ba79a46",
-          "title": "Anthropic 发布 Claude Sonnet 5.5：速度提升 30%+，每任务成本最多降 30%",
-          "url": "https://www.anthropic.com/claude-sonnet-5-5",
-          "source": "Hacker News：AI 热帖",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-28T17:58:11Z"
-        }
-      ],
-      "item_count": 2,
-      "duplicate_count": 2,
-      "score": 0.6562,
-      "importance": 0.6562,
-      "importance_score": 0.6562,
-      "importance_label": "值得关注",
-      "importance_breakdown": {
-        "editorial": 0.86,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.0088,
-        "story_heat": 0.25
-      },
-      "category": "watch",
-      "reasons": [
-        "multi_source",
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-09-28T17:58:11Z",
-      "latest_at": "2026-09-28T18:10:20Z",
-      "primary_item": {
-        "id": "2f1e1b180faf0063d850eaff5efae4507ba79a46",
-        "title": "Anthropic 发布 Claude Sonnet 5.5：速度提升 30%+，每任务成本最多降 30%",
-        "url": "https://www.anthropic.com/claude-sonnet-5-5",
-        "source": "Hacker News：AI 热帖",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_67b34a6b6bf0",
-      "title": "斯坦福 CS329A 自我改进智能体课程第一讲学习笔记",
-      "url": "https://x.com/shao__meng/status/2109511792393400674",
-      "primary_url": "https://x.com/shao__meng/status/2109511792393400674",
-      "source": "X：邵猛 (@shao__meng)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "c8d8f1259cdfefa05870ed94ebb415baf4d1098d",
-          "title": "斯坦福 CS329A 自我改进智能体课程第一讲学习笔记",
-          "url": "https://x.com/shao__meng/status/2109511792393400674",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-12T05:09:38Z"
+          "published_at": "2026-10-12T17:02:20Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：邵猛 (@shao__meng)"
+        "X：AI at Meta (@AIatMeta)"
       ],
       "items": [
         {
-          "id": "c8d8f1259cdfefa05870ed94ebb415baf4d1098d",
-          "title": "斯坦福 CS329A 自我改进智能体课程第一讲学习笔记",
-          "url": "https://x.com/shao__meng/status/2109511792393400674",
-          "source": "X：邵猛 (@shao__meng)",
+          "id": "98fffedee341fedf3701229b2fa6291fe20dacab",
+          "title": "Meta 发布 Muse Wonder 系列模型，含 Muse Wonder 与 Muse Wonder Full",
+          "url": "https://x.com/AIatMeta/status/2109691148943999167",
+          "source": "X：AI at Meta (@AIatMeta)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-12T05:09:38Z"
+          "published_at": "2026-10-12T17:02:20Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7412,
-      "importance": 0.7412,
-      "importance_score": 0.7412,
+      "score": 0.7277,
+      "importance": 0.7277,
+      "importance_score": 0.7277,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.67,
+        "editorial": 0.61,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9366,
+        "recency": 0.9618,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-12T05:09:38Z",
-      "latest_at": "2026-10-12T05:09:38Z",
+      "earliest_at": "2026-10-12T17:02:20Z",
+      "latest_at": "2026-10-12T17:02:20Z",
       "primary_item": {
-        "id": "c8d8f1259cdfefa05870ed94ebb415baf4d1098d",
-        "title": "斯坦福 CS329A 自我改进智能体课程第一讲学习笔记",
-        "url": "https://x.com/shao__meng/status/2109511792393400674",
-        "source": "X：邵猛 (@shao__meng)",
+        "id": "98fffedee341fedf3701229b2fa6291fe20dacab",
+        "title": "Meta 发布 Muse Wonder 系列模型，含 Muse Wonder 与 Muse Wonder Full",
+        "url": "https://x.com/AIatMeta/status/2109691148943999167",
+        "source": "X：AI at Meta (@AIatMeta)",
         "source_name": "AI HOT"
       }
     }
