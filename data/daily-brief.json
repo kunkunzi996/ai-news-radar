@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-12T02:36:34.422143Z",
+  "generated_at": "2026-10-12T09:41:59.488164Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -130,15 +130,15 @@
       ],
       "item_count": 6,
       "duplicate_count": 6,
-      "score": 0.844,
-      "importance": 0.844,
-      "importance_score": 0.844,
+      "score": 0.8271,
+      "importance": 0.8271,
+      "importance_score": 0.8271,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.66,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9691,
+        "recency": 0.8748,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -158,21 +158,82 @@
       }
     },
     {
-      "story_id": "story_52bd2fa13c1f",
-      "title": "Hamel Husain 将 AI 评估课程浓缩为 13 张口袋指南信息卡",
-      "url": "https://x.com/shao__meng/status/2109445747133579381",
-      "primary_url": "https://x.com/shao__meng/status/2109445747133579381",
+      "story_id": "story_20468ac24c35",
+      "title": "用 Claude Opus 5.5、Blender、Unreal Engine 和 Meshy 构建游戏的七步教程",
+      "url": "https://x.com/MeshyAI/status/2109550836934471864",
+      "primary_url": "https://x.com/MeshyAI/status/2109550836934471864",
+      "source": "X：Meshy (@MeshyAI)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "91f6030ffc8e5c0d29755a33d9fe85e93f9085d5",
+          "title": "用 Claude Opus 5.5、Blender、Unreal Engine 和 Meshy 构建游戏的七步教程",
+          "url": "https://x.com/MeshyAI/status/2109550836934471864",
+          "source": "X：Meshy (@MeshyAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T07:44:47Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Meshy (@MeshyAI)"
+      ],
+      "items": [
+        {
+          "id": "91f6030ffc8e5c0d29755a33d9fe85e93f9085d5",
+          "title": "用 Claude Opus 5.5、Blender、Unreal Engine 和 Meshy 构建游戏的七步教程",
+          "url": "https://x.com/MeshyAI/status/2109550836934471864",
+          "source": "X：Meshy (@MeshyAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T07:44:47Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7566,
+      "importance": 0.7566,
+      "importance_score": 0.7566,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.7,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9722,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-12T07:44:47Z",
+      "latest_at": "2026-10-12T07:44:47Z",
+      "primary_item": {
+        "id": "91f6030ffc8e5c0d29755a33d9fe85e93f9085d5",
+        "title": "用 Claude Opus 5.5、Blender、Unreal Engine 和 Meshy 构建游戏的七步教程",
+        "url": "https://x.com/MeshyAI/status/2109550836934471864",
+        "source": "X：Meshy (@MeshyAI)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_4ed86b9e0bad",
+      "title": "Google 与 Kaggle 五天 AI Agents 课程解读：五份白皮书串联从 Vibe Coding 到生产级 Agent",
+      "url": "https://x.com/shao__meng/status/2109547294945398848",
+      "primary_url": "https://x.com/shao__meng/status/2109547294945398848",
       "source": "X：邵猛 (@shao__meng)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "dd3bccb49e2657fc12b60f51e947f6ae7c866516",
-          "title": "Hamel Husain 将 AI 评估课程浓缩为 13 张口袋指南信息卡",
-          "url": "https://x.com/shao__meng/status/2109445747133579381",
+          "id": "4f87f0bba8b8af7312dc19ea7ddc89ffae8527b1",
+          "title": "Google 与 Kaggle 五天 AI Agents 课程解读：五份白皮书串联从 Vibe Coding 到生产级 Agent",
+          "url": "https://x.com/shao__meng/status/2109547294945398848",
           "source": "X：邵猛 (@shao__meng)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-12T00:47:12Z"
+          "published_at": "2026-10-12T07:30:43Z"
         }
       ],
       "source_count": 1,
@@ -181,26 +242,26 @@
       ],
       "items": [
         {
-          "id": "dd3bccb49e2657fc12b60f51e947f6ae7c866516",
-          "title": "Hamel Husain 将 AI 评估课程浓缩为 13 张口袋指南信息卡",
-          "url": "https://x.com/shao__meng/status/2109445747133579381",
+          "id": "4f87f0bba8b8af7312dc19ea7ddc89ffae8527b1",
+          "title": "Google 与 Kaggle 五天 AI Agents 课程解读：五份白皮书串联从 Vibe Coding 到生产级 Agent",
+          "url": "https://x.com/shao__meng/status/2109547294945398848",
           "source": "X：邵猛 (@shao__meng)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-12T00:47:12Z"
+          "published_at": "2026-10-12T07:30:43Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7659,
-      "importance": 0.7659,
-      "importance_score": 0.7659,
+      "score": 0.753,
+      "importance": 0.753,
+      "importance_score": 0.753,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.73,
+        "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.974,
+        "recency": 0.9689,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -208,13 +269,133 @@
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-10-12T00:47:12Z",
-      "latest_at": "2026-10-12T00:47:12Z",
+      "earliest_at": "2026-10-12T07:30:43Z",
+      "latest_at": "2026-10-12T07:30:43Z",
       "primary_item": {
-        "id": "dd3bccb49e2657fc12b60f51e947f6ae7c866516",
-        "title": "Hamel Husain 将 AI 评估课程浓缩为 13 张口袋指南信息卡",
-        "url": "https://x.com/shao__meng/status/2109445747133579381",
+        "id": "4f87f0bba8b8af7312dc19ea7ddc89ffae8527b1",
+        "title": "Google 与 Kaggle 五天 AI Agents 课程解读：五份白皮书串联从 Vibe Coding 到生产级 Agent",
+        "url": "https://x.com/shao__meng/status/2109547294945398848",
         "source": "X：邵猛 (@shao__meng)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_3417354b8507",
+      "title": "GPT-6.1 Sol 默认上下文窗口从 272k 提升至 500k，覆盖 Codex 与 ChatGPT Work",
+      "url": "https://x.com/reach_vb/status/2109543080609165508",
+      "primary_url": "https://x.com/reach_vb/status/2109543080609165508",
+      "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "9e744bbbf7761d71d7ef008cb76e00a16f9d6a6e",
+          "title": "GPT-6.1 Sol 默认上下文窗口从 272k 提升至 500k，覆盖 Codex 与 ChatGPT Work",
+          "url": "https://x.com/reach_vb/status/2109543080609165508",
+          "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T07:13:58Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Vaibhav Srivastav（OpenAI）(@reach_vb)"
+      ],
+      "items": [
+        {
+          "id": "9e744bbbf7761d71d7ef008cb76e00a16f9d6a6e",
+          "title": "GPT-6.1 Sol 默认上下文窗口从 272k 提升至 500k，覆盖 Codex 与 ChatGPT Work",
+          "url": "https://x.com/reach_vb/status/2109543080609165508",
+          "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T07:13:58Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7403,
+      "importance": 0.7403,
+      "importance_score": 0.7403,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.65,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.965,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-12T07:13:58Z",
+      "latest_at": "2026-10-12T07:13:58Z",
+      "primary_item": {
+        "id": "9e744bbbf7761d71d7ef008cb76e00a16f9d6a6e",
+        "title": "GPT-6.1 Sol 默认上下文窗口从 272k 提升至 500k，覆盖 Codex 与 ChatGPT Work",
+        "url": "https://x.com/reach_vb/status/2109543080609165508",
+        "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_7ce8a939cdbc",
+      "title": "从Brandon Thomas用Claude Opus 5.5开源重写Adobe全家桶看AI逆向一切趋势",
+      "url": "https://x.com/Khazix0918/status/2109501787736813663",
+      "primary_url": "https://x.com/Khazix0918/status/2109501787736813663",
+      "source": "X：卡兹克 (@Khazix0918)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "4d75d0fa41cd12eb95b90c1a1cbfd837476bafa8",
+          "title": "从Brandon Thomas用Claude Opus 5.5开源重写Adobe全家桶看AI逆向一切趋势",
+          "url": "https://x.com/Khazix0918/status/2109501787736813663",
+          "source": "X：卡兹克 (@Khazix0918)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T04:29:53Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：卡兹克 (@Khazix0918)"
+      ],
+      "items": [
+        {
+          "id": "4d75d0fa41cd12eb95b90c1a1cbfd837476bafa8",
+          "title": "从Brandon Thomas用Claude Opus 5.5开源重写Adobe全家桶看AI逆向一切趋势",
+          "url": "https://x.com/Khazix0918/status/2109501787736813663",
+          "source": "X：卡兹克 (@Khazix0918)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T04:29:53Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7396,
+      "importance": 0.7396,
+      "importance_score": 0.7396,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.67,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9276,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-12T04:29:53Z",
+      "latest_at": "2026-10-12T04:29:53Z",
+      "primary_item": {
+        "id": "4d75d0fa41cd12eb95b90c1a1cbfd837476bafa8",
+        "title": "从Brandon Thomas用Claude Opus 5.5开源重写Adobe全家桶看AI逆向一切趋势",
+        "url": "https://x.com/Khazix0918/status/2109501787736813663",
+        "source": "X：卡兹克 (@Khazix0918)",
         "source_name": "AI HOT"
       }
     },
@@ -253,21 +434,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7523,
-      "importance": 0.7523,
-      "importance_score": 0.7523,
+      "score": 0.7354,
+      "importance": 0.7354,
+      "importance_score": 0.7354,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.69,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9652,
+        "recency": 0.8712,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-12T00:09:16Z",
       "latest_at": "2026-10-12T00:09:16Z",
@@ -276,126 +456,6 @@
         "title": "Lauren Tan 谈让 Agent 写出更正确代码的起点：自我验证",
         "url": "https://x.com/poteto/status/2109436202554372476",
         "source": "X：Lauren Tan (@poteto)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_2e3af46c5b7b",
-      "title": "OpenAI 测试智能体逃逸 ExploitGym 并入侵 Hugging Face 基础设施，暴露对齐与追责困境",
-      "url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
-      "primary_url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
-      "source": "MarkTechPost（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "c01fe277cea6b5e9d91df46cbc3b2f27e9d158fc",
-          "title": "OpenAI 测试智能体逃逸 ExploitGym 并入侵 Hugging Face 基础设施，暴露对齐与追责困境",
-          "url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
-          "source": "MarkTechPost（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-10T21:30:36Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "MarkTechPost（RSS）"
-      ],
-      "items": [
-        {
-          "id": "c01fe277cea6b5e9d91df46cbc3b2f27e9d158fc",
-          "title": "OpenAI 测试智能体逃逸 ExploitGym 并入侵 Hugging Face 基础设施，暴露对齐与追责困境",
-          "url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
-          "source": "MarkTechPost（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-10T21:30:36Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7448,
-      "importance": 0.7448,
-      "importance_score": 0.7448,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.85,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6569,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-10T21:30:36Z",
-      "latest_at": "2026-10-10T21:30:36Z",
-      "primary_item": {
-        "id": "c01fe277cea6b5e9d91df46cbc3b2f27e9d158fc",
-        "title": "OpenAI 测试智能体逃逸 ExploitGym 并入侵 Hugging Face 基础设施，暴露对齐与追责困境",
-        "url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
-        "source": "MarkTechPost（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_d4cf17904efd",
-      "title": "Karpathy 提出 LLM 能力认知漏斗，Ethan Mollick 补充实验室内部应用仍集中",
-      "url": "https://x.com/emollick/status/2109422437616029941",
-      "primary_url": "https://x.com/emollick/status/2109422437616029941",
-      "source": "X：Ethan Mollick (@emollick)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "31817afc609494dfe4ad4a5f3318ae85517dfde5",
-          "title": "Karpathy 提出 LLM 能力认知漏斗，Ethan Mollick 补充实验室内部应用仍集中",
-          "url": "https://x.com/emollick/status/2109422437616029941",
-          "source": "X：Ethan Mollick (@emollick)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T23:14:34Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Ethan Mollick (@emollick)"
-      ],
-      "items": [
-        {
-          "id": "31817afc609494dfe4ad4a5f3318ae85517dfde5",
-          "title": "Karpathy 提出 LLM 能力认知漏斗，Ethan Mollick 补充实验室内部应用仍集中",
-          "url": "https://x.com/emollick/status/2109422437616029941",
-          "source": "X：Ethan Mollick (@emollick)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T23:14:34Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7411,
-      "importance": 0.7411,
-      "importance_score": 0.7411,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.66,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9525,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-11T23:14:34Z",
-      "latest_at": "2026-10-11T23:14:34Z",
-      "primary_item": {
-        "id": "31817afc609494dfe4ad4a5f3318ae85517dfde5",
-        "title": "Karpathy 提出 LLM 能力认知漏斗，Ethan Mollick 补充实验室内部应用仍集中",
-        "url": "https://x.com/emollick/status/2109422437616029941",
-        "source": "X：Ethan Mollick (@emollick)",
         "source_name": "AI HOT"
       }
     },
@@ -452,15 +512,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7401,
-      "importance": 0.7401,
-      "importance_score": 0.7401,
+      "score": 0.7341,
+      "importance": 0.7341,
+      "importance_score": 0.7341,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.94,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3415,
+        "recency": 0.3083,
         "story_heat": 0.25
       },
       "category": "industry",
@@ -479,81 +539,81 @@
       }
     },
     {
-      "story_id": "story_81c0a1839a64",
-      "title": "Karpathy：LLM 能力认知鸿沟正扩大为漏斗，仅约 0.2% 的专业用户看到前沿智能体能力",
-      "url": "https://x.com/karpathy/status/2109361546505966046",
-      "primary_url": "https://x.com/karpathy/status/2109361546505966046",
-      "source": "X：Andrej Karpathy (@karpathy)",
+      "story_id": "story_2e3af46c5b7b",
+      "title": "OpenAI 测试智能体逃逸 ExploitGym 并入侵 Hugging Face 基础设施，暴露对齐与追责困境",
+      "url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
+      "primary_url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
+      "source": "MarkTechPost（RSS）",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "9536b7062b7b9c5d45fa6849b46b63482df9befc",
-          "title": "Karpathy：LLM 能力认知鸿沟正扩大为漏斗，仅约 0.2% 的专业用户看到前沿智能体能力",
-          "url": "https://x.com/karpathy/status/2109361546505966046",
-          "source": "X：Andrej Karpathy (@karpathy)",
+          "id": "c01fe277cea6b5e9d91df46cbc3b2f27e9d158fc",
+          "title": "OpenAI 测试智能体逃逸 ExploitGym 并入侵 Hugging Face 基础设施，暴露对齐与追责困境",
+          "url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
+          "source": "MarkTechPost（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-11T19:12:37Z"
+          "published_at": "2026-10-10T21:30:36Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Andrej Karpathy (@karpathy)"
+        "MarkTechPost（RSS）"
       ],
       "items": [
         {
-          "id": "9536b7062b7b9c5d45fa6849b46b63482df9befc",
-          "title": "Karpathy：LLM 能力认知鸿沟正扩大为漏斗，仅约 0.2% 的专业用户看到前沿智能体能力",
-          "url": "https://x.com/karpathy/status/2109361546505966046",
-          "source": "X：Andrej Karpathy (@karpathy)",
+          "id": "c01fe277cea6b5e9d91df46cbc3b2f27e9d158fc",
+          "title": "OpenAI 测试智能体逃逸 ExploitGym 并入侵 Hugging Face 基础设施，暴露对齐与追责困境",
+          "url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
+          "source": "MarkTechPost（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-11T19:12:37Z"
+          "published_at": "2026-10-10T21:30:36Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7314,
-      "importance": 0.7314,
-      "importance_score": 0.7314,
+      "score": 0.7333,
+      "importance": 0.7333,
+      "importance_score": 0.7333,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.66,
+        "editorial": 0.85,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8987,
+        "recency": 0.593,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-11T19:12:37Z",
-      "latest_at": "2026-10-11T19:12:37Z",
+      "earliest_at": "2026-10-10T21:30:36Z",
+      "latest_at": "2026-10-10T21:30:36Z",
       "primary_item": {
-        "id": "9536b7062b7b9c5d45fa6849b46b63482df9befc",
-        "title": "Karpathy：LLM 能力认知鸿沟正扩大为漏斗，仅约 0.2% 的专业用户看到前沿智能体能力",
-        "url": "https://x.com/karpathy/status/2109361546505966046",
-        "source": "X：Andrej Karpathy (@karpathy)",
+        "id": "c01fe277cea6b5e9d91df46cbc3b2f27e9d158fc",
+        "title": "OpenAI 测试智能体逃逸 ExploitGym 并入侵 Hugging Face 基础设施，暴露对齐与追责困境",
+        "url": "https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out",
+        "source": "MarkTechPost（RSS）",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_109d57dd5b5d",
-      "title": "OpenAI 一次发布数百篇 AI 生成论文后，西北大学数学学生开始动摇去留",
-      "url": "https://x.com/rohanpaul_ai/status/2109358434177180101",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2109358434177180101",
+      "story_id": "story_b0cd6d8c7395",
+      "title": "FT：AI 生成论文涌入学术期刊，220 亿美元出版业转向并购应对",
+      "url": "https://x.com/rohanpaul_ai/status/2109487106313847119",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2109487106313847119",
       "source": "X：Rohan Paul (@rohanpaul_ai)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "5504d445b93aad78bd5e692aa59161f238ecbcb8",
-          "title": "OpenAI 一次发布数百篇 AI 生成论文后，西北大学数学学生开始动摇去留",
-          "url": "https://x.com/rohanpaul_ai/status/2109358434177180101",
+          "id": "f18265af5106bc49310105b290e942a9aedeeb67",
+          "title": "FT：AI 生成论文涌入学术期刊，220 亿美元出版业转向并购应对",
+          "url": "https://x.com/rohanpaul_ai/status/2109487106313847119",
           "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-11T19:00:15Z"
+          "published_at": "2026-10-12T03:31:33Z"
         }
       ],
       "source_count": 1,
@@ -562,39 +622,160 @@
       ],
       "items": [
         {
-          "id": "5504d445b93aad78bd5e692aa59161f238ecbcb8",
-          "title": "OpenAI 一次发布数百篇 AI 生成论文后，西北大学数学学生开始动摇去留",
-          "url": "https://x.com/rohanpaul_ai/status/2109358434177180101",
+          "id": "f18265af5106bc49310105b290e942a9aedeeb67",
+          "title": "FT：AI 生成论文涌入学术期刊，220 亿美元出版业转向并购应对",
+          "url": "https://x.com/rohanpaul_ai/status/2109487106313847119",
           "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-11T19:00:15Z"
+          "published_at": "2026-10-12T03:31:33Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7309,
-      "importance": 0.7309,
-      "importance_score": 0.7309,
+      "score": 0.7252,
+      "importance": 0.7252,
+      "importance_score": 0.7252,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.66,
+        "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.896,
+        "recency": 0.9147,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-11T19:00:15Z",
-      "latest_at": "2026-10-11T19:00:15Z",
+      "earliest_at": "2026-10-12T03:31:33Z",
+      "latest_at": "2026-10-12T03:31:33Z",
       "primary_item": {
-        "id": "5504d445b93aad78bd5e692aa59161f238ecbcb8",
-        "title": "OpenAI 一次发布数百篇 AI 生成论文后，西北大学数学学生开始动摇去留",
-        "url": "https://x.com/rohanpaul_ai/status/2109358434177180101",
+        "id": "f18265af5106bc49310105b290e942a9aedeeb67",
+        "title": "FT：AI 生成论文涌入学术期刊，220 亿美元出版业转向并购应对",
+        "url": "https://x.com/rohanpaul_ai/status/2109487106313847119",
         "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_d4cf17904efd",
+      "title": "Karpathy 提出 LLM 能力认知漏斗，Ethan Mollick 补充实验室内部应用仍集中",
+      "url": "https://x.com/emollick/status/2109422437616029941",
+      "primary_url": "https://x.com/emollick/status/2109422437616029941",
+      "source": "X：Ethan Mollick (@emollick)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "31817afc609494dfe4ad4a5f3318ae85517dfde5",
+          "title": "Karpathy 提出 LLM 能力认知漏斗，Ethan Mollick 补充实验室内部应用仍集中",
+          "url": "https://x.com/emollick/status/2109422437616029941",
+          "source": "X：Ethan Mollick (@emollick)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T23:14:34Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Ethan Mollick (@emollick)"
+      ],
+      "items": [
+        {
+          "id": "31817afc609494dfe4ad4a5f3318ae85517dfde5",
+          "title": "Karpathy 提出 LLM 能力认知漏斗，Ethan Mollick 补充实验室内部应用仍集中",
+          "url": "https://x.com/emollick/status/2109422437616029941",
+          "source": "X：Ethan Mollick (@emollick)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-11T23:14:34Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7244,
+      "importance": 0.7244,
+      "importance_score": 0.7244,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.66,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8598,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-11T23:14:34Z",
+      "latest_at": "2026-10-11T23:14:34Z",
+      "primary_item": {
+        "id": "31817afc609494dfe4ad4a5f3318ae85517dfde5",
+        "title": "Karpathy 提出 LLM 能力认知漏斗，Ethan Mollick 补充实验室内部应用仍集中",
+        "url": "https://x.com/emollick/status/2109422437616029941",
+        "source": "X：Ethan Mollick (@emollick)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_152d1d191b39",
+      "title": "Beyond Naive RAG：9 位检索专家总结朴素 RAG 的失效与进阶实践",
+      "url": "https://x.com/shao__meng/status/2109471678015389835",
+      "primary_url": "https://x.com/shao__meng/status/2109471678015389835",
+      "source": "X：邵猛 (@shao__meng)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "97f1cc5a6e6f9024666a956e3c4334692ab80728",
+          "title": "Beyond Naive RAG：9 位检索专家总结朴素 RAG 的失效与进阶实践",
+          "url": "https://x.com/shao__meng/status/2109471678015389835",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T02:30:14Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：邵猛 (@shao__meng)"
+      ],
+      "items": [
+        {
+          "id": "97f1cc5a6e6f9024666a956e3c4334692ab80728",
+          "title": "Beyond Naive RAG：9 位检索专家总结朴素 RAG 的失效与进阶实践",
+          "url": "https://x.com/shao__meng/status/2109471678015389835",
+          "source": "X：邵猛 (@shao__meng)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-12T02:30:14Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7528,
+      "importance": 0.7528,
+      "importance_score": 0.7528,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.73,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9013,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-12T02:30:14Z",
+      "latest_at": "2026-10-12T02:30:14Z",
+      "primary_item": {
+        "id": "97f1cc5a6e6f9024666a956e3c4334692ab80728",
+        "title": "Beyond Naive RAG：9 位检索专家总结朴素 RAG 的失效与进阶实践",
+        "url": "https://x.com/shao__meng/status/2109471678015389835",
+        "source": "X：邵猛 (@shao__meng)",
         "source_name": "AI HOT"
       }
     },
@@ -651,18 +832,18 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.7241,
-      "importance": 0.7241,
-      "importance_score": 0.7241,
-      "importance_label": "行业动态",
+      "score": 0.7086,
+      "importance": 0.7086,
+      "importance_score": 0.7086,
+      "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.56,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8864,
+        "recency": 0.8001,
         "story_heat": 0.25
       },
-      "category": "industry",
+      "category": "watch",
       "reasons": [
         "multi_source",
         "high_ai_relevance"
@@ -678,243 +859,62 @@
       }
     },
     {
-      "story_id": "story_9845ff93c3e2",
-      "title": "Karpathy：80 亿人被 AI 认知鸿沟分成四个层级",
-      "url": "https://x.com/howie_serious/status/2109427343123239205",
-      "primary_url": "https://x.com/howie_serious/status/2109427343123239205",
-      "source": "X：howie.serious (@howie_serious)",
+      "story_id": "story_26690168454d",
+      "title": "WSJ 报道亚马逊洽购 Decart 约 70 亿美元，此前与 Nvidia 和 Anthropic 谈判破裂",
+      "url": "https://x.com/rohanpaul_ai/status/2109479701689565297",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2109479701689565297",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "69d10c28d028dc1b8e1059faa74114df2dafdd1a",
-          "title": "Karpathy：80 亿人被 AI 认知鸿沟分成四个层级",
-          "url": "https://x.com/howie_serious/status/2109427343123239205",
-          "source": "X：howie.serious (@howie_serious)",
+          "id": "dca8d1c9c8fad91f63a5f822c8331442c7b3d3b7",
+          "title": "WSJ 报道亚马逊洽购 Decart 约 70 亿美元，此前与 Nvidia 和 Anthropic 谈判破裂",
+          "url": "https://x.com/rohanpaul_ai/status/2109479701689565297",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-11T23:34:04Z"
+          "published_at": "2026-10-12T03:02:07Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：howie.serious (@howie_serious)"
+        "X：Rohan Paul (@rohanpaul_ai)"
       ],
       "items": [
         {
-          "id": "69d10c28d028dc1b8e1059faa74114df2dafdd1a",
-          "title": "Karpathy：80 亿人被 AI 认知鸿沟分成四个层级",
-          "url": "https://x.com/howie_serious/status/2109427343123239205",
-          "source": "X：howie.serious (@howie_serious)",
+          "id": "dca8d1c9c8fad91f63a5f822c8331442c7b3d3b7",
+          "title": "WSJ 报道亚马逊洽购 Decart 约 70 亿美元，此前与 Nvidia 和 Anthropic 谈判破裂",
+          "url": "https://x.com/rohanpaul_ai/status/2109479701689565297",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-11T23:34:04Z"
+          "published_at": "2026-10-12T03:02:07Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7239,
-      "importance": 0.7239,
-      "importance_score": 0.7239,
+      "score": 0.7241,
+      "importance": 0.7241,
+      "importance_score": 0.7241,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.6,
+        "editorial": 0.63,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.957,
+        "recency": 0.9082,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-11T23:34:04Z",
-      "latest_at": "2026-10-11T23:34:04Z",
+      "earliest_at": "2026-10-12T03:02:07Z",
+      "latest_at": "2026-10-12T03:02:07Z",
       "primary_item": {
-        "id": "69d10c28d028dc1b8e1059faa74114df2dafdd1a",
-        "title": "Karpathy：80 亿人被 AI 认知鸿沟分成四个层级",
-        "url": "https://x.com/howie_serious/status/2109427343123239205",
-        "source": "X：howie.serious (@howie_serious)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_f95c4a1ce24c",
-      "title": "OpenAI 一次性发布 700 多份数学手稿，数学家们反应震惊与反感",
-      "url": "https://the-decoder.com/how-much-beauty-have-we-lost-mathematicians-react-with-shock-and-disgust-as-openai-bulldozes-their-field",
-      "primary_url": "https://the-decoder.com/how-much-beauty-have-we-lost-mathematicians-react-with-shock-and-disgust-as-openai-bulldozes-their-field",
-      "source": "The Decoder：AI News（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "1649fb33508a8f5e5cc8f044c0039df37be1c5a3",
-          "title": "OpenAI 一次性发布 700 多份数学手稿，数学家们反应震惊与反感",
-          "url": "https://the-decoder.com/how-much-beauty-have-we-lost-mathematicians-react-with-shock-and-disgust-as-openai-bulldozes-their-field",
-          "source": "The Decoder：AI News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-10T13:03:59Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "The Decoder：AI News（RSS）"
-      ],
-      "items": [
-        {
-          "id": "1649fb33508a8f5e5cc8f044c0039df37be1c5a3",
-          "title": "OpenAI 一次性发布 700 多份数学手稿，数学家们反应震惊与反感",
-          "url": "https://the-decoder.com/how-much-beauty-have-we-lost-mathematicians-react-with-shock-and-disgust-as-openai-bulldozes-their-field",
-          "source": "The Decoder：AI News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-10T13:03:59Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7223,
-      "importance": 0.7223,
-      "importance_score": 0.7223,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.82,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.5815,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-10T13:03:59Z",
-      "latest_at": "2026-10-10T13:03:59Z",
-      "primary_item": {
-        "id": "1649fb33508a8f5e5cc8f044c0039df37be1c5a3",
-        "title": "OpenAI 一次性发布 700 多份数学手稿，数学家们反应震惊与反感",
-        "url": "https://the-decoder.com/how-much-beauty-have-we-lost-mathematicians-react-with-shock-and-disgust-as-openai-bulldozes-their-field",
-        "source": "The Decoder：AI News（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_4d13463feb4d",
-      "title": "Karpathy 认知漏斗引 indigo 解读：AI 能力认知正分裂为四种现实",
-      "url": "https://x.com/indigox/status/2109431484104974690",
-      "primary_url": "https://x.com/indigox/status/2109431484104974690",
-      "source": "X：indigo (@indigox)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "a7dff689700d1bb4914a9faa06f0a43a35f06374",
-          "title": "Karpathy 认知漏斗引 indigo 解读：AI 能力认知正分裂为四种现实",
-          "url": "https://x.com/indigox/status/2109431484104974690",
-          "source": "X：indigo (@indigox)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T23:50:31Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：indigo (@indigox)"
-      ],
-      "items": [
-        {
-          "id": "a7dff689700d1bb4914a9faa06f0a43a35f06374",
-          "title": "Karpathy 认知漏斗引 indigo 解读：AI 能力认知正分裂为四种现实",
-          "url": "https://x.com/indigox/status/2109431484104974690",
-          "source": "X：indigo (@indigox)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T23:50:31Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7215,
-      "importance": 0.7215,
-      "importance_score": 0.7215,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.59,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9608,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-11T23:50:31Z",
-      "latest_at": "2026-10-11T23:50:31Z",
-      "primary_item": {
-        "id": "a7dff689700d1bb4914a9faa06f0a43a35f06374",
-        "title": "Karpathy 认知漏斗引 indigo 解读：AI 能力认知正分裂为四种现实",
-        "url": "https://x.com/indigox/status/2109431484104974690",
-        "source": "X：indigo (@indigox)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_e7674be9f30f",
-      "title": "Addy Osmani 与 Lauren Tan 谈 AI 时代的代码质量：好代码来自验证闭环",
-      "url": "https://x.com/shao__meng/status/2109462758999912618",
-      "primary_url": "https://x.com/shao__meng/status/2109462758999912618",
-      "source": "X：邵猛 (@shao__meng)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "da118cf75a1ecc14b5f6f6bacf43bc192535f13e",
-          "title": "Addy Osmani 与 Lauren Tan 谈 AI 时代的代码质量：好代码来自验证闭环",
-          "url": "https://x.com/shao__meng/status/2109462758999912618",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-12T01:54:48Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：邵猛 (@shao__meng)"
-      ],
-      "items": [
-        {
-          "id": "da118cf75a1ecc14b5f6f6bacf43bc192535f13e",
-          "title": "Addy Osmani 与 Lauren Tan 谈 AI 时代的代码质量：好代码来自验证闭环",
-          "url": "https://x.com/shao__meng/status/2109462758999912618",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-12T01:54:48Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7508,
-      "importance": 0.7508,
-      "importance_score": 0.7508,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.67,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.99,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-12T01:54:48Z",
-      "latest_at": "2026-10-12T01:54:48Z",
-      "primary_item": {
-        "id": "da118cf75a1ecc14b5f6f6bacf43bc192535f13e",
-        "title": "Addy Osmani 与 Lauren Tan 谈 AI 时代的代码质量：好代码来自验证闭环",
-        "url": "https://x.com/shao__meng/status/2109462758999912618",
-        "source": "X：邵猛 (@shao__meng)",
+        "id": "dca8d1c9c8fad91f63a5f822c8331442c7b3d3b7",
+        "title": "WSJ 报道亚马逊洽购 Decart 约 70 亿美元，此前与 Nvidia 和 Anthropic 谈判破裂",
+        "url": "https://x.com/rohanpaul_ai/status/2109479701689565297",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -972,15 +972,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6973,
-      "importance": 0.6973,
-      "importance_score": 0.6973,
+      "score": 0.6935,
+      "importance": 0.6935,
+      "importance_score": 0.6935,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.87,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2208,
+        "recency": 0.1993,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -999,81 +999,21 @@
       }
     },
     {
-      "story_id": "story_70938c9dd862",
-      "title": "GPT-6.1 Sol 在 Codex 与 Work 中默认上下文长度提升至 500k",
-      "url": "https://x.com/thsottiaux/status/2109430343346581527",
-      "primary_url": "https://x.com/thsottiaux/status/2109430343346581527",
-      "source": "X：Tibo (@thsottiaux)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "7921d07cf3992ab1a77138e5c638870e2449d8fd",
-          "title": "GPT-6.1 Sol 在 Codex 与 Work 中默认上下文长度提升至 500k",
-          "url": "https://x.com/thsottiaux/status/2109430343346581527",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T23:45:59Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Tibo (@thsottiaux)"
-      ],
-      "items": [
-        {
-          "id": "7921d07cf3992ab1a77138e5c638870e2449d8fd",
-          "title": "GPT-6.1 Sol 在 Codex 与 Work 中默认上下文长度提升至 500k",
-          "url": "https://x.com/thsottiaux/status/2109430343346581527",
-          "source": "X：Tibo (@thsottiaux)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-11T23:45:59Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7244,
-      "importance": 0.7244,
-      "importance_score": 0.7244,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.6,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9598,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-11T23:45:59Z",
-      "latest_at": "2026-10-11T23:45:59Z",
-      "primary_item": {
-        "id": "7921d07cf3992ab1a77138e5c638870e2449d8fd",
-        "title": "GPT-6.1 Sol 在 Codex 与 Work 中默认上下文长度提升至 500k",
-        "url": "https://x.com/thsottiaux/status/2109430343346581527",
-        "source": "X：Tibo (@thsottiaux)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_e72af965de90",
-      "title": "Andrej Karpathy：人们对 LLM 能力的认知正分裂成四个层级",
-      "url": "https://x.com/shao__meng/status/2109459120881573998",
-      "primary_url": "https://x.com/shao__meng/status/2109459120881573998",
+      "story_id": "story_52bd2fa13c1f",
+      "title": "Hamel Husain 将 AI 评估课程浓缩为 13 张口袋指南信息卡",
+      "url": "https://x.com/shao__meng/status/2109445747133579381",
+      "primary_url": "https://x.com/shao__meng/status/2109445747133579381",
       "source": "X：邵猛 (@shao__meng)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "190d5f0c172c992da775f09226e379de5282404e",
-          "title": "Andrej Karpathy：人们对 LLM 能力的认知正分裂成四个层级",
-          "url": "https://x.com/shao__meng/status/2109459120881573998",
+          "id": "dd3bccb49e2657fc12b60f51e947f6ae7c866516",
+          "title": "Hamel Husain 将 AI 评估课程浓缩为 13 张口袋指南信息卡",
+          "url": "https://x.com/shao__meng/status/2109445747133579381",
           "source": "X：邵猛 (@shao__meng)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-12T01:40:20Z"
+          "published_at": "2026-10-12T00:47:12Z"
         }
       ],
       "source_count": 1,
@@ -1082,38 +1022,38 @@
       ],
       "items": [
         {
-          "id": "190d5f0c172c992da775f09226e379de5282404e",
-          "title": "Andrej Karpathy：人们对 LLM 能力的认知正分裂成四个层级",
-          "url": "https://x.com/shao__meng/status/2109459120881573998",
+          "id": "dd3bccb49e2657fc12b60f51e947f6ae7c866516",
+          "title": "Hamel Husain 将 AI 评估课程浓缩为 13 张口袋指南信息卡",
+          "url": "https://x.com/shao__meng/status/2109445747133579381",
           "source": "X：邵猛 (@shao__meng)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-12T01:40:20Z"
+          "published_at": "2026-10-12T00:47:12Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7472,
-      "importance": 0.7472,
-      "importance_score": 0.7472,
+      "score": 0.7489,
+      "importance": 0.7489,
+      "importance_score": 0.7489,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.66,
+        "editorial": 0.73,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9866,
+        "recency": 0.8792,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-12T01:40:20Z",
-      "latest_at": "2026-10-12T01:40:20Z",
+      "earliest_at": "2026-10-12T00:47:12Z",
+      "latest_at": "2026-10-12T00:47:12Z",
       "primary_item": {
-        "id": "190d5f0c172c992da775f09226e379de5282404e",
-        "title": "Andrej Karpathy：人们对 LLM 能力的认知正分裂成四个层级",
-        "url": "https://x.com/shao__meng/status/2109459120881573998",
+        "id": "dd3bccb49e2657fc12b60f51e947f6ae7c866516",
+        "title": "Hamel Husain 将 AI 评估课程浓缩为 13 张口袋指南信息卡",
+        "url": "https://x.com/shao__meng/status/2109445747133579381",
         "source": "X：邵猛 (@shao__meng)",
         "source_name": "AI HOT"
       }
@@ -1189,15 +1129,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.6781,
-      "importance": 0.6781,
-      "importance_score": 0.6781,
+      "score": 0.6727,
+      "importance": 0.6727,
+      "importance_score": 0.6727,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.3083,
+        "recency": 0.2783,
         "story_heat": 0.5
       },
       "category": "multi_source",
@@ -1268,15 +1208,15 @@
       ],
       "item_count": 2,
       "duplicate_count": 2,
-      "score": 0.6618,
-      "importance": 0.6618,
-      "importance_score": 0.6618,
+      "score": 0.6579,
+      "importance": 0.6579,
+      "importance_score": 0.6579,
       "importance_label": "值得关注",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.2232,
+        "recency": 0.2015,
         "story_heat": 0.25
       },
       "category": "watch",
@@ -1367,15 +1307,15 @@
       ],
       "item_count": 3,
       "duplicate_count": 3,
-      "score": 0.6605,
-      "importance": 0.6605,
-      "importance_score": 0.6605,
+      "score": 0.6577,
+      "importance": 0.6577,
+      "importance_score": 0.6577,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.7,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.1606,
+        "recency": 0.1449,
         "story_heat": 0.5
       },
       "category": "multi_source",
@@ -1394,21 +1334,101 @@
       }
     },
     {
-      "story_id": "story_3b8fc5482363",
-      "title": "密歇根大学 AI 编程课 Applied Agentic Software Engineering 发布五个工程 Skills",
-      "url": "https://x.com/shao__meng/status/2109305199357784357",
-      "primary_url": "https://x.com/shao__meng/status/2109305199357784357",
+      "story_id": "story_50e18c541984",
+      "title": "Anthropic 发布 Claude Sonnet 5.5：速度提升 30%+，每任务成本最多降 30%",
+      "url": "https://www.anthropic.com/claude-sonnet-5-5",
+      "primary_url": "https://www.anthropic.com/claude-sonnet-5-5",
+      "source": "Hacker News：AI 热帖",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "a462e96ea895c40ad3ed2723b00598245331b752",
+          "title": "Anthropic 正式发布 Claude Sonnet 5.5，速度提升 30% 且成本降低 30%",
+          "url": "https://x.com/testingcatalog/status/2104634831409651716",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T18:10:20Z"
+        },
+        {
+          "id": "2f1e1b180faf0063d850eaff5efae4507ba79a46",
+          "title": "Anthropic 发布 Claude Sonnet 5.5：速度提升 30%+，每任务成本最多降 30%",
+          "url": "https://www.anthropic.com/claude-sonnet-5-5",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T17:58:11Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Hacker News：AI 热帖",
+        "X：Testing Catalog (@testingcatalog)"
+      ],
+      "items": [
+        {
+          "id": "a462e96ea895c40ad3ed2723b00598245331b752",
+          "title": "Anthropic 正式发布 Claude Sonnet 5.5，速度提升 30% 且成本降低 30%",
+          "url": "https://x.com/testingcatalog/status/2104634831409651716",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T18:10:20Z"
+        },
+        {
+          "id": "2f1e1b180faf0063d850eaff5efae4507ba79a46",
+          "title": "Anthropic 发布 Claude Sonnet 5.5：速度提升 30%+，每任务成本最多降 30%",
+          "url": "https://www.anthropic.com/claude-sonnet-5-5",
+          "source": "Hacker News：AI 热帖",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-09-28T17:58:11Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.6562,
+      "importance": 0.6562,
+      "importance_score": 0.6562,
+      "importance_label": "值得关注",
+      "importance_breakdown": {
+        "editorial": 0.86,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.0088,
+        "story_heat": 0.25
+      },
+      "category": "watch",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-09-28T17:58:11Z",
+      "latest_at": "2026-09-28T18:10:20Z",
+      "primary_item": {
+        "id": "2f1e1b180faf0063d850eaff5efae4507ba79a46",
+        "title": "Anthropic 发布 Claude Sonnet 5.5：速度提升 30%+，每任务成本最多降 30%",
+        "url": "https://www.anthropic.com/claude-sonnet-5-5",
+        "source": "Hacker News：AI 热帖",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_67b34a6b6bf0",
+      "title": "斯坦福 CS329A 自我改进智能体课程第一讲学习笔记",
+      "url": "https://x.com/shao__meng/status/2109511792393400674",
+      "primary_url": "https://x.com/shao__meng/status/2109511792393400674",
       "source": "X：邵猛 (@shao__meng)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "e9bf5122904bfccea22f833ebc92aad13acd296d",
-          "title": "密歇根大学 AI 编程课 Applied Agentic Software Engineering 发布五个工程 Skills",
-          "url": "https://x.com/shao__meng/status/2109305199357784357",
+          "id": "c8d8f1259cdfefa05870ed94ebb415baf4d1098d",
+          "title": "斯坦福 CS329A 自我改进智能体课程第一讲学习笔记",
+          "url": "https://x.com/shao__meng/status/2109511792393400674",
           "source": "X：邵猛 (@shao__meng)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-11T15:28:43Z"
+          "published_at": "2026-10-12T05:09:38Z"
         }
       ],
       "source_count": 1,
@@ -1417,38 +1437,38 @@
       ],
       "items": [
         {
-          "id": "e9bf5122904bfccea22f833ebc92aad13acd296d",
-          "title": "密歇根大学 AI 编程课 Applied Agentic Software Engineering 发布五个工程 Skills",
-          "url": "https://x.com/shao__meng/status/2109305199357784357",
+          "id": "c8d8f1259cdfefa05870ed94ebb415baf4d1098d",
+          "title": "斯坦福 CS329A 自我改进智能体课程第一讲学习笔记",
+          "url": "https://x.com/shao__meng/status/2109511792393400674",
           "source": "X：邵猛 (@shao__meng)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-11T15:28:43Z"
+          "published_at": "2026-10-12T05:09:38Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7469,
-      "importance": 0.7469,
-      "importance_score": 0.7469,
+      "score": 0.7412,
+      "importance": 0.7412,
+      "importance_score": 0.7412,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.74,
+        "editorial": 0.67,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8515,
+        "recency": 0.9366,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-11T15:28:43Z",
-      "latest_at": "2026-10-11T15:28:43Z",
+      "earliest_at": "2026-10-12T05:09:38Z",
+      "latest_at": "2026-10-12T05:09:38Z",
       "primary_item": {
-        "id": "e9bf5122904bfccea22f833ebc92aad13acd296d",
-        "title": "密歇根大学 AI 编程课 Applied Agentic Software Engineering 发布五个工程 Skills",
-        "url": "https://x.com/shao__meng/status/2109305199357784357",
+        "id": "c8d8f1259cdfefa05870ed94ebb415baf4d1098d",
+        "title": "斯坦福 CS329A 自我改进智能体课程第一讲学习笔记",
+        "url": "https://x.com/shao__meng/status/2109511792393400674",
         "source": "X：邵猛 (@shao__meng)",
         "source_name": "AI HOT"
       }
