@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-09-29T08:57:08Z",
+  "updated_at": "2026-10-12T09:41:57Z",
   "sources": [
     {
       "id": "online_bilibili_13030183",
@@ -494,6 +494,21 @@
       "managed_by": "github_stars",
       "managed_account_id": 284580915,
       "managed_repo_id": 1266385233,
+      "managed_state": "active"
+    },
+    {
+      "id": "online_github_repo_1267303378",
+      "name": "adrianpunk/Punk-Skill",
+      "type": "github_release",
+      "enabled": true,
+      "channel": "GitHub Release",
+      "target": "adrianpunk/Punk-Skill",
+      "locator": "adrianpunk/Punk-Skill",
+      "env": "",
+      "notes": "只追踪 release",
+      "managed_by": "github_stars",
+      "managed_account_id": 284580915,
+      "managed_repo_id": 1267303378,
       "managed_state": "active"
     },
     {
