@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-14T01:03:12.945004Z",
+  "generated_at": "2026-10-14T06:00:04.228214Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
@@ -73,20 +73,10 @@
           "source_name": "AI HOT",
           "site_id": "aihot",
           "published_at": "2026-09-30T12:30:49Z"
-        },
-        {
-          "id": "74231800615e7af33f93162bbce316b685871dd5",
-          "title": "DeepSeek 开源面向华为昇腾平台的基础设施组件",
-          "url": "https://mp.weixin.qq.com/s?__biz=Mzk0OTYwNzc3NQ%3D%3D&mid=2247485843&idx=1&sn=565102c3642d88e814331390bf62d276&chksm=c2b41a7a4ae29752ec9555ae3de574d2c8f60b42aaf1db0aaf4511c38f174d7abc860a8ee56c&scene=126&sessionid=1790739034",
-          "source": "公众号：DeepSeek（深度求索）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-30T02:01:00Z"
         }
       ],
-      "source_count": 8,
+      "source_count": 7,
       "source_names": [
-        "公众号：DeepSeek（深度求索）",
         "公众号：千问APP（阿里）",
         "公众号：数字生命卡兹克",
         "公众号：蚂蚁百灵（Ling）",
@@ -155,28 +145,19 @@
           "source_name": "AI HOT",
           "site_id": "aihot",
           "published_at": "2026-09-30T12:30:49Z"
-        },
-        {
-          "id": "74231800615e7af33f93162bbce316b685871dd5",
-          "title": "DeepSeek 开源面向华为昇腾平台的基础设施组件",
-          "url": "https://mp.weixin.qq.com/s?__biz=Mzk0OTYwNzc3NQ%3D%3D&mid=2247485843&idx=1&sn=565102c3642d88e814331390bf62d276&chksm=c2b41a7a4ae29752ec9555ae3de574d2c8f60b42aaf1db0aaf4511c38f174d7abc860a8ee56c&scene=126&sessionid=1790739034",
-          "source": "公众号：DeepSeek（深度求索）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-09-30T02:01:00Z"
         }
       ],
-      "item_count": 8,
-      "duplicate_count": 8,
-      "score": 0.8802,
-      "importance": 0.8802,
-      "importance_score": 0.8802,
+      "item_count": 7,
+      "duplicate_count": 7,
+      "score": 0.8682,
+      "importance": 0.8682,
+      "importance_score": 0.8682,
       "importance_label": "多源热议",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.97,
+        "recency": 0.9032,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -185,13 +166,74 @@
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-09-30T02:01:00Z",
+      "earliest_at": "2026-09-30T12:30:49Z",
       "latest_at": "2026-10-13T22:56:51Z",
       "primary_item": {
         "id": "c75dc136f0bb0fe677fb53b0615fdf939a5acb66",
         "title": "实测Gemini 4 Argon：知识工作强劲但体验糟糕，卡兹克称难撼Claude Opus 5.5与GPT-6 Astra",
         "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647687032&idx=1&sn=c5368ed503c4b529ee3946cce017543e",
         "source": "公众号：数字生命卡兹克",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_e57c4ae91b90",
+      "title": "Xbow 用 GPT-5.6 挖出 Chrome 三个漏洞，获 Google 25 万美元全链奖励",
+      "url": "https://x.com/rohanpaul_ai/status/2110203596948353155",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2110203596948353155",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "74ec0957c9efaa15d7310e53fcacbd7c95064a6f",
+          "title": "Xbow 用 GPT-5.6 挖出 Chrome 三个漏洞，获 Google 25 万美元全链奖励",
+          "url": "https://x.com/rohanpaul_ai/status/2110203596948353155",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-14T02:58:37Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Rohan Paul (@rohanpaul_ai)"
+      ],
+      "items": [
+        {
+          "id": "74ec0957c9efaa15d7310e53fcacbd7c95064a6f",
+          "title": "Xbow 用 GPT-5.6 挖出 Chrome 三个漏洞，获 Google 25 万美元全链奖励",
+          "url": "https://x.com/rohanpaul_ai/status/2110203596948353155",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-14T02:58:37Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7929,
+      "importance": 0.7929,
+      "importance_score": 0.7929,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.83,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9573,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-14T02:58:37Z",
+      "latest_at": "2026-10-14T02:58:37Z",
+      "primary_item": {
+        "id": "74ec0957c9efaa15d7310e53fcacbd7c95064a6f",
+        "title": "Xbow 用 GPT-5.6 挖出 Chrome 三个漏洞，获 Google 25 万美元全链奖励",
+        "url": "https://x.com/rohanpaul_ai/status/2110203596948353155",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
@@ -230,15 +272,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7935,
-      "importance": 0.7935,
-      "importance_score": 0.7935,
+      "score": 0.7826,
+      "importance": 0.7826,
+      "importance_score": 0.7826,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.88,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8774,
+        "recency": 0.8169,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -291,15 +333,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7832,
-      "importance": 0.7832,
-      "importance_score": 0.7832,
+      "score": 0.772,
+      "importance": 0.772,
+      "importance_score": 0.772,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9033,
+        "recency": 0.841,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -352,15 +394,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7822,
-      "importance": 0.7822,
-      "importance_score": 0.7822,
+      "score": 0.7707,
+      "importance": 0.7707,
+      "importance_score": 0.7707,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.81,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9312,
+        "recency": 0.867,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -375,6 +417,67 @@
         "title": "Character.ai 破产文件显示 AI 商业模式难以为继",
         "url": "https://www.404media.co/character-ais-bankruptcy-documents-show-the-economics-of-ai-dont-work",
         "source": "404 Media（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_540c7947476a",
+      "title": "Gemini 4 Argon 全面开放，作者实测后认为难以撼动 Claude Opus 5.5 和 GPT-6 Astra",
+      "url": "https://x.com/Khazix0918/status/2110174495420064055",
+      "primary_url": "https://x.com/Khazix0918/status/2110174495420064055",
+      "source": "X：卡兹克 (@Khazix0918)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "776ceebc5b516ca479378270a5ea0dc3c32eda5e",
+          "title": "Gemini 4 Argon 全面开放，作者实测后认为难以撼动 Claude Opus 5.5 和 GPT-6 Astra",
+          "url": "https://x.com/Khazix0918/status/2110174495420064055",
+          "source": "X：卡兹克 (@Khazix0918)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-14T01:02:59Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：卡兹克 (@Khazix0918)"
+      ],
+      "items": [
+        {
+          "id": "776ceebc5b516ca479378270a5ea0dc3c32eda5e",
+          "title": "Gemini 4 Argon 全面开放，作者实测后认为难以撼动 Claude Opus 5.5 和 GPT-6 Astra",
+          "url": "https://x.com/Khazix0918/status/2110174495420064055",
+          "source": "X：卡兹克 (@Khazix0918)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-14T01:02:59Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7672,
+      "importance": 0.7672,
+      "importance_score": 0.7672,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.76,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.931,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-14T01:02:59Z",
+      "latest_at": "2026-10-14T01:02:59Z",
+      "primary_item": {
+        "id": "776ceebc5b516ca479378270a5ea0dc3c32eda5e",
+        "title": "Gemini 4 Argon 全面开放，作者实测后认为难以撼动 Claude Opus 5.5 和 GPT-6 Astra",
+        "url": "https://x.com/Khazix0918/status/2110174495420064055",
+        "source": "X：卡兹克 (@Khazix0918)",
         "source_name": "AI HOT"
       }
     },
@@ -413,15 +516,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7766,
-      "importance": 0.7766,
-      "importance_score": 0.7766,
+      "score": 0.7644,
+      "importance": 0.7644,
+      "importance_score": 0.7644,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9835,
+        "recency": 0.9157,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -440,49 +543,49 @@
       }
     },
     {
-      "story_id": "story_eaeaeac40746",
-      "title": "Google 向付费用户开放 Gemini 4 Argon，登顶 Vals AI 专业工作指数",
-      "url": "https://x.com/rohanpaul_ai/status/2110082501582692462",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2110082501582692462",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "story_id": "story_22d688c014c1",
+      "title": "Anthropic 用 5 个月将内部 monorepo 从 Git 迁移到自研版本控制系统 Scion",
+      "url": "https://x.com/shao__meng/status/2110186080490402193",
+      "primary_url": "https://x.com/shao__meng/status/2110186080490402193",
+      "source": "X：邵猛 (@shao__meng)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "5cf0a1262c0426acba2ef1667bf911c449a49dfe",
-          "title": "Google 向付费用户开放 Gemini 4 Argon，登顶 Vals AI 专业工作指数",
-          "url": "https://x.com/rohanpaul_ai/status/2110082501582692462",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "25fe2fd3c7439f6c96a673ec5084baebdcb86602",
+          "title": "Anthropic 用 5 个月将内部 monorepo 从 Git 迁移到自研版本控制系统 Scion",
+          "url": "https://x.com/shao__meng/status/2110186080490402193",
+          "source": "X：邵猛 (@shao__meng)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-13T18:57:26Z"
+          "published_at": "2026-10-14T01:49:01Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
+        "X：邵猛 (@shao__meng)"
       ],
       "items": [
         {
-          "id": "5cf0a1262c0426acba2ef1667bf911c449a49dfe",
-          "title": "Google 向付费用户开放 Gemini 4 Argon，登顶 Vals AI 专业工作指数",
-          "url": "https://x.com/rohanpaul_ai/status/2110082501582692462",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
+          "id": "25fe2fd3c7439f6c96a673ec5084baebdcb86602",
+          "title": "Anthropic 用 5 个月将内部 monorepo 从 Git 迁移到自研版本控制系统 Scion",
+          "url": "https://x.com/shao__meng/status/2110186080490402193",
+          "source": "X：邵猛 (@shao__meng)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-13T18:57:26Z"
+          "published_at": "2026-10-14T01:49:01Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7764,
-      "importance": 0.7764,
-      "importance_score": 0.7764,
+      "score": 0.763,
+      "importance": 0.763,
+      "importance_score": 0.763,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.8,
+        "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9157,
+        "recency": 0.9414,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -490,13 +593,13 @@
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-10-13T18:57:26Z",
-      "latest_at": "2026-10-13T18:57:26Z",
+      "earliest_at": "2026-10-14T01:49:01Z",
+      "latest_at": "2026-10-14T01:49:01Z",
       "primary_item": {
-        "id": "5cf0a1262c0426acba2ef1667bf911c449a49dfe",
-        "title": "Google 向付费用户开放 Gemini 4 Argon，登顶 Vals AI 专业工作指数",
-        "url": "https://x.com/rohanpaul_ai/status/2110082501582692462",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "id": "25fe2fd3c7439f6c96a673ec5084baebdcb86602",
+        "title": "Anthropic 用 5 个月将内部 monorepo 从 Git 迁移到自研版本控制系统 Scion",
+        "url": "https://x.com/shao__meng/status/2110186080490402193",
+        "source": "X：邵猛 (@shao__meng)",
         "source_name": "AI HOT"
       }
     },
@@ -535,15 +638,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7719,
-      "importance": 0.7719,
-      "importance_score": 0.7719,
+      "score": 0.76,
+      "importance": 0.76,
+      "importance_score": 0.76,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.957,
+        "recency": 0.891,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -596,15 +699,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7711,
-      "importance": 0.7711,
-      "importance_score": 0.7711,
+      "score": 0.7597,
+      "importance": 0.7597,
+      "importance_score": 0.7597,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9196,
+        "recency": 0.8562,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -657,15 +760,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7701,
-      "importance": 0.7701,
-      "importance_score": 0.7701,
+      "score": 0.7591,
+      "importance": 0.7591,
+      "importance_score": 0.7591,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.8,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8804,
+        "recency": 0.8196,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -718,15 +821,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7698,
-      "importance": 0.7698,
-      "importance_score": 0.7698,
+      "score": 0.7589,
+      "importance": 0.7589,
+      "importance_score": 0.7589,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.8,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8791,
+        "recency": 0.8185,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -779,15 +882,15 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7675,
-      "importance": 0.7675,
-      "importance_score": 0.7675,
+      "score": 0.7572,
+      "importance": 0.7572,
+      "importance_score": 0.7572,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8329,
+        "recency": 0.7755,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -840,21 +943,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7607,
-      "importance": 0.7607,
-      "importance_score": 0.7607,
+      "score": 0.7498,
+      "importance": 0.7498,
+      "importance_score": 0.7498,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.77,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8783,
+        "recency": 0.8178,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-13T16:04:10Z",
       "latest_at": "2026-10-13T16:04:10Z",
@@ -901,21 +1003,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7606,
-      "importance": 0.7606,
-      "importance_score": 0.7606,
+      "score": 0.7495,
+      "importance": 0.7495,
+      "importance_score": 0.7495,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8942,
+        "recency": 0.8326,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-13T17:18:46Z",
       "latest_at": "2026-10-13T17:18:46Z",
@@ -962,21 +1063,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7585,
-      "importance": 0.7585,
-      "importance_score": 0.7585,
+      "score": 0.7474,
+      "importance": 0.7474,
+      "importance_score": 0.7474,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.75,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8996,
+        "recency": 0.8375,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-13T17:43:29Z",
       "latest_at": "2026-10-13T17:43:29Z",
@@ -985,67 +1085,6 @@
         "title": "Greg Brockman 转述 XBOW 用 GPT-5.6 Sol 花 6 天和 4 万美元算力拿下 Chrome 全链漏洞赏金",
         "url": "https://x.com/gdb/status/2110063893016096831",
         "source": "X：Greg Brockman (@gdb)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_4ab96ebc0c08",
-      "title": "Meta Muse Wonder (Max) 进入 Arena 榜单：WebDev 第15、文本第2",
-      "url": "https://x.com/arena/status/2110120205464846828",
-      "primary_url": "https://x.com/arena/status/2110120205464846828",
-      "source": "X：Arena (@arena)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "a92680988222daef99bc1e7ce0a83d35d6f5ccc2",
-          "title": "Meta Muse Wonder (Max) 进入 Arena 榜单：WebDev 第15、文本第2",
-          "url": "https://x.com/arena/status/2110120205464846828",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-13T21:27:15Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Arena (@arena)"
-      ],
-      "items": [
-        {
-          "id": "a92680988222daef99bc1e7ce0a83d35d6f5ccc2",
-          "title": "Meta Muse Wonder (Max) 进入 Arena 榜单：WebDev 第15、文本第2",
-          "url": "https://x.com/arena/status/2110120205464846828",
-          "source": "X：Arena (@arena)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-13T21:27:15Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7585,
-      "importance": 0.7585,
-      "importance_score": 0.7585,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.72,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9493,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-13T21:27:15Z",
-      "latest_at": "2026-10-13T21:27:15Z",
-      "primary_item": {
-        "id": "a92680988222daef99bc1e7ce0a83d35d6f5ccc2",
-        "title": "Meta Muse Wonder (Max) 进入 Arena 榜单：WebDev 第15、文本第2",
-        "url": "https://x.com/arena/status/2110120205464846828",
-        "source": "X：Arena (@arena)",
         "source_name": "AI HOT"
       }
     },
@@ -1084,21 +1123,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7577,
-      "importance": 0.7577,
-      "importance_score": 0.7577,
+      "score": 0.7468,
+      "importance": 0.7468,
+      "importance_score": 0.7468,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8785,
+        "recency": 0.818,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-13T16:05:09Z",
       "latest_at": "2026-10-13T16:05:09Z",
@@ -1145,21 +1183,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7577,
-      "importance": 0.7577,
-      "importance_score": 0.7577,
+      "score": 0.7468,
+      "importance": 0.7468,
+      "importance_score": 0.7468,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.76,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.8784,
+        "recency": 0.8178,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-13T16:04:20Z",
       "latest_at": "2026-10-13T16:04:20Z",
@@ -1168,6 +1205,66 @@
         "title": "Google 全球推出 Gemini 4 Argon，覆盖 Gemini API、Gemini App 和 Antigravity",
         "url": "https://x.com/OfficialLoganK/status/2110038940841545827",
         "source": "X：Logan Kilpatrick (@OfficialLoganK)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_4ab96ebc0c08",
+      "title": "Meta Muse Wonder (Max) 进入 Arena 榜单：WebDev 第15、文本第2",
+      "url": "https://x.com/arena/status/2110120205464846828",
+      "primary_url": "https://x.com/arena/status/2110120205464846828",
+      "source": "X：Arena (@arena)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "a92680988222daef99bc1e7ce0a83d35d6f5ccc2",
+          "title": "Meta Muse Wonder (Max) 进入 Arena 榜单：WebDev 第15、文本第2",
+          "url": "https://x.com/arena/status/2110120205464846828",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-13T21:27:15Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Arena (@arena)"
+      ],
+      "items": [
+        {
+          "id": "a92680988222daef99bc1e7ce0a83d35d6f5ccc2",
+          "title": "Meta Muse Wonder (Max) 进入 Arena 榜单：WebDev 第15、文本第2",
+          "url": "https://x.com/arena/status/2110120205464846828",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-13T21:27:15Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7467,
+      "importance": 0.7467,
+      "importance_score": 0.7467,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.72,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8839,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-13T21:27:15Z",
+      "latest_at": "2026-10-13T21:27:15Z",
+      "primary_item": {
+        "id": "a92680988222daef99bc1e7ce0a83d35d6f5ccc2",
+        "title": "Meta Muse Wonder (Max) 进入 Arena 榜单：WebDev 第15、文本第2",
+        "url": "https://x.com/arena/status/2110120205464846828",
+        "source": "X：Arena (@arena)",
         "source_name": "AI HOT"
       }
     },
@@ -1206,21 +1303,20 @@
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7525,
-      "importance": 0.7525,
-      "importance_score": 0.7525,
+      "score": 0.7416,
+      "importance": 0.7416,
+      "importance_score": 0.7416,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.883,
+        "recency": 0.8221,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance",
-        "high_importance"
+        "high_ai_relevance"
       ],
       "earliest_at": "2026-10-13T16:26:15Z",
       "latest_at": "2026-10-13T16:26:15Z",
@@ -1229,128 +1325,6 @@
         "title": "Google DeepMind 的 Gemini 4 Argon 上线 OpenRouter",
         "url": "https://x.com/OpenRouter/status/2110044453977403412",
         "source": "X：OpenRouter (@OpenRouter)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_43e1821c483f",
-      "title": "François Chollet 祝贺 Gemini 4 Argon 发布",
-      "url": "https://x.com/fchollet/status/2110042948821975317",
-      "primary_url": "https://x.com/fchollet/status/2110042948821975317",
-      "source": "X：Francois Chollet (@fchollet)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "d97accd37abb6b56f4d8bf0745f8bd50f0d93e4e",
-          "title": "François Chollet 祝贺 Gemini 4 Argon 发布",
-          "url": "https://x.com/fchollet/status/2110042948821975317",
-          "source": "X：Francois Chollet (@fchollet)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-13T16:20:16Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Francois Chollet (@fchollet)"
-      ],
-      "items": [
-        {
-          "id": "d97accd37abb6b56f4d8bf0745f8bd50f0d93e4e",
-          "title": "François Chollet 祝贺 Gemini 4 Argon 发布",
-          "url": "https://x.com/fchollet/status/2110042948821975317",
-          "source": "X：Francois Chollet (@fchollet)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-13T16:20:16Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7523,
-      "importance": 0.7523,
-      "importance_score": 0.7523,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.74,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8817,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-13T16:20:16Z",
-      "latest_at": "2026-10-13T16:20:16Z",
-      "primary_item": {
-        "id": "d97accd37abb6b56f4d8bf0745f8bd50f0d93e4e",
-        "title": "François Chollet 祝贺 Gemini 4 Argon 发布",
-        "url": "https://x.com/fchollet/status/2110042948821975317",
-        "source": "X：Francois Chollet (@fchollet)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_10d383012c12",
-      "title": "Google DeepMind 宣布 Gemini 4 Argon 全球可用",
-      "url": "https://x.com/GoogleDeepMind/status/2110039274922131792",
-      "primary_url": "https://x.com/GoogleDeepMind/status/2110039274922131792",
-      "source": "X：Google DeepMind (@GoogleDeepMind)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "a4b12015439c70d163aed9b2b92a0dbb9a8c1ecd",
-          "title": "Google DeepMind 宣布 Gemini 4 Argon 全球可用",
-          "url": "https://x.com/GoogleDeepMind/status/2110039274922131792",
-          "source": "X：Google DeepMind (@GoogleDeepMind)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-13T16:05:40Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Google DeepMind (@GoogleDeepMind)"
-      ],
-      "items": [
-        {
-          "id": "a4b12015439c70d163aed9b2b92a0dbb9a8c1ecd",
-          "title": "Google DeepMind 宣布 Gemini 4 Argon 全球可用",
-          "url": "https://x.com/GoogleDeepMind/status/2110039274922131792",
-          "source": "X：Google DeepMind (@GoogleDeepMind)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-13T16:05:40Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7518,
-      "importance": 0.7518,
-      "importance_score": 0.7518,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.74,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.8786,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-13T16:05:40Z",
-      "latest_at": "2026-10-13T16:05:40Z",
-      "primary_item": {
-        "id": "a4b12015439c70d163aed9b2b92a0dbb9a8c1ecd",
-        "title": "Google DeepMind 宣布 Gemini 4 Argon 全球可用",
-        "url": "https://x.com/GoogleDeepMind/status/2110039274922131792",
-        "source": "X：Google DeepMind (@GoogleDeepMind)",
         "source_name": "AI HOT"
       }
     }
