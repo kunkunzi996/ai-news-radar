@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-10-12T09:41:57Z",
+  "updated_at": "2026-10-16T02:07:19Z",
   "sources": [
     {
       "id": "online_bilibili_13030183",
@@ -374,6 +374,21 @@
       "managed_by": "github_stars",
       "managed_account_id": 284580915,
       "managed_repo_id": 1202599845,
+      "managed_state": "active"
+    },
+    {
+      "id": "online_github_repo_1209966933",
+      "name": "morluto/rea",
+      "type": "github_release",
+      "enabled": true,
+      "channel": "GitHub Release",
+      "target": "morluto/rea",
+      "locator": "morluto/rea",
+      "env": "",
+      "notes": "只追踪 release",
+      "managed_by": "github_stars",
+      "managed_account_id": 284580915,
+      "managed_repo_id": 1209966933,
       "managed_state": "active"
     },
     {
