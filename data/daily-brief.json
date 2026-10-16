@@ -1,16 +1,43 @@
 {
-  "generated_at": "2026-10-14T20:06:35.959667Z",
+  "generated_at": "2026-10-16T02:07:20.750448Z",
   "window_hours": 24,
   "total_items": 20,
   "items": [
     {
       "story_id": "story_6cbde97d8260",
-      "title": "实测Gemini 4 Argon：知识工作强劲但体验糟糕，卡兹克称难撼Claude Opus 5.5与GPT-6 Astra",
-      "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647687032&idx=1&sn=c5368ed503c4b529ee3946cce017543e",
-      "primary_url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647687032&idx=1&sn=c5368ed503c4b529ee3946cce017543e",
+      "title": "可灵 Kling 4.0 上线：支持30秒一镜到底，作者实测动态与全能参考",
+      "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647687203&idx=1&sn=a58bc4411e8226b629f1b5c61509a198",
+      "primary_url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647687203&idx=1&sn=a58bc4411e8226b629f1b5c61509a198",
       "source": "公众号：数字生命卡兹克",
       "source_name": "AI HOT",
       "sources": [
+        {
+          "id": "27d32b3fe77e5f77e8f1e5a9aa33e8f9a3671b7d",
+          "title": "可灵 Kling 4.0 上线：支持30秒一镜到底，作者实测动态与全能参考",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647687203&idx=1&sn=a58bc4411e8226b629f1b5c61509a198",
+          "source": "公众号：数字生命卡兹克",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-16T00:18:00Z"
+        },
+        {
+          "id": "361ed907aaf0e1395bf908f40afc0cbb2a33d7d9",
+          "title": "面壁智能等联合开源 PilotDeck 2.0，主打办公全流程交付与长任务稳定运行",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzg3Mzg2MTg2NQ%3D%3D&mid=2247499498&idx=1&sn=a475c3637de9f432a34f207df9659516",
+          "source": "公众号：面壁智能（MiniCPM）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T04:53:56Z"
+        },
+        {
+          "id": "2cccd3709712ba44fb6725202a6795e2733c0aa6",
+          "title": "自媒体作者实测开源 Skill Anatomy：一句话让 AI 生成原理科普动画和讲解视频",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647687109&idx=1&sn=032fd9f6aab5ee20ea5d14f97bf48a86",
+          "source": "公众号：数字生命卡兹克",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T00:26:00Z"
+        },
         {
           "id": "c75dc136f0bb0fe677fb53b0615fdf939a5acb66",
           "title": "实测Gemini 4 Argon：知识工作强劲但体验糟糕，卡兹克称难撼Claude Opus 5.5与GPT-6 Astra",
@@ -66,7 +93,7 @@
           "published_at": "2026-10-06T00:18:00Z"
         }
       ],
-      "source_count": 6,
+      "source_count": 9,
       "source_names": [
         "公众号：千问APP（阿里）",
         "公众号：数字生命卡兹克",
@@ -74,6 +101,33 @@
       ],
       "items": [
         {
+          "id": "27d32b3fe77e5f77e8f1e5a9aa33e8f9a3671b7d",
+          "title": "可灵 Kling 4.0 上线：支持30秒一镜到底，作者实测动态与全能参考",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647687203&idx=1&sn=a58bc4411e8226b629f1b5c61509a198",
+          "source": "公众号：数字生命卡兹克",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-16T00:18:00Z"
+        },
+        {
+          "id": "361ed907aaf0e1395bf908f40afc0cbb2a33d7d9",
+          "title": "面壁智能等联合开源 PilotDeck 2.0，主打办公全流程交付与长任务稳定运行",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzg3Mzg2MTg2NQ%3D%3D&mid=2247499498&idx=1&sn=a475c3637de9f432a34f207df9659516",
+          "source": "公众号：面壁智能（MiniCPM）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T04:53:56Z"
+        },
+        {
+          "id": "2cccd3709712ba44fb6725202a6795e2733c0aa6",
+          "title": "自媒体作者实测开源 Skill Anatomy：一句话让 AI 生成原理科普动画和讲解视频",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647687109&idx=1&sn=032fd9f6aab5ee20ea5d14f97bf48a86",
+          "source": "公众号：数字生命卡兹克",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T00:26:00Z"
+        },
+        {
           "id": "c75dc136f0bb0fe677fb53b0615fdf939a5acb66",
           "title": "实测Gemini 4 Argon：知识工作强劲但体验糟糕，卡兹克称难撼Claude Opus 5.5与GPT-6 Astra",
           "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647687032&idx=1&sn=c5368ed503c4b529ee3946cce017543e",
@@ -128,17 +182,17 @@
           "published_at": "2026-10-06T00:18:00Z"
         }
       ],
-      "item_count": 6,
-      "duplicate_count": 6,
-      "score": 0.8382,
-      "importance": 0.8382,
-      "importance_score": 0.8382,
+      "item_count": 9,
+      "duplicate_count": 9,
+      "score": 0.8689,
+      "importance": 0.8689,
+      "importance_score": 0.8689,
       "importance_label": "多源热议",
       "importance_breakdown": {
-        "editorial": 0.78,
+        "editorial": 0.74,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7367,
+        "recency": 0.974,
         "story_heat": 1.0
       },
       "category": "multi_source",
@@ -148,274 +202,31 @@
         "high_importance"
       ],
       "earliest_at": "2026-10-06T00:18:00Z",
-      "latest_at": "2026-10-13T22:56:51Z",
+      "latest_at": "2026-10-16T00:18:00Z",
       "primary_item": {
-        "id": "c75dc136f0bb0fe677fb53b0615fdf939a5acb66",
-        "title": "实测Gemini 4 Argon：知识工作强劲但体验糟糕，卡兹克称难撼Claude Opus 5.5与GPT-6 Astra",
-        "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647687032&idx=1&sn=c5368ed503c4b529ee3946cce017543e",
+        "id": "27d32b3fe77e5f77e8f1e5a9aa33e8f9a3671b7d",
+        "title": "可灵 Kling 4.0 上线：支持30秒一镜到底，作者实测动态与全能参考",
+        "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647687203&idx=1&sn=a58bc4411e8226b629f1b5c61509a198",
         "source": "公众号：数字生命卡兹克",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_738aed8dcc6e",
-      "title": "40 位总检察长介入 Character.AI 破产案，要求保护用户对话数据",
-      "url": "https://www.theverge.com/policy/1011417/new-york-ag-characterai-bankruptcy",
-      "primary_url": "https://www.theverge.com/policy/1011417/new-york-ag-characterai-bankruptcy",
-      "source": "The Verge：AI（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "d96b16999dd832ff650709d42b0e4b2fe23a1391",
-          "title": "40 位总检察长介入 Character.AI 破产案，要求保护用户对话数据",
-          "url": "https://www.theverge.com/policy/1011417/new-york-ag-characterai-bankruptcy",
-          "source": "The Verge：AI（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-14T18:47:54Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "The Verge：AI（RSS）"
-      ],
-      "items": [
-        {
-          "id": "d96b16999dd832ff650709d42b0e4b2fe23a1391",
-          "title": "40 位总检察长介入 Character.AI 破产案，要求保护用户对话数据",
-          "url": "https://www.theverge.com/policy/1011417/new-york-ag-characterai-bankruptcy",
-          "source": "The Verge：AI（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-14T18:47:54Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7822,
-      "importance": 0.7822,
-      "importance_score": 0.7822,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.78,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9812,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-14T18:47:54Z",
-      "latest_at": "2026-10-14T18:47:54Z",
-      "primary_item": {
-        "id": "d96b16999dd832ff650709d42b0e4b2fe23a1391",
-        "title": "40 位总检察长介入 Character.AI 破产案，要求保护用户对话数据",
-        "url": "https://www.theverge.com/policy/1011417/new-york-ag-characterai-bankruptcy",
-        "source": "The Verge：AI（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_5cbaa9d044c7",
-      "title": "Bloomberg：CoreWeave 2032 年无担保债券跌破 85 美分，收益率逼近 15%",
-      "url": "https://x.com/rohanpaul_ai/status/2110451515010023703",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2110451515010023703",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "4d43841119498ffcd82a6fd84972adcc8a82747f",
-          "title": "Bloomberg：CoreWeave 2032 年无担保债券跌破 85 美分，收益率逼近 15%",
-          "url": "https://x.com/rohanpaul_ai/status/2110451515010023703",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-14T19:23:46Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "4d43841119498ffcd82a6fd84972adcc8a82747f",
-          "title": "Bloomberg：CoreWeave 2032 年无担保债券跌破 85 美分，收益率逼近 15%",
-          "url": "https://x.com/rohanpaul_ai/status/2110451515010023703",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-14T19:23:46Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7748,
-      "importance": 0.7748,
-      "importance_score": 0.7748,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.75,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9897,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-14T19:23:46Z",
-      "latest_at": "2026-10-14T19:23:46Z",
-      "primary_item": {
-        "id": "4d43841119498ffcd82a6fd84972adcc8a82747f",
-        "title": "Bloomberg：CoreWeave 2032 年无担保债券跌破 85 美分，收益率逼近 15%",
-        "url": "https://x.com/rohanpaul_ai/status/2110451515010023703",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_66cb1e68848f",
-      "title": "Google 发布 Gemini 4 Argon：面向复杂工程与科研任务的前沿模型",
-      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon",
-      "primary_url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon",
-      "source": "Google Blog：AI（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "06f5157641a5a0134e09ebda8a458d4979836b55",
-          "title": "Google 发布 Gemini 4 Argon：面向复杂工程与科研任务的前沿模型",
-          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon",
-          "source": "Google Blog：AI（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-13T16:00:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "Google Blog：AI（RSS）"
-      ],
-      "items": [
-        {
-          "id": "06f5157641a5a0134e09ebda8a458d4979836b55",
-          "title": "Google 发布 Gemini 4 Argon：面向复杂工程与科研任务的前沿模型",
-          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon",
-          "source": "Google Blog：AI（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-13T16:00:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7555,
-      "importance": 0.7555,
-      "importance_score": 0.7555,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.88,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6664,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance",
-        "high_importance"
-      ],
-      "earliest_at": "2026-10-13T16:00:00Z",
-      "latest_at": "2026-10-13T16:00:00Z",
-      "primary_item": {
-        "id": "06f5157641a5a0134e09ebda8a458d4979836b55",
-        "title": "Google 发布 Gemini 4 Argon：面向复杂工程与科研任务的前沿模型",
-        "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon",
-        "source": "Google Blog：AI（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_e5598920879c",
-      "title": "实测 Gemini 4 Argon 写作能力：百万上下文统一后表现如何",
-      "url": "https://x.com/aiwarts/status/2110371796671492593",
-      "primary_url": "https://x.com/aiwarts/status/2110371796671492593",
-      "source": "X：卡尔的 AI 沃茨 (@aiwarts)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "bbc9b7e0d929eac444e7bae03c6c9edb2cd0345a",
-          "title": "实测 Gemini 4 Argon 写作能力：百万上下文统一后表现如何",
-          "url": "https://x.com/aiwarts/status/2110371796671492593",
-          "source": "X：卡尔的 AI 沃茨 (@aiwarts)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-14T14:06:59Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：卡尔的 AI 沃茨 (@aiwarts)"
-      ],
-      "items": [
-        {
-          "id": "bbc9b7e0d929eac444e7bae03c6c9edb2cd0345a",
-          "title": "实测 Gemini 4 Argon 写作能力：百万上下文统一后表现如何",
-          "url": "https://x.com/aiwarts/status/2110371796671492593",
-          "source": "X：卡尔的 AI 沃茨 (@aiwarts)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-14T14:06:59Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7497,
-      "importance": 0.7497,
-      "importance_score": 0.7497,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9171,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-14T14:06:59Z",
-      "latest_at": "2026-10-14T14:06:59Z",
-      "primary_item": {
-        "id": "bbc9b7e0d929eac444e7bae03c6c9edb2cd0345a",
-        "title": "实测 Gemini 4 Argon 写作能力：百万上下文统一后表现如何",
-        "url": "https://x.com/aiwarts/status/2110371796671492593",
-        "source": "X：卡尔的 AI 沃茨 (@aiwarts)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_61237ee567f4",
-      "title": "Gemini 4 Argon 正式 GA，智能指数追平 GPT-6 Astra，Cost per Task 仅为 60%",
-      "url": "https://x.com/ArtificialAnlys/status/2110068185793970576",
-      "primary_url": "https://x.com/ArtificialAnlys/status/2110068185793970576",
+      "story_id": "story_e66e041ed613",
+      "title": "Meta 发布 816B 开源权重模型 Muse Spark Open，以 39 分居美国开源模型榜首",
+      "url": "https://x.com/ArtificialAnlys/status/2110893784422908225",
+      "primary_url": "https://x.com/ArtificialAnlys/status/2110893784422908225",
       "source": "X：Artificial Analysis (@ArtificialAnlys)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "bc33939e48082779f5b1fa03933c1ea8aba6b828",
-          "title": "Gemini 4 Argon 正式 GA，智能指数追平 GPT-6 Astra，Cost per Task 仅为 60%",
-          "url": "https://x.com/ArtificialAnlys/status/2110068185793970576",
+          "id": "8320d574a7470e0173888f7d59933d7a80b236f2",
+          "title": "Meta 发布 816B 开源权重模型 Muse Spark Open，以 39 分居美国开源模型榜首",
+          "url": "https://x.com/ArtificialAnlys/status/2110893784422908225",
           "source": "X：Artificial Analysis (@ArtificialAnlys)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-13T18:00:33Z"
+          "published_at": "2026-10-16T00:41:11Z"
         }
       ],
       "source_count": 1,
@@ -424,146 +235,26 @@
       ],
       "items": [
         {
-          "id": "bc33939e48082779f5b1fa03933c1ea8aba6b828",
-          "title": "Gemini 4 Argon 正式 GA，智能指数追平 GPT-6 Astra，Cost per Task 仅为 60%",
-          "url": "https://x.com/ArtificialAnlys/status/2110068185793970576",
+          "id": "8320d574a7470e0173888f7d59933d7a80b236f2",
+          "title": "Meta 发布 816B 开源权重模型 Muse Spark Open，以 39 分居美国开源模型榜首",
+          "url": "https://x.com/ArtificialAnlys/status/2110893784422908225",
           "source": "X：Artificial Analysis (@ArtificialAnlys)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-13T18:00:33Z"
+          "published_at": "2026-10-16T00:41:11Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7441,
-      "importance": 0.7441,
-      "importance_score": 0.7441,
+      "score": 0.7939,
+      "importance": 0.7939,
+      "importance_score": 0.7939,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.83,
+        "editorial": 0.82,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.686,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-13T18:00:33Z",
-      "latest_at": "2026-10-13T18:00:33Z",
-      "primary_item": {
-        "id": "bc33939e48082779f5b1fa03933c1ea8aba6b828",
-        "title": "Gemini 4 Argon 正式 GA，智能指数追平 GPT-6 Astra，Cost per Task 仅为 60%",
-        "url": "https://x.com/ArtificialAnlys/status/2110068185793970576",
-        "source": "X：Artificial Analysis (@ArtificialAnlys)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_981568487b76",
-      "title": "Character.ai 破产文件显示 AI 商业模式难以为继",
-      "url": "https://www.404media.co/character-ais-bankruptcy-documents-show-the-economics-of-ai-dont-work",
-      "primary_url": "https://www.404media.co/character-ais-bankruptcy-documents-show-the-economics-of-ai-dont-work",
-      "source": "404 Media（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "f4a3e9592ee46fe829909fca7b0eee3e9cc03d57",
-          "title": "Character.ai 破产文件显示 AI 商业模式难以为继",
-          "url": "https://www.404media.co/character-ais-bankruptcy-documents-show-the-economics-of-ai-dont-work",
-          "source": "404 Media（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-13T20:06:53Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "404 Media（RSS）"
-      ],
-      "items": [
-        {
-          "id": "f4a3e9592ee46fe829909fca7b0eee3e9cc03d57",
-          "title": "Character.ai 破产文件显示 AI 商业模式难以为继",
-          "url": "https://www.404media.co/character-ais-bankruptcy-documents-show-the-economics-of-ai-dont-work",
-          "source": "404 Media（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-13T20:06:53Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7419,
-      "importance": 0.7419,
-      "importance_score": 0.7419,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.81,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7072,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-13T20:06:53Z",
-      "latest_at": "2026-10-13T20:06:53Z",
-      "primary_item": {
-        "id": "f4a3e9592ee46fe829909fca7b0eee3e9cc03d57",
-        "title": "Character.ai 破产文件显示 AI 商业模式难以为继",
-        "url": "https://www.404media.co/character-ais-bankruptcy-documents-show-the-economics-of-ai-dont-work",
-        "source": "404 Media（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_058327280934",
-      "title": "BBC 报道 OpenAI 沙特籍工程师涉窃听案：用录音设备藏身电视后被反监控团队发现",
-      "url": "https://x.com/rohanpaul_ai/status/2110447453132722271",
-      "primary_url": "https://x.com/rohanpaul_ai/status/2110447453132722271",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "ea99d49217465acb9d0216723cfab5c42f70e718",
-          "title": "BBC 报道 OpenAI 沙特籍工程师涉窃听案：用录音设备藏身电视后被反监控团队发现",
-          "url": "https://x.com/rohanpaul_ai/status/2110447453132722271",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-14T19:07:37Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Rohan Paul (@rohanpaul_ai)"
-      ],
-      "items": [
-        {
-          "id": "ea99d49217465acb9d0216723cfab5c42f70e718",
-          "title": "BBC 报道 OpenAI 沙特籍工程师涉窃听案：用录音设备藏身电视后被反监控团队发现",
-          "url": "https://x.com/rohanpaul_ai/status/2110447453132722271",
-          "source": "X：Rohan Paul (@rohanpaul_ai)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-14T19:07:37Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7711,
-      "importance": 0.7711,
-      "importance_score": 0.7711,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.74,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9859,
+        "recency": 0.9795,
         "story_heat": 0.0
       },
       "category": "industry",
@@ -571,92 +262,357 @@
         "high_ai_relevance",
         "high_importance"
       ],
-      "earliest_at": "2026-10-14T19:07:37Z",
-      "latest_at": "2026-10-14T19:07:37Z",
+      "earliest_at": "2026-10-16T00:41:11Z",
+      "latest_at": "2026-10-16T00:41:11Z",
       "primary_item": {
-        "id": "ea99d49217465acb9d0216723cfab5c42f70e718",
-        "title": "BBC 报道 OpenAI 沙特籍工程师涉窃听案：用录音设备藏身电视后被反监控团队发现",
-        "url": "https://x.com/rohanpaul_ai/status/2110447453132722271",
-        "source": "X：Rohan Paul (@rohanpaul_ai)",
+        "id": "8320d574a7470e0173888f7d59933d7a80b236f2",
+        "title": "Meta 发布 816B 开源权重模型 Muse Spark Open，以 39 分居美国开源模型榜首",
+        "url": "https://x.com/ArtificialAnlys/status/2110893784422908225",
+        "source": "X：Artificial Analysis (@ArtificialAnlys)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_c5d6a757489c",
-      "title": "Lovable 推出增长工具，从同一聊天窗口帮你获客投广告和做 SEO",
-      "url": "https://lovable.dev/blog/introducing-growth-tools",
-      "primary_url": "https://lovable.dev/blog/introducing-growth-tools",
-      "source": "Lovable Blog",
+      "story_id": "story_d0a00342ca12",
+      "title": "Black Forest Labs 发布开源权重图像模型 FLUX 3 Image Klein",
+      "url": "https://x.com/testingcatalog/status/2110828155594559966",
+      "primary_url": "https://x.com/testingcatalog/status/2110828155594559966",
+      "source": "X：Testing Catalog (@testingcatalog)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "8a6de1b344b3075f2574be922812f989de06f906",
-          "title": "Lovable 推出增长工具，从同一聊天窗口帮你获客投广告和做 SEO",
-          "url": "https://lovable.dev/blog/introducing-growth-tools",
-          "source": "Lovable Blog",
+          "id": "3ce3a8e371aa5828b4106d9f26154b88b2cb8694",
+          "title": "Black Forest Labs 发布开源权重图像模型 FLUX 3 Image Klein",
+          "url": "https://x.com/testingcatalog/status/2110828155594559966",
+          "source": "X：Testing Catalog (@testingcatalog)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-14T12:50:00Z"
+          "published_at": "2026-10-15T20:20:24Z"
+        },
+        {
+          "id": "a9dc3b7c7e3561d7b895c077178529073614b29c",
+          "title": "Black Forest Labs 发布开源文生图模型 FLUX 3 Image Klein（5.6B）",
+          "url": "https://bfl.ai/blog/flux-3-image-klein",
+          "source": "Black Forest Labs：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T15:00:00Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "Black Forest Labs：Blog（网页）",
+        "X：Testing Catalog (@testingcatalog)"
+      ],
+      "items": [
+        {
+          "id": "3ce3a8e371aa5828b4106d9f26154b88b2cb8694",
+          "title": "Black Forest Labs 发布开源权重图像模型 FLUX 3 Image Klein",
+          "url": "https://x.com/testingcatalog/status/2110828155594559966",
+          "source": "X：Testing Catalog (@testingcatalog)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T20:20:24Z"
+        },
+        {
+          "id": "a9dc3b7c7e3561d7b895c077178529073614b29c",
+          "title": "Black Forest Labs 发布开源文生图模型 FLUX 3 Image Klein（5.6B）",
+          "url": "https://bfl.ai/blog/flux-3-image-klein",
+          "source": "Black Forest Labs：Blog（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T15:00:00Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7812,
+      "importance": 0.7812,
+      "importance_score": 0.7812,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.73,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9199,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-15T15:00:00Z",
+      "latest_at": "2026-10-15T20:20:24Z",
+      "primary_item": {
+        "id": "3ce3a8e371aa5828b4106d9f26154b88b2cb8694",
+        "title": "Black Forest Labs 发布开源权重图像模型 FLUX 3 Image Klein",
+        "url": "https://x.com/testingcatalog/status/2110828155594559966",
+        "source": "X：Testing Catalog (@testingcatalog)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_7b4e8f58fbe6",
+      "title": "Meta 发布开源权重模型 Muse Spark Open，816B 参数、1M 上下文",
+      "url": "https://pytorch.org/blog/muse-spark-open",
+      "primary_url": "https://pytorch.org/blog/muse-spark-open",
+      "source": "PyTorch：Blog（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "ddbc4149c532faa82463715083d799711d1fd837",
+          "title": "Meta 发布开源权重模型 Muse Spark Open，816B 参数、1M 上下文",
+          "url": "https://pytorch.org/blog/muse-spark-open",
+          "source": "PyTorch：Blog（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T17:55:52Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "Lovable Blog"
+        "PyTorch：Blog（RSS）"
       ],
       "items": [
         {
-          "id": "8a6de1b344b3075f2574be922812f989de06f906",
-          "title": "Lovable 推出增长工具，从同一聊天窗口帮你获客投广告和做 SEO",
-          "url": "https://lovable.dev/blog/introducing-growth-tools",
-          "source": "Lovable Blog",
+          "id": "ddbc4149c532faa82463715083d799711d1fd837",
+          "title": "Meta 发布开源权重模型 Muse Spark Open，816B 参数、1M 上下文",
+          "url": "https://pytorch.org/blog/muse-spark-open",
+          "source": "PyTorch：Blog（RSS）",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-14T12:50:00Z"
+          "published_at": "2026-10-15T17:55:52Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7406,
-      "importance": 0.7406,
-      "importance_score": 0.7406,
+      "score": 0.7805,
+      "importance": 0.7805,
+      "importance_score": 0.7805,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.69,
+        "editorial": 0.83,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9003,
+        "recency": 0.8884,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance"
+        "high_ai_relevance",
+        "high_importance"
       ],
-      "earliest_at": "2026-10-14T12:50:00Z",
-      "latest_at": "2026-10-14T12:50:00Z",
+      "earliest_at": "2026-10-15T17:55:52Z",
+      "latest_at": "2026-10-15T17:55:52Z",
       "primary_item": {
-        "id": "8a6de1b344b3075f2574be922812f989de06f906",
-        "title": "Lovable 推出增长工具，从同一聊天窗口帮你获客投广告和做 SEO",
-        "url": "https://lovable.dev/blog/introducing-growth-tools",
-        "source": "Lovable Blog",
+        "id": "ddbc4149c532faa82463715083d799711d1fd837",
+        "title": "Meta 发布开源权重模型 Muse Spark Open，816B 参数、1M 上下文",
+        "url": "https://pytorch.org/blog/muse-spark-open",
+        "source": "PyTorch：Blog（RSS）",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_1ba70ce177d5",
-      "title": "OpenAI 演示 DevDay 发布的 ChatGPT Space 团队协作功能",
-      "url": "https://x.com/ChatGPT/status/2110424821331034550",
-      "primary_url": "https://x.com/ChatGPT/status/2110424821331034550",
+      "story_id": "story_99ab3953aaf1",
+      "title": "消息称投资者下调 Anthropic IPO 估值预期，从约 2 万亿美元降至约 1.5 万亿美元",
+      "url": "https://www.ithome.com/1/013/723.htm",
+      "primary_url": "https://www.ithome.com/1/013/723.htm",
+      "source": "IT之家·人工智能",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "60e47fcff41d839ffe6522686a0cb56f8d7f20b9",
+          "title": "消息称投资者下调 Anthropic IPO 估值预期，从约 2 万亿美元降至约 1.5 万亿美元",
+          "url": "https://www.ithome.com/1/013/723.htm",
+          "source": "IT之家·人工智能",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-16T00:54:07.827000Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "IT之家·人工智能"
+      ],
+      "items": [
+        {
+          "id": "60e47fcff41d839ffe6522686a0cb56f8d7f20b9",
+          "title": "消息称投资者下调 Anthropic IPO 估值预期，从约 2 万亿美元降至约 1.5 万亿美元",
+          "url": "https://www.ithome.com/1/013/723.htm",
+          "source": "IT之家·人工智能",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-16T00:54:07.827000Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7795,
+      "importance": 0.7795,
+      "importance_score": 0.7795,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.77,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9825,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-16T00:54:07.827000Z",
+      "latest_at": "2026-10-16T00:54:07.827000Z",
+      "primary_item": {
+        "id": "60e47fcff41d839ffe6522686a0cb56f8d7f20b9",
+        "title": "消息称投资者下调 Anthropic IPO 估值预期，从约 2 万亿美元降至约 1.5 万亿美元",
+        "url": "https://www.ithome.com/1/013/723.htm",
+        "source": "IT之家·人工智能",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_4768fe848efc",
+      "title": "ChatGPT web 端 chat 模式可读取用户 Chrome 标签页",
+      "url": "https://x.com/howie_serious/status/2110906258622697777",
+      "primary_url": "https://x.com/howie_serious/status/2110906258622697777",
+      "source": "X：howie.serious (@howie_serious)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "12f827a6317b17551da0d308bbc36d3623629cdc",
+          "title": "ChatGPT web 端 chat 模式可读取用户 Chrome 标签页",
+          "url": "https://x.com/howie_serious/status/2110906258622697777",
+          "source": "X：howie.serious (@howie_serious)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-16T01:30:45Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：howie.serious (@howie_serious)"
+      ],
+      "items": [
+        {
+          "id": "12f827a6317b17551da0d308bbc36d3623629cdc",
+          "title": "ChatGPT web 端 chat 模式可读取用户 Chrome 标签页",
+          "url": "https://x.com/howie_serious/status/2110906258622697777",
+          "source": "X：howie.serious (@howie_serious)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-16T01:30:45Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.778,
+      "importance": 0.778,
+      "importance_score": 0.778,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.76,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9912,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-16T01:30:45Z",
+      "latest_at": "2026-10-16T01:30:45Z",
+      "primary_item": {
+        "id": "12f827a6317b17551da0d308bbc36d3623629cdc",
+        "title": "ChatGPT web 端 chat 模式可读取用户 Chrome 标签页",
+        "url": "https://x.com/howie_serious/status/2110906258622697777",
+        "source": "X：howie.serious (@howie_serious)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_92a0c66fbd5f",
+      "title": "Meta 开放权重模型 Muse Spark Open 上架 OpenRouter",
+      "url": "https://x.com/OpenRouter/status/2110793354154008685",
+      "primary_url": "https://x.com/OpenRouter/status/2110793354154008685",
+      "source": "X：OpenRouter (@OpenRouter)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "7dd2806d4c202639c47ed3420c35f7e75ce674d9",
+          "title": "Meta 开放权重模型 Muse Spark Open 上架 OpenRouter",
+          "url": "https://x.com/OpenRouter/status/2110793354154008685",
+          "source": "X：OpenRouter (@OpenRouter)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T18:02:06Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：OpenRouter (@OpenRouter)"
+      ],
+      "items": [
+        {
+          "id": "7dd2806d4c202639c47ed3420c35f7e75ce674d9",
+          "title": "Meta 开放权重模型 Muse Spark Open 上架 OpenRouter",
+          "url": "https://x.com/OpenRouter/status/2110793354154008685",
+          "source": "X：OpenRouter (@OpenRouter)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T18:02:06Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7778,
+      "importance": 0.7778,
+      "importance_score": 0.7778,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.82,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8898,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-15T18:02:06Z",
+      "latest_at": "2026-10-15T18:02:06Z",
+      "primary_item": {
+        "id": "7dd2806d4c202639c47ed3420c35f7e75ce674d9",
+        "title": "Meta 开放权重模型 Muse Spark Open 上架 OpenRouter",
+        "url": "https://x.com/OpenRouter/status/2110793354154008685",
+        "source": "X：OpenRouter (@OpenRouter)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_bdba79ba7786",
+      "title": "ChatGPT 为 Chrome 用户新增标签页读取与控制能力",
+      "url": "https://x.com/ChatGPT/status/2110823738531037651",
+      "primary_url": "https://x.com/ChatGPT/status/2110823738531037651",
       "source": "X：ChatGPT (@ChatGPT)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "3e994e43f11b9dbf8754099a13c7a1e387b1d4e1",
-          "title": "OpenAI 演示 DevDay 发布的 ChatGPT Space 团队协作功能",
-          "url": "https://x.com/ChatGPT/status/2110424821331034550",
+          "id": "f74b61e315aede622839936bc324c6ded9f40305",
+          "title": "ChatGPT 为 Chrome 用户新增标签页读取与控制能力",
+          "url": "https://x.com/ChatGPT/status/2110823738531037651",
           "source": "X：ChatGPT (@ChatGPT)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-14T17:37:41Z"
+          "published_at": "2026-10-15T20:02:51Z"
         }
       ],
       "source_count": 1,
@@ -665,639 +621,790 @@
       ],
       "items": [
         {
-          "id": "3e994e43f11b9dbf8754099a13c7a1e387b1d4e1",
-          "title": "OpenAI 演示 DevDay 发布的 ChatGPT Space 团队协作功能",
-          "url": "https://x.com/ChatGPT/status/2110424821331034550",
+          "id": "f74b61e315aede622839936bc324c6ded9f40305",
+          "title": "ChatGPT 为 Chrome 用户新增标签页读取与控制能力",
+          "url": "https://x.com/ChatGPT/status/2110823738531037651",
           "source": "X：ChatGPT (@ChatGPT)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-14T17:37:41Z"
+          "published_at": "2026-10-15T20:02:51Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7403,
-      "importance": 0.7403,
-      "importance_score": 0.7403,
+      "score": 0.7765,
+      "importance": 0.7765,
+      "importance_score": 0.7765,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.65,
+        "editorial": 0.8,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.9648,
+        "recency": 0.916,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance"
+        "high_ai_relevance",
+        "high_importance"
       ],
-      "earliest_at": "2026-10-14T17:37:41Z",
-      "latest_at": "2026-10-14T17:37:41Z",
+      "earliest_at": "2026-10-15T20:02:51Z",
+      "latest_at": "2026-10-15T20:02:51Z",
       "primary_item": {
-        "id": "3e994e43f11b9dbf8754099a13c7a1e387b1d4e1",
-        "title": "OpenAI 演示 DevDay 发布的 ChatGPT Space 团队协作功能",
-        "url": "https://x.com/ChatGPT/status/2110424821331034550",
+        "id": "f74b61e315aede622839936bc324c6ded9f40305",
+        "title": "ChatGPT 为 Chrome 用户新增标签页读取与控制能力",
+        "url": "https://x.com/ChatGPT/status/2110823738531037651",
         "source": "X：ChatGPT (@ChatGPT)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_540c7947476a",
-      "title": "Gemini 4 Argon 全面开放，作者实测后认为难以撼动 Claude Opus 5.5 和 GPT-6 Astra",
-      "url": "https://x.com/Khazix0918/status/2110174495420064055",
-      "primary_url": "https://x.com/Khazix0918/status/2110174495420064055",
-      "source": "X：卡兹克 (@Khazix0918)",
+      "story_id": "story_9d2263a71775",
+      "title": "Meta 开源 816B 参数模型 Muse Spark Open 权重",
+      "url": "https://x.com/rohanpaul_ai/status/2110833347614372086",
+      "primary_url": "https://x.com/rohanpaul_ai/status/2110833347614372086",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "776ceebc5b516ca479378270a5ea0dc3c32eda5e",
-          "title": "Gemini 4 Argon 全面开放，作者实测后认为难以撼动 Claude Opus 5.5 和 GPT-6 Astra",
-          "url": "https://x.com/Khazix0918/status/2110174495420064055",
-          "source": "X：卡兹克 (@Khazix0918)",
+          "id": "796aef458d4b8a5af2053165755bdfac9abfdd09",
+          "title": "Meta 开源 816B 参数模型 Muse Spark Open 权重",
+          "url": "https://x.com/rohanpaul_ai/status/2110833347614372086",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-14T01:02:59Z"
+          "published_at": "2026-10-15T20:41:02Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "X：卡兹克 (@Khazix0918)"
+        "X：Rohan Paul (@rohanpaul_ai)"
       ],
       "items": [
         {
-          "id": "776ceebc5b516ca479378270a5ea0dc3c32eda5e",
-          "title": "Gemini 4 Argon 全面开放，作者实测后认为难以撼动 Claude Opus 5.5 和 GPT-6 Astra",
-          "url": "https://x.com/Khazix0918/status/2110174495420064055",
-          "source": "X：卡兹克 (@Khazix0918)",
+          "id": "796aef458d4b8a5af2053165755bdfac9abfdd09",
+          "title": "Meta 开源 816B 参数模型 Muse Spark Open 权重",
+          "url": "https://x.com/rohanpaul_ai/status/2110833347614372086",
+          "source": "X：Rohan Paul (@rohanpaul_ai)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-14T01:02:59Z"
+          "published_at": "2026-10-15T20:41:02Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7363,
-      "importance": 0.7363,
-      "importance_score": 0.7363,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.76,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7594,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-14T01:02:59Z",
-      "latest_at": "2026-10-14T01:02:59Z",
-      "primary_item": {
-        "id": "776ceebc5b516ca479378270a5ea0dc3c32eda5e",
-        "title": "Gemini 4 Argon 全面开放，作者实测后认为难以撼动 Claude Opus 5.5 和 GPT-6 Astra",
-        "url": "https://x.com/Khazix0918/status/2110174495420064055",
-        "source": "X：卡兹克 (@Khazix0918)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_e83bf5201c76",
-      "title": "OpenAI 沙特籍员工在高管会议室安装录音设备被捕",
-      "url": "https://x.com/dongxi_nlp/status/2110157167399485848",
-      "primary_url": "https://x.com/dongxi_nlp/status/2110157167399485848",
-      "source": "X：马东锡 NLP (@dongxi_nlp)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "e80731f4a845a3bd3a96e7704060c076face08a2",
-          "title": "OpenAI 沙特籍员工在高管会议室安装录音设备被捕",
-          "url": "https://x.com/dongxi_nlp/status/2110157167399485848",
-          "source": "X：马东锡 NLP (@dongxi_nlp)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-13T23:54:08Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：马东锡 NLP (@dongxi_nlp)"
-      ],
-      "items": [
-        {
-          "id": "e80731f4a845a3bd3a96e7704060c076face08a2",
-          "title": "OpenAI 沙特籍员工在高管会议室安装录音设备被捕",
-          "url": "https://x.com/dongxi_nlp/status/2110157167399485848",
-          "source": "X：马东锡 NLP (@dongxi_nlp)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-13T23:54:08Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.734,
-      "importance": 0.734,
-      "importance_score": 0.734,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.76,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.7469,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-13T23:54:08Z",
-      "latest_at": "2026-10-13T23:54:08Z",
-      "primary_item": {
-        "id": "e80731f4a845a3bd3a96e7704060c076face08a2",
-        "title": "OpenAI 沙特籍员工在高管会议室安装录音设备被捕",
-        "url": "https://x.com/dongxi_nlp/status/2110157167399485848",
-        "source": "X：马东锡 NLP (@dongxi_nlp)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_0c480104d553",
-      "title": "Claude 团队 Felix Rieseberg 分享如何更有雄心地使用 AI 的方法论",
-      "url": "https://x.com/shao__meng/status/2110266255555105078",
-      "primary_url": "https://x.com/shao__meng/status/2110266255555105078",
-      "source": "X：邵猛 (@shao__meng)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "d9ace0c5b700e1f64da2e9c31aaff20c998c4439",
-          "title": "Claude 团队 Felix Rieseberg 分享如何更有雄心地使用 AI 的方法论",
-          "url": "https://x.com/shao__meng/status/2110266255555105078",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-14T07:07:36Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：邵猛 (@shao__meng)"
-      ],
-      "items": [
-        {
-          "id": "d9ace0c5b700e1f64da2e9c31aaff20c998c4439",
-          "title": "Claude 团队 Felix Rieseberg 分享如何更有雄心地使用 AI 的方法论",
-          "url": "https://x.com/shao__meng/status/2110266255555105078",
-          "source": "X：邵猛 (@shao__meng)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-14T07:07:36Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7338,
-      "importance": 0.7338,
-      "importance_score": 0.7338,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.71,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.829,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-14T07:07:36Z",
-      "latest_at": "2026-10-14T07:07:36Z",
-      "primary_item": {
-        "id": "d9ace0c5b700e1f64da2e9c31aaff20c998c4439",
-        "title": "Claude 团队 Felix Rieseberg 分享如何更有雄心地使用 AI 的方法论",
-        "url": "https://x.com/shao__meng/status/2110266255555105078",
-        "source": "X：邵猛 (@shao__meng)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_378737ffe80d",
-      "title": "MIT团队用机器学习修正误差，将两到六周天气预报准确率翻倍",
-      "url": "https://news.mit.edu/2026/researchers-improve-weather-forecasts-looking-two-six-weeks-out-1014",
-      "primary_url": "https://news.mit.edu/2026/researchers-improve-weather-forecasts-looking-two-six-weeks-out-1014",
-      "source": "MIT News（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "58cd426374bf0da5060b40565d4dc4286c619c0d",
-          "title": "MIT团队用机器学习修正误差，将两到六周天气预报准确率翻倍",
-          "url": "https://news.mit.edu/2026/researchers-improve-weather-forecasts-looking-two-six-weeks-out-1014",
-          "source": "MIT News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-14T15:00:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "MIT News（RSS）"
-      ],
-      "items": [
-        {
-          "id": "58cd426374bf0da5060b40565d4dc4286c619c0d",
-          "title": "MIT团队用机器学习修正误差，将两到六周天气预报准确率翻倍",
-          "url": "https://news.mit.edu/2026/researchers-improve-weather-forecasts-looking-two-six-weeks-out-1014",
-          "source": "MIT News（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-14T15:00:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7338,
-      "importance": 0.7338,
-      "importance_score": 0.7338,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.65,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9289,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-14T15:00:00Z",
-      "latest_at": "2026-10-14T15:00:00Z",
-      "primary_item": {
-        "id": "58cd426374bf0da5060b40565d4dc4286c619c0d",
-        "title": "MIT团队用机器学习修正误差，将两到六周天气预报准确率翻倍",
-        "url": "https://news.mit.edu/2026/researchers-improve-weather-forecasts-looking-two-six-weeks-out-1014",
-        "source": "MIT News（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_284b4849470f",
-      "title": "LangChain 详解 Deep Agents 的上下文工程：如何记住信息而不塞满上下文窗口",
-      "url": "https://www.langchain.com/blog/context-engineering-deep-agents-remember",
-      "primary_url": "https://www.langchain.com/blog/context-engineering-deep-agents-remember",
-      "source": "LangChain：Blog（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "fe5963bba30276f89590c4bbcda15e6a64cd0511",
-          "title": "LangChain 详解 Deep Agents 的上下文工程：如何记住信息而不塞满上下文窗口",
-          "url": "https://www.langchain.com/blog/context-engineering-deep-agents-remember",
-          "source": "LangChain：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-14T17:00:00Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "LangChain：Blog（RSS）"
-      ],
-      "items": [
-        {
-          "id": "fe5963bba30276f89590c4bbcda15e6a64cd0511",
-          "title": "LangChain 详解 Deep Agents 的上下文工程：如何记住信息而不塞满上下文窗口",
-          "url": "https://www.langchain.com/blog/context-engineering-deep-agents-remember",
-          "source": "LangChain：Blog（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-14T17:00:00Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7327,
-      "importance": 0.7327,
-      "importance_score": 0.7327,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.63,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.9561,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-14T17:00:00Z",
-      "latest_at": "2026-10-14T17:00:00Z",
-      "primary_item": {
-        "id": "fe5963bba30276f89590c4bbcda15e6a64cd0511",
-        "title": "LangChain 详解 Deep Agents 的上下文工程：如何记住信息而不塞满上下文窗口",
-        "url": "https://www.langchain.com/blog/context-engineering-deep-agents-remember",
-        "source": "LangChain：Blog（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_bf1c4cdc0359",
-      "title": "Google 发布 Gemini 4 Argon，面向订阅用户和开发者开放",
-      "url": "https://x.com/Google/status/2110041305925484716",
-      "primary_url": "https://x.com/Google/status/2110041305925484716",
-      "source": "X：Google (@Google)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "0a8f1fad68b5f283d0ce0dc2423ba37b7fac85cd",
-          "title": "Google 发布 Gemini 4 Argon，面向订阅用户和开发者开放",
-          "url": "https://x.com/Google/status/2110041305925484716",
-          "source": "X：Google (@Google)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-13T16:13:44Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Google (@Google)"
-      ],
-      "items": [
-        {
-          "id": "0a8f1fad68b5f283d0ce0dc2423ba37b7fac85cd",
-          "title": "Google 发布 Gemini 4 Argon，面向订阅用户和开发者开放",
-          "url": "https://x.com/Google/status/2110041305925484716",
-          "source": "X：Google (@Google)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-13T16:13:44Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7319,
-      "importance": 0.7319,
-      "importance_score": 0.7319,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.8,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6686,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-13T16:13:44Z",
-      "latest_at": "2026-10-13T16:13:44Z",
-      "primary_item": {
-        "id": "0a8f1fad68b5f283d0ce0dc2423ba37b7fac85cd",
-        "title": "Google 发布 Gemini 4 Argon，面向订阅用户和开发者开放",
-        "url": "https://x.com/Google/status/2110041305925484716",
-        "source": "X：Google (@Google)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_c403facf8a75",
-      "title": "Google 发布 Gemini 4 Argon，面向开发者、企业和普通用户开放",
-      "url": "https://x.com/GoogleAI/status/2110039868910735565",
-      "primary_url": "https://x.com/GoogleAI/status/2110039868910735565",
-      "source": "X：Google AI (@GoogleAI)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "8363941afd9da48a99ea1ec11b6d98b694a6579e",
-          "title": "Google 发布 Gemini 4 Argon，面向开发者、企业和普通用户开放",
-          "url": "https://x.com/GoogleAI/status/2110039868910735565",
-          "source": "X：Google AI (@GoogleAI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-13T16:08:02Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Google AI (@GoogleAI)"
-      ],
-      "items": [
-        {
-          "id": "8363941afd9da48a99ea1ec11b6d98b694a6579e",
-          "title": "Google 发布 Gemini 4 Argon，面向开发者、企业和普通用户开放",
-          "url": "https://x.com/GoogleAI/status/2110039868910735565",
-          "source": "X：Google AI (@GoogleAI)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-13T16:08:02Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7318,
-      "importance": 0.7318,
-      "importance_score": 0.7318,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.8,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6677,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-13T16:08:02Z",
-      "latest_at": "2026-10-13T16:08:02Z",
-      "primary_item": {
-        "id": "8363941afd9da48a99ea1ec11b6d98b694a6579e",
-        "title": "Google 发布 Gemini 4 Argon，面向开发者、企业和普通用户开放",
-        "url": "https://x.com/GoogleAI/status/2110039868910735565",
-        "source": "X：Google AI (@GoogleAI)",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_33c0b5054646",
-      "title": "Character.AI 成立五年后申请 Chapter 11 破产，部分资产以 2000 万美元出售给 Disney",
-      "url": "https://techcrunch.com/2026/10/13/just-5-years-in-interactive-chatbot-platform-character-ai-files-for-bankruptcy",
-      "primary_url": "https://techcrunch.com/2026/10/13/just-5-years-in-interactive-chatbot-platform-character-ai-files-for-bankruptcy",
-      "source": "TechCrunch：AI（RSS）",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "c874ef70acfdf1bd71d3bc0e36be3977059743f3",
-          "title": "Character.AI 成立五年后申请 Chapter 11 破产，部分资产以 2000 万美元出售给 Disney",
-          "url": "https://techcrunch.com/2026/10/13/just-5-years-in-interactive-chatbot-platform-character-ai-files-for-bankruptcy",
-          "source": "TechCrunch：AI（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-13T12:23:42Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "TechCrunch：AI（RSS）"
-      ],
-      "items": [
-        {
-          "id": "c874ef70acfdf1bd71d3bc0e36be3977059743f3",
-          "title": "Character.AI 成立五年后申请 Chapter 11 破产，部分资产以 2000 万美元出售给 Disney",
-          "url": "https://techcrunch.com/2026/10/13/just-5-years-in-interactive-chatbot-platform-character-ai-files-for-bankruptcy",
-          "source": "TechCrunch：AI（RSS）",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-13T12:23:42Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7315,
-      "importance": 0.7315,
-      "importance_score": 0.7315,
-      "importance_label": "行业动态",
-      "importance_breakdown": {
-        "editorial": 0.82,
-        "source_tier": 0.78,
-        "ai_relevance": 1.0,
-        "recency": 0.6326,
-        "story_heat": 0.0
-      },
-      "category": "industry",
-      "reasons": [
-        "high_ai_relevance"
-      ],
-      "earliest_at": "2026-10-13T12:23:42Z",
-      "latest_at": "2026-10-13T12:23:42Z",
-      "primary_item": {
-        "id": "c874ef70acfdf1bd71d3bc0e36be3977059743f3",
-        "title": "Character.AI 成立五年后申请 Chapter 11 破产，部分资产以 2000 万美元出售给 Disney",
-        "url": "https://techcrunch.com/2026/10/13/just-5-years-in-interactive-chatbot-platform-character-ai-files-for-bankruptcy",
-        "source": "TechCrunch：AI（RSS）",
-        "source_name": "AI HOT"
-      }
-    },
-    {
-      "story_id": "story_40d5acde70a8",
-      "title": "XBOW 团队借助 OpenAI GPT-5.6 Sol 获 Google Chrome 25 万美元全链漏洞赏金",
-      "url": "https://x.com/reach_vb/status/2110086935733833893",
-      "primary_url": "https://x.com/reach_vb/status/2110086935733833893",
-      "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
-      "source_name": "AI HOT",
-      "sources": [
-        {
-          "id": "df60096451cd548ff8b1205c04f0b8023dcd31d5",
-          "title": "XBOW 团队借助 OpenAI GPT-5.6 Sol 获 Google Chrome 25 万美元全链漏洞赏金",
-          "url": "https://x.com/reach_vb/status/2110086935733833893",
-          "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-13T19:15:03Z"
-        }
-      ],
-      "source_count": 1,
-      "source_names": [
-        "X：Vaibhav Srivastav（OpenAI）(@reach_vb)"
-      ],
-      "items": [
-        {
-          "id": "df60096451cd548ff8b1205c04f0b8023dcd31d5",
-          "title": "XBOW 团队借助 OpenAI GPT-5.6 Sol 获 Google Chrome 25 万美元全链漏洞赏金",
-          "url": "https://x.com/reach_vb/status/2110086935733833893",
-          "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
-          "source_name": "AI HOT",
-          "site_id": "aihot",
-          "published_at": "2026-10-13T19:15:03Z"
-        }
-      ],
-      "item_count": 1,
-      "duplicate_count": 1,
-      "score": 0.7313,
-      "importance": 0.7313,
-      "importance_score": 0.7313,
+      "score": 0.772,
+      "importance": 0.772,
+      "importance_score": 0.772,
       "importance_label": "行业动态",
       "importance_breakdown": {
         "editorial": 0.78,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.6984,
+        "recency": 0.9245,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
-        "high_ai_relevance"
+        "high_ai_relevance",
+        "high_importance"
       ],
-      "earliest_at": "2026-10-13T19:15:03Z",
-      "latest_at": "2026-10-13T19:15:03Z",
+      "earliest_at": "2026-10-15T20:41:02Z",
+      "latest_at": "2026-10-15T20:41:02Z",
       "primary_item": {
-        "id": "df60096451cd548ff8b1205c04f0b8023dcd31d5",
-        "title": "XBOW 团队借助 OpenAI GPT-5.6 Sol 获 Google Chrome 25 万美元全链漏洞赏金",
-        "url": "https://x.com/reach_vb/status/2110086935733833893",
-        "source": "X：Vaibhav Srivastav（OpenAI）(@reach_vb)",
+        "id": "796aef458d4b8a5af2053165755bdfac9abfdd09",
+        "title": "Meta 开源 816B 参数模型 Muse Spark Open 权重",
+        "url": "https://x.com/rohanpaul_ai/status/2110833347614372086",
+        "source": "X：Rohan Paul (@rohanpaul_ai)",
         "source_name": "AI HOT"
       }
     },
     {
-      "story_id": "story_fdea597bfb9c",
-      "title": "Visual Studio Copilot 与 SSMS 远程代码执行漏洞（CVE-2026-103572）技术分析",
-      "url": "https://embracethered.com/blog/posts/2026/visual-studio-copilot-remote-code-execution",
-      "primary_url": "https://embracethered.com/blog/posts/2026/visual-studio-copilot-remote-code-execution",
-      "source": "Johann Rehberger / Embrace The Red（RSS）",
+      "story_id": "story_83a6c22d2ab9",
+      "title": "Meta 发布 Muse-Spark-Open-816B-A42B 开源模型",
+      "url": "https://x.com/ClementDelangue/status/2110786602805195191",
+      "primary_url": "https://x.com/ClementDelangue/status/2110786602805195191",
+      "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
       "source_name": "AI HOT",
       "sources": [
         {
-          "id": "f345766592a05d988700c2172da2ed75194f4f38",
-          "title": "Visual Studio Copilot 与 SSMS 远程代码执行漏洞（CVE-2026-103572）技术分析",
-          "url": "https://embracethered.com/blog/posts/2026/visual-studio-copilot-remote-code-execution",
-          "source": "Johann Rehberger / Embrace The Red（RSS）",
+          "id": "eac22049d860d9ad4a951027cde9697962193e43",
+          "title": "Meta 发布 Muse-Spark-Open-816B-A42B 开源模型",
+          "url": "https://x.com/ClementDelangue/status/2110786602805195191",
+          "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-13T22:00:40Z"
+          "published_at": "2026-10-15T17:35:17Z"
         }
       ],
       "source_count": 1,
       "source_names": [
-        "Johann Rehberger / Embrace The Red（RSS）"
+        "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)"
       ],
       "items": [
         {
-          "id": "f345766592a05d988700c2172da2ed75194f4f38",
-          "title": "Visual Studio Copilot 与 SSMS 远程代码执行漏洞（CVE-2026-103572）技术分析",
-          "url": "https://embracethered.com/blog/posts/2026/visual-studio-copilot-remote-code-execution",
-          "source": "Johann Rehberger / Embrace The Red（RSS）",
+          "id": "eac22049d860d9ad4a951027cde9697962193e43",
+          "title": "Meta 发布 Muse-Spark-Open-816B-A42B 开源模型",
+          "url": "https://x.com/ClementDelangue/status/2110786602805195191",
+          "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
           "source_name": "AI HOT",
           "site_id": "aihot",
-          "published_at": "2026-10-13T22:00:40Z"
+          "published_at": "2026-10-15T17:35:17Z"
         }
       ],
       "item_count": 1,
       "duplicate_count": 1,
-      "score": 0.7304,
-      "importance": 0.7304,
-      "importance_score": 0.7304,
+      "score": 0.7677,
+      "importance": 0.7677,
+      "importance_score": 0.7677,
       "importance_label": "行业动态",
       "importance_breakdown": {
-        "editorial": 0.76,
+        "editorial": 0.79,
         "source_tier": 0.78,
         "ai_relevance": 1.0,
-        "recency": 0.7268,
+        "recency": 0.8841,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-15T17:35:17Z",
+      "latest_at": "2026-10-15T17:35:17Z",
+      "primary_item": {
+        "id": "eac22049d860d9ad4a951027cde9697962193e43",
+        "title": "Meta 发布 Muse-Spark-Open-816B-A42B 开源模型",
+        "url": "https://x.com/ClementDelangue/status/2110786602805195191",
+        "source": "X：Clément Delangue（Hugging Face CEO） (@ClementDelangue)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_fda00c156ca1",
+      "title": "Muse Spark Open 上架 Arena，可在 Agent Arena 实测，评分即将公布",
+      "url": "https://x.com/arena/status/2110797782953132049",
+      "primary_url": "https://x.com/arena/status/2110797782953132049",
+      "source": "X：Arena (@arena)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "510e056148149e7ac6521b31323270ec3d53101e",
+          "title": "Muse Spark Open 上架 Arena，可在 Agent Arena 实测，评分即将公布",
+          "url": "https://x.com/arena/status/2110797782953132049",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T18:19:42Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Arena (@arena)"
+      ],
+      "items": [
+        {
+          "id": "510e056148149e7ac6521b31323270ec3d53101e",
+          "title": "Muse Spark Open 上架 Arena，可在 Agent Arena 实测，评分即将公布",
+          "url": "https://x.com/arena/status/2110797782953132049",
+          "source": "X：Arena (@arena)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T18:19:42Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7664,
+      "importance": 0.7664,
+      "importance_score": 0.7664,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.78,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8936,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-15T18:19:42Z",
+      "latest_at": "2026-10-15T18:19:42Z",
+      "primary_item": {
+        "id": "510e056148149e7ac6521b31323270ec3d53101e",
+        "title": "Muse Spark Open 上架 Arena，可在 Agent Arena 实测，评分即将公布",
+        "url": "https://x.com/arena/status/2110797782953132049",
+        "source": "X：Arena (@arena)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_89174adec205",
+      "title": "Meta 发布开源模型 Muse Spark Open，Unsloth 提供 2-bit GGUF 量化版",
+      "url": "https://x.com/UnslothAI/status/2110789209867112779",
+      "primary_url": "https://x.com/UnslothAI/status/2110789209867112779",
+      "source": "X：Unsloth (@UnslothAI)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "a75ff82e51d75086b127d007b3061d30d2901602",
+          "title": "Meta 发布开源模型 Muse Spark Open，Unsloth 提供 2-bit GGUF 量化版",
+          "url": "https://x.com/UnslothAI/status/2110789209867112779",
+          "source": "X：Unsloth (@UnslothAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T17:45:38Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Unsloth (@UnslothAI)"
+      ],
+      "items": [
+        {
+          "id": "a75ff82e51d75086b127d007b3061d30d2901602",
+          "title": "Meta 发布开源模型 Muse Spark Open，Unsloth 提供 2-bit GGUF 量化版",
+          "url": "https://x.com/UnslothAI/status/2110789209867112779",
+          "source": "X：Unsloth (@UnslothAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T17:45:38Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7651,
+      "importance": 0.7651,
+      "importance_score": 0.7651,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.78,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8863,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-15T17:45:38Z",
+      "latest_at": "2026-10-15T17:45:38Z",
+      "primary_item": {
+        "id": "a75ff82e51d75086b127d007b3061d30d2901602",
+        "title": "Meta 发布开源模型 Muse Spark Open，Unsloth 提供 2-bit GGUF 量化版",
+        "url": "https://x.com/UnslothAI/status/2110789209867112779",
+        "source": "X：Unsloth (@UnslothAI)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_551c23b27c7a",
+      "title": "Anthropic Q3营收达168亿美元但增速放缓，11月IPO前估值预期或下调",
+      "url": "https://the-decoder.com/anthropics-q3-revenue-hits-16-8b-but-growth-slows-ahead-of-planned-november-ipo",
+      "primary_url": "https://the-decoder.com/anthropics-q3-revenue-hits-16-8b-but-growth-slows-ahead-of-planned-november-ipo",
+      "source": "The Decoder：AI News（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "fce14e350b00cb5853ad09e9ea68028670e1e879",
+          "title": "Anthropic Q3营收达168亿美元但增速放缓，11月IPO前估值预期或下调",
+          "url": "https://the-decoder.com/anthropics-q3-revenue-hits-16-8b-but-growth-slows-ahead-of-planned-november-ipo",
+          "source": "The Decoder：AI News（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T09:50:43Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "The Decoder：AI News（RSS）"
+      ],
+      "items": [
+        {
+          "id": "fce14e350b00cb5853ad09e9ea68028670e1e879",
+          "title": "Anthropic Q3营收达168亿美元但增速放缓，11月IPO前估值预期或下调",
+          "url": "https://the-decoder.com/anthropics-q3-revenue-hits-16-8b-but-growth-slows-ahead-of-planned-november-ipo",
+          "source": "The Decoder：AI News（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T09:50:43Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7569,
+      "importance": 0.7569,
+      "importance_score": 0.7569,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.81,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.7905,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-15T09:50:43Z",
+      "latest_at": "2026-10-15T09:50:43Z",
+      "primary_item": {
+        "id": "fce14e350b00cb5853ad09e9ea68028670e1e879",
+        "title": "Anthropic Q3营收达168亿美元但增速放缓，11月IPO前估值预期或下调",
+        "url": "https://the-decoder.com/anthropics-q3-revenue-hits-16-8b-but-growth-slows-ahead-of-planned-november-ipo",
+        "source": "The Decoder：AI News（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_9bde913d8d16",
+      "title": "Perplexity 开源驱动 Perplexity Computer 的沙箱平台 SPACE",
+      "url": "https://x.com/AravSrinivas/status/2110785848958759165",
+      "primary_url": "https://x.com/AravSrinivas/status/2110785848958759165",
+      "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "9ef1604b9fbf595e5145952ecd47099118e07267",
+          "title": "Perplexity 开源驱动 Perplexity Computer 的沙箱平台 SPACE",
+          "url": "https://x.com/AravSrinivas/status/2110785848958759165",
+          "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T17:32:17Z"
+        },
+        {
+          "id": "7c180ba78b261ec93fed65b010a9b11a16a88391",
+          "title": "Perplexity 开源运行 Perplexity Computer 任务的沙盒平台 SPACE",
+          "url": "https://x.com/perplexity_ai/status/2110778478312481167",
+          "source": "X：Perplexity (@perplexity_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T17:03:00Z"
+        }
+      ],
+      "source_count": 2,
+      "source_names": [
+        "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
+        "X：Perplexity (@perplexity_ai)"
+      ],
+      "items": [
+        {
+          "id": "9ef1604b9fbf595e5145952ecd47099118e07267",
+          "title": "Perplexity 开源驱动 Perplexity Computer 的沙箱平台 SPACE",
+          "url": "https://x.com/AravSrinivas/status/2110785848958759165",
+          "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T17:32:17Z"
+        },
+        {
+          "id": "7c180ba78b261ec93fed65b010a9b11a16a88391",
+          "title": "Perplexity 开源运行 Perplexity Computer 任务的沙盒平台 SPACE",
+          "url": "https://x.com/perplexity_ai/status/2110778478312481167",
+          "source": "X：Perplexity (@perplexity_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T17:03:00Z"
+        }
+      ],
+      "item_count": 2,
+      "duplicate_count": 2,
+      "score": 0.7566,
+      "importance": 0.7566,
+      "importance_score": 0.7566,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.67,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8834,
+        "story_heat": 0.25
+      },
+      "category": "industry",
+      "reasons": [
+        "multi_source",
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-15T17:03:00Z",
+      "latest_at": "2026-10-15T17:32:17Z",
+      "primary_item": {
+        "id": "9ef1604b9fbf595e5145952ecd47099118e07267",
+        "title": "Perplexity 开源驱动 Perplexity Computer 的沙箱平台 SPACE",
+        "url": "https://x.com/AravSrinivas/status/2110785848958759165",
+        "source": "X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_faf4d5dfcd6c",
+      "title": "The Verge 实测 Eiliko 机器人玩具：68000 台设备数据可被任意访问并可远程劫持",
+      "url": "https://www.theverge.com/tech/1010727/eiliko-robot-hack-energize-lab",
+      "primary_url": "https://www.theverge.com/tech/1010727/eiliko-robot-hack-energize-lab",
+      "source": "The Verge：AI（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "eb65cb4b924ec64c238300f8c3aa0258fa9880f6",
+          "title": "The Verge 实测 Eiliko 机器人玩具：68000 台设备数据可被任意访问并可远程劫持",
+          "url": "https://www.theverge.com/tech/1010727/eiliko-robot-hack-energize-lab",
+          "source": "The Verge：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T11:00:00Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "The Verge：AI（RSS）"
+      ],
+      "items": [
+        {
+          "id": "eb65cb4b924ec64c238300f8c3aa0258fa9880f6",
+          "title": "The Verge 实测 Eiliko 机器人玩具：68000 台设备数据可被任意访问并可远程劫持",
+          "url": "https://www.theverge.com/tech/1010727/eiliko-robot-hack-energize-lab",
+          "source": "The Verge：AI（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T11:00:00Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7563,
+      "importance": 0.7563,
+      "importance_score": 0.7563,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.8,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8038,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-15T11:00:00Z",
+      "latest_at": "2026-10-15T11:00:00Z",
+      "primary_item": {
+        "id": "eb65cb4b924ec64c238300f8c3aa0258fa9880f6",
+        "title": "The Verge 实测 Eiliko 机器人玩具：68000 台设备数据可被任意访问并可远程劫持",
+        "url": "https://www.theverge.com/tech/1010727/eiliko-robot-hack-energize-lab",
+        "source": "The Verge：AI（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_e9aed700ded1",
+      "title": "Ethan Mollick 评 Gemini 4 Argon 攻克 ARC-AGI：知名难题基准时代落幕",
+      "url": "https://x.com/emollick/status/2110875851600633956",
+      "primary_url": "https://x.com/emollick/status/2110875851600633956",
+      "source": "X：Ethan Mollick (@emollick)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "2e84e53b9013d7b3128c6d123de55e375b9f052b",
+          "title": "Ethan Mollick 评 Gemini 4 Argon 攻克 ARC-AGI：知名难题基准时代落幕",
+          "url": "https://x.com/emollick/status/2110875851600633956",
+          "source": "X：Ethan Mollick (@emollick)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T23:29:55Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Ethan Mollick (@emollick)"
+      ],
+      "items": [
+        {
+          "id": "2e84e53b9013d7b3128c6d123de55e375b9f052b",
+          "title": "Ethan Mollick 评 Gemini 4 Argon 攻克 ARC-AGI：知名难题基准时代落幕",
+          "url": "https://x.com/emollick/status/2110875851600633956",
+          "source": "X：Ethan Mollick (@emollick)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T23:29:55Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7549,
+      "importance": 0.7549,
+      "importance_score": 0.7549,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.7,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9628,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-15T23:29:55Z",
+      "latest_at": "2026-10-15T23:29:55Z",
+      "primary_item": {
+        "id": "2e84e53b9013d7b3128c6d123de55e375b9f052b",
+        "title": "Ethan Mollick 评 Gemini 4 Argon 攻克 ARC-AGI：知名难题基准时代落幕",
+        "url": "https://x.com/emollick/status/2110875851600633956",
+        "source": "X：Ethan Mollick (@emollick)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_0e68670b44c5",
+      "title": "Musk 称 xAI 2027 年底算力目标可能超过 10GW",
+      "url": "https://x.com/elonmusk/status/2110877572011844019",
+      "primary_url": "https://x.com/elonmusk/status/2110877572011844019",
+      "source": "X：Elon Musk (@elonmusk, xAI)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "8ba076865f20470ccb2a3e571b829cd08f93667d",
+          "title": "Musk 称 xAI 2027 年底算力目标可能超过 10GW",
+          "url": "https://x.com/elonmusk/status/2110877572011844019",
+          "source": "X：Elon Musk (@elonmusk, xAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T23:36:46Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：Elon Musk (@elonmusk, xAI)"
+      ],
+      "items": [
+        {
+          "id": "8ba076865f20470ccb2a3e571b829cd08f93667d",
+          "title": "Musk 称 xAI 2027 年底算力目标可能超过 10GW",
+          "url": "https://x.com/elonmusk/status/2110877572011844019",
+          "source": "X：Elon Musk (@elonmusk, xAI)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T23:36:46Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7522,
+      "importance": 0.7522,
+      "importance_score": 0.7522,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.69,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.9644,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-15T23:36:46Z",
+      "latest_at": "2026-10-15T23:36:46Z",
+      "primary_item": {
+        "id": "8ba076865f20470ccb2a3e571b829cd08f93667d",
+        "title": "Musk 称 xAI 2027 年底算力目标可能超过 10GW",
+        "url": "https://x.com/elonmusk/status/2110877572011844019",
+        "source": "X：Elon Musk (@elonmusk, xAI)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_67f961761955",
+      "title": "阶跃星辰开放 Step 5 Preview 权重",
+      "url": "https://x.com/StepFun_ai/status/2110717330657616092",
+      "primary_url": "https://x.com/StepFun_ai/status/2110717330657616092",
+      "source": "X：阶跃星辰 StepFun (@StepFun_ai)",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "b573ef78a9aa14b300af88729fa526e4aab27586",
+          "title": "阶跃星辰开放 Step 5 Preview 权重",
+          "url": "https://x.com/StepFun_ai/status/2110717330657616092",
+          "source": "X：阶跃星辰 StepFun (@StepFun_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T13:00:01Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "X：阶跃星辰 StepFun (@StepFun_ai)"
+      ],
+      "items": [
+        {
+          "id": "b573ef78a9aa14b300af88729fa526e4aab27586",
+          "title": "阶跃星辰开放 Step 5 Preview 权重",
+          "url": "https://x.com/StepFun_ai/status/2110717330657616092",
+          "source": "X：阶跃星辰 StepFun (@StepFun_ai)",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T13:00:01Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7515,
+      "importance": 0.7515,
+      "importance_score": 0.7515,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.77,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8274,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance",
+        "high_importance"
+      ],
+      "earliest_at": "2026-10-15T13:00:01Z",
+      "latest_at": "2026-10-15T13:00:01Z",
+      "primary_item": {
+        "id": "b573ef78a9aa14b300af88729fa526e4aab27586",
+        "title": "阶跃星辰开放 Step 5 Preview 权重",
+        "url": "https://x.com/StepFun_ai/status/2110717330657616092",
+        "source": "X：阶跃星辰 StepFun (@StepFun_ai)",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_7fd7e06ab2f4",
+      "title": "Claude Code 团队如何做代码审查",
+      "url": "https://claude.dev/blog/solving-code-review-at-anthropic",
+      "primary_url": "https://claude.dev/blog/solving-code-review-at-anthropic",
+      "source": "Anthropic：Claude.dev 开发者博客（RSS）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "b43dc835b5aa59f10e3d14c5a9c46876842cfbcc",
+          "title": "Claude Code 团队如何做代码审查",
+          "url": "https://claude.dev/blog/solving-code-review-at-anthropic",
+          "source": "Anthropic：Claude.dev 开发者博客（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T12:00:00Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "Anthropic：Claude.dev 开发者博客（RSS）"
+      ],
+      "items": [
+        {
+          "id": "b43dc835b5aa59f10e3d14c5a9c46876842cfbcc",
+          "title": "Claude Code 团队如何做代码审查",
+          "url": "https://claude.dev/blog/solving-code-review-at-anthropic",
+          "source": "Anthropic：Claude.dev 开发者博客（RSS）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T12:00:00Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.7494,
+      "importance": 0.7494,
+      "importance_score": 0.7494,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.77,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.8155,
         "story_heat": 0.0
       },
       "category": "industry",
       "reasons": [
         "high_ai_relevance"
       ],
-      "earliest_at": "2026-10-13T22:00:40Z",
-      "latest_at": "2026-10-13T22:00:40Z",
+      "earliest_at": "2026-10-15T12:00:00Z",
+      "latest_at": "2026-10-15T12:00:00Z",
       "primary_item": {
-        "id": "f345766592a05d988700c2172da2ed75194f4f38",
-        "title": "Visual Studio Copilot 与 SSMS 远程代码执行漏洞（CVE-2026-103572）技术分析",
-        "url": "https://embracethered.com/blog/posts/2026/visual-studio-copilot-remote-code-execution",
-        "source": "Johann Rehberger / Embrace The Red（RSS）",
+        "id": "b43dc835b5aa59f10e3d14c5a9c46876842cfbcc",
+        "title": "Claude Code 团队如何做代码审查",
+        "url": "https://claude.dev/blog/solving-code-review-at-anthropic",
+        "source": "Anthropic：Claude.dev 开发者博客（RSS）",
+        "source_name": "AI HOT"
+      }
+    },
+    {
+      "story_id": "story_23cb92d59f00",
+      "title": "OpenAI 失准报告：内部模型在 dashboard 评测中访问并修改内部系统",
+      "url": "https://alignment.openai.com/misalignment-reports/accessing-and-changing-internal-systems-during-dashboard-research",
+      "primary_url": "https://alignment.openai.com/misalignment-reports/accessing-and-changing-internal-systems-during-dashboard-research",
+      "source": "OpenAI：失准报告与通报（网页）",
+      "source_name": "AI HOT",
+      "sources": [
+        {
+          "id": "2c1881a6f076a59ab68c6737bebd3a74c105cbd2",
+          "title": "OpenAI 失准报告：内部模型在 dashboard 评测中访问并修改内部系统",
+          "url": "https://alignment.openai.com/misalignment-reports/accessing-and-changing-internal-systems-during-dashboard-research",
+          "source": "OpenAI：失准报告与通报（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T00:00:00Z"
+        }
+      ],
+      "source_count": 1,
+      "source_names": [
+        "OpenAI：失准报告与通报（网页）"
+      ],
+      "items": [
+        {
+          "id": "2c1881a6f076a59ab68c6737bebd3a74c105cbd2",
+          "title": "OpenAI 失准报告：内部模型在 dashboard 评测中访问并修改内部系统",
+          "url": "https://alignment.openai.com/misalignment-reports/accessing-and-changing-internal-systems-during-dashboard-research",
+          "source": "OpenAI：失准报告与通报（网页）",
+          "source_name": "AI HOT",
+          "site_id": "aihot",
+          "published_at": "2026-10-15T00:00:00Z"
+        }
+      ],
+      "item_count": 1,
+      "duplicate_count": 1,
+      "score": 0.744,
+      "importance": 0.744,
+      "importance_score": 0.744,
+      "importance_label": "行业动态",
+      "importance_breakdown": {
+        "editorial": 0.83,
+        "source_tier": 0.78,
+        "ai_relevance": 1.0,
+        "recency": 0.6858,
+        "story_heat": 0.0
+      },
+      "category": "industry",
+      "reasons": [
+        "high_ai_relevance"
+      ],
+      "earliest_at": "2026-10-15T00:00:00Z",
+      "latest_at": "2026-10-15T00:00:00Z",
+      "primary_item": {
+        "id": "2c1881a6f076a59ab68c6737bebd3a74c105cbd2",
+        "title": "OpenAI 失准报告：内部模型在 dashboard 评测中访问并修改内部系统",
+        "url": "https://alignment.openai.com/misalignment-reports/accessing-and-changing-internal-systems-during-dashboard-research",
+        "source": "OpenAI：失准报告与通报（网页）",
         "source_name": "AI HOT"
       }
     }
