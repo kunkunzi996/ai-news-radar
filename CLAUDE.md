@@ -55,6 +55,8 @@ YouTube 订阅成员、脚本 `?v=` / 工作台 `wb=` 见 `AGENTS.md`。已阅�
 3. stash 不带 `-u`；只碰本次压入的 `stash@{0}`。
 4. NUC `RadarAutoFF` 只跑 Git 跟踪的 `scripts/windows/auto-ff.sh`；成败以 `logs/auto-ff.log` 的结构化 `reason` 为准。失败保留工作区，禁止 reset/强推/覆盖 `data/**`。连续 3 次失败会写 `event=alert`；`data/**` 出现 `worktree_dirty` 本身就是缺陷（本机不该写它），先查是谁写的，再手工 `git restore --worktree -- data/`。
 
+NUC `RadarSnapshotNudge` 每 30 分钟跑 Git 跟踪的 `scripts/windows/nudge_snapshot.py`。正在跑，或 40 分钟内成功过，就不按「马上跑」；更旧才 `workflow_dispatch`。钥匙在仓库外 `C:\AI-news-reader\secrets\snapshot-dispatch.token`，不要写入仓库或日志。GitHub 整份关掉 Actions 时记 `event=alert reason=actions_disabled`。
+
 `merge_sync` 必须先推送合并提交再 CAS 移动本机 `master`；永远不得 purge 或改写归档历史。
 
 5. 「保存并同步」失败时，还原走事务内部；禁止在 `local_server` 再拍一套快照，禁止再戳 git 私货。
