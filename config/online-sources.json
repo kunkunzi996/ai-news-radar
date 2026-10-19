@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-10-16T02:07:19Z",
+  "updated_at": "2026-10-19T01:52:20Z",
   "sources": [
     {
       "id": "online_bilibili_13030183",
@@ -195,6 +195,21 @@
       "locator": "AlkaidLab/moonlight-harmony",
       "env": "",
       "notes": "只追踪 release"
+    },
+    {
+      "id": "online_github_repo_1162099055",
+      "name": "Leonxlnx/taste-skill",
+      "type": "github_release",
+      "enabled": true,
+      "channel": "GitHub Release",
+      "target": "Leonxlnx/taste-skill",
+      "locator": "Leonxlnx/taste-skill",
+      "env": "",
+      "notes": "只追踪 release",
+      "managed_by": "github_stars",
+      "managed_account_id": 284580915,
+      "managed_repo_id": 1162099055,
+      "managed_state": "active"
     },
     {
       "id": "online_github_repo_1163112839",
@@ -644,6 +659,21 @@
       "managed_by": "github_stars",
       "managed_account_id": 284580915,
       "managed_repo_id": 1393965829,
+      "managed_state": "active"
+    },
+    {
+      "id": "online_github_repo_1396939768",
+      "name": "oil-oil/oil-ui",
+      "type": "github_release",
+      "enabled": true,
+      "channel": "GitHub Release",
+      "target": "oil-oil/oil-ui",
+      "locator": "oil-oil/oil-ui",
+      "env": "",
+      "notes": "只追踪 release",
+      "managed_by": "github_stars",
+      "managed_account_id": 284580915,
+      "managed_repo_id": 1396939768,
       "managed_state": "active"
     },
     {
