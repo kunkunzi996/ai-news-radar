@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "synced",
-  "finished_at": "2026-10-19T01:52:20Z",
+  "outcome": "no_change",
+  "finished_at": "2026-10-19T02:15:51Z",
   "error_code": "",
-  "workflow_run_id": "39187285863",
+  "workflow_run_id": "39189125995",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "c55741ddf5f46c9a4880ce65f71a51eb2bdb9f87",
+  "workflow_head_sha": "742312128d777fd1bfdf4709d3f47d285f768e5e",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-10-19T01:52:20Z",
-  "purge_state_sha256": "bdacbae4b05ba46192e9f286963a247ff3db5d00d37af9692bea4a2ab3fefe3a",
+  "snapshot_completed_at": "2026-10-19T02:15:51Z",
+  "purge_state_sha256": "f22a19244dbd1b824e911f2a173b55692f0116be2003b62036f09fccd979da57",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -21,18 +21,7 @@
   "starred_count": 41,
   "private_skipped_count": 0,
   "summary": {
-    "added": [
-      {
-        "repo_id": 1162099055,
-        "repo": "Leonxlnx/taste-skill",
-        "source_id": "online_github_repo_1162099055"
-      },
-      {
-        "repo_id": 1396939768,
-        "repo": "oil-oil/oil-ui",
-        "source_id": "online_github_repo_1396939768"
-      }
-    ],
+    "added": [],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
