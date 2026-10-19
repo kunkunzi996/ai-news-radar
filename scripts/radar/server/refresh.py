@@ -270,11 +270,13 @@ def refresh_command(
     now: datetime | None = None,
 ) -> list[str]:
     scope = normalize_collection_scope(collection_scope)
+    overlay = root_dir / ".local" / "online-sources.json"
+    source_config = str(overlay) if overlay.is_file() else "config/online-sources.json"
     command = [
         sys.executable,
         str(root_dir / "scripts" / "update_news.py"),
         "--source-config",
-        "config/online-sources.json",
+        source_config,
         "--output-dir",
         "data",
         "--window-hours",
