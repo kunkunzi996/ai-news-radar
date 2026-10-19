@@ -928,30 +928,15 @@ def apply_github_star_sync(
             account=snapshot["account"],
             repositories=snapshot["repositories"],
         )
-        try:
-            result = _online_sources.apply_online_source_config_operation(
-                root_dir,
-                merge["config"],
-                operation_kind="apply",
-                base_config_digest=current_preview["base_config_digest"],
-                preview_hash=preview_hash,
-                summary=merge["summary"],
-            )
-        except _online_sources.OnlineSourcesError as exc:
-            if exc.code == "online_sources_config_stale":
-                raise _error("github_star_preview_stale", 409) from exc
-            if exc.code != "online_sources_preflight_failed":
-                raise
-            _online_sources.write_local_online_overlay(root_dir, merge["config"])
-            return _online_sources._operation_result(
-                merge["config"],
-                outcome="local_only",
-                config_changed=True,
-                write_complete=True,
-            )
-        if result.get("pushed") is True:
-            _online_sources.clear_local_online_overlay(root_dir)
-        return result
+        _online_sources.write_local_online_overlay(root_dir, merge["config"])
+        changed = bool(merge.get("config_changed"))
+        return _online_sources._operation_result(
+            merge["config"],
+            outcome="local_only" if changed else "no_change",
+            config_changed=changed,
+            write_complete=True,
+            summary=merge["summary"],
+        )
 
 
 def unbind_github_star_sync(
@@ -986,10 +971,11 @@ def unbind_github_star_sync(
             updated_at=current_config.get("updated_at"),
             deleted_sources=current_config.get(_online_sources.DELETED_SOURCES_KEY),
         )
-        return _online_sources.apply_online_source_config_operation(
-            root_dir,
+        _online_sources.write_local_online_overlay(root_dir, candidate)
+        return _online_sources._operation_result(
             candidate,
-            operation_kind="unbind",
-            base_config_digest=current_digest,
+            outcome="local_only",
+            config_changed=True,
+            write_complete=True,
             summary=_empty_summary(),
         )

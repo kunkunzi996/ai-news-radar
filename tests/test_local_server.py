@@ -931,29 +931,11 @@ class LocalServerTests(unittest.TestCase):
             "etag": '"' + "1" * 64 + '"',
         }
 
-        with patch(
-            "scripts.radar.server.online_sources.preflight_online_source_save",
-            return_value={"pre_head": "0" * 40},
-        ) as preflight_mock, patch(
-            "scripts.radar.server.online_sources.save_online_source_config",
-            return_value=save_result,
-        ) as save_mock, patch(
-            "scripts.radar.server.online_sources.sync_saved_online_source_config",
-            return_value={"ok": True, "outcome": "no_change"},
-        ) as sync_mock, patch(
-            "scripts.radar.server.auto_collect.handle_saved_config",
-            return_value={"pending": False},
-        ), patch(
-            "scripts.radar.server.auto_collect.flush_pending_collect",
-            return_value={"triggered": False},
-        ):
-            result = save_and_sync_online_source_config(root, payload)
+        result = save_and_sync_online_source_config(root, payload)
 
-        preflight_mock.assert_called_once_with(root)
-        save_mock.assert_called_once()
-        self.assertTrue(save_mock.call_args.kwargs["_defer_auto_collect"])
-        sync_mock.assert_called_once_with(root, if_match=save_result["etag"])
-        self.assertEqual(result["purged_items"], {"archive.json": 2})
+        self.assertEqual(result["outcome"], "local_only")
+        self.assertEqual(result["pushed"], False)
+        self.assertFalse(result.get("purged_items"))
 
     def test_save_and_sync_rejects_remote_non_data_commit_before_writing(self):
         root, _origin, peer = self.create_sync_git_repositories(self.online_source_payload("initial"))
@@ -1042,20 +1024,12 @@ class LocalServerTests(unittest.TestCase):
         head_before = self.git(root, "rev-parse", "HEAD").stdout.strip()
 
         collect_calls = []
-        with patch(
-            "scripts.radar.server.online_sources.sync_saved_online_source_config",
-            side_effect=online_sources.OnlineSourcesError("injected_sync_failure", status_code=502),
-        ), patch(
-            "scripts.radar.server.auto_collect.handle_saved_config",
-            side_effect=lambda *_args, **_kwargs: collect_calls.append("handle") or {"pending": False},
-        ), patch(
-            "scripts.radar.server.auto_collect.flush_pending_collect",
-            side_effect=lambda *_args, **_kwargs: collect_calls.append("flush") or {"triggered": False},
-        ):
-            with self.assertRaises(online_sources.OnlineSourcesError) as raised:
-                save_and_sync_online_source_config(root, {"sources": []})
+        result = save_and_sync_online_source_config(
+            root,
+            {"sources": [], "confirm_bulk_delete": True},
+        )
 
-        self.assertEqual(raised.exception.code, "injected_sync_failure")
+        self.assertEqual(result["outcome"], "local_only")
         self.assertEqual(collect_calls, [])
         self.assertEqual(self.git(root, "rev-parse", "HEAD").stdout.strip(), head_before)
         self.assertFalse(online_sources.operation_manifest_path(root).exists())
@@ -1072,17 +1046,14 @@ class LocalServerTests(unittest.TestCase):
         self.assertFalse(config_path.exists())
         self.assertFalse(opml_path.exists())
 
-        with patch(
-            "scripts.radar.server.online_sources.sync_saved_online_source_config",
-            side_effect=online_sources.OnlineSourcesError("injected_sync_failure", status_code=502),
-        ):
-            with self.assertRaises(online_sources.OnlineSourcesError) as raised:
-                save_and_sync_online_source_config(root, self.online_source_payload("first"))
+        result = save_and_sync_online_source_config(root, self.online_source_payload("first"))
 
-        self.assertEqual(raised.exception.code, "injected_sync_failure")
+        self.assertEqual(result["outcome"], "local_only")
         self.assertFalse(config_path.exists())
         self.assertFalse(opml_path.exists())
         self.assertFalse(online_sources.operation_manifest_path(root).exists())
+        overlay = json.loads((root / ".local" / "online-sources.json").read_text(encoding="utf-8"))
+        self.assertEqual(overlay["sources"][0]["name"], "first")
 
     def test_save_and_sync_deletion_leaves_data_clean_and_keeps_fast_forward_possible(self):
         # 2026-09-11 事故的反向用例：删源之后 data/** 不能有未提交改动，云端下一版数据必须还能 --ff-only 进来。
@@ -1117,15 +1088,20 @@ class LocalServerTests(unittest.TestCase):
             "scripts.radar.server.auto_collect.flush_pending_collect",
             return_value={"triggered": False},
         ):
-            result = save_and_sync_online_source_config(root, {"sources": []}, if_match=None)
+            result = save_and_sync_online_source_config(
+                root,
+                {"sources": [], "confirm_bulk_delete": True},
+                if_match=None,
+            )
 
-        self.assertEqual(result["outcome"], "pushed", result)
-        self.assertEqual(result["purged_items"], {"deferred": {"bilibili_dynamic": ["111"], "opmlrss": ["Wired AI"]}})
+        self.assertEqual(result["outcome"], "local_only", result)
+        self.assertEqual(result["sources"], [])
         self.assertEqual(archive_path.read_bytes(), archive_before)
         self.assertEqual(self.git(root, "status", "--porcelain", "--untracked-files=no").stdout.strip(), "")
         remote_config = json.loads(self.git(origin, "show", "master:config/online-sources.json").stdout)
-        self.assertEqual(list(remote_config["deleted_sources"]["bilibili_dynamic"]), ["111"])
-        self.assertEqual(list(remote_config["deleted_sources"]["opmlrss"]), ["Wired AI"])
+        remote_names = [source["name"] for source in remote_config["sources"]]
+        self.assertIn("张三", remote_names)
+        self.assertIn("Wired AI", remote_names)
 
         # 云端（peer）按台账写出新数据并提交；NUC 只能快进，不许有冲突。
         self.git(peer, "pull", "--ff-only")
@@ -1149,28 +1125,17 @@ class LocalServerTests(unittest.TestCase):
 
     def test_save_and_sync_second_attempt_does_not_inherit_failed_transaction(self):
         root, origin, _peer = self.create_sync_git_repositories(self.online_source_payload("initial"))
-        with patch(
-            "scripts.radar.server.online_sources.sync_saved_online_source_config",
-            side_effect=online_sources.OnlineSourcesError("injected_sync_failure", status_code=502),
-        ):
-            with self.assertRaises(online_sources.OnlineSourcesError):
-                save_and_sync_online_source_config(root, self.online_source_payload("first"))
+        first = save_and_sync_online_source_config(root, self.online_source_payload("first"))
+        result = save_and_sync_online_source_config(root, self.online_source_payload("second"))
 
-        with patch(
-            "scripts.radar.server.auto_collect.handle_saved_config",
-            return_value={"pending": False},
-        ), patch(
-            "scripts.radar.server.auto_collect.flush_pending_collect",
-            return_value={"triggered": False},
-        ):
-            result = save_and_sync_online_source_config(root, self.online_source_payload("second"))
-
-        self.assertEqual(result["outcome"], "pushed", result)
+        self.assertEqual(first["outcome"], "local_only")
+        self.assertEqual(result["outcome"], "local_only", result)
+        self.assertEqual(result["sources"][0]["name"], "second")
         self.assertFalse(online_sources.operation_manifest_path(root).exists())
         remote_config = json.loads(
             self.git(origin, "show", "master:config/online-sources.json").stdout
         )
-        self.assertEqual(remote_config["sources"][0]["name"], "second")
+        self.assertEqual(remote_config["sources"][0]["name"], "initial")
 
     def test_save_and_sync_dispatches_auto_collect_only_after_sync(self):
         root, _origin, _peer = self.create_sync_git_repositories(self.online_source_payload("initial"))
@@ -1195,8 +1160,8 @@ class LocalServerTests(unittest.TestCase):
         ):
             result = save_and_sync_online_source_config(root, self.online_source_payload("pushed"))
 
-        self.assertEqual(result["outcome"], "pushed", result)
-        self.assertEqual(events, ["sync_start", "sync_done", "handle", "flush"])
+        self.assertEqual(result["outcome"], "local_only", result)
+        self.assertEqual(events, [])
 
     def test_fresh_preflight_allows_remote_data_only_commits_without_mutating_local_state(self):
         root, origin, peer = self.create_sync_git_repositories(self.online_source_payload("initial"))
@@ -1268,7 +1233,7 @@ class LocalServerTests(unittest.TestCase):
                 },
             )
 
-        self.assertEqual(applied["outcome"], "pushed", applied)
+        self.assertEqual(applied["outcome"], "local_only", applied)
         self.assertEqual(
             self.git(root, "rev-parse", "HEAD").stdout.strip(),
             self.git(origin, "rev-parse", "master").stdout.strip(),
@@ -1308,7 +1273,7 @@ class LocalServerTests(unittest.TestCase):
             if_match=repeated["etag"],
         )
         restored_source = next(source for source in unbound["sources"] if source["id"] == managed["id"])
-        self.assertEqual(unbound["outcome"], "pushed")
+        self.assertEqual(unbound["outcome"], "local_only")
         self.assertNotIn("github_star_sync", unbound["config"])
         self.assertEqual(restored_source["enabled"], managed["enabled"])
         self.assertEqual(restored_source["notes"], managed["notes"])

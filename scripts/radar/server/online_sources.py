@@ -5037,7 +5037,7 @@ def save_online_source_config(
 
 
 def keep_online_sources_locally(root_dir: Path, payload: dict[str, Any]) -> dict[str, Any]:
-    """GitHub 仓库推不上去时，把这份名单留在本机。仓库里的文件保持原样。"""
+    """名单以家里电脑为准，写在本机。不改仓库里的文件，也不推 GitHub。"""
     current = read_online_source_config(root_dir).get("config")
     current_config = current if isinstance(current, dict) else {"sources": []}
     _current, config, _sources, changed = prepare_manual_online_config(
@@ -5061,63 +5061,10 @@ def save_and_sync_online_source_config(
     *,
     if_match: Any = None,
 ) -> dict[str, Any]:
-    from scripts.radar.server import auto_collect as auto_collect_api
-
     with online_sources_guard():
         current = read_online_source_config(root_dir).get("config")
         current_config = current if isinstance(current, dict) else {"sources": []}
         if if_match is not None and if_match != online_config_etag(current_config):
             raise _online_error("online_sources_config_stale", 409)
-        disk_etag = online_config_etag(_read_online_json_config(root_dir))
-        try:
-            target = preflight_online_source_save(root_dir)
-        except OnlineSourcesError as exc:
-            if exc.code != "online_sources_preflight_failed":
-                raise
-            return keep_online_sources_locally(root_dir, payload)
-        snapshot = _capture_save_sync_snapshot(root_dir, target["pre_head"])
-        try:
-            save_result = save_online_source_config(
-                root_dir,
-                payload,
-                if_match=disk_etag,
-                _defer_auto_collect=True,
-            )
-            purge_summary = save_result.get("purged_items", {})
-            if isinstance(purge_summary, dict) and purge_summary.get("error"):
-                raise _online_error("online_sources_purge_failed", 500, {"reason": "purge_failed"})
-            sync_result = sync_saved_online_source_config(
-                root_dir,
-                if_match=save_result["etag"],
-            )
-            outcome = sync_result.get("outcome")
-            if sync_result.get("ok") is False or (
-                outcome is not None and outcome not in {"pushed", "no_change"}
-            ):
-                raise _online_error(
-                    "online_sources_sync_incomplete",
-                    409,
-                    {"reason": str(outcome or "unknown")},
-                )
-            sync_result["purged_items"] = purge_summary
-            try:
-                sync_result["auto_collect"] = auto_collect_api.handle_saved_config(
-                    root_dir,
-                    current_config,
-                    save_result["config"],
-                )
-                if sync_result.get("pushed") or outcome == "no_change":
-                    sync_result["auto_collect"] = auto_collect_api.flush_pending_collect(root_dir)
-            except Exception as exc:  # noqa: BLE001 - 同步结果优先于采集派发
-                sync_result["auto_collect"] = {"triggered": False, "error": str(exc)}
-            clear_local_online_overlay(root_dir)
-            return sync_result
-        except Exception as exc:
-            try:
-                _restore_save_sync_snapshot(root_dir, snapshot)
-            except OnlineSourcesError:
-                raise
-            if isinstance(exc, OnlineSourcesError) and exc.code == "online_sources_sync_incomplete":
-                return keep_online_sources_locally(root_dir, payload)
-            raise
+        return keep_online_sources_locally(root_dir, payload)
 
