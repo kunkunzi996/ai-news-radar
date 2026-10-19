@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-10-19T02:15:21Z",
+  "updated_at": "2026-10-19T03:02:31Z",
   "sources": [
     {
       "id": "online_bilibili_13030183",
@@ -674,6 +674,21 @@
       "managed_by": "github_stars",
       "managed_account_id": 284580915,
       "managed_repo_id": 1396939768,
+      "managed_state": "active"
+    },
+    {
+      "id": "online_github_repo_1424340323",
+      "name": "alchaincyf/huashu-motion",
+      "type": "github_release",
+      "enabled": true,
+      "channel": "GitHub Release",
+      "target": "alchaincyf/huashu-motion",
+      "locator": "alchaincyf/huashu-motion",
+      "env": "",
+      "notes": "只追踪 release",
+      "managed_by": "github_stars",
+      "managed_account_id": 284580915,
+      "managed_repo_id": 1424340323,
       "managed_state": "active"
     },
     {
