@@ -152,6 +152,31 @@ def online_opml_path(root_dir: Path) -> Path:
     return (root_dir / ONLINE_OPML_FILENAME).resolve()
 
 
+LOCAL_ONLINE_CONFIG_FILENAME = Path(".local") / "online-sources.json"
+
+
+def local_online_config_path(root_dir: Path) -> Path:
+    return (root_dir / LOCAL_ONLINE_CONFIG_FILENAME).resolve()
+
+
+def read_local_online_overlay(root_dir: Path) -> dict[str, Any] | None:
+    path = local_online_config_path(root_dir)
+    if not path.is_file():
+        return None
+    raw_config = json.loads(path.read_text(encoding="utf-8"))
+    return validate_online_config_schema(raw_config, existing=True)
+
+
+def write_local_online_overlay(root_dir: Path, config: dict[str, Any]) -> None:
+    atomic_replace_bytes(local_online_config_path(root_dir), render_json_bytes(config))
+
+
+def clear_local_online_overlay(root_dir: Path) -> None:
+    path = local_online_config_path(root_dir)
+    if path.is_file():
+        path.unlink()
+
+
 def public_subscription_members_path(root_dir: Path) -> Path:
     return (root_dir / PUBLIC_SUBSCRIPTION_MEMBERS_FILENAME).resolve()
 
@@ -1087,6 +1112,10 @@ def read_online_source_config(root_dir: Path) -> dict[str, Any]:
         github_star_sync=binding,
         deleted_sources=deleted_sources,
     )
+    overlay = read_local_online_overlay(root_dir)
+    if overlay is not None:
+        config = overlay
+        sources = list(overlay.get("sources") or [])
     digest = online_config_digest(config)
     return {
         "ok": True,
@@ -4183,7 +4212,7 @@ def apply_online_source_config_operation(
         recovery = audit_online_source_operation(root_dir)
         if recovery is not None:
             raise _online_error("online_sources_recovery_pending", 409)
-        current_config = _read_online_json_config(root_dir)
+        current_config = read_local_online_overlay(root_dir) or _read_online_json_config(root_dir)
         current_digest = online_config_digest(current_config)
         if current_digest != base_config_digest:
             raise _online_error("online_sources_config_stale", 409)
@@ -5007,6 +5036,25 @@ def save_online_source_config(
         return result
 
 
+def keep_online_sources_locally(root_dir: Path, payload: dict[str, Any]) -> dict[str, Any]:
+    """GitHub 仓库推不上去时，把这份名单留在本机。仓库里的文件保持原样。"""
+    current = read_online_source_config(root_dir).get("config")
+    current_config = current if isinstance(current, dict) else {"sources": []}
+    _current, config, _sources, changed = prepare_manual_online_config(
+        root_dir,
+        payload,
+        current_config=current_config,
+    )
+    write_local_online_overlay(root_dir, config)
+    return _operation_result(
+        config,
+        outcome="local_only",
+        config_changed=changed,
+        write_complete=True,
+        pushed=False,
+    )
+
+
 def save_and_sync_online_source_config(
     root_dir: Path,
     payload: dict[str, Any],
@@ -5018,16 +5066,21 @@ def save_and_sync_online_source_config(
     with online_sources_guard():
         current = read_online_source_config(root_dir).get("config")
         current_config = current if isinstance(current, dict) else {"sources": []}
-        effective_if_match = if_match
-        if effective_if_match is None:
-            effective_if_match = online_config_etag(current_config)
-        target = preflight_online_source_save(root_dir)
+        if if_match is not None and if_match != online_config_etag(current_config):
+            raise _online_error("online_sources_config_stale", 409)
+        disk_etag = online_config_etag(_read_online_json_config(root_dir))
+        try:
+            target = preflight_online_source_save(root_dir)
+        except OnlineSourcesError as exc:
+            if exc.code != "online_sources_preflight_failed":
+                raise
+            return keep_online_sources_locally(root_dir, payload)
         snapshot = _capture_save_sync_snapshot(root_dir, target["pre_head"])
         try:
             save_result = save_online_source_config(
                 root_dir,
                 payload,
-                if_match=effective_if_match,
+                if_match=disk_etag,
                 _defer_auto_collect=True,
             )
             purge_summary = save_result.get("purged_items", {})
@@ -5057,11 +5110,14 @@ def save_and_sync_online_source_config(
                     sync_result["auto_collect"] = auto_collect_api.flush_pending_collect(root_dir)
             except Exception as exc:  # noqa: BLE001 - 同步结果优先于采集派发
                 sync_result["auto_collect"] = {"triggered": False, "error": str(exc)}
+            clear_local_online_overlay(root_dir)
             return sync_result
-        except Exception:
+        except Exception as exc:
             try:
                 _restore_save_sync_snapshot(root_dir, snapshot)
             except OnlineSourcesError:
                 raise
+            if isinstance(exc, OnlineSourcesError) and exc.code == "online_sources_sync_incomplete":
+                return keep_online_sources_locally(root_dir, payload)
             raise
 

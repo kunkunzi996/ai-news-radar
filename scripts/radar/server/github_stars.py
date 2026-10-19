@@ -850,6 +850,9 @@ def _read_service_config(root_dir: Any) -> dict[str, Any]:
             "online_sources_recovery_pending",
             status_code=409,
         )
+    overlay = _online_sources.read_local_online_overlay(root_dir)
+    if overlay is not None:
+        return overlay
     return _online_sources._read_online_json_config(root_dir)
 
 
@@ -926,7 +929,7 @@ def apply_github_star_sync(
             repositories=snapshot["repositories"],
         )
         try:
-            return _online_sources.apply_online_source_config_operation(
+            result = _online_sources.apply_online_source_config_operation(
                 root_dir,
                 merge["config"],
                 operation_kind="apply",
@@ -937,7 +940,18 @@ def apply_github_star_sync(
         except _online_sources.OnlineSourcesError as exc:
             if exc.code == "online_sources_config_stale":
                 raise _error("github_star_preview_stale", 409) from exc
-            raise
+            if exc.code != "online_sources_preflight_failed":
+                raise
+            _online_sources.write_local_online_overlay(root_dir, merge["config"])
+            return _online_sources._operation_result(
+                merge["config"],
+                outcome="local_only",
+                config_changed=True,
+                write_complete=True,
+            )
+        if result.get("pushed") is True:
+            _online_sources.clear_local_online_overlay(root_dir)
+        return result
 
 
 def unbind_github_star_sync(

@@ -58,3 +58,6 @@ server.out.log
 
 # Local runtime logs (含新增信源后自动采集的派发状态与日志)
 logs/
+
+# 家里电脑上的订阅名单。GitHub 推不上去时仍以这份为准，不进仓库。
+.local/

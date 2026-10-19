@@ -977,10 +977,10 @@ class LocalServerTests(unittest.TestCase):
         self.git(peer, "commit", "-m", "remote non-data change")
         self.git(peer, "push")
 
-        with self.assertRaises(online_sources.OnlineSourcesError) as raised:
-            save_and_sync_online_source_config(root, self.online_source_payload("should-not-write"))
+        result = save_and_sync_online_source_config(root, self.online_source_payload("should-not-write"))
 
-        self.assertEqual(raised.exception.code, "online_sources_preflight_failed")
+        self.assertEqual(result["outcome"], "local_only")
+        self.assertEqual(result["pushed"], False)
         self.assertEqual(self.git(root, "rev-parse", "HEAD").stdout.strip(), head_before)
         self.assertEqual(self.git(root, "write-tree").stdout.strip(), index_before)
         self.assertEqual(self.git(root, "stash", "list", "--format=%H %s").stdout, stash_before)
@@ -989,6 +989,8 @@ class LocalServerTests(unittest.TestCase):
             self.assertEqual(current.exists(), exists, path)
             if exists:
                 self.assertEqual(current.read_bytes(), content, path)
+        overlay = json.loads((root / ".local" / "online-sources.json").read_text(encoding="utf-8"))
+        self.assertEqual(overlay["sources"][0]["name"], "should-not-write")
 
     def test_save_and_sync_rejects_existing_local_online_config_dirty_before_writing(self):
         root, _origin, _peer = self.create_sync_git_repositories(self.online_source_payload("initial"))
@@ -999,13 +1001,14 @@ class LocalServerTests(unittest.TestCase):
         dirty_before = config_path.read_bytes()
         head_before = self.git(root, "rev-parse", "HEAD").stdout.strip()
 
-        with self.assertRaises(online_sources.OnlineSourcesError) as raised:
-            save_and_sync_online_source_config(root, self.online_source_payload("should-not-write"))
+        result = save_and_sync_online_source_config(root, self.online_source_payload("should-not-write"))
 
-        self.assertEqual(raised.exception.code, "online_sources_preflight_failed")
-        self.assertEqual(raised.exception.details.get("reason"), "online_sources_config_dirty")
+        self.assertEqual(result["outcome"], "local_only")
+        self.assertEqual(result["pushed"], False)
         self.assertEqual(config_path.read_bytes(), dirty_before)
         self.assertEqual(self.git(root, "rev-parse", "HEAD").stdout.strip(), head_before)
+        overlay = json.loads((root / ".local" / "online-sources.json").read_text(encoding="utf-8"))
+        self.assertEqual(overlay["sources"][0]["name"], "should-not-write")
 
     def test_save_and_sync_restores_config_after_sync_failure_without_touching_data(self):
         sources = self.merge_sync_initial_payload()["sources"]
