@@ -1,15 +1,15 @@
 {
   "version": 2,
   "ok": true,
-  "outcome": "synced",
-  "finished_at": "2026-10-19T03:02:31Z",
+  "outcome": "no_change",
+  "finished_at": "2026-10-19T03:16:23Z",
   "error_code": "",
-  "workflow_run_id": "39192755412",
+  "workflow_run_id": "39193887120",
   "workflow_run_attempt": "1",
-  "workflow_head_sha": "62f96eec91448438ba985794fba08bde50956b1a",
+  "workflow_head_sha": "b7d259519a686c0cc8e8de517f26f6e452e3fa5f",
   "snapshot_complete": true,
-  "snapshot_completed_at": "2026-10-19T03:02:31Z",
-  "purge_state_sha256": "e0b11f30d3cbdd3e0624d78be7ecdc3aef520864a7ec5541f0dd5e8b4f0ea59e",
+  "snapshot_completed_at": "2026-10-19T03:16:23Z",
+  "purge_state_sha256": "99aa4795a333298a10a62eb43b65bbb11926b930f45d2a8d3fde79463f4eb292",
   "pending_absent_repo_ids": [],
   "confirmed_absent_repo_ids": [
     "1219719583",
@@ -21,13 +21,7 @@
   "starred_count": 42,
   "private_skipped_count": 0,
   "summary": {
-    "added": [
-      {
-        "repo_id": 1424340323,
-        "repo": "alchaincyf/huashu-motion",
-        "source_id": "online_github_repo_1424340323"
-      }
-    ],
+    "added": [],
     "disabled": [],
     "re_enabled": [],
     "adopted": [],
