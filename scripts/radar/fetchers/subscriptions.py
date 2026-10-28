@@ -57,7 +57,11 @@ from scripts.radar.common import (
     parse_iso,
 )
 from scripts.radar.config_runtime import youtube_channel_id_from_locator
-from scripts.radar.github_importance import score_github_commit, score_github_release
+from scripts.radar.github_importance import (
+    GithubImportanceDecision,
+    score_github_commit,
+    score_github_release,
+)
 
 try:
     import feedparser
@@ -151,6 +155,11 @@ def _github_commits_url(api_url: str) -> str:
 def _github_repo_identity(*, managed_repo_id: Any = None, source_id: str = "", repo_label: str = "") -> str:
     value = str(managed_repo_id or source_id or repo_label).strip()
     return value
+
+
+def _remember_github_importance(meta: dict[str, Any], decision: GithubImportanceDecision) -> None:
+    meta["github_importance_score"] = decision.score
+    meta["github_importance_reasons"] = list(decision.reasons)
 
 
 def _github_release_item(
@@ -258,9 +267,11 @@ def fetch_github_repo_subscription(
                 structurally_valid_releases += 1
             continue
         structurally_valid_releases += 1
-        if not score_github_release(release).visible or item.url in seen:
+        decision = score_github_release(release)
+        if not decision.visible or item.url in seen:
             continue
         seen.add(item.url)
+        _remember_github_importance(item.meta, decision)
         out.append(item)
 
     if payload and structurally_valid_releases == 0:
@@ -310,12 +321,22 @@ def fetch_github_repo_subscription(
             detail_sha = str(commit_detail.get("sha") or "").strip()
             if detail_sha and detail_sha != sha:
                 raise ValueError("github_commit_detail_identity_mismatch")
-            if not score_github_commit(commit_detail).visible:
+            detail_decision = score_github_commit(commit_detail)
+            if not detail_decision.visible:
                 if result_meta is not None:
                     result_meta["skip_reason"] = "no_important_update"
                 return []
             url = str(commit.get("html_url") or "").strip() or f"https://github.com/{repo_label}/commit/{sha}"
             title = f"{repo_label} 提交: {message}"
+            commit_meta = {
+                "summary": title,
+                "github_source_kind": "commit_fallback",
+                "github_repo_identity": repo_identity,
+                "github_entry_identity": f"commit:{sha}",
+                "commit_sha": sha,
+                "repo": repo_label,
+            }
+            _remember_github_importance(commit_meta, detail_decision)
             out.append(
                 RawItem(
                     site_id=GITHUB_REPO_SUBSCRIPTION_SITE_ID,
@@ -324,14 +345,7 @@ def fetch_github_repo_subscription(
                     title=title,
                     url=url,
                     published_at=timestamp,
-                    meta={
-                        "summary": title,
-                        "github_source_kind": "commit_fallback",
-                        "github_repo_identity": repo_identity,
-                        "github_entry_identity": f"commit:{sha}",
-                        "commit_sha": sha,
-                        "repo": repo_label,
-                    },
+                    meta=commit_meta,
                 )
             )
         elif result_meta is not None:

@@ -521,6 +521,9 @@ PUBLIC_RAW_META_FIELDS: tuple[str, ...] = (
     "tag_name",
     "release_name",
     "prerelease",
+    # 采集当时的重要性判定。展示端有这个分数就不再重算。
+    "github_importance_score",
+    "github_importance_reasons",
 )
 EMAIL_RE = re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b")
 SECRET_LIKE_RE = re.compile(r"\b(sk-(?!hynix\b)[A-Za-z0-9_-]{12,}|(?:api[_-]?key|secret|token)=([^\s&]{6,}))\b", re.I)
