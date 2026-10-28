@@ -12,6 +12,7 @@ _PRERELEASE_RE = re.compile(
     r"(?:^|[\s._-])(alpha|beta|rc|preview|nightly)(?=$|[\s._-]|\d)",
     re.IGNORECASE,
 )
+_SKILL_WORD = r"skills?(?![\w-])"
 _STRONG_INTENT_PATTERNS = (
     re.compile(r"\bbreaking[\s_-]+change\b", re.IGNORECASE),
     re.compile(r"\bfeat(?:\([^)]*\))?!\s*:", re.IGNORECASE),
@@ -22,6 +23,17 @@ _STRONG_INTENT_PATTERNS = (
     ),
     re.compile(r"(?:全新|重大更新|重大功能|核心重构|正式上线|新平台|新集成)"),
     re.compile(r"新增.{0,30}(?:功能|能力|模块|命令|入口|平台|集成|服务)"),
+    # Skill 包的新增/更新本身就是功能变化。强意图 + 一份产品文件 = 70，单文件修改也能过门槛。
+    re.compile(
+        rf"\b(?:add(?:ed|s|ing)?|new|update[ds]?|updating)\b.{{0,80}}\b{_SKILL_WORD}",
+        re.IGNORECASE,
+    ),
+    re.compile(rf"(?:新增|更新|增加|接入).{{0,40}}(?:{_SKILL_WORD}|技能)|新技能", re.IGNORECASE),
+    re.compile(r"(?:^|\n)\s*feat\([^)]*skills?[^)]*\)\s*:", re.IGNORECASE),
+    re.compile(
+        rf"(?:^|\n)\s*feat(?:\([^)]*\))?\s*:[^\n]{{0,120}}\b{_SKILL_WORD}",
+        re.IGNORECASE,
+    ),
 )
 _NORMAL_INTENT_PATTERNS = (
     re.compile(r"(?:^|\n)\s*feat(?:\([^)]*\))?\s*:", re.IGNORECASE),
@@ -61,6 +73,10 @@ _LOCK_FILES = {
     "uv.lock",
     "yarn.lock",
 }
+# 只认技能包产物，不把任意 .md 抬成产品文件。docs/tests 等目录里的同名副本仍走噪声规则。
+_SKILL_PACKAGE_DIRS = {"skill", "skills"}
+_DOC_NOISE_BASENAME_PREFIXES = ("readme", "changelog", "license", "contributing", "code_of_conduct")
+
 _SOURCE_SUFFIXES = {
     ".c",
     ".cc",
@@ -159,21 +175,48 @@ def _normalized_filename(file_info: Mapping[str, Any]) -> str:
     return str(file_info.get("filename") or "").strip().replace("\\", "/").lower()
 
 
+def _path_parts(filename: str) -> list[str]:
+    return [part for part in filename.split("/") if part]
+
+
+def _is_test_like_basename(basename: str) -> bool:
+    return basename.startswith("test_") or ".test." in basename or ".spec." in basename
+
+
+def _is_skill_product_markdown(parts: list[str]) -> bool:
+    """SKILL.md，以及 skill 包目录下的配套 Markdown。普通文档不算。"""
+    if not parts:
+        return False
+    basename = parts[-1]
+    if not basename.endswith(".md"):
+        return False
+    if basename.startswith(_DOC_NOISE_BASENAME_PREFIXES) or _is_test_like_basename(basename):
+        return False
+    parents = parts[:-1]
+    if any(part in _NOISE_DIRS for part in parents):
+        return False
+    if basename == "skill.md":
+        return True
+    return any(part in _SKILL_PACKAGE_DIRS for part in parents)
+
+
 def _is_noise_file(file_info: Mapping[str, Any]) -> bool:
     filename = _normalized_filename(file_info)
     if not filename:
         return True
-    parts = [part for part in filename.split("/") if part]
+    parts = _path_parts(filename)
     basename = parts[-1]
+    if _is_skill_product_markdown(parts):
+        return False
     if any(part in _NOISE_DIRS for part in parts[:-1]):
         return True
     if basename in _LOCK_FILES:
         return True
-    if basename.startswith(("readme", "changelog", "license", "contributing", "code_of_conduct")):
+    if basename.startswith(_DOC_NOISE_BASENAME_PREFIXES):
         return True
     if basename.endswith((".md", ".rst", ".adoc", ".snap", ".min.js", ".min.css")):
         return True
-    if basename.startswith("test_") or ".test." in basename or ".spec." in basename:
+    if _is_test_like_basename(basename):
         return True
     return False
 
@@ -182,6 +225,8 @@ def _is_product_source_file(file_info: Mapping[str, Any]) -> bool:
     if _is_noise_file(file_info):
         return False
     filename = _normalized_filename(file_info)
+    if _is_skill_product_markdown(_path_parts(filename)):
+        return True
     return any(filename.endswith(suffix) for suffix in _SOURCE_SUFFIXES)
 
 
