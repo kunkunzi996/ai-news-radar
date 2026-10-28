@@ -1,6 +1,8 @@
 import json
 from datetime import datetime
 
+import pytest
+
 from scripts.radar.common import apply_public_raw_meta
 from scripts.radar.fetchers.subscriptions import fetch_github_repo_subscription
 from scripts.radar.github_importance import (
@@ -134,6 +136,101 @@ def test_docs_only_change_is_rejected_even_with_strong_title() -> None:
 
     assert decision.visible is False
     assert decision.rejected_reason == "noise_only_files"
+
+
+@pytest.mark.parametrize(
+    "message",
+    [
+        "Add /animation-performance skill",
+        "Add break ui skill",
+        "new skill",
+        "Update skill",
+        "Update SKILL.md",
+        "新增 skill",
+        "更新技能",
+        "新技能",
+        "feat(skills): add animation-performance",
+        "feat: update animation skill",
+        "feat(skill): 调整说明",
+    ],
+)
+def test_skill_update_with_skill_md_is_visible(message: str) -> None:
+    decision = score_github_commit(
+        commit(message, [source_file("skills/animation-performance/SKILL.md")])
+    )
+
+    assert decision.visible is True
+    assert decision.score >= 70
+    assert decision.rejected_reason == ""
+    assert "strong_feature_intent" in decision.reasons
+    assert "product_code" in decision.reasons
+
+
+def test_add_skill_commit_counts_skill_md_not_readme() -> None:
+    decision = score_github_commit(
+        commit(
+            "Add /animation-performance skill",
+            [
+                source_file("README.md", status="modified", changes=1),
+                source_file(
+                    "skills/animation-performance/SKILL.md",
+                    status="added",
+                    changes=223,
+                ),
+            ],
+        )
+    )
+
+    assert decision.visible is True
+    assert decision.score >= 70
+    assert decision.reasons == (
+        "strong_feature_intent",
+        "product_code",
+        "new_product_module",
+        "substantial_product_scope",
+    )
+
+
+def test_skill_noise_messages_and_non_product_files_stay_hidden() -> None:
+    readme = score_github_commit(
+        commit("update readme", [source_file("README.md"), source_file("skills/foo/SKILL.md")])
+    )
+    sync_skill = score_github_commit(
+        commit("sync skill", [source_file("skills/foo/SKILL.md", status="added", changes=200)])
+    )
+    dependabot = score_github_commit(
+        commit("Bump lodash from 1 to 2 by dependabot", [source_file("src/app.py")])
+    )
+    no_files = score_github_commit(commit("Add /animation-performance skill", []))
+    readme_only = score_github_commit(
+        commit("Add /animation-performance skill", [source_file("README.md")])
+    )
+    notes_only = score_github_commit(
+        commit("新增 skill", [source_file("src/notes.md")])
+    )
+    plain_add = score_github_commit(
+        commit("新增说明", [source_file("src/terms.py", changes=30)])
+    )
+    compound = score_github_commit(
+        commit("Add skill-based routing", [source_file("src/router.py", changes=20)])
+    )
+
+    assert readme.visible is False
+    assert readme.rejected_reason == "noise_message"
+    assert sync_skill.visible is False
+    assert sync_skill.rejected_reason == "noise_message"
+    assert dependabot.visible is False
+    assert dependabot.rejected_reason == "noise_message"
+    assert no_files.visible is False
+    assert no_files.rejected_reason == "missing_product_code"
+    assert readme_only.visible is False
+    assert readme_only.rejected_reason == "noise_only_files"
+    assert notes_only.visible is False
+    assert notes_only.rejected_reason == "noise_only_files"
+    assert plain_add.visible is False
+    assert plain_add.score == 50
+    assert compound.visible is False
+    assert compound.rejected_reason == "missing_feature_intent"
 
 
 def test_legacy_archive_visibility_is_conservative_and_non_destructive() -> None:
@@ -300,6 +397,57 @@ def test_scored_commit_fallback_is_visible_and_legacy_commit_stays_hidden() -> N
     }) is False
 
 
+def test_skill_commit_fallback_reaches_detail_and_stays_visible() -> None:
+    sha = "b" * 40
+    message = "Add /animation-performance skill"
+    summary = {
+        "sha": sha,
+        "html_url": f"https://github.com/emilkowalski/skills/commit/{sha}",
+        "commit": {
+            "message": message,
+            "committer": {"date": "2026-10-11T12:00:00Z"},
+        },
+    }
+    detail = {
+        **summary,
+        "files": [
+            {"filename": "README.md", "status": "modified", "changes": 1, "additions": 1, "deletions": 0},
+            {
+                "filename": "skills/animation-performance/SKILL.md",
+                "status": "added",
+                "changes": 223,
+                "additions": 223,
+                "deletions": 0,
+            },
+        ],
+    }
+    summary_decision = score_github_commit(summary)
+    detail_decision = score_github_commit(detail)
+    assert summary_decision.rejected_reason == "missing_product_code"
+    assert detail_decision.visible is True
+
+    class FakeSession:
+        def get(self, url, **kwargs):
+            if url.endswith("/releases"):
+                return _JsonResponse([])
+            if url.endswith("/commits"):
+                return _JsonResponse([summary])
+            return _JsonResponse(detail)
+
+    items = fetch_github_repo_subscription(
+        FakeSession(),
+        datetime.fromisoformat("2026-10-12T00:00:00+00:00"),
+        api_url="https://api.github.com/repos/emilkowalski/skills/releases",
+        repo_label="emilkowalski/skills",
+        source_id="online_github_manual_skills",
+    )
+
+    assert len(items) == 1
+    assert items[0].meta["github_source_kind"] == "commit_fallback"
+    assert items[0].meta["github_importance_score"] == detail_decision.score
+    assert github_archive_record_is_reader_visible(items[0].meta) is True
+
+
 def test_legacy_release_without_stored_score_keeps_rescore_behavior() -> None:
     patch = {
         "github_source_kind": "release",
@@ -331,13 +479,12 @@ def test_legacy_release_without_stored_score_keeps_rescore_behavior() -> None:
 
 # --- Mutation-hardening tests (noise classification, change counting, archive gate) ---
 
-import pytest
-
 from scripts.radar.github_importance import (
     GITHUB_IMPORTANCE_THRESHOLD,
     _decision,
     _file_changes,
     _is_noise_file,
+    _is_product_source_file,
 )
 
 
@@ -359,6 +506,14 @@ from scripts.radar.github_importance import (
         "CONTRIBUTING.txt",
         "code_of_conduct",
         "src/notes.md",
+        "src/skills.md",
+        "performance-cheatsheet.md",
+        "skills/foo/README.md",
+        "skills/foo/docs/guide.md",
+        "skills/foo/core.test.md",
+        "docs/SKILL.md",
+        "tests/fixtures/SKILL.md",
+        ".github/skills/foo/SKILL.md",
         "src/notes.rst",
         "src/notes.adoc",
         "src/ui.snap",
@@ -378,6 +533,13 @@ def test_noise_files_are_classified_as_noise(filename: str) -> None:
     "filename",
     [
         "src/agent.py",
+        "SKILL.md",
+        "skill.md",
+        "skills/animation-performance/SKILL.md",
+        "skills/animate/RECIPES.md",
+        ".claude/skills/foo/SKILL.md",
+        ".agents/skills/foo/NOTES.md",
+        "skills/ai-news-radar/references/source-intake.md",
         "docs.py",
         "tests.py",
         "src/uv.lock.py",
@@ -390,6 +552,21 @@ def test_noise_files_are_classified_as_noise(filename: str) -> None:
     ],
 )
 def test_product_files_are_not_noise(filename: str) -> None:
+    assert _is_noise_file({"filename": filename}) is False
+
+
+@pytest.mark.parametrize(
+    "filename",
+    [
+        "SKILL.md",
+        "skill.md",
+        "skills/animation-performance/SKILL.md",
+        "skills/animate/RECIPES.md",
+        ".agents/skills/foo/NOTES.md",
+    ],
+)
+def test_skill_markdown_is_product_source(filename: str) -> None:
+    assert _is_product_source_file({"filename": filename}) is True
     assert _is_noise_file({"filename": filename}) is False
 
 
