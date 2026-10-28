@@ -237,10 +237,24 @@ def score_github_commit(commit: Mapping[str, Any]) -> GithubImportanceDecision:
     return _decision(score, reasons)
 
 
+def _stored_importance_score(record: Mapping[str, Any]) -> int | float | None:
+    """采集时写入的分数。缺字段或不是数字的旧归档继续走回退。"""
+    if "github_importance_score" not in record:
+        return None
+    value = record.get("github_importance_score")
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return None
+    return value
+
+
 def github_archive_record_is_reader_visible(record: Mapping[str, Any]) -> bool:
+    stored_score = _stored_importance_score(record)
+    if stored_score is not None:
+        # 与采集共用 _decision / GITHUB_IMPORTANCE_THRESHOLD，不再用空 body 重算。
+        return _decision(stored_score, []).visible
     kind = str(record.get("github_source_kind") or "").strip()
     if kind == "commit_fallback":
-        # 旧记录没有文件证据，按高置信度原则保守隐藏，但不删除归档。
+        # 旧记录没有文件证据，也没有采集分数，按高置信度原则保守隐藏，但不删除归档。
         return False
     if kind != "release" and not (record.get("release_id") or record.get("tag_name")):
         return False
