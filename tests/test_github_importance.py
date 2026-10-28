@@ -327,3 +327,152 @@ def test_legacy_release_without_stored_score_keeps_rescore_behavior() -> None:
     assert github_archive_record_is_reader_visible(patch) is score_github_release(
         {"tag_name": "v1.2.3", "name": "v1.2.3", "body": "", "draft": False, "prerelease": False}
     ).visible
+
+
+# --- Mutation-hardening tests (noise classification, change counting, archive gate) ---
+
+import pytest
+
+from scripts.radar.github_importance import (
+    GITHUB_IMPORTANCE_THRESHOLD,
+    _decision,
+    _file_changes,
+    _is_noise_file,
+)
+
+
+@pytest.mark.parametrize(
+    "filename",
+    [
+        "",
+        "   ",
+        "docs/guide.py",
+        "src/tests/helper.py",
+        "pkg/vendor/lib.py",
+        ".github/workflows/ci.py",
+        "a/generated/x.ts",
+        "uv.lock",
+        "frontend/package-lock.json",
+        "README.txt",
+        "ChangeLog",
+        "LICENSE",
+        "CONTRIBUTING.txt",
+        "code_of_conduct",
+        "src/notes.md",
+        "src/notes.rst",
+        "src/notes.adoc",
+        "src/ui.snap",
+        "static/app.min.js",
+        "static/app.min.css",
+        "src/test_core.py",
+        "src/core.test.ts",
+        "src/core.spec.ts",
+        "DOCS\\Guide.py",
+    ],
+)
+def test_noise_files_are_classified_as_noise(filename: str) -> None:
+    assert _is_noise_file({"filename": filename}) is True
+
+
+@pytest.mark.parametrize(
+    "filename",
+    [
+        "src/agent.py",
+        "docs.py",
+        "tests.py",
+        "src/uv.lock.py",
+        "src/my_readme_parser.py",
+        "src/contest_runner.py",
+        "src/latest.py",
+        "src/spectest.ts",
+        "src/core.ts",
+        "a//b/model.go",
+    ],
+)
+def test_product_files_are_not_noise(filename: str) -> None:
+    assert _is_noise_file({"filename": filename}) is False
+
+
+def test_missing_filename_is_noise() -> None:
+    assert _is_noise_file({}) is True
+    assert _is_noise_file({"filename": None}) is True
+
+
+@pytest.mark.parametrize(
+    "value, expected",
+    [(None, 0), ("", 0), (0, 0), (-5, 0), (1, 1), ("42", 42), (150, 150), ("abc", 0), ([1], 0)],
+)
+def test_file_changes_parses_and_clamps(value, expected) -> None:
+    assert _file_changes({"changes": value}) == expected
+
+
+def test_file_changes_missing_key_is_zero() -> None:
+    assert _file_changes({}) == 0
+
+
+def test_decision_clamps_score_bounds() -> None:
+    assert _decision(-10, []).score == 0
+    assert _decision(250, []).score == 100
+    assert _decision(GITHUB_IMPORTANCE_THRESHOLD, []).visible is True
+    assert _decision(GITHUB_IMPORTANCE_THRESHOLD - 1, []).visible is False
+    assert _decision(100, [], "x").visible is False
+
+
+def test_draft_release_is_rejected() -> None:
+    decision = score_github_release({"tag_name": "v2.0.0", "draft": True})
+    assert decision.rejected_reason == "draft"
+    assert decision.score == 0
+    assert decision.visible is False
+
+
+def test_calendar_year_bounds() -> None:
+    assert score_github_release(release("v2000.1.0")).visible is False
+    assert score_github_release(release("v2099.0.0")).visible is False
+    assert score_github_release(release("v1999.0.0")).visible is True
+    assert score_github_release(release("v2100.0.0")).visible is True
+
+
+def test_commit_scope_thresholds_are_inclusive() -> None:
+    msg = "feat: add thing"
+    two = [source_file("src/a.py", changes=10), source_file("src/b.py", changes=10)]
+    three = two + [source_file("src/c.py", changes=10)]
+    assert "substantial_product_scope" not in score_github_commit(commit(msg, two)).reasons
+    assert "substantial_product_scope" in score_github_commit(commit(msg, three)).reasons
+    assert "substantial_product_scope" not in score_github_commit(commit(msg, [source_file("src/a.py", changes=99)])).reasons
+    assert "substantial_product_scope" in score_github_commit(commit(msg, [source_file("src/a.py", changes=100)])).reasons
+    # negative change counts must not reduce the total
+    neg = [source_file("src/a.py", changes=100), source_file("src/b.py", changes=-50)]
+    assert "substantial_product_scope" in score_github_commit(commit(msg, neg)).reasons
+
+
+@pytest.mark.parametrize(
+    "record, expected",
+    [
+        ({"github_importance_score": 70}, True),
+        ({"github_importance_score": 69}, False),
+        ({"github_importance_score": 69.9}, False),
+        ({"github_importance_score": 250}, True),
+        ({"github_importance_score": 90, "github_source_kind": "commit_fallback"}, True),
+        ({"github_importance_score": 10, "github_source_kind": "release", "tag_name": "v2.0.0"}, False),
+        # bool / non-numeric scores fall back to legacy logic
+        ({"github_importance_score": True, "github_source_kind": "release", "tag_name": "v2.0.0"}, True),
+        ({"github_importance_score": True, "github_source_kind": "commit_fallback"}, False),
+        ({"github_importance_score": "90", "github_source_kind": "commit_fallback"}, False),
+        ({"github_importance_score": None, "github_source_kind": "release", "tag_name": "v2.0.0"}, True),
+        # legacy (no stored score) paths
+        ({"github_source_kind": "commit_fallback", "tag_name": "v2.0.0"}, False),
+        ({"github_source_kind": " commit_fallback ", "tag_name": "v2.0.0"}, False),
+        ({"github_source_kind": "release", "tag_name": "v2.0.0"}, True),
+        ({"github_source_kind": " release ", "tag_name": "v2.0.0"}, True),
+        ({"github_source_kind": "release", "tag_name": "v2.0.1"}, False),
+        ({"github_source_kind": "release", "tag_name": "v2.0.0", "prerelease": True}, False),
+        ({"github_source_kind": "release", "release_name": "v3.0.0", "tag_name": ""}, True),
+        ({"github_source_kind": "commit", "tag_name": "v2.0.0"}, True),
+        ({"github_source_kind": "commit", "release_id": 1, "tag_name": "v2.0.0"}, True),
+        ({"github_source_kind": "commit", "release_id": 1, "release_name": "v2.0.0"}, True),
+        ({"github_source_kind": "commit"}, False),
+        ({}, False),
+    ],
+)
+def test_archive_visibility_gate(record, expected) -> None:
+    assert github_archive_record_is_reader_visible(record) is expected

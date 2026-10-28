@@ -61,3 +61,6 @@ logs/
 
 # 家里电脑上的订阅名单。GitHub 推不上去时仍以这份为准，不进仓库。
 .local/
+
+# Mutation-testing tooling
+.metrics/
