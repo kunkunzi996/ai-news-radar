@@ -90,3 +90,70 @@ class PublicSubscriptionMembersTests(unittest.TestCase):
                     self.assertIn(field, item, f"TEST-061：成员缺少字段 {field}")
                     self.assertIsInstance(item[field], str, f"TEST-061：{field} 必须是字符串")
                 self.assertTrue(str(item["name"]).strip(), "TEST-061：name 不能为空")
+
+    def test_write_local_online_overlay_refreshes_members_from_effective_config(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            (root / "config").mkdir()
+            (root / "feeds").mkdir()
+            base_source = {
+                "id": "base_only_feed",
+                "name": "只在基础配置",
+                "type": "rss",
+                "enabled": True,
+                "channel": "RSS/YouTube",
+                "target": "只在基础配置",
+                "locator": "https://example.com/base-only.xml",
+                "env": "",
+                "notes": "公开 feed",
+            }
+            online_sources.write_json_atomic(
+                root / "config" / "online-sources.json",
+                online_sources.build_online_config([base_source]),
+            )
+            # 故意缺 channel/target。写盘后的生效配置会补齐，传入片段不会。
+            overlay = {
+                "version": "1.0",
+                "mode": "online-public-source-config",
+                "updated_at": "2026-07-18T00:00:00Z",
+                "sources": [
+                    {
+                        "id": "online_github_repo_9",
+                        "name": "owner/from-overlay",
+                        "type": "github_release",
+                        "enabled": True,
+                        "locator": "owner/from-overlay",
+                        "env": "",
+                        "notes": "本地 overlay",
+                    }
+                ],
+            }
+
+            online_sources.write_local_online_overlay(root, overlay)
+
+            public_path = root / "data" / "subscription-members.json"
+            self.assertTrue(public_path.is_file(), "写入本地 overlay 后必须重写公开订阅名单")
+            payload = json.loads(public_path.read_text(encoding="utf-8"))
+            members = payload["members"]
+            names = [item["name"] for item in members]
+            self.assertIn("owner/from-overlay", names)
+            self.assertNotIn("只在基础配置", names)
+            new_member = next(item for item in members if item["locator"] == "owner/from-overlay")
+            effective_sources = online_sources.read_online_source_config(root)["config"]["sources"]
+            effective = next(
+                source for source in effective_sources if source["locator"] == "owner/from-overlay"
+            )
+            self.assertEqual(new_member["channel"], effective["channel"])
+            self.assertEqual(new_member["target"], effective["target"])
+            self.assertEqual(new_member["channel"], "GitHub Release")
+            self.assertEqual(new_member["target"], "owner/from-overlay")
+            self.assertEqual(
+                {item["locator"] for item in members},
+                {
+                    str(source.get("locator") or "")
+                    for source in effective_sources
+                    if source.get("enabled") is not False
+                    and str(source.get("type") or "") != "opmlrss"
+                    and str(source.get("name") or "").strip()
+                },
+            )

@@ -158,6 +158,37 @@ class GitHubStarAutosyncTests(unittest.TestCase):
         self.assertEqual(source["managed_state"], "active")
         self.assertNotEqual(after["updated_at"], "2026-07-15T00:00:00Z")
 
+    def test_new_star_refreshes_public_subscription_members_from_effective_config(self):
+        self.write_config(config_with([rss_source(1)]))
+
+        result = github_star_autosync.run_autosync(
+            self.root, session=self.session_for([public_repo(1, "owner/one")])
+        )
+
+        self.assertEqual(result["outcome"], "synced")
+        public_path = self.root / "data" / "subscription-members.json"
+        self.assertTrue(public_path.is_file(), "Star 同步写配置后必须重写公开订阅名单")
+        payload = json.loads(public_path.read_text(encoding="utf-8"))
+        members = payload["members"]
+        new_member = next(item for item in members if item["locator"] == "owner/one")
+        self.assertEqual(new_member["name"], "owner/one")
+        self.assertEqual(new_member["type"], "github_release")
+        self.assertEqual(new_member["target"], "owner/one")
+        effective_sources = online_sources.read_online_source_config(self.root)["config"]["sources"]
+        expected_locators = {
+            str(source.get("locator") or "")
+            for source in effective_sources
+            if source.get("enabled") is not False
+            and str(source.get("type") or "") != "opmlrss"
+            and str(source.get("name") or "").strip()
+        }
+        self.assertEqual({item["locator"] for item in members}, expected_locators)
+        self.assertIn("https://example.com/1.xml", expected_locators)
+        self.assertNotIn(
+            "feeds/online-sources.opml",
+            {item["locator"] for item in members},
+        )
+
     def test_unstar_disables_without_deleting_or_changing_other_sources(self):
         unchanged = manual_source("manual_keep", "owner/manual", name="Keep manual")
         self.write_config(
