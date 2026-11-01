@@ -169,6 +169,7 @@ def read_local_online_overlay(root_dir: Path) -> dict[str, Any] | None:
 
 def write_local_online_overlay(root_dir: Path, config: dict[str, Any]) -> None:
     atomic_replace_bytes(local_online_config_path(root_dir), render_json_bytes(config))
+    refresh_public_subscription_members(root_dir)
 
 
 def clear_local_online_overlay(root_dir: Path) -> None:
@@ -209,6 +210,13 @@ def write_public_subscription_members(root_dir: Path, sources: list[dict[str, An
         raise ValueError("invalid_public_subscription_members_path")
     path.parent.mkdir(parents=True, exist_ok=True)
     write_json_atomic(path, build_public_subscription_members(sources))
+
+
+def refresh_public_subscription_members(root_dir: Path) -> None:
+    # 生效配置以读回结果为准：本地 overlay 存在时整份替代基础配置。
+    # 这里只读配置，不跑 audit/recovery。
+    effective = read_online_source_config(root_dir)
+    write_public_subscription_members(root_dir, list(effective["config"]["sources"]))
 
 
 def ensure_public_online_paths(root_dir: Path) -> tuple[Path, Path]:

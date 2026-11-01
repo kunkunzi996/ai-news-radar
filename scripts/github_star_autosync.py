@@ -279,6 +279,9 @@ def _write_config_pair(
         code = exc.code if isinstance(exc, AutosyncError) else "config_pair_write_failed"
         raise AutosyncError(code) from exc
 
+    # 写后校验已通过。名单刷新放在回滚逻辑之外，失败时不把已落盘的配置对撤掉。
+    _online_sources.refresh_public_subscription_members(root_dir)
+
 
 def run_autosync(
     root_dir: Path,
