@@ -303,6 +303,7 @@ https://kunkunzi996.github.io/ai-news-radar/data/source-status.json
 
 公开采集以这一张订阅名单为准（`config/online-sources.json`）。
 在本机设置的信源页加入或删除后会当场写入并推送，不用再按第二下。
+写完公开配置对、本地 overlay（`.local/online-sources.json`）或 Star 自动同步改配置后，都会按**生效配置**重写本机 `data/subscription-members.json`（该文件 gitignore，不进仓库；有 overlay 时整份替代基础配置）。工作台「我的订阅」读的就是这份公开成员名单。
 
 本地打开 `http://127.0.0.1:8080/` 后，在“信源配置”区域可以看到
 “线上信源”面板。第一版只支持添加、启用/停用和删除三类公开安全源：
@@ -378,6 +379,7 @@ V3 已于 2026-07-16 完成真实账号验收。本地控制台仍负责首次�
 两个不同运行都确认缺失后才停用。空快照、数量骤降、账户/分页异常或重复 repo ID 都会熔断并转人工。
 同步状态见 `data/github-star-autosync.json`，连续确认状态见 `data/github-star-purge-state.json`；没有配置
 变化时，配置文件和 `updated_at` 保持不变，但状态心跳仍会刷新。
+配置对一旦落盘（含 Star 自动同步写入），会按生效配置重写 `data/subscription-members.json`，避免只改星标托管源后工作台仍读到旧成员名单。
 
 需要清理已经确认取消星标的 GitHub 历史时，先保持 `STAR_SUBSCRIPTION_CLEANUP_MODE=off` 等待两次
 完整同步；然后由维护者手动设为 `audit`，核对 `data/github-star-subscription-cleanup.json` 的候选 repo ID、

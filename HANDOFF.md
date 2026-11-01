@@ -2,6 +2,13 @@
 
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，完整状态在 `PROJECT_STATE.md`。
 
+
+## 当前入口（2026-11-02）：overlay/Star 同步后自动重写公开订阅名单（#68 已合）
+
+- [PR #68](https://github.com/kunkunzi996/ai-news-radar/pull/68) `857f5c8` 已合 master。本地 overlay 写入与 Star 自动同步写配置对之后，都会按生效配置重写 `data/subscription-members.json`（gitignore，不进仓）。
+- 改订阅成员可见性时：先确认生效配置（overlay 优先），再看运行仓里的 `subscription-members.json` 是否跟着刷；不要只查 `config/online-sources.json`。
+- 本仓无活跃四文件。工作台侧抖音/B 站稳定 ID 匹配见工作台 #538/#539。下一需求先读本入口与 `CLAUDE.md`。
+
 ## 抖音作品改读页面自己的列表（2026-10-06，已验收）
 
 - 人看见的作品来自页面自己的请求。不要再发把这台 Windows 机器说成另一套浏览器的第二次请求，也不要把 `AutomationControlled` 加回启动参数。

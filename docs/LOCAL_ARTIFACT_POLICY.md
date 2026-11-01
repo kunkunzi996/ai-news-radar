@@ -7,7 +7,7 @@
 
 | 路径 | 为什么保留本地 | 提交规则 |
 |---|---|---|
-| `data/*.json` | 本地网页直接读取这些文件，所以它们对预览和验收有用。 | 这些是 Git 已追踪的生成快照。生成链路已会清理小红书 `xsec_token` / `xsec_source` 等临时参数；旧的本地脏数据仍需重新生成后才会变干净。提交前还要审查 diff。 |
+| `data/*.json` | 本地网页直接读取这些文件，所以它们对预览和验收有用。 | 多数是 Git 已追踪的生成快照。例外：`data/subscription-members.json` 已加入忽略，由生效线上配置（含本地 overlay）在写 overlay / 写公开配置对 / Star 同步后自动重写，只留运行仓。其余快照生成链路已会清理小红书 `xsec_token` / `xsec_source` 等临时参数；旧的本地脏数据仍需重新生成后才会变干净。提交前还要审查 diff。 |
 | `sources.config.json` | 本地信源配置面板的个人启用/停用选择。 | 已加入忽略，只留本地。 |
 | `feeds/follow.opml` | 私人 OPML/RSS 订阅清单。 | 已加入忽略，只留本地。 |
 | `E:\AI-news-reader\MediaCrawler-local-test\output\**\*.jsonl` | MediaCrawler 导出的爬虫结果，主项目只读取它。 | 保留在主仓库外，不要复制进主仓库。 |
