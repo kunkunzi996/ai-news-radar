@@ -1,5 +1,13 @@
 # PROJECT_STATE
 
+
+## 当前（2026-11-02）：overlay/Star 同步后自动重写公开订阅名单（#68 已合）
+
+- master 最新 `857f5c8`：[PR #68](https://github.com/kunkunzi996/ai-news-radar/pull/68) 已合。`write_local_online_overlay` 与 `github_star_autosync._write_config_pair` 写完配置后，按生效配置（本地 overlay 存在时整份替代基础 `config/online-sources.json`）重写 `data/subscription-members.json`。该文件在 `.gitignore`，只留本机/运行仓，不进仓库。
+- 原先只有直接写公开配置对（`write_online_source_config` / 同步事务）会刷名单；只改 overlay 或 Star 自动同步改配置时，工作台读到的公开成员名单会旧。本轮补上这两条写后路径。
+- 用户验收通过。当前无活跃 SPEC/PLAN/TASK/TEST。轻量轮次，无四文件可归档。不要把 Cookie、Token、签名材料写进仓库、日志或对话。
+- 未做：不改工作台匹配逻辑（见工作台 #538/#539）；不部署本轮文档。
+
 ## 抖音作品改读页面自己的列表（2026-10-06，已部署并验收）
 
 - **现象**：网页抖音从 2026-10-03 08:17 北京起没有新内容。计划任务在跑，登录还在，五个号的主页都通，作品列表被标成 `douyin_risk_control`，桥接不覆盖。
