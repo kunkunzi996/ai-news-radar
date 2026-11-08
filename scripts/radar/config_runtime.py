@@ -220,6 +220,8 @@ def apply_source_config_runtime(config: dict[str, Any] | None) -> dict[str, Any]
     xhs_jsonls: list[str] = []
     xhs_names: list[str] = []
     opml_path = ""
+    rss_feeds: list[dict[str, str]] = []
+    seen_feed_urls: set[str] = set()
 
     for source in enabled_sources:
         site_ids = source_config_record_site_ids(source)
@@ -237,7 +239,18 @@ def apply_source_config_runtime(config: dict[str, Any] | None) -> dict[str, Any]
         if WE_MP_RSS_JSONL_SITE_ID in site_ids and locator:
             we_mp_jsonl_dirs.append(locator)
         if "opmlrss" in site_ids and locator:
-            opml_path = locator
+            # 频道地址是订阅，不是清单文件。写进同一个路径会在 Windows 上变成
+            # https:\www.youtube.com\...，采集还没请求油管就报文件不存在。
+            if str(source.get("type") or "").strip() == "rss" or _locator_is_http(locator):
+                if locator not in seen_feed_urls:
+                    seen_feed_urls.add(locator)
+                    rss_feeds.append({
+                        "title": name or target,
+                        "xml_url": locator,
+                        "html_url": "",
+                    })
+            else:
+                opml_path = locator
         if MEDIACRAWLER_DOUYIN_SITE_ID in site_ids:
             applied_env.append("MEDIACRAWLER_DOUYIN_ENABLED")
             os.environ["MEDIACRAWLER_DOUYIN_ENABLED"] = "1"
@@ -297,7 +310,13 @@ def apply_source_config_runtime(config: dict[str, Any] | None) -> dict[str, Any]
         "enabled_site_ids": sorted(enabled_site_ids),
         "applied_env": sorted(set(applied_env)),
         "rss_opml": opml_path,
+        "rss_feeds": rss_feeds,
     }
+
+
+def _locator_is_http(value: str) -> bool:
+    parsed = urlparse(str(value or "").strip())
+    return parsed.scheme in {"http", "https"} and bool(parsed.netloc)
 
 
 def github_release_api_url_from_config(locator: str) -> str:

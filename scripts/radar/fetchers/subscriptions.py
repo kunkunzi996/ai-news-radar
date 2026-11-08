@@ -1336,14 +1336,26 @@ def fetch_feed_response(
 
 def fetch_opml_rss(
     now: datetime,
-    opml_path: Path,
+    opml_path: Path | None = None,
     max_feeds: int = 0,
     existing_source_keys: frozenset[tuple[str, str]] | set[tuple[str, str]] | None = None,
     existing_member_ids: frozenset[tuple[str, str]] | set[tuple[str, str]] | None = None,
     archive: dict[str, dict[str, Any]] | None = None,
     sleeper: Any | None = None,
+    extra_feeds: list[dict[str, str]] | None = None,
 ) -> tuple[list[RawItem], dict[str, Any], list[dict[str, Any]]]:
-    feeds = parse_opml_subscriptions(opml_path)
+    feeds = parse_opml_subscriptions(opml_path) if opml_path else []
+    seen_urls = {feed["xml_url"] for feed in feeds}
+    for extra in extra_feeds or []:
+        xml_url = str(extra.get("xml_url") or "").strip()
+        if not xml_url or xml_url in seen_urls:
+            continue
+        seen_urls.add(xml_url)
+        feeds.append({
+            "title": str(extra.get("title") or "").strip() or host_of_url(xml_url) or xml_url,
+            "xml_url": xml_url,
+            "html_url": str(extra.get("html_url") or "").strip(),
+        })
     if max_feeds > 0:
         feeds = feeds[:max_feeds]
 
