@@ -11,6 +11,7 @@ import time
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlparse
 
 from scripts import github_star_autosync
 
@@ -807,22 +808,35 @@ def collect_stage(session: Any, ctx: RunContext) -> CollectStageResult:
                     }
                 )
 
-    rss_opml_path = str(source_config_runtime.get("rss_opml") or args.rss_opml or "").strip()
+    rss_opml_path = str(source_config_runtime.get("rss_opml") or "").strip()
+    direct_rss_feeds = [
+        feed for feed in (source_config_runtime.get("rss_feeds") or [])
+        if isinstance(feed, dict) and str(feed.get("xml_url") or "").strip()
+    ]
+    cli_rss_opml = str(args.rss_opml or "").strip()
+    if cli_rss_opml:
+        parsed_cli_rss = urlparse(cli_rss_opml)
+        if parsed_cli_rss.scheme in {"http", "https"} and parsed_cli_rss.netloc:
+            direct_rss_feeds.append({"title": "", "xml_url": cli_rss_opml, "html_url": ""})
+        elif not rss_opml_path:
+            rss_opml_path = cli_rss_opml
     rss_opml_enabled = bool(
-        rss_opml_path
+        (rss_opml_path or direct_rss_feeds)
         and (active_source_ids is None or "opmlrss" in active_source_ids)
     )
     if rss_opml_enabled:
-        opml_path = Path(rss_opml_path).expanduser()
-        if opml_path.exists():
+        opml_path = Path(rss_opml_path).expanduser() if rss_opml_path else None
+        opml_exists = bool(opml_path and opml_path.exists())
+        if opml_exists or direct_rss_feeds:
             _collect_log("opmlrss start")
             rss_items, rss_summary_status, rss_feed_statuses = fetch_opml_rss(
                 now,
-                opml_path,
+                opml_path if opml_exists else None,
                 max_feeds=max(0, int(args.rss_max_feeds)),
                 existing_source_keys=existing_source_keys,
                 existing_member_ids=existing_member_ids,
                 archive=ctx.archive,
+                extra_feeds=direct_rss_feeds,
             )
             raw_items.extend(rss_items)
             statuses.append(rss_summary_status)
