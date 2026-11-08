@@ -3,7 +3,13 @@
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，完整状态在 `PROJECT_STATE.md`。
 
 
-## 当前入口（2026-11-02）：overlay/Star 同步后自动重写公开订阅名单（#68 已合）
+## 当前入口（2026-11-08）：抖音定时采集改读本机订阅名单（#71 已合）
+
+- master `11c4827`：[PR #71](https://github.com/kunkunzi996/ai-news-radar/pull/71)。本机生效名单是 `.local/online-sources.json`，存在则整份替代 `config/`。新的 NUC 采集入口必须和 `collect-at-home.ps1` 一样读，禁止写死 `config/online-sources.json`。
+- 正式页用户已看到新加的抖音号。NUC 运行目录没有整仓快进，工作区是脏的；不要在那里直接改代码，也不要 `git pull --ff-only`。
+- 本仓无活跃四文件。下一需求先读本入口和 `CLAUDE.md`「本机订阅名单」一节。
+
+## 此前（2026-11-02）：overlay/Star 同步后自动重写公开订阅名单（#68 已合）
 
 - [PR #68](https://github.com/kunkunzi996/ai-news-radar/pull/68) `857f5c8` 已合 master。本地 overlay 写入与 Star 自动同步写配置对之后，都会按生效配置重写 `data/subscription-members.json`（gitignore，不进仓）。
 - 改订阅成员可见性时：先确认生效配置（overlay 优先），再看运行仓里的 `subscription-members.json` 是否跟着刷；不要只查 `config/online-sources.json`。

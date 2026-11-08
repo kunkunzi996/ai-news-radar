@@ -25,6 +25,10 @@ YouTube 订阅成员、脚本 `?v=` / 工作台 `wb=` 见 `AGENTS.md`。已阅�
 
 ## 禁区索引
 
+### 本机订阅名单
+
+网页和本机任务改的是 `.local/online-sources.json`。这份文件存在时整份替代 `config/online-sources.json`，没有才回退。`scripts/windows/collect-at-home.ps1` 已经按这个口径读。NUC 上新的采集入口必须相同，禁止再写死 `config/online-sources.json`。云端 Actions 没有这份 overlay，仍读仓库里的 `config/`。
+
 事故经过在 `docs/rules/` 与 `docs/bugs/`。这里只留硬规则和别处没有的操作事实。
 
 ### 清理历史条目的禁区
