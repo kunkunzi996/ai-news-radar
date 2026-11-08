@@ -3,7 +3,13 @@
 > 跨窗口接力用，只写下一轮必须知道的。长期施工规则在 `CLAUDE.md`，完整状态在 `PROJECT_STATE.md`。
 
 
-## 当前入口（2026-11-08）：抖音定时采集改读本机订阅名单（#71 已合）
+## 当前入口（2026-11-09）：油管频道地址按订阅去拉（#73 已合）
+
+- master `6a852b67`：[PR #73](https://github.com/kunkunzi996/ai-news-radar/pull/73)。频道 `rss` 地址按订阅请求；清单文件只来自 `opmlrss`。不要再把 `https://` 写进 OPML 路径。
+- 用户已确认雷达页油管红标消失。油管官方订阅偶发 404 仍走原来的 3 次重试和 `keep_last_rss`，不要换 RSSHub。
+- NUC master 已是这份代码。工作区还有未提交改动，下次 pull 不要 reset。本仓无活跃四文件。
+
+## 此前（2026-11-08）：抖音定时采集改读本机订阅名单（#71 已合）
 
 - master `11c4827`：[PR #71](https://github.com/kunkunzi996/ai-news-radar/pull/71)。本机生效名单是 `.local/online-sources.json`，存在则整份替代 `config/`。新的 NUC 采集入口必须和 `collect-at-home.ps1` 一样读，禁止写死 `config/online-sources.json`。
 - 正式页用户已看到新加的抖音号。NUC 运行目录没有整仓快进，工作区是脏的；不要在那里直接改代码，也不要 `git pull --ff-only`。
