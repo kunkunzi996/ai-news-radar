@@ -1,7 +1,15 @@
 # PROJECT_STATE
 
 
-## 当前（2026-11-08）：抖音定时采集改读本机订阅名单（#71 已合，正式已看到）
+## 当前（2026-11-09）：油管频道地址按订阅去拉（#73 已合，红标已消失）
+
+- master `6a852b67`：[PR #73](https://github.com/kunkunzi996/ai-news-radar/pull/73)。`type=rss` 的频道地址单独请求，不再写入 OPML 文件路径；`type=opmlrss` 仍用清单文件。同一地址只拉一次。
+- 根因：频道地址和清单文件共用一个路径格子。地址被当成 Windows 文件路径后，采集还没请求油管就失败，页面油管通道一直异常。官方订阅地址本身是通的。
+- 验收：`tests/test_direct_rss_feeds.py` 3 passed，既有油管 RSS 测试 4 passed。2026-11-09 01:07 家里采集后 `opmlrss` ok，脑总、小岛大浪吹都是 `live_rss`、各 5 条。用户确认雷达页红标消失。
+- NUC `C:\AI-news-reader\ai-news-radar-run` 的 master 已快进到 `6a852b67`。工作区仍有未提交改动（含抖音 `LocalBridgeOnly`、GitHub 小结和 `data/**`）。下次 pull 不要 reset，先看重叠文件。
+- 当前无活跃 SPEC/PLAN/TASK/TEST。不要把 Cookie、Token 写进仓库、日志或对话。仍不要改用公共 RSSHub。
+
+## 此前（2026-11-08）：抖音定时采集改读本机订阅名单（#71 已合，正式已看到）
 
 - master `11c4827`：[PR #71](https://github.com/kunkunzi996/ai-news-radar/pull/71)。`collect-douyin-and-push.ps1` 与 `collect-at-home.ps1` 同一口径：`.local/online-sources.json` 存在时整份使用，没有才回退 `config/online-sources.json`。
 - 根因：网页订阅写在本机 overlay，抖音定时脚本仍读 2026-10-19 的 `config/online-sources.json`，之后从网页新加的抖音号不会被抓。B 站 / RSS / GitHub 走家里采集，本来就读 overlay。
