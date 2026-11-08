@@ -2,7 +2,7 @@
 #
 # 用途：在 24 小时在线的云 Windows 上定时运行——
 #   1. 拉取主仓库最新代码（获取最新的抖音博主配置）。
-#   2. 从 config/online-sources.json 读取启用的抖音博主。
+#   2. 读取启用的抖音博主：.local/online-sources.json 存在时整份用它，否则用 config/online-sources.json。
 #   3. 调用 MediaCrawler（经 scripts/run_mediacrawler_douyin.py）抓取博主最新作品。
 #   4. 把最新 creator JSONL 复制进私有桥接仓库并 git push。
 #      GitHub Actions 刷新时会克隆桥接仓库读取该 JSONL。
@@ -335,7 +335,11 @@ if ($CreatorIds) {
     $secUids = @($CreatorIds.Split(",") | ForEach-Object { $_.Trim() } | Where-Object { $_ } | Select-Object -Unique)
     $creatorNames = @("(manual)")
 } else {
-    $configPath = Join-Path $RadarRoot "config\online-sources.json"
+    # 网页订阅写在 .local overlay，存在时整份替代 config/。与 collect-at-home.ps1 同一口径。
+    $configPath = Join-Path $RadarRoot ".local\online-sources.json"
+    if (-not (Test-Path -LiteralPath $configPath)) {
+        $configPath = Join-Path $RadarRoot "config\online-sources.json"
+    }
     $config = Get-Content -LiteralPath $configPath -Raw -Encoding UTF8 | ConvertFrom-Json
     $douyinSources = @($config.sources | Where-Object {
             $_.type -eq "mediacrawler_jsonl" -and $_.enabled -ne $false -and $_.locator -match "douyin\.com/user/"
