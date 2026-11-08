@@ -1,7 +1,15 @@
 # PROJECT_STATE
 
 
-## 当前（2026-11-02）：overlay/Star 同步后自动重写公开订阅名单（#68 已合）
+## 当前（2026-11-08）：抖音定时采集改读本机订阅名单（#71 已合，正式已看到）
+
+- master `11c4827`：[PR #71](https://github.com/kunkunzi996/ai-news-radar/pull/71)。`collect-douyin-and-push.ps1` 与 `collect-at-home.ps1` 同一口径：`.local/online-sources.json` 存在时整份使用，没有才回退 `config/online-sources.json`。
+- 根因：网页订阅写在本机 overlay，抖音定时脚本仍读 2026-10-19 的 `config/online-sources.json`，之后从网页新加的抖音号不会被抓。B 站 / RSS / GitHub 走家里采集，本来就读 overlay。
+- 验收：`tests/test_douyin_collect_source_config.py` 3 passed。2026-11-08 23:25 正式 `DouyinCollectAndPush` 结果 0，6 位含 Vincent，该号 completed、写入 10 条。`RadarHomeCollect` 结果 0，`data/archive.json` 里该号 10 条。用户确认正式页能看到。
+- NUC `C:\AI-news-reader\ai-news-radar-run` 没有整仓快进。路径选择已按这个提交补进正在跑的脚本；目录仍有未提交改动（含 `LocalBridgeOnly` 和 `data/**`）。下次不要在这份脏工作区上 `git pull --ff-only`。
+- 当前无活跃 SPEC/PLAN/TASK/TEST。不要把 Cookie、Token 写进仓库、日志或对话。
+
+## 此前（2026-11-02）：overlay/Star 同步后自动重写公开订阅名单（#68 已合）
 
 - master 最新 `857f5c8`：[PR #68](https://github.com/kunkunzi996/ai-news-radar/pull/68) 已合。`write_local_online_overlay` 与 `github_star_autosync._write_config_pair` 写完配置后，按生效配置（本地 overlay 存在时整份替代基础 `config/online-sources.json`）重写 `data/subscription-members.json`。该文件在 `.gitignore`，只留本机/运行仓，不进仓库。
 - 原先只有直接写公开配置对（`write_online_source_config` / 同步事务）会刷名单；只改 overlay 或 Star 自动同步改配置时，工作台读到的公开成员名单会旧。本轮补上这两条写后路径。
