@@ -16,6 +16,7 @@ from urllib.parse import urlparse
 from scripts import github_star_autosync
 
 from scripts.ai_relevance import AI_RELEVANCE_THRESHOLD, add_ai_relevance_fields
+from scripts.radar.github_summary import apply_github_summaries
 from scripts.radar.common import (
     AGENTMAIL_DIGEST_FILE,
     DEPLOYED_SOURCE_SCOPE_DEFAULT,
@@ -1239,6 +1240,14 @@ def enrich_stage(session: Any, ctx: RunContext, collected: CollectStageResult, m
     tikhub_status = collected.tikhub_status
     mediacrawler_douyin_status = collected.mediacrawler_douyin_status
     mediacrawler_xhs_status = collected.mediacrawler_xhs_status
+    # GitHub release 中文小结：写到归档记录的 summary_zh，按 release_id 缓存，失败不影响本轮。
+    github_summary_stats = apply_github_summaries(
+        archive.values(),
+        raw_items,
+        session,
+        title_cache_path.parent / "github-summary-cache.json",
+    )
+    print(f"GitHub summaries: {json.dumps(github_summary_stats, ensure_ascii=False)}")
     window_start = datetime.min.replace(tzinfo=UTC) if all_time else now - timedelta(hours=args.window_hours)
     latest_items_all: list[dict[str, Any]] = []
     for record in archive.values():

@@ -1,4 +1,6 @@
 function feedSummaryText(item) {
+  const summaryZh = String(item.summary_zh || "").trim();
+  if (summaryZh) return summaryZh;
   const signals = Array.isArray(item.ai_signals) ? item.ai_signals.filter(Boolean).slice(0, 2) : [];
   if (signals.length) return `相关线索：${signals.join(" / ")}。`;
   const reason = reasonText(item);

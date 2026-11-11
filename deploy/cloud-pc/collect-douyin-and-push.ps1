@@ -34,7 +34,9 @@ param(
     # 日志文件路径（留空不记录；计划任务传入以便无人值守排查）
     [string]$LogFile = "",
     # 本轮机器可判定状态；conhost 不透传子进程退出码，因此计划任务必须传入
-    [string]$StatusFile = ""
+    [string]$StatusFile = "",
+    # Local-only bridge: no pull/push/ls-remote on BridgeRoot
+    [switch]$LocalBridgeOnly
 )
 
 $ErrorActionPreference = "Stop"
@@ -42,6 +44,8 @@ if ($LogFile) {
     try { Start-Transcript -Path $LogFile -Append | Out-Null } catch { Write-Warning "日志启动失败：$_" }
 }
 $env:PYTHONIOENCODING = "utf-8"
+$env:GIT_TERMINAL_PROMPT = "0"
+$env:GCM_INTERACTIVE = "never"
 
 function Write-Step([string]$Message) {
     Write-Host ("[{0}] {1}" -f (Get-Date -Format "yyyy-MM-dd HH:mm:ss"), $Message)
@@ -70,6 +74,7 @@ function Invoke-GitText([string]$RepoDir, [string[]]$GitArgs) {
 }
 
 function Assert-RemoteHead([string]$RepoDir) {
+    if ($LocalBridgeOnly) { return ([string](Invoke-GitText $RepoDir @("rev-parse", "HEAD") | Select-Object -First 1)).Trim() }
     $branch = ([string](Invoke-GitText $RepoDir @("branch", "--show-current") | Select-Object -First 1)).Trim()
     if (-not $branch) { throw "Cannot determine bridge branch: $RepoDir" }
     $localHead = ([string](Invoke-GitText $RepoDir @("rev-parse", "HEAD") | Select-Object -First 1)).Trim()
@@ -360,7 +365,7 @@ Write-Step ("本次采集 {0} 个博主：{1}" -f $secUids.Count, ($creatorNames
 $script:FailureStage = "bridge_preflight"
 $bridgeDirty = @((Invoke-GitText $BridgeRoot @("status", "--porcelain")) | Where-Object { $_ })
 if ($bridgeDirty.Count -gt 0) { throw "Douyin bridge has existing changes; refusing to continue." }
-Invoke-GitText $BridgeRoot @("pull", "--ff-only") | Out-Null
+if (-not $LocalBridgeOnly) { Invoke-GitText $BridgeRoot @("pull", "--ff-only") | Out-Null }
 $bridgeHeadBefore = ([string](Invoke-GitText $BridgeRoot @("rev-parse", "HEAD") | Select-Object -First 1)).Trim()
 $script:Status.bridge_head_before = $bridgeHeadBefore
 $script:Status.bridge_head_after = $bridgeHeadBefore
@@ -541,6 +546,6 @@ if (-not $script:Status.bridge_changed) {
 $stage = if ($contentChanged) { "completed_pushed" } else { "completed_pushed_metadata_only" }
 $commitMessage = if ($contentChanged) { "数据：更新抖音采集 JSONL" } else { "数据：迁移抖音桥接清单格式" }
 if ((Invoke-Git $BridgeRoot @("commit", "-m", $commitMessage)) -ne 0) { throw "Bridge commit failed." }
-if ((Invoke-Git $BridgeRoot @("push")) -ne 0) { throw "Bridge push failed." }
+if (-not $LocalBridgeOnly) { if ((Invoke-Git $BridgeRoot @("push")) -ne 0) { throw "Bridge push failed." } }
 $script:Status.bridge_head_after = Assert-RemoteHead $BridgeRoot
 Exit-Run "succeeded" $stage ("Collection completed: {0} appended rows, {1} new unique works; bridge pushed." -f $runnerResult.crawl_output_rows, $runnerResult.new_unique_items) 0

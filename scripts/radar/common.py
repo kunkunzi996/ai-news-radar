@@ -701,12 +701,40 @@ def aihot_record_is_selected(record: Any) -> bool:
     return bool(value)
 
 
+SOURCE_FLAGS_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "config", "source-flags.json")
+
+
+def aihot_x_original_enabled() -> bool:
+    """config/source-flags.json 的 aihot_x_original_enabled=false 时关闭「推特」栏（aihot 公开池 x.com 原文）。缺文件/读失败=开启。"""
+    try:
+        with open(SOURCE_FLAGS_PATH, "r", encoding="utf-8-sig") as fh:
+            flags = json.load(fh)
+        return bool(flags.get("aihot_x_original_enabled", True))
+    except Exception:
+        return True
+
+
+def aihot_x_selected_enabled() -> bool:
+    """config/source-flags.json 的 aihot_x_selected_enabled=false 时从读者展示滤掉 AI HOT 精选里的 x.com/twitter.com。缺文件/读失败=开启。"""
+    try:
+        with open(SOURCE_FLAGS_PATH, "r", encoding="utf-8-sig") as fh:
+            flags = json.load(fh)
+        return bool(flags.get("aihot_x_selected_enabled", True))
+    except Exception:
+        return True
+
+
 def aihot_archive_record_is_reader_visible(record: Any) -> bool:
     if not isinstance(record, dict):
         return False
     if str(record.get("site_id") or "") != "aihot":
         return True
-    return is_x_original_url(str(record.get("url") or "")) or aihot_record_is_selected(record)
+    is_x = is_x_original_url(str(record.get("url") or ""))
+    if aihot_record_is_selected(record):
+        if is_x:
+            return aihot_x_selected_enabled()
+        return True
+    return aihot_x_original_enabled() and is_x
 
 
 def first_non_empty(*values: Any) -> str:

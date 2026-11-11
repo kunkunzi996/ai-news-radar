@@ -6,6 +6,7 @@ import json
 import os
 import re
 import subprocess
+import threading
 import time
 import xml.etree.ElementTree as ET
 from datetime import datetime
@@ -162,6 +163,68 @@ def _remember_github_importance(meta: dict[str, Any], decision: GithubImportance
     meta["github_importance_reasons"] = list(decision.reasons)
 
 
+_REPO_DESC_CACHE_LOCK = threading.Lock()
+_REPO_DESC_CACHE_TTL_SECONDS = 7 * 24 * 3600
+
+
+def _repo_desc_cache_path() -> Path:
+    override = os.environ.get("RADAR_GITHUB_REPO_DESC_CACHE")
+    if override:
+        return Path(override)
+    return Path(__file__).resolve().parents[3] / "data" / "github-repo-desc-cache.json"
+
+
+def github_repo_description(
+    session: requests.Session,
+    repo_label: str,
+    *,
+    headers: dict[str, str],
+    deadline: float | None,
+) -> str:
+    """读取仓库 description，按仓库名缓存 7 天；任何失败都返回空串。"""
+    repo = str(repo_label or "").strip().strip("/")
+    if repo.count("/") != 1:
+        return ""
+    key = repo.lower()
+    path = _repo_desc_cache_path()
+    with _REPO_DESC_CACHE_LOCK:
+        try:
+            cache = json.loads(path.read_text(encoding="utf-8"))
+            if not isinstance(cache, dict):
+                cache = {}
+        except Exception:
+            cache = {}
+        entry = cache.get(key)
+        if isinstance(entry, dict) and time.time() - float(entry.get("ts") or 0) < _REPO_DESC_CACHE_TTL_SECONDS:
+            return str(entry.get("description") or "")
+    try:
+        data = _github_get_json(
+            session,
+            f"https://api.github.com/repos/{repo}",
+            params=None,
+            headers=headers,
+            deadline=deadline,
+        )
+        description = str((data or {}).get("description") or "").strip()[:500] if isinstance(data, dict) else ""
+    except Exception:
+        return str(entry.get("description") or "") if isinstance(entry, dict) else ""
+    with _REPO_DESC_CACHE_LOCK:
+        try:
+            cache = json.loads(path.read_text(encoding="utf-8")) if path.is_file() else {}
+            if not isinstance(cache, dict):
+                cache = {}
+        except Exception:
+            cache = {}
+        cache[key] = {"description": description, "ts": int(time.time())}
+        try:
+            tmp = path.with_suffix(".json.tmp")
+            tmp.write_text(json.dumps(cache, ensure_ascii=False, indent=2), encoding="utf-8")
+            os.replace(tmp, path)
+        except Exception:
+            pass
+    return description
+
+
 def _github_release_item(
     release: dict[str, Any],
     *,
@@ -209,6 +272,8 @@ def _github_release_item(
             "tag_name": tag,
             "release_name": name,
             "prerelease": bool(release.get("prerelease")),
+            # 仅供本轮生成中文小结使用；不在 PUBLIC_RAW_META_FIELDS 里，不会落盘公开。
+            "release_body": str(release.get("body") or "").strip()[:4000],
         },
     )
 
@@ -273,6 +338,11 @@ def fetch_github_repo_subscription(
         seen.add(item.url)
         _remember_github_importance(item.meta, decision)
         out.append(item)
+
+    if out:
+        description = github_repo_description(session, repo_label, headers=headers, deadline=deadline)
+        for item in out:
+            item.meta["repo_description"] = description
 
     if payload and structurally_valid_releases == 0:
         raise ValueError("github_releases_invalid_response")

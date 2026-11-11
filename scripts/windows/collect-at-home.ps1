@@ -45,6 +45,11 @@ try {
   & $python 'scripts\update_news.py' '--source-config' $config '--output-dir' 'data' '--window-hours' '24' '--archive-days' '14' '--all-time'
   $code = $LASTEXITCODE
   Write-Log "exit=$code"
+  if ($code -eq 0) {
+    & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $Root 'scripts\windows\publish-local.ps1')
+    $code = $LASTEXITCODE
+    if ($code -ne 0) { Write-Log "publish failed exit=$code" }
+  }
   exit $code
 } finally {
   Remove-Item -Force $Lock -ErrorAction SilentlyContinue

@@ -1264,7 +1264,10 @@ def fetch_aihot_mode(session: requests.Session, now: datetime, mode: str) -> lis
 def fetch_aihot(session: requests.Session, now: datetime) -> list[RawItem]:
     out: list[RawItem] = []
     seen_urls: set[str] = set()
-    for mode in (AIHOT_API_SELECTED_MODE, AIHOT_API_ALL_MODE):
+    from scripts.radar.common import aihot_x_original_enabled
+
+    modes = (AIHOT_API_SELECTED_MODE, AIHOT_API_ALL_MODE) if aihot_x_original_enabled() else (AIHOT_API_SELECTED_MODE,)
+    for mode in modes:
         for item in fetch_aihot_mode(session, now, mode):
             key = normalize_url(item.url)
             if key in seen_urls:
