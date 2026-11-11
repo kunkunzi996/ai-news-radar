@@ -840,6 +840,44 @@ class TopicFilterTests(unittest.TestCase):
         self.assertEqual(all_payload["items_all"][0]["title"], "All post")
         self.assertEqual(all_payload["items_all_raw"][0]["title"], "Raw post")
 
+    def test_phone_archive_payload_drops_raw_list_only(self):
+        import inspect
+
+        from scripts.radar import pipeline
+        from scripts.radar.cli import write_outputs_stage
+
+        self.assertTrue(
+            hasattr(pipeline, "phone_archive_payload"),
+            "还没有给手机的瘦副本函数",
+        )
+        phone_archive_payload = pipeline.phone_archive_payload
+        original = {
+            "generated_at": "2026-11-11T00:00:00Z",
+            "items_all": [{
+                "title": "抖音条",
+                "url": "https://www.douyin.com/video/1",
+                "douyin_sec_user_id": "sec-1",
+                "bilibili_uid": "998",
+            }],
+            "items_all_raw": [{"title": "原始", "url": "https://example.com/raw"}],
+            "retention": {"expired_read_keys": ["k"]},
+            "total_items_raw": 1,
+        }
+        phone = phone_archive_payload(original)
+        self.assertNotIn("items_all_raw", phone)
+        self.assertEqual(phone["items_all"], original["items_all"])
+        self.assertEqual(phone["retention"], original["retention"])
+        self.assertEqual(phone["items_all"][0]["douyin_sec_user_id"], "sec-1")
+        self.assertEqual(phone["items_all"][0]["bilibili_uid"], "998")
+        self.assertIn("items_all_raw", original)
+        self.assertEqual(original["items_all_raw"][0]["title"], "原始")
+        source = inspect.getsource(write_outputs_stage)
+        self.assertIn("latest-24h-phone.json", source)
+        self.assertIn(
+            "write_json_atomic(latest_all_path, sanitize_public_payload(latest_all_payload)",
+            source,
+        )
+
     def test_build_latest_payloads_promotes_items_ai_when_items_missing(self):
         slim, all_payload = build_latest_payloads({
             "items_ai": [{"title": "Legacy AI post", "url": "https://example.com/legacy"}],

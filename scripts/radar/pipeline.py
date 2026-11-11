@@ -1624,4 +1624,11 @@ def build_latest_payloads(latest_payload: dict[str, Any]) -> tuple[dict[str, Any
     return slim_payload, all_payload
 
 
+def phone_archive_payload(all_payload: dict[str, Any]) -> dict[str, Any]:
+    """Copy the full archive for the phone and drop only the unused raw list."""
+    phone = dict(all_payload)
+    phone.pop("items_all_raw", None)
+    return phone
+
+
 

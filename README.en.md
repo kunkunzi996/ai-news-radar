@@ -156,7 +156,8 @@ Each update generates a set of static JSON files. The page only reads these file
 
 Core files include:
 
-- `data/latest-24h-all.json`: **the subscription feed** (read by "My Subscriptions" and every platform tab). This deployment runs `--all-time`, so it is the full archive timeline, not just 24 hours
+- `data/latest-24h-all.json`: **the subscription feed** (read by "My Subscriptions" and every platform tab). This deployment runs `--all-time`, so it is the full archive timeline, not just 24 hours. The site keeps reading this file, including its raw list
+- `data/latest-24h-phone.json`: the same list for the phone's first open, without the unused raw list. Do not replace the file above with this one
 - `data/archive.json`: the full archive; retention is controlled by the `ARCHIVE_DAYS` Actions variable (default 180 days)
 - `data/source-status.json`: per-source fetch status, item counts, and source health
 - `data/latest-24h.json`: updates after AI-relevance filtering (equals the full set when `AI_RELEVANCE_THRESHOLD=0`)

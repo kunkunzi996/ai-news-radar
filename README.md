@@ -163,7 +163,8 @@ flowchart LR
 
 核心文件包括：
 
-- `data/latest-24h-all.json`：**订阅流主数据**（「我的订阅」和各平台 tab 读这个）。本部署跑 `--all-time`，内容是全量归档时间流，不是只有 24 小时
+- `data/latest-24h-all.json`：**订阅流主数据**（「我的订阅」和各平台 tab 读这个）。本部署跑 `--all-time`，内容是全量归档时间流，不是只有 24 小时。页面继续读这一份，里面的原始列表还在
+- `data/latest-24h-phone.json`：给手机第一次打开用的同一份列表，只少了用不到的原始列表。不要拿它替换上面那份
 - `data/archive.json`：归档全集，保留天数由 Actions 变量 `ARCHIVE_DAYS` 控制（默认 180 天）
 - `data/source-status.json`：每个订阅源的抓取状态、条目数和源健康
 - `data/latest-24h.json`：经 AI 相关性筛选后的消息（`AI_RELEVANCE_THRESHOLD=0` 时等于全量）

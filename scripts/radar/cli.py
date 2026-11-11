@@ -115,6 +115,7 @@ from scripts.radar.pipeline import (
     build_creator_hot_items,
     build_daily_brief_payload,
     build_latest_payloads,
+    phone_archive_payload,
     build_merge_log_payload,
     build_stories_payload,
     collect_all,
@@ -1517,6 +1518,12 @@ def write_outputs_stage(ctx: RunContext, collected: CollectStageResult, merged: 
 
     _online_sources.write_json_atomic(latest_path, sanitize_public_payload(latest_payload), compact=True)
     _online_sources.write_json_atomic(latest_all_path, sanitize_public_payload(latest_all_payload), compact=True)
+    phone_path = latest_all_path.with_name("latest-24h-phone.json")
+    _online_sources.write_json_atomic(
+        phone_path,
+        sanitize_public_payload(phone_archive_payload(latest_all_payload)),
+        compact=True,
+    )
     daily_brief_path.write_text(
         json.dumps(sanitize_public_payload(daily_brief_payload), ensure_ascii=False, indent=2),
         encoding="utf-8",
