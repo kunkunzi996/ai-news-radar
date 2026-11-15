@@ -29,7 +29,7 @@ from scripts.radar.server.online_sources import (
 
 
 GITHUB_API_ROOT = "https://api.github.com"
-GITHUB_STAR_LIMIT = 50
+GITHUB_STAR_LIMIT = 200
 ONLINE_SOURCE_LIMIT = 300
 GITHUB_NETWORK_BUDGET_SECONDS = 30.0
 GITHUB_SOCKET_TIMEOUT_SECONDS = 10.0
