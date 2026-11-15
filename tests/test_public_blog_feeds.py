@@ -72,9 +72,14 @@ class PublicBlogFeedsMatchConfigTests(unittest.TestCase):
                 continue
             self.assertIs(source.get("enabled"), False, source_id)
 
-    def test_youtube_and_opml_container_stay_enabled(self) -> None:
+    def test_youtube_members_stay_enabled(self) -> None:
         by_id = sources_by_id(load_config())
-        self.assertIs(by_id["online_opmlrss"].get("enabled"), True)
+        for source_id in ("online_youtube_mrbrain", "online_youtube_xiaodaodalang"):
+            self.assertIn(source_id, by_id, source_id)
+            self.assertIs(by_id[source_id].get("enabled"), True, source_id)
+        container = by_id.get("online_opmlrss")
+        if container is not None:
+            self.assertIs(container.get("enabled"), True)
 
     def test_opml_lists_enabled_feeds_only(self) -> None:
         text = OPML_PATH.read_text(encoding="utf-8")

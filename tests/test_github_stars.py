@@ -472,7 +472,7 @@ class GitHubStarPaginationTests(GitHubStarsTestCase):
 
 class GitHubStarPrivacyAndLimitTests(GitHubStarsTestCase):
     def test_private_repositories_are_counted_anonymously_and_do_not_use_public_capacity(self):
-        public = [public_repo(index) for index in range(1, 51)]
+        public = [public_repo(index) for index in range(1, github_stars.GITHUB_STAR_LIMIT + 1)]
         secret = private_repo(9001, "secret-owner/secret-repo")
         internal = {**private_repo(9002, "corp/internal-repo"), "private": False, "visibility": "internal"}
         session = FakeSession([
@@ -483,17 +483,17 @@ class GitHubStarPrivacyAndLimitTests(GitHubStarsTestCase):
         snapshot = github_stars.fetch_github_star_snapshot(session, username=ACCOUNT["login"])
         serialized = json.dumps(snapshot, ensure_ascii=False)
 
-        self.assertEqual(snapshot["starred_count"], 50)
+        self.assertEqual(snapshot["starred_count"], github_stars.GITHUB_STAR_LIMIT)
         self.assertEqual(snapshot["private_skipped_count"], 2)
         self.assertNotIn("secret-owner", serialized)
         self.assertNotIn("corp/internal", serialized)
         self.assertNotIn("9001", serialized)
         self.assertNotIn("9002", serialized)
 
-    def test_fifty_first_public_repository_aborts_entire_snapshot(self):
+    def test_public_repository_past_the_limit_aborts_entire_snapshot(self):
         session = FakeSession([
             FakeResponse(200, ACCOUNT),
-            FakeResponse(200, [public_repo(index) for index in range(1, 52)]),
+            FakeResponse(200, [public_repo(index) for index in range(1, github_stars.GITHUB_STAR_LIMIT + 2)]),
         ])
 
         self.assert_error_code(

@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "mode": "online-public-source-config",
-  "updated_at": "2026-10-19T03:02:31Z",
+  "updated_at": "2026-11-14T23:50:18Z",
   "sources": [
     {
       "id": "online_bilibili_13030183",
@@ -11,17 +11,6 @@
       "channel": "B站动态",
       "target": "oil欧呦",
       "locator": "13030183",
-      "env": "",
-      "notes": "公开 UID"
-    },
-    {
-      "id": "online_bilibili_28756625",
-      "name": "中二的大暄哥",
-      "type": "bilibili_dynamic",
-      "enabled": true,
-      "channel": "B站动态",
-      "target": "中二的大暄哥",
-      "locator": "28756625",
       "env": "",
       "notes": "公开 UID"
     },
@@ -184,17 +173,6 @@
       "managed_account_id": 284580915,
       "managed_repo_id": 113564448,
       "managed_state": "active"
-    },
-    {
-      "id": "online_github_repo_1150301754",
-      "name": "AlkaidLab/moonlight-harmony",
-      "type": "github_release",
-      "enabled": false,
-      "channel": "GitHub Release",
-      "target": "AlkaidLab/moonlight-harmony",
-      "locator": "AlkaidLab/moonlight-harmony",
-      "env": "",
-      "notes": "只追踪 release"
     },
     {
       "id": "online_github_repo_1162099055",
@@ -497,21 +475,6 @@
       "managed_state": "active"
     },
     {
-      "id": "online_github_repo_1261650101",
-      "name": "JimLiu/baoyu-design",
-      "type": "github_release",
-      "enabled": true,
-      "channel": "GitHub Release",
-      "target": "JimLiu/baoyu-design",
-      "locator": "JimLiu/baoyu-design",
-      "env": "",
-      "notes": "只追踪 release",
-      "managed_by": "github_stars",
-      "managed_account_id": 284580915,
-      "managed_repo_id": 1261650101,
-      "managed_state": "active"
-    },
-    {
       "id": "online_github_repo_1266385233",
       "name": "joeseesun/qiaomu-goal-meta-skill",
       "type": "github_release",
@@ -778,6 +741,28 @@
       "notes": "云电脑桥接采集"
     },
     {
+      "id": "online_douyin_3306156822",
+      "name": "野路子游戏车间",
+      "type": "mediacrawler_jsonl",
+      "enabled": true,
+      "channel": "抖音订阅",
+      "target": "野路子游戏车间",
+      "locator": "https://www.douyin.com/user/MS4wLjABAAAAn-9zjfE_nk7JZgblTkrVpNVDzTa9TuO5K5v74Rx9KXqEwZ2RJRu8RqssEBC7860O",
+      "env": "",
+      "notes": "云电脑桥接采集"
+    },
+    {
+      "id": "online_douyin_5126ad9640",
+      "name": "耿嘉辉",
+      "type": "mediacrawler_jsonl",
+      "enabled": true,
+      "channel": "抖音订阅",
+      "target": "耿嘉辉",
+      "locator": "https://www.douyin.com/user/MS4wLjABAAAAFzgVcN7F7nq3daXr0oRO4czwlT-9gcxm8I62MCuUxh8i_p5f6s6TtG36dXCXpx53",
+      "env": "",
+      "notes": "云电脑桥接采集"
+    },
+    {
       "id": "online_douyin_5228408e16",
       "name": "Game AI Lab",
       "type": "mediacrawler_jsonl",
@@ -785,6 +770,17 @@
       "channel": "抖音订阅",
       "target": "Game AI Lab",
       "locator": "https://www.douyin.com/user/MS4wLjABAAAAjg-p3MxHu35i5yRxFqOQqPTcwS425s7uycu7yT3qqi9wpxmv453dXpxab-xbRQyu",
+      "env": "",
+      "notes": "云电脑桥接采集"
+    },
+    {
+      "id": "online_douyin_84c93c71a4",
+      "name": "西瓜同学🍉",
+      "type": "mediacrawler_jsonl",
+      "enabled": true,
+      "channel": "抖音订阅",
+      "target": "西瓜同学🍉",
+      "locator": "https://www.douyin.com/user/MS4wLjABAAAAZdnh2peszXZezBCC8J61rgcSTdzfqGCVvh67N--Sd2Q",
       "env": "",
       "notes": "云电脑桥接采集"
     },
@@ -800,6 +796,17 @@
       "notes": "云电脑桥接采集"
     },
     {
+      "id": "online_douyin_972944e797",
+      "name": "Vincent",
+      "type": "mediacrawler_jsonl",
+      "enabled": true,
+      "channel": "抖音订阅",
+      "target": "Vincent",
+      "locator": "https://www.douyin.com/user/MS4wLjABAAAAK1pkjBxilk2Oi_9h_vFyD-lTAu9CTlvhmOtkosDvvxg",
+      "env": "",
+      "notes": "云电脑桥接采集"
+    },
+    {
       "id": "online_douyin_deb8370d9f",
       "name": "玩游戏做游戏的老刘",
       "type": "mediacrawler_jsonl",
@@ -807,17 +814,6 @@
       "channel": "抖音订阅",
       "target": "玩游戏做游戏的老刘",
       "locator": "https://www.douyin.com/user/MS4wLjABAAAAlWnGlCIMXYajNuyZ0WWAtT5SeDxBaBGoQWJhOcrinboWkpUHqzCz2duFAgP6pHvk",
-      "env": "",
-      "notes": "云电脑桥接采集"
-    },
-    {
-      "id": "online_douyin_e1da65a4cb",
-      "name": "AI美术笔记",
-      "type": "mediacrawler_jsonl",
-      "enabled": true,
-      "channel": "抖音订阅",
-      "target": "AI美术笔记",
-      "locator": "https://www.douyin.com/user/MS4wLjABAAAAHdDchhFnf_wV4v98ahGwUs00SYrPX8g4wdsqQCNZ2SQILRdvblH614LbcazqEjd9",
       "env": "",
       "notes": "云电脑桥接采集"
     },
@@ -864,22 +860,22 @@
       "locator": "https://aihot.news/api/v1/items",
       "env": "",
       "notes": "公开池 X 原文进推特栏，精选进 AI HOT 栏，已阅手筛"
-    },
-    {
-      "id": "online_opmlrss",
-      "name": "线上 RSS/YouTube 订阅包",
-      "type": "opmlrss",
-      "enabled": true,
-      "channel": "RSS/OPML",
-      "target": "feeds/online-sources.opml",
-      "locator": "feeds/online-sources.opml",
-      "env": "",
-      "notes": "公开 feed 列表"
     }
   ],
   "github_star_sync": {
     "version": 1,
     "account_id": 284580915,
     "account_login": "kunkunzi996"
+  },
+  "deleted_sources": {
+    "bilibili_dynamic": {
+      "28756625": "2026-11-08T16:48:29Z"
+    },
+    "github_foundation_sunshine_releases": {
+      "JimLiu/baoyu-design": "2026-11-14T23:50:18Z"
+    },
+    "mediacrawler_douyin": {
+      "MS4wLjABAAAAHdDchhFnf_wV4v98ahGwUs00SYrPX8g4wdsqQCNZ2SQILRdvblH614LbcazqEjd9": "2026-11-08T16:48:39Z"
+    }
   }
 }
