@@ -22,6 +22,7 @@ from scripts.radar.config_runtime import (
     item_collect_key,
     managed_github_repo_sources,
     normalize_repo_identity,
+    record_is_youtube_member,
     subscription_member_id,
 )
 from scripts.radar.common import (
@@ -941,7 +942,9 @@ def add_bilingual_fields(
         zh_title = zh_by_url.get(url)
         if not zh_title:
             zh_title = cache.get(title)
-        if not zh_title and allow_translate and translated_now < max_new_translations:
+        # 油管英文标题在全量列表里也要新译。AI 相关性只决定精选列表，不决定这行译文。
+        may_translate = allow_translate or record_is_youtube_member(out)
+        if not zh_title and may_translate and translated_now < max_new_translations:
             if time.monotonic() >= translate_deadline:
                 return out
             tr = translate_to_zh_cn(session, title, deadline=translate_deadline)
